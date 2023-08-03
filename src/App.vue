@@ -14,10 +14,19 @@ const word: Word = $computed(() => {
   return wordList[chapterIndex][wordIndex]
 })
 let input = $ref('')
+let wrong = $ref('')
 
 function onKeyDown(e: KeyboardEvent) {
   if (e.keyCode >= 65 && e.keyCode <= 90) {
-    input += e.key.toLowerCase()
+    let letter = e.key.toLowerCase()
+    if (input + letter === word.name.slice(0, input.length + 1)) {
+      input += letter
+    } else {
+      wrong = letter
+      setTimeout(() => {
+        wrong = input = ''
+      }, 1000)
+    }
   }
 }
 
@@ -52,8 +61,9 @@ function playAudio() {
   <div class="page">
     <div class="word-wrapper">
       <div class="word">
-        <span class="input">{{ input }}</span>
-        <span class="letter">{{ word.name.slice(input.length) }}</span>
+        <span class="input" v-if="input">{{ input }}</span>
+        <span class="wrong" v-if="wrong">{{ wrong }}</span>
+        <span class="letter">{{ word.name.slice(input.length + wrong.length) }}</span>
       </div>
       <div class="audio" @click="playAudio">播放</div>
     </div>
@@ -75,7 +85,6 @@ function playAudio() {
   font-size: 14rem;
   color: gray;
 
-
   .word-wrapper {
     display: flex;
     align-items: center;
@@ -86,6 +95,14 @@ function playAudio() {
       line-height: 1;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
       letter-spacing: 2rem;
+
+      .input {
+        color: rgba(74, 222, 128, 0.8);
+      }
+
+      .wrong {
+        color: rgba(red, 0.6);
+      }
     }
   }
 }
