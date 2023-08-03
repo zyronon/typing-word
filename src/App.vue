@@ -6,26 +6,68 @@ import {$ref} from "vue/macros"
 // import {$ref, $computed} from 'vue/macros'
 // import MCE_3 from './assets/dicts/NCE_3.json'
 
-type Word = {"name": string, "usphone": string, "ukphone": string, "trans": string[]}
-const wordList: Word[][] = chunk(NCE_2 as any, 15)
-const chapterIndex = $ref(0)
-const wordIndex = $ref(0)
-const word: Word = $computed(() => {
+type Word = { "name": string, "usphone": string, "ukphone": string, "trans": string[] }
+let wordList: Word[][] = chunk(NCE_2 as any, 15)
+let chapterIndex = $ref(0)
+let wordIndex = $ref(0)
+let word: Word = $computed(() => {
   return wordList[chapterIndex][wordIndex]
 })
 let input = $ref('')
 let wrong = $ref('')
+let skipWordList = $ref([])
+let newWordList = $ref([])
+
+function next() {
+  if (wordIndex === wordList[chapterIndex].length - 1) {
+    if (chapterIndex !== wordList.length - 1) {
+      wordIndex = 0
+      chapterIndex++
+      console.log('这一章节完了')
+    } else {
+      console.log('这本书完了')
+    }
+  } else {
+    wordIndex++
+    console.log('这个词完了')
+  }
+  wrong = input = ''
+}
 
 function onKeyDown(e: KeyboardEvent) {
   if (e.keyCode >= 65 && e.keyCode <= 90) {
     let letter = e.key.toLowerCase()
     if (input + letter === word.name.slice(0, input.length + 1)) {
       input += letter
+      wrong = ''
     } else {
       wrong = letter
       setTimeout(() => {
-        wrong = input = ''
-      }, 1000)
+        wrong = ''
+        // wrong = input = ''
+      }, 500)
+    }
+    if (input === word.name) {
+      next()
+    }
+  } else {
+    console.log('e', e)
+    switch (e.key) {
+      case 'Backspace':
+        if (wrong) {
+          wrong = ''
+        } else {
+          input = input.slice(0, -1)
+        }
+        break
+      case 'Enter':
+        newWordList.push(word)
+        break
+      case 'Tab':
+        e.preventDefault()
+        skipWordList.push(word)
+        next()
+        break
     }
   }
 }
