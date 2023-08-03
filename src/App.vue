@@ -1,41 +1,95 @@
 <script setup lang="ts">
-import {onMounted, onUnmounted} from "vue"
-import NCE_2 from '@/assets/dicts/NCE_2.json'
+import {onMounted, onUnmounted, reactive, watch} from "vue"
+import NCE_2 from './assets/dicts/NCE_2.json'
 import {chunk} from "lodash"
 import {$ref} from "vue/macros"
 // import {$ref, $computed} from 'vue/macros'
 // import MCE_3 from './assets/dicts/NCE_3.json'
 
+type Config = {
+  newWords: Word[],
+  skipWords: Word[],
+  skipWordNames: string[],
+  dict: string,
+  chapterIndex: number,
+  wordIndex: number,
+}
 type Word = { "name": string, "usphone": string, "ukphone": string, "trans": string[] }
-let wordList: Word[][] = chunk(NCE_2 as any, 15)
-let chapterIndex = $ref(0)
-let wordIndex = $ref(0)
-let word: Word = $computed(() => {
-  return wordList[chapterIndex][wordIndex]
-})
+let wordList: Word[][] = $ref([])
 let input = $ref('')
 let wrong = $ref('')
-let skipWordList = $ref([])
-let newWordList = $ref([])
+let activeIndex = $ref(-1)
+let config: Config = $ref({
+  newWords: [],
+  skipWords: [],
+  skipWordNames: [],
+  dict: 'nce2',
+  chapterIndex: 0,
+  wordIndex: 0,
+})
+
+let word: Word = $computed(() => {
+  return wordList?.[config.chapterIndex]?.[config.wordIndex] ?? {
+    trans: [],
+    name: ''
+  }
+})
+const saveKey = 'bb-word-config'
+onMounted(() => {
+  let configStr = localStorage.getItem(saveKey)
+  if (configStr) {
+    let obj: Config = JSON.parse(configStr)
+    config.newWords = obj.newWords
+    config.skipWords = obj.skipWords
+    config.skipWordNames = obj.skipWordNames
+    config.dict = obj.dict
+    config.chapterIndex = obj.chapterIndex
+    config.wordIndex = 0
+  }
+  if (config.dict === 'nce2') {
+    wordList = chunk(NCE_2, 15) as any
+    let wordTemp = wordList?.[config.chapterIndex]?.[config.wordIndex]
+    if (wordTemp && config.skipWordNames.includes(wordTemp.name)) {
+      next()
+    }
+  }
+
+
+  window.addEventListener('keydown', onKeyDown)
+})
+
+onUnmounted(() => {
+  console.log('onUnmounted')
+  window.removeEventListener('keydown', onKeyDown)
+})
+
+watch(config, (n) => {
+  localStorage.setItem(saveKey, JSON.stringify(n))
+})
+
 
 function next() {
-  if (wordIndex === wordList[chapterIndex].length - 1) {
-    if (chapterIndex !== wordList.length - 1) {
-      wordIndex = 0
-      chapterIndex++
+  if (config.wordIndex === wordList[config.chapterIndex].length - 1) {
+    if (config.chapterIndex !== wordList.length - 1) {
+      config.wordIndex = 0
+      config.chapterIndex++
       console.log('这一章节完了')
     } else {
       console.log('这本书完了')
     }
   } else {
-    wordIndex++
+    config.wordIndex++
     console.log('这个词完了')
   }
+  if (config.skipWordNames.includes(word.name)) {
+    next()
+  }
+
   wrong = input = ''
 }
 
 function onKeyDown(e: KeyboardEvent) {
-  if (e.keyCode >= 65 && e.keyCode <= 90) {
+  if (e.keyCode >= 65 && e.keyCode <= 90 || e.code === 'Space') {
     let letter = e.key.toLowerCase()
     if (input + letter === word.name.slice(0, input.length + 1)) {
       input += letter
@@ -51,7 +105,7 @@ function onKeyDown(e: KeyboardEvent) {
       next()
     }
   } else {
-    console.log('e', e)
+    // console.log('e', e)
     switch (e.key) {
       case 'Backspace':
         if (wrong) {
@@ -61,26 +115,31 @@ function onKeyDown(e: KeyboardEvent) {
         }
         break
       case 'Enter':
-        newWordList.push(word)
+        if (!config.newWords.find(v => v.name === word.name)) {
+          config.newWords.push(word)
+        }
+        activeIndex = 1
+        break
+      case '`':
+        if (!config.skipWordNames.includes(word.name)) {
+          config.skipWords.push(word)
+          config.skipWordNames = config.skipWords.map(v => v.name)
+        }
+        activeIndex = 0
+        next()
         break
       case 'Tab':
         e.preventDefault()
-        skipWordList.push(word)
+        activeIndex = 2
         next()
         break
     }
+    setTimeout(() => {
+      activeIndex = -1
+    }, 200)
   }
 }
 
-onMounted(() => {
-  console.log('word', word)
-  window.addEventListener('keydown', onKeyDown)
-})
-
-onUnmounted(() => {
-  console.log('onUnmounted')
-  window.removeEventListener('keydown', onKeyDown)
-})
 
 const pronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 
@@ -101,6 +160,7 @@ function playAudio() {
 
 <template>
   <div class="page">
+    <div class="translate">{{ word.trans.join('；') }}</div>
     <div class="word-wrapper">
       <div class="word">
         <span class="input" v-if="input">{{ input }}</span>
@@ -110,7 +170,11 @@ function playAudio() {
       <div class="audio" @click="playAudio">播放</div>
     </div>
     <div class="phonetic">{{ word.usphone }}</div>
-    <div class="translate">{{ word.trans.join('；') }}</div>
+    <div class="options">
+      <div class="option" :class="activeIndex === 0 &&'active'">忽略</div>
+      <div class="option" :class="activeIndex === 1 &&'active'">收藏</div>
+      <div class="option" :class="activeIndex === 2 &&'active'">下一个</div>
+    </div>
   </div>
 </template>
 
@@ -126,6 +190,34 @@ function playAudio() {
   flex-direction: column;
   font-size: 14rem;
   color: gray;
+  gap: 2rem;
+
+  .options {
+    margin-top: 10rem;
+    display: flex;
+    gap: 15rem;
+    font-size: 18rem;
+
+    .option {
+      cursor: pointer;
+      padding: 6rem 10rem;
+      border-radius: 4rem;
+      background: gray;
+
+      &:hover {
+        //background: rgb(70, 67, 67) !important;
+        background: red;
+      }
+
+      &.active {
+        background: red;
+      }
+    }
+  }
+
+  .phonetic, .translate {
+    font-size: 20rem;
+  }
 
   .word-wrapper {
     display: flex;
@@ -136,7 +228,7 @@ function playAudio() {
       font-size: 48rem;
       line-height: 1;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-      letter-spacing: 2rem;
+      letter-spacing: 2.5rem;
 
       .input {
         color: rgba(74, 222, 128, 0.8);
