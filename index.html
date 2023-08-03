@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Vite + Vue + TS</title>
+    <script>
+      +(function () {
+        function rem() {
+          let html = document.documentElement;
+          let max = parseInt('1920rem');
+          let min = parseInt('1000rem');
+          let width;
+          if (window.innerWidth > max) {
+            width = max;
+          } else if (window.innerWidth < min) {
+            width = min;
+          } else {
+            width = window.innerWidth;
+          }
+          html.style.fontSize = width / max + 'px';
+        }
+        rem();
+        window.addEventListener('resize', rem);
+      })();
+    </script>
+</head>
+<body>
+<div id="app"></div>
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>
