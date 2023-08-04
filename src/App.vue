@@ -53,14 +53,6 @@ onMounted(() => {
     let obj: Config = JSON.parse(configStr)
     store.init(obj)
   }
-  if (config.dict === 'nce2') {
-    wordList = chunk(NCE_2, 15) as any
-    let wordTemp = wordList?.[config.chapterIndex]?.[config.wordIndex]
-    if (wordTemp && config.skipWordNames.includes(wordTemp.name)) {
-      next()
-    }
-  }
-
   window.addEventListener('keydown', onKeyDown)
 })
 
@@ -172,7 +164,8 @@ function playAudio() {
       <div class="word" :class="wrong&&'is-wrong'">
         <span class="input" v-if="input">{{ input }}</span>
         <span class="wrong" v-if="wrong">{{ wrong }}</span>
-        <span class="letter">{{ store.word.name.slice(input.length + wrong.length) }}</span>
+<!--        <span class="letter">{{ store.word.name.slice(input.length + wrong.length) }}</span>-->
+        <span class="letter">{{ store.word.name  }}</span>
       </div>
       <div class="audio" @click="playAudio">播放</div>
     </div>
