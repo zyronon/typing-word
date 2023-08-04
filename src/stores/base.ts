@@ -21,6 +21,12 @@ export const useBaseStore = defineStore('base', {
   },
   actions: {
     init(config: Config) {
+      this.newWords = config.newWords
+      this.skipWords = config.skipWords
+      this.skipWordNames = config.skipWordNames
+      this.dict = config.dict
+      this.chapterIndex = config.chapterIndex
+      this.wordIndex = 0
     },
   },
 })

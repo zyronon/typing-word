@@ -51,12 +51,7 @@ onMounted(() => {
   let configStr = localStorage.getItem(saveKey)
   if (configStr) {
     let obj: Config = JSON.parse(configStr)
-    config.newWords = obj.newWords
-    config.skipWords = obj.skipWords
-    config.skipWordNames = obj.skipWordNames
-    config.dict = obj.dict
-    config.chapterIndex = obj.chapterIndex
-    config.wordIndex = 0
+    store.init(obj)
   }
   if (config.dict === 'nce2') {
     wordList = chunk(NCE_2, 15) as any
@@ -65,7 +60,6 @@ onMounted(() => {
       next()
     }
   }
-
 
   window.addEventListener('keydown', onKeyDown)
 })
@@ -178,7 +172,7 @@ function playAudio() {
       <div class="word" :class="wrong&&'is-wrong'">
         <span class="input" v-if="input">{{ input }}</span>
         <span class="wrong" v-if="wrong">{{ wrong }}</span>
-        <span class="letter">{{ word.name.slice(input.length + wrong.length) }}</span>
+        <span class="letter">{{ store.word.name.slice(input.length + wrong.length) }}</span>
       </div>
       <div class="audio" @click="playAudio">播放</div>
     </div>
