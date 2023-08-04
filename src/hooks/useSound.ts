@@ -27,8 +27,8 @@ export function useSound(srcList?: string[], num?: number) {
       audioList[index % audioLength].play()
     }
   }
-  return {
+  return [
     play,
     setAudio
-  }
+  ]
 }

@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted, watch} from "vue"
 import NCE_2 from './assets/dicts/NCE_2.json'
-import 快速打字的机械键盘声音Mp3 from './assets/sound/快速打字的机械键盘声音.mp3'
-import 键盘快速打字的声音Mp3 from './assets/sound/键盘快速打字的声音.mp3'
-import 电话打字的声音Mp3 from './assets/sound/电话打字的声音.mp3'
-import 机械0 from './assets/sound/jixie/机械0.mp3'
-import 机械1 from './assets/sound/jixie/机械1.mp3'
-import 机械2 from './assets/sound/jixie/机械2.mp3'
-import 机械3 from './assets/sound/jixie/机械3.mp3'
+import 快速打字的机械键盘声音Mp3 from './assets/sound/key-sounds/快速打字的机械键盘声音.mp3'
+import 键盘快速打字的声音Mp3 from './assets/sound/key-sounds/键盘快速打字的声音.mp3'
+import 电话打字的声音Mp3 from './assets/sound/key-sounds/电话打字的声音.mp3'
+import 老式机械 from './assets/sound/key-sounds/老式机械.mp3'
+import 机械0 from './assets/sound/key-sounds/jixie/机械0.mp3'
+import 机械1 from './assets/sound/key-sounds/jixie/机械1.mp3'
+import 机械2 from './assets/sound/key-sounds/jixie/机械2.mp3'
+import 机械3 from './assets/sound/key-sounds/jixie/机械3.mp3'
+import beep from './assets/sound/beep.wav'
+import correct from './assets/sound/correct.wav'
 import {chunk} from "lodash"
 import {$ref} from "vue/macros"
 import {useSound} from "@/hooks/useSound.ts"
@@ -36,8 +39,11 @@ let config: Config = $ref({
   wordIndex: 0,
 })
 
-// const {play, setAudio} = useSound([电话打字的声音Mp3], 3)
-const {play, setAudio} = useSound([机械0, 机械1, 机械2, 机械3], 1)
+// const [play, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
+const [play, setAudio] = useSound([老式机械], 3)
+// const [play, setAudio] = useSound([电话打字的声音Mp3], 3)
+const [playBeep] = useSound([beep], 1)
+const [playCorrect] = useSound([correct], 1)
 
 let word: Word = $computed(() => {
   return wordList?.[config.chapterIndex]?.[config.wordIndex] ?? {
@@ -78,7 +84,6 @@ watch(config, (n) => {
   localStorage.setItem(saveKey, JSON.stringify(n))
 })
 
-
 function next() {
   if (config.wordIndex === wordList[config.chapterIndex].length - 1) {
     if (config.chapterIndex !== wordList.length - 1) {
@@ -105,17 +110,19 @@ async function onKeyDown(e: KeyboardEvent) {
     if (input + letter === word.name.slice(0, input.length + 1)) {
       input += letter
       wrong = ''
+      play()
     } else {
       wrong = letter
+      playBeep()
       setTimeout(() => {
         wrong = ''
         // wrong = input = ''
       }, 500)
     }
     if (input === word.name) {
-      next()
+      playCorrect()
+      setTimeout(next, 300)
     }
-    play()
   } else {
     // console.log('e', e)
     switch (e.key) {
@@ -152,7 +159,6 @@ async function onKeyDown(e: KeyboardEvent) {
   }
 }
 
-
 const pronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 
 function generateWordSoundSrc(word: string, pronunciation: string) {
@@ -174,7 +180,7 @@ function playAudio() {
   <div class="page">
     <div class="translate">{{ word.trans.join('；') }}</div>
     <div class="word-wrapper">
-      <div class="word">
+      <div class="word" :class="wrong&&'is-wrong'">
         <span class="input" v-if="input">{{ input }}</span>
         <span class="wrong" v-if="wrong">{{ wrong }}</span>
         <span class="letter">{{ word.name.slice(input.length + wrong.length) }}</span>
@@ -250,7 +256,34 @@ function playAudio() {
       .wrong {
         color: rgba(red, 0.6);
       }
+
+      &.is-wrong {
+        animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      }
     }
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
   }
 }
 </style>
