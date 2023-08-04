@@ -1,8 +1,16 @@
 <script setup lang="ts">
-import {onMounted, onUnmounted, reactive, watch} from "vue"
+import {onMounted, onUnmounted, watch} from "vue"
 import NCE_2 from './assets/dicts/NCE_2.json'
+import 快速打字的机械键盘声音Mp3 from './assets/sound/快速打字的机械键盘声音.mp3'
+import 键盘快速打字的声音Mp3 from './assets/sound/键盘快速打字的声音.mp3'
+import 电话打字的声音Mp3 from './assets/sound/电话打字的声音.mp3'
+import 机械0 from './assets/sound/jixie/机械0.mp3'
+import 机械1 from './assets/sound/jixie/机械1.mp3'
+import 机械2 from './assets/sound/jixie/机械2.mp3'
+import 机械3 from './assets/sound/jixie/机械3.mp3'
 import {chunk} from "lodash"
 import {$ref} from "vue/macros"
+import {useSound} from "@/hooks/useSound.ts"
 // import {$ref, $computed} from 'vue/macros'
 // import MCE_3 from './assets/dicts/NCE_3.json'
 
@@ -14,7 +22,7 @@ type Config = {
   chapterIndex: number,
   wordIndex: number,
 }
-type Word = { "name": string, "usphone": string, "ukphone": string, "trans": string[] }
+type Word = {"name": string, "usphone": string, "ukphone": string, "trans": string[]}
 let wordList: Word[][] = $ref([])
 let input = $ref('')
 let wrong = $ref('')
@@ -27,6 +35,9 @@ let config: Config = $ref({
   chapterIndex: 0,
   wordIndex: 0,
 })
+
+// const {play, setAudio} = useSound([电话打字的声音Mp3], 3)
+const {play, setAudio} = useSound([机械0, 机械1, 机械2, 机械3], 1)
 
 let word: Word = $computed(() => {
   return wordList?.[config.chapterIndex]?.[config.wordIndex] ?? {
@@ -59,7 +70,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  console.log('onUnmounted')
+  // console.log('onUnmounted')
   window.removeEventListener('keydown', onKeyDown)
 })
 
@@ -79,7 +90,7 @@ function next() {
     }
   } else {
     config.wordIndex++
-    console.log('这个词完了')
+    // console.log('这个词完了')
   }
   if (config.skipWordNames.includes(word.name)) {
     next()
@@ -88,7 +99,7 @@ function next() {
   wrong = input = ''
 }
 
-function onKeyDown(e: KeyboardEvent) {
+async function onKeyDown(e: KeyboardEvent) {
   if (e.keyCode >= 65 && e.keyCode <= 90 || e.code === 'Space') {
     let letter = e.key.toLowerCase()
     if (input + letter === word.name.slice(0, input.length + 1)) {
@@ -104,6 +115,7 @@ function onKeyDown(e: KeyboardEvent) {
     if (input === word.name) {
       next()
     }
+    play()
   } else {
     // console.log('e', e)
     switch (e.key) {
@@ -203,6 +215,7 @@ function playAudio() {
       padding: 6rem 10rem;
       border-radius: 4rem;
       background: gray;
+      color: white;
 
       &:hover {
         //background: rgb(70, 67, 67) !important;

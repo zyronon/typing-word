@@ -29,7 +29,6 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "src/**/*.json"
   ],
   "references": [
     {
