@@ -14,18 +14,11 @@ import correct from './assets/sound/correct.wav'
 import {chunk} from "lodash"
 import {$ref} from "vue/macros"
 import {useSound} from "@/hooks/useSound.ts"
+import {useBaseStore} from "@/stores/base.ts"
+import {Config, Word} from "@/types.ts"
 // import {$ref, $computed} from 'vue/macros'
 // import MCE_3 from './assets/dicts/NCE_3.json'
 
-type Config = {
-  newWords: Word[],
-  skipWords: Word[],
-  skipWordNames: string[],
-  dict: string,
-  chapterIndex: number,
-  wordIndex: number,
-}
-type Word = {"name": string, "usphone": string, "ukphone": string, "trans": string[]}
 let wordList: Word[][] = $ref([])
 let input = $ref('')
 let wrong = $ref('')
@@ -38,6 +31,8 @@ let config: Config = $ref({
   chapterIndex: 0,
   wordIndex: 0,
 })
+
+const store = useBaseStore()
 
 // const [play, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
 const [play, setAudio] = useSound([老式机械], 3)
