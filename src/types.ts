@@ -6,4 +6,6 @@ export type Config = {
   chapterIndex: number,
   wordIndex: number,
 }
-export type Word = {"name": string, "usphone": string, "ukphone": string, "trans": string[]}
+export type Word = { "name": string, "usphone": string, "ukphone": string, "trans": string[] }
+
+export const SaveKey = 'bb-word-config'

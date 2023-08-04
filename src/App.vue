@@ -11,15 +11,12 @@ import 机械2 from './assets/sound/key-sounds/jixie/机械2.mp3'
 import 机械3 from './assets/sound/key-sounds/jixie/机械3.mp3'
 import beep from './assets/sound/beep.wav'
 import correct from './assets/sound/correct.wav'
-import {chunk} from "lodash"
 import {$ref} from "vue/macros"
 import {useSound} from "@/hooks/useSound.ts"
 import {useBaseStore} from "@/stores/base.ts"
 import {Config, Word} from "@/types.ts"
-// import {$ref, $computed} from 'vue/macros'
-// import MCE_3 from './assets/dicts/NCE_3.json'
+import {SaveKey} from "./types";
 
-let wordList: Word[][] = $ref([])
 let input = $ref('')
 let wrong = $ref('')
 let activeIndex = $ref(-1)
@@ -40,19 +37,8 @@ const [play, setAudio] = useSound([老式机械], 3)
 const [playBeep] = useSound([beep], 1)
 const [playCorrect] = useSound([correct], 1)
 
-let word: Word = $computed(() => {
-  return wordList?.[config.chapterIndex]?.[config.wordIndex] ?? {
-    trans: [],
-    name: ''
-  }
-})
-const saveKey = 'bb-word-config'
 onMounted(() => {
-  let configStr = localStorage.getItem(saveKey)
-  if (configStr) {
-    let obj: Config = JSON.parse(configStr)
-    store.init(obj)
-  }
+  store.init()
   window.addEventListener('keydown', onKeyDown)
 })
 
@@ -61,24 +47,24 @@ onUnmounted(() => {
   window.removeEventListener('keydown', onKeyDown)
 })
 
-watch(config, (n) => {
-  localStorage.setItem(saveKey, JSON.stringify(n))
+watch(store.$state, (n) => {
+  localStorage.setItem(SaveKey, JSON.stringify(n))
 })
 
 function next() {
-  if (config.wordIndex === wordList[config.chapterIndex].length - 1) {
-    if (config.chapterIndex !== wordList.length - 1) {
-      config.wordIndex = 0
-      config.chapterIndex++
+  if (store.wordIndex === store.chapter.length - 1) {
+    if (store.chapterIndex !== store.wordListSplit.length - 1) {
+      store.wordIndex = 0
+      store.chapterIndex++
       console.log('这一章节完了')
     } else {
       console.log('这本书完了')
     }
   } else {
-    config.wordIndex++
+    store.wordIndex++
     // console.log('这个词完了')
   }
-  if (config.skipWordNames.includes(word.name)) {
+  if (store.skipWordNames.includes(store.word.name)) {
     next()
   }
 
@@ -88,7 +74,7 @@ function next() {
 async function onKeyDown(e: KeyboardEvent) {
   if (e.keyCode >= 65 && e.keyCode <= 90 || e.code === 'Space') {
     let letter = e.key.toLowerCase()
-    if (input + letter === word.name.slice(0, input.length + 1)) {
+    if (input + letter === store.word.name.slice(0, input.length + 1)) {
       input += letter
       wrong = ''
       play()
@@ -100,7 +86,7 @@ async function onKeyDown(e: KeyboardEvent) {
         // wrong = input = ''
       }, 500)
     }
-    if (input === word.name) {
+    if (input === store.word.name) {
       playCorrect()
       setTimeout(next, 300)
     }
@@ -115,15 +101,15 @@ async function onKeyDown(e: KeyboardEvent) {
         }
         break
       case 'Enter':
-        if (!config.newWords.find(v => v.name === word.name)) {
-          config.newWords.push(word)
+        if (!store.newWords.find(v => v.name === store.word.name)) {
+          store.newWords.push(store.word)
         }
         activeIndex = 1
         break
       case '`':
-        if (!config.skipWordNames.includes(word.name)) {
-          config.skipWords.push(word)
-          config.skipWordNames = config.skipWords.map(v => v.name)
+        if (!store.skipWordNames.includes(store.word.name)) {
+          store.skipWords.push(store.word)
+          store.skipWordNames = store.skipWords.map(v => v.name)
         }
         activeIndex = 0
         next()
@@ -152,24 +138,23 @@ function generateWordSoundSrc(word: string, pronunciation: string) {
 }
 
 function playAudio() {
-  let audio = new Audio(generateWordSoundSrc(word.name, 'us'))
+  let audio = new Audio(generateWordSoundSrc(store.word.name, 'us'))
   audio.play()
 }
 </script>
 
 <template>
   <div class="page">
-    <div class="translate">{{ word.trans.join('；') }}</div>
+    <div class="translate">{{ store.word.trans.join('；') }}</div>
     <div class="word-wrapper">
       <div class="word" :class="wrong&&'is-wrong'">
         <span class="input" v-if="input">{{ input }}</span>
         <span class="wrong" v-if="wrong">{{ wrong }}</span>
-<!--        <span class="letter">{{ store.word.name.slice(input.length + wrong.length) }}</span>-->
-        <span class="letter">{{ store.word.name  }}</span>
+        <span class="letter">{{ store.word.name.slice(input.length + wrong.length) }}</span>
       </div>
       <div class="audio" @click="playAudio">播放</div>
     </div>
-    <div class="phonetic">{{ word.usphone }}</div>
+    <div class="phonetic">{{ store.word.usphone }}</div>
     <div class="options">
       <div class="option" :class="activeIndex === 0 &&'active'">忽略</div>
       <div class="option" :class="activeIndex === 1 &&'active'">收藏</div>
