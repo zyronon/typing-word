@@ -22,8 +22,8 @@ let isDictation = $ref(true)
 let activeIndex = $ref(-1)
 const store = useBaseStore()
 
-const [play, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
-// const [play, setAudio] = useSound([老式机械], 3)
+// const [play, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
+const [playKeySound, setAudio] = useSound([老式机械], 3)
 // const [play, setAudio] = useSound([电话打字的声音Mp3], 3)
 const [playBeep] = useSound([beep], 1)
 const [playCorrect] = useSound([correct], 1)
@@ -82,9 +82,10 @@ async function onKeyDown(e: KeyboardEvent) {
     if (input + letter === store.word.name.slice(0, input.length + 1)) {
       input += letter
       wrong = ''
-      play()
+      playKeySound()
     } else {
       wrong = letter
+      playKeySound()
       playBeep()
       setTimeout(() => {
         wrong = ''
@@ -145,33 +146,72 @@ function generateWordSoundSrc(word: string, pronunciation: string) {
   }
 }
 
-function playAudio() {
-  let audio = new Audio(generateWordSoundSrc(store.word.name, 'us'))
+function playAudio(word) {
+  let audio = new Audio(generateWordSoundSrc(word, 'us'))
   audio.play()
 }
 </script>
 
 <template>
   <div class="page">
-    <div class="translate">{{ store.word.trans.join('；') }}</div>
-    <div class="word-wrapper">
-      <div class="word" :class="wrong&&'is-wrong'">
-        <span class="input" v-if="input">{{ input }}</span>
-        <span class="wrong" v-if="wrong">{{ wrong }}</span>
-        <template v-if="isDictation">
+    <div class="content">
+      <div class="type-word">
+        <div class="translate">{{ store.word.trans.join('；') }}</div>
+        <div class="word-wrapper">
+          <div class="word" :class="wrong&&'is-wrong'">
+            <span class="input" v-if="input">{{ input }}</span>
+            <span class="wrong" v-if="wrong">{{ wrong }}</span>
+            <template v-if="isDictation">
           <span class="letter" v-if="!showFullWord"
                 @mouseenter="showFullWord = true">{{ restWord.split('').map(v => '_').join('') }}</span>
-          <span class="letter" v-else @mouseleave="showFullWord = false">{{ restWord }}</span>
-        </template>
-        <span class="letter" v-else>{{ restWord }}</span>
+              <span class="letter" v-else @mouseleave="showFullWord = false">{{ restWord }}</span>
+            </template>
+            <span class="letter" v-else>{{ restWord }}</span>
+          </div>
+          <div class="audio" @click="playAudio(store.word.name)">播放</div>
+        </div>
+        <div class="phonetic">{{ store.word.usphone }}</div>
+        <div class="options">
+          <div class="option" :class="activeIndex === 0 &&'active'">忽略</div>
+          <div class="option" :class="activeIndex === 1 &&'active'">收藏</div>
+          <div class="option" :class="activeIndex === 2 &&'active'">下一个</div>
+        </div>
       </div>
-      <div class="audio" @click="playAudio">播放</div>
     </div>
-    <div class="phonetic">{{ store.word.usphone }}</div>
-    <div class="options">
-      <div class="option" :class="activeIndex === 0 &&'active'">忽略</div>
-      <div class="option" :class="activeIndex === 1 &&'active'">收藏</div>
-      <div class="option" :class="activeIndex === 2 &&'active'">下一个</div>
+    <div class="side">
+      <header>
+        <div class="tabs">
+          <div class="tab">单词表</div>
+          <div class="tab active">生词本</div>
+          <div class="tab">已忽略</div>
+        </div>
+        <div class="close">关闭</div>
+      </header>
+      <div v-if="false" class="new-words">
+        <div class="list">
+          <div class="item" v-for="item in store.newWords">
+            <div class="left">
+              <div class="letter">{{ item.name }}</div>
+              <div class="info">
+                <div class="translate">{{ item.trans.join('；') }}</div>
+                <div class="phonetic">{{ item.usphone }}</div>
+              </div>
+            </div>
+
+            <div class="right">
+              <div class="audio" @click="playAudio(item.name)">播放</div>
+              <div class="audio" @click="playAudio(item.name)">删除</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dicts">
+        <div class="dict" v-for="i in 10">
+          <div class="name">CET-4</div>
+          <div class="desc">大学英语四级词库</div>
+          <div class="num">2607词</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -183,65 +223,172 @@ function playAudio() {
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   font-size: 14rem;
-  color: gray;
-  gap: 2rem;
 
-  .options {
-    margin-top: 10rem;
-    display: flex;
-    gap: 15rem;
-    font-size: 18rem;
-
-    .option {
-      cursor: pointer;
-      padding: 6rem 10rem;
-      border-radius: 4rem;
-      background: gray;
-      color: white;
-
-      &:hover {
-        //background: rgb(70, 67, 67) !important;
-        background: red;
-      }
-
-      &.active {
-        background: red;
-      }
-    }
-  }
-
-  .phonetic, .translate {
-    font-size: 20rem;
-  }
-
-  .word-wrapper {
+  .content {
+    flex: 1;
     display: flex;
     align-items: center;
-    gap: 10rem;
+    justify-content: center;
 
-    .word {
-      font-size: 48rem;
-      line-height: 1;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-      letter-spacing: 5rem;
+    .type-word {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: 14rem;
+      color: gray;
+      gap: 2rem;
 
-      .input {
-        color: rgba(74, 222, 128, 0.8);
+      .options {
+        margin-top: 10rem;
+        display: flex;
+        gap: 15rem;
+        font-size: 18rem;
+
+        .option {
+          cursor: pointer;
+          padding: 6rem 10rem;
+          border-radius: 4rem;
+          background: gray;
+          color: white;
+
+          &:hover {
+            //background: rgb(70, 67, 67) !important;
+            background: red;
+          }
+
+          &.active {
+            background: red;
+          }
+        }
       }
 
-      .wrong {
-        color: rgba(red, 0.6);
+      .phonetic, .translate {
+        font-size: 20rem;
       }
 
-      &.is-wrong {
-        animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      .word-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10rem;
+
+        .word {
+          font-size: 48rem;
+          line-height: 1;
+          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+          letter-spacing: 5rem;
+
+          .input {
+            color: rgba(74, 222, 128, 0.8);
+          }
+
+          .wrong {
+            color: rgba(red, 0.6);
+          }
+
+          &.is-wrong {
+            animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+          }
+        }
       }
     }
   }
+
+  .side {
+    width: 20vw;
+    height: 100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+
+    header {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      .tabs {
+        padding: 10rem 20rem;
+        display: flex;
+        align-items: flex-end;
+        border-bottom: 1px solid #e1e1e1;
+        gap: 15rem;
+        font-size: 18rem;
+        color: gray;
+
+        .tab {
+          cursor: pointer;
+
+          &.active {
+            font-size: 22rem;
+            color: blue;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .close {
+        cursor: pointer;
+        position: absolute;
+        right: 20rem;
+      }
+    }
+  }
+
+  .dicts {
+    padding: 10rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10rem;
+
+    .dict {
+      cursor: pointer;
+      padding: 10rem;
+      border-radius: 10rem;
+      border: 1px solid gray;
+    }
+  }
+
+  .new-words {
+    flex: 1;
+    overflow: auto;
+
+    .list {
+      display: flex;
+      flex-direction: column;
+
+      .item {
+        margin: 10rem;
+        border-radius: 10rem;
+        padding: 10rem;
+        border: 1px solid blue;
+        display: flex;
+        justify-content: space-between;
+
+        .left {
+          .letter {
+            margin-bottom: 10rem;
+            font-size: 24rem;
+            line-height: 1;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+            display: flex;
+          }
+
+          .info {
+            display: flex;
+            gap: 20rem
+          }
+        }
+
+        .right {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+
 }
 
 @keyframes shake {
