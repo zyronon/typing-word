@@ -14,6 +14,7 @@ import {$ref} from "vue/macros"
 import {useSound} from "@/hooks/useSound.ts"
 import {useBaseStore} from "@/stores/base.ts"
 import {SaveKey} from "./types";
+import WordList from "./components/WordList.vue";
 
 let input = $ref('')
 let wrong = $ref('')
@@ -190,25 +191,9 @@ const step = $ref(1)
         <div class="close">关闭</div>
       </header>
       <div class="wrapper">
-        <div v-if="false" class="new-words">
-          <div class="list">
-            <div class="item" v-for="item in store.newWords">
-              <div class="left">
-                <div class="letter">{{ item.name }}</div>
-                <div class="info">
-                  <div class="translate">{{ item.trans.join('；') }}</div>
-                  <div class="phonetic">{{ item.usphone }}</div>
-                </div>
-              </div>
+        <WordList :word-list="store.newWords" :index="0"></WordList>
 
-              <div class="right">
-                <div class="audio" @click="playAudio(item.name)">播放</div>
-                <div class="audio" @click="playAudio(item.name)">删除</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pages" :class="`step${step}`">
+        <div class="pages" v-if="false" :class="`step${step}`">
           <div class="dict page">
             <div class="tags">
               <div class="tag" :class="i === 5 &&'active'" v-for="i in 2">六级</div>
@@ -425,6 +410,7 @@ const step = $ref(1)
 
     .chapter-list {
       .chapter-item {
+        cursor: pointer;
         margin-bottom: 10rem;
         padding: 10rem;
         border-radius: 10rem;
@@ -433,43 +419,6 @@ const step = $ref(1)
     }
   }
 
-  .new-words {
-
-    .list {
-      display: flex;
-      flex-direction: column;
-
-      .item {
-        margin: 10rem;
-        border-radius: 10rem;
-        padding: 10rem;
-        border: 1px solid blue;
-        display: flex;
-        justify-content: space-between;
-
-        .left {
-          .letter {
-            margin-bottom: 10rem;
-            font-size: 24rem;
-            line-height: 1;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-            display: flex;
-          }
-
-          .info {
-            display: flex;
-            gap: 20rem
-          }
-        }
-
-        .right {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-      }
-    }
-  }
 
 }
 

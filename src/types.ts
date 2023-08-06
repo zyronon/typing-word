@@ -9,3 +9,5 @@ export type Config = {
 export type Word = { "name": string, "usphone": string, "ukphone": string, "trans": string[] }
 
 export const SaveKey = 'bb-word-config'
+
+export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
