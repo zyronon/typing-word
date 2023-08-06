@@ -150,10 +150,12 @@ function playAudio(word) {
   let audio = new Audio(generateWordSoundSrc(word, 'us'))
   audio.play()
 }
+
+const step = $ref(1)
 </script>
 
 <template>
-  <div class="page">
+  <div class="main-page">
     <div class="content">
       <div class="type-word">
         <div class="translate">{{ store.word.trans.join('；') }}</div>
@@ -187,29 +189,47 @@ function playAudio(word) {
         </div>
         <div class="close">关闭</div>
       </header>
-      <div v-if="false" class="new-words">
-        <div class="list">
-          <div class="item" v-for="item in store.newWords">
-            <div class="left">
-              <div class="letter">{{ item.name }}</div>
-              <div class="info">
-                <div class="translate">{{ item.trans.join('；') }}</div>
-                <div class="phonetic">{{ item.usphone }}</div>
+      <div class="wrapper">
+        <div v-if="false" class="new-words">
+          <div class="list">
+            <div class="item" v-for="item in store.newWords">
+              <div class="left">
+                <div class="letter">{{ item.name }}</div>
+                <div class="info">
+                  <div class="translate">{{ item.trans.join('；') }}</div>
+                  <div class="phonetic">{{ item.usphone }}</div>
+                </div>
               </div>
-            </div>
 
-            <div class="right">
-              <div class="audio" @click="playAudio(item.name)">播放</div>
-              <div class="audio" @click="playAudio(item.name)">删除</div>
+              <div class="right">
+                <div class="audio" @click="playAudio(item.name)">播放</div>
+                <div class="audio" @click="playAudio(item.name)">删除</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="dicts">
-        <div class="dict" v-for="i in 10">
-          <div class="name">CET-4</div>
-          <div class="desc">大学英语四级词库</div>
-          <div class="num">2607词</div>
+        <div class="pages" :class="`step${step}`">
+          <div class="dict page">
+            <div class="tags">
+              <div class="tag" :class="i === 5 &&'active'" v-for="i in 2">六级</div>
+            </div>
+            <div class="dict-list">
+              <div class="dict-item" v-for="i in 5" @click="step = 1">
+                <div class="name">CET-4</div>
+                <div class="desc">大学英语四级词库</div>
+                <div class="num">2607词</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chapter page">
+            <div class="dict-name">CET-4</div>
+            <div class="chapter-list">
+              <div class="chapter-item" v-for="i in 10">
+                <div class="title">1.A private conversation</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -218,7 +238,7 @@ function playAudio(word) {
 
 <style scoped lang="scss">
 
-.page {
+.main-page {
   background: rgb(17, 24, 39);
   width: 100%;
   height: 100%;
@@ -333,25 +353,87 @@ function playAudio(word) {
         right: 20rem;
       }
     }
+
+    .wrapper {
+      flex: 1;
+      overflow: hidden;
+
+      .pages {
+        width: 20vw * 2;
+        height: 100%;
+        display: flex;
+        transition: all .3s;
+
+        &.step0 {
+          transform: translate3d(0, 0, 0);
+        }
+
+        &.step1 {
+          transform: translate3d(-20vw, 0, 0);
+        }
+
+        &.step2 {
+          transform: translate3d(-40vw, 0, 0);
+        }
+
+        .page {
+          width: 20vw;
+          padding: 10rem;
+          overflow: auto;
+        }
+      }
+    }
   }
 
-  .dicts {
-    padding: 10rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10rem;
+  .dict {
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 20rem;
 
-    .dict {
-      cursor: pointer;
-      padding: 10rem;
-      border-radius: 10rem;
-      border: 1px solid gray;
+      .tag {
+        cursor: pointer;
+        padding: 5rem 10rem;
+        border-radius: 20rem;
+
+        &.active {
+          background: blue;
+          color: whitesmoke;
+        }
+      }
+    }
+
+    .dict-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10rem;
+
+      .dict-item {
+        cursor: pointer;
+        padding: 10rem;
+        border-radius: 10rem;
+        border: 1px solid gray;
+      }
+    }
+  }
+
+  .chapter {
+    .dict-name {
+      font-size: 26rem;
+      margin-bottom: 10rem;
+    }
+
+    .chapter-list {
+      .chapter-item {
+        margin-bottom: 10rem;
+        padding: 10rem;
+        border-radius: 10rem;
+        border: 1px solid gray;
+      }
     }
   }
 
   .new-words {
-    flex: 1;
-    overflow: auto;
 
     .list {
       display: flex;
