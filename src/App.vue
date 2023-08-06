@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted, watch} from "vue"
-import NCE_2 from './assets/dicts/NCE_2.json'
 import 快速打字的机械键盘声音Mp3 from './assets/sound/key-sounds/快速打字的机械键盘声音.mp3'
 import 键盘快速打字的声音Mp3 from './assets/sound/key-sounds/键盘快速打字的声音.mp3'
 import 电话打字的声音Mp3 from './assets/sound/key-sounds/电话打字的声音.mp3'
@@ -14,37 +13,40 @@ import correct from './assets/sound/correct.wav'
 import {$ref} from "vue/macros"
 import {useSound} from "@/hooks/useSound.ts"
 import {useBaseStore} from "@/stores/base.ts"
-import {Config, Word} from "@/types.ts"
 import {SaveKey} from "./types";
 
 let input = $ref('')
 let wrong = $ref('')
+let showFullWord = $ref(false)
+let isDictation = $ref(true)
 let activeIndex = $ref(-1)
-let config: Config = $ref({
-  newWords: [],
-  skipWords: [],
-  skipWordNames: [],
-  dict: 'nce2',
-  chapterIndex: 0,
-  wordIndex: 0,
-})
-
 const store = useBaseStore()
 
-// const [play, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
-const [play, setAudio] = useSound([老式机械], 3)
+const [play, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
+// const [play, setAudio] = useSound([老式机械], 3)
 // const [play, setAudio] = useSound([电话打字的声音Mp3], 3)
 const [playBeep] = useSound([beep], 1)
 const [playCorrect] = useSound([correct], 1)
+const keyMap = {
+  Show: 'Escape',
+  Ignore: 'Tab',
+  Remove: '`',
+  Collect: 'Enter',
+}
 
+const restWord = $computed(() => {
+  return store.word.name.slice(input.length + wrong.length)
+})
 onMounted(() => {
   store.init()
   window.addEventListener('keydown', onKeyDown)
+  window.addEventListener('keyup', onKeyUp)
 })
 
 onUnmounted(() => {
   // console.log('onUnmounted')
   window.removeEventListener('keydown', onKeyDown)
+  window.removeEventListener('keyup', onKeyUp)
 })
 
 watch(store.$state, (n) => {
@@ -67,8 +69,11 @@ function next() {
   if (store.skipWordNames.includes(store.word.name)) {
     next()
   }
-
   wrong = input = ''
+}
+
+function onKeyUp(e: KeyboardEvent) {
+  showFullWord = false
 }
 
 async function onKeyDown(e: KeyboardEvent) {
@@ -100,13 +105,13 @@ async function onKeyDown(e: KeyboardEvent) {
           input = input.slice(0, -1)
         }
         break
-      case 'Enter':
+      case keyMap.Collect:
         if (!store.newWords.find(v => v.name === store.word.name)) {
           store.newWords.push(store.word)
         }
         activeIndex = 1
         break
-      case '`':
+      case keyMap.Remove:
         if (!store.skipWordNames.includes(store.word.name)) {
           store.skipWords.push(store.word)
           store.skipWordNames = store.skipWords.map(v => v.name)
@@ -114,10 +119,13 @@ async function onKeyDown(e: KeyboardEvent) {
         activeIndex = 0
         next()
         break
-      case 'Tab':
+      case keyMap.Ignore:
         e.preventDefault()
         activeIndex = 2
         next()
+        break
+      case keyMap.Show:
+        showFullWord = true
         break
     }
     setTimeout(() => {
@@ -150,7 +158,12 @@ function playAudio() {
       <div class="word" :class="wrong&&'is-wrong'">
         <span class="input" v-if="input">{{ input }}</span>
         <span class="wrong" v-if="wrong">{{ wrong }}</span>
-        <span class="letter">{{ store.word.name.slice(input.length + wrong.length) }}</span>
+        <template v-if="isDictation">
+          <span class="letter" v-if="!showFullWord"
+                @mouseenter="showFullWord = true">{{ restWord.split('').map(v => '_').join('') }}</span>
+          <span class="letter" v-else @mouseleave="showFullWord = false">{{ restWord }}</span>
+        </template>
+        <span class="letter" v-else>{{ restWord }}</span>
       </div>
       <div class="audio" @click="playAudio">播放</div>
     </div>
@@ -214,7 +227,7 @@ function playAudio() {
       font-size: 48rem;
       line-height: 1;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-      letter-spacing: 2.5rem;
+      letter-spacing: 5rem;
 
       .input {
         color: rgba(74, 222, 128, 0.8);
