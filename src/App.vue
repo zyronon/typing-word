@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onMounted, onUnmounted, watch} from "vue"
+import {computed, onMounted, onUnmounted, provide, watch} from "vue"
 import 快速打字的机械键盘声音Mp3 from './assets/sound/key-sounds/快速打字的机械键盘声音.mp3'
 import 键盘快速打字的声音Mp3 from './assets/sound/key-sounds/键盘快速打字的声音.mp3'
 import 电话打字的声音Mp3 from './assets/sound/key-sounds/电话打字的声音.mp3'
@@ -15,6 +15,8 @@ import {useSound} from "@/hooks/useSound.ts"
 import {useBaseStore} from "@/stores/base.ts"
 import {SaveKey} from "./types";
 import WordList from "./components/WordList.vue";
+import Side from "@/components/Side.vue"
+import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
 
 let input = $ref('')
 let wrong = $ref('')
@@ -23,9 +25,9 @@ let isDictation = $ref(true)
 let activeIndex = $ref(-1)
 const store = useBaseStore()
 
-// const [play, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
-const [playKeySound, setAudio] = useSound([老式机械], 3)
-// const [play, setAudio] = useSound([电话打字的声音Mp3], 3)
+const [playKeySound, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
+// const [playKeySound, setAudio] = useSound([老式机械], 3)
+// const [playKeySound, setAudio] = useSound([电话打字的声音Mp3], 3)
 const [playBeep] = useSound([beep], 1)
 const [playCorrect] = useSound([correct], 1)
 const keyMap = {
@@ -95,7 +97,7 @@ async function onKeyDown(e: KeyboardEvent) {
     }
     if (input === store.word.name) {
       playCorrect()
-      setTimeout(next, 300)
+      setTimeout(next, 200)
     }
   } else {
     // console.log('e', e)
@@ -136,23 +138,11 @@ async function onKeyDown(e: KeyboardEvent) {
   }
 }
 
-const pronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
+const [playAudio] = usePlayWordAudio()
 
-function generateWordSoundSrc(word: string, pronunciation: string) {
-  switch (pronunciation) {
-    case 'uk':
-      return `${pronunciationApi}${word}&type=1`
-    case 'us':
-      return `${pronunciationApi}${word}&type=2`
-  }
-}
+const openSide = $ref(true)
+provide('sideIsOpen', computed(() => openSide))
 
-function playAudio(word) {
-  let audio = new Audio(generateWordSoundSrc(word, 'us'))
-  audio.play()
-}
-
-const step = $ref(1)
 </script>
 
 <template>
@@ -181,52 +171,18 @@ const step = $ref(1)
         </div>
       </div>
     </div>
-    <div class="side">
-      <header>
-        <div class="tabs">
-          <div class="tab">单词表</div>
-          <div class="tab active">生词本</div>
-          <div class="tab">已忽略</div>
-        </div>
-        <div class="close">关闭</div>
-      </header>
-      <div class="wrapper">
-        <WordList :word-list="store.newWords" :index="0"></WordList>
-
-        <div class="pages" v-if="false" :class="`step${step}`">
-          <div class="dict page">
-            <div class="tags">
-              <div class="tag" :class="i === 5 &&'active'" v-for="i in 2">六级</div>
-            </div>
-            <div class="dict-list">
-              <div class="dict-item" v-for="i in 5" @click="step = 1">
-                <div class="name">CET-4</div>
-                <div class="desc">大学英语四级词库</div>
-                <div class="num">2607词</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="chapter page">
-            <div class="dict-name">CET-4</div>
-            <div class="chapter-list">
-              <div class="chapter-item" v-for="i in 10">
-                <div class="title">1.A private conversation</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Side v-model="openSide"/>
   </div>
 </template>
 
 <style scoped lang="scss">
+@import "@/assets/css/colors";
 
 .main-page {
-  background: rgb(17, 24, 39);
-  width: 100%;
+  background: $dark-bg;
+  width: 100vw;
   height: 100%;
+  overflow: hidden;
   display: flex;
   font-size: 14rem;
 
@@ -299,126 +255,6 @@ const step = $ref(1)
       }
     }
   }
-
-  .side {
-    width: 20vw;
-    height: 100%;
-    background: white;
-    display: flex;
-    flex-direction: column;
-
-    header {
-      position: relative;
-      display: flex;
-      align-items: center;
-
-      .tabs {
-        padding: 10rem 20rem;
-        display: flex;
-        align-items: flex-end;
-        border-bottom: 1px solid #e1e1e1;
-        gap: 15rem;
-        font-size: 18rem;
-        color: gray;
-
-        .tab {
-          cursor: pointer;
-
-          &.active {
-            font-size: 22rem;
-            color: blue;
-            font-weight: bold;
-          }
-        }
-      }
-
-      .close {
-        cursor: pointer;
-        position: absolute;
-        right: 20rem;
-      }
-    }
-
-    .wrapper {
-      flex: 1;
-      overflow: hidden;
-
-      .pages {
-        width: 20vw * 2;
-        height: 100%;
-        display: flex;
-        transition: all .3s;
-
-        &.step0 {
-          transform: translate3d(0, 0, 0);
-        }
-
-        &.step1 {
-          transform: translate3d(-20vw, 0, 0);
-        }
-
-        &.step2 {
-          transform: translate3d(-40vw, 0, 0);
-        }
-
-        .page {
-          width: 20vw;
-          padding: 10rem;
-          overflow: auto;
-        }
-      }
-    }
-  }
-
-  .dict {
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      margin-bottom: 20rem;
-
-      .tag {
-        cursor: pointer;
-        padding: 5rem 10rem;
-        border-radius: 20rem;
-
-        &.active {
-          background: blue;
-          color: whitesmoke;
-        }
-      }
-    }
-
-    .dict-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10rem;
-
-      .dict-item {
-        cursor: pointer;
-        padding: 10rem;
-        border-radius: 10rem;
-        border: 1px solid gray;
-      }
-    }
-  }
-
-  .chapter {
-    .dict-name {
-      font-size: 26rem;
-      margin-bottom: 10rem;
-    }
-
-    .chapter-list {
-      .chapter-item {
-        cursor: pointer;
-        margin-bottom: 10rem;
-        padding: 10rem;
-        border-radius: 10rem;
-        border: 1px solid gray;
-      }
-    }
-  }
-
 
 }
 

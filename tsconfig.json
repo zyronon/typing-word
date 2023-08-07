@@ -22,7 +22,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "types": ["vue/ref-macros"]
-
   },
   "include": [
     "src/**/*.ts",
