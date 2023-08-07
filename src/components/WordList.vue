@@ -1,18 +1,28 @@
 <script setup lang="ts">
 import {Word} from "../types";
 import {usePlayWordAudio} from "../hooks/usePlayWordAudio";
-import {inject, nextTick, watch} from "vue"
+import {watch} from "vue"
+import {useBaseStore} from "@/stores/base.ts"
 
-const sideIsOpen = inject('sideIsOpen')
-const props = defineProps<{wordList: Word[], index: number}>()
+const store = useBaseStore()
+const props = defineProps<{wordList: Word[], index: number, active: boolean}>()
 const [playAudio] = usePlayWordAudio()
-const listRef: HTMLElement = $ref(null)
-watch(() => props.index, (n: number) => {
-  if (sideIsOpen.value) {
-    nextTick(() => {
-      listRef.querySelector('.active').scrollIntoView({block: 'center', behavior: 'smooth'})
-    })
+const listRef: HTMLElement = $ref(null as any)
+
+function scrollViewToCenter(index: number) {
+  listRef.children[index]!.scrollIntoView({block: 'center', behavior: 'smooth'})
+}
+
+watch(() => props.index, (n: any) => {
+  if (store.sideIsOpen) {
+    scrollViewToCenter(n)
   }
+})
+
+watch(() => props.active, (n: boolean) => {
+  setTimeout(() => {
+    if (n) scrollViewToCenter(props.index)
+  }, 300)
 })
 </script>
 

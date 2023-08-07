@@ -17,17 +17,27 @@
     "noEmit": true,
     "jsx": "preserve",
     /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "types": ["vue/ref-macros"]
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": false,
+    "types": [
+      "vue/ref-macros"
+    ],
+    "baseUrl": "./",
+    //This is because TypeScript does not resolve webpack aliases automatically.
+    //For TS to resolve aliases, they should be added in tsconfig.json under compilerOptions.paths:
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
+    "src/**/*.vue"
   ],
   "references": [
     {

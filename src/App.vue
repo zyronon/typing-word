@@ -140,9 +140,6 @@ async function onKeyDown(e: KeyboardEvent) {
 
 const [playAudio] = usePlayWordAudio()
 
-const openSide = $ref(true)
-provide('sideIsOpen', computed(() => openSide))
-
 </script>
 
 <template>
@@ -171,7 +168,7 @@ provide('sideIsOpen', computed(() => openSide))
         </div>
       </div>
     </div>
-    <Side v-model="openSide"/>
+    <Side/>
   </div>
 </template>
 

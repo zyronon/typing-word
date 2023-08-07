@@ -6,25 +6,23 @@ import {ArrowRight, MenuFold} from '@icon-park/vue-next'
 import {$ref} from "vue/macros"
 import DictList from "@/components/DictList.vue"
 import ChapterList from "@/components/ChapterList.vue"
-import {computed, onMounted, provide, ref} from "vue"
+import {computed, onMounted, provide} from "vue"
 import ChapterDetail from "@/components/ChapterDetail.vue"
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import 'swiper/css';
 import {Swiper as SwiperClass} from "swiper/types"
 
 const store = useBaseStore()
-const props = defineProps({
-  modelValue: Boolean,
-})
 
 defineEmits(['update:modelValue'])
-const swiperIns0: SwiperClass = $ref(null)
-const swiperIns1: SwiperClass = $ref(null)
+const swiperIns0: SwiperClass = $ref(null as any)
+const swiperIns1: SwiperClass = $ref(null as any)
 
 onMounted(() => {
 })
 
 let tabIndex = $ref(0)
+let stepIndex = $ref(0)
 
 function slideTo(index: number) {
   swiperIns0.slideTo(index)
@@ -42,6 +40,8 @@ function back() {
 
 provide('next', next)
 provide('back', back)
+provide('tabIndex', computed(() => tabIndex))
+provide('stepIndex', computed(() => stepIndex))
 
 </script>
 <template>
@@ -59,7 +59,9 @@ provide('back', back)
     <div class="side-content">
       <swiper @swiper="e=>swiperIns0 = e" class="mySwiper" :allow-touch-move="false">
         <swiper-slide>
-          <swiper @swiper="e=>swiperIns1 = e" class="mySwiper" :allow-touch-move="false">
+          <swiper @swiper="e=>swiperIns1 = e"
+                  @activeIndexChange="e=>stepIndex = e.activeIndex"
+                  class="mySwiper" :allow-touch-move="false">
             <swiper-slide>
               <DictList/>
             </swiper-slide>
@@ -72,15 +74,15 @@ provide('back', back)
           </swiper>
         </swiper-slide>
         <swiper-slide>
-          <WordList class="page" :word-list="store.newWords" :index="0"/>
+          <WordList :active="store.sideIsOpen && tabIndex === 1" class="page" :word-list="store.newWords" :index="0"/>
         </swiper-slide>
         <swiper-slide>
-          <WordList class="page" :word-list="store.skipWords" :index="0"/>
+          <WordList :active="store.sideIsOpen && tabIndex === 2" class="page" :word-list="store.skipWords" :index="0"/>
         </swiper-slide>
       </swiper>
     </div>
   </div>
-  <menu-fold v-if="!modelValue" class="menu" @click="$emit('update:modelValue', true)"
+  <menu-fold v-if="!store.sideIsOpen" class="menu" @click="store.sideIsOpen = true"
              theme="outline" size="20" fill="#929596"
              :strokeWidth="2"/>
 </template>
