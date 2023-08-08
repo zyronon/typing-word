@@ -5,11 +5,17 @@ import {watch} from "vue"
 import {useBaseStore} from "@/stores/base.ts"
 
 const store = useBaseStore()
-const props = defineProps<{wordList: Word[], index: number, active: boolean}>()
+const props = defineProps<{
+  wordList: Word[],
+  index: number,
+  active: boolean
+}>()
+
 const [playAudio] = usePlayWordAudio()
 const listRef: HTMLElement = $ref(null as any)
 
 function scrollViewToCenter(index: number) {
+  if (index === -1) return
   listRef.children[index]!.scrollIntoView({block: 'center', behavior: 'smooth'})
 }
 

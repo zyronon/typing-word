@@ -13,10 +13,11 @@ import correct from './assets/sound/correct.wav'
 import {$ref} from "vue/macros"
 import {useSound} from "@/hooks/useSound.ts"
 import {useBaseStore} from "@/stores/base.ts"
-import {SaveKey} from "./types";
+import {SaveKey, Word} from "./types";
 import WordList from "./components/WordList.vue";
 import Side from "@/components/Side.vue"
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
+import DictModal from "@/components/DictModal.vue"
 
 let input = $ref('')
 let wrong = $ref('')
@@ -52,21 +53,21 @@ onUnmounted(() => {
   window.removeEventListener('keyup', onKeyUp)
 })
 
-watch(store.$state, (n) => {
-  localStorage.setItem(SaveKey, JSON.stringify(n))
-})
+// watch(store.$state, (n) => {
+//   localStorage.setItem(SaveKey, JSON.stringify(n))
+// })
 
 function next() {
   if (store.wordIndex === store.chapter.length - 1) {
     if (store.chapterIndex !== store.wordListSplit.length - 1) {
-      store.wordIndex = 0
-      store.chapterIndex++
+      store.currentDict.wordIndex = 0
+      store.currentDict.chapterIndex++
       console.log('这一章节完了')
     } else {
       console.log('这本书完了')
     }
   } else {
-    store.wordIndex++
+    store.currentDict.wordIndex++
     // console.log('这个词完了')
   }
   if (store.skipWordNames.includes(store.word.name)) {
@@ -110,15 +111,14 @@ async function onKeyDown(e: KeyboardEvent) {
         }
         break
       case keyMap.Collect:
-        if (!store.newWords.find(v => v.name === store.word.name)) {
-          store.newWords.push(store.word)
+        if (!store.newWordDict.wordList.find((v: Word) => v.name === store.word.name)) {
+          store.newWordDict.wordList.push(store.word)
         }
         activeIndex = 1
         break
       case keyMap.Remove:
         if (!store.skipWordNames.includes(store.word.name)) {
-          store.skipWords.push(store.word)
-          store.skipWordNames = store.skipWords.map(v => v.name)
+          store.skipWordDict.wordList.push(store.word)
         }
         activeIndex = 0
         next()
@@ -139,6 +139,8 @@ async function onKeyDown(e: KeyboardEvent) {
 }
 
 const [playAudio] = usePlayWordAudio()
+
+const showDictModal = $ref(false)
 
 </script>
 
@@ -168,7 +170,8 @@ const [playAudio] = usePlayWordAudio()
         </div>
       </div>
     </div>
-    <Side/>
+    <!--    <Side/>-->
+    <DictModal/>
   </div>
 </template>
 
@@ -252,7 +255,6 @@ const [playAudio] = usePlayWordAudio()
       }
     }
   }
-
 }
 
 @keyframes shake {

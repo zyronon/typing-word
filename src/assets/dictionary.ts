@@ -1,7 +1,7 @@
-import {DictionaryResource} from "../types.ts"
-
 // 中国考试
-const chinaExam: DictionaryResource[] = [
+import {DictionaryResource} from "@/types.ts"
+
+export const chinaExam: DictionaryResource[] = [
   {
     id: 'cet4',
     name: 'CET-4',
@@ -571,7 +571,7 @@ const internationalExam: DictionaryResource[] = [
 ]
 
 // 青少儿英语
-const childrenEnglish: DictionaryResource[] = [
+export const childrenEnglish: DictionaryResource[] = [
   {
     id: 'gaokao3500',
     name: '高考 3500 词',

@@ -73,3 +73,43 @@ export type SoundResource = {
   name: string
   filename: string
 }
+
+
+export interface DictJson {
+  name: string,
+  description: string,
+  category: string,
+  tags: string[],
+  url: string,
+  length: number,
+  language: string,
+  languageCategory: string,
+}
+
+export interface Dict extends DictJson {
+  wordList: Word[],
+  chapterList: Word[][],
+  chapterIndex: number,
+  wordIndex: number,
+}
+
+export interface State {
+  newWordDict: {
+    wordList: Word[],
+    chapterList: Word[][],
+    chapterIndex: number,
+    wordIndex: number,
+  },
+  skipWordDict: {
+    wordList: Word[],
+    chapterList: Word[][],
+    chapterIndex: number,
+    wordIndex: number,
+  },
+  dict: Dict,
+  currentDictType: {
+    name: 'newWordDict' | 'skipWordDict' | 'inner' | 'custom',
+    dictUrl: string
+  }
+  sideIsOpen: boolean,
+}
