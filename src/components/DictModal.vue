@@ -3,25 +3,42 @@ import {childrenEnglish} from '@/assets/dictionary.ts'
 import {ArrowLeft, ArrowRight, Close} from '@icon-park/vue-next'
 import {useBaseStore} from "@/stores/base.ts"
 import {watch} from "vue"
-import {Dict} from "@/types.ts"
+import {Dict, Word} from "@/types.ts"
+import {chunk} from "lodash";
+import {$computed, $ref} from "vue/macros";
+import WordList from "@/components/WordList.vue";
 
-const porps = defineProps<{modal:boolean}>()
 const store = useBaseStore()
-let selectDict: Dict = $ref({name: '新概念英语-2'} as any)
+let currentSelectDict: Dict = $ref({name: '新概念英语-2'} as any)
 let step = $ref(1)
 
-watch(store.currentDict, (n: Dict) => {
-  selectDict = n
+const currentSelectChapter: Word[] = $computed(() => {
+  return currentSelectDict.chapterList?.[currentSelectDict.chapterIndex] ?? []
 })
 
-function selectDict2(item: Dict) {
-  selectDict = item
+watch(store.currentDict, (n: Dict) => {
+  currentSelectDict = n
+})
+
+async function selectDict(item: Dict) {
+  currentSelectDict = {
+    ...item,
+    wordList: [],
+    chapterList: [],
+    chapterIndex: 0,
+    wordIndex: 0,
+  }
+  let r = await fetch(`/public/${item.url}`)
+  r.json().then(v => {
+    currentSelectDict.wordList = v
+    currentSelectDict.chapterList = chunk(v, 15)
+  })
 }
 </script>
 
 <template>
-  <div class="modal-root">
-    <div class="modal-mask"></div>
+  <div class="modal-root" :class="store.dictModalIsOpen ? 'show':'hide'">
+    <div class="modal-mask" @click="store.dictModalIsOpen = false"></div>
     <div class="modal">
       <div class="modal-body">
         <div class="slide">
@@ -39,7 +56,8 @@ function selectDict2(item: Dict) {
                     <span>德语</span>
                   </div>
                 </div>
-                <close theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
+                <close @click="store.dictModalIsOpen = false" theme="outline" size="20" fill="#929596"
+                       :strokeWidth="2"/>
               </header>
               <div class="page-content">
                 <div class="dict-list-wrapper">
@@ -48,13 +66,13 @@ function selectDict2(item: Dict) {
                   </div>
                   <div class="dict-list">
                     <div class="dict-item"
-                         :class="selectDict.name === i.name && 'active'" v-for="i in childrenEnglish"
-                         @click="selectDict = i"
+                         :class="currentSelectDict.name === i.name && 'active'" v-for="i in childrenEnglish"
+                         @click="selectDict(i)"
                     >
                       <div class="name">{{ i.name }}</div>
                       <div class="desc">{{ i.description }}</div>
                       <div class="num">{{ i.length }}词</div>
-                      <arrow-right v-if="selectDict.name === i.name"
+                      <arrow-right v-if="currentSelectDict.name === i.name"
                                    @click="step = 1"
                                    class="go" theme="outline" size="20" fill="#ffffff"
                                    :strokeWidth="2"/>
@@ -63,8 +81,8 @@ function selectDict2(item: Dict) {
                 </div>
                 <div class="chapter-wrapper">
                   <div class="chapter-list">
-                    <div class="chapter-item" v-for="i in 10">
-                      <div class="title">1.A private conversation</div>
+                    <div class="chapter-item" v-for="(item,index) in currentSelectDict.chapterList">
+                      <div class="title">{{ index }}</div>
                     </div>
                   </div>
                   <div class="footer">
@@ -84,27 +102,30 @@ function selectDict2(item: Dict) {
                     词典详情
                   </div>
                 </div>
-                <close theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
+                <close @click="store.dictModalIsOpen = false" theme="outline" size="20" fill="#929596"
+                       :strokeWidth="2"/>
               </header>
               <div class="page-content">
                 <div class="dict-info">
-                  <div class="dict-item" v-for="i in childrenEnglish.slice(0,1)">
-                    <div class="name">{{ i.name }}</div>
-                    <div class="desc">{{ i.description }}</div>
-                    <div class="num">{{ i.length }}词</div>
+                  <div class="dict-item">
+                    <div class="name">{{ currentSelectDict.name }}</div>
+                    <div class="desc">{{ currentSelectDict.description }}</div>
+                    <div class="num">{{ currentSelectDict.length }}词</div>
                   </div>
                 </div>
 
                 <div class="chapter-wrapper">
                   <div class="chapter-list">
-                    <div class="chapter-item" v-for="i in 10">
-                      <div class="title">1.A private conversation</div>
+                    <div class="chapter-item"
+                         @click="currentSelectDict.chapterIndex = index"
+                         v-for="(item,index) in currentSelectDict.chapterList">
+                      <div class="title">{{ index }}</div>
                     </div>
                   </div>
                 </div>
                 <div class="other">
                   <div class="word-list">
-                    <WordList :word-list="store.chapter" index="0" active="0"/>
+                    <WordList :word-list="currentSelectChapter" :index="0" :active="false"/>
                   </div>
                   <div class="footer">
                     <div class="my-button">返回</div>
@@ -125,7 +146,7 @@ function selectDict2(item: Dict) {
 
 $modal-mask-bg: rgba(#000, .15);
 $radius: 16rem;
-$time: 0.3s;
+$time: 0.5s;
 $header-height: 60rem;
 
 .modal-root {
@@ -139,6 +160,34 @@ $header-height: 60rem;
   height: 100vh;
   overflow: hidden;
 
+  &.show {
+    z-index: 0;
+
+    .modal-mask {
+      opacity: 1;
+      animation: fade-in2 $time ease;
+    }
+
+    .modal {
+      opacity: 1;
+      animation: fade-in $time ease-out;
+    }
+  }
+
+  &.hide {
+    z-index: -1;
+
+    .modal-mask {
+      opacity: 0;
+      animation: fade-in2 $time ease;
+    }
+
+    .modal {
+      opacity: 0;
+      animation: fade-out $time ease-out;
+    }
+  }
+
   .modal-mask {
     position: fixed;
     top: 0;
@@ -147,11 +196,7 @@ $header-height: 60rem;
     height: 100vh;
     background: $modal-mask-bg;
     transition: background 0.3s;
-    animation: fade-in2 $time ease;
-
-    &.fade-out {
-      background: transparent;
-    }
+    opacity: 0;
 
     @keyframes fade-in2 {
       0% {
@@ -167,16 +212,13 @@ $header-height: 60rem;
     position: relative;
     background: $dark-bg2;
     box-shadow: $dark-bg2 0 0 10rem 1rem;
-    opacity: 1;
+    opacity: 0;
     transition: transform $time, opacity $time;
     width: 75vw;
-    //width: 1400rem;
     height: 70vh;
-    animation: fade-in $time ease-out;
     border-radius: $radius;
     display: flex;
     flex-direction: column;
-
 
     @keyframes fade-in {
       0% {
@@ -187,6 +229,15 @@ $header-height: 60rem;
       }
       100% {
         transform: scale(1);
+      }
+    }
+
+    @keyframes fade-out {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(0);
       }
     }
 

@@ -112,4 +112,5 @@ export interface State {
     dictUrl: string
   }
   sideIsOpen: boolean,
+  dictModalIsOpen: boolean,
 }

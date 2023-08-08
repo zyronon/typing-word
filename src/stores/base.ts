@@ -19,7 +19,6 @@ export const useBaseStore = defineStore('base', {
         wordIndex: -1,
       },
       dict: {
-        id: 'nce2',
         name: '新概念英语-2',
         description: '新概念英语第二册',
         category: '青少年英语',
@@ -38,6 +37,7 @@ export const useBaseStore = defineStore('base', {
         dictUrl: '/dicts/NCE_2.json'
       },
       sideIsOpen: false,
+      dictModalIsOpen: true,
     }
   },
   getters: {

@@ -146,6 +146,7 @@ const showDictModal = $ref(false)
 
 <template>
   <div class="main-page">
+    <button @click="store.dictModalIsOpen = true">ok</button>
     <div class="content">
       <div class="type-word">
         <div class="translate">{{ store.word.trans.join('；') }}</div>
