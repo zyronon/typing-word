@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import {chinaExam, childrenEnglish} from '@/assets/dictionary.ts'
-import {Close, ArrowRight, ArrowLeft} from '@icon-park/vue-next'
+import {childrenEnglish} from '@/assets/dictionary.ts'
+import {ArrowLeft, ArrowRight, Close} from '@icon-park/vue-next'
 import {useBaseStore} from "@/stores/base.ts"
 import {watch} from "vue"
 import {Dict} from "@/types.ts"
 
+const porps = defineProps<{modal:boolean}>()
 const store = useBaseStore()
 let selectDict: Dict = $ref({name: '新概念英语-2'} as any)
 let step = $ref(1)
@@ -175,9 +176,7 @@ $header-height: 60rem;
     border-radius: $radius;
     display: flex;
     flex-direction: column;
-    //justify-content: center;
-    //align-items: center;
-    //overflow: hidden;
+
 
     @keyframes fade-in {
       0% {
@@ -359,9 +358,11 @@ $footer-height: 40rem;
   box-sizing: border-box;
 
   header {
+    width: 100%;
     display: flex;
     height: $header-height;
     align-items: center;
+    justify-content: space-between;
 
     .left {
       display: flex;

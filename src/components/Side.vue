@@ -14,7 +14,6 @@ import {Swiper as SwiperClass} from "swiper/types"
 
 const store = useBaseStore()
 
-defineEmits(['update:modelValue'])
 const swiperIns0: SwiperClass = $ref(null as any)
 const swiperIns1: SwiperClass = $ref(null as any)
 
