@@ -59,7 +59,7 @@ onUnmounted(() => {
 
 function next() {
   if (store.wordIndex === store.chapter.length - 1) {
-    if (store.chapterIndex !== store.wordListSplit.length - 1) {
+    if (store.chapterIndex !== store.currentDict.chapterList.length - 1) {
       store.currentDict.wordIndex = 0
       store.currentDict.chapterIndex++
       console.log('这一章节完了')
