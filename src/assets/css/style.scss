@@ -29,8 +29,13 @@ html, body {
 }
 
 .my-button {
+  font-size: 13rem;
   cursor: pointer;
   border-radius: 4rem;
-  padding: 5rem 15rem;
+  padding: 0 15rem;
+  height: 28rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: $main;
 }

@@ -146,7 +146,7 @@ async function selectDict(item: Dict) {
 
 $modal-mask-bg: rgba(#000, .15);
 $radius: 16rem;
-$time: 0.5s;
+$time: 0.3s;
 $header-height: 60rem;
 
 .modal-root {
@@ -307,7 +307,7 @@ $header-height: 60rem;
   }
 }
 
-$footer-height: 40rem;
+$footer-height: 50rem;
 
 .chapter-wrapper {
   min-width: 25%;
@@ -441,10 +441,15 @@ $footer-height: 40rem;
 
     .other {
       flex: 1;
+      height: 100%;
+      padding-left: $space;
 
       .word-list {
         width: 100%;
-        min-height: calc(100% - 40rem);
+        box-sizing: border-box;
+        padding-right: $space;
+        overflow: auto;
+        height: calc(100% - $footer-height);
       }
     }
   }
