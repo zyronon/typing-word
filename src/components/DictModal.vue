@@ -42,92 +42,94 @@ async function selectDict(item: Dict) {
 </script>
 
 <template>
-  <div class="modal-root" :class="store.dictModalIsOpen ? 'show':'hide'">
-    <div class="modal-mask" @click="store.dictModalIsOpen = false"></div>
-    <div class="modal">
-      <div class="modal-body">
-        <div class="slide">
-          <div class="slide-list" :class="`step${step}`">
-            <div class="dict-page">
-              <header>
-                <div class="tabs">
-                  <div class="tab">
-                    <span>英语</span>
+  <Teleport to="body">
+    <div class="modal-root" :class="store.dictModalIsOpen ? 'show':'hide'">
+      <div class="modal-mask" @click="store.dictModalIsOpen = false"></div>
+      <div class="modal">
+        <div class="modal-body">
+          <div class="slide">
+            <div class="slide-list" :class="`step${step}`">
+              <div class="dict-page">
+                <header>
+                  <div class="tabs">
+                    <div class="tab">
+                      <span>英语</span>
+                    </div>
+                    <div class="tab">
+                      <span>日语</span>
+                    </div>
+                    <div class="tab">
+                      <span>德语</span>
+                    </div>
                   </div>
-                  <div class="tab">
-                    <span>日语</span>
+                  <close @click="store.dictModalIsOpen = false" theme="outline" size="20" fill="#929596"
+                         :strokeWidth="2"/>
+                </header>
+                <div class="page-content">
+                  <div class="dict-list-wrapper">
+                    <div class="tags">
+                      <div class="tag" :class="i === 5 &&'active'" v-for="i in 2">六级</div>
+                    </div>
+                    <div class="dict-list">
+                      <div class="dict-item"
+                           :class="currentSelectDict.name === i.name && 'active'" v-for="i in childrenEnglish"
+                           @click="selectDict(i)"
+                      >
+                        <div class="name">{{ i.name }}</div>
+                        <div class="desc">{{ i.description }}</div>
+                        <div class="num">{{ i.length }}词</div>
+                        <arrow-right v-if="currentSelectDict.name === i.name"
+                                     @click.stop="step = 1"
+                                     class="go" theme="outline" size="20" fill="#ffffff"
+                                     :strokeWidth="2"/>
+                      </div>
+                    </div>
                   </div>
-                  <div class="tab">
-                    <span>德语</span>
-                  </div>
-                </div>
-                <close @click="store.dictModalIsOpen = false" theme="outline" size="20" fill="#929596"
-                       :strokeWidth="2"/>
-              </header>
-              <div class="page-content">
-                <div class="dict-list-wrapper">
-                  <div class="tags">
-                    <div class="tag" :class="i === 5 &&'active'" v-for="i in 2">六级</div>
-                  </div>
-                  <div class="dict-list">
-                    <div class="dict-item"
-                         :class="currentSelectDict.name === i.name && 'active'" v-for="i in childrenEnglish"
-                         @click="selectDict(i)"
-                    >
-                      <div class="name">{{ i.name }}</div>
-                      <div class="desc">{{ i.description }}</div>
-                      <div class="num">{{ i.length }}词</div>
-                      <arrow-right v-if="currentSelectDict.name === i.name"
-                                   @click.stop="step = 1"
-                                   class="go" theme="outline" size="20" fill="#ffffff"
-                                   :strokeWidth="2"/>
+                  <div class="chapter-wrapper">
+                    <ChapterList
+                        class="chapter-list"
+                        :list="currentSelectDict.chapterList"
+                        v-model:active-index="currentSelectDict.chapterIndex"
+                    />
+                    <div class="footer">
+                      <div class="my-button">确定</div>
                     </div>
                   </div>
                 </div>
-                <div class="chapter-wrapper">
-                  <ChapterList
-                      class="chapter-list"
-                      :list="currentSelectDict.chapterList"
-                      v-model:active-index="currentSelectDict.chapterIndex"
-                  />
-                  <div class="footer">
-                    <div class="my-button">确定</div>
-                  </div>
-                </div>
               </div>
-            </div>
-            <div class="dict-detail-page">
-              <header>
-                <div class="left">
-                  <arrow-left
-                      @click="step = 0"
-                      class="go" theme="outline" size="20" fill="#ffffff"
-                      :strokeWidth="2"/>
-                  <div class="title">
-                    词典详情
+              <div class="dict-detail-page">
+                <header>
+                  <div class="left">
+                    <arrow-left
+                        @click="step = 0"
+                        class="go" theme="outline" size="20" fill="#ffffff"
+                        :strokeWidth="2"/>
+                    <div class="title">
+                      词典详情
+                    </div>
                   </div>
-                </div>
-                <close @click="store.dictModalIsOpen = false" theme="outline" size="20" fill="#929596"
-                       :strokeWidth="2"/>
-              </header>
-              <div class="page-content">
-                <div class="dict-info">
-                  <div class="dict-item">
-                    <div class="name">{{ currentSelectDict.name }}</div>
-                    <div class="desc">{{ currentSelectDict.description }}</div>
-                    <div class="num">{{ currentSelectDict.length }}词</div>
+                  <close @click="store.dictModalIsOpen = false" theme="outline" size="20" fill="#929596"
+                         :strokeWidth="2"/>
+                </header>
+                <div class="page-content">
+                  <div class="dict-info">
+                    <div class="dict-item">
+                      <div class="name">{{ currentSelectDict.name }}</div>
+                      <div class="desc">{{ currentSelectDict.description }}</div>
+                      <div class="num">{{ currentSelectDict.length }}词</div>
+                    </div>
                   </div>
-                </div>
-                <div class="chapter-wrapper">
-                  <ChapterList :list="currentSelectDict.chapterList"
-                               v-model:active-index="currentSelectDict.chapterIndex"
-                  />
-                </div>
-                <div class="other">
-                  <WordList class="word-list" :list="currentSelectChapter" :activeIndex="-1" :isActive="false"/>
-                  <div class="footer">
-                    <div class="my-button">返回</div>
-                    <div class="my-button">确定</div>
+                  <div class="chapter-wrapper">
+                    <ChapterList :list="currentSelectDict.chapterList"
+                                 v-model:active-index="currentSelectDict.chapterIndex"
+                    />
+                  </div>
+                  <div class="other">
+                    <WordList class="word-list" :list="currentSelectChapter" :activeIndex="-1" :isActive="false"/>
+                    <div class="footer">
+                      <div class="my-button">返回</div>
+                      <div class="my-button">确定</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -136,7 +138,7 @@ async function selectDict(item: Dict) {
         </div>
       </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <style scoped lang="scss">

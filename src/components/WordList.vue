@@ -40,26 +40,31 @@ watch(() => props.list, () => {
 
 <template>
   <div class="list" ref="listRef">
-    <template v-for="(item,i) in list">
-      <div class="item" @click="$emit('change',i)" :class="activeIndex === i && 'active'">
-        <div class="left">
-          <div class="letter">{{ item.name }}</div>
-          <div class="info">
-            <div class="translate">{{ item.trans.join('；') }}</div>
-            <div class="phonetic">{{ item.usphone }}</div>
+    <TransitionGroup name="list">
+      <template v-for="(item,i) in list" :key="i">
+        <div class="item" @click="$emit('change',i)" :class="activeIndex === i && 'active'">
+          <div class="left">
+            <div class="letter">{{ item.name }}</div>
+            <div class="info">
+              <div class="translate">{{ item.trans.join('；') }}</div>
+              <div class="phonetic">{{ item.usphone }}</div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="audio" @click="playAudio(item.name)">播放</div>
+            <div class="audio" @click="playAudio(item.name)">删除</div>
           </div>
         </div>
-        <div class="right">
-          <div class="audio" @click="playAudio(item.name)">播放</div>
-          <div class="audio" @click="playAudio(item.name)">删除</div>
-        </div>
-      </div>
-    </template>
+      </template>
+    </TransitionGroup>
   </div>
 </template>
 
+
 <style scoped lang="scss">
 @import "@/assets/css/colors";
+
+
 
 .list {
   display: flex;
@@ -68,7 +73,8 @@ watch(() => props.list, () => {
   width: 100%;
   height: 100%;
   padding: 0 $space;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   box-sizing: border-box;
 
   .item {
