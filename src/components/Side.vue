@@ -9,6 +9,7 @@ import {Swiper, SwiperSlide} from 'swiper/vue';
 import 'swiper/css';
 import {Swiper as SwiperClass} from "swiper/types"
 import {Dict, DictType} from "@/types.ts"
+import PopConfirm from "@/components/PopConfirm.vue"
 
 const store = useBaseStore()
 const swiperIns0: SwiperClass = $ref(null as any)
@@ -49,15 +50,16 @@ function changeDict(dict: Dict, i: number) {
           <div class="page0">
             <header>
               <arrow-left theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
-              <div class="dict-name">16.</div>
+              <div class="dict-name">{{ store.dict.chapterIndex + 1 }}.</div>
             </header>
             <WordList
                 class="word-list"
+                @change="(e:number) => store.changeDict(store.dict,-1,e)"
                 :isActive="store.sideIsOpen && tabIndex === 0"
-                :list="store.chapter"
+                :list="store.dict.chapterList[store.dict.chapterIndex]??[]"
                 :activeIndex="store.dict.wordIndex"/>
-            <footer v-if="[DictType.custom,DictType.inner].includes(store.currentDictType.name)">
-              <div class="my-button" @click="store.changeDict(store.dict,store.dict.chapterIndex,store.dict.wordIndex)">
+            <footer v-if="![DictType.custom,DictType.inner].includes(store.currentDictType.name)">
+              <div class="my-button" @click="store.changeDict(store.dict)">
                 切换
               </div>
             </footer>
@@ -70,6 +72,7 @@ function changeDict(dict: Dict, i: number) {
             </header>
             <WordList
                 class="word-list"
+                @change="(e:number) => store.changeDict(store.newWordDict,-1,e)"
                 :isActive="store.sideIsOpen && tabIndex === 1"
                 :list="store.newWordDict.wordList"
                 :activeIndex="store.newWordDict.wordIndex"/>
@@ -87,14 +90,18 @@ function changeDict(dict: Dict, i: number) {
             </header>
             <WordList
                 class="word-list"
-                @change="(e:number) => store.changeDict(store.skipWordDict,0,e)"
+                @change="(e:number) => store.changeDict(store.skipWordDict,-1,e)"
                 :isActive="store.sideIsOpen && tabIndex === 2"
                 :list="store.skipWordDict.wordList"
                 :activeIndex="store.skipWordDict.wordIndex"/>
             <footer v-if="store.currentDictType.name !== DictType.skipWordDict && store.skipWordDict.wordList.length">
-              <div class="my-button" @click="store.changeDict(store.skipWordDict,0,0)">
-                切换
-              </div>
+              <PopConfirm
+                  :title="`确认花费 10 个铜币向  的这条回复发送感谢？`"
+              >
+                <div class="my-button" @click="store.changeDict(store.skipWordDict)">
+                  切换
+                </div>
+              </PopConfirm>
             </footer>
           </div>
         </swiper-slide>

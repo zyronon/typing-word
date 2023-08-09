@@ -104,7 +104,7 @@ export const useBaseStore = defineStore('base', {
                 this[dict.type].wordIndex = wordIndex === -1 ? 0 : wordIndex
             } else {
                 if (dict.name === this.dict.name) {
-                    this.currentDictType.name === dict.type
+                    this.currentDictType.name = dict.type
                     this.currentDictType.dictUrl = dict.url
                     if (wordIndex !== -1) this.dict.wordIndex = wordIndex
                     if (chapterIndex !== -1) this.dict.chapterIndex = chapterIndex

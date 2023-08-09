@@ -13,7 +13,7 @@ import correct from './assets/sound/correct.wav'
 import {$ref} from "vue/macros"
 import {useSound} from "@/hooks/useSound.ts"
 import {useBaseStore} from "@/stores/base.ts"
-import {SaveKey, Word} from "./types";
+import {DictType, SaveKey, Word} from "./types";
 import WordList from "./components/WordList.vue";
 import Side from "@/components/Side.vue"
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
@@ -31,6 +31,8 @@ const [playKeySound, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 
 // const [playKeySound, setAudio] = useSound([电话打字的声音Mp3], 3)
 const [playBeep] = useSound([beep], 1)
 const [playCorrect] = useSound([correct], 1)
+const [playAudio] = usePlayWordAudio()
+
 const keyMap = {
   Show: 'Escape',
   Ignore: 'Tab',
@@ -71,7 +73,7 @@ function next() {
     store.currentDict.wordIndex++
     // console.log('这个词完了')
   }
-  if (store.skipWordNames.includes(store.word.name)) {
+  if ([DictType.custom, DictType.inner].includes(store.currentDictType.name) && store.skipWordNames.includes(store.word.name)) {
     next()
   }
   wrong = input = ''
@@ -139,7 +141,6 @@ async function onKeyDown(e: KeyboardEvent) {
   }
 }
 
-const [playAudio] = usePlayWordAudio()
 
 </script>
 
