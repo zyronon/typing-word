@@ -6,6 +6,7 @@ html, body {
   margin: 0;
   width: 100%;
   height: 100%;
+  color: $font-color;
 }
 
 #app {
@@ -26,6 +27,15 @@ html, body {
 ::-webkit-scrollbar-thumb {
   background: $second;
   border-radius: 10rem;
+}
+
+footer {
+  box-sizing: content-box;
+  height: $footer-height;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: $space;
 }
 
 .my-button {

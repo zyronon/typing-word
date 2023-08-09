@@ -20,7 +20,7 @@ const isActive = computed(() => {
       <arrow-left @click="back" theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
       <div class="dict-name">16.</div>
     </header>
-    <WordList :active="isActive" :word-list="store.chapter" :index="store.wordIndex"></WordList>
+    <WordList :isActive="isActive" :word-list="store.chapter" :activeIndex="store.wordIndex"></WordList>
   </div>
 </template>
 

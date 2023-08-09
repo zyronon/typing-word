@@ -1,46 +1,34 @@
 <script setup lang="ts">
 import {useBaseStore} from "@/stores/base.ts"
 import WordList from "@/components/WordList.vue"
-import {ArrowRight, MenuFold} from '@icon-park/vue-next'
+import {ArrowLeft, ArrowRight, MenuFold} from '@icon-park/vue-next'
 
 import {$ref} from "vue/macros"
-import DictList from "@/components/DictList.vue"
-import ChapterList from "@/components/ChapterList.vue"
-import {computed, onMounted, provide} from "vue"
-import ChapterDetail from "@/components/ChapterDetail.vue"
+import {computed, provide} from "vue"
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import 'swiper/css';
 import {Swiper as SwiperClass} from "swiper/types"
+import {Dict, DictType} from "@/types.ts"
 
 const store = useBaseStore()
-
 const swiperIns0: SwiperClass = $ref(null as any)
-const swiperIns1: SwiperClass = $ref(null as any)
-
-onMounted(() => {
-})
-
 let tabIndex = $ref(0)
-let stepIndex = $ref(0)
+provide('tabIndex', computed(() => tabIndex))
 
 function slideTo(index: number) {
-  swiperIns0.slideTo(index)
-  tabIndex = index
+  swiperIns0.slideTo(tabIndex = index)
 }
 
 
-function next() {
-  swiperIns1.slideNext()
+function changeDict(dict: Dict, i: number) {
+  if (store.currentDictType.name !== dict.type) {
+    store.currentDictType = {
+      name: dict.type,
+      dictUrl: dict.url
+    }
+  }
+  store.currentDict.wordIndex = i
 }
-
-function back() {
-  swiperIns1.slidePrev()
-}
-
-provide('next', next)
-provide('back', back)
-provide('tabIndex', computed(() => tabIndex))
-provide('stepIndex', computed(() => stepIndex))
 
 </script>
 <template>
@@ -58,25 +46,57 @@ provide('stepIndex', computed(() => stepIndex))
     <div class="side-content">
       <swiper @swiper="e=>swiperIns0 = e" class="mySwiper" :allow-touch-move="false">
         <swiper-slide>
-          <swiper @swiper="e=>swiperIns1 = e"
-                  @activeIndexChange="e=>stepIndex = e.activeIndex"
-                  class="mySwiper" :allow-touch-move="false">
-            <swiper-slide>
-              <DictList/>
-            </swiper-slide>
-            <swiper-slide>
-              <ChapterList/>
-            </swiper-slide>
-            <swiper-slide>
-              <ChapterDetail/>
-            </swiper-slide>
-          </swiper>
+          <div class="page0">
+            <header>
+              <arrow-left theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
+              <div class="dict-name">16.</div>
+            </header>
+            <WordList
+                class="word-list"
+                :isActive="store.sideIsOpen && tabIndex === 0"
+                :list="store.chapter"
+                :activeIndex="store.dict.wordIndex"/>
+            <footer v-if="[DictType.custom,DictType.inner].includes(store.currentDictType.name)">
+              <div class="my-button" @click="store.changeDict(store.dict,store.dict.chapterIndex,store.dict.wordIndex)">
+                切换
+              </div>
+            </footer>
+          </div>
         </swiper-slide>
         <swiper-slide>
-          <WordList :active="store.sideIsOpen && tabIndex === 1" class="page" :word-list="store.newWords" :index="0"/>
+          <div class="page0">
+            <header>
+              <div class="dict-name">总词数：{{ store.newWordDict.wordList.length }}</div>
+            </header>
+            <WordList
+                class="word-list"
+                :isActive="store.sideIsOpen && tabIndex === 1"
+                :list="store.newWordDict.wordList"
+                :activeIndex="store.newWordDict.wordIndex"/>
+            <footer v-if="store.currentDictType.name !== DictType.newWordDict && store.newWordDict.wordList.length">
+              <div class="my-button" @click="store.changeDict(store.newWordDict)">
+                切换
+              </div>
+            </footer>
+          </div>
         </swiper-slide>
         <swiper-slide>
-          <WordList :active="store.sideIsOpen && tabIndex === 2" class="page" :word-list="store.skipWords" :index="0"/>
+          <div class="page0">
+            <header>
+              <div class="dict-name">总词数：{{ store.skipWordDict.wordList.length }}</div>
+            </header>
+            <WordList
+                class="word-list"
+                @change="(e:number) => store.changeDict(store.skipWordDict,0,e)"
+                :isActive="store.sideIsOpen && tabIndex === 2"
+                :list="store.skipWordDict.wordList"
+                :activeIndex="store.skipWordDict.wordIndex"/>
+            <footer v-if="store.currentDictType.name !== DictType.skipWordDict && store.skipWordDict.wordList.length">
+              <div class="my-button" @click="store.changeDict(store.skipWordDict,0,0)">
+                切换
+              </div>
+            </footer>
+          </div>
         </swiper-slide>
       </swiper>
     </div>
@@ -85,11 +105,6 @@ provide('stepIndex', computed(() => stepIndex))
              theme="outline" size="20" fill="#929596"
              :strokeWidth="2"/>
 </template>
-<style>
-.page {
-  padding: 15rem;
-}
-</style>
 <style scoped lang="scss">
 @import "@/assets/css/colors";
 
@@ -102,7 +117,7 @@ provide('stepIndex', computed(() => stepIndex))
 .side {
   $width: 20vw;
   width: $width;
-  background: $dark-bg2;
+  background: $dark-second-bg;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -115,7 +130,7 @@ provide('stepIndex', computed(() => stepIndex))
 
   $header-height: 40rem;
 
-  header {
+  & > header {
     height: $header-height;
     position: relative;
     display: flex;
@@ -155,10 +170,50 @@ provide('stepIndex', computed(() => stepIndex))
     .mySwiper {
       height: 100%;
     }
+  }
 
-    .swiper-slide {
-      height: 100%;
-      overflow: auto;
+  footer {
+    padding-right: $space;
+    height: 50rem;
+    align-items: center;
+  }
+
+  .page0 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    header {
+      padding: 0 $space;
+      height: $header-height;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10rem;
+      font-size: 18rem;
+      color: white;
+    }
+
+    .word-list {
+      flex: 1;
+      padding-bottom: $space;
+    }
+  }
+
+  .page1 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    header {
+      padding: 0 $space;
+      height: $header-height;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10rem;
+      font-size: 18rem;
+      color: white;
     }
   }
 }

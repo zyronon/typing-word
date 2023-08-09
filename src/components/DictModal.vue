@@ -7,9 +7,14 @@ import {Dict, Word} from "@/types.ts"
 import {chunk} from "lodash";
 import {$computed, $ref} from "vue/macros";
 import WordList from "@/components/WordList.vue";
+import ChapterList from "@/components/ChapterList.vue"
 
 const store = useBaseStore()
-let currentSelectDict: Dict = $ref({name: '新概念英语-2'} as any)
+let currentSelectDict: Dict = $ref({
+  name: '新概念英语-2',
+  chapterList: [],
+  chapterIndex: -1
+} as any)
 let step = $ref(1)
 
 const currentSelectChapter: Word[] = $computed(() => {
@@ -73,18 +78,18 @@ async function selectDict(item: Dict) {
                       <div class="desc">{{ i.description }}</div>
                       <div class="num">{{ i.length }}词</div>
                       <arrow-right v-if="currentSelectDict.name === i.name"
-                                   @click="step = 1"
+                                   @click.stop="step = 1"
                                    class="go" theme="outline" size="20" fill="#ffffff"
                                    :strokeWidth="2"/>
                     </div>
                   </div>
                 </div>
                 <div class="chapter-wrapper">
-                  <div class="chapter-list">
-                    <div class="chapter-item" v-for="(item,index) in currentSelectDict.chapterList">
-                      <div class="title">{{ index }}</div>
-                    </div>
-                  </div>
+                  <ChapterList
+                      class="chapter-list"
+                      :list="currentSelectDict.chapterList"
+                      v-model:active-index="currentSelectDict.chapterIndex"
+                  />
                   <div class="footer">
                     <div class="my-button">确定</div>
                   </div>
@@ -113,20 +118,13 @@ async function selectDict(item: Dict) {
                     <div class="num">{{ currentSelectDict.length }}词</div>
                   </div>
                 </div>
-
                 <div class="chapter-wrapper">
-                  <div class="chapter-list">
-                    <div class="chapter-item"
-                         @click="currentSelectDict.chapterIndex = index"
-                         v-for="(item,index) in currentSelectDict.chapterList">
-                      <div class="title">{{ index }}</div>
-                    </div>
-                  </div>
+                  <ChapterList :list="currentSelectDict.chapterList"
+                               v-model:active-index="currentSelectDict.chapterIndex"
+                  />
                 </div>
                 <div class="other">
-                  <div class="word-list">
-                    <WordList :word-list="currentSelectChapter" :index="0" :active="false"/>
-                  </div>
+                  <WordList class="word-list" :list="currentSelectChapter" :activeIndex="-1" :isActive="false"/>
                   <div class="footer">
                     <div class="my-button">返回</div>
                     <div class="my-button">确定</div>
@@ -153,6 +151,7 @@ $header-height: 60rem;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 999;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,7 +160,7 @@ $header-height: 60rem;
   overflow: hidden;
 
   &.show {
-    z-index: 0;
+    z-index: 999;
 
     .modal-mask {
       opacity: 1;
@@ -210,8 +209,8 @@ $header-height: 60rem;
 
   .modal {
     position: relative;
-    background: $dark-bg2;
-    box-shadow: $dark-bg2 0 0 10rem 1rem;
+    background: $dark-second-bg;
+    box-shadow: $dark-second-bg 0 0 10rem 1rem;
     opacity: 0;
     transition: transform $time, opacity $time;
     width: 75vw;
@@ -291,8 +290,8 @@ $header-height: 60rem;
   cursor: pointer;
   padding: 10rem;
   border-radius: 10rem;
-  background: $dark-bg;
-  border: 1px solid $dark-bg;
+  background: $dark-main-bg;
+  border: 1px solid $dark-main-bg;
   position: relative;
 
   .go {
@@ -307,23 +306,13 @@ $header-height: 60rem;
   }
 }
 
-$footer-height: 50rem;
+$footer-height: 40rem;
 
 .chapter-wrapper {
   min-width: 25%;
 
   .chapter-list {
-    padding: 0 $space;
     height: calc(100% - $footer-height);
-    overflow: auto;
-
-    .chapter-item {
-      cursor: pointer;
-      margin-bottom: 10rem;
-      padding: 10rem;
-      border-radius: 10rem;
-      border: 1px solid gray;
-    }
   }
 }
 
@@ -331,7 +320,7 @@ $footer-height: 50rem;
   box-sizing: content-box;
   height: $footer-height;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-end;
   gap: $space;
 }
@@ -442,13 +431,8 @@ $footer-height: 50rem;
     .other {
       flex: 1;
       height: 100%;
-      padding-left: $space;
 
       .word-list {
-        width: 100%;
-        box-sizing: border-box;
-        padding-right: $space;
-        overflow: auto;
         height: calc(100% - $footer-height);
       }
     }

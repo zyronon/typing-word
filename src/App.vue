@@ -53,18 +53,19 @@ onUnmounted(() => {
   window.removeEventListener('keyup', onKeyUp)
 })
 
-// watch(store.$state, (n) => {
-//   localStorage.setItem(SaveKey, JSON.stringify(n))
-// })
+watch(store.$state, (n) => {
+  localStorage.setItem(SaveKey, JSON.stringify(n))
+})
 
 function next() {
-  if (store.wordIndex === store.chapter.length - 1) {
-    if (store.chapterIndex !== store.currentDict.chapterList.length - 1) {
+  if (store.currentDict.wordIndex === store.chapter.length - 1) {
+    if (store.currentDict.chapterIndex !== store.currentDict.chapterList.length - 1) {
       store.currentDict.wordIndex = 0
       store.currentDict.chapterIndex++
       console.log('这一章节完了')
     } else {
       console.log('这本书完了')
+      return
     }
   } else {
     store.currentDict.wordIndex++
@@ -140,8 +141,6 @@ async function onKeyDown(e: KeyboardEvent) {
 
 const [playAudio] = usePlayWordAudio()
 
-const showDictModal = $ref(false)
-
 </script>
 
 <template>
@@ -171,7 +170,7 @@ const showDictModal = $ref(false)
         </div>
       </div>
     </div>
-    <!--    <Side/>-->
+    <Side/>
     <DictModal/>
   </div>
 </template>
@@ -180,7 +179,7 @@ const showDictModal = $ref(false)
 @import "@/assets/css/colors";
 
 .main-page {
-  background: $dark-bg;
+  background: $dark-main-bg;
   width: 100vw;
   height: 100%;
   overflow: hidden;

@@ -5,10 +5,11 @@ import {watch} from "vue"
 import {useBaseStore} from "@/stores/base.ts"
 
 const store = useBaseStore()
+const emit = defineEmits(['change'])
 const props = defineProps<{
-  wordList: Word[],
-  index: number,
-  active: boolean
+  list: Word[],
+  activeIndex: number,
+  isActive: boolean
 }>()
 
 const [playAudio] = usePlayWordAudio()
@@ -16,85 +17,96 @@ const listRef: HTMLElement = $ref(null as any)
 
 function scrollViewToCenter(index: number) {
   if (index === -1) return
-  listRef.children[index]!.scrollIntoView({block: 'center', behavior: 'smooth'})
+  listRef.children[index]?.scrollIntoView({block: 'center', behavior: 'smooth'})
 }
 
-watch(() => props.index, (n: any) => {
+watch(() => props.activeIndex, (n: any) => {
   if (store.sideIsOpen) {
     scrollViewToCenter(n)
   }
 })
 
-watch(() => props.active, (n: boolean) => {
+watch(() => props.isActive, (n: boolean) => {
   setTimeout(() => {
-    if (n) scrollViewToCenter(props.index)
+    if (n) scrollViewToCenter(props.activeIndex)
   }, 300)
 })
+
+watch(() => props.list, () => {
+  listRef.scrollTo(0, 0)
+})
+
 </script>
 
 <template>
-  <div class="words">
-    <div class="list" ref="listRef">
-      <template v-for="(item,i) in wordList">
-        <div class="item" :class="index === i && 'active'">
-          <div class="left">
-            <div class="letter">{{ item.name }}</div>
-            <div class="info">
-              <div class="translate">{{ item.trans.join('；') }}</div>
-              <div class="phonetic">{{ item.usphone }}</div>
-            </div>
-          </div>
-          <div class="right">
-            <div class="audio" @click="playAudio(item.name)">播放</div>
-            <div class="audio" @click="playAudio(item.name)">删除</div>
+  <div class="list" ref="listRef">
+    <template v-for="(item,i) in list">
+      <div class="item" @click="$emit('change',i)" :class="activeIndex === i && 'active'">
+        <div class="left">
+          <div class="letter">{{ item.name }}</div>
+          <div class="info">
+            <div class="translate">{{ item.trans.join('；') }}</div>
+            <div class="phonetic">{{ item.usphone }}</div>
           </div>
         </div>
-      </template>
-    </div>
+        <div class="right">
+          <div class="audio" @click="playAudio(item.name)">播放</div>
+          <div class="audio" @click="playAudio(item.name)">删除</div>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
 <style scoped lang="scss">
 @import "@/assets/css/colors";
 
-.words {
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 15rem;
+  width: 100%;
+  height: 100%;
+  padding: 0 $space;
+  overflow: auto;
+  box-sizing: border-box;
 
-  .list {
+  .item {
+    background: $dark-main-bg;
+    border-radius: 6rem;
+    padding: 10rem;
+    //border: 1px solid gray;
     display: flex;
-    flex-direction: column;
-    gap: 15rem;
+    justify-content: space-between;
+    transition: all .3s;
 
-    .item {
-      border-radius: 10rem;
-      padding: 10rem;
-      border: 1px solid gray;
-      display: flex;
-      justify-content: space-between;
+    &.active {
+      background: $second;
+    }
 
-      .left {
-        .letter {
-          margin-bottom: 10rem;
-          font-size: 24rem;
-          line-height: 1;
-          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-          display: flex;
-        }
+    &:hover {
+      background: $item-hover;
+    }
 
-        .info {
-          display: flex;
-          gap: 20rem
-        }
-      }
-
-      .right {
+    .left {
+      .letter {
+        margin-bottom: 10rem;
+        font-size: 24rem;
+        line-height: 1;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
       }
 
-      &.active {
-        background: $dark-bg;
+      .info {
+        display: flex;
+        gap: 20rem
       }
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
   }
 }
