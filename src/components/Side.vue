@@ -58,10 +58,16 @@ function changeDict(dict: Dict, i: number) {
                 :isActive="store.sideIsOpen && tabIndex === 0"
                 :list="store.dict.chapterList[store.dict.chapterIndex]??[]"
                 :activeIndex="store.dict.wordIndex"/>
-            <footer v-if="![DictType.custom,DictType.inner].includes(store.currentDictType.name)">
-              <div class="my-button" @click="store.changeDict(store.dict)">
-                切换
-              </div>
+            <!--            <footer v-if="![DictType.custom,DictType.inner].includes(store.currentDictType.name)">-->
+            <footer>
+              <PopConfirm
+                  :title="`确认花费 10 个铜币向  的这条回复发送感谢？`"
+                  @confirm="store.changeDict(store.dict)"
+              >
+                <div class="my-button" >
+                  切换
+                </div>
+              </PopConfirm>
             </footer>
           </div>
         </swiper-slide>
@@ -95,13 +101,9 @@ function changeDict(dict: Dict, i: number) {
                 :list="store.skipWordDict.wordList"
                 :activeIndex="store.skipWordDict.wordIndex"/>
             <footer v-if="store.currentDictType.name !== DictType.skipWordDict && store.skipWordDict.wordList.length">
-              <PopConfirm
-                  :title="`确认花费 10 个铜币向  的这条回复发送感谢？`"
-              >
-                <div class="my-button" @click="store.changeDict(store.skipWordDict)">
-                  切换
-                </div>
-              </PopConfirm>
+              <div class="my-button" @click="store.changeDict(store.skipWordDict)">
+                切换
+              </div>
             </footer>
           </div>
         </swiper-slide>

@@ -96,6 +96,7 @@ export const useBaseStore = defineStore('base', {
             }
         },
         async changeDict(dict: Dict, chapterIndex: number = -1, wordIndex: number = -1) {
+            console.log('changeDict')
             if ([DictType.newWordDict, DictType.skipWordDict].includes(dict.type)) {
                 this.currentDictType.name = dict.type
                 this.currentDictType.dictUrl = ''

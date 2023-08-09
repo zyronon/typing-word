@@ -64,12 +64,10 @@ watch(() => props.list, () => {
 <style scoped lang="scss">
 @import "@/assets/css/colors";
 
-
-
 .list {
   display: flex;
   flex-direction: column;
-  gap: 15rem;
+  gap: 12rem;
   width: 100%;
   height: 100%;
   padding: 0 $space;
@@ -79,8 +77,9 @@ watch(() => props.list, () => {
 
   .item {
     background: $dark-main-bg;
+    //background: $item-hover;
     border-radius: 6rem;
-    padding: 10rem;
+    padding: 12rem;
     //border: 1px solid gray;
     display: flex;
     justify-content: space-between;
@@ -91,6 +90,7 @@ watch(() => props.list, () => {
     }
 
     &:hover {
+      //background: $dark-main-bg;
       background: $item-hover;
     }
 

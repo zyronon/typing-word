@@ -1,25 +1,5 @@
-<template>
-  <div class="pop-confirm">
-    <Teleport to="body">
-      <Transition>
-        <div ref="tip" class="pop-confirm-content" v-if="show">
-          <div class="text">
-            {{ title }}
-          </div>
-          <div class="options">
-            <div @click="show = false">取消</div>
-            <div class="main" @click="confirm">确认</div>
-          </div>
-        </div>
-      </Transition>
-    </Teleport>
-    <span @click="showPop">
-      <slot></slot>
-    </span>
-  </div>
-</template>
-<script>
-import {nextTick} from "vue";
+<script lang="jsx">
+import {nextTick, Teleport, Transition} from "vue";
 
 export default {
   name: "PopConfirm",
@@ -44,6 +24,7 @@ export default {
   },
   methods: {
     showPop(e) {
+      // return console.log('sss')
       if (this.disabled) return
       let rect = e.target.getBoundingClientRect()
       this.show = true
@@ -56,6 +37,31 @@ export default {
       this.show = false
       this.$emit('confirm')
     }
+  },
+  render() {
+    let Vnode = this.$slots.default()[0]
+    return (
+        <div class="pop-confirm">
+          <Teleport to="body">
+            <Transition>
+              {
+                  this.show && (
+                      <div ref="tip" className="pop-confirm-content">
+                        <div className="text">
+                          {this.title}
+                        </div>
+                        <div className="options">
+                          <div onClick={() => this.show = false}>取消</div>
+                          <div className="main" onClick={() => this.confirm()}>确认</div>
+                        </div>
+                      </div>
+                  )
+              }
+            </Transition>
+          </Teleport>
+          <Vnode onClick={(e) => this.showPop(e)}/>
+        </div>
+    )
   }
 }
 </script>
@@ -100,4 +106,3 @@ $bg-color: rgb(226, 226, 226);
   }
 }
 </style>
- 

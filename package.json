@@ -19,6 +19,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.196",
     "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
     "sass": "^1.64.2",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
