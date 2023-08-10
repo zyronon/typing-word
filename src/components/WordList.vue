@@ -3,6 +3,7 @@ import {Word} from "../types";
 import {usePlayWordAudio} from "../hooks/usePlayWordAudio";
 import {watch} from "vue"
 import {useBaseStore} from "@/stores/base.ts"
+import {Delete} from "@icon-park/vue-next"
 
 const store = useBaseStore()
 const emit = defineEmits(['change'])
@@ -52,7 +53,7 @@ watch(() => props.list, () => {
           </div>
           <div class="right">
             <div class="audio" @click="playAudio(item.name)">播放</div>
-            <div class="audio" @click="playAudio(item.name)">删除</div>
+            <delete theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
           </div>
         </div>
       </template>

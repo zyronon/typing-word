@@ -47,6 +47,14 @@ onMounted(() => {
   store.init()
   window.addEventListener('keydown', onKeyDown)
   window.addEventListener('keyup', onKeyUp)
+
+  Tesseract.recognize(
+      'https://tesseract.projectnaptha.com/img/eng_bw.png',
+      'eng',
+      { logger: m => console.log(m) }
+  ).then(({ data: { text } }) => {
+    console.log(text);
+  })
 })
 
 onUnmounted(() => {

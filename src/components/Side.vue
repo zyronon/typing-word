@@ -58,13 +58,12 @@ function changeDict(dict: Dict, i: number) {
                 :isActive="store.sideIsOpen && tabIndex === 0"
                 :list="store.dict.chapterList[store.dict.chapterIndex]??[]"
                 :activeIndex="store.dict.wordIndex"/>
-            <!--            <footer v-if="![DictType.custom,DictType.inner].includes(store.currentDictType.name)">-->
-            <footer>
+            <footer v-if="![DictType.custom,DictType.inner].includes(store.currentDictType.name)">
               <PopConfirm
-                  :title="`确认花费 10 个铜币向  的这条回复发送感谢？`"
+                  :title="`确认切换？`"
                   @confirm="store.changeDict(store.dict)"
               >
-                <div class="my-button" >
+                <div class="my-button">
                   切换
                 </div>
               </PopConfirm>
@@ -83,9 +82,14 @@ function changeDict(dict: Dict, i: number) {
                 :list="store.newWordDict.wordList"
                 :activeIndex="store.newWordDict.wordIndex"/>
             <footer v-if="store.currentDictType.name !== DictType.newWordDict && store.newWordDict.wordList.length">
-              <div class="my-button" @click="store.changeDict(store.newWordDict)">
-                切换
-              </div>
+              <PopConfirm
+                  :title="`确认切换？`"
+                  @confirm="store.changeDict(store.newWordDict)"
+              >
+                <div class="my-button">
+                  切换
+                </div>
+              </PopConfirm>
             </footer>
           </div>
         </swiper-slide>
@@ -101,9 +105,14 @@ function changeDict(dict: Dict, i: number) {
                 :list="store.skipWordDict.wordList"
                 :activeIndex="store.skipWordDict.wordIndex"/>
             <footer v-if="store.currentDictType.name !== DictType.skipWordDict && store.skipWordDict.wordList.length">
-              <div class="my-button" @click="store.changeDict(store.skipWordDict)">
-                切换
-              </div>
+              <PopConfirm
+                  :title="`确认切换？`"
+                  @confirm="store.changeDict(store.skipWordDict)"
+              >
+                <div class="my-button hvr-grow">
+                  切换
+                </div>
+              </PopConfirm>
             </footer>
           </div>
         </swiper-slide>

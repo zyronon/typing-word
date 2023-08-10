@@ -22,10 +22,18 @@ export default {
       show: false
     }
   },
+  mounted() {
+    window.addEventListener('click', () => {
+      this.show = false
+    })
+    window.addEventListener('keydown', () => {
+      this.show = false
+    })
+  },
   methods: {
     showPop(e) {
-      // return console.log('sss')
       if (this.disabled) return
+      e.stopPropagation()
       let rect = e.target.getBoundingClientRect()
       this.show = true
       nextTick(() => {
