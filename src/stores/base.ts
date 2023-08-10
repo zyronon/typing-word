@@ -40,6 +40,7 @@ export const useBaseStore = defineStore('base', {
       },
       sideIsOpen: false,
       dictModalIsOpen: false,
+      dictModalIsOpen2: false,
     }
   },
   getters: {

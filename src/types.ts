@@ -123,4 +123,5 @@ export interface State {
     }
     sideIsOpen: boolean,
     dictModalIsOpen: boolean,
+    dictModalIsOpen2: boolean,
 }

@@ -19,6 +19,7 @@ import Side from "@/components/Side.vue"
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
 import DictModal from "@/components/DictModal.vue"
 import Backgorund from "@/components/Backgorund.vue"
+import Statistics from "@/components/Statistics.vue";
 
 let input = $ref('')
 let wrong = $ref('')
@@ -156,12 +157,15 @@ onMounted(() => {
 
 })
 
+const show = $ref(false)
+
 </script>
 
 <template>
   <Backgorund/>
   <div class="main-page">
     <button @click="store.dictModalIsOpen = true">ok</button>
+    <button @click="store.dictModalIsOpen2 = true">ok</button>
     <div class="content">
       <div class="type-word">
         <div class="translate">{{ store.word.trans.join('；') }}</div>
@@ -187,7 +191,8 @@ onMounted(() => {
       </div>
     </div>
     <Side/>
-    <DictModal/>
+    <Statistics></Statistics>
+    <!--    <DictModal/>-->
   </div>
 </template>
 
