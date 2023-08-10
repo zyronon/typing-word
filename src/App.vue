@@ -18,6 +18,7 @@ import WordList from "./components/WordList.vue";
 import Side from "@/components/Side.vue"
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
 import DictModal from "@/components/DictModal.vue"
+import Backgorund from "@/components/Backgorund.vue"
 
 let input = $ref('')
 let wrong = $ref('')
@@ -47,14 +48,6 @@ onMounted(() => {
   store.init()
   window.addEventListener('keydown', onKeyDown)
   window.addEventListener('keyup', onKeyUp)
-
-  Tesseract.recognize(
-      'https://tesseract.projectnaptha.com/img/eng_bw.png',
-      'eng',
-      { logger: m => console.log(m) }
-  ).then(({ data: { text } }) => {
-    console.log(text);
-  })
 })
 
 onUnmounted(() => {
@@ -79,7 +72,16 @@ function next() {
     }
   } else {
     store.currentDict.wordIndex++
-    // console.log('这个词完了')
+
+    // var msg = new SpeechSynthesisUtterance();
+    // // msg.text = store.word.name
+    // msg.text = 'Hawaii wildfires burn historic town of Lahaina to the ground'
+    // msg.rate = 0.8;
+    // msg.pitch = 1;
+    // msg.lang = 'en-US';
+    // window.speechSynthesis.speak(msg);
+
+    console.log('这个词完了')
   }
   if ([DictType.custom, DictType.inner].includes(store.currentDictType.name) && store.skipWordNames.includes(store.word.name)) {
     next()
@@ -92,9 +94,10 @@ function onKeyUp(e: KeyboardEvent) {
 }
 
 async function onKeyDown(e: KeyboardEvent) {
+  //TODO 还有横杠
   if (e.keyCode >= 65 && e.keyCode <= 90 || e.code === 'Space') {
-    let letter = e.key.toLowerCase()
-    if (input + letter === store.word.name.slice(0, input.length + 1)) {
+    let letter = e.key
+    if ((input + letter).toLowerCase() === store.word.name.toLowerCase().slice(0, input.length + 1)) {
       input += letter
       wrong = ''
       playKeySound()
@@ -107,9 +110,9 @@ async function onKeyDown(e: KeyboardEvent) {
         // wrong = input = ''
       }, 500)
     }
-    if (input === store.word.name) {
+    if (input.toLowerCase() === store.word.name.toLowerCase()) {
       playCorrect()
-      setTimeout(next, 200)
+      setTimeout(next, 300)
     }
   } else {
     // console.log('e', e)
@@ -149,10 +152,14 @@ async function onKeyDown(e: KeyboardEvent) {
   }
 }
 
+onMounted(() => {
+
+})
 
 </script>
 
 <template>
+  <Backgorund/>
   <div class="main-page">
     <button @click="store.dictModalIsOpen = true">ok</button>
     <div class="content">
@@ -188,7 +195,9 @@ async function onKeyDown(e: KeyboardEvent) {
 @import "@/assets/css/colors";
 
 .main-page {
-  background: $dark-main-bg;
+  position: absolute;
+  z-index: 1;
+  //background: $dark-main-bg;
   width: 100vw;
   height: 100%;
   overflow: hidden;
