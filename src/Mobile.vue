@@ -1,8 +1,9 @@
 <script setup lang="js">
 
 import {onMounted} from "vue"
+import {createWorker} from "tesseract.js";
 
-onMounted(() => {
+onMounted(async () => {
   Array.prototype.clone = function () {
     return [].concat(this);
     //或者 return this.concat();
@@ -320,7 +321,7 @@ onMounted(() => {
       return result;
     }
 
-    clear(){
+    clear() {
       this.line = new Line();
       this.pointLines = new Array();//Line数组
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -328,11 +329,28 @@ onMounted(() => {
   }
 
 
+  const worker = await createWorker({
+    // logger: m => console.log(m)
+  });
+  await worker.loadLanguage('eng');
+  await worker.initialize('eng');
+  await worker.setParameters({
+    tessedit_char_whitelist: 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'
+  });
+  let lastTime = Date.now()
+  let timer = -1
+  let checkTime = 400
+
+
 //以下代码为鼠标移动事件部分
   let handwriting = new HandwritingSelf(document.getElementById("canvasId"))
 // document.ontouchstart = document.onmousedown
   document.onpointerdown = function (e) {
-    handwriting.clear()
+    if (Date.now() - lastTime > checkTime) {
+      handwriting.clear()
+    } else {
+      clearTimeout(timer)
+    }
     if (e.type == "touchstart")
       handwriting.down(e.touches[0].pageX, e.touches[0].pageY);
     else
@@ -345,6 +363,7 @@ onMounted(() => {
     else
       handwriting.move(e.x, e.y);
   }
+
 // document.ontouchend = document.onmouseup
   document.onpointerup = function (e) {
     if (e.type == "touchend")
@@ -352,15 +371,29 @@ onMounted(() => {
     else
       handwriting.up(e.x, e.y);
 
-    let image = new Image();
-    image.src = handwriting.canvas.toDataURL("image/png");
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      console.log('识别');
+      // handwriting.canvas.toDataURL()
 
-    Tesseract.recognize(
-        image,
-        'eng',
-    ).then(({data: {text}}) => {
-      console.log(text);
-    })
+      // var MIME_TYPE = "image/png";
+      // var imgURL = handwriting.canvas.toDataURL(MIME_TYPE);
+      // var dlLink = document.createElement('a');
+      // dlLink.download = 'fileName.png';
+      // dlLink.href = imgURL;
+      // dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+      //
+      // document.body.appendChild(dlLink);
+      // dlLink.click();
+      // document.body.removeChild(dlLink);
+
+      (async () => {
+        const {data: {text}} = await worker.recognize(handwriting.canvas);
+        console.log(text);
+      })();
+    }, checkTime)
+
+    lastTime = Date.now()
   }
 })
 </script>
