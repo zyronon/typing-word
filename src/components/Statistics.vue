@@ -1,8 +1,9 @@
 <script setup>
 import Modal from "@/components/Modal.vue";
 import {useBaseStore} from "@/stores/base.ts";
-import {Close} from '@icon-park/vue-next'
+import {Close, ShareThree, KeyboardOne, Tea, Like} from '@icon-park/vue-next'
 import Ring from "@/components/Ring.vue";
+import Tooltip from "@/components/Tooltip.vue";
 
 const store = useBaseStore()
 </script>
@@ -12,38 +13,171 @@ const store = useBaseStore()
     <div class="statistics">
       <header>
         <div class="title">新概念英语-2 第3章</div>
-        <close @click="store.dictModalIsOpen2 = false" theme="outline" size="20" fill="#929596"
-               :strokeWidth="2"/>
       </header>
       <div class="content">
         <div class="rings">
           <Ring/>
           <Ring/>
-          <Ring/>
+          <Ring style="margin-bottom: 0;"/>
         </div>
         <div class="result">
-          <div class="wrong-words">
+          <div class="wrong-words-wrapper">
+            <div class="wrong-words">
+              <div class="word" v-for="i in 500">Yes</div>
+            </div>
+          </div>
 
+          <div class="notice">
+            <like theme="filled" size="20" fill="#ffffff" :strokeWidth="2"/>
+            表现不错，全对了！
           </div>
         </div>
+        <div class="shares">
+          <Tooltip title="分享给朋友">
+            <share-three theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
+          </Tooltip>
+          <Tooltip title="分享给朋友">
+            <tea theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
+          </Tooltip>
+          <Tooltip title="分享给朋友">
+            <share-three theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
+          </Tooltip>
+        </div>
+      </div>
+      <div class="footer">
+        <Tooltip title="Ctrl + Enter键默写本章节">
+          <div class="my-button large">
+            默写本章节
+            <div class="key-notice">
+              <keyboard-one theme="outline" size="14" fill="#ffffff" :strokeWidth="2"/>
+              <span>Ctrl + Enter</span>
+            </div>
+          </div>
+        </Tooltip>
+        <Tooltip title="按Enter键重复本章节">
+          <div class="my-button large">
+            重复本章节
+            <div class="key-notice">
+              <keyboard-one theme="outline" size="14" fill="#ffffff" :strokeWidth="2"/>
+              <span>Enter</span>
+            </div>
+          </div>
+        </Tooltip>
+        <Tooltip title="按Tab键进行下一章节">
+          <div class="my-button large  ">
+            下一章节
+            <div class="key-notice">
+              <keyboard-one theme="outline" size="14" fill="#ffffff" :strokeWidth="2"/>
+              <span>Tab</span>
+            </div>
+          </div>
+        </Tooltip>
       </div>
     </div>
   </Modal>
+  <canvas></canvas>
 </template>
 <style scoped lang="scss">
+@import "@/assets/css/style";
+
 .statistics {
   width: 50vw;
-  height: 70vh;
+  padding: $space;
+  background: $dark-second-bg;
+  border-radius: $card-radius;
+
+  $header-height: 40rem;
+  $footer-height: 60rem;
 
   header {
     display: flex;
     align-items: center;
     justify-content: center;
-
+    height: $header-height;
+    font-size: 24rem;
+    margin-bottom: 15rem;
   }
 
   .content {
+    display: flex;
+    gap: $space;
+    margin-bottom: 15rem;
 
+    .result {
+      flex: 1;
+      box-sizing: border-box;
+      overflow: hidden;
+
+      .wrong-words-wrapper {
+        border-radius: $card-radius $card-radius 0 0;
+        background: $item-hover;
+        padding-top: $space;
+
+      }
+
+      .wrong-words {
+        padding: $space;
+        padding-top: 0;
+        height: 30vh;
+        box-sizing: border-box;
+        overflow: auto;
+        display: flex;
+        margin-right: 5rem;
+        flex-wrap: wrap;
+        gap: 10rem;
+        align-items: flex-start;
+
+        .word {
+          display: inline-block;
+          border-radius: 6rem;
+          padding: 5rem 15rem;
+          background: $dark-second-bg;
+        }
+      }
+
+      .notice {
+        border-radius: 0 0 $card-radius $card-radius;
+        background: $main;
+        height: 40rem;
+        display: flex;
+        gap: 10rem;
+        align-items: center;
+        padding-left: $space;
+      }
+    }
+
+    .shares {
+      display: flex;
+      flex-direction: column;
+      gap: $space;
+    }
+  }
+
+  .footer {
+    height: $footer-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20rem;
+
+    .key-notice {
+      margin-left: 10rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12rem;
+      gap: 2rem;
+    }
   }
 }
+
+canvas {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
 </style>

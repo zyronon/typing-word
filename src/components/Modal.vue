@@ -1,14 +1,24 @@
 <script setup lang="ts">
+import {Close} from "@icon-park/vue-next"
+
 const props = defineProps(['modelValue'])
 const emit = defineEmits(['update:modelValue'])
+
+function close() {
+  emit('update:modelValue', false)
+}
 </script>
 
 <template>
   <Teleport to="body">
     <Transition name="bounce">
       <div class="modal-root" v-if="props.modelValue">
-        <div class="modal-mask" @click="$emit('update:modelValue',false)"></div>
+        <div class="modal-mask" @click="close"></div>
         <div class="modal">
+          <Close @click="close"
+                 class="close"
+                 theme="outline" size="20" fill="#929596"
+                 :strokeWidth="2"/>
           <div class="modal-body">
             <slot></slot>
           </div>
@@ -134,6 +144,12 @@ $header-height: 60rem;
       overflow: hidden;
       display: flex;
     }
+  }
+
+  .close {
+    position: absolute;
+    right: 20rem;
+    top: 20rem;
   }
 }
 </style>

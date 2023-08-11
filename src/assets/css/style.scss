@@ -1,7 +1,6 @@
 @import "@icon-park/vue-next/styles/index.css";
 @import "colors";
 @import "anim";
-@import "hover.css";
 
 html, body {
   padding: 0;
@@ -40,14 +39,34 @@ footer {
   gap: $space;
 }
 
-.my-button {
-  font-size: 13rem;
+.i-icon {
   cursor: pointer;
-  border-radius: 4rem;
+}
+
+.my-button {
+  //font-size: 13rem;
+  cursor: pointer;
+  border-radius: 6rem;
   padding: 0 15rem;
   height: 28rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: $main;
+  line-height: 18rem;
+  transition: all .3s;
+  background: rgb(75, 85, 99);
+
+  &:hover {
+    opacity: .7;
+  }
+
+  &.large {
+    height: 50rem;
+    font-size: 18rem;
+    padding: 0 18rem;
+  }
+
+  &.primary {
+    background: $main;
+  }
 }
