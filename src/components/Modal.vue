@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import {useBaseStore} from "@/stores/base.ts"
-
-const store = useBaseStore()
-
 const props = defineProps(['modelValue'])
 const emit = defineEmits(['update:modelValue'])
 </script>
@@ -14,6 +10,7 @@ const emit = defineEmits(['update:modelValue'])
         <div class="modal-mask" @click="$emit('update:modelValue',false)"></div>
         <div class="modal">
           <div class="modal-body">
+            <slot></slot>
           </div>
         </div>
       </div>
@@ -104,8 +101,8 @@ $header-height: 60rem;
     position: relative;
     background: $dark-second-bg;
     box-shadow: $dark-second-bg 0 0 10rem 1rem;
-    width: 75vw;
-    height: 70vh;
+    //width: 75vw;
+    //height: 70vh;
     border-radius: $radius;
     display: flex;
     flex-direction: column;

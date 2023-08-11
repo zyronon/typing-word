@@ -95,6 +95,8 @@ export const useBaseStore = defineStore('base', {
           this.dict.chapterList = chunk(this.dict.wordList, 15)
         })
       }
+      this.dictModalIsOpen = false
+      this.dictModalIsOpen2 = false
     },
     async changeDict(dict: Dict, chapterIndex: number = -1, wordIndex: number = -1) {
       console.log('changeDict')
