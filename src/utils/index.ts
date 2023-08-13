@@ -1,3 +1,3 @@
-export function getRandom(a: number, b: number) {
+export function getRandom(a: number, b: number): number {
   return Math.random() * (b - a) + a;
 }
