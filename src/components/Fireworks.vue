@@ -99,7 +99,7 @@ onMounted(() => {
       this.boomArea = boomArea;
       this.theta = 0;
       this.dead = false;
-      this.ba = parseInt(getRandom(80, 200));
+      this.ba = getRandom(80, 200);
 
       let audio = document.getElementsByTagName("audio");
       for (let i = 0; i < audio.length; i++) {
