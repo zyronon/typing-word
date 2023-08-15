@@ -22,13 +22,9 @@ onMounted(() => {
   let bigBooms = [];
   let lastTime;
 
-  Array.prototype.foreach = function (callback) {
-    for (let i = 0; i < this.length; i++) {
-      if (this[i] !== null) callback.apply(this[i], [i]);
-    }
-  };
-
   let raf = window.requestAnimationFrame
+  let count = 0
+  let isBreak = false
 
   function initAnimate() {
     lastTime = new Date();
@@ -36,7 +32,6 @@ onMounted(() => {
   }
 
   initAnimate()
-  let count = 0
 
   function animate() {
     ctx.save();
@@ -46,17 +41,26 @@ onMounted(() => {
     ctx.restore();
 
     let newTime = new Date();
-    if (newTime - lastTime > 200 + (window.innerHeight - 767) / 2) {
-      let boomArea = {
-        x: getRandom(canvas.width / 5, (canvas.width * 4) / 5),
-        y: getRandom(50, 200)
-      }
+    if (newTime - lastTime > 200 + (window.innerHeight - 767) / 2 && count < 11) {
+      let boomArea
+      let startX
       if (count % 2 === 0) {
-
+        startX = getRandom(0, canvas.width * 0.1);
+        // startX = getRandom(500, 700);
+        boomArea = {
+          x: getRandom(canvas.width * 0.1, canvas.width * 0.3),
+          y: getRandom(50, 200)
+        }
+      } else {
+        startX = getRandom(canvas.width * 0.9, canvas.width);
+        boomArea = {
+          x: getRandom(canvas.width * 0.7, canvas.width * 0.9),
+          y: getRandom(50, 200)
+        }
       }
 
       let bigBoom = new Boom(
-          getRandom(canvas.width / 3, (canvas.width * 2) / 3),
+          startX,
           2,
           "#FFF",
           boomArea
@@ -77,10 +81,22 @@ onMounted(() => {
             bigBooms.splice(bigBooms.indexOf(itemI), 1);
           }
         });
+        if (bigBooms.length === 0) {
+          setTimeout(() => {
+            isBreak = true
+          }, 1000)
+        }
       }
     });
 
-    raf(animate);
+    if (!isBreak) {
+      raf(animate);
+    } else {
+      // ctx.globalCompositeOperation = 'source-over'
+      // ctx.globalAlpha = 0;
+      // ctx.fillStyle = 'transparent';
+      // ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
   }
 
   class Boom {
@@ -99,7 +115,7 @@ onMounted(() => {
       this.x = x;
       this.y = canvas.height + r;
       this.r = r;
-      console.log(this.x, this.y, this.r, boomArea)
+      // console.log(this.x, this.y, this.r, boomArea)
       this.color = color;
       this.shape = shape || false;
       this.boomArea = boomArea;
@@ -115,7 +131,7 @@ onMounted(() => {
           dy = this.boomArea.y - this.y;
       this.x = this.x + dx * 0.01;
       this.y = this.y + dy * 0.01;
-      console.log(this.x, this.y, dx, this.ba)
+      // console.log(this.x, this.y, dx, this.ba)
 
       if (Math.abs(dx) <= this.ba && Math.abs(dy) <= this.ba) {
         this._boom();
@@ -242,6 +258,7 @@ canvas {
   top: 0;
   width: 100vw;
   height: 100vh;
+  background: transparent;
   pointer-events: none;
 }
 

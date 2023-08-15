@@ -76,7 +76,7 @@ const store = useBaseStore()
       </div>
     </div>
   </Modal>
-  <Fireworks/>
+  <Fireworks v-if="store.dictModalIsOpen2"/>
 </template>
 <style scoped lang="scss">
 @import "@/assets/css/style.scss";
