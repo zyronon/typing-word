@@ -84,7 +84,7 @@ onMounted(() => {
         if (bigBooms.length === 0) {
           setTimeout(() => {
             isBreak = true
-          }, 1000)
+          }, 500)
         }
       }
     });
@@ -92,10 +92,7 @@ onMounted(() => {
     if (!isBreak) {
       raf(animate);
     } else {
-      // ctx.globalCompositeOperation = 'source-over'
-      // ctx.globalAlpha = 0;
-      // ctx.fillStyle = 'transparent';
-      // ctx.fillRect(0, 0, canvas.width, canvas.height);
+      canvas.style.display = 'none'
     }
   }
 
