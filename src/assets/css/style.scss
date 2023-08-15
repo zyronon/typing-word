@@ -2,6 +2,25 @@
 @import "colors";
 @import "anim";
 
+:root {
+  --color-main-bg: rgb(226, 226, 226);
+  --color-second-bg: rgb(238,240,244);
+  --color-header-bg: white;
+  --color-font: black;
+}
+
+html[data-theme='dark'] {
+  --color-main-bg: rgba(0, 5, 24, 1);
+  --color-second-bg: rgb(60, 63, 65);
+  --color-header-bg: white;
+
+}
+
+$anim-time: 0.3s;
+* {
+  transition: background-color $anim-time, color $anim-time;
+}
+
 html, body {
   padding: 0;
   margin: 0;

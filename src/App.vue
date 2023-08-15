@@ -20,6 +20,9 @@ import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
 import DictModal from "@/components/DictModal.vue"
 import Backgorund from "@/components/Backgorund.vue"
 import Statistics from "@/components/Statistics.vue";
+import {ArrowLeft, ArrowRight, MenuFold} from '@icon-park/vue-next'
+import useThemeColor from "@/hooks/useThemeColor";
+import Tooltip from "@/components/Tooltip.vue";
 
 let input = $ref('')
 let wrong = $ref('')
@@ -158,46 +161,63 @@ onMounted(() => {
 })
 
 const show = $ref(false)
+const {appearance, toggle} = useThemeColor()
 
 </script>
 
 <template>
   <Backgorund/>
   <div class="main-page">
-    <button @click="store.dictModalIsOpen = true">ok</button>
-    <button @click="store.dictModalIsOpen2 = true">ok</button>
-    <div class="content">
-      <div class="type-word">
-        <div class="translate">{{ store.word.trans.join('；') }}</div>
-        <div class="word-wrapper">
-          <div class="word" :class="wrong&&'is-wrong'">
-            <span class="input" v-if="input">{{ input }}</span>
-            <span class="wrong" v-if="wrong">{{ wrong }}</span>
-            <template v-if="isDictation">
+    <div class="center">
+      <header>
+        <div class="info">
+
+        </div>
+        <div class="options">
+          <div class="my-button" @click="toggle">切换</div>
+          <div class="my-button" @click="store.dictModalIsOpen = true">ok</div>
+          <div class="my-button" @click="store.dictModalIsOpen2 = true">ok</div>
+          <Tooltip title="单词本">
+            <menu-fold class="menu" @click="store.sideIsOpen = !store.sideIsOpen"
+                       theme="outline" size="20" fill="#929596"
+                       :strokeWidth="2"/>
+          </Tooltip>
+        </div>
+
+      </header>
+      <div class="content">
+        <div class="type-word">
+          <div class="translate">{{ store.word.trans.join('；') }}</div>
+          <div class="word-wrapper">
+            <div class="word" :class="wrong&&'is-wrong'">
+              <span class="input" v-if="input">{{ input }}</span>
+              <span class="wrong" v-if="wrong">{{ wrong }}</span>
+              <template v-if="isDictation">
           <span class="letter" v-if="!showFullWord"
                 @mouseenter="showFullWord = true">{{ restWord.split('').map(v => '_').join('') }}</span>
-              <span class="letter" v-else @mouseleave="showFullWord = false">{{ restWord }}</span>
-            </template>
-            <span class="letter" v-else>{{ restWord }}</span>
+                <span class="letter" v-else @mouseleave="showFullWord = false">{{ restWord }}</span>
+              </template>
+              <span class="letter" v-else>{{ restWord }}</span>
+            </div>
+            <div class="audio" @click="playAudio(store.word.name)">播放</div>
           </div>
-          <div class="audio" @click="playAudio(store.word.name)">播放</div>
-        </div>
-        <div class="phonetic">{{ store.word.usphone }}</div>
-        <div class="options">
-          <div class="option" :class="activeIndex === 0 &&'active'">忽略</div>
-          <div class="option" :class="activeIndex === 1 &&'active'">收藏</div>
-          <div class="option" :class="activeIndex === 2 &&'active'">下一个</div>
+          <div class="phonetic">{{ store.word.usphone }}</div>
+          <div class="options">
+            <div class="option" :class="activeIndex === 0 &&'active'">忽略</div>
+            <div class="option" :class="activeIndex === 1 &&'active'">收藏</div>
+            <div class="option" :class="activeIndex === 2 &&'active'">下一个</div>
+          </div>
         </div>
       </div>
+      <Side/>
     </div>
-    <Side/>
     <Statistics></Statistics>
     <DictModal/>
   </div>
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/colors";
+@import "@/assets/css/colors.scss";
 
 .main-page {
   position: absolute;
@@ -206,73 +226,105 @@ const show = $ref(false)
   width: 100vw;
   height: 100%;
   overflow: hidden;
-  display: flex;
   font-size: 14rem;
+  display: flex;
+  justify-content: center;
 
-  .content {
-    flex: 1;
+  .center {
+    width: 70vw;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    border: 1px solid gray;
+    position: relative;
 
-    .type-word {
+    header {
+      margin-top: 10rem;
+      height: 60rem;
+      width: 50%;
+      background: var(--color-header-bg);
       display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-size: 14rem;
-      color: gray;
-      gap: 2rem;
+      justify-content: space-between;
+      border-radius: 8rem;
+      position: relative;
+      z-index: 2;
+      padding: 10rem $space;
+      box-sizing: border-box;
 
       .options {
-        margin-top: 10rem;
-        display: flex;
-        gap: 15rem;
-        font-size: 18rem;
-
-        .option {
-          cursor: pointer;
-          padding: 6rem 10rem;
-          border-radius: 4rem;
-          background: gray;
-          color: white;
-
-          &:hover {
-            //background: rgb(70, 67, 67) !important;
-            background: red;
-          }
-
-          &.active {
-            background: red;
-          }
-        }
-      }
-
-      .phonetic, .translate {
-        font-size: 20rem;
-      }
-
-      .word-wrapper {
         display: flex;
         align-items: center;
         gap: 10rem;
+      }
+    }
 
-        .word {
-          font-size: 48rem;
-          line-height: 1;
-          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-          letter-spacing: 5rem;
+    .content {
+      position: relative;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-          .input {
-            color: rgba(74, 222, 128, 0.8);
+      .type-word {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 14rem;
+        color: gray;
+        gap: 2rem;
+
+        .options {
+          margin-top: 10rem;
+          display: flex;
+          gap: 15rem;
+          font-size: 18rem;
+
+          .option {
+            cursor: pointer;
+            padding: 6rem 10rem;
+            border-radius: 4rem;
+            background: gray;
+            color: white;
+
+            &:hover {
+              //background: rgb(70, 67, 67) !important;
+              background: red;
+            }
+
+            &.active {
+              background: red;
+            }
           }
+        }
 
-          .wrong {
-            color: rgba(red, 0.6);
-          }
+        .phonetic, .translate {
+          font-size: 20rem;
+        }
 
-          &.is-wrong {
-            animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        .word-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 10rem;
+
+          .word {
+            font-size: 48rem;
+            line-height: 1;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+            letter-spacing: 5rem;
+
+            .input {
+              color: rgba(74, 222, 128, 0.8);
+            }
+
+            .wrong {
+              color: rgba(red, 0.6);
+            }
+
+            &.is-wrong {
+              animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+            }
           }
         }
       }

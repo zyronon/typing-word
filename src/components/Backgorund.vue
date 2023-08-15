@@ -90,7 +90,6 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/css/colors";
 
 #background {
   position: fixed;
@@ -98,7 +97,7 @@ onMounted(() => {
   height: 100vh;
   left: 0;
   top: 0;
-  background: $dark-main-bg;
+  background-color: var(--color-main-bg);
 
   canvas {
     width: 100vw;

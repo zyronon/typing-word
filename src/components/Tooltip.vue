@@ -23,7 +23,11 @@ export default {
       this.show = true
       nextTick(() => {
         let tip = this.$refs.tip.getBoundingClientRect()
-        this.$refs.tip.style.top = rect.top - tip.height - 10 + 'px'
+        if (rect.top < 50) {
+          this.$refs.tip.style.top = rect.top + tip.height - 10 + 'px'
+        }else {
+          this.$refs.tip.style.top = rect.top - tip.height - 10 + 'px'
+        }
         let tipWidth = tip.width
         let rectWidth = rect.width
         this.$refs.tip.style.left = rect.left - (tipWidth - rectWidth) / 2 + 'px'
@@ -53,7 +57,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "@/assets/css/style";
+@import "@/assets/css/style.scss";
 
 .tip {
   position: fixed;
@@ -61,6 +65,8 @@ export default {
   z-index: 999;
   border-radius: 4rem;
   padding: 10rem;
-  background: $item-hover;
+  color: var(--color-font);
+  background: var(--color-header-bg);
+  box-shadow: 1px 1px 6px #bbbbbb;
 }
 </style>

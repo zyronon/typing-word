@@ -40,16 +40,12 @@ function changeDict(dict: Dict, i: number) {
         <div class="tab" :class="tabIndex===1&&'active'" @click="slideTo(1)">生词本</div>
         <div class="tab" :class="tabIndex===2&&'active'" @click="slideTo(2)">已忽略</div>
       </div>
-      <arrow-right class="close"
-                   @click="store.sideIsOpen = false"
-                   theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
     </header>
     <div class="side-content">
       <swiper @swiper="e=>swiperIns0 = e" class="mySwiper" :allow-touch-move="false">
         <swiper-slide>
           <div class="page0">
             <header>
-              <arrow-left theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
               <div class="dict-name">{{ store.dict.chapterIndex + 1 }}.</div>
             </header>
             <WordList
@@ -119,9 +115,6 @@ function changeDict(dict: Dict, i: number) {
       </swiper>
     </div>
   </div>
-  <menu-fold v-if="!store.sideIsOpen" class="menu" @click="store.sideIsOpen = true"
-             theme="outline" size="20" fill="#929596"
-             :strokeWidth="2"/>
 </template>
 <style scoped lang="scss">
 @import "@/assets/css/colors";
@@ -134,16 +127,21 @@ function changeDict(dict: Dict, i: number) {
 
 .side {
   $width: 20vw;
+  position: absolute;
+  right: 0;
   width: $width;
-  background: $dark-second-bg;
+  background: var(--color-second-bg);
   height: 100%;
   display: flex;
   flex-direction: column;
   transition: all .3s;
-  margin-right: -$width;
+  transform: rotate(-90deg);
+  transform-origin: 0 0 ;
+  z-index: 1;
 
   &.open {
-    margin-right: 0;
+    //margin-right: 0;
+    transform: rotate(0deg);
   }
 
   $header-height: 40rem;
@@ -156,6 +154,7 @@ function changeDict(dict: Dict, i: number) {
 
     .tabs {
       padding: 10rem 20rem;
+      justify-content: flex-end;
       width: 100%;
       display: flex;
       align-items: flex-end;
@@ -207,6 +206,7 @@ function changeDict(dict: Dict, i: number) {
       position: relative;
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       gap: 10rem;
       font-size: 18rem;
       color: white;

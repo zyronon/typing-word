@@ -77,8 +77,7 @@ watch(() => props.list, () => {
   box-sizing: border-box;
 
   .item {
-    background: $dark-main-bg;
-    //background: $item-hover;
+    background: var(--color-header-bg);
     border-radius: 6rem;
     padding: 12rem;
     //border: 1px solid gray;
