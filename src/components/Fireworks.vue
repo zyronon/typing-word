@@ -7,16 +7,18 @@
 <script setup>
 import {onMounted} from "vue";
 import {getRandom} from "@/utils/index.ts";
+import boom from '@/assets/sound/boom.mp3'
+import shotfire from '@/assets/sound/shotfire.mp3'
+import {useSound} from "@/hooks/useSound.ts";
 
 const canvas = $ref()
+const [playBoom] = useSound([boom], 3)
+const [playShotfire] = useSound([shotfire], 3)
 
 onMounted(() => {
-  console.log('c', canvas)
-  let ocas = document.createElement("canvas");
-  let octx = ocas.getContext("2d");
   let ctx = canvas.getContext("2d");
-  ocas.width = canvas.width = window.innerWidth;
-  ocas.height = canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
   let bigBooms = [];
   let lastTime;
 
@@ -44,11 +46,15 @@ onMounted(() => {
     ctx.restore();
 
     let newTime = new Date();
-    if (newTime - lastTime > 200 + (window.innerHeight - 767) / 2 && count === 0) {
+    if (newTime - lastTime > 200 + (window.innerHeight - 767) / 2) {
       let boomArea = {
         x: getRandom(canvas.width / 5, (canvas.width * 4) / 5),
         y: getRandom(50, 200)
       }
+      if (count % 2 === 0) {
+
+      }
+
       let bigBoom = new Boom(
           getRandom(canvas.width / 3, (canvas.width * 2) / 3),
           2,
@@ -66,7 +72,7 @@ onMounted(() => {
       } else {
         itemI.booms.map((itemJ, index) => {
           if (!itemJ.dead) {
-            itemJ.moveTo(index);
+            itemJ.moveTo();
           } else if (index === itemI.booms.length - 1) {
             bigBooms.splice(bigBooms.indexOf(itemI), 1);
           }
@@ -101,16 +107,7 @@ onMounted(() => {
       this.dead = false;
       this.ba = getRandom(80, 200);
 
-      let audio = document.getElementsByTagName("audio");
-      for (let i = 0; i < audio.length; i++) {
-        if (
-            audio[i].src.indexOf("shotfire") >= 0 &&
-            (audio[i].paused || audio[i].ended)
-        ) {
-          audio[i].play();
-          break;
-        }
-      }
+      // playShotfire()
     }
 
     _move() {
@@ -154,7 +151,7 @@ onMounted(() => {
     }
 
     _boom() {
-      let fragNum = getRandom(100, 300);
+      let fireNum = getRandom(100, 300);
       let style = getRandom(0, 10) >= 5 ? 1 : 2;
       let color;
       if (style === 1) {
@@ -165,19 +162,10 @@ onMounted(() => {
         };
       }
 
-      let fanwei = fragNum;
-      let audio = document.getElementsByTagName("audio");
-      for (let i = 0; i < audio.length; i++) {
-        if (
-            audio[i].src.indexOf("boom") >= 0 &&
-            (audio[i].paused || audio[i].ended)
-        ) {
-          audio[i].play();
-          break;
-        }
-      }
+      let fanwei = fireNum;
+      // playBoom()
 
-      for (let i = 0; i < fragNum; i++) {
+      for (let i = 0; i < fireNum; i++) {
         if (style === 2) {
           color = {
             a: getRandom(128, 255),
@@ -189,13 +177,13 @@ onMounted(() => {
         let x = getRandom(0, fanwei) * Math.cos(a) + this.x;
         let y = getRandom(0, fanwei) * Math.sin(a) + this.y;
         let radius = getRandom(0, 2);
-        let frag = new Frag(this.x, this.y, radius, color, x, y);
+        let frag = new Fire(this.x, this.y, radius, color, x, y);
         this.booms.push(frag);
       }
     }
   }
 
-  class Frag {
+  class Fire {
     tx = 0;
     ty = 0;
     x = 0;
@@ -206,29 +194,20 @@ onMounted(() => {
     radius = 0;
     color = 0;
 
-    constructor(centerX, centerY, radius, color, tx, ty) {
+    constructor(x, y, radius, color, tx, ty) {
       this.tx = tx;
       this.ty = ty;
-      this.x = centerX;
-      this.y = centerY;
+      this.x = x;
+      this.y = y;
       this.dead = false;
-      this.centerX = centerX;
-      this.centerY = centerY;
+      this.centerX = x;
+      this.centerY = y;
       this.radius = radius;
       this.color = color;
     }
 
     paint() {
-      // ctx.beginPath();
-      // ctx.arc(this.x , this.y , this.radius , 0 , 2*Math.PI);
-      ctx.fillStyle =
-          "rgba(" +
-          this.color.a +
-          "," +
-          this.color.b +
-          "," +
-          this.color.c +
-          ",1)";
+      ctx.fillStyle = `rgba(${this.color.a},${this.color.b},${this.color.c})`;
       ctx.fillRect(
           this.x - this.radius,
           this.y - this.radius,
@@ -237,7 +216,7 @@ onMounted(() => {
       );
     }
 
-    moveTo(index) {
+    moveTo() {
       this.ty = this.ty + 0.3;
       let dx = this.tx - this.x,
           dy = this.ty - this.y;
