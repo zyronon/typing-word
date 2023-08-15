@@ -193,13 +193,13 @@ onMounted(() => {
         let x = getRandom(0, fanwei) * Math.cos(a) + this.x;
         let y = getRandom(0, fanwei) * Math.sin(a) + this.y;
         let radius = getRandom(0, 2);
-        let frag = new Fire(this.x, this.y, radius, color, x, y);
+        let frag = new Firework(this.x, this.y, radius, color, x, y);
         this.booms.push(frag);
       }
     }
   }
 
-  class Fire {
+  class Firework {
     tx = 0;
     ty = 0;
     x = 0;
