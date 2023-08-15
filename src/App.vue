@@ -192,7 +192,7 @@ const show = $ref(false)
     </div>
     <Side/>
     <Statistics></Statistics>
-<!--    <DictModal/>-->
+    <DictModal/>
   </div>
 </template>
 

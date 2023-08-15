@@ -8,6 +8,7 @@ import {chunk} from "lodash";
 import {$computed, $ref} from "vue/macros";
 import WordList from "@/components/WordList.vue";
 import ChapterList from "@/components/ChapterList.vue"
+import Modal from "@/components/Modal.vue";
 
 const store = useBaseStore()
 let currentSelectDict: Dict = $ref({
@@ -42,103 +43,96 @@ async function selectDict(item: Dict) {
 </script>
 
 <template>
-  <Teleport to="body">
-    <div class="modal-root" :class="store.dictModalIsOpen ? 'show':'hide'">
-      <div class="modal-mask" @click="store.dictModalIsOpen = false"></div>
-      <div class="modal">
-        <div class="modal-body">
-          <div class="slide">
-            <div class="slide-list" :class="`step${step}`">
-              <div class="dict-page">
-                <header>
-                  <div class="tabs">
-                    <div class="tab">
-                      <span>英语</span>
-                    </div>
-                    <div class="tab">
-                      <span>日语</span>
-                    </div>
-                    <div class="tab">
-                      <span>德语</span>
-                    </div>
-                  </div>
-                  <close @click="store.dictModalIsOpen = false" theme="outline" size="20" fill="#929596"
-                         :strokeWidth="2"/>
-                </header>
-                <div class="page-content">
-                  <div class="dict-list-wrapper">
-                    <div class="tags">
-                      <div class="tag" :class="i === 5 &&'active'" v-for="i in 2">六级</div>
-                    </div>
-                    <div class="dict-list">
-                      <div class="dict-item"
-                           :class="currentSelectDict.name === i.name && 'active'" v-for="i in childrenEnglish"
-                           @click="selectDict(i)"
-                      >
-                        <div class="name">{{ i.name }}</div>
-                        <div class="desc">{{ i.description }}</div>
-                        <div class="num">{{ i.length }}词</div>
-                        <arrow-right v-if="currentSelectDict.name === i.name"
-                                     @click.stop="step = 1"
-                                     class="go" theme="outline" size="20" fill="#ffffff"
-                                     :strokeWidth="2"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="chapter-wrapper">
-                    <ChapterList
-                        class="chapter-list"
-                        :list="currentSelectDict.chapterList"
-                        v-model:active-index="currentSelectDict.chapterIndex"
-                    />
-                    <div class="footer">
-                      <div class="my-button">确定</div>
-                    </div>
-                  </div>
+  <Modal v-model="store.dictModalIsOpen">
+    <div class="slide">
+      <div class="slide-list" :class="`step${step}`">
+        <div class="dict-page">
+          <header>
+            <div class="tabs">
+              <div class="tab">
+                <span>英语</span>
+              </div>
+              <div class="tab">
+                <span>日语</span>
+              </div>
+              <div class="tab">
+                <span>德语</span>
+              </div>
+            </div>
+            <close @click="store.dictModalIsOpen = false" theme="outline" size="20" fill="#929596"
+                   :strokeWidth="2"/>
+          </header>
+          <div class="page-content">
+            <div class="dict-list-wrapper">
+              <div class="tags">
+                <div class="tag" :class="i === 5 &&'active'" v-for="i in 2">六级</div>
+              </div>
+              <div class="dict-list">
+                <div class="dict-item"
+                     :class="currentSelectDict.name === i.name && 'active'" v-for="i in childrenEnglish"
+                     @click="selectDict(i)"
+                >
+                  <div class="name">{{ i.name }}</div>
+                  <div class="desc">{{ i.description }}</div>
+                  <div class="num">{{ i.length }}词</div>
+                  <arrow-right v-if="currentSelectDict.name === i.name"
+                               @click.stop="step = 1"
+                               class="go" theme="outline" size="20" fill="#ffffff"
+                               :strokeWidth="2"/>
                 </div>
               </div>
-              <div class="dict-detail-page">
-                <header>
-                  <div class="left">
-                    <arrow-left
-                        @click="step = 0"
-                        class="go" theme="outline" size="20" fill="#ffffff"
-                        :strokeWidth="2"/>
-                    <div class="title">
-                      词典详情
-                    </div>
-                  </div>
-                  <close @click="store.dictModalIsOpen = false" theme="outline" size="20" fill="#929596"
-                         :strokeWidth="2"/>
-                </header>
-                <div class="page-content">
-                  <div class="dict-info">
-                    <div class="dict-item">
-                      <div class="name">{{ currentSelectDict.name }}</div>
-                      <div class="desc">{{ currentSelectDict.description }}</div>
-                      <div class="num">{{ currentSelectDict.length }}词</div>
-                    </div>
-                  </div>
-                  <div class="chapter-wrapper">
-                    <ChapterList :list="currentSelectDict.chapterList"
-                                 v-model:active-index="currentSelectDict.chapterIndex"
-                    />
-                  </div>
-                  <div class="other">
-                    <WordList class="word-list" :list="currentSelectChapter" :activeIndex="-1" :isActive="false"/>
-                    <div class="footer">
-                      <div class="my-button">返回</div>
-                      <div class="my-button">确定</div>
-                    </div>
-                  </div>
-                </div>
+            </div>
+            <div class="chapter-wrapper">
+              <ChapterList
+                  class="chapter-list"
+                  :list="currentSelectDict.chapterList"
+                  v-model:active-index="currentSelectDict.chapterIndex"
+              />
+              <div class="footer">
+                <div class="my-button">确定</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dict-detail-page">
+          <header>
+            <div class="left">
+              <arrow-left
+                  @click="step = 0"
+                  class="go" theme="outline" size="20" fill="#ffffff"
+                  :strokeWidth="2"/>
+              <div class="title">
+                词典详情
+              </div>
+            </div>
+            <close @click="store.dictModalIsOpen = false" theme="outline" size="20" fill="#929596"
+                   :strokeWidth="2"/>
+          </header>
+          <div class="page-content">
+            <div class="dict-info">
+              <div class="dict-item">
+                <div class="name">{{ currentSelectDict.name }}</div>
+                <div class="desc">{{ currentSelectDict.description }}</div>
+                <div class="num">{{ currentSelectDict.length }}词</div>
+              </div>
+            </div>
+            <div class="chapter-wrapper">
+              <ChapterList :list="currentSelectDict.chapterList"
+                           v-model:active-index="currentSelectDict.chapterIndex"
+              />
+            </div>
+            <div class="other">
+              <WordList class="word-list" :list="currentSelectChapter" :activeIndex="-1" :isActive="false"/>
+              <div class="footer">
+                <div class="my-button">返回</div>
+                <div class="my-button">确定</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </Teleport>
+  </Modal>
 </template>
 
 <style scoped lang="scss">
@@ -149,132 +143,9 @@ $radius: 16rem;
 $time: 0.3s;
 $header-height: 60rem;
 
-.modal-root {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-
-  &.show {
-    z-index: 999;
-
-    .modal-mask {
-      opacity: 1;
-      animation: fade-in2 $time ease;
-    }
-
-    .modal {
-      opacity: 1;
-      animation: fade-in $time ease-out;
-    }
-  }
-
-  &.hide {
-    z-index: -1;
-
-    .modal-mask {
-      opacity: 0;
-      animation: fade-in2 $time ease;
-    }
-
-    .modal {
-      opacity: 0;
-      animation: fade-out $time ease-out;
-    }
-  }
-
-  .modal-mask {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: $modal-mask-bg;
-    transition: background 0.3s;
-    opacity: 0;
-
-    @keyframes fade-in2 {
-      0% {
-        background: transparent;
-      }
-      100% {
-        background: $modal-mask-bg;
-      }
-    }
-  }
-
-  .modal {
-    position: relative;
-    background: $dark-second-bg;
-    box-shadow: $dark-second-bg 0 0 10rem 1rem;
-    opacity: 0;
-    transition: transform $time, opacity $time;
-    width: 75vw;
-    height: 70vh;
-    border-radius: $radius;
-    display: flex;
-    flex-direction: column;
-
-    @keyframes fade-in {
-      0% {
-        transform: scale(0);
-      }
-      50% {
-        transform: scale(1.15);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    @keyframes fade-out {
-      0% {
-        transform: scale(1);
-      }
-      100% {
-        transform: scale(0);
-      }
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: $header-height;
-      padding: 0 $space;
-      border-radius: $radius $radius 0 0;
-
-      .title {
-        color: #ffffff;
-        font-weight: 500;
-        font-size: 28rem;
-        line-height: 33rem;
-      }
-    }
-
-    .modal-body {
-      box-sizing: border-box;
-      color: rgba(255, 255, 255, 0.8);
-      font-weight: 400;
-      font-size: 18rem;
-      line-height: 27rem;
-      width: 100%;
-      flex: 1;
-      overflow: hidden;
-      display: flex;
-    }
-  }
-}
-
 .slide {
-  width: 100%;
-  height: 100%;
+  width: 75vw;
+  height: 70vh;
 
   .slide-list {
     width: 200%;
