@@ -24,7 +24,8 @@
     "noFallthroughCasesInSwitch": false,
     "types": [
       "vue/ref-macros",
-      "unplugin-icons/types/vue"
+      "unplugin-icons/types/vue",
+      "element-plus/global"
     ],
     "baseUrl": "./",
     //This is because TypeScript does not resolve webpack aliases automatically.

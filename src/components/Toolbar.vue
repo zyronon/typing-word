@@ -20,7 +20,11 @@ import Modal from "@/components/Modal.vue"
 const {appearance, toggle} = useThemeColor()
 const store = useBaseStore()
 const setting = reactive({
-  show: true
+  show: true,
+  value1: false,
+  value2: 50,
+  value3: 1,
+  value4: false,
 })
 </script>
 
@@ -70,7 +74,36 @@ const setting = reactive({
         </div>
       </div>
       <div class="content">
-
+        <div class="row">
+          <label class="main-title">所有音效</label>
+          <div class="wrapper">
+            <el-switch v-model="setting.value1"
+                       inline-prompt
+                       active-text="开"
+                       inactive-text="关"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <label class="main-title">单词发音</label>
+          <div class="wrapper">
+            <el-switch v-model="setting.value1"/>
+          </div>
+        </div>
+        <div class="row">
+          <label class="main-title">音量</label>
+          <div class="wrapper">
+            <el-slider v-model="setting.value2"/>
+            <span>{{ setting.value2 }}%</span>
+          </div>
+        </div>
+        <div class="row">
+          <label class="main-title">倍速</label>
+          <div class="wrapper">
+            <el-slider v-model="setting.value3" :step="0.1" :max="4"/>
+            <span>{{ setting.value3 }}</span>
+          </div>
+        </div>
       </div>
     </div>
   </Modal>
@@ -124,6 +157,37 @@ header {
     background: white;
     flex: 1;
     height: 100%;
+
+    .row {
+      height: 50rem;
+      display: flex;
+      padding: 0 $space;
+      justify-content: space-between;
+      align-items: center;
+      gap: $space * 8;
+
+      label {
+
+      }
+
+      .wrapper {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        gap: $space;
+
+        span {
+          text-align: right;
+          width: 30rem;
+          font-size: 12rem;
+          color: gray;
+        }
+      }
+
+      .main-title {
+        font-size: 22rem;
+      }
+    }
   }
 }
 

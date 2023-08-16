@@ -11,21 +11,23 @@
   },
   "dependencies": {
     "@icon-park/vue-next": "^1.4.2",
+    "element-plus": "^2.3.9",
     "hover.css": "^2.3.2",
     "lodash": "^4.17.21",
     "pinia": "^2.1.6",
     "swiper": "^10.1.0",
     "tesseract.js": "^4.1.1",
-    "vue": "^3.3.4",
-    "unplugin-icons": "^0.16.1",
-    "@iconify/json": "^2.2.56"
+    "vue": "^3.3.4"
   },
   "devDependencies": {
+    "@iconify/json": "^2.2.102",
     "@types/lodash": "^4.14.196",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "@vue/compiler-sfc": "^3.3.4",
     "sass": "^1.64.2",
     "typescript": "^5.0.2",
+    "unplugin-icons": "^0.16.5",
     "vite": "^4.4.5",
     "vue-tsc": "^1.8.5"
   }
