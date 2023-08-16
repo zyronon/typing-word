@@ -23,7 +23,8 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": false,
     "types": [
-      "vue/ref-macros"
+      "vue/ref-macros",
+      "unplugin-icons/types/vue"
     ],
     "baseUrl": "./",
     //This is because TypeScript does not resolve webpack aliases automatically.

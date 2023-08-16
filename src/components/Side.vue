@@ -38,7 +38,8 @@ function changeDict(dict: Dict, i: number) {
       <div class="tabs">
         <div class="tab" :class="tabIndex===0&&'active'" @click="slideTo(0)">单词表</div>
         <div class="tab" :class="tabIndex===1&&'active'" @click="slideTo(1)">生词本</div>
-        <div class="tab" :class="tabIndex===2&&'active'" @click="slideTo(2)">已忽略</div>
+        <div class="tab" :class="tabIndex===2&&'active'" @click="slideTo(2)">纠错本</div>
+        <div class="tab" :class="tabIndex===3&&'active'" @click="slideTo(3)">已忽略</div>
       </div>
     </header>
     <div class="side-content">
@@ -136,7 +137,7 @@ function changeDict(dict: Dict, i: number) {
   flex-direction: column;
   transition: all .3s;
   transform: rotate(-90deg);
-  transform-origin: 0 0 ;
+  transform-origin: 0 0;
   z-index: 1;
 
   &.open {

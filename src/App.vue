@@ -20,9 +20,9 @@ import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
 import DictModal from "@/components/DictModal.vue"
 import Backgorund from "@/components/Backgorund.vue"
 import Statistics from "@/components/Statistics.vue";
-import {ArrowLeft, ArrowRight, MenuFold} from '@icon-park/vue-next'
 import useThemeColor from "@/hooks/useThemeColor";
 import Tooltip from "@/components/Tooltip.vue";
+import Toolbar from "@/components/Toolbar.vue"
 
 let input = $ref('')
 let wrong = $ref('')
@@ -166,25 +166,10 @@ const {appearance, toggle} = useThemeColor()
 </script>
 
 <template>
-  <Backgorund/>
+<!--  <Backgorund/>-->
   <div class="main-page">
     <div class="center">
-      <header>
-        <div class="info">
-
-        </div>
-        <div class="options">
-          <div class="my-button" @click="toggle">切换</div>
-          <div class="my-button" @click="store.dictModalIsOpen = true">ok</div>
-          <div class="my-button" @click="store.dictModalIsOpen2 = true">ok</div>
-          <Tooltip title="单词本">
-            <menu-fold class="menu" @click="store.sideIsOpen = !store.sideIsOpen"
-                       theme="outline" size="20" fill="#929596"
-                       :strokeWidth="2"/>
-          </Tooltip>
-        </div>
-
-      </header>
+      <Toolbar/>
       <div class="content">
         <div class="type-word">
           <div class="translate">{{ store.word.trans.join('；') }}</div>
@@ -236,28 +221,8 @@ const {appearance, toggle} = useThemeColor()
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid gray;
+    //border: 1px solid gray;
     position: relative;
-
-    header {
-      margin-top: 10rem;
-      height: 60rem;
-      width: 50%;
-      background: var(--color-header-bg);
-      display: flex;
-      justify-content: space-between;
-      border-radius: 8rem;
-      position: relative;
-      z-index: 2;
-      padding: 10rem $space;
-      box-sizing: border-box;
-
-      .options {
-        display: flex;
-        align-items: center;
-        gap: 10rem;
-      }
-    }
 
     .content {
       position: relative;
@@ -268,6 +233,8 @@ const {appearance, toggle} = useThemeColor()
 
       .type-word {
         display: flex;
+        display: none;
+
         align-items: center;
         justify-content: center;
         flex-direction: column;

@@ -16,7 +16,9 @@
     "pinia": "^2.1.6",
     "swiper": "^10.1.0",
     "tesseract.js": "^4.1.1",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "unplugin-icons": "^0.16.1",
+    "@iconify/json": "^2.2.56"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.196",
