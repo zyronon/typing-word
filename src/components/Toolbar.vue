@@ -19,8 +19,10 @@ import Modal from "@/components/Modal/Modal.vue"
 
 const {appearance, toggle} = useThemeColor()
 const store = useBaseStore()
+const tabIndex = $ref(0)
 const setting = reactive({
-  show: true,
+  showToolbar: true,
+  show: false,
   value1: false,
   value2: 50,
   value3: 1,
@@ -29,7 +31,7 @@ const setting = reactive({
 </script>
 
 <template>
-  <header>
+  <header :class="!setting.showToolbar && 'hide'">
     <div class="info">
 
     </div>
@@ -60,21 +62,24 @@ const setting = reactive({
                    :strokeWidth="2"/>
       </Tooltip>
     </div>
+    <div class="arrow" @click="setting.showToolbar = !setting.showToolbar">
+      收起
+    </div>
   </header>
-  <Modal v-model="setting.show" title="title">
+  <Modal v-model="setting.show" title="设置" subTitle="修改立即生效，实时保存">
     <div class="setting-modal">
       <div class="tabs">
-        <div class="tab">
+        <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">
           <headphone-sound theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2"/>
           <span>音效设置</span>
         </div>
-        <div class="tab">
+        <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">
           <setting-config theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2"/>
           <span>其他设置</span>
         </div>
       </div>
       <div class="content">
-        <div v-if="false">
+        <div v-if="tabIndex === 0">
           <div class="row">
             <label class="main-title">所有音效</label>
             <div class="wrapper">
@@ -165,7 +170,7 @@ const setting = reactive({
             </div>
           </div>
         </div>
-        <div>
+        <div v-if="tabIndex === 1">
           <div class="row">
             <label class="item-title">章节乱序</label>
             <div class="wrapper">
@@ -260,11 +265,24 @@ header {
   z-index: 2;
   padding: 10rem $space;
   box-sizing: border-box;
+  transition: all .3s;
 
   .options {
     display: flex;
     align-items: center;
     gap: 10rem;
+  }
+
+  &.hide {
+    transform: translateY(calc(-100% - 10rem));
+  }
+
+  .arrow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    cursor: pointer;
+    transform: translate3d(-50%, 120%, 0);
   }
 }
 
@@ -283,9 +301,13 @@ header {
     gap: 10rem;
 
     .tab {
+      cursor: pointer;
       padding: 10rem 15rem;
-      background: whitesmoke;
       border-radius: 8rem;
+
+      &.active {
+        background: whitesmoke;
+      }
     }
   }
 
@@ -301,7 +323,7 @@ header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: $space * 8;
+      gap: $space * 5;
 
       label {
 

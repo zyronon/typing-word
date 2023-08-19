@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {Close} from "@icon-park/vue-next"
 
-const props = defineProps(['modelValue', 'title'])
+const props = defineProps(['modelValue', 'title', 'subTitle'])
 const emit = defineEmits(['update:modelValue'])
 
 function close() {
@@ -21,6 +21,7 @@ function close() {
                  :strokeWidth="2"/>
           <div class="modal-header" v-if="props.title">
             <div class="title">{{ props.title }}</div>
+            <div class="sub-title" v-if="props.subTitle">{{ props.subTitle }}</div>
           </div>
           <div class="modal-body">
             <slot></slot>
@@ -123,10 +124,10 @@ $header-height: 60rem;
 
     .modal-header {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: $header-height;
-      padding: 0 $space;
+      padding: 15rem $space;
       border-radius: $radius $radius 0 0;
 
       .title {
@@ -134,6 +135,12 @@ $header-height: 60rem;
         font-weight: 500;
         font-size: 28rem;
         line-height: 33rem;
+      }
+
+      .sub-title {
+        color: var(--color-font);
+        font-weight: 500;
+        font-size: 14rem;
       }
     }
 

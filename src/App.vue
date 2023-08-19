@@ -166,7 +166,7 @@ const {appearance, toggle} = useThemeColor()
 </script>
 
 <template>
-<!--  <Backgorund/>-->
+  <Backgorund/>
   <div class="main-page">
     <div class="center">
       <Toolbar/>
@@ -233,7 +233,7 @@ const {appearance, toggle} = useThemeColor()
 
       .type-word {
         display: flex;
-        display: none;
+        //display: none;
 
         align-items: center;
         justify-content: center;
