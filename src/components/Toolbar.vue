@@ -15,7 +15,7 @@ import IconRepeat from '~icons/tabler/repeat'
 import useThemeColor from "@/hooks/useThemeColor.ts"
 import {useBaseStore} from "@/stores/base.ts"
 import {reactive} from "vue"
-import Modal from "@/components/Modal.vue"
+import Modal from "@/components/Modal/Modal.vue"
 
 const {appearance, toggle} = useThemeColor()
 const store = useBaseStore()
@@ -74,34 +74,170 @@ const setting = reactive({
         </div>
       </div>
       <div class="content">
-        <div class="row">
-          <label class="main-title">所有音效</label>
-          <div class="wrapper">
-            <el-switch v-model="setting.value1"
-                       inline-prompt
-                       active-text="开"
-                       inactive-text="关"
-            />
+        <div v-if="false">
+          <div class="row">
+            <label class="main-title">所有音效</label>
+            <div class="wrapper">
+              <el-switch v-model="setting.value1"
+                         inline-prompt
+                         active-text="开"
+                         inactive-text="关"
+              />
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="row">
+            <label class="item-title">单词发音</label>
+            <div class="wrapper">
+              <el-switch v-model="setting.value1"
+                         inline-prompt
+                         active-text="开"
+                         inactive-text="关"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <label class="sub-title">音量</label>
+            <div class="wrapper">
+              <el-slider v-model="setting.value2"/>
+              <span>{{ setting.value2 }}%</span>
+            </div>
+          </div>
+          <div class="row">
+            <label class="sub-title">音量</label>
+            <div class="wrapper">
+              <el-slider v-model="setting.value3" :step="0.1" :max="4"/>
+              <span>{{ setting.value3 }}</span>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="row">
+            <label class="item-title">按键音</label>
+            <div class="wrapper">
+              <el-switch v-model="setting.value1"
+                         inline-prompt
+                         active-text="开"
+                         inactive-text="关"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <label class="sub-title">音量</label>
+            <div class="wrapper">
+              <el-slider v-model="setting.value2"/>
+              <span>{{ setting.value2 }}%</span>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="row">
+            <label class="item-title">释义发音</label>
+            <div class="wrapper">
+              <el-switch v-model="setting.value1"
+                         inline-prompt
+                         active-text="开"
+                         inactive-text="关"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <label class="sub-title">音量</label>
+            <div class="wrapper">
+              <el-slider v-model="setting.value2"/>
+              <span>{{ setting.value2 }}%</span>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="row">
+            <label class="item-title">效果音（章节结算页烟花音效）</label>
+            <div class="wrapper">
+              <el-switch v-model="setting.value1"
+                         inline-prompt
+                         active-text="开"
+                         inactive-text="关"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <label class="sub-title">音量</label>
+            <div class="wrapper">
+              <el-slider v-model="setting.value2"/>
+              <span>{{ setting.value2 }}%</span>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <label class="main-title">单词发音</label>
-          <div class="wrapper">
-            <el-switch v-model="setting.value1"/>
+        <div>
+          <div class="row">
+            <label class="item-title">章节乱序</label>
+            <div class="wrapper">
+              <el-switch v-model="setting.value1"
+                         inline-prompt
+                         active-text="开"
+                         inactive-text="关"
+              />
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <label class="main-title">音量</label>
-          <div class="wrapper">
-            <el-slider v-model="setting.value2"/>
-            <span>{{ setting.value2 }}%</span>
+          <div class="desc">
+            开启后，每次练习章节中单词会随机排序。下一章节生效
           </div>
-        </div>
-        <div class="row">
-          <label class="main-title">倍速</label>
-          <div class="wrapper">
-            <el-slider v-model="setting.value3" :step="0.1" :max="4"/>
-            <span>{{ setting.value3 }}</span>
+          <div class="line"></div>
+          <div class="row">
+            <label class="item-title">练习时展示上一个/下一个单词</label>
+            <div class="wrapper">
+              <el-switch v-model="setting.value1"
+                         inline-prompt
+                         active-text="开"
+                         inactive-text="关"
+              />
+            </div>
+          </div>
+          <div class="desc">
+            开启后，练习中会在上方展示上一个/下一个单词
+          </div>
+          <div class="line"></div>
+          <div class="row">
+            <label class="item-title">是否忽略大小写</label>
+            <div class="wrapper">
+              <el-switch v-model="setting.value1"
+                         inline-prompt
+                         active-text="开"
+                         inactive-text="关"
+              />
+            </div>
+          </div>
+          <div class="desc">
+            开启后，输入时不区分大小写，如输入“hello”和“Hello”都会被认为是正确的
+          </div>
+          <div class="line"></div>
+          <div class="row">
+            <label class="item-title">是否允许默写模式下显示提示</label>
+            <div class="wrapper">
+              <el-switch v-model="setting.value1"
+                         inline-prompt
+                         active-text="开"
+                         inactive-text="关"
+              />
+            </div>
+          </div>
+          <div class="desc">
+            开启后，可以通过鼠标 hover 单词显示正确答案
+          </div>
+          <div class="line"></div>
+          <div class="row">
+            <label class="item-title">字体设置</label>
+          </div>
+          <div class="row">
+            <label class="sut-title">外语字体</label>
+            <div class="wrapper">
+              <el-slider v-model="setting.value2"/>
+              <span>{{ setting.value2 }}px</span>
+            </div>
+          </div>
+          <div class="row">
+            <label class="sut-title">中文字体</label>
+            <div class="wrapper">
+              <el-slider v-model="setting.value2"/>
+              <span>{{ setting.value2 }}px</span>
+            </div>
           </div>
         </div>
       </div>
@@ -134,7 +270,7 @@ header {
 
 .setting-modal {
   width: 40vw;
-  height: 50vh;
+  height: 80vh;
   display: flex;
   color: var(--color-font);
 
@@ -157,11 +293,12 @@ header {
     background: white;
     flex: 1;
     height: 100%;
+    padding: 0 $space;
+    overflow: auto;
 
     .row {
       height: 50rem;
       display: flex;
-      padding: 0 $space;
       justify-content: space-between;
       align-items: center;
       gap: $space * 8;
@@ -185,8 +322,26 @@ header {
       }
 
       .main-title {
+        font-size: 26rem;
+        font-weight: bold;
+      }
+
+      .item-title {
         font-size: 22rem;
       }
+
+      .sub-title {
+        font-size: 18rem;
+      }
+    }
+
+    .desc {
+      margin-bottom: 10rem;
+      font-size: 14rem;
+    }
+
+    .line {
+      border-bottom: 1px solid #c4c3c3;
     }
   }
 }

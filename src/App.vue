@@ -17,9 +17,9 @@ import {DictType, SaveKey, Word} from "./types";
 import WordList from "./components/WordList.vue";
 import Side from "@/components/Side.vue"
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
-import DictModal from "@/components/DictModal.vue"
+import DictModal from "@/components/Modal/DictModal.vue"
 import Backgorund from "@/components/Backgorund.vue"
-import Statistics from "@/components/Statistics.vue";
+import Statistics from "@/components/Modal/Statistics.vue";
 import useThemeColor from "@/hooks/useThemeColor";
 import Tooltip from "@/components/Tooltip.vue";
 import Toolbar from "@/components/Toolbar.vue"

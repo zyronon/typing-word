@@ -8,7 +8,7 @@ import {chunk} from "lodash";
 import {$computed, $ref} from "vue/macros";
 import WordList from "@/components/WordList.vue";
 import ChapterList from "@/components/ChapterList.vue"
-import Modal from "@/components/Modal.vue";
+import Modal from "@/components/Modal/Modal.vue";
 
 const store = useBaseStore()
 let currentSelectDict: Dict = $ref({

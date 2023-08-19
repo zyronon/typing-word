@@ -32,7 +32,7 @@ function close() {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/colors.scss";
+@import "@/assets/css/colors";
 
 .bounce-enter-active {
   animation: fade-in 0.3s;

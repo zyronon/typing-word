@@ -1,5 +1,5 @@
 <script setup>
-import Modal from "@/components/Modal.vue";
+import Modal from "@/components/Modal/Modal.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {KeyboardOne, Like, ShareThree, Tea} from '@icon-park/vue-next'
 import Ring from "@/components/Ring.vue";
@@ -79,7 +79,7 @@ const store = useBaseStore()
   <Fireworks v-if="store.dictModalIsOpen2"/>
 </template>
 <style scoped lang="scss">
-@import "@/assets/css/style.scss";
+@import "@/assets/css/style";
 
 .statistics {
   width: 50vw;
