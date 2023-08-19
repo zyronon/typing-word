@@ -22,10 +22,11 @@ export default {
       let rect = e.target.getBoundingClientRect()
       this.show = true
       nextTick(() => {
-        let tip = this.$refs.tip.getBoundingClientRect()
+        let tip = this.$refs?.tip?.getBoundingClientRect()
+        if (!tip) return
         if (rect.top < 50) {
           this.$refs.tip.style.top = rect.top + tip.height - 10 + 'px'
-        }else {
+        } else {
           this.$refs.tip.style.top = rect.top - tip.height - 10 + 'px'
         }
         let tipWidth = tip.width
@@ -48,9 +49,9 @@ export default {
           }
         </Transition>
       </Teleport>
-      <Vnode ref='tip'
-             onmouseenter={(e) => this.showPop(e)}
-             onmouseleave={() => this.show = false}
+      <Vnode
+          onmouseenter={(e) => this.showPop(e)}
+          onmouseleave={() => this.show = false}
       />
     </>
   }
