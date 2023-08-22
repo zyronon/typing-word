@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {Close} from "@icon-park/vue-next"
+import {onMounted} from "vue";
 
 const props = defineProps(['modelValue', 'title', 'subTitle'])
 const emit = defineEmits(['update:modelValue'])
@@ -7,6 +8,14 @@ const emit = defineEmits(['update:modelValue'])
 function close() {
   emit('update:modelValue', false)
 }
+
+onMounted(() => {
+  window.addEventListener('keyup', (e: KeyboardEvent) => {
+    if (e.key === 'Escape' && props.modelValue) {
+      close()
+    }
+  })
+})
 </script>
 
 <template>

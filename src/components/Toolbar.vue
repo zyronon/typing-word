@@ -9,7 +9,9 @@ import {
   SunOne,
   VolumeNotice,
   HeadphoneSound,
-  SettingConfig
+  SettingConfig,
+  Down,
+  DatabaseFail
 } from "@icon-park/vue-next"
 import IconRepeat from '~icons/tabler/repeat'
 import useThemeColor from "@/hooks/useThemeColor.ts"
@@ -33,7 +35,7 @@ const setting = reactive({
 <template>
   <header :class="!setting.showToolbar && 'hide'">
     <div class="info">
-
+      CTE-4 第5章
     </div>
     <div class="options">
       <Tooltip title="切换主题">
@@ -43,6 +45,9 @@ const setting = reactive({
       </Tooltip>
       <Tooltip title="设置">
         <setting-two @click="setting.show = true" theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2"/>
+      </Tooltip>
+      <Tooltip title="反馈字典错误">
+        <database-fail theme="outline" size="24" fill="#333"/>
       </Tooltip>
       <Tooltip title="音效设置">
         <volume-notice theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2"/>
@@ -62,9 +67,11 @@ const setting = reactive({
                    :strokeWidth="2"/>
       </Tooltip>
     </div>
-    <div class="arrow" @click="setting.showToolbar = !setting.showToolbar">
-      收起
-    </div>
+    <Tooltip :title="setting.showToolbar?'收起':'展开'">
+      <down
+          @click="setting.showToolbar = !setting.showToolbar"
+          class="arrow" theme="outline" size="24" fill="#333"/>
+    </Tooltip>
   </header>
   <Modal v-model="setting.show" title="设置" subTitle="修改立即生效，实时保存">
     <div class="setting-modal">
@@ -266,6 +273,14 @@ header {
   padding: 10rem $space;
   box-sizing: border-box;
   transition: all .3s;
+
+  .info {
+    font-size: 22rem;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .options {
     display: flex;
