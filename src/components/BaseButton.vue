@@ -33,6 +33,7 @@ const props = defineProps<{
   justify-content: center;
   transition: all .3s;
   background: rgb(75, 85, 99);
+  //background: #999;
   //background: rgb(60, 63, 65);
   //background: var(--color-second-bg);
   color: white;

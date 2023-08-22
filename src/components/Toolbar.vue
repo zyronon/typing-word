@@ -34,7 +34,7 @@ const setting = reactive({
 
 <template>
   <header :class="!setting.showToolbar && 'hide'">
-    <div class="info"  @click="store.dictModalIsOpen = true">
+    <div class="info" @click="store.dictModalIsOpen = true">
       CTE-4 第5章
     </div>
     <div class="options">
@@ -67,7 +67,9 @@ const setting = reactive({
     <Tooltip :title="setting.showToolbar?'收起':'展开'">
       <down
           @click="setting.showToolbar = !setting.showToolbar"
-          class="arrow" theme="outline" size="24" fill="#333"/>
+          class="arrow"
+          :class="!setting.showToolbar && 'down'"
+          theme="outline" size="24" fill="#999"/>
     </Tooltip>
   </header>
   <Modal v-model="setting.show" title="设置" subTitle="修改立即生效，实时保存">
@@ -295,7 +297,12 @@ header {
     bottom: 0;
     left: 50%;
     cursor: pointer;
-    transform: translate3d(-50%, 120%, 0);
+    transition: all .5s;
+    transform: translate3d(-50%, 120%, 0) rotate(180deg);
+
+    &.down {
+      transform: translate3d(-50%, 120%, 0) rotate(0);
+    }
   }
 }
 

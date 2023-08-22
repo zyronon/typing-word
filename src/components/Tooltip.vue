@@ -50,6 +50,7 @@ export default {
         </Transition>
       </Teleport>
       <Vnode
+          onClick={() => this.show = false}
           onmouseenter={(e) => this.showPop(e)}
           onmouseleave={() => this.show = false}
       />
