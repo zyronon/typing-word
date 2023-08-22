@@ -62,30 +62,4 @@ footer {
   cursor: pointer;
 }
 
-.my-button {
-  //font-size: 13rem;
-  cursor: pointer;
-  border-radius: 6rem;
-  padding: 0 15rem;
-  height: 28rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 18rem;
-  transition: all .3s;
-  background: rgb(75, 85, 99);
 
-  &:hover {
-    opacity: .7;
-  }
-
-  &.large {
-    height: 50rem;
-    font-size: 18rem;
-    padding: 0 18rem;
-  }
-
-  &.primary {
-    background: $main;
-  }
-}

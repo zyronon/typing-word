@@ -1,9 +1,9 @@
 <template>
   <div class="ring">
     <svg height="100%" width="100%">
-      <circle class="circle-full" cx="45" cy="45" r="40" fill="none" stroke-width="8"
+      <circle class="circle-full" cx="45rem" cy="45rem" r="40rem" fill="none" stroke-width="8rem"
               stroke-linecap="round"></circle>
-      <circle ref="circleEl" class="circle-detail" cx="45" cy="45" r="40" fill="none" stroke-width="8"
+      <circle ref="circleEl" class="circle-detail" cx="45rem" cy="45rem" r="40rem" fill="none" stroke-width="8rem"
               stroke-linecap="round"
               stroke-dasharray="0,10000"></circle>
     </svg>
@@ -25,7 +25,7 @@ const circleEl = $ref(null)
 onMounted(() => {
   let circleLength = Math.floor(2 * Math.PI * 40);
   let val = Number(props.percentage.toFixed(0));
-  circleEl.setAttribute("stroke-dasharray", "" + circleLength * val / 100 + ",10000");
+  circleEl.setAttribute("stroke-dasharray", "" + circleLength * val / 100 + "rem,10000");
 })
 </script>
 <style scoped lang="scss">

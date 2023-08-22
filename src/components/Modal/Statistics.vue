@@ -5,6 +5,7 @@ import {KeyboardOne, Like, ShareThree, Tea} from '@icon-park/vue-next'
 import Ring from "@/components/Ring.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Fireworks from "@/components/Fireworks.vue";
+import BaseButton from "@/components/BaseButton.vue";
 
 const store = useBaseStore()
 </script>
@@ -46,37 +47,19 @@ const store = useBaseStore()
         </div>
       </div>
       <div class="footer">
-        <Tooltip title="Ctrl + Enter键默写本章节">
-          <div class="my-button large">
-            默写本章节
-            <div class="key-notice">
-              <keyboard-one theme="outline" size="14" fill="#ffffff" :strokeWidth="2"/>
-              <span>Ctrl + Enter</span>
-            </div>
-          </div>
-        </Tooltip>
-        <Tooltip title="按Enter键重复本章节">
-          <div class="my-button large">
-            重复本章节
-            <div class="key-notice">
-              <keyboard-one theme="outline" size="14" fill="#ffffff" :strokeWidth="2"/>
-              <span>Enter</span>
-            </div>
-          </div>
-        </Tooltip>
-        <Tooltip title="按Tab键进行下一章节">
-          <div class="my-button large  ">
-            下一章节
-            <div class="key-notice">
-              <keyboard-one theme="outline" size="14" fill="#ffffff" :strokeWidth="2"/>
-              <span>Tab</span>
-            </div>
-          </div>
-        </Tooltip>
+        <BaseButton keyboard="Ctrl + Enter" >
+          默写本章节
+        </BaseButton>
+        <BaseButton keyboard="Enter" >
+          重复本章节
+        </BaseButton>
+        <BaseButton keyboard="Tab" >
+          下一章节
+        </BaseButton>
       </div>
     </div>
   </Modal>
-  <Fireworks v-if="store.dictModalIsOpen2"/>
+<!--  <Fireworks v-if="store.dictModalIsOpen2"/>-->
 </template>
 <style scoped lang="scss">
 @import "@/assets/css/style";
@@ -160,15 +143,6 @@ const store = useBaseStore()
     align-items: center;
     justify-content: center;
     gap: 20rem;
-
-    .key-notice {
-      margin-left: 10rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12rem;
-      gap: 2rem;
-    }
   }
 }
 

@@ -23,6 +23,8 @@ import Statistics from "@/components/Modal/Statistics.vue";
 import useThemeColor from "@/hooks/useThemeColor";
 import Tooltip from "@/components/Tooltip.vue";
 import Toolbar from "@/components/Toolbar.vue"
+import {KeyboardOne} from "@icon-park/vue-next";
+import BaseButton from "@/components/BaseButton.vue";
 
 let input = $ref('')
 let wrong = $ref('')
@@ -188,9 +190,15 @@ const {appearance, toggle} = useThemeColor()
           </div>
           <div class="phonetic">{{ store.word.usphone }}</div>
           <div class="options">
-            <div class="option" :class="activeIndex === 0 &&'active'">忽略</div>
-            <div class="option" :class="activeIndex === 1 &&'active'">收藏</div>
-            <div class="option" :class="activeIndex === 2 &&'active'">下一个</div>
+            <BaseButton keyboard="`" :active="activeIndex === 0">
+              忽略
+            </BaseButton>
+            <BaseButton keyboard="Enter" :active="activeIndex === 1">
+              收藏
+            </BaseButton>
+            <BaseButton keyboard="Tab" :active="activeIndex === 2">
+              下一个
+            </BaseButton>
           </div>
         </div>
       </div>
@@ -248,22 +256,6 @@ const {appearance, toggle} = useThemeColor()
           gap: 15rem;
           font-size: 18rem;
 
-          .option {
-            cursor: pointer;
-            padding: 6rem 10rem;
-            border-radius: 4rem;
-            background: gray;
-            color: white;
-
-            &:hover {
-              //background: rgb(70, 67, 67) !important;
-              background: red;
-            }
-
-            &.active {
-              background: red;
-            }
-          }
         }
 
         .phonetic, .translate {

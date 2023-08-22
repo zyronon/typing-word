@@ -34,7 +34,7 @@ const setting = reactive({
 
 <template>
   <header :class="!setting.showToolbar && 'hide'">
-    <div class="info">
+    <div class="info"  @click="store.dictModalIsOpen = true">
       CTE-4 第5章
     </div>
     <div class="options">
@@ -52,14 +52,11 @@ const setting = reactive({
       <Tooltip title="音效设置">
         <volume-notice theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2"/>
       </Tooltip>
-
       <IconRepeat></IconRepeat>
-
       <Tooltip title="单词本">
         <preview-open theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2"/>
         <preview-close-one theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2"/>
       </Tooltip>
-      <div class="my-button" @click="store.dictModalIsOpen = true">ok</div>
       <div class="my-button" @click="store.dictModalIsOpen2 = true">ok</div>
       <Tooltip title="单词本">
         <menu-fold class="menu" @click="store.sideIsOpen = !store.sideIsOpen"
@@ -280,6 +277,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
 
   .options {
