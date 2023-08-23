@@ -73,6 +73,7 @@ const props = defineProps<{
   align-items: center;
   justify-content: center;
   font-size: 12rem;
+  color: white;
   //gap: 2rem;
 
   .key {

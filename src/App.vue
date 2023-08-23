@@ -29,7 +29,7 @@ import BaseButton from "@/components/BaseButton.vue";
 let input = $ref('')
 let wrong = $ref('')
 let showFullWord = $ref(false)
-let isDictation = $ref(true)
+let isDictation = $ref(false)
 let activeIndex = $ref(-1)
 const store = useBaseStore()
 
@@ -158,9 +158,6 @@ async function onKeyDown(e: KeyboardEvent) {
   }
 }
 
-onMounted(() => {
-
-})
 
 const show = $ref(false)
 const {appearance, toggle} = useThemeColor()

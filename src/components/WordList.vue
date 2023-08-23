@@ -84,6 +84,7 @@ watch(() => props.list, () => {
     display: flex;
     justify-content: space-between;
     transition: all .3s;
+    //color: black;
 
     &.active {
       background: $second;
