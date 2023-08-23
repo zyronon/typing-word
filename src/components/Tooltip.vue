@@ -10,6 +10,12 @@ export default {
         return ''
       }
     },
+    disabled: {
+      type: Boolean,
+      default() {
+        return false
+      }
+    }
   },
   data() {
     return {
@@ -18,6 +24,7 @@ export default {
   },
   methods: {
     showPop(e) {
+      if (this.disabled) return
       e.stopPropagation()
       let rect = e.target.getBoundingClientRect()
       this.show = true

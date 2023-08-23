@@ -3,17 +3,17 @@ import {KeyboardOne} from "@icon-park/vue-next";
 import Tooltip from "@/components/Tooltip.vue";
 
 const props = defineProps<{
-  keyboard: string,
+  keyboard?: string,
   active?: boolean
 }>()
 
 </script>
 
 <template>
-  <Tooltip :title="`快捷键: ${keyboard}`">
+  <Tooltip :disabled="!keyboard" :title="`快捷键: ${keyboard}`">
     <div class="my-button" :class="active && 'active'">
       <span><slot></slot></span>
-      <div class="key-notice">
+      <div class="key-notice" v-if="keyboard">
         <keyboard-one theme="outline" size="14" fill="#ffffff" :strokeWidth="2"/>
         <span class="key">{{ keyboard }}</span>
       </div>
@@ -36,12 +36,16 @@ const props = defineProps<{
   //background: #999;
   //background: rgb(60, 63, 65);
   //background: var(--color-second-bg);
-  color: white;
   height: 40rem;
   line-height: 1;
 
   & > span {
     font-size: 16rem;
+    color: white;
+
+    ::v-deep a {
+      color: white;
+    }
   }
 
   &:hover {

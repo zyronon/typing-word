@@ -2,11 +2,24 @@
 import {Close} from "@icon-park/vue-next"
 import {onMounted} from "vue";
 
-const props = defineProps(['modelValue', 'title', 'subTitle'])
-const emit = defineEmits(['update:modelValue'])
+interface IProps {
+  modelValue: boolean,
+  title?: string,
+  subTitle?: string,
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  modelValue: true,
+})
+
+const emit = defineEmits([
+  'update:modelValue',
+  'close'
+])
 
 function close() {
   emit('update:modelValue', false)
+  emit('close',)
 }
 
 onMounted(() => {
@@ -123,7 +136,7 @@ $header-height: 60rem;
   .modal {
     position: relative;
     background: var(--color-main-bg);
-    box-shadow: var(--color-main-bg) 0 0 10rem 1rem;
+    //box-shadow: var(--color-main-bg) 0 0 10rem 1rem;
     //width: 75vw;
     //height: 70vh;
     border-radius: $radius;

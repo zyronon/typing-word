@@ -136,13 +136,15 @@ function changeDict(dict: Dict, i: number) {
   display: flex;
   flex-direction: column;
   transition: all .3s;
-  transform: rotate(-90deg);
-  transform-origin: 0 0;
+  //transform: rotate(-90deg);
+  //transform-origin: 0 0;
   z-index: 1;
+  opacity: 0;
 
   &.open {
     //margin-right: 0;
-    transform: rotate(0deg);
+    //transform: rotate(0deg);
+    opacity: 1;
   }
 
   $header-height: 40rem;

@@ -124,4 +124,12 @@ export interface State {
     sideIsOpen: boolean,
     dictModalIsOpen: boolean,
     dictModalIsOpen2: boolean,
+    setting: {
+        showToolbar: boolean,
+        show: boolean,
+        value1: boolean,
+        value2: number,
+        value3: number,
+        value4: boolean,
+    }
 }

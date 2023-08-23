@@ -22,7 +22,7 @@ import Backgorund from "@/components/Backgorund.vue"
 import Statistics from "@/components/Modal/Statistics.vue";
 import useThemeColor from "@/hooks/useThemeColor";
 import Tooltip from "@/components/Tooltip.vue";
-import Toolbar from "@/components/Toolbar.vue"
+import Toolbar from "@/components/Toolbar/Toolbar.vue"
 import {KeyboardOne} from "@icon-park/vue-next";
 import BaseButton from "@/components/BaseButton.vue";
 
@@ -168,7 +168,7 @@ const {appearance, toggle} = useThemeColor()
 </script>
 
 <template>
-  <Backgorund/>
+<!--  <Backgorund/>-->
   <div class="main-page">
     <div class="center">
       <Toolbar/>
@@ -215,13 +215,13 @@ const {appearance, toggle} = useThemeColor()
 .main-page {
   position: absolute;
   z-index: 1;
-  //background: $dark-main-bg;
   width: 100vw;
   height: 100%;
   overflow: hidden;
   font-size: 14rem;
   display: flex;
   justify-content: center;
+  background-color: var(--color-main-bg);
 
   .center {
     width: 70vw;

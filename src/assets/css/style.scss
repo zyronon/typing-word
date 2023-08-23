@@ -4,7 +4,7 @@
 
 :root {
   --color-main-bg: rgb(226, 226, 226);
-  --color-second-bg: rgb(238,240,244);
+  --color-second-bg: rgb(238, 240, 244);
   --color-header-bg: white;
   --color-font: black;
 }
@@ -27,11 +27,21 @@ html, body {
   width: 100%;
   height: 100%;
   color: $font-color;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+  'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #app {
   width: 100%;
   height: 100%;
+}
+
+
+a {
+  //color: white;
+  text-decoration: none;
 }
 
 ::-webkit-scrollbar {
