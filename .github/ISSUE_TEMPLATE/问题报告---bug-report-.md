@@ -1,7 +1,7 @@
 ---
 name: '问题报告 | Bug report '
 about: '创建一个问题报告 |  Create a bug report '
-title: ''
+title: '问题报告 | Bug report '
 labels: ''
 assignees: ''
 

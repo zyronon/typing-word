@@ -1,7 +1,7 @@
 ---
 name: 功能请求 | Feature request
 about: 创建一个功能请求 | Create a feature request
-title: ''
+title: 功能请求 | Feature request
 labels: ''
 assignees: ''
 
