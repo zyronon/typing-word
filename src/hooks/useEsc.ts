@@ -8,5 +8,5 @@ export function useEsc(can: boolean) {
             }
         })
     })
-    return [useEsc()]
+    return []
 }

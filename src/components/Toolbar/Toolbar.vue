@@ -12,7 +12,6 @@ import {
   VolumeNotice,
   Bug
 } from "@icon-park/vue-next"
-import IconRepeat from '~icons/tabler/repeat'
 import useThemeColor from "@/hooks/useThemeColor.ts"
 import {useBaseStore} from "@/stores/base.ts"
 import SettingModal from "@/components/Toolbar/SettingModal.vue"
@@ -22,6 +21,13 @@ import IconCog6Tooth from '~icons/heroicons/cog-6-tooth-solid'
 
 import IconLanguage from '~icons/tabler/language'
 import IconLanguageOff from '~icons/tabler/language-off'
+
+import IconEye from '~icons/heroicons/eye-solid'
+import IconCheck from '~icons/tabler/check'
+import IconEyeSlash from '~icons/heroicons/eye-slash-solid'
+
+import IconRepeat from '~icons/tabler/repeat'
+import IconRepeatOff from '~icons/tabler/repeat-off'
 
 const {appearance, toggle} = useThemeColor()
 const store = useBaseStore()
@@ -36,9 +42,11 @@ const showSettingModal = $ref(false)
     </div>
     <div class="options">
       <Tooltip title="切换主题">
-        <moon v-if="appearance === 'dark'" theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2"
-              @click="toggle"/>
-        <sun-one v-else theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2" @click="toggle"/>
+        <IconWrapper>
+          <moon v-if="appearance === 'dark'"
+                @click="toggle"/>
+          <sun-one v-else @click="toggle"/>
+        </IconWrapper>
       </Tooltip>
 
       <Tooltip title="音效设置">
@@ -46,17 +54,21 @@ const showSettingModal = $ref(false)
           <volume-notice/>
         </IconWrapper>
       </Tooltip>
-      <IconRepeat></IconRepeat>
-      <Tooltip title="单词本">
+      <Tooltip title="设置单词循环">
         <IconWrapper>
-          <IconLanguage></IconLanguage>
-<!--          <IconLanguageOff></IconLanguageOff>-->
+          <IconRepeat></IconRepeat>
+        </IconWrapper>
+      </Tooltip>
+      <Tooltip title="开关默写模式">
+        <IconWrapper>
+          <IconEye></IconEye>
+          <IconEyeSlash></IconEyeSlash>
         </IconWrapper>
       </Tooltip>
       <Tooltip title="开关释义显示">
         <IconWrapper>
           <IconLanguage></IconLanguage>
-<!--          <IconLanguageOff></IconLanguageOff>-->
+          <!--          <IconLanguageOff></IconLanguageOff>-->
         </IconWrapper>
       </Tooltip>
 

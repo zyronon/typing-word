@@ -1,7 +1,9 @@
 <script setup lang="js">
-
 import {onMounted} from "vue"
 import {createWorker} from "tesseract.js";
+import useMobile from "@/hooks/useMobile.ts";
+
+const isMobile = useMobile()
 
 onMounted(async () => {
   Array.prototype.clone = function () {
@@ -33,6 +35,16 @@ onMounted(async () => {
     constructor(canvas) {
       this.canvas = canvas;
       this.ctx = canvas.getContext("2d")
+      let canvasRect = canvas.getBoundingClientRect()
+      let {width, height} = canvasRect
+      let dpr = window.devicePixelRatio
+      if (dpr) {
+        canvas.style.width = width + "px"
+        canvas.style.height = height + "px"
+        canvas.height = height * dpr
+        canvas.width = width * dpr
+        this.ctx.scale(dpr, dpr)
+      }
       // this.points = new Array();
       this.line = new Line();
       this.pointLines = new Array();//Line数组
@@ -46,6 +58,7 @@ onMounted(async () => {
     }
 
     down(x, y) {
+      // console.log("down:", x, y)
       this.isDown = true;
       this.line = new Line();
       this.line.lineWidth = this.lineWidth;
@@ -56,7 +69,7 @@ onMounted(async () => {
     }
 
     move(x, y) {
-      // console.log("move:",x,y)
+      // console.log("move:",x,y,this.isDown)
       if (this.isDown) {
         let currentPoint = new Point(x, y, Date.now())
         this.addPoint(currentPoint);
@@ -82,7 +95,6 @@ onMounted(async () => {
     draw(isUp = false) {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.ctx.strokeStyle = "rgba(255,20,87,1)";
-
 
       //绘制不包含this.line的线条
       this.pointLines.forEach((line, index) => {
@@ -178,6 +190,8 @@ onMounted(async () => {
       this.ctx.ellipse(points[0].x - 1.5, points[0].y, 6, 3, Math.PI / 4, 0, Math.PI * 2);
       this.ctx.fill();
 
+      // console.log('points', points)
+
       this.ctx.beginPath();
       this.ctx.moveTo(points[0].x, points[0].y);
       let lastW = this.line.lineWidth;
@@ -228,7 +242,7 @@ onMounted(async () => {
         }
       }
 
-      if (this.line.points.length == 0) {
+      if (this.line.points.length === 0) {
         this.begin = p;
         p.isControl = true;
         this.pushPoint(p);
@@ -245,8 +259,10 @@ onMounted(async () => {
 
     pushPoint(p) {
       //排除重复点
-      if (this.line.points.length >= 1 && this.line.points[this.line.points.length - 1].x == p.x && this.line.points[this.line.points.length - 1].y == p.y)
-        return;
+      if (this.line.points.length >= 1) {
+        let last = this.line.points[this.line.points.length - 1]
+        if (last.x === p.x && last.y === p.y) return;
+      }
       this.line.points.push(p);
     }
 
@@ -328,7 +344,6 @@ onMounted(async () => {
     }
   }
 
-
   const worker = await createWorker({
     // logger: m => console.log(m)
   });
@@ -337,43 +352,60 @@ onMounted(async () => {
   await worker.setParameters({
     tessedit_char_whitelist: 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'
   });
+
+  // alert('好了')
   let lastTime = Date.now()
   let timer = -1
   let checkTime = 400
 
-
-//以下代码为鼠标移动事件部分
+  let eventMap = {
+    down: '',
+    move: '',
+    up: '',
+  }
+  if (isMobile) {
+    eventMap = {
+      down: 'touchstart',
+      move: 'touchmove',
+      up: 'touchend',
+    }
+  } else {
+    eventMap = {
+      down: 'mousedown',
+      move: 'mousemove',
+      up: 'mouseup',
+    }
+  }
   let handwriting = new HandwritingSelf(document.getElementById("canvasId"))
-// document.ontouchstart = document.onmousedown
-  document.onpointerdown = function (e) {
+
+  window.addEventListener(eventMap.down, (e) => {
     if (Date.now() - lastTime > checkTime) {
       handwriting.clear()
     } else {
       clearTimeout(timer)
     }
-    if (e.type == "touchstart")
+    if (e.type === "touchstart")
       handwriting.down(e.touches[0].pageX, e.touches[0].pageY);
     else
       handwriting.down(e.x, e.y);
-  }
-// document.ontouchmove = document.onmousemove
-  document.onpointermove = function (e) {
-    if (e.type == "touchmove")
+  })
+
+  window.addEventListener(eventMap.move, (e) => {
+    if (e.type === "touchmove")
       handwriting.move(e.touches[0].pageX, e.touches[0].pageY);
     else
       handwriting.move(e.x, e.y);
-  }
+  })
 
-// document.ontouchend = document.onmouseup
-  document.onpointerup = function (e) {
-    if (e.type == "touchend")
+  window.addEventListener(eventMap.up, (e) => {
+    if (e.type === "touchend")
       handwriting.up(e.touches[0].pageX, e.touches[0].pageY);
     else
       handwriting.up(e.x, e.y);
 
     clearTimeout(timer)
     timer = setTimeout(() => {
-      console.log('识别');
+      // console.log('识别');
       // handwriting.canvas.toDataURL()
 
       // var MIME_TYPE = "image/png";
@@ -390,30 +422,40 @@ onMounted(async () => {
       (async () => {
         const {data: {text}} = await worker.recognize(handwriting.canvas);
         console.log(text);
+        if (isMobile){
+          alert(text)
+        }
       })();
     }, checkTime)
 
     lastTime = Date.now()
-  }
+  })
 })
 </script>
 
 <template>
   <div class="mobile">
-    <canvas id="canvasId" width="800" height="720"></canvas>
+    <canvas id="canvasId"></canvas>
   </div>
 </template>
-
+<style>
+html, body {
+  overflow: hidden;
+}
+</style>
 <style scoped lang="scss">
 @import "assets/css/colors";
 
 .mobile {
+  width: 100vw;
+  height: 100vh;
   background: $dark-main-bg;
+  overflow: hidden;
 
   canvas {
-    //width: 100%;
-    //height: 100%;
-    border: 1px solid gray;
+    width: 100%;
+    height: 100%;
+    //border: 1px solid gray;
   }
 }
 
