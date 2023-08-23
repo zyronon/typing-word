@@ -1,6 +1,7 @@
 ---
 name: 单词错误 | Word error
-about: 单词释义错误、音标错误 | Incorrect word interpretation and phonetic errors
+about: 创建一个单词释义错误、音标错误的报告 | Create a report of incorrect word definitions and phonetic
+  errors
 title: 单词错误 | Word error
 labels: ''
 assignees: ''
