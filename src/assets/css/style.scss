@@ -17,8 +17,8 @@ html[data-theme='dark'] {
 }
 
 $anim-time: 0.3s;
-* {
-  transition: background-color $anim-time, color $anim-time;
+div {
+  transition: background $anim-time, color $anim-time;
 }
 
 html, body {
@@ -38,11 +38,11 @@ html, body {
   height: 100%;
 }
 
-
 a {
-  //color: white;
+  color: $main;
   text-decoration: none;
 }
+
 
 ::-webkit-scrollbar {
   width: 8rem;

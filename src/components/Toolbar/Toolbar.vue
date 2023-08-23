@@ -17,6 +17,11 @@ import useThemeColor from "@/hooks/useThemeColor.ts"
 import {useBaseStore} from "@/stores/base.ts"
 import SettingModal from "@/components/Toolbar/SettingModal.vue"
 import FeedbackModal from "@/components/Toolbar/FeedbackModal.vue"
+import IconWrapper from "@/components/IconWrapper.vue";
+import IconCog6Tooth from '~icons/heroicons/cog-6-tooth-solid'
+
+import IconLanguage from '~icons/tabler/language'
+import IconLanguageOff from '~icons/tabler/language-off'
 
 const {appearance, toggle} = useThemeColor()
 const store = useBaseStore()
@@ -35,21 +40,38 @@ const showSettingModal = $ref(false)
               @click="toggle"/>
         <sun-one v-else theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2" @click="toggle"/>
       </Tooltip>
-      <Tooltip title="设置">
-        <setting-two @click="showSettingModal = true" theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2"/>
-      </Tooltip>
-      <Tooltip title="反馈">
-        <bug @click="showFeedbackModal = true" theme="outline" size="20" fill="#999" :strokeWidth="2"/>
-      </Tooltip>
+
       <Tooltip title="音效设置">
-        <volume-notice theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2"/>
+        <IconWrapper>
+          <volume-notice/>
+        </IconWrapper>
       </Tooltip>
       <IconRepeat></IconRepeat>
       <Tooltip title="单词本">
-        <preview-open theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2"/>
-        <preview-close-one theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2"/>
+        <IconWrapper>
+          <IconLanguage></IconLanguage>
+<!--          <IconLanguageOff></IconLanguageOff>-->
+        </IconWrapper>
+      </Tooltip>
+      <Tooltip title="开关释义显示">
+        <IconWrapper>
+          <IconLanguage></IconLanguage>
+<!--          <IconLanguageOff></IconLanguageOff>-->
+        </IconWrapper>
+      </Tooltip>
+
+      <Tooltip title="反馈">
+        <IconWrapper>
+          <bug @click="showFeedbackModal = true"/>
+        </IconWrapper>
+      </Tooltip>
+      <Tooltip title="设置">
+        <IconWrapper>
+          <IconCog6Tooth @click="showSettingModal = true"></IconCog6Tooth>
+        </IconWrapper>
       </Tooltip>
       <div class="my-button" @click="store.dictModalIsOpen2 = true">ok</div>
+
       <Tooltip title="单词本">
         <menu-fold class="menu" @click="store.sideIsOpen = !store.sideIsOpen"
                    theme="outline" size="20" fill="#929596"
