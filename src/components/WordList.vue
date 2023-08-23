@@ -87,11 +87,13 @@ watch(() => props.list, () => {
 
     &.active {
       background: $second;
+      color: white;
     }
 
     &:hover {
       //background: $dark-main-bg;
-      background: $item-hover;
+      //background: $item-hover;
+      background: rgb(226,226,226);
     }
 
     .left {

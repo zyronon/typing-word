@@ -33,9 +33,9 @@ let isDictation = $ref(true)
 let activeIndex = $ref(-1)
 const store = useBaseStore()
 
-const [playKeySound, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
+// const [playKeySound, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
 // const [playKeySound, setAudio] = useSound([老式机械], 3)
-// const [playKeySound, setAudio] = useSound([电话打字的声音Mp3], 3)
+const [playKeySound, setAudio] = useSound([电话打字的声音Mp3], 3)
 const [playBeep] = useSound([beep], 1)
 const [playCorrect] = useSound([correct], 1)
 const [playAudio] = usePlayWordAudio()
@@ -101,7 +101,7 @@ function onKeyUp(e: KeyboardEvent) {
 
 async function onKeyDown(e: KeyboardEvent) {
   //TODO 还有横杠
-  if (e.keyCode >= 65 && e.keyCode <= 90 || e.code === 'Space') {
+  if ((e.keyCode >= 65 && e.keyCode <= 90) || e.code === 'Space') {
     let letter = e.key
     if ((input + letter).toLowerCase() === store.word.name.toLowerCase().slice(0, input.length + 1)) {
       input += letter
@@ -168,7 +168,7 @@ const {appearance, toggle} = useThemeColor()
 </script>
 
 <template>
-<!--  <Backgorund/>-->
+  <!--  <Backgorund/>-->
   <div class="main-page">
     <div class="center">
       <Toolbar/>

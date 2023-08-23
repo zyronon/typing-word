@@ -12,7 +12,12 @@ export type Config = {
     chapterIndex: number,
     wordIndex: number,
 }
-export type Word = {"name": string, "usphone": string, "ukphone": string, "trans": string[]}
+export type Word = {
+    "name": string,
+    "usphone": string,
+    "ukphone": string,
+    "trans": string[]
+}
 
 export const SaveKey = 'bb-word-config'
 
@@ -99,6 +104,17 @@ export interface Dict extends DictJson {
     chapterList: Word[][],
     chapterIndex: number,
     wordIndex: number,
+}
+
+interface DictLog {
+    startDate: number,//开始日期
+    endDate: number//结束日期
+    chapterWordNumber: number//章节单词数量
+    chapterLog: {
+        startDate: number,//开始日期
+        endDate: number//结束日期
+        correctRate: number//正确率
+    }
 }
 
 export interface State {
