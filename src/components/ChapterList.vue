@@ -18,7 +18,7 @@ function next() {
   <div class="list">
     <div class="item" :class="activeIndex === index && 'active'"
          v-for="(item,index) in list" @click="$emit('update:activeIndex', index)">
-      <div class="title">{{ index + 1 }}.</div>
+      <div class="title">第{{ index + 1 }}章</div>
     </div>
   </div>
 </template>
@@ -41,11 +41,13 @@ function next() {
     margin-bottom: 10rem;
     padding: 10rem;
     border-radius: 10rem;
-    border: 1px solid gray;
+    background: var(--color-item-bg);
+    color: var(--color-font-1);
+
 
     &.active {
-      background: $second;
-      border: 1px solid $second;
+      background: var(--color-item-active);
+      color: var(--color-font-active-1);
     }
   }
 }

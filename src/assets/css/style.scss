@@ -1,4 +1,6 @@
 @import "@icon-park/vue-next/styles/index.css";
+@import '/node_modules/element-plus/dist/index.css';
+@import "/node_modules/hover.css";
 @import "colors";
 @import "anim";
 
@@ -6,19 +8,23 @@
   --color-main-bg: rgb(226, 226, 226);
   --color-second-bg: rgb(238, 240, 244);
   --color-header-bg: white;
-  --color-font: black;
-  //--color-item-hover: ;
+  --color-font-1: black;
+  --color-font-2: gray;
+  --color-font-active-1: white;
+  --color-font-active-2: whitesmoke;
+  --color-item-bg: white;
+  --color-item-hover: white;
+  --color-item-active: rgb(75, 110, 175);
 }
 
 html[data-theme='dark'] {
   --color-main-bg: rgba(0, 5, 24, 1);
   --color-second-bg: rgb(60, 63, 65);
   --color-header-bg: white;
-
 }
 
 $anim-time: 0.3s;
-div {
+.anim {
   transition: background $anim-time, color $anim-time;
 }
 

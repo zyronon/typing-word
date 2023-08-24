@@ -39,7 +39,7 @@ const showSettingModal = $ref(false)
 <template>
   <header :class="!store.setting.showToolbar && 'hide'">
     <div class="info" @click="store.dictModalIsOpen = true">
-      CTE-4 第5章
+      {{ store.currentDict.name }}   第{{ store.currentDict.chapterIndex + 1}}章
     </div>
     <div class="options">
       <Tooltip title="切换主题">
@@ -126,7 +126,7 @@ header {
   transition: all .3s;
 
   .info {
-    font-size: 22rem;
+    font-size: 18rem;
     color: black;
     display: flex;
     justify-content: center;

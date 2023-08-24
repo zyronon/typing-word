@@ -11,7 +11,7 @@ const props = defineProps<{
 
 <template>
   <Tooltip :disabled="!keyboard" :title="`快捷键: ${keyboard}`">
-    <div class="my-button" :class="active && 'active'">
+    <div class="my-button hvr-grow" :class="active && 'active'">
       <span><slot></slot></span>
       <div class="key-notice" v-if="keyboard">
         <keyboard-one theme="outline" size="14" fill="#ffffff" :strokeWidth="2"/>

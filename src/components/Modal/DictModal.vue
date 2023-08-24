@@ -9,6 +9,8 @@ import {$computed, $ref} from "vue/macros";
 import WordList from "@/components/WordList.vue";
 import ChapterList from "@/components/ChapterList.vue"
 import Modal from "@/components/Modal/Modal.vue";
+import IconWrapper from "@/components/IconWrapper.vue";
+import BaseButton from "@/components/BaseButton.vue";
 
 const store = useBaseStore()
 let currentSelectDict: Dict = $ref({
@@ -16,7 +18,7 @@ let currentSelectDict: Dict = $ref({
   chapterList: [],
   chapterIndex: -1
 } as any)
-let step = $ref(1)
+let step = $ref(0)
 
 const currentSelectChapter: Word[] = $computed(() => {
   return currentSelectDict.chapterList?.[currentSelectDict.chapterIndex] ?? []
@@ -68,16 +70,18 @@ async function selectDict(item: Dict) {
                 <div class="tag" :class="i === 5 &&'active'" v-for="i in 2">六级</div>
               </div>
               <div class="dict-list">
-                <div class="dict-item"
+                <div class="dict-item anim"
                      :class="currentSelectDict.name === i.name && 'active'" v-for="i in childrenEnglish"
                      @click="selectDict(i)"
                 >
                   <div class="name">{{ i.name }}</div>
                   <div class="desc">{{ i.description }}</div>
                   <div class="num">{{ i.length }}词</div>
+
                   <arrow-right v-if="currentSelectDict.name === i.name"
                                @click.stop="step = 1"
-                               class="go" theme="outline" size="20" fill="#ffffff"
+                               class="go"
+                               theme="outline" size="20" fill="#ffffff"
                                :strokeWidth="2"/>
                 </div>
               </div>
@@ -89,7 +93,7 @@ async function selectDict(item: Dict) {
                   v-model:active-index="currentSelectDict.chapterIndex"
               />
               <div class="footer">
-                <div class="my-button">确定</div>
+                <BaseButton>确定</BaseButton>
               </div>
             </div>
           </div>
@@ -124,8 +128,8 @@ async function selectDict(item: Dict) {
             <div class="other">
               <WordList class="word-list" :list="currentSelectChapter" :activeIndex="-1" :isActive="false"/>
               <div class="footer">
-                <div class="my-button">返回</div>
-                <div class="my-button">确定</div>
+                <BaseButton>返回</BaseButton>
+                <BaseButton>确定</BaseButton>
               </div>
             </div>
           </div>
@@ -144,7 +148,7 @@ $time: 0.3s;
 $header-height: 60rem;
 
 .slide {
-  width: 75vw;
+  width: 60vw;
   height: 70vh;
 
   .slide-list {
@@ -163,9 +167,22 @@ $header-height: 60rem;
   cursor: pointer;
   padding: 10rem;
   border-radius: 10rem;
-  background: $dark-main-bg;
-  border: 1px solid $dark-main-bg;
   position: relative;
+  background: var(--color-item-bg);
+  color: var(--color-font-1);
+  font-size: 14rem;
+
+  .name {
+    font-size: 18rem;
+  }
+
+  .desc {
+    color: var(--color-font-2);
+  }
+
+  .num {
+    font-weight: bold;
+  }
 
   .go {
     position: absolute;
@@ -174,15 +191,20 @@ $header-height: 60rem;
   }
 
   &.active {
-    background: $second;
-    border: 1px solid $second;
+    background: var(--color-item-active);
+    color: var(--color-font-active-1);
+
+    .desc {
+      color: var(--color-font-active-2);
+    }
   }
 }
+
 
 $footer-height: 40rem;
 
 .chapter-wrapper {
-  min-width: 25%;
+  min-width: 300rem;
 
   .chapter-list {
     height: calc(100% - $footer-height);
@@ -256,7 +278,6 @@ $footer-height: 40rem;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 15rem;
-
       }
     }
   }

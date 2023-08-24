@@ -201,6 +201,17 @@ const emit = defineEmits([
               <span>{{ store.setting.value2 }}px</span>
             </div>
           </div>
+
+          <div class="line"></div>
+          <div class="row">
+            <label class="item-title">其他设置</label>
+          </div>
+          <div class="row">
+            <label class="sut-title">切换下一个单词时间</label>
+            <div class="wrapper">
+              <span>{{ store.setting.value2 }}毫秒</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -214,7 +225,7 @@ const emit = defineEmits([
   width: 40vw;
   height: 80vh;
   display: flex;
-  color: var(--color-font);
+  color: var(--color-font-1);
 
   .tabs {
     padding: 10rem 20rem;

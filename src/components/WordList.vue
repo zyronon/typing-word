@@ -80,11 +80,10 @@ watch(() => props.list, () => {
     background: var(--color-header-bg);
     border-radius: 6rem;
     padding: 12rem;
-    //border: 1px solid gray;
     display: flex;
     justify-content: space-between;
     transition: all .3s;
-    //color: black;
+    color: var(--color-font-1);
 
     &.active {
       background: $second;

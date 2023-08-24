@@ -153,14 +153,14 @@ $header-height: 60rem;
       border-radius: $radius $radius 0 0;
 
       .title {
-        color: var(--color-font);
+        color: var(--color-font-1);
         font-weight: 500;
         font-size: 28rem;
         line-height: 33rem;
       }
 
       .sub-title {
-        color: var(--color-font);
+        color: var(--color-font-1);
         font-weight: 500;
         font-size: 14rem;
       }

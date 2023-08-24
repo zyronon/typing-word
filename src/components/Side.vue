@@ -10,6 +10,7 @@ import 'swiper/css';
 import {Swiper as SwiperClass} from "swiper/types"
 import {Dict, DictType} from "@/types.ts"
 import PopConfirm from "@/components/PopConfirm.vue"
+import BaseButton from "@/components/BaseButton.vue";
 
 const store = useBaseStore()
 const swiperIns0: SwiperClass = $ref(null as any)
@@ -102,9 +103,9 @@ function changeDict(dict: Dict, i: number) {
                   :title="`确认切换？`"
                   @confirm="store.changeDict(store.wrongDict)"
               >
-                <div class="my-button hvr-grow">
+                <BaseButton>
                   切换
-                </div>
+                </BaseButton>
               </PopConfirm>
             </footer>
           </div>

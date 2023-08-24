@@ -26,7 +26,7 @@ $w: 20rem;
   border-radius: 3rem;
   background: transparent;
   transition: all .3s;
-  color: #0C8CE9;
+  color: $main;
 
   &:hover {
     background: $main;

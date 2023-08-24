@@ -65,7 +65,7 @@ const store = useBaseStore()
   align-items: center;
   padding: $space;
   //justify-content: center;
-  color: var(--color-font);
+  color: var(--color-font-1);
 
   p {
     font-size: 30rem;

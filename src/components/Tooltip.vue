@@ -74,7 +74,7 @@ export default {
   z-index: 999;
   border-radius: 4rem;
   padding: 10rem;
-  color: var(--color-font);
+  color: var(--color-font-1);
   background: var(--color-header-bg);
   box-shadow: 1px 1px 6px #bbbbbb;
 }
