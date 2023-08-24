@@ -20,13 +20,9 @@ function slideTo(index: number) {
   swiperIns0.slideTo(tabIndex = index)
 }
 
-
 function changeDict(dict: Dict, i: number) {
-  if (store.currentDictType.name !== dict.type) {
-    store.currentDictType = {
-      name: dict.type,
-      dictUrl: dict.url
-    }
+  if (store.currentDictType !== dict.type) {
+    store.currentDictType = dict.type
   }
   store.currentDict.wordIndex = i
 }
@@ -55,7 +51,7 @@ function changeDict(dict: Dict, i: number) {
                 :isActive="store.sideIsOpen && tabIndex === 0"
                 :list="store.dict.chapterList[store.dict.chapterIndex]??[]"
                 :activeIndex="store.dict.wordIndex"/>
-            <footer v-if="![DictType.custom,DictType.inner].includes(store.currentDictType.name)">
+            <footer v-if="![DictType.custom,DictType.inner].includes(store.currentDictType)">
               <PopConfirm
                   :title="`确认切换？`"
                   @confirm="store.changeDict(store.dict)"
@@ -78,7 +74,7 @@ function changeDict(dict: Dict, i: number) {
                 :isActive="store.sideIsOpen && tabIndex === 1"
                 :list="store.newWordDict.wordList"
                 :activeIndex="store.newWordDict.wordIndex"/>
-            <footer v-if="store.currentDictType.name !== DictType.newWordDict && store.newWordDict.wordList.length">
+            <footer v-if="store.currentDictType !== DictType.newWordDict && store.newWordDict.wordList.length">
               <PopConfirm
                   :title="`确认切换？`"
                   @confirm="store.changeDict(store.newWordDict)"
@@ -93,15 +89,38 @@ function changeDict(dict: Dict, i: number) {
         <swiper-slide>
           <div class="page0">
             <header>
+              <div class="dict-name">总词数：{{ store.wrongDict.wordList.length }}</div>
+            </header>
+            <WordList
+                class="word-list"
+                @change="(e:number) => store.changeDict(store.wrongDict,-1,e)"
+                :isActive="store.sideIsOpen && tabIndex === 2"
+                :list="store.wrongDict.wordList"
+                :activeIndex="store.wrongDict.wordIndex"/>
+            <footer v-if="store.currentDictType !== DictType.wrongDict && store.wrongDict.wordList.length">
+              <PopConfirm
+                  :title="`确认切换？`"
+                  @confirm="store.changeDict(store.wrongDict)"
+              >
+                <div class="my-button hvr-grow">
+                  切换
+                </div>
+              </PopConfirm>
+            </footer>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="page0">
+            <header>
               <div class="dict-name">总词数：{{ store.skipWordDict.wordList.length }}</div>
             </header>
             <WordList
                 class="word-list"
                 @change="(e:number) => store.changeDict(store.skipWordDict,-1,e)"
-                :isActive="store.sideIsOpen && tabIndex === 2"
+                :isActive="store.sideIsOpen && tabIndex === 3"
                 :list="store.skipWordDict.wordList"
                 :activeIndex="store.skipWordDict.wordIndex"/>
-            <footer v-if="store.currentDictType.name !== DictType.skipWordDict && store.skipWordDict.wordList.length">
+            <footer v-if="store.currentDictType !== DictType.skipWordDict && store.skipWordDict.wordList.length">
               <PopConfirm
                   :title="`确认切换？`"
                   @confirm="store.changeDict(store.skipWordDict)"

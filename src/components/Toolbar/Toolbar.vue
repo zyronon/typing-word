@@ -10,7 +10,8 @@ import {
   SettingTwo,
   SunOne,
   VolumeNotice,
-  Bug
+  Bug,
+  UploadOne
 } from "@icon-park/vue-next"
 import useThemeColor from "@/hooks/useThemeColor.ts"
 import {useBaseStore} from "@/stores/base.ts"
@@ -72,6 +73,11 @@ const showSettingModal = $ref(false)
         </IconWrapper>
       </Tooltip>
 
+      <Tooltip title="反馈">
+        <IconWrapper>
+          <upload-one/>
+        </IconWrapper>
+      </Tooltip>
       <Tooltip title="反馈">
         <IconWrapper>
           <bug @click="showFeedbackModal = true"/>
