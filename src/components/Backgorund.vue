@@ -1,5 +1,5 @@
 <template>
-  <div id="background">
+  <div id="background" class="anim">
     <img src="@/assets/img/moon.png" alt="" id="moon" style="display:none">
     <canvas ref="canvas"/>
   </div>

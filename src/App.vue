@@ -4,11 +4,12 @@ import Toolbar from "@/components/Toolbar/Toolbar.vue";
 import Type from "@/components/Type.vue";
 import Side from "@/components/Side.vue";
 import Statistics from "@/components/Modal/Statistics.vue";
+import Backgorund from "@/components/Backgorund.vue";
 
 </script>
 
 <template>
-  <!--  <Backgorund/>-->
+<!--    <Backgorund/>-->
   <div class="main-page">
     <div class="center">
       <Toolbar/>

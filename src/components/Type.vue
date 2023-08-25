@@ -26,6 +26,9 @@ import Toolbar from "@/components/Toolbar/Toolbar.vue"
 import {KeyboardOne} from "@icon-park/vue-next";
 import BaseButton from "@/components/BaseButton.vue";
 import Type from "@/components/Type.vue";
+import {
+  Down,
+} from "@icon-park/vue-next"
 
 let input = $ref('')
 let wrong = $ref('')
@@ -73,6 +76,7 @@ function next() {
       store.currentDict.wordIndex = 0
       store.currentDict.chapterIndex++
       console.log('这一章节完了')
+      wrongWord = []
     } else {
       console.log('这本书完了')
       return
@@ -94,13 +98,15 @@ function next() {
     next()
   }
   wrong = input = ''
+  store.lastStatistics.correctNumber = store.currentDict.wordIndex - wrongWord.length
+  store.lastStatistics.correctRate = Math.trunc(((store.currentDict.wordIndex - wrongWord.length) / (store.currentDict.wordIndex)) * 100)
 }
 
 function onKeyUp(e: KeyboardEvent) {
   showFullWord = false
 }
 
-const wrongWord = $ref([])
+let wrongWord = $ref([])
 
 async function onKeyDown(e: KeyboardEvent) {
   //TODO 还有横杠
@@ -117,6 +123,7 @@ async function onKeyDown(e: KeyboardEvent) {
       if (!wrongWord.find((v: string) => v === store.word.name)) {
         wrongWord.push(store.word.name)
       }
+      store.lastStatistics.correctRate = Math.trunc(((store.currentDict.wordIndex + 1 - wrongWord.length) / (store.currentDict.wordIndex + 1)) * 100)
       wrong = letter
       playKeySound()
       playBeep()
@@ -130,9 +137,6 @@ async function onKeyDown(e: KeyboardEvent) {
       setTimeout(next, 300)
     }
 
-    console.log('s',(store.currentDict.wordIndex + 1 - wrongWord.length) / (store.currentDict.wordIndex + 1))
-    store.lastStatistics.correctRate = Math.trunc(((store.currentDict.wordIndex + 1 - wrongWord.length) / (store.currentDict.wordIndex + 1)) * 100)
-    store.lastStatistics.correctNumber = store.currentDict.wordIndex - wrongWord.length
   } else {
     // console.log('e', e)
     switch (e.key) {
@@ -178,6 +182,10 @@ const progress = $computed(() => {
 
 const {appearance, toggle} = useThemeColor()
 
+function format(val: number, suffix: string = '') {
+  return val === -1 ? '-' : (val + suffix)
+}
+
 </script>
 
 <template>
@@ -208,28 +216,44 @@ const {appearance, toggle} = useThemeColor()
         下一个
       </BaseButton>
     </div>
+    <div class="bottom" :class="!store.setting.showToolbar && 'hide'">
+      <Tooltip :title="store.setting.showToolbar?'收起':'展开'">
+        <Down
+            @click="store.setting.showToolbar = !store.setting.showToolbar"
+            class="arrow"
+            :class="!store.setting.showToolbar && 'down'"
+            theme="outline" size="24" fill="#999"/>
+      </Tooltip>
+      <el-progress :percentage="progress"
+                   :stroke-width="8"
+                   :show-text="false"/>
+      <div class="stat">
+        <div class="row">
+          <div class="num">{{ store.lastStatistics.endDate }}</div>
+          <div class="line"></div>
+          <div class="name">时间</div>
+        </div>
+        <div class="row">
+          <div class="num">{{ store.currentDict.wordIndex }}</div>
+          <div class="line"></div>
+          <div class="name">输入数</div>
+        </div>
+        <div class="row">
+          <div class="num">{{ format(store.lastStatistics.correctRate, '%') }}</div>
+          <div class="line"></div>
+          <div class="name">正确率</div>
+        </div>
+        <div class="row">
+          <div class="num">{{ format(store.lastStatistics.correctNumber) }}</div>
+          <div class="line"></div>
+          <div class="name">正确数</div>
+        </div>
+      </div>
+    </div>
     <div class="progress">
       <el-progress :percentage="progress"
                    :stroke-width="8"
-                   color="rgb(224,231,255)"
                    :show-text="false"/>
-    </div>
-    <div class="stat">
-      <div class="row">
-        <div>{{ store.lastStatistics.endDate }}</div>
-      </div>
-      <div class="row">
-        <div>正确率:{{ store.lastStatistics.correctRate }}</div>
-      </div>
-      <div class="row">
-        <div>正确数:{{ store.lastStatistics.correctNumber }}</div>
-      </div>
-      <div class="row">
-        <div>wordIndex:{{ store.currentDict.wordIndex }}</div>
-      </div>
-      <div class="row">
-        <div>wrongWord:{{ wrongWord.length }}</div>
-      </div>
     </div>
   </div>
 </template>
@@ -284,9 +308,63 @@ const {appearance, toggle} = useThemeColor()
     }
   }
 
-  .progress {
+  .bottom {
+    position: absolute;
+    bottom: 30rem;
+    width: var(--toolbar-width);
+    box-sizing: border-box;
+    border-radius: 10rem;
+    background: white;
+    padding: 2rem 10rem 10rem 10rem;
     margin-top: 20rem;
-    width: 400rem;
+    transition: all .3s;
+    z-index: 2;
+
+    .arrow {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      cursor: pointer;
+      transition: all .3s;
+      transform: translate3d(-50%, -100%, 0) rotate(0);
+      padding: 10rem;
+    }
+
+    .stat {
+      margin-top: 10rem;
+      display: flex;
+      justify-content: space-around;
+
+      .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10rem;
+        width: 50rem;
+
+        .line {
+          height: 1px;
+          width: 100%;
+          background: gainsboro;
+        }
+      }
+    }
+
+    &.hide {
+      transform: translateY(calc(100% + 30rem));
+
+      .arrow {
+        transform: translate3d(-50%, -180%, 0) rotate(180deg);
+      }
+    }
+  }
+
+  .progress {
+    width: var(--toolbar-width);
+    padding:0 10rem;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 30rem;
   }
 }
 

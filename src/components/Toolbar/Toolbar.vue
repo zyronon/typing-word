@@ -116,14 +116,14 @@ const showDictModal = $ref(false)
 @import "@/assets/css/colors.scss";
 
 header {
-  margin-top: 10rem;
+  top: 10rem;
   height: 60rem;
-  width: 50%;
+  width: var(--toolbar-width);
   background: var(--color-header-bg);
   display: flex;
   justify-content: space-between;
   border-radius: 8rem;
-  position: relative;
+  position: absolute;
   z-index: 2;
   padding: 10rem $space;
   box-sizing: border-box;
@@ -154,10 +154,11 @@ header {
     left: 50%;
     cursor: pointer;
     transition: all .5s;
-    transform: translate3d(-50%, 120%, 0) rotate(180deg);
+    transform: translate3d(-50%, 100%, 0) rotate(180deg);
+    padding: 10rem;
 
     &.down {
-      transform: translate3d(-50%, 120%, 0) rotate(0);
+      transform: translate3d(-50%, 100%, 0) rotate(0);
     }
   }
 }

@@ -32,7 +32,7 @@ const currentSelectChapter: Word[] = $computed(() => {
   return currentSelectDict.chapterList?.[currentSelectDict.chapterIndex] ?? []
 })
 
-watch(() => props.modelValue, (n: Dict) => {
+watch(() => props.modelValue, (n: boolean) => {
   currentSelectDict = store.currentDict
 })
 
@@ -57,7 +57,7 @@ async function selectDict(item: Dict) {
 
 function changeDict() {
   store.changeDict(currentSelectDict)
-  this.close()
+  close()
 }
 
 function close() {
