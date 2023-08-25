@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {Config, Dict, DictType, SaveKey, Sort, State, Word} from "../types.ts"
+import {Config, Dict, DictType, SaveKey, Sort, State, Statistics, Word} from "../types.ts"
 import {chunk, cloneDeep} from "lodash";
 
 export const useBaseStore = defineStore('base', {
@@ -20,7 +20,8 @@ export const useBaseStore = defineStore('base', {
         chapterList: [],
         chapterIndex: 0,
         wordIndex: 0,
-        dictStatistics: []
+        dictStatistics: [],
+        chapterWordNumber: 15
       },
       skipWordDict: {
         type: DictType.skipWordDict,
@@ -37,7 +38,8 @@ export const useBaseStore = defineStore('base', {
         chapterList: [],
         chapterIndex: 0,
         wordIndex: 0,
-        dictStatistics: []
+        dictStatistics: [],
+        chapterWordNumber: 15
       },
       wrongDict: {
         type: DictType.wrongDict,
@@ -54,7 +56,8 @@ export const useBaseStore = defineStore('base', {
         chapterList: [],
         chapterIndex: 0,
         wordIndex: 0,
-        dictStatistics: []
+        dictStatistics: [],
+        chapterWordNumber: 15
       },
       dict: {
         type: DictType.inner,
@@ -72,7 +75,14 @@ export const useBaseStore = defineStore('base', {
         chapterIndex: 0,
         chapterWordNumber: 15,
         wordIndex: 0,
-        dictStatistics: []
+        dictStatistics: [
+          {
+            startDate: Date.now(),
+            endDate: -1,
+            chapterWordNumber: 15,
+            statistics: []
+          }
+        ]
       },
       oldDicts: [],
       currentDictType: DictType.inner,
@@ -114,6 +124,15 @@ export const useBaseStore = defineStore('base', {
         name: ''
       }
     },
+    lastStatistics(): Statistics {
+      if (this.currentDict.dictStatistics.length) {
+        let stat = this.currentDict.dictStatistics[this.currentDict.dictStatistics.length - 1]
+        if (stat.statistics.length) {
+          return stat.statistics[stat.statistics.length - 1]
+        }
+      }
+      return {} as any
+    }
   },
   actions: {
     setState(obj: any) {
@@ -142,7 +161,16 @@ export const useBaseStore = defineStore('base', {
           this.dict.chapterList = chunk(this.dict.wordList, this.dict.chapterWordNumber)
         })
       }
-      this.dictModalIsOpen = false
+
+      if (this.dict.dictStatistics.length) {
+        this.dict.dictStatistics[this.dict.dictStatistics.length - 1].statistics.push({
+          startDate: Date.now(),//开始日期
+          endDate: -1,
+          correctRate: -1,
+          correctNumber: -1
+        })
+      }
+      this.dict.wordIndex = 0
       this.dictModalIsOpen2 = false
     },
     async changeDict(dict: Dict, chapterIndex: number = -1, wordIndex: number = -1) {

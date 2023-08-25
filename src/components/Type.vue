@@ -100,6 +100,8 @@ function onKeyUp(e: KeyboardEvent) {
   showFullWord = false
 }
 
+const wrongWord = $ref([])
+
 async function onKeyDown(e: KeyboardEvent) {
   //TODO 还有横杠
   if ((e.keyCode >= 65 && e.keyCode <= 90) || e.code === 'Space') {
@@ -109,6 +111,12 @@ async function onKeyDown(e: KeyboardEvent) {
       wrong = ''
       playKeySound()
     } else {
+      if (!store.wrongDict.wordList.find((v: Word) => v.name === store.word.name)) {
+        store.wrongDict.wordList.push(store.word)
+      }
+      if (!wrongWord.find((v: string) => v === store.word.name)) {
+        wrongWord.push(store.word.name)
+      }
       wrong = letter
       playKeySound()
       playBeep()
@@ -121,6 +129,10 @@ async function onKeyDown(e: KeyboardEvent) {
       playCorrect()
       setTimeout(next, 300)
     }
+
+    console.log('s',(store.currentDict.wordIndex + 1 - wrongWord.length) / (store.currentDict.wordIndex + 1))
+    store.lastStatistics.correctRate = Math.trunc(((store.currentDict.wordIndex + 1 - wrongWord.length) / (store.currentDict.wordIndex + 1)) * 100)
+    store.lastStatistics.correctNumber = store.currentDict.wordIndex - wrongWord.length
   } else {
     // console.log('e', e)
     switch (e.key) {
@@ -201,6 +213,23 @@ const {appearance, toggle} = useThemeColor()
                    :stroke-width="8"
                    color="rgb(224,231,255)"
                    :show-text="false"/>
+    </div>
+    <div class="stat">
+      <div class="row">
+        <div>{{ store.lastStatistics.endDate }}</div>
+      </div>
+      <div class="row">
+        <div>正确率:{{ store.lastStatistics.correctRate }}</div>
+      </div>
+      <div class="row">
+        <div>正确数:{{ store.lastStatistics.correctNumber }}</div>
+      </div>
+      <div class="row">
+        <div>wordIndex:{{ store.currentDict.wordIndex }}</div>
+      </div>
+      <div class="row">
+        <div>wrongWord:{{ wrongWord.length }}</div>
+      </div>
     </div>
   </div>
 </template>
