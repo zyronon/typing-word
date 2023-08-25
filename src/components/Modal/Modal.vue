@@ -135,6 +135,7 @@ $header-height: 60rem;
 
   .modal {
     position: relative;
+    //background: white;
     background: var(--color-main-bg);
     //box-shadow: var(--color-main-bg) 0 0 10rem 1rem;
     //width: 75vw;

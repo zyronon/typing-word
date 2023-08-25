@@ -30,7 +30,7 @@ import Type from "@/components/Type.vue";
 let input = $ref('')
 let wrong = $ref('')
 let showFullWord = $ref(false)
-let isDictation = $ref(false)
+let isDictation = $ref(true)
 let activeIndex = $ref(-1)
 const store = useBaseStore()
 

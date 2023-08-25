@@ -90,6 +90,7 @@ function changeDict(dict: Dict, i: number) {
         <swiper-slide>
           <div class="page0">
             <header>
+              <a href="" target="_blank"></a>
               <div class="dict-name">总词数：{{ store.wrongDict.wordList.length }}</div>
             </header>
             <WordList

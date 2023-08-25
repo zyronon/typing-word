@@ -106,6 +106,7 @@ export interface Dict extends DictJson {
     chapterList: Word[][],
     chapterIndex: number,
     wordIndex: number,
+    chapterWordNumber: number,
     dictStatistics: DictStatistics[]
 }
 

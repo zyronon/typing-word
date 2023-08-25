@@ -7,11 +7,15 @@ const props = defineProps<{
   active?: boolean
 }>()
 
+defineEmits(['click'])
+
 </script>
 
 <template>
   <Tooltip :disabled="!keyboard" :title="`快捷键: ${keyboard}`">
-    <div class="my-button hvr-grow" :class="active && 'active'">
+    <div class="my-button hvr-grow"
+         @click="$emit('click')"
+         :class="active && 'active'">
       <span><slot></slot></span>
       <div class="key-notice" v-if="keyboard">
         <keyboard-one theme="outline" size="14" fill="#ffffff" :strokeWidth="2"/>

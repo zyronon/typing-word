@@ -3,20 +3,19 @@ import {childrenEnglish} from '@/assets/dictionary.ts'
 import {ArrowLeft, ArrowRight, Close} from '@icon-park/vue-next'
 import {useBaseStore} from "@/stores/base.ts"
 import {watch} from "vue"
-import {Dict, Word} from "@/types.ts"
+import {Dict, DictType, Sort, Word} from "@/types.ts"
 import {chunk} from "lodash";
 import {$computed, $ref} from "vue/macros";
 import WordList from "@/components/WordList.vue";
 import ChapterList from "@/components/ChapterList.vue"
 import Modal from "@/components/Modal/Modal.vue";
-import IconWrapper from "@/components/IconWrapper.vue";
 import BaseButton from "@/components/BaseButton.vue";
 
 const store = useBaseStore()
 let currentSelectDict: Dict = $ref({
   name: '新概念英语-2',
   chapterList: [],
-  chapterIndex: -1
+  chapterIndex: -1,
 } as any)
 let step = $ref(0)
 
@@ -30,17 +29,29 @@ watch(store.currentDict, (n: Dict) => {
 
 async function selectDict(item: Dict) {
   currentSelectDict = {
+    type: DictType.inner,
+    sort: Sort.normal,
     ...item,
     wordList: [],
     chapterList: [],
     chapterIndex: 0,
+    chapterWordNumber: 15,
     wordIndex: 0,
+    dictStatistics: []
   }
   let r = await fetch(`/public/${item.url}`)
   r.json().then(v => {
     currentSelectDict.wordList = v
-    currentSelectDict.chapterList = chunk(v, 15)
+    currentSelectDict.chapterList = chunk(v, currentSelectDict.chapterWordNumber)
   })
+}
+
+function changeDict() {
+  store.changeDict(currentSelectDict)
+}
+
+function resetChapterList() {
+  currentSelectDict.chapterList = chunk(currentSelectDict.wordList, currentSelectDict.chapterWordNumber)
 }
 </script>
 
@@ -87,13 +98,23 @@ async function selectDict(item: Dict) {
               </div>
             </div>
             <div class="chapter-wrapper">
+              <div class="chapter-word-number">
+                <span>每章单词数:</span>
+                <el-slider :min="10"
+                           :step="10"
+                           :max="100"
+                           v-model="currentSelectDict.chapterWordNumber"
+                           @change="resetChapterList"
+                />
+                <span>{{ currentSelectDict.chapterWordNumber }}</span>
+              </div>
               <ChapterList
                   class="chapter-list"
                   :list="currentSelectDict.chapterList"
                   v-model:active-index="currentSelectDict.chapterIndex"
               />
               <div class="footer">
-                <BaseButton>确定</BaseButton>
+                <BaseButton @click="changeDict">确定</BaseButton>
               </div>
             </div>
           </div>
@@ -148,7 +169,7 @@ $time: 0.3s;
 $header-height: 60rem;
 
 .slide {
-  width: 60vw;
+  width: 1100rem;
   height: 70vh;
 
   .slide-list {
@@ -200,11 +221,20 @@ $header-height: 60rem;
   }
 }
 
-
 $footer-height: 40rem;
 
 .chapter-wrapper {
   min-width: 300rem;
+
+  .chapter-word-number {
+    padding-left: $space;
+    display: flex;
+    color: black;
+    gap: 10rem;
+    font-size: 14rem;
+    word-break: keep-all;
+    align-items: center;
+  }
 
   .chapter-list {
     height: calc(100% - $footer-height);
@@ -239,6 +269,7 @@ $footer-height: 40rem;
       gap: 20rem;
 
       .tab {
+        color: var(--color-font-1);
         cursor: pointer;
         padding: 10rem;
         padding-bottom: 5rem;
@@ -263,13 +294,14 @@ $footer-height: 40rem;
         margin-bottom: 10rem;
 
         .tag {
+          color: var(--color-font-1);
           cursor: pointer;
           padding: 5rem 10rem;
           border-radius: 20rem;
 
           &.active {
+            color: var(--color-font-active-1);
             background: gray;
-            color: whitesmoke;
           }
         }
       }

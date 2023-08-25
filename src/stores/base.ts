@@ -146,7 +146,7 @@ export const useBaseStore = defineStore('base', {
             this.dictModalIsOpen2 = false
         },
         async changeDict(dict: Dict, chapterIndex: number = -1, wordIndex: number = -1) {
-            console.log('changeDict')
+            console.log('changeDict',dict)
             if ([DictType.newWordDict,
                 DictType.skipWordDict,
                 DictType.wrongDict].includes(dict.type)) {
@@ -162,14 +162,13 @@ export const useBaseStore = defineStore('base', {
                 } else {
                     // let r = await fetch(`/public/${dict.url}`)
                     // r.json().then(v => {
-                    //     this.currentDictType.name === dict.type
-                    //     this.currentDictType.dictUrl = dict.url
-                    //
+                    //     this.currentDictType === dict.type
                     // })
                     this.dict = cloneDeep(dict)
-                    this.dict.chapterList = chunk(this.dict.wordList, 15)
-                    this.dict.chapterIndex = chapterIndex === -1 ? 0 : chapterIndex
-                    this.dict.wordIndex = wordIndex === -1 ? 0 : wordIndex
+                    // this.dict.chapterList = chunk(this.dict.wordList, 15)
+                    // this.dict.chapterIndex = chapterIndex === -1 ? 0 : chapterIndex
+                    // this.dict.wordIndex = wordIndex === -1 ? 0 : wordIndex
+                    this.currentDictType = dict.type
                 }
             }
         }
