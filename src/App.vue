@@ -4,7 +4,6 @@ import Toolbar from "@/components/Toolbar/Toolbar.vue";
 import Type from "@/components/Type.vue";
 import Side from "@/components/Side.vue";
 import Statistics from "@/components/Modal/Statistics.vue";
-import DictModal from "@/components/Modal/DictModal.vue";
 
 </script>
 
@@ -19,7 +18,6 @@ import DictModal from "@/components/Modal/DictModal.vue";
       <Side/>
     </div>
     <Statistics></Statistics>
-    <DictModal/>
   </div>
 </template>
 
@@ -56,5 +54,4 @@ import DictModal from "@/components/Modal/DictModal.vue";
     }
   }
 }
-
 </style>

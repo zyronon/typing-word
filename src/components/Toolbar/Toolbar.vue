@@ -17,6 +17,8 @@ import useThemeColor from "@/hooks/useThemeColor.ts"
 import {useBaseStore} from "@/stores/base.ts"
 import SettingModal from "@/components/Toolbar/SettingModal.vue"
 import FeedbackModal from "@/components/Toolbar/FeedbackModal.vue"
+import DictModal from "@/components/Toolbar/DictModal.vue"
+
 import IconWrapper from "@/components/IconWrapper.vue";
 import IconCog6Tooth from '~icons/heroicons/cog-6-tooth-solid'
 
@@ -34,11 +36,12 @@ const {appearance, toggle} = useThemeColor()
 const store = useBaseStore()
 const showFeedbackModal = $ref(false)
 const showSettingModal = $ref(false)
+const showDictModal = $ref(false)
 </script>
 
 <template>
   <header :class="!store.setting.showToolbar && 'hide'">
-    <div class="info" @click="store.dictModalIsOpen = true">
+    <div class="info" @click="showDictModal = true">
       {{ store.currentDict.name }}   第{{ store.currentDict.chapterIndex + 1}}章
     </div>
     <div class="options">
@@ -104,6 +107,7 @@ const showSettingModal = $ref(false)
           theme="outline" size="24" fill="#999"/>
     </Tooltip>
   </header>
+  <DictModal v-model="showDictModal"/>
   <SettingModal v-model="showSettingModal"/>
   <FeedbackModal v-model="showFeedbackModal"/>
 </template>

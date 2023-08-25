@@ -10,7 +10,7 @@ import 机械2 from '../assets/sound/key-sounds/jixie/机械2.mp3'
 import 机械3 from '../assets/sound/key-sounds/jixie/机械3.mp3'
 import beep from '../assets/sound/beep.wav'
 import correct from '../assets/sound/correct.wav'
-import {$ref} from "vue/macros"
+import {$computed, $ref} from "vue/macros"
 import {useSound} from "@/hooks/useSound.ts"
 import {useBaseStore} from "@/stores/base.ts"
 import {DictType, SaveKey, Word} from "../types";
@@ -159,8 +159,11 @@ async function onKeyDown(e: KeyboardEvent) {
   }
 }
 
+const progress = $computed(() => {
+  if (!store.chapter.length) return 0
+  return ((store.currentDict.wordIndex / store.chapter.length) * 100)
+})
 
-const show = $ref(false)
 const {appearance, toggle} = useThemeColor()
 
 </script>
@@ -193,8 +196,13 @@ const {appearance, toggle} = useThemeColor()
         下一个
       </BaseButton>
     </div>
+    <div class="progress">
+      <el-progress :percentage="progress"
+                   :stroke-width="8"
+                   color="rgb(224,231,255)"
+                   :show-text="false"/>
+    </div>
   </div>
-
 </template>
 
 <style scoped lang="scss">
@@ -216,7 +224,6 @@ const {appearance, toggle} = useThemeColor()
     display: flex;
     gap: 15rem;
     font-size: 18rem;
-
   }
 
   .phonetic, .translate {
@@ -246,6 +253,11 @@ const {appearance, toggle} = useThemeColor()
         animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
       }
     }
+  }
+
+  .progress {
+    margin-top: 20rem;
+    width: 400rem;
   }
 }
 

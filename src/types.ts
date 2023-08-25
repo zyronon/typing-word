@@ -138,7 +138,6 @@ export interface State {
     oldDicts: Dict[],
     currentDictType: DictType
     sideIsOpen: boolean,
-    dictModalIsOpen: boolean,
     dictModalIsOpen2: boolean,
     setting: {
         showToolbar: boolean,

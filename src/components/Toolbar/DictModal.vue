@@ -12,26 +12,35 @@ import Modal from "@/components/Modal/Modal.vue";
 import BaseButton from "@/components/BaseButton.vue";
 
 const store = useBaseStore()
-let currentSelectDict: Dict = $ref({
-  name: '新概念英语-2',
-  chapterList: [],
-  chapterIndex: -1,
-} as any)
+
+interface IProps {
+  modelValue: boolean,
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  modelValue: true,
+})
+
+const emit = defineEmits([
+  'update:modelValue',
+])
+
+let currentSelectDict: Dict = $ref(store.currentDict)
 let step = $ref(0)
 
 const currentSelectChapter: Word[] = $computed(() => {
   return currentSelectDict.chapterList?.[currentSelectDict.chapterIndex] ?? []
 })
 
-watch(store.currentDict, (n: Dict) => {
-  currentSelectDict = n
+watch(() => props.modelValue, (n: Dict) => {
+  currentSelectDict = store.currentDict
 })
 
 async function selectDict(item: Dict) {
   currentSelectDict = {
+    ...item,
     type: DictType.inner,
     sort: Sort.normal,
-    ...item,
     wordList: [],
     chapterList: [],
     chapterIndex: 0,
@@ -48,6 +57,12 @@ async function selectDict(item: Dict) {
 
 function changeDict() {
   store.changeDict(currentSelectDict)
+  this.close()
+}
+
+function close() {
+  console.log('close')
+  emit('update:modelValue', false)
 }
 
 function resetChapterList() {
@@ -56,10 +71,11 @@ function resetChapterList() {
 </script>
 
 <template>
-  <Modal v-model="store.dictModalIsOpen">
+  <Modal :modelValue="props.modelValue"
+         @close="close">
     <div class="slide">
-      <div class="slide-list" :class="`step${step}`">
-        <div class="dict-page">
+      <div  class="slide-list" :class="`step${step}`">
+        <div  class="dict-page">
           <header>
             <div class="tabs">
               <div class="tab">
@@ -72,8 +88,7 @@ function resetChapterList() {
                 <span>德语</span>
               </div>
             </div>
-            <close @click="store.dictModalIsOpen = false" theme="outline" size="20" fill="#929596"
-                   :strokeWidth="2"/>
+            <Close @click="close" theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
           </header>
           <div class="page-content">
             <div class="dict-list-wrapper">
@@ -119,7 +134,7 @@ function resetChapterList() {
             </div>
           </div>
         </div>
-        <div class="dict-detail-page">
+        <div  class="dict-detail-page">
           <header>
             <div class="left">
               <arrow-left
@@ -130,7 +145,7 @@ function resetChapterList() {
                 词典详情
               </div>
             </div>
-            <close @click="store.dictModalIsOpen = false" theme="outline" size="20" fill="#929596"
+            <Close @click="close" theme="outline" size="20" fill="#929596"
                    :strokeWidth="2"/>
           </header>
           <div class="page-content">
