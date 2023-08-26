@@ -6,6 +6,7 @@ import Ring from "@/components/Ring.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Fireworks from "@/components/Fireworks.vue";
 import BaseButton from "@/components/BaseButton.vue";
+import {DictType} from "@/types.js";
 
 const store = useBaseStore()
 
@@ -19,11 +20,20 @@ function repeat() {
   store.currentDict.wordIndex = 0
   store.currentWrongDict.wordList = []
   store.statModalIsOpen = false
+  store.lastStatistics.correctNumber = -1
+  store.lastStatistics.correctRate = -1
 }
 
 function next() {
   store.currentDict.chapterIndex++
   repeat()
+}
+
+function repeatWrong() {
+  store.lastDictType = store.currentDictType
+  store.currentDictType = DictType.currentWrongDict
+  store.currentWrongDict.chapterList = [store.currentWrongDict.wordList]
+  store.statModalIsOpen = false
 }
 </script>
 
@@ -31,7 +41,7 @@ function next() {
   <Modal v-model="store.statModalIsOpen" @close="next">
     <div class="statistics">
       <header>
-        <div class="title">新概念英语-2 第3章</div>
+        <div class="title">{{ store.currentDict.name }} 第{{ store.currentDict.chapterIndex + 1 }}章</div>
       </header>
       <div class="content">
         <div class="rings">
@@ -54,10 +64,11 @@ function next() {
           <div class="wrong-words-wrapper">
             <div class="wrong-words">
               <div class="word" v-for="i in store.currentWrongDict.wordList">{{ i.name }}</div>
+              <!--                          <div class="word" v-for="i in 100">{{ i }}</div>-->
             </div>
           </div>
-
-          <div class="notice">
+          <div class="notice" v-if="!store.currentWrongDict.wordList.length">
+            <!--          <div class="notice">-->
             <like theme="filled" size="20" fill="#ffffff" :strokeWidth="2"/>
             表现不错，全对了！
           </div>
@@ -76,13 +87,16 @@ function next() {
       </div>
       <div class="footer">
         <BaseButton keyboard="Ctrl + Enter" @click="write">
-          默写本章节
+          默写本章
         </BaseButton>
-        <BaseButton keyboard="Enter" @click="repeat">
-          重复本章节
+        <BaseButton keyboard="Alt + Enter" @click="repeat">
+          重复本章
+        </BaseButton>
+        <BaseButton keyboard="Enter" @click="repeatWrong">
+          重复错词
         </BaseButton>
         <BaseButton keyboard="Tab" @click="next">
-          下一章节
+          下一章
         </BaseButton>
       </div>
     </div>
@@ -93,7 +107,7 @@ function next() {
 @import "@/assets/css/style";
 
 .statistics {
-  width: 50vw;
+  width: 800rem;
   padding: $space;
   background: $dark-second-bg;
   border-radius: $card-radius;
@@ -116,23 +130,23 @@ function next() {
     margin-bottom: 15rem;
 
     .result {
-      flex: 1;
       box-sizing: border-box;
       overflow: hidden;
+      height: 310rem;
+      display: flex;
+      flex-direction: column;
+      border-radius: $card-radius;
+      background: $item-hover;
+      flex: 1;
 
       .wrong-words-wrapper {
-        border-radius: $card-radius $card-radius 0 0;
-        background: $item-hover;
-        padding-top: $space;
-
+        flex: 1;
+        overflow: auto;
+        padding: $space;
       }
 
       .wrong-words {
-        padding: $space;
-        padding-top: 0;
-        height: 30vh;
         box-sizing: border-box;
-        overflow: auto;
         display: flex;
         margin-right: 5rem;
         flex-wrap: wrap;
@@ -148,7 +162,6 @@ function next() {
       }
 
       .notice {
-        border-radius: 0 0 $card-radius $card-radius;
         background: $main;
         height: 40rem;
         display: flex;

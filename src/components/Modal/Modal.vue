@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {Close} from "@icon-park/vue-next"
 import {onMounted} from "vue";
+import Tooltip from "@/components/Tooltip.vue";
 
 interface IProps {
   modelValue: boolean,
@@ -37,10 +38,12 @@ onMounted(() => {
       <div class="modal-root" v-if="props.modelValue">
         <div class="modal-mask" @click="close"></div>
         <div class="modal">
-          <Close @click="close"
-                 class="close"
-                 theme="outline" size="20" fill="#929596"
-                 :strokeWidth="2"/>
+          <Tooltip title="关闭">
+            <Close @click="close"
+                   class="close"
+                   theme="outline" size="20" fill="#929596"
+                   :strokeWidth="2"/>
+          </Tooltip>
           <div class="modal-header" v-if="props.title">
             <div class="title">{{ props.title }}</div>
             <div class="sub-title" v-if="props.subTitle">{{ props.subTitle }}</div>
