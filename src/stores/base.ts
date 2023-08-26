@@ -41,11 +41,11 @@ export const useBaseStore = defineStore('base', {
         dictStatistics: [],
         chapterWordNumber: 15
       },
-      wrongDict: {
-        type: DictType.wrongDict,
+      allWrongDict: {
+        type: DictType.allWrongDict,
         sort: Sort.normal,
-        name: '已忽略',
-        description: '已忽略',
+        name: '错词本',
+        description: '错词本',
         category: '',
         tags: [],
         url: '',
@@ -57,6 +57,30 @@ export const useBaseStore = defineStore('base', {
         chapterIndex: 0,
         wordIndex: 0,
         dictStatistics: [],
+        chapterWordNumber: 15
+      },
+      currentWrongDict: {
+        type: DictType.currentWrongDict,
+        sort: Sort.normal,
+        name: '当前错词本',
+        description: '错词本',
+        category: '',
+        tags: [],
+        url: '',
+        length: -1,
+        language: 'en',
+        languageCategory: 'en',
+        wordList: [],
+        chapterList: [],
+        chapterIndex: 0,
+        wordIndex: 0,
+        dictStatistics: [],
+        statistics: {
+          startDate: Date.now(),//开始日期
+          endDate: -1,
+          correctRate: -1,
+          correctNumber: -1
+        },
         chapterWordNumber: 15
       },
       dict: {
@@ -86,8 +110,10 @@ export const useBaseStore = defineStore('base', {
       },
       oldDicts: [],
       currentDictType: DictType.inner,
+      lastDictType: DictType.inner,
       sideIsOpen: false,
-      dictModalIsOpen2: false,
+      isDictation: true,
+      statModalIsOpen: false,
       setting: {
         showToolbar: true,
         show: false,
@@ -108,23 +134,29 @@ export const useBaseStore = defineStore('base', {
           return state.newWordDict
         case DictType.skipWordDict:
           return state.skipWordDict
-        case DictType.wrongDict:
-          return state.wrongDict
+        case DictType.allWrongDict:
+          return state.allWrongDict
         case DictType.inner:
         case DictType.custom:
           return state.dict
       }
     },
-    chapter(): Word[] {
+    wordIndex(state: State): number {
+      return this.currentDict.wordIndex
+    },
+    chapter(state: State): Word[] {
       return this.currentDict.chapterList[this.currentDict.chapterIndex] ?? []
     },
-    word(): Word {
+    word(state: State): Word {
       return this.chapter[this.currentDict.wordIndex] ?? {
         trans: [],
         name: ''
       }
     },
-    lastStatistics(): Statistics {
+    lastStatistics(state: State): Statistics {
+      if (state.currentDictType === DictType.currentWrongDict) {
+        return state.currentWrongDict.statistics
+      }
       if (this.currentDict.dictStatistics.length) {
         let stat = this.currentDict.dictStatistics[this.currentDict.dictStatistics.length - 1]
         if (stat.statistics.length) {
@@ -177,7 +209,7 @@ export const useBaseStore = defineStore('base', {
       console.log('changeDict', dict)
       if ([DictType.newWordDict,
         DictType.skipWordDict,
-        DictType.wrongDict].includes(dict.type)) {
+        DictType.allWrongDict].includes(dict.type)) {
         this.currentDictType = dict.type
         this[dict.type].chapterList = [this[dict.type].wordList]
         this[dict.type].chapterIndex = 0

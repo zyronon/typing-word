@@ -1,22 +1,22 @@
 export type Config = {
-    newWords: Word[],
-    skipWords: Word[],
-    skipWordNames: string[],
-    dict: string,
-    currentDict: {
-        wordList: Word[],
-        chapterList: Word[][],
-        name: string,
-        desc: string
-    }
-    chapterIndex: number,
-    wordIndex: number,
+  newWords: Word[],
+  skipWords: Word[],
+  skipWordNames: string[],
+  dict: string,
+  currentDict: {
+    wordList: Word[],
+    chapterList: Word[][],
+    name: string,
+    desc: string
+  }
+  chapterIndex: number,
+  wordIndex: number,
 }
 export type Word = {
-    "name": string,
-    "usphone": string,
-    "ukphone": string,
-    "trans": string[]
+  "name": string,
+  "usphone": string,
+  "ukphone": string,
+  "trans": string[]
 }
 
 export const SaveKey = 'bb-word-config'
@@ -30,121 +30,126 @@ export type LanguageCategoryType = 'en' | 'ja' | 'de' | 'code'
 
 
 export type DictionaryResource = {
-    id: string
-    name: string
-    description: string
-    category: string
-    tags: string[]
-    url: string
-    length: number
-    language: LanguageType
-    languageCategory: LanguageCategoryType
-    //override default pronunciation when not undefined
-    defaultPronIndex?: number
+  id: string
+  name: string
+  description: string
+  category: string
+  tags: string[]
+  url: string
+  length: number
+  language: LanguageType
+  languageCategory: LanguageCategoryType
+  //override default pronunciation when not undefined
+  defaultPronIndex?: number
 }
 
 export type Dictionary = {
-    id: string
-    name: string
-    description: string
-    category: string
-    tags: string[]
-    url: string
-    length: number
-    language: LanguageType
-    languageCategory: LanguageCategoryType
-    // calculated in the store
-    chapterCount: number
-    //override default pronunciation when not undefined
-    defaultPronIndex?: number
+  id: string
+  name: string
+  description: string
+  category: string
+  tags: string[]
+  url: string
+  length: number
+  language: LanguageType
+  languageCategory: LanguageCategoryType
+  // calculated in the store
+  chapterCount: number
+  //override default pronunciation when not undefined
+  defaultPronIndex?: number
 }
 
 export type PronunciationConfig = {
-    name: string
-    pron: PronunciationType
+  name: string
+  pron: PronunciationType
 }
 
 export type LanguagePronunciationMapConfig = {
-    defaultPronIndex: number
-    pronunciation: PronunciationConfig[]
+  defaultPronIndex: number
+  pronunciation: PronunciationConfig[]
 }
 
 export type LanguagePronunciationMap = {
-    [key in LanguageType]: LanguagePronunciationMapConfig
+  [key in LanguageType]: LanguagePronunciationMapConfig
 }
 
 export type SoundResource = {
-    key: string
-    name: string
-    filename: string
+  key: string
+  name: string
+  filename: string
 }
 
 
 export interface DictJson {
-    name: string,
-    description: string,
-    category: string,
-    tags: string[],
-    url: string,
-    length: number,
-    language: string,
-    languageCategory: string,
+  name: string,
+  description: string,
+  category: string,
+  tags: string[],
+  url: string,
+  length: number,
+  language: string,
+  languageCategory: string,
 }
 
 export enum DictType {
-    newWordDict = 'newWordDict',
-    skipWordDict = 'skipWordDict',
-    wrongDict = 'wrongDict',
-    inner = 'inner',
-    custom = 'custom',
+  newWordDict = 'newWordDict',
+  skipWordDict = 'skipWordDict',
+  allWrongDict = 'allWrongDict',
+  currentWrongDict = 'currentWrongDict',
+  inner = 'inner',
+  custom = 'custom',
 }
 
 export interface Dict extends DictJson {
-    sort: Sort,
-    type: DictType,
-    wordList: Word[],
-    chapterList: Word[][],
-    chapterIndex: number,
-    wordIndex: number,
-    chapterWordNumber: number,
-    dictStatistics: DictStatistics[]
+  sort: Sort,
+  type: DictType,
+  wordList: Word[],
+  chapterList: Word[][],
+  chapterIndex: number,
+  wordIndex: number,
+  chapterWordNumber: number,
+  dictStatistics: DictStatistics[],
+  statistics?: Statistics
 }
 
 export interface DictStatistics {
-    startDate: number,//开始日期
-    endDate: number//结束日期
-    chapterWordNumber: number//章节单词数量
-    statistics: Array<Statistics>
+  startDate: number,//开始日期
+  endDate: number//结束日期
+  chapterWordNumber: number//章节单词数量
+  statistics: Array<Statistics>
 }
 
 export interface Statistics {
-    startDate: number,//开始日期
-    endDate: number//结束日期
-    correctRate: number//正确率
-    correctNumber: number//正确数
+  startDate: number,//开始日期
+  endDate: number//结束日期
+  correctRate: number//正确率
+  correctNumber: number//正确数
 }
 
 export enum Sort {
-    normal = 0,
-    random = 1,
-    reverse = 2
+  normal = 0,
+  random = 1,
+  reverse = 2
 }
 
 export interface State {
-    newWordDict: Dict,
-    skipWordDict: Dict,
-    wrongDict: Dict,
-    dict: Dict,
-    oldDicts: Dict[],
-    currentDictType: DictType
-    sideIsOpen: boolean,
-    dictModalIsOpen2: boolean,
-    setting: {
-        showToolbar: boolean,
-        show: boolean,
-        value1: boolean,
-        value2: number,
-        value3: number,
-        value4: boolean,
-    }
+  newWordDict: Dict,
+  skipWordDict: Dict,
+  allWrongDict: Dict,
+  currentWrongDict: Dict,
+  dict: Dict,
+  oldDicts: Dict[],
+  currentDictType: DictType,
+  lastDictType: DictType,
+  sideIsOpen: boolean,
+  statModalIsOpen: boolean,
+  isDictation: boolean,
+  setting: {
+    showToolbar: boolean,
+    show: boolean,
+    value1: boolean,
+    value2: number,
+    value3: number,
+    value4: boolean,
+  }
 }

@@ -92,18 +92,18 @@ function changeDict(dict: Dict, i: number) {
             <div class="page0">
               <header>
                 <a href="" target="_blank"></a>
-                <div class="dict-name">总词数：{{ store.wrongDict.wordList.length }}</div>
+                <div class="dict-name">总词数：{{ store.allWrongDict.wordList.length }}</div>
               </header>
               <WordList
                   class="word-list"
-                  @change="(e:number) => store.changeDict(store.wrongDict,-1,e)"
+                  @change="(e:number) => store.changeDict(store.allWrongDict,-1,e)"
                   :isActive="store.sideIsOpen && tabIndex === 2"
-                  :list="store.wrongDict.wordList"
-                  :activeIndex="store.wrongDict.wordIndex"/>
-              <footer v-if="store.currentDictType !== DictType.wrongDict && store.wrongDict.wordList.length">
+                  :list="store.allWrongDict.wordList"
+                  :activeIndex="store.allWrongDict.wordIndex"/>
+              <footer v-if="store.currentDictType !== DictType.allWrongDict && store.allWrongDict.wordList.length">
                 <PopConfirm
                     :title="`确认切换？`"
-                    @confirm="store.changeDict(store.wrongDict)"
+                    @confirm="store.changeDict(store.allWrongDict)"
                 >
                   <BaseButton>
                     切换

@@ -37,12 +37,16 @@ const store = useBaseStore()
 const showFeedbackModal = $ref(false)
 const showSettingModal = $ref(false)
 const showDictModal = $ref(false)
+
+function t() {
+  console.log('t')
+}
 </script>
 
 <template>
   <header :class="!store.setting.showToolbar && 'hide'">
     <div class="info" @click="showDictModal = true">
-      {{ store.currentDict.name }}   第{{ store.currentDict.chapterIndex + 1}}章
+      {{ store.currentDict.name }} 第{{ store.currentDict.chapterIndex + 1 }}章
     </div>
     <div class="options">
       <Tooltip title="切换主题">
@@ -65,8 +69,8 @@ const showDictModal = $ref(false)
       </Tooltip>
       <Tooltip title="开关默写模式">
         <IconWrapper>
-          <IconEye></IconEye>
-          <IconEyeSlash></IconEyeSlash>
+          <IconEyeSlash v-if="store.isDictation" @click="store.isDictation = false"></IconEyeSlash>
+          <IconEye v-else @click="store.isDictation = true"></IconEye>
         </IconWrapper>
       </Tooltip>
       <Tooltip title="开关释义显示">
@@ -91,7 +95,7 @@ const showDictModal = $ref(false)
           <IconCog6Tooth @click="showSettingModal = true"></IconCog6Tooth>
         </IconWrapper>
       </Tooltip>
-      <div class="my-button" @click="store.dictModalIsOpen2 = true">ok</div>
+      <div class="my-button" @click="store.statModalIsOpen = true">ok</div>
 
       <Tooltip title="单词本">
         <menu-fold class="menu" @click="store.sideIsOpen = !store.sideIsOpen"

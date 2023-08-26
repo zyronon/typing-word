@@ -8,24 +8,52 @@ import Fireworks from "@/components/Fireworks.vue";
 import BaseButton from "@/components/BaseButton.vue";
 
 const store = useBaseStore()
+
+function write() {
+  store.isDictation = true
+  repeat()
+}
+
+//TODO 需要判断是否已忽略
+function repeat() {
+  store.currentDict.wordIndex = 0
+  store.currentWrongDict.wordList = []
+  store.statModalIsOpen = false
+}
+
+function next() {
+  store.currentDict.chapterIndex++
+  repeat()
+}
 </script>
 
 <template>
-  <Modal v-model="store.dictModalIsOpen2">
+  <Modal v-model="store.statModalIsOpen" @close="next">
     <div class="statistics">
       <header>
         <div class="title">新概念英语-2 第3章</div>
       </header>
       <div class="content">
         <div class="rings">
-          <Ring/>
-          <Ring/>
-          <Ring style="margin-bottom: 0;"/>
+          <Ring
+              :value="store.lastStatistics.correctRate + '%'"
+              desc="正确率"
+              :percentage="store.lastStatistics.correctRate"/>
+          <Ring
+              :value="store.lastStatistics.correctNumber"
+              desc="正确数"
+              :percentage="0"
+          />
+          <Ring
+              :value="store.currentDict.wordIndex"
+              desc="输入数"
+              :percentage="0"
+              style="margin-bottom: 0;"/>
         </div>
         <div class="result">
           <div class="wrong-words-wrapper">
             <div class="wrong-words">
-              <div class="word" v-for="i in 500">Yes</div>
+              <div class="word" v-for="i in store.currentWrongDict.wordList">{{ i.name }}</div>
             </div>
           </div>
 
@@ -47,19 +75,19 @@ const store = useBaseStore()
         </div>
       </div>
       <div class="footer">
-        <BaseButton keyboard="Ctrl + Enter" >
+        <BaseButton keyboard="Ctrl + Enter" @click="write">
           默写本章节
         </BaseButton>
-        <BaseButton keyboard="Enter" >
+        <BaseButton keyboard="Enter" @click="repeat">
           重复本章节
         </BaseButton>
-        <BaseButton keyboard="Tab" >
+        <BaseButton keyboard="Tab" @click="next">
           下一章节
         </BaseButton>
       </div>
     </div>
   </Modal>
-<!--  <Fireworks v-if="store.dictModalIsOpen2"/>-->
+  <Fireworks v-if="store.statModalIsOpen"/>
 </template>
 <style scoped lang="scss">
 @import "@/assets/css/style";

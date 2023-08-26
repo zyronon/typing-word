@@ -33,7 +33,6 @@ import {
 let input = $ref('')
 let wrong = $ref('')
 let showFullWord = $ref(false)
-let isDictation = $ref(true)
 let activeIndex = $ref(-1)
 const store = useBaseStore()
 
@@ -73,10 +72,11 @@ watch(store.$state, (n) => {
 function next() {
   if (store.currentDict.wordIndex === store.chapter.length - 1) {
     if (store.currentDict.chapterIndex !== store.currentDict.chapterList.length - 1) {
-      store.currentDict.wordIndex = 0
-      store.currentDict.chapterIndex++
+      // store.currentDict.wordIndex = 0
+      store.currentDict.wordIndex++
+      // store.currentDict.chapterIndex++
       console.log('这一章节完了')
-      wrongWord = []
+      store.statModalIsOpen = true
     } else {
       console.log('这本书完了')
       return
@@ -98,15 +98,18 @@ function next() {
     next()
   }
   wrong = input = ''
-  store.lastStatistics.correctNumber = store.currentDict.wordIndex - wrongWord.length
-  store.lastStatistics.correctRate = Math.trunc(((store.currentDict.wordIndex - wrongWord.length) / (store.currentDict.wordIndex)) * 100)
+  if (store.currentDict.wordIndex) {
+    store.lastStatistics.correctNumber = store.currentDict.wordIndex - store.currentWrongDict.wordList.length
+    store.lastStatistics.correctRate = Math.trunc(((store.currentDict.wordIndex - store.currentWrongDict.wordList.length) / (store.currentDict.wordIndex)) * 100)
+  } else {
+    store.lastStatistics.correctRate = -1
+    store.lastStatistics.correctNumber = -1
+  }
 }
 
 function onKeyUp(e: KeyboardEvent) {
   showFullWord = false
 }
-
-let wrongWord = $ref([])
 
 async function onKeyDown(e: KeyboardEvent) {
   //TODO 还有横杠
@@ -117,13 +120,13 @@ async function onKeyDown(e: KeyboardEvent) {
       wrong = ''
       playKeySound()
     } else {
-      if (!store.wrongDict.wordList.find((v: Word) => v.name === store.word.name)) {
-        store.wrongDict.wordList.push(store.word)
+      if (!store.allWrongDict.wordList.find((v: Word) => v.name === store.word.name)) {
+        store.allWrongDict.wordList.push(store.word)
       }
-      if (!wrongWord.find((v: string) => v === store.word.name)) {
-        wrongWord.push(store.word.name)
+      if (!store.currentWrongDict.wordList.find((v: Word) => v.name === store.word.name)) {
+        store.currentWrongDict.wordList.push(store.word)
       }
-      store.lastStatistics.correctRate = Math.trunc(((store.currentDict.wordIndex + 1 - wrongWord.length) / (store.currentDict.wordIndex + 1)) * 100)
+      store.lastStatistics.correctRate = Math.trunc(((store.currentDict.wordIndex + 1 - store.currentWrongDict.wordList.length) / (store.currentDict.wordIndex + 1)) * 100)
       wrong = letter
       playKeySound()
       playBeep()
@@ -195,7 +198,7 @@ function format(val: number, suffix: string = '') {
       <div class="word" :class="wrong&&'is-wrong'">
         <span class="input" v-if="input">{{ input }}</span>
         <span class="wrong" v-if="wrong">{{ wrong }}</span>
-        <template v-if="isDictation">
+        <template v-if="store.isDictation">
           <span class="letter" v-if="!showFullWord"
                 @mouseenter="showFullWord = true">{{ restWord.split('').map(v => '_').join('') }}</span>
           <span class="letter" v-else @mouseleave="showFullWord = false">{{ restWord }}</span>
@@ -229,24 +232,19 @@ function format(val: number, suffix: string = '') {
                    :show-text="false"/>
       <div class="stat">
         <div class="row">
-          <div class="num">{{ store.lastStatistics.endDate }}</div>
-          <div class="line"></div>
-          <div class="name">时间</div>
-        </div>
-        <div class="row">
           <div class="num">{{ store.currentDict.wordIndex }}</div>
           <div class="line"></div>
           <div class="name">输入数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(store.lastStatistics.correctRate, '%') }}</div>
-          <div class="line"></div>
-          <div class="name">正确率</div>
-        </div>
-        <div class="row">
           <div class="num">{{ format(store.lastStatistics.correctNumber) }}</div>
           <div class="line"></div>
           <div class="name">正确数</div>
+        </div>
+        <div class="row">
+          <div class="num">{{ format(store.lastStatistics.correctRate, '%') }}</div>
+          <div class="line"></div>
+          <div class="name">正确率</div>
         </div>
       </div>
     </div>
@@ -295,7 +293,7 @@ function format(val: number, suffix: string = '') {
       letter-spacing: 5rem;
 
       .input {
-        color: rgba(74, 222, 128, 0.8);
+        color: rgb(22, 163, 74);
       }
 
       .wrong {
@@ -340,7 +338,7 @@ function format(val: number, suffix: string = '') {
         flex-direction: column;
         align-items: center;
         gap: 10rem;
-        width: 50rem;
+        width: 80rem;
 
         .line {
           height: 1px;
@@ -361,7 +359,7 @@ function format(val: number, suffix: string = '') {
 
   .progress {
     width: var(--toolbar-width);
-    padding:0 10rem;
+    padding: 0 10rem;
     box-sizing: border-box;
     position: fixed;
     bottom: 30rem;
