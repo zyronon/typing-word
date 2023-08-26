@@ -6,7 +6,7 @@ import Ring from "@/components/Ring.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Fireworks from "@/components/Fireworks.vue";
 import BaseButton from "@/components/BaseButton.vue";
-import {DictType} from "@/types.js";
+import {DictType} from "@/types.ts";
 
 const store = useBaseStore()
 

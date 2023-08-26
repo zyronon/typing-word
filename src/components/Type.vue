@@ -20,7 +20,7 @@ import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
 import DictModal from "@/components/Modal/DictModal.vue"
 import Backgorund from "@/components/Backgorund.vue"
 import Statistics from "@/components/Modal/Statistics.vue";
-import useThemeColor from "@/hooks/useThemeColor";
+import useTheme from "@/hooks/useTheme.ts";
 import Tooltip from "@/components/Tooltip.vue";
 import Toolbar from "@/components/Toolbar/Toolbar.vue"
 import {KeyboardOne} from "@icon-park/vue-next";
@@ -54,7 +54,6 @@ const restWord = $computed(() => {
   return store.word.name.slice(input.length + wrong.length)
 })
 onMounted(() => {
-  store.init()
   window.addEventListener('keydown', onKeyDown)
   window.addEventListener('keyup', onKeyUp)
 })
@@ -183,7 +182,7 @@ const progress = $computed(() => {
   return ((store.currentDict.wordIndex / store.chapter.length) * 100)
 })
 
-const {appearance, toggle} = useThemeColor()
+const { toggle} = useTheme()
 
 function format(val: number, suffix: string = '') {
   return val === -1 ? '-' : (val + suffix)

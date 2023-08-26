@@ -13,7 +13,7 @@ import {
   Bug,
   UploadOne
 } from "@icon-park/vue-next"
-import useThemeColor from "@/hooks/useThemeColor.ts"
+import useTheme from "@/hooks/useTheme.ts"
 import {useBaseStore} from "@/stores/base.ts"
 import SettingModal from "@/components/Toolbar/SettingModal.vue"
 import FeedbackModal from "@/components/Toolbar/FeedbackModal.vue"
@@ -32,7 +32,7 @@ import IconEyeSlash from '~icons/heroicons/eye-slash-solid'
 import IconRepeat from '~icons/tabler/repeat'
 import IconRepeatOff from '~icons/tabler/repeat-off'
 
-const {appearance, toggle} = useThemeColor()
+const { toggle} = useTheme()
 const store = useBaseStore()
 const showFeedbackModal = $ref(false)
 const showSettingModal = $ref(false)
@@ -51,7 +51,7 @@ function t() {
     <div class="options">
       <Tooltip title="切换主题">
         <IconWrapper>
-          <moon v-if="appearance === 'dark'"
+          <moon v-if="store.theme === 'dark'"
                 @click="toggle"/>
           <sun-one v-else @click="toggle"/>
         </IconWrapper>

@@ -144,6 +144,7 @@ export interface State {
   sideIsOpen: boolean,
   statModalIsOpen: boolean,
   isDictation: boolean,
+  theme: string,
   setting: {
     showToolbar: boolean,
     show: boolean,

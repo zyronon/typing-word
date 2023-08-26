@@ -33,7 +33,7 @@ $w: 20rem;
     color: white;
   }
 
-  ::v-deep svg {
+  :deep(svg) {
     width: $w;
     height: $w;
   }

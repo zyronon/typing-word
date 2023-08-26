@@ -121,7 +121,8 @@ export const useBaseStore = defineStore('base', {
         value2: 50,
         value3: 1,
         value4: false,
-      }
+      },
+      theme: 'auto'
     }
   },
   getters: {
@@ -203,7 +204,6 @@ export const useBaseStore = defineStore('base', {
         })
       }
       this.dict.wordIndex = 0
-      this.dictModalIsOpen2 = false
     },
     async changeDict(dict: Dict, chapterIndex: number = -1, wordIndex: number = -1) {
       console.log('changeDict', dict)

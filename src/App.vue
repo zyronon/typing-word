@@ -5,11 +5,32 @@ import Type from "@/components/Type.vue";
 import Side from "@/components/Side.vue";
 import Statistics from "@/components/Modal/Statistics.vue";
 import Backgorund from "@/components/Backgorund.vue";
+import {onMounted} from "vue";
+import {useBaseStore} from "@/stores/base.ts";
 
+const store = useBaseStore()
+// 查询当前系统主题颜色
+const match: MediaQueryList = window.matchMedia("(prefers-color-scheme: dark)")
+// 监听系统主题变化
+match.addEventListener('change', followSystem)
+
+function followSystem() {
+  if (store.theme === 'auto') {
+    const theme = match.matches ? 'dark' : 'light'
+    document.documentElement.setAttribute('data-theme', theme)
+    // document.documentElement.setAttribute('data-theme', 'dark')
+    localStorage.setItem('appearance', theme)
+  }
+}
+
+onMounted(() => {
+  store.init()
+  followSystem()
+})
 </script>
 
 <template>
-<!--    <Backgorund/>-->
+  <Backgorund/>
   <div class="main-page">
     <div class="center">
       <Toolbar/>

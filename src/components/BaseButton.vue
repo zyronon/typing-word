@@ -47,7 +47,7 @@ defineEmits(['click'])
     font-size: 16rem;
     color: white;
 
-    ::v-deep a {
+    :deep(a) {
       color: white;
     }
   }
