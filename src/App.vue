@@ -55,7 +55,7 @@ onMounted(() => {
   font-size: 14rem;
   display: flex;
   justify-content: center;
-  background-color: var(--color-main-bg);
+  //background-color: var(--color-main-bg);
 
   .center {
     width: 70vw;

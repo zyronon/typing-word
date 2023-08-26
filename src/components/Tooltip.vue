@@ -75,7 +75,7 @@ export default {
   border-radius: 4rem;
   padding: 10rem;
   color: var(--color-font-1);
-  background: var(--color-header-bg);
-  box-shadow: 1px 1px 6px #bbbbbb;
+  background: var(--color-tooltip-bg);
+  //box-shadow: 1px 1px 6px #bbbbbb;
 }
 </style>

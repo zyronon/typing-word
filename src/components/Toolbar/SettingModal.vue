@@ -247,7 +247,7 @@ const emit = defineEmits([
   }
 
   .content {
-    background: white;
+    background: var(--color-header-bg);
     flex: 1;
     height: 100%;
     padding: 0 $space;

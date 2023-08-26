@@ -311,7 +311,7 @@ function format(val: number, suffix: string = '') {
     width: var(--toolbar-width);
     box-sizing: border-box;
     border-radius: 10rem;
-    background: white;
+    background: var(--color-header-bg);
     padding: 2rem 10rem 10rem 10rem;
     margin-top: 20rem;
     transition: all .3s;

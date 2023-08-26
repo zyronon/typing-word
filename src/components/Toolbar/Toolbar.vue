@@ -135,7 +135,7 @@ header {
 
   .info {
     font-size: 18rem;
-    color: black;
+    color: var(--color-font-1);
     display: flex;
     justify-content: center;
     align-items: center;
