@@ -78,6 +78,7 @@ function next() {
       store.statModalIsOpen = true
     } else {
       console.log('这本书完了')
+      store.statModalIsOpen = true
       return
     }
   } else {

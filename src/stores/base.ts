@@ -126,6 +126,9 @@ export const useBaseStore = defineStore('base', {
     }
   },
   getters: {
+    isWrongMode(state: State) {
+      return state.currentDictType === DictType.currentWrongDict
+    },
     skipWordNames: (state: State) => {
       return state.skipWordDict.wordList.map(v => v.name)
     },
@@ -137,6 +140,8 @@ export const useBaseStore = defineStore('base', {
           return state.skipWordDict
         case DictType.allWrongDict:
           return state.allWrongDict
+        case DictType.currentWrongDict:
+          return state.currentWrongDict
         case DictType.inner:
         case DictType.custom:
           return state.dict
@@ -213,6 +218,8 @@ export const useBaseStore = defineStore('base', {
         this.currentDictType = dict.type
         this[dict.type].chapterList = [this[dict.type].wordList]
         this[dict.type].chapterIndex = 0
+        this[dict.type].wordIndex = wordIndex === -1 ? 0 : wordIndex
+      } else if (dict.type === DictType.currentWrongDict) {
         this[dict.type].wordIndex = wordIndex === -1 ? 0 : wordIndex
       } else {
         this.dict = cloneDeep(dict)

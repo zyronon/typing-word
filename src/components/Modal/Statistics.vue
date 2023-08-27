@@ -30,9 +30,14 @@ function next() {
 }
 
 function repeatWrong() {
-  store.lastDictType = store.currentDictType
+  if (store.currentDictType !==  DictType.currentWrongDict){
+    store.lastDictType = store.currentDictType
+  }
   store.currentDictType = DictType.currentWrongDict
   store.currentWrongDict.chapterList = [store.currentWrongDict.wordList]
+  store.currentWrongDict.chapterIndex = 0
+  store.currentWrongDict.wordIndex = 0
+  store.currentWrongDict.wordList = []
   store.statModalIsOpen = false
 }
 </script>
