@@ -79,9 +79,7 @@ export type SoundResource = {
   filename: string
 }
 
-
 export interface DictJson {
-  name: string,
   description: string,
   category: string,
   tags: string[],
@@ -100,32 +98,26 @@ export enum DictType {
   custom = 'custom',
 }
 
-export interface Dict extends DictJson {
+export interface Dict {
+  name: string,
   sort: Sort,
   type: DictType,
-  wordList: Word[],
+  originWords: Word[],//原始单词
   chapterList: Word[][],
   chapterIndex: number,
+  words: Word[],
   wordIndex: number,
-  chapterWordNumber: number,
-  dictStatistics: DictStatistics[],
-  statistics?: Statistics
-}
-
-
-export interface DictStatistics {
-  startDate: number,//开始日期
-  endDate: number//结束日期
-  chapterWordNumber: number//章节单词数量
-  statistics: Array<Statistics>
+  chapterWordNumber: number,//章节单词数量
+  statistics: Statistics[]
 }
 
 export interface Statistics {
   startDate: number,//开始日期
   endDate: number//结束日期
-  chapterWordNumber: number//章节单词数量
+  spend: number,//花费时间
+  wordNumber: number//单词数量
   correctRate: number//正确率
-  wrongNumber: number//错误数
+  wrongWordNumber: number//错误数
 }
 
 export enum Sort {
@@ -137,15 +129,14 @@ export enum Sort {
 export interface State {
   newWordDict: Dict,
   skipWordDict: Dict,
-  allWrongDict: Dict,
-  currentWrongDict: Dict,
+  wrongWordDict: Dict,
   dict: Dict,
   oldDicts: Dict[],
   current: {
-    dictType:DictType,
+    dictType: DictType,
     words: Word[],
     wrongWords: Word[],
-    repeatNumber:number,
+    repeatNumber: number,
     statistics: Statistics
   },
   sideIsOpen: boolean,
