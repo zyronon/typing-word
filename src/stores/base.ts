@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia'
 import {Config, Dict, DictType, SaveKey, Sort, State, Statistics, Word} from "../types.ts"
 import {chunk, cloneDeep} from "lodash";
+import {emitter, EventKey} from "@/utils/eventBus.ts"
 
 export const useBaseStore = defineStore('base', {
   state: (): State => {
@@ -26,8 +27,8 @@ export const useBaseStore = defineStore('base', {
       skipWordDict: {
         type: DictType.skipWordDict,
         sort: Sort.normal,
-        name: '已忽略',
-        description: '已忽略',
+        name: '简单词',
+        description: '简单词',
         category: '',
         tags: [],
         url: '',
@@ -62,8 +63,8 @@ export const useBaseStore = defineStore('base', {
       currentWrongDict: {
         type: DictType.currentWrongDict,
         sort: Sort.normal,
-        name: '当前错词本',
-        description: '错词本',
+        name: '当前章节错词',
+        description: '当前章节错词',
         category: '',
         tags: [],
         url: '',
@@ -79,7 +80,7 @@ export const useBaseStore = defineStore('base', {
           startDate: Date.now(),//开始日期
           endDate: -1,
           correctRate: -1,
-          correctNumber: -1
+          wrongNumber: -1
         },
         chapterWordNumber: 15
       },
@@ -113,7 +114,6 @@ export const useBaseStore = defineStore('base', {
       lastDictType: DictType.inner,
       sideIsOpen: false,
       isDictation: true,
-      statModalIsOpen: false,
       setting: {
         showToolbar: true,
         show: false,
@@ -170,6 +170,12 @@ export const useBaseStore = defineStore('base', {
         }
       }
       return {} as any
+    },
+    chapterName(state: State) {
+      if ([DictType.custom, DictType.inner].includes(state.currentDictType)) {
+        return `第${state.dict.chapterIndex + 1}章`
+      }
+      return ''
     }
   },
   actions: {
@@ -205,13 +211,14 @@ export const useBaseStore = defineStore('base', {
           startDate: Date.now(),//开始日期
           endDate: -1,
           correctRate: -1,
-          correctNumber: -1
+          wrongNumber: -1
         })
       }
       this.dict.wordIndex = 0
     },
     async changeDict(dict: Dict, chapterIndex: number = -1, wordIndex: number = -1) {
       console.log('changeDict', dict)
+      emitter.emit(EventKey.resetWord)
       if ([DictType.newWordDict,
         DictType.skipWordDict,
         DictType.allWrongDict].includes(dict.type)) {

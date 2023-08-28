@@ -11,6 +11,7 @@ import {Swiper as SwiperClass} from "swiper/types"
 import {Dict, DictType} from "@/types.ts"
 import PopConfirm from "@/components/PopConfirm.vue"
 import BaseButton from "@/components/BaseButton.vue";
+import {emitter, EventKey} from "@/utils/eventBus.ts"
 
 const store = useBaseStore()
 const swiperIns0: SwiperClass = $ref(null as any)
@@ -22,17 +23,25 @@ function slideTo(index: number) {
 }
 
 onMounted(() => {
-  setTimeout(() => {
-    slideTo(1)
-  }, 300)
+  emitter.on(EventKey.openSide, () => {
+    store.sideIsOpen = !store.sideIsOpen
+    if (store.sideIsOpen) {
+      switch (store.currentDictType) {
+        case DictType.newWordDict:
+          return tabIndex = 2;
+        case DictType.skipWordDict:
+          return tabIndex = 4;
+        case DictType.allWrongDict:
+          return tabIndex = 3;
+        case DictType.currentWrongDict:
+          return tabIndex = 0;
+        case DictType.inner:
+        case DictType.custom:
+          return tabIndex = 1;
+      }
+    }
+  })
 })
-
-function changeDict(dict: Dict, i: number) {
-  if (store.currentDictType !== dict.type) {
-    store.currentDictType = dict.type
-  }
-  store.currentDict.wordIndex = i
-}
 
 </script>
 <template>
@@ -40,15 +49,17 @@ function changeDict(dict: Dict, i: number) {
     <div class="side" v-if="store.sideIsOpen">
       <header>
         <div class="tabs">
-          <div class="tab" v-if="store.isWrongMode" :class="tabIndex===0&&'active'" @click="slideTo(0)">错词模式</div>
+          <div class="tab" v-if="store.isWrongMode" :class="tabIndex===0&&'active'" @click="slideTo(0)">
+            {{ store.currentWrongDict.name }}
+          </div>
           <div class="tab" :class="tabIndex===1&&'active'" @click="slideTo(1)">单词表</div>
-          <div class="tab" :class="tabIndex===2&&'active'" @click="slideTo(2)">生词本</div>
-          <div class="tab" :class="tabIndex===3&&'active'" @click="slideTo(3)">纠错本</div>
-          <div class="tab" :class="tabIndex===4&&'active'" @click="slideTo(4)">已忽略</div>
+          <div class="tab" :class="tabIndex===2&&'active'" @click="slideTo(2)">{{ store.newWordDict.name }}</div>
+          <div class="tab" :class="tabIndex===3&&'active'" @click="slideTo(3)">{{ store.allWrongDict.name }}</div>
+          <div class="tab" :class="tabIndex===4&&'active'" @click="slideTo(4)">{{ store.skipWordDict.name }}</div>
         </div>
       </header>
       <div class="side-content">
-        <swiper @swiper="e=>swiperIns0 = e" class="mySwiper" :allow-touch-move="false">
+        <swiper :initial-slide="tabIndex" @swiper="e=>swiperIns0 = e" class="mySwiper" :allow-touch-move="false">
           <swiper-slide>
             <div class="page0">
               <header>

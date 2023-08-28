@@ -28,7 +28,9 @@ import BaseButton from "@/components/BaseButton.vue";
 import Type from "@/components/Type.vue";
 import {
   Down,
+  Delete,
 } from "@icon-park/vue-next"
+import {emitter, EventKey} from "@/utils/eventBus.ts"
 
 let input = $ref('')
 let wrong = $ref('')
@@ -50,12 +52,16 @@ const keyMap = {
   Collect: 'Enter',
 }
 
-const restWord = $computed(() => {
+const resetWord = $computed(() => {
   return store.word.name.slice(input.length + wrong.length)
 })
 onMounted(() => {
   window.addEventListener('keydown', onKeyDown)
   window.addEventListener('keyup', onKeyUp)
+
+  emitter.on(EventKey.resetWord, () => {
+    input = ''
+  })
 })
 
 onUnmounted(() => {
@@ -68,18 +74,44 @@ watch(store.$state, (n) => {
   localStorage.setItem(SaveKey, JSON.stringify(n))
 })
 
+
+function repeatWrong() {
+  if (store.currentDictType !== DictType.currentWrongDict) {
+    store.lastDictType = store.currentDictType
+  }
+  store.currentDictType = DictType.currentWrongDict
+  store.currentWrongDict.chapterList = [store.currentWrongDict.wordList]
+  store.currentWrongDict.chapterIndex = 0
+  store.currentWrongDict.wordIndex = 0
+  store.currentWrongDict.wordList = []
+  store.currentWrongDict.statistics = {
+    startDate: Date.now(),//开始日期
+    endDate: -1,
+    correctRate: -1,
+    wrongNumber: -1
+  }
+}
+
 function next() {
   if (store.currentDict.wordIndex === store.chapter.length - 1) {
     if (store.currentDict.chapterIndex !== store.currentDict.chapterList.length - 1) {
-      // store.currentDict.wordIndex = 0
       store.currentDict.wordIndex++
-      // store.currentDict.chapterIndex++
       console.log('这一章节完了')
-      store.statModalIsOpen = true
+      if (store.currentWrongDict.wordList.length) {
+        repeatWrong()
+      }
+      // emitter.emit(EventKey.openStatModal)
     } else {
       console.log('这本书完了')
-      store.statModalIsOpen = true
-      return
+      if (store.currentDictType === DictType.currentWrongDict) {
+        if ( store.currentWrongDict.wordList.length){
+          repeatWrong()
+        }else {
+          emitter.emit(EventKey.openStatModal)
+        }
+      } else {
+        emitter.emit(EventKey.openStatModal)
+      }
     }
   } else {
     store.currentDict.wordIndex++
@@ -93,18 +125,18 @@ function next() {
     // window.speechSynthesis.speak(msg);
 
     console.log('这个词完了')
+    if (store.currentDict.wordIndex) {
+      store.lastStatistics.wrongNumber = store.currentDict.wordIndex - store.currentWrongDict.wordList.length
+      store.lastStatistics.correctRate = Math.trunc(((store.currentDict.wordIndex - store.currentWrongDict.wordList.length) / (store.currentDict.wordIndex)) * 100)
+    } else {
+      store.lastStatistics.correctRate = -1
+      store.lastStatistics.wrongNumber = -1
+    }
   }
   if ([DictType.custom, DictType.inner].includes(store.currentDictType) && store.skipWordNames.includes(store.word.name)) {
     next()
   }
   wrong = input = ''
-  if (store.currentDict.wordIndex) {
-    store.lastStatistics.correctNumber = store.currentDict.wordIndex - store.currentWrongDict.wordList.length
-    store.lastStatistics.correctRate = Math.trunc(((store.currentDict.wordIndex - store.currentWrongDict.wordList.length) / (store.currentDict.wordIndex)) * 100)
-  } else {
-    store.lastStatistics.correctRate = -1
-    store.lastStatistics.correctNumber = -1
-  }
 }
 
 function onKeyUp(e: KeyboardEvent) {
@@ -139,7 +171,6 @@ async function onKeyDown(e: KeyboardEvent) {
       playCorrect()
       setTimeout(next, 300)
     }
-
   } else {
     // console.log('e', e)
     switch (e.key) {
@@ -183,7 +214,7 @@ const progress = $computed(() => {
   return ((store.currentDict.wordIndex / store.chapter.length) * 100)
 })
 
-const { toggle} = useTheme()
+const {toggle} = useTheme()
 
 function format(val: number, suffix: string = '') {
   return val === -1 ? '-' : (val + suffix)
@@ -200,10 +231,10 @@ function format(val: number, suffix: string = '') {
         <span class="wrong" v-if="wrong">{{ wrong }}</span>
         <template v-if="store.isDictation">
           <span class="letter" v-if="!showFullWord"
-                @mouseenter="showFullWord = true">{{ restWord.split('').map(v => '_').join('') }}</span>
-          <span class="letter" v-else @mouseleave="showFullWord = false">{{ restWord }}</span>
+                @mouseenter="showFullWord = true">{{ resetWord.split('').map(v => '_').join('') }}</span>
+          <span class="letter" v-else @mouseleave="showFullWord = false">{{ resetWord }}</span>
         </template>
-        <span class="letter" v-else>{{ restWord }}</span>
+        <span class="letter" v-else>{{ resetWord }}</span>
       </div>
       <div class="audio" @click="playAudio(store.word.name)">播放</div>
     </div>
@@ -237,9 +268,9 @@ function format(val: number, suffix: string = '') {
           <div class="name">输入数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(store.lastStatistics.correctNumber) }}</div>
+          <div class="num">{{ format(store.currentWrongDict.wordList.length) }}</div>
           <div class="line"></div>
-          <div class="name">正确数</div>
+          <div class="name">错误数</div>
         </div>
         <div class="row">
           <div class="num">{{ format(store.lastStatistics.correctRate, '%') }}</div>

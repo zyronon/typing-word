@@ -31,8 +31,9 @@ import IconEyeSlash from '~icons/heroicons/eye-slash-solid'
 
 import IconRepeat from '~icons/tabler/repeat'
 import IconRepeatOff from '~icons/tabler/repeat-off'
+import {emitter, EventKey} from "@/utils/eventBus.ts"
 
-const { toggle} = useTheme()
+const {toggle} = useTheme()
 const store = useBaseStore()
 const showFeedbackModal = $ref(false)
 const showSettingModal = $ref(false)
@@ -41,12 +42,13 @@ const showDictModal = $ref(false)
 function t() {
   console.log('t')
 }
+
 </script>
 
 <template>
   <header :class="!store.setting.showToolbar && 'hide'">
     <div class="info" @click="showDictModal = true">
-      {{ store.currentDict.name }} 第{{ store.currentDict.chapterIndex + 1 }}章
+      {{ store.currentDict.name }} {{ store.chapterName }}
     </div>
     <div class="options">
       <Tooltip title="切换主题">
@@ -95,12 +97,12 @@ function t() {
           <IconCog6Tooth @click="showSettingModal = true"></IconCog6Tooth>
         </IconWrapper>
       </Tooltip>
-      <div class="my-button" @click="store.statModalIsOpen = true">ok</div>
+      <div class="my-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>
 
       <Tooltip title="单词本">
-        <menu-fold class="menu" @click="store.sideIsOpen = !store.sideIsOpen"
-                   theme="outline" size="20" fill="#929596"
-                   :strokeWidth="2"/>
+        <IconWrapper>
+          <menu-fold class="menu" @click="emitter.emit(EventKey.openSide)"/>
+        </IconWrapper>
       </Tooltip>
     </div>
     <Tooltip :title="store.setting.showToolbar?'收起':'展开'">

@@ -123,7 +123,7 @@ export interface Statistics {
   startDate: number,//开始日期
   endDate: number//结束日期
   correctRate: number//正确率
-  correctNumber: number//正确数
+  wrongNumber: number//错误数
 }
 
 export enum Sort {
@@ -142,7 +142,6 @@ export interface State {
   currentDictType: DictType,
   lastDictType: DictType,
   sideIsOpen: boolean,
-  statModalIsOpen: boolean,
   isDictation: boolean,
   theme: string,
   setting: {

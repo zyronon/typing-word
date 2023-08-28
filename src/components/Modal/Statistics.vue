@@ -7,8 +7,23 @@ import Tooltip from "@/components/Tooltip.vue";
 import Fireworks from "@/components/Fireworks.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {DictType} from "@/types.ts";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
+import {onMounted} from "vue";
 
 const store = useBaseStore()
+let statModalIsOpen = $ref(false)
+let currentStat = $ref({
+  wrongNumber: -1,
+  correctRate: -1
+})
+
+onMounted(() => {
+  emitter.on(EventKey.openStatModal, () => {
+    statModalIsOpen = true
+    store.lastStatistics.endDate = Date.now()
+    currentStat = store.lastStatistics
+  })
+})
 
 function write() {
   store.isDictation = true
@@ -19,9 +34,17 @@ function write() {
 function repeat() {
   store.currentDict.wordIndex = 0
   store.currentWrongDict.wordList = []
-  store.statModalIsOpen = false
-  store.lastStatistics.correctNumber = -1
-  store.lastStatistics.correctRate = -1
+  statModalIsOpen = false
+  let stat = store.currentDict.dictStatistics[store.currentDict.dictStatistics.length - 1]
+  if (stat.statistics.length) {
+    stat.statistics.push({
+      startDate: Date.now(),//开始日期
+      endDate: -1,
+      correctRate: -1,
+      wrongNumber: -1
+    })
+  }
+  emitter.on(EventKey.resetWord)
 }
 
 function next() {
@@ -30,7 +53,7 @@ function next() {
 }
 
 function repeatWrong() {
-  if (store.currentDictType !==  DictType.currentWrongDict){
+  if (store.currentDictType !== DictType.currentWrongDict) {
     store.lastDictType = store.currentDictType
   }
   store.currentDictType = DictType.currentWrongDict
@@ -38,24 +61,26 @@ function repeatWrong() {
   store.currentWrongDict.chapterIndex = 0
   store.currentWrongDict.wordIndex = 0
   store.currentWrongDict.wordList = []
-  store.statModalIsOpen = false
+  statModalIsOpen = false
+  emitter.on(EventKey.resetWord)
 }
+
 </script>
 
 <template>
-  <Modal v-model="store.statModalIsOpen" @close="next">
+  <Modal v-model="statModalIsOpen" @close="next">
     <div class="statistics">
       <header>
-        <div class="title">{{ store.currentDict.name }} 第{{ store.currentDict.chapterIndex + 1 }}章</div>
+        <div class="title">{{ store.currentDict.name }} {{ store.chapterName }}</div>
       </header>
       <div class="content">
         <div class="rings">
           <Ring
-              :value="store.lastStatistics.correctRate + '%'"
+              :value="currentStat.correctRate + '%'"
               desc="正确率"
-              :percentage="store.lastStatistics.correctRate"/>
+              :percentage="currentStat.correctRate"/>
           <Ring
-              :value="store.lastStatistics.correctNumber"
+              :value="currentStat.wrongNumber"
               desc="正确数"
               :percentage="0"
           />

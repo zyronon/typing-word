@@ -15,6 +15,7 @@
     "hover.css": "^2.3.2",
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
+    "mitt": "^3.0.1",
     "pinia": "^2.1.6",
     "swiper": "^10.1.0",
     "tesseract.js": "^4.1.1",

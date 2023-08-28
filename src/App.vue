@@ -15,22 +15,20 @@ const match: MediaQueryList = window.matchMedia("(prefers-color-scheme: dark)")
 match.addEventListener('change', followSystem)
 
 function followSystem() {
-  if (store.theme === 'auto') {
-    const theme = match.matches ? 'dark' : 'light'
-    document.documentElement.setAttribute('data-theme', theme)
-    // document.documentElement.setAttribute('data-theme', 'dark')
-    localStorage.setItem('appearance', theme)
-  }
+  const theme = match.matches ? 'dark' : 'light'
+  document.documentElement.setAttribute('data-theme', theme)
 }
 
 onMounted(() => {
   store.init()
-  followSystem()
+  if (store.theme !== 'auto') {
+    document.documentElement.setAttribute('data-theme', store.theme)
+  }
 })
 </script>
 
 <template>
-  <Backgorund/>
+<!--  <Backgorund/>-->
   <div class="main-page">
     <div class="center">
       <Toolbar/>
@@ -55,7 +53,7 @@ onMounted(() => {
   font-size: 14rem;
   display: flex;
   justify-content: center;
-  //background-color: var(--color-main-bg);
+  background-color: var(--color-main-bg);
 
   .center {
     width: 70vw;
