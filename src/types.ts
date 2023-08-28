@@ -112,6 +112,7 @@ export interface Dict extends DictJson {
   statistics?: Statistics
 }
 
+
 export interface DictStatistics {
   startDate: number,//开始日期
   endDate: number//结束日期
@@ -122,6 +123,7 @@ export interface DictStatistics {
 export interface Statistics {
   startDate: number,//开始日期
   endDate: number//结束日期
+  chapterWordNumber: number//章节单词数量
   correctRate: number//正确率
   wrongNumber: number//错误数
 }
@@ -139,8 +141,13 @@ export interface State {
   currentWrongDict: Dict,
   dict: Dict,
   oldDicts: Dict[],
-  currentDictType: DictType,
-  lastDictType: DictType,
+  current: {
+    dictType:DictType,
+    words: Word[],
+    wrongWords: Word[],
+    repeatNumber:number,
+    statistics: Statistics
+  },
   sideIsOpen: boolean,
   isDictation: boolean,
   theme: string,

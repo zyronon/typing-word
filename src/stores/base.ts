@@ -60,30 +60,6 @@ export const useBaseStore = defineStore('base', {
         dictStatistics: [],
         chapterWordNumber: 15
       },
-      currentWrongDict: {
-        type: DictType.currentWrongDict,
-        sort: Sort.normal,
-        name: '当前章节错词',
-        description: '当前章节错词',
-        category: '',
-        tags: [],
-        url: '',
-        length: -1,
-        language: 'en',
-        languageCategory: 'en',
-        wordList: [],
-        chapterList: [],
-        chapterIndex: 0,
-        wordIndex: 0,
-        dictStatistics: [],
-        statistics: {
-          startDate: Date.now(),//开始日期
-          endDate: -1,
-          correctRate: -1,
-          wrongNumber: -1
-        },
-        chapterWordNumber: 15
-      },
       dict: {
         type: DictType.inner,
         sort: Sort.normal,
@@ -186,11 +162,11 @@ export const useBaseStore = defineStore('base', {
       // console.log('this/', this)
     },
     async init() {
-      let configStr = localStorage.getItem(SaveKey)
-      if (configStr) {
-        let obj: Config = JSON.parse(configStr)
-        this.setState(obj)
-      }
+      // let configStr = localStorage.getItem(SaveKey)
+      // if (configStr) {
+      //   let obj: Config = JSON.parse(configStr)
+      //   this.setState(obj)
+      // }
       if (this.currentDictType === DictType.inner) {
         let r = await fetch(`/public/${this.dict.url}`)
         r.json().then(v => {

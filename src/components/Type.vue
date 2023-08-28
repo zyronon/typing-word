@@ -14,18 +14,10 @@ import {$computed, $ref} from "vue/macros"
 import {useSound} from "@/hooks/useSound.ts"
 import {useBaseStore} from "@/stores/base.ts"
 import {DictType, SaveKey, Word} from "../types";
-import WordList from "../components/WordList.vue";
-import Side from "@/components/Side.vue"
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
-import DictModal from "@/components/Modal/DictModal.vue"
-import Backgorund from "@/components/Backgorund.vue"
-import Statistics from "@/components/Modal/Statistics.vue";
 import useTheme from "@/hooks/useTheme.ts";
 import Tooltip from "@/components/Tooltip.vue";
-import Toolbar from "@/components/Toolbar/Toolbar.vue"
-import {KeyboardOne} from "@icon-park/vue-next";
 import BaseButton from "@/components/BaseButton.vue";
-import Type from "@/components/Type.vue";
 import {
   Down,
   Delete,
@@ -95,7 +87,6 @@ function repeatWrong() {
 function next() {
   if (store.currentDict.wordIndex === store.chapter.length - 1) {
     if (store.currentDict.chapterIndex !== store.currentDict.chapterList.length - 1) {
-      store.currentDict.wordIndex++
       console.log('这一章节完了')
       if (store.currentWrongDict.wordList.length) {
         repeatWrong()
