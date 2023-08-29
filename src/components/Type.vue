@@ -118,6 +118,8 @@ async function onKeyDown(e: KeyboardEvent) {
     } else {
       if (!store.wrongWordDict.originWords.find((v: Word) => v.name === store.word.name)) {
         store.wrongWordDict.originWords.push(store.word)
+        store.wrongWordDict.words.push(store.word)
+        store.wrongWordDict.chapters = [store.wrongWordDict.words]
       }
       if (!store.current.wrongWords.find((v: Word) => v.name === store.word.name)) {
         store.current.wrongWords.push(store.word)
@@ -148,12 +150,16 @@ async function onKeyDown(e: KeyboardEvent) {
       case keyMap.Collect:
         if (!store.newWordDict.originWords.find((v: Word) => v.name === store.word.name)) {
           store.newWordDict.originWords.push(store.word)
+          store.newWordDict.words.push(store.word)
+          store.newWordDict.chapters = [store.newWordDict.words]
         }
         activeIndex = 1
         break
       case keyMap.Remove:
         if (!store.skipWordNames.includes(store.word.name)) {
           store.skipWordDict.originWords.push(store.word)
+          store.skipWordDict.words.push(store.word)
+          store.skipWordDict.chapters = [store.skipWordDict.words]
         }
         activeIndex = 0
         next()
@@ -243,7 +249,7 @@ onUnmounted(() => {
           <div class="name">时间</div>
         </div>
         <div class="row">
-          <div class="num">{{ store.current.statistics.wordNumber }}</div>
+          <div class="num">{{ store.current.words.length }}</div>
           <div class="line"></div>
           <div class="name">单词总数</div>
         </div>

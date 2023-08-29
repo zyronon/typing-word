@@ -138,7 +138,7 @@ export const useBaseStore = defineStore('base', {
       }
       // console.log('this/', this)
     },
-    setCurrentWord(words: Word[], restart: boolean = false) {
+    setCurrentWord(words: Word[], restart: boolean = false, index: number = 0) {
       this.current.words = cloneDeep(words)
       if (restart) {
         this.current.repeatNumber = 0
@@ -159,7 +159,7 @@ export const useBaseStore = defineStore('base', {
         this.current.statistics.correctRate = -1
         this.current.statistics.wrongWordNumber = -1
       }
-      this.current.index = 0
+      this.current.index = index
       this.current.wrongWords = []
     },
     async init() {
@@ -173,28 +173,46 @@ export const useBaseStore = defineStore('base', {
         r.json().then(v => {
           this.dict.originWords = cloneDeep(v)
           this.dict.words = cloneDeep(v)
-          this.dict.chapters = chunk(this.dict.originWords, this.dict.chapterWordNumber)
+          this.dict.chapters = chunk(this.dict.words, this.dict.chapterWordNumber)
           this.setCurrentWord(this.chapter, true)
         })
       }
     },
-    async changeDict(dict: Dict, chapterIndex: number = -1, chapterWordIndex: number = -1) {
-      console.log('changeDict', dict)
-      emitter.emit(EventKey.resetWord)
+    saveStatistics() {
+      let currentStat = cloneDeep(this.current.statistics)
+      currentStat.endDate = Date.now()
+      currentStat.spend = Date.now() - currentStat.startDate
+      currentStat.wrongWordNumber = this.current.originWrongWords.length
+      currentStat.correctRate = 100 - Math.trunc((currentStat.wrongWordNumber / currentStat.wordNumber) * 100)
+      // console.log(cloneDeep(currentStat))
+      if (currentStat.spend > 1000 * 10) {
+        this.currentDict.statistics.push(currentStat)
+      }
+      return currentStat
+    },
+    async changeDict(dict: Dict, chapterIndex: number = dict.chapterIndex, chapterWordIndex: number = dict.chapterWordNumber) {
+      this.saveStatistics()
+      console.log('changeDict', cloneDeep(dict), chapterIndex, chapterWordIndex)
+      this.current.dictType = dict.type
       if ([DictType.newWordDict,
         DictType.skipWordDict,
         DictType.wrongWordDict].includes(dict.type)) {
-        this.current.dictType = dict.type
-        this[dict.type].chapters = [this[dict.type].wordList]
-        this[dict.type].chapterIndex = 0
-        this[dict.type].chapterWordIndex = chapterWordIndex === -1 ? 0 : chapterWordIndex
+        this[dict.type].chapterIndex = chapterIndex
+        this[dict.type].chapterWordIndex = chapterWordIndex
       } else {
         this.dict = cloneDeep(dict)
-        this.current.dictType = dict.type
-        if (chapterWordIndex !== -1) this.dict.chapterWordIndex = chapterWordIndex
-        if (chapterIndex !== -1) this.dict.chapterIndex = chapterIndex
+        if (dict.originWords.length) {
+          let r = await fetch(`/public/${this.dict.url}`)
+          let v = await r.json()
+          this.dict.originWords = cloneDeep(v)
+          this.dict.words = cloneDeep(v)
+          this.dict.chapters = chunk(this.dict.words, this.dict.chapterWordNumber)
+        }
+        this.dict.chapterIndex = chapterIndex
+        this.dict.chapterWordIndex = chapterWordIndex
       }
-      console.log('this.dict', this.dict)
+      this.setCurrentWord(this.chapter, true, chapterWordIndex)
+      emitter.emit(EventKey.resetWord)
     }
   },
 })

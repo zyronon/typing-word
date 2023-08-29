@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import {useBaseStore} from "@/stores/base.ts"
 import WordList from "@/components/WordList.vue"
-import {ArrowLeft, ArrowRight, MenuFold} from '@icon-park/vue-next'
 
 import {$ref} from "vue/macros"
-import {computed, nextTick, onMounted, provide} from "vue"
+import {computed, onMounted, provide} from "vue"
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import 'swiper/css';
 import {Swiper as SwiperClass} from "swiper/types"
-import {Dict, DictType} from "@/types.ts"
+import {DictType} from "@/types.ts"
 import PopConfirm from "@/components/PopConfirm.vue"
 import BaseButton from "@/components/BaseButton.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
@@ -41,6 +40,35 @@ onMounted(() => {
   })
 })
 
+function getActiveIndex(type: DictType) {
+  if (store.current.dictType !== type) return -1
+  else {
+    return store[type].chapterWordIndex
+  }
+}
+
+const newWordDictActiveIndex = computed(() => {
+  if (store.current.dictType !== DictType.newWordDict) return -1
+  else return store.current.index
+})
+
+const dictActiveIndex = computed(() => {
+  if (store.current.dictType !== DictType.inner) return -1
+  else return store.current.index
+})
+
+
+const wrongWordDictActiveIndex = computed(() => {
+  if (store.current.dictType !== DictType.wrongWordDict) return -1
+  else return store.current.index
+})
+
+
+const skipWordDictActiveIndex = computed(() => {
+  if (store.current.dictType !== DictType.skipWordDict) return -1
+  else return store.current.index
+})
+
 </script>
 <template>
   <Transition name="fade">
@@ -62,10 +90,10 @@ onMounted(() => {
               </header>
               <WordList
                   class="word-list"
-                  @change="(e:number) => store.changeDict(store.dict,-1,e)"
+                  @change="(e:number) => store.changeDict(store.dict,store.dict.chapterIndex,e)"
                   :isActive="store.sideIsOpen && tabIndex === 0"
                   :list="store.dict.chapters[store.dict.chapterIndex]??[]"
-                  :activeIndex="store.dict.chapterWordIndex"/>
+                  :activeIndex="dictActiveIndex"/>
               <footer v-if="![DictType.custom,DictType.inner].includes(store.current.dictType)">
                 <PopConfirm
                     :title="`确认切换？`"
@@ -85,11 +113,11 @@ onMounted(() => {
               </header>
               <WordList
                   class="word-list"
-                  @change="(e:number) => store.changeDict(store.newWordDict,-1,e)"
+                  @change="(e:number) => store.changeDict(store.newWordDict,store.newWordDict.chapterIndex,e)"
                   :isActive="store.sideIsOpen && tabIndex === 1"
-                  :list="store.newWordDict.originWords"
-                  :activeIndex="store.newWordDict.chapterWordIndex"/>
-              <footer v-if="store.current.dictType !== DictType.newWordDict && store.newWordDict.originWords.length">
+                  :list="store.newWordDict.words"
+                  :activeIndex="newWordDictActiveIndex"/>
+              <footer v-if="store.current.dictType !== DictType.newWordDict && store.newWordDict.words.length">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.newWordDict)"
@@ -109,11 +137,12 @@ onMounted(() => {
               </header>
               <WordList
                   class="word-list"
-                  @change="(e:number) => store.changeDict(store.wrongWordDict,-1,e)"
+                  @change="(e:number) => store.changeDict(store.wrongWordDict,store.wrongWordDict.chapterIndex,e)"
                   :isActive="store.sideIsOpen && tabIndex === 2"
-                  :list="store.wrongWordDict.originWords"
-                  :activeIndex="store.wrongWordDict.chapterWordIndex"/>
-              <footer v-if="store.current.dictType !== DictType.wrongWordDict && store.wrongWordDict.originWords.length">
+                  :list="store.wrongWordDict.words"
+                  :activeIndex="wrongWordDictActiveIndex"/>
+              <footer
+                  v-if="store.current.dictType !== DictType.wrongWordDict && store.wrongWordDict.words.length">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.wrongWordDict)"
@@ -132,11 +161,11 @@ onMounted(() => {
               </header>
               <WordList
                   class="word-list"
-                  @change="(e:number) => store.changeDict(store.skipWordDict,-1,e)"
+                  @change="(e:number) => store.changeDict(store.skipWordDict,store.skipWordDict.chapterIndex,e)"
                   :isActive="store.sideIsOpen && tabIndex === 3"
-                  :list="store.skipWordDict.originWords"
-                  :activeIndex="store.skipWordDict.chapterWordIndex"/>
-              <footer v-if="store.current.dictType !== DictType.skipWordDict && store.skipWordDict.originWords.length">
+                  :list="store.skipWordDict.words"
+                  :activeIndex="skipWordDictActiveIndex"/>
+              <footer v-if="store.current.dictType !== DictType.skipWordDict && store.skipWordDict.words.length">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.skipWordDict)"

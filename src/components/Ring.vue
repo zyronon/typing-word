@@ -1,9 +1,19 @@
 <template>
   <div class="ring">
     <svg height="100%" width="100%">
-      <circle class="circle-full" cx="45rem" cy="45rem" r="40rem" fill="none" stroke-width="8rem"
+      <circle class="circle-full"
+              cx="50rem"
+              cy="50rem"
+              r="45rem"
+              fill="none"
+              stroke-width="8rem"
               stroke-linecap="round"></circle>
-      <circle v-if="props.percentage" ref="circleEl" class="circle-detail" cx="45rem" cy="45rem" r="40rem" fill="none"
+      <circle v-if="props.percentage" ref="circleEl"
+              class="circle-detail"
+              cx="50rem"
+              cy="50rem"
+              r="45rem"
+              fill="none"
               stroke-width="8rem"
               stroke-linecap="round"
               stroke-dasharray="0,10000"></circle>
@@ -36,7 +46,7 @@ onMounted(() => {
 <style scoped lang="scss">
 @import "@/assets/css/colors";
 
-$w: 90rem;
+$w: 100rem;
 $w2: calc($w / 2);
 
 .ring {
@@ -48,7 +58,7 @@ $w2: calc($w / 2);
   justify-content: center;
   flex-direction: column;
   position: relative;
-  margin-bottom: 20rem;
+  margin-bottom: 10rem;
 
   svg {
     position: absolute;

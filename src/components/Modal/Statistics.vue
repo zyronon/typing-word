@@ -18,13 +18,7 @@ let currentStat = reactive<Statistics>(cloneDeep(DefaultStatistics))
 onMounted(() => {
   emitter.on(EventKey.openStatModal, () => {
     statModalIsOpen = true
-    currentStat = cloneDeep(store.current.statistics)
-    currentStat.endDate = Date.now()
-    currentStat.spend = Date.now() - currentStat.startDate
-    currentStat.wrongWordNumber = store.current.originWrongWords.length
-    currentStat.correctRate = 100 - Math.trunc((currentStat.wrongWordNumber / currentStat.wordNumber) * 100)
-    console.log(cloneDeep(currentStat))
-    store.currentDict.statistics.push(currentStat)
+    currentStat = store.saveStatistics()
   })
 })
 
@@ -35,11 +29,13 @@ function write() {
 
 //TODO 需要判断是否已忽略
 function repeat() {
+  console.log(store.chapter)
   store.setCurrentWord(store.chapter, true)
   statModalIsOpen = false
   emitter.emit(EventKey.resetWord)
 }
 
+//TODO 能否下一章
 function next() {
   store.currentDict.chapterIndex++
   repeat()
@@ -111,7 +107,7 @@ function next() {
   <Fireworks v-if="statModalIsOpen"/>
 </template>
 <style scoped lang="scss">
-@import "@/assets/css/style";
+@import "@/assets/css/style.scss";
 
 .statistics {
   width: 800rem;
@@ -139,7 +135,7 @@ function next() {
     .result {
       box-sizing: border-box;
       overflow: hidden;
-      height: 310rem;
+      height: 320rem;
       display: flex;
       flex-direction: column;
       border-radius: $card-radius;
