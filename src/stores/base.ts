@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {Config, Dict, DictType, SaveKey, Sort, State, Statistics, Word} from "../types.ts"
+import {Dict, DictType, Sort, State, Word} from "../types.ts"
 import {chunk, cloneDeep} from "lodash";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 
@@ -7,87 +7,73 @@ export const useBaseStore = defineStore('base', {
   state: (): State => {
     return {
       newWordDict: {
-        type: DictType.newWordDict,
-        sort: Sort.normal,
         name: '生词本',
-        description: '生词本',
-        category: '',
-        tags: [],
-        url: '',
-        length: -1,
-        language: 'en',
-        languageCategory: 'en',
-        wordList: [],
-        chapterList: [],
+        sort: Sort.normal,
+        type: DictType.newWordDict,
+        originWords: [],
+        words: [],
+        chapterWordNumber: 15,
+        chapters: [],
         chapterIndex: 0,
-        wordIndex: 0,
-        dictStatistics: [],
-        chapterWordNumber: 15
+        chapterWordIndex: 0,
+        statistics: [],
+        url: '',
       },
       skipWordDict: {
-        type: DictType.skipWordDict,
-        sort: Sort.normal,
         name: '简单词',
-        description: '简单词',
-        category: '',
-        tags: [],
-        url: '',
-        length: -1,
-        language: 'en',
-        languageCategory: 'en',
-        wordList: [],
-        chapterList: [],
-        chapterIndex: 0,
-        wordIndex: 0,
-        dictStatistics: [],
-        chapterWordNumber: 15
-      },
-      allWrongDict: {
-        type: DictType.allWrongDict,
         sort: Sort.normal,
-        name: '错词本',
-        description: '错词本',
-        category: '',
-        tags: [],
-        url: '',
-        length: -1,
-        language: 'en',
-        languageCategory: 'en',
-        wordList: [],
-        chapterList: [],
+        type: DictType.skipWordDict,
+        originWords: [],
+        words: [],
+        chapterWordNumber: 15,
+        chapters: [],
         chapterIndex: 0,
-        wordIndex: 0,
-        dictStatistics: [],
-        chapterWordNumber: 15
+        chapterWordIndex: 0,
+        statistics: [],
+        url: '',
+      },
+      wrongWordDict: {
+        name: '错词本',
+        sort: Sort.normal,
+        type: DictType.wrongWordDict,
+        originWords: [],
+        words: [],
+        chapterWordNumber: 15,
+        chapters: [],
+        chapterIndex: 0,
+        chapterWordIndex: 0,
+        statistics: [],
+        url: '',
       },
       dict: {
-        type: DictType.inner,
-        sort: Sort.normal,
         name: '新概念英语-2',
-        description: '新概念英语第二册',
-        category: '青少年英语',
-        tags: ['新概念英语'],
-        url: '/dicts/NCE_2.json',
-        length: 858,
-        language: 'en',
-        languageCategory: 'en',
-        wordList: [],
-        chapterList: [],
-        chapterIndex: 0,
+        sort: Sort.normal,
+        type: DictType.inner,
+        originWords: [],
+        words: [],
         chapterWordNumber: 15,
-        wordIndex: 0,
-        dictStatistics: [
-          {
-            startDate: Date.now(),
-            endDate: -1,
-            chapterWordNumber: 15,
-            statistics: []
-          }
-        ]
+        chapters: [],
+        chapterIndex: 0,
+        chapterWordIndex: 0,
+        statistics: [],
+        url: '/dicts/NCE_2.json',
       },
       oldDicts: [],
-      currentDictType: DictType.inner,
-      lastDictType: DictType.inner,
+      current: {
+        dictType: DictType.inner,
+        words: [],
+        index: -1,
+        wrongWords: [],
+        repeatNumber: -1,
+        statistics: {
+          startDate: -1,
+          endDate: -1,
+          spend: -1,
+          wordNumber: -1,
+          correctRate: -1,
+          wrongWordNumber: -1,
+        }
+      },
       sideIsOpen: false,
       isDictation: true,
       setting: {
@@ -103,21 +89,19 @@ export const useBaseStore = defineStore('base', {
   },
   getters: {
     isWrongMode(state: State) {
-      return state.currentDictType === DictType.currentWrongDict
+      return state.current.repeatNumber > 0
     },
     skipWordNames: (state: State) => {
-      return state.skipWordDict.wordList.map(v => v.name)
+      return state.skipWordDict.words.map(v => v.name)
     },
     currentDict(state: State): Dict {
-      switch (state.currentDictType) {
+      switch (state.current.dictType) {
         case DictType.newWordDict:
           return state.newWordDict
         case DictType.skipWordDict:
           return state.skipWordDict
-        case DictType.allWrongDict:
-          return state.allWrongDict
-        case DictType.currentWrongDict:
-          return state.currentWrongDict
+        case DictType.wrongWordDict:
+          return state.wrongWordDict
         case DictType.inner:
         case DictType.custom:
           return state.dict
@@ -127,32 +111,16 @@ export const useBaseStore = defineStore('base', {
       return this.currentDict.wordIndex
     },
     chapter(state: State): Word[] {
-      return this.currentDict.chapterList[this.currentDict.chapterIndex] ?? []
+      return this.currentDict.chapters[this.currentDict.chapterIndex] ?? []
     },
     word(state: State): Word {
-      return this.chapter[this.currentDict.wordIndex] ?? {
+      return state.current.words[state.current.index] ?? {
         trans: [],
-        name: ''
+        name: '',
+        usphone: '',
+        ukphone: '',
       }
     },
-    lastStatistics(state: State): Statistics {
-      if (state.currentDictType === DictType.currentWrongDict) {
-        return state.currentWrongDict.statistics
-      }
-      if (this.currentDict.dictStatistics.length) {
-        let stat = this.currentDict.dictStatistics[this.currentDict.dictStatistics.length - 1]
-        if (stat.statistics.length) {
-          return stat.statistics[stat.statistics.length - 1]
-        }
-      }
-      return {} as any
-    },
-    chapterName(state: State) {
-      if ([DictType.custom, DictType.inner].includes(state.currentDictType)) {
-        return `第${state.dict.chapterIndex + 1}章`
-      }
-      return ''
-    }
   },
   actions: {
     setState(obj: any) {
@@ -167,50 +135,33 @@ export const useBaseStore = defineStore('base', {
       //   let obj: Config = JSON.parse(configStr)
       //   this.setState(obj)
       // }
-      if (this.currentDictType === DictType.inner) {
+      if (this.current.dictType === DictType.inner) {
         let r = await fetch(`/public/${this.dict.url}`)
         r.json().then(v => {
-          this.dict.wordList = v
-          this.dict.chapterList = chunk(this.dict.wordList, this.dict.chapterWordNumber)
-        })
-      }
-      if (this.currentDictType === DictType.custom) {
-        let r = await fetch(`/public/${this.dict.url}`)
-        r.json().then(v => {
-          this.dict.wordList = v
-          this.dict.chapterList = chunk(this.dict.wordList, this.dict.chapterWordNumber)
-        })
-      }
-
-      if (this.dict.dictStatistics.length) {
-        this.dict.dictStatistics[this.dict.dictStatistics.length - 1].statistics.push({
-          startDate: Date.now(),//开始日期
-          endDate: -1,
-          correctRate: -1,
-          wrongNumber: -1
+          this.dict.originWords = cloneDeep(v)
+          this.dict.words = cloneDeep(v)
+          this.dict.chapters = chunk(this.dict.originWords, this.dict.chapterWordNumber)
         })
       }
       this.dict.wordIndex = 0
     },
-    async changeDict(dict: Dict, chapterIndex: number = -1, wordIndex: number = -1) {
+    async changeDict(dict: Dict, chapterIndex: number = -1, chapterWordIndex: number = -1) {
       console.log('changeDict', dict)
       emitter.emit(EventKey.resetWord)
       if ([DictType.newWordDict,
         DictType.skipWordDict,
-        DictType.allWrongDict].includes(dict.type)) {
-        this.currentDictType = dict.type
-        this[dict.type].chapterList = [this[dict.type].wordList]
+        DictType.wrongWordDict].includes(dict.type)) {
+        this.current.dictType = dict.type
+        this[dict.type].chapters = [this[dict.type].wordList]
         this[dict.type].chapterIndex = 0
-        this[dict.type].wordIndex = wordIndex === -1 ? 0 : wordIndex
-      } else if (dict.type === DictType.currentWrongDict) {
-        this[dict.type].wordIndex = wordIndex === -1 ? 0 : wordIndex
+        this[dict.type].chapterWordIndex = chapterWordIndex === -1 ? 0 : chapterWordIndex
       } else {
         this.dict = cloneDeep(dict)
-        this.currentDictType = dict.type
-        if (wordIndex !== -1) this.dict.wordIndex = wordIndex
+        this.current.dictType = dict.type
+        if (chapterWordIndex !== -1) this.dict.chapterWordIndex = chapterWordIndex
         if (chapterIndex !== -1) this.dict.chapterIndex = chapterIndex
       }
-      console.log(' this.dict', this.dict)
+      console.log('this.dict', this.dict)
     }
   },
 })

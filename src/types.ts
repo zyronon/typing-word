@@ -1,17 +1,4 @@
-export type Config = {
-  newWords: Word[],
-  skipWords: Word[],
-  skipWordNames: string[],
-  dict: string,
-  currentDict: {
-    wordList: Word[],
-    chapterList: Word[][],
-    name: string,
-    desc: string
-  }
-  chapterIndex: number,
-  wordIndex: number,
-}
+
 export type Word = {
   "name": string,
   "usphone": string,
@@ -92,8 +79,7 @@ export interface DictJson {
 export enum DictType {
   newWordDict = 'newWordDict',
   skipWordDict = 'skipWordDict',
-  allWrongDict = 'allWrongDict',
-  currentWrongDict = 'currentWrongDict',
+  wrongWordDict = 'wrongWordDict',
   inner = 'inner',
   custom = 'custom',
 }
@@ -103,12 +89,13 @@ export interface Dict {
   sort: Sort,
   type: DictType,
   originWords: Word[],//原始单词
-  chapterList: Word[][],
-  chapterIndex: number,
   words: Word[],
-  wordIndex: number,
   chapterWordNumber: number,//章节单词数量
-  statistics: Statistics[]
+  chapters: Word[][],
+  chapterIndex: number,
+  chapterWordIndex: number,
+  statistics: Statistics[],
+  url: string,
 }
 
 export interface Statistics {
@@ -135,6 +122,7 @@ export interface State {
   current: {
     dictType: DictType,
     words: Word[],
+    index: number,
     wrongWords: Word[],
     repeatNumber: number,
     statistics: Statistics

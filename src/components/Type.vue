@@ -23,6 +23,7 @@ import {
   Delete,
 } from "@icon-park/vue-next"
 import {emitter, EventKey} from "@/utils/eventBus.ts"
+import {cloneDeep} from "lodash"
 
 let input = $ref('')
 let wrong = $ref('')
@@ -68,65 +69,56 @@ watch(store.$state, (n) => {
 
 
 function repeatWrong() {
-  if (store.currentDictType !== DictType.currentWrongDict) {
-    store.lastDictType = store.currentDictType
-  }
-  store.currentDictType = DictType.currentWrongDict
-  store.currentWrongDict.chapterList = [store.currentWrongDict.wordList]
-  store.currentWrongDict.chapterIndex = 0
-  store.currentWrongDict.wordIndex = 0
-  store.currentWrongDict.wordList = []
-  store.currentWrongDict.statistics = {
-    startDate: Date.now(),//开始日期
+  store.current.words = cloneDeep(store.current.wrongWords)
+  store.current.index = 0
+  store.current.wrongWords = []
+  store.current.statistics = {
+    startDate: -1,
     endDate: -1,
+    spend: -1,
+    wordNumber: -1,
     correctRate: -1,
-    wrongNumber: -1
+    wrongWordNumber: -1,
   }
 }
 
 function next() {
-  if (store.currentDict.wordIndex === store.chapter.length - 1) {
-    if (store.currentDict.chapterIndex !== store.currentDict.chapterList.length - 1) {
-      console.log('这一章节完了')
-      if (store.currentWrongDict.wordList.length) {
-        repeatWrong()
-      }
-      // emitter.emit(EventKey.openStatModal)
-    } else {
-      console.log('这本书完了')
-      if (store.currentDictType === DictType.currentWrongDict) {
-        if ( store.currentWrongDict.wordList.length){
-          repeatWrong()
-        }else {
-          emitter.emit(EventKey.openStatModal)
-        }
+  if (store.current.wrongWords.length) {
+    repeatWrong()
+  } else {
+    if (store.current.index === store.chapter.length - 1) {
+      if (store.currentDict.chapterIndex !== store.currentDict.chapters.length - 1) {
+        console.log('这一章节完了')
+        // emitter.emit(EventKey.openStatModal)
       } else {
+        console.log('这本书完了')
         emitter.emit(EventKey.openStatModal)
       }
-    }
-  } else {
-    store.currentDict.wordIndex++
-
-    // var msg = new SpeechSynthesisUtterance();
-    // // msg.text = store.word.name
-    // msg.text = 'Hawaii wildfires burn historic town of Lahaina to the ground'
-    // msg.rate = 0.8;
-    // msg.pitch = 1;
-    // msg.lang = 'en-US';
-    // window.speechSynthesis.speak(msg);
-
-    console.log('这个词完了')
-    if (store.currentDict.wordIndex) {
-      store.lastStatistics.wrongNumber = store.currentDict.wordIndex - store.currentWrongDict.wordList.length
-      store.lastStatistics.correctRate = Math.trunc(((store.currentDict.wordIndex - store.currentWrongDict.wordList.length) / (store.currentDict.wordIndex)) * 100)
     } else {
-      store.lastStatistics.correctRate = -1
-      store.lastStatistics.wrongNumber = -1
+      store.current.index++
+
+      // var msg = new SpeechSynthesisUtterance();
+      // // msg.text = store.word.name
+      // msg.text = 'Hawaii wildfires burn historic town of Lahaina to the ground'
+      // msg.rate = 0.8;
+      // msg.pitch = 1;
+      // msg.lang = 'en-US';
+      // window.speechSynthesis.speak(msg);
+
+      console.log('这个词完了')
+      if (store.current.index) {
+        store.current.statistics.wrongWordNumber = store.current.index - store.current.wrongWords.length
+        store.current.statistics.correctRate = Math.trunc(((store.current.index - store.current.wrongWords.length) / (store.current.index)) * 100)
+      } else {
+        store.current.statistics.correctRate = -1
+        store.current.statistics.wrongWordNumber = -1
+      }
+    }
+    if ([DictType.custom, DictType.inner].includes(store.current.dictType) && store.skipWordNames.includes(store.word.name)) {
+      next()
     }
   }
-  if ([DictType.custom, DictType.inner].includes(store.currentDictType) && store.skipWordNames.includes(store.word.name)) {
-    next()
-  }
+
   wrong = input = ''
 }
 
