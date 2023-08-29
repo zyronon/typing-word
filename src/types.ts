@@ -1,4 +1,3 @@
-
 export type Word = {
   "name": string,
   "usphone": string,
@@ -107,6 +106,15 @@ export interface Statistics {
   wrongWordNumber: number//错误数
 }
 
+export const DefaultStatistics: Statistics = {
+  startDate: Date.now(),
+  endDate: -1,
+  spend: -1,
+  wordNumber: -1,
+  correctRate: -1,
+  wrongWordNumber: -1,
+}
+
 export enum Sort {
   normal = 0,
   random = 1,
@@ -124,6 +132,7 @@ export interface State {
     words: Word[],
     index: number,
     wrongWords: Word[],
+    originWrongWords: Word[],
     repeatNumber: number,
     statistics: Statistics
   },

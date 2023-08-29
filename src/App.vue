@@ -5,8 +5,9 @@ import Type from "@/components/Type.vue";
 import Side from "@/components/Side.vue";
 import Statistics from "@/components/Modal/Statistics.vue";
 import Backgorund from "@/components/Backgorund.vue";
-import {onMounted} from "vue";
+import {onMounted, watch} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
+import {SaveKey} from "@/types.ts"
 
 const store = useBaseStore()
 // 查询当前系统主题颜色
@@ -19,6 +20,11 @@ function followSystem() {
   document.documentElement.setAttribute('data-theme', theme)
 }
 
+watch(store.$state, (n) => {
+  // console.log('state', JSON.stringify(n.current, null, 2))
+  localStorage.setItem(SaveKey, JSON.stringify(n))
+})
+
 onMounted(() => {
   store.init()
   if (store.theme !== 'auto') {
@@ -28,7 +34,7 @@ onMounted(() => {
 </script>
 
 <template>
-<!--  <Backgorund/>-->
+  <!--  <Backgorund/>-->
   <div class="main-page">
     <div class="center">
       <Toolbar/>

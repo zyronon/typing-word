@@ -48,7 +48,7 @@ function t() {
 <template>
   <header :class="!store.setting.showToolbar && 'hide'">
     <div class="info" @click="showDictModal = true">
-      {{ store.currentDict.name }} {{ store.chapterName }}
+      {{ store.dictTitle }}
     </div>
     <div class="options">
       <Tooltip title="切换主题">
@@ -136,7 +136,7 @@ header {
   transition: all .3s;
 
   .info {
-    font-size: 18rem;
+    font-size: 16rem;
     color: var(--color-font-1);
     display: flex;
     justify-content: center;

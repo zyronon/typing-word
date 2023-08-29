@@ -15,7 +15,7 @@ import {emitter, EventKey} from "@/utils/eventBus.ts"
 
 const store = useBaseStore()
 const swiperIns0: SwiperClass = $ref(null as any)
-let tabIndex = $ref(1)
+let tabIndex = $ref(0)
 provide('tabIndex', computed(() => tabIndex))
 
 function slideTo(index: number) {
@@ -26,18 +26,16 @@ onMounted(() => {
   emitter.on(EventKey.openSide, () => {
     store.sideIsOpen = !store.sideIsOpen
     if (store.sideIsOpen) {
-      switch (store.currentDictType) {
+      switch (store.current.dictType) {
         case DictType.newWordDict:
-          return tabIndex = 2;
+          return tabIndex = 1;
         case DictType.skipWordDict:
-          return tabIndex = 4;
-        case DictType.allWrongDict:
           return tabIndex = 3;
-        case DictType.currentWrongDict:
-          return tabIndex = 0;
+        case DictType.wrongWordDict:
+          return tabIndex = 2;
         case DictType.inner:
         case DictType.custom:
-          return tabIndex = 1;
+          return tabIndex = 0;
       }
     }
   })
@@ -49,40 +47,14 @@ onMounted(() => {
     <div class="side" v-if="store.sideIsOpen">
       <header>
         <div class="tabs">
-          <div class="tab" v-if="store.isWrongMode" :class="tabIndex===0&&'active'" @click="slideTo(0)">
-            {{ store.currentWrongDict.name }}
-          </div>
-          <div class="tab" :class="tabIndex===1&&'active'" @click="slideTo(1)">单词表</div>
-          <div class="tab" :class="tabIndex===2&&'active'" @click="slideTo(2)">{{ store.newWordDict.name }}</div>
-          <div class="tab" :class="tabIndex===3&&'active'" @click="slideTo(3)">{{ store.allWrongDict.name }}</div>
-          <div class="tab" :class="tabIndex===4&&'active'" @click="slideTo(4)">{{ store.skipWordDict.name }}</div>
+          <div class="tab" :class="tabIndex===0&&'active'" @click="slideTo(0)">{{ store.dict.name }}</div>
+          <div class="tab" :class="tabIndex===1&&'active'" @click="slideTo(1)">{{ store.newWordDict.name }}</div>
+          <div class="tab" :class="tabIndex===2&&'active'" @click="slideTo(2)">{{ store.wrongWordDict.name }}</div>
+          <div class="tab" :class="tabIndex===3&&'active'" @click="slideTo(3)">{{ store.skipWordDict.name }}</div>
         </div>
       </header>
       <div class="side-content">
         <swiper :initial-slide="tabIndex" @swiper="e=>swiperIns0 = e" class="mySwiper" :allow-touch-move="false">
-          <swiper-slide>
-            <div class="page0">
-              <header>
-                <div class="dict-name">总词数：{{ store.currentDict.chapterList[0].length }}</div>
-              </header>
-              <WordList
-                  class="word-list"
-                  @change="(e:number) => store.changeDict(store.currentWrongDict,-1,e)"
-                  :isActive="store.sideIsOpen && tabIndex === 0"
-                  :list="store.currentDict.chapterList[0]??[]"
-                  :activeIndex="store.currentDict.wordIndex"/>
-              <footer v-if="![DictType.custom,DictType.inner].includes(store.currentDictType)">
-                <PopConfirm
-                    :title="`确认切换？`"
-                    @confirm="store.changeDict(store.dict)"
-                >
-                  <div class="my-button">
-                    切换
-                  </div>
-                </PopConfirm>
-              </footer>
-            </div>
-          </swiper-slide>
           <swiper-slide>
             <div class="page0">
               <header>
@@ -91,10 +63,10 @@ onMounted(() => {
               <WordList
                   class="word-list"
                   @change="(e:number) => store.changeDict(store.dict,-1,e)"
-                  :isActive="store.sideIsOpen && tabIndex === 1"
-                  :list="store.dict.chapterList[store.dict.chapterIndex]??[]"
-                  :activeIndex="store.dict.wordIndex"/>
-              <footer v-if="![DictType.custom,DictType.inner].includes(store.currentDictType)">
+                  :isActive="store.sideIsOpen && tabIndex === 0"
+                  :list="store.dict.chapters[store.dict.chapterIndex]??[]"
+                  :activeIndex="store.dict.chapterWordIndex"/>
+              <footer v-if="![DictType.custom,DictType.inner].includes(store.current.dictType)">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.dict)"
@@ -109,15 +81,15 @@ onMounted(() => {
           <swiper-slide>
             <div class="page0">
               <header>
-                <div class="dict-name">总词数：{{ store.newWordDict.wordList.length }}</div>
+                <div class="dict-name">总词数：{{ store.newWordDict.originWords.length }}</div>
               </header>
               <WordList
                   class="word-list"
                   @change="(e:number) => store.changeDict(store.newWordDict,-1,e)"
-                  :isActive="store.sideIsOpen && tabIndex === 2"
-                  :list="store.newWordDict.wordList"
-                  :activeIndex="store.newWordDict.wordIndex"/>
-              <footer v-if="store.currentDictType !== DictType.newWordDict && store.newWordDict.wordList.length">
+                  :isActive="store.sideIsOpen && tabIndex === 1"
+                  :list="store.newWordDict.originWords"
+                  :activeIndex="store.newWordDict.chapterWordIndex"/>
+              <footer v-if="store.current.dictType !== DictType.newWordDict && store.newWordDict.originWords.length">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.newWordDict)"
@@ -133,18 +105,18 @@ onMounted(() => {
             <div class="page0">
               <header>
                 <a href="" target="_blank"></a>
-                <div class="dict-name">总词数：{{ store.allWrongDict.wordList.length }}</div>
+                <div class="dict-name">总词数：{{ store.wrongWordDict.originWords.length }}</div>
               </header>
               <WordList
                   class="word-list"
-                  @change="(e:number) => store.changeDict(store.allWrongDict,-1,e)"
-                  :isActive="store.sideIsOpen && tabIndex === 3"
-                  :list="store.allWrongDict.wordList"
-                  :activeIndex="store.allWrongDict.wordIndex"/>
-              <footer v-if="store.currentDictType !== DictType.allWrongDict && store.allWrongDict.wordList.length">
+                  @change="(e:number) => store.changeDict(store.wrongWordDict,-1,e)"
+                  :isActive="store.sideIsOpen && tabIndex === 2"
+                  :list="store.wrongWordDict.originWords"
+                  :activeIndex="store.wrongWordDict.chapterWordIndex"/>
+              <footer v-if="store.current.dictType !== DictType.wrongWordDict && store.wrongWordDict.originWords.length">
                 <PopConfirm
                     :title="`确认切换？`"
-                    @confirm="store.changeDict(store.allWrongDict)"
+                    @confirm="store.changeDict(store.wrongWordDict)"
                 >
                   <BaseButton>
                     切换
@@ -156,15 +128,15 @@ onMounted(() => {
           <swiper-slide>
             <div class="page0">
               <header>
-                <div class="dict-name">总词数：{{ store.skipWordDict.wordList.length }}</div>
+                <div class="dict-name">总词数：{{ store.skipWordDict.originWords.length }}</div>
               </header>
               <WordList
                   class="word-list"
                   @change="(e:number) => store.changeDict(store.skipWordDict,-1,e)"
-                  :isActive="store.sideIsOpen && tabIndex === 4"
-                  :list="store.skipWordDict.wordList"
-                  :activeIndex="store.skipWordDict.wordIndex"/>
-              <footer v-if="store.currentDictType !== DictType.skipWordDict && store.skipWordDict.wordList.length">
+                  :isActive="store.sideIsOpen && tabIndex === 3"
+                  :list="store.skipWordDict.originWords"
+                  :activeIndex="store.skipWordDict.chapterWordIndex"/>
+              <footer v-if="store.current.dictType !== DictType.skipWordDict && store.skipWordDict.originWords.length">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.skipWordDict)"

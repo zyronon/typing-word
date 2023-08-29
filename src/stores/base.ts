@@ -64,7 +64,8 @@ export const useBaseStore = defineStore('base', {
         words: [],
         index: -1,
         wrongWords: [],
-        repeatNumber: -1,
+        originWrongWords: [],
+        repeatNumber: 0,
         statistics: {
           startDate: -1,
           endDate: -1,
@@ -121,6 +122,14 @@ export const useBaseStore = defineStore('base', {
         ukphone: '',
       }
     },
+    dictTitle(state: State) {
+      let title = this.currentDict.name
+      if ([DictType.inner, DictType.custom].includes(this.current.dictType)) {
+        title += `  第${this.currentDict.chapterIndex + 1}章`
+        title += this.current.repeatNumber ? '  复习错词' : ''
+      }
+      return title
+    }
   },
   actions: {
     setState(obj: any) {
@@ -128,6 +137,30 @@ export const useBaseStore = defineStore('base', {
         this[key] = value
       }
       // console.log('this/', this)
+    },
+    setCurrentWord(words: Word[], restart: boolean = false) {
+      this.current.words = cloneDeep(words)
+      if (restart) {
+        this.current.repeatNumber = 0
+        this.current.originWrongWords = []
+        this.current.statistics = {
+          startDate: Date.now(),
+          endDate: -1,
+          spend: -1,
+          wordNumber: words.length,
+          correctRate: -1,
+          wrongWordNumber: -1,
+        }
+      } else {
+        this.current.repeatNumber++
+        if (!this.current.originWrongWords.length) {
+          this.current.originWrongWords = cloneDeep(this.current.wrongWords)
+        }
+        this.current.statistics.correctRate = -1
+        this.current.statistics.wrongWordNumber = -1
+      }
+      this.current.index = 0
+      this.current.wrongWords = []
     },
     async init() {
       // let configStr = localStorage.getItem(SaveKey)
@@ -141,9 +174,9 @@ export const useBaseStore = defineStore('base', {
           this.dict.originWords = cloneDeep(v)
           this.dict.words = cloneDeep(v)
           this.dict.chapters = chunk(this.dict.originWords, this.dict.chapterWordNumber)
+          this.setCurrentWord(this.chapter, true)
         })
       }
-      this.dict.wordIndex = 0
     },
     async changeDict(dict: Dict, chapterIndex: number = -1, chapterWordIndex: number = -1) {
       console.log('changeDict', dict)

@@ -63,62 +63,43 @@ onUnmounted(() => {
   window.removeEventListener('keyup', onKeyUp)
 })
 
-watch(store.$state, (n) => {
-  localStorage.setItem(SaveKey, JSON.stringify(n))
-})
-
-
-function repeatWrong() {
-  store.current.words = cloneDeep(store.current.wrongWords)
-  store.current.index = 0
-  store.current.wrongWords = []
-  store.current.statistics = {
-    startDate: -1,
-    endDate: -1,
-    spend: -1,
-    wordNumber: -1,
-    correctRate: -1,
-    wrongWordNumber: -1,
-  }
-}
-
 function next() {
-  if (store.current.wrongWords.length) {
-    repeatWrong()
-  } else {
-    if (store.current.index === store.chapter.length - 1) {
+  if (store.current.index === store.current.words.length - 1) {
+    if (store.current.wrongWords.length) {
+      store.setCurrentWord(store.current.wrongWords)
+    } else {
       if (store.currentDict.chapterIndex !== store.currentDict.chapters.length - 1) {
         console.log('这一章节完了')
-        // emitter.emit(EventKey.openStatModal)
+        emitter.emit(EventKey.openStatModal)
       } else {
         console.log('这本书完了')
         emitter.emit(EventKey.openStatModal)
       }
-    } else {
-      store.current.index++
-
-      // var msg = new SpeechSynthesisUtterance();
-      // // msg.text = store.word.name
-      // msg.text = 'Hawaii wildfires burn historic town of Lahaina to the ground'
-      // msg.rate = 0.8;
-      // msg.pitch = 1;
-      // msg.lang = 'en-US';
-      // window.speechSynthesis.speak(msg);
-
-      console.log('这个词完了')
-      if (store.current.index) {
-        store.current.statistics.wrongWordNumber = store.current.index - store.current.wrongWords.length
-        store.current.statistics.correctRate = Math.trunc(((store.current.index - store.current.wrongWords.length) / (store.current.index)) * 100)
-      } else {
-        store.current.statistics.correctRate = -1
-        store.current.statistics.wrongWordNumber = -1
-      }
     }
-    if ([DictType.custom, DictType.inner].includes(store.current.dictType) && store.skipWordNames.includes(store.word.name)) {
-      next()
-    }
+  } else {
+    store.current.index++
+
+    // var msg = new SpeechSynthesisUtterance();
+    // // msg.text = store.word.name
+    // msg.text = 'Hawaii wildfires burn historic town of Lahaina to the ground'
+    // msg.rate = 0.8;
+    // msg.pitch = 1;
+    // msg.lang = 'en-US';
+    // window.speechSynthesis.speak(msg);
+
+    console.log('这个词完了')
+  }
+  if ([DictType.custom, DictType.inner].includes(store.current.dictType) && store.skipWordNames.includes(store.word.name)) {
+    next()
   }
 
+  if (store.current.index) {
+    store.current.statistics.wrongWordNumber = store.current.wrongWords.length
+    store.current.statistics.correctRate = Math.trunc(((store.current.index - store.current.wrongWords.length) / (store.current.index)) * 100)
+  } else {
+    store.current.statistics.wrongWordNumber = -1
+    store.current.statistics.correctRate = -1
+  }
   wrong = input = ''
 }
 
@@ -135,13 +116,13 @@ async function onKeyDown(e: KeyboardEvent) {
       wrong = ''
       playKeySound()
     } else {
-      if (!store.allWrongDict.wordList.find((v: Word) => v.name === store.word.name)) {
-        store.allWrongDict.wordList.push(store.word)
+      if (!store.wrongWordDict.originWords.find((v: Word) => v.name === store.word.name)) {
+        store.wrongWordDict.originWords.push(store.word)
       }
-      if (!store.currentWrongDict.wordList.find((v: Word) => v.name === store.word.name)) {
-        store.currentWrongDict.wordList.push(store.word)
+      if (!store.current.wrongWords.find((v: Word) => v.name === store.word.name)) {
+        store.current.wrongWords.push(store.word)
       }
-      store.lastStatistics.correctRate = Math.trunc(((store.currentDict.wordIndex + 1 - store.currentWrongDict.wordList.length) / (store.currentDict.wordIndex + 1)) * 100)
+      store.current.statistics.correctRate = Math.trunc(((store.current.index + 1 - store.current.wrongWords.length) / (store.current.index + 1)) * 100)
       wrong = letter
       playKeySound()
       playBeep()
@@ -165,14 +146,14 @@ async function onKeyDown(e: KeyboardEvent) {
         }
         break
       case keyMap.Collect:
-        if (!store.newWordDict.wordList.find((v: Word) => v.name === store.word.name)) {
-          store.newWordDict.wordList.push(store.word)
+        if (!store.newWordDict.originWords.find((v: Word) => v.name === store.word.name)) {
+          store.newWordDict.originWords.push(store.word)
         }
         activeIndex = 1
         break
       case keyMap.Remove:
         if (!store.skipWordNames.includes(store.word.name)) {
-          store.skipWordDict.wordList.push(store.word)
+          store.skipWordDict.originWords.push(store.word)
         }
         activeIndex = 0
         next()
@@ -194,7 +175,7 @@ async function onKeyDown(e: KeyboardEvent) {
 
 const progress = $computed(() => {
   if (!store.chapter.length) return 0
-  return ((store.currentDict.wordIndex / store.chapter.length) * 100)
+  return ((store.current.index / store.current.words.length) * 100)
 })
 
 const {toggle} = useTheme()
@@ -203,6 +184,17 @@ function format(val: number, suffix: string = '') {
   return val === -1 ? '-' : (val + suffix)
 }
 
+let speedMinute = $ref(0)
+let timer = $ref(0)
+onMounted(() => {
+  timer = setInterval(() => {
+    speedMinute = Math.floor((Date.now() - store.current.statistics.startDate) / 1000 / 60)
+  }, 1000)
+})
+
+onUnmounted(() => {
+  timer && clearInterval(timer)
+})
 </script>
 
 <template>
@@ -246,17 +238,27 @@ function format(val: number, suffix: string = '') {
                    :show-text="false"/>
       <div class="stat">
         <div class="row">
-          <div class="num">{{ store.currentDict.wordIndex }}</div>
+          <div class="num">{{ speedMinute }}分钟</div>
+          <div class="line"></div>
+          <div class="name">时间</div>
+        </div>
+        <div class="row">
+          <div class="num">{{ store.current.statistics.wordNumber }}</div>
+          <div class="line"></div>
+          <div class="name">单词总数</div>
+        </div>
+        <div class="row">
+          <div class="num">{{ store.current.index }}</div>
           <div class="line"></div>
           <div class="name">输入数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(store.currentWrongDict.wordList.length) }}</div>
+          <div class="num">{{ format(store.current.wrongWords.length) }}</div>
           <div class="line"></div>
           <div class="name">错误数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(store.lastStatistics.correctRate, '%') }}</div>
+          <div class="num">{{ format(store.current.statistics.correctRate, '%') }}</div>
           <div class="line"></div>
           <div class="name">正确率</div>
         </div>

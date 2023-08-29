@@ -69,6 +69,7 @@ $w2: calc($w / 2);
   }
 
   .desc {
+    font-size: 14rem;
     opacity: .6;
   }
 }

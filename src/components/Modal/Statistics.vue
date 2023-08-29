@@ -1,27 +1,30 @@
-<script setup>
+<script setup lang="ts">
 import Modal from "@/components/Modal/Modal.vue";
 import {useBaseStore} from "@/stores/base.ts";
-import {KeyboardOne, Like, ShareThree, Tea} from '@icon-park/vue-next'
+import {Like, ShareThree, Tea} from '@icon-park/vue-next'
 import Ring from "@/components/Ring.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Fireworks from "@/components/Fireworks.vue";
 import BaseButton from "@/components/BaseButton.vue";
-import {DictType} from "@/types.ts";
+import {DefaultStatistics, Statistics} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import {onMounted} from "vue";
+import {onMounted, reactive} from "vue";
+import {cloneDeep} from "lodash";
 
 const store = useBaseStore()
 let statModalIsOpen = $ref(false)
-let currentStat = $ref({
-  wrongNumber: -1,
-  correctRate: -1
-})
+let currentStat = reactive<Statistics>(cloneDeep(DefaultStatistics))
 
 onMounted(() => {
   emitter.on(EventKey.openStatModal, () => {
     statModalIsOpen = true
-    store.lastStatistics.endDate = Date.now()
-    currentStat = store.lastStatistics
+    currentStat = cloneDeep(store.current.statistics)
+    currentStat.endDate = Date.now()
+    currentStat.spend = Date.now() - currentStat.startDate
+    currentStat.wrongWordNumber = store.current.originWrongWords.length
+    currentStat.correctRate = 100 - Math.trunc((currentStat.wrongWordNumber / currentStat.wordNumber) * 100)
+    console.log(cloneDeep(currentStat))
+    store.currentDict.statistics.push(currentStat)
   })
 })
 
@@ -32,37 +35,14 @@ function write() {
 
 //TODO 需要判断是否已忽略
 function repeat() {
-  store.currentDict.wordIndex = 0
-  store.currentWrongDict.wordList = []
+  store.setCurrentWord(store.chapter, true)
   statModalIsOpen = false
-  let stat = store.currentDict.dictStatistics[store.currentDict.dictStatistics.length - 1]
-  if (stat.statistics.length) {
-    stat.statistics.push({
-      startDate: Date.now(),//开始日期
-      endDate: -1,
-      correctRate: -1,
-      wrongNumber: -1
-    })
-  }
-  emitter.on(EventKey.resetWord)
+  emitter.emit(EventKey.resetWord)
 }
 
 function next() {
   store.currentDict.chapterIndex++
   repeat()
-}
-
-function repeatWrong() {
-  if (store.currentDictType !== DictType.currentWrongDict) {
-    store.lastDictType = store.currentDictType
-  }
-  store.currentDictType = DictType.currentWrongDict
-  store.currentWrongDict.chapterList = [store.currentWrongDict.wordList]
-  store.currentWrongDict.chapterIndex = 0
-  store.currentWrongDict.wordIndex = 0
-  store.currentWrongDict.wordList = []
-  statModalIsOpen = false
-  emitter.on(EventKey.resetWord)
 }
 
 </script>
@@ -71,7 +51,7 @@ function repeatWrong() {
   <Modal v-model="statModalIsOpen" @close="next">
     <div class="statistics">
       <header>
-        <div class="title">{{ store.currentDict.name }} {{ store.chapterName }}</div>
+        <div class="title">{{ store.currentDict.name }}</div>
       </header>
       <div class="content">
         <div class="rings">
@@ -80,24 +60,24 @@ function repeatWrong() {
               desc="正确率"
               :percentage="currentStat.correctRate"/>
           <Ring
-              :value="currentStat.wrongNumber"
-              desc="正确数"
+              :value="currentStat.wrongWordNumber"
+              desc="错误数"
               :percentage="0"
           />
           <Ring
-              :value="store.currentDict.wordIndex"
-              desc="输入数"
+              :value="currentStat.wordNumber"
+              desc="单词总数"
               :percentage="0"
               style="margin-bottom: 0;"/>
         </div>
         <div class="result">
           <div class="wrong-words-wrapper">
             <div class="wrong-words">
-              <div class="word" v-for="i in store.currentWrongDict.wordList">{{ i.name }}</div>
+              <div class="word" v-for="i in store.current.originWrongWords">{{ i.name }}</div>
               <!--                          <div class="word" v-for="i in 100">{{ i }}</div>-->
             </div>
           </div>
-          <div class="notice" v-if="!store.currentWrongDict.wordList.length">
+          <div class="notice" v-if="!store.current.originWrongWords.length">
             <!--          <div class="notice">-->
             <like theme="filled" size="20" fill="#ffffff" :strokeWidth="2"/>
             表现不错，全对了！
@@ -122,16 +102,13 @@ function repeatWrong() {
         <BaseButton keyboard="Alt + Enter" @click="repeat">
           重复本章
         </BaseButton>
-        <BaseButton keyboard="Enter" @click="repeatWrong">
-          重复错词
-        </BaseButton>
         <BaseButton keyboard="Tab" @click="next">
           下一章
         </BaseButton>
       </div>
     </div>
   </Modal>
-  <Fireworks v-if="store.statModalIsOpen"/>
+  <Fireworks v-if="statModalIsOpen"/>
 </template>
 <style scoped lang="scss">
 @import "@/assets/css/style";
