@@ -40,33 +40,47 @@ onMounted(() => {
   })
 })
 
-function getActiveIndex(type: DictType) {
-  if (store.current.dictType !== type) return -1
-  else {
-    return store[type].chapterWordIndex
-  }
-}
 
 const newWordDictActiveIndex = computed(() => {
   if (store.current.dictType !== DictType.newWordDict) return -1
-  else return store.current.index
+  else {
+    if (store.current.repeatNumber) {
+      return store.chapter.findIndex(v => v.name === store.word.name)
+    }
+    return store.current.index
+  }
 })
 
 const dictActiveIndex = computed(() => {
   if (store.current.dictType !== DictType.inner) return -1
-  else return store.current.index
+  else {
+    if (store.current.repeatNumber) {
+      return store.chapter.findIndex(v => v.name === store.word.name)
+    }
+    return store.current.index
+  }
 })
 
 
 const wrongWordDictActiveIndex = computed(() => {
   if (store.current.dictType !== DictType.wrongWordDict) return -1
-  else return store.current.index
+  else {
+    if (store.current.repeatNumber) {
+      return store.chapter.findIndex(v => v.name === store.word.name)
+    }
+    return store.current.index
+  }
 })
 
 
 const skipWordDictActiveIndex = computed(() => {
   if (store.current.dictType !== DictType.skipWordDict) return -1
-  else return store.current.index
+  else {
+    if (store.current.repeatNumber) {
+      return store.chapter.findIndex(v => v.name === store.word.name)
+    }
+    return store.current.index
+  }
 })
 
 </script>

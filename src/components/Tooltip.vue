@@ -30,15 +30,17 @@ export default {
       this.show = true
       nextTick(() => {
         let tip = this.$refs?.tip?.getBoundingClientRect()
+        console.log('re', rect)
         if (!tip) return
         if (rect.top < 50) {
-          this.$refs.tip.style.top = rect.top + tip.height - 10 + 'px'
+          this.$refs.tip.style.top = rect.top + rect.height + 10 + 'px'
         } else {
           this.$refs.tip.style.top = rect.top - tip.height - 10 + 'px'
         }
         let tipWidth = tip.width
         let rectWidth = rect.width
         this.$refs.tip.style.left = rect.left - (tipWidth - rectWidth) / 2 + 'px'
+        // onmouseleave={() => this.show = false}
       })
     },
   },

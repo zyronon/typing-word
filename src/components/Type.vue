@@ -347,7 +347,7 @@ onUnmounted(() => {
       cursor: pointer;
       transition: all .3s;
       transform: translate3d(-50%, -100%, 0) rotate(0);
-      padding: 10rem;
+      padding: 5rem;
     }
 
     .stat {
@@ -374,7 +374,7 @@ onUnmounted(() => {
       transform: translateY(calc(100% + 30rem));
 
       .arrow {
-        transform: translate3d(-50%, -180%, 0) rotate(180deg);
+        transform: translate3d(-50%, -220%, 0) rotate(180deg);
       }
     }
   }

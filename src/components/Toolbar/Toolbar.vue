@@ -161,7 +161,7 @@ header {
     cursor: pointer;
     transition: all .5s;
     transform: translate3d(-50%, 100%, 0) rotate(180deg);
-    padding: 10rem;
+    padding: 5rem;
 
     &.down {
       transform: translate3d(-50%, 100%, 0) rotate(0);
