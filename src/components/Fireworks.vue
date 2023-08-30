@@ -126,8 +126,8 @@ onMounted(() => {
     _move() {
       let dx = this.boomArea.x - this.x,
           dy = this.boomArea.y - this.y;
-      this.x = this.x + dx * 0.01;
-      this.y = this.y + dy * 0.01;
+      this.x = this.x + dx * 0.02;
+      this.y = this.y + dy * 0.02;
       // console.log(this.x, this.y, dx, this.ba)
 
       if (Math.abs(dx) <= this.ba && Math.abs(dy) <= this.ba) {

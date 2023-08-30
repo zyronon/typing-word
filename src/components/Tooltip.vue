@@ -30,7 +30,6 @@ export default {
       this.show = true
       nextTick(() => {
         let tip = this.$refs?.tip?.getBoundingClientRect()
-        console.log('re', rect)
         if (!tip) return
         if (rect.top < 50) {
           this.$refs.tip.style.top = rect.top + rect.height + 10 + 'px'

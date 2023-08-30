@@ -8,6 +8,8 @@ import Backgorund from "@/components/Backgorund.vue";
 import {onMounted, watch} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {SaveKey} from "@/types.ts"
+import Footer from "@/components/Footer.vue"
+import TypeArticle from "@/components/TypeArticle.vue"
 
 const store = useBaseStore()
 // 查询当前系统主题颜色
@@ -34,13 +36,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <!--  <Backgorund/>-->
+  <!--    <Backgorund/>-->
   <div class="main-page">
     <div class="center">
       <Toolbar/>
       <div class="content">
-        <Type/>
+<!--                <Type/>-->
+        <TypeArticle/>
       </div>
+      <Footer/>
       <Side/>
     </div>
     <Statistics></Statistics>
@@ -62,7 +66,7 @@ onMounted(() => {
   background-color: var(--color-main-bg);
 
   .center {
-    width: 70vw;
+    width: var(--toolbar-width);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -71,12 +75,13 @@ onMounted(() => {
     position: relative;
 
     .content {
+      width: 100%;
       position: relative;
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-
+      overflow: hidden;
     }
   }
 }

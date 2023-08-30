@@ -32,21 +32,29 @@ import IconEyeSlash from '~icons/heroicons/eye-slash-solid'
 import IconRepeat from '~icons/tabler/repeat'
 import IconRepeatOff from '~icons/tabler/repeat-off'
 import {emitter, EventKey} from "@/utils/eventBus.ts"
+import {watch} from "vue"
 
 const {toggle} = useTheme()
 const store = useBaseStore()
 const showFeedbackModal = $ref(false)
 const showSettingModal = $ref(false)
 const showDictModal = $ref(false)
+const headerRef = $ref<HTMLDivElement>(null)
 
-function t() {
-  console.log('t')
-}
-
+watch(() => store.setting.showToolbar, n => {
+  if (headerRef) {
+    if (n) {
+      headerRef.style.marginTop = '10rem'
+    } else {
+      let rect = headerRef.getBoundingClientRect()
+      headerRef.style.marginTop = `-${rect.height}px`
+    }
+  }
+})
 </script>
 
 <template>
-  <header :class="!store.setting.showToolbar && 'hide'">
+  <header ref="headerRef">
     <div class="info" @click="showDictModal = true">
       {{ store.dictTitle }}
     </div>
@@ -122,18 +130,21 @@ function t() {
 @import "@/assets/css/colors.scss";
 
 header {
-  top: 10rem;
-  height: 60rem;
-  width: var(--toolbar-width);
+  margin-top: 10rem;
+  min-height: 60rem;
+  width: 100%;
   background: var(--color-header-bg);
   display: flex;
   justify-content: space-between;
   border-radius: 8rem;
-  position: absolute;
+  margin-bottom: 30rem;
+  //position: absolute;
+  position: relative;
   z-index: 2;
   padding: 10rem $space;
   box-sizing: border-box;
   transition: all .3s;
+  gap: 10rem;
 
   .info {
     font-size: 16rem;
@@ -148,10 +159,6 @@ header {
     display: flex;
     align-items: center;
     gap: 10rem;
-  }
-
-  &.hide {
-    transform: translateY(calc(-100% - 10rem));
   }
 
   .arrow {

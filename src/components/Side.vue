@@ -113,9 +113,7 @@ const skipWordDictActiveIndex = computed(() => {
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.dict)"
                 >
-                  <div class="my-button">
-                    切换
-                  </div>
+                  <BaseButton>切换</BaseButton>
                 </PopConfirm>
               </footer>
             </div>
@@ -136,9 +134,7 @@ const skipWordDictActiveIndex = computed(() => {
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.newWordDict)"
                 >
-                  <div class="my-button">
-                    切换
-                  </div>
+                  <BaseButton>切换</BaseButton>
                 </PopConfirm>
               </footer>
             </div>
@@ -161,9 +157,7 @@ const skipWordDictActiveIndex = computed(() => {
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.wrongWordDict)"
                 >
-                  <BaseButton>
-                    切换
-                  </BaseButton>
+                  <BaseButton>切换</BaseButton>
                 </PopConfirm>
               </footer>
             </div>
@@ -184,9 +178,7 @@ const skipWordDictActiveIndex = computed(() => {
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.skipWordDict)"
                 >
-                  <div class="my-button hvr-grow">
-                    切换
-                  </div>
+                  <BaseButton>切换</BaseButton>
                 </PopConfirm>
               </footer>
             </div>
@@ -209,9 +201,10 @@ const skipWordDictActiveIndex = computed(() => {
 .side {
   $width: 20vw;
   position: absolute;
-  right: 0;
+  left: calc(100% + $space);
   width: $width;
   background: var(--color-second-bg);
+  //background: white;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -285,7 +278,7 @@ const skipWordDictActiveIndex = computed(() => {
       justify-content: flex-end;
       gap: 10rem;
       font-size: 18rem;
-      color: white;
+      color: black;
     }
 
     .word-list {
