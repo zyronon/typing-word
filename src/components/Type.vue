@@ -79,14 +79,6 @@ function next() {
   } else {
     store.current.index++
 
-    // var msg = new SpeechSynthesisUtterance();
-    // // msg.text = store.word.name
-    // msg.text = 'Hawaii wildfires burn historic town of Lahaina to the ground'
-    // msg.rate = 0.8;
-    // msg.pitch = 1;
-    // msg.lang = 'en-US';
-    // window.speechSynthesis.speak(msg);
-
     console.log('这个词完了')
   }
   if ([DictType.custom, DictType.inner].includes(store.current.dictType) && store.skipWordNames.includes(store.word.name)) {
