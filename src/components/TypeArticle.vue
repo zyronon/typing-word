@@ -1,8 +1,19 @@
 <script setup lang="ts">
 
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
-import {onMounted, reactive} from "vue"
+import {computed, onMounted, reactive} from "vue"
 import {cloneDeep} from "lodash"
+import 快速打字的机械键盘声音Mp3 from '../assets/sound/key-sounds/快速打字的机械键盘声音.mp3'
+import 键盘快速打字的声音Mp3 from '../assets/sound/key-sounds/键盘快速打字的声音.mp3'
+import 电话打字的声音Mp3 from '../assets/sound/key-sounds/电话打字的声音.mp3'
+import 老式机械 from '../assets/sound/key-sounds/老式机械.mp3'
+import 机械0 from '../assets/sound/key-sounds/jixie/机械0.mp3'
+import 机械1 from '../assets/sound/key-sounds/jixie/机械1.mp3'
+import 机械2 from '../assets/sound/key-sounds/jixie/机械2.mp3'
+import 机械3 from '../assets/sound/key-sounds/jixie/机械3.mp3'
+import beep from '../assets/sound/beep.wav'
+import correct from '../assets/sound/correct.wav'
+import {useSound} from "@/hooks/useSound.ts"
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -13,6 +24,7 @@ If you are younger, and in a solid financial position, you may decide to take an
 *'Periwigs' is the name of a fictitious company.
 INVESTOR'S CHRONICLE, March 23 1990`
 
+article1 = `How does the older investor differ in his approach to investment from the younger investor?How does the older investor differ in his approach to investment from the younger investor?`
 // article1 = `Last week I went to the theatre.\nI had a very good seat. The play was very interesting. I did not enjoy it. A young man and a young woman were sitting behind me. They were talking loudly. I got very angry. I could not hear the actors. I turned round. I looked at the man and the woman angrily. They did not pay any attention. In the end, I could not bear it. I turned round again. I cant hear a word! I said angrily.
 // Its none of your business, the young man said rudely. This is a private conversation!`
 
@@ -26,10 +38,17 @@ Idealists have objected to the package tour, that the traveller abroad thereby d
 Whether the remarkable growth of organized camping means the eventual death of the more independent kind is hard to say. Municipalities naturally want to secure the campers' site fees and other custom. Police are wary of itinerants who cannot be traced to a recognized camp boundary or to four walls. But most probably it will all depend upon campers themselves: how many heath fires they cause; how much litter they leave; in short, whether or not they wholly alienate landowners and those who live in the countryside. Only good scouting is likely to preserve the freedoms so dear to the heart of the eternal Boy Scout.
 NIGEL BUXTON The Great Escape from The Weekend Telegraph`
 
+article2 = `Economy is one powerful motive for camping? since after the initial outlay upon equipment, or through hiring it, the total expense can be far less than the cost of hotels. But, contrary to a popular assumption, it is far from being the only one, or even the greatest. The man who manoeuvres carelessly into his twenty pounds' worth of space at one of Europe's myriad permanent sites may find himself bumping a Bentley. More likely, Ford Escort will be hub to hub with Renault or Mercedes, but rarely with bicycles made for two.`
 let isPlay = $ref(false)
 let inputRef = $ref<HTMLInputElement>(null)
 
 const [playAudio] = usePlayWordAudio()
+const [playKeySound, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
+// const [playKeySound, setAudio] = useSound([老式机械], 3)
+// const [playKeySound, setAudio] = useSound([电话打字的声音Mp3], 3)
+const [playBeep] = useSound([beep], 1)
+const [playCorrect] = useSound([correct], 1)
+
 
 interface Article {
   sections: {
@@ -43,39 +62,49 @@ let article = reactive<Article>({
 })
 
 onMounted(() => {
-  let sections = article2.split('\n')
+  let sections = article1.split('\n')
   sections = sections.reduce((previousValue: any[], currentValue, currentIndex, array) => {
     // console.log(cloneDeep(currentValue))
     let sentences = currentValue.replace('\n', '').split('.')
     // console.log(cloneDeep(sentences))
-    sentences = sentences.filter(v => v).map((v, index, arr) => {
-      v += index === arr.length - 1 ? '' : '.'
-      return v
-    })
+    if (sentences.length > 1) {
+      sentences = sentences.filter(v => v).map((v, index, arr) => {
+        v += '.'
+        return v
+      })
+    }
     // console.log(cloneDeep(sentences))
 
     sentences = sentences.reduce((previousValue: string[], currentValue: string, currentIndex, array) => {
       let r = currentValue.split(',')
-      r = r.filter(v => v).map((v, index) => {
-        v += index === r.length - 1 ? '' : ','
-        return v
-      })
-      previousValue = previousValue.concat(r)
+      if (r.filter(v => v).length > 1) {
+        r = r.filter(v => v).map((v, index, array) => {
+          v += index === array.length - 1 ? '' : ','
+          return v
+        })
+        previousValue = previousValue.concat(r)
+      } else {
+        previousValue.push(currentValue)
+      }
       return previousValue
     }, [])
     // console.log(cloneDeep(sentences))
 
     sentences = sentences.reduce((previousValue: string[], currentValue: string, currentIndex, array) => {
       let r = currentValue.split('?')
-      r = r.filter(v => v).map((v, index) => {
-        v += index === r.length - 1 ? '' : '?'
-        return v
-      })
-      previousValue = previousValue.concat(r)
+      console.log(cloneDeep(r))
+      if (r.filter(v => v).length > 1) {
+        r = r.filter(v => v).map((v, index, array) => {
+          v += (index === array.length - 1 ? '' : '?')
+          return v
+        })
+        previousValue = previousValue.concat(r)
+      } else {
+        previousValue.push(currentValue)
+      }
       return previousValue
     }, [])
     // console.log(cloneDeep(sentences))
-
 
     let section = sentences.map(v => {
       let data = {
@@ -90,7 +119,7 @@ onMounted(() => {
     return previousValue
   }, [])
 
-  console.log(sections)
+  // console.log(sections)
   article.sections = sections as any
   // console.log(cloneDeep(item.sentences))
 })
@@ -115,63 +144,86 @@ function focus() {
   inputRef.focus()
 }
 
-let sectionIndex = $ref(0)
+let sectionIndex = $ref(1)
 let sentenceIndex = $ref(0)
-let wordIndex = $ref(0)
+let wordIndex = $ref(6)
 let index = $ref(0)
 let input = $ref('')
 let wrong = $ref('')
 let isSpace = $ref(false)
 
-function keyDown(e: KeyboardEvent) {
-  console.log('keyDown', e.key, e.code)
-  if (isSpace) {
-    if (e.code === 'Space') isSpace = false
-    return
-  }
-  if ((e.keyCode >= 65 && e.keyCode <= 90)
-      || e.code === 'Space'
-      || e.code === 'Slash'
-      || e.code === 'Quote'
-      || e.code === 'Comma'
-      || e.code === 'BracketLeft'
-      || e.code === 'BracketRight'
-  ) {
-    let letter = e.key
+const currentIndex = computed(() => {
+  return `${sectionIndex}${sentenceIndex}${wordIndex}`
+})
 
-    let currentSection = article.sections[sectionIndex]
-    let currentSentence = currentSection[sentenceIndex]
-    let currentWord = currentSentence.words[wordIndex]
-    let key = currentWord[index]
-    if (key === letter) {
-      input += letter
-      wrong = ''
-      console.log('匹配上了')
-      index++
-      if (!currentWord[index]) {
-        index = 0
-        input = wrong = ''
-        wordIndex++
-        isSpace = true
-        if (!currentSentence.words[wordIndex]) {
-          wordIndex = 0
-          sentenceIndex++
-          isSpace = true
-          if (!currentSection[sentenceIndex]) {
-            sentenceIndex = 0
-            sectionIndex++
-          }
+function keyDown(e: KeyboardEvent) {
+  console.log('keyDown', e.key, e.code, e.keyCode)
+  wrong = ''
+
+  let currentSection = article.sections[sectionIndex]
+  let currentSentence = currentSection[sentenceIndex]
+  let currentWord = currentSentence.words[wordIndex]
+
+  if (isSpace) {
+    if (e.code === 'Space') {
+      isSpace = false
+      index = 0
+      wordIndex++
+      playCorrect()
+      if (!currentSentence.words[wordIndex]) {
+        wordIndex = 0
+        sentenceIndex++
+        if (!currentSection[sentenceIndex]) {
+          sentenceIndex = 0
+          sectionIndex++
+          isSpace = false
         }
       }
     } else {
-      wrong = letter
+      wrong = ' '
+      playBeep()
       setTimeout(() => {
         wrong = ''
-        // wrong = input = ''
+        wrong = input = ''
       }, 500)
-      console.log('未匹配')
+    }
+    playKeySound()
+  } else {
+    if ((e.keyCode >= 65 && e.keyCode <= 90)
+        || e.code === 'Space'
+        || e.code === 'Slash'
+        || e.code === 'Quote'
+        || e.code === 'Comma'
+        || e.code === 'BracketLeft'
+        || e.code === 'BracketRight'
+        || e.code === 'Period'
+    ) {
+      let letter = e.key
+
+      let key = currentWord[index]
+      console.log('key', key)
+      if (key === letter) {
+        input += letter
+        wrong = ''
+        console.log('匹配上了')
+        index++
+        if (!currentWord[index]) {
+          input = wrong = ''
+          isSpace = true
+        }
+      } else {
+        wrong = letter
+        playBeep()
+        setTimeout(() => {
+          wrong = ''
+          // wrong = input = ''
+        }, 500)
+        console.log('未匹配')
+      }
+      playKeySound()
     }
   }
+
 
   console.log(
       'sectionIndex', sectionIndex,
@@ -187,28 +239,36 @@ function keyDown(e: KeyboardEvent) {
 <template>
   <div class="type-wrapper">
     <article v-if="true" @click="focus">
-      <p class="line" v-for="(section,indexI) in article.sections">
-        <span v-for="(sentences,indexJ) in section">
+      <p class="section" v-for="(section,indexI) in article.sections">
+        <span class="sentence" v-for="(sentences,indexJ) in section">
           <span class="word"
-                v-for="(word,indexW) in sentences.words"
-                :class="(sectionIndex>indexI
+                :class="[(sectionIndex>indexI
                 ?'green':
                 (sectionIndex>=indexI &&sentenceIndex>indexJ)
                 ?'green' :
                 (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>indexW)
                 ?'green':
-                'wait'
-                )"
-          >
-            <template v-if="(sectionIndex===indexI &&sentenceIndex===indexJ && wordIndex===indexW)">
-                 <span class="input" v-if="input">{{ input }}</span>
-                <span class="wrong"
-                      :class="wrong === ' ' && 'bg-wrong'"
-                      v-if="wrong">{{ wrong === ' ' ? `&nbsp;` : wrong }}</span>{{
-                word.slice(input.length + wrong.length)
-              }}&nbsp;</template>
-            <template v-else>{{ word }}&nbsp;</template>
-            <!--          <span>{{sentences.sentence}}&nbsp;</span>-->
+                 (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>=indexW && index>=word.length)
+                ?'green':
+                ''),
+                (`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace && wrong )?'word-wrong':''
+                ]"
+                v-for="(word,indexW) in sentences.words">
+            <span v-if="`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace">
+              <span class="input" v-if="input">{{ input }}</span>
+              <span class="wrong" v-if="wrong">{{ wrong }}</span>
+              <span :class="!wrong && 'bottom-border'">{{
+                  word.slice(input.length + wrong.length, input.length + wrong.length + 1)
+                }}</span>
+              <span>{{ word.slice(input.length + wrong.length + 1) }}</span>
+            </span>
+            <span v-else>{{ word }}</span>
+            <span
+                :class="[
+                    `${indexI}${indexJ}${indexW}`,
+                    (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && wrong) && 'bg-wrong',
+                    (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && !wrong) && 'bottom-border',
+                ]">&nbsp;</span>
           </span>
         </span>
       </p>
@@ -237,24 +297,23 @@ function keyDown(e: KeyboardEvent) {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
     letter-spacing: 0rem;
     color: gray;
-
-    .line {
-      //white-space: pre-line;
-      word-break: keep-all;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-    }
+    word-break: keep-all;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 
     span {
-      //background: red;
-      //margin-right: 50rem;
     }
 
     .word {
+      display: inline-block;
+
       //margin-right: 10rem;
     }
   }
 
+  .bottom-border {
+    border-bottom: 1px solid black;
+  }
 
   .input {
     color: rgb(22, 163, 74);
@@ -263,8 +322,16 @@ function keyDown(e: KeyboardEvent) {
   .wrong {
     color: rgba(red, 0.6);
   }
+
+  .word-wrong {
+    display: inline-block;
+    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+
   .bg-wrong {
+    display: inline-block;
     background: rgba(red, 0.6);
+    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   }
 
   .inputEl {
