@@ -24,7 +24,7 @@ If you are younger, and in a solid financial position, you may decide to take an
 *'Periwigs' is the name of a fictitious company.
 INVESTOR'S CHRONICLE, March 23 1990`
 
-article1 = `How does the older investor differ in his approach to investment from the younger investor?How does the older investor differ in his approach to investment from the younger investor?`
+// article1 = `How does the older investor differ in his approach to investment from the younger investor?How does the older investor differ in his approach to investment from the younger investor?`
 // article1 = `Last week I went to the theatre.\nI had a very good seat. The play was very interesting. I did not enjoy it. A young man and a young woman were sitting behind me. They were talking loudly. I got very angry. I could not hear the actors. I turned round. I looked at the man and the woman angrily. They did not pay any attention. In the end, I could not bear it. I turned round again. I cant hear a word! I said angrily.
 // Its none of your business, the young man said rudely. This is a private conversation!`
 
@@ -43,8 +43,8 @@ let isPlay = $ref(false)
 let inputRef = $ref<HTMLInputElement>(null)
 
 const [playAudio] = usePlayWordAudio()
-const [playKeySound, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
-// const [playKeySound, setAudio] = useSound([老式机械], 3)
+// const [playKeySound, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
+const [playKeySound, setAudio] = useSound([老式机械], 3)
 // const [playKeySound, setAudio] = useSound([电话打字的声音Mp3], 3)
 const [playBeep] = useSound([beep], 1)
 const [playCorrect] = useSound([correct], 1)
@@ -62,65 +62,60 @@ let article = reactive<Article>({
 })
 
 onMounted(() => {
-  let sections = article1.split('\n')
-  sections = sections.reduce((previousValue: any[], currentValue, currentIndex, array) => {
-    // console.log(cloneDeep(currentValue))
-    let sentences = currentValue.replace('\n', '').split('.')
-    // console.log(cloneDeep(sentences))
-    if (sentences.length > 1) {
-      sentences = sentences.filter(v => v).map((v, index, arr) => {
-        v += '.'
-        return v
-      })
+  let sections = []
+  let section = []
+  let sentence = {
+    sentence: '',
+    words: []
+  }
+  let word = ''
+  console.log(article1)
+  article1.split('').map(v => {
+    switch (v) {
+      case ' ':
+        sentence.words.push(word)
+        word = ''
+        break
+      case '.':
+      case ',':
+      case '?':
+      case '!':
+        word += v
+        sentence.words.push(word)
+        sentence.words = sentence.words.filter(v => v)
+        sentence.sentence = sentence.words.join(' ')
+
+        // sentence.words.push(word)
+        // sentence.words = sentence.words.filter(v => v)
+        // sentence.sentence = sentence.words.join(' ')
+        // sentence.sentence += v
+        // sentence.words.push(v)
+        section.push(sentence)
+        sentence = {
+          sentence: '',
+          words: []
+        }
+        word = ''
+        break
+      case '\n':
+        sections.push(section)
+        section = []
+        sentence = {
+          sentence: '',
+          words: []
+        }
+        word = ''
+        break
+      default:
+        word += v
+        break
     }
-    // console.log(cloneDeep(sentences))
-
-    sentences = sentences.reduce((previousValue: string[], currentValue: string, currentIndex, array) => {
-      let r = currentValue.split(',')
-      if (r.filter(v => v).length > 1) {
-        r = r.filter(v => v).map((v, index, array) => {
-          v += index === array.length - 1 ? '' : ','
-          return v
-        })
-        previousValue = previousValue.concat(r)
-      } else {
-        previousValue.push(currentValue)
-      }
-      return previousValue
-    }, [])
-    // console.log(cloneDeep(sentences))
-
-    sentences = sentences.reduce((previousValue: string[], currentValue: string, currentIndex, array) => {
-      let r = currentValue.split('?')
-      console.log(cloneDeep(r))
-      if (r.filter(v => v).length > 1) {
-        r = r.filter(v => v).map((v, index, array) => {
-          v += (index === array.length - 1 ? '' : '?')
-          return v
-        })
-        previousValue = previousValue.concat(r)
-      } else {
-        previousValue.push(currentValue)
-      }
-      return previousValue
-    }, [])
-    // console.log(cloneDeep(sentences))
-
-    let section = sentences.map(v => {
-      let data = {
-        sentence: v.trim(),
-        words: v.trim().split(' ')
-      }
-      return data
-    })
-
-    previousValue.push(section)
-
-    return previousValue
-  }, [])
-
-  // console.log(sections)
-  article.sections = sections as any
+  })
+  if (!sections.length && section.length) {
+    sections.push(section)
+  }
+  article.sections = sections
+  console.log('sections', sections)
   // console.log(cloneDeep(item.sentences))
 })
 
@@ -144,9 +139,9 @@ function focus() {
   inputRef.focus()
 }
 
-let sectionIndex = $ref(1)
+let sectionIndex = $ref(0)
 let sentenceIndex = $ref(0)
-let wordIndex = $ref(6)
+let wordIndex = $ref(0)
 let index = $ref(0)
 let input = $ref('')
 let wrong = $ref('')
@@ -176,12 +171,14 @@ function keyDown(e: KeyboardEvent) {
         if (!currentSection[sentenceIndex]) {
           sentenceIndex = 0
           sectionIndex++
-          isSpace = false
+        } else {
+          playAudio(currentSection[sentenceIndex].sentence)
         }
       }
     } else {
       wrong = ' '
       playBeep()
+
       setTimeout(() => {
         wrong = ''
         wrong = input = ''
@@ -190,6 +187,7 @@ function keyDown(e: KeyboardEvent) {
     playKeySound()
   } else {
     if ((e.keyCode >= 65 && e.keyCode <= 90)
+        || (e.keyCode >= 48 && e.keyCode <= 57)
         || e.code === 'Space'
         || e.code === 'Slash'
         || e.code === 'Quote'
@@ -197,6 +195,10 @@ function keyDown(e: KeyboardEvent) {
         || e.code === 'BracketLeft'
         || e.code === 'BracketRight'
         || e.code === 'Period'
+        || e.code === 'Minus'
+        || e.code === 'Equal'
+        || e.code === 'Semicolon'
+        || e.code === 'Backquote'
     ) {
       let letter = e.key
 
@@ -207,9 +209,16 @@ function keyDown(e: KeyboardEvent) {
         wrong = ''
         console.log('匹配上了')
         index++
+        //如果当前词没有index，说明这个词完了，下一个是空格
         if (!currentWord[index]) {
           input = wrong = ''
           isSpace = true
+          //但如果当前句子也没有index+1，并且当前段也没sentenceIndex+1，说明本段完了，不需要打空格，直接跳到下一段吧
+          if (!currentSentence.words[wordIndex + 1] && !currentSection[sentenceIndex + 1]) {
+            wordIndex = sentenceIndex = index = 0
+            sectionIndex++
+            isSpace = false
+          }
         }
       } else {
         wrong = letter
@@ -224,7 +233,6 @@ function keyDown(e: KeyboardEvent) {
     }
   }
 
-
   console.log(
       'sectionIndex', sectionIndex,
       'sentenceIndex', sentenceIndex,
@@ -234,29 +242,42 @@ function keyDown(e: KeyboardEvent) {
   inputRef.value = ''
   e.preventDefault()
 }
+
+
+function playWord(word: string) {
+  playAudio(word)
+}
 </script>
 
 <template>
   <div class="type-wrapper">
-    <article v-if="true" @click="focus">
-      <p class="section" v-for="(section,indexI) in article.sections">
-        <span class="sentence" v-for="(sentences,indexJ) in section">
+    <div class="trans">
+      <span>翻译：</span>
+      <span class="text">上周我去看戏了</span>
+    </div>
+    <div class="article-wrapper">
+      <article v-if="true" @click="focus">
+        <div class="section" v-for="(section,indexI) in article.sections">
+        <span class="sentence"
+              @click="playAudio(sentence.sentence)"
+              v-for="(sentence,indexJ) in section">
           <span class="word"
                 :class="[(sectionIndex>indexI
-                ?'green':
+                ?'wrote':
                 (sectionIndex>=indexI &&sentenceIndex>indexJ)
-                ?'green' :
+                ?'wrote' :
                 (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>indexW)
-                ?'green':
+                ?'wrote':
                  (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>=indexW && index>=word.length)
-                ?'green':
+                ?'wrote':
                 ''),
                 (`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace && wrong )?'word-wrong':''
                 ]"
-                v-for="(word,indexW) in sentences.words">
+                @click="playWord(word)"
+                v-for="(word,indexW) in sentence.words">
             <span v-if="`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace">
               <span class="input" v-if="input">{{ input }}</span>
-              <span class="wrong" v-if="wrong">{{ wrong }}</span>
+              <span class="wrong" :class="wrong === ' ' && 'bg-wrong'" v-if="wrong">{{ wrong }}</span>
               <span :class="!wrong && 'bottom-border'">{{
                   word.slice(input.length + wrong.length, input.length + wrong.length + 1)
                 }}</span>
@@ -271,8 +292,9 @@ function keyDown(e: KeyboardEvent) {
                 ]">&nbsp;</span>
           </span>
         </span>
-      </p>
-    </article>
+        </div>
+      </article>
+    </div>
     <input ref="inputRef"
            class="inputEl"
            type="text"
@@ -283,13 +305,27 @@ function keyDown(e: KeyboardEvent) {
 <style scoped lang="scss">
 @import "@/assets/css/style.scss";
 
-.green {
-  color: green;
+.wrote {
+  //color: green;
+  color: rgb(22, 163, 74);
 }
 
 .type-wrapper {
   height: 100%;
   overflow: auto;
+
+  .trans{
+    height: 40rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .text{
+      color: var(--color-font-1);
+
+      font-size: 22rem;
+    }
+  }
 
   article {
     font-size: 24rem;
@@ -301,13 +337,12 @@ function keyDown(e: KeyboardEvent) {
     word-wrap: break-word;
     white-space: pre-wrap;
 
-    span {
+    .section {
+      margin-bottom: $space;
     }
 
     .word {
       display: inline-block;
-
-      //margin-right: 10rem;
     }
   }
 
@@ -316,7 +351,8 @@ function keyDown(e: KeyboardEvent) {
   }
 
   .input {
-    color: rgb(22, 163, 74);
+    font-weight: bold;
+    color: var(--color-main-active);
   }
 
   .wrong {

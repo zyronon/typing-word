@@ -16,7 +16,9 @@
   --color-item-bg: white;
   --color-item-hover: white;
   --color-item-active: rgb(75, 110, 175);
-  --toolbar-width: 700rem;
+  --color-main-active: rgb(12,140,233);
+  //--toolbar-width: 700rem;
+  --toolbar-width: 50vw;
 }
 
 html[data-theme='dark'] {
