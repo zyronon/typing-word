@@ -94,7 +94,7 @@ onMounted(() => {
       let translate: HTMLDivElement = document.querySelector(translateClassName)
       let rect = word.getBoundingClientRect()
 
-      translate.style.top = rect.top - articleRect.top - 18 + 'px'
+      translate.style.top = rect.top - articleRect.top - 20 + 'px'
       translate.firstChild.style.width = rect.left - articleRect.left + 'px'
       // console.log(word, rect.left - articleRect.left)
       // console.log('word-rect', rect)
@@ -124,7 +124,7 @@ function focus() {
 }
 
 let sectionIndex = $ref(0)
-let sentenceIndex = $ref(14)
+let sentenceIndex = $ref(0)
 let wordIndex = $ref(0)
 let index = $ref(0)
 let input = $ref('')
@@ -327,7 +327,7 @@ function playWord(word: string) {
 
   article {
     font-size: 24rem;
-    line-height: 1.8;
+    line-height: 1.9;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
     letter-spacing: 0rem;
     color: gray;
@@ -354,7 +354,7 @@ function playWord(word: string) {
     width: 100%;
     font-size: 18rem;
     color: gray;
-    line-height: 2.3;
+    line-height: 2.5;
     letter-spacing: 3rem;
 
     .row {
