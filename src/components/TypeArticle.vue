@@ -15,6 +15,7 @@ import beep from '../assets/sound/beep.wav'
 import correct from '../assets/sound/correct.wav'
 import {useSound} from "@/hooks/useSound.ts"
 import {CnKeyboardMap, useSplitArticle} from "@/hooks/useSplitArticle";
+import {$computed} from "vue/macros";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -85,23 +86,29 @@ onMounted(() => {
   })
   article.sections = t1
   console.log(cloneDeep(article))
-  nextTick(() => {
-    let articleRect = articleWrapperRef.getBoundingClientRect()
-    article.translate.map(v => {
-      let wordClassName = `.word${v.location}`
-      let translateClassName = `.translate${v.location}`
-      let word = document.querySelector(wordClassName)
-      let translate: HTMLDivElement = document.querySelector(translateClassName)
-      let rect = word.getBoundingClientRect()
-
-      translate.style.top = rect.top - articleRect.top - 20 + 'px'
-      translate.firstChild.style.width = rect.left - articleRect.left + 'px'
-      // console.log(word, rect.left - articleRect.left)
-      // console.log('word-rect', rect)
-    })
-  })
-
+  calcTranslateLocation()
 })
+
+function calcTranslateLocation() {
+  nextTick(() => {
+    setTimeout(() => {
+      let articleRect = articleWrapperRef.getBoundingClientRect()
+      article.translate.map(v => {
+        let wordClassName = `.word${v.location}`
+        let translateClassName = `.translate${v.location}`
+        let word = document.querySelector(wordClassName)
+        let translate: HTMLDivElement = document.querySelector(translateClassName)
+        let rect = word.getBoundingClientRect()
+
+        translate.style.opacity = '1'
+        translate.style.top = rect.top - articleRect.top - 20 + 'px'
+        translate.firstChild.style.width = rect.left - articleRect.left + 'px'
+        // console.log(word, rect.left - articleRect.left)
+        // console.log('word-rect', rect)
+      })
+    }, 500)
+  })
+}
 
 function play() {
   return playAudio(article1)
@@ -125,12 +132,12 @@ function focus() {
 
 let sectionIndex = $ref(0)
 let sentenceIndex = $ref(0)
-let wordIndex = $ref(0)
+let wordIndex = $ref(6)
 let index = $ref(0)
 let input = $ref('')
 let wrong = $ref('')
 let isSpace = $ref(false)
-let isD = $ref(false)
+let isDictation = $ref(true)
 
 const currentIndex = computed(() => {
   return `${sectionIndex}${sentenceIndex}${wordIndex}`
@@ -158,6 +165,9 @@ function keyDown(e: KeyboardEvent) {
           sentenceIndex = 0
           sectionIndex++
         } else {
+          if (isDictation) {
+            calcTranslateLocation()
+          }
           playAudio(currentSection[sentenceIndex].sentence)
         }
       }
@@ -234,6 +244,33 @@ function keyDown(e: KeyboardEvent) {
 function playWord(word: string) {
   playAudio(word)
 }
+
+function currentWordInput(word: string) {
+  if (isDictation) {
+    return ' '
+  }
+  return word.slice(input.length + wrong.length, input.length + wrong.length + 1)
+}
+
+function currentWordEnd(word: string) {
+  let str = word.slice(input.length + wrong.length + 1)
+  if (isDictation) {
+    return str.split('').map(v => '_').join('')
+  }
+  return str
+}
+
+function otherWord(word: string, i: number, i2: number, i3: number) {
+  let str = word
+
+  //剩100是因为，可能存在特殊情况，比如003,010这种，0 12 24，100
+  if (sectionIndex * 10000 + sentenceIndex * 100 + wordIndex < i * 10000 + i2 * 100 + i3
+      && isDictation
+  ) {
+    return str.split('').map(v => '_').join('')
+  }
+  return str
+}
 </script>
 
 <template>
@@ -247,6 +284,9 @@ function playWord(word: string) {
         <div class="section"
              v-for="(section,indexI) in article.sections">
         <span class="sentence"
+              :class="[
+                  sectionIndex === indexI && sentenceIndex === indexJ ?'isDictation':''
+              ]"
               @click="playAudio(sentence.sentence)"
               v-for="(sentence,indexJ) in section">
           <span class="word"
@@ -267,12 +307,10 @@ function playWord(word: string) {
             <span v-if="`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace">
               <span class="input" v-if="input">{{ input }}</span>
               <span class="wrong" :class="wrong === ' ' && 'bg-wrong'" v-if="wrong">{{ wrong }}</span>
-              <span :class="!wrong && 'bottom-border'">{{
-                  word.slice(input.length + wrong.length, input.length + wrong.length + 1)
-                }}</span>
-              <span>{{ word.slice(input.length + wrong.length + 1) }}</span>
+              <span :class="!wrong && 'bottom-border'">{{ currentWordInput(word) }}</span>
+              <span>{{ currentWordEnd(word) }}</span>
             </span>
-            <span v-else>{{ word }}</span>
+            <span v-else>{{ otherWord(word, indexI, indexJ, indexW) }}</span>
             <span
                 :class="[
                     `${indexI}${indexJ}${indexW}`,
@@ -330,19 +368,26 @@ function playWord(word: string) {
     font-size: 24rem;
     line-height: 1.9;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-    letter-spacing: 0rem;
     color: gray;
     word-break: keep-all;
     word-wrap: break-word;
     white-space: pre-wrap;
     padding-top: 20rem;
 
-    .section {
-      margin-bottom: $space;
+    .isDictation {
+      letter-spacing: 3rem;
     }
 
-    .word {
-      display: inline-block;
+    .section {
+      margin-bottom: $space;
+
+      .sentence {
+        transition: all .3s;
+      }
+
+      .word {
+        display: inline-block;
+      }
     }
   }
 
@@ -362,8 +407,10 @@ function playWord(word: string) {
       position: absolute;
       left: 0;
       width: 100%;
+      opacity: 0;
 
       .space {
+        transition: all .3s;
         display: inline-block;
       }
     }
