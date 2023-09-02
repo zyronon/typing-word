@@ -13,7 +13,7 @@ export const CnKeyboardMap: KeyboardMap = {
   Comma: '，',
   Slash: '？',
   Exclamation: '！',
-  Quote: '“',
+  Quote: '”',
 }
 export const EnKeyboardMap: KeyboardMap = {
   Period: '.',

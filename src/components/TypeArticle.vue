@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
-import {computed, onMounted, reactive} from "vue"
+import {computed, nextTick, onMounted, reactive} from "vue"
 import {cloneDeep} from "lodash"
 import 快速打字的机械键盘声音Mp3 from '../assets/sound/key-sounds/快速打字的机械键盘声音.mp3'
 import 键盘快速打字的声音Mp3 from '../assets/sound/key-sounds/键盘快速打字的声音.mp3'
@@ -42,6 +42,7 @@ NIGEL BUXTON The Great Escape from The Weekend Telegraph`
 article2 = `Economy is one powerful motive for camping? since after the initial outlay upon equipment, or through hiring it, the total expense can be far less than the cost of hotels. But, contrary to a popular assumption, it is far from being the only one, or even the greatest. The man who manoeuvres carelessly into his twenty pounds' worth of space at one of Europe's myriad permanent sites may find himself bumping a Bentley. More likely, Ford Escort will be hub to hub with Renault or Mercedes, but rarely with bicycles made for two.`
 let isPlay = $ref(false)
 let inputRef = $ref<HTMLInputElement>(null)
+let articleWrapperRef = $ref<HTMLInputElement>(null)
 
 const [playAudio] = usePlayWordAudio()
 // const [playKeySound, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
@@ -82,9 +83,24 @@ onMounted(() => {
       })
     })
   })
-  //
   article.sections = t1
   console.log(cloneDeep(article))
+  nextTick(() => {
+    let articleRect = articleWrapperRef.getBoundingClientRect()
+    article.translate.map(v => {
+      let wordClassName = `.word${v.location}`
+      let translateClassName = `.translate${v.location}`
+      let word = document.querySelector(wordClassName)
+      let translate: HTMLDivElement = document.querySelector(translateClassName)
+      let rect = word.getBoundingClientRect()
+
+      translate.style.top = rect.top - articleRect.top - 18 + 'px'
+      translate.firstChild.style.width = rect.left - articleRect.left + 'px'
+      // console.log(word, rect.left - articleRect.left)
+      // console.log('word-rect', rect)
+    })
+  })
+
 })
 
 function play() {
@@ -214,7 +230,6 @@ function keyDown(e: KeyboardEvent) {
   e.preventDefault()
 }
 
-
 function playWord(word: string) {
   playAudio(word)
 }
@@ -226,12 +241,11 @@ function playWord(word: string) {
       <span>翻译：</span>
       <span class="text">上周我去看戏了</span>
     </div>
-    <div class="article-wrapper">
+    <div class="article-wrapper" ref="articleWrapperRef">
       <article @click="focus">
         <div class="section"
              v-for="(section,indexI) in article.sections">
         <span class="sentence"
-              :class="`sentence${indexI}-${indexJ}`"
               @click="playAudio(sentence.sentence)"
               v-for="(sentence,indexJ) in section">
           <span class="word"
@@ -244,7 +258,8 @@ function playWord(word: string) {
                  (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>=indexW && index>=word.length)
                 ?'wrote':
                 ''),
-                (`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace && wrong )?'word-wrong':''
+                (`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace && wrong )?'word-wrong':'',
+                indexW === 0 && `word${indexI}-${indexJ}`
                 ]"
                 @click="playWord(word)"
                 v-for="(word,indexW) in sentence.words">
@@ -268,9 +283,11 @@ function playWord(word: string) {
         </div>
       </article>
       <div class="translate">
-        <div class="row">
+        <div class="row"
+             :class="`translate${item.location}`"
+             v-for="item in article.translate">
           <span class="space"></span>
-          <span class="text">上周我去看戏了上周我去看戏了上周我去看戏了上周我去看戏了</span>
+          <span class="text">{{ item.sentence }}</span>
         </div>
       </div>
     </div>
@@ -310,13 +327,14 @@ function playWord(word: string) {
 
   article {
     font-size: 24rem;
-    line-height: 1.6;
+    line-height: 1.8;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
     letter-spacing: 0rem;
     color: gray;
     word-break: keep-all;
     word-wrap: break-word;
     white-space: pre-wrap;
+    padding-top: 20rem;
 
     .section {
       margin-bottom: $space;
@@ -334,11 +352,19 @@ function playWord(word: string) {
     left: 0;
     height: 100%;
     width: 100%;
+    font-size: 18rem;
+    color: gray;
+    line-height: 2.3;
+    letter-spacing: 3rem;
 
     .row {
       position: absolute;
       left: 0;
       width: 100%;
+
+      .space {
+        display: inline-block;
+      }
     }
   }
 

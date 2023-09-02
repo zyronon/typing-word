@@ -13,6 +13,7 @@
     "@icon-park/vue-next": "^1.4.2",
     "element-plus": "^2.3.9",
     "hover.css": "^2.3.2",
+    "jquery": "^3.7.1",
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
     "mitt": "^3.0.1",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.102",
+    "@types/jquery": "^3.5.18",
     "@types/lodash": "^4.14.196",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
