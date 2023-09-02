@@ -130,6 +130,7 @@ let index = $ref(0)
 let input = $ref('')
 let wrong = $ref('')
 let isSpace = $ref(false)
+let isD = $ref(false)
 
 const currentIndex = computed(() => {
   return `${sectionIndex}${sentenceIndex}${wordIndex}`
