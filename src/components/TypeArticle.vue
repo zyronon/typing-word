@@ -14,6 +14,7 @@ import 机械3 from '../assets/sound/key-sounds/jixie/机械3.mp3'
 import beep from '../assets/sound/beep.wav'
 import correct from '../assets/sound/correct.wav'
 import {useSound} from "@/hooks/useSound.ts"
+import {CnKeyboardMap, useSplitArticle} from "@/hooks/useSplitArticle";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -25,8 +26,8 @@ If you are younger, and in a solid financial position, you may decide to take an
 INVESTOR'S CHRONICLE, March 23 1990`
 
 // article1 = `How does the older investor differ in his approach to investment from the younger investor?How does the older investor differ in his approach to investment from the younger investor?`
-// article1 = `Last week I went to the theatre.\nI had a very good seat. The play was very interesting. I did not enjoy it. A young man and a young woman were sitting behind me. They were talking loudly. I got very angry. I could not hear the actors. I turned round. I looked at the man and the woman angrily. They did not pay any attention. In the end, I could not bear it. I turned round again. I cant hear a word! I said angrily.
-// Its none of your business, the young man said rudely. This is a private conversation!`
+article1 = `Last week I went to the theatre. I had a very good seat. The play was very interesting. I did not enjoy it. A young man and a young woman were sitting behind me. They were talking loudly. I got very angry. I could not hear the actors. I turned round. I looked at the man and the woman angrily. They did not pay any attention. In the end, I could not bear it. I turned round again. ‘I can't hear a word!’ I said angrily.
+‘It's none of your business, ’ the young man said rudely. ‘This is a private conversation!’`
 
 let article2 = `What is one of the features of modern camping where nationality is concerned?
 Economy is one powerful motive for camping, since after the initial outlay upon equipment, or through hiring it, the total expense can be far less than the cost of hotels. But, contrary to a popular assumption, it is far from being the only one, or even the greatest. The man who manoeuvres carelessly into his twenty pounds' worth of space at one of Europe's myriad permanent sites may find himself bumping a Bentley. More likely, Ford Escort will be hub to hub with Renault or Mercedes, but rarely with bicycles made for two.
@@ -49,74 +50,41 @@ const [playKeySound, setAudio] = useSound([老式机械], 3)
 const [playBeep] = useSound([beep], 1)
 const [playCorrect] = useSound([correct], 1)
 
+export interface Sentence {
+  sentence: string,
+  words: string[]
+}
 
-interface Article {
-  sections: {
+export interface Article {
+  sections: Sentence[][],
+  translate: {
     sentence: string,
-    words: string[]
-  }[][]
+    location: string
+  }[],
 }
 
 let article = reactive<Article>({
-  sections: []
+  sections: [],
+  translate: []
 })
 
 onMounted(() => {
-  let sections = []
-  let section = []
-  let sentence = {
-    sentence: '',
-    words: []
-  }
-  let word = ''
-  console.log(article1)
-  article1.split('').map(v => {
-    switch (v) {
-      case ' ':
-        sentence.words.push(word)
-        word = ''
-        break
-      case '.':
-      case ',':
-      case '?':
-      case '!':
-        word += v
-        sentence.words.push(word)
-        sentence.words = sentence.words.filter(v => v)
-        sentence.sentence = sentence.words.join(' ')
-
-        // sentence.words.push(word)
-        // sentence.words = sentence.words.filter(v => v)
-        // sentence.sentence = sentence.words.join(' ')
-        // sentence.sentence += v
-        // sentence.words.push(v)
-        section.push(sentence)
-        sentence = {
-          sentence: '',
-          words: []
-        }
-        word = ''
-        break
-      case '\n':
-        sections.push(section)
-        section = []
-        sentence = {
-          sentence: '',
-          words: []
-        }
-        word = ''
-        break
-      default:
-        word += v
-        break
-    }
+  let t1 = useSplitArticle(article1)
+  console.log('t1', t1)
+  let a = `上星期我去看戏。我的座位很好，戏很有意思，但我却无法欣赏。一青年男子与一青年女子坐在我的身后，大声地说着话。我非常生气，因为我听不见演员在说什么。我回过头去，怒视着那一男一女，他们却毫不理会。最后，我忍不住了，又一次回过头去，生气地说，“我一个字也听不见了！”
+“不关你的事，”那男的毫不客气地说，“这是私人间的谈话！”`
+  let t = useSplitArticle(a, 'cn', CnKeyboardMap)
+  t.map((v, i) => {
+    v.map((w, j) => {
+      article.translate.push({
+        sentence: w.sentence,
+        location: i + '-' + j
+      })
+    })
   })
-  if (!sections.length && section.length) {
-    sections.push(section)
-  }
-  article.sections = sections
-  console.log('sections', sections)
-  // console.log(cloneDeep(item.sentences))
+  //
+  article.sections = t1
+  console.log(cloneDeep(article))
 })
 
 function play() {
@@ -140,7 +108,7 @@ function focus() {
 }
 
 let sectionIndex = $ref(0)
-let sentenceIndex = $ref(0)
+let sentenceIndex = $ref(14)
 let wordIndex = $ref(0)
 let index = $ref(0)
 let input = $ref('')
@@ -153,6 +121,7 @@ const currentIndex = computed(() => {
 
 function keyDown(e: KeyboardEvent) {
   console.log('keyDown', e.key, e.code, e.keyCode)
+
   wrong = ''
 
   let currentSection = article.sections[sectionIndex]
@@ -186,6 +155,7 @@ function keyDown(e: KeyboardEvent) {
     }
     playKeySound()
   } else {
+    //非英文模式下，输入区域的 keyCode 均为 229时，
     if ((e.keyCode >= 65 && e.keyCode <= 90)
         || (e.keyCode >= 48 && e.keyCode <= 57)
         || e.code === 'Space'
@@ -199,11 +169,12 @@ function keyDown(e: KeyboardEvent) {
         || e.code === 'Equal'
         || e.code === 'Semicolon'
         || e.code === 'Backquote'
+        || e.keyCode === 229
     ) {
       let letter = e.key
 
       let key = currentWord[index]
-      console.log('key', key)
+      console.log('key', key,)
       if (key === letter) {
         input += letter
         wrong = ''
@@ -256,9 +227,11 @@ function playWord(word: string) {
       <span class="text">上周我去看戏了</span>
     </div>
     <div class="article-wrapper">
-      <article v-if="true" @click="focus">
-        <div class="section" v-for="(section,indexI) in article.sections">
+      <article @click="focus">
+        <div class="section"
+             v-for="(section,indexI) in article.sections">
         <span class="sentence"
+              :class="`sentence${indexI}-${indexJ}`"
               @click="playAudio(sentence.sentence)"
               v-for="(sentence,indexJ) in section">
           <span class="word"
@@ -294,6 +267,12 @@ function playWord(word: string) {
         </span>
         </div>
       </article>
+      <div class="translate">
+        <div class="row">
+          <span class="space"></span>
+          <span class="text">上周我去看戏了上周我去看戏了上周我去看戏了上周我去看戏了</span>
+        </div>
+      </div>
     </div>
     <input ref="inputRef"
            class="inputEl"
@@ -313,14 +292,16 @@ function playWord(word: string) {
 .type-wrapper {
   height: 100%;
   overflow: auto;
+  position: relative;
 
-  .trans{
+  .trans {
     height: 40rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    display: none;
 
-    .text{
+    .text {
       color: var(--color-font-1);
 
       font-size: 22rem;
@@ -329,7 +310,7 @@ function playWord(word: string) {
 
   article {
     font-size: 24rem;
-    line-height: 1.5;
+    line-height: 1.6;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
     letter-spacing: 0rem;
     color: gray;
@@ -343,6 +324,21 @@ function playWord(word: string) {
 
     .word {
       display: inline-block;
+    }
+  }
+
+  .translate {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    .row {
+      position: absolute;
+      left: 0;
+      width: 100%;
     }
   }
 
@@ -372,7 +368,7 @@ function playWord(word: string) {
 
   .inputEl {
     position: fixed;
-    left: 100vw;
+    //left: 100vw;
   }
 }
 </style>
