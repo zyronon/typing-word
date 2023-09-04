@@ -13,7 +13,7 @@ import correct from '../assets/sound/correct.wav'
 import {$computed, $ref} from "vue/macros"
 import {useSound} from "@/hooks/useSound.ts"
 import {useBaseStore} from "@/stores/base.ts"
-import {DictType, SaveKey, Word} from "../types";
+import {DictType, SaveKey, ShortKeyMap, Word} from "../types";
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
 import useTheme from "@/hooks/useTheme.ts";
 import Tooltip from "@/components/Tooltip.vue";
@@ -38,12 +38,7 @@ const [playBeep] = useSound([beep], 1)
 const [playCorrect] = useSound([correct], 1)
 const [playAudio] = usePlayWordAudio()
 
-const keyMap = {
-  Show: 'Escape',
-  Ignore: 'Tab',
-  Remove: '`',
-  Collect: 'Enter',
-}
+
 
 const resetWord = $computed(() => {
   return store.word.name.slice(input.length + wrong.length)
@@ -139,7 +134,7 @@ async function onKeyDown(e: KeyboardEvent) {
           input = input.slice(0, -1)
         }
         break
-      case keyMap.Collect:
+      case ShortKeyMap.Collect:
         if (!store.newWordDict.originWords.find((v: Word) => v.name === store.word.name)) {
           store.newWordDict.originWords.push(store.word)
           store.newWordDict.words.push(store.word)
@@ -147,7 +142,7 @@ async function onKeyDown(e: KeyboardEvent) {
         }
         activeIndex = 1
         break
-      case keyMap.Remove:
+      case ShortKeyMap.Remove:
         if (!store.skipWordNames.includes(store.word.name)) {
           store.skipWordDict.originWords.push(store.word)
           store.skipWordDict.words.push(store.word)
@@ -156,12 +151,12 @@ async function onKeyDown(e: KeyboardEvent) {
         activeIndex = 0
         next()
         break
-      case keyMap.Ignore:
+      case ShortKeyMap.Ignore:
         e.preventDefault()
         activeIndex = 2
         next()
         break
-      case keyMap.Show:
+      case ShortKeyMap.Show:
         showFullWord = true
         break
     }

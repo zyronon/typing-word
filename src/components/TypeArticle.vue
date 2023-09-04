@@ -15,7 +15,9 @@ import beep from '../assets/sound/beep.wav'
 import correct from '../assets/sound/correct.wav'
 import {useSound} from "@/hooks/useSound.ts"
 import {CnKeyboardMap, useSplitArticle} from "@/hooks/useSplitArticle";
-import {$computed} from "vue/macros";
+import {$computed, $ref} from "vue/macros";
+import {DictType, SaveKey, ShortKeyMap, Word} from "@/types";
+import {useBaseStore} from "@/stores/base";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -52,6 +54,8 @@ const [playKeySound, setAudio] = useSound([老式机械], 3)
 const [playBeep] = useSound([beep], 1)
 const [playCorrect] = useSound([correct], 1)
 
+const store = useBaseStore()
+
 export interface Sentence {
   sentence: string,
   words: string[]
@@ -65,6 +69,20 @@ export interface Article {
   }[],
 }
 
+let sectionIndex = $ref(0)
+let sentenceIndex = $ref(0)
+let wordIndex = $ref(6)
+let index = $ref(0)
+let input = $ref('')
+let wrong = $ref('')
+let isSpace = $ref(false)
+let isDictation = $ref(true)
+let showFullWord = $ref(false)
+let hoverIndex = $ref({
+  sectionIndex: 0,
+  sentenceIndex: 0,
+})
+
 let article = reactive<Article>({
   sections: [],
   translate: []
@@ -72,7 +90,33 @@ let article = reactive<Article>({
 
 onMounted(() => {
   let t1 = useSplitArticle(article1)
+  let wordNumber = 0
+  t1.map(v => {
+    v.map(w => {
+      wordNumber += w.words.length
+    })
+  })
   console.log('t1', t1)
+  console.log('wordNumber', wordNumber)
+
+  setTimeout(() => {
+    store.current = {
+      dictType: DictType.inner,
+      words: [],
+      index: wordIndex,
+      wrongWords: [],
+      originWrongWords: [],
+      repeatNumber: 0,
+      statistics: {
+        startDate: Date.now(),
+        endDate: -1,
+        spend: -1,
+        wordNumber: wordNumber,
+        correctRate: -1,
+        wrongWordNumber: -1,
+      }
+    }
+  }, 1000)
   let a = `上星期我去看戏。我的座位很好，戏很有意思，但我却无法欣赏。一青年男子与一青年女子坐在我的身后，大声地说着话。我非常生气，因为我听不见演员在说什么。我回过头去，怒视着那一男一女，他们却毫不理会。最后，我忍不住了，又一次回过头去，生气地说，“我一个字也听不见了！”
 “不关你的事，”那男的毫不客气地说，“这是私人间的谈话！”`
   let t = useSplitArticle(a, 'cn', CnKeyboardMap)
@@ -130,21 +174,13 @@ function focus() {
   inputRef.focus()
 }
 
-let sectionIndex = $ref(0)
-let sentenceIndex = $ref(0)
-let wordIndex = $ref(6)
-let index = $ref(0)
-let input = $ref('')
-let wrong = $ref('')
-let isSpace = $ref(false)
-let isDictation = $ref(true)
 
 const currentIndex = computed(() => {
   return `${sectionIndex}${sentenceIndex}${wordIndex}`
 })
 
-function keyDown(e: KeyboardEvent) {
-  console.log('keyDown', e.key, e.code, e.keyCode)
+function onKeyDown(e: KeyboardEvent) {
+  // console.log('keyDown', e.key, e.code, e.keyCode)
 
   wrong = ''
 
@@ -157,6 +193,8 @@ function keyDown(e: KeyboardEvent) {
       isSpace = false
       index = 0
       wordIndex++
+      store.current.index++
+
       playCorrect()
       if (!currentSentence.words[wordIndex]) {
         wordIndex = 0
@@ -219,6 +257,22 @@ function keyDown(e: KeyboardEvent) {
           }
         }
       } else {
+        let word: Word = {
+          name: currentWord,
+          usphone: '',
+          ukphone: '',
+          trans: []
+        }
+        if (!store.wrongWordDict.originWords.find((v: Word) => v.name === currentWord)) {
+          store.wrongWordDict.originWords.push(word)
+          store.wrongWordDict.words.push(word)
+          store.wrongWordDict.chapters = [store.wrongWordDict.words]
+        }
+        if (!store.current.wrongWords.find((v: Word) => v.name === currentWord)) {
+          store.current.wrongWords.push(word)
+        }
+        store.current.statistics.correctRate = Math.trunc(((store.current.index + 1 - store.current.wrongWords.length) / (store.current.index + 1)) * 100)
+
         wrong = letter
         playBeep()
         setTimeout(() => {
@@ -228,32 +282,75 @@ function keyDown(e: KeyboardEvent) {
         console.log('未匹配')
       }
       playKeySound()
+    } else {
+      switch (e.key) {
+        case 'Backspace':
+          if (wrong) {
+            wrong = ''
+          } else {
+            input = input.slice(0, -1)
+          }
+          break
+        case ShortKeyMap.Collect:
+
+          break
+        case ShortKeyMap.Remove:
+
+          break
+        case ShortKeyMap.Ignore:
+
+          break
+        case ShortKeyMap.Show:
+          hoverIndex = {
+            sectionIndex: sectionIndex,
+            sentenceIndex: sentenceIndex,
+          }
+          break
+      }
     }
   }
 
-  console.log(
-      'sectionIndex', sectionIndex,
-      'sentenceIndex', sentenceIndex,
-      'wordIndex', wordIndex,
-      'index', index,
-  )
+  // console.log(
+  //     'sectionIndex', sectionIndex,
+  //     'sentenceIndex', sentenceIndex,
+  //     'wordIndex', wordIndex,
+  //     'index', index,
+  // )
   inputRef.value = ''
   e.preventDefault()
 }
+
+function onKeyUp() {
+  hoverIndex = {
+    sectionIndex: -1,
+    sentenceIndex: -1,
+  }
+}
+
 
 function playWord(word: string) {
   playAudio(word)
 }
 
-function currentWordInput(word: string) {
+function currentWordInput(word: string, i: number, i2: number,) {
+  let str = word.slice(input.length + wrong.length, input.length + wrong.length + 1)
+
+  if (hoverIndex.sectionIndex === i && hoverIndex.sentenceIndex === i2) {
+    return str
+  }
+
   if (isDictation) {
     return ' '
   }
-  return word.slice(input.length + wrong.length, input.length + wrong.length + 1)
+  return str
 }
 
-function currentWordEnd(word: string) {
+function currentWordEnd(word: string, i: number, i2: number,) {
   let str = word.slice(input.length + wrong.length + 1)
+  if (hoverIndex.sectionIndex === i && hoverIndex.sentenceIndex === i2) {
+    return str
+  }
+
   if (isDictation) {
     return str.split('').map(v => '_').join('')
   }
@@ -262,6 +359,10 @@ function currentWordEnd(word: string) {
 
 function otherWord(word: string, i: number, i2: number, i3: number) {
   let str = word
+
+  if (hoverIndex.sectionIndex === i && hoverIndex.sentenceIndex === i2) {
+    return str
+  }
 
   //剩100是因为，可能存在特殊情况，比如003,010这种，0 12 24，100
   if (sectionIndex * 10000 + sentenceIndex * 100 + wordIndex < i * 10000 + i2 * 100 + i3
@@ -287,6 +388,8 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
               :class="[
                   sectionIndex === indexI && sentenceIndex === indexJ ?'isDictation':''
               ]"
+              @mouseenter="hoverIndex = {sectionIndex : indexI,sentenceIndex :indexJ}"
+              @mouseleave="hoverIndex = {sectionIndex : -1,sentenceIndex :-1}"
               @click="playAudio(sentence.sentence)"
               v-for="(sentence,indexJ) in section">
           <span class="word"
@@ -307,8 +410,8 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
             <span v-if="`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace">
               <span class="input" v-if="input">{{ input }}</span>
               <span class="wrong" :class="wrong === ' ' && 'bg-wrong'" v-if="wrong">{{ wrong }}</span>
-              <span :class="!wrong && 'bottom-border'">{{ currentWordInput(word) }}</span>
-              <span>{{ currentWordEnd(word) }}</span>
+              <span :class="!wrong && 'bottom-border'">{{ currentWordInput(word, indexI, indexJ) }}</span>
+              <span>{{ currentWordEnd(word, indexI, indexJ,) }}</span>
             </span>
             <span v-else>{{ otherWord(word, indexI, indexJ, indexW) }}</span>
             <span
@@ -333,7 +436,8 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
     <input ref="inputRef"
            class="inputEl"
            type="text"
-           @keydown="keyDown">
+           @keyup="onKeyUp"
+           @keydown="onKeyDown">
   </div>
 </template>
 

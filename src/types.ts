@@ -148,3 +148,10 @@ export interface State {
     value4: boolean,
   }
 }
+
+export const ShortKeyMap = {
+  Show: 'Escape',
+  Ignore: 'Tab',
+  Remove: '`',
+  Collect: 'Enter',
+}

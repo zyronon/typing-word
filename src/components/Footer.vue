@@ -14,7 +14,7 @@ function format(val: number, suffix: string = '') {
 
 const progress = $computed(() => {
   if (!store.chapter.length) return 0
-  return ((store.current.index / store.current.words.length) * 100)
+  return ((store.current.index / store.current.statistics.wordNumber) * 100)
 })
 
 let speedMinute = $ref(0)
@@ -51,7 +51,7 @@ onUnmounted(() => {
           <div class="name">时间</div>
         </div>
         <div class="row">
-          <div class="num">{{ store.current.words.length }}</div>
+          <div class="num">{{ store.current.statistics.wordNumber }}</div>
           <div class="line"></div>
           <div class="name">单词总数</div>
         </div>
