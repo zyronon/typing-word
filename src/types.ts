@@ -76,11 +76,29 @@ export interface DictJson {
 }
 
 export enum DictType {
-  newWordDict = 'newWordDict',
-  skipWordDict = 'skipWordDict',
-  wrongWordDict = 'wrongWordDict',
-  inner = 'inner',
-  custom = 'custom',
+  newDict = 'newDict',
+  skipDict = 'skipDict',
+  wrongDict = 'wrongDict',
+  innerDict = 'innerDict',
+  customDict = 'customDict',
+}
+
+
+export interface Sentence {
+  sentence: string,
+  words: string[]
+}
+
+export interface Article {
+  article: string,
+  articleTranslate: string,
+  newWords: Word[],
+  articleAllWords: string[],
+  sections: Sentence[][],
+  translate: {
+    sentence: string,
+    location: string
+  }[],
 }
 
 export interface Dict {
@@ -90,7 +108,8 @@ export interface Dict {
   originWords: Word[],//原始单词
   words: Word[],
   chapterWordNumber: number,//章节单词数量
-  chapters: Word[][],
+  chapterWords: Word[][],
+  // articles: Article[],
   chapterIndex: number,
   chapterWordIndex: number,
   statistics: Statistics[],

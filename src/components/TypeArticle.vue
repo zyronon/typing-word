@@ -16,7 +16,7 @@ import correct from '../assets/sound/correct.wav'
 import {useSound} from "@/hooks/useSound.ts"
 import {CnKeyboardMap, useSplitArticle} from "@/hooks/useSplitArticle";
 import {$computed, $ref} from "vue/macros";
-import {DictType, SaveKey, ShortKeyMap, Word} from "@/types";
+import {Article, DictType, SaveKey, Sentence, ShortKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
@@ -56,18 +56,6 @@ const [playCorrect] = useSound([correct], 1)
 
 const store = useBaseStore()
 
-export interface Sentence {
-  sentence: string,
-  words: string[]
-}
-
-export interface Article {
-  sections: Sentence[][],
-  translate: {
-    sentence: string,
-    location: string
-  }[],
-}
 
 let sectionIndex = $ref(0)
 let sentenceIndex = $ref(0)
@@ -84,12 +72,23 @@ let hoverIndex = $ref({
 })
 
 let article = reactive<Article>({
+  article: article1,
+  articleTranslate: `上星期我去看戏。我的座位很好，戏很有意思，但我却无法欣赏。一青年男子与一青年女子坐在我的身后，大声地说着话。我非常生气，因为我听不见演员在说什么。我回过头去，怒视着那一男一女，他们却毫不理会。最后，我忍不住了，又一次回过头去，生气地说，“我一个字也听不见了！”
+“不关你的事，”那男的毫不客气地说，“这是私人间的谈话！”`,
+  newWords: [],
+  articleAllWords: [],
   sections: [],
-  translate: []
+  translate: [],
 })
-
+const simpleWord = [
+  'a', 'an', 'of', 'and',
+  'i', 'my', 'you', 'your',
+  'me', 'am', 'is', 'do', 'are',
+  'what', 'who', 'where', 'how', 'no', 'yes',
+  'not', 'did', 'were', 'can', 'could'
+]
 onMounted(() => {
-  let t1 = useSplitArticle(article1)
+  let t1 = useSplitArticle(article.article)
   let wordNumber = 0
   t1.map(v => {
     v.map(w => {
@@ -101,7 +100,7 @@ onMounted(() => {
 
   setTimeout(() => {
     store.current = {
-      dictType: DictType.inner,
+      dictType: DictType.innerDict,
       words: [],
       index: wordIndex,
       wrongWords: [],
@@ -117,8 +116,7 @@ onMounted(() => {
       }
     }
   }, 1000)
-  let a = `上星期我去看戏。我的座位很好，戏很有意思，但我却无法欣赏。一青年男子与一青年女子坐在我的身后，大声地说着话。我非常生气，因为我听不见演员在说什么。我回过头去，怒视着那一男一女，他们却毫不理会。最后，我忍不住了，又一次回过头去，生气地说，“我一个字也听不见了！”
-“不关你的事，”那男的毫不客气地说，“这是私人间的谈话！”`
+  let a = ``
   let t = useSplitArticle(a, 'cn', CnKeyboardMap)
   t.map((v, i) => {
     v.map((w, j) => {
@@ -266,7 +264,7 @@ function onKeyDown(e: KeyboardEvent) {
         if (!store.wrongWordDict.originWords.find((v: Word) => v.name === currentWord)) {
           store.wrongWordDict.originWords.push(word)
           store.wrongWordDict.words.push(word)
-          store.wrongWordDict.chapters = [store.wrongWordDict.words]
+          store.wrongWordDict.chapterWords = [store.wrongWordDict.words]
         }
         if (!store.current.wrongWords.find((v: Word) => v.name === currentWord)) {
           store.current.wrongWords.push(word)

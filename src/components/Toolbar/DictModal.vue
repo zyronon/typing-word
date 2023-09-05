@@ -39,7 +39,7 @@ watch(() => props.modelValue, (n: boolean) => {
 async function selectDict(item: Dict) {
   currentSelectDict = {
     ...item,
-    type: DictType.inner,
+    type: DictType.innerDict,
     sort: Sort.normal,
     wordList: [],
     chapterList: [],

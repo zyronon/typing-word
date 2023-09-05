@@ -9,11 +9,11 @@ export const useBaseStore = defineStore('base', {
       newWordDict: {
         name: '生词本',
         sort: Sort.normal,
-        type: DictType.newWordDict,
+        type: DictType.newDict,
         originWords: [],
         words: [],
         chapterWordNumber: 15,
-        chapters: [],
+        chapterWords: [],
         chapterIndex: 0,
         chapterWordIndex: 0,
         statistics: [],
@@ -22,11 +22,11 @@ export const useBaseStore = defineStore('base', {
       skipWordDict: {
         name: '简单词',
         sort: Sort.normal,
-        type: DictType.skipWordDict,
+        type: DictType.skipDict,
         originWords: [],
         words: [],
         chapterWordNumber: 15,
-        chapters: [],
+        chapterWords: [],
         chapterIndex: 0,
         chapterWordIndex: 0,
         statistics: [],
@@ -35,11 +35,11 @@ export const useBaseStore = defineStore('base', {
       wrongWordDict: {
         name: '错词本',
         sort: Sort.normal,
-        type: DictType.wrongWordDict,
+        type: DictType.wrongDict,
         originWords: [],
         words: [],
         chapterWordNumber: 15,
-        chapters: [],
+        chapterWords: [],
         chapterIndex: 0,
         chapterWordIndex: 0,
         statistics: [],
@@ -48,11 +48,11 @@ export const useBaseStore = defineStore('base', {
       dict: {
         name: '新概念英语-2',
         sort: Sort.normal,
-        type: DictType.inner,
+        type: DictType.innerDict,
         originWords: [],
         words: [],
         chapterWordNumber: 15,
-        chapters: [],
+        chapterWords: [],
         chapterIndex: 0,
         chapterWordIndex: 0,
         statistics: [],
@@ -60,7 +60,7 @@ export const useBaseStore = defineStore('base', {
       },
       oldDicts: [],
       current: {
-        dictType: DictType.inner,
+        dictType: DictType.innerDict,
         words: [],
         index: -1,
         wrongWords: [],
@@ -89,22 +89,19 @@ export const useBaseStore = defineStore('base', {
     }
   },
   getters: {
-    isWrongMode(state: State) {
-      return state.current.repeatNumber > 0
-    },
     skipWordNames: (state: State) => {
       return state.skipWordDict.words.map(v => v.name)
     },
     currentDict(state: State): Dict {
       switch (state.current.dictType) {
-        case DictType.newWordDict:
+        case DictType.newDict:
           return state.newWordDict
-        case DictType.skipWordDict:
+        case DictType.skipDict:
           return state.skipWordDict
-        case DictType.wrongWordDict:
+        case DictType.wrongDict:
           return state.wrongWordDict
-        case DictType.inner:
-        case DictType.custom:
+        case DictType.innerDict:
+        case DictType.customDict:
           return state.dict
       }
     },
@@ -124,7 +121,7 @@ export const useBaseStore = defineStore('base', {
     },
     dictTitle(state: State) {
       let title = this.currentDict.name
-      if ([DictType.inner, DictType.custom].includes(this.current.dictType)) {
+      if ([DictType.innerDict, DictType.customDict].includes(this.current.dictType)) {
         title += `  第${this.currentDict.chapterIndex + 1}章`
         title += this.current.repeatNumber ? '  复习错词' : ''
       }
@@ -168,7 +165,7 @@ export const useBaseStore = defineStore('base', {
       //   let obj: Config = JSON.parse(configStr)
       //   this.setState(obj)
       // }
-      if (this.current.dictType === DictType.inner) {
+      if (this.current.dictType === DictType.innerDict) {
         let r = await fetch(`/public/${this.dict.url}`)
         r.json().then(v => {
           this.dict.originWords = cloneDeep(v)
@@ -194,9 +191,9 @@ export const useBaseStore = defineStore('base', {
       this.saveStatistics()
       console.log('changeDict', cloneDeep(dict), chapterIndex, chapterWordIndex)
       this.current.dictType = dict.type
-      if ([DictType.newWordDict,
-        DictType.skipWordDict,
-        DictType.wrongWordDict].includes(dict.type)) {
+      if ([DictType.newDict,
+        DictType.skipDict,
+        DictType.wrongDict].includes(dict.type)) {
         this[dict.type].chapterIndex = chapterIndex
         this[dict.type].chapterWordIndex = chapterWordIndex
       } else {

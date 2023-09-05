@@ -63,7 +63,7 @@ function next() {
     if (store.current.wrongWords.length) {
       store.setCurrentWord(store.current.wrongWords)
     } else {
-      if (store.currentDict.chapterIndex !== store.currentDict.chapters.length - 1) {
+      if (store.currentDict.chapterIndex !== store.currentDict.chapterWords.length - 1) {
         console.log('这一章节完了')
         emitter.emit(EventKey.openStatModal)
       } else {
@@ -76,7 +76,7 @@ function next() {
 
     console.log('这个词完了')
   }
-  if ([DictType.custom, DictType.inner].includes(store.current.dictType) && store.skipWordNames.includes(store.word.name)) {
+  if ([DictType.customDict, DictType.innerDict].includes(store.current.dictType) && store.skipWordNames.includes(store.word.name)) {
     next()
   }
 
@@ -106,7 +106,7 @@ async function onKeyDown(e: KeyboardEvent) {
       if (!store.wrongWordDict.originWords.find((v: Word) => v.name === store.word.name)) {
         store.wrongWordDict.originWords.push(store.word)
         store.wrongWordDict.words.push(store.word)
-        store.wrongWordDict.chapters = [store.wrongWordDict.words]
+        store.wrongWordDict.chapterWords = [store.wrongWordDict.words]
       }
       if (!store.current.wrongWords.find((v: Word) => v.name === store.word.name)) {
         store.current.wrongWords.push(store.word)
@@ -138,7 +138,7 @@ async function onKeyDown(e: KeyboardEvent) {
         if (!store.newWordDict.originWords.find((v: Word) => v.name === store.word.name)) {
           store.newWordDict.originWords.push(store.word)
           store.newWordDict.words.push(store.word)
-          store.newWordDict.chapters = [store.newWordDict.words]
+          store.newWordDict.chapterWords = [store.newWordDict.words]
         }
         activeIndex = 1
         break
@@ -146,7 +146,7 @@ async function onKeyDown(e: KeyboardEvent) {
         if (!store.skipWordNames.includes(store.word.name)) {
           store.skipWordDict.originWords.push(store.word)
           store.skipWordDict.words.push(store.word)
-          store.skipWordDict.chapters = [store.skipWordDict.words]
+          store.skipWordDict.chapterWords = [store.skipWordDict.words]
         }
         activeIndex = 0
         next()

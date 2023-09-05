@@ -26,14 +26,14 @@ onMounted(() => {
     store.sideIsOpen = !store.sideIsOpen
     if (store.sideIsOpen) {
       switch (store.current.dictType) {
-        case DictType.newWordDict:
+        case DictType.newDict:
           return tabIndex = 1;
-        case DictType.skipWordDict:
+        case DictType.skipDict:
           return tabIndex = 3;
-        case DictType.wrongWordDict:
+        case DictType.wrongDict:
           return tabIndex = 2;
-        case DictType.inner:
-        case DictType.custom:
+        case DictType.innerDict:
+        case DictType.customDict:
           return tabIndex = 0;
       }
     }
@@ -42,7 +42,7 @@ onMounted(() => {
 
 
 const newWordDictActiveIndex = computed(() => {
-  if (store.current.dictType !== DictType.newWordDict) return -1
+  if (store.current.dictType !== DictType.newDict) return -1
   else {
     if (store.current.repeatNumber) {
       return store.chapter.findIndex(v => v.name === store.word.name)
@@ -52,7 +52,7 @@ const newWordDictActiveIndex = computed(() => {
 })
 
 const dictActiveIndex = computed(() => {
-  if (store.current.dictType !== DictType.inner) return -1
+  if (store.current.dictType !== DictType.innerDict) return -1
   else {
     if (store.current.repeatNumber) {
       return store.chapter.findIndex(v => v.name === store.word.name)
@@ -63,7 +63,7 @@ const dictActiveIndex = computed(() => {
 
 
 const wrongWordDictActiveIndex = computed(() => {
-  if (store.current.dictType !== DictType.wrongWordDict) return -1
+  if (store.current.dictType !== DictType.wrongDict) return -1
   else {
     if (store.current.repeatNumber) {
       return store.chapter.findIndex(v => v.name === store.word.name)
@@ -74,7 +74,7 @@ const wrongWordDictActiveIndex = computed(() => {
 
 
 const skipWordDictActiveIndex = computed(() => {
-  if (store.current.dictType !== DictType.skipWordDict) return -1
+  if (store.current.dictType !== DictType.skipDict) return -1
   else {
     if (store.current.repeatNumber) {
       return store.chapter.findIndex(v => v.name === store.word.name)
@@ -106,9 +106,9 @@ const skipWordDictActiveIndex = computed(() => {
                   class="word-list"
                   @change="(e:number) => store.changeDict(store.dict,store.dict.chapterIndex,e)"
                   :isActive="store.sideIsOpen && tabIndex === 0"
-                  :list="store.dict.chapters[store.dict.chapterIndex]??[]"
+                  :list="store.dict.chapterWords[store.dict.chapterIndex]??[]"
                   :activeIndex="dictActiveIndex"/>
-              <footer v-if="![DictType.custom,DictType.inner].includes(store.current.dictType)">
+              <footer v-if="![DictType.customDict,DictType.innerDict].includes(store.current.dictType)">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.dict)"
@@ -129,7 +129,7 @@ const skipWordDictActiveIndex = computed(() => {
                   :isActive="store.sideIsOpen && tabIndex === 1"
                   :list="store.newWordDict.words"
                   :activeIndex="newWordDictActiveIndex"/>
-              <footer v-if="store.current.dictType !== DictType.newWordDict && store.newWordDict.words.length">
+              <footer v-if="store.current.dictType !== DictType.newDict && store.newWordDict.words.length">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.newWordDict)"
@@ -152,7 +152,7 @@ const skipWordDictActiveIndex = computed(() => {
                   :list="store.wrongWordDict.words"
                   :activeIndex="wrongWordDictActiveIndex"/>
               <footer
-                  v-if="store.current.dictType !== DictType.wrongWordDict && store.wrongWordDict.words.length">
+                  v-if="store.current.dictType !== DictType.wrongDict && store.wrongWordDict.words.length">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.wrongWordDict)"
@@ -173,7 +173,7 @@ const skipWordDictActiveIndex = computed(() => {
                   :isActive="store.sideIsOpen && tabIndex === 3"
                   :list="store.skipWordDict.words"
                   :activeIndex="skipWordDictActiveIndex"/>
-              <footer v-if="store.current.dictType !== DictType.skipWordDict && store.skipWordDict.words.length">
+              <footer v-if="store.current.dictType !== DictType.skipDict && store.skipWordDict.words.length">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.skipWordDict)"
