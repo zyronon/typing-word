@@ -1,4 +1,4 @@
-import {Sentence} from "@/components/TypeArticle.vue";
+import {Sentence} from "@/types.ts";
 
 interface KeyboardMap {
   Period: string,

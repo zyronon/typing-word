@@ -155,6 +155,7 @@ export interface State {
     repeatNumber: number,
     statistics: Statistics
   },
+  simpleWords: string[],
   sideIsOpen: boolean,
   isDictation: boolean,
   theme: string,

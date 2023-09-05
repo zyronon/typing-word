@@ -8,29 +8,36 @@ import {Down} from "@icon-park/vue-next"
 
 interface IProps {
   total: number,
+  startDate: number
   inputNumber: number
   wrongNumber: number
   correctRate: number
 }
 
-const props = defineProps()
+const props = withDefaults(defineProps<IProps>(), {
+  total: 0,
+  startDate: Date.now,
+  inputNumber: 0,
+  wrongNumber: 0,
+  correctRate: 0,
+})
 
 const store = useBaseStore()
 
 function format(val: number, suffix: string = '') {
-  return val === -1 ? '-' : (val + suffix)
+  return val === 0 ? '-' : (val + suffix)
 }
 
 const progress = $computed(() => {
-  if (!store.chapter.length) return 0
-  return ((store.current.index / store.current.statistics.wordNumber) * 100)
+  if (!props.total) return 0
+  return ((props.inputNumber / props.total) * 100)
 })
 
 let speedMinute = $ref(0)
 let timer = $ref(0)
 onMounted(() => {
   timer = setInterval(() => {
-    speedMinute = Math.floor((Date.now() - store.current.statistics.startDate) / 1000 / 60)
+    speedMinute = Math.floor((Date.now() - props.startDate) / 1000 / 60)
   }, 1000)
 })
 
@@ -60,22 +67,22 @@ onUnmounted(() => {
           <div class="name">时间</div>
         </div>
         <div class="row">
-          <div class="num">{{ store.current.statistics.wordNumber }}</div>
+          <div class="num">{{ total }}</div>
           <div class="line"></div>
           <div class="name">单词总数</div>
         </div>
         <div class="row">
-          <div class="num">{{ store.current.index }}</div>
+          <div class="num">{{ inputNumber }}</div>
           <div class="line"></div>
           <div class="name">输入数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(store.current.wrongWords.length) }}</div>
+          <div class="num">{{ format(props.wrongNumber) }}</div>
           <div class="line"></div>
           <div class="name">错误数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(store.current.statistics.correctRate, '%') }}</div>
+          <div class="num">{{ format(props.correctRate, '%') }}</div>
           <div class="line"></div>
           <div class="name">正确率</div>
         </div>

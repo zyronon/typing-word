@@ -64,7 +64,7 @@ let index = $ref(0)
 let input = $ref('')
 let wrong = $ref('')
 let isSpace = $ref(false)
-let isDictation = $ref(true)
+let isDictation = $ref(false)
 let showFullWord = $ref(false)
 let hoverIndex = $ref({
   sectionIndex: 0,
@@ -80,22 +80,20 @@ let article = reactive<Article>({
   sections: [],
   translate: [],
 })
-const simpleWord = [
-  'a', 'an', 'of', 'and',
-  'i', 'my', 'you', 'your',
-  'me', 'am', 'is', 'do', 'are',
-  'what', 'who', 'where', 'how', 'no', 'yes',
-  'not', 'did', 'were', 'can', 'could'
-]
+
 onMounted(() => {
-  let t1 = useSplitArticle(article.article)
+  let sections = useSplitArticle(article.article)
   let wordNumber = 0
-  t1.map(v => {
+  sections.map(v => {
     v.map(w => {
-      wordNumber += w.words.length
+      w.words.map(s=>{
+        if (!store.skipWordNames.includes(s.toLowerCase())){
+          wordNumber++
+        }
+      })
     })
   })
-  console.log('t1', t1)
+  console.log('sections', sections)
   console.log('wordNumber', wordNumber)
 
   setTimeout(() => {
@@ -116,9 +114,8 @@ onMounted(() => {
       }
     }
   }, 1000)
-  let a = ``
-  let t = useSplitArticle(a, 'cn', CnKeyboardMap)
-  t.map((v, i) => {
+  let temp = useSplitArticle(article.articleTranslate, 'cn', CnKeyboardMap)
+  temp.map((v, i) => {
     v.map((w, j) => {
       article.translate.push({
         sentence: w.sentence,
@@ -126,7 +123,7 @@ onMounted(() => {
       })
     })
   })
-  article.sections = t1
+  article.sections = sections
   console.log(cloneDeep(article))
   calcTranslateLocation()
 })
@@ -171,7 +168,6 @@ function play() {
 function focus() {
   inputRef.focus()
 }
-
 
 const currentIndex = computed(() => {
   return `${sectionIndex}${sentenceIndex}${wordIndex}`

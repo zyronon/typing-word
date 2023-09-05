@@ -76,7 +76,7 @@ function next() {
 
     console.log('这个词完了')
   }
-  if ([DictType.customDict, DictType.innerDict].includes(store.current.dictType) && store.skipWordNames.includes(store.word.name)) {
+  if ([DictType.customDict, DictType.innerDict].includes(store.current.dictType) && store.skipWordNames.includes(store.word.name.toLowerCase())) {
     next()
   }
 
@@ -103,12 +103,12 @@ async function onKeyDown(e: KeyboardEvent) {
       wrong = ''
       playKeySound()
     } else {
-      if (!store.wrongWordDict.originWords.find((v: Word) => v.name === store.word.name)) {
+      if (!store.wrongWordDict.originWords.find((v: Word) => v.name.toLowerCase() === store.word.name.toLowerCase())) {
         store.wrongWordDict.originWords.push(store.word)
         store.wrongWordDict.words.push(store.word)
         store.wrongWordDict.chapterWords = [store.wrongWordDict.words]
       }
-      if (!store.current.wrongWords.find((v: Word) => v.name === store.word.name)) {
+      if (!store.current.wrongWords.find((v: Word) => v.name.toLowerCase() === store.word.name.toLowerCase())) {
         store.current.wrongWords.push(store.word)
       }
       store.current.statistics.correctRate = Math.trunc(((store.current.index + 1 - store.current.wrongWords.length) / (store.current.index + 1)) * 100)

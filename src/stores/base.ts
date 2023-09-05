@@ -85,12 +85,20 @@ export const useBaseStore = defineStore('base', {
         value3: 1,
         value4: false,
       },
+      simpleWords: [
+        'a', 'an', 'of', 'and',
+        'i', 'my', 'you', 'your',
+        'me', 'am', 'is', 'do', 'are',
+        'what', 'who', 'where', 'how', 'no', 'yes',
+        'not', 'did', 'were', 'can', 'could', 'it',
+        'the','to'
+      ],
       theme: 'auto'
     }
   },
   getters: {
     skipWordNames: (state: State) => {
-      return state.skipWordDict.words.map(v => v.name)
+      return state.skipWordDict.originWords.map(v => v.name.toLowerCase()).concat(state.simpleWords)
     },
     currentDict(state: State): Dict {
       switch (state.current.dictType) {
@@ -109,7 +117,7 @@ export const useBaseStore = defineStore('base', {
       return this.currentDict.wordIndex
     },
     chapter(state: State): Word[] {
-      return this.currentDict.chapters[this.currentDict.chapterIndex] ?? []
+      return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []
     },
     word(state: State): Word {
       return state.current.words[state.current.index] ?? {
