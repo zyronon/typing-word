@@ -19,7 +19,7 @@ export function useSound(srcList?: string[], num?: number) {
   })
 
   let index = $ref(0)
-  const play = () => {
+  const play: Function = () => {
     index++
     if (audioList.length > 1 && audioList.length !== audioLength) {
       audioList[index % audioList.length].play()

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
-import {computed, nextTick, onMounted, reactive} from "vue"
+import {computed, nextTick, onMounted, reactive, watch} from "vue"
 import {cloneDeep} from "lodash"
 import 快速打字的机械键盘声音Mp3 from '../assets/sound/key-sounds/快速打字的机械键盘声音.mp3'
 import 键盘快速打字的声音Mp3 from '../assets/sound/key-sounds/键盘快速打字的声音.mp3'
@@ -18,6 +18,7 @@ import {CnKeyboardMap, useSplitArticle} from "@/hooks/useSplitArticle";
 import {$computed, $ref} from "vue/macros";
 import {Article, DictType, SaveKey, Sentence, ShortKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
+import Footer2 from "@/components/Footer2.vue"
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -56,7 +57,6 @@ const [playCorrect] = useSound([correct], 1)
 
 const store = useBaseStore()
 
-
 let sectionIndex = $ref(0)
 let sentenceIndex = $ref(0)
 let wordIndex = $ref(6)
@@ -64,11 +64,19 @@ let index = $ref(0)
 let input = $ref('')
 let wrong = $ref('')
 let isSpace = $ref(false)
-let isDictation = $ref(false)
+let isDictation = $ref(true)
 let showFullWord = $ref(false)
 let hoverIndex = $ref({
   sectionIndex: 0,
   sentenceIndex: 0,
+})
+let statistics = $ref({
+  wrongWords: [],
+  total: 0,
+  startDate: 0,
+  inputNumber: 0,
+  wrongNumber: 0,
+  correctRate: -1,
 })
 
 let article = reactive<Article>({
@@ -81,39 +89,30 @@ let article = reactive<Article>({
   translate: [],
 })
 
+watch(statistics, () => {
+  if (statistics.inputNumber < 1) {
+    return statistics.correctRate = -1
+  }
+  if (statistics.wrongNumber > statistics.inputNumber) {
+    return statistics.correctRate = 0
+  }
+  statistics.correctRate = 100 - Math.trunc(((statistics.wrongNumber) / (statistics.inputNumber)) * 100)
+})
 onMounted(() => {
   let sections = useSplitArticle(article.article)
   let wordNumber = 0
   sections.map(v => {
     v.map(w => {
-      w.words.map(s=>{
-        if (!store.skipWordNames.includes(s.toLowerCase())){
+      w.words.map(s => {
+        if (!store.skipWordNamesWithSimpleWords.includes(s.toLowerCase())) {
           wordNumber++
         }
       })
     })
   })
-  console.log('sections', sections)
-  console.log('wordNumber', wordNumber)
+  statistics.total = wordNumber
+  statistics.startDate = Date.now()
 
-  setTimeout(() => {
-    store.current = {
-      dictType: DictType.innerDict,
-      words: [],
-      index: wordIndex,
-      wrongWords: [],
-      originWrongWords: [],
-      repeatNumber: 0,
-      statistics: {
-        startDate: Date.now(),
-        endDate: -1,
-        spend: -1,
-        wordNumber: wordNumber,
-        correctRate: -1,
-        wrongWordNumber: -1,
-      }
-    }
-  }, 1000)
   let temp = useSplitArticle(article.articleTranslate, 'cn', CnKeyboardMap)
   temp.map((v, i) => {
     v.map((w, j) => {
@@ -187,7 +186,9 @@ function onKeyDown(e: KeyboardEvent) {
       isSpace = false
       index = 0
       wordIndex++
-      store.current.index++
+      if (!store.skipWordNamesWithSimpleWords.includes(currentWord.toLowerCase())) {
+        statistics.inputNumber++
+      }
 
       playCorrect()
       if (!currentSentence.words[wordIndex]) {
@@ -257,21 +258,23 @@ function onKeyDown(e: KeyboardEvent) {
           ukphone: '',
           trans: []
         }
-        if (!store.wrongWordDict.originWords.find((v: Word) => v.name === currentWord)) {
+        if (!store.wrongWordDict.originWords.find((v: Word) => v.name.toLowerCase() === currentWord.toLowerCase())) {
           store.wrongWordDict.originWords.push(word)
           store.wrongWordDict.words.push(word)
           store.wrongWordDict.chapterWords = [store.wrongWordDict.words]
         }
-        if (!store.current.wrongWords.find((v: Word) => v.name === currentWord)) {
-          store.current.wrongWords.push(word)
+
+        if (!store.skipWordNamesWithSimpleWords.includes(currentWord.toLowerCase())) {
+          if (!statistics.wrongWords.find((v) => v.toLowerCase() === currentWord.toLowerCase())) {
+            statistics.wrongWords.push(currentWord)
+            statistics.wrongNumber++
+          }
         }
-        store.current.statistics.correctRate = Math.trunc(((store.current.index + 1 - store.current.wrongWords.length) / (store.current.index + 1)) * 100)
 
         wrong = letter
         playBeep()
         setTimeout(() => {
           wrong = ''
-          // wrong = input = ''
         }, 500)
         console.log('未匹配')
       }
@@ -321,7 +324,6 @@ function onKeyUp() {
   }
 }
 
-
 function playWord(word: string) {
   playAudio(word)
 }
@@ -370,14 +372,11 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
 
 <template>
   <div class="type-wrapper">
-    <div class="trans">
-      <span>翻译：</span>
-      <span class="text">上周我去看戏了</span>
-    </div>
-    <div class="article-wrapper" ref="articleWrapperRef">
-      <article @click="focus">
-        <div class="section"
-             v-for="(section,indexI) in article.sections">
+    <div class="content">
+      <div class="article-wrapper" ref="articleWrapperRef">
+        <article @click="focus">
+          <div class="section"
+               v-for="(section,indexI) in article.sections">
         <span class="sentence"
               :class="[
                   sectionIndex === indexI && sentenceIndex === indexJ ?'isDictation':''
@@ -416,22 +415,30 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
                 ]">&nbsp;</span>
           </span>
         </span>
-        </div>
-      </article>
-      <div class="translate">
-        <div class="row"
-             :class="`translate${item.location}`"
-             v-for="item in article.translate">
-          <span class="space"></span>
-          <span class="text">{{ item.sentence }}</span>
+          </div>
+        </article>
+        <div class="translate">
+          <div class="row"
+               :class="`translate${item.location}`"
+               v-for="item in article.translate">
+            <span class="space"></span>
+            <span class="text">{{ item.sentence }}</span>
+          </div>
         </div>
       </div>
+      <input ref="inputRef"
+             class="inputEl"
+             type="text"
+             @keyup="onKeyUp"
+             @keydown="onKeyDown">
     </div>
-    <input ref="inputRef"
-           class="inputEl"
-           type="text"
-           @keyup="onKeyUp"
-           @keydown="onKeyDown">
+    <Footer2
+        :total="statistics.total"
+        :startDate="statistics.startDate"
+        :inputNumber="statistics.inputNumber"
+        :wrongNumber="statistics.wrongNumber"
+        :correctRate="statistics.correctRate"
+    />
   </div>
 </template>
 
@@ -444,22 +451,16 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
 }
 
 .type-wrapper {
-  height: 100%;
-  overflow: auto;
-  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  .trans {
-    height: 40rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    display: none;
-
-    .text {
-      color: var(--color-font-1);
-
-      font-size: 22rem;
-    }
+  .content {
+    width: 60%;
+    flex: 1;
+    overflow: auto;
+    position: relative;
   }
 
   article {

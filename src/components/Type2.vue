@@ -13,7 +13,7 @@ import correct from '../assets/sound/correct.wav'
 import {$computed, $ref} from "vue/macros"
 import {useSound} from "@/hooks/useSound.ts"
 import {useBaseStore} from "@/stores/base.ts"
-import {DictType, SaveKey, ShortKeyMap, Word} from "../types";
+import {DictType, SaveKey, ShortKeyMap, Statistics, Word} from "../types";
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
 import useTheme from "@/hooks/useTheme.ts";
 import Tooltip from "@/components/Tooltip.vue";
@@ -38,26 +38,46 @@ const [playBeep] = useSound([beep], 1)
 const [playCorrect] = useSound([correct], 1)
 const [playAudio] = usePlayWordAudio()
 
-
 interface IProps {
-  total: number,
-  startDate: number
-  inputNumber: number
-  wrongNumber: number
-  correctRate: number
+  words: Word[],
+  index: number,
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  total: 0,
+  words: [],
+  index: -1
+})
+let data = $ref({
+  index: props.index,
+  words: props.words,
+  wrongWords: [],
+  originWrongWords: [],
+  repeatNumber: 0,
   startDate: Date.now(),
-  inputNumber: 0,
-  wrongNumber: 0,
-  correctRate: 0,
+  correctRate: -1,
+})
+let word = $computed(() => {
+  return data.words[data.index] ?? {
+    trans: [],
+    name: '',
+    usphone: '',
+    ukphone: '',
+  }
+})
+let resetWord = $computed(() => {
+  return word.name.slice(input.length + wrong.length)
 })
 
-const resetWord = $computed(() => {
-  return store.word.name.slice(input.length + wrong.length)
+watch(data, () => {
+  if (data.index < 1) {
+    return data.correctRate = -1
+  }
+  if (data.wrongWords.length > data.index) {
+    return data.correctRate = 0
+  }
+  data.correctRate = 100 - Math.trunc((data.wrongWords.length / data.index) * 100)
 })
+
 onMounted(() => {
   window.addEventListener('keydown', onKeyDown)
   window.addEventListener('keyup', onKeyUp)
@@ -74,34 +94,28 @@ onUnmounted(() => {
 })
 
 function next() {
-  if (store.current.index === store.current.words.length - 1) {
-    if (store.current.wrongWords.length) {
-      store.setCurrentWord(store.current.wrongWords)
-    } else {
-      if (store.currentDict.chapterIndex !== store.currentDict.chapterWords.length - 1) {
-        console.log('这一章节完了')
-        emitter.emit(EventKey.openStatModal)
-      } else {
-        console.log('这本书完了')
-        emitter.emit(EventKey.openStatModal)
+  if (data.index === props.words.length - 1) {
+    if (data.wrongWords.length) {
+      data.words = cloneDeep(data.wrongWords)
+      if (!data.originWrongWords.length) {
+        data.originWrongWords = cloneDeep(data.wrongWords)
       }
+      data.index = 0
+      data.repeatNumber++
+      data.wrongWords = []
+    } else {
+      console.log('这本书完了')
+      emitter.emit(EventKey.openStatModal)
     }
   } else {
-    store.current.index++
-
+    data.index++
     console.log('这个词完了')
-  }
-  if ([DictType.customDict, DictType.innerDict].includes(store.current.dictType) && store.skipWordNames.includes(store.word.name.toLowerCase())) {
-    next()
+    if ([DictType.customDict, DictType.innerDict].includes(store.current.dictType)
+        && store.skipWordNames.includes(word.name.toLowerCase())) {
+      next()
+    }
   }
 
-  if (store.current.index) {
-    store.current.statistics.wrongWordNumber = store.current.wrongWords.length
-    store.current.statistics.correctRate = Math.trunc(((store.current.index - store.current.wrongWords.length) / (store.current.index)) * 100)
-  } else {
-    store.current.statistics.wrongWordNumber = -1
-    store.current.statistics.correctRate = -1
-  }
   wrong = input = ''
 }
 
@@ -113,29 +127,27 @@ async function onKeyDown(e: KeyboardEvent) {
   //TODO 还有横杠
   if ((e.keyCode >= 65 && e.keyCode <= 90) || e.code === 'Space') {
     let letter = e.key
-    if ((input + letter).toLowerCase() === store.word.name.toLowerCase().slice(0, input.length + 1)) {
+    if ((input + letter).toLowerCase() === word.name.toLowerCase().slice(0, input.length + 1)) {
       input += letter
       wrong = ''
       playKeySound()
     } else {
-      if (!store.wrongWordDict.originWords.find((v: Word) => v.name.toLowerCase() === store.word.name.toLowerCase())) {
-        store.wrongWordDict.originWords.push(store.word)
-        store.wrongWordDict.words.push(store.word)
+      if (!store.wrongWordDict.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
+        store.wrongWordDict.originWords.push(word)
+        store.wrongWordDict.words.push(word)
         store.wrongWordDict.chapterWords = [store.wrongWordDict.words]
       }
-      if (!store.current.wrongWords.find((v: Word) => v.name.toLowerCase() === store.word.name.toLowerCase())) {
-        store.current.wrongWords.push(store.word)
+      if (!data.wrongWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
+        data.wrongWords.push(word)
       }
-      store.current.statistics.correctRate = Math.trunc(((store.current.index + 1 - store.current.wrongWords.length) / (store.current.index + 1)) * 100)
       wrong = letter
       playKeySound()
       playBeep()
       setTimeout(() => {
         wrong = ''
-        // wrong = input = ''
       }, 500)
     }
-    if (input.toLowerCase() === store.word.name.toLowerCase()) {
+    if (input.toLowerCase() === word.name.toLowerCase()) {
       playCorrect()
       setTimeout(next, 300)
     }
@@ -150,17 +162,17 @@ async function onKeyDown(e: KeyboardEvent) {
         }
         break
       case ShortKeyMap.Collect:
-        if (!store.newWordDict.originWords.find((v: Word) => v.name === store.word.name)) {
-          store.newWordDict.originWords.push(store.word)
-          store.newWordDict.words.push(store.word)
+        if (!store.newWordDict.originWords.find((v: Word) => v.name === word.name)) {
+          store.newWordDict.originWords.push(word)
+          store.newWordDict.words.push(word)
           store.newWordDict.chapterWords = [store.newWordDict.words]
         }
         activeIndex = 1
         break
       case ShortKeyMap.Remove:
-        if (!store.skipWordNames.includes(store.word.name)) {
-          store.skipWordDict.originWords.push(store.word)
-          store.skipWordDict.words.push(store.word)
+        if (!store.skipWordNames.includes(word.name)) {
+          store.skipWordDict.originWords.push(word)
+          store.skipWordDict.words.push(word)
           store.skipWordDict.chapterWords = [store.skipWordDict.words]
         }
         activeIndex = 0
@@ -180,15 +192,11 @@ async function onKeyDown(e: KeyboardEvent) {
     }, 200)
   }
 }
-
-
-const {toggle} = useTheme()
-
 </script>
 
 <template>
   <div class="type-word">
-    <div class="translate">{{ store.word.trans.join('；') }}</div>
+    <div class="translate">{{ word.trans.join('；') }}</div>
     <div class="word-wrapper">
       <div class="word" :class="wrong && 'is-wrong'">
         <span class="input" v-if="input">{{ input }}</span>
@@ -200,9 +208,9 @@ const {toggle} = useTheme()
         </template>
         <span class="letter" v-else>{{ resetWord }}</span>
       </div>
-      <div class="audio" @click="playAudio(store.word.name)">播放</div>
+      <div class="audio" @click="playAudio(word.name)">播放</div>
     </div>
-    <div class="phonetic">{{ store.word.usphone }}</div>
+    <div class="phonetic">{{ word.usphone }}</div>
     <div class="options">
       <BaseButton keyboard="`" :active="activeIndex === 0">
         忽略

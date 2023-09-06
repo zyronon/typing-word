@@ -130,9 +130,9 @@ watch(() => store.setting.showToolbar, n => {
 @import "@/assets/css/colors.scss";
 
 header {
+  width: var(--toolbar-width);
   margin-top: 10rem;
   min-height: 60rem;
-  width: 100%;
   background: var(--color-header-bg);
   display: flex;
   justify-content: space-between;

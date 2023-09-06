@@ -1,15 +1,10 @@
 <script setup lang="ts">
 
-import Toolbar from "@/components/Toolbar/Toolbar.vue";
-import Type from "@/components/Type.vue";
-import Side from "@/components/Side.vue";
 import Statistics from "@/components/Modal/Statistics.vue";
-import Backgorund from "@/components/Backgorund.vue";
 import {onMounted, watch} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {SaveKey} from "@/types.ts"
-import Footer from "@/components/Footer.vue"
-import TypeArticle from "@/components/TypeArticle.vue"
+import Practice from "@/components/Practice.vue"
 
 const store = useBaseStore()
 // 查询当前系统主题颜色
@@ -38,15 +33,8 @@ onMounted(() => {
 <template>
   <!--    <Backgorund/>-->
   <div class="main-page">
-    <div class="center">
-      <Toolbar/>
-      <div class="content">
-<!--                <Type/>-->
-        <TypeArticle/>
-      </div>
-      <Footer/>
-      <Side/>
-    </div>
+    <Practice/>
+    <!--      <Side/>-->
     <Statistics></Statistics>
   </div>
 </template>
@@ -57,32 +45,12 @@ onMounted(() => {
 .main-page {
   position: absolute;
   z-index: 1;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   overflow: hidden;
   font-size: 14rem;
   display: flex;
   justify-content: center;
   background-color: var(--color-main-bg);
-
-  .center {
-    width: var(--toolbar-width);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    //border: 1px solid gray;
-    position: relative;
-
-    .content {
-      width: 100%;
-      position: relative;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-  }
 }
 </style>

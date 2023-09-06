@@ -98,6 +98,9 @@ export const useBaseStore = defineStore('base', {
   },
   getters: {
     skipWordNames: (state: State) => {
+      return state.skipWordDict.originWords.map(v => v.name.toLowerCase())
+    },
+    skipWordNamesWithSimpleWords: (state: State) => {
       return state.skipWordDict.originWords.map(v => v.name.toLowerCase()).concat(state.simpleWords)
     },
     currentDict(state: State): Dict {

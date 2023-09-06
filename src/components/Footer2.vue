@@ -16,7 +16,7 @@ interface IProps {
 
 const props = withDefaults(defineProps<IProps>(), {
   total: 0,
-  startDate: Date.now,
+  startDate: Date.now(),
   inputNumber: 0,
   wrongNumber: 0,
   correctRate: 0,
@@ -24,8 +24,8 @@ const props = withDefaults(defineProps<IProps>(), {
 
 const store = useBaseStore()
 
-function format(val: number, suffix: string = '') {
-  return val === 0 ? '-' : (val + suffix)
+function format(val: number, suffix: string = '', check: number = -1) {
+  return val === check ? '-' : (val + suffix)
 }
 
 const progress = $computed(() => {
@@ -72,12 +72,12 @@ onUnmounted(() => {
           <div class="name">单词总数</div>
         </div>
         <div class="row">
-          <div class="num">{{ inputNumber }}</div>
+          <div class="num">{{ format(inputNumber, '', 0) }}</div>
           <div class="line"></div>
           <div class="name">输入数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(props.wrongNumber) }}</div>
+          <div class="num">{{ format(props.wrongNumber, '', 0) }}</div>
           <div class="line"></div>
           <div class="name">错误数</div>
         </div>
@@ -100,7 +100,7 @@ onUnmounted(() => {
 @import "@/assets/css/colors.scss";
 
 .footer {
-  width: 100%;
+  width: var(--toolbar-width);
   margin-bottom: 30rem;
   transition: all .3s;
   position: relative;
