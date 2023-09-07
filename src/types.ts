@@ -173,7 +173,8 @@ export interface State {
     value2: number,
     value3: number,
     value4: boolean,
-  }
+  },
+  load:boolean
 }
 
 export const ShortKeyMap = {

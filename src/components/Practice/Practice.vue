@@ -1,13 +1,15 @@
 <script setup lang="ts">
 
 import Toolbar from "@/components/Toolbar/Toolbar.vue"
-import {watch} from "vue";
+import {onMounted, watch} from "vue";
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
 import Footer from "@/components/Practice/Footer.vue";
 import TypeWord from "@/components/Practice/TypeWord.vue";
 import TypeArticle from "@/components/Practice/TypeArticle.vue";
+import {useBaseStore} from "@/stores/base.ts";
 
 const practiceStore = usePracticeStore()
+const store = useBaseStore()
 
 watch(practiceStore, () => {
   if (practiceStore.inputNumber < 1) {
@@ -18,6 +20,22 @@ watch(practiceStore, () => {
   }
   practiceStore.correctRate = 100 - Math.trunc(((practiceStore.wrongNumber) / (practiceStore.inputNumber)) * 100)
 })
+let wordData = $ref({
+  words: [],
+  index: -1
+})
+
+watch(()=>store.load,n=>{
+  if (n){
+    wordData.words = store.chapter
+    wordData.index = 0
+  }
+})
+
+onMounted(() => {
+
+})
+
 
 </script>
 
@@ -25,7 +43,10 @@ watch(practiceStore, () => {
   <div class="practice">
     <Toolbar/>
     <TypeArticle v-if="practiceStore.type === 'article'"/>
-    <TypeWord v-else/>
+    <TypeWord
+        :words="wordData.words"
+        :index="wordData.index"
+        v-else/>
     <Footer/>
   </div>
 </template>

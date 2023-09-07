@@ -20,9 +20,9 @@ export const usePracticeStore = defineStore('practice', {
       repeatNumber: 0,
       startDate: Date.now(),
       correctRate: -1,
-      total: -1,
-      inputNumber: -1,
-      wrongNumber: -1,
+      total: 0,
+      inputNumber: 0,
+      wrongNumber: 0,
     }
   },
 })

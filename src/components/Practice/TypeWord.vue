@@ -42,14 +42,17 @@ let data = $ref({
   words: props.words,
   wrongWords: [],
   originWrongWords: [],
-  repeatNumber: 0,
-  startDate: Date.now(),
-  correctRate: -1,
 })
 
 watch(() => props.words, (n: Word[]) => {
   data.words = n
   data.index = n.length ? 0 : -1
+  practiceStore.inputNumber = 0
+  practiceStore.wrongNumber = 0
+  practiceStore.repeatNumber = 0
+  practiceStore.total = n.length
+  practiceStore.wrongWords = []
+  practiceStore.startDate = Date.now()
 })
 
 
@@ -87,7 +90,6 @@ onMounted(() => {
   })
 })
 
-
 useEventListener('keydown', onKeyDown)
 useEventListener('keyup', onKeyUp)
 
@@ -99,21 +101,25 @@ function next() {
         data.originWrongWords = cloneDeep(data.wrongWords)
       }
       data.index = 0
-      data.repeatNumber++
+      practiceStore.total = data.words.length
+      practiceStore.inputNumber = 0
+      practiceStore.wrongNumber = 0
+      practiceStore.repeatNumber++
       data.wrongWords = []
     } else {
-      console.log('这本书完了')
+      console.log('这章节完了')
+      practiceStore.wrongWords = cloneDeep(data.originWrongWords)
       emitter.emit(EventKey.openStatModal)
     }
   } else {
     data.index++
+    practiceStore.inputNumber++
     console.log('这个词完了')
     if ([DictType.customDict, DictType.innerDict].includes(store.current.dictType)
         && store.skipWordNames.includes(word.name.toLowerCase())) {
       next()
     }
   }
-
   wrong = input = ''
 }
 
@@ -137,6 +143,7 @@ async function onKeyDown(e: KeyboardEvent) {
       }
       if (!data.wrongWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
         data.wrongWords.push(word)
+        practiceStore.wrongNumber++
       }
       wrong = letter
       playKeySound()
@@ -160,7 +167,7 @@ async function onKeyDown(e: KeyboardEvent) {
         }
         break
       case ShortKeyMap.Collect:
-        if (!store.newWordDict.originWords.find((v: Word) => v.name === word.name)) {
+        if (!store.newWordDict.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
           store.newWordDict.originWords.push(word)
           store.newWordDict.words.push(word)
           store.newWordDict.chapterWords = [store.newWordDict.words]
@@ -168,7 +175,7 @@ async function onKeyDown(e: KeyboardEvent) {
         activeIndex = 1
         break
       case ShortKeyMap.Remove:
-        if (!store.skipWordNames.includes(word.name)) {
+        if (!store.skipWordNames.includes(word.name.toLowerCase())) {
           store.skipWordDict.originWords.push(word)
           store.skipWordDict.words.push(word)
           store.skipWordDict.chapterWords = [store.skipWordDict.words]
