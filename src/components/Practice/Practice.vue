@@ -2,6 +2,8 @@
 
 import Toolbar from "@/components/Toolbar/Toolbar.vue"
 import TypeArticle from "@/components/TypeArticle.vue"
+
+
 </script>
 
 <template>

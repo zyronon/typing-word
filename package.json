@@ -23,7 +23,6 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.102",
-    "@types/jquery": "^3.5.18",
     "@types/lodash": "^4.14.196",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",

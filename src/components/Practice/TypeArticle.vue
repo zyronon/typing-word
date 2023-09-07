@@ -22,6 +22,7 @@ import Footer2 from "@/components/Footer2.vue"
 import {Swiper, SwiperSlide} from "swiper/vue";
 import 'swiper/css';
 import {Swiper as SwiperClass} from "swiper/types";
+import Type2 from "@/components/Type2.vue"
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -46,7 +47,7 @@ Idealists have objected to the package tour, that the traveller abroad thereby d
 Whether the remarkable growth of organized camping means the eventual death of the more independent kind is hard to say. Municipalities naturally want to secure the campers' site fees and other custom. Police are wary of itinerants who cannot be traced to a recognized camp boundary or to four walls. But most probably it will all depend upon campers themselves: how many heath fires they cause; how much litter they leave; in short, whether or not they wholly alienate landowners and those who live in the countryside. Only good scouting is likely to preserve the freedoms so dear to the heart of the eternal Boy Scout.
 NIGEL BUXTON The Great Escape from The Weekend Telegraph`
 
-article2 = `Economy is one powerful motive for camping? since after the initial outlay upon equipment, or through hiring it, the total expense can be far less than the cost of hotels. But, contrary to a popular assumption, it is far from being the only one, or even the greatest. The man who manoeuvres carelessly into his twenty pounds' worth of space at one of Europe's myriad permanent sites may find himself bumping a Bentley. More likely, Ford Escort will be hub to hub with Renault or Mercedes, but rarely with bicycles made for two.`
+// article2 = `Economy is one powerful motive for camping? since after the initial outlay upon equipment, or through hiring it, the total expense can be far less than the cost of hotels. But, contrary to a popular assumption, it is far from being the only one, or even the greatest. The man who manoeuvres carelessly into his twenty pounds' worth of space at one of Europe's myriad permanent sites may find himself bumping a Bentley. More likely, Ford Escort will be hub to hub with Renault or Mercedes, but rarely with bicycles made for two.`
 let isPlay = $ref(false)
 let inputRef = $ref<HTMLInputElement>(null)
 let articleWrapperRef = $ref<HTMLInputElement>(null)
@@ -376,12 +377,13 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
 
 <template>
   <div class="type-wrapper">
-    <div class="content">
-
-      <div class="article-wrapper" ref="articleWrapperRef">
-        <article @click="focus">
-          <div class="section"
-               v-for="(section,indexI) in article.sections">
+    <div class="swiper-wrapper content">
+      <div class="swiper-list">
+        <div class="swiper-item">
+          <div class="article-wrapper" ref="articleWrapperRef">
+            <article @click="focus">
+              <div class="section"
+                   v-for="(section,indexI) in article.sections">
         <span class="sentence"
               :class="[
                   sectionIndex === indexI && sentenceIndex === indexJ ?'isDictation':''
@@ -420,31 +422,38 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
                 ]">&nbsp;</span>
           </span>
         </span>
-          </div>
-        </article>
-        <div class="translate">
-          <div class="row"
-               :class="`translate${item.location}`"
-               v-for="item in article.translate">
-            <span class="space"></span>
-            <span class="text">{{ item.sentence }}</span>
+              </div>
+            </article>
+            <div class="translate">
+              <div class="row"
+                   :class="`translate${item.location}`"
+                   v-for="item in article.translate">
+                <span class="space"></span>
+                <span class="text">{{ item.sentence }}</span>
+              </div>
+            </div>
           </div>
         </div>
+        <div class="swiper-item">
+<!--          <Type2-->
+<!--          />-->
+        </div>
       </div>
-      <input ref="inputRef"
-             class="inputEl"
-             type="text"
-             @keyup="onKeyUp"
-             @keydown="onKeyDown">
+
     </div>
-    <Footer2
-        :total="statistics.total"
-        :startDate="statistics.startDate"
-        :inputNumber="statistics.inputNumber"
-        :wrongNumber="statistics.wrongNumber"
-        :correctRate="statistics.correctRate"
-    />
+    <input ref="inputRef"
+           class="inputEl"
+           type="text"
+           @keyup="onKeyUp"
+           @keydown="onKeyDown">
   </div>
+  <Footer2
+      :total="statistics.total"
+      :startDate="statistics.startDate"
+      :inputNumber="statistics.inputNumber"
+      :wrongNumber="statistics.wrongNumber"
+      :correctRate="statistics.correctRate"
+  />
 </template>
 
 <style scoped lang="scss">
@@ -457,66 +466,69 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
 
 .type-wrapper {
   flex: 1;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .content {
-    width: 60vw;
-    flex: 1;
-    overflow: auto;
+    width: 1000px;
     position: relative;
   }
 
-  article {
-    height: 100%;
-    font-size: 24rem;
-    line-height: 1.9;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-    color: gray;
-    word-break: keep-all;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    padding-top: 20rem;
+  .article-wrapper {
+    article {
+      //height: 100%;
+      font-size: 24rem;
+      line-height: 1.9;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+      color: gray;
+      word-break: keep-all;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      padding-top: 20rem;
 
-    .isDictation {
-      letter-spacing: 3rem;
-    }
-
-    .section {
-      margin-bottom: $space;
-
-      .sentence {
-        transition: all .3s;
+      .isDictation {
+        letter-spacing: 3rem;
       }
 
-      .word {
-        display: inline-block;
+      .section {
+        margin-bottom: $space;
+
+        .sentence {
+          transition: all .3s;
+        }
+
+        .word {
+          display: inline-block;
+        }
       }
     }
-  }
 
-  .translate {
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    font-size: 18rem;
-    color: gray;
-    line-height: 2.5;
-    letter-spacing: 3rem;
-
-    .row {
+    .translate {
+      pointer-events: none;
       position: absolute;
+      top: 0;
       left: 0;
+      height: 100%;
       width: 100%;
-      opacity: 0;
+      font-size: 18rem;
+      color: gray;
+      line-height: 2.5;
+      letter-spacing: 3rem;
+      display: none;
 
-      .space {
-        transition: all .3s;
-        display: inline-block;
+
+      .row {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+
+        .space {
+          transition: all .3s;
+          display: inline-block;
+        }
       }
     }
   }
@@ -544,17 +556,28 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
     background: rgba(red, 0.6);
     animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   }
-
-  .inputEl {
-    position: fixed;
-    //left: 100vw;
-  }
 }
 
+.inputEl {
+  position: fixed;
+  //left: 100vw;
+}
 
-.swiper {
+.swiper-wrapper {
   height: 100%;
   width: 100%;
+  overflow: hidden;
+
+  .swiper-list {
+    transition: transform .3s;
+    //transform: translate3d(0, -100%, 0);
+    height: 200%;
+
+    .swiper-item {
+      height: 50%;
+      overflow: auto;
+    }
+  }
 }
 
 
