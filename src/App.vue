@@ -4,7 +4,7 @@ import Statistics from "@/components/Modal/Statistics.vue";
 import {onMounted, watch} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {SaveKey} from "@/types.ts"
-import Practice from "@/components/Practice.vue"
+import Practice from "@/components/Practice/Practice.vue"
 
 const store = useBaseStore()
 // 查询当前系统主题颜色

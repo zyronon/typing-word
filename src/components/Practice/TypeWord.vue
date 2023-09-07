@@ -25,6 +25,42 @@ import {
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash"
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts"
+import {useEventListener} from "@/hooks/useEvent.ts";
+
+interface IProps {
+  words: Word[],
+  index: number,
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  words: [],
+  index: -1
+})
+
+let data = $ref({
+  index: props.index,
+  words: props.words,
+  wrongWords: [],
+  originWrongWords: [],
+  repeatNumber: 0,
+  startDate: Date.now(),
+  correctRate: -1,
+})
+
+watch(() => props.words, (n: Word[]) => {
+  data.words = n
+  data.index = n.length ? 0 : -1
+})
+
+
+let word = $computed(() => {
+  return data.words[data.index] ?? {
+    trans: [],
+    name: '',
+    usphone: '',
+    ukphone: '',
+  }
+})
 
 let input = $ref('')
 let wrong = $ref('')
@@ -42,43 +78,38 @@ const [playAudio] = usePlayWordAudio()
 const practiceStore = usePracticeStore()
 
 let resetWord = $computed(() => {
-  return practiceStore.word.name.slice(input.length + wrong.length)
+  return word.name.slice(input.length + wrong.length)
 })
 
 onMounted(() => {
-  window.addEventListener('keydown', onKeyDown)
-  window.addEventListener('keyup', onKeyUp)
-
   emitter.on(EventKey.resetWord, () => {
     input = ''
   })
 })
 
-onUnmounted(() => {
-  // console.log('onUnmounted')
-  window.removeEventListener('keydown', onKeyDown)
-  window.removeEventListener('keyup', onKeyUp)
-})
+
+useEventListener('keydown', onKeyDown)
+useEventListener('keyup', onKeyUp)
 
 function next() {
-  if (practiceStore.index === practiceStore.words.length - 1) {
-    if (practiceStore.wrongWords.length) {
-      practiceStore.words = cloneDeep(practiceStore.wrongWords)
-      if (!practiceStore.originWrongWords.length) {
-        practiceStore.originWrongWords = cloneDeep(practiceStore.wrongWords)
+  if (data.index === data.words.length - 1) {
+    if (data.wrongWords.length) {
+      data.words = cloneDeep(data.wrongWords)
+      if (!data.originWrongWords.length) {
+        data.originWrongWords = cloneDeep(data.wrongWords)
       }
-      practiceStore.index = 0
-      practiceStore.repeatNumber++
-      practiceStore.wrongWords = []
+      data.index = 0
+      data.repeatNumber++
+      data.wrongWords = []
     } else {
       console.log('这本书完了')
       emitter.emit(EventKey.openStatModal)
     }
   } else {
-    practiceStore.index++
+    data.index++
     console.log('这个词完了')
     if ([DictType.customDict, DictType.innerDict].includes(store.current.dictType)
-        && store.skipWordNames.includes(practiceStore.word.name.toLowerCase())) {
+        && store.skipWordNames.includes(word.name.toLowerCase())) {
       next()
     }
   }
@@ -94,18 +125,18 @@ async function onKeyDown(e: KeyboardEvent) {
   //TODO 还有横杠
   if ((e.keyCode >= 65 && e.keyCode <= 90) || e.code === 'Space') {
     let letter = e.key
-    if ((input + letter).toLowerCase() === practiceStore.word.name.toLowerCase().slice(0, input.length + 1)) {
+    if ((input + letter).toLowerCase() === word.name.toLowerCase().slice(0, input.length + 1)) {
       input += letter
       wrong = ''
       playKeySound()
     } else {
-      if (!store.wrongWordDict.originWords.find((v: Word) => v.name.toLowerCase() === practiceStore.word.name.toLowerCase())) {
-        store.wrongWordDict.originWords.push(practiceStore.word)
-        store.wrongWordDict.words.push(practiceStore.word)
+      if (!store.wrongWordDict.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
+        store.wrongWordDict.originWords.push(word)
+        store.wrongWordDict.words.push(word)
         store.wrongWordDict.chapterWords = [store.wrongWordDict.words]
       }
-      if (!practiceStore.wrongWords.find((v: Word) => v.name.toLowerCase() === practiceStore.word.name.toLowerCase())) {
-        practiceStore.wrongWords.push(practiceStore.word)
+      if (!data.wrongWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
+        data.wrongWords.push(word)
       }
       wrong = letter
       playKeySound()
@@ -114,7 +145,7 @@ async function onKeyDown(e: KeyboardEvent) {
         wrong = ''
       }, 500)
     }
-    if (input.toLowerCase() === practiceStore.word.name.toLowerCase()) {
+    if (input.toLowerCase() === word.name.toLowerCase()) {
       playCorrect()
       setTimeout(next, 300)
     }
@@ -129,17 +160,17 @@ async function onKeyDown(e: KeyboardEvent) {
         }
         break
       case ShortKeyMap.Collect:
-        if (!store.newWordDict.originWords.find((v: Word) => v.name === practiceStore.word.name)) {
-          store.newWordDict.originWords.push(practiceStore.word)
-          store.newWordDict.words.push(practiceStore.word)
+        if (!store.newWordDict.originWords.find((v: Word) => v.name === word.name)) {
+          store.newWordDict.originWords.push(word)
+          store.newWordDict.words.push(word)
           store.newWordDict.chapterWords = [store.newWordDict.words]
         }
         activeIndex = 1
         break
       case ShortKeyMap.Remove:
-        if (!store.skipWordNames.includes(practiceStore.word.name)) {
-          store.skipWordDict.originWords.push(practiceStore.word)
-          store.skipWordDict.words.push(practiceStore.word)
+        if (!store.skipWordNames.includes(word.name)) {
+          store.skipWordDict.originWords.push(word)
+          store.skipWordDict.words.push(word)
           store.skipWordDict.chapterWords = [store.skipWordDict.words]
         }
         activeIndex = 0
@@ -163,7 +194,7 @@ async function onKeyDown(e: KeyboardEvent) {
 
 <template>
   <div class="type-word">
-    <div class="translate">{{ practiceStore.word.trans.join('；') }}</div>
+    <div class="translate">{{ word.trans.join('；') }}</div>
     <div class="word-wrapper">
       <div class="word" :class="wrong && 'is-wrong'">
         <span class="input" v-if="input">{{ input }}</span>
@@ -175,9 +206,9 @@ async function onKeyDown(e: KeyboardEvent) {
         </template>
         <span class="letter" v-else>{{ resetWord }}</span>
       </div>
-      <div class="audio" @click="playAudio(practiceStore.word.name)">播放</div>
+      <div class="audio" @click="playAudio(word.name)">播放</div>
     </div>
-    <div class="phonetic">{{ practiceStore.word.usphone }}</div>
+    <div class="phonetic">{{ word.usphone }}</div>
     <div class="options">
       <BaseButton keyboard="`" :active="activeIndex === 0">
         忽略
@@ -196,6 +227,7 @@ async function onKeyDown(e: KeyboardEvent) {
 @import "@/assets/css/colors.scss";
 
 .type-word {
+  flex: 1;
   display: flex;
   //display: none;
   align-items: center;

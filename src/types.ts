@@ -5,7 +5,14 @@ export type Word = {
   "trans": string[]
 }
 
-export const SaveKey = 'bb-word-config'
+export const DefaultWord: Word = {
+  name: '',
+  usphone: '',
+  ukphone: '',
+  trans: []
+}
+
+export const SaveKey = 'type-word-config'
 
 export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 

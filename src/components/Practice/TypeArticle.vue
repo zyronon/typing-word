@@ -3,26 +3,24 @@
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
 import {computed, nextTick, onMounted, reactive, watch} from "vue"
 import {cloneDeep} from "lodash"
-import 快速打字的机械键盘声音Mp3 from '../assets/sound/key-sounds/快速打字的机械键盘声音.mp3'
-import 键盘快速打字的声音Mp3 from '../assets/sound/key-sounds/键盘快速打字的声音.mp3'
-import 电话打字的声音Mp3 from '../assets/sound/key-sounds/电话打字的声音.mp3'
-import 老式机械 from '../assets/sound/key-sounds/老式机械.mp3'
-import 机械0 from '../assets/sound/key-sounds/jixie/机械0.mp3'
-import 机械1 from '../assets/sound/key-sounds/jixie/机械1.mp3'
-import 机械2 from '../assets/sound/key-sounds/jixie/机械2.mp3'
-import 机械3 from '../assets/sound/key-sounds/jixie/机械3.mp3'
-import beep from '../assets/sound/beep.wav'
-import correct from '../assets/sound/correct.wav'
+import 快速打字的机械键盘声音Mp3 from '../..//assets/sound/key-sounds/快速打字的机械键盘声音.mp3'
+import 键盘快速打字的声音Mp3 from '../..//assets/sound/key-sounds/键盘快速打字的声音.mp3'
+import 电话打字的声音Mp3 from '../..//assets/sound/key-sounds/电话打字的声音.mp3'
+import 老式机械 from '../..//assets/sound/key-sounds/老式机械.mp3'
+import 机械0 from '../..//assets/sound/key-sounds/jixie/机械0.mp3'
+import 机械1 from '../..//assets/sound/key-sounds/jixie/机械1.mp3'
+import 机械2 from '../..//assets/sound/key-sounds/jixie/机械2.mp3'
+import 机械3 from '../..//assets/sound/key-sounds/jixie/机械3.mp3'
+import beep from '../..//assets/sound/beep.wav'
+import correct from '../..//assets/sound/correct.wav'
 import {useSound} from "@/hooks/useSound.ts"
 import {CnKeyboardMap, useSplitArticle} from "@/hooks/useSplitArticle";
 import {$computed, $ref} from "vue/macros";
-import {Article, DictType, SaveKey, Sentence, ShortKeyMap, Word} from "@/types";
+import {Article, DefaultWord, DictType, SaveKey, Sentence, ShortKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
-import Footer2 from "@/components/Footer2.vue"
-import {Swiper, SwiperSlide} from "swiper/vue";
-import 'swiper/css';
-import {Swiper as SwiperClass} from "swiper/types";
-import Type2 from "@/components/Type2.vue"
+import Footer from "@/components/Practice/Footer.vue"
+import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
+import {useEventListener} from "@/hooks/useEvent.ts";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -48,9 +46,6 @@ Whether the remarkable growth of organized camping means the eventual death of t
 NIGEL BUXTON The Great Escape from The Weekend Telegraph`
 
 // article2 = `Economy is one powerful motive for camping? since after the initial outlay upon equipment, or through hiring it, the total expense can be far less than the cost of hotels. But, contrary to a popular assumption, it is far from being the only one, or even the greatest. The man who manoeuvres carelessly into his twenty pounds' worth of space at one of Europe's myriad permanent sites may find himself bumping a Bentley. More likely, Ford Escort will be hub to hub with Renault or Mercedes, but rarely with bicycles made for two.`
-let isPlay = $ref(false)
-let inputRef = $ref<HTMLInputElement>(null)
-let articleWrapperRef = $ref<HTMLInputElement>(null)
 
 const [playAudio] = usePlayWordAudio()
 // const [playKeySound, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
@@ -60,7 +55,10 @@ const [playBeep] = useSound([beep], 1)
 const [playCorrect] = useSound([correct], 1)
 
 const store = useBaseStore()
+const practiceStore = usePracticeStore()
 
+let isPlay = $ref(false)
+let articleWrapperRef = $ref<HTMLInputElement>(null)
 let sectionIndex = $ref(0)
 let sentenceIndex = $ref(0)
 let wordIndex = $ref(6)
@@ -74,14 +72,6 @@ let hoverIndex = $ref({
   sectionIndex: 0,
   sentenceIndex: 0,
 })
-let statistics = $ref({
-  wrongWords: [],
-  total: 0,
-  startDate: 0,
-  inputNumber: 0,
-  wrongNumber: 0,
-  correctRate: -1,
-})
 
 let article = reactive<Article>({
   article: article1,
@@ -93,29 +83,19 @@ let article = reactive<Article>({
   translate: [],
 })
 
-watch(statistics, () => {
-  if (statistics.inputNumber < 1) {
-    return statistics.correctRate = -1
-  }
-  if (statistics.wrongNumber > statistics.inputNumber) {
-    return statistics.correctRate = 0
-  }
-  statistics.correctRate = 100 - Math.trunc(((statistics.wrongNumber) / (statistics.inputNumber)) * 100)
-})
 onMounted(() => {
   let sections = useSplitArticle(article.article)
-  let wordNumber = 0
+  practiceStore.total = 0
   sections.map(v => {
     v.map(w => {
       w.words.map(s => {
         if (!store.skipWordNamesWithSimpleWords.includes(s.toLowerCase())) {
-          wordNumber++
+          practiceStore.total++
         }
       })
     })
   })
-  statistics.total = wordNumber
-  statistics.startDate = Date.now()
+  practiceStore.startDate = Date.now()
 
   let temp = useSplitArticle(article.articleTranslate, 'cn', CnKeyboardMap)
   temp.map((v, i) => {
@@ -168,9 +148,6 @@ function play() {
   window.speechSynthesis.speak(msg);
 }
 
-function focus() {
-  inputRef.focus()
-}
 
 const currentIndex = computed(() => {
   return `${sectionIndex}${sentenceIndex}${wordIndex}`
@@ -178,9 +155,7 @@ const currentIndex = computed(() => {
 
 function onKeyDown(e: KeyboardEvent) {
   // console.log('keyDown', e.key, e.code, e.keyCode)
-
   wrong = ''
-
   let currentSection = article.sections[sectionIndex]
   let currentSentence = currentSection[sentenceIndex]
   let currentWord = currentSentence.words[wordIndex]
@@ -191,7 +166,7 @@ function onKeyDown(e: KeyboardEvent) {
       index = 0
       wordIndex++
       if (!store.skipWordNamesWithSimpleWords.includes(currentWord.toLowerCase())) {
-        statistics.inputNumber++
+        practiceStore.inputNumber++
       }
 
       playCorrect()
@@ -269,9 +244,9 @@ function onKeyDown(e: KeyboardEvent) {
         }
 
         if (!store.skipWordNamesWithSimpleWords.includes(currentWord.toLowerCase())) {
-          if (!statistics.wrongWords.find((v) => v.toLowerCase() === currentWord.toLowerCase())) {
-            statistics.wrongWords.push(currentWord)
-            statistics.wrongNumber++
+          if (!practiceStore.wrongWords.find((v) => v.name.toLowerCase() === currentWord.toLowerCase())) {
+            practiceStore.wrongWords.push(word)
+            practiceStore.wrongNumber++
           }
         }
 
@@ -317,7 +292,6 @@ function onKeyDown(e: KeyboardEvent) {
   //     'wordIndex', wordIndex,
   //     'index', index,
   // )
-  inputRef.value = ''
   e.preventDefault()
 }
 
@@ -327,6 +301,9 @@ function onKeyUp() {
     sentenceIndex: -1,
   }
 }
+
+useEventListener('keydown', onKeyDown)
+useEventListener('keyup', onKeyUp)
 
 function playWord(word: string) {
   playAudio(word)
@@ -435,25 +412,12 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
           </div>
         </div>
         <div class="swiper-item">
-<!--          <Type2-->
-<!--          />-->
+          <!--          <Type2-->
+          <!--          />-->
         </div>
       </div>
-
     </div>
-    <input ref="inputRef"
-           class="inputEl"
-           type="text"
-           @keyup="onKeyUp"
-           @keydown="onKeyDown">
   </div>
-  <Footer2
-      :total="statistics.total"
-      :startDate="statistics.startDate"
-      :inputNumber="statistics.inputNumber"
-      :wrongNumber="statistics.wrongNumber"
-      :correctRate="statistics.correctRate"
-  />
 </template>
 
 <style scoped lang="scss">
@@ -558,11 +522,6 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
   }
 }
 
-.inputEl {
-  position: fixed;
-  //left: 100vw;
-}
-
 .swiper-wrapper {
   height: 100%;
   width: 100%;
@@ -579,6 +538,4 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
     }
   }
 }
-
-
 </style>

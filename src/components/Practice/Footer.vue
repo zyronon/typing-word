@@ -5,32 +5,25 @@ import {onMounted, onUnmounted} from "vue"
 import {useBaseStore} from "@/stores/base.ts"
 import Tooltip from "@/components/Tooltip.vue"
 import {Down} from "@icon-park/vue-next"
+import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
 
-interface IProps {
-  total: number,
-  inputNumber: number
-  wrongNumber: number
-  correctRate: number
-}
-
-const props = defineProps()
-
+const practiceStore = usePracticeStore()
 const store = useBaseStore()
 
-function format(val: number, suffix: string = '') {
-  return val === -1 ? '-' : (val + suffix)
+function format(val: number, suffix: string = '', check: number = -1) {
+  return val === check ? '-' : (val + suffix)
 }
 
 const progress = $computed(() => {
-  if (!store.chapter.length) return 0
-  return ((store.current.index / store.current.statistics.wordNumber) * 100)
+  if (!practiceStore.total) return 0
+  return ((practiceStore.inputNumber / practiceStore.total) * 100)
 })
 
 let speedMinute = $ref(0)
 let timer = $ref(0)
 onMounted(() => {
   timer = setInterval(() => {
-    speedMinute = Math.floor((Date.now() - store.current.statistics.startDate) / 1000 / 60)
+    speedMinute = Math.floor((Date.now() - practiceStore.startDate) / 1000 / 60)
   }, 1000)
 })
 
@@ -60,22 +53,22 @@ onUnmounted(() => {
           <div class="name">时间</div>
         </div>
         <div class="row">
-          <div class="num">{{ store.current.statistics.wordNumber }}</div>
+          <div class="num">{{ practiceStore.total }}</div>
           <div class="line"></div>
           <div class="name">单词总数</div>
         </div>
         <div class="row">
-          <div class="num">{{ store.current.index }}</div>
+          <div class="num">{{ format(practiceStore.inputNumber, '', 0) }}</div>
           <div class="line"></div>
           <div class="name">输入数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(store.current.wrongWords.length) }}</div>
+          <div class="num">{{ format(practiceStore.wrongNumber, '', 0) }}</div>
           <div class="line"></div>
           <div class="name">错误数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(store.current.statistics.correctRate, '%') }}</div>
+          <div class="num">{{ format(practiceStore.correctRate, '%') }}</div>
           <div class="line"></div>
           <div class="name">正确率</div>
         </div>
@@ -93,7 +86,7 @@ onUnmounted(() => {
 @import "@/assets/css/colors.scss";
 
 .footer {
-  width: 100%;
+  width: var(--toolbar-width);
   margin-bottom: 30rem;
   transition: all .3s;
   position: relative;
