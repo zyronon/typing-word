@@ -1,29 +1,21 @@
 <script setup lang="ts">
 
 import TypeWord from "@/components/TypeWord.vue"
-import {onMounted} from "vue"
+import {onMounted, watch} from "vue"
 import {$ref} from "vue/macros"
-import {watch} from "vue/dist/vue"
 import Footer2 from "@/components/Footer2.vue"
+import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts"
 
-let data = $ref({
-  index: -1,
-  words: [],
-  wrongWords: [],
-  originWrongWords: [],
-  repeatNumber: 0,
-  startDate: Date.now(),
-  correctRate: -1,
-})
+const store = usePracticeStore()
 
-watch(data, () => {
-  if (data.index < 1) {
-    return data.correctRate = -1
+watch(store.$state, () => {
+  if (store.index < 1) {
+    return store.correctRate = -1
   }
-  if (data.wrongWords.length > data.index) {
-    return data.correctRate = 0
+  if (store.wrongWords.length > store.index) {
+    return store.correctRate = 0
   }
-  data.correctRate = 100 - Math.trunc((data.wrongWords.length / data.index) * 100)
+  store.correctRate = 100 - Math.trunc((store.wrongWords.length / store.index) * 100)
 })
 
 onMounted(() => {

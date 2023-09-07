@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import {computed, onMounted, onUnmounted, provide, watch} from "vue"
-import 快速打字的机械键盘声音Mp3 from '../assets/sound/key-sounds/快速打字的机械键盘声音.mp3'
-import 键盘快速打字的声音Mp3 from '../assets/sound/key-sounds/键盘快速打字的声音.mp3'
-import 电话打字的声音Mp3 from '../assets/sound/key-sounds/电话打字的声音.mp3'
-import 老式机械 from '../assets/sound/key-sounds/老式机械.mp3'
-import 机械0 from '../assets/sound/key-sounds/jixie/机械0.mp3'
-import 机械1 from '../assets/sound/key-sounds/jixie/机械1.mp3'
-import 机械2 from '../assets/sound/key-sounds/jixie/机械2.mp3'
-import 机械3 from '../assets/sound/key-sounds/jixie/机械3.mp3'
-import beep from '../assets/sound/beep.wav'
-import correct from '../assets/sound/correct.wav'
+import 快速打字的机械键盘声音Mp3 from '../../assets/sound/key-sounds/快速打字的机械键盘声音.mp3'
+import 键盘快速打字的声音Mp3 from '../../assets/sound/key-sounds/键盘快速打字的声音.mp3'
+import 电话打字的声音Mp3 from '../../assets/sound/key-sounds/电话打字的声音.mp3'
+import 老式机械 from '../../assets/sound/key-sounds/老式机械.mp3'
+import 机械0 from '../../assets/sound/key-sounds/jixie/机械0.mp3'
+import 机械1 from '../../assets/sound/key-sounds/jixie/机械1.mp3'
+import 机械2 from '../../assets/sound/key-sounds/jixie/机械2.mp3'
+import 机械3 from '../../assets/sound/key-sounds/jixie/机械3.mp3'
+import beep from '../../assets/sound/beep.wav'
+import correct from '../../assets/sound/correct.wav'
 import {$computed, $ref} from "vue/macros"
 import {useSound} from "@/hooks/useSound.ts"
 import {useBaseStore} from "@/stores/base.ts"
-import {DictType, SaveKey, ShortKeyMap, Statistics, Word} from "../types";
+import {DictType, SaveKey, ShortKeyMap, Statistics, Word} from "../../types";
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
 import useTheme from "@/hooks/useTheme.ts";
 import Tooltip from "@/components/Tooltip.vue";
@@ -24,6 +24,7 @@ import {
 } from "@icon-park/vue-next"
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash"
+import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts"
 
 let input = $ref('')
 let wrong = $ref('')
@@ -38,44 +39,10 @@ const [playBeep] = useSound([beep], 1)
 const [playCorrect] = useSound([correct], 1)
 const [playAudio] = usePlayWordAudio()
 
-interface IProps {
-  words: Word[],
-  index: number,
-}
+const practiceStore = usePracticeStore()
 
-const props = withDefaults(defineProps<IProps>(), {
-  words: [],
-  index: -1
-})
-let data = $ref({
-  index: props.index,
-  words: props.words,
-  wrongWords: [],
-  originWrongWords: [],
-  repeatNumber: 0,
-  startDate: Date.now(),
-  correctRate: -1,
-})
-let word = $computed(() => {
-  return data.words[data.index] ?? {
-    trans: [],
-    name: '',
-    usphone: '',
-    ukphone: '',
-  }
-})
 let resetWord = $computed(() => {
-  return word.name.slice(input.length + wrong.length)
-})
-
-watch(data, () => {
-  if (data.index < 1) {
-    return data.correctRate = -1
-  }
-  if (data.wrongWords.length > data.index) {
-    return data.correctRate = 0
-  }
-  data.correctRate = 100 - Math.trunc((data.wrongWords.length / data.index) * 100)
+  return practiceStore.word.name.slice(input.length + wrong.length)
 })
 
 onMounted(() => {
@@ -94,24 +61,24 @@ onUnmounted(() => {
 })
 
 function next() {
-  if (data.index === props.words.length - 1) {
-    if (data.wrongWords.length) {
-      data.words = cloneDeep(data.wrongWords)
-      if (!data.originWrongWords.length) {
-        data.originWrongWords = cloneDeep(data.wrongWords)
+  if (practiceStore.index === practiceStore.words.length - 1) {
+    if (practiceStore.wrongWords.length) {
+      practiceStore.words = cloneDeep(practiceStore.wrongWords)
+      if (!practiceStore.originWrongWords.length) {
+        practiceStore.originWrongWords = cloneDeep(practiceStore.wrongWords)
       }
-      data.index = 0
-      data.repeatNumber++
-      data.wrongWords = []
+      practiceStore.index = 0
+      practiceStore.repeatNumber++
+      practiceStore.wrongWords = []
     } else {
       console.log('这本书完了')
       emitter.emit(EventKey.openStatModal)
     }
   } else {
-    data.index++
+    practiceStore.index++
     console.log('这个词完了')
     if ([DictType.customDict, DictType.innerDict].includes(store.current.dictType)
-        && store.skipWordNames.includes(word.name.toLowerCase())) {
+        && store.skipWordNames.includes(practiceStore.word.name.toLowerCase())) {
       next()
     }
   }
@@ -127,18 +94,18 @@ async function onKeyDown(e: KeyboardEvent) {
   //TODO 还有横杠
   if ((e.keyCode >= 65 && e.keyCode <= 90) || e.code === 'Space') {
     let letter = e.key
-    if ((input + letter).toLowerCase() === word.name.toLowerCase().slice(0, input.length + 1)) {
+    if ((input + letter).toLowerCase() === practiceStore.word.name.toLowerCase().slice(0, input.length + 1)) {
       input += letter
       wrong = ''
       playKeySound()
     } else {
-      if (!store.wrongWordDict.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
-        store.wrongWordDict.originWords.push(word)
-        store.wrongWordDict.words.push(word)
+      if (!store.wrongWordDict.originWords.find((v: Word) => v.name.toLowerCase() === practiceStore.word.name.toLowerCase())) {
+        store.wrongWordDict.originWords.push(practiceStore.word)
+        store.wrongWordDict.words.push(practiceStore.word)
         store.wrongWordDict.chapterWords = [store.wrongWordDict.words]
       }
-      if (!data.wrongWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
-        data.wrongWords.push(word)
+      if (!practiceStore.wrongWords.find((v: Word) => v.name.toLowerCase() === practiceStore.word.name.toLowerCase())) {
+        practiceStore.wrongWords.push(practiceStore.word)
       }
       wrong = letter
       playKeySound()
@@ -147,7 +114,7 @@ async function onKeyDown(e: KeyboardEvent) {
         wrong = ''
       }, 500)
     }
-    if (input.toLowerCase() === word.name.toLowerCase()) {
+    if (input.toLowerCase() === practiceStore.word.name.toLowerCase()) {
       playCorrect()
       setTimeout(next, 300)
     }
@@ -162,17 +129,17 @@ async function onKeyDown(e: KeyboardEvent) {
         }
         break
       case ShortKeyMap.Collect:
-        if (!store.newWordDict.originWords.find((v: Word) => v.name === word.name)) {
-          store.newWordDict.originWords.push(word)
-          store.newWordDict.words.push(word)
+        if (!store.newWordDict.originWords.find((v: Word) => v.name === practiceStore.word.name)) {
+          store.newWordDict.originWords.push(practiceStore.word)
+          store.newWordDict.words.push(practiceStore.word)
           store.newWordDict.chapterWords = [store.newWordDict.words]
         }
         activeIndex = 1
         break
       case ShortKeyMap.Remove:
-        if (!store.skipWordNames.includes(word.name)) {
-          store.skipWordDict.originWords.push(word)
-          store.skipWordDict.words.push(word)
+        if (!store.skipWordNames.includes(practiceStore.word.name)) {
+          store.skipWordDict.originWords.push(practiceStore.word)
+          store.skipWordDict.words.push(practiceStore.word)
           store.skipWordDict.chapterWords = [store.skipWordDict.words]
         }
         activeIndex = 0
@@ -196,7 +163,7 @@ async function onKeyDown(e: KeyboardEvent) {
 
 <template>
   <div class="type-word">
-    <div class="translate">{{ word.trans.join('；') }}</div>
+    <div class="translate">{{ practiceStore.word.trans.join('；') }}</div>
     <div class="word-wrapper">
       <div class="word" :class="wrong && 'is-wrong'">
         <span class="input" v-if="input">{{ input }}</span>
@@ -208,9 +175,9 @@ async function onKeyDown(e: KeyboardEvent) {
         </template>
         <span class="letter" v-else>{{ resetWord }}</span>
       </div>
-      <div class="audio" @click="playAudio(word.name)">播放</div>
+      <div class="audio" @click="playAudio(practiceStore.word.name)">播放</div>
     </div>
-    <div class="phonetic">{{ word.usphone }}</div>
+    <div class="phonetic">{{ practiceStore.word.usphone }}</div>
     <div class="options">
       <BaseButton keyboard="`" :active="activeIndex === 0">
         忽略

@@ -1,5 +1,5 @@
 import {defineStore} from "pinia"
-import {Word} from "@/types.ts"
+import {State, Word} from "@/types.ts"
 
 export interface PracticeState {
     index: number,
@@ -28,5 +28,15 @@ export const usePracticeStore = defineStore('practice', {
             inputNumber: -1,
             wrongNumber: -1,
         }
+    },
+    getters: {
+        word(state: PracticeState): Word {
+            return state.words[state.index] ?? {
+                trans: [],
+                name: '',
+                usphone: '',
+                ukphone: '',
+            }
+        },
     }
 })
