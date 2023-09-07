@@ -187,7 +187,6 @@ const skipWordDictActiveIndex = computed(() => {
       </div>
     </div>
   </Transition>
-
 </template>
 <style scoped lang="scss">
 @import "@/assets/css/colors";

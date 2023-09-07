@@ -19,6 +19,9 @@ import {$computed, $ref} from "vue/macros";
 import {Article, DictType, SaveKey, Sentence, ShortKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
 import Footer2 from "@/components/Footer2.vue"
+import {Swiper, SwiperSlide} from "swiper/vue";
+import 'swiper/css';
+import {Swiper as SwiperClass} from "swiper/types";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -368,11 +371,13 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
   }
   return str
 }
+
 </script>
 
 <template>
   <div class="type-wrapper">
     <div class="content">
+
       <div class="article-wrapper" ref="articleWrapperRef">
         <article @click="focus">
           <div class="section"
@@ -457,13 +462,14 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
   align-items: center;
 
   .content {
-    width: 60%;
+    width: 60vw;
     flex: 1;
     overflow: auto;
     position: relative;
   }
 
   article {
+    height: 100%;
     font-size: 24rem;
     line-height: 1.9;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
@@ -544,4 +550,12 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
     //left: 100vw;
   }
 }
+
+
+.swiper {
+  height: 100%;
+  width: 100%;
+}
+
+
 </style>
