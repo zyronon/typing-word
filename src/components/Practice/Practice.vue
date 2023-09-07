@@ -25,6 +25,9 @@ let wordData = $ref({
   index: -1
 })
 
+let articleData = $ref({
+
+})
 watch(()=>store.load,n=>{
   if (n){
     wordData.words = store.chapter

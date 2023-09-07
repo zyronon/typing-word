@@ -21,6 +21,8 @@ import {useBaseStore} from "@/stores/base";
 import Footer from "@/components/Practice/Footer.vue"
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
 import {useEventListener} from "@/hooks/useEvent.ts";
+import TypeWord from "@/components/Practice/TypeWord.vue";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -59,10 +61,11 @@ const practiceStore = usePracticeStore()
 
 let isPlay = $ref(false)
 let articleWrapperRef = $ref<HTMLInputElement>(null)
-let sectionIndex = $ref(0)
-let sentenceIndex = $ref(0)
-let wordIndex = $ref(6)
-let index = $ref(0)
+let tabIndex = $ref(0)
+let sectionIndex = $ref(1)
+let sentenceIndex = $ref(2)
+let wordIndex = $ref(4)
+let stringIndex = $ref(0)
 let input = $ref('')
 let wrong = $ref('')
 let isSpace = $ref(false)
@@ -71,6 +74,11 @@ let showFullWord = $ref(false)
 let hoverIndex = $ref({
   sectionIndex: 0,
   sentenceIndex: 0,
+})
+
+let wordData = $ref({
+  words: [],
+  index: -1
 })
 
 let article = reactive<Article>({
@@ -148,12 +156,12 @@ function play() {
   window.speechSynthesis.speak(msg);
 }
 
-
 const currentIndex = computed(() => {
   return `${sectionIndex}${sentenceIndex}${wordIndex}`
 })
 
 function onKeyDown(e: KeyboardEvent) {
+  if (tabIndex !== 0) return
   // console.log('keyDown', e.key, e.code, e.keyCode)
   wrong = ''
   let currentSection = article.sections[sectionIndex]
@@ -163,12 +171,11 @@ function onKeyDown(e: KeyboardEvent) {
   if (isSpace) {
     if (e.code === 'Space') {
       isSpace = false
-      index = 0
+      stringIndex = 0
       wordIndex++
       if (!store.skipWordNamesWithSimpleWords.includes(currentWord.toLowerCase())) {
         practiceStore.inputNumber++
       }
-
       playCorrect()
       if (!currentSentence.words[wordIndex]) {
         wordIndex = 0
@@ -212,22 +219,33 @@ function onKeyDown(e: KeyboardEvent) {
     ) {
       let letter = e.key
 
-      let key = currentWord[index]
-      console.log('key', key,)
+      let key = currentWord[stringIndex]
+      // console.log('key', key,)
       if (key === letter) {
         input += letter
         wrong = ''
-        console.log('匹配上了')
-        index++
+        // console.log('匹配上了')
+        stringIndex++
         //如果当前词没有index，说明这个词完了，下一个是空格
-        if (!currentWord[index]) {
+        if (!currentWord[stringIndex]) {
           input = wrong = ''
           isSpace = true
           //但如果当前句子也没有index+1，并且当前段也没sentenceIndex+1，说明本段完了，不需要打空格，直接跳到下一段吧
           if (!currentSentence.words[wordIndex + 1] && !currentSection[sentenceIndex + 1]) {
-            wordIndex = sentenceIndex = index = 0
+            wordIndex = sentenceIndex = stringIndex = 0
             sectionIndex++
             isSpace = false
+            if (!article.sections[sectionIndex]) {
+              console.log('文章打完了')
+              //如果有错误单词，那么就滑动到单词界面复习
+              if (practiceStore.wrongWords.length) {
+                tabIndex = 1
+                wordData.words = cloneDeep(practiceStore.wrongWords)
+                wordData.index = 0
+              } else {
+                emitter.emit(EventKey.openStatModal)
+              }
+            }
           }
         }
       } else {
@@ -255,7 +273,7 @@ function onKeyDown(e: KeyboardEvent) {
         setTimeout(() => {
           wrong = ''
         }, 500)
-        console.log('未匹配')
+        // console.log('未匹配')
       }
       playKeySound()
     } else {
@@ -285,7 +303,6 @@ function onKeyDown(e: KeyboardEvent) {
       }
     }
   }
-
   // console.log(
   //     'sectionIndex', sectionIndex,
   //     'sentenceIndex', sentenceIndex,
@@ -355,7 +372,7 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
 <template>
   <div class="type-wrapper">
     <div class="swiper-wrapper content">
-      <div class="swiper-list">
+      <div class="swiper-list" :class="`step${tabIndex}`">
         <div class="swiper-item">
           <div class="article-wrapper" ref="articleWrapperRef">
             <article @click="focus">
@@ -376,7 +393,7 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
                 ?'wrote' :
                 (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>indexW)
                 ?'wrote':
-                 (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>=indexW && index>=word.length)
+                 (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>=indexW && stringIndex>=word.length)
                 ?'wrote':
                 ''),
                 (`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace && wrong )?'word-wrong':'',
@@ -412,8 +429,11 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
           </div>
         </div>
         <div class="swiper-item">
-          <!--          <Type2-->
-          <!--          />-->
+          <TypeWord
+              :words="wordData.words"
+              :index="wordData.index"
+              v-if="tabIndex === 1"
+          />
         </div>
       </div>
     </div>
@@ -437,10 +457,11 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
 
   .content {
     width: 1000px;
-    position: relative;
   }
 
   .article-wrapper {
+    position: relative;
+
     article {
       //height: 100%;
       font-size: 24rem;
@@ -480,8 +501,7 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
       color: gray;
       line-height: 2.5;
       letter-spacing: 3rem;
-      display: none;
-
+      //display: none;
 
       .row {
         position: absolute;
@@ -529,13 +549,17 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
 
   .swiper-list {
     transition: transform .3s;
-    //transform: translate3d(0, -100%, 0);
     height: 200%;
 
     .swiper-item {
       height: 50%;
       overflow: auto;
+      display: flex;
     }
+  }
+
+  .step1 {
+    transform: translate3d(0, -50%, 0);
   }
 }
 </style>
