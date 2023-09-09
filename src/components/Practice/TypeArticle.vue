@@ -16,7 +16,7 @@ import correct from '../..//assets/sound/correct.wav'
 import {useSound} from "@/hooks/useSound.ts"
 import {CnKeyboardMap, useSplitArticle} from "@/hooks/useSplitArticle";
 import {$computed, $ref} from "vue/macros";
-import {Article, DefaultWord, DictType, SaveKey, Sentence, ShortKeyMap, Word} from "@/types";
+import {Article, ArticleWord, DefaultWord, DictType, SaveKey, Sentence, ShortKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
 import Footer from "@/components/Practice/Footer.vue"
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
@@ -94,30 +94,31 @@ let article = reactive<Article>({
 
 onMounted(() => {
   let sections = useSplitArticle(article.article)
-  // practiceStore.total = 0
-  // sections.map(v => {
-  //   v.map(w => {
-  //     w.words.map(s => {
-  //       if (!store.skipWordNamesWithSimpleWords.includes(s.toLowerCase())) {
-  //         practiceStore.total++
-  //       }
-  //     })
-  //   })
-  // })
-  // practiceStore.startDate = Date.now()
-  //
-  // let temp = useSplitArticle(article.articleTranslate, 'cn', CnKeyboardMap)
-  // temp.map((v, i) => {
-  //   v.map((w, j) => {
-  //     article.translate.push({
-  //       sentence: w.sentence,
-  //       location: i + '-' + j
-  //     })
-  //   })
-  // })
-  // article.sections = sections
-  console.log(cloneDeep(sections))
-  // calcTranslateLocation()
+  practiceStore.total = 0
+  sections.map(v => {
+    v.map(w => {
+      w.words.map(s => {
+        if (!store.skipWordNamesWithSimpleWords.includes(s.name.toLowerCase())) {
+          practiceStore.total++
+        }
+      })
+    })
+  })
+  practiceStore.startDate = Date.now()
+
+  let temp = useSplitArticle(article.articleTranslate, 'cn', CnKeyboardMap)
+  temp.map((v, i) => {
+    v.map((w, j) => {
+      article.translate.push({
+        sentence: w.sentence,
+        location: i + '-' + j
+      })
+    })
+  })
+  // console.log('temp',temp)
+  article.sections = sections
+  console.log(cloneDeep(article))
+  calcTranslateLocation()
 })
 
 function calcTranslateLocation() {
@@ -164,18 +165,18 @@ const currentIndex = computed(() => {
 
 function onKeyDown(e: KeyboardEvent) {
   if (tabIndex !== 0) return
-  // console.log('keyDown', e.key, e.code, e.keyCode)
+  console.log('keyDown', e.key, e.code, e.keyCode)
   wrong = ''
   let currentSection = article.sections[sectionIndex]
   let currentSentence = currentSection[sentenceIndex]
-  let currentWord = currentSentence.words[wordIndex]
+  let currentWord: ArticleWord = currentSentence.words[wordIndex]
 
   if (isSpace) {
     if (e.code === 'Space') {
       isSpace = false
       stringIndex = 0
       wordIndex++
-      if (!store.skipWordNamesWithSimpleWords.includes(currentWord.toLowerCase())) {
+      if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase())) {
         practiceStore.inputNumber++
       }
       playCorrect()
@@ -221,15 +222,15 @@ function onKeyDown(e: KeyboardEvent) {
     ) {
       let letter = e.key
 
-      let key = currentWord[stringIndex]
-      // console.log('key', key,)
+      let key = currentWord.name[stringIndex]
+      console.log('key', key,)
       if (key === letter) {
         input += letter
         wrong = ''
         // console.log('匹配上了')
         stringIndex++
         //如果当前词没有index，说明这个词完了，下一个是空格
-        if (!currentWord[stringIndex]) {
+        if (!currentWord.name[stringIndex]) {
           input = wrong = ''
           isSpace = true
           //但如果当前句子也没有index+1，并且当前段也没sentenceIndex+1，说明本段完了，不需要打空格，直接跳到下一段吧
@@ -251,21 +252,15 @@ function onKeyDown(e: KeyboardEvent) {
           }
         }
       } else {
-        let word: Word = {
-          name: currentWord,
-          usphone: '',
-          ukphone: '',
-          trans: []
-        }
-        if (!store.wrongWordDict.originWords.find((v: Word) => v.name.toLowerCase() === currentWord.toLowerCase())) {
-          store.wrongWordDict.originWords.push(word)
-          store.wrongWordDict.words.push(word)
+        if (!store.wrongWordDict.originWords.find((v: Word) => v.name.toLowerCase() === currentWord.name.toLowerCase())) {
+          store.wrongWordDict.originWords.push(currentWord)
+          store.wrongWordDict.words.push(currentWord)
           store.wrongWordDict.chapterWords = [store.wrongWordDict.words]
         }
 
-        if (!store.skipWordNamesWithSimpleWords.includes(currentWord.toLowerCase())) {
-          if (!practiceStore.wrongWords.find((v) => v.name.toLowerCase() === currentWord.toLowerCase())) {
-            practiceStore.wrongWords.push(word)
+        if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase())) {
+          if (!practiceStore.wrongWords.find((v) => v.name.toLowerCase() === currentWord.name.toLowerCase())) {
+            practiceStore.wrongWords.push(currentWord)
             practiceStore.wrongNumber++
           }
         }
@@ -324,12 +319,12 @@ function onKeyUp() {
 useEventListener('keydown', onKeyDown)
 useEventListener('keyup', onKeyUp)
 
-function playWord(word: string) {
-  playAudio(word)
+function playWord(word: ArticleWord) {
+  playAudio(word.name)
 }
 
-function currentWordInput(word: string, i: number, i2: number,) {
-  let str = word.slice(input.length + wrong.length, input.length + wrong.length + 1)
+function currentWordInput(word: ArticleWord, i: number, i2: number,) {
+  let str = word.name.slice(input.length + wrong.length, input.length + wrong.length + 1)
 
   if (hoverIndex.sectionIndex === i && hoverIndex.sentenceIndex === i2) {
     return str
@@ -341,8 +336,8 @@ function currentWordInput(word: string, i: number, i2: number,) {
   return str
 }
 
-function currentWordEnd(word: string, i: number, i2: number,) {
-  let str = word.slice(input.length + wrong.length + 1)
+function currentWordEnd(word: ArticleWord, i: number, i2: number,) {
+  let str = word.name.slice(input.length + wrong.length + 1)
   if (hoverIndex.sectionIndex === i && hoverIndex.sentenceIndex === i2) {
     return str
   }
@@ -353,8 +348,8 @@ function currentWordEnd(word: string, i: number, i2: number,) {
   return str
 }
 
-function otherWord(word: string, i: number, i2: number, i3: number) {
-  let str = word
+function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
+  let str = word.name
 
   if (hoverIndex.sectionIndex === i && hoverIndex.sentenceIndex === i2) {
     return str
@@ -388,8 +383,10 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
               @mouseleave="hoverIndex = {sectionIndex : -1,sentenceIndex :-1}"
               @click="playAudio(sentence.sentence)"
               v-for="(sentence,indexJ) in section">
-          <span class="word"
-                :class="[(sectionIndex>indexI
+          <span
+              v-for="(word,indexW) in sentence.words"
+              class="word"
+              :class="[(sectionIndex>indexI
                 ?'wrote':
                 (sectionIndex>=indexI &&sentenceIndex>indexJ)
                 ?'wrote' :
@@ -401,8 +398,7 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
                 (`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace && wrong )?'word-wrong':'',
                 indexW === 0 && `word${indexI}-${indexJ}`
                 ]"
-                @click="playWord(word)"
-                v-for="(word,indexW) in sentence.words">
+              @click="playWord(word)">
             <span v-if="`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace">
               <span class="input" v-if="input">{{ input }}</span>
               <span class="wrong" :class="wrong === ' ' && 'bg-wrong'" v-if="wrong">{{ wrong }}</span>
@@ -411,6 +407,7 @@ function otherWord(word: string, i: number, i2: number, i3: number) {
             </span>
             <span v-else>{{ otherWord(word, indexI, indexJ, indexW) }}</span>
             <span
+                v-if="word.nextSpace"
                 :class="[
                     `${indexI}${indexJ}${indexW}`,
                     (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && wrong) && 'bg-wrong',
