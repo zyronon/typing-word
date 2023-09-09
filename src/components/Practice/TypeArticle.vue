@@ -62,19 +62,19 @@ const practiceStore = usePracticeStore()
 let isPlay = $ref(false)
 let articleWrapperRef = $ref<HTMLInputElement>(null)
 let tabIndex = $ref(0)
-let sectionIndex = $ref(1)
-let sentenceIndex = $ref(2)
-let wordIndex = $ref(4)
+let sectionIndex = $ref(0)
+let sentenceIndex = $ref(0)
+let wordIndex = $ref(0)
 let stringIndex = $ref(0)
 let input = $ref('')
 let wrong = $ref('')
 let isSpace = $ref(false)
 let isDictation = $ref(true)
-let isTranslate = $ref(false)
+let showTranslate = $ref(true)
 let showFullWord = $ref(false)
 let hoverIndex = $ref({
-  sectionIndex: 0,
-  sentenceIndex: 0,
+  sectionIndex: -1,
+  sentenceIndex: -1,
 })
 
 let wordData = $ref({
@@ -122,7 +122,7 @@ onMounted(() => {
 })
 
 function calcTranslateLocation() {
-  if (!isTranslate) return
+  if (!showTranslate) return
   nextTick(() => {
     setTimeout(() => {
       let articleRect = articleWrapperRef.getBoundingClientRect()
@@ -232,7 +232,11 @@ function onKeyDown(e: KeyboardEvent) {
         //如果当前词没有index，说明这个词完了，下一个是空格
         if (!currentWord.name[stringIndex]) {
           input = wrong = ''
-          isSpace = true
+          if (currentWord.nextSpace){
+            isSpace = true
+          }else {
+
+          }
           //但如果当前句子也没有index+1，并且当前段也没sentenceIndex+1，说明本段完了，不需要打空格，直接跳到下一段吧
           if (!currentSentence.words[wordIndex + 1] && !currentSection[sentenceIndex + 1]) {
             wordIndex = sentenceIndex = stringIndex = 0
@@ -300,12 +304,12 @@ function onKeyDown(e: KeyboardEvent) {
       }
     }
   }
-  // console.log(
-  //     'sectionIndex', sectionIndex,
-  //     'sentenceIndex', sentenceIndex,
-  //     'wordIndex', wordIndex,
-  //     'index', index,
-  // )
+  console.log(
+      'sectionIndex', sectionIndex,
+      'sentenceIndex', sentenceIndex,
+      'wordIndex', wordIndex,
+      'stringIndex', stringIndex,
+  )
   e.preventDefault()
 }
 
@@ -372,49 +376,49 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
       <div class="swiper-list" :class="`step${tabIndex}`">
         <div class="swiper-item">
           <div class="article-wrapper" ref="articleWrapperRef">
-            <article @click="focus">
+            <article>
               <div class="section"
                    v-for="(section,indexI) in article.sections">
-        <span class="sentence"
-              :class="[
-                  sectionIndex === indexI && sentenceIndex === indexJ ?'isDictation':''
-              ]"
-              @mouseenter="hoverIndex = {sectionIndex : indexI,sentenceIndex :indexJ}"
-              @mouseleave="hoverIndex = {sectionIndex : -1,sentenceIndex :-1}"
-              @click="playAudio(sentence.sentence)"
-              v-for="(sentence,indexJ) in section">
-          <span
-              v-for="(word,indexW) in sentence.words"
-              class="word"
-              :class="[(sectionIndex>indexI
-                ?'wrote':
-                (sectionIndex>=indexI &&sentenceIndex>indexJ)
-                ?'wrote' :
-                (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>indexW)
-                ?'wrote':
-                 (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>=indexW && stringIndex>=word.length)
-                ?'wrote':
-                ''),
-                (`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace && wrong )?'word-wrong':'',
-                indexW === 0 && `word${indexI}-${indexJ}`
-                ]"
-              @click="playWord(word)">
-            <span v-if="`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace">
-              <span class="input" v-if="input">{{ input }}</span>
-              <span class="wrong" :class="wrong === ' ' && 'bg-wrong'" v-if="wrong">{{ wrong }}</span>
-              <span :class="!wrong && 'bottom-border'">{{ currentWordInput(word, indexI, indexJ) }}</span>
-              <span>{{ currentWordEnd(word, indexI, indexJ,) }}</span>
-            </span>
-            <span v-else>{{ otherWord(word, indexI, indexJ, indexW) }}</span>
-            <span
-                v-if="word.nextSpace"
-                :class="[
-                    `${indexI}${indexJ}${indexW}`,
-                    (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && wrong) && 'bg-wrong',
-                    (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && !wrong) && 'bottom-border',
-                ]">&nbsp;</span>
-          </span>
-        </span>
+                <span class="sentence"
+                      :class="[
+                          sectionIndex === indexI && sentenceIndex === indexJ ?'isDictation':''
+                      ]"
+                      @mouseenter="hoverIndex = {sectionIndex : indexI,sentenceIndex :indexJ}"
+                      @mouseleave="hoverIndex = {sectionIndex : -1,sentenceIndex :-1}"
+                      @click="playAudio(sentence.sentence)"
+                      v-for="(sentence,indexJ) in section">
+                  <span
+                      v-for="(word,indexW) in sentence.words"
+                      class="word"
+                      :class="[(sectionIndex>indexI
+                        ?'wrote':
+                        (sectionIndex>=indexI &&sentenceIndex>indexJ)
+                        ?'wrote' :
+                        (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>indexW)
+                        ?'wrote':
+                         (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>=indexW && stringIndex>=word.name.length)
+                        ?'wrote':
+                        ''),
+                        (`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace && wrong )?'word-wrong':'',
+                        indexW === 0 && `word${indexI}-${indexJ}`
+                        ]"
+                      @click="playWord(word)">
+                    <span v-if="`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace">
+                      <span class="input" v-if="input">{{ input }}</span>
+                      <span class="wrong" :class="wrong === ' ' && 'bg-wrong'" v-if="wrong">{{ wrong }}</span>
+                      <span :class="!wrong && 'bottom-border'">{{ currentWordInput(word, indexI, indexJ) }}</span>
+                      <span>{{ currentWordEnd(word, indexI, indexJ,) }}</span>
+                    </span>
+                    <span v-else>{{ otherWord(word, indexI, indexJ, indexW) }}</span>
+                    <span
+                        v-if="word.nextSpace"
+                        :class="[
+                            `${indexI}${indexJ}${indexW}`,
+                            (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && wrong) && 'bg-wrong',
+                            (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && !wrong) && 'bottom-border',
+                        ]">&nbsp;</span>
+                  </span>
+                </span>
               </div>
             </article>
             <div class="translate">
