@@ -14,7 +14,7 @@ import 机械3 from '../..//assets/sound/key-sounds/jixie/机械3.mp3'
 import beep from '../..//assets/sound/beep.wav'
 import correct from '../..//assets/sound/correct.wav'
 import {useSound} from "@/hooks/useSound.ts"
-import {CnKeyboardMap, useSplitArticle} from "@/hooks/useSplitArticle";
+import {CnKeyboardMap, useSplitArticle, useSplitCNArticle} from "@/hooks/useSplitArticle";
 import {$computed, $ref} from "vue/macros";
 import {Article, ArticleWord, DefaultWord, DictType, SaveKey, Sentence, ShortKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
@@ -64,7 +64,7 @@ let articleWrapperRef = $ref<HTMLInputElement>(null)
 let tabIndex = $ref(0)
 let sectionIndex = $ref(0)
 let sentenceIndex = $ref(0)
-let wordIndex = $ref(0)
+let wordIndex = $ref(6)
 let stringIndex = $ref(0)
 let input = $ref('')
 let wrong = $ref('')
@@ -89,14 +89,16 @@ let article = reactive<Article>({
   newWords: [],
   articleAllWords: [],
   sections: [],
-  translate: [],
 })
 
 onMounted(() => {
   let sections = useSplitArticle(article.article)
+  let temp = useSplitCNArticle(article.articleTranslate, 'cn', CnKeyboardMap)
+
   practiceStore.total = 0
-  sections.map(v => {
-    v.map(w => {
+  sections.map((v, i) => {
+    v.map((w, j) => {
+      w.translate = temp[i][j].sentence
       w.words.map(s => {
         if (!store.skipWordNamesWithSimpleWords.includes(s.name.toLowerCase())) {
           practiceStore.total++
@@ -105,17 +107,6 @@ onMounted(() => {
     })
   })
   practiceStore.startDate = Date.now()
-
-  let temp = useSplitArticle(article.articleTranslate, 'cn', CnKeyboardMap)
-  temp.map((v, i) => {
-    v.map((w, j) => {
-      article.translate.push({
-        sentence: w.sentence,
-        location: i + '-' + j
-      })
-    })
-  })
-  // console.log('temp',temp)
   article.sections = sections
   console.log(cloneDeep(article))
   calcTranslateLocation()
@@ -126,20 +117,22 @@ function calcTranslateLocation() {
   nextTick(() => {
     setTimeout(() => {
       let articleRect = articleWrapperRef.getBoundingClientRect()
-      article.translate.map(v => {
-        let wordClassName = `.word${v.location}`
-        let translateClassName = `.translate${v.location}`
-        let word = document.querySelector(wordClassName)
-        let translate: HTMLDivElement = document.querySelector(translateClassName)
-        let rect = word.getBoundingClientRect()
+      article.sections.map((v, i) => {
+        v.map((w, j) => {
+          let wordClassName = `.word${i + '-' + j}`
+          let translateClassName = `.translate${i + '-' + j}`
+          let word = document.querySelector(wordClassName)
+          let translate: HTMLDivElement = document.querySelector(translateClassName)
+          let rect = word.getBoundingClientRect()
 
-        translate.style.opacity = '1'
-        translate.style.top = rect.top - articleRect.top - 20 + 'px'
-        translate.firstChild.style.width = rect.left - articleRect.left + 'px'
-        // console.log(word, rect.left - articleRect.left)
-        // console.log('word-rect', rect)
+          translate.style.opacity = '1'
+          translate.style.top = rect.top - articleRect.top - 20 + 'px'
+          translate.firstChild.style.width = rect.left - articleRect.left + 'px'
+          // console.log(word, rect.left - articleRect.left)
+          // console.log('word-rect', rect)
+        })
       })
-    }, 500)
+    }, 300)
   })
 }
 
@@ -165,61 +158,65 @@ const currentIndex = computed(() => {
 
 function onKeyDown(e: KeyboardEvent) {
   if (tabIndex !== 0) return
-  console.log('keyDown', e.key, e.code, e.keyCode)
+  // console.log('keyDown', e.key, e.code, e.keyCode)
   wrong = ''
   let currentSection = article.sections[sectionIndex]
   let currentSentence = currentSection[sentenceIndex]
   let currentWord: ArticleWord = currentSentence.words[wordIndex]
 
-  if (isSpace) {
-    if (e.code === 'Space') {
-      isSpace = false
-      stringIndex = 0
-      wordIndex++
-      if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase())) {
-        practiceStore.inputNumber++
-      }
-      playCorrect()
-      if (!currentSentence.words[wordIndex]) {
-        wordIndex = 0
-        sentenceIndex++
-        if (!currentSection[sentenceIndex]) {
-          sentenceIndex = 0
-          sectionIndex++
-        } else {
-          if (isDictation) {
-            calcTranslateLocation()
-          }
-          playAudio(currentSection[sentenceIndex].sentence)
-        }
-      }
-    } else {
-      wrong = ' '
-      playBeep()
+  const nextWord = () => {
+    isSpace = false
+    stringIndex = 0
+    wordIndex++
 
-      setTimeout(() => {
-        wrong = ''
-        wrong = input = ''
-      }, 500)
+    if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase())) {
+      practiceStore.inputNumber++
     }
-    playKeySound()
-  } else {
-    //非英文模式下，输入区域的 keyCode 均为 229时，
-    if ((e.keyCode >= 65 && e.keyCode <= 90)
-        || (e.keyCode >= 48 && e.keyCode <= 57)
-        || e.code === 'Space'
-        || e.code === 'Slash'
-        || e.code === 'Quote'
-        || e.code === 'Comma'
-        || e.code === 'BracketLeft'
-        || e.code === 'BracketRight'
-        || e.code === 'Period'
-        || e.code === 'Minus'
-        || e.code === 'Equal'
-        || e.code === 'Semicolon'
-        || e.code === 'Backquote'
-        || e.keyCode === 229
-    ) {
+
+    if (!currentSentence.words[wordIndex]) {
+      wordIndex = 0
+      sentenceIndex++
+      if (!currentSection[sentenceIndex]) {
+        sentenceIndex = 0
+        sectionIndex++
+      } else {
+        if (isDictation) {
+          calcTranslateLocation()
+        }
+        playAudio(currentSection[sentenceIndex].sentence)
+      }
+    }
+  }
+  //非英文模式下，输入区域的 keyCode 均为 229时，
+  if ((e.keyCode >= 65 && e.keyCode <= 90)
+      || (e.keyCode >= 48 && e.keyCode <= 57)
+      || e.code === 'Space'
+      || e.code === 'Slash'
+      || e.code === 'Quote'
+      || e.code === 'Comma'
+      || e.code === 'BracketLeft'
+      || e.code === 'BracketRight'
+      || e.code === 'Period'
+      || e.code === 'Minus'
+      || e.code === 'Equal'
+      || e.code === 'Semicolon'
+      || e.code === 'Backquote'
+      || e.keyCode === 229
+  ) {
+    if (isSpace) {
+      if (e.code === 'Space') {
+        nextWord()
+      } else {
+        wrong = ' '
+        playBeep()
+
+        setTimeout(() => {
+          wrong = ''
+          wrong = input = ''
+        }, 500)
+      }
+      playKeySound()
+    } else {
       let letter = e.key
 
       let key = currentWord.name[stringIndex]
@@ -232,27 +229,10 @@ function onKeyDown(e: KeyboardEvent) {
         //如果当前词没有index，说明这个词完了，下一个是空格
         if (!currentWord.name[stringIndex]) {
           input = wrong = ''
-          if (currentWord.nextSpace){
+          if (currentWord.nextSpace) {
             isSpace = true
-          }else {
-
-          }
-          //但如果当前句子也没有index+1，并且当前段也没sentenceIndex+1，说明本段完了，不需要打空格，直接跳到下一段吧
-          if (!currentSentence.words[wordIndex + 1] && !currentSection[sentenceIndex + 1]) {
-            wordIndex = sentenceIndex = stringIndex = 0
-            sectionIndex++
-            isSpace = false
-            if (!article.sections[sectionIndex]) {
-              console.log('文章打完了')
-              //如果有错误单词，那么就滑动到单词界面复习
-              if (practiceStore.wrongWords.length) {
-                tabIndex = 1
-                wordData.words = cloneDeep(practiceStore.wrongWords)
-                wordData.index = 0
-              } else {
-                emitter.emit(EventKey.openStatModal)
-              }
-            }
+          } else {
+            nextWord()
           }
         }
       } else {
@@ -277,39 +257,40 @@ function onKeyDown(e: KeyboardEvent) {
         // console.log('未匹配')
       }
       playKeySound()
-    } else {
-      switch (e.key) {
-        case 'Backspace':
-          if (wrong) {
-            wrong = ''
-          } else {
-            input = input.slice(0, -1)
-          }
-          break
-        case ShortKeyMap.Collect:
+    }
+  } else {
+    switch (e.key) {
+      case 'Backspace':
+        if (wrong) {
+          wrong = ''
+        } else {
+          input = input.slice(0, -1)
+        }
+        break
+      case ShortKeyMap.Collect:
 
-          break
-        case ShortKeyMap.Remove:
+        break
+      case ShortKeyMap.Remove:
 
-          break
-        case ShortKeyMap.Ignore:
+        break
+      case ShortKeyMap.Ignore:
 
-          break
-        case ShortKeyMap.Show:
-          hoverIndex = {
-            sectionIndex: sectionIndex,
-            sentenceIndex: sentenceIndex,
-          }
-          break
-      }
+        break
+      case ShortKeyMap.Show:
+        hoverIndex = {
+          sectionIndex: sectionIndex,
+          sentenceIndex: sentenceIndex,
+        }
+        break
     }
   }
-  console.log(
-      'sectionIndex', sectionIndex,
-      'sentenceIndex', sentenceIndex,
-      'wordIndex', wordIndex,
-      'stringIndex', stringIndex,
-  )
+
+  // console.log(
+  //     'sectionIndex', sectionIndex,
+  //     'sentenceIndex', sentenceIndex,
+  //     'wordIndex', wordIndex,
+  //     'stringIndex', stringIndex,
+  // )
   e.preventDefault()
 }
 
@@ -329,13 +310,15 @@ function playWord(word: ArticleWord) {
 
 function currentWordInput(word: ArticleWord, i: number, i2: number,) {
   let str = word.name.slice(input.length + wrong.length, input.length + wrong.length + 1)
-
+  if (word.isSymbol) {
+    return str
+  }
   if (hoverIndex.sectionIndex === i && hoverIndex.sentenceIndex === i2) {
     return str
   }
 
   if (isDictation) {
-    return ' '
+    return '_'
   }
   return str
 }
@@ -354,6 +337,9 @@ function currentWordEnd(word: ArticleWord, i: number, i2: number,) {
 
 function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
   let str = word.name
+  if (word.isSymbol) {
+    return str
+  }
 
   if (hoverIndex.sectionIndex === i && hoverIndex.sentenceIndex === i2) {
     return str
@@ -381,7 +367,8 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
                    v-for="(section,indexI) in article.sections">
                 <span class="sentence"
                       :class="[
-                          sectionIndex === indexI && sentenceIndex === indexJ ?'isDictation':''
+                          sectionIndex === indexI && sentenceIndex === indexJ
+                          ?'isDictation':''
                       ]"
                       @mouseenter="hoverIndex = {sectionIndex : indexI,sentenceIndex :indexJ}"
                       @mouseleave="hoverIndex = {sectionIndex : -1,sentenceIndex :-1}"
@@ -422,12 +409,14 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
               </div>
             </article>
             <div class="translate">
-              <div class="row"
-                   :class="`translate${item.location}`"
-                   v-for="item in article.translate">
-                <span class="space"></span>
-                <span class="text">{{ item.sentence }}</span>
-              </div>
+              <template v-for="(v,i) in article.sections">
+                <div class="row"
+                     :class="`translate${i+'-'+j}`"
+                     v-for="(item,j) in v">
+                  <span class="space"></span>
+                  <span class="text">{{ item.translate }}</span>
+                </div>
+              </template>
             </div>
           </div>
         </div>
@@ -521,7 +510,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
   }
 
   .bottom-border {
-    border-bottom: 1px solid black;
+    animation: underline 1s infinite steps(1, start);
   }
 
   .input {
@@ -563,6 +552,15 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
 
   .step1 {
     transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes underline {
+  0%, 100% {
+    border-left: 1.3px solid black;
+  }
+  50% {
+    border-left: 1.3px solid transparent;
   }
 }
 </style>
