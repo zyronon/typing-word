@@ -70,6 +70,7 @@ let input = $ref('')
 let wrong = $ref('')
 let isSpace = $ref(false)
 let isDictation = $ref(true)
+let isTranslate = $ref(false)
 let showFullWord = $ref(false)
 let hoverIndex = $ref({
   sectionIndex: 0,
@@ -93,33 +94,34 @@ let article = reactive<Article>({
 
 onMounted(() => {
   let sections = useSplitArticle(article.article)
-  practiceStore.total = 0
-  sections.map(v => {
-    v.map(w => {
-      w.words.map(s => {
-        if (!store.skipWordNamesWithSimpleWords.includes(s.toLowerCase())) {
-          practiceStore.total++
-        }
-      })
-    })
-  })
-  practiceStore.startDate = Date.now()
-
-  let temp = useSplitArticle(article.articleTranslate, 'cn', CnKeyboardMap)
-  temp.map((v, i) => {
-    v.map((w, j) => {
-      article.translate.push({
-        sentence: w.sentence,
-        location: i + '-' + j
-      })
-    })
-  })
-  article.sections = sections
-  console.log(cloneDeep(article))
-  calcTranslateLocation()
+  // practiceStore.total = 0
+  // sections.map(v => {
+  //   v.map(w => {
+  //     w.words.map(s => {
+  //       if (!store.skipWordNamesWithSimpleWords.includes(s.toLowerCase())) {
+  //         practiceStore.total++
+  //       }
+  //     })
+  //   })
+  // })
+  // practiceStore.startDate = Date.now()
+  //
+  // let temp = useSplitArticle(article.articleTranslate, 'cn', CnKeyboardMap)
+  // temp.map((v, i) => {
+  //   v.map((w, j) => {
+  //     article.translate.push({
+  //       sentence: w.sentence,
+  //       location: i + '-' + j
+  //     })
+  //   })
+  // })
+  // article.sections = sections
+  console.log(cloneDeep(sections))
+  // calcTranslateLocation()
 })
 
 function calcTranslateLocation() {
+  if (!isTranslate) return
   nextTick(() => {
     setTimeout(() => {
       let articleRect = articleWrapperRef.getBoundingClientRect()

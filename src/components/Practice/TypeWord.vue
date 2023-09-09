@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, onMounted, onUnmounted, provide, watch} from "vue"
+import {computed, onMounted, onUnmounted, provide, watch, watchEffect} from "vue"
 import 快速打字的机械键盘声音Mp3 from '../../assets/sound/key-sounds/快速打字的机械键盘声音.mp3'
 import 键盘快速打字的声音Mp3 from '../../assets/sound/key-sounds/键盘快速打字的声音.mp3'
 import 电话打字的声音Mp3 from '../../assets/sound/key-sounds/电话打字的声音.mp3'
@@ -44,26 +44,6 @@ let data = $ref({
   originWrongWords: [],
 })
 
-watch(() => props.words, (n: Word[]) => {
-  data.words = n
-  data.index = n.length ? 0 : -1
-  practiceStore.inputNumber = 0
-  practiceStore.wrongNumber = 0
-  practiceStore.repeatNumber = 0
-  practiceStore.total = n.length
-  practiceStore.wrongWords = []
-  practiceStore.startDate = Date.now()
-})
-
-
-let word = $computed(() => {
-  return data.words[data.index] ?? {
-    trans: [],
-    name: '',
-    usphone: '',
-    ukphone: '',
-  }
-})
 
 let input = $ref('')
 let wrong = $ref('')
@@ -80,9 +60,31 @@ const [playAudio] = usePlayWordAudio()
 
 const practiceStore = usePracticeStore()
 
+watchEffect(() => {
+  data.words = props.words
+  data.index = props.words.length ? 0 : -1
+  practiceStore.inputNumber = 0
+  practiceStore.wrongNumber = 0
+  practiceStore.repeatNumber = 0
+  practiceStore.total =  props.words.length
+  practiceStore.wrongWords = []
+  practiceStore.startDate = Date.now()
+})
+
+
+let word = $computed(() => {
+  return data.words[data.index] ?? {
+    trans: [],
+    name: '',
+    usphone: '',
+    ukphone: '',
+  }
+})
+
 let resetWord = $computed(() => {
   return word.name.slice(input.length + wrong.length)
 })
+
 
 onMounted(() => {
   emitter.on(EventKey.resetWord, () => {

@@ -145,6 +145,7 @@ header {
   box-sizing: border-box;
   transition: all .3s;
   gap: 10rem;
+  opacity: 0;
 
   .info {
     font-size: 16rem;
