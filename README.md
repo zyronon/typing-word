@@ -6,3 +6,5 @@ bug
 打完了没检测到
 
 test
+
+test2
