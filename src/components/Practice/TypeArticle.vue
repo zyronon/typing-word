@@ -103,13 +103,15 @@ onMounted(() => {
       key: "Xxe_yftQR3K3Ue43NQMC"
     }
   })
-  baidu.translate('fuck', 'en', 'zh-CN').then(r => {
-    console.log('s', r)
-  })
+
   practiceStore.total = 0
   sections.map((v, i) => {
     v.map((w, j) => {
-      w.translate = temp[i][j].sentence
+      baidu.translate(w.sentence, 'en', 'zh-CN').then(r => {
+        console.log('s', r.trans.paragraphs)
+        w.translate = r.trans.paragraphs[0]
+      })
+      // w.translate = temp[i][j].sentence
       w.words.map(s => {
         if (!store.skipWordNamesWithSimpleWords.includes(s.name.toLowerCase()) && !s.isSymbol) {
           practiceStore.total++
