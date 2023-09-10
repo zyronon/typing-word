@@ -64,12 +64,12 @@ let articleWrapperRef = $ref<HTMLInputElement>(null)
 let tabIndex = $ref(0)
 let sectionIndex = $ref(0)
 let sentenceIndex = $ref(0)
-let wordIndex = $ref(6)
+let wordIndex = $ref(0)
 let stringIndex = $ref(0)
 let input = $ref('')
 let wrong = $ref('')
 let isSpace = $ref(false)
-let isDictation = $ref(true)
+let isDictation = $ref(false)
 let showTranslate = $ref(true)
 let showFullWord = $ref(false)
 let hoverIndex = $ref({
@@ -100,7 +100,7 @@ onMounted(() => {
     v.map((w, j) => {
       w.translate = temp[i][j].sentence
       w.words.map(s => {
-        if (!store.skipWordNamesWithSimpleWords.includes(s.name.toLowerCase())) {
+        if (!store.skipWordNamesWithSimpleWords.includes(s.name.toLowerCase()) && !s.isSymbol) {
           practiceStore.total++
         }
       })
@@ -169,7 +169,7 @@ function onKeyDown(e: KeyboardEvent) {
     stringIndex = 0
     wordIndex++
 
-    if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase())) {
+    if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase()) && !currentWord.isSymbol) {
       practiceStore.inputNumber++
     }
 
@@ -229,6 +229,9 @@ function onKeyDown(e: KeyboardEvent) {
         //如果当前词没有index，说明这个词完了，下一个是空格
         if (!currentWord.name[stringIndex]) {
           input = wrong = ''
+          if (!currentWord.isSymbol) {
+            playCorrect()
+          }
           if (currentWord.nextSpace) {
             isSpace = true
           } else {
@@ -324,7 +327,7 @@ function currentWordInput(word: ArticleWord, i: number, i2: number,) {
 }
 
 function currentWordEnd(word: ArticleWord, i: number, i2: number,) {
-  let str = word.name.slice(input.length + wrong.length + 1)
+  let str = word.name.slice(input.length + wrong.length + (wrong ? 0 : 1))
   if (hoverIndex.sectionIndex === i && hoverIndex.sentenceIndex === i2) {
     return str
   }
@@ -367,7 +370,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
                    v-for="(section,indexI) in article.sections">
                 <span class="sentence"
                       :class="[
-                          sectionIndex === indexI && sentenceIndex === indexJ
+                          sectionIndex === indexI && sentenceIndex === indexJ && isDictation
                           ?'isDictation':''
                       ]"
                       @mouseenter="hoverIndex = {sectionIndex : indexI,sentenceIndex :indexJ}"
@@ -393,7 +396,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
                     <span v-if="`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace">
                       <span class="input" v-if="input">{{ input }}</span>
                       <span class="wrong" :class="wrong === ' ' && 'bg-wrong'" v-if="wrong">{{ wrong }}</span>
-                      <span :class="!wrong && 'bottom-border'">{{ currentWordInput(word, indexI, indexJ) }}</span>
+                      <span class="bottom-border" v-else>{{currentWordInput(word, indexI, indexJ) }}</span>
                       <span>{{ currentWordEnd(word, indexI, indexJ,) }}</span>
                     </span>
                     <span v-else>{{ otherWord(word, indexI, indexJ, indexW) }}</span>
@@ -403,7 +406,10 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
                             `${indexI}${indexJ}${indexW}`,
                             (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && wrong) && 'bg-wrong',
                             (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && !wrong) && 'bottom-border',
-                        ]">&nbsp;</span>
+                            (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && !wrong && isDictation) && 'word-space',
+                        ]">
+                      {{ (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && isDictation) ? '_' : ' ' }}
+                    </span>
                   </span>
                 </span>
               </div>
@@ -509,6 +515,31 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
     }
   }
 
+  .word-space {
+    position: relative;
+    color: gray;
+
+    &::after {
+      content: ' ';
+      position: absolute;
+      width: 1.5rem;
+      height: 4rem;
+      background: gray;
+      bottom: 2rem;
+      right: 2.5rem;
+    }
+
+    &::before {
+      content: ' ';
+      position: absolute;
+      width: 1.5rem;
+      height: 4rem;
+      background: gray;
+      bottom: 2rem;
+      left: 0;
+    }
+  }
+
   .bottom-border {
     animation: underline 1s infinite steps(1, start);
   }
@@ -529,6 +560,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
 
   .bg-wrong {
     display: inline-block;
+    color: gray;
     background: rgba(red, 0.6);
     animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   }
@@ -557,10 +589,10 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
 
 @keyframes underline {
   0%, 100% {
-    border-left: 1.3px solid black;
+    border-left: 1.3rem solid black;
   }
   50% {
-    border-left: 1.3px solid transparent;
+    border-left: 1.3rem solid transparent;
   }
 }
 </style>

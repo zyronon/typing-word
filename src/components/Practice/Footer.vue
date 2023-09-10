@@ -16,6 +16,7 @@ function format(val: number, suffix: string = '', check: number = -1) {
 
 const progress = $computed(() => {
   if (!practiceStore.total) return 0
+  if (practiceStore.inputNumber>practiceStore.total) return 100
   return ((practiceStore.inputNumber / practiceStore.total) * 100)
 })
 

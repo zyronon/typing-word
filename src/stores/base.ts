@@ -78,7 +78,7 @@ export const useBaseStore = defineStore('base', {
       sideIsOpen: false,
       isDictation: true,
       setting: {
-        showToolbar: false,
+        showToolbar: true,
         show: false,
         value1: false,
         value2: 50,
