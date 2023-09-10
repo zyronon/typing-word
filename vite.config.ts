@@ -17,9 +17,9 @@ export default defineConfig({
     }),
     Icons(),
     vueJsx(),
-    requireTransform({
-      fileRegex: /.js$|.vue$/,
-    }),
+    // requireTransform({
+    //   fileRegex: /.js$|.vue$/,
+    // }),
   ],
   resolve: {
     alias: {
