@@ -25,6 +25,7 @@ import TypeWord from "@/components/Practice/TypeWord.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import Baidu from "@opentranslate/baidu";
 import {AxiosInstance} from "@/utils/http";
+import {translate} from "element-plus";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -93,6 +94,25 @@ let article = reactive<Article>({
   sections: [],
 })
 
+async function translateSentence() {
+  const baidu = new Baidu({
+    axios: AxiosInstance,
+    config: {
+      appid: "20230910001811857",
+      key: "Xxe_yftQR3K3Ue43NQMC"
+    }
+  })
+
+  article.sections.map((v, i) => {
+    v.map((w, j) => {
+      baidu.translate(w.sentence, 'en', 'zh-CN').then(r => {
+        console.log('s', r.trans.paragraphs)
+        w.translate = r.trans.paragraphs[0]
+      })
+    })
+  })
+}
+
 onMounted(() => {
   let sections = useSplitArticle(article.article)
   let temp = useSplitCNArticle(article.articleTranslate, 'cn', CnKeyboardMap)
@@ -107,11 +127,7 @@ onMounted(() => {
   practiceStore.total = 0
   sections.map((v, i) => {
     v.map((w, j) => {
-      baidu.translate(w.sentence, 'en', 'zh-CN').then(r => {
-        console.log('s', r.trans.paragraphs)
-        w.translate = r.trans.paragraphs[0]
-      })
-      // w.translate = temp[i][j].sentence
+      w.translate = temp[i][j].sentence
       w.words.map(s => {
         if (!store.skipWordNamesWithSimpleWords.includes(s.name.toLowerCase()) && !s.isSymbol) {
           practiceStore.total++
