@@ -7,12 +7,16 @@
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "build2": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "commit": "git-cz",
+    "prepare": "husky install",
+    "test": ""
   },
   "dependencies": {
     "@icon-park/vue-next": "^1.4.2",
     "@opentranslate/baidu": "^1.4.2",
     "@opentranslate/translator": "^1.4.2",
+    "axios": "^1.5.0",
     "element-plus": "^2.3.9",
     "hover.css": "^2.3.2",
     "localforage": "^1.10.0",
@@ -32,6 +36,7 @@
     "@vue/compiler-sfc": "^3.3.4",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.3",
     "sass": "^1.64.2",
     "typescript": "^5.2.0",
     "unplugin-icons": "^0.16.5",

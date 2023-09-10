@@ -33,6 +33,10 @@ export default defineConfig({
     host: '0.0.0.0',
     fs: {
       strict: false,
+    },
+    proxy: {
+      '/baidu': 'https://api.fanyi.baidu.com/api/trans/vip/translate'
     }
+
   }
 })
