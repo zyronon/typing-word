@@ -23,6 +23,7 @@ import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
 import {useEventListener} from "@/hooks/useEvent.ts";
 import TypeWord from "@/components/Practice/TypeWord.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
+import Baidu from "@opentranslate/baidu";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -94,7 +95,15 @@ let article = reactive<Article>({
 onMounted(() => {
   let sections = useSplitArticle(article.article)
   let temp = useSplitCNArticle(article.articleTranslate, 'cn', CnKeyboardMap)
-
+  const baidu = new Baidu({
+    config: {
+      appid: "20230910001811857",
+      key: "Xxe_yftQR3K3Ue43NQMC"
+    }
+  })
+  baidu.translate('fuck', 'en','zh-CN').then(r => {
+    console.log('s', r)
+  })
   practiceStore.total = 0
   sections.map((v, i) => {
     v.map((w, j) => {
@@ -127,6 +136,7 @@ function calcTranslateLocation() {
 
           translate.style.opacity = '1'
           translate.style.top = rect.top - articleRect.top - 20 + 'px'
+          // @ts-ignore
           translate.firstChild.style.width = rect.left - articleRect.left + 'px'
           // console.log(word, rect.left - articleRect.left)
           // console.log('word-rect', rect)
@@ -396,7 +406,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
                     <span v-if="`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace">
                       <span class="input" v-if="input">{{ input }}</span>
                       <span class="wrong" :class="wrong === ' ' && 'bg-wrong'" v-if="wrong">{{ wrong }}</span>
-                      <span class="bottom-border" v-else>{{currentWordInput(word, indexI, indexJ) }}</span>
+                      <span class="bottom-border" v-else>{{ currentWordInput(word, indexI, indexJ) }}</span>
                       <span>{{ currentWordEnd(word, indexI, indexJ,) }}</span>
                     </span>
                     <span v-else>{{ otherWord(word, indexI, indexJ, indexW) }}</span>
