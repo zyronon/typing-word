@@ -3,7 +3,6 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import {resolve} from 'path'
 import Icons from 'unplugin-icons/vite'
-import requireTransform from 'vite-plugin-require-transform' // 1. 引入插件
 
 function pathResolve(dir) {
   return resolve(__dirname, ".", dir)
@@ -17,9 +16,6 @@ export default defineConfig({
     }),
     Icons(),
     vueJsx(),
-    // requireTransform({
-    //   fileRegex: /.js$|.vue$/,
-    // }),
   ],
   resolve: {
     alias: {

@@ -27,13 +27,12 @@
       "unplugin-icons/types/vue",
       "element-plus/global"
     ],
-    "baseUrl": "./",
+    "baseUrl": "src",
     //This is because TypeScript does not resolve webpack aliases automatically.
     //For TS to resolve aliases, they should be added in tsconfig.json under compilerOptions.paths:
+    // https://betterprogramming.pub/the-right-usage-of-aliases-in-webpack-typescript-4418327f47fa
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["*"]
     }
   },
   "include": [

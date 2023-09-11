@@ -24,8 +24,9 @@ import {useEventListener} from "@/hooks/useEvent.ts";
 import TypeWord from "@/components/Practice/TypeWord.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import Baidu from "@opentranslate/baidu";
-import {AxiosInstance} from "@/utils/http";
+import {axiosInstance} from "@/utils/http";
 import {translate} from "element-plus";
+import useSleep from "@/hooks/useSleep.ts";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -87,47 +88,20 @@ let wordData = $ref({
 
 let article = reactive<Article>({
   article: article1,
-  articleTranslate: `上星期我去看戏。我的座位很好，戏很有意思，但我却无法欣赏。一青年男子与一青年女子坐在我的身后，大声地说着话。我非常生气，因为我听不见演员在说什么。我回过头去，怒视着那一男一女，他们却毫不理会。最后，我忍不住了，又一次回过头去，生气地说，“我一个字也听不见了！”
+  translate: `上星期我去看戏。我的座位很好，戏很有意思，但我却无法欣赏。一青年男子与一青年女子坐在我的身后，大声地说着话。我非常生气，因为我听不见演员在说什么。我回过头去，怒视着那一男一女，他们却毫不理会。最后，我忍不住了，又一次回过头去，生气地说，“我一个字也听不见了！”
 “不关你的事，”那男的毫不客气地说，“这是私人间的谈话！”`,
   newWords: [],
   articleAllWords: [],
   sections: [],
+  isTranslate: false,
 })
 
-async function translateSentence() {
-  const baidu = new Baidu({
-    axios: AxiosInstance,
-    config: {
-      appid: "20230910001811857",
-      key: "Xxe_yftQR3K3Ue43NQMC"
-    }
-  })
-
-  article.sections.map((v, i) => {
-    v.map((w, j) => {
-      baidu.translate(w.sentence, 'en', 'zh-CN').then(r => {
-        console.log('s', r.trans.paragraphs)
-        w.translate = r.trans.paragraphs[0]
-      })
-    })
-  })
-}
-
 onMounted(() => {
-  let sections = useSplitArticle(article.article)
-  let temp = useSplitCNArticle(article.articleTranslate, 'cn', CnKeyboardMap)
-  const baidu = new Baidu({
-    axios: AxiosInstance,
-    config: {
-      appid: "20230910001811857",
-      key: "Xxe_yftQR3K3Ue43NQMC"
-    }
-  })
+  article.sections = useSplitArticle(article.article)
 
   practiceStore.total = 0
-  sections.map((v, i) => {
+  article.sections.map((v, i) => {
     v.map((w, j) => {
-      w.translate = temp[i][j].sentence
       w.words.map(s => {
         if (!store.skipWordNamesWithSimpleWords.includes(s.name.toLowerCase()) && !s.isSymbol) {
           practiceStore.total++
@@ -136,7 +110,6 @@ onMounted(() => {
     })
   })
   practiceStore.startDate = Date.now()
-  article.sections = sections
   console.log(cloneDeep(article))
   calcTranslateLocation()
 })
@@ -148,18 +121,19 @@ function calcTranslateLocation() {
       let articleRect = articleWrapperRef.getBoundingClientRect()
       article.sections.map((v, i) => {
         v.map((w, j) => {
-          let wordClassName = `.word${i + '-' + j}`
-          let translateClassName = `.translate${i + '-' + j}`
+          let location = i + '-' + j
+          let wordClassName = `.word${location}`
           let word = document.querySelector(wordClassName)
+          let wordRect = word.getBoundingClientRect()
+          let translateClassName = `.translate${location}`
           let translate: HTMLDivElement = document.querySelector(translateClassName)
-          let rect = word.getBoundingClientRect()
 
           translate.style.opacity = '1'
-          translate.style.top = rect.top - articleRect.top - 20 + 'px'
+          translate.style.top = wordRect.top - articleRect.top - 20 + 'px'
           // @ts-ignore
-          translate.firstChild.style.width = rect.left - articleRect.left + 'px'
-          // console.log(word, rect.left - articleRect.left)
-          // console.log('word-rect', rect)
+          translate.firstChild.style.width = wordRect.left - articleRect.left + 'px'
+          // console.log(word, wordRect.left - articleRect.left)
+          // console.log('word-wordRect', wordRect)
         })
       })
     }, 300)

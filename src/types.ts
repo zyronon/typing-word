@@ -114,7 +114,8 @@ export interface Sentence {
 
 export interface Article {
   article: string,
-  articleTranslate: string,
+  translate: string,
+  isTranslate: boolean,
   newWords: Word[],
   articleAllWords: string[],
   sections: Sentence[][],
