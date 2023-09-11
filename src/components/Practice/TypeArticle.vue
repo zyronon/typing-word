@@ -37,7 +37,7 @@ import Baidu from "@opentranslate/baidu";
 import {axiosInstance} from "@/utils/http";
 import {translate} from "element-plus";
 import useSleep from "@/hooks/useSleep.ts";
-import {useNetworkTranslate} from "@/hooks/translate.ts";
+import {useLocalTranslate, useNetworkTranslate} from "@/hooks/translate.ts";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -79,13 +79,13 @@ let isPlay = $ref(false)
 let articleWrapperRef = $ref<HTMLInputElement>(null)
 let tabIndex = $ref(0)
 let sectionIndex = $ref(0)
-let sentenceIndex = $ref(0)
-let wordIndex = $ref(0)
+let sentenceIndex = $ref(4)
+let wordIndex = $ref(10)
 let stringIndex = $ref(0)
 let input = $ref('')
 let wrong = $ref('')
 let isSpace = $ref(false)
-let isDictation = $ref(false)
+let isDictation = $ref(true)
 let showTranslate = $ref(true)
 let showFullWord = $ref(false)
 let hoverIndex = $ref({
@@ -128,7 +128,8 @@ onMounted(async () => {
   calcTranslateLocation()
 
   console.time()
-  await useNetworkTranslate(article, TranslateEngine.Baidu, false)
+  // await useNetworkTranslate(article, TranslateEngine.Baidu, true)
+  useLocalTranslate(article, article.customTranslate)
   console.timeEnd()
   // console.log(cloneDeep(article))
 })
@@ -148,7 +149,7 @@ function calcTranslateLocation() {
           let translate: HTMLDivElement = document.querySelector(translateClassName)
 
           translate.style.opacity = '1'
-          translate.style.top = wordRect.top - articleRect.top - 20 + 'px'
+          translate.style.top = wordRect.top - articleRect.top - 22 + 'px'
           // @ts-ignore
           translate.firstChild.style.width = wordRect.left - articleRect.left + 'px'
           // console.log(word, wordRect.left - articleRect.left)
@@ -387,14 +388,29 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
     <div class="swiper-wrapper content">
       <div class="swiper-list" :class="`step${tabIndex}`">
         <div class="swiper-item">
-          <div class="article-wrapper" ref="articleWrapperRef">
-            <article>
-              <div class="section"
-                   v-for="(section,indexI) in article.sections">
+          <div class="article-wrapper">
+            <header>
+              <div class="title">A private conversation!</div>
+              <div class="options">
+                <el-progress :percentage="80"
+                             :stroke-width="8"
+                             :show-text="false"/>
+
+                <div class="translate-btn">
+                  <div>翻译</div>
+                  <div>本地</div>
+                </div>
+              </div>
+
+            </header>
+            <div class="article-content" ref="articleWrapperRef">
+              <article>
+                <div class="section"
+                     v-for="(section,indexI) in article.sections">
                 <span class="sentence"
                       :class="[
                           sectionIndex === indexI && sentenceIndex === indexJ && isDictation
-                          ?'isDictation':''
+                          ?'dictation':''
                       ]"
                       @mouseenter="hoverIndex = {sectionIndex : indexI,sentenceIndex :indexJ}"
                       @mouseleave="hoverIndex = {sectionIndex : -1,sentenceIndex :-1}"
@@ -435,17 +451,20 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
                     </span>
                   </span>
                 </span>
-              </div>
-            </article>
-            <div class="translate">
-              <template v-for="(v,i) in article.sections">
-                <div class="row"
-                     :class="`translate${i+'-'+j}`"
-                     v-for="(item,j) in v">
-                  <span class="space"></span>
-                  <span class="text">{{ item.translate }}</span>
                 </div>
-              </template>
+              </article>
+              <div class="translate">
+                <template v-for="(v,i) in article.sections">
+                  <div class="row"
+                       :class="`translate${i+'-'+j}`"
+                       v-for="(item,j) in v">
+                    <span class="space"></span>
+                    <Transition name="fade">
+                      <span class="text" v-if="item.translate">{{ item.translate }}</span>
+                    </Transition>
+                  </div>
+                </template>
+              </div>
             </div>
           </div>
         </div>
@@ -481,12 +500,40 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
   }
 
   .article-wrapper {
-    position: relative;
+
+    header {
+      .title {
+        text-align: center;
+        color: rgba(gray, .8);
+        font-size: 36rem;
+        font-weight: 500;
+        word-spacing: 3rem;
+      }
+
+      .options {
+        display: flex;
+        gap:20rem;
+
+        .el-progress {
+          flex: 1;
+        }
+
+        .translate-btn {
+          color:black;
+          font-size: 20rem;
+        }
+      }
+
+    }
+
+    .article-content {
+      position: relative;
+    }
 
     article {
       //height: 100%;
       font-size: 24rem;
-      line-height: 1.9;
+      line-height: 2.5;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
       color: gray;
       word-break: keep-all;
@@ -494,15 +541,15 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
       white-space: pre-wrap;
       padding-top: 20rem;
 
-      .isDictation {
-        letter-spacing: 3rem;
-      }
-
       .section {
         margin-bottom: $space;
 
         .sentence {
           transition: all .3s;
+
+          &.dictation {
+            letter-spacing: 3rem;
+          }
         }
 
         .word {
@@ -520,7 +567,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
       width: 100%;
       font-size: 18rem;
       color: gray;
-      line-height: 2.5;
+      line-height: 3.5;
       letter-spacing: 3rem;
       //display: none;
 
