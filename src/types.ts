@@ -114,8 +114,9 @@ export interface Sentence {
 
 export interface Article {
   article: string,
-  translate: string,
-  isTranslate: boolean,
+  customTranslate: string,
+  networkTranslate: string,
+  isTranslated: boolean,
   newWords: Word[],
   articleAllWords: string[],
   sections: Sentence[][],
@@ -195,4 +196,8 @@ export const ShortKeyMap = {
   Ignore: 'Tab',
   Remove: '`',
   Collect: 'Enter',
+}
+
+export enum TranslateEngine {
+  Baidu = 0,
 }

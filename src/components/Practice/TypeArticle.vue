@@ -16,7 +16,17 @@ import correct from '../..//assets/sound/correct.wav'
 import {useSound} from "@/hooks/useSound.ts"
 import {CnKeyboardMap, useSplitArticle, useSplitCNArticle} from "@/hooks/useSplitArticle";
 import {$computed, $ref} from "vue/macros";
-import {Article, ArticleWord, DefaultWord, DictType, SaveKey, Sentence, ShortKeyMap, Word} from "@/types";
+import {
+  Article,
+  ArticleWord,
+  DefaultWord,
+  DictType,
+  SaveKey,
+  Sentence,
+  ShortKeyMap,
+  TranslateEngine,
+  Word
+} from "@/types";
 import {useBaseStore} from "@/stores/base";
 import Footer from "@/components/Practice/Footer.vue"
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
@@ -27,6 +37,7 @@ import Baidu from "@opentranslate/baidu";
 import {axiosInstance} from "@/utils/http";
 import {translate} from "element-plus";
 import useSleep from "@/hooks/useSleep.ts";
+import {useNetworkTranslate} from "@/hooks/translate.ts";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -37,9 +48,10 @@ If you are younger, and in a solid financial position, you may decide to take an
 *'Periwigs' is the name of a fictitious company.
 INVESTOR'S CHRONICLE, March 23 1990`
 
-// article1 = `How does the older investor differ in his approach to investment from the younger investor?How does the older investor differ in his approach to investment from the younger investor?`
+article1 = `How does the older investor differ in his approach to investment from the younger investor?`
 article1 = `Last week I went to the theatre. I had a very good seat. The play was very interesting. I did not enjoy it. A young man and a young woman were sitting behind me. They were talking loudly. I got very angry. I could not hear the actors. I turned round. I looked at the man and the woman angrily. They did not pay any attention. In the end, I could not bear it. I turned round again. ‘I can't hear a word!’ I said angrily.
 ‘It's none of your business, ’ the young man said rudely. ‘This is a private conversation!’`
+// article1 = `Last week I went to the theatre. I had a very good seat. The play was very interesting. I did not enjoy it.`
 
 let article2 = `What is one of the features of modern camping where nationality is concerned?
 Economy is one powerful motive for camping, since after the initial outlay upon equipment, or through hiring it, the total expense can be far less than the cost of hotels. But, contrary to a popular assumption, it is far from being the only one, or even the greatest. The man who manoeuvres carelessly into his twenty pounds' worth of space at one of Europe's myriad permanent sites may find himself bumping a Bentley. More likely, Ford Escort will be hub to hub with Renault or Mercedes, but rarely with bicycles made for two.
@@ -88,16 +100,19 @@ let wordData = $ref({
 
 let article = reactive<Article>({
   article: article1,
-  translate: `上星期我去看戏。我的座位很好，戏很有意思，但我却无法欣赏。一青年男子与一青年女子坐在我的身后，大声地说着话。我非常生气，因为我听不见演员在说什么。我回过头去，怒视着那一男一女，他们却毫不理会。最后，我忍不住了，又一次回过头去，生气地说，“我一个字也听不见了！”
+  customTranslate: `上星期我去看戏。我的座位很好，戏很有意思，但我却无法欣赏。一青年男子与一青年女子坐在我的身后，大声地说着话。我非常生气，因为我听不见演员在说什么。我回过头去，怒视着那一男一女，他们却毫不理会。最后，我忍不住了，又一次回过头去，生气地说，“我一个字也听不见了！”
 “不关你的事，”那男的毫不客气地说，“这是私人间的谈话！”`,
+  networkTranslate: '',
   newWords: [],
   articleAllWords: [],
   sections: [],
-  isTranslate: false,
+  isTranslated: false,
 })
 
-onMounted(() => {
-  article.sections = useSplitArticle(article.article)
+onMounted(async () => {
+  if (!article.sections.length) {
+    article.sections = useSplitArticle(article.article)
+  }
 
   practiceStore.total = 0
   article.sections.map((v, i) => {
@@ -110,8 +125,12 @@ onMounted(() => {
     })
   })
   practiceStore.startDate = Date.now()
-  console.log(cloneDeep(article))
   calcTranslateLocation()
+
+  console.time()
+  await useNetworkTranslate(article, TranslateEngine.Baidu, false)
+  console.timeEnd()
+  // console.log(cloneDeep(article))
 })
 
 function calcTranslateLocation() {
