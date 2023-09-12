@@ -11,6 +11,8 @@ import {Icon} from '@iconify/vue';
 import IconWrapper from "@/components/IconWrapper.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {watch} from "vue"
+import VolumeSetting from "@/components/Toolbar/VolumeSetting.vue";
+import RepeatSetting from "@/components/Toolbar/RepeatSetting.vue";
 
 const {toggle} = useTheme()
 const store = useBaseStore()
@@ -33,70 +35,77 @@ watch(() => store.setting.showToolbar, n => {
 
 <template>
   <header ref="headerRef">
-    <div class="info" @click="showDictModal = true">
-            {{ store.dictTitle }}
+    <div class="content">
+      <div class="info" @click="showDictModal = true">
+        {{ store.dictTitle }}
+      </div>
+      <div class="options">
+        <Tooltip title="切换主题">
+          <IconWrapper>
+            <Icon icon="ep:moon" v-if="store.theme === 'dark'"
+                  @click="toggle"/>
+            <Icon icon="tabler:sun" v-else @click="toggle"/>
+          </IconWrapper>
+        </Tooltip>
+
+        <VolumeSetting/>
+
+        <RepeatSetting/>
+
+        <Tooltip title="开关默写模式">
+          <IconWrapper>
+            <Icon icon="majesticons:eye-off-line"
+                  v-if="store.setting.dictation"
+                  @click="store.setting.dictation = false"/>
+            <Icon icon="mdi:eye-outline"
+                  v-else
+                  @click="store.setting.dictation = true"/>
+          </IconWrapper>
+        </Tooltip>
+
+        <Tooltip title="开关释义显示">
+          <IconWrapper>
+            <Icon icon="heroicons-outline:translate"/>
+          </IconWrapper>
+        </Tooltip>
+
+        <Tooltip title="反馈">
+          <IconWrapper>
+            <Icon icon="ic:outline-cloud-upload"/>
+          </IconWrapper>
+        </Tooltip>
+        <Tooltip title="反馈">
+          <IconWrapper>
+            <Icon icon="octicon:bug-24" @click="showFeedbackModal = true"/>
+          </IconWrapper>
+        </Tooltip>
+        <Tooltip title="设置">
+          <IconWrapper>
+            <Icon icon="uil:setting" @click="showSettingModal = true"/>
+          </IconWrapper>
+        </Tooltip>
+        <div class="my-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>
+
+        <Tooltip title="单词本">
+          <IconWrapper>
+            <Icon icon="tdesign:menu-unfold" class="menu" @click="emitter.emit(EventKey.openSide)"/>
+          </IconWrapper>
+        </Tooltip>
+      </div>
     </div>
-    <div class="options">
-      <Tooltip title="切换主题">
-        <IconWrapper>
-          <Icon icon="ep:moon" v-if="store.theme === 'dark'"
-                @click="toggle"/>
-          <Icon icon="tabler:sun" v-else @click="toggle"/>
-        </IconWrapper>
-      </Tooltip>
-
-      <Tooltip title="音效设置">
-        <IconWrapper>
-          <Icon icon="icon-park-outline:volume-notice"/>
-        </IconWrapper>
-      </Tooltip>
-
-      <Tooltip title="设置单词循环">
-        <IconWrapper>
-          <Icon icon="tabler:repeat"/>
-        </IconWrapper>
-      </Tooltip>
-      <Tooltip title="开关默写模式">
-        <IconWrapper>
-          <Icon icon="majesticons:eye-off-line" v-if="store.isDictation" @click="store.isDictation = false"/>
-          <Icon icon="mdi:eye-outline" v-else @click="store.isDictation = true"/>
-        </IconWrapper>
-      </Tooltip>
-      <Tooltip title="开关释义显示">
-        <IconWrapper>
-          <Icon icon="heroicons-outline:translate"/>
-        </IconWrapper>
-      </Tooltip>
-
-      <Tooltip title="反馈">
-        <IconWrapper>
-          <Icon icon="ic:outline-cloud-upload"/>
-        </IconWrapper>
-      </Tooltip>
-      <Tooltip title="反馈">
-        <IconWrapper>
-          <Icon icon="octicon:bug-24" @click="showFeedbackModal = true"/>
-        </IconWrapper>
-      </Tooltip>
-      <Tooltip title="设置">
-        <IconWrapper>
-          <Icon icon="uil:setting" @click="showSettingModal = true"/>
-        </IconWrapper>
-      </Tooltip>
-      <div class="my-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>
-
-      <Tooltip title="单词本">
-        <IconWrapper>
-          <Icon icon="tdesign:menu-unfold" class="menu" @click="emitter.emit(EventKey.openSide)"/>
-        </IconWrapper>
-      </Tooltip>
+    <div class="translate-progress">
+      <div>翻译进度:</div>
+      <el-progress :percentage="80"
+                   :stroke-width="8"
+                   :show-text="false"/>
     </div>
     <Tooltip :title="store.setting.showToolbar?'收起':'展开'">
       <Icon icon="icon-park-outline:down"
             @click="store.setting.showToolbar = !store.setting.showToolbar"
             class="arrow"
             :class="!store.setting.showToolbar && 'down'"
-            width="24" color="#999"/>
+            width="24"
+            color="#999"/>
     </Tooltip>
   </header>
   <DictModal v-model="showDictModal"/>
@@ -110,10 +119,8 @@ watch(() => store.setting.showToolbar, n => {
 header {
   width: var(--toolbar-width);
   margin-top: 10rem;
-  min-height: 60rem;
   background: var(--color-header-bg);
-  display: flex;
-  justify-content: space-between;
+
   border-radius: 8rem;
   margin-bottom: 30rem;
   //position: absolute;
@@ -125,20 +132,36 @@ header {
   gap: 10rem;
   //opacity: 0;
 
-  .info {
-    font-size: 16rem;
-    color: var(--color-font-1);
+  .content {
+    min-height: 60rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+    justify-content: space-between;
+
+    .info {
+      font-size: 16rem;
+      color: var(--color-font-1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .options {
+      display: flex;
+      align-items: center;
+      gap: 10rem;
+    }
   }
 
-  .options {
+  .translate-progress {
     display: flex;
-    align-items: center;
-    gap: 10rem;
+    gap: $space;
+
+    .el-progress {
+      flex: 1;
+    }
   }
+
 
   .arrow {
     position: absolute;

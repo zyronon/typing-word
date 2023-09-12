@@ -5,4 +5,5 @@ export const EventKey = {
   resetWord: 'resetWord',
   openSide: 'openSide',
   openStatModal: 'openStatModal',
+  closeOther: 'closeOther',
 }

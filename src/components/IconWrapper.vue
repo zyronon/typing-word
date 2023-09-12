@@ -3,7 +3,7 @@ export default {
   render() {
     let Vnode = this.$slots.default()[0]
     return (
-        <div class="icon-wrapper hvr-grow">
+        <div class="icon-wrapper ">
           <Vnode
           />
         </div>
@@ -17,9 +17,9 @@ export default {
 
 $w: 20rem;
 .icon-wrapper {
-  padding: 2rem;
-  //width: 24rem;
-  //height: 24rem;
+  //padding: 2rem;
+  width: 26rem;
+  height: 26rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;

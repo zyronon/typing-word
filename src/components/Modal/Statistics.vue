@@ -23,7 +23,7 @@ onMounted(() => {
 })
 
 function write() {
-  store.isDictation = true
+  store.setting.dictation = true
   repeat()
 }
 

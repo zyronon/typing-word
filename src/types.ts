@@ -183,6 +183,13 @@ export interface State {
   setting: {
     showToolbar: boolean,
     show: boolean,
+
+    keyboardVolume: boolean,
+    effectVolume: boolean,
+    repeatCount: number,
+    repeatCustomCount?: number,
+    dictation: boolean,
+
     value1: boolean,
     value2: number,
     value3: number,

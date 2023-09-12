@@ -204,7 +204,7 @@ async function onKeyDown(e: KeyboardEvent) {
       <div class="word" :class="wrong && 'is-wrong'">
         <span class="input" v-if="input">{{ input }}</span>
         <span class="wrong" v-if="wrong">{{ wrong }}</span>
-        <template v-if="store.isDictation">
+        <template v-if="store.setting.dictation">
           <span class="letter" v-if="!showFullWord"
                 @mouseenter="showFullWord = true">{{ resetWord.split('').map(v => '_').join('') }}</span>
           <span class="letter" v-else @mouseleave="showFullWord = false">{{ resetWord }}</span>

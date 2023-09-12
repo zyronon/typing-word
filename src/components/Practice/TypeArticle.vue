@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import {Icon} from '@iconify/vue'
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
 import {computed, nextTick, onMounted, reactive, watch} from "vue"
 import {cloneDeep} from "lodash-es"
@@ -28,16 +28,13 @@ import {
   Word
 } from "@/types";
 import {useBaseStore} from "@/stores/base";
-import Footer from "@/components/Practice/Footer.vue"
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
 import {useEventListener} from "@/hooks/useEvent.ts";
 import TypeWord from "@/components/Practice/TypeWord.vue";
-import {emitter, EventKey} from "@/utils/eventBus.ts";
-import Baidu from "@opentranslate/baidu";
-import {axiosInstance} from "@/utils/http";
-import {translate} from "element-plus";
-import useSleep from "@/hooks/useSleep.ts";
 import {useLocalTranslate, useNetworkTranslate} from "@/hooks/translate.ts";
+import IconWrapper from "@/components/IconWrapper.vue";
+import Tooltip from "@/components/Tooltip.vue";
+import MiniModal from "@/components/MiniModal.vue";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -85,9 +82,7 @@ let stringIndex = $ref(0)
 let input = $ref('')
 let wrong = $ref('')
 let isSpace = $ref(false)
-let isDictation = $ref(true)
 let showTranslate = $ref(true)
-let showFullWord = $ref(false)
 let hoverIndex = $ref({
   sectionIndex: -1,
   sentenceIndex: -1,
@@ -204,7 +199,7 @@ function onKeyDown(e: KeyboardEvent) {
         sentenceIndex = 0
         sectionIndex++
       } else {
-        if (isDictation) {
+        if (store.setting.dictation) {
           calcTranslateLocation()
         }
         playAudio(currentSection[sentenceIndex].sentence)
@@ -328,8 +323,8 @@ function onKeyUp() {
   }
 }
 
-useEventListener('keydown', onKeyDown)
-useEventListener('keyup', onKeyUp)
+// useEventListener('keydown', onKeyDown)
+// useEventListener('keyup', onKeyUp)
 
 function playWord(word: ArticleWord) {
   playAudio(word.name)
@@ -344,7 +339,7 @@ function currentWordInput(word: ArticleWord, i: number, i2: number,) {
     return str
   }
 
-  if (isDictation) {
+  if (store.setting.dictation) {
     return '_'
   }
   return str
@@ -356,7 +351,7 @@ function currentWordEnd(word: ArticleWord, i: number, i2: number,) {
     return str
   }
 
-  if (isDictation) {
+  if (store.setting.dictation) {
     return str.split('').map(v => '_').join('')
   }
   return str
@@ -374,7 +369,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
 
   //剩100是因为，可能存在特殊情况，比如003,010这种，0 12 24，100
   if (sectionIndex * 10000 + sentenceIndex * 100 + wordIndex < i * 10000 + i2 * 100 + i3
-      && isDictation
+      && store.setting.dictation
   ) {
     return str.split('').map(v => '_').join('')
   }
@@ -391,17 +386,6 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
           <div class="article-wrapper">
             <header>
               <div class="title">A private conversation!</div>
-              <div class="options">
-                <el-progress :percentage="80"
-                             :stroke-width="8"
-                             :show-text="false"/>
-
-                <div class="translate-btn">
-                  <div>翻译</div>
-                  <div>本地</div>
-                </div>
-              </div>
-
             </header>
             <div class="article-content" ref="articleWrapperRef">
               <article>
@@ -409,7 +393,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
                      v-for="(section,indexI) in article.sections">
                 <span class="sentence"
                       :class="[
-                          sectionIndex === indexI && sentenceIndex === indexJ && isDictation
+                          sectionIndex === indexI && sentenceIndex === indexJ && store.setting.dictation
                           ?'dictation':''
                       ]"
                       @mouseenter="hoverIndex = {sectionIndex : indexI,sentenceIndex :indexJ}"
@@ -445,9 +429,11 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
                             `${indexI}${indexJ}${indexW}`,
                             (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && wrong) && 'bg-wrong',
                             (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && !wrong) && 'bottom-border',
-                            (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && !wrong && isDictation) && 'word-space',
+                            (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && !wrong && store.setting.dictation) && 'word-space',
                         ]">
-                      {{ (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && isDictation) ? '_' : ' ' }}
+                      {{
+                        (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && store.setting.dictation) ? '_' : ' '
+                      }}
                     </span>
                   </span>
                 </span>
@@ -500,7 +486,6 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
   }
 
   .article-wrapper {
-    opacity: 0;
 
     header {
       .title {
@@ -511,21 +496,6 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
         word-spacing: 3rem;
         opacity: 0;
       }
-
-      .options {
-        display: flex;
-        gap:20rem;
-
-        .el-progress {
-          flex: 1;
-        }
-
-        .translate-btn {
-          color:black;
-          font-size: 20rem;
-        }
-      }
-
     }
 
     .article-content {

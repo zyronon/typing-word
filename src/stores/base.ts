@@ -80,6 +80,14 @@ export const useBaseStore = defineStore('base', {
       setting: {
         showToolbar: true,
         show: false,
+
+        keyboardVolume: true,
+        effectVolume: true,
+        repeatCount: 1,
+        repeatCustomCount: null,
+        dictation: true,
+        showTranslate: true,
+
         value1: false,
         value2: 50,
         value3: 1,
