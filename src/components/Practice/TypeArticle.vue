@@ -2,7 +2,7 @@
 
 import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
 import {computed, nextTick, onMounted, reactive, watch} from "vue"
-import {cloneDeep} from "lodash"
+import {cloneDeep} from "lodash-es"
 import 快速打字的机械键盘声音Mp3 from '../..//assets/sound/key-sounds/快速打字的机械键盘声音.mp3'
 import 键盘快速打字的声音Mp3 from '../..//assets/sound/key-sounds/键盘快速打字的声音.mp3'
 import 电话打字的声音Mp3 from '../..//assets/sound/key-sounds/电话打字的声音.mp3'
@@ -500,6 +500,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
   }
 
   .article-wrapper {
+    opacity: 0;
 
     header {
       .title {
@@ -508,6 +509,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
         font-size: 36rem;
         font-weight: 500;
         word-spacing: 3rem;
+        opacity: 0;
       }
 
       .options {
@@ -528,6 +530,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
 
     .article-content {
       position: relative;
+      opacity: 0;
     }
 
     article {

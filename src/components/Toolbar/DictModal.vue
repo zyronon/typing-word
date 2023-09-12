@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import {childrenEnglish} from '@/assets/dictionary.ts'
-import {ArrowLeft, ArrowRight, Close} from '@icon-park/vue-next'
 import {useBaseStore} from "@/stores/base.ts"
 import {watch} from "vue"
 import {Dict, DictType, Sort, Word} from "@/types.ts"
-import {chunk} from "lodash";
+import {chunk} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
 import WordList from "@/components/WordList.vue";
 import ChapterList from "@/components/ChapterList.vue"
 import Modal from "@/components/Modal/Modal.vue";
 import BaseButton from "@/components/BaseButton.vue";
+import {Icon} from '@iconify/vue';
 
 const store = useBaseStore()
 
@@ -29,7 +29,7 @@ let currentSelectDict: Dict = $ref(store.currentDict)
 let step = $ref(0)
 
 const currentSelectChapter: Word[] = $computed(() => {
-  return currentSelectDict.chapterList?.[currentSelectDict.chapterIndex] ?? []
+  return currentSelectDict.chapterWords?.[currentSelectDict.chapterIndex] ?? []
 })
 
 watch(() => props.modelValue, (n: boolean) => {
@@ -39,19 +39,21 @@ watch(() => props.modelValue, (n: boolean) => {
 async function selectDict(item: Dict) {
   currentSelectDict = {
     ...item,
-    type: DictType.innerDict,
     sort: Sort.normal,
-    wordList: [],
-    chapterList: [],
-    chapterIndex: 0,
+    type: DictType.innerDict,
+    originWords: [],
+    words: [],
     chapterWordNumber: 15,
-    wordIndex: 0,
-    dictStatistics: []
+    chapterWords: [],
+    chapterIndex: 0,
+    chapterWordIndex: 0,
+    statistics: []
   }
   let r = await fetch(`/public/${item.url}`)
   r.json().then(v => {
-    currentSelectDict.wordList = v
-    currentSelectDict.chapterList = chunk(v, currentSelectDict.chapterWordNumber)
+    currentSelectDict.originWords = v
+    currentSelectDict.words = v
+    currentSelectDict.chapterWords = chunk(v, currentSelectDict.chapterWordNumber)
   })
 }
 
@@ -66,16 +68,17 @@ function close() {
 }
 
 function resetChapterList() {
-  currentSelectDict.chapterList = chunk(currentSelectDict.wordList, currentSelectDict.chapterWordNumber)
+  currentSelectDict.chapterWords = chunk(currentSelectDict.words, currentSelectDict.chapterWordNumber)
 }
 </script>
 
 <template>
   <Modal :modelValue="props.modelValue"
+         :show-close="false"
          @close="close">
     <div class="slide">
-      <div  class="slide-list" :class="`step${step}`">
-        <div  class="dict-page">
+      <div class="slide-list" :class="`step${step}`">
+        <div class="dict-page">
           <header>
             <div class="tabs">
               <div class="tab">
@@ -88,7 +91,10 @@ function resetChapterList() {
                 <span>德语</span>
               </div>
             </div>
-            <Close @click="close" theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
+            <Icon @click="close"
+                  class="hvr-grow pointer"
+                  width="20" color="#929596"
+                  icon="ion:close-outline"/>
           </header>
           <div class="page-content">
             <div class="dict-list-wrapper">
@@ -104,11 +110,9 @@ function resetChapterList() {
                   <div class="desc">{{ i.description }}</div>
                   <div class="num">{{ i.length }}词</div>
 
-                  <arrow-right v-if="currentSelectDict.name === i.name"
-                               @click.stop="step = 1"
-                               class="go"
-                               theme="outline" size="20" fill="#ffffff"
-                               :strokeWidth="2"/>
+                  <Icon icon="octicon:arrow-right-24"  v-if="currentSelectDict.name === i.name"
+                        @click.stop="step = 1"
+                        class="go" width="20" color="#929596"/>
                 </div>
               </div>
             </div>
@@ -125,7 +129,7 @@ function resetChapterList() {
               </div>
               <ChapterList
                   class="chapter-list"
-                  :list="currentSelectDict.chapterList"
+                  :list="currentSelectDict.chapterWords"
                   v-model:active-index="currentSelectDict.chapterIndex"
               />
               <div class="footer">
@@ -134,19 +138,20 @@ function resetChapterList() {
             </div>
           </div>
         </div>
-        <div  class="dict-detail-page">
+        <div class="dict-detail-page">
           <header>
             <div class="left">
-              <arrow-left
-                  @click="step = 0"
-                  class="go" theme="outline" size="20" fill="#ffffff"
-                  :strokeWidth="2"/>
+              <Icon icon="octicon:arrow-left-24"
+                    @click.stop="step = 0"
+                    class="go" width="20" color="#ffffff"/>
               <div class="title">
                 词典详情
               </div>
             </div>
-            <Close @click="close" theme="outline" size="20" fill="#929596"
-                   :strokeWidth="2"/>
+            <Icon @click="close"
+                  class="hvr-grow pointer"
+                  width="20" color="#929596"
+                  icon="ion:close-outline"/>
           </header>
           <div class="page-content">
             <div class="dict-info">
@@ -157,7 +162,7 @@ function resetChapterList() {
               </div>
             </div>
             <div class="chapter-wrapper">
-              <ChapterList :list="currentSelectDict.chapterList"
+              <ChapterList :list="currentSelectDict.chapterWords"
                            v-model:active-index="currentSelectDict.chapterIndex"
               />
             </div>

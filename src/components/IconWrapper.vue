@@ -3,7 +3,7 @@ export default {
   render() {
     let Vnode = this.$slots.default()[0]
     return (
-        <div class="icon-wrapper">
+        <div class="icon-wrapper hvr-grow">
           <Vnode
           />
         </div>

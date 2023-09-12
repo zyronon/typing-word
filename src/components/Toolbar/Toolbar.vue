@@ -1,36 +1,14 @@
 <script setup lang="ts">
 import Tooltip from "@/components/Tooltip.vue"
-import {
-  DatabaseFail,
-  Down,
-  MenuFold,
-  Moon,
-  PreviewCloseOne,
-  PreviewOpen,
-  SettingTwo,
-  SunOne,
-  VolumeNotice,
-  Bug,
-  UploadOne
-} from "@icon-park/vue-next"
 import useTheme from "@/hooks/useTheme.ts"
 import {useBaseStore} from "@/stores/base.ts"
 import SettingModal from "@/components/Toolbar/SettingModal.vue"
 import FeedbackModal from "@/components/Toolbar/FeedbackModal.vue"
 import DictModal from "@/components/Toolbar/DictModal.vue"
 
+import {Icon} from '@iconify/vue';
+
 import IconWrapper from "@/components/IconWrapper.vue";
-import IconCog6Tooth from '~icons/heroicons/cog-6-tooth-solid'
-
-import IconLanguage from '~icons/tabler/language'
-import IconLanguageOff from '~icons/tabler/language-off'
-
-import IconEye from '~icons/heroicons/eye-solid'
-import IconCheck from '~icons/tabler/check'
-import IconEyeSlash from '~icons/heroicons/eye-slash-solid'
-
-import IconRepeat from '~icons/tabler/repeat'
-import IconRepeatOff from '~icons/tabler/repeat-off'
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {watch} from "vue"
 
@@ -56,69 +34,69 @@ watch(() => store.setting.showToolbar, n => {
 <template>
   <header ref="headerRef">
     <div class="info" @click="showDictModal = true">
-      {{ store.dictTitle }}
+            {{ store.dictTitle }}
     </div>
     <div class="options">
       <Tooltip title="切换主题">
         <IconWrapper>
-          <moon v-if="store.theme === 'dark'"
+          <Icon icon="ep:moon" v-if="store.theme === 'dark'"
                 @click="toggle"/>
-          <sun-one v-else @click="toggle"/>
+          <Icon icon="tabler:sun" v-else @click="toggle"/>
         </IconWrapper>
       </Tooltip>
 
       <Tooltip title="音效设置">
         <IconWrapper>
-          <volume-notice/>
+          <Icon icon="icon-park-outline:volume-notice"/>
         </IconWrapper>
       </Tooltip>
+
       <Tooltip title="设置单词循环">
         <IconWrapper>
-          <IconRepeat></IconRepeat>
+          <Icon icon="tabler:repeat"/>
         </IconWrapper>
       </Tooltip>
       <Tooltip title="开关默写模式">
         <IconWrapper>
-          <IconEyeSlash v-if="store.isDictation" @click="store.isDictation = false"></IconEyeSlash>
-          <IconEye v-else @click="store.isDictation = true"></IconEye>
+          <Icon icon="majesticons:eye-off-line" v-if="store.isDictation" @click="store.isDictation = false"/>
+          <Icon icon="mdi:eye-outline" v-else @click="store.isDictation = true"/>
         </IconWrapper>
       </Tooltip>
       <Tooltip title="开关释义显示">
         <IconWrapper>
-          <IconLanguage></IconLanguage>
-          <!--          <IconLanguageOff></IconLanguageOff>-->
+          <Icon icon="heroicons-outline:translate"/>
         </IconWrapper>
       </Tooltip>
 
       <Tooltip title="反馈">
         <IconWrapper>
-          <upload-one/>
+          <Icon icon="ic:outline-cloud-upload"/>
         </IconWrapper>
       </Tooltip>
       <Tooltip title="反馈">
         <IconWrapper>
-          <bug @click="showFeedbackModal = true"/>
+          <Icon icon="octicon:bug-24" @click="showFeedbackModal = true"/>
         </IconWrapper>
       </Tooltip>
       <Tooltip title="设置">
         <IconWrapper>
-          <IconCog6Tooth @click="showSettingModal = true"></IconCog6Tooth>
+          <Icon icon="uil:setting" @click="showSettingModal = true"/>
         </IconWrapper>
       </Tooltip>
       <div class="my-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>
 
       <Tooltip title="单词本">
         <IconWrapper>
-          <menu-fold class="menu" @click="emitter.emit(EventKey.openSide)"/>
+          <Icon icon="tdesign:menu-unfold" class="menu" @click="emitter.emit(EventKey.openSide)"/>
         </IconWrapper>
       </Tooltip>
     </div>
     <Tooltip :title="store.setting.showToolbar?'收起':'展开'">
-      <down
-          @click="store.setting.showToolbar = !store.setting.showToolbar"
-          class="arrow"
-          :class="!store.setting.showToolbar && 'down'"
-          theme="outline" size="24" fill="#999"/>
+      <Icon icon="icon-park-outline:down"
+            @click="store.setting.showToolbar = !store.setting.showToolbar"
+            class="arrow"
+            :class="!store.setting.showToolbar && 'down'"
+            width="24" color="#999"/>
     </Tooltip>
   </header>
   <DictModal v-model="showDictModal"/>

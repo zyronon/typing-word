@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {KeyboardOne} from "@icon-park/vue-next";
 import Tooltip from "@/components/Tooltip.vue";
+import {Icon} from "@iconify/vue";
 
-const props = defineProps<{
+defineProps<{
   keyboard?: string,
   active?: boolean
 }>()
@@ -18,7 +18,7 @@ defineEmits(['click'])
          :class="active && 'active'">
       <span><slot></slot></span>
       <div class="key-notice" v-if="keyboard">
-        <keyboard-one theme="outline" size="14" fill="#ffffff" :strokeWidth="2"/>
+        <Icon icon="bi:keyboard" width="14" color="#ffffff"/>
         <span class="key">{{ keyboard }}</span>
       </div>
     </div>

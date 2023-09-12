@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
 import {Dict, DictType, Sort, State, Word} from "../types.ts"
-import {chunk, cloneDeep} from "lodash";
+import {chunk, cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 
 export const useBaseStore = defineStore('base', {

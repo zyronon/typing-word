@@ -22,9 +22,12 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": false,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules"
+    ],
     "types": [
       "vue/ref-macros",
-      "unplugin-icons/types/vue",
       "element-plus/global"
     ],
     "baseUrl": "src",

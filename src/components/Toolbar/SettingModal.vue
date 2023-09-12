@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Modal from "@/components/Modal/Modal.vue"
-import {HeadphoneSound, SettingConfig} from "@icon-park/vue-next"
 import {useBaseStore} from "@/stores/base.ts"
+import {Icon} from '@iconify/vue';
 
 const tabIndex = $ref(0)
 const store = useBaseStore()
@@ -27,11 +27,11 @@ const emit = defineEmits([
     <div class="setting-modal">
       <div class="tabs">
         <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">
-          <headphone-sound theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2"/>
+          <Icon icon="bx:headphone" width="20" color="#0C8CE9"/>
           <span>音效设置</span>
         </div>
         <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">
-          <setting-config theme="filled" size="20" fill="#0C8CE9" :strokeWidth="2"/>
+          <Icon icon="icon-park-outline:setting-config" width="20" color="#0C8CE9"/>
           <span>其他设置</span>
         </div>
       </div>
@@ -239,6 +239,9 @@ const emit = defineEmits([
       cursor: pointer;
       padding: 10rem 15rem;
       border-radius: 8rem;
+      display: flex;
+      align-items: center;
+      gap: 10rem;
 
       &.active {
         background: whitesmoke;

@@ -2,8 +2,8 @@
 
 import {Word} from "@/types.ts"
 
-const props = defineProps<{
-  list: Word[],
+defineProps<{
+  list: Word[][],
   activeIndex: number
 }>()
 
@@ -18,7 +18,7 @@ function next() {
   <div class="list">
     <div class="item" :class="activeIndex === index && 'active'"
          v-for="(item,index) in list" @click="$emit('update:activeIndex', index)">
-      <div class="title">第{{ index + 1 }}章 {{item.length}}词</div>
+      <div class="title">第{{ index + 1 }}章 {{ item.length }}词</div>
     </div>
   </div>
 </template>

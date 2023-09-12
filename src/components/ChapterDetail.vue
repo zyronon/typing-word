@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import {ArrowLeft} from '@icon-park/vue-next'
+import {Icon} from "@iconify/vue";
 import {computed, inject} from "vue"
 import WordList from "@/components/WordList.vue"
 import {useBaseStore} from "@/stores/base.ts"
 
 const store = useBaseStore()
-const back = inject('back')
-const stepIndex = inject('stepIndex')
-const tabIndex = inject('tabIndex')
+const back: () => void = inject('back')
+const stepIndex: any = inject('stepIndex')
+const tabIndex: any = inject('tabIndex')
 const isActive = computed(() => {
   return stepIndex.value === 2 && tabIndex.value === 0 && store.sideIsOpen
 })
@@ -17,10 +17,10 @@ const isActive = computed(() => {
 <template>
   <div class="chapter-detail page">
     <header>
-      <arrow-left @click="back" theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
+      <Icon icon="octicon:arrow-right-24" @click="back" width="20" color="#929596"/>
       <div class="dict-name">16.</div>
     </header>
-    <WordList :isActive="isActive" :word-list="store.chapter" :activeIndex="store.wordIndex"></WordList>
+    <WordList :isActive="isActive" :list="store.chapter" :activeIndex="store.wordIndex"></WordList>
   </div>
 </template>
 

@@ -1,5 +1,4 @@
-@import "@icon-park/vue-next/styles/index.css";
-@import '/node_modules/element-plus/dist/index.css';
+//@import '/node_modules/element-plus/dist/index.css';
 @import "/node_modules/hover.css";
 @import "colors";
 @import "anim";
@@ -88,4 +87,7 @@ footer {
   cursor: pointer;
 }
 
+.pointer{
+  cursor: pointer;
+}
 

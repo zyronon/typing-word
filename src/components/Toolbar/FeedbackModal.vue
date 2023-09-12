@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Modal from "@/components/Modal/Modal.vue"
-import {HeadphoneSound, SettingConfig} from "@icon-park/vue-next"
 import {useBaseStore} from "@/stores/base.ts"
 import BaseButton from "@/components/BaseButton.vue";
 import {GITHUB} from "@/config/ENV.ts";

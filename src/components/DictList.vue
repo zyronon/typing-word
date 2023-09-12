@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {inject} from "vue"
 
-const next = inject('next')
+const next: () => void = inject('next')
 
 </script>
 

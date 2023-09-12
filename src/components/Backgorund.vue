@@ -9,22 +9,18 @@
 
 import {onMounted} from "vue"
 
-const canvas = $ref()
-let ctx = null
+const canvas = $ref<HTMLCanvasElement>()
 
 onMounted(() => {
   console.log('canvas;', canvas)
-  // ctx = canvas.getContext('2d')
-  let ocas = document.createElement("canvas");
-  let octx = ocas.getContext("2d");
   let ctx = canvas.getContext("2d");
-  ocas.width = canvas.width = window.innerWidth;
-  ocas.height = canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
   let maxRadius = 1,
       stars = [];
 
 
-  let Star = function (x, y, r) {
+  let Star = function (x: number, y: number, r: number) {
     this.x = x;
     this.y = y;
     this.r = r;
@@ -54,7 +50,7 @@ onMounted(() => {
   drawBg()
 
   function drawMoon() {
-    let moon = document.getElementById("moon");
+    let moon: HTMLImageElement = document.getElementById("moon");
     let centerX = canvas.width - 200,
         centerY = 100,
         width = 80;

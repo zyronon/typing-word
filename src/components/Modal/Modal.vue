@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import {Close} from "@icon-park/vue-next"
 import {onMounted} from "vue";
 import Tooltip from "@/components/Tooltip.vue";
+import {Icon} from '@iconify/vue';
 
 interface IProps {
   modelValue: boolean,
+  showClose?: boolean,
   title?: string,
   subTitle?: string,
 }
 
 const props = withDefaults(defineProps<IProps>(), {
   modelValue: true,
+  showClose: true,
 })
 
 const emit = defineEmits([
@@ -39,10 +41,11 @@ onMounted(() => {
         <div class="modal-mask" @click="close"></div>
         <div class="modal">
           <Tooltip title="关闭">
-            <Close @click="close"
-                   class="close"
-                   theme="outline" size="20" fill="#929596"
-                   :strokeWidth="2"/>
+            <Icon @click="close"
+                  v-if="showClose"
+                  class="close hvr-grow pointer"
+                  width="20" color="#929596"
+                  icon="ion:close-outline"/>
           </Tooltip>
           <div class="modal-header" v-if="props.title">
             <div class="title">{{ props.title }}</div>

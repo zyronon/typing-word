@@ -1,5 +1,5 @@
 import {DefaultArticleWord, Sentence, Word} from "@/types.ts";
-import {cloneDeep} from "lodash";
+import {cloneDeep} from "lodash-es";
 
 interface KeyboardMap {
   Period: string,

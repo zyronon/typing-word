@@ -4,8 +4,8 @@ import {$computed, $ref} from "vue/macros"
 import {onMounted, onUnmounted} from "vue"
 import {useBaseStore} from "@/stores/base.ts"
 import Tooltip from "@/components/Tooltip.vue"
-import {Down} from "@icon-park/vue-next"
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
+import {Icon} from "@iconify/vue";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
@@ -16,7 +16,7 @@ function format(val: number, suffix: string = '', check: number = -1) {
 
 const progress = $computed(() => {
   if (!practiceStore.total) return 0
-  if (practiceStore.inputNumber>practiceStore.total) return 100
+  if (practiceStore.inputNumber > practiceStore.total) return 100
   return ((practiceStore.inputNumber / practiceStore.total) * 100)
 })
 
@@ -37,11 +37,11 @@ onUnmounted(() => {
 <template>
   <div class="footer" :class="!store.setting.showToolbar && 'hide'">
     <Tooltip :title="store.setting.showToolbar?'收起':'展开'">
-      <Down
-          @click="store.setting.showToolbar = !store.setting.showToolbar"
-          class="arrow"
-          :class="!store.setting.showToolbar && 'down'"
-          theme="outline" size="24" fill="#999"/>
+      <Icon icon="icon-park-outline:down"
+            @click="store.setting.showToolbar = !store.setting.showToolbar"
+            class="arrow"
+            :class="!store.setting.showToolbar && 'down'"
+            width="24" color="#999"/>
     </Tooltip>
     <div class="bottom">
       <el-progress :percentage="progress"

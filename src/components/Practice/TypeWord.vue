@@ -18,12 +18,8 @@ import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
 import useTheme from "@/hooks/useTheme.ts";
 import Tooltip from "@/components/Tooltip.vue";
 import BaseButton from "@/components/BaseButton.vue";
-import {
-  Down,
-  Delete,
-} from "@icon-park/vue-next"
 import {emitter, EventKey} from "@/utils/eventBus.ts"
-import {cloneDeep} from "lodash"
+import {cloneDeep} from "lodash-es"
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts"
 import {useEventListener} from "@/hooks/useEvent.ts";
 
@@ -66,7 +62,7 @@ watchEffect(() => {
   practiceStore.inputNumber = 0
   practiceStore.wrongNumber = 0
   practiceStore.repeatNumber = 0
-  practiceStore.total =  props.words.length
+  practiceStore.total = props.words.length
   practiceStore.wrongWords = []
   practiceStore.startDate = Date.now()
 })

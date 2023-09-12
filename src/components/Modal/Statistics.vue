@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Modal from "@/components/Modal/Modal.vue";
 import {useBaseStore} from "@/stores/base.ts";
-import {Like, ShareThree, Tea} from '@icon-park/vue-next'
 import Ring from "@/components/Ring.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Fireworks from "@/components/Fireworks.vue";
@@ -9,7 +8,8 @@ import BaseButton from "@/components/BaseButton.vue";
 import {DefaultStatistics, Statistics} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {onMounted, reactive} from "vue";
-import {cloneDeep} from "lodash";
+import {cloneDeep} from "lodash-es";
+import {Icon} from '@iconify/vue';
 
 const store = useBaseStore()
 let statModalIsOpen = $ref(false)
@@ -75,19 +75,16 @@ function next() {
           </div>
           <div class="notice" v-if="!store.current.originWrongWords.length">
             <!--          <div class="notice">-->
-            <like theme="filled" size="20" fill="#ffffff" :strokeWidth="2"/>
+            <Icon class="hvr-grow pointer" icon="flat-color-icons:like" width="20" color="#929596"/>
             表现不错，全对了！
           </div>
         </div>
         <div class="shares">
           <Tooltip title="分享给朋友">
-            <share-three theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
+            <Icon class="hvr-grow pointer" icon="ph:share-light" width="20" color="#929596"/>
           </Tooltip>
-          <Tooltip title="分享给朋友">
-            <tea theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
-          </Tooltip>
-          <Tooltip title="分享给朋友">
-            <share-three theme="outline" size="20" fill="#929596" :strokeWidth="2"/>
+          <Tooltip title="请我喝杯咖啡">
+            <Icon class="hvr-grow pointer"  icon="twemoji:teacup-without-handle" width="20" color="#929596"/>
           </Tooltip>
         </div>
       </div>
