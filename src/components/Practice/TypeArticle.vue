@@ -494,13 +494,13 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
         font-size: 36rem;
         font-weight: 500;
         word-spacing: 3rem;
-        opacity: 0;
+        //opacity: 0;
       }
     }
 
     .article-content {
       position: relative;
-      opacity: 0;
+      //opacity: 0;
     }
 
     article {

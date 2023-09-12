@@ -86,7 +86,7 @@ export const useBaseStore = defineStore('base', {
         repeatCount: 1,
         repeatCustomCount: null,
         dictation: true,
-        showTranslate: true,
+        translate: true,
 
         value1: false,
         value2: 50,

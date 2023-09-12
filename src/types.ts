@@ -189,6 +189,7 @@ export interface State {
     repeatCount: number,
     repeatCustomCount?: number,
     dictation: boolean,
+    translate: boolean,
 
     value1: boolean,
     value2: number,

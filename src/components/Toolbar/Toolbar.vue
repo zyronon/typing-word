@@ -63,11 +63,7 @@ watch(() => store.setting.showToolbar, n => {
           </IconWrapper>
         </Tooltip>
 
-        <Tooltip title="开关释义显示">
-          <IconWrapper>
-            <Icon icon="heroicons-outline:translate"/>
-          </IconWrapper>
-        </Tooltip>
+        <TrabslateSetting/>
 
         <Tooltip title="反馈">
           <IconWrapper>
@@ -96,8 +92,11 @@ watch(() => store.setting.showToolbar, n => {
     <div class="translate-progress">
       <div>翻译进度:</div>
       <el-progress :percentage="80"
+                   striped
+                   :duration="30"
+                   striped-flow
                    :stroke-width="8"
-                   :show-text="false"/>
+                   :show-text="true"/>
     </div>
     <Tooltip :title="store.setting.showToolbar?'收起':'展开'">
       <Icon icon="icon-park-outline:down"

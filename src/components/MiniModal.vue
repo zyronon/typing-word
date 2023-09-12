@@ -18,9 +18,10 @@ withDefaults(defineProps<IProps>(), {
 </template>
 
 <style lang="scss">
-@import "@/assets/css/style";
+@import "@/assets/css/style.scss";
 
 .mini-row {
+  min-height: 35rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
