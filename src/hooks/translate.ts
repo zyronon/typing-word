@@ -1,22 +1,36 @@
 import {Article, Sentence, TranslateEngine} from "@/types.ts";
 import Baidu from "@opentranslate/baidu";
 import {axiosInstance} from "@/utils/http.ts";
-import useSleep from "@/hooks/useSleep.ts";
-import {CnKeyboardMap, useSplitCNArticle} from "@/hooks/useSplitArticle.ts";
+import {CnKeyboardMap, splitCNArticle} from "@/hooks/article.ts";
 import {Translator} from "@opentranslate/translator/src/translator.ts";
 
-export function useLocalTranslate(article: Article, translate: string) {
-  if (translate) {
-    let articleTranslate = useSplitCNArticle(translate, 'cn', CnKeyboardMap)
+export function localTranslate(article: Article, translate: string) {
+  if (translate.trim()) {
+    let articleTranslate = splitCNArticle(translate, 'cn', CnKeyboardMap)
+    console.log('articleTranslate',articleTranslate)
 
     for (let i = 0; i < article.sections.length; i++) {
       let v = article.sections[i]
       for (let j = 0; j < v.length; j++) {
         let sentence = v[j]
-        sentence.translate = articleTranslate[i][j].sentence
+        try {
+          sentence.translate = articleTranslate[i][j].text
+        }catch (e) {
+          console.log('没有对应的翻译',sentence.text)
+        }
       }
     }
   }
+}
+
+export function getCompleteTranslate(article: Article) {
+  let str = ''
+  article.sections.map((v: Sentence[]) => {
+    v.map((w: Sentence, j, arr) => {
+      str += (w.translate ?? w.text) + (j === arr.length - 1 ? '\n' : '')
+    })
+  })
+  return str
 }
 
 /***
@@ -24,10 +38,16 @@ export function useLocalTranslate(article: Article, translate: string) {
  * @param article 文章实体
  * @param translateEngine 翻译引擎
  * @param allShow 是否翻译完所有之后才显示
+ * @param progressCb 进度回调
  * */
-export async function useNetworkTranslate(article: Article, translateEngine: TranslateEngine, allShow: boolean = false) {
+export async function networkTranslate(
+  article: Article,
+  translateEngine: TranslateEngine,
+  allShow: boolean = false,
+  progressCb?: (val: number) => void
+) {
   if (article.networkTranslate) {
-    useLocalTranslate(article, article.networkTranslate)
+    localTranslate(article, article.networkTranslate)
   } else {
     let translator: Translator
     if (translateEngine === TranslateEngine.Baidu) {
@@ -40,18 +60,28 @@ export async function useNetworkTranslate(article: Article, translateEngine: Tra
       }) as any
     }
 
+
     if (translator) {
+      if (!article.titleTranslate) {
+        translator.translate(article.title, 'en', 'zh-CN').then(r => {
+          article.titleTranslate = r.trans.paragraphs[0]
+        })
+      }
+
       let promiseList = []
       let retryCount = 0
       let retryCountMap = new Map()
 
       const translate = async (sentence: Sentence) => {
         try {
-          let r = await translator.translate(sentence.sentence, 'en', 'zh-CN')
+          let r = await translator.translate(sentence.text, 'en', 'zh-CN')
           if (r) {
             const cb = () => {
               sentence.translate = r.trans.paragraphs[0]
-              article.networkTranslate += sentence.translate
+              if (!allShow) {
+                //一次显示所有，顺序会乱
+                article.networkTranslate += sentence.translate
+              }
             }
             return Promise.resolve(cb)
           } else {
@@ -74,48 +104,72 @@ export async function useNetworkTranslate(article: Article, translateEngine: Tra
           if (allShow) {
             promiseList.push(promise)
           } else {
-            retryCountMap.set(sentence.sentence, 0)
+            retryCountMap.set(sentence.text, 0)
             let errResult: any
             let cb = await promise.catch(err => {
               errResult = err
             })
 
             while (errResult) {
-              let count = retryCountMap.get(sentence.sentence)
+              let count = retryCountMap.get(sentence.text)
               if (count > 2) break
               cb = await errResult().catch(err => {
                 errResult = err
               })
-              retryCountMap.set(sentence.sentence, count + 1)
+              retryCountMap.set(sentence.text, count + 1)
             }
             if (cb) cb()
             index++
-            console.log(index, total)
+            if (progressCb) {
+              progressCb(Math.floor((index / total) * 100))
+            }
           }
         }
       }
-      if (!promiseList.length) return
 
-      return new Promise(async resolve => {
-        let cbs = []
-        do {
-          if (retryCount > 2) {
-            return resolve(true)
-          }
-          let results = await Promise.allSettled(promiseList)
-          promiseList = []
-          results.map(results => {
-            if (results.status === 'fulfilled') {
-              cbs.push(results.value)
-            } else {
-              promiseList.push(results.reason())
+      if (promiseList.length) {
+        let timer = -1
+        let progress = 0
+        if (progressCb) {
+          timer = setInterval(() => {
+            progress++
+            if (progress > 90) {
+              return clearInterval(timer)
             }
-          })
-          retryCount++
-        } while (promiseList.length)
-        cbs.map(v => v())
-        resolve(true)
-      })
+            progressCb(progress)
+          }, 100)
+        }
+
+        return new Promise(async resolve => {
+          let cbs = []
+          do {
+            if (retryCount > 2) {
+              return resolve(true)
+            }
+            let results = await Promise.allSettled(promiseList)
+            promiseList = []
+            results.map(results => {
+              if (results.status === 'fulfilled') {
+                cbs.push(results.value)
+              } else {
+                promiseList.push(results.reason())
+              }
+            })
+            retryCount++
+          } while (promiseList.length)
+          cbs.map(v => v())
+          article.networkTranslate = getCompleteTranslate(article)
+
+          if (progressCb) {
+            clearInterval(timer)
+            progress = 91
+            progressCb(100)
+          }
+          resolve(true)
+        })
+      } else {
+        article.networkTranslate = getCompleteTranslate(article)
+      }
     }
   }
 }

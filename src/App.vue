@@ -5,6 +5,7 @@ import {onMounted, watch} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {SaveKey} from "@/types.ts"
 import Practice from "@/components/Practice/Practice.vue"
+import AddArticle from "@/components/Practice/AddArticle.vue";
 
 const store = useBaseStore()
 // 查询当前系统主题颜色
@@ -33,7 +34,8 @@ onMounted(() => {
 <template>
   <!--    <Backgorund/>-->
   <div class="main-page">
-    <Practice/>
+    <!--    <Practice/>-->
+    <AddArticle/>
     <!--      <Side/>-->
     <Statistics></Statistics>
   </div>

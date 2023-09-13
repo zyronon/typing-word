@@ -107,12 +107,14 @@ export interface ArticleWord extends Word {
 }
 
 export interface Sentence {
-  sentence: string,
+  text: string,
   translate: string,
   words: ArticleWord[]
 }
 
 export interface Article {
+  title: string,
+  titleTranslate: string,
   article: string,
   customTranslate: string,
   networkTranslate: string,

@@ -5,20 +5,26 @@ import {Icon} from "@iconify/vue";
 defineProps<{
   keyboard?: string,
   active?: boolean
+  disabled?: boolean
   size?: string
 }>()
 
 defineEmits(['click'])
 
+function click() {
+
+}
 </script>
 
 <template>
   <Tooltip :disabled="!keyboard" :title="`快捷键: ${keyboard}`">
-    <div class="my-button hvr-grow"
-         @click="$emit('click')"
+    <div class="my-button"
+         @click="!disabled && $emit('click')"
          :class="[
              active && 'active',
              size,
+             disabled && 'disabled',
+             !disabled && 'hvr-grow'
          ]">
       <span><slot></slot></span>
       <div class="key-notice" v-if="keyboard">
@@ -44,8 +50,14 @@ defineEmits(['click'])
   //background: #999;
   //background: rgb(60, 63, 65);
   //background: var(--color-second-bg);
-  height: 40rem;
+  height: 36rem;
   line-height: 1;
+
+  &.disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    user-select: none;
+  }
 
   &.small {
     height: 30rem;

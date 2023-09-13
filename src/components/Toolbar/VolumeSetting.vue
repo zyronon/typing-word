@@ -40,6 +40,16 @@ function toggle() {
         </div>
       </div>
       <div class="mini-row">
+        <label class="item-title">释义发音</label>
+        <div class="wrapper">
+          <el-switch v-model="store.setting.translateSound"
+                     inline-prompt
+                     active-text="开"
+                     inactive-text="关"
+          />
+        </div>
+      </div>
+      <div class="mini-row">
         <label class="item-title">按键音</label>
         <div class="wrapper">
           <el-switch v-model="store.setting.keyboardSound"

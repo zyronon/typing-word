@@ -8,9 +8,11 @@ import {useBaseStore} from "@/stores/base.ts";
 import {useWindowClick} from "@/hooks/event.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import BaseButton from "@/components/BaseButton.vue";
+import Modal from "@/components/Modal/Modal.vue";
 
 const store = useBaseStore()
 let show = $ref(false)
+let showCustomTranslateModal = $ref(false)
 
 useWindowClick(() => show = false)
 
@@ -26,9 +28,11 @@ const TranslateEngine = [
   {value: 'youdao', label: '有道'},
 ]
 
-function save(){
+function save() {
 
 }
+
+
 </script>
 
 <template>
@@ -66,9 +70,13 @@ function save(){
       <div class="mini-row" v-if="translateType">
         <label class="item-title">本地翻译</label>
         <div class="wrapper">
-          <Icon icon="mingcute:edit-line"
-                @click="toggle"
-          />
+          <Tooltip title="开关释义显示">
+            <IconWrapper>
+              <Icon icon="mingcute:edit-line"
+                    @click="toggle"
+              />
+            </IconWrapper>
+          </Tooltip>
         </div>
       </div>
       <div class="mini-row" v-else>
@@ -89,6 +97,10 @@ function save(){
         <BaseButton size="small" @click="save">确定</BaseButton>
       </div>
     </MiniModal>
+    <Modal
+        title="A private Conversation!"
+        v-model="showCustomTranslateModal">
+    </Modal>
   </div>
 </template>
 

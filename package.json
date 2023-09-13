@@ -17,6 +17,7 @@
     "@opentranslate/baidu": "^1.4.2",
     "@opentranslate/translator": "^1.4.2",
     "axios": "^1.5.0",
+    "copy-to-clipboard": "^3.3.3",
     "element-plus": "^2.3.9",
     "hover.css": "^2.3.2",
     "localforage": "^1.10.0",
@@ -28,7 +29,6 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
-    "tslib": "^2.6.2",
     "@iconify/vue": "^4.1.1",
     "@types/lodash-es": "^4.17.9",
     "@vitejs/plugin-vue": "^4.2.3",
@@ -39,6 +39,7 @@
     "husky": "^8.0.3",
     "rollup-plugin-visualizer": "^5.9.2",
     "sass": "^1.64.2",
+    "tslib": "^2.6.2",
     "typescript": "^5.2.0",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.2",

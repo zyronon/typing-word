@@ -14,7 +14,6 @@ import 机械3 from '../..//assets/sound/key-sounds/jixie/机械3.mp3'
 import beep from '../..//assets/sound/beep.wav'
 import correct from '../..//assets/sound/correct.wav'
 import {useSound} from "@/hooks/useSound.ts"
-import {CnKeyboardMap, useSplitArticle, useSplitCNArticle} from "@/hooks/useSplitArticle";
 import {$computed, $ref} from "vue/macros";
 import {
   Article,
@@ -31,10 +30,11 @@ import {useBaseStore} from "@/stores/base";
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
 import {useEventListener} from "@/hooks/useEvent.ts";
 import TypeWord from "@/components/Practice/TypeWord.vue";
-import {useLocalTranslate, useNetworkTranslate} from "@/hooks/translate.ts";
+import {localTranslate, networkTranslate} from "@/hooks/translate.ts";
 import IconWrapper from "@/components/IconWrapper.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import MiniModal from "@/components/MiniModal.vue";
+import {splitArticle} from "@/hooks/article.ts";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -94,6 +94,8 @@ let wordData = $ref({
 })
 
 let article = reactive<Article>({
+  title: 'A private conversation!',
+  titleTranslate: '',
   article: article1,
   customTranslate: `上星期我去看戏。我的座位很好，戏很有意思，但我却无法欣赏。一青年男子与一青年女子坐在我的身后，大声地说着话。我非常生气，因为我听不见演员在说什么。我回过头去，怒视着那一男一女，他们却毫不理会。最后，我忍不住了，又一次回过头去，生气地说，“我一个字也听不见了！”
 “不关你的事，”那男的毫不客气地说，“这是私人间的谈话！”`,
@@ -106,7 +108,7 @@ let article = reactive<Article>({
 
 onMounted(async () => {
   if (!article.sections.length) {
-    article.sections = useSplitArticle(article.article)
+    article.sections = splitArticle(article.article)
   }
 
   practiceStore.total = 0
@@ -124,7 +126,7 @@ onMounted(async () => {
 
   console.time()
   // await useNetworkTranslate(article, TranslateEngine.Baidu, true)
-  useLocalTranslate(article, article.customTranslate)
+  localTranslate(article, article.customTranslate)
   console.timeEnd()
   // console.log(cloneDeep(article))
 })
@@ -202,7 +204,7 @@ function onKeyDown(e: KeyboardEvent) {
         if (store.setting.dictation) {
           calcTranslateLocation()
         }
-        playAudio(currentSection[sentenceIndex].sentence)
+        playAudio(currentSection[sentenceIndex].text)
       }
     }
   }
@@ -407,7 +409,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
                       ]"
                       @mouseenter="store.setting.allowWordTip && (hoverIndex = {sectionIndex : indexI,sentenceIndex :indexJ})"
                       @mouseleave="hoverIndex = {sectionIndex : -1,sentenceIndex :-1}"
-                      @click="playAudio(sentence.sentence)"
+                      @click="playAudio(sentence.text)"
                       v-for="(sentence,indexJ) in section">
                   <span
                       v-for="(word,indexW) in sentence.words"

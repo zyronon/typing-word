@@ -28,11 +28,11 @@ export const EnKeyboardMap: KeyboardMap = {
 }
 
 
-export function useSplitArticle(article: string, lang: string = 'en', keyboardMap: KeyboardMap = EnKeyboardMap): Sentence[][] {
+export function splitArticle(article: string, lang: string = 'en', keyboardMap: KeyboardMap = EnKeyboardMap): Sentence[][] {
   let sections: Sentence[][] = []
   let section: Sentence[] = []
   let sentence: Sentence = {
-    sentence: '',
+    text: '',
     translate: '',
     words: []
   }
@@ -66,7 +66,7 @@ export function useSplitArticle(article: string, lang: string = 'en', keyboardMa
         sentence.words.push(word)
         sentence.words.push(cloneDeep({...DefaultArticleWord, name: v, nextSpace: true, isSymbol: true}))
         section.push({
-          sentence: '',
+          text: '',
           translate: '',
           words: []
         })
@@ -137,7 +137,7 @@ export function useSplitArticle(article: string, lang: string = 'en', keyboardMa
           sections.push([])
           section = sections[sections.length - 1]
           section.push({
-            sentence: '',
+            text: '',
             translate: '',
             words: []
           })
@@ -152,7 +152,7 @@ export function useSplitArticle(article: string, lang: string = 'en', keyboardMa
   })
   sections.map((sectionItem, a) => {
     sectionItem.map((sentenceItem, b) => {
-      sentenceItem.sentence = sentenceItem.words.reduce((previousValue: string, currentValue) => {
+      sentenceItem.text = sentenceItem.words.reduce((previousValue: string, currentValue) => {
         previousValue += currentValue.name + (currentValue.nextSpace ? ' ' : '')
         return previousValue
       }, '')
@@ -165,11 +165,11 @@ export function useSplitArticle(article: string, lang: string = 'en', keyboardMa
   return sections
 }
 
-export function useSplitCNArticle(article: string, lang: string = 'en', keyboardMap: KeyboardMap = CnKeyboardMap): Sentence[][] {
+export function splitCNArticle(article: string, lang: string = 'en', keyboardMap: KeyboardMap = CnKeyboardMap): Sentence[][] {
   let sections: Sentence[][] = []
   let section: Sentence[] = []
   let sentence: Sentence = {
-    sentence: '',
+    text: '',
     translate: '',
     words: []
   }
@@ -196,7 +196,7 @@ export function useSplitCNArticle(article: string, lang: string = 'en', keyboard
         sentence.words.push(word)
         sentence.words.push(cloneDeep({...DefaultArticleWord, name: v, nextSpace: true}))
         section.push({
-          sentence: '',
+          text: '',
           translate: '',
           words: []
         })
@@ -271,7 +271,7 @@ export function useSplitCNArticle(article: string, lang: string = 'en', keyboard
           sections.push([])
           section = sections[sections.length - 1]
           section.push({
-            sentence: '',
+            text: '',
             translate: '',
             words: []
           })
@@ -286,7 +286,7 @@ export function useSplitCNArticle(article: string, lang: string = 'en', keyboard
   })
   sections.map((sectionItem, a) => {
     sectionItem.map((sentenceItem, b) => {
-      sentenceItem.sentence = sentenceItem.words.reduce((previousValue: string, currentValue) => {
+      sentenceItem.text = sentenceItem.words.reduce((previousValue: string, currentValue) => {
         previousValue += currentValue.name + (currentValue.nextSpace ? ' ' : '')
         return previousValue
       }, '')
