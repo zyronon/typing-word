@@ -109,6 +109,10 @@ export function splitArticle(article: string, lang: string = 'en', keyboardMap: 
             }
           })
           if (addCurrent) {
+            //`“这是私人谈话”`这种没有结束符号的情况，swtich走不到结束符号，也就不会起新的一行
+            if (word.name.length) {
+              sentence.words.push(word)
+            }
             sentence.words.push(cloneDeep({
               ...DefaultArticleWord,
               name: v,
@@ -132,7 +136,9 @@ export function splitArticle(article: string, lang: string = 'en', keyboardMap: 
 
         break
       case '\n':
-        section.pop()
+        if (!sentence.words.length) {
+          section.pop()
+        }
         if (i !== arr.length - 1) {
           sections.push([])
           section = sections[sections.length - 1]
@@ -204,7 +210,6 @@ export function splitCNArticle(article: string, lang: string = 'en', keyboardMap
         word = cloneDeep(DefaultArticleWord)
         break
       case keyboardMap.QuoteLeft:
-
         sentence.words.push(cloneDeep({
           ...DefaultArticleWord,
           name: v,
@@ -215,7 +220,7 @@ export function splitCNArticle(article: string, lang: string = 'en', keyboardMap
         word = cloneDeep(DefaultArticleWord)
         break
       case keyboardMap.QuoteRight:
-        let symbolPosition = null
+        let nearSymbolPosition = null
         let indexs = {
           a: -1,
           b: -1,
@@ -225,17 +230,15 @@ export function splitCNArticle(article: string, lang: string = 'en', keyboardMap
         sections.toReversed().map((sectionItem, a) => {
           sectionItem.toReversed().map((sentenceItem, b) => {
             sentenceItem.words.toReversed().map((wordItem, c) => {
-              if (wordItem.symbolPosition !== '' && symbolPosition === null) {
-                symbolPosition = wordItem.symbolPosition === 'end'
+              if (wordItem.symbolPosition !== '' && nearSymbolPosition === null) {
+                nearSymbolPosition = wordItem.symbolPosition
                 indexs = {a, b, c}
               }
             })
           })
         })
 
-        if (symbolPosition || symbolPosition === null) {
-
-        } else {
+        if (nearSymbolPosition === 'start' || nearSymbolPosition === null) {
           let addCurrent = false
           sentence.words.toReversed().map((wordItem, c) => {
             if (wordItem.symbolPosition === 'start' && !addCurrent) {
@@ -243,6 +246,10 @@ export function splitCNArticle(article: string, lang: string = 'en', keyboardMap
             }
           })
           if (addCurrent) {
+            //`“这是私人谈话”`这种没有结束符号的情况，swtich走不到结束符号，也就不会起新的一行
+            if (word.name.length) {
+              sentence.words.push(word)
+            }
             sentence.words.push(cloneDeep({
               ...DefaultArticleWord,
               name: v,
@@ -263,10 +270,11 @@ export function splitCNArticle(article: string, lang: string = 'en', keyboardMap
             }))
           }
         }
-
         break
       case '\n':
-        section.pop()
+        if (!sentence.words.length) {
+          section.pop()
+        }
         if (i !== arr.length - 1) {
           sections.push([])
           section = sections[sections.length - 1]
@@ -284,6 +292,8 @@ export function splitCNArticle(article: string, lang: string = 'en', keyboardMap
         break
     }
   })
+  console.log(cloneDeep(sections))
+  sections = sections.filter(sectionItem => sectionItem.length)
   sections.map((sectionItem, a) => {
     sectionItem.map((sentenceItem, b) => {
       sentenceItem.text = sentenceItem.words.reduce((previousValue: string, currentValue) => {

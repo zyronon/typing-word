@@ -122,6 +122,7 @@ export interface Article {
   newWords: Word[],
   articleAllWords: string[],
   sections: Sentence[][],
+  translateType: number
 }
 
 export interface Dict {

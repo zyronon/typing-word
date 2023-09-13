@@ -1,13 +1,13 @@
 import {Article, Sentence, TranslateEngine} from "@/types.ts";
 import Baidu from "@opentranslate/baidu";
 import {axiosInstance} from "@/utils/http.ts";
-import {CnKeyboardMap, splitCNArticle} from "@/hooks/article.ts";
+import {CnKeyboardMap, EnKeyboardMap, splitCNArticle} from "@/hooks/article.ts";
 import {Translator} from "@opentranslate/translator/src/translator.ts";
 
-export function localTranslate(article: Article, translate: string) {
+export function applyLocalTranslate(article: Article, translate: string) {
   if (translate.trim()) {
     let articleTranslate = splitCNArticle(translate, 'cn', CnKeyboardMap)
-    console.log('articleTranslate',articleTranslate)
+    // console.log('articleTranslate', articleTranslate)
 
     for (let i = 0; i < article.sections.length; i++) {
       let v = article.sections[i]
@@ -15,8 +15,8 @@ export function localTranslate(article: Article, translate: string) {
         let sentence = v[j]
         try {
           sentence.translate = articleTranslate[i][j].text
-        }catch (e) {
-          console.log('没有对应的翻译',sentence.text)
+        } catch (e) {
+          // console.log('没有对应的翻译', sentence.text)
         }
       }
     }
@@ -40,14 +40,14 @@ export function getCompleteTranslate(article: Article) {
  * @param allShow 是否翻译完所有之后才显示
  * @param progressCb 进度回调
  * */
-export async function networkTranslate(
+export async function getNetworkTranslate(
   article: Article,
   translateEngine: TranslateEngine,
   allShow: boolean = false,
   progressCb?: (val: number) => void
 ) {
   if (article.networkTranslate) {
-    localTranslate(article, article.networkTranslate)
+    applyLocalTranslate(article, article.networkTranslate)
   } else {
     let translator: Translator
     if (translateEngine === TranslateEngine.Baidu) {
@@ -77,7 +77,16 @@ export async function networkTranslate(
           let r = await translator.translate(sentence.text, 'en', 'zh-CN')
           if (r) {
             const cb = () => {
-              sentence.translate = r.trans.paragraphs[0]
+              //特殊情况
+              // http://localhost:3000/baidu?from=en&to=zh&q=In+the+end,+&salt=1694621045527&appid=20230910001811857&sign=c4f0bf403fd34936c6bc4978b13ad31f
+              //百度翻译In the end，返回的结果没有逗号，导致少了一句，解析出错
+              let str = r.trans.paragraphs[0]
+              if (sentence.words[sentence.words.length - 1].name === EnKeyboardMap.Comma) {
+                if (str[str.length - 1] !== '，') {
+                  str += '，'
+                }
+              }
+              sentence.translate = str
               if (!allShow) {
                 //一次显示所有，顺序会乱
                 article.networkTranslate += sentence.translate

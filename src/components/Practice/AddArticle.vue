@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
-import {reactive, watch} from "vue";
+import {onMounted, reactive, watch} from "vue";
 import {Article, Sentence, TranslateEngine} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
-import {getCompleteTranslate, localTranslate, networkTranslate} from "@/hooks/translate.ts";
+import {getCompleteTranslate, applyLocalTranslate, getNetworkTranslate} from "@/hooks/translate.ts";
 import * as copy from "copy-to-clipboard";
 import {CnKeyboardMap, splitArticle, splitCNArticle} from "@/hooks/article.ts";
 
@@ -19,7 +19,7 @@ INVESTOR'S CHRONICLE, March 23 1990`
 article1 = `How does the older investor differ in his approach to investment from the younger investor?`
 article1 = `Last week I went to the theatre. I had a very good seat. The play was very interesting. I did not enjoy it. A young man and a young woman were sitting behind me. They were talking loudly. I got very angry. I could not hear the actors. I turned round. I looked at the man and the woman angrily. They did not pay any attention. In the end, I could not bear it. I turned round again. ‘I can't hear a word!’ I said angrily.
 ‘It's none of your business, ’ the young man said rudely. ‘This is a private conversation!’`
-// article1 = `Last week I went to the theatre. I had a very good seat. The play was very interesting. I did not enjoy it.`
+article1 = `‘It's none of your business, ’ the young man said rudely. ‘This is a private conversation!’`
 
 let article2 = `What is one of the features of modern camping where nationality is concerned?
 Economy is one powerful motive for camping, since after the initial outlay upon equipment, or through hiring it, the total expense can be far less than the cost of hotels. But, contrary to a popular assumption, it is far from being the only one, or even the greatest. The man who manoeuvres carelessly into his twenty pounds' worth of space at one of Europe's myriad permanent sites may find himself bumping a Bentley. More likely, Ford Escort will be hub to hub with Renault or Mercedes, but rarely with bicycles made for two.
@@ -36,57 +36,1170 @@ NIGEL BUXTON The Great Escape from The Weekend Telegraph`
 let article = reactive<Article>({
   title: 'A private conversation!',
   titleTranslate: '',
-  article: article1,
+  article: article2,
   customTranslate: ``,
-  networkTranslate: '第一周我去了剧院。我坐得很好。这出戏很有趣。我不喜欢它。一个年轻男子和一个年轻女子坐在我身后。他们大声说话。我很生气。我听不见演员们的声音。我转过身来。我愤怒地看着那个男人和那个女人。他们没有理会。最后我无法忍受。我又转过身来。“我一个字也听不见！”我生气地说。\n' +
-      '“这不关你的事，”那个年轻人粗鲁地说。“这是私人谈话！”',
+  networkTranslate: `“这不关你的事，”那个年轻人粗鲁地说。“这是私人谈话”`,
   newWords: [],
   articleAllWords: [],
   sections: [],
-  sections2: [[{
-    "text": "Last week I went to the theatre. ", "translate": "上周我去了剧院。", "words": [{"name": "Last", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "week", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "I", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "went", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "to", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "the", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "theatre", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]
-  }, {"text": "I had a very good seat. ", "translate": "我坐得很好。", "words": [{"name": "I", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "had", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "a", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "very", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "good", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "seat", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]}, {"text": "The play was very interesting. ", "translate": "这出戏很有趣。", "words": [{"name": "The", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "play", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "was", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "very", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "interesting", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]}, {"text": "I did not enjoy it. ", "translate": "我不喜欢它。", "words": [{"name": "I", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "did", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "not", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "enjoy", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "it", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]}, {
-    "text": "A young man and a young woman were sitting behind me. ", "translate": "一个年轻男子和一个年轻女子坐在我身后。", "words": [{"name": "A", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "young", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "man", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "and", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "a", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "young", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "woman", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "were", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "sitting", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "behind", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "me", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]
-  }, {"text": "They were talking loudly. ", "translate": "他们大声说话。", "words": [{"name": "They", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "were", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "talking", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "loudly", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]}, {"text": "I got very angry. ", "translate": "我很生气。", "words": [{"name": "I", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "got", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "very", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "angry", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]}, {"text": "I could not hear the actors. ", "translate": "我听不见演员们的声音。", "words": [{"name": "I", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "could", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "not", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "hear", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "the", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "actors", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]}, {"text": "I turned round. ", "translate": "我转过身来。", "words": [{"name": "I", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "turned", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "round", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]}, {
-    "text": "I looked at the man and the woman angrily. ", "translate": "我愤怒地看着那个男人和那个女人。", "words": [{"name": "I", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "looked", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "at", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "the", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "man", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "and", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "the", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "woman", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "angrily", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]
-  }, {"text": "They did not pay any attention. ", "translate": "他们没有理会。", "words": [{"name": "They", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "did", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "not", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "pay", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "any", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "attention", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]}, {"text": "In the end, ", "translate": "最后", "words": [{"name": "In", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "the", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "end", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ",", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]}, {"text": "I could not bear it. ", "translate": "我无法忍受。", "words": [{"name": "I", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "could", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "not", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "bear", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "it", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]}, {"text": "I turned round again. ", "translate": "我又转过身来。", "words": [{"name": "I", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "turned", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "round", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "again", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]}, {
-    "text": "\"I can't hear a word!\" ", "translate": "“我一个字也听不见！”", "words": [{"name": "\"", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": true, "symbolPosition": "start"}, {"name": "I", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "can't", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "hear", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "a", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "word", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": "!", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": true, "symbolPosition": ""}, {"name": "\"", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": "end"}]
-  }, {"text": "I said angrily. ", "translate": "我生气地说。", "words": [{"name": "I", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "said", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "angrily", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]}], [{
-    "text": "\"It's none of your business,\" ", "translate": "“这不关你的事，”", "words": [{"name": "\"", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": true, "symbolPosition": "start"}, {"name": "It's", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "none", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "of", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "your", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "business", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ",", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": true, "symbolPosition": ""}, {"name": "\"", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": "end"}]
-  }, {"text": "the young man said rudely. ", "translate": "那个年轻人粗鲁地说。", "words": [{"name": "the", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "young", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "man", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "said", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "rudely", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": ".", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": ""}]}, {
-    "text": "\"This is a private conversation!\" ", "translate": "“这是私人谈话！”", "words": [{"name": "\"", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": true, "symbolPosition": "start"}, {"name": "This", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "is", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "a", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "private", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": false, "symbolPosition": ""}, {"name": "conversation", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": false, "symbolPosition": ""}, {"name": "!", "usphone": "", "ukphone": "", "trans": [], "nextSpace": false, "isSymbol": true, "symbolPosition": ""}, {"name": "\"", "usphone": "", "ukphone": "", "trans": [], "nextSpace": true, "isSymbol": true, "symbolPosition": "end"}]
-  }]],
+  sections2: [
+    [
+      {
+        "text": "Last week I went to the theatre. ",
+        "translate": "上周我去了剧院。",
+        "words": [{
+          "name": "Last",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": true,
+          "isSymbol": false,
+          "symbolPosition": ""
+        }, {
+          "name": "week",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": true,
+          "isSymbol": false,
+          "symbolPosition": ""
+        }, {
+          "name": "I",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": true,
+          "isSymbol": false,
+          "symbolPosition": ""
+        }, {
+          "name": "went",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": true,
+          "isSymbol": false,
+          "symbolPosition": ""
+        }, {
+          "name": "to",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": true,
+          "isSymbol": false,
+          "symbolPosition": ""
+        }, {
+          "name": "the",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": true,
+          "isSymbol": false,
+          "symbolPosition": ""
+        }, {
+          "name": "theatre",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": false,
+          "isSymbol": false,
+          "symbolPosition": ""
+        }, {
+          "name": ".",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": true,
+          "isSymbol": true,
+          "symbolPosition": ""
+        }]
+      }, {
+      "text": "I had a very good seat. ",
+      "translate": "我坐得很好。",
+      "words": [{
+        "name": "I",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "had",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "a",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "very",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "good",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "seat",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ".",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }, {
+      "text": "The play was very interesting. ",
+      "translate": "这出戏很有趣。",
+      "words": [{
+        "name": "The",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "play",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "was",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "very",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "interesting",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ".",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }, {
+      "text": "I did not enjoy it. ",
+      "translate": "我不喜欢它。",
+      "words": [{
+        "name": "I",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "did",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "not",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "enjoy",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "it",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ".",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }, {
+      "text": "A young man and a young woman were sitting behind me. ",
+      "translate": "一个年轻男子和一个年轻女子坐在我身后。",
+      "words": [{
+        "name": "A",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "young",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "man",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "and",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "a",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "young",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "woman",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "were",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "sitting",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "behind",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "me",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ".",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }, {
+      "text": "They were talking loudly. ",
+      "translate": "他们大声说话。",
+      "words": [{
+        "name": "They",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "were",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "talking",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "loudly",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ".",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }, {
+      "text": "I got very angry. ",
+      "translate": "我很生气。",
+      "words": [{
+        "name": "I",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "got",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "very",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "angry",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ".",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }, {
+      "text": "I could not hear the actors. ",
+      "translate": "我听不见演员们的声音。",
+      "words": [{
+        "name": "I",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "could",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "not",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "hear",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "the",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "actors",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ".",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }, {
+      "text": "I turned round. ",
+      "translate": "我转过身来。",
+      "words": [{
+        "name": "I",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "turned",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "round",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ".",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }, {
+      "text": "I looked at the man and the woman angrily. ",
+      "translate": "我愤怒地看着那个男人和那个女人。",
+      "words": [{
+        "name": "I",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "looked",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "at",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "the",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "man",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "and",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "the",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "woman",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "angrily",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ".",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }, {
+      "text": "They did not pay any attention. ",
+      "translate": "他们没有理会。",
+      "words": [{
+        "name": "They",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "did",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "not",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "pay",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "any",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "attention",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ".",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }, {
+      "text": "In the end, ",
+      "translate": "最后",
+      "words": [{
+        "name": "In",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "the",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "end",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ",",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }, {
+      "text": "I could not bear it. ",
+      "translate": "我无法忍受。",
+      "words": [{
+        "name": "I",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "could",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "not",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "bear",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "it",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ".",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }, {
+      "text": "I turned round again. ",
+      "translate": "我又转过身来。",
+      "words": [{
+        "name": "I",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "turned",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "round",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "again",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ".",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }, {
+      "text": "\"I can't hear a word!\" ",
+      "translate": "“我一个字也听不见！”",
+      "words": [{
+        "name": "\"",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": true,
+        "symbolPosition": "start"
+      }, {
+        "name": "I",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "can't",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "hear",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "a",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "word",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "!",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }, {
+        "name": "\"",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": "end"
+      }]
+    }, {
+      "text": "I said angrily. ",
+      "translate": "我生气地说。",
+      "words": [{
+        "name": "I",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "said",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "angrily",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ".",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }],
+    [
+      {
+        "text": "\"It's none of your business,\" ",
+        "translate": "“这不关你的事，”",
+        "words": [{
+          "name": "\"",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": false,
+          "isSymbol": true,
+          "symbolPosition": "start"
+        }, {
+          "name": "It's",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": true,
+          "isSymbol": false,
+          "symbolPosition": ""
+        }, {
+          "name": "none",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": true,
+          "isSymbol": false,
+          "symbolPosition": ""
+        }, {
+          "name": "of",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": true,
+          "isSymbol": false,
+          "symbolPosition": ""
+        }, {
+          "name": "your",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": true,
+          "isSymbol": false,
+          "symbolPosition": ""
+        }, {
+          "name": "business",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": false,
+          "isSymbol": false,
+          "symbolPosition": ""
+        }, {
+          "name": ",",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": false,
+          "isSymbol": true,
+          "symbolPosition": ""
+        }, {
+          "name": "\"",
+          "usphone": "",
+          "ukphone": "",
+          "trans": [],
+          "nextSpace": true,
+          "isSymbol": true,
+          "symbolPosition": "end"
+        }]
+      }, {
+      "text": "the young man said rudely. ",
+      "translate": "那个年轻人粗鲁地说。",
+      "words": [{
+        "name": "the",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "young",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "man",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "said",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "rudely",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": ".",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }]
+    }, {
+      "text": "\"This is a private conversation!\" ",
+      "translate": "“这是私人谈话！”",
+      "words": [{
+        "name": "\"",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": true,
+        "symbolPosition": "start"
+      }, {
+        "name": "This",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "is",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "a",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "private",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "conversation",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": false,
+        "symbolPosition": ""
+      }, {
+        "name": "!",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": false,
+        "isSymbol": true,
+        "symbolPosition": ""
+      }, {
+        "name": "\"",
+        "usphone": "",
+        "ukphone": "",
+        "trans": [],
+        "nextSpace": true,
+        "isSymbol": true,
+        "symbolPosition": "end"
+      }]
+    }]
+  ],
   isTranslated: false,
+  translateType: 0,
 })
 
-let translateType = $ref(0)
 let networkTranslateEngine = $ref('baidu')
 let progress = $ref(0)
-let editTranslateStr = $ref('')
+let editTranslateStr = $ref<string>('')
 const TranslateEngineOptions = [
   {value: 'baidu', label: '百度'},
   {value: 'youdao', label: '有道'},
 ]
 
-async function startTranslate() {
-  if (!article.sections.length) {
-    article.sections = splitArticle(article.article)
-    article.sections.map((v: Sentence[]) => {
-      v.map((w: Sentence) => {
-        w.edit = false
-      })
+function getSections() {
+  article.sections = splitArticle(article.article)
+  article.sections.map((v: Sentence[]) => {
+    v.map((w: Sentence) => {
+      w.edit = false
     })
-  }
+  })
+}
 
+function parseArticle() {
+  if (article.article.trim()) {
+    if (!article.sections.length) {
+      getSections()
+
+      if (article.translateType) {
+        applyLocalTranslate(article, article.customTranslate)
+      } else {
+        applyLocalTranslate(article, article.networkTranslate)
+      }
+    }
+  }
+}
+
+onMounted(() => {
+  parseArticle()
+})
+
+watch(() => article.translateType, () => {
+  if (article.article.trim()) {
+    if (article.translateType) {
+      if (!article.customTranslate.trim()) {
+        getSections()
+      } else {
+        applyLocalTranslate(article, article.customTranslate)
+      }
+    } else {
+      if (!article.networkTranslate.trim()) {
+        getSections()
+      } else {
+        applyLocalTranslate(article, article.networkTranslate)
+      }
+    }
+  }
+})
+
+async function startNetworkTranslate() {
+  getSections()
   article.networkTranslate = ''
-  await networkTranslate(article, TranslateEngine.Baidu, true, (v: number) => {
+  await getNetworkTranslate(article, TranslateEngine.Baidu, true, (v: number) => {
     progress = v
   })
 
   copy(JSON.stringify(article.sections))
 }
 
-function editTranslate(sentence: Sentence) {
+function editSentenceTranslate(sentence: Sentence) {
   article.sections.map((v: Sentence[]) => {
     v.map((w: Sentence) => {
       w.edit = false
@@ -96,34 +1209,45 @@ function editTranslate(sentence: Sentence) {
   editTranslateStr = sentence.translate
 }
 
-function save(sentence: Sentence) {
+function saveSentenceTranslate(sentence: Sentence) {
   sentence.translate = editTranslateStr
   sentence.edit = false
-
-  if (translateType) {
+  //获取最新的译文，然后再重新设置（因为用户可能乱加标点符号，如果不重新设置，那么下次解析会出错，不出当前就展示出来）
+  if (article.translateType) {
     article.customTranslate = getCompleteTranslate(article)
+    applyLocalTranslate(article, article.customTranslate)
   } else {
     article.networkTranslate = getCompleteTranslate(article)
+    applyLocalTranslate(article, article.networkTranslate)
+  }
+
+  let symbolCount = editTranslateStr.split('').filter(s => [
+    CnKeyboardMap.Comma,
+    CnKeyboardMap.Period,
+    CnKeyboardMap.Slash,
+    CnKeyboardMap.Exclamation,
+  ].includes(s)).length
+  if (symbolCount > 1) {
+    //TODO
+    console.log('译文的分句符号超过一个，将会进行短句')
   }
 }
 
 function changeArticleTranslate(e: string) {
-  console.log('e', e)
-  localTranslate(article, e)
+  if (article.article.trim()) {
+    getSections()
+    applyLocalTranslate(article, e)
+  }
 }
 
 function changeArticle() {
-  if (!article.article.trim()) return
-  article.sections = splitArticle(article.article)
-  article.sections.map((v: Sentence[]) => {
-    v.map((w: Sentence) => {
-      w.edit = false
-    })
-  })
-  if (translateType) {
-    localTranslate(article, article.customTranslate)
-  } else {
-    localTranslate(article, article.networkTranslate)
+  if (article.article.trim()) {
+    getSections()
+    if (article.translateType) {
+      applyLocalTranslate(article, article.customTranslate)
+    } else {
+      applyLocalTranslate(article, article.networkTranslate)
+    }
   }
 }
 </script>
@@ -148,6 +1272,7 @@ function changeArticle() {
           <el-input
               v-model="article.article"
               @input="changeArticle"
+              :disabled="![100,0].includes(progress)"
               :rows="23"
               type="textarea"
               placeholder="请填写原文正文"
@@ -159,13 +1284,13 @@ function changeArticle() {
         <div class="title">译文</div>
         <div class="item">
           <div class="label">翻译类型：</div>
-          <el-radio-group v-model="translateType">
+          <el-radio-group v-model="article.translateType">
             <el-radio-button :label="1">本地翻译</el-radio-button>
             <el-radio-button :label="0">网络翻译</el-radio-button>
           </el-radio-group>
         </div>
-        <div class="translate" v-if="!translateType">
-          <BaseButton @click="startTranslate" :disabled="!article.article.trim()">开始翻译</BaseButton>
+        <div class="translate" v-if="!article.translateType">
+          <BaseButton @click="startNetworkTranslate" :disabled="!article.article.trim()">开始翻译</BaseButton>
           <el-select v-model="networkTranslateEngine"
                      style="width: 80rem;"
           >
@@ -196,21 +1321,23 @@ function changeArticle() {
         <div class="item">
           <div class="label">正文：</div>
           <el-input
-              v-if="translateType"
+              v-if="article.translateType"
               v-model="article.customTranslate"
               @input="changeArticleTranslate"
+              :disabled="![100,0].includes(progress)"
               :rows="20"
               type="textarea"
-              placeholder="请填定翻译正文"
+              placeholder="请填写翻译正文"
               input-style="color:black;font-size:16rem;"
           />
           <el-input
               v-else
               v-model="article.networkTranslate"
               @input="changeArticleTranslate"
+              :disabled="true"
               :rows="20"
               type="textarea"
-              placeholder="请填定翻译正文"
+              placeholder="请填写翻译正文"
               input-style="color:black;font-size:16rem;"
           />
         </div>
@@ -230,10 +1357,10 @@ function changeArticle() {
                 />
                 <div class="options">
                   <BaseButton @click="sentence.edit = false">取消</BaseButton>
-                  <BaseButton @click="save(sentence)">保存</BaseButton>
+                  <BaseButton @click="saveSentenceTranslate(sentence)">保存</BaseButton>
                 </div>
               </div>
-              <div class="text-translate" v-else @click="editTranslate(sentence)">
+              <div class="text-translate" v-else @click="editSentenceTranslate(sentence)">
                 {{ sentence.translate }}
               </div>
             </div>
