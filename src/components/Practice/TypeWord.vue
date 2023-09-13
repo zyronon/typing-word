@@ -129,7 +129,13 @@ async function onKeyDown(e: KeyboardEvent) {
   //TODO 还有横杠
   if ((e.keyCode >= 65 && e.keyCode <= 90) || e.code === 'Space') {
     let letter = e.key
-    if ((input + letter).toLowerCase() === word.name.toLowerCase().slice(0, input.length + 1)) {
+    let isWrong = false
+    if (store.setting.ignoreCase) {
+      isWrong = (input + letter).toLowerCase() === word.name.toLowerCase().slice(0, input.length + 1)
+    } else {
+      isWrong = (input + letter) === word.name.slice(0, input.length + 1)
+    }
+    if (isWrong) {
       input += letter
       wrong = ''
       playKeySound()
@@ -152,7 +158,7 @@ async function onKeyDown(e: KeyboardEvent) {
     }
     if (input.toLowerCase() === word.name.toLowerCase()) {
       playCorrect()
-      setTimeout(next, 300)
+      setTimeout(next, store.setting.waitTimeForChangeWord)
     }
   } else {
     // console.log('e', e)
@@ -187,7 +193,9 @@ async function onKeyDown(e: KeyboardEvent) {
         next()
         break
       case ShortKeyMap.Show:
-        showFullWord = true
+        if (store.setting.allowWordTip) {
+          showFullWord = true
+        }
         break
     }
     setTimeout(() => {
@@ -199,14 +207,22 @@ async function onKeyDown(e: KeyboardEvent) {
 
 <template>
   <div class="type-word">
-    <div class="translate">{{ word.trans.join('；') }}</div>
+    <div class="translate"
+         :style="{fontSize: store.setting.foreignLanguageFontSize +'rem'}"
+    >{{ word.trans.join('；') }}
+    </div>
     <div class="word-wrapper">
-      <div class="word" :class="wrong && 'is-wrong'">
+      <div class="word"
+           :class="wrong && 'is-wrong'"
+           :style="{fontSize: store.setting.translateLanguageFontSize +'rem'}"
+      >
         <span class="input" v-if="input">{{ input }}</span>
         <span class="wrong" v-if="wrong">{{ wrong }}</span>
         <template v-if="store.setting.dictation">
           <span class="letter" v-if="!showFullWord"
-                @mouseenter="showFullWord = true">{{ resetWord.split('').map(v => '_').join('') }}</span>
+                @mouseenter="store.setting.allowWordTip && (showFullWord = true)">{{
+              resetWord.split('').map(v => '_').join('')
+            }}</span>
           <span class="letter" v-else @mouseleave="showFullWord = false">{{ resetWord }}</span>
         </template>
         <span class="letter" v-else>{{ resetWord }}</span>

@@ -13,6 +13,7 @@ declare module 'vue' {
     ChapterList: typeof import('./src/components/ChapterList.vue')['default']
     DictList: typeof import('./src/components/DictList.vue')['default']
     DictModal: typeof import('./src/components/Toolbar/DictModal.vue')['default']
+    ElInput: typeof import('element-plus/es')['ElInput']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElProgress: typeof import('element-plus/es')['ElProgress']

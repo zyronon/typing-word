@@ -25,6 +25,10 @@ const TranslateEngine = [
   {value: 'baidu', label: '百度'},
   {value: 'youdao', label: '有道'},
 ]
+
+function save(){
+
+}
 </script>
 
 <template>
@@ -55,11 +59,11 @@ const TranslateEngine = [
       <div class="mini-row">
         <label class="item-title">翻译类型</label>
         <el-radio-group v-model="translateType" size="small">
-          <el-radio-button :label="0">本地翻译</el-radio-button>
-          <el-radio-button :label="1">网络翻译</el-radio-button>
+          <el-radio-button :label="1">本地翻译</el-radio-button>
+          <el-radio-button :label="0">网络翻译</el-radio-button>
         </el-radio-group>
       </div>
-      <div class="mini-row">
+      <div class="mini-row" v-if="translateType">
         <label class="item-title">本地翻译</label>
         <div class="wrapper">
           <Icon icon="mingcute:edit-line"
@@ -67,7 +71,7 @@ const TranslateEngine = [
           />
         </div>
       </div>
-      <div class="mini-row">
+      <div class="mini-row" v-else>
         <label class="item-title">网络翻译</label>
         <div class="wrapper">
           <el-select v-model="networkTranslateEngine" class="m-2" placeholder="Select" size="small">
@@ -81,8 +85,8 @@ const TranslateEngine = [
         </div>
       </div>
       <div class="footer">
-        <BaseButton>取消</BaseButton>
-        <BaseButton>确定</BaseButton>
+        <BaseButton size="small" @click="show = false">取消</BaseButton>
+        <BaseButton size="small" @click="save">确定</BaseButton>
       </div>
     </MiniModal>
   </div>
@@ -99,5 +103,6 @@ const TranslateEngine = [
   margin-top: 10rem;
   display: flex;
   justify-content: flex-end;
+  gap: 10rem;
 }
 </style>

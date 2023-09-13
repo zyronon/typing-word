@@ -30,9 +30,9 @@ function toggle() {
     </Tooltip>
     <MiniModal v-model="show">
       <div class="mini-row">
-        <label class="item-title">按键音</label>
+        <label class="item-title">单词发音</label>
         <div class="wrapper">
-          <el-switch v-model="store.setting.keybroadVolume"
+          <el-switch v-model="store.setting.wordSound"
                      inline-prompt
                      active-text="开"
                      inactive-text="关"
@@ -42,7 +42,17 @@ function toggle() {
       <div class="mini-row">
         <label class="item-title">按键音</label>
         <div class="wrapper">
-          <el-switch v-model="store.setting.effectVolume"
+          <el-switch v-model="store.setting.keyboardSound"
+                     inline-prompt
+                     active-text="开"
+                     inactive-text="关"
+          />
+        </div>
+      </div>
+      <div class="mini-row">
+        <label class="item-title">效果音</label>
+        <div class="wrapper">
+          <el-switch v-model="store.setting.effectSound"
                      inline-prompt
                      active-text="开"
                      inactive-text="关"

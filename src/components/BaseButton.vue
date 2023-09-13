@@ -5,6 +5,7 @@ import {Icon} from "@iconify/vue";
 defineProps<{
   keyboard?: string,
   active?: boolean
+  size?: string
 }>()
 
 defineEmits(['click'])
@@ -15,7 +16,10 @@ defineEmits(['click'])
   <Tooltip :disabled="!keyboard" :title="`快捷键: ${keyboard}`">
     <div class="my-button hvr-grow"
          @click="$emit('click')"
-         :class="active && 'active'">
+         :class="[
+             active && 'active',
+             size,
+         ]">
       <span><slot></slot></span>
       <div class="key-notice" v-if="keyboard">
         <Icon icon="bi:keyboard" width="14" color="#ffffff"/>
@@ -42,6 +46,14 @@ defineEmits(['click'])
   //background: var(--color-second-bg);
   height: 40rem;
   line-height: 1;
+
+  &.small {
+    height: 30rem;
+
+    & > span {
+      font-size: 13rem;
+    }
+  }
 
   & > span {
     font-size: 16rem;

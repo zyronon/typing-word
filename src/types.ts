@@ -184,12 +184,25 @@ export interface State {
     showToolbar: boolean,
     show: boolean,
 
-    keyboardVolume: boolean,
-    effectVolume: boolean,
+    wordSound: boolean,
+    wordSoundVolume: number,
+    wordSoundSpeed: number,
+    keyboardSound: boolean,
+    keyboardSoundVolume: number,
+    translateSound: boolean,
+    translateSoundVolume: number,
+    effectSound: boolean,
+    effectSoundVolume: number,
     repeatCount: number,
     repeatCustomCount?: number,
     dictation: boolean,
     translate: boolean,
+    showNearWord: boolean
+    ignoreCase: boolean
+    allowWordTip: boolean
+    waitTimeForChangeWord: number
+    foreignLanguageFontSize: number,
+    translateLanguageFontSize: number,
 
     value1: boolean,
     value2: number,

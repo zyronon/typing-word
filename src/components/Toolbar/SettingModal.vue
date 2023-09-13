@@ -2,6 +2,7 @@
 import Modal from "@/components/Modal/Modal.vue"
 import {useBaseStore} from "@/stores/base.ts"
 import {Icon} from '@iconify/vue';
+import {watch, ref} from "vue";
 
 const tabIndex = $ref(0)
 const store = useBaseStore()
@@ -17,6 +18,30 @@ const props = withDefaults(defineProps<IProps>(), {
 const emit = defineEmits([
   'update:modelValue',
 ])
+
+let allSound = $ref<boolean>(true)
+
+watch([
+  () => store.setting.wordSound,
+  () => store.setting.keyboardSound,
+  () => store.setting.translateSound,
+  () => store.setting.effectSound,
+], (n) => {
+  if (n.some(v => v)) {
+    allSound = true
+  } else {
+    allSound = false
+  }
+})
+
+function changAllSound(e: boolean) {
+  allSound = e
+  store.setting.wordSound = e
+  store.setting.keyboardSound = e
+  store.setting.translateSound = e
+  store.setting.effectSound = e
+}
+
 </script>
 
 <template>
@@ -40,7 +65,8 @@ const emit = defineEmits([
           <div class="row">
             <label class="main-title">所有音效</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.value1"
+              <el-switch v-model="allSound"
+                         @change="changAllSound"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -51,7 +77,7 @@ const emit = defineEmits([
           <div class="row">
             <label class="item-title">单词发音</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.value1"
+              <el-switch v-model="store.setting.wordSound"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -61,22 +87,22 @@ const emit = defineEmits([
           <div class="row">
             <label class="sub-title">音量</label>
             <div class="wrapper">
-              <el-slider v-model="store.setting.value2"/>
-              <span>{{ store.setting.value2 }}%</span>
+              <el-slider v-model="store.setting.wordSoundVolume"/>
+              <span>{{ store.setting.wordSoundVolume }}%</span>
             </div>
           </div>
           <div class="row">
-            <label class="sub-title">音量</label>
+            <label class="sub-title">倍速</label>
             <div class="wrapper">
-              <el-slider v-model="store.setting.value3" :step="0.1" :max="4"/>
-              <span>{{ store.setting.value3 }}</span>
+              <el-slider v-model="store.setting.wordSoundSpeed" :step="0.1" :min="1" :max="4"/>
+              <span>{{ store.setting.wordSoundSpeed }}</span>
             </div>
           </div>
           <div class="line"></div>
           <div class="row">
             <label class="item-title">按键音</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.value1"
+              <el-switch v-model="store.setting.keyboardSound"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -86,15 +112,15 @@ const emit = defineEmits([
           <div class="row">
             <label class="sub-title">音量</label>
             <div class="wrapper">
-              <el-slider v-model="store.setting.value2"/>
-              <span>{{ store.setting.value2 }}%</span>
+              <el-slider v-model="store.setting.keyboardSoundVolume"/>
+              <span>{{ store.setting.keyboardSoundVolume }}%</span>
             </div>
           </div>
           <div class="line"></div>
           <div class="row">
             <label class="item-title">释义发音</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.value1"
+              <el-switch v-model="store.setting.translateSound"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -104,15 +130,15 @@ const emit = defineEmits([
           <div class="row">
             <label class="sub-title">音量</label>
             <div class="wrapper">
-              <el-slider v-model="store.setting.value2"/>
-              <span>{{ store.setting.value2 }}%</span>
+              <el-slider v-model="store.setting.translateSoundVolume"/>
+              <span>{{ store.setting.translateSoundVolume }}%</span>
             </div>
           </div>
           <div class="line"></div>
           <div class="row">
             <label class="item-title">效果音（章节结算页烟花音效）</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.value1"
+              <el-switch v-model="store.setting.effectSound"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -122,8 +148,8 @@ const emit = defineEmits([
           <div class="row">
             <label class="sub-title">音量</label>
             <div class="wrapper">
-              <el-slider v-model="store.setting.value2"/>
-              <span>{{ store.setting.value2 }}%</span>
+              <el-slider v-model="store.setting.effectSoundVolume"/>
+              <span>{{ store.setting.effectSoundVolume }}%</span>
             </div>
           </div>
         </div>
@@ -145,7 +171,7 @@ const emit = defineEmits([
           <div class="row">
             <label class="item-title">练习时展示上一个/下一个单词</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.value1"
+              <el-switch v-model="store.setting.showNearWord"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -159,7 +185,7 @@ const emit = defineEmits([
           <div class="row">
             <label class="item-title">是否忽略大小写</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.value1"
+              <el-switch v-model="store.setting.ignoreCase"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -173,7 +199,7 @@ const emit = defineEmits([
           <div class="row">
             <label class="item-title">是否允许默写模式下显示提示</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.value1"
+              <el-switch v-model="store.setting.allowWordTip"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -181,7 +207,7 @@ const emit = defineEmits([
             </div>
           </div>
           <div class="desc">
-            开启后，可以通过鼠标 hover 单词显示正确答案
+            开启后，可以通过鼠标 hover 单词或者按 Esc键 显示正确答案
           </div>
           <div class="line"></div>
           <div class="row">
@@ -190,15 +216,21 @@ const emit = defineEmits([
           <div class="row">
             <label class="sut-title">外语字体</label>
             <div class="wrapper">
-              <el-slider v-model="store.setting.value2"/>
-              <span>{{ store.setting.value2 }}px</span>
+              <el-slider
+                  :min="10"
+                  :max="100"
+                  v-model="store.setting.foreignLanguageFontSize"/>
+              <span>{{ store.setting.foreignLanguageFontSize }}</span>
             </div>
           </div>
           <div class="row">
             <label class="sut-title">中文字体</label>
             <div class="wrapper">
-              <el-slider v-model="store.setting.value2"/>
-              <span>{{ store.setting.value2 }}px</span>
+              <el-slider
+                  :min="10"
+                  :max="100"
+                  v-model="store.setting.translateLanguageFontSize"/>
+              <span>{{ store.setting.translateLanguageFontSize }}</span>
             </div>
           </div>
 
@@ -209,7 +241,12 @@ const emit = defineEmits([
           <div class="row">
             <label class="sut-title">切换下一个单词时间</label>
             <div class="wrapper">
-              <span>{{ store.setting.value2 }}毫秒</span>
+              <el-input-number v-model="store.setting.waitTimeForChangeWord"
+                               :min="6"
+                               :max="100"
+                               type="number"
+              />
+              <span>毫秒</span>
             </div>
           </div>
         </div>

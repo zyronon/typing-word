@@ -240,7 +240,14 @@ function onKeyDown(e: KeyboardEvent) {
 
       let key = currentWord.name[stringIndex]
       console.log('key', key,)
-      if (key === letter) {
+
+      let isWrong = false
+      if (store.setting.ignoreCase) {
+        isWrong = key.toLowerCase() === letter.toLowerCase()
+      } else {
+        isWrong = key === letter
+      }
+      if (isWrong) {
         input += letter
         wrong = ''
         // console.log('匹配上了')
@@ -299,9 +306,11 @@ function onKeyDown(e: KeyboardEvent) {
 
         break
       case ShortKeyMap.Show:
-        hoverIndex = {
-          sectionIndex: sectionIndex,
-          sentenceIndex: sentenceIndex,
+        if (store.setting.allowWordTip) {
+          hoverIndex = {
+            sectionIndex: sectionIndex,
+            sentenceIndex: sentenceIndex,
+          }
         }
         break
     }
@@ -396,7 +405,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
                           sectionIndex === indexI && sentenceIndex === indexJ && store.setting.dictation
                           ?'dictation':''
                       ]"
-                      @mouseenter="hoverIndex = {sectionIndex : indexI,sentenceIndex :indexJ}"
+                      @mouseenter="store.setting.allowWordTip && (hoverIndex = {sectionIndex : indexI,sentenceIndex :indexJ})"
                       @mouseleave="hoverIndex = {sectionIndex : -1,sentenceIndex :-1}"
                       @click="playAudio(sentence.sentence)"
                       v-for="(sentence,indexJ) in section">
@@ -494,13 +503,13 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
         font-size: 36rem;
         font-weight: 500;
         word-spacing: 3rem;
-        //opacity: 0;
+        opacity: 0;
       }
     }
 
     .article-content {
       position: relative;
-      //opacity: 0;
+      opacity: 0;
     }
 
     article {
