@@ -156,6 +156,7 @@ export function splitArticle(article: string, lang: string = 'en', keyboardMap: 
         break
     }
   })
+  sections = sections.filter(sectionItem => sectionItem.length)
   sections.map((sectionItem, a) => {
     sectionItem.map((sentenceItem, b) => {
       sentenceItem.text = sentenceItem.words.reduce((previousValue: string, currentValue) => {
@@ -164,14 +165,10 @@ export function splitArticle(article: string, lang: string = 'en', keyboardMap: 
       }, '')
     })
   })
-  // if (!sections.length && section.length) {
-  //     sections.push(section)
-  // }
-
   return sections
 }
 
-export function splitCNArticle(article: string, lang: string = 'en', keyboardMap: KeyboardMap = CnKeyboardMap): Sentence[][] {
+export function splitCNArticle(article: string, lang: string = 'cn', keyboardMap: KeyboardMap = CnKeyboardMap): Sentence[][] {
   let sections: Sentence[][] = []
   let section: Sentence[] = []
   let sentence: Sentence = {
@@ -221,18 +218,12 @@ export function splitCNArticle(article: string, lang: string = 'en', keyboardMap
         break
       case keyboardMap.QuoteRight:
         let nearSymbolPosition = null
-        let indexs = {
-          a: -1,
-          b: -1,
-          c: -1
-        }
         //TODO 可以优化成for+break
         sections.toReversed().map((sectionItem, a) => {
           sectionItem.toReversed().map((sentenceItem, b) => {
             sentenceItem.words.toReversed().map((wordItem, c) => {
               if (wordItem.symbolPosition !== '' && nearSymbolPosition === null) {
                 nearSymbolPosition = wordItem.symbolPosition
-                indexs = {a, b, c}
               }
             })
           })
@@ -292,7 +283,7 @@ export function splitCNArticle(article: string, lang: string = 'en', keyboardMap
         break
     }
   })
-  console.log(cloneDeep(sections))
+  // console.log(cloneDeep(sections))
   sections = sections.filter(sectionItem => sectionItem.length)
   sections.map((sectionItem, a) => {
     sectionItem.map((sentenceItem, b) => {
@@ -302,9 +293,20 @@ export function splitCNArticle(article: string, lang: string = 'en', keyboardMap
       }, '')
     })
   })
-  // if (!sections.length && section.length) {
-  //     sections.push(section)
-  // }
 
   return sections
+}
+
+export function getSplitTranslateText(article: string) {
+  let sections = splitCNArticle(article)
+  let str = ''
+  if (sections.length) {
+    sections.map((sectionItem) => {
+      sectionItem.map((sentenceItem) => {
+        str += sentenceItem.text + '\n'
+      })
+      str += '\n'
+    })
+  }
+  return str
 }

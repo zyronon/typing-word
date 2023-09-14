@@ -3,32 +3,49 @@ import Baidu from "@opentranslate/baidu";
 import {axiosInstance} from "@/utils/http.ts";
 import {CnKeyboardMap, EnKeyboardMap, splitCNArticle} from "@/hooks/article.ts";
 import {Translator} from "@opentranslate/translator/src/translator.ts";
+import {cloneDeep} from "lodash-es";
 
-export function applyLocalTranslate(article: Article, translate: string) {
+export function updateLocalSentenceTranslate(article: Article, translate: string) {
   if (translate.trim()) {
-    let articleTranslate = splitCNArticle(translate, 'cn', CnKeyboardMap)
+    let articleTranslate = translate.split('\n')
     // console.log('articleTranslate', articleTranslate)
-
+    let count = 0
     for (let i = 0; i < article.sections.length; i++) {
       let v = article.sections[i]
       for (let j = 0; j < v.length; j++) {
         let sentence = v[j]
         try {
-          sentence.translate = articleTranslate[i][j].text
+          sentence.translate = articleTranslate[count]
         } catch (e) {
-          // console.log('没有对应的翻译', sentence.text)
+          console.log('没有对应的翻译', sentence.text)
         }
+        count++
       }
+      count++
     }
   }
 }
 
-export function getCompleteTranslate(article: Article) {
+export function getSentenceAllTranslateText(article: Article) {
   let str = ''
   article.sections.map((v: Sentence[]) => {
     v.map((w: Sentence, j, arr) => {
-      str += (w.translate ?? w.text) + (j === arr.length - 1 ? '\n' : '')
+      if (w.translate) {
+        str += w.translate + '\n'
+      }
     })
+    str += '\n'
+  })
+  return str
+}
+
+export function getSentenceAllText(article: Article) {
+  let str = ''
+  article.sections.map((v: Sentence[]) => {
+    v.map((w: Sentence, j, arr) => {
+      str += w.text
+    })
+    str += '\n'
   })
   return str
 }
@@ -47,7 +64,7 @@ export async function getNetworkTranslate(
   progressCb?: (val: number) => void
 ) {
   if (article.networkTranslate) {
-    applyLocalTranslate(article, article.networkTranslate)
+    updateLocalSentenceTranslate(article, article.networkTranslate)
   } else {
     let translator: Translator
     if (translateEngine === TranslateEngine.Baidu) {
@@ -77,19 +94,10 @@ export async function getNetworkTranslate(
           let r = await translator.translate(sentence.text, 'en', 'zh-CN')
           if (r) {
             const cb = () => {
-              //特殊情况
-              // http://localhost:3000/baidu?from=en&to=zh&q=In+the+end,+&salt=1694621045527&appid=20230910001811857&sign=c4f0bf403fd34936c6bc4978b13ad31f
-              //百度翻译In the end，返回的结果没有逗号，导致少了一句，解析出错
-              let str = r.trans.paragraphs[0]
-              if (sentence.words[sentence.words.length - 1].name === EnKeyboardMap.Comma) {
-                if (str[str.length - 1] !== '，') {
-                  str += '，'
-                }
-              }
-              sentence.translate = str
+              sentence.translate = r.trans.paragraphs[0]
               if (!allShow) {
                 //一次显示所有，顺序会乱
-                article.networkTranslate += sentence.translate
+                article.networkTranslate += sentence.translate + '\n'
               }
             }
             return Promise.resolve(cb)
@@ -167,17 +175,17 @@ export async function getNetworkTranslate(
             retryCount++
           } while (promiseList.length)
           cbs.map(v => v())
-          article.networkTranslate = getCompleteTranslate(article)
+          article.networkTranslate = getSentenceAllTranslateText(article)
 
           if (progressCb) {
             clearInterval(timer)
-            progress = 91
+            progress = 100
             progressCb(100)
           }
           resolve(true)
         })
       } else {
-        article.networkTranslate = getCompleteTranslate(article)
+        article.networkTranslate = getSentenceAllTranslateText(article)
       }
     }
   }

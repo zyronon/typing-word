@@ -30,7 +30,7 @@ import {useBaseStore} from "@/stores/base";
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
 import {useEventListener} from "@/hooks/useEvent.ts";
 import TypeWord from "@/components/Practice/TypeWord.vue";
-import {applyLocalTranslate, getNetworkTranslate} from "@/hooks/translate.ts";
+import {updateLocalSentenceTranslate, getNetworkTranslate} from "@/hooks/translate.ts";
 import IconWrapper from "@/components/IconWrapper.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import MiniModal from "@/components/MiniModal.vue";
@@ -126,7 +126,7 @@ onMounted(async () => {
 
   console.time()
   // await useNetworkTranslate(article, TranslateEngine.Baidu, true)
-  applyLocalTranslate(article, article.customTranslate)
+  updateLocalSentenceTranslate(article, article.customTranslate)
   console.timeEnd()
   // console.log(cloneDeep(article))
 })

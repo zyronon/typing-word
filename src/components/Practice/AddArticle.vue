@@ -3,9 +3,17 @@
 import {onMounted, reactive, watch} from "vue";
 import {Article, Sentence, TranslateEngine} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
-import {getCompleteTranslate, applyLocalTranslate, getNetworkTranslate} from "@/hooks/translate.ts";
+import {
+  getSentenceAllTranslateText,
+  updateLocalSentenceTranslate,
+  getNetworkTranslate,
+  getSentenceAllText
+} from "@/hooks/translate.ts";
 import * as copy from "copy-to-clipboard";
-import {CnKeyboardMap, splitArticle, splitCNArticle} from "@/hooks/article.ts";
+import {CnKeyboardMap, getSplitTranslateText, splitArticle, splitCNArticle} from "@/hooks/article.ts";
+import {Action,} from "element-plus";
+import useSleep from "@/hooks/useSleep.ts";
+import EditAbleText from "@/components/EditAbleText.vue";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -19,7 +27,7 @@ INVESTOR'S CHRONICLE, March 23 1990`
 article1 = `How does the older investor differ in his approach to investment from the younger investor?`
 article1 = `Last week I went to the theatre. I had a very good seat. The play was very interesting. I did not enjoy it. A young man and a young woman were sitting behind me. They were talking loudly. I got very angry. I could not hear the actors. I turned round. I looked at the man and the woman angrily. They did not pay any attention. In the end, I could not bear it. I turned round again. ‘I can't hear a word!’ I said angrily.
 ‘It's none of your business, ’ the young man said rudely. ‘This is a private conversation!’`
-article1 = `‘It's none of your business, ’ the young man said rudely. ‘This is a private conversation!’`
+// article1 = `‘It's none of your business, ’ the young man said rudely. ‘This is a private conversation!’`
 
 let article2 = `What is one of the features of modern camping where nationality is concerned?
 Economy is one powerful motive for camping, since after the initial outlay upon equipment, or through hiring it, the total expense can be far less than the cost of hotels. But, contrary to a popular assumption, it is far from being the only one, or even the greatest. The man who manoeuvres carelessly into his twenty pounds' worth of space at one of Europe's myriad permanent sites may find himself bumping a Bentley. More likely, Ford Escort will be hub to hub with Renault or Mercedes, but rarely with bicycles made for two.
@@ -33,12 +41,13 @@ NIGEL BUXTON The Great Escape from The Weekend Telegraph`
 
 // article2 = `Economy is one powerful motive for camping? since after the initial outlay upon equipment, or through hiring it, the total expense can be far less than the cost of hotels. But, contrary to a popular assumption, it is far from being the only one, or even the greatest. The man who manoeuvres carelessly into his twenty pounds' worth of space at one of Europe's myriad permanent sites may find himself bumping a Bentley. More likely, Ford Escort will be hub to hub with Renault or Mercedes, but rarely with bicycles made for two.`
 
+
 let article = reactive<Article>({
   title: 'A private conversation!',
   titleTranslate: '',
-  article: article2,
+  article: article1,
   customTranslate: ``,
-  networkTranslate: `“这不关你的事，”那个年轻人粗鲁地说。“这是私人谈话”`,
+  networkTranslate: ``,
   newWords: [],
   articleAllWords: [],
   sections: [],
@@ -1138,118 +1147,118 @@ let article = reactive<Article>({
 
 let networkTranslateEngine = $ref('baidu')
 let progress = $ref(0)
-let editTranslateStr = $ref<string>('')
 const TranslateEngineOptions = [
   {value: 'baidu', label: '百度'},
   {value: 'youdao', label: '有道'},
 ]
 
-function getSections() {
+onMounted(() => {
+  updateSentenceTranslate()
+})
+
+function updateSections() {
   article.sections = splitArticle(article.article)
-  article.sections.map((v: Sentence[]) => {
-    v.map((w: Sentence) => {
-      w.edit = false
+}
+
+async function startNetworkTranslate() {
+  updateSections()
+  article.networkTranslate = ''
+  //注意！！！
+  //这里需要用异步，因为watch了article.networkTranslate，改变networkTranslate了之后，会重新设置article.sections
+  //导致getNetworkTranslate里面拿到的article.sections是废弃的值
+  setTimeout(async () => {
+    await getNetworkTranslate(article, TranslateEngine.Baidu, true, (v: number) => {
+      progress = v
     })
+
+    copy(JSON.stringify(article.sections))
   })
 }
 
-function parseArticle() {
-  if (article.article.trim()) {
-    if (!article.sections.length) {
-      getSections()
+function saveSentenceTranslate(sentence: Sentence, val: string) {
+  sentence.translate = val
+  if (article.translateType) {
+    article.customTranslate = getSentenceAllTranslateText(article)
+  } else {
+    article.networkTranslate = getSentenceAllTranslateText(article)
+  }
+}
 
-      if (article.translateType) {
-        applyLocalTranslate(article, article.customTranslate)
-      } else {
-        applyLocalTranslate(article, article.networkTranslate)
-      }
+function saveSentenceText(sentence: Sentence, val: string) {
+  sentence.text = val
+  article.article = getSentenceAllText(article)
+  updateSentenceTranslate()
+}
+
+function updateSentenceTranslate() {
+  if (article.article.trim()) {
+    updateSections()
+    if (article.translateType) {
+      updateLocalSentenceTranslate(article, article.customTranslate)
+    } else {
+      updateLocalSentenceTranslate(article, article.networkTranslate)
     }
   }
 }
 
-onMounted(() => {
-  parseArticle()
+function appendTranslate(str: string) {
+  if (article.translateType) {
+    article.customTranslate += str
+  } else {
+    article.networkTranslate += str
+  }
+}
+
+function onPaste(event: ClipboardEvent) {
+  event.preventDefault()
+  // @ts-ignore
+  let paste = (event.clipboardData || window.clipboardData).getData("text");
+  ElMessageBox.confirm('', '是否需要进行自动分句?', {
+    confirmButtonText: '需要',
+    cancelButtonText: '关闭',
+    type: 'warning',
+  }).then(() => {
+    let r = getSplitTranslateText(paste)
+    if (r) appendTranslate(r)
+  }).catch(() => {
+    appendTranslate(paste)
+  })
+}
+
+function onBlur() {
+  document.removeEventListener('paste', onPaste);
+}
+
+function onFocus() {
+  document.addEventListener('paste', onPaste);
+}
+
+watch(() => article.customTranslate, (str: string) => {
+  updateSentenceTranslate()
+})
+
+watch(() => article.networkTranslate, (str: string) => {
+  updateSentenceTranslate()
 })
 
 watch(() => article.translateType, () => {
   if (article.article.trim()) {
     if (article.translateType) {
-      if (!article.customTranslate.trim()) {
-        getSections()
+      if (article.customTranslate.trim()) {
+        updateLocalSentenceTranslate(article, article.customTranslate)
       } else {
-        applyLocalTranslate(article, article.customTranslate)
+        updateSections()
       }
     } else {
-      if (!article.networkTranslate.trim()) {
-        getSections()
+      if (article.networkTranslate.trim()) {
+        updateLocalSentenceTranslate(article, article.networkTranslate)
       } else {
-        applyLocalTranslate(article, article.networkTranslate)
+        updateSections()
       }
     }
   }
 })
 
-async function startNetworkTranslate() {
-  getSections()
-  article.networkTranslate = ''
-  await getNetworkTranslate(article, TranslateEngine.Baidu, true, (v: number) => {
-    progress = v
-  })
-
-  copy(JSON.stringify(article.sections))
-}
-
-function editSentenceTranslate(sentence: Sentence) {
-  article.sections.map((v: Sentence[]) => {
-    v.map((w: Sentence) => {
-      w.edit = false
-    })
-  })
-  sentence.edit = true
-  editTranslateStr = sentence.translate
-}
-
-function saveSentenceTranslate(sentence: Sentence) {
-  sentence.translate = editTranslateStr
-  sentence.edit = false
-  //获取最新的译文，然后再重新设置（因为用户可能乱加标点符号，如果不重新设置，那么下次解析会出错，不出当前就展示出来）
-  if (article.translateType) {
-    article.customTranslate = getCompleteTranslate(article)
-    applyLocalTranslate(article, article.customTranslate)
-  } else {
-    article.networkTranslate = getCompleteTranslate(article)
-    applyLocalTranslate(article, article.networkTranslate)
-  }
-
-  let symbolCount = editTranslateStr.split('').filter(s => [
-    CnKeyboardMap.Comma,
-    CnKeyboardMap.Period,
-    CnKeyboardMap.Slash,
-    CnKeyboardMap.Exclamation,
-  ].includes(s)).length
-  if (symbolCount > 1) {
-    //TODO
-    console.log('译文的分句符号超过一个，将会进行短句')
-  }
-}
-
-function changeArticleTranslate(e: string) {
-  if (article.article.trim()) {
-    getSections()
-    applyLocalTranslate(article, e)
-  }
-}
-
-function changeArticle() {
-  if (article.article.trim()) {
-    getSections()
-    if (article.translateType) {
-      applyLocalTranslate(article, article.customTranslate)
-    } else {
-      applyLocalTranslate(article, article.networkTranslate)
-    }
-  }
-}
 </script>
 
 <template>
@@ -1271,7 +1280,7 @@ function changeArticle() {
           <div class="label">正文：</div>
           <el-input
               v-model="article.article"
-              @input="changeArticle"
+              @input="updateSentenceTranslate"
               :disabled="![100,0].includes(progress)"
               :rows="23"
               type="textarea"
@@ -1323,8 +1332,9 @@ function changeArticle() {
           <el-input
               v-if="article.translateType"
               v-model="article.customTranslate"
-              @input="changeArticleTranslate"
               :disabled="![100,0].includes(progress)"
+              @blur="onBlur"
+              @focus="onFocus"
               :rows="20"
               type="textarea"
               placeholder="请填写翻译正文"
@@ -1333,11 +1343,11 @@ function changeArticle() {
           <el-input
               v-else
               v-model="article.networkTranslate"
-              @input="changeArticleTranslate"
-              :disabled="true"
+              @blur="onBlur"
+              @focus="onFocus"
               :rows="20"
               type="textarea"
-              placeholder="请填写翻译正文"
+              placeholder="等待网络翻译中..."
               input-style="color:black;font-size:16rem;"
           />
         </div>
@@ -1347,22 +1357,14 @@ function changeArticle() {
         <div class="article-translate">
           <div class="section" v-for="(item,indexI) in article.sections">
             <div class="sentence" v-for="(sentence,indexJ) in item">
-              <div class="text">{{ sentence.text }}</div>
-              <div class="edit-translate" v-if="sentence.edit">
-                <el-input
-                    v-model="editTranslateStr"
-                    autosize
-                    type="textarea"
-                    input-style="color:black;"
-                />
-                <div class="options">
-                  <BaseButton @click="sentence.edit = false">取消</BaseButton>
-                  <BaseButton @click="saveSentenceTranslate(sentence)">保存</BaseButton>
-                </div>
-              </div>
-              <div class="text-translate" v-else @click="editSentenceTranslate(sentence)">
-                {{ sentence.translate }}
-              </div>
+              <EditAbleText
+                  :value="sentence.text"
+                  @save="(e:string) => saveSentenceText(sentence,e)"
+              />
+              <EditAbleText
+                  :value="sentence.translate"
+                  @save="(e:string) => saveSentenceTranslate(sentence,e)"
+              />
             </div>
           </div>
         </div>
@@ -1395,7 +1397,7 @@ function changeArticle() {
     flex-direction: column;
     //opacity: 0;
 
-    &:last-child {
+    &:nth-child(2) {
       opacity: 1;
     }
 
@@ -1439,27 +1441,9 @@ function changeArticle() {
           .text {
             font-size: 18rem;
           }
-
-          .text-translate {
-            font-size: 16rem;
-            min-height: 18rem;
-          }
-
-          .edit-translate {
-            margin-top: 10rem;
-            color: black;
-
-            .options {
-              margin-top: 10rem;
-              gap: 10rem;
-              display: flex;
-              justify-content: flex-end;
-            }
-          }
         }
       }
     }
   }
-
 }
 </style>

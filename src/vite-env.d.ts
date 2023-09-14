@@ -1,3 +1,5 @@
+import {ElMessageBox} from "element-plus";
+
 /// <reference types="vite/client" />
 /// <reference types="vue/macros-global" />
 // declare module '*.json' {
@@ -23,3 +25,11 @@ declare module "*.vue" {
 // }
 
 declare module '*.ts';
+
+// declare global {
+//   interface Window {
+//     ElMessageBox: ElMessageBox,
+//   }
+// }
+
+declare var ElMessageBox: ElMessageBox;
