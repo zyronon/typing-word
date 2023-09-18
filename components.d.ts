@@ -41,7 +41,6 @@ declare module 'vue' {
     Statistics: typeof import('./src/components/Modal/Statistics.vue')['default']
     Toolbar: typeof import('./src/components/Toolbar/Toolbar.vue')['default']
     Tooltip: typeof import('./src/components/Tooltip.vue')['default']
-    TrabslateSetting: typeof import('./src/components/Toolbar/TrabslateSetting.vue')['default']
     TranslateSetting: typeof import('./src/components/Toolbar/TranslateSetting.vue')['default']
     TypeArticle: typeof import('./src/components/Practice/TypeArticle.vue')['default']
     TypeWord: typeof import('./src/components/Practice/TypeWord.vue')['default']

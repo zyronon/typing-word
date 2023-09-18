@@ -1266,7 +1266,7 @@ watch(() => article.translateType, () => {
 
 <template>
   <Teleport to="body">
-    <div class="add-article">
+    <div class="add-article" @click.stop="null">
       <div class="content">
         <div class="row">
           <div class="title">原文</div>
@@ -1296,63 +1296,69 @@ watch(() => article.translateType, () => {
         <div class="row">
           <div class="title">译文</div>
           <div class="item">
-            <div class="label">翻译类型：</div>
-            <el-radio-group v-model="article.translateType">
-              <el-radio-button :label="1">本地翻译</el-radio-button>
-              <el-radio-button :label="0">网络翻译</el-radio-button>
-            </el-radio-group>
-          </div>
-          <div class="translate" v-if="!article.translateType">
-            <BaseButton @click="startNetworkTranslate" :disabled="!article.article.trim()">开始翻译</BaseButton>
-            <el-select v-model="networkTranslateEngine"
-                       style="width: 80rem;"
-            >
-              <el-option
-                  v-for="item in TranslateEngineOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-              />
-            </el-select>
-            <el-progress :percentage="progress"
-                         :duration="30"
-                         :striped="progress !== 100"
-                         :striped-flow="progress !== 100"
-                         :stroke-width="8"
-                         :show-text="true"/>
-          </div>
-          <div class="item">
-            <div class="label">标题：</div>
+            <div class="label">
+              <span>标题：</span>
+              <el-radio-group v-model="article.translateType">
+                <el-radio-button :label="0">网络翻译</el-radio-button>
+                <el-radio-button :label="1">本地翻译</el-radio-button>
+              </el-radio-group>
+            </div>
             <el-input
                 v-model="article.titleTranslate"
                 :rows="2"
                 type="textarea"
                 placeholder="请填写翻译标题"
-                input-style="color:black;font-size:16rem;"
+                input-style="color:black;font-size:18rem;"
             />
           </div>
           <div class="item">
-            <div class="label">正文：</div>
+            <div class="label">
+              <span>正文：</span>
+              <div class="translate-item" v-if="!article.translateType">
+                <el-progress :percentage="progress"
+                             :duration="30"
+                             :striped="progress !== 100"
+                             :striped-flow="progress !== 100"
+                             :stroke-width="8"
+                             :show-text="true"/>
+                <el-select v-model="networkTranslateEngine"
+                           style="width: 80rem;"
+                >
+                  <el-option
+                      v-for="item in TranslateEngineOptions"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                  />
+                </el-select>
+                <BaseButton
+                    size="small"
+                    @click="startNetworkTranslate"
+                    :disabled="!article.article.trim()">开始翻译
+                </BaseButton>
+
+              </div>
+            </div>
             <el-input
                 v-if="article.translateType"
                 v-model="article.customTranslate"
                 :disabled="![100,0].includes(progress)"
                 @blur="onBlur"
                 @focus="onFocus"
-                :rows="20"
+                :rows="23"
                 type="textarea"
                 placeholder="请填写翻译正文"
-                input-style="color:black;font-size:16rem;"
+                input-style="color:black;font-size:18rem;"
             />
             <el-input
                 v-else
                 v-model="article.networkTranslate"
                 @blur="onBlur"
                 @focus="onFocus"
-                :rows="20"
+                :rows="23"
                 type="textarea"
                 placeholder="等待网络翻译中..."
-                input-style="color:black;font-size:16rem;"
+                input-style="color:black;font-size:18rem;"
             />
           </div>
         </div>
@@ -1428,22 +1434,26 @@ watch(() => article.translateType, () => {
     }
 
     .item {
-      margin-bottom: 10rem;
+      //margin-bottom: 10rem;
 
       .label {
-        margin-bottom: 10rem;
+        height: 40rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
     }
 
-    .translate {
+    .translate-item {
+      flex: 1;
       display: flex;
       align-items: center;
-      gap: $space;
-      margin-bottom: 10rem;
+      justify-content: flex-end;
+      gap: $space / 2;
+    }
 
-      .el-progress {
-        flex: 1;
-      }
+    .el-progress {
+      flex: 1;
     }
 
     .article-translate {
