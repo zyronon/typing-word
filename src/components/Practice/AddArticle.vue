@@ -1272,25 +1272,25 @@ watch(() => article.translateType, () => {
           <div class="title">原文</div>
           <div class="item">
             <div class="label">标题：</div>
-            <el-input
+            <textarea
                 v-model="article.title"
-                :rows="2"
                 type="textarea"
+                class="base-textarea"
                 placeholder="请填写原文标题"
-                input-style="color:black;font-size:18rem;"
-            />
+            >
+            </textarea>
           </div>
-          <div class="item">
+          <div class="item basic">
             <div class="label">正文：</div>
-            <el-input
+            <textarea
                 v-model="article.article"
                 @input="updateSentenceTranslate"
-                :disabled="![100,0].includes(progress)"
-                :rows="23"
+                :readonly="![100,0].includes(progress)"
                 type="textarea"
+                class="base-textarea"
                 placeholder="请填写原文正文"
-                input-style="color:black;font-size:18rem;"
-            />
+            >
+            </textarea>
           </div>
         </div>
         <div class="row">
@@ -1303,15 +1303,15 @@ watch(() => article.translateType, () => {
                 <el-radio-button :label="1">本地翻译</el-radio-button>
               </el-radio-group>
             </div>
-            <el-input
+            <textarea
                 v-model="article.titleTranslate"
-                :rows="2"
                 type="textarea"
+                class="base-textarea"
                 placeholder="请填写翻译标题"
-                input-style="color:black;font-size:18rem;"
-            />
+            >
+            </textarea>
           </div>
-          <div class="item">
+          <div class="item basic">
             <div class="label">
               <span>正文：</span>
               <div class="translate-item" v-if="!article.translateType">
@@ -1339,27 +1339,27 @@ watch(() => article.translateType, () => {
 
               </div>
             </div>
-            <el-input
+            <textarea
                 v-if="article.translateType"
                 v-model="article.customTranslate"
-                :disabled="![100,0].includes(progress)"
+                :readonly="![100,0].includes(progress)"
                 @blur="onBlur"
                 @focus="onFocus"
-                :rows="23"
                 type="textarea"
+                class="base-textarea"
                 placeholder="请填写翻译正文"
-                input-style="color:black;font-size:18rem;"
-            />
-            <el-input
+            >
+            </textarea>
+            <textarea
                 v-else
                 v-model="article.networkTranslate"
                 @blur="onBlur"
                 @focus="onFocus"
-                :rows="23"
                 type="textarea"
+                class="base-textarea"
                 placeholder="等待网络翻译中..."
-                input-style="color:black;font-size:18rem;"
-            />
+            >
+            </textarea>
           </div>
         </div>
         <div class="row">
@@ -1414,15 +1414,22 @@ watch(() => article.translateType, () => {
     width: 100%;
     height: 100%;
     display: flex;
-    gap: $space * 2;
+    gap: $space;
   }
 
   .row {
+    flex: 1;
     width: 33%;
-    height: 100%;
+    //height: 100%;
     display: flex;
     flex-direction: column;
     //opacity: 0;
+
+    .basic {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
 
     &:nth-child(2) {
       opacity: 1;
@@ -1434,13 +1441,15 @@ watch(() => article.translateType, () => {
     }
 
     .item {
+      width: 100%;
       //margin-bottom: 10rem;
 
       .label {
-        height: 40rem;
+        height: 45rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-size: 16rem;
       }
     }
 

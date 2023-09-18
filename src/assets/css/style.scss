@@ -15,14 +15,14 @@
   --color-item-bg: white;
   --color-item-hover: white;
   --color-item-active: rgb(75, 110, 175);
-  --color-main-active: rgb(12,140,233);
+  --color-main-active: rgb(12, 140, 233);
   --toolbar-width: 700rem;
   //--toolbar-width: 50vw;
 }
 
 html[data-theme='dark'] {
   //--color-main-bg: rgba(0, 5, 24, 1);
-  --color-main-bg: rgba(14,18,23, 1);
+  --color-main-bg: rgba(14, 18, 23, 1);
   //--color-main-bg: rgba(17,24,39, 1);
   --color-second-bg: rgb(60, 63, 65);
   --color-header-bg: rgb(60, 63, 65);
@@ -36,14 +36,16 @@ $anim-time: 0.3s;
   transition: background $anim-time, color $anim-time;
 }
 
+
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+'Helvetica Neue', sans-serif;
 html, body {
   padding: 0;
   margin: 0;
   width: 100%;
   height: 100%;
   color: $font-color;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-  'Helvetica Neue', sans-serif;
+  font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -56,6 +58,29 @@ html, body {
 a {
   color: $main;
   text-decoration: none;
+}
+
+.base-textarea {
+  flex: 1;
+  font-family: $font-family;
+  font-size: 18rem;
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 6rem;
+  padding:8rem 10rem;
+  transition: all .3s;
+  min-height: 20rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  &:focus {
+    border: 1px solid var(--color-main-active);
+  }
+
+  &[readonly]{
+    cursor: not-allowed;
+    opacity: .7;
+  }
 }
 
 
@@ -87,7 +112,7 @@ footer {
   cursor: pointer;
 }
 
-.pointer{
+.pointer {
   cursor: pointer;
 }
 
