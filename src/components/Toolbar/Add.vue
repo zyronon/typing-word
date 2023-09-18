@@ -1,6 +1,5 @@
 <script setup lang="ts">
 
-import MiniModal from "@/components/MiniModal.vue";
 import {Icon} from "@iconify/vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import Tooltip from "@/components/Tooltip.vue";

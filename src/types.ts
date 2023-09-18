@@ -88,6 +88,8 @@ export enum DictType {
   wrongDict = 'wrongDict',
   innerDict = 'innerDict',
   customDict = 'customDict',
+  innerArticle = 'innerArticle',
+  customArticle = 'customArticle'
 }
 
 export const DefaultArticleWord: ArticleWord = {
@@ -133,7 +135,7 @@ export interface Dict {
   words: Word[],
   chapterWordNumber: number,//章节单词数量
   chapterWords: Word[][],
-  // articles: Article[],
+  articles: Article[],
   chapterIndex: number,
   chapterWordIndex: number,
   statistics: Statistics[],
