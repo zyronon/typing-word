@@ -34,8 +34,8 @@ onMounted(() => {
 <template>
   <!--    <Backgorund/>-->
   <div class="main-page">
-    <!--    <Practice/>-->
-    <AddArticle/>
+    <Practice/>
+    <!--    <AddArticle/>-->
     <!--      <Side/>-->
     <Statistics></Statistics>
   </div>

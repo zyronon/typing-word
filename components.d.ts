@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Add: typeof import('./src/components/Toolbar/Add.vue')['default']
     AddArticle: typeof import('./src/components/Practice/AddArticle.vue')['default']
     Backgorund: typeof import('./src/components/Backgorund.vue')['default']
     BaseButton: typeof import('./src/components/BaseButton.vue')['default']
@@ -16,11 +17,15 @@ declare module 'vue' {
     DictModal: typeof import('./src/components/Toolbar/DictModal.vue')['default']
     EditAbleText: typeof import('./src/components/EditAbleText.vue')['default']
     ElInput: typeof import('element-plus/es')['ElInput']
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElProgress: typeof import('element-plus/es')['ElProgress']
+    ElRadio: typeof import('element-plus/es')['ElRadio']
     ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElSelect: typeof import('element-plus/es')['ElSelect']
+    ElSlider: typeof import('element-plus/es')['ElSlider']
+    ElSwitch: typeof import('element-plus/es')['ElSwitch']
     FeedbackModal: typeof import('./src/components/Toolbar/FeedbackModal.vue')['default']
     Fireworks: typeof import('./src/components/Fireworks.vue')['default']
     Footer: typeof import('./src/components/Practice/Footer.vue')['default']
@@ -37,6 +42,7 @@ declare module 'vue' {
     Toolbar: typeof import('./src/components/Toolbar/Toolbar.vue')['default']
     Tooltip: typeof import('./src/components/Tooltip.vue')['default']
     TrabslateSetting: typeof import('./src/components/Toolbar/TrabslateSetting.vue')['default']
+    TranslateSetting: typeof import('./src/components/Toolbar/TranslateSetting.vue')['default']
     TypeArticle: typeof import('./src/components/Practice/TypeArticle.vue')['default']
     TypeWord: typeof import('./src/components/Practice/TypeWord.vue')['default']
     VolumeSetting: typeof import('./src/components/Toolbar/VolumeSetting.vue')['default']

@@ -14,6 +14,8 @@ import {CnKeyboardMap, getSplitTranslateText, splitArticle, splitCNArticle} from
 import {Action,} from "element-plus";
 import useSleep from "@/hooks/useSleep.ts";
 import EditAbleText from "@/components/EditAbleText.vue";
+import {Icon} from "@iconify/vue";
+import Backgorund from "@/components/Backgorund.vue";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -1151,6 +1153,7 @@ const TranslateEngineOptions = [
   {value: 'baidu', label: '百度'},
   {value: 'youdao', label: '有道'},
 ]
+defineEmits(['close'])
 
 onMounted(() => {
   updateSentenceTranslate()
@@ -1262,126 +1265,144 @@ watch(() => article.translateType, () => {
 </script>
 
 <template>
-  <div class="add-article">
-    <div class="content">
-      <div class="row">
-        <div class="title">原文</div>
-        <div class="item">
-          <div class="label">标题：</div>
-          <el-input
-              v-model="article.title"
-              :rows="2"
-              type="textarea"
-              placeholder="请填写原文标题"
-              input-style="color:black;font-size:18rem;"
-          />
-        </div>
-        <div class="item">
-          <div class="label">正文：</div>
-          <el-input
-              v-model="article.article"
-              @input="updateSentenceTranslate"
-              :disabled="![100,0].includes(progress)"
-              :rows="23"
-              type="textarea"
-              placeholder="请填写原文正文"
-              input-style="color:black;font-size:18rem;"
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="title">译文</div>
-        <div class="item">
-          <div class="label">翻译类型：</div>
-          <el-radio-group v-model="article.translateType">
-            <el-radio-button :label="1">本地翻译</el-radio-button>
-            <el-radio-button :label="0">网络翻译</el-radio-button>
-          </el-radio-group>
-        </div>
-        <div class="translate" v-if="!article.translateType">
-          <BaseButton @click="startNetworkTranslate" :disabled="!article.article.trim()">开始翻译</BaseButton>
-          <el-select v-model="networkTranslateEngine"
-                     style="width: 80rem;"
-          >
-            <el-option
-                v-for="item in TranslateEngineOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
+  <Teleport to="body">
+    <div class="add-article">
+      <div class="content">
+        <div class="row">
+          <div class="title">原文</div>
+          <div class="item">
+            <div class="label">标题：</div>
+            <el-input
+                v-model="article.title"
+                :rows="2"
+                type="textarea"
+                placeholder="请填写原文标题"
+                input-style="color:black;font-size:18rem;"
             />
-          </el-select>
-          <el-progress :percentage="progress"
-                       :duration="30"
-                       :striped="progress !== 100"
-                       :striped-flow="progress !== 100"
-                       :stroke-width="8"
-                       :show-text="true"/>
+          </div>
+          <div class="item">
+            <div class="label">正文：</div>
+            <el-input
+                v-model="article.article"
+                @input="updateSentenceTranslate"
+                :disabled="![100,0].includes(progress)"
+                :rows="23"
+                type="textarea"
+                placeholder="请填写原文正文"
+                input-style="color:black;font-size:18rem;"
+            />
+          </div>
         </div>
-        <div class="item">
-          <div class="label">标题：</div>
-          <el-input
-              v-model="article.titleTranslate"
-              :rows="2"
-              type="textarea"
-              placeholder="请填写翻译标题"
-              input-style="color:black;font-size:16rem;"
-          />
-        </div>
-        <div class="item">
-          <div class="label">正文：</div>
-          <el-input
-              v-if="article.translateType"
-              v-model="article.customTranslate"
-              :disabled="![100,0].includes(progress)"
-              @blur="onBlur"
-              @focus="onFocus"
-              :rows="20"
-              type="textarea"
-              placeholder="请填写翻译正文"
-              input-style="color:black;font-size:16rem;"
-          />
-          <el-input
-              v-else
-              v-model="article.networkTranslate"
-              @blur="onBlur"
-              @focus="onFocus"
-              :rows="20"
-              type="textarea"
-              placeholder="等待网络翻译中..."
-              input-style="color:black;font-size:16rem;"
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="title">译文对照</div>
-        <div class="article-translate">
-          <div class="section" v-for="(item,indexI) in article.sections">
-            <div class="sentence" v-for="(sentence,indexJ) in item">
-              <EditAbleText
-                  :value="sentence.text"
-                  @save="(e:string) => saveSentenceText(sentence,e)"
+        <div class="row">
+          <div class="title">译文</div>
+          <div class="item">
+            <div class="label">翻译类型：</div>
+            <el-radio-group v-model="article.translateType">
+              <el-radio-button :label="1">本地翻译</el-radio-button>
+              <el-radio-button :label="0">网络翻译</el-radio-button>
+            </el-radio-group>
+          </div>
+          <div class="translate" v-if="!article.translateType">
+            <BaseButton @click="startNetworkTranslate" :disabled="!article.article.trim()">开始翻译</BaseButton>
+            <el-select v-model="networkTranslateEngine"
+                       style="width: 80rem;"
+            >
+              <el-option
+                  v-for="item in TranslateEngineOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
               />
-              <EditAbleText
-                  :value="sentence.translate"
-                  @save="(e:string) => saveSentenceTranslate(sentence,e)"
-              />
+            </el-select>
+            <el-progress :percentage="progress"
+                         :duration="30"
+                         :striped="progress !== 100"
+                         :striped-flow="progress !== 100"
+                         :stroke-width="8"
+                         :show-text="true"/>
+          </div>
+          <div class="item">
+            <div class="label">标题：</div>
+            <el-input
+                v-model="article.titleTranslate"
+                :rows="2"
+                type="textarea"
+                placeholder="请填写翻译标题"
+                input-style="color:black;font-size:16rem;"
+            />
+          </div>
+          <div class="item">
+            <div class="label">正文：</div>
+            <el-input
+                v-if="article.translateType"
+                v-model="article.customTranslate"
+                :disabled="![100,0].includes(progress)"
+                @blur="onBlur"
+                @focus="onFocus"
+                :rows="20"
+                type="textarea"
+                placeholder="请填写翻译正文"
+                input-style="color:black;font-size:16rem;"
+            />
+            <el-input
+                v-else
+                v-model="article.networkTranslate"
+                @blur="onBlur"
+                @focus="onFocus"
+                :rows="20"
+                type="textarea"
+                placeholder="等待网络翻译中..."
+                input-style="color:black;font-size:16rem;"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="title">译文对照</div>
+          <div class="article-translate">
+            <div class="section" v-for="(item,indexI) in article.sections">
+              <div class="sentence" v-for="(sentence,indexJ) in item">
+                <EditAbleText
+                    :value="sentence.text"
+                    @save="(e:string) => saveSentenceText(sentence,e)"
+                />
+                <EditAbleText
+                    :value="sentence.translate"
+                    @save="(e:string) => saveSentenceTranslate(sentence,e)"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <Icon @click="$emit('close')"
+            class="close hvr-grow pointer"
+            width="20" color="#929596"
+            icon="ion:close-outline"/>
     </div>
-  </div>
+  </Teleport>
+
 </template>
 
 <style scoped lang="scss">
 @import "@/assets/css/style.scss";
 
 .add-article {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9;
   width: 100vw;
   height: 100vh;
   padding: $space;
   box-sizing: border-box;
   color: black;
+  background: var(--color-main-bg);
+
+  .close {
+    position: absolute;
+    right: 20rem;
+    top: 20rem;
+  }
 
   .content {
     width: 100%;

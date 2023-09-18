@@ -13,6 +13,8 @@ import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {watch} from "vue"
 import VolumeSetting from "@/components/Toolbar/VolumeSetting.vue";
 import RepeatSetting from "@/components/Toolbar/RepeatSetting.vue";
+import TranslateSetting from "@/components/Toolbar/TranslateSetting.vue";
+import Add from "@/components/Toolbar/Add.vue";
 
 const {toggle} = useTheme()
 const store = useBaseStore()
@@ -63,13 +65,10 @@ watch(() => store.setting.showToolbar, n => {
           </IconWrapper>
         </Tooltip>
 
-        <TrabslateSetting/>
+        <TranslateSetting/>
 
-        <Tooltip title="反馈">
-          <IconWrapper>
-            <Icon icon="ic:outline-cloud-upload"/>
-          </IconWrapper>
-        </Tooltip>
+        <Add/>
+
         <Tooltip title="反馈">
           <IconWrapper>
             <Icon icon="octicon:bug-24" @click="showFeedbackModal = true"/>
@@ -88,15 +87,6 @@ watch(() => store.setting.showToolbar, n => {
           </IconWrapper>
         </Tooltip>
       </div>
-    </div>
-    <div class="translate-progress">
-      <div>翻译进度:</div>
-      <el-progress :percentage="80"
-                   striped
-                   :duration="30"
-                   striped-flow
-                   :stroke-width="8"
-                   :show-text="true"/>
     </div>
     <Tooltip :title="store.setting.showToolbar?'收起':'展开'">
       <Icon icon="icon-park-outline:down"
@@ -151,16 +141,6 @@ header {
       gap: 10rem;
     }
   }
-
-  .translate-progress {
-    display: flex;
-    gap: $space;
-
-    .el-progress {
-      flex: 1;
-    }
-  }
-
 
   .arrow {
     position: absolute;
