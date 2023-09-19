@@ -146,7 +146,7 @@ export interface Statistics {
   startDate: number,//开始日期
   endDate: number//结束日期
   spend: number,//花费时间
-  wordNumber: number//单词数量
+  total: number//单词数量
   correctRate: number//正确率
   wrongWordNumber: number//错误数
 }
@@ -155,7 +155,7 @@ export const DefaultStatistics: Statistics = {
   startDate: Date.now(),
   endDate: -1,
   spend: -1,
-  wordNumber: -1,
+  total: -1,
   correctRate: -1,
   wrongWordNumber: -1,
 }

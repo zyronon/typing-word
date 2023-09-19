@@ -4,18 +4,15 @@ import {onMounted, reactive, watch} from "vue";
 import {Article, Sentence, TranslateEngine} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {
-  getSentenceAllTranslateText,
-  updateLocalSentenceTranslate,
   getNetworkTranslate,
-  getSentenceAllText
+  getSentenceAllText,
+  getSentenceAllTranslateText,
+  updateLocalSentenceTranslate
 } from "@/hooks/translate.ts";
 import * as copy from "copy-to-clipboard";
-import {CnKeyboardMap, getSplitTranslateText, splitArticle, splitCNArticle} from "@/hooks/article.ts";
-import {Action,} from "element-plus";
-import useSleep from "@/hooks/useSleep.ts";
+import {getSplitTranslateText, splitArticle} from "@/hooks/article.ts";
 import EditAbleText from "@/components/EditAbleText.vue";
 import {Icon} from "@iconify/vue";
-import Backgorund from "@/components/Backgorund.vue";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -375,7 +372,7 @@ watch(() => article.translateType, () => {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: $space / 2;
+      gap: calc($space / 2);
     }
 
     .el-progress {

@@ -7,9 +7,9 @@ import BaseButton from "@/components/BaseButton.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash-es"
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts"
-import {useEventListener} from "@/hooks/useEvent.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
+import {useEventListener} from "@/hooks/event.ts";
 
 interface IProps {
   words: Word[],
@@ -93,8 +93,16 @@ function next() {
       data.wrongWords = []
     } else {
       console.log('这章节完了')
-      practiceStore.wrongWords = cloneDeep(data.originWrongWords)
-      emitter.emit(EventKey.openStatModal)
+
+      let now = Date.now()
+      emitter.emit(EventKey.openStatModal, {
+        startDate: practiceStore.startDate,
+        endDate: now,
+        spend: now - practiceStore.startDate,
+        total: props.words.length,
+        correctRate: -1,
+        wrongWordNumber: data.originWrongWords.length,
+      })
     }
   } else {
     data.index++

@@ -74,7 +74,7 @@ export const useBaseStore = defineStore('base', {
           startDate: -1,
           endDate: -1,
           spend: -1,
-          wordNumber: -1,
+          total: -1,
           correctRate: -1,
           wrongWordNumber: -1,
         }

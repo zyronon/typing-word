@@ -35,7 +35,9 @@
     //For TS to resolve aliases, they should be added in tsconfig.json under compilerOptions.paths:
     // https://betterprogramming.pub/the-right-usage-of-aliases-in-webpack-typescript-4418327f47fa
     "paths": {
-      "@/*": ["*"]
+      "@/*": [
+        "*"
+      ]
     }
   },
   "include": [
@@ -43,7 +45,8 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "auto-imports.d.ts"
+    "auto-imports.d.ts",
+    "src/vite-env.d.ts"
   ],
   "references": [
     {

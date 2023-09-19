@@ -22,7 +22,15 @@ const practiceStore = usePracticeStore()
 onMounted(() => {
   emitter.on(EventKey.openStatModal, () => {
     statModalIsOpen = true
-    currentStat = store.saveStatistics()
+    let now = Date.now()
+    currentStat = {
+      startDate: practiceStore.startDate,
+      endDate: now,
+      spend: now - practiceStore.startDate,
+      total: -1,
+      correctRate: -1,
+      wrongWordNumber: -1,
+    }
   })
 })
 
@@ -65,7 +73,7 @@ function next() {
               :percentage="0"
           />
           <Ring
-              :value="currentStat.wordNumber"
+              :value="currentStat.total"
               desc="单词总数"
               :percentage="0"
               style="margin-bottom: 0;"/>
@@ -88,7 +96,7 @@ function next() {
             <Icon class="hvr-grow pointer" icon="ph:share-light" width="20" color="#929596"/>
           </Tooltip>
           <Tooltip title="请我喝杯咖啡">
-            <Icon class="hvr-grow pointer"  icon="twemoji:teacup-without-handle" width="20" color="#929596"/>
+            <Icon class="hvr-grow pointer" icon="twemoji:teacup-without-handle" width="20" color="#929596"/>
           </Tooltip>
         </div>
       </div>

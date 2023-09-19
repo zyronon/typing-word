@@ -4,10 +4,10 @@ import {$ref} from "vue/macros";
 import {Article, ArticleWord, ShortKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
-import {useEventListener} from "@/hooks/useEvent.ts";
 import TypeWord from "@/components/Practice/TypeWord.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
+import {useEventListener} from "@/hooks/event.ts";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
