@@ -3,9 +3,10 @@ import Modal from "@/components/Modal/Modal.vue"
 import {useBaseStore} from "@/stores/base.ts"
 import {Icon} from '@iconify/vue';
 import {watch, ref} from "vue";
+import {useSettingStore} from "@/stores/setting.ts";
 
 const tabIndex = $ref(0)
-const store = useBaseStore()
+const settingStore = useSettingStore()
 
 interface IProps {
   modelValue: boolean,
@@ -22,10 +23,10 @@ const emit = defineEmits([
 let allSound = $ref<boolean>(true)
 
 watch([
-  () => store.setting.wordSound,
-  () => store.setting.keyboardSound,
-  () => store.setting.translateSound,
-  () => store.setting.effectSound,
+  () => settingStore.wordSound,
+  () => settingStore.keyboardSound,
+  () => settingStore.translateSound,
+  () => settingStore.effectSound,
 ], (n) => {
   if (n.some(v => v)) {
     allSound = true
@@ -36,10 +37,10 @@ watch([
 
 function changAllSound(e: boolean) {
   allSound = e
-  store.setting.wordSound = e
-  store.setting.keyboardSound = e
-  store.setting.translateSound = e
-  store.setting.effectSound = e
+  settingStore.wordSound = e
+  settingStore.keyboardSound = e
+  settingStore.translateSound = e
+  settingStore.effectSound = e
 }
 
 </script>
@@ -77,7 +78,7 @@ function changAllSound(e: boolean) {
           <div class="row">
             <label class="item-title">单词发音</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.wordSound"
+              <el-switch v-model="settingStore.wordSound"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -87,22 +88,22 @@ function changAllSound(e: boolean) {
           <div class="row">
             <label class="sub-title">音量</label>
             <div class="wrapper">
-              <el-slider v-model="store.setting.wordSoundVolume"/>
-              <span>{{ store.setting.wordSoundVolume }}%</span>
+              <el-slider v-model="settingStore.wordSoundVolume"/>
+              <span>{{ settingStore.wordSoundVolume }}%</span>
             </div>
           </div>
           <div class="row">
             <label class="sub-title">倍速</label>
             <div class="wrapper">
-              <el-slider v-model="store.setting.wordSoundSpeed" :step="0.1" :min="1" :max="4"/>
-              <span>{{ store.setting.wordSoundSpeed }}</span>
+              <el-slider v-model="settingStore.wordSoundSpeed" :step="0.1" :min="1" :max="4"/>
+              <span>{{ settingStore.wordSoundSpeed }}</span>
             </div>
           </div>
           <div class="line"></div>
           <div class="row">
             <label class="item-title">按键音</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.keyboardSound"
+              <el-switch v-model="settingStore.keyboardSound"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -112,15 +113,15 @@ function changAllSound(e: boolean) {
           <div class="row">
             <label class="sub-title">音量</label>
             <div class="wrapper">
-              <el-slider v-model="store.setting.keyboardSoundVolume"/>
-              <span>{{ store.setting.keyboardSoundVolume }}%</span>
+              <el-slider v-model="settingStore.keyboardSoundVolume"/>
+              <span>{{ settingStore.keyboardSoundVolume }}%</span>
             </div>
           </div>
           <div class="line"></div>
           <div class="row">
             <label class="item-title">释义发音</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.translateSound"
+              <el-switch v-model="settingStore.translateSound"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -130,15 +131,15 @@ function changAllSound(e: boolean) {
           <div class="row">
             <label class="sub-title">音量</label>
             <div class="wrapper">
-              <el-slider v-model="store.setting.translateSoundVolume"/>
-              <span>{{ store.setting.translateSoundVolume }}%</span>
+              <el-slider v-model="settingStore.translateSoundVolume"/>
+              <span>{{ settingStore.translateSoundVolume }}%</span>
             </div>
           </div>
           <div class="line"></div>
           <div class="row">
             <label class="item-title">效果音（章节结算页烟花音效）</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.effectSound"
+              <el-switch v-model="settingStore.effectSound"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -148,8 +149,8 @@ function changAllSound(e: boolean) {
           <div class="row">
             <label class="sub-title">音量</label>
             <div class="wrapper">
-              <el-slider v-model="store.setting.effectSoundVolume"/>
-              <span>{{ store.setting.effectSoundVolume }}%</span>
+              <el-slider v-model="settingStore.effectSoundVolume"/>
+              <span>{{ settingStore.effectSoundVolume }}%</span>
             </div>
           </div>
         </div>
@@ -157,7 +158,7 @@ function changAllSound(e: boolean) {
           <div class="row">
             <label class="item-title">章节乱序</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.value1"
+              <el-switch v-model="settingStore.value1"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -171,7 +172,7 @@ function changAllSound(e: boolean) {
           <div class="row">
             <label class="item-title">练习时展示上一个/下一个单词</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.showNearWord"
+              <el-switch v-model="settingStore.showNearWord"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -185,7 +186,7 @@ function changAllSound(e: boolean) {
           <div class="row">
             <label class="item-title">是否忽略大小写</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.ignoreCase"
+              <el-switch v-model="settingStore.ignoreCase"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -199,7 +200,7 @@ function changAllSound(e: boolean) {
           <div class="row">
             <label class="item-title">是否允许默写模式下显示提示</label>
             <div class="wrapper">
-              <el-switch v-model="store.setting.allowWordTip"
+              <el-switch v-model="settingStore.allowWordTip"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
@@ -219,8 +220,8 @@ function changAllSound(e: boolean) {
               <el-slider
                   :min="10"
                   :max="100"
-                  v-model="store.setting.foreignLanguageFontSize"/>
-              <span>{{ store.setting.foreignLanguageFontSize }}</span>
+                  v-model="settingStore.foreignLanguageFontSize"/>
+              <span>{{ settingStore.foreignLanguageFontSize }}</span>
             </div>
           </div>
           <div class="row">
@@ -229,8 +230,8 @@ function changAllSound(e: boolean) {
               <el-slider
                   :min="10"
                   :max="100"
-                  v-model="store.setting.translateLanguageFontSize"/>
-              <span>{{ store.setting.translateLanguageFontSize }}</span>
+                  v-model="settingStore.translateLanguageFontSize"/>
+              <span>{{ settingStore.translateLanguageFontSize }}</span>
             </div>
           </div>
 
@@ -241,7 +242,7 @@ function changAllSound(e: boolean) {
           <div class="row">
             <label class="sut-title">切换下一个单词时间</label>
             <div class="wrapper">
-              <el-input-number v-model="store.setting.waitTimeForChangeWord"
+              <el-input-number v-model="settingStore.waitTimeForChangeWord"
                                :min="6"
                                :max="100"
                                type="number"

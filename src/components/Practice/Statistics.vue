@@ -10,10 +10,14 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {onMounted, reactive} from "vue";
 import {cloneDeep} from "lodash-es";
 import {Icon} from '@iconify/vue';
+import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
+import {useSettingStore} from "@/stores/setting.ts";
 
 const store = useBaseStore()
+const settingStore = useSettingStore()
 let statModalIsOpen = $ref(false)
 let currentStat = reactive<Statistics>(cloneDeep(DefaultStatistics))
+const practiceStore = usePracticeStore()
 
 onMounted(() => {
   emitter.on(EventKey.openStatModal, () => {
@@ -23,7 +27,7 @@ onMounted(() => {
 })
 
 function write() {
-  store.setting.dictation = true
+  settingStore.dictation = true
   repeat()
 }
 

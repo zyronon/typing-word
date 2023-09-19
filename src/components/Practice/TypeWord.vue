@@ -22,6 +22,7 @@ import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash-es"
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts"
 import {useEventListener} from "@/hooks/useEvent.ts";
+import {useSettingStore} from "@/stores/setting.ts";
 
 interface IProps {
   words: Word[],
@@ -44,8 +45,10 @@ let data = $ref({
 let input = $ref('')
 let wrong = $ref('')
 let showFullWord = $ref(false)
-let activeIndex = $ref(-1)
+let activeBtnIndex = $ref(-1)
 const store = useBaseStore()
+const practiceStore = usePracticeStore()
+const settingStore = useSettingStore()
 
 // const [playKeySound, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
 // const [playKeySound, setAudio] = useSound([老式机械], 3)
@@ -54,7 +57,6 @@ const [playBeep] = useSound([beep], 1)
 const [playCorrect] = useSound([correct], 1)
 const [playAudio] = usePlayWordAudio()
 
-const practiceStore = usePracticeStore()
 
 watchEffect(() => {
   data.words = props.words
@@ -130,7 +132,7 @@ async function onKeyDown(e: KeyboardEvent) {
   if ((e.keyCode >= 65 && e.keyCode <= 90) || e.code === 'Space') {
     let letter = e.key
     let isWrong = false
-    if (store.setting.ignoreCase) {
+    if (settingStore.ignoreCase) {
       isWrong = (input + letter).toLowerCase() === word.name.toLowerCase().slice(0, input.length + 1)
     } else {
       isWrong = (input + letter) === word.name.slice(0, input.length + 1)
@@ -158,7 +160,7 @@ async function onKeyDown(e: KeyboardEvent) {
     }
     if (input.toLowerCase() === word.name.toLowerCase()) {
       playCorrect()
-      setTimeout(next, store.setting.waitTimeForChangeWord)
+      setTimeout(next, settingStore.waitTimeForChangeWord)
     }
   } else {
     // console.log('e', e)
@@ -176,7 +178,7 @@ async function onKeyDown(e: KeyboardEvent) {
           store.newWordDict.words.push(word)
           store.newWordDict.chapterWords = [store.newWordDict.words]
         }
-        activeIndex = 1
+        activeBtnIndex = 1
         break
       case ShortKeyMap.Remove:
         if (!store.skipWordNames.includes(word.name.toLowerCase())) {
@@ -184,22 +186,22 @@ async function onKeyDown(e: KeyboardEvent) {
           store.skipWordDict.words.push(word)
           store.skipWordDict.chapterWords = [store.skipWordDict.words]
         }
-        activeIndex = 0
+        activeBtnIndex = 0
         next()
         break
       case ShortKeyMap.Ignore:
         e.preventDefault()
-        activeIndex = 2
+        activeBtnIndex = 2
         next()
         break
       case ShortKeyMap.Show:
-        if (store.setting.allowWordTip) {
+        if (settingStore.allowWordTip) {
           showFullWord = true
         }
         break
     }
     setTimeout(() => {
-      activeIndex = -1
+      activeBtnIndex = -1
     }, 200)
   }
 }
@@ -208,19 +210,19 @@ async function onKeyDown(e: KeyboardEvent) {
 <template>
   <div class="type-word">
     <div class="translate"
-         :style="{fontSize: store.setting.foreignLanguageFontSize +'rem'}"
+         :style="{fontSize: settingStore.foreignLanguageFontSize +'rem'}"
     >{{ word.trans.join('；') }}
     </div>
     <div class="word-wrapper">
       <div class="word"
            :class="wrong && 'is-wrong'"
-           :style="{fontSize: store.setting.translateLanguageFontSize +'rem'}"
+           :style="{fontSize: settingStore.translateLanguageFontSize +'rem'}"
       >
         <span class="input" v-if="input">{{ input }}</span>
         <span class="wrong" v-if="wrong">{{ wrong }}</span>
-        <template v-if="store.setting.dictation">
+        <template v-if="settingStore.dictation">
           <span class="letter" v-if="!showFullWord"
-                @mouseenter="store.setting.allowWordTip && (showFullWord = true)">{{
+                @mouseenter="settingStore.allowWordTip && (showFullWord = true)">{{
               resetWord.split('').map(v => '_').join('')
             }}</span>
           <span class="letter" v-else @mouseleave="showFullWord = false">{{ resetWord }}</span>
@@ -231,13 +233,13 @@ async function onKeyDown(e: KeyboardEvent) {
     </div>
     <div class="phonetic">{{ word.usphone }}</div>
     <div class="options">
-      <BaseButton keyboard="`" :active="activeIndex === 0">
+      <BaseButton keyboard="`" :active="activeBtnIndex === 0">
         忽略
       </BaseButton>
-      <BaseButton keyboard="Enter" :active="activeIndex === 1">
+      <BaseButton keyboard="Enter" :active="activeBtnIndex === 1">
         收藏
       </BaseButton>
-      <BaseButton keyboard="Tab" :active="activeIndex === 2">
+      <BaseButton keyboard="Tab" :active="activeBtnIndex === 2">
         下一个
       </BaseButton>
     </div>

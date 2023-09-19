@@ -6,8 +6,10 @@ import {useBaseStore} from "@/stores/base.ts"
 import Tooltip from "@/components/Tooltip.vue"
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
 import {Icon} from "@iconify/vue";
+import {useSettingStore} from "@/stores/setting.ts";
 
 const practiceStore = usePracticeStore()
+const settingStore = useSettingStore()
 const store = useBaseStore()
 
 function format(val: number, suffix: string = '', check: number = -1) {
@@ -35,12 +37,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="footer" :class="!store.setting.showToolbar && 'hide'">
-    <Tooltip :title="store.setting.showToolbar?'收起':'展开'">
+  <div class="footer" :class="!settingStore.showToolbar && 'hide'">
+    <Tooltip :title="settingStore.showToolbar?'收起':'展开'">
       <Icon icon="icon-park-outline:down"
-            @click="store.setting.showToolbar = !store.setting.showToolbar"
+            @click="settingStore.showToolbar = !settingStore.showToolbar"
             class="arrow"
-            :class="!store.setting.showToolbar && 'down'"
+            :class="!settingStore.showToolbar && 'down'"
             width="24" color="#999"/>
     </Tooltip>
     <div class="bottom">

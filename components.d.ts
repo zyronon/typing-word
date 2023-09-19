@@ -38,7 +38,7 @@ declare module 'vue' {
     Ring: typeof import('./src/components/Ring.vue')['default']
     SettingModal: typeof import('./src/components/Toolbar/SettingModal.vue')['default']
     Side: typeof import('./src/components/Side.vue')['default']
-    Statistics: typeof import('./src/components/Modal/Statistics.vue')['default']
+    Statistics: typeof import('./src/components/Practice/Statistics.vue')['default']
     Toolbar: typeof import('./src/components/Toolbar/Toolbar.vue')['default']
     Tooltip: typeof import('./src/components/Tooltip.vue')['default']
     TranslateSetting: typeof import('./src/components/Toolbar/TranslateSetting.vue')['default']

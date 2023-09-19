@@ -1,6 +1,5 @@
 <script setup lang="ts">
 
-import Statistics from "@/components/Modal/Statistics.vue";
 import {onMounted, watch} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {SaveKey} from "@/types.ts"
@@ -37,7 +36,6 @@ onMounted(() => {
     <Practice/>
     <!--    <AddArticle/>-->
     <!--      <Side/>-->
-    <Statistics></Statistics>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {Dict, DictType, Sort, State, Word} from "../types.ts"
+import {Dict, DictType, Sort, State, Statistics, Word} from "../types.ts"
 import {chunk, cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 
@@ -81,36 +81,6 @@ export const useBaseStore = defineStore('base', {
       },
       sideIsOpen: false,
       isDictation: true,
-      setting: {
-        showToolbar: true,
-        show: false,
-
-        wordSound: true,
-        wordSoundVolume: 100,
-        wordSoundSpeed: 1,
-        keyboardSound: true,
-        keyboardSoundVolume: 100,
-        translateSound: true,
-        translateSoundVolume: 100,
-        effectSound: true,
-        effectSoundVolume: 100,
-        repeatCount: 1,
-        repeatCustomCount: null,
-        dictation: true,
-        translate: true,
-
-        showNearWord: true,
-        ignoreCase: true,
-        allowWordTip: true,
-        foreignLanguageFontSize: 48,
-        translateLanguageFontSize: 20,
-        waitTimeForChangeWord: 300,
-
-        value1: false,
-        value2: 50,
-        value3: 1,
-        value4: false,
-      },
       simpleWords: [
         'a', 'an', 'of', 'and',
         'i', 'my', 'you', 'your',
@@ -214,8 +184,8 @@ export const useBaseStore = defineStore('base', {
         })
       }
     },
-    saveStatistics() {
-      let currentStat = cloneDeep(this.current.statistics)
+    saveStatistics(statistics: Statistics) {
+      let currentStat = cloneDeep(statistics)
       currentStat.endDate = Date.now()
       currentStat.spend = Date.now() - currentStat.startDate
       currentStat.wrongWordNumber = this.current.originWrongWords.length

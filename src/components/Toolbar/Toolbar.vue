@@ -15,15 +15,18 @@ import VolumeSetting from "@/components/Toolbar/VolumeSetting.vue";
 import RepeatSetting from "@/components/Toolbar/RepeatSetting.vue";
 import TranslateSetting from "@/components/Toolbar/TranslateSetting.vue";
 import Add from "@/components/Toolbar/Add.vue";
+import {useSettingStore} from "@/stores/setting.ts";
 
 const {toggle} = useTheme()
 const store = useBaseStore()
+const settingStore = useSettingStore()
+
 const showFeedbackModal = $ref(false)
 const showSettingModal = $ref(false)
 const showDictModal = $ref(false)
 const headerRef = $ref<HTMLDivElement>(null)
 
-watch(() => store.setting.showToolbar, n => {
+watch(() => settingStore.showToolbar, n => {
   if (headerRef) {
     if (n) {
       headerRef.style.marginTop = '10rem'
@@ -57,11 +60,11 @@ watch(() => store.setting.showToolbar, n => {
         <Tooltip title="开关默写模式">
           <IconWrapper>
             <Icon icon="majesticons:eye-off-line"
-                  v-if="store.setting.dictation"
-                  @click="store.setting.dictation = false"/>
+                  v-if="settingStore.dictation"
+                  @click="settingStore.dictation = false"/>
             <Icon icon="mdi:eye-outline"
                   v-else
-                  @click="store.setting.dictation = true"/>
+                  @click="settingStore.dictation = true"/>
           </IconWrapper>
         </Tooltip>
 
@@ -88,11 +91,11 @@ watch(() => store.setting.showToolbar, n => {
         </Tooltip>
       </div>
     </div>
-    <Tooltip :title="store.setting.showToolbar?'收起':'展开'">
+    <Tooltip :title="settingStore.showToolbar?'收起':'展开'">
       <Icon icon="icon-park-outline:down"
-            @click="store.setting.showToolbar = !store.setting.showToolbar"
+            @click="settingStore.showToolbar = !settingStore.showToolbar"
             class="arrow"
-            :class="!store.setting.showToolbar && 'down'"
+            :class="!settingStore.showToolbar && 'down'"
             width="24"
             color="#999"/>
     </Tooltip>

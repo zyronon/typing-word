@@ -9,8 +9,11 @@ import {useWindowClick} from "@/hooks/event.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import Modal from "@/components/Modal/Modal.vue";
+import {useSettingStore} from "@/stores/setting.ts";
 
 const store = useBaseStore()
+const settingStore = useSettingStore()
+
 let show = $ref(false)
 let showCustomTranslateModal = $ref(false)
 
@@ -39,7 +42,7 @@ function save() {
   <div class="setting" @click.stop="null">
     <Tooltip title="开关释义显示">
       <IconWrapper>
-        <Icon v-if="store.setting.translate" icon="mdi:translate"
+        <Icon v-if="settingStore.translate" icon="mdi:translate"
               @click="toggle"
         />
         <Icon v-else icon="mdi:translate-off"
@@ -53,7 +56,7 @@ function save() {
       <div class="mini-row">
         <label class="item-title">显示翻译</label>
         <div class="wrapper">
-          <el-switch v-model="store.setting.translate"
+          <el-switch v-model="settingStore.translate"
                      inline-prompt
                      active-text="开"
                      inactive-text="关"

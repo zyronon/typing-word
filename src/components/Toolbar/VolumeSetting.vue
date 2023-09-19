@@ -7,8 +7,11 @@ import Tooltip from "@/components/Tooltip.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {useWindowClick} from "@/hooks/event.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
+import {useSettingStore} from "@/stores/setting.ts";
 
 const store = useBaseStore()
+const settingStore = useSettingStore()
+
 let show = $ref(false)
 
 useWindowClick(() => show = false)
@@ -32,7 +35,7 @@ function toggle() {
       <div class="mini-row">
         <label class="item-title">单词发音</label>
         <div class="wrapper">
-          <el-switch v-model="store.setting.wordSound"
+          <el-switch v-model="settingStore.wordSound"
                      inline-prompt
                      active-text="开"
                      inactive-text="关"
@@ -42,7 +45,7 @@ function toggle() {
       <div class="mini-row">
         <label class="item-title">释义发音</label>
         <div class="wrapper">
-          <el-switch v-model="store.setting.translateSound"
+          <el-switch v-model="settingStore.translateSound"
                      inline-prompt
                      active-text="开"
                      inactive-text="关"
@@ -52,7 +55,7 @@ function toggle() {
       <div class="mini-row">
         <label class="item-title">按键音</label>
         <div class="wrapper">
-          <el-switch v-model="store.setting.keyboardSound"
+          <el-switch v-model="settingStore.keyboardSound"
                      inline-prompt
                      active-text="开"
                      inactive-text="关"
@@ -62,7 +65,7 @@ function toggle() {
       <div class="mini-row">
         <label class="item-title">效果音</label>
         <div class="wrapper">
-          <el-switch v-model="store.setting.effectSound"
+          <el-switch v-model="settingStore.effectSound"
                      inline-prompt
                      active-text="开"
                      inactive-text="关"
