@@ -4,7 +4,7 @@ import {$computed, $ref} from "vue/macros"
 import {onMounted, onUnmounted} from "vue"
 import {useBaseStore} from "@/stores/base.ts"
 import Tooltip from "@/components/Tooltip.vue"
-import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
+import {usePracticeStore} from "@/components/Practice/practice.ts";
 import {Icon} from "@iconify/vue";
 import {useSettingStore} from "@/stores/setting.ts";
 

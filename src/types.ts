@@ -147,17 +147,22 @@ export interface Statistics {
   endDate: number//结束日期
   spend: number,//花费时间
   total: number//单词数量
-  correctRate: number//正确率
   wrongWordNumber: number//错误数
+  correctRate: number//正确率
 }
 
-export const DefaultStatistics: Statistics = {
+export interface DisplayStatistics extends Statistics {
+  wrongWords: Word[]
+}
+
+export const DefaultDisplayStatistics: DisplayStatistics = {
   startDate: Date.now(),
   endDate: -1,
   spend: -1,
   total: -1,
   correctRate: -1,
   wrongWordNumber: -1,
+  wrongWords: [],
 }
 
 export enum Sort {

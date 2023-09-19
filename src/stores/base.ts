@@ -185,16 +185,9 @@ export const useBaseStore = defineStore('base', {
       }
     },
     saveStatistics(statistics: Statistics) {
-      let currentStat = cloneDeep(statistics)
-      currentStat.endDate = Date.now()
-      currentStat.spend = Date.now() - currentStat.startDate
-      currentStat.wrongWordNumber = this.current.originWrongWords.length
-      currentStat.correctRate = 100 - Math.trunc((currentStat.wrongWordNumber / currentStat.wordNumber) * 100)
-      // console.log(cloneDeep(currentStat))
-      if (currentStat.spend > 1000 * 10) {
-        this.currentDict.statistics.push(currentStat)
+      if (statistics.spend > 1000 * 10) {
+        this.currentDict.statistics.push(statistics)
       }
-      return currentStat
     },
     async changeDict(dict: Dict, chapterIndex: number = dict.chapterIndex, chapterWordIndex: number = dict.chapterWordNumber) {
       this.saveStatistics()

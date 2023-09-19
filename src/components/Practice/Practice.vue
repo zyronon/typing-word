@@ -2,16 +2,19 @@
 
 import Toolbar from "@/components/Toolbar/Toolbar.vue"
 import {onMounted, watch} from "vue";
-import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
+import {usePracticeStore} from "@/components/Practice/practice.ts";
 import Footer from "@/components/Practice/Footer.vue";
 import TypeWord from "@/components/Practice/TypeWord.vue";
 import TypeArticle from "@/components/Practice/TypeArticle.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {$ref} from "vue/macros";
 import Statistics from "@/components/Practice/Statistics.vue";
+import {emitter, EventKey} from "@/utils/eventBus";
+import {useSettingStore} from "@/stores/setting";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
+const settingStore = useSettingStore()
 
 watch(practiceStore, () => {
   if (practiceStore.inputNumber < 1) {
@@ -1135,14 +1138,35 @@ let articleData = $ref({
 
 watch(() => store.load, n => {
   if (n) {
-    wordData.words = store.chapter
-    wordData.index = 0
+    getCurrentWords()
   }
 })
+
+function getCurrentWords() {
+  wordData.words = store.chapter
+  wordData.index = 0
+}
 
 onMounted(() => {
 
 })
+
+function write() {
+  settingStore.dictation = true
+  repeat()
+}
+
+//TODO 需要判断是否已忽略
+function repeat() {
+  getCurrentWords()
+  emitter.emit(EventKey.resetWord)
+}
+
+//TODO 能否下一章
+function next() {
+  store.currentDict.chapterIndex++
+  repeat()
+}
 
 </script>
 
@@ -1163,7 +1187,11 @@ onMounted(() => {
         v-else/>
     <Footer/>
   </div>
-  <Statistics/>
+  <Statistics
+      @write="write"
+      @repeat="repeat"
+      @next="next"
+  />
 </template>
 
 <style scoped lang="scss">

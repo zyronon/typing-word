@@ -5,58 +5,39 @@ import Ring from "@/components/Ring.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Fireworks from "@/components/Fireworks.vue";
 import BaseButton from "@/components/BaseButton.vue";
-import {DefaultStatistics, Statistics} from "@/types.ts";
+import {DefaultDisplayStatistics, DisplayStatistics, Statistics} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {onMounted, reactive} from "vue";
 import {cloneDeep} from "lodash-es";
 import {Icon} from '@iconify/vue';
-import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
+import {usePracticeStore} from "@/components/Practice/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 
 const store = useBaseStore()
-const settingStore = useSettingStore()
 let statModalIsOpen = $ref(false)
-let currentStat = reactive<Statistics>(cloneDeep(DefaultStatistics))
-const practiceStore = usePracticeStore()
+let currentStat = reactive<DisplayStatistics>(cloneDeep(DefaultDisplayStatistics))
 
+const emit = defineEmits([
+  'repeat',
+  'next',
+  'write'
+])
 onMounted(() => {
-  emitter.on(EventKey.openStatModal, () => {
+  emitter.on(EventKey.openStatModal, (stat: DisplayStatistics) => {
     statModalIsOpen = true
-    let now = Date.now()
-    currentStat = {
-      startDate: practiceStore.startDate,
-      endDate: now,
-      spend: now - practiceStore.startDate,
-      total: -1,
-      correctRate: -1,
-      wrongWordNumber: -1,
-    }
+    currentStat = stat
   })
 })
 
-function write() {
-  settingStore.dictation = true
-  repeat()
-}
-
-//TODO 需要判断是否已忽略
-function repeat() {
-  console.log(store.chapter)
-  store.setCurrentWord(store.chapter, true)
+function options(emitType: string) {
   statModalIsOpen = false
-  emitter.emit(EventKey.resetWord)
-}
-
-//TODO 能否下一章
-function next() {
-  store.currentDict.chapterIndex++
-  repeat()
+  emit(emitType)
 }
 
 </script>
 
 <template>
-  <Modal v-model="statModalIsOpen" @close="next">
+  <Modal v-model="statModalIsOpen" @close="options('next')">
     <div class="statistics">
       <header>
         <div class="title">{{ store.currentDict.name }}</div>
@@ -81,11 +62,11 @@ function next() {
         <div class="result">
           <div class="wrong-words-wrapper">
             <div class="wrong-words">
-              <div class="word" v-for="i in store.current.originWrongWords">{{ i.name }}</div>
+              <div class="word" v-for="i in currentStat.wrongWords">{{ i.name }}</div>
               <!--                          <div class="word" v-for="i in 100">{{ i }}</div>-->
             </div>
           </div>
-          <div class="notice" v-if="!store.current.originWrongWords.length">
+          <div class="notice" v-if="!currentStat.wrongWords.length">
             <!--          <div class="notice">-->
             <Icon class="hvr-grow pointer" icon="flat-color-icons:like" width="20" color="#929596"/>
             表现不错，全对了！
@@ -101,13 +82,13 @@ function next() {
         </div>
       </div>
       <div class="footer">
-        <BaseButton keyboard="Ctrl + Enter" @click="write">
+        <BaseButton keyboard="Ctrl + Enter" @click="options('write')">
           默写本章
         </BaseButton>
-        <BaseButton keyboard="Alt + Enter" @click="repeat">
+        <BaseButton keyboard="Alt + Enter" @click="options('repeat')">
           重复本章
         </BaseButton>
-        <BaseButton keyboard="Tab" @click="next">
+        <BaseButton keyboard="Tab" @click="options('next')">
           下一章
         </BaseButton>
       </div>

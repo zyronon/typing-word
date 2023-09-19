@@ -2,11 +2,11 @@
 import {onMounted, watchEffect} from "vue"
 import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
-import {DictType, ShortKeyMap, Word} from "../../types";
+import {DictType, DisplayStatistics, ShortKeyMap, Statistics, Word} from "../../types";
 import BaseButton from "@/components/BaseButton.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash-es"
-import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts"
+import {usePracticeStore} from "@/components/Practice/practice.ts"
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
 import {useEventListener} from "@/hooks/event.ts";
@@ -81,6 +81,7 @@ useEventListener('keyup', onKeyUp)
 function next() {
   if (data.index === data.words.length - 1) {
     if (data.wrongWords.length) {
+      console.log('当前背完了，但还有错词')
       data.words = cloneDeep(data.wrongWords)
       if (!data.originWrongWords.length) {
         data.originWrongWords = cloneDeep(data.wrongWords)
@@ -93,16 +94,18 @@ function next() {
       data.wrongWords = []
     } else {
       console.log('这章节完了')
-
       let now = Date.now()
-      emitter.emit(EventKey.openStatModal, {
+      let stat: DisplayStatistics = {
         startDate: practiceStore.startDate,
         endDate: now,
         spend: now - practiceStore.startDate,
         total: props.words.length,
         correctRate: -1,
         wrongWordNumber: data.originWrongWords.length,
-      })
+        wrongWords: data.originWrongWords,
+      }
+      stat.correctRate = 100 - Math.trunc(((stat.wrongWordNumber) / (stat.total)) * 100)
+      emitter.emit(EventKey.openStatModal, stat)
     }
   } else {
     data.index++
@@ -203,13 +206,13 @@ async function onKeyDown(e: KeyboardEvent) {
 <template>
   <div class="type-word">
     <div class="translate"
-         :style="{fontSize: settingStore.foreignLanguageFontSize +'rem'}"
+         :style="{fontSize: settingStore.fontSize.wordTranslateFontSize +'rem'}"
     >{{ word.trans.join('；') }}
     </div>
     <div class="word-wrapper">
       <div class="word"
            :class="wrong && 'is-wrong'"
-           :style="{fontSize: settingStore.translateLanguageFontSize +'rem'}"
+           :style="{fontSize: settingStore.fontSize.wordForeignFontSize +'rem'}"
       >
         <span class="input" v-if="input">{{ input }}</span>
         <span class="wrong" v-if="wrong">{{ wrong }}</span>

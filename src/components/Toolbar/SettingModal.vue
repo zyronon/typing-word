@@ -200,8 +200,8 @@ useWatchAllSound()
               <el-slider
                   :min="10"
                   :max="100"
-                  v-model="settingStore.foreignLanguageFontSize"/>
-              <span>{{ settingStore.foreignLanguageFontSize }}</span>
+                  v-model="settingStore.fontSize.wordForeignFontSize"/>
+              <span>{{ settingStore.fontSize.wordForeignFontSize }}</span>
             </div>
           </div>
           <div class="row">
@@ -210,8 +210,8 @@ useWatchAllSound()
               <el-slider
                   :min="10"
                   :max="100"
-                  v-model="settingStore.translateLanguageFontSize"/>
-              <span>{{ settingStore.translateLanguageFontSize }}</span>
+                  v-model="settingStore.fontSize.wordTranslateFontSize"/>
+              <span>{{ settingStore.fontSize.wordTranslateFontSize }}</span>
             </div>
           </div>
 

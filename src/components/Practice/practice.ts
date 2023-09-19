@@ -15,7 +15,8 @@ export interface PracticeState {
 export const usePracticeStore = defineStore('practice', {
   state: (): PracticeState => {
     return {
-      type: 'article',
+      // type: 'article',
+      type: 'word',
       wrongWords: [],
       repeatNumber: 0,
       startDate: Date.now(),

@@ -23,8 +23,12 @@ export interface SettingState {
   ignoreCase: boolean
   allowWordTip: boolean
   waitTimeForChangeWord: number
-  foreignLanguageFontSize: number,
-  translateLanguageFontSize: number,
+  fontSize: {
+    articleForeignFontSize: number,
+    articleTranslateFontSize: number,
+    wordForeignFontSize: number,
+    wordTranslateFontSize: number,
+  },
 
 }
 
@@ -53,8 +57,12 @@ export const useSettingStore = defineStore('setting', {
       showNearWord: true,
       ignoreCase: true,
       allowWordTip: true,
-      foreignLanguageFontSize: 48,
-      translateLanguageFontSize: 20,
+      fontSize: {
+        articleForeignFontSize: 48,
+        articleTranslateFontSize: 20,
+        wordForeignFontSize: 38,
+        wordTranslateFontSize: 20,
+      },
       waitTimeForChangeWord: 300,
 
     }
