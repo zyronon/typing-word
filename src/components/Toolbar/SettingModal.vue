@@ -4,6 +4,7 @@ import {useBaseStore} from "@/stores/base.ts"
 import {Icon} from '@iconify/vue';
 import {watch, ref} from "vue";
 import {useSettingStore} from "@/stores/setting.ts";
+import {useChangeAllSound, useWatchAllSound} from "@/hooks/sound.ts";
 
 const tabIndex = $ref(0)
 const settingStore = useSettingStore()
@@ -20,28 +21,7 @@ const emit = defineEmits([
   'update:modelValue',
 ])
 
-let allSound = $ref<boolean>(true)
-
-watch([
-  () => settingStore.wordSound,
-  () => settingStore.keyboardSound,
-  () => settingStore.translateSound,
-  () => settingStore.effectSound,
-], (n) => {
-  if (n.some(v => v)) {
-    allSound = true
-  } else {
-    allSound = false
-  }
-})
-
-function changAllSound(e: boolean) {
-  allSound = e
-  settingStore.wordSound = e
-  settingStore.keyboardSound = e
-  settingStore.translateSound = e
-  settingStore.effectSound = e
-}
+useWatchAllSound()
 
 </script>
 
@@ -66,8 +46,8 @@ function changAllSound(e: boolean) {
           <div class="row">
             <label class="main-title">所有音效</label>
             <div class="wrapper">
-              <el-switch v-model="allSound"
-                         @change="changAllSound"
+              <el-switch v-model="settingStore.allSound"
+                         @change="useChangeAllSound"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"

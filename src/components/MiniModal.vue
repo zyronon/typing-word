@@ -1,17 +1,19 @@
 <script setup lang="ts">
 interface IProps {
   modelValue?: boolean,
+  width?: string
 }
 
 withDefaults(defineProps<IProps>(), {
   modelValue: true,
+  width: '180rem'
 })
 
 </script>
 
 <template>
   <Transition name="fade">
-    <div v-if="modelValue" class="mini-modal">
+    <div v-if="modelValue" class="mini-modal" :style="{width}">
       <slot></slot>
     </div>
   </Transition>

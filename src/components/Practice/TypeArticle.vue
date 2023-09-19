@@ -1,41 +1,13 @@
 <script setup lang="ts">
-import {Icon} from '@iconify/vue'
-import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
-import {computed, nextTick, onMounted, reactive, watch, watchEffect} from "vue"
-import {cloneDeep} from "lodash-es"
-import 快速打字的机械键盘声音Mp3 from '../..//assets/sound/key-sounds/快速打字的机械键盘声音.mp3'
-import 键盘快速打字的声音Mp3 from '../..//assets/sound/key-sounds/键盘快速打字的声音.mp3'
-import 电话打字的声音Mp3 from '../..//assets/sound/key-sounds/电话打字的声音.mp3'
-import 老式机械 from '../..//assets/sound/key-sounds/老式机械.mp3'
-import 机械0 from '../..//assets/sound/key-sounds/jixie/机械0.mp3'
-import 机械1 from '../..//assets/sound/key-sounds/jixie/机械1.mp3'
-import 机械2 from '../..//assets/sound/key-sounds/jixie/机械2.mp3'
-import 机械3 from '../..//assets/sound/key-sounds/jixie/机械3.mp3'
-import beep from '../..//assets/sound/beep.wav'
-import correct from '../..//assets/sound/correct.wav'
-import {useSound} from "@/hooks/useSound.ts"
-import {$computed, $ref} from "vue/macros";
-import {
-  Article,
-  ArticleWord,
-  DefaultWord,
-  DictType,
-  SaveKey,
-  Sentence,
-  ShortKeyMap,
-  TranslateEngine,
-  Word
-} from "@/types";
+import {computed, nextTick, watchEffect} from "vue"
+import {$ref} from "vue/macros";
+import {Article, ArticleWord, ShortKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts";
 import {useEventListener} from "@/hooks/useEvent.ts";
 import TypeWord from "@/components/Practice/TypeWord.vue";
-import {updateLocalSentenceTranslate, getNetworkTranslate} from "@/hooks/translate.ts";
-import IconWrapper from "@/components/IconWrapper.vue";
-import Tooltip from "@/components/Tooltip.vue";
-import MiniModal from "@/components/MiniModal.vue";
-import {splitArticle} from "@/hooks/article.ts";
 import {useSettingStore} from "@/stores/setting.ts";
+import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -51,13 +23,10 @@ article1 = `Last week I went to the theatre. I had a very good seat. The play wa
 ‘It's none of your business, ’ the young man said rudely. ‘This is a private conversation!’`
 // article1 = `Last week I went to the theatre. I had a very good seat. The play was very interesting. I did not enjoy it.`
 
-const [playAudio] = usePlayWordAudio()
-// const [playKeySound, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
-const [playKeySound, setAudio] = useSound([老式机械], 3)
-// const [playKeySound, setAudio] = useSound([电话打字的声音Mp3], 3)
-const [playBeep] = useSound([beep], 1)
-const [playCorrect] = useSound([correct], 1)
-
+const playBeep = usePlayBeep()
+const playCorrect = usePlayCorrect()
+const playKeyboardAudio = usePlayKeyboardAudio()
+const playWordAudio = usePlayWordAudio()
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
 const settingStore = useSettingStore()
@@ -159,7 +128,7 @@ function calcTranslateLocation() {
 }
 
 function play() {
-  return playAudio(article1)
+  return playWordAudio(article1)
   if (isPlay) {
     isPlay = false
     return window.speechSynthesis.pause();
@@ -205,7 +174,7 @@ function onKeyDown(e: KeyboardEvent) {
         if (settingStore.dictation) {
           calcTranslateLocation()
         }
-        playAudio(currentSection[sentenceIndex].text)
+        playWordAudio(currentSection[sentenceIndex].text)
       }
     }
   }
@@ -237,7 +206,7 @@ function onKeyDown(e: KeyboardEvent) {
           wrong = input = ''
         }, 500)
       }
-      playKeySound()
+      playKeyboardAudio()
     } else {
       let letter = e.key
 
@@ -288,7 +257,7 @@ function onKeyDown(e: KeyboardEvent) {
         }, 500)
         // console.log('未匹配')
       }
-      playKeySound()
+      playKeyboardAudio()
     }
   } else {
     switch (e.key) {
@@ -335,11 +304,9 @@ function onKeyUp() {
   }
 }
 
-useEventListener('keydown', onKeyDown)
-useEventListener('keyup', onKeyUp)
 
 function playWord(word: ArticleWord) {
-  playAudio(word.name)
+  playWordAudio(word.name)
 }
 
 function currentWordInput(word: ArticleWord, i: number, i2: number,) {
@@ -388,6 +355,8 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
   return str
 }
 
+useEventListener('keydown', onKeyDown)
+useEventListener('keyup', onKeyUp)
 </script>
 
 <template>
@@ -410,7 +379,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
                       ]"
                       @mouseenter="settingStore.allowWordTip && (hoverIndex = {sectionIndex : indexI,sentenceIndex :indexJ})"
                       @mouseleave="hoverIndex = {sectionIndex : -1,sentenceIndex :-1}"
-                      @click="playAudio(sentence.text)"
+                      @click="playWordAudio(sentence.text)"
                       v-for="(sentence,indexJ) in section">
                   <span
                       v-for="(word,indexW) in sentence.words"

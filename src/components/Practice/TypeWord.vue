@@ -1,28 +1,15 @@
 <script setup lang="ts">
-import {computed, onMounted, onUnmounted, provide, watch, watchEffect} from "vue"
-import 快速打字的机械键盘声音Mp3 from '../../assets/sound/key-sounds/快速打字的机械键盘声音.mp3'
-import 键盘快速打字的声音Mp3 from '../../assets/sound/key-sounds/键盘快速打字的声音.mp3'
-import 电话打字的声音Mp3 from '../../assets/sound/key-sounds/电话打字的声音.mp3'
-import 老式机械 from '../../assets/sound/key-sounds/老式机械.mp3'
-import 机械0 from '../../assets/sound/key-sounds/jixie/机械0.mp3'
-import 机械1 from '../../assets/sound/key-sounds/jixie/机械1.mp3'
-import 机械2 from '../../assets/sound/key-sounds/jixie/机械2.mp3'
-import 机械3 from '../../assets/sound/key-sounds/jixie/机械3.mp3'
-import beep from '../../assets/sound/beep.wav'
-import correct from '../../assets/sound/correct.wav'
+import {onMounted, watchEffect} from "vue"
 import {$computed, $ref} from "vue/macros"
-import {useSound} from "@/hooks/useSound.ts"
 import {useBaseStore} from "@/stores/base.ts"
-import {DictType, SaveKey, ShortKeyMap, Statistics, Word} from "../../types";
-import {usePlayWordAudio} from "@/hooks/usePlayWordAudio.ts"
-import useTheme from "@/hooks/useTheme.ts";
-import Tooltip from "@/components/Tooltip.vue";
+import {DictType, ShortKeyMap, Word} from "../../types";
 import BaseButton from "@/components/BaseButton.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash-es"
 import {usePracticeStore} from "@/components/Practice/usePracticeStore.ts"
 import {useEventListener} from "@/hooks/useEvent.ts";
 import {useSettingStore} from "@/stores/setting.ts";
+import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
 
 interface IProps {
   words: Word[],
@@ -50,12 +37,10 @@ const store = useBaseStore()
 const practiceStore = usePracticeStore()
 const settingStore = useSettingStore()
 
-// const [playKeySound, setAudio] = useSound([机械0, 机械1, 机械2, 机械3], 1)
-// const [playKeySound, setAudio] = useSound([老式机械], 3)
-const [playKeySound, setAudio] = useSound([电话打字的声音Mp3], 3)
-const [playBeep] = useSound([beep], 1)
-const [playCorrect] = useSound([correct], 1)
-const [playAudio] = usePlayWordAudio()
+const playBeep = usePlayBeep()
+const playCorrect = usePlayCorrect()
+const playKeyboardAudio = usePlayKeyboardAudio()
+const playWordAudio = usePlayWordAudio()
 
 
 watchEffect(() => {
@@ -140,7 +125,7 @@ async function onKeyDown(e: KeyboardEvent) {
     if (isWrong) {
       input += letter
       wrong = ''
-      playKeySound()
+      playKeyboardAudio()
     } else {
       if (!store.wrongWordDict.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
         store.wrongWordDict.originWords.push(word)
@@ -152,7 +137,7 @@ async function onKeyDown(e: KeyboardEvent) {
         practiceStore.wrongNumber++
       }
       wrong = letter
-      playKeySound()
+      playKeyboardAudio()
       playBeep()
       setTimeout(() => {
         wrong = ''
@@ -229,7 +214,7 @@ async function onKeyDown(e: KeyboardEvent) {
         </template>
         <span class="letter" v-else>{{ resetWord }}</span>
       </div>
-      <div class="audio" @click="playAudio(word.name)">播放</div>
+      <div class="audio" @click="playWordAudio(word.name)">播放</div>
     </div>
     <div class="phonetic">{{ word.usphone }}</div>
     <div class="options">

@@ -67,7 +67,7 @@ a {
   outline: none;
   border: 1px solid transparent;
   border-radius: 6rem;
-  padding:8rem 10rem;
+  padding: 8rem 10rem;
   transition: all .3s;
   min-height: 20rem;
   width: 100%;
@@ -77,7 +77,7 @@ a {
     border: 1px solid var(--color-main-active);
   }
 
-  &[readonly]{
+  &[readonly] {
     cursor: not-allowed;
     opacity: .7;
   }
@@ -108,11 +108,21 @@ footer {
   gap: $space;
 }
 
-.i-icon {
-  cursor: pointer;
-}
-
 .pointer {
   cursor: pointer;
 }
 
+.flex {
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

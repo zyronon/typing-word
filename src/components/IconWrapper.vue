@@ -15,7 +15,7 @@ export default {
 <style scoped lang="scss">
 @import "@/assets/css/colors";
 
-$w: 20rem;
+$w: 22rem;
 .icon-wrapper {
   //padding: 2rem;
   width: 26rem;

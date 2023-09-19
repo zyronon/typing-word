@@ -9,7 +9,7 @@ import {onMounted} from "vue";
 import {getRandom} from "@/utils/index.ts";
 import boom from '@/assets/sound/boom.mp3'
 import shotfire from '@/assets/sound/shotfire.mp3'
-import {useSound} from "@/hooks/useSound.ts";
+import {useSound} from "@/hooks/sound.ts";
 
 const canvas = $ref()
 const [playBoom] = useSound([boom], 3)

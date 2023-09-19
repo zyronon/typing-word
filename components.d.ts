@@ -44,6 +44,7 @@ declare module 'vue' {
     TranslateSetting: typeof import('./src/components/Toolbar/TranslateSetting.vue')['default']
     TypeArticle: typeof import('./src/components/Practice/TypeArticle.vue')['default']
     TypeWord: typeof import('./src/components/Practice/TypeWord.vue')['default']
+    VolumeIcon: typeof import('./src/components/VolumeIcon.vue')['default']
     VolumeSetting: typeof import('./src/components/Toolbar/VolumeSetting.vue')['default']
     WordList: typeof import('./src/components/WordList.vue')['default']
   }

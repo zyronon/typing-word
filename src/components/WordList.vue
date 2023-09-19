@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {Word} from "../types";
-import {usePlayWordAudio} from "../hooks/usePlayWordAudio";
 import {watch} from "vue"
 import {useBaseStore} from "@/stores/base.ts"
 import {Icon} from '@iconify/vue';
+import {usePlayWordAudio} from "@/hooks/sound.ts";
 
 const store = useBaseStore()
 const emit = defineEmits(['change'])
@@ -13,7 +13,7 @@ const props = defineProps<{
   isActive: boolean
 }>()
 
-const [playAudio] = usePlayWordAudio()
+const playWordAudio = usePlayWordAudio()
 const listRef: HTMLElement = $ref(null as any)
 
 function scrollViewToCenter(index: number) {
@@ -52,7 +52,7 @@ watch(() => props.list, () => {
             </div>
           </div>
           <div class="right">
-            <div class="audio" @click="playAudio(item.name)">播放</div>
+            <div class="audio" @click="playWordAudio(item.name)">播放</div>
             <Icon icon="fluent:delete-28-regular" width="20" color="#929596"/>
           </div>
         </div>
@@ -93,7 +93,7 @@ watch(() => props.list, () => {
     &:hover {
       //background: $dark-main-bg;
       //background: $item-hover;
-      background: rgb(226,226,226);
+      background: rgb(226, 226, 226);
     }
 
     .left {
