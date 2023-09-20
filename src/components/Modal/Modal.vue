@@ -2,6 +2,7 @@
 import {onMounted} from "vue";
 import Tooltip from "@/components/Tooltip.vue";
 import {Icon} from '@iconify/vue';
+import {useEsc} from "@/hooks/event.ts";
 
 interface IProps {
   modelValue: boolean,
@@ -25,13 +26,8 @@ function close() {
   emit('close',)
 }
 
-onMounted(() => {
-  window.addEventListener('keyup', (e: KeyboardEvent) => {
-    if (e.key === 'Escape' && props.modelValue) {
-      close()
-    }
-  })
-})
+useEsc(close)
+
 </script>
 
 <template>

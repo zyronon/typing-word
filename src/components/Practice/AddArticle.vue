@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import {onMounted, reactive, watch} from "vue";
-import {Article, Sentence, TranslateEngine} from "@/types.ts";
+import {Article, DefaultArticle, Sentence, TranslateEngine, TranslateType} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {
   getNetworkTranslate,
@@ -13,6 +13,9 @@ import * as copy from "copy-to-clipboard";
 import {getSplitTranslateText, splitArticle} from "@/hooks/article.ts";
 import EditAbleText from "@/components/EditAbleText.vue";
 import {Icon} from "@iconify/vue";
+import {cloneDeep} from "lodash-es";
+import {useRuntimeStore} from "@/stores/runtime.ts";
+import {useDisableEventListener, useEsc} from "@/hooks/event.ts";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -40,27 +43,27 @@ NIGEL BUXTON The Great Escape from The Weekend Telegraph`
 
 // article2 = `Economy is one powerful motive for camping? since after the initial outlay upon equipment, or through hiring it, the total expense can be far less than the cost of hotels. But, contrary to a popular assumption, it is far from being the only one, or even the greatest. The man who manoeuvres carelessly into his twenty pounds' worth of space at one of Europe's myriad permanent sites may find himself bumping a Bentley. More likely, Ford Escort will be hub to hub with Renault or Mercedes, but rarely with bicycles made for two.`
 
+interface IProps {
+  article?: Article
+}
 
-let article = reactive<Article>({
-  title: 'A private conversation!',
-  titleTranslate: '',
-  article: article1,
-  customTranslate: ``,
-  networkTranslate: ``,
-  newWords: [],
-  articleAllWords: [],
-  sections: [],
-  isTranslated: false,
-  translateType: 0,
+const props = withDefaults(defineProps<IProps>(), {
+  article: () => cloneDeep(DefaultArticle)
 })
 
+let article = reactive<Article>(props.article)
 let networkTranslateEngine = $ref('baidu')
 let progress = $ref(0)
 const TranslateEngineOptions = [
   {value: 'baidu', label: '百度'},
   {value: 'youdao', label: '有道'},
 ]
-defineEmits(['close'])
+const emit = defineEmits(['close'])
+
+useDisableEventListener()
+useEsc(() => {
+  emit('close')
+})
 
 onMounted(() => {
   updateSentenceTranslate()
@@ -71,6 +74,12 @@ function updateSections() {
 }
 
 async function startNetworkTranslate() {
+  if (!article.title.trim()) {
+    return ElMessage.error('请填写标题！')
+  }
+  if (!article.article.trim()) {
+    return ElMessage.error('请填写正文！')
+  }
   updateSections()
   article.networkTranslate = ''
   //注意！！！
@@ -87,7 +96,7 @@ async function startNetworkTranslate() {
 
 function saveSentenceTranslate(sentence: Sentence, val: string) {
   sentence.translate = val
-  if (article.translateType) {
+  if (article.translateType === TranslateType.custom) {
     article.customTranslate = getSentenceAllTranslateText(article)
   } else {
     article.networkTranslate = getSentenceAllTranslateText(article)
@@ -103,7 +112,7 @@ function saveSentenceText(sentence: Sentence, val: string) {
 function updateSentenceTranslate() {
   if (article.article.trim()) {
     updateSections()
-    if (article.translateType) {
+    if (article.translateType === TranslateType.custom) {
       updateLocalSentenceTranslate(article, article.customTranslate)
     } else {
       updateLocalSentenceTranslate(article, article.networkTranslate)
@@ -112,7 +121,7 @@ function updateSentenceTranslate() {
 }
 
 function appendTranslate(str: string) {
-  if (article.translateType) {
+  if (article.translateType === TranslateType.custom) {
     article.customTranslate += str
   } else {
     article.networkTranslate += str
@@ -144,7 +153,7 @@ function onFocus() {
 }
 
 function save() {
-  console.log('article',article )
+  console.log('article', article)
   copy(JSON.stringify(article))
 }
 
@@ -158,7 +167,7 @@ watch(() => article.networkTranslate, (str: string) => {
 
 watch(() => article.translateType, () => {
   if (article.article.trim()) {
-    if (article.translateType) {
+    if (article.translateType === TranslateType.custom) {
       if (article.customTranslate.trim()) {
         updateLocalSentenceTranslate(article, article.customTranslate)
       } else {
@@ -211,8 +220,8 @@ watch(() => article.translateType, () => {
             <div class="label">
               <span>标题：</span>
               <el-radio-group v-model="article.translateType">
-                <el-radio-button :label="0">网络翻译</el-radio-button>
-                <el-radio-button :label="1">本地翻译</el-radio-button>
+                <el-radio-button :label="TranslateType.custom">本地翻译</el-radio-button>
+                <el-radio-button :label="TranslateType.network">网络翻译</el-radio-button>
               </el-radio-group>
             </div>
             <textarea
@@ -226,7 +235,7 @@ watch(() => article.translateType, () => {
           <div class="item basic">
             <div class="label">
               <span>正文：</span>
-              <div class="translate-item" v-if="!article.translateType">
+              <div class="translate-item" v-if="article.translateType === TranslateType.network">
                 <el-progress :percentage="progress"
                              :duration="30"
                              :striped="progress !== 100"
@@ -245,14 +254,13 @@ watch(() => article.translateType, () => {
                 </el-select>
                 <BaseButton
                     size="small"
-                    @click="startNetworkTranslate"
-                    :disabled="!article.article.trim()">开始翻译
+                    @click="startNetworkTranslate">开始翻译
                 </BaseButton>
 
               </div>
             </div>
             <textarea
-                v-if="article.translateType"
+                v-if="article.translateType === TranslateType.custom"
                 v-model="article.customTranslate"
                 :readonly="![100,0].includes(progress)"
                 @blur="onBlur"

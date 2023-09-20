@@ -6,4 +6,6 @@ export const EventKey = {
   openSide: 'openSide',
   openStatModal: 'openStatModal',
   closeOther: 'closeOther',
+  keydown: 'keydown',
+  keyup: 'keyup',
 }

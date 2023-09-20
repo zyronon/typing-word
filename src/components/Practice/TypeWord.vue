@@ -9,7 +9,7 @@ import {cloneDeep} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
-import {useEventListener} from "@/hooks/event.ts";
+import {useEventListener, useOnKeyboardEventListener} from "@/hooks/event.ts";
 
 interface IProps {
   words: Word[],
@@ -74,9 +74,6 @@ onMounted(() => {
     input = ''
   })
 })
-
-useEventListener('keydown', onKeyDown)
-useEventListener('keyup', onKeyUp)
 
 function next() {
   if (data.index === data.words.length - 1) {
@@ -201,6 +198,11 @@ async function onKeyDown(e: KeyboardEvent) {
     }, 200)
   }
 }
+
+useOnKeyboardEventListener(onKeyDown, onKeyUp)
+// useEventListener('keydown', onKeyDown)
+// useEventListener('keyup', onKeyUp)
+
 </script>
 
 <template>

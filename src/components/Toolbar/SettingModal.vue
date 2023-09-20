@@ -5,6 +5,7 @@ import {Icon} from '@iconify/vue';
 import {watch, ref} from "vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useChangeAllSound, useWatchAllSound} from "@/hooks/sound.ts";
+import {useDisableEventListener} from "@/hooks/event.ts";
 
 const tabIndex = $ref(0)
 const settingStore = useSettingStore()
@@ -21,6 +22,7 @@ const emit = defineEmits([
   'update:modelValue',
 ])
 
+// useDisableEventListener()
 useWatchAllSound()
 
 </script>

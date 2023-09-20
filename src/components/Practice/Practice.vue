@@ -12,10 +12,18 @@ import Statistics from "@/components/Practice/Statistics.vue";
 import {emitter, EventKey} from "@/utils/eventBus";
 import {useSettingStore} from "@/stores/setting";
 import {cloneDeep} from "lodash-es";
+import {Article, DefaultArticle} from "@/types.ts";
+import AddArticle from "@/components/Practice/AddArticle.vue";
+import {useEventListener, useStartKeyboardEventListener} from "@/hooks/event.ts";
+import {useRuntimeStore} from "@/stores/runtime.ts";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
 const settingStore = useSettingStore()
+const runtimeStore = useRuntimeStore()
+
+let showEditArticle = $ref(false)
+let editArticle = $ref(cloneDeep(DefaultArticle))
 
 watch(practiceStore, () => {
   if (practiceStore.inputNumber < 1) {
@@ -1139,23 +1147,29 @@ let articleData = $ref({
 
 watch(() => store.load, n => {
   if (n) {
-    getCurrentWords()
+    getCurrentPractice()
   }
 })
 
-function getCurrentWords() {
-  wordData.words = cloneDeep(store.chapter)
-  wordData.index = 0
-}
+function getCurrentPractice() {
+  if (store.isArticle) {
+    let article: Article = cloneDeep(store.currentDict.articles[store.currentDict.chapterIndex])
+    if (article?.isTranslated) {
+      articleData.article = article
+    } else {
 
-function getCurrentArticle() {
-  wordData.words = cloneDeep(store.chapter)
-  wordData.index = 0
+    }
+  } else {
+    wordData.words = cloneDeep(store.chapter)
+    wordData.index = 0
+  }
 }
 
 onMounted(() => {
 
 })
+
+useStartKeyboardEventListener()
 
 function write() {
   console.log('write')
@@ -1166,7 +1180,7 @@ function write() {
 //TODO 需要判断是否已忽略
 function repeat() {
   console.log('repeat')
-  getCurrentWords()
+  getCurrentPractice()
   emitter.emit(EventKey.resetWord)
 }
 
@@ -1183,7 +1197,7 @@ function next() {
   <div class="practice">
     <Toolbar/>
     <TypeArticle
-        v-if="practiceStore.type === 'article'"
+        v-if="store.isArticle"
         :article="articleData.article"
         :sectionIndex="articleData.sectionIndex"
         :sentenceIndex="articleData.sentenceIndex"
@@ -1200,6 +1214,9 @@ function next() {
       @write="write"
       @repeat="repeat"
       @next="next"
+  />
+  <AddArticle v-if="showEditArticle"
+              @close="showEditArticle = false"
   />
 </template>
 

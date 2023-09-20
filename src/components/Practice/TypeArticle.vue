@@ -7,7 +7,7 @@ import {usePracticeStore} from "@/stores/practice.ts";
 import TypeWord from "@/components/Practice/TypeWord.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
-import {useEventListener} from "@/hooks/event.ts";
+import {useEventListener, useOnKeyboardEventListener} from "@/hooks/event.ts";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -304,6 +304,10 @@ function onKeyUp() {
   }
 }
 
+useOnKeyboardEventListener(onKeyDown, onKeyUp)
+
+// useEventListener('keydown', onKeyDown)
+// useEventListener('keyup', onKeyUp)
 
 function playWord(word: ArticleWord) {
   playWordAudio(word.name)
@@ -355,8 +359,6 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
   return str
 }
 
-useEventListener('keydown', onKeyDown)
-useEventListener('keyup', onKeyUp)
 </script>
 
 <template>
