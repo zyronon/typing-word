@@ -27,8 +27,10 @@ export const EnKeyboardMap: KeyboardMap = {
   QuoteRight: '"',
 }
 
-
-export function splitArticle(article: string, lang: string = 'en', keyboardMap: KeyboardMap = EnKeyboardMap): Sentence[][] {
+export function splitEnArticle(text: string, lang: string = 'en', keyboardMap: KeyboardMap = EnKeyboardMap): {
+  sections: Sentence[][],
+  text: string
+} {
   let sections: Sentence[][] = []
   let section: Sentence[] = []
   let sentence: Sentence = {
@@ -40,17 +42,18 @@ export function splitArticle(article: string, lang: string = 'en', keyboardMap: 
   sections.push(section)
   let word = cloneDeep({...DefaultArticleWord, name: '', nextSpace: true});
   //加\n用于添加最后一段
-  article += '\n'
-  if (lang === 'en') {
-    article = article.replaceAll(`‘`, '"')
-    article = article.replaceAll(`’`, '"')
-    article = article.replaceAll(`“`, '"')
-    article = article.replaceAll(`”`, '"')
-  }
+  text += '\n'
+  text = text.replaceAll(`‘`, '"')
+  text = text.replaceAll(`’`, '"')
+  text = text.replaceAll(`“`, '"')
+  text = text.replaceAll(`”`, '"')
+  //替换所有单引号为双引号
+  text = text.replaceAll(`'`, '"')
+  //将缩写词的双引号替换回单引号
+  text = text.replaceAll(`"t`, `'t`)
+  text = text.replaceAll(`"s`, `'s`)
 
-  // console.log('articles', articles)
-
-  article.split('').map((v, i, arr) => {
+  text.split('').map((v, i, arr) => {
     switch (v) {
       case ' ':
         if (word.name) {
@@ -165,7 +168,10 @@ export function splitArticle(article: string, lang: string = 'en', keyboardMap: 
       }, '')
     })
   })
-  return sections
+  return {
+    text,
+    sections
+  }
 }
 
 export function splitCNArticle(article: string, lang: string = 'cn', keyboardMap: KeyboardMap = CnKeyboardMap): Sentence[][] {

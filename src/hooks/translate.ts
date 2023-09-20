@@ -1,7 +1,7 @@
 import {Article, Sentence, TranslateEngine, TranslateType} from "@/types.ts";
 import Baidu from "@opentranslate/baidu";
 import {axiosInstance} from "@/utils/http.ts";
-import {getSplitTranslateText, splitArticle} from "@/hooks/article.ts";
+import {getSplitTranslateText, splitEnArticle} from "@/hooks/article.ts";
 import {Translator} from "@opentranslate/translator/src/translator.ts";
 
 export function updateLocalSentenceTranslate(article: Article, translate: string) {
@@ -191,7 +191,7 @@ export async function getNetworkTranslate(
 }
 
 export function test(article: Article) {
-    if (article?.isTranslated) {
+    if (article?.translateSplit) {
         if (!article.sections?.length) {
 
         }
@@ -203,7 +203,7 @@ export function test(article: Article) {
                 updateLocalSentenceTranslate(article, article.networkTranslate)
             }
         } else {
-            article.sections = splitArticle(article.article)
+            // article.sections = splitEnArticle(article.article)
             if (article.customTranslate) {
                 article.customTranslate = getSplitTranslateText(article.customTranslate)
                 updateLocalSentenceTranslate(article, article.customTranslate)

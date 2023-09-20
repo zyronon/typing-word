@@ -6,6 +6,7 @@ defineProps<{
   keyboard?: string,
   active?: boolean
   disabled?: boolean
+  loading?: boolean
   size?: string
 }>()
 
@@ -19,14 +20,20 @@ function click() {
 <template>
   <Tooltip :disabled="!keyboard" :title="`快捷键: ${keyboard}`">
     <div class="my-button"
-         @click="!disabled && $emit('click')"
+         @click="(!disabled && !loading) && $emit('click')"
          :class="[
              active && 'active',
              size,
-             disabled && 'disabled',
+             (disabled||loading) && 'disabled',
              !disabled && 'hvr-grow'
          ]">
-      <span><slot></slot></span>
+      <span :style="{opacity:loading?0:1}"><slot></slot></span>
+      <Icon v-if="loading"
+            class="loading"
+            icon="eos-icons:loading"
+            width="18"
+            color="#ffffff"
+      />
       <div class="key-notice" v-if="keyboard">
         <Icon icon="bi:keyboard" width="14" color="#ffffff"/>
         <span class="key">{{ keyboard }}</span>
@@ -52,6 +59,11 @@ function click() {
   //background: var(--color-second-bg);
   height: 36rem;
   line-height: 1;
+  position: relative;
+
+  .loading {
+    position: absolute;
+  }
 
   &.disabled {
     opacity: .6;

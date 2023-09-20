@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import {computed, nextTick, watchEffect} from "vue"
 import {$ref} from "vue/macros";
-import {Article, ArticleWord, ShortKeyMap, Word} from "@/types";
+import {Article, ArticleWord, DefaultArticle, ShortKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
 import {usePracticeStore} from "@/stores/practice.ts";
 import TypeWord from "@/components/Practice/TypeWord.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
 import {useEventListener, useOnKeyboardEventListener} from "@/hooks/event.ts";
+import {cloneDeep} from "lodash-es";
 
 let article1 = `How does the older investor differ in his approach to investment from the younger investor?
 There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
@@ -60,18 +61,7 @@ interface IProps {
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  article: {
-    "title": "",
-    "titleTranslate": "",
-    article: '',
-    "customTranslate": "",
-    networkTranslate: '',
-    "isTranslated": false,
-    "newWords": [],
-    "articleAllWords": [],
-    "sections": [],
-    "translateType": 0
-  },
+  article: () => cloneDeep(DefaultArticle),
   sectionIndex: 0,
   sentenceIndex: 0,
   wordIndex: 0,
@@ -149,6 +139,7 @@ const currentIndex = computed(() => {
 
 function onKeyDown(e: KeyboardEvent) {
   if (tabIndex !== 0) return
+  if (!props.article.sections.length) return
   // console.log('keyDown', e.key, e.code, e.keyCode)
   wrong = ''
   let currentSection = props.article.sections[sectionIndex]
