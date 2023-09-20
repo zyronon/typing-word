@@ -2,7 +2,7 @@
 
 import Toolbar from "@/components/Toolbar/Toolbar.vue"
 import {onMounted, watch} from "vue";
-import {usePracticeStore} from "@/components/Practice/practice.ts";
+import {usePracticeStore} from "@/stores/practice.ts";
 import Footer from "@/components/Practice/Footer.vue";
 import TypeWord from "@/components/Practice/TypeWord.vue";
 import TypeArticle from "@/components/Practice/TypeArticle.vue";
@@ -11,6 +11,7 @@ import {$ref} from "vue/macros";
 import Statistics from "@/components/Practice/Statistics.vue";
 import {emitter, EventKey} from "@/utils/eventBus";
 import {useSettingStore} from "@/stores/setting";
+import {cloneDeep} from "lodash-es";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
@@ -1143,7 +1144,12 @@ watch(() => store.load, n => {
 })
 
 function getCurrentWords() {
-  wordData.words = store.chapter
+  wordData.words = cloneDeep(store.chapter)
+  wordData.index = 0
+}
+
+function getCurrentArticle() {
+  wordData.words = cloneDeep(store.chapter)
   wordData.index = 0
 }
 
@@ -1152,18 +1158,21 @@ onMounted(() => {
 })
 
 function write() {
+  console.log('write')
   settingStore.dictation = true
   repeat()
 }
 
 //TODO 需要判断是否已忽略
 function repeat() {
+  console.log('repeat')
   getCurrentWords()
   emitter.emit(EventKey.resetWord)
 }
 
 //TODO 能否下一章
 function next() {
+  console.log('next')
   store.currentDict.chapterIndex++
   repeat()
 }

@@ -3,7 +3,7 @@ import {computed, nextTick, watchEffect} from "vue"
 import {$ref} from "vue/macros";
 import {Article, ArticleWord, ShortKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
-import {usePracticeStore} from "@/components/Practice/practice.ts";
+import {usePracticeStore} from "@/stores/practice.ts";
 import TypeWord from "@/components/Practice/TypeWord.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";

@@ -32,7 +32,7 @@ onMounted(() => {
           return tabIndex = 3;
         case DictType.wrongDict:
           return tabIndex = 2;
-        case DictType.innerDict:
+        case DictType.publicDict:
         case DictType.customDict:
           return tabIndex = 0;
       }
@@ -52,7 +52,7 @@ const newWordDictActiveIndex = computed(() => {
 })
 
 const dictActiveIndex = computed(() => {
-  if (store.current.dictType !== DictType.innerDict) return -1
+  if (store.current.dictType !== DictType.publicDict) return -1
   else {
     if (store.current.repeatNumber) {
       return store.chapter.findIndex(v => v.name === store.word.name)
@@ -108,7 +108,7 @@ const skipWordDictActiveIndex = computed(() => {
                   :isActive="store.sideIsOpen && tabIndex === 0"
                   :list="store.dict.chapterWords[store.dict.chapterIndex]??[]"
                   :activeIndex="dictActiveIndex"/>
-              <footer v-if="![DictType.customDict,DictType.innerDict].includes(store.current.dictType)">
+              <footer v-if="![DictType.customDict,DictType.publicDict].includes(store.current.dictType)">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="store.changeDict(store.dict)"

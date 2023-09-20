@@ -10,7 +10,7 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {onMounted, reactive} from "vue";
 import {cloneDeep} from "lodash-es";
 import {Icon} from '@iconify/vue';
-import {usePracticeStore} from "@/components/Practice/practice.ts";
+import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 
 const store = useBaseStore()

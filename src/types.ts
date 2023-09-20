@@ -86,9 +86,9 @@ export enum DictType {
   newDict = 'newDict',
   skipDict = 'skipDict',
   wrongDict = 'wrongDict',
-  innerDict = 'innerDict',
+  publicDict = 'publicDict',
   customDict = 'customDict',
-  innerArticle = 'innerArticle',
+  publicArticle = 'publicArticle',
   customArticle = 'customArticle'
 }
 

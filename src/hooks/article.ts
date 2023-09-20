@@ -48,7 +48,7 @@ export function splitArticle(article: string, lang: string = 'en', keyboardMap: 
     article = article.replaceAll(`”`, '"')
   }
 
-  // console.log('article', article)
+  // console.log('articles', articles)
 
   article.split('').map((v, i, arr) => {
     switch (v) {
@@ -181,7 +181,7 @@ export function splitCNArticle(article: string, lang: string = 'cn', keyboardMap
   let word = cloneDeep({...DefaultArticleWord, name: '', nextSpace: true});
   //加\n用于添加最后一段
   article += '\n'
-  // console.log('article', article)
+  // console.log('articles', articles)
 
   article.split('').map((v, i, arr) => {
     switch (v) {

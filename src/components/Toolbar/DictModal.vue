@@ -40,7 +40,7 @@ async function selectDict(item: Dict) {
   currentSelectDict = {
     ...item,
     sort: Sort.normal,
-    type: DictType.innerDict,
+    type: DictType.publicDict,
     originWords: [],
     words: [],
     chapterWordNumber: 15,

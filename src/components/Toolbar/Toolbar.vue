@@ -16,10 +16,12 @@ import RepeatSetting from "@/components/Toolbar/RepeatSetting.vue";
 import TranslateSetting from "@/components/Toolbar/TranslateSetting.vue";
 import Add from "@/components/Toolbar/Add.vue";
 import {useSettingStore} from "@/stores/setting.ts";
+import {usePracticeStore} from "@/stores/practice.ts";
 
 const {toggle} = useTheme()
 const store = useBaseStore()
 const settingStore = useSettingStore()
+const practiceStore = usePracticeStore()
 
 const showFeedbackModal = $ref(false)
 const showSettingModal = $ref(false)
@@ -42,7 +44,7 @@ watch(() => settingStore.showToolbar, n => {
   <header ref="headerRef">
     <div class="content">
       <div class="info" @click="showDictModal = true">
-        {{ store.dictTitle }}
+        {{ store.dictTitle }} {{ practiceStore.repeatNumber ? '  复习错词' : ''}}
       </div>
       <div class="options">
         <Tooltip title="切换主题">

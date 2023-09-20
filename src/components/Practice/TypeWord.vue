@@ -6,7 +6,7 @@ import {DictType, DisplayStatistics, ShortKeyMap, Statistics, Word} from "../../
 import BaseButton from "@/components/BaseButton.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash-es"
-import {usePracticeStore} from "@/components/Practice/practice.ts"
+import {usePracticeStore} from "@/stores/practice.ts"
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
 import {useEventListener} from "@/hooks/event.ts";
@@ -111,7 +111,7 @@ function next() {
     data.index++
     practiceStore.inputNumber++
     console.log('这个词完了')
-    if ([DictType.customDict, DictType.innerDict].includes(store.current.dictType)
+    if ([DictType.customDict, DictType.publicDict].includes(store.current.dictType)
         && store.skipWordNames.includes(word.name.toLowerCase())) {
       next()
     }
