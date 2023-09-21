@@ -29,7 +29,7 @@ export const EnKeyboardMap: KeyboardMap = {
 
 export function splitEnArticle(text: string, lang: string = 'en', keyboardMap: KeyboardMap = EnKeyboardMap): {
   sections: Sentence[][],
-  text: string
+  newText: string
 } {
   let sections: Sentence[][] = []
   let section: Sentence[] = []
@@ -41,6 +41,9 @@ export function splitEnArticle(text: string, lang: string = 'en', keyboardMap: K
   section.push(sentence)
   sections.push(section)
   let word = cloneDeep({...DefaultArticleWord, name: '', nextSpace: true});
+
+  //去除头和尾部的空格
+  text = text.trim()
   //加\n用于添加最后一段
   text += '\n'
   text = text.replaceAll(`‘`, '"')
@@ -169,7 +172,7 @@ export function splitEnArticle(text: string, lang: string = 'en', keyboardMap: K
     })
   })
   return {
-    text,
+    newText: text,
     sections
   }
 }
@@ -185,6 +188,8 @@ export function splitCNArticle(article: string, lang: string = 'cn', keyboardMap
   section.push(sentence)
   sections.push(section)
   let word = cloneDeep({...DefaultArticleWord, name: '', nextSpace: true});
+  //去除头和尾部的空格
+  article = article.trim()
   //加\n用于添加最后一段
   article += '\n'
   // console.log('articles', articles)

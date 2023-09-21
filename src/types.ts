@@ -115,35 +115,35 @@ export interface Sentence {
 }
 
 export enum TranslateType {
-  custom = 0,
-  network = 1,
-  none = 2
+  custom = 'custom',
+  network = 'network',
+  none = 'none'
 }
 
 export interface Article {
   title: string,
   titleTranslate: string,
-  article: string,
-  customTranslate: string,
-  networkTranslate: string,
-  translateSplit: boolean,//翻译是否分割
+  text: string,
+  textCustomTranslate: string,
+  textCustomTranslateIsFormat: boolean,//翻译是否格式化
+  textNetworkTranslate: string,
   newWords: Word[],
-  articleAllWords: string[],
+  textAllWords: string[],
   sections: Sentence[][],
-  translateType: TranslateType
+  useTranslateType: TranslateType
 }
 
 export const DefaultArticle: Article = {
   title: '',
   titleTranslate: '',
-  article: '',
-  customTranslate: '',
-  networkTranslate: '',
-  translateSplit: false,
+  text: '',
+  textCustomTranslate: '',
+  textNetworkTranslate: '',
+  textCustomTranslateIsFormat: false,
   newWords: [],
-  articleAllWords: [],
+  textAllWords: [],
   sections: [],
-  translateType: TranslateType.network
+  useTranslateType: TranslateType.network
 }
 
 export interface Dict {

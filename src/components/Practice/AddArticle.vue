@@ -7,7 +7,7 @@ import {
   getNetworkTranslate,
   getSentenceAllText,
   getSentenceAllTranslateText,
-  updateLocalSentenceTranslate
+  updateLocalSentenceTranslate, updateSections
 } from "@/hooks/translate.ts";
 import * as copy from "copy-to-clipboard";
 import {getSplitTranslateText, splitEnArticle} from "@/hooks/article.ts";
@@ -39,24 +39,29 @@ useEsc(() => {
 })
 
 onMounted(() => {
+  if (article.text.trim()) {
+    if (article.useTranslateType === TranslateType.custom) {
+      if (article.textCustomTranslate.trim()) {
+        if (!article.textCustomTranslateIsFormat) {
+          let r = getSplitTranslateText(article.textCustomTranslate)
+          if (r) article.textCustomTranslate = r
+        }
+      }
+    }
+  }
   updateSentenceTranslate()
 })
 
-function updateSections() {
-  let {text, sections} = splitEnArticle(article.article)
-  article.article = text
-  article.sections = sections
-}
 
 async function startNetworkTranslate() {
   if (!article.title.trim()) {
     return ElMessage.error('请填写标题！')
   }
-  if (!article.article.trim()) {
+  if (!article.text.trim()) {
     return ElMessage.error('请填写正文！')
   }
-  updateSections()
-  article.networkTranslate = ''
+  updateSections(article)
+  article.textNetworkTranslate = ''
   //注意！！！
   //这里需要用异步，因为watch了article.networkTranslate，改变networkTranslate了之后，会重新设置article.sections
   //导致getNetworkTranslate里面拿到的article.sections是废弃的值
@@ -71,35 +76,38 @@ async function startNetworkTranslate() {
 
 function saveSentenceTranslate(sentence: Sentence, val: string) {
   sentence.translate = val
-  if (article.translateType === TranslateType.custom) {
-    article.customTranslate = getSentenceAllTranslateText(article)
-  } else {
-    article.networkTranslate = getSentenceAllTranslateText(article)
+  if (article.useTranslateType === TranslateType.custom) {
+    article.textCustomTranslate = getSentenceAllTranslateText(article)
+  }
+  if (article.useTranslateType === TranslateType.network) {
+    article.textNetworkTranslate = getSentenceAllTranslateText(article)
   }
 }
 
 function saveSentenceText(sentence: Sentence, val: string) {
   sentence.text = val
-  article.article = getSentenceAllText(article)
+  article.text = getSentenceAllText(article)
   updateSentenceTranslate()
 }
 
 function updateSentenceTranslate() {
-  if (article.article.trim()) {
-    updateSections()
-    if (article.translateType === TranslateType.custom) {
-      updateLocalSentenceTranslate(article, article.customTranslate)
-    } else {
-      updateLocalSentenceTranslate(article, article.networkTranslate)
+  if (article.text.trim()) {
+    updateSections(article)
+    if (article.useTranslateType === TranslateType.custom) {
+      updateLocalSentenceTranslate(article, article.textCustomTranslate)
+    }
+    if (article.useTranslateType === TranslateType.network) {
+      updateLocalSentenceTranslate(article, article.textNetworkTranslate)
     }
   }
 }
 
 function appendTranslate(str: string) {
-  if (article.translateType === TranslateType.custom) {
-    article.customTranslate += str
-  } else {
-    article.networkTranslate += str
+  if (article.useTranslateType === TranslateType.custom) {
+    article.textCustomTranslate += str
+  }
+  if (article.useTranslateType === TranslateType.network) {
+    article.textNetworkTranslate += str
   }
 }
 
@@ -134,65 +142,67 @@ function save() {
   if (!article.title.trim()) {
     return ElMessage.error('请填写标题！')
   }
-  if (!article.article.trim()) {
+  if (!article.text.trim()) {
     return ElMessage.error('请填写正文！')
   }
 
-  const saveTemp = ()=>{
-    article.translateSplit = true
+  const saveTemp = () => {
+    article.textCustomTranslateIsFormat = true
     emit('close')
     emit('save', cloneDeep(article))
   }
 
-  if (article.translateType === TranslateType.network) {
-    if (!article.networkTranslate.trim()) {
+  if (article.useTranslateType === TranslateType.network) {
+    if (!article.textNetworkTranslate.trim()) {
       return ElMessageBox.confirm('您选择了“网络翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?', '提示', {
         confirmButtonText: '确认',
         cancelButtonText: '取消',
         type: 'warning',
       }).then(() => {
-        article.translateType = TranslateType.none
+        article.useTranslateType = TranslateType.none
         saveTemp()
       }).catch(() => void 0)
     }
   }
 
-  if (article.translateType === TranslateType.custom) {
-    if (!article.customTranslate.trim()) {
+  if (article.useTranslateType === TranslateType.custom) {
+    if (!article.textCustomTranslate.trim()) {
       return ElMessageBox.confirm('您选择了“本地翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?', '提示', {
         confirmButtonText: '确认',
         cancelButtonText: '取消',
         type: 'warning',
       }).then(() => {
-        article.translateType = TranslateType.none
+        article.useTranslateType = TranslateType.none
         saveTemp()
       }).catch(() => void 0)
     }
   }
 
+  saveTemp()
 }
 
-watch(() => article.customTranslate, (str: string) => {
+watch(() => article.textCustomTranslate, (str: string) => {
   updateSentenceTranslate()
 })
 
-watch(() => article.networkTranslate, (str: string) => {
+watch(() => article.textNetworkTranslate, (str: string) => {
   updateSentenceTranslate()
 })
 
-watch(() => article.translateType, () => {
-  if (article.article.trim()) {
-    if (article.translateType === TranslateType.custom) {
-      if (article.customTranslate.trim()) {
-        updateLocalSentenceTranslate(article, article.customTranslate)
+watch(() => article.useTranslateType, () => {
+  if (article.text.trim()) {
+    if (article.useTranslateType === TranslateType.custom) {
+      if (article.textCustomTranslate.trim()) {
+        updateLocalSentenceTranslate(article, article.textCustomTranslate)
       } else {
-        updateSections()
+        updateSections(article)
       }
-    } else {
-      if (article.networkTranslate.trim()) {
-        updateLocalSentenceTranslate(article, article.networkTranslate)
+    }
+    if (article.useTranslateType === TranslateType.custom) {
+      if (article.textNetworkTranslate.trim()) {
+        updateLocalSentenceTranslate(article, article.textNetworkTranslate)
       } else {
-        updateSections()
+        updateSections(article)
       }
     }
   }
@@ -219,7 +229,7 @@ watch(() => article.translateType, () => {
           <div class="item basic">
             <div class="label">正文：</div>
             <textarea
-                v-model="article.article"
+                v-model="article.text"
                 @input="updateSentenceTranslate"
                 :readonly="![100,0].includes(progress)"
                 type="textarea"
@@ -234,7 +244,7 @@ watch(() => article.translateType, () => {
           <div class="item">
             <div class="label">
               <span>标题：</span>
-              <el-radio-group v-model="article.translateType">
+              <el-radio-group v-model="article.useTranslateType">
                 <el-radio-button :label="TranslateType.custom">本地翻译</el-radio-button>
                 <el-radio-button :label="TranslateType.network">网络翻译</el-radio-button>
                 <el-radio-button :label="TranslateType.none">不需要翻译</el-radio-button>
@@ -251,7 +261,7 @@ watch(() => article.translateType, () => {
           <div class="item basic">
             <div class="label">
               <span>正文：</span>
-              <div class="translate-item" v-if="article.translateType === TranslateType.network">
+              <div class="translate-item" v-if="article.useTranslateType === TranslateType.network">
                 <el-progress :percentage="progress"
                              :duration="30"
                              :striped="progress !== 100"
@@ -278,8 +288,8 @@ watch(() => article.translateType, () => {
               </div>
             </div>
             <textarea
-                v-if="article.translateType === TranslateType.custom"
-                v-model="article.customTranslate"
+                v-if="article.useTranslateType === TranslateType.custom"
+                v-model="article.textCustomTranslate"
                 :readonly="![100,0].includes(progress)"
                 @blur="onBlur"
                 @focus="onFocus"
@@ -289,8 +299,8 @@ watch(() => article.translateType, () => {
             >
             </textarea>
             <textarea
-                v-if="article.translateType === TranslateType.network"
-                v-model="article.networkTranslate"
+                v-if="article.useTranslateType === TranslateType.network"
+                v-model="article.textNetworkTranslate"
                 @blur="onBlur"
                 @focus="onFocus"
                 type="textarea"
