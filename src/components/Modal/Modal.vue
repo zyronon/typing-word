@@ -4,6 +4,7 @@ import Tooltip from "@/components/Tooltip.vue";
 import {Icon} from '@iconify/vue';
 import {useEsc} from "@/hooks/event.ts";
 import {$ref} from "vue/macros";
+import BaseButton from "@/components/BaseButton.vue";
 
 interface IProps {
   modelValue?: boolean,
@@ -11,6 +12,7 @@ interface IProps {
   title?: string,
   subTitle?: string,
   fullScreen?: boolean;
+  padding?: boolean
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -82,19 +84,28 @@ useEsc(close, () => props.modelValue)
                 fullScreen?'full':'window'
             ]"
       >
-        <Tooltip title="关闭">
-          <Icon @click="close"
-                v-if="showClose"
-                class="close hvr-grow pointer"
-                width="20" color="#929596"
-                icon="ion:close-outline"/>
-        </Tooltip>
-        <div class="modal-header" v-if="props.title">
+        <div class="modal-header">
           <div class="title">{{ props.title }}</div>
-          <div class="sub-title" v-if="props.subTitle">{{ props.subTitle }}</div>
+          <Tooltip title="关闭">
+            <Icon @click="close"
+                  v-if="showClose"
+                  class="close hvr-grow pointer"
+                  width="20" color="#929596"
+                  icon="ion:close-outline"/>
+          </Tooltip>
+          <!--          <div class="sub-title" v-if="props.subTitle">{{ props.subTitle }}</div>-->
         </div>
-        <div class="modal-body">
+        <div class="modal-body" :class="{padding}">
           <slot></slot>
+        </div>
+        <div class="modal-footer">
+          <div class="left">
+
+          </div>
+          <div class="right">
+            <BaseButton type="link">取消</BaseButton>
+            <BaseButton>确定</BaseButton>
+          </div>
         </div>
       </div>
     </div>
@@ -105,7 +116,7 @@ useEsc(close, () => props.modelValue)
 @import "@/assets/css/colors";
 
 $modal-mask-bg: rgba(#000, .45);
-$radius: 16rem;
+$radius: 24rem;
 $time: 0.3s;
 $header-height: 60rem;
 
@@ -202,18 +213,16 @@ $header-height: 60rem;
     flex-direction: column;
     transition: transform $time, opacity $time;
 
-
     .modal-header {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      padding: 15rem $space;
+      padding: 24rem 24rem 16rem;
       border-radius: $radius $radius 0 0;
 
       .title {
         color: var(--color-font-1);
-        font-weight: 500;
+        font-weight: bold;
         font-size: 28rem;
         line-height: 33rem;
       }
@@ -235,6 +244,48 @@ $header-height: 60rem;
       flex: 1;
       overflow: hidden;
       display: flex;
+
+      &.padding {
+        padding: 4rem 24rem 24rem;
+      }
+    }
+
+    .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16rem 24rem;
+      color: #fff;
+      font-size: 18rem;
+      background: rgba(0, 0, 0, .2);
+      border-radius: 0 0 24rem 24rem;
+
+      .left {
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+        .text {
+          color: white;
+          font-size: 16rem;
+          cursor: pointer;
+        }
+
+        &.active {
+          .text {
+            color: white;
+          }
+        }
+      }
+
+      .right {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: flex-end;
+        height: 100%;
+        gap: $space;
+      }
     }
   }
 

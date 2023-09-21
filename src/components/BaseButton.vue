@@ -2,13 +2,19 @@
 import Tooltip from "@/components/Tooltip.vue";
 import {Icon} from "@iconify/vue";
 
-defineProps<{
+interface IProps {
   keyboard?: string,
   active?: boolean
   disabled?: boolean
   loading?: boolean
-  size?: string
-}>()
+  size?: 'small' | 'normal' | 'large',
+  type?: 'primary' | 'link'
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  type: 'primary',
+  size: 'normal',
+})
 
 defineEmits(['click'])
 
@@ -24,6 +30,7 @@ function click() {
          :class="[
              active && 'active',
              size,
+             type,
              (disabled||loading) && 'disabled',
              !disabled && 'hvr-grow'
          ]">
@@ -53,7 +60,6 @@ function click() {
   align-items: center;
   justify-content: center;
   transition: all .3s;
-  background: rgb(75, 85, 99);
   //background: #999;
   //background: rgb(60, 63, 65);
   //background: var(--color-second-bg);
@@ -79,6 +85,13 @@ function click() {
     }
   }
 
+  &.large {
+    height: 50rem;
+    font-size: 18rem;
+    padding: 0 18rem;
+  }
+
+
   & > span {
     font-size: 16rem;
     color: white;
@@ -92,14 +105,13 @@ function click() {
     opacity: .7;
   }
 
-  &.large {
-    height: 50rem;
-    font-size: 18rem;
-    padding: 0 18rem;
-  }
 
   &.primary {
-    background: $main;
+    background: rgb(75, 85, 99);
+  }
+
+  &.link {
+    border-bottom-color: black;
   }
 
   &.active {
