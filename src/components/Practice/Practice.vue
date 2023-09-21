@@ -57,6 +57,7 @@ watch(() => store.load, n => {
 
 function getCurrentPractice() {
   if (store.isArticle) {
+    return
     let tempArticle = {...DefaultArticle, ...store.currentDict.articles[store.currentDict.chapterIndex]}
     console.log('article', tempArticle)
     if (tempArticle.sections.length) {
@@ -121,7 +122,6 @@ onMounted(() => {
 
 })
 
-useStartKeyboardEventListener()
 
 function write() {
   console.log('write')

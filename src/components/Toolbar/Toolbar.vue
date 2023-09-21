@@ -44,7 +44,7 @@ watch(() => settingStore.showToolbar, n => {
   <header ref="headerRef">
     <div class="content">
       <div class="info" @click="showDictModal = true">
-        {{ store.dictTitle }} {{ practiceStore.repeatNumber ? '  复习错词' : ''}}
+        {{ store.dictTitle }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
       </div>
       <div class="options">
         <Tooltip title="切换主题">
@@ -102,9 +102,9 @@ watch(() => settingStore.showToolbar, n => {
             color="#999"/>
     </Tooltip>
   </header>
-  <DictModal v-model="showDictModal"/>
-  <SettingModal v-model="showSettingModal"/>
-  <FeedbackModal v-model="showFeedbackModal"/>
+  <DictModal v-if="showDictModal" @close="showDictModal = false"/>
+  <SettingModal v-if="showSettingModal" @close="showSettingModal = false"/>
+  <FeedbackModal v-if="showFeedbackModal" @close="showFeedbackModal = false"/>
 </template>
 
 <style scoped lang="scss">

@@ -15,6 +15,8 @@ import EditAbleText from "@/components/EditAbleText.vue";
 import {Icon} from "@iconify/vue";
 import {cloneDeep} from "lodash-es";
 import {useDisableEventListener, useEsc} from "@/hooks/event.ts";
+import {Action} from "element-plus";
+import Modal from "@/components/Modal/Modal.vue";
 
 interface IProps {
   article?: Article
@@ -34,9 +36,6 @@ const TranslateEngineOptions = [
 const emit = defineEmits(['close', 'save'])
 
 useDisableEventListener()
-useEsc(() => {
-  emit('close')
-})
 
 onMounted(() => {
   if (article.text.trim()) {
@@ -45,13 +44,15 @@ onMounted(() => {
         if (!article.textCustomTranslateIsFormat) {
           let r = getSplitTranslateText(article.textCustomTranslate)
           if (r) article.textCustomTranslate = r
+          ElMessageBox.alert('检测到本地翻译未格式化，已自动格式', '提示', {
+            confirmButtonText: '好的',
+          })
         }
       }
     }
   }
   updateSentenceTranslate()
 })
-
 
 async function startNetworkTranslate() {
   if (!article.title.trim()) {
@@ -198,12 +199,15 @@ watch(() => article.useTranslateType, () => {
         updateSections(article)
       }
     }
-    if (article.useTranslateType === TranslateType.custom) {
+    if (article.useTranslateType === TranslateType.network) {
       if (article.textNetworkTranslate.trim()) {
         updateLocalSentenceTranslate(article, article.textNetworkTranslate)
       } else {
         updateSections(article)
       }
+    }
+    if (article.useTranslateType === TranslateType.none) {
+      updateSections(article)
     }
   }
 })
@@ -211,7 +215,10 @@ watch(() => article.useTranslateType, () => {
 </script>
 
 <template>
-  <Teleport to="body">
+  <Modal @close="$emit('close')"
+         title="设置"
+         :full-screen="true"
+         subTitle="修改立即生效，实时保存">
     <div class="add-article" @click.stop="null">
       <div class="content">
         <div class="row">
@@ -336,7 +343,7 @@ watch(() => article.useTranslateType, () => {
             width="20" color="#929596"
             icon="ion:close-outline"/>
     </div>
-  </Teleport>
+  </Modal>
 </template>
 
 <style scoped lang="scss">

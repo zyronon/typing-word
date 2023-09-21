@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<IProps>(), {
 })
 
 const emit = defineEmits([
-  'update:modelValue',
+  'close',
 ])
 
 let currentSelectDict: Dict = $ref(store.currentDict)
@@ -64,7 +64,7 @@ function changeDict() {
 
 function close() {
   console.log('close')
-  emit('update:modelValue', false)
+  emit('close')
 }
 
 function resetChapterList() {
@@ -73,8 +73,7 @@ function resetChapterList() {
 </script>
 
 <template>
-  <Modal :modelValue="props.modelValue"
-         :show-close="false"
+  <Modal :show-close="false"
          @close="close">
     <div class="slide">
       <div class="slide-list" :class="`step${step}`">
@@ -110,7 +109,7 @@ function resetChapterList() {
                   <div class="desc">{{ i.description }}</div>
                   <div class="num">{{ i.length }}词</div>
 
-                  <Icon icon="octicon:arrow-right-24"  v-if="currentSelectDict.name === i.name"
+                  <Icon icon="octicon:arrow-right-24" v-if="currentSelectDict.name === i.name"
                         @click.stop="step = 1"
                         class="go" width="20" color="#929596"/>
                 </div>

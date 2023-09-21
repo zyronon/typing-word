@@ -32,6 +32,7 @@ declare module 'vue' {
     IconWrapper: typeof import('./src/components/IconWrapper.vue')['default']
     MiniModal: typeof import('./src/components/MiniModal.vue')['default']
     Modal: typeof import('./src/components/Modal/Modal.vue')['default']
+    NewModal: typeof import('./src/components/Modal/NewModal.vue')['default']
     PopConfirm: typeof import('./src/components/PopConfirm.vue')['default']
     Practice: typeof import('./src/components/Practice/Practice.vue')['default']
     RepeatSetting: typeof import('./src/components/Toolbar/RepeatSetting.vue')['default']

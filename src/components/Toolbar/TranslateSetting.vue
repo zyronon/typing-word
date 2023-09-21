@@ -35,7 +35,6 @@ function save() {
 
 }
 
-
 </script>
 
 <template>
@@ -100,10 +99,6 @@ function save() {
         <BaseButton size="small" @click="save">确定</BaseButton>
       </div>
     </MiniModal>
-    <Modal
-        title="A private Conversation!"
-        v-model="showCustomTranslateModal">
-    </Modal>
   </div>
 </template>
 

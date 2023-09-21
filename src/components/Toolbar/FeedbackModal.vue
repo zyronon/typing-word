@@ -1,28 +1,17 @@
 <script setup lang="ts">
 import Modal from "@/components/Modal/Modal.vue"
-import {useBaseStore} from "@/stores/base.ts"
 import BaseButton from "@/components/BaseButton.vue";
 import {GITHUB} from "@/config/ENV.ts";
 
-interface IProps {
-  modelValue: boolean,
-}
-
-const props = withDefaults(defineProps<IProps>(), {
-  modelValue: true,
-})
-
 const emit = defineEmits([
-  'update:modelValue',
+  'close',
 ])
-const store = useBaseStore()
 
 </script>
 
 <template>
   <Modal
-      :modelValue="props.modelValue"
-      @close="emit('update:modelValue',false)"
+      @close="emit('close')"
       title="反馈">
     <div class="feedback-modal">
       <div>
@@ -31,7 +20,7 @@ const store = useBaseStore()
       <p>or</p>
       <div class="github">
         <span>在<a :href="GITHUB" target="_blank">Github</a>上给我提一个
-        <a :href="`${GITHUB}/issues`"  target="_blank">Issue</a>
+        <a :href="`${GITHUB}/issues`" target="_blank">Issue</a>
         </span>
         <div class="options">
           <BaseButton>

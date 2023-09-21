@@ -24,8 +24,8 @@ const emit = defineEmits([
 ])
 onMounted(() => {
   emitter.on(EventKey.openStatModal, (stat: DisplayStatistics) => {
+    currentStat = {...DefaultDisplayStatistics, ...stat}
     statModalIsOpen = true
-    currentStat = stat
   })
 })
 
@@ -37,7 +37,9 @@ function options(emitType: string) {
 </script>
 
 <template>
-  <Modal v-model="statModalIsOpen" @close="options('next')">
+  <Modal
+      v-model="statModalIsOpen"
+      @close="options('next')">
     <div class="statistics">
       <header>
         <div class="title">{{ store.currentDict.name }}</div>

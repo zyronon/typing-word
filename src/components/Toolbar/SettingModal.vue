@@ -10,16 +10,8 @@ import {useDisableEventListener} from "@/hooks/event.ts";
 const tabIndex = $ref(0)
 const settingStore = useSettingStore()
 
-interface IProps {
-  modelValue: boolean,
-}
-
-const props = withDefaults(defineProps<IProps>(), {
-  modelValue: true,
-})
-
 const emit = defineEmits([
-  'update:modelValue',
+  'close',
 ])
 
 // useDisableEventListener()
@@ -29,9 +21,9 @@ useWatchAllSound()
 
 <template>
   <Modal
-      :modelValue="props.modelValue"
-      @close="emit('update:modelValue',false)"
-      title="设置" subTitle="修改立即生效，实时保存">
+      @close="emit('close')"
+      title="设置"
+      subTitle="修改立即生效，实时保存">
     <div class="setting-modal">
       <div class="tabs">
         <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">
@@ -140,7 +132,7 @@ useWatchAllSound()
           <div class="row">
             <label class="item-title">章节乱序</label>
             <div class="wrapper">
-              <el-switch v-model="settingStore.value1"
+              <el-switch v-model="settingStore.show"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"

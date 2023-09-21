@@ -1,6 +1,7 @@
-import {onMounted, onUnmounted} from "vue";
+import {onMounted, onUnmounted, toRef, toValue, watch} from "vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
+import {$ref} from "vue/macros";
 
 export function useWindowClick(cb: () => void) {
     onMounted(() => {
@@ -53,13 +54,34 @@ export function useDisableEventListener() {
     })
 }
 
-export function useEsc(close: () => void) {
-    onMounted(() => {
-        window.addEventListener('keyup', (e: KeyboardEvent) => {
-            if (e.key === 'Escape') {
-                close()
+export function useEsc(close: () => void, watchVal?: any) {
+    const runtimeStore = useRuntimeStore()
+    const id = $ref(Date.now())
+
+    watch(watchVal, n => {
+        if (n) {
+            runtimeStore.modalList.push({id, close})
+        } else {
+            let rIndex = runtimeStore.modalList.findIndex(item => item.id === id)
+            if (rIndex > 0) {
+                runtimeStore.modalList.splice(rIndex, 1)
             }
-        })
+        }
+    })
+
+    onMounted(() => {
+        if (watchVal() === undefined) {
+            runtimeStore.modalList.push({id, close})
+        }
+    })
+
+    onUnmounted(() => {
+        if (watchVal() === undefined) {
+            let rIndex = runtimeStore.modalList.findIndex(item => item.id === id)
+            if (rIndex > 0) {
+                runtimeStore.modalList.splice(rIndex, 1)
+            }
+        }
     })
 }
 
