@@ -111,7 +111,11 @@ function click() {
   }
 
   &.link {
-    border-bottom-color: black;
+    border-radius: 0;
+    border-bottom: 2px solid transparent;
+    &:hover{
+      border-bottom: 2px solid black;
+    }
   }
 
   &.active {

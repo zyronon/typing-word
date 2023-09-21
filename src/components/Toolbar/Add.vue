@@ -28,8 +28,7 @@ function toggle() {
         />
       </IconWrapper>
     </Tooltip>
-    <AddArticle v-if="show"
-                @close="show = false"
+    <AddArticle v-model="show"
     />
   </div>
 </template>

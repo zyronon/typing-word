@@ -202,7 +202,7 @@ function onKeyDown(e: KeyboardEvent) {
       let letter = e.key
 
       let key = currentWord.name[stringIndex]
-      console.log('key', key,)
+      // console.log('key', key,)
 
       let isWrong = false
       if (settingStore.ignoreCase) {

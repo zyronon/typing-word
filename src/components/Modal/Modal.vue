@@ -10,20 +10,29 @@ interface IProps {
   modelValue?: boolean,
   showClose?: boolean,
   title?: string,
-  subTitle?: string,
   fullScreen?: boolean;
   padding?: boolean
+  footer?: boolean
+  header?: boolean
+  confirmButtonText?: string
+  cancelButtonText?: string
 }
 
 const props = withDefaults(defineProps<IProps>(), {
   modelValue: undefined,
   showClose: true,
   fullScreen: false,
+  footer: false,
+  header: true,
+  confirmButtonText: '确认',
+  cancelButtonText: '取消',
 })
 
 const emit = defineEmits([
   'update:modelValue',
-  'close'
+  'close',
+  'ok',
+  'cancel',
 ])
 
 let visible = $ref(false)
@@ -47,6 +56,7 @@ function close() {
     setTimeout(() => {
       emit('update:modelValue', false)
       emit('close')
+      emit('cancel')
       visible = false
       resolve(true)
     }, closeTime)
@@ -54,6 +64,7 @@ function close() {
 }
 
 watch(() => props.modelValue, n => {
+  // console.log('n', n)
   if (n) {
     visible = true
   } else {
@@ -62,6 +73,7 @@ watch(() => props.modelValue, n => {
 })
 
 onMounted(() => {
+  // console.log('props.modelValue', props.modelValue)
   if (props.modelValue === undefined) {
     visible = true
   }
@@ -84,7 +96,7 @@ useEsc(close, () => props.modelValue)
                 fullScreen?'full':'window'
             ]"
       >
-        <div class="modal-header">
+        <div class="modal-header" v-if="header">
           <div class="title">{{ props.title }}</div>
           <Tooltip title="关闭">
             <Icon @click="close"
@@ -93,18 +105,16 @@ useEsc(close, () => props.modelValue)
                   width="20" color="#929596"
                   icon="ion:close-outline"/>
           </Tooltip>
-          <!--          <div class="sub-title" v-if="props.subTitle">{{ props.subTitle }}</div>-->
         </div>
         <div class="modal-body" :class="{padding}">
           <slot></slot>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer" v-if="footer">
           <div class="left">
-
           </div>
           <div class="right">
-            <BaseButton type="link">取消</BaseButton>
-            <BaseButton>确定</BaseButton>
+            <BaseButton type="link" @click="close">取消</BaseButton>
+            <BaseButton @click="emit('ok'),close()">确定</BaseButton>
           </div>
         </div>
       </div>
@@ -223,14 +233,8 @@ $header-height: 60rem;
       .title {
         color: var(--color-font-1);
         font-weight: bold;
-        font-size: 28rem;
+        font-size: 24rem;
         line-height: 33rem;
-      }
-
-      .sub-title {
-        color: var(--color-font-1);
-        font-weight: 500;
-        font-size: 14rem;
       }
     }
 
@@ -287,12 +291,6 @@ $header-height: 60rem;
         gap: $space;
       }
     }
-  }
-
-  .close {
-    position: absolute;
-    right: 20rem;
-    top: 20rem;
   }
 }
 </style>

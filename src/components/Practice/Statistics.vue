@@ -38,6 +38,7 @@ function options(emitType: string) {
 
 <template>
   <Modal
+      :header="false"
       v-model="statModalIsOpen"
       @close="options('next')">
     <div class="statistics">

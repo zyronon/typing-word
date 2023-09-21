@@ -16,42 +16,59 @@ import {Icon} from "@iconify/vue";
 import {cloneDeep} from "lodash-es";
 import {useDisableEventListener, useEsc} from "@/hooks/event.ts";
 import {Action} from "element-plus";
+import {MessageBox} from "@/utils/MessageBox.tsx";
 import Modal from "@/components/Modal/Modal.vue";
 
 interface IProps {
   article?: Article
+  modelValue: boolean
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  article: () => cloneDeep(DefaultArticle)
+  article: () => cloneDeep(DefaultArticle),
+  modelValue: false
 })
 
-let article = reactive<Article>(props.article)
+
+let article = $ref<Article>(cloneDeep(props.article))
 let networkTranslateEngine = $ref('baidu')
 let progress = $ref(0)
 const TranslateEngineOptions = [
   {value: 'baidu', label: '百度'},
   {value: 'youdao', label: '有道'},
 ]
-const emit = defineEmits(['close', 'save'])
+const emit = defineEmits([
+  'update:modelValue',
+  'close',
+  'save'
+])
 
-useDisableEventListener()
+useDisableEventListener(() => props.modelValue)
 
-onMounted(() => {
-  if (article.text.trim()) {
-    if (article.useTranslateType === TranslateType.custom) {
-      if (article.textCustomTranslate.trim()) {
-        if (!article.textCustomTranslateIsFormat) {
-          let r = getSplitTranslateText(article.textCustomTranslate)
-          if (r) article.textCustomTranslate = r
-          ElMessageBox.alert('检测到本地翻译未格式化，已自动格式', '提示', {
-            confirmButtonText: '好的',
-          })
+watch(() => props.modelValue, n => {
+  if (n) {
+    article = cloneDeep(props.article)
+    if (article.text.trim()) {
+      if (article.useTranslateType === TranslateType.custom) {
+        if (article.textCustomTranslate.trim()) {
+          if (!article.textCustomTranslateIsFormat) {
+            let r = getSplitTranslateText(article.textCustomTranslate)
+            if (r) article.textCustomTranslate = r
+            ElMessage({
+              message: '检测到本地翻译未格式化，已自动格式',
+              type: 'success',
+              duration: 5000
+            })
+          }
         }
       }
     }
+    updateSentenceTranslate()
   }
-  updateSentenceTranslate()
+})
+
+onMounted(() => {
+
 })
 
 async function startNetworkTranslate() {
@@ -100,6 +117,8 @@ function updateSentenceTranslate() {
     if (article.useTranslateType === TranslateType.network) {
       updateLocalSentenceTranslate(article, article.textNetworkTranslate)
     }
+  } else {
+    article.sections = []
   }
 }
 
@@ -155,6 +174,16 @@ function save() {
 
   if (article.useTranslateType === TranslateType.network) {
     if (!article.textNetworkTranslate.trim()) {
+      // MessageBox.confirm(
+      //     '您选择了“网络翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
+      //     '提示',
+      //     () => {
+      //       // article.useTranslateType = TranslateType.none
+      //       // saveTemp()
+      //     },
+      //     () => void 0,
+      // )
+      // return
       return ElMessageBox.confirm('您选择了“网络翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?', '提示', {
         confirmButtonText: '确认',
         cancelButtonText: '取消',
@@ -215,10 +244,11 @@ watch(() => article.useTranslateType, () => {
 </script>
 
 <template>
-  <Modal @close="$emit('close')"
-         title="设置"
-         :full-screen="true"
-         subTitle="修改立即生效，实时保存">
+  <Modal
+      :model-value="props.modelValue"
+      @close="emit('update:modelValue')"
+      :full-screen="true"
+  >
     <div class="add-article" @click.stop="null">
       <div class="content">
         <div class="row">
@@ -338,7 +368,7 @@ watch(() => article.useTranslateType, () => {
           </div>
         </div>
       </div>
-      <Icon @click="$emit('close')"
+      <Icon @click="emit('update:modelValue')"
             class="close hvr-grow pointer"
             width="20" color="#929596"
             icon="ion:close-outline"/>

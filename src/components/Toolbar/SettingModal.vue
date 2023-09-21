@@ -22,8 +22,7 @@ useWatchAllSound()
 <template>
   <Modal
       @close="emit('close')"
-      title="设置"
-      subTitle="修改立即生效，实时保存">
+      title="设置">
     <div class="setting-modal">
       <div class="tabs">
         <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">

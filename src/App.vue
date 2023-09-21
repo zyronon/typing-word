@@ -39,7 +39,6 @@ onMounted(() => {
 useEventListener('keyup', (e: KeyboardEvent) => {
   if (e.key === 'Escape') {
     let lastItem = runtimeStore.modalList.pop()
-    console.log('la',lastItem)
     lastItem && lastItem.close()
   }
 })

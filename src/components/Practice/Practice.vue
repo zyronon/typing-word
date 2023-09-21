@@ -17,6 +17,8 @@ import AddArticle from "@/components/Practice/AddArticle.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {updateLocalSentenceTranslate, updateSections} from "@/hooks/translate.ts";
+import BaseButton from "@/components/BaseButton.vue";
+import {MessageBox} from "@/utils/MessageBox.tsx";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
@@ -57,7 +59,7 @@ watch(() => store.load, n => {
 
 function getCurrentPractice() {
   if (store.isArticle) {
-    return
+    // return
     let tempArticle = {...DefaultArticle, ...store.currentDict.articles[store.currentDict.chapterIndex]}
     console.log('article', tempArticle)
     if (tempArticle.sections.length) {
@@ -149,11 +151,24 @@ function saveArticle(article: Article) {
   articleData.article = article
 }
 
+function test() {
+  MessageBox.confirm(
+      '2您选择了“本地翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
+      '1提示',
+      () => {
+        console.log('ok')
+      },
+      () => {
+        console.log('cencal')
+      })
+}
 </script>
 
 <template>
   <div class="practice">
     <Toolbar/>
+    <!--    <BaseButton @click="test">test</BaseButton>-->
+
     <TypeArticle
         v-if="store.isArticle"
         :article="articleData.article"
@@ -173,8 +188,7 @@ function saveArticle(article: Article) {
       @repeat="repeat"
       @next="next"
   />
-  <AddArticle v-if="showEditArticle"
-              @close="showEditArticle = false"
+  <AddArticle v-model="showEditArticle"
               :article="editArticle"
               @save="saveArticle"
   />
