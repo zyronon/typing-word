@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {computed, nextTick, watchEffect} from "vue"
+import {computed, nextTick, onMounted, watch, watchEffect} from "vue"
 import {$ref} from "vue/macros";
-import {Article, ArticleWord, DefaultArticle, ShortKeyMap, Word} from "@/types";
+import {Article, ArticleWord, DefaultArticle, DisplayStatistics, ShortKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
 import {usePracticeStore} from "@/stores/practice.ts";
 import TypeWord from "@/components/Practice/TypeWord.vue";
@@ -9,6 +9,7 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {cloneDeep} from "lodash-es";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 interface IProps {
   article: Article,
@@ -25,14 +26,6 @@ const props = withDefaults(defineProps<IProps>(), {
   wordIndex: 0,
   stringIndex: 0,
 })
-
-const playBeep = usePlayBeep()
-const playCorrect = usePlayCorrect()
-const playKeyboardAudio = usePlayKeyboardAudio()
-const playWordAudio = usePlayWordAudio()
-const store = useBaseStore()
-const practiceStore = usePracticeStore()
-const settingStore = useSettingStore()
 
 let isPlay = $ref(false)
 let articleWrapperRef = $ref<HTMLInputElement>(null)
@@ -56,14 +49,23 @@ let wordData = $ref({
   index: -1
 })
 
-watchEffect(() => {
+const playBeep = usePlayBeep()
+const playCorrect = usePlayCorrect()
+const playKeyboardAudio = usePlayKeyboardAudio()
+const playWordAudio = usePlayWordAudio()
+const store = useBaseStore()
+const practiceStore = usePracticeStore()
+const settingStore = useSettingStore()
+
+watch(() => props.article, () => {
   sectionIndex = props.sectionIndex
   sentenceIndex = props.sentenceIndex
   wordIndex = props.wordIndex
   stringIndex = props.stringIndex
 
-  practiceStore.inputNumber = 0
-  practiceStore.wrongNumber = 0
+  tabIndex = 0
+  practiceStore.inputWordNumber = 0
+  practiceStore.wrongWordNumber = 0
   practiceStore.repeatNumber = 0
   practiceStore.total = 0
   props.article.sections.map((v, i) => {
@@ -78,6 +80,12 @@ watchEffect(() => {
   practiceStore.wrongWords = []
   practiceStore.startDate = Date.now()
   calcTranslateLocation()
+}, {immediate: true})
+
+onMounted(() => {
+  emitter.on(EventKey.resetWord, () => {
+    wrong = input = ''
+  })
 })
 
 function calcTranslateLocation() {
@@ -136,7 +144,7 @@ function onKeyDown(e: KeyboardEvent) {
     wordIndex++
 
     if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase()) && !currentWord.isSymbol) {
-      practiceStore.inputNumber++
+      practiceStore.inputWordNumber++
     }
 
     if (!currentSentence.words[wordIndex]) {
@@ -145,6 +153,10 @@ function onKeyDown(e: KeyboardEvent) {
       if (!currentSection[sentenceIndex]) {
         sentenceIndex = 0
         sectionIndex++
+
+        if (!props.article.sections[sectionIndex]) {
+          console.log('打完了')
+        }
       } else {
         if (settingStore.dictation) {
           calcTranslateLocation()
@@ -155,9 +167,18 @@ function onKeyDown(e: KeyboardEvent) {
   }
 
   const nextSentence = () => {
+    tabIndex = 1
+    // wordData.words = practiceStore.wrongWords
+    wordData.words = [
+      {"name": "pharmacy", "trans": ["药房；配药学，药剂学；制药业；一批备用药品"], "usphone": "'fɑrməsi", "ukphone": "'fɑːməsɪ"},
+      // {"name": "foregone", "trans": ["过去的；先前的；预知的；预先决定的", "发生在…之前（forego的过去分词）"], "usphone": "'fɔrɡɔn", "ukphone": "fɔː'gɒn"}, {"name": "president", "trans": ["总统；董事长；校长；主席"], "usphone": "'prɛzɪdənt", "ukphone": "'prezɪd(ə)nt"}, {"name": "plastic", "trans": ["塑料的；（外科）造型的；可塑的", "塑料制品；整形；可塑体"], "usphone": "'plæstɪk", "ukphone": "'plæstɪk"}, {"name": "provisionally", "trans": ["临时地，暂时地"], "usphone": "", "ukphone": ""}, {"name": "incentive", "trans": ["动机；刺激", "激励的；刺激的"], "usphone": "ɪn'sɛntɪv", "ukphone": "ɪn'sentɪv"}, {"name": "calculate", "trans": ["计算；以为；作打算"], "usphone": "'kælkjulet", "ukphone": "'kælkjʊleɪt"}
+    ]
+
+    return
     isSpace = false
     stringIndex = 0
     wordIndex = 0
+    input = wrong = ''
 
     //todo 计得把略过的单词加上统计里面去
     // if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase()) && !currentWord.isSymbol) {
@@ -168,6 +189,29 @@ function onKeyDown(e: KeyboardEvent) {
     if (!currentSection[sentenceIndex]) {
       sentenceIndex = 0
       sectionIndex++
+      if (!props.article.sections[sectionIndex]) {
+        console.log('打完了')
+        // if (practiceStore.wrongWordNumber === 0) {
+        if (false) {
+          console.log('这章节完了')
+          let now = Date.now()
+          let stat: DisplayStatistics = {
+            startDate: practiceStore.startDate,
+            endDate: now,
+            spend: now - practiceStore.startDate,
+            total: practiceStore.total,
+            correctRate: -1,
+            wrongWordNumber: practiceStore.wrongWordNumber,
+            wrongWords: practiceStore.wrongWords,
+          }
+          stat.correctRate = 100 - Math.trunc(((stat.wrongWordNumber) / (stat.total)) * 100)
+          emitter.emit(EventKey.openStatModal, stat)
+        } else {
+          tabIndex = 1
+          // wordData.words = practiceStore.wrongWords
+          wordData.words = [{"name": "pharmacy", "trans": ["药房；配药学，药剂学；制药业；一批备用药品"], "usphone": "'fɑrməsi", "ukphone": "'fɑːməsɪ"}, {"name": "foregone", "trans": ["过去的；先前的；预知的；预先决定的", "发生在…之前（forego的过去分词）"], "usphone": "'fɔrɡɔn", "ukphone": "fɔː'gɒn"}, {"name": "president", "trans": ["总统；董事长；校长；主席"], "usphone": "'prɛzɪdənt", "ukphone": "'prezɪd(ə)nt"}, {"name": "plastic", "trans": ["塑料的；（外科）造型的；可塑的", "塑料制品；整形；可塑体"], "usphone": "'plæstɪk", "ukphone": "'plæstɪk"}, {"name": "provisionally", "trans": ["临时地，暂时地"], "usphone": "", "ukphone": ""}, {"name": "incentive", "trans": ["动机；刺激", "激励的；刺激的"], "usphone": "ɪn'sɛntɪv", "ukphone": "ɪn'sentɪv"}, {"name": "calculate", "trans": ["计算；以为；作打算"], "usphone": "'kælkjulet", "ukphone": "'kælkjʊleɪt"}]
+        }
+      }
     } else {
       if (settingStore.dictation) {
         calcTranslateLocation()
@@ -212,11 +256,11 @@ function onKeyDown(e: KeyboardEvent) {
 
       let isWrong = false
       if (settingStore.ignoreCase) {
-        isWrong = key.toLowerCase() === letter.toLowerCase()
+        isWrong = key.toLowerCase() !== letter.toLowerCase()
       } else {
-        isWrong = key === letter
+        isWrong = key !== letter
       }
-      if (isWrong) {
+      if (!isWrong) {
         input += letter
         wrong = ''
         // console.log('匹配上了')
@@ -243,7 +287,7 @@ function onKeyDown(e: KeyboardEvent) {
         if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase())) {
           if (!practiceStore.wrongWords.find((v) => v.name.toLowerCase() === currentWord.name.toLowerCase())) {
             practiceStore.wrongWords.push(currentWord)
-            practiceStore.wrongNumber++
+            practiceStore.wrongWordNumber++
           }
         }
 

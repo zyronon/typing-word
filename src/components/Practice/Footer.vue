@@ -18,8 +18,8 @@ function format(val: number, suffix: string = '', check: number = -1) {
 
 const progress = $computed(() => {
   if (!practiceStore.total) return 0
-  if (practiceStore.inputNumber > practiceStore.total) return 100
-  return ((practiceStore.inputNumber / practiceStore.total) * 100)
+  if (practiceStore.inputWordNumber > practiceStore.total) return 100
+  return ((practiceStore.inputWordNumber / practiceStore.total) * 100)
 })
 
 let speedMinute = $ref(0)
@@ -54,12 +54,12 @@ onUnmounted(() => {
           <div class="name">单词总数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(practiceStore.inputNumber, '', 0) }}</div>
+          <div class="num">{{ format(practiceStore.inputWordNumber, '', 0) }}</div>
           <div class="line"></div>
           <div class="name">输入数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(practiceStore.wrongNumber, '', 0) }}</div>
+          <div class="num">{{ format(practiceStore.wrongWordNumber, '', 0) }}</div>
           <div class="line"></div>
           <div class="name">错误数</div>
         </div>

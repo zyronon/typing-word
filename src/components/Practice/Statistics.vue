@@ -5,13 +5,12 @@ import Ring from "@/components/Ring.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Fireworks from "@/components/Fireworks.vue";
 import BaseButton from "@/components/BaseButton.vue";
-import {DefaultDisplayStatistics, DisplayStatistics, Statistics} from "@/types.ts";
+import {DefaultDisplayStatistics, DisplayStatistics} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {onMounted, reactive} from "vue";
 import {cloneDeep} from "lodash-es";
 import {Icon} from '@iconify/vue';
-import {usePracticeStore} from "@/stores/practice.ts";
-import {useSettingStore} from "@/stores/setting.ts";
+import {$ref} from "vue/macros";
 
 const store = useBaseStore()
 let statModalIsOpen = $ref(false)
@@ -22,6 +21,7 @@ const emit = defineEmits([
   'next',
   'write'
 ])
+
 onMounted(() => {
   emitter.on(EventKey.openStatModal, (stat: DisplayStatistics) => {
     currentStat = {...DefaultDisplayStatistics, ...stat}
@@ -29,18 +29,27 @@ onMounted(() => {
   })
 })
 
-function options(emitType: string) {
+let optionType = $ref('')
+
+function options(emitType: 'write' | 'repeat' | 'next') {
   statModalIsOpen = false
+  optionType = emitType
   emit(emitType)
 }
 
+function onClose() {
+  if (!optionType) {
+    options('next')
+  }
+  optionType = ''
+}
 </script>
 
 <template>
   <Modal
       :header="false"
       v-model="statModalIsOpen"
-      @close="options('next')">
+      @close="onClose">
     <div class="statistics">
       <header>
         <div class="title">{{ store.currentDict.name }}</div>

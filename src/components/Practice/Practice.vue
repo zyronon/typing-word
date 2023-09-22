@@ -29,13 +29,13 @@ let showEditArticle = $ref(false)
 let editArticle = $ref<Article>(cloneDeep(DefaultArticle))
 
 watch(practiceStore, () => {
-  if (practiceStore.inputNumber < 1) {
+  if (practiceStore.inputWordNumber < 1) {
     return practiceStore.correctRate = -1
   }
-  if (practiceStore.wrongNumber > practiceStore.inputNumber) {
+  if (practiceStore.wrongWordNumber > practiceStore.inputWordNumber) {
     return practiceStore.correctRate = 0
   }
-  practiceStore.correctRate = 100 - Math.trunc(((practiceStore.wrongNumber) / (practiceStore.inputNumber)) * 100)
+  practiceStore.correctRate = 100 - Math.trunc(((practiceStore.wrongWordNumber) / (practiceStore.inputWordNumber)) * 100)
 })
 
 let wordData = $ref({
@@ -58,10 +58,11 @@ watch(() => store.load, n => {
 })
 
 function getCurrentPractice() {
-  console.log('store.currentDict',store.currentDict)
+  // console.log('store.currentDict',store.currentDict)
   if (store.isArticle) {
     // return
-    let tempArticle = {...DefaultArticle, ...store.currentDict.articles[store.currentDict.chapterIndex]}
+    let currentArticle = store.currentDict.articles[store.currentDict.chapterIndex]
+    let tempArticle = {...DefaultArticle, ...currentArticle}
     console.log('article', tempArticle)
     if (tempArticle.sections.length) {
       articleData.article = tempArticle
@@ -87,7 +88,7 @@ function getCurrentPractice() {
                   () => {
                     updateSections(tempArticle)
                     tempArticle.useTranslateType = TranslateType.none
-                    articleData.article = tempArticle
+                    store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = tempArticle
                   },
                   {
                     confirmButtonText: '去编辑',
@@ -106,7 +107,7 @@ function getCurrentPractice() {
                 () => {
                   updateSections(tempArticle)
                   tempArticle.useTranslateType = TranslateType.none
-                  articleData.article = tempArticle
+                  store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = tempArticle
                 },
                 {
                   confirmButtonText: '去编辑',
@@ -118,7 +119,7 @@ function getCurrentPractice() {
         if (tempArticle.useTranslateType === TranslateType.network) {
           updateSections(tempArticle)
           updateLocalSentenceTranslate(tempArticle, tempArticle.textNetworkTranslate)
-          articleData.article = tempArticle
+          store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = tempArticle
         }
       }
     }
@@ -131,7 +132,6 @@ function getCurrentPractice() {
 onMounted(() => {
 
 })
-
 
 function write() {
   console.log('write')
@@ -175,7 +175,7 @@ function test() {
 <template>
   <div class="practice">
     <Toolbar/>
-<!--    <BaseButton @click="test">test</BaseButton>-->
+    <!--    <BaseButton @click="test">test</BaseButton>-->
 
     <TypeArticle
         v-if="store.isArticle"

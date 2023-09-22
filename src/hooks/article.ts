@@ -55,8 +55,15 @@ export function splitEnArticle(text: string, lang: string = 'en', keyboardMap: K
   //将缩写词的双引号替换回单引号
   text = text.replaceAll(`"t`, `'t`)
   text = text.replaceAll(`"s`, `'s`)
+  text = text.replaceAll(`"m`, `'m`)
+  text = text.replaceAll(`"d`, `'d`)
+  text = text.replaceAll(`"ve`, `'ve`)
+  text = text.replaceAll(`"clock`, `'clock`)
+  // console.log('splitEnArticle', text)
+  // console.log('splitEnArticle length', text.length)
 
   text.split('').map((v, i, arr) => {
+    // if (i > 355) debugger
     switch (v) {
       case ' ':
         if (word.name) {
@@ -80,7 +87,7 @@ export function splitEnArticle(text: string, lang: string = 'en', keyboardMap: K
         word = cloneDeep(DefaultArticleWord)
         break
       case keyboardMap.QuoteLeft:
-        let symbolPosition = null
+        let nearSymbolPosition = null
         let indexs = {
           a: -1,
           b: -1,
@@ -90,15 +97,15 @@ export function splitEnArticle(text: string, lang: string = 'en', keyboardMap: K
         sections.toReversed().map((sectionItem, a) => {
           sectionItem.toReversed().map((sentenceItem, b) => {
             sentenceItem.words.toReversed().map((wordItem, c) => {
-              if (wordItem.symbolPosition !== '' && symbolPosition === null) {
-                symbolPosition = wordItem.symbolPosition === 'end'
+              if (wordItem.symbolPosition !== '' && nearSymbolPosition === null) {
+                nearSymbolPosition = wordItem.symbolPosition
                 indexs = {a, b, c}
               }
             })
           })
         })
 
-        if (symbolPosition || symbolPosition === null) {
+        if (nearSymbolPosition === 'end' || nearSymbolPosition === null) {
           sentence.words.push(cloneDeep({
             ...DefaultArticleWord,
             name: v,

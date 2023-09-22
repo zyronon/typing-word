@@ -52,7 +52,7 @@ export const useSettingStore = defineStore('setting', {
       effectSoundVolume: 100,
       repeatCount: 1,
       repeatCustomCount: null,
-      dictation: true,
+      dictation: false,
       translate: true,
 
       showNearWord: true,

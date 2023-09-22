@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onMounted, watchEffect} from "vue"
+import {onMounted, watch, watchEffect} from "vue"
 import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
 import {DictType, DisplayStatistics, ShortKeyMap, Statistics, Word} from "../../types";
@@ -43,16 +43,18 @@ const playKeyboardAudio = usePlayKeyboardAudio()
 const playWordAudio = usePlayWordAudio()
 
 
-watchEffect(() => {
+watch(() => props.words, () => {
   data.words = props.words
   data.index = props.words.length ? 0 : -1
-  practiceStore.inputNumber = 0
-  practiceStore.wrongNumber = 0
-  practiceStore.repeatNumber = 0
-  practiceStore.total = props.words.length
+
   practiceStore.wrongWords = []
+  practiceStore.repeatNumber = 0
   practiceStore.startDate = Date.now()
-})
+  practiceStore.correctRate = -1
+  practiceStore.total = props.words.length
+  practiceStore.inputWordNumber = 0
+  practiceStore.wrongWordNumber = 0
+}, {immediate: true})
 
 
 let word = $computed(() => {
@@ -68,10 +70,9 @@ let resetWord = $computed(() => {
   return word.name.slice(input.length + wrong.length)
 })
 
-
 onMounted(() => {
   emitter.on(EventKey.resetWord, () => {
-    input = ''
+    wrong = input = ''
   })
 })
 
@@ -85,8 +86,8 @@ function next() {
       }
       data.index = 0
       practiceStore.total = data.words.length
-      practiceStore.inputNumber = 0
-      practiceStore.wrongNumber = 0
+      practiceStore.inputWordNumber = 0
+      practiceStore.wrongWordNumber = 0
       practiceStore.repeatNumber++
       data.wrongWords = []
     } else {
@@ -106,7 +107,7 @@ function next() {
     }
   } else {
     data.index++
-    practiceStore.inputNumber++
+    practiceStore.inputWordNumber++
     console.log('这个词完了')
     if ([DictType.customDict, DictType.publicDict].includes(store.current.dictType)
         && store.skipWordNames.includes(word.name.toLowerCase())) {
@@ -126,11 +127,11 @@ async function onKeyDown(e: KeyboardEvent) {
     let letter = e.key
     let isWrong = false
     if (settingStore.ignoreCase) {
-      isWrong = (input + letter).toLowerCase() === word.name.toLowerCase().slice(0, input.length + 1)
+      isWrong = (input + letter).toLowerCase() !== word.name.toLowerCase().slice(0, input.length + 1)
     } else {
-      isWrong = (input + letter) === word.name.slice(0, input.length + 1)
+      isWrong = (input + letter) !== word.name.slice(0, input.length + 1)
     }
-    if (isWrong) {
+    if (!isWrong) {
       input += letter
       wrong = ''
       playKeyboardAudio()
@@ -142,7 +143,7 @@ async function onKeyDown(e: KeyboardEvent) {
       }
       if (!data.wrongWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
         data.wrongWords.push(word)
-        practiceStore.wrongNumber++
+        practiceStore.wrongWordNumber++
       }
       wrong = letter
       playKeyboardAudio()
@@ -200,8 +201,6 @@ async function onKeyDown(e: KeyboardEvent) {
 }
 
 useOnKeyboardEventListener(onKeyDown, onKeyUp)
-// useEventListener('keydown', onKeyDown)
-// useEventListener('keyup', onKeyUp)
 
 </script>
 

@@ -7,8 +7,8 @@ export interface PracticeState {
   repeatNumber: number,
   startDate: number,
   total: number,
-  inputNumber: number,
-  wrongNumber: number,
+  inputWordNumber: number,
+  wrongWordNumber: number,
   correctRate: number,
 }
 
@@ -22,8 +22,8 @@ export const usePracticeStore = defineStore('practice', {
       startDate: Date.now(),
       correctRate: -1,
       total: 0,
-      inputNumber: 0,
-      wrongNumber: 0,
+      inputWordNumber: 0,
+      wrongWordNumber: 0,
     }
   },
 })

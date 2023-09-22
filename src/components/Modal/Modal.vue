@@ -42,6 +42,9 @@ let maskRef = $ref<HTMLDivElement>(null)
 let modalRef = $ref<HTMLDivElement>(null)
 
 function close() {
+  if (!visible) {
+    return
+  }
   //记录停留时间，避免时间太短，弹框闪烁
   let stayTime = Date.now() - openTime;
   let closeTime = 300;
