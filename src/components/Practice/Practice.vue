@@ -134,29 +134,29 @@ onMounted(() => {
 })
 
 function write() {
-  console.log('write')
+  // console.log('write')
   settingStore.dictation = true
   repeat()
 }
 
 //TODO 需要判断是否已忽略
 function repeat() {
-  console.log('repeat')
+  // console.log('repeat')
   getCurrentPractice()
   emitter.emit(EventKey.resetWord)
 }
 
 //TODO 能否下一章
 function next() {
-  console.log('next')
+  // console.log('next')
   store.currentDict.chapterIndex++
   repeat()
 }
 
 function saveArticle(article: Article) {
-  console.log('a', article)
+  console.log('saveArticle', article)
   showEditArticle = false
-  articleData.article = article
+  store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = article
 }
 
 function test() {

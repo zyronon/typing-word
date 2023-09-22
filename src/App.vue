@@ -2,7 +2,7 @@
 
 import {onMounted, watch} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
-import {SaveKey} from "@/types.ts"
+import {SaveDictKey} from "@/types.ts"
 import Practice from "@/components/Practice/Practice.vue"
 import AddArticle from "@/components/Practice/AddArticle.vue";
 import {useEventListener, useStartKeyboardEventListener} from "@/hooks/event.ts";
@@ -26,7 +26,8 @@ function followSystem() {
 
 watch(store.$state, (n) => {
   // console.log('state', JSON.stringify(n.current, null, 2))
-  localStorage.setItem(SaveKey, JSON.stringify(n))
+  // console.log('state', n)
+  localStorage.setItem(SaveDictKey, JSON.stringify(n))
 })
 
 useStartKeyboardEventListener()

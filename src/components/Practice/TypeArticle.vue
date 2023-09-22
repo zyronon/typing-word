@@ -82,6 +82,10 @@ watch(() => props.article, () => {
   calcTranslateLocation()
 }, {immediate: true})
 
+watch(() => settingStore.dictation, () => {
+  calcTranslateLocation()
+})
+
 onMounted(() => {
   emitter.on(EventKey.resetWord, () => {
     wrong = input = ''
@@ -167,14 +171,14 @@ function onKeyDown(e: KeyboardEvent) {
   }
 
   const nextSentence = () => {
-    tabIndex = 1
-    // wordData.words = practiceStore.wrongWords
-    wordData.words = [
-      {"name": "pharmacy", "trans": ["药房；配药学，药剂学；制药业；一批备用药品"], "usphone": "'fɑrməsi", "ukphone": "'fɑːməsɪ"},
-      // {"name": "foregone", "trans": ["过去的；先前的；预知的；预先决定的", "发生在…之前（forego的过去分词）"], "usphone": "'fɔrɡɔn", "ukphone": "fɔː'gɒn"}, {"name": "president", "trans": ["总统；董事长；校长；主席"], "usphone": "'prɛzɪdənt", "ukphone": "'prezɪd(ə)nt"}, {"name": "plastic", "trans": ["塑料的；（外科）造型的；可塑的", "塑料制品；整形；可塑体"], "usphone": "'plæstɪk", "ukphone": "'plæstɪk"}, {"name": "provisionally", "trans": ["临时地，暂时地"], "usphone": "", "ukphone": ""}, {"name": "incentive", "trans": ["动机；刺激", "激励的；刺激的"], "usphone": "ɪn'sɛntɪv", "ukphone": "ɪn'sentɪv"}, {"name": "calculate", "trans": ["计算；以为；作打算"], "usphone": "'kælkjulet", "ukphone": "'kælkjʊleɪt"}
-    ]
+    // tabIndex = 1
+    // // wordData.words = practiceStore.wrongWords
+    // wordData.words = [
+    //   {"name": "pharmacy", "trans": ["药房；配药学，药剂学；制药业；一批备用药品"], "usphone": "'fɑrməsi", "ukphone": "'fɑːməsɪ"},
+    //   // {"name": "foregone", "trans": ["过去的；先前的；预知的；预先决定的", "发生在…之前（forego的过去分词）"], "usphone": "'fɔrɡɔn", "ukphone": "fɔː'gɒn"}, {"name": "president", "trans": ["总统；董事长；校长；主席"], "usphone": "'prɛzɪdənt", "ukphone": "'prezɪd(ə)nt"}, {"name": "plastic", "trans": ["塑料的；（外科）造型的；可塑的", "塑料制品；整形；可塑体"], "usphone": "'plæstɪk", "ukphone": "'plæstɪk"}, {"name": "provisionally", "trans": ["临时地，暂时地"], "usphone": "", "ukphone": ""}, {"name": "incentive", "trans": ["动机；刺激", "激励的；刺激的"], "usphone": "ɪn'sɛntɪv", "ukphone": "ɪn'sentɪv"}, {"name": "calculate", "trans": ["计算；以为；作打算"], "usphone": "'kælkjulet", "ukphone": "'kælkjʊleɪt"}
+    // ]
+    // return
 
-    return
     isSpace = false
     stringIndex = 0
     wordIndex = 0
@@ -191,8 +195,8 @@ function onKeyDown(e: KeyboardEvent) {
       sectionIndex++
       if (!props.article.sections[sectionIndex]) {
         console.log('打完了')
-        // if (practiceStore.wrongWordNumber === 0) {
-        if (false) {
+        if (practiceStore.wrongWordNumber === 0) {
+          // if (false) {
           console.log('这章节完了')
           let now = Date.now()
           let stat: DisplayStatistics = {
@@ -208,8 +212,7 @@ function onKeyDown(e: KeyboardEvent) {
           emitter.emit(EventKey.openStatModal, stat)
         } else {
           tabIndex = 1
-          // wordData.words = practiceStore.wrongWords
-          wordData.words = [{"name": "pharmacy", "trans": ["药房；配药学，药剂学；制药业；一批备用药品"], "usphone": "'fɑrməsi", "ukphone": "'fɑːməsɪ"}, {"name": "foregone", "trans": ["过去的；先前的；预知的；预先决定的", "发生在…之前（forego的过去分词）"], "usphone": "'fɔrɡɔn", "ukphone": "fɔː'gɒn"}, {"name": "president", "trans": ["总统；董事长；校长；主席"], "usphone": "'prɛzɪdənt", "ukphone": "'prezɪd(ə)nt"}, {"name": "plastic", "trans": ["塑料的；（外科）造型的；可塑的", "塑料制品；整形；可塑体"], "usphone": "'plæstɪk", "ukphone": "'plæstɪk"}, {"name": "provisionally", "trans": ["临时地，暂时地"], "usphone": "", "ukphone": ""}, {"name": "incentive", "trans": ["动机；刺激", "激励的；刺激的"], "usphone": "ɪn'sɛntɪv", "ukphone": "ɪn'sentɪv"}, {"name": "calculate", "trans": ["计算；以为；作打算"], "usphone": "'kælkjulet", "ukphone": "'kælkjʊleɪt"}]
+          wordData.words = practiceStore.wrongWords
         }
       }
     } else {
@@ -408,7 +411,8 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
         <div class="swiper-item">
           <div class="article-wrapper">
             <header>
-              <div class="title">A private conversation!</div>
+              <div class="title">{{ props.article.title }}</div>
+              <div class="titleTranslate">{{ props.article.titleTranslate }}</div>
             </header>
             <div class="article-content" ref="articleWrapperRef">
               <article>
@@ -517,7 +521,12 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
         font-size: 36rem;
         font-weight: 500;
         word-spacing: 3rem;
-        opacity: 0;
+        //opacity: 0;
+      }
+
+      .titleTranslate {
+        @extend .title;
+        font-size: 20rem;
       }
     }
 

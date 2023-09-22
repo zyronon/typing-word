@@ -47,17 +47,6 @@ watch(() => settingStore.showToolbar, n => {
         {{ store.dictTitle }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
       </div>
       <div class="options">
-        <Tooltip title="切换主题">
-          <IconWrapper>
-            <Icon icon="ep:moon" v-if="store.theme === 'dark'"
-                  @click="toggle"/>
-            <Icon icon="tabler:sun" v-else @click="toggle"/>
-          </IconWrapper>
-        </Tooltip>
-
-        <VolumeSetting/>
-
-        <RepeatSetting/>
 
         <Tooltip title="开关默写模式">
           <IconWrapper>
@@ -72,6 +61,10 @@ watch(() => settingStore.showToolbar, n => {
 
         <TranslateSetting/>
 
+        <VolumeSetting/>
+
+        <RepeatSetting/>
+
         <Add/>
 
         <Tooltip title="反馈">
@@ -85,6 +78,14 @@ watch(() => settingStore.showToolbar, n => {
           </IconWrapper>
         </Tooltip>
         <div class="my-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>
+
+        <Tooltip title="切换主题">
+          <IconWrapper>
+            <Icon icon="ep:moon" v-if="store.theme === 'dark'"
+                  @click="toggle"/>
+            <Icon icon="tabler:sun" v-else @click="toggle"/>
+          </IconWrapper>
+        </Tooltip>
 
         <Tooltip title="单词本">
           <IconWrapper>

@@ -12,7 +12,8 @@ export const DefaultWord: Word = {
   trans: []
 }
 
-export const SaveKey = 'type-word-config'
+export const SaveDictKey = 'typing-word-dict'
+export const SaveConfigKey = 'typing-word-config'
 
 export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 
@@ -190,21 +191,6 @@ export enum Sort {
   reverse = 2
 }
 
-export interface State {
-  newWordDict: Dict,
-  skipWordDict: Dict,
-  wrongWordDict: Dict,
-  dict: Dict,
-  myDicts: Dict[],
-  current: {
-    dictType: DictType,
-    index: number,
-    repeatNumber: number,
-  },
-  simpleWords: string[],
-  sideIsOpen: boolean,
-  load: boolean
-}
 
 export const ShortKeyMap = {
   Show: 'Escape',

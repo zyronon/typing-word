@@ -55,15 +55,16 @@ export function splitEnArticle(text: string, lang: string = 'en', keyboardMap: K
   //将缩写词的双引号替换回单引号
   text = text.replaceAll(`"t`, `'t`)
   text = text.replaceAll(`"s`, `'s`)
+  text = text.replaceAll(`"S`, `'S`)
   text = text.replaceAll(`"m`, `'m`)
   text = text.replaceAll(`"d`, `'d`)
   text = text.replaceAll(`"ve`, `'ve`)
   text = text.replaceAll(`"clock`, `'clock`)
-  // console.log('splitEnArticle', text)
+  console.log('splitEnArticle', text)
   // console.log('splitEnArticle length', text.length)
 
   text.split('').map((v, i, arr) => {
-    // if (i > 355) debugger
+    if (i > 2306) debugger
     switch (v) {
       case ' ':
         if (word.name) {
@@ -149,8 +150,14 @@ export function splitEnArticle(text: string, lang: string = 'en', keyboardMap: K
 
         break
       case '\n':
+        //如果是空行，就删除
         if (!sentence.words.length) {
           section.pop()
+          sentence = section[section.length - 1]
+        }
+        //判断name有没有值，有值说明最后一句没有结束符，正常来说一句话以句号或逗号结尾
+        if (word.name.length) {
+          sentence.words.push(word)
         }
         if (i !== arr.length - 1) {
           sections.push([])
@@ -165,6 +172,7 @@ export function splitEnArticle(text: string, lang: string = 'en', keyboardMap: K
         }
         break
       default:
+        // if (v === '2')debugger
         word.name += v
         break
     }
@@ -281,8 +289,14 @@ export function splitCNArticle(article: string, lang: string = 'cn', keyboardMap
         }
         break
       case '\n':
+        //如果是空行，就删除
         if (!sentence.words.length) {
           section.pop()
+          sentence = section[section.length - 1]
+        }
+        //判断name有没有值，有值说明最后一句没有结束符，正常来说一句话以句号或逗号结尾
+        if (word.name.length) {
+          sentence.words.push(word)
         }
         if (i !== arr.length - 1) {
           sections.push([])
