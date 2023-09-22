@@ -135,16 +135,21 @@ function onPaste(event: ClipboardEvent) {
   event.preventDefault()
   // @ts-ignore
   let paste = (event.clipboardData || window.clipboardData).getData("text");
-  ElMessageBox.confirm('', '是否需要进行自动分句?', {
-    confirmButtonText: '需要',
-    cancelButtonText: '关闭',
-    type: 'warning',
-  }).then(() => {
-    let r = getSplitTranslateText(paste)
-    if (r) appendTranslate(r)
-  }).catch(() => {
-    appendTranslate(paste)
-  })
+  return MessageBox.confirm(
+      '是否需要进行自动分句',
+      '提示',
+      () => {
+        let r = getSplitTranslateText(paste)
+        if (r) appendTranslate(r)
+      },
+      () => {
+        appendTranslate(paste)
+      },
+      {
+        confirmButtonText: '需要',
+        cancelButtonText: '关闭',
+      }
+  )
 }
 
 function onBlur() {
@@ -174,37 +179,29 @@ function save() {
 
   if (article.useTranslateType === TranslateType.network) {
     if (!article.textNetworkTranslate.trim()) {
-      // MessageBox.confirm(
-      //     '您选择了“网络翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
-      //     '提示',
-      //     () => {
-      //       // article.useTranslateType = TranslateType.none
-      //       // saveTemp()
-      //     },
-      //     () => void 0,
-      // )
-      // return
-      return ElMessageBox.confirm('您选择了“网络翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?', '提示', {
-        confirmButtonText: '确认',
-        cancelButtonText: '取消',
-        type: 'warning',
-      }).then(() => {
-        article.useTranslateType = TranslateType.none
-        saveTemp()
-      }).catch(() => void 0)
+      return MessageBox.confirm(
+          '您选择了“网络翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
+          '提示',
+          () => {
+            article.useTranslateType = TranslateType.none
+            saveTemp()
+          },
+          () => void 0,
+      )
     }
   }
 
   if (article.useTranslateType === TranslateType.custom) {
     if (!article.textCustomTranslate.trim()) {
-      return ElMessageBox.confirm('您选择了“本地翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?', '提示', {
-        confirmButtonText: '确认',
-        cancelButtonText: '取消',
-        type: 'warning',
-      }).then(() => {
-        article.useTranslateType = TranslateType.none
-        saveTemp()
-      }).catch(() => void 0)
+      return MessageBox.confirm(
+          '您选择了“本地翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
+          '提示',
+          () => {
+            article.useTranslateType = TranslateType.none
+            saveTemp()
+          },
+          () => void 0,
+      )
     }
   }
 
@@ -246,7 +243,6 @@ watch(() => article.useTranslateType, () => {
 <template>
   <Modal
       :model-value="props.modelValue"
-      @close="emit('update:modelValue')"
       :full-screen="true"
   >
     <div class="add-article" @click.stop="null">

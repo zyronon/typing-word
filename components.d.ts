@@ -9,12 +9,10 @@ declare module 'vue' {
   export interface GlobalComponents {
     Add: typeof import('./src/components/Toolbar/Add.vue')['default']
     AddArticle: typeof import('./src/components/Practice/AddArticle.vue')['default']
-    Alert: typeof import('./src/components/Modal/Alert.vue')['default']
     Backgorund: typeof import('./src/components/Backgorund.vue')['default']
     BaseButton: typeof import('./src/components/BaseButton.vue')['default']
     ChapterDetail: typeof import('./src/components/ChapterDetail.vue')['default']
     ChapterList: typeof import('./src/components/ChapterList.vue')['default']
-    Confirm: typeof import('./src/components/Modal/Confirm.vue')['default']
     DictList: typeof import('./src/components/DictList.vue')['default']
     DictModal: typeof import('./src/components/Toolbar/DictModal.vue')['default']
     EditAbleText: typeof import('./src/components/EditAbleText.vue')['default']

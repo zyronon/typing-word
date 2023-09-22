@@ -1,68 +1,69 @@
 import {createApp} from 'vue'
-import Modal from "@/components/Modal/Modal.vue";
+import Modal, {ModalProps} from "@/components/Modal/Modal.vue";
+import {AppContext, Component, ComponentPublicInstance, createVNode, getCurrentInstance, render, VNode} from 'vue';
 
 export class MessageBox {
-  static confirm(
-    content: string,
-    title: string,
-    onOk: () => any = () => void 0,
-    onCancel: () => any = () => void 0,
-  ) {
-    let remove = () => {
-      let parent = document.querySelector('.dialog-ctn')
-      parent.remove()
-    }
-    let tempOnCancel = () => {
-      remove()
-      onCancel()
-    }
-
-    const app = createApp({
-      render() {
-        return <Modal
-          footer={true}
-          title={title}
-          onOk={onOk}
-          padding={true}
-          onCancel={tempOnCancel}
-        >
-          <div style=' width: 350rem;color: black;'>{content}</div>
-        </Modal>
-      },
-    })
-    let parent = document.createElement('div')
-    parent.classList.add(...['dialog-ctn'])
-    document.body.append(parent)
-    app.mount(parent)
-  }
-
-  static notice(
-    content: string,
-    title: string,
-  ) {
-    let remove = () => {
-      let parent = document.querySelector('.dialog-ctn')
-      parent.remove()
-    }
-    let tempOnCancel = () => {
-      remove()
+    static confirm(
+        content: string,
+        title: string,
+        onOk: () => any = () => void 0,
+        onCancel: () => any = () => void 0,
+        config: ModalProps = {}
+    ) {
+        let container = document.createElement('div')
+        const close = () => {
+            render(null, container);
+            container.remove()
+        }
+        let tempOnCancel = () => {
+            onCancel()
+            close()
+        }
+        let tempOnOk = () => {
+            onOk()
+            close()
+        }
+        const vNode = createVNode(Modal, {
+            title,
+            content,
+            onCancel: tempOnCancel,
+            onOk: tempOnOk,
+            footer: true,
+            ...config
+        });
+        // const appContext = getCurrentInstance()?.appContext;
+        // // 补丁：Component中获取当前组件树的provides
+        // if (appContext) {
+        //     const currentProvides = (getCurrentInstance() as any)?.provides;
+        //     Reflect.set(appContext, 'provides', {...appContext.provides, ...currentProvides});
+        // }
+        // vNode.appContext = appContext;
+        render(vNode, container);
+        document.body.append(container)
     }
 
-    const app = createApp({
-      render() {
-        return <Modal
-          footer={false}
-          title={title}
-          padding={true}
-          onCancel={tempOnCancel}
-        >
-          <div style=' width: 350rem;color: black;'>{content}</div>
-        </Modal>
-      },
-    })
-    let parent = document.createElement('div')
-    parent.classList.add(...['dialog-ctn'])
-    document.body.append(parent)
-    app.mount(parent)
-  }
+    static notice(
+        content: string,
+        title: string,
+    ) {
+        let container = document.createElement('div')
+        let tempOnCancel = () => {
+            render(null, container);
+            container.remove()
+        }
+        const vNode = createVNode(Modal, {
+            title,
+            content,
+            onCancel: tempOnCancel,
+        });
+        // const appContext = getCurrentInstance()?.appContext;
+        // // 补丁：Component中获取当前组件树的provides
+        // if (appContext) {
+        //     const currentProvides = (getCurrentInstance() as any)?.provides;
+        //     Reflect.set(appContext, 'provides', {...appContext.provides, ...currentProvides});
+        // }
+        // vNode.appContext = appContext;
+        render(vNode, container);
+        document.body.append(container)
+    }
 }

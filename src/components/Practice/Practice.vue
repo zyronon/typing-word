@@ -59,7 +59,7 @@ watch(() => store.load, n => {
 
 function getCurrentPractice() {
   if (store.isArticle) {
-    // return
+    return
     let tempArticle = {...DefaultArticle, ...store.currentDict.articles[store.currentDict.chapterIndex]}
     console.log('article', tempArticle)
     if (tempArticle.sections.length) {
@@ -77,33 +77,40 @@ function getCurrentPractice() {
               articleData.article = tempArticle
             } else {
               //说明有本地翻译，但是没格式化成一行一行的
-              ElMessageBox.confirm('', '检测到存在本地翻译，但未格式化，是否进行编辑?', {
-                confirmButtonText: '去编辑',
-                cancelButtonText: '不需要翻译',
-                type: 'warning',
-              }).then(() => {
-                editArticle = tempArticle
-                showEditArticle = true
-              }).catch(() => {
-                updateSections(tempArticle)
-                tempArticle.useTranslateType = TranslateType.none
-                articleData.article = tempArticle
-              })
+              MessageBox.confirm('检测到存在本地翻译，但未格式化，是否进行编辑?',
+                  '提示',
+                  () => {
+                    editArticle = tempArticle
+                    showEditArticle = true
+                  },
+                  () => {
+                    updateSections(tempArticle)
+                    tempArticle.useTranslateType = TranslateType.none
+                    articleData.article = tempArticle
+                  },
+                  {
+                    confirmButtonText: '去编辑',
+                    cancelButtonText: '不需要翻译',
+                  })
             }
           } else {
             //没有本地翻译
-            ElMessageBox.confirm('', '没有本地翻译，是否进行编辑?', {
-              confirmButtonText: '去编辑',
-              cancelButtonText: '不需要翻译',
-              type: 'warning',
-            }).then(() => {
-              editArticle = tempArticle
-              showEditArticle = true
-            }).catch(() => {
-              updateSections(tempArticle)
-              tempArticle.useTranslateType = TranslateType.none
-              articleData.article = tempArticle
-            })
+            MessageBox.confirm(
+                '没有本地翻译，是否进行编辑?',
+                '提示',
+                () => {
+                  editArticle = tempArticle
+                  showEditArticle = true
+                },
+                () => {
+                  updateSections(tempArticle)
+                  tempArticle.useTranslateType = TranslateType.none
+                  articleData.article = tempArticle
+                },
+                {
+                  confirmButtonText: '去编辑',
+                  cancelButtonText: '不需要翻译',
+                })
           }
         }
 
@@ -167,7 +174,7 @@ function test() {
 <template>
   <div class="practice">
     <Toolbar/>
-    <!--    <BaseButton @click="test">test</BaseButton>-->
+<!--    <BaseButton @click="test">test</BaseButton>-->
 
     <TypeArticle
         v-if="store.isArticle"

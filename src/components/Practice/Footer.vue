@@ -38,13 +38,6 @@ onUnmounted(() => {
 
 <template>
   <div class="footer" :class="!settingStore.showToolbar && 'hide'">
-    <Tooltip :title="settingStore.showToolbar?'收起':'展开'">
-      <Icon icon="icon-park-outline:down"
-            @click="settingStore.showToolbar = !settingStore.showToolbar"
-            class="arrow"
-            :class="!settingStore.showToolbar && 'down'"
-            width="24" color="#999"/>
-    </Tooltip>
     <div class="bottom">
       <el-progress :percentage="progress"
                    :stroke-width="8"
@@ -99,25 +92,10 @@ onUnmounted(() => {
     margin-bottom: -90rem;
     margin-top: 65rem;
 
-    .arrow {
-      transform: translate3d(-50%, -220%, 0) rotate(180deg);
-    }
-
     .progress {
       bottom: calc(100% + 30rem);
     }
   }
-
-  .arrow {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    cursor: pointer;
-    transition: all .3s;
-    transform: translate3d(-50%, -100%, 0) rotate(0);
-    padding: 5rem;
-  }
-
   .bottom {
     position: relative;
     width: 100%;
@@ -146,7 +124,6 @@ onUnmounted(() => {
         }
       }
     }
-
   }
 
   .progress {

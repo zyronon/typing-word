@@ -6,10 +6,11 @@ import {useEsc} from "@/hooks/event.ts";
 import {$ref} from "vue/macros";
 import BaseButton from "@/components/BaseButton.vue";
 
-interface IProps {
+export interface ModalProps {
   modelValue?: boolean,
   showClose?: boolean,
   title?: string,
+  content?: string,
   fullScreen?: boolean;
   padding?: boolean
   footer?: boolean
@@ -18,7 +19,7 @@ interface IProps {
   cancelButtonText?: string
 }
 
-const props = withDefaults(defineProps<IProps>(), {
+const props = withDefaults(defineProps<ModalProps>(), {
   modelValue: undefined,
   showClose: true,
   fullScreen: false,
@@ -56,7 +57,6 @@ function close() {
     setTimeout(() => {
       emit('update:modelValue', false)
       emit('close')
-      emit('cancel')
       visible = false
       resolve(true)
     }, closeTime)
@@ -81,6 +81,16 @@ onMounted(() => {
 
 useEsc(close, () => props.modelValue)
 
+async function ok() {
+  await close()
+  emit('ok')
+}
+
+async function cancel() {
+  await close()
+  emit('cancel')
+}
+
 </script>
 
 <template>
@@ -89,12 +99,13 @@ useEsc(close, () => props.modelValue)
       <div class="modal-mask"
            ref="maskRef"
            v-if="!fullScreen"
-           @click="close"></div>
+           @click.stop="close"></div>
       <div class="modal"
            ref="modalRef"
            :class="[
                 fullScreen?'full':'window'
             ]"
+           @click.stop="null"
       >
         <div class="modal-header" v-if="header">
           <div class="title">{{ props.title }}</div>
@@ -108,13 +119,14 @@ useEsc(close, () => props.modelValue)
         </div>
         <div class="modal-body" :class="{padding}">
           <slot></slot>
+          <div v-if="content" class="content">{{ content }}</div>
         </div>
         <div class="modal-footer" v-if="footer">
           <div class="left">
           </div>
           <div class="right">
-            <BaseButton type="link" @click="close">取消</BaseButton>
-            <BaseButton @click="emit('ok'),close()">确定</BaseButton>
+            <BaseButton type="link" @click="cancel">{{ cancelButtonText }}</BaseButton>
+            <BaseButton @click="ok">{{ confirmButtonText }}</BaseButton>
           </div>
         </div>
       </div>
@@ -250,6 +262,12 @@ $header-height: 60rem;
       display: flex;
 
       &.padding {
+        padding: 4rem 24rem 24rem;
+      }
+
+      .content {
+        width: 350rem;
+        color: black;
         padding: 4rem 24rem 24rem;
       }
     }
