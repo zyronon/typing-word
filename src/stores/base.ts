@@ -76,25 +76,28 @@ export const useBaseStore = defineStore('base', {
                 statistics: [],
                 url: '/articles/NCE_2.json',
             },
-            oldDicts: [],
+            myDicts: [
+                {
+                    name: '新概念英语-2',
+                    sort: Sort.normal,
+                    type: DictType.publicArticle,
+                    originWords: [],
+                    articles: [],
+                    words: [],
+                    chapterWordNumber: 15,
+                    chapterWords: [],
+                    chapterIndex: 0,
+                    chapterWordIndex: 0,
+                    statistics: [],
+                    url: '/articles/NCE_2.json',
+                }
+            ],
             current: {
                 dictType: DictType.publicArticle,
-                words: [],
-                index: -1,
-                wrongWords: [],
-                originWrongWords: [],
+                index: 0,
                 repeatNumber: 0,
-                statistics: {
-                    startDate: -1,
-                    endDate: -1,
-                    spend: -1,
-                    total: -1,
-                    correctRate: -1,
-                    wrongWordNumber: -1,
-                }
             },
             sideIsOpen: false,
-            isDictation: true,
             simpleWords: [
                 'a', 'an', 'of', 'and',
                 'i', 'my', 'you', 'your',
@@ -103,7 +106,6 @@ export const useBaseStore = defineStore('base', {
                 'not', 'did', 'were', 'can', 'could', 'it',
                 'the', 'to'
             ],
-            theme: 'auto',
             load: false
         }
     },
@@ -115,7 +117,10 @@ export const useBaseStore = defineStore('base', {
             return state.skipWordDict.originWords.map(v => v.name.toLowerCase()).concat(state.simpleWords)
         },
         isArticle(state: State): boolean {
-            return [DictType.publicArticle, DictType.customArticle].includes(state.current.dictType)
+            return [
+                DictType.publicArticle,
+                DictType.customArticle
+            ].includes(state.current.dictType)
         },
         currentDict(state: State): Dict {
             switch (state.current.dictType) {
@@ -128,7 +133,8 @@ export const useBaseStore = defineStore('base', {
                 case DictType.publicDict:
                 case DictType.publicArticle:
                 case DictType.customDict:
-                    return state.dict
+                case DictType.customArticle:
+                    return this.myDicts[this.current.index]
             }
         },
         wordIndex(state: State): number {
@@ -137,13 +143,9 @@ export const useBaseStore = defineStore('base', {
         chapter(state: State): Word[] {
             return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []
         },
+        //TODO 废弃
         word(state: State): Word {
-            return state.current.words[state.current.index] ?? {
-                trans: [],
-                name: '',
-                usphone: '',
-                ukphone: '',
-            }
+            return {trans: [], name: '', usphone: '', ukphone: '',}
         },
         dictTitle(state: State) {
             let title = this.currentDict.name
@@ -160,52 +162,47 @@ export const useBaseStore = defineStore('base', {
             }
             // console.log('this/', this)
         },
-        setCurrentWord(words: Word[], restart: boolean = false, index: number = 0) {
-            this.current.words = cloneDeep(words)
-            if (restart) {
-                this.current.repeatNumber = 0
-                this.current.originWrongWords = []
-                this.current.statistics = {
-                    startDate: Date.now(),
-                    endDate: -1,
-                    spend: -1,
-                    wordNumber: words.length,
-                    correctRate: -1,
-                    wrongWordNumber: -1,
-                }
-            } else {
-                this.current.repeatNumber++
-                if (!this.current.originWrongWords.length) {
-                    this.current.originWrongWords = cloneDeep(this.current.wrongWords)
-                }
-                this.current.statistics.correctRate = -1
-                this.current.statistics.wrongWordNumber = -1
-            }
-            this.current.index = index
-            this.current.wrongWords = []
-        },
         async init() {
             // let configStr = localStorage.getItem(SaveKey)
             // if (configStr) {
             //   let obj: Config = JSON.parse(configStr)
             //   this.setState(obj)
             // }
-            if (this.current.dictType === DictType.publicDict) {
-                let r = await fetch(`/public/${this.dict.url}`)
-                r.json().then(v => {
-                    this.dict.originWords = cloneDeep(v)
-                    this.dict.words = cloneDeep(v)
-                    this.dict.chapterWords = chunk(this.dict.words, this.dict.chapterWordNumber)
-                    this.setCurrentWord(this.chapter, true)
-                    this.load = true
-                })
-            }
-            if (this.current.dictType === DictType.publicArticle) {
-                let r = await fetch(`/public/${this.dict.url}`)
-                r.json().then(v => {
-                    this.dict.articles = cloneDeep(v)
-                    this.load = true
-                })
+
+            if ([
+                DictType.newDict,
+                DictType.wrongDict,
+                DictType.skipDict,
+            ].includes(this.current.dictType)) {
+
+            } else {
+                if ([
+                    DictType.publicDict,
+                    DictType.customDict,
+                ].includes(this.current.dictType)) {
+                    if (!this.currentDict.originWords.length) {
+                        let r = await fetch(`/public/${this.dict.url}`)
+                        r.json().then(v => {
+                            this.currentDict.originWords = cloneDeep(v)
+                            this.currentDict.words = cloneDeep(v)
+                            this.currentDict.chapterWords = chunk(this.dict.words, this.dict.chapterWordNumber)
+                            this.load = true
+                        })
+                    }
+                }
+
+                if ([
+                    DictType.publicArticle,
+                    DictType.customArticle,
+                ].includes(this.current.dictType)) {
+                    if (!this.currentDict.articles.length) {
+                        let r = await fetch(`/public/${this.dict.url}`)
+                        r.json().then(v => {
+                            this.currentDict.articles = cloneDeep(v)
+                            this.load = true
+                        })
+                    }
+                }
             }
         },
         saveStatistics(statistics: Statistics) {
@@ -234,7 +231,6 @@ export const useBaseStore = defineStore('base', {
                 this.dict.chapterIndex = chapterIndex
                 this.dict.chapterWordIndex = chapterWordIndex
             }
-            this.setCurrentWord(this.chapter, true, chapterWordIndex)
             emitter.emit(EventKey.resetWord)
         }
     },

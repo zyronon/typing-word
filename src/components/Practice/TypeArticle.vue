@@ -7,22 +7,24 @@ import {usePracticeStore} from "@/stores/practice.ts";
 import TypeWord from "@/components/Practice/TypeWord.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
-import {useEventListener, useOnKeyboardEventListener} from "@/hooks/event.ts";
+import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {cloneDeep} from "lodash-es";
 
-let article1 = `How does the older investor differ in his approach to investment from the younger investor?
-There is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?
-Well, if you go to five reputable stock brokers and ask them what you should do with your money, you're likely to get five different answers, -- even if you give all the relevant information about your age age, family, finances and what you want from your investments. Moral? There is no one 'right' way to structure a portfolio. However, there are undoubtedly some wrong ways, and you can be sure that none of our five advisers would have suggested sinking all (or perhaps any) of your money into Periwigs*.
-So what should you do? We'll assume that you have sorted out the basics -- like mortgages, pensions, insurance and access to sufficient cash reserves. You should then establish your own individual aims. These are partly a matter of personal circumstances, partly a matter of psychology.
-For instance, if you are older you have less time to recover from any major losses, and you may well wish to boost your pension income. So preserving your capital and generating extra income are your main priorities. In this case, you'd probably construct a portfolio with some shares (but not high risk ones), along with gilts, cash deposits, and perhaps convertibles or the income shares of split capital investment trusts.
-If you are younger, and in a solid financial position, you may decide to take an aggressive approach -- but only if you're blessed with a sanguine disposition and won't suffer sleepless nights over share prices. If portfolio, alongside your more pedestrian in vestments. Once you have decided on your investment aims, you can then decide where to put your money. The golden rule here is spread your risk -- if you put all of your money into Periwigs International, you're setting yourself up as a hostage to fortune.
-*'Periwigs' is the name of a fictitious company.
-INVESTOR'S CHRONICLE, March 23 1990`
+interface IProps {
+  article: Article,
+  sectionIndex: number,
+  sentenceIndex: number,
+  wordIndex: number,
+  stringIndex: number,
+}
 
-article1 = `How does the older investor differ in his approach to investment from the younger investor?`
-article1 = `Last week I went to the theatre. I had a very good seat. The play was very interesting. I did not enjoy it. A young man and a young woman were sitting behind me. They were talking loudly. I got very angry. I could not hear the actors. I turned round. I looked at the man and the woman angrily. They did not pay any attention. In the end, I could not bear it. I turned round again. ‘I can't hear a word!’ I said angrily.
-‘It's none of your business, ’ the young man said rudely. ‘This is a private conversation!’`
-// article1 = `Last week I went to the theatre. I had a very good seat. The play was very interesting. I did not enjoy it.`
+const props = withDefaults(defineProps<IProps>(), {
+  article: () => cloneDeep(DefaultArticle),
+  sectionIndex: 0,
+  sentenceIndex: 0,
+  wordIndex: 0,
+  stringIndex: 0,
+})
 
 const playBeep = usePlayBeep()
 const playCorrect = usePlayCorrect()
@@ -46,26 +48,12 @@ let hoverIndex = $ref({
   sectionIndex: -1,
   sentenceIndex: -1,
 })
-
+const currentIndex = computed(() => {
+  return `${sectionIndex}${sentenceIndex}${wordIndex}`
+})
 let wordData = $ref({
   words: [],
   index: -1
-})
-
-interface IProps {
-  article: Article,
-  sectionIndex: number,
-  sentenceIndex: number,
-  wordIndex: number,
-  stringIndex: number,
-}
-
-const props = withDefaults(defineProps<IProps>(), {
-  article: () => cloneDeep(DefaultArticle),
-  sectionIndex: 0,
-  sentenceIndex: 0,
-  wordIndex: 0,
-  stringIndex: 0,
 })
 
 watchEffect(() => {
@@ -118,13 +106,13 @@ function calcTranslateLocation() {
 }
 
 function play() {
-  return playWordAudio(article1)
+  return playWordAudio('article1')
   if (isPlay) {
     isPlay = false
     return window.speechSynthesis.pause();
   }
   let msg = new SpeechSynthesisUtterance();
-  msg.text = article1
+  msg.text = 'article1'
   msg.rate = 0.5;
   msg.pitch = 1;
   msg.lang = 'en-US';
@@ -132,10 +120,6 @@ function play() {
   isPlay = true
   window.speechSynthesis.speak(msg);
 }
-
-const currentIndex = computed(() => {
-  return `${sectionIndex}${sentenceIndex}${wordIndex}`
-})
 
 function onKeyDown(e: KeyboardEvent) {
   if (tabIndex !== 0) return
@@ -167,6 +151,28 @@ function onKeyDown(e: KeyboardEvent) {
         }
         playWordAudio(currentSection[sentenceIndex].text)
       }
+    }
+  }
+
+  const nextSentence = () => {
+    isSpace = false
+    stringIndex = 0
+    wordIndex = 0
+
+    //todo 计得把略过的单词加上统计里面去
+    // if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase()) && !currentWord.isSymbol) {
+    //   practiceStore.inputNumber++
+    // }
+
+    sentenceIndex++
+    if (!currentSection[sentenceIndex]) {
+      sentenceIndex = 0
+      sectionIndex++
+    } else {
+      if (settingStore.dictation) {
+        calcTranslateLocation()
+      }
+      playWordAudio(currentSection[sentenceIndex].text)
     }
   }
   //非英文模式下，输入区域的 keyCode 均为 229时，
@@ -263,10 +269,9 @@ function onKeyDown(e: KeyboardEvent) {
 
         break
       case ShortKeyMap.Remove:
-
         break
       case ShortKeyMap.Ignore:
-
+        nextSentence()
         break
       case ShortKeyMap.Show:
         if (settingStore.allowWordTip) {

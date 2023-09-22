@@ -30,6 +30,7 @@ export interface SettingState {
     wordTranslateFontSize: number,
   },
 
+  theme: string,
 }
 
 export const useSettingStore = defineStore('setting', {
@@ -65,6 +66,7 @@ export const useSettingStore = defineStore('setting', {
       },
       waitTimeForChangeWord: 300,
 
+      theme: 'auto',
     }
   },
 })

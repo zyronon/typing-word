@@ -58,8 +58,9 @@ watch(() => store.load, n => {
 })
 
 function getCurrentPractice() {
+  console.log('store.currentDict',store.currentDict)
   if (store.isArticle) {
-    return
+    // return
     let tempArticle = {...DefaultArticle, ...store.currentDict.articles[store.currentDict.chapterIndex]}
     console.log('article', tempArticle)
     if (tempArticle.sections.length) {

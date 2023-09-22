@@ -195,20 +195,14 @@ export interface State {
   skipWordDict: Dict,
   wrongWordDict: Dict,
   dict: Dict,
-  oldDicts: Dict[],
+  myDicts: Dict[],
   current: {
     dictType: DictType,
-    words: Word[],
     index: number,
-    wrongWords: Word[],
-    originWrongWords: Word[],
     repeatNumber: number,
-    statistics: Statistics
   },
   simpleWords: string[],
   sideIsOpen: boolean,
-  isDictation: boolean,
-  theme: string,
   load: boolean
 }
 

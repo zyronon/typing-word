@@ -8,9 +8,11 @@ import AddArticle from "@/components/Practice/AddArticle.vue";
 import {useEventListener, useStartKeyboardEventListener} from "@/hooks/event.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
+import {useSettingStore} from "@/stores/setting.ts";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
+const settingStore = useSettingStore()
 
 // 查询当前系统主题颜色
 const match: MediaQueryList = window.matchMedia("(prefers-color-scheme: dark)")
@@ -31,8 +33,8 @@ useStartKeyboardEventListener()
 
 onMounted(() => {
   store.init()
-  if (store.theme !== 'auto') {
-    document.documentElement.setAttribute('data-theme', store.theme)
+  if (settingStore.theme !== 'auto') {
+    document.documentElement.setAttribute('data-theme', settingStore.theme)
   }
 })
 
