@@ -64,7 +64,7 @@ export function splitEnArticle(text: string, lang: string = 'en', keyboardMap: K
   // console.log('splitEnArticle length', text.length)
 
   text.split('').map((v, i, arr) => {
-    if (i > 2306) debugger
+    // if (i > 2306) debugger
     switch (v) {
       case ' ':
         if (word.name) {

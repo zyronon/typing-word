@@ -182,7 +182,7 @@ export const useBaseStore = defineStore('base', {
       let configStr = localStorage.getItem(SaveDictKey)
       if (configStr) {
         let obj: State = JSON.parse(configStr)
-        this.setState(obj)
+        // this.setState(obj)
       }
 
       if ([
@@ -197,7 +197,7 @@ export const useBaseStore = defineStore('base', {
           DictType.customDict,
         ].includes(this.current.dictType)) {
           if (!this.currentDict.originWords.length) {
-            let r = await fetch(`/public/${this.dict.url}`)
+            let r = await fetch(`${this.currentDict.url}`)
             r.json().then(v => {
               this.currentDict.originWords = cloneDeep(v)
               this.currentDict.words = cloneDeep(v)
@@ -212,7 +212,7 @@ export const useBaseStore = defineStore('base', {
           DictType.customArticle,
         ].includes(this.current.dictType)) {
           if (!this.currentDict.articles.length) {
-            let r = await fetch(`/public/${this.dict.url}`)
+            let r = await fetch(`${this.currentDict.url}`)
             r.json().then(v => {
               this.currentDict.articles = cloneDeep(v)
               this.load = true
