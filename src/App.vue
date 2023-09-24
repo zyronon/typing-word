@@ -9,6 +9,7 @@ import {useEventListener, useStartKeyboardEventListener} from "@/hooks/event.ts"
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
+import BatchAddArticle from "@/components/Add/BatchAddArticle.vue";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -50,9 +51,10 @@ useEventListener('keyup', (e: KeyboardEvent) => {
 <template>
   <!--    <Backgorund/>-->
   <div class="main-page">
-    <Practice/>
+    <!--    <Practice/>-->
     <!--    <AddArticle/>-->
     <!--      <Side/>-->
+    <BatchAddArticle/>
   </div>
 </template>
 

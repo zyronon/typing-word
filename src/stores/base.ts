@@ -182,7 +182,7 @@ export const useBaseStore = defineStore('base', {
       let configStr = localStorage.getItem(SaveDictKey)
       if (configStr) {
         let obj: State = JSON.parse(configStr)
-        // this.setState(obj)
+        this.setState(obj)
       }
 
       if ([
