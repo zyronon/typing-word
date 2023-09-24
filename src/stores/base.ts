@@ -12,6 +12,7 @@ export interface State {
   current: {
     dictType: DictType,
     index: number,
+    editIndex: number,
     repeatNumber: number,
   },
   simpleWords: string[],
@@ -111,6 +112,7 @@ export const useBaseStore = defineStore('base', {
       current: {
         dictType: DictType.publicArticle,
         index: 0,
+        editIndex: 0,
         repeatNumber: 0,
       },
       sideIsOpen: false,
@@ -153,6 +155,9 @@ export const useBaseStore = defineStore('base', {
           return this.myDicts[this.current.index]
       }
     },
+    currentEditDict(): Dict {
+      return this.myDicts[this.current.editIndex]
+    },
     wordIndex(state: State): number {
       return this.currentDict.wordIndex
     },
@@ -182,7 +187,7 @@ export const useBaseStore = defineStore('base', {
       let configStr = localStorage.getItem(SaveDictKey)
       if (configStr) {
         let obj: State = JSON.parse(configStr)
-        this.setState(obj)
+        // this.setState(obj)
       }
 
       if ([

@@ -13,7 +13,6 @@ import {
 import * as copy from "copy-to-clipboard";
 import {getSplitTranslateText} from "@/hooks/article.ts";
 import EditAbleText from "@/components/EditAbleText.vue";
-import {Icon} from "@iconify/vue";
 import {cloneDeep} from "lodash-es";
 import {useDisableEventListener} from "@/hooks/event.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
@@ -172,8 +171,9 @@ function save() {
 
   const saveTemp = () => {
     article.textCustomTranslateIsFormat = true
-    emit('close')
-    emit('save', cloneDeep(article))
+    // emit('close')
+    // emit('save', cloneDeep(article))
+    base.currentEditDict.articles.push(cloneDeep(article))
   }
 
   if (article.useTranslateType === TranslateType.network) {
@@ -243,11 +243,11 @@ watch(() => article.useTranslateType, () => {
   <div class="add-article">
     <div class="slide">
       <header>
-        <div class="dict-name">{{ base.dictTitle }}</div>
+        <div class="dict-name">{{ base.currentEditDict.name }}</div>
         <BaseIcon title="选择其他词典/文章" icon="carbon:change-catalog"/>
       </header>
       <div class="article-list">
-        <div class="item" v-for="(item,index) in base.currentDict.articles">
+        <div class="item" v-for="(item,index) in base.currentEditDict.articles">
           <div class="left">
             <div class="name"> {{ `${index + 1}. ${item.title}` }}</div>
             <div class="translate-name"> {{ `   ${item.titleTranslate}` }}</div>
@@ -398,7 +398,6 @@ watch(() => article.useTranslateType, () => {
   color: black;
   background: var(--color-main-bg);
   display: flex;
-  gap: $space;
 
   .slide {
     height: 100%;
@@ -468,6 +467,7 @@ watch(() => article.useTranslateType, () => {
     flex: 1;
     display: flex;
     gap: $space;
+    padding: $space;
   }
 
   .row {
