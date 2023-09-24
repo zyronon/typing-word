@@ -8,12 +8,14 @@ defineProps<{
   title: string,
   icon: string,
 }>()
+
+defineEmits(['click'])
 </script>
 
 <template>
   <Tooltip :title="title">
     <IconWrapper>
-      <Icon :icon="icon"/>
+      <Icon @click.stop="$emit('click')" :icon="icon"/>
     </IconWrapper>
   </Tooltip>
 </template>

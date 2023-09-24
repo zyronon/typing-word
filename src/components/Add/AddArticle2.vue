@@ -18,17 +18,19 @@ import {useDisableEventListener} from "@/hooks/event.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useBaseStore} from "@/stores/base.ts";
+import {$ref} from "vue/macros";
 
 interface IProps {
-  article?: Article
+  selectIndex?: number
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  article: () => cloneDeep(DefaultArticle),
+  selectIndex: -1
 })
 
 const base = useBaseStore()
-let article = $ref<Article>(cloneDeep(props.article))
+let article = $ref<Article>(cloneDeep(DefaultArticle))
+let selectIndex = $ref<number>(props.selectIndex)
 let networkTranslateEngine = $ref('baidu')
 let progress = $ref(0)
 const TranslateEngineOptions = [
@@ -66,7 +68,9 @@ watch(() => props.article, n => {
 })
 
 onMounted(() => {
-
+  if (selectIndex > -1) {
+    article = base.currentEditDict.articles[selectIndex]
+  }
 })
 
 async function startNetworkTranslate() {
@@ -158,26 +162,49 @@ function onFocus() {
   document.addEventListener('paste', onPaste);
 }
 
-function save() {
+function save(option: 'save' | 'next') {
   console.log('article', article)
   copy(JSON.stringify(article))
 
-  if (!article.title.trim()) {
+  article.title = article.title.trim()
+  article.titleTranslate = article.titleTranslate.trim()
+  article.text = article.text.trim()
+  article.textCustomTranslate = article.textCustomTranslate.trim()
+  article.textNetworkTranslate = article.textNetworkTranslate.trim()
+
+  if (!article.title) {
     return ElMessage.error('请填写标题！')
   }
-  if (!article.text.trim()) {
+  if (!article.text) {
     return ElMessage.error('请填写正文！')
+  }
+
+  let has = base.currentEditDict.articles.find((item: Article) => item.title === article.title)
+  if (has && selectIndex === -1) {
+    return ElMessage.error('已存在同名文章！')
   }
 
   const saveTemp = () => {
     article.textCustomTranslateIsFormat = true
     // emit('close')
     // emit('save', cloneDeep(article))
-    base.currentEditDict.articles.push(cloneDeep(article))
+    if (selectIndex > -1) {
+      base.currentEditDict.articles[selectIndex] = cloneDeep(article)
+    } else {
+      base.currentEditDict.articles.push(cloneDeep(article))
+      if (option === 'save') {
+        selectIndex = base.currentEditDict.articles.length - 1
+      }
+    }
+    if (option === 'next') {
+      selectIndex = -1
+      article = cloneDeep(DefaultArticle)
+    }
+    ElMessage.success('保存成功！')
   }
 
   if (article.useTranslateType === TranslateType.network) {
-    if (!article.textNetworkTranslate.trim()) {
+    if (!article.textNetworkTranslate) {
       return MessageBox.confirm(
           '您选择了“网络翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
           '提示',
@@ -191,7 +218,7 @@ function save() {
   }
 
   if (article.useTranslateType === TranslateType.custom) {
-    if (!article.textCustomTranslate.trim()) {
+    if (!article.textCustomTranslate) {
       return MessageBox.confirm(
           '您选择了“本地翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
           '提示',
@@ -237,6 +264,26 @@ watch(() => article.useTranslateType, () => {
   }
 })
 
+function selectArticle(index: number) {
+  article = cloneDeep(base.currentEditDict.articles[index])
+  selectIndex = index
+}
+
+function delArticle(index: number) {
+  if (index < selectIndex) {
+    selectIndex--
+  } else if (index === selectIndex) {
+    if (selectIndex === base.currentEditDict.articles.length - 1) {
+      selectIndex--
+    }
+  }
+  base.currentEditDict.articles.splice(index, 1)
+  if (selectIndex < 0) {
+    article = cloneDeep(DefaultArticle)
+  } else {
+    article = cloneDeep(base.currentEditDict.articles[selectIndex])
+  }
+}
 </script>
 
 <template>
@@ -247,13 +294,23 @@ watch(() => article.useTranslateType, () => {
         <BaseIcon title="选择其他词典/文章" icon="carbon:change-catalog"/>
       </header>
       <div class="article-list">
-        <div class="item" v-for="(item,index) in base.currentEditDict.articles">
+        <div class="item"
+             :class="[
+                (selectIndex ===  index) && 'active'
+             ]"
+             @click="selectArticle(index)"
+             v-for="(item,index) in base.currentEditDict.articles">
           <div class="left">
             <div class="name"> {{ `${index + 1}. ${item.title}` }}</div>
             <div class="translate-name"> {{ `   ${item.titleTranslate}` }}</div>
           </div>
           <div class="right">
-            <BaseIcon title="删除" icon="fluent:delete-24-regular"/>
+            <BaseIcon
+                @click="delArticle(index)"
+                title="删除" icon="fluent:delete-24-regular"/>
+            <BaseIcon
+                @click="delArticle(index)"
+                title="删除" icon="carbon:move"/>
           </div>
         </div>
       </div>
@@ -376,8 +433,9 @@ watch(() => article.useTranslateType, () => {
             </div>
           </div>
         </div>
-        <div class="options">
-          <BaseButton @click="save">保存</BaseButton>
+        <div class="options" v-if="article.text.trim()">
+          <BaseButton @click="save('save')">保存</BaseButton>
+          <BaseButton @click="save('next')">保存并添加下一篇</BaseButton>
         </div>
       </div>
     </div>
@@ -432,8 +490,11 @@ watch(() => article.useTranslateType, () => {
         padding: 10rem;
         display: flex;
         justify-content: space-between;
+        transition: all .3s;
 
         .right {
+          display: flex;
+          flex-direction: column;
           transition: all .3s;
           opacity: 0;
         }
@@ -442,6 +503,11 @@ watch(() => article.useTranslateType, () => {
           .right {
             opacity: 1;
           }
+        }
+
+        &.active {
+          background: var(--color-item-active);
+          color: white;
         }
 
         .name {
@@ -548,6 +614,7 @@ watch(() => article.useTranslateType, () => {
     .options {
       display: flex;
       justify-content: flex-end;
+      gap: $space;
     }
   }
 }
