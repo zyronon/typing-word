@@ -5,7 +5,7 @@ import IconWrapper from "@/components/IconWrapper.vue";
 import {Icon} from "@iconify/vue";
 
 defineProps<{
-  title: string,
+  title?: string,
   icon: string,
 }>()
 

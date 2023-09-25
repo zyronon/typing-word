@@ -18,7 +18,9 @@ import {useDisableEventListener} from "@/hooks/event.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useBaseStore} from "@/stores/base.ts";
-import {$ref} from "vue/macros";
+import {$computed, $ref} from "vue/macros";
+import Input from "@/components/Input.vue";
+import List from "@/components/List.vue";
 
 interface IProps {
   selectIndex?: number
@@ -31,7 +33,9 @@ const props = withDefaults(defineProps<IProps>(), {
 const base = useBaseStore()
 let article = $ref<Article>(cloneDeep(DefaultArticle))
 let selectIndex = $ref<number>(props.selectIndex)
+let selectItem = $ref<number>(props.selectIndex)
 let networkTranslateEngine = $ref('baidu')
+let searchKey = $ref('')
 let progress = $ref(0)
 const TranslateEngineOptions = [
   {value: 'baidu', label: '百度'},
@@ -264,26 +268,43 @@ watch(() => article.useTranslateType, () => {
   }
 })
 
+const list = $computed(() => {
+  if (searchKey) {
+    return base.currentEditDict.articles.filter((item: Article) => {
+      //把搜索内容，分词之后，判断是否有这个词，比单纯遍历包含体验更好
+      return searchKey.toLowerCase().split(' ').filter(v => v).some(value => {
+        return item.title.toLowerCase().includes(value) || item.titleTranslate.toLowerCase().includes(value)
+      })
+    })
+  } else {
+    return base.currentEditDict.articles
+  }
+})
+
 function selectArticle(index: number) {
   article = cloneDeep(base.currentEditDict.articles[index])
   selectIndex = index
 }
 
-function delArticle(index: number) {
-  if (index < selectIndex) {
-    selectIndex--
-  } else if (index === selectIndex) {
-    if (selectIndex === base.currentEditDict.articles.length - 1) {
+function delArticle(item: Article) {
+  let rIndex = base.currentEditDict.articles.findIndex((v: Article) => v.id === item.id)
+  if (rIndex > -1) {
+    if (index < selectIndex) {
       selectIndex--
+    } else if (index === selectIndex) {
+      if (selectIndex === base.currentEditDict.articles.length - 1) {
+        selectIndex--
+      }
+    }
+    base.currentEditDict.articles.splice(index, 1)
+    if (selectIndex < 0) {
+      article = cloneDeep(DefaultArticle)
+    } else {
+      article = cloneDeep(base.currentEditDict.articles[selectIndex])
     }
   }
-  base.currentEditDict.articles.splice(index, 1)
-  if (selectIndex < 0) {
-    article = cloneDeep(DefaultArticle)
-  } else {
-    article = cloneDeep(base.currentEditDict.articles[selectIndex])
-  }
 }
+
 </script>
 
 <template>
@@ -293,27 +314,19 @@ function delArticle(index: number) {
         <div class="dict-name">{{ base.currentEditDict.name }}</div>
         <BaseIcon title="选择其他词典/文章" icon="carbon:change-catalog"/>
       </header>
-      <div class="article-list">
-        <div class="item"
-             :class="[
-                (selectIndex ===  index) && 'active'
-             ]"
-             @click="selectArticle(index)"
-             v-for="(item,index) in base.currentEditDict.articles">
-          <div class="left">
-            <div class="name"> {{ `${index + 1}. ${item.title}` }}</div>
-            <div class="translate-name"> {{ `   ${item.titleTranslate}` }}</div>
-          </div>
-          <div class="right">
-            <BaseIcon
-                @click="delArticle(index)"
-                title="删除" icon="fluent:delete-24-regular"/>
-            <BaseIcon
-                @click="delArticle(index)"
-                title="删除" icon="carbon:move"/>
-          </div>
-        </div>
-      </div>
+      <List
+          v-model:list="list"
+          v-model:searchKey="searchKey"
+          :select-index="selectIndex"
+          :row-key="(item:Article) => item.title"
+          @del-article="delArticle"
+          @select-article="selectArticle"
+      >
+        <template v-slot="{item,index}">
+          <div class="name"> {{ `${index + 1}. ${item.title}` }}</div>
+          <div class="translate-name"> {{ `   ${item.titleTranslate}` }}</div>
+        </template>
+      </List>
       <div class="footer">
         <BaseButton>导入</BaseButton>
         <BaseButton>导出</BaseButton>
@@ -471,6 +484,7 @@ function delArticle(index: number) {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      //opacity: 0;
 
       .dict-name {
         font-size: 30rem;
@@ -478,46 +492,12 @@ function delArticle(index: number) {
       }
     }
 
-    .article-list {
-      flex: 1;
-      width: 300rem;
-      overflow: auto;
+    .name {
+      font-size: 18rem;
+    }
 
-      .item {
-        background: #e1e1e1;
-        border-radius: 8rem;
-        margin-bottom: 10rem;
-        padding: 10rem;
-        display: flex;
-        justify-content: space-between;
-        transition: all .3s;
-
-        .right {
-          display: flex;
-          flex-direction: column;
-          transition: all .3s;
-          opacity: 0;
-        }
-
-        &:hover {
-          .right {
-            opacity: 1;
-          }
-        }
-
-        &.active {
-          background: var(--color-item-active);
-          color: white;
-        }
-
-        .name {
-          font-size: 18rem;
-        }
-
-        .translate-name {
-          font-size: 16rem;
-        }
-      }
+    .translate-name {
+      font-size: 16rem;
     }
 
     .footer {
@@ -534,6 +514,7 @@ function delArticle(index: number) {
     display: flex;
     gap: $space;
     padding: $space;
+    //opacity: 0;
   }
 
   .row {

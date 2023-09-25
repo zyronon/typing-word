@@ -3,7 +3,7 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {$ref} from "vue/macros";
 
-export function useWindowClick(cb: () => void) {
+export function useWindowClick(cb: (e: PointerEvent) => void) {
   onMounted(() => {
     emitter.on(EventKey.closeOther, cb)
     window.addEventListener('click', cb)

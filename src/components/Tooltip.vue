@@ -25,6 +25,7 @@ export default {
   methods: {
     showPop(e) {
       if (this.disabled) return
+      if (!this.title) return
       e.stopPropagation()
       let rect = e.target.getBoundingClientRect()
       this.show = true
@@ -49,7 +50,7 @@ export default {
       <Teleport to="body">
         <Transition name="fade">
           {
-              this.show && (
+              this.show && this.title && (
                   <div ref="tip" class="tip">
                     {this.title}
                   </div>
