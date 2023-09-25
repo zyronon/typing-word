@@ -1,49 +1,67 @@
-<script setup lang="ts" generic="T">
+<script setup lang="ts" generic="T extends {id:string}">
 
 import BaseIcon from "@/components/BaseIcon.vue";
 import Input from "@/components/Input.vue";
-import {$ref} from "vue/macros";
+import {$computed, $ref} from "vue/macros";
 import {cloneDeep, throttle} from "lodash-es";
-
-let dragIndex = $ref(-1)
+import {Article} from "@/types.ts";
 
 interface IProps {
   list: T[]
-  searchKey: string,
-  selectIndex: number,
-  rowKey: (item: T) => string
+  selectItem: T,
 }
 
 const props = defineProps<IProps>()
 const emit = defineEmits<{
-  selectArticle: [index: number],
-  delArticle: [item: T],
+  selectItem: [index: T],
+  delSelectItem: [],
   'update:searchKey': [val: string],
   'update:list': [list: T[]],
 }>()
+
+let dragItem: T = $ref({id: ''} as any)
+let searchKey = $ref('')
 let draggable = $ref(false)
 
-function dragstart(index: number) {
-  dragIndex = index;
+let localList = $computed({
+  get() {
+    if (searchKey) {
+      return props.list.filter((item: Article) => {
+        //把搜索内容，分词之后，判断是否有这个词，比单纯遍历包含体验更好
+        return searchKey.toLowerCase().split(' ').filter(v => v).some(value => {
+          return item.title.toLowerCase().includes(value) || item.titleTranslate.toLowerCase().includes(value)
+        })
+      })
+    } else {
+      return props.list
+    }
+  },
+  set(newValue) {
+    emit('update:list', newValue)
+  }
+})
+
+function dragstart(item: T) {
+  dragItem = item;
 }
 
-const dragenter = throttle((e, index) => {
-  // console.log('dragenter', 'dragIndex', dragIndex, 'index', index)
+const dragenter = throttle((e, item: T) => {
+  // console.log('dragenter', 'item.id', item.id, 'dragItem.id', dragItem.id)
   e.preventDefault();
   // 避免源对象触发自身的dragenter事件
-  if (dragIndex !== index && dragIndex !== -1) {
-    const source = props.list[dragIndex];
+  if (dragItem.id && dragItem.id !== item.id) {
+    let rIndex = props.list.findIndex(v => v.id === dragItem.id)
+    let rIndex2 = props.list.findIndex(v => v.id === item.id)
+    // console.log('dragenter', 'item-Index', rIndex2, 'dragItem.index', rIndex)
+    //这里不能直接用localList splice。不知道为什么会导致有筛选的情况下，多动无法变换位置
     let temp = cloneDeep(props.list)
-    temp.splice(dragIndex, 1);
-    temp.splice(index, 0, source);
-    emit('update:list', temp)
-    // props.list = temp
-    // 排序变化后目标对象的索引变成源对象的索引
-    dragIndex = index;
+    temp.splice(rIndex, 1);
+    temp.splice(rIndex2, 0, cloneDeep(dragItem));
+    localList = temp;
   }
-}, 200)
+}, 300)
 
-function dragover(e, index) {
+function dragover(e) {
   // console.log('dragover')
   e.preventDefault();
 }
@@ -51,7 +69,17 @@ function dragover(e, index) {
 function dragend() {
   // console.log('dragend')
   draggable = false
-  dragIndex = -1
+  dragItem = {id: ''} as T
+}
+
+function delItem(item: T) {
+  if (item.id === props.selectItem.id) {
+    emit('delSelectItem')
+  }
+  let rIndex = props.list.findIndex(v => v.id === item.id)
+  if (rIndex > -1) {
+    localList.splice(rIndex, 1)
+  }
 }
 
 </script>
@@ -59,28 +87,22 @@ function dragend() {
 <template>
   <div class="list-wrapper">
     <div class="search">
-      <Input :model-value="searchKey"
-             @update:model-value="(e:string) => emit('update:searchKey',e)"
-      />
+      <Input v-model="searchKey"/>
     </div>
-    <transition-group
-        name="drag"
-        class="list"
-        tag="div"
-    >
+    <transition-group name="drag" class="list" tag="div">
       <div class="item"
            :class="[
-                (props.selectIndex ===  index) && 'active',
+                (selectItem.id ===  item.id) && 'active',
                 draggable  && 'draggable',
-                (dragIndex === index) && 'active'
+                (dragItem.id === item.id) && 'active'
              ]"
-           @click="emit('selectArticle',index)"
-           v-for="(item,index) in props.list"
-           :key="rowKey(item)"
+           @click="emit('selectItem',item)"
+           v-for="(item,index) in localList"
+           :key="item.id"
            :draggable="draggable"
-           @dragstart="dragstart(index)"
-           @dragenter="dragenter($event, index)"
-           @dragover="dragover($event, index)"
+           @dragstart="dragstart(item)"
+           @dragenter="dragenter($event, item)"
+           @dragover="dragover($event)"
            @dragend="dragend()"
       >
         <div class="left">
@@ -88,7 +110,7 @@ function dragend() {
         </div>
         <div class="right">
           <BaseIcon
-              @click="emit('delArticle',item)"
+              @click="delItem(item)"
               title="删除" icon="fluent:delete-24-regular"/>
           <div
               @mousedown="draggable = true"
@@ -113,7 +135,7 @@ function dragend() {
 .drag-enter-from,
 .drag-leave-to {
   opacity: 0;
-  transform: translateX(30px);
+  transform: translateX(50rem);
 }
 
 /* 确保将离开的元素从布局流中删除

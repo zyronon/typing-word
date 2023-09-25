@@ -21,6 +21,7 @@ import {useBaseStore} from "@/stores/base.ts";
 import {$computed, $ref} from "vue/macros";
 import Input from "@/components/Input.vue";
 import List from "@/components/List.vue";
+import {v4 as uuidv4} from 'uuid';
 
 interface IProps {
   selectIndex?: number
@@ -32,10 +33,7 @@ const props = withDefaults(defineProps<IProps>(), {
 
 const base = useBaseStore()
 let article = $ref<Article>(cloneDeep(DefaultArticle))
-let selectIndex = $ref<number>(props.selectIndex)
-let selectItem = $ref<number>(props.selectIndex)
 let networkTranslateEngine = $ref('baidu')
-let searchKey = $ref('')
 let progress = $ref(0)
 const TranslateEngineOptions = [
   {value: 'baidu', label: '百度'},
@@ -68,12 +66,6 @@ watch(() => props.article, n => {
       }
     }
     updateSentenceTranslate()
-  }
-})
-
-onMounted(() => {
-  if (selectIndex > -1) {
-    article = base.currentEditDict.articles[selectIndex]
   }
 })
 
@@ -184,7 +176,7 @@ function save(option: 'save' | 'next') {
   }
 
   let has = base.currentEditDict.articles.find((item: Article) => item.title === article.title)
-  if (has && selectIndex === -1) {
+  if (has && !article.id) {
     return ElMessage.error('已存在同名文章！')
   }
 
@@ -192,18 +184,22 @@ function save(option: 'save' | 'next') {
     article.textCustomTranslateIsFormat = true
     // emit('close')
     // emit('save', cloneDeep(article))
-    if (selectIndex > -1) {
-      base.currentEditDict.articles[selectIndex] = cloneDeep(article)
+    if (article.id) {
+      let rIndex = base.currentEditDict.articles.findIndex(v => v.id === article.id)
+      if (rIndex > -1) {
+        base.currentEditDict.articles[rIndex] = cloneDeep(article)
+      }
     } else {
-      base.currentEditDict.articles.push(cloneDeep(article))
+      let data = {...article, id: uuidv4()}
+      base.currentEditDict.articles.push(data)
       if (option === 'save') {
-        selectIndex = base.currentEditDict.articles.length - 1
+        article = cloneDeep(data)
       }
     }
     if (option === 'next') {
-      selectIndex = -1
       article = cloneDeep(DefaultArticle)
     }
+    //TODO 保存完成后滚动到对应位置
     ElMessage.success('保存成功！')
   }
 
@@ -268,41 +264,8 @@ watch(() => article.useTranslateType, () => {
   }
 })
 
-const list = $computed(() => {
-  if (searchKey) {
-    return base.currentEditDict.articles.filter((item: Article) => {
-      //把搜索内容，分词之后，判断是否有这个词，比单纯遍历包含体验更好
-      return searchKey.toLowerCase().split(' ').filter(v => v).some(value => {
-        return item.title.toLowerCase().includes(value) || item.titleTranslate.toLowerCase().includes(value)
-      })
-    })
-  } else {
-    return base.currentEditDict.articles
-  }
-})
-
-function selectArticle(index: number) {
-  article = cloneDeep(base.currentEditDict.articles[index])
-  selectIndex = index
-}
-
-function delArticle(item: Article) {
-  let rIndex = base.currentEditDict.articles.findIndex((v: Article) => v.id === item.id)
-  if (rIndex > -1) {
-    if (index < selectIndex) {
-      selectIndex--
-    } else if (index === selectIndex) {
-      if (selectIndex === base.currentEditDict.articles.length - 1) {
-        selectIndex--
-      }
-    }
-    base.currentEditDict.articles.splice(index, 1)
-    if (selectIndex < 0) {
-      article = cloneDeep(DefaultArticle)
-    } else {
-      article = cloneDeep(base.currentEditDict.articles[selectIndex])
-    }
-  }
+function selectArticle(item: Article) {
+  article = cloneDeep(item)
 }
 
 </script>
@@ -315,12 +278,10 @@ function delArticle(item: Article) {
         <BaseIcon title="选择其他词典/文章" icon="carbon:change-catalog"/>
       </header>
       <List
-          v-model:list="list"
-          v-model:searchKey="searchKey"
-          :select-index="selectIndex"
-          :row-key="(item:Article) => item.title"
-          @del-article="delArticle"
-          @select-article="selectArticle"
+          v-model:list="base.currentEditDict.articles"
+          :select-item="article"
+          @del-select-item="article = cloneDeep(DefaultArticle)"
+          @select-item="selectArticle"
       >
         <template v-slot="{item,index}">
           <div class="name"> {{ `${index + 1}. ${item.title}` }}</div>
