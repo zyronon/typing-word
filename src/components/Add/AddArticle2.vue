@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {onMounted, watch} from "vue";
+import {watch} from "vue";
 import {Article, DefaultArticle, Sentence, TranslateEngine, TranslateType} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {
@@ -14,25 +14,23 @@ import * as copy from "copy-to-clipboard";
 import {getSplitTranslateText} from "@/hooks/article.ts";
 import EditAbleText from "@/components/EditAbleText.vue";
 import {cloneDeep} from "lodash-es";
-import {useDisableEventListener} from "@/hooks/event.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useBaseStore} from "@/stores/base.ts";
-import {$computed, $ref} from "vue/macros";
-import Input from "@/components/Input.vue";
+import {$ref} from "vue/macros";
 import List from "@/components/List.vue";
 import {v4 as uuidv4} from 'uuid';
 
 interface IProps {
-  selectIndex?: number
+  article?: Article
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  selectIndex: -1
+  article: () => cloneDeep(DefaultArticle)
 })
 
 const base = useBaseStore()
-let article = $ref<Article>(cloneDeep(DefaultArticle))
+let article = $ref<Article>(props.article)
 let networkTranslateEngine = $ref('baidu')
 let progress = $ref(0)
 const TranslateEngineOptions = [
@@ -158,7 +156,7 @@ function onFocus() {
   document.addEventListener('paste', onPaste);
 }
 
-function save(option: 'save' | 'next') {
+function save(option: 'save' | 'next', mute: boolean = false) {
   console.log('article', article)
   copy(JSON.stringify(article))
 
@@ -200,7 +198,9 @@ function save(option: 'save' | 'next') {
       article = cloneDeep(DefaultArticle)
     }
     //TODO 保存完成后滚动到对应位置
-    ElMessage.success('保存成功！')
+    if (!mute) {
+      ElMessage.success('保存成功！')
+    }
   }
 
   if (article.useTranslateType === TranslateType.network) {
@@ -268,6 +268,13 @@ function selectArticle(item: Article) {
   article = cloneDeep(item)
 }
 
+function add() {
+  if (article.title.trim() && article.text.trim()) {
+    return save('next', true)
+  }
+  article = cloneDeep(DefaultArticle)
+}
+
 </script>
 
 <template>
@@ -291,6 +298,7 @@ function selectArticle(item: Article) {
       <div class="footer">
         <BaseButton>导入</BaseButton>
         <BaseButton>导出</BaseButton>
+        <BaseButton @click="add">新增</BaseButton>
       </div>
     </div>
 
@@ -464,7 +472,7 @@ function selectArticle(item: Article) {
     .footer {
       height: $height;
       display: flex;
-      gap: $space;
+      gap: 10rem;
       align-items: center;
       justify-content: flex-end;
     }
