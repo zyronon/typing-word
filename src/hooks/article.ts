@@ -344,5 +344,24 @@ export function getSplitTranslateText(article: string) {
 }
 
 export function splitEnArticle2(text: string) {
-
+    //去除头和尾部的空格
+    text = text.trim()
+    // text = text.replaceAll(`‘`, '"')
+    // text = text.replaceAll(`’`, '"')
+    // text = text.replaceAll(`“`, '"')
+    // text = text.replaceAll(`”`, '"')
+    // 替换所有单引号为双引号
+    // text = text.replaceAll(`'`, '"')
+    // 将缩写词的双引号替换回单引号
+    // text = text.replaceAll(`"t`, `'t`)
+    // text = text.replaceAll(`"s`, `'s`)
+    // text = text.replaceAll(`"S`, `'S`)
+    // text = text.replaceAll(`"m`, `'m`)
+    // text = text.replaceAll(`"d`, `'d`)
+    // text = text.replaceAll(`"ve`, `'ve`)
+    // text = text.replaceAll(`"clock`, `'clock`)
+    console.log('splitEnArticle', text)
+    let sections = text.split('\n');
+    let sentences = text
+    console.log('sections',sections)
 }

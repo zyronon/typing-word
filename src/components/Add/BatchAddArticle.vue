@@ -4,6 +4,8 @@ import AddArticle2 from "@/components/Add/AddArticle2.vue";
 import {$ref} from "vue/macros";
 import {cloneDeep} from "lodash-es";
 import {DefaultArticle} from "@/types.ts";
+import {onMounted, watch} from "vue";
+import {splitEnArticle2} from "@/hooks/article.ts";
 
 const base = useBaseStore()
 
@@ -14,11 +16,17 @@ let articleData = $ref({
   wordIndex: 0,
   stringIndex: 0,
 })
+
+onMounted(()=>{
+  setTimeout(()=>{
+    splitEnArticle2(base.currentEditDict.articles[2].text)
+  },100)
+})
 </script>
 
 <template>
   <div id="BatchAddArticle">
-    <AddArticle2/>
+<!--    <AddArticle2/>-->
   </div>
 </template>
 
