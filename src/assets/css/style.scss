@@ -99,6 +99,15 @@ a {
   border-radius: 10rem;
 }
 
+
+/* 火狐美化滚动条 */
+* {
+  scrollbar-color: $second #f3f4f9;
+  /* 滑块颜色  滚动条背景颜色 */
+  scrollbar-width: thin;
+  /* 滚动条宽度有三种：thin、auto、none */
+}
+
 footer {
   box-sizing: content-box;
   height: $footer-height;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import {saveAs} from 'file-saver';
 import {watch} from "vue";
 import {Article, DefaultArticle, Sentence, TranslateEngine, TranslateType} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
@@ -54,12 +54,14 @@ watch(() => props.article, n => {
         if (article.textCustomTranslate.trim()) {
           if (!article.textCustomTranslateIsFormat) {
             let r = getSplitTranslateText(article.textCustomTranslate)
-            if (r) article.textCustomTranslate = r
-            ElMessage({
-              message: '检测到本地翻译未格式化，已自动格式',
-              type: 'success',
-              duration: 5000
-            })
+            if (r) {
+              article.textCustomTranslate = r
+              ElMessage({
+                message: '检测到本地翻译未格式化，已自动格式化',
+                type: 'success',
+                duration: 5000
+              })
+            }
           }
         }
       }
@@ -240,31 +242,9 @@ function save(option: 'save' | 'next', mute: boolean = false) {
   saveTemp()
 }
 
-function changeTranslateType() {
-  if (article.text.trim()) {
-    if (article.useTranslateType === TranslateType.custom) {
-      if (article.textCustomTranslate.trim()) {
-        renewSectionTranslates(article, article.textCustomTranslate)
-      } else {
-        renewSectionTexts(article)
-      }
-    }
-    if (article.useTranslateType === TranslateType.network) {
-      if (article.textNetworkTranslate.trim()) {
-        renewSectionTranslates(article, article.textNetworkTranslate)
-      } else {
-        renewSectionTexts(article)
-      }
-    }
-    if (article.useTranslateType === TranslateType.none) {
-      renewSectionTexts(article)
-    }
-  }
-}
-
 function selectArticle(item: Article) {
   article = cloneDeep(item)
-  if (!article?.sections?.length){
+  if (!article?.sections?.length) {
     renewSections()
   }
   console.log('article', article)
@@ -277,6 +257,22 @@ function add() {
   article = cloneDeep(DefaultArticle)
 }
 
+//TODO
+function importData() {
+
+}
+
+function exportData() {
+  let data = {
+    name: base.currentEditDict.name,
+    articles: base.currentEditDict.articles,
+    url: base.currentEditDict.url,
+    statistics: location.origin + base.currentEditDict.statistics,
+  }
+
+  let blob = new Blob([JSON.stringify(data, null, 2)], {type: "text/plain;charset=utf-8"});
+  saveAs(blob, `${data.name}.json`);
+}
 </script>
 
 <template>
@@ -298,8 +294,8 @@ function add() {
         </template>
       </List>
       <div class="footer">
-        <BaseButton>导入</BaseButton>
-        <BaseButton>导出</BaseButton>
+        <BaseButton @click="importData">导入</BaseButton>
+        <BaseButton @click="exportData">导出</BaseButton>
         <BaseButton @click="add">新增</BaseButton>
       </div>
     </div>
@@ -337,7 +333,7 @@ function add() {
             <span>标题：</span>
             <el-radio-group
                 v-model="article.useTranslateType"
-                @change="changeTranslateType"
+                @change="renewSections"
             >
               <el-radio-button :label="TranslateType.custom">本地翻译</el-radio-button>
               <el-radio-button :label="TranslateType.network">网络翻译</el-radio-button>
@@ -490,6 +486,7 @@ function add() {
     display: flex;
     gap: $space;
     padding: $space;
+    padding-top: 10rem;
     //opacity: 0;
   }
 
@@ -561,7 +558,7 @@ function add() {
         .sentence {
           margin-bottom: 20rem;
 
-          &:last-child{
+          &:last-child {
             margin-bottom: 0;
           }
 

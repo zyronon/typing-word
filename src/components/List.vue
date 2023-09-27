@@ -146,7 +146,7 @@ function delItem(item: T) {
 
 .list-wrapper {
   flex: 1;
-  overflow: auto;
+  overflow: overlay;
   padding-right: 5rem;
 
   .search {

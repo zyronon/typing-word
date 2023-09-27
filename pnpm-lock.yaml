@@ -26,6 +26,9 @@ dependencies:
   element-plus:
     specifier: ^2.3.9
     version: 2.3.14(vue@3.3.4)
+  file-saver:
+    specifier: ^2.0.5
+    version: 2.0.5
   hover.css:
     specifier: ^2.3.2
     version: 2.3.2
@@ -41,6 +44,9 @@ dependencies:
   pinia:
     specifier: ^2.1.6
     version: 2.1.6(typescript@5.2.2)(vue@3.3.4)
+  sentence-splitter:
+    specifier: ^4.2.1
+    version: 4.2.1
   swiper:
     specifier: ^10.1.0
     version: 10.3.0
@@ -819,6 +825,10 @@ packages:
     resolution: {integrity: sha512-Ccy0NlLkzr0Ex2FKvh2X+OyERHXJ88XJ1MXtsI9y9fGexlaXaVTPzBCRBwIxFkORuOb+uBqeu+RqnpgYTEZRUQ==}
     dev: false
 
+  /@textlint/ast-node-types@13.3.3:
+    resolution: {integrity: sha512-KCpJppfX3Km69twa6SmVEJ8mkyAZSrxw3XaaLQSlpc7PWnLUJSCHGPVECI1nSUDhiTd1r6zlRvWuyIAZJiov+A==}
+    dev: false
+
   /@tsconfig/node10@1.0.9:
     resolution: {integrity: sha512-jNsYVVxU8v5g43Erja32laIDHXeoNvFEpX33OK4d6hljo3jDhCBDhx5dhCCTMWUojscpAagGiRkBKxpdl9fxqA==}
     requiresBuild: true
@@ -1199,6 +1209,10 @@ packages:
 
   /bmp-js@0.1.0:
     resolution: {integrity: sha512-vHdS19CnY3hwiNdkaqk93DvjVLfbEcI8mys4UjuWrlX1haDmroo8o4xCzh4wD6DGV6HxRCyauwhHRqMTfERtjw==}
+    dev: false
+
+  /boundary@2.0.0:
+    resolution: {integrity: sha512-rJKn5ooC9u8q13IMCrW0RSp31pxBCHE3y9V/tp3TdWSLf8Em3p6Di4NBpfzbJge9YjjFEsD0RtFEjtvHL5VyEA==}
     dev: false
 
   /brace-expansion@1.1.11:
@@ -1699,6 +1713,10 @@ packages:
     dependencies:
       escape-string-regexp: 1.0.5
     dev: true
+
+  /file-saver@2.0.5:
+    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
+    dev: false
 
   /fill-range@7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
@@ -2684,6 +2702,13 @@ packages:
       lru-cache: 6.0.0
     dev: true
 
+  /sentence-splitter@4.2.1:
+    resolution: {integrity: sha512-zn7awgCg40lyb+fe6N/fRJS3r+Ag3SmrmiYHZZSM9oQ2HTnwSMooUgQXSMLeQdi5HWMYOnhrovE2JZ3pyGU0dg==}
+    dependencies:
+      '@textlint/ast-node-types': 13.3.3
+      structured-source: 4.0.0
+    dev: false
+
   /side-channel@1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
     dependencies:
@@ -2742,6 +2767,12 @@ packages:
     dependencies:
       acorn: 8.10.0
     dev: true
+
+  /structured-source@4.0.0:
+    resolution: {integrity: sha512-qGzRFNJDjFieQkl/sVOI2dUjHKRyL9dAJi2gCPGJLbJHBIkyOHxjuocpIEfbLioX+qSJpvbYdT49/YCdMznKxA==}
+    dependencies:
+      boundary: 2.0.0
+    dev: false
 
   /suffix-thumb@5.0.2:
     resolution: {integrity: sha512-I5PWXAFKx3FYnI9a+dQMWNqTxoRt6vdBdb0O+BJ1sxXCWtSoQCusc13E58f+9p4MYx/qCnEMkD5jac6K2j3dgA==}
