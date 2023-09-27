@@ -25,7 +25,7 @@ onMounted(() => {
 
 <template>
   <div id="BatchAddArticle">
-        <AddArticle2/>
+    <AddArticle2/>
   </div>
 </template>
 
@@ -37,6 +37,5 @@ onMounted(() => {
   height: 100vh;
   display: flex;
   color: black;
-
 }
 </style>

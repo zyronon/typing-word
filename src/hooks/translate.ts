@@ -4,7 +4,7 @@ import {axiosInstance} from "@/utils/http.ts";
 import {getSplitTranslateText, splitEnArticle} from "@/hooks/article.ts";
 import {Translator} from "@opentranslate/translator/src/translator.ts";
 
-export function updateLocalSentenceTranslate(article: Article, translate: string) {
+export function renewSectionTranslates(article: Article, translate: string) {
   if (translate.trim()) {
     let articleTranslate = translate.split('\n')
     // console.log('articleTranslate', articleTranslate)
@@ -63,7 +63,7 @@ export async function getNetworkTranslate(
   progressCb?: (val: number) => void
 ) {
   if (article.textNetworkTranslate) {
-    updateLocalSentenceTranslate(article, article.textNetworkTranslate)
+    renewSectionTranslates(article, article.textNetworkTranslate)
   } else {
     let translator: Translator
     if (translateEngine === TranslateEngine.Baidu) {
@@ -190,7 +190,7 @@ export async function getNetworkTranslate(
   }
 }
 
-export function updateSections(article: Article) {
+export function renewSectionTexts(article: Article) {
   let {newText, sections} = splitEnArticle(article.text)
   article.text = newText
   article.sections = sections
@@ -204,19 +204,19 @@ export function test(article: Article) {
   } else {
     if (article.useTranslateType !== undefined) {
       if (article.useTranslateType) {
-        updateLocalSentenceTranslate(article, article.textCustomTranslate)
+        renewSectionTranslates(article, article.textCustomTranslate)
       } else {
-        updateLocalSentenceTranslate(article, article.textNetworkTranslate)
+        renewSectionTranslates(article, article.textNetworkTranslate)
       }
     } else {
       // article.sections = splitEnArticle(article.article)
       if (article.textCustomTranslate) {
         article.textCustomTranslate = getSplitTranslateText(article.textCustomTranslate)
-        updateLocalSentenceTranslate(article, article.textCustomTranslate)
+        renewSectionTranslates(article, article.textCustomTranslate)
         article.useTranslateType = TranslateType.custom
       } else {
         article.textNetworkTranslate = getSplitTranslateText(article.textNetworkTranslate)
-        updateLocalSentenceTranslate(article, article.textCustomTranslate)
+        renewSectionTranslates(article, article.textCustomTranslate)
         article.useTranslateType = TranslateType.network
       }
     }

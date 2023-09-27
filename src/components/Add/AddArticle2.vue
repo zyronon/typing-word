@@ -7,8 +7,8 @@ import {
   getNetworkTranslate,
   getSentenceAllText,
   getSentenceAllTranslateText,
-  updateLocalSentenceTranslate,
-  updateSections
+  renewSectionTranslates,
+  renewSectionTexts
 } from "@/hooks/translate.ts";
 import * as copy from "copy-to-clipboard";
 import {getSplitTranslateText} from "@/hooks/article.ts";
@@ -26,17 +26,18 @@ interface IProps {
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  article: () => cloneDeep(DefaultArticle)
+  article: () => DefaultArticle
 })
 
 const base = useBaseStore()
-let article = $ref<Article>(props.article)
+let article = $ref<Article>(cloneDeep(props.article))
 let networkTranslateEngine = $ref('baidu')
 let progress = $ref(0)
 const TranslateEngineOptions = [
   {value: 'baidu', label: '百度'},
   {value: 'youdao', label: '有道'},
 ]
+
 const emit = defineEmits([
   'update:modelValue',
   'close',
@@ -63,7 +64,7 @@ watch(() => props.article, n => {
         }
       }
     }
-    updateSentenceTranslate()
+    renewSections()
   }
 })
 
@@ -74,7 +75,7 @@ async function startNetworkTranslate() {
   if (!article.text.trim()) {
     return ElMessage.error('请填写正文！')
   }
-  updateSections(article)
+  renewSectionTexts(article)
   article.textNetworkTranslate = ''
   //注意！！！
   //这里需要用异步，因为watch了article.networkTranslate，改变networkTranslate了之后，会重新设置article.sections
@@ -96,22 +97,23 @@ function saveSentenceTranslate(sentence: Sentence, val: string) {
   if (article.useTranslateType === TranslateType.network) {
     article.textNetworkTranslate = getSentenceAllTranslateText(article)
   }
+  renewSections()
 }
 
 function saveSentenceText(sentence: Sentence, val: string) {
   sentence.text = val
   article.text = getSentenceAllText(article)
-  updateSentenceTranslate()
+  renewSections()
 }
 
-function updateSentenceTranslate() {
+function renewSections() {
   if (article.text.trim()) {
-    updateSections(article)
+    renewSectionTexts(article)
     if (article.useTranslateType === TranslateType.custom) {
-      updateLocalSentenceTranslate(article, article.textCustomTranslate)
+      renewSectionTranslates(article, article.textCustomTranslate)
     }
     if (article.useTranslateType === TranslateType.network) {
-      updateLocalSentenceTranslate(article, article.textNetworkTranslate)
+      renewSectionTranslates(article, article.textNetworkTranslate)
     }
   } else {
     article.sections = []
@@ -132,14 +134,18 @@ function onPaste(event: ClipboardEvent) {
   // @ts-ignore
   let paste = (event.clipboardData || window.clipboardData).getData("text");
   return MessageBox.confirm(
-      '是否需要进行自动分句',
+      '是否需要自动分句',
       '提示',
       () => {
         let r = getSplitTranslateText(paste)
-        if (r) appendTranslate(r)
+        if (r) {
+          appendTranslate(r)
+          renewSections()
+        }
       },
       () => {
         appendTranslate(paste)
+        renewSections()
       },
       {
         confirmButtonText: '需要',
@@ -234,38 +240,34 @@ function save(option: 'save' | 'next', mute: boolean = false) {
   saveTemp()
 }
 
-watch(() => article.textCustomTranslate, (str: string) => {
-  updateSentenceTranslate()
-})
-
-watch(() => article.textNetworkTranslate, (str: string) => {
-  updateSentenceTranslate()
-})
-
-watch(() => article.useTranslateType, () => {
+function changeTranslateType() {
   if (article.text.trim()) {
     if (article.useTranslateType === TranslateType.custom) {
       if (article.textCustomTranslate.trim()) {
-        updateLocalSentenceTranslate(article, article.textCustomTranslate)
+        renewSectionTranslates(article, article.textCustomTranslate)
       } else {
-        updateSections(article)
+        renewSectionTexts(article)
       }
     }
     if (article.useTranslateType === TranslateType.network) {
       if (article.textNetworkTranslate.trim()) {
-        updateLocalSentenceTranslate(article, article.textNetworkTranslate)
+        renewSectionTranslates(article, article.textNetworkTranslate)
       } else {
-        updateSections(article)
+        renewSectionTexts(article)
       }
     }
     if (article.useTranslateType === TranslateType.none) {
-      updateSections(article)
+      renewSectionTexts(article)
     }
   }
-})
+}
 
 function selectArticle(item: Article) {
   article = cloneDeep(item)
+  if (!article?.sections?.length){
+    renewSections()
+  }
+  console.log('article', article)
 }
 
 function add() {
@@ -319,7 +321,7 @@ function add() {
           <div class="label">正文：</div>
           <textarea
               v-model="article.text"
-              @input="updateSentenceTranslate"
+              @input="renewSections"
               :readonly="![100,0].includes(progress)"
               type="textarea"
               class="base-textarea"
@@ -333,7 +335,10 @@ function add() {
         <div class="item">
           <div class="label">
             <span>标题：</span>
-            <el-radio-group v-model="article.useTranslateType">
+            <el-radio-group
+                v-model="article.useTranslateType"
+                @change="changeTranslateType"
+            >
               <el-radio-button :label="TranslateType.custom">本地翻译</el-radio-button>
               <el-radio-button :label="TranslateType.network">网络翻译</el-radio-button>
               <el-radio-button :label="TranslateType.none">不需要翻译</el-radio-button>
@@ -379,6 +384,7 @@ function add() {
           <textarea
               v-if="article.useTranslateType === TranslateType.custom"
               v-model="article.textCustomTranslate"
+              @input="renewSections"
               :readonly="![100,0].includes(progress)"
               @blur="onBlur"
               @focus="onFocus"
@@ -390,6 +396,7 @@ function add() {
           <textarea
               v-if="article.useTranslateType === TranslateType.network"
               v-model="article.textNetworkTranslate"
+              @input="renewSections"
               @blur="onBlur"
               @focus="onFocus"
               type="textarea"
@@ -553,6 +560,10 @@ function add() {
 
         .sentence {
           margin-bottom: 20rem;
+
+          &:last-child{
+            margin-bottom: 0;
+          }
 
           .text {
             font-size: 18rem;

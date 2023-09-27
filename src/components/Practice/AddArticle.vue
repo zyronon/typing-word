@@ -7,7 +7,7 @@ import {
   getNetworkTranslate,
   getSentenceAllText,
   getSentenceAllTranslateText,
-  updateLocalSentenceTranslate, updateSections
+  renewSectionTranslates, renewSectionTexts
 } from "@/hooks/translate.ts";
 import * as copy from "copy-to-clipboard";
 import {getSplitTranslateText, splitEnArticle} from "@/hooks/article.ts";
@@ -78,7 +78,7 @@ async function startNetworkTranslate() {
   if (!article.text.trim()) {
     return ElMessage.error('请填写正文！')
   }
-  updateSections(article)
+  renewSectionTexts(article)
   article.textNetworkTranslate = ''
   //注意！！！
   //这里需要用异步，因为watch了article.networkTranslate，改变networkTranslate了之后，会重新设置article.sections
@@ -110,12 +110,12 @@ function saveSentenceText(sentence: Sentence, val: string) {
 
 function updateSentenceTranslate() {
   if (article.text.trim()) {
-    updateSections(article)
+    renewSectionTexts(article)
     if (article.useTranslateType === TranslateType.custom) {
-      updateLocalSentenceTranslate(article, article.textCustomTranslate)
+      renewSectionTranslates(article, article.textCustomTranslate)
     }
     if (article.useTranslateType === TranslateType.network) {
-      updateLocalSentenceTranslate(article, article.textNetworkTranslate)
+      renewSectionTranslates(article, article.textNetworkTranslate)
     }
   } else {
     article.sections = []
@@ -220,20 +220,20 @@ watch(() => article.useTranslateType, () => {
   if (article.text.trim()) {
     if (article.useTranslateType === TranslateType.custom) {
       if (article.textCustomTranslate.trim()) {
-        updateLocalSentenceTranslate(article, article.textCustomTranslate)
+        renewSectionTranslates(article, article.textCustomTranslate)
       } else {
-        updateSections(article)
+        renewSectionTexts(article)
       }
     }
     if (article.useTranslateType === TranslateType.network) {
       if (article.textNetworkTranslate.trim()) {
-        updateLocalSentenceTranslate(article, article.textNetworkTranslate)
+        renewSectionTranslates(article, article.textNetworkTranslate)
       } else {
-        updateSections(article)
+        renewSectionTexts(article)
       }
     }
     if (article.useTranslateType === TranslateType.none) {
-      updateSections(article)
+      renewSectionTexts(article)
     }
   }
 })

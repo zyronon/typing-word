@@ -16,7 +16,7 @@ import {Article, DefaultArticle, TranslateType} from "@/types.ts";
 import AddArticle from "@/components/Practice/AddArticle.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {updateLocalSentenceTranslate, updateSections} from "@/hooks/translate.ts";
+import {renewSectionTranslates, renewSectionTexts} from "@/hooks/translate.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 
@@ -68,14 +68,14 @@ function getCurrentPractice() {
       articleData.article = tempArticle
     } else {
       if (tempArticle.useTranslateType === TranslateType.none) {
-        updateSections(tempArticle)
+        renewSectionTexts(tempArticle)
         articleData.article = tempArticle
       } else {
         if (tempArticle.useTranslateType === TranslateType.custom) {
           if (tempArticle.textCustomTranslate.trim()) {
             if (tempArticle.textCustomTranslateIsFormat) {
-              updateSections(tempArticle)
-              updateLocalSentenceTranslate(tempArticle, tempArticle.textCustomTranslate)
+              renewSectionTexts(tempArticle)
+              renewSectionTranslates(tempArticle, tempArticle.textCustomTranslate)
               articleData.article = tempArticle
             } else {
               //说明有本地翻译，但是没格式化成一行一行的
@@ -86,7 +86,7 @@ function getCurrentPractice() {
                     showEditArticle = true
                   },
                   () => {
-                    updateSections(tempArticle)
+                    renewSectionTexts(tempArticle)
                     tempArticle.useTranslateType = TranslateType.none
                     store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = tempArticle
                   },
@@ -105,7 +105,7 @@ function getCurrentPractice() {
                   showEditArticle = true
                 },
                 () => {
-                  updateSections(tempArticle)
+                  renewSectionTexts(tempArticle)
                   tempArticle.useTranslateType = TranslateType.none
                   store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = tempArticle
                 },
@@ -117,8 +117,8 @@ function getCurrentPractice() {
         }
 
         if (tempArticle.useTranslateType === TranslateType.network) {
-          updateSections(tempArticle)
-          updateLocalSentenceTranslate(tempArticle, tempArticle.textNetworkTranslate)
+          renewSectionTexts(tempArticle)
+          renewSectionTranslates(tempArticle, tempArticle.textNetworkTranslate)
           store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = tempArticle
         }
       }
