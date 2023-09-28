@@ -20,6 +20,7 @@ import {useBaseStore} from "@/stores/base.ts";
 import {$ref} from "vue/macros";
 import List from "@/components/List.vue";
 import {v4 as uuidv4} from 'uuid';
+import {Icon} from "@iconify/vue";
 
 interface IProps {
   article?: Article
@@ -33,6 +34,7 @@ const base = useBaseStore()
 let article = $ref<Article>(cloneDeep(props.article))
 let networkTranslateEngine = $ref('baidu')
 let progress = $ref(0)
+let failCount = $ref(0)
 const TranslateEngineOptions = [
   {value: 'baidu', label: '百度'},
   {value: 'youdao', label: '有道'},
@@ -112,10 +114,10 @@ function renewSections() {
   if (article.text.trim()) {
     renewSectionTexts(article)
     if (article.useTranslateType === TranslateType.custom) {
-      renewSectionTranslates(article, article.textCustomTranslate)
+      failCount = renewSectionTranslates(article, article.textCustomTranslate)
     }
     if (article.useTranslateType === TranslateType.network) {
-      renewSectionTranslates(article, article.textNetworkTranslate)
+      failCount = renewSectionTranslates(article, article.textNetworkTranslate)
     }
   } else {
     article.sections = []
@@ -247,7 +249,7 @@ function selectArticle(item: Article) {
   if (!article?.sections?.length) {
     renewSections()
   }
-  console.log('article', article)
+  // console.log('article', article)
 }
 
 function add() {
@@ -503,8 +505,14 @@ function exportData() {
           </div>
         </div>
         <div class="options" v-if="article.text.trim()">
-          <BaseButton @click="save('save')">保存</BaseButton>
-          <BaseButton @click="save('next')">保存并添加下一篇</BaseButton>
+          <div class="warning">
+            <Icon icon="typcn:warning-outline"/>
+            共有{{ failCount }}句没有翻译！
+          </div>
+          <div class="left">
+            <BaseButton @click="save('save')">保存</BaseButton>
+            <BaseButton @click="save('next')">保存并添加下一篇</BaseButton>
+          </div>
         </div>
       </div>
     </div>
@@ -667,8 +675,22 @@ function exportData() {
 
     .options {
       display: flex;
-      justify-content: flex-end;
-      gap: $space;
+      align-items: center;
+      justify-content: space-between;
+
+      .warning {
+        display: flex;
+        align-items: center;
+        font-size: 20rem;
+        color: red;
+        gap: $space;
+
+      }
+
+      .left {
+        gap: $space;
+        display: flex;
+      }
     }
   }
 }

@@ -5,8 +5,10 @@ import {getSplitTranslateText, splitEnArticle} from "@/hooks/article.ts";
 import {Translator} from "@opentranslate/translator/src/translator.ts";
 
 export function renewSectionTranslates(article: Article, translate: string) {
+  let failCount = 0
   if (translate.trim()) {
     let articleTranslate = translate.split('\n')
+    console.log('articleTranslate', articleTranslate)
     // console.log('articleTranslate', articleTranslate)
     let count = 0
     for (let i = 0; i < article.sections.length; i++) {
@@ -14,15 +16,22 @@ export function renewSectionTranslates(article: Article, translate: string) {
       for (let j = 0; j < v.length; j++) {
         let sentence = v[j]
         try {
-          sentence.translate = articleTranslate[count]
+          let trans = articleTranslate[count]
+          if (trans) {
+            sentence.translate = trans
+          } else {
+            failCount++
+          }
         } catch (e) {
-          console.log('没有对应的翻译', sentence.text)
+          failCount++
+          // console.log('没有对应的翻译', sentence.text)
         }
         count++
       }
       count++
     }
   }
+  return failCount
 }
 
 export function getSentenceAllTranslateText(article: Article) {
