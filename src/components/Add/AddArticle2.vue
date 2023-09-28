@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {saveAs} from 'file-saver';
 import {watch} from "vue";
-import {Article, DefaultArticle, Sentence, TranslateEngine, TranslateType} from "@/types.ts";
+import {Article, DefaultArticle, DictType, Sentence, Sort, TranslateEngine, TranslateType} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {
   getNetworkTranslate,
@@ -257,17 +257,98 @@ function add() {
   article = cloneDeep(DefaultArticle)
 }
 
-//TODO
-function importData() {
+let showImportBtn = $ref(true)
 
+function importData(e: Event) {
+  showImportBtn = false
+  let file = e.target.files[0]
+  let reader = new FileReader();//新建一个FileReader
+  reader.readAsText(file, "UTF-8");//读取文件
+  reader.onload = function (evt) { //读取完文件之后会回来这里
+    let fileString = evt.target.result; // 读取文件内容
+    // console.log('fileString', fileString)
+    try {
+      let obj: any = JSON.parse(fileString)
+      console.log('obj', obj)
+      if (!obj?.name) {
+        showImportBtn = true
+        return ElMessage.error('请填写词典名称！')
+      } else {
+        if (base.myDicts.find(v => v.name === obj.name)) {
+          showImportBtn = true
+          return ElMessage.error('词典名称已存在！')
+        }
+      }
+      if (!obj?.articles) {
+        showImportBtn = true
+        return ElMessage.error('请填写文章！')
+      }
+      if (!obj?.articles instanceof Array) {
+        showImportBtn = true
+        return ElMessage.error('请填写文章！')
+      }
+      for (let i = 0; i < obj.articles.length; i++) {
+        let item = obj.articles[i]
+        if (!item?.title) {
+          showImportBtn = true
+          return ElMessage.error(`请填写第${i + 1}篇文章名称！`)
+        }
+        if (!item?.text) {
+          showImportBtn = true
+          return ElMessage.error(`请填写第${i + 1}篇文章正文！`)
+        }
+        if (item?.useTranslateType === 'custom') {
+          if (!item?.textCustomTranslate) {
+            showImportBtn = true
+            return ElMessage.error(`请填写第${i + 1}篇文章 翻译 正文！`)
+          }
+        }
+
+        if (!obj.articles[i]?.titleTranslate) obj.articles[i].titleTranslate = ''
+        if (!obj.articles[i]?.textFormat) obj.articles[i].textFormat = ''
+        if (!obj.articles[i]?.textCustomTranslate) obj.articles[i].textCustomTranslate = ''
+        if (!obj.articles[i]?.newWords) obj.articles[i].newWords = []
+        if (!obj.articles[i]?.textCustomTranslateIsFormat) obj.articles[i].textCustomTranslateIsFormat = false
+        if (!obj.articles[i]?.useTranslateType) obj.articles[i].useTranslateType = 'none'
+        if (!obj.articles[i]?.textAllWords) obj.articles[i].textAllWords = []
+        if (!obj.articles[i]?.sections) obj.articles[i].sections = []
+        obj.articles[i].id = uuidv4()
+      }
+      obj.sort = Sort.normal
+      obj.type = DictType.customArticle
+      obj.originWords = []
+      obj.words = []
+      obj.chapterWords = []
+      obj.chapterWordNumber = 0
+      obj.chapterIndex = 0
+      obj.chapterWordIndex = 0
+      obj.url = ''
+      if (!obj.statistics) obj.statistics = []
+
+      ElMessage.success({
+        message: '导入成功，已切换到',
+        duration: 5000
+      })
+      base.myDicts.push(obj)
+      base.current.editIndex = base.myDicts.length - 1
+      showImportBtn = true
+    } catch (e) {
+      showImportBtn = true
+      ElMessage.error('文件解析失败，报错原因：' + e.message)
+    }
+  }
 }
 
 function exportData() {
   let data = {
     name: base.currentEditDict.name,
-    articles: base.currentEditDict.articles,
-    url: base.currentEditDict.url,
-    statistics: location.origin + base.currentEditDict.statistics,
+    articles: cloneDeep(base.currentEditDict.articles).map(v => {
+      delete v.sections
+      delete v.id
+      return v
+    }),
+    url: location.origin + base.currentEditDict.url,
+    statistics: base.currentEditDict.statistics,
   }
 
   let blob = new Blob([JSON.stringify(data, null, 2)], {type: "text/plain;charset=utf-8"});
@@ -294,7 +375,10 @@ function exportData() {
         </template>
       </List>
       <div class="footer">
-        <BaseButton @click="importData">导入</BaseButton>
+        <div class="import" v-if="showImportBtn">
+          <BaseButton>导入</BaseButton>
+          <input type="file" accept="application/json" @change="importData">
+        </div>
         <BaseButton @click="exportData">导出</BaseButton>
         <BaseButton @click="add">新增</BaseButton>
       </div>
@@ -478,6 +562,18 @@ function exportData() {
       gap: 10rem;
       align-items: center;
       justify-content: flex-end;
+
+      .import {
+        display: inline-flex;
+        position: relative;
+
+        input {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          opacity: 0;
+        }
+      }
     }
   }
 

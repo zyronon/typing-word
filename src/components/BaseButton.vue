@@ -25,7 +25,7 @@ function click() {
 
 <template>
   <Tooltip :disabled="!keyboard" :title="`快捷键: ${keyboard}`">
-    <div class="my-button"
+    <div class="base-button"
          @click="(!disabled && !loading) && $emit('click')"
          :class="[
              active && 'active',
@@ -52,7 +52,7 @@ function click() {
 <style scoped lang="scss">
 @import "@/assets/css/style";
 
-.my-button {
+.base-button {
   cursor: pointer;
   border-radius: 6rem;
   padding: 0 15rem;
