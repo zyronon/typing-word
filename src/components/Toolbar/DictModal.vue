@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {childrenEnglish} from '@/assets/dictionary.ts'
+import {childrenEnglish, dictionaryResources} from '@/assets/dictionary.ts'
 import {useBaseStore} from "@/stores/base.ts"
 import {watch} from "vue"
-import {Dict, DictType, Sort, Word} from "@/types.ts"
+import {Dict, Dictionary, DictType, Sort, Word} from "@/types.ts"
 import {chunk} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
 import WordList from "@/components/WordList.vue";
@@ -10,6 +10,11 @@ import ChapterList from "@/components/ChapterList.vue"
 import Modal from "@/components/Modal/Modal.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {Icon} from '@iconify/vue';
+import codeFlag from '@/assets/img/flags/code.png'
+import deFlag from '@/assets/img/flags/de.png'
+import enFlag from '@/assets/img/flags/en.png'
+import jpFlag from '@/assets/img/flags/ja.png'
+import DictGroup from "@/components/Toolbar/DictGroup.vue";
 
 const store = useBaseStore()
 
@@ -70,6 +75,50 @@ function close() {
 function resetChapterList() {
   currentSelectDict.chapterWords = chunk(currentSelectDict.words, currentSelectDict.chapterWordNumber)
 }
+
+const options = [
+  {id: 'en', name: '英语', flag: enFlag},
+  {id: 'ja', name: '日语', flag: jpFlag},
+  {id: 'de', name: '德语', flag: deFlag},
+  {id: 'code', name: 'Code', flag: codeFlag},
+]
+let currentLanguage = $ref('en')
+
+function groupBy<T>(elements: T[], iteratee: (value: T) => string) {
+  return elements.reduce<Record<string, T[]>>((result, value) => {
+    const key = iteratee(value)
+    if (Object.prototype.hasOwnProperty.call(result, key)) {
+      result[key].push(value)
+    } else {
+      result[key] = [value]
+    }
+    return result
+  }, {})
+}
+
+function groupByDictTags(dicts: Dictionary[]) {
+  return dicts.reduce<Record<string, Dictionary[]>>((result, dict) => {
+    dict.tags.forEach((tag) => {
+      if (Object.prototype.hasOwnProperty.call(result, tag)) {
+        result[tag].push(dict)
+      } else {
+        result[tag] = [dict]
+      }
+    })
+    return result
+  }, {})
+}
+
+const groupedByCategoryAndTag = $computed(() => {
+  const currentLanguageCategoryDicts = dictionaryResources.filter((dict) => dict.languageCategory === currentLanguage)
+  const groupedByCategory = Object.entries(groupBy(currentLanguageCategoryDicts, (dict) => dict.category))
+  const groupedByCategoryAndTag = groupedByCategory.map(
+      ([category, dicts]) => [category, groupByDictTags(dicts)] as [string, Record<string, Dictionary[]>],
+  )
+  console.log('groupedByCategoryAndTag', groupedByCategoryAndTag)
+  return groupedByCategoryAndTag
+})
+
 </script>
 
 <template>
@@ -80,14 +129,12 @@ function resetChapterList() {
         <div class="dict-page">
           <header>
             <div class="tabs">
-              <div class="tab">
-                <span>英语</span>
-              </div>
-              <div class="tab">
-                <span>日语</span>
-              </div>
-              <div class="tab">
-                <span>德语</span>
+              <div class="tab"
+                   :class="currentLanguage === item.id && 'active'"
+                   @click="currentLanguage = item.id"
+                   v-for="item in options">
+                <img :src='item.flag'/>
+                <span>{{ item.name }}</span>
               </div>
             </div>
             <Icon @click="close"
@@ -97,23 +144,9 @@ function resetChapterList() {
           </header>
           <div class="page-content">
             <div class="dict-list-wrapper">
-              <div class="tags">
-                <div class="tag" :class="i === 5 &&'active'" v-for="i in 2">六级</div>
-              </div>
-              <div class="dict-list">
-                <div class="dict-item anim"
-                     :class="currentSelectDict.name === i.name && 'active'" v-for="i in childrenEnglish"
-                     @click="selectDict(i)"
-                >
-                  <div class="name">{{ i.name }}</div>
-                  <div class="desc">{{ i.description }}</div>
-                  <div class="num">{{ i.length }}词</div>
-
-                  <Icon icon="octicon:arrow-right-24" v-if="currentSelectDict.name === i.name"
-                        @click.stop="step = 1"
-                        class="go" width="20" color="#929596"/>
-                </div>
-              </div>
+              <DictGroup
+                  v-for="item in groupedByCategoryAndTag"
+                  :groupByTag="item[1]"/>
             </div>
             <div class="chapter-wrapper">
               <div class="chapter-word-number">
@@ -203,42 +236,6 @@ $header-height: 60rem;
   }
 }
 
-.dict-item {
-  cursor: pointer;
-  padding: 10rem;
-  border-radius: 10rem;
-  position: relative;
-  background: var(--color-item-bg);
-  color: var(--color-font-1);
-  font-size: 14rem;
-
-  .name {
-    font-size: 18rem;
-  }
-
-  .desc {
-    color: var(--color-font-2);
-  }
-
-  .num {
-    font-weight: bold;
-  }
-
-  .go {
-    position: absolute;
-    right: 10rem;
-    bottom: 15rem;
-  }
-
-  &.active {
-    background: var(--color-item-active);
-    color: var(--color-font-active-1);
-
-    .desc {
-      color: var(--color-font-active-2);
-    }
-  }
-}
 
 $footer-height: 40rem;
 
@@ -292,7 +289,19 @@ $footer-height: 40rem;
         cursor: pointer;
         padding: 10rem;
         padding-bottom: 5rem;
-        border-bottom: 2px solid $main;
+        transition: all .5s;
+        border-bottom: 2px solid transparent;
+        display: flex;
+        align-items: center;
+        gap: 6rem;
+
+        &.active {
+          border-bottom: 2px solid $main;
+        }
+
+        img {
+          height: 30rem;
+        }
       }
     }
   }
@@ -307,29 +316,6 @@ $footer-height: 40rem;
       height: 100%;
       padding-right: $space;
 
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        margin-bottom: 10rem;
-
-        .tag {
-          color: var(--color-font-1);
-          cursor: pointer;
-          padding: 5rem 10rem;
-          border-radius: 20rem;
-
-          &.active {
-            color: var(--color-font-active-1);
-            background: gray;
-          }
-        }
-      }
-
-      .dict-list {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 15rem;
-      }
     }
   }
 }

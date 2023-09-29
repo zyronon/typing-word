@@ -506,8 +506,10 @@ function exportData() {
         </div>
         <div class="options" v-if="article.text.trim()">
           <div class="warning">
-            <Icon icon="typcn:warning-outline"/>
-            共有{{ failCount }}句没有翻译！
+            <template v-if="failCount">
+              <Icon icon="typcn:warning-outline"/>
+              共有{{ failCount }}句没有翻译！
+            </template>
           </div>
           <div class="left">
             <BaseButton @click="save('save')">保存</BaseButton>
@@ -683,7 +685,7 @@ function exportData() {
         align-items: center;
         font-size: 20rem;
         color: red;
-        gap: $space;
+        gap: 10rem;
 
       }
 

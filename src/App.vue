@@ -51,10 +51,10 @@ useEventListener('keyup', (e: KeyboardEvent) => {
 <template>
   <!--    <Backgorund/>-->
   <div class="main-page">
-    <!--    <Practice/>-->
+        <Practice/>
     <!--    <AddArticle/>-->
     <!--      <Side/>-->
-    <BatchAddArticle/>
+<!--    <BatchAddArticle/>-->
   </div>
 </template>
 

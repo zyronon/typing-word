@@ -1876,6 +1876,7 @@ export const dictionaryResources: DictionaryResource[] = [
     //   language: 'ja',
     // },
 ]
+
 //
 // export const dictionaries: Dictionary[] = dictionaryResources.map((resource) => ({
 //   ...resource,

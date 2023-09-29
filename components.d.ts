@@ -17,6 +17,7 @@ declare module 'vue' {
     ChapterDetail: typeof import('./src/components/ChapterDetail.vue')['default']
     ChapterList: typeof import('./src/components/ChapterList.vue')['default']
     Close: typeof import('./src/components/Close.vue')['default']
+    DictGroup: typeof import('./src/components/Toolbar/DictGroup.vue')['default']
     DictList: typeof import('./src/components/DictList.vue')['default']
     DictModal: typeof import('./src/components/Toolbar/DictModal.vue')['default']
     EditAbleText: typeof import('./src/components/EditAbleText.vue')['default']
