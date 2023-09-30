@@ -1,12 +1,12 @@
 <script setup lang="ts">
+// import VirtualList from 'vue-virtual-list-v3';
 import {dictionaryResources} from '@/assets/dictionary.ts'
 import {useBaseStore} from "@/stores/base.ts"
-import {onMounted, watch} from "vue"
+import {watch} from "vue"
 import {Dict, DictionaryResource, DictType, Sort, Word} from "@/types.ts"
 import {chunk, cloneDeep} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
 import WordList from "@/components/WordList.vue";
-import ChapterList from "@/components/ChapterList.vue"
 import Modal from "@/components/Modal/Modal.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {Icon} from '@iconify/vue';
@@ -17,6 +17,7 @@ import jpFlag from '@/assets/img/flags/ja.png'
 import bookFlag from '@/assets/img/flags/book.png'
 import DictGroup from "@/components/Toolbar/DictGroup.vue";
 import {v4 as uuidv4} from "uuid";
+import VolumeIcon from "@/components/VolumeIcon.vue";
 
 const store = useBaseStore()
 
@@ -52,6 +53,7 @@ watch(() => props.modelValue, (n: boolean) => {
 })
 
 async function selectDict(item: DictionaryResource) {
+  step = 1
   if (item.name === currentSelectDict.name) return
   currentSelectDict = {
     ...item,
@@ -84,7 +86,6 @@ async function selectDict(item: DictionaryResource) {
       currentSelectDict.chapterWords = chunk(v, currentSelectDict.chapterWordNumber)
     })
   }
-  step = 1
 }
 
 function changeDict() {
@@ -135,7 +136,19 @@ const groupedByCategoryAndTag = $computed(() => {
   return groupedByCategoryAndTag
 })
 
+function playWordAudio(name: string) {
+}
+
 let radio1 = $ref('')
+const columns = [
+  {
+    key: 'name',
+    dataKey: 'name',
+    title: 'name',
+    width: 350,
+
+  }
+]
 </script>
 
 <template>
@@ -169,33 +182,12 @@ let radio1 = $ref('')
                   @detail="step = 1"
                   :groupByTag="item[1]"/>
             </div>
-            <div class="chapter-wrapper" v-if="false">
-              <div class="chapter-word-number">
-                <span>每章单词数:</span>
-                <el-slider :min="10"
-                           :step="10"
-                           :max="100"
-                           v-model="currentSelectDict.chapterWordNumber"
-                           @change="resetChapterList"
-                />
-                <span>{{ currentSelectDict.chapterWordNumber }}</span>
-              </div>
-              <ChapterList
-                  class="chapter-list"
-                  :list="currentSelectDict.chapterWords"
-                  v-model:active-index="currentSelectDict.chapterIndex"
-              />
-              <div class="footer">
-                <BaseButton @click="changeDict">确定</BaseButton>
-              </div>
-            </div>
           </div>
         </div>
         <div class="dict-detail-page">
           <header>
-            <div class="left">
+            <div class="left" @click.stop="step = 0">
               <Icon icon="octicon:arrow-left-24"
-                    @click.stop="step = 0"
                     class="go" width="20" color="#000000"/>
               <div class="title">
                 词典详情
@@ -211,32 +203,24 @@ let radio1 = $ref('')
               <div class="detail">
                 <div class="name">{{ currentSelectDict.name }}</div>
                 <div class="desc">{{ currentSelectDict.description }}</div>
-                <div class="num">{{ currentSelectDict.length }}词</div>
-                <div class="num">{{ currentSelectDict.chapterWords.length }}章</div>
+                <div class="num">总共：{{ currentSelectDict.length }}词</div>
+                <div class="num">{{ currentSelectDict.chapterWords.length }}章(每章313词)</div>
               </div>
-              <div class="chapter-word-number">
-                <span>每章单词数:</span>
+            </div>
+            <div class="setting">
+              <div class="title">学习设置</div>
+              <div class="row">
+                <div class="label">每章单词数</div>
                 <el-slider :min="10"
                            :step="10"
                            :max="100"
                            v-model="currentSelectDict.chapterWordNumber"
                            @change="resetChapterList"
                 />
-                <span>{{ currentSelectDict.chapterWordNumber }}</span>
+                <div class="option">
+                  <span>{{ currentSelectDict.chapterWordNumber }}</span>
+                </div>
               </div>
-            </div>
-            <div class="other">
-              <WordList
-                  v-if="false"
-                  class="word-list" :list="[]" :activeIndex="-1" :isActive="false"/>
-              <!--                  class="word-list" :list="currentSelectDict.words" :activeIndex="-1" :isActive="false"/>-->
-              <div class="footer">
-                <BaseButton @click="step = 0">返回</BaseButton>
-                <BaseButton>确定</BaseButton>
-              </div>
-            </div>
-            <div class="setting">
-              <div class="title">学习设置</div>
               <div class="row">
                 <div class="label">学习模式</div>
                 <div class="option">
@@ -294,9 +278,34 @@ let radio1 = $ref('')
                   />
                 </div>
               </div>
-
             </div>
-
+            <div class="other">
+              <virtual-list class="virtual-list"
+                            :keeps="20"
+                            data-key="name"
+                            :data-sources="currentSelectDict.words"
+                            :estimate-size="85"
+                            item-class="dict-virtual-item"
+              >
+                <template #={source}>
+                  <div class="left">
+                    <div class="title">
+                      <span class="word">{{ source.name }}</span>
+                      <span class="phonetic">{{ source.usphone }}</span>
+                    </div>
+                    <div class="translate">{{ source.trans.join('；') }}</div>
+                  </div>
+                  <div class="right">
+                    <VolumeIcon @click="playWordAudio(source.name)"></VolumeIcon>
+                    <Icon icon="fluent:delete-28-regular" width="20" color="#929596"/>
+                  </div>
+                </template>
+              </virtual-list>
+            </div>
+          </div>
+          <div class="footer">
+            <BaseButton @click="step = 0">返回</BaseButton>
+            <BaseButton>确定</BaseButton>
           </div>
         </div>
       </div>
@@ -311,6 +320,7 @@ $modal-mask-bg: rgba(#000, .15);
 $radius: 16rem;
 $time: 0.3s;
 $header-height: 60rem;
+$footer-height: 40rem;
 
 .slide {
   width: 1100rem;
@@ -326,36 +336,6 @@ $header-height: 60rem;
   .step1 {
     transform: translate3d(-50%, 0, 0);
   }
-}
-
-
-$footer-height: 40rem;
-
-.chapter-wrapper {
-  min-width: 300rem;
-
-  .chapter-word-number {
-    padding-left: $space;
-    display: flex;
-    color: black;
-    gap: 10rem;
-    font-size: 14rem;
-    word-break: keep-all;
-    align-items: center;
-  }
-
-  .chapter-list {
-    height: calc(100% - $footer-height);
-  }
-}
-
-.footer {
-  box-sizing: content-box;
-  height: $footer-height;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  gap: $space;
 }
 
 .dict-page {
@@ -419,8 +399,11 @@ $footer-height: 40rem;
   padding: $space;
   padding-top: 0;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 
   header {
+    cursor: pointer;
     width: 100%;
     display: flex;
     height: $header-height;
@@ -432,13 +415,13 @@ $footer-height: 40rem;
       display: flex;
       gap: 10rem;
       align-items: center;
-
     }
   }
 
   .page-content {
+    flex: 1;
+    overflow: hidden;
     display: flex;
-    height: calc(100% - $header-height);
     position: relative;
     gap: $space;
 
@@ -487,6 +470,8 @@ $footer-height: 40rem;
         align-items: center;
         justify-content: space-between;
         height: 40rem;
+        word-break: keep-all;
+        gap: 10rem;
       }
     }
 
@@ -503,5 +488,73 @@ $footer-height: 40rem;
       }
     }
   }
+
+  .footer {
+    margin-top: 10rem;
+    box-sizing: content-box;
+    height: $footer-height;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: $space;
+  }
 }
+
+</style>
+
+<style lang="scss">
+@import "@/assets/css/colors";
+
+.virtual-list {
+  overflow: auto;
+  height: 100%;
+}
+
+.dict-virtual-item {
+  background: var(--color-header-bg);
+  border-radius: 6rem;
+  padding: 12rem;
+  display: flex;
+  justify-content: space-between;
+  transition: all .3s;
+  color: var(--color-font-1);
+
+  &.active {
+    background: $second;
+    color: white;
+  }
+
+  &:hover {
+    //background: $dark-main-bg;
+    //background: $item-hover;
+    background: rgb(226, 226, 226);
+  }
+
+  .left {
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 10rem;
+
+      .word {
+        font-size: 24rem;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+        display: flex;
+      }
+
+      .phonetic {
+        font-size: 14rem;
+        color: gray;
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5rem;
+  }
+}
+
 </style>
