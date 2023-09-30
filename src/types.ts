@@ -1,5 +1,3 @@
-import {v4 as uuidv4} from 'uuid';
-
 export type Word = {
   "name": string,
   "usphone": string,
@@ -19,10 +17,8 @@ export const SaveConfigKey = 'typing-word-config'
 
 export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 
-export type PronunciationType = 'us' | 'uk' | 'romaji' | 'zh' | 'ja' | 'de'
-export type PhoneticType = 'us' | 'uk' | 'romaji' | 'zh' | 'ja' | 'de'
 export type LanguageType = 'en' | 'romaji' | 'zh' | 'ja' | 'code' | 'de'
-export type LanguageCategoryType = 'en' | 'ja' | 'de' | 'code'
+export type LanguageCategoryType = 'en' | 'ja' | 'de' | 'code' | 'article'
 
 
 export type DictionaryResource = {
@@ -35,54 +31,21 @@ export type DictionaryResource = {
   length: number
   language: LanguageType
   languageCategory: LanguageCategoryType
-  //override default pronunciation when not undefined
-  defaultPronIndex?: number
 }
 
-export type Dictionary = {
-  id: string
-  name: string
-  description: string
-  category: string
-  tags: string[]
-  url: string
-  length: number
-  language: LanguageType
-  languageCategory: LanguageCategoryType
-  // calculated in the store
-  chapterCount: number
-  //override default pronunciation when not undefined
-  defaultPronIndex?: number
-}
-
-export type PronunciationConfig = {
-  name: string
-  pron: PronunciationType
-}
-
-export type LanguagePronunciationMapConfig = {
-  defaultPronIndex: number
-  pronunciation: PronunciationConfig[]
-}
-
-export type LanguagePronunciationMap = {
-  [key in LanguageType]: LanguagePronunciationMapConfig
-}
-
-export type SoundResource = {
-  key: string
-  name: string
-  filename: string
-}
-
-export interface DictJson {
-  description: string,
-  category: string,
-  tags: string[],
+export interface Dict {
+  name: string,
+  sort: Sort,
+  type: DictType,
+  originWords: Word[],//原始单词
+  words: Word[],
+  chapterWordNumber: number,//章节单词数量
+  chapterWords: Word[][],
+  articles: Article[],
+  chapterIndex: number,
+  chapterWordIndex: number,
+  statistics: Statistics[],
   url: string,
-  length: number,
-  language: string,
-  languageCategory: string,
 }
 
 export enum DictType {
@@ -154,21 +117,6 @@ export const DefaultArticle: Article = {
   useTranslateType: TranslateType.network
 }
 
-export interface Dict {
-  name: string,
-  sort: Sort,
-  type: DictType,
-  originWords: Word[],//原始单词
-  words: Word[],
-  chapterWordNumber: number,//章节单词数量
-  chapterWords: Word[][],
-  articles: Article[],
-  chapterIndex: number,
-  chapterWordIndex: number,
-  statistics: Statistics[],
-  url: string,
-}
-
 export interface Statistics {
   startDate: number,//开始日期
   endDate: number//结束日期
@@ -197,7 +145,6 @@ export enum Sort {
   random = 1,
   reverse = 2
 }
-
 
 export const ShortKeyMap = {
   Show: 'Escape',

@@ -2,25 +2,28 @@
 import {Icon} from "@iconify/vue";
 import {$computed, $ref} from "vue/macros";
 import {watch} from "vue";
+import {DictionaryResource} from "@/types.ts";
 
 const props = defineProps<{
   category?: string,
-  groupByTag: any[]
+  groupByTag: any,
+  selectDictName: string
+}>()
+const emit = defineEmits<{
+  selectDict: [index: DictionaryResource],
+  detail: [],
 }>()
 const tagList = $computed(() => Object.keys(props.groupByTag))
 let currentTag = $ref(tagList[0])
 let list = $computed(() => {
   return props.groupByTag[currentTag]
 })
-let currentSelectDict = $ref({})
 let step = $ref(0)
 
 watch(() => props.groupByTag, () => {
   currentTag = tagList[0]
 })
 
-function selectDict() {
-}
 </script>
 
 <template>
@@ -32,16 +35,16 @@ function selectDict() {
   </div>
   <div class="dict-list">
     <div class="dict-item anim"
-         :class="currentSelectDict.name === i.name && 'active'"
-         @click="selectDict(i)"
+         :class="selectDictName === i.name && 'active'"
+         @click="emit('selectDict',i)"
          v-for="i in list"
     >
       <div class="name">{{ i.name }}</div>
       <div class="desc">{{ i.description }}</div>
       <div class="num">{{ i.length }}词</div>
 
-      <Icon icon="octicon:arrow-right-24" v-if="currentSelectDict.name === i.name"
-            @click.stop="step = 1"
+      <Icon icon="octicon:arrow-right-24" v-if="selectDictName === i.name"
+            @click.stop="emit('detail')"
             class="go" width="20" color="#929596"/>
     </div>
   </div>

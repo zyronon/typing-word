@@ -81,7 +81,7 @@ watch(() => settingStore.showToolbar, n => {
 
         <Tooltip title="切换主题">
           <IconWrapper>
-            <Icon icon="ep:moon" v-if="store.theme === 'dark'"
+            <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
                   @click="toggle"/>
             <Icon icon="tabler:sun" v-else @click="toggle"/>
           </IconWrapper>
