@@ -59,12 +59,12 @@ dependencies:
   vue:
     specifier: ^3.3.4
     version: 3.3.4
+  vue-activity-calendar:
+    specifier: ^1.2.2
+    version: 1.2.2
   vue-virtual-list-v3:
     specifier: ^1.5.1
     version: 1.5.1
-  vue-virtual-scroll-list:
-    specifier: ^2.3.5
-    version: 2.3.5
 
 devDependencies:
   '@iconify/vue':
@@ -3085,6 +3085,10 @@ packages:
       fsevents: 2.3.3
     dev: true
 
+  /vue-activity-calendar@1.2.2:
+    resolution: {integrity: sha512-HhFfLqmkMB0ylFSjceiJ1b23p/leH6OSXy9iGVkSzndkInG2sh2/F6AG4olFgWRGclxsZXtzIBtE9rm9UwDc+Q==}
+    dev: false
+
   /vue-demi@0.14.6(vue@3.3.4):
     resolution: {integrity: sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==}
     engines: {node: '>=12'}
@@ -3123,10 +3127,6 @@ packages:
     resolution: {integrity: sha512-HbI2DTTRmw6GotG//wrKj6qcYpS8ecPFTxCxRUzXbz929xgXuO/VlcxxIQ9eusGVv5T64twk4l93MnKgyscL9g==}
     dependencies:
       '@juggle/resize-observer': 3.4.0
-    dev: false
-
-  /vue-virtual-scroll-list@2.3.5:
-    resolution: {integrity: sha512-YFK6u5yltqtAOfTBcij/KGAS2SoZvzbNIAf9qTULauPObEp53xj22tDuohrrM2vNkgoD5kejXICIUBt2Q4ZDqQ==}
     dev: false
 
   /vue@3.3.4:

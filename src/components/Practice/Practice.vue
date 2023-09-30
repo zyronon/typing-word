@@ -176,18 +176,18 @@ function test() {
     <Toolbar/>
     <!--    <BaseButton @click="test">test</BaseButton>-->
 
-<!--    <TypeArticle-->
-<!--        v-if="store.isArticle"-->
-<!--        :article="articleData.article"-->
-<!--        :sectionIndex="articleData.sectionIndex"-->
-<!--        :sentenceIndex="articleData.sentenceIndex"-->
-<!--        :wordIndex="articleData.wordIndex"-->
-<!--        :stringIndex="articleData.stringIndex"-->
-<!--    />-->
-<!--    <TypeWord-->
-<!--        :words="wordData.words"-->
-<!--        :index="wordData.index"-->
-<!--        v-else/>-->
+    <TypeArticle
+        v-if="store.isArticle"
+        :article="articleData.article"
+        :sectionIndex="articleData.sectionIndex"
+        :sentenceIndex="articleData.sentenceIndex"
+        :wordIndex="articleData.wordIndex"
+        :stringIndex="articleData.stringIndex"
+    />
+    <TypeWord
+        :words="wordData.words"
+        :index="wordData.index"
+        v-else/>
     <Footer/>
   </div>
   <Statistics

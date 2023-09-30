@@ -61,7 +61,7 @@ export const useSettingStore = defineStore('setting', {
       fontSize: {
         articleForeignFontSize: 48,
         articleTranslateFontSize: 20,
-        wordForeignFontSize: 38,
+        wordForeignFontSize: 48,
         wordTranslateFontSize: 20,
       },
       waitTimeForChangeWord: 300,

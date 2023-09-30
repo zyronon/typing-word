@@ -31,7 +31,7 @@ export const useBaseStore = defineStore('base', {
         originWords: [],
         articles: [],
         words: [],
-        chapterWordNumber: 30,
+        chapterWordNumber: 15,
         chapterWords: [],
         chapterIndex: 0,
         chapterWordIndex: 0,
@@ -45,7 +45,7 @@ export const useBaseStore = defineStore('base', {
         originWords: [],
         articles: [],
         words: [],
-        chapterWordNumber: 30,
+        chapterWordNumber: 15,
         chapterWords: [],
         chapterIndex: 0,
         chapterWordIndex: 0,
@@ -59,7 +59,7 @@ export const useBaseStore = defineStore('base', {
         originWords: [],
         articles: [],
         words: [],
-        chapterWordNumber: 30,
+        chapterWordNumber: 15,
         chapterWords: [],
         chapterIndex: 0,
         chapterWordIndex: 0,
@@ -87,7 +87,7 @@ export const useBaseStore = defineStore('base', {
         originWords: [],
         articles: [],
         words: [],
-        chapterWordNumber: 30,
+        chapterWordNumber: 15,
         chapterWords: [],
         chapterIndex: 0,
         chapterWordIndex: 0,
@@ -102,7 +102,7 @@ export const useBaseStore = defineStore('base', {
           originWords: [],
           articles: [],
           words: [],
-          chapterWordNumber: 30,
+          chapterWordNumber: 15,
           chapterWords: [],
           chapterIndex: 0,
           chapterWordIndex: 0,
@@ -116,7 +116,7 @@ export const useBaseStore = defineStore('base', {
           originWords: [],
           articles: [],
           words: [],
-          chapterWordNumber: 30,
+          chapterWordNumber: 15,
           chapterWords: [],
           chapterIndex: 0,
           chapterWordIndex: 0,
@@ -221,7 +221,7 @@ export const useBaseStore = defineStore('base', {
             r.json().then(v => {
               this.currentDict.originWords = cloneDeep(v)
               this.currentDict.words = cloneDeep(v)
-              this.currentDict.chapterWords = chunk(this.dict.words, this.dict.chapterWordNumber)
+              this.currentDict.chapterWords = chunk(this.currentDict.words, this.currentDict.chapterWordNumber)
               this.load = true
             })
           }
@@ -250,7 +250,8 @@ export const useBaseStore = defineStore('base', {
       }
     },
     async changeDict(dict: Dict, chapterIndex: number = dict.chapterIndex, chapterWordIndex: number = dict.chapterWordNumber) {
-      this.saveStatistics()
+      //TODO 保存统计
+      // this.saveStatistics()
       console.log('changeDict', cloneDeep(dict), chapterIndex, chapterWordIndex)
       this.current.dictType = dict.type
       if ([DictType.newDict,
@@ -259,16 +260,13 @@ export const useBaseStore = defineStore('base', {
         this[dict.type].chapterIndex = chapterIndex
         this[dict.type].chapterWordIndex = chapterWordIndex
       } else {
-        this.dict = cloneDeep(dict)
-        if (dict.originWords.length) {
-          let r = await fetch(`/public/${this.dict.url}`)
-          let v = await r.json()
-          this.dict.originWords = cloneDeep(v)
-          this.dict.words = cloneDeep(v)
-          this.dict.chapters = chunk(this.dict.words, this.dict.chapterWordNumber)
+        let rIndex = this.myDicts.findIndex(v => v.name === dict.name)
+        if (rIndex > -1) {
+          this.current.index = rIndex
+        } else {
+          this.myDicts.push(cloneDeep(dict))
+          this.current.index = this.myDicts.length - 1
         }
-        this.dict.chapterIndex = chapterIndex
-        this.dict.chapterWordIndex = chapterWordIndex
       }
       emitter.emit(EventKey.resetWord)
     }

@@ -1,12 +1,10 @@
 <script setup lang="ts">
-// import VirtualList from 'vue-virtual-list-v3';
 import {dictionaryResources} from '@/assets/dictionary.ts'
 import {useBaseStore} from "@/stores/base.ts"
 import {watch} from "vue"
 import {Dict, DictionaryResource, DictType, Sort, Word} from "@/types.ts"
 import {chunk, cloneDeep} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
-import WordList from "@/components/WordList.vue";
 import Modal from "@/components/Modal/Modal.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {Icon} from '@iconify/vue';
@@ -18,6 +16,9 @@ import bookFlag from '@/assets/img/flags/book.png'
 import DictGroup from "@/components/Toolbar/DictGroup.vue";
 import {v4 as uuidv4} from "uuid";
 import VolumeIcon from "@/components/VolumeIcon.vue";
+import {ActivityCalendar} from "vue-activity-calendar";
+import "vue-activity-calendar/style.css";
+import {usePlayWordAudio} from "@/hooks/sound.ts";
 
 const store = useBaseStore()
 
@@ -40,6 +41,8 @@ const options = [
   {id: 'de', name: '德语', flag: deFlag},
   {id: 'code', name: 'Code', flag: codeFlag},
 ]
+
+const playWordAudio = usePlayWordAudio()
 let currentLanguage = $ref('en')
 let currentSelectDict: Dict = $ref(cloneDeep(store.currentDict))
 let step = $ref(1)
@@ -136,19 +139,11 @@ const groupedByCategoryAndTag = $computed(() => {
   return groupedByCategoryAndTag
 })
 
-function playWordAudio(name: string) {
-}
-
 let radio1 = $ref('')
-const columns = [
-  {
-    key: 'name',
-    dataKey: 'name',
-    title: 'name',
-    width: 350,
 
-  }
-]
+function clickEvent(e) {
+  console.log('e', e)
+}
 </script>
 
 <template>
@@ -199,12 +194,21 @@ const columns = [
                   icon="ion:close-outline"/>
           </header>
           <div class="page-content">
-            <div class="dict-info">
-              <div class="detail">
-                <div class="name">{{ currentSelectDict.name }}</div>
-                <div class="desc">{{ currentSelectDict.description }}</div>
-                <div class="num">总共：{{ currentSelectDict.length }}词</div>
-                <div class="num">{{ currentSelectDict.chapterWords.length }}章(每章313词)</div>
+            <div class="detail">
+              <div class="name">{{ currentSelectDict.name }}</div>
+              <div class="desc">{{ currentSelectDict.description }}</div>
+              <div class="num">总词汇：{{ currentSelectDict.length }}词</div>
+              <div class="num">{{
+                  currentSelectDict.chapterWords.length
+                }}章(每章{{ currentSelectDict.chapterWordNumber }}词)
+              </div>
+              <div class="num">开始日期：-</div>
+              <div class="num">花费时间：-</div>
+              <div class="num">累积错误：-</div>
+              <div class="num">进度：
+                <el-progress :percentage="10"
+                             :stroke-width="8"
+                             :show-text="false"/>
               </div>
             </div>
             <div class="setting">
@@ -303,9 +307,23 @@ const columns = [
               </virtual-list>
             </div>
           </div>
+          <div class="activity">
+            <ActivityCalendar
+                :data="[{ date: '2023-05-22', count: 5 }]"
+                :width="40"
+                :height="7"
+                :cellLength="16"
+                :cellInterval="8"
+                :fontSize="12"
+                :showLevelFlag="false"
+                :showWeekDayFlag="false"
+                :clickEvent="clickEvent"
+            />
+          </div>
           <div class="footer">
+            <BaseButton @click="step = 0">导出</BaseButton>
             <BaseButton @click="step = 0">返回</BaseButton>
-            <BaseButton>确定</BaseButton>
+            <BaseButton @click="changeDict">确定</BaseButton>
           </div>
         </div>
       </div>
@@ -324,7 +342,7 @@ $footer-height: 40rem;
 
 .slide {
   width: 1100rem;
-  height: 70vh;
+  height: 75vh;
 
   .slide-list {
     width: 200%;
@@ -425,29 +443,28 @@ $footer-height: 40rem;
     position: relative;
     gap: $space;
 
-    .dict-info {
+    .detail {
       flex: 3;
-      color: black;
+      display: flex;
+      flex-direction: column;
+      gap: 10rem;
+      cursor: pointer;
+      padding: 15rem;
+      min-height: 100rem;
+      position: relative;
+      border-radius: 10rem;
+      background: var(--color-item-bg);
+      color: var(--color-font-1);
+      font-size: 14rem;
 
-      .detail {
-        cursor: pointer;
-        padding: 10rem;
-        min-height: 100rem;
-        position: relative;
-        border-radius: 10rem;
-        background: var(--color-item-bg);
-        color: var(--color-font-1);
-        font-size: 14rem;
+      .name {
+        font-size: 28rem;
+        margin-bottom: 10rem;
+      }
 
-        .name {
-          font-size: 28rem;
-          margin-bottom: 10rem;
-        }
-
-        .desc {
-          font-size: 18rem;
-          margin-bottom: 30rem;
-        }
+      .desc {
+        font-size: 18rem;
+        margin-bottom: 30rem;
       }
     }
 
@@ -457,7 +474,7 @@ $footer-height: 40rem;
       border-radius: 10rem;
       background: var(--color-item-bg);
       color: var(--color-font-1);
-      padding: 10rem;
+      padding: 15rem;
 
       .title {
         font-size: 20rem;
@@ -489,6 +506,11 @@ $footer-height: 40rem;
     }
   }
 
+  .activity {
+    display: flex;
+    justify-content: center;
+  }
+
   .footer {
     margin-top: 10rem;
     box-sizing: content-box;
@@ -513,7 +535,7 @@ $footer-height: 40rem;
 .dict-virtual-item {
   background: var(--color-header-bg);
   border-radius: 6rem;
-  padding: 12rem;
+  padding: 8rem 12rem;
   display: flex;
   justify-content: space-between;
   transition: all .3s;
