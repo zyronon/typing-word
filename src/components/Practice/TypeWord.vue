@@ -139,6 +139,30 @@ function prev() {
   wrong = input = ''
 }
 
+function ignore() {
+  activeBtnIndex = 2
+  next(false)
+}
+
+function collect() {
+  if (!store.newWordDict.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
+    store.newWordDict.originWords.push(word)
+    store.newWordDict.words.push(word)
+    store.newWordDict.chapterWords = [store.newWordDict.words]
+  }
+  activeBtnIndex = 1
+}
+
+function remove(){
+  if (!store.skipWordNames.includes(word.name.toLowerCase())) {
+    store.skipWordDict.originWords.push(word)
+    store.skipWordDict.words.push(word)
+    store.skipWordDict.chapterWords = [store.skipWordDict.words]
+  }
+  activeBtnIndex = 0
+  next(false)
+}
+
 function onKeyUp(e: KeyboardEvent) {
   showFullWord = false
 }
@@ -189,26 +213,14 @@ async function onKeyDown(e: KeyboardEvent) {
         }
         break
       case ShortKeyMap.Collect:
-        if (!store.newWordDict.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
-          store.newWordDict.originWords.push(word)
-          store.newWordDict.words.push(word)
-          store.newWordDict.chapterWords = [store.newWordDict.words]
-        }
-        activeBtnIndex = 1
+        collect()
         break
       case ShortKeyMap.Remove:
-        if (!store.skipWordNames.includes(word.name.toLowerCase())) {
-          store.skipWordDict.originWords.push(word)
-          store.skipWordDict.words.push(word)
-          store.skipWordDict.chapterWords = [store.skipWordDict.words]
-        }
-        activeBtnIndex = 0
-        next(false)
+        remove()
         break
       case ShortKeyMap.Ignore:
+        ignore()
         e.preventDefault()
-        activeBtnIndex = 2
-        next(false)
         break
       case ShortKeyMap.Show:
         if (settingStore.allowWordTip) {
