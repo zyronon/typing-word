@@ -3,8 +3,12 @@ import {Icon} from "@iconify/vue";
 import {$ref} from "vue/macros";
 import IconWrapper from "@/components/IconWrapper.vue";
 
-const props = withDefaults(defineProps<{ time?: number }>(), {
-  time: 400
+const props = withDefaults(defineProps<{
+  time?: number,
+  simple?: boolean
+}>(), {
+  time: 400,
+  simple: false
 })
 let step = $ref(2)
 let count = $ref(0)
@@ -35,10 +39,17 @@ function click() {
   emit('click')
   play()
 }
+
+defineExpose({play})
 </script>
 
 <template>
-  <IconWrapper @click.stop="click">
+  <div class="center" @click.stop="click" v-if="props.simple">
+    <Icon v-if="step === 0" icon="bx:volume"/>
+    <Icon v-if="step === 1" icon="bx:volume-low"/>
+    <Icon v-if="step === 2" icon="bx:volume-full"/>
+  </div>
+  <IconWrapper @click.stop="click" v-else>
     <div class="center">
       <Icon v-if="step === 0" icon="bx:volume"/>
       <Icon v-if="step === 1" icon="bx:volume-low"/>
@@ -49,8 +60,15 @@ function click() {
 
 <style scoped lang="scss">
 .center {
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  $w: 26rem;
+
+  :deep(svg) {
+    width: $w;
+    height: $w;
+  }
 }
 </style>

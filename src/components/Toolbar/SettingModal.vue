@@ -185,7 +185,7 @@ useWatchAllSound()
           </div>
           <div class="line"></div>
           <div class="row">
-            <label class="item-title">字体设置</label>
+            <label class="item-title">字体设置(仅可调整单词练习)</label>
           </div>
           <div class="row">
             <label class="sut-title">外语字体</label>
@@ -234,7 +234,7 @@ useWatchAllSound()
 
 .setting-modal {
   width: 40vw;
-  height: 80vh;
+  height: 650rem;
   display: flex;
   color: var(--color-font-1);
 

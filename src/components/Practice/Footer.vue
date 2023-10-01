@@ -18,8 +18,8 @@ function format(val: number, suffix: string = '', check: number = -1) {
 
 const progress = $computed(() => {
   if (!practiceStore.total) return 0
-  if (practiceStore.inputWordNumber > practiceStore.total) return 100
-  return ((practiceStore.inputWordNumber / practiceStore.total) * 100)
+  if (practiceStore.index > practiceStore.total) return 100
+  return ((practiceStore.index / practiceStore.total) * 100)
 })
 
 let speedMinute = $ref(0)

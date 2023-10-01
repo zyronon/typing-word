@@ -89,7 +89,7 @@ const skipWordDictActiveIndex = computed(() => {
     <div class="side" v-if="store.sideIsOpen">
       <header>
         <div class="tabs">
-          <div class="tab" :class="tabIndex===0&&'active'" @click="slideTo(0)">{{ store.dict.name }}</div>
+          <div class="tab" :class="tabIndex===0&&'active'" @click="slideTo(0)">{{ store.currentDict.name }}</div>
           <div class="tab" :class="tabIndex===1&&'active'" @click="slideTo(1)">{{ store.newWordDict.name }}</div>
           <div class="tab" :class="tabIndex===2&&'active'" @click="slideTo(2)">{{ store.wrongWordDict.name }}</div>
           <div class="tab" :class="tabIndex===3&&'active'" @click="slideTo(3)">{{ store.skipWordDict.name }}</div>
@@ -100,18 +100,18 @@ const skipWordDictActiveIndex = computed(() => {
           <swiper-slide>
             <div class="page0">
               <header>
-                <div class="dict-name">{{ store.dict.chapterIndex + 1 }}.</div>
+                <div class="dict-name">{{ store.currentDict.chapterIndex + 1 }}.</div>
               </header>
               <WordList
                   class="word-list"
-                  @change="(e:number) => store.changeDict(store.dict,store.dict.chapterIndex,e)"
+                  @change="(e:number) => store.changeDict(store.currentDict,store.currentDict.chapterIndex,e)"
                   :isActive="store.sideIsOpen && tabIndex === 0"
-                  :list="store.dict.chapterWords[store.dict.chapterIndex]??[]"
+                  :list="store.currentDict.chapterWords[store.currentDict.chapterIndex]??[]"
                   :activeIndex="dictActiveIndex"/>
               <footer v-if="![DictType.customDict,DictType.publicDict].includes(store.current.dictType)">
                 <PopConfirm
                     :title="`确认切换？`"
-                    @confirm="store.changeDict(store.dict)"
+                    @confirm="store.changeDict(store.currentDict)"
                 >
                   <BaseButton>切换</BaseButton>
                 </PopConfirm>

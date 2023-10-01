@@ -1,15 +1,18 @@
 <script setup lang="ts">
-import {onMounted, watch, watchEffect} from "vue"
+import {onMounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
-import {DictType, DisplayStatistics, ShortKeyMap, Statistics, Word} from "../../types";
+import {DictType, DisplayStatistics, ShortKeyMap, Word} from "../../types";
 import BaseButton from "@/components/BaseButton.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
-import {useEventListener, useOnKeyboardEventListener} from "@/hooks/event.ts";
+import {useOnKeyboardEventListener} from "@/hooks/event.ts";
+import {Icon} from "@iconify/vue";
+import VolumeIcon from "@/components/VolumeIcon.vue";
+import Tooltip from "@/components/Tooltip.vue";
 
 interface IProps {
   words: Word[],
@@ -28,7 +31,6 @@ let data = $ref({
   originWrongWords: [],
 })
 
-
 let input = $ref('')
 let wrong = $ref('')
 let showFullWord = $ref(false)
@@ -41,7 +43,7 @@ const playBeep = usePlayBeep()
 const playCorrect = usePlayCorrect()
 const playKeyboardAudio = usePlayKeyboardAudio()
 const playWordAudio = usePlayWordAudio()
-
+const volumeIconRef: any = $ref()
 
 watch(() => props.words, () => {
   data.words = props.words
@@ -56,14 +58,21 @@ watch(() => props.words, () => {
   practiceStore.wrongWordNumber = 0
 }, {immediate: true})
 
-
-let word = $computed(() => {
+const word = $computed(() => {
   return data.words[data.index] ?? {
     trans: [],
     name: '',
     usphone: '',
     ukphone: '',
   }
+})
+
+const prevWord: Word = $computed(() => {
+  return data.words?.[data.index - 1] ?? undefined
+})
+
+const nextWord: Word = $computed(() => {
+  return data.words?.[data.index + 1] ?? undefined
 })
 
 let resetWord = $computed(() => {
@@ -76,7 +85,7 @@ onMounted(() => {
   })
 })
 
-function next() {
+function next(isTyping: boolean = true) {
   if (data.index === data.words.length - 1) {
     if (data.wrongWords.length) {
       console.log('当前背完了，但还有错词')
@@ -86,12 +95,14 @@ function next() {
       }
       data.index = 0
       practiceStore.total = data.words.length
+      practiceStore.index = 0
       practiceStore.inputWordNumber = 0
       practiceStore.wrongWordNumber = 0
       practiceStore.repeatNumber++
       data.wrongWords = []
     } else {
       console.log('这章节完了')
+      isTyping && practiceStore.inputWordNumber++
       let now = Date.now()
       let stat: DisplayStatistics = {
         startDate: practiceStore.startDate,
@@ -107,13 +118,24 @@ function next() {
     }
   } else {
     data.index++
-    practiceStore.inputWordNumber++
+    practiceStore.index++
+    isTyping && practiceStore.inputWordNumber++
     console.log('这个词完了')
     if ([DictType.customDict, DictType.publicDict].includes(store.current.dictType)
         && store.skipWordNames.includes(word.name.toLowerCase())) {
       next()
+    } else {
+      playWordAudio(word.name)
+      volumeIconRef?.play()
     }
   }
+  wrong = input = ''
+}
+
+function prev() {
+  data.index--
+  playWordAudio(word.name)
+  volumeIconRef?.play()
   wrong = input = ''
 }
 
@@ -181,12 +203,12 @@ async function onKeyDown(e: KeyboardEvent) {
           store.skipWordDict.chapterWords = [store.skipWordDict.words]
         }
         activeBtnIndex = 0
-        next()
+        next(false)
         break
       case ShortKeyMap.Ignore:
         e.preventDefault()
         activeBtnIndex = 2
-        next()
+        next(false)
         break
       case ShortKeyMap.Show:
         if (settingStore.allowWordTip) {
@@ -206,6 +228,28 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
 
 <template>
   <div class="type-word">
+    <div class="near-word" v-if="settingStore.showNearWord">
+      <div class="prev"
+           @click="prev"
+           v-if="prevWord">
+        <Icon icon="bi:arrow-left" width="22"/>
+        <div class="word">
+          <div>{{ prevWord.name }}</div>
+          <div>{{ prevWord.trans.join('；') }}</div>
+        </div>
+      </div>
+      <Tooltip title="快捷键：Tab">
+        <div class="next"
+             @click="next(false)"
+             v-if="nextWord">
+          <div class="word">
+            <div :class="settingStore.dictation && 'shadow'">{{ nextWord.name }}</div>
+            <div>{{ nextWord.trans.join('；') }}</div>
+          </div>
+          <Icon icon="bi:arrow-right" width="22"/>
+        </div>
+      </Tooltip>
+    </div>
     <div class="translate"
          :style="{fontSize: settingStore.fontSize.wordTranslateFontSize +'rem'}"
     >{{ word.trans.join('；') }}
@@ -226,7 +270,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
         </template>
         <span class="letter" v-else>{{ resetWord }}</span>
       </div>
-      <div class="audio" @click="playWordAudio(word.name)">播放</div>
+      <VolumeIcon ref="volumeIconRef" :simple="true" @click="playWordAudio(word.name)"/>
     </div>
     <div class="phonetic">{{ word.usphone }}</div>
     <div class="options">
@@ -237,7 +281,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
         收藏
       </BaseButton>
       <BaseButton keyboard="Tab" :active="activeBtnIndex === 2">
-        下一个
+        跳过
       </BaseButton>
     </div>
   </div>
@@ -256,6 +300,49 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
   font-size: 14rem;
   color: gray;
   gap: 2rem;
+  position: relative;
+
+  .near-word {
+    position: absolute;
+    top: 0;
+    width: var(--toolbar-width);
+
+    .word {
+      div {
+        font-size: 24rem;
+      }
+
+      div:last-child {
+        font-size: 14rem;
+      }
+    }
+
+    .prev {
+      cursor: pointer;
+      display: flex;
+      float: left;
+      align-items: center;
+      gap: 10rem;
+    }
+
+    .next {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10rem;
+      float: right;
+
+      .word {
+        text-align: right;
+      }
+    }
+
+    .shadow {
+      color: transparent !important;
+      text-shadow: #b0b0b0 0 0 6px;
+      user-select: none;
+    }
+  }
 
   .options {
     margin-top: 10rem;
@@ -294,6 +381,4 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     }
   }
 }
-
-
 </style>
