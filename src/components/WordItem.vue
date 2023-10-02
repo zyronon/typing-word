@@ -29,7 +29,7 @@ const emit = defineEmits<{
     <div class="right">
       <VolumeIcon @click="playWordAudio(word.name)"></VolumeIcon>
       <div class="del"
-           @click="emit('del')"
+           @click.stop="emit('del')"
       >
         <Icon
             icon="fluent:delete-28-regular"

@@ -49,9 +49,9 @@ export interface Dict {
 }
 
 export enum DictType {
-  newDict = 'newDict',
-  skipDict = 'skipDict',
-  wrongDict = 'wrongDict',
+  newWordDict = 'newWordDict',
+  skipWordDict = 'skipWordDict',
+  wrongWordDict = 'wrongWordDict',
   publicDict = 'publicDict',
   customDict = 'customDict',
   publicArticle = 'publicArticle',

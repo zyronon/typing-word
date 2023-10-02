@@ -2,10 +2,10 @@
 import {useBaseStore} from "@/stores/base.ts"
 import WordList from "@/components/WordList.vue"
 
-import {$ref} from "vue/macros"
+import {$computed, $ref} from "vue/macros"
 import {computed, provide, watch} from "vue"
 import 'swiper/css';
-import {DictType, Word} from "@/types.ts"
+import {Dict, DictType, Word} from "@/types.ts"
 import PopConfirm from "@/components/PopConfirm.vue"
 import BaseButton from "@/components/BaseButton.vue";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -13,6 +13,9 @@ import {useSettingStore} from "@/stores/setting.ts";
 const props = defineProps<{
   list?: Word[],
   index: number
+}>()
+const emit = defineEmits<{
+  'update:index': [i: number]
 }>()
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -22,11 +25,11 @@ provide('tabIndex', computed(() => tabIndex))
 watch(() => settingStore.showPanel, n => {
   if (n) {
     switch (store.current.dictType) {
-      case DictType.newDict:
+      case DictType.newWordDict:
         return tabIndex = 1;
-      case DictType.skipDict:
+      case DictType.skipWordDict:
         return tabIndex = 3;
-      case DictType.wrongDict:
+      case DictType.wrongWordDict:
         return tabIndex = 2;
       case DictType.publicDict:
       case DictType.customDict:
@@ -34,23 +37,39 @@ watch(() => settingStore.showPanel, n => {
     }
   }
 })
-const newWordDictActiveIndex = computed(() => {
-  if (store.current.dictType !== DictType.newDict) return -1
-  else return props.index
+
+const currentDict: Dict = $computed(() => {
+  return store.myDicts[store.current.index]
 })
 
-const wrongWordDictActiveIndex = computed(() => {
-  if (store.current.dictType !== DictType.wrongDict) return -1
-  else return props.index
+const currentData = $computed(() => {
+  if (store.current.dictType !== currentDict.type) return {list: currentDict.chapterWords[currentDict.chapterIndex] ?? [], index: -1}
+  else return props
 })
 
-const skipWordDictActiveIndex = computed(() => {
-  if (store.current.dictType !== DictType.skipDict) return -1
-  else return props.index
+const newWordDictData = $computed(() => {
+  if (store.current.dictType !== DictType.newWordDict) return {list: store.newWordDict.words ?? [], index: -1}
+  else return props
 })
 
-function changeIndex(i: number) {
+const wrongWordDictData = $computed(() => {
+  if (store.current.dictType !== DictType.wrongWordDict) return {list: store.wrongWordDict.words ?? [], index: -1}
+  else return props
+})
 
+const skipWordDictData = $computed(() => {
+  if (store.current.dictType !== DictType.skipWordDict) return {list: store.skipWordDict.words ?? [], index: -1}
+  else return props
+})
+
+function changeIndex(i: number, dict: Dict) {
+  dict.chapterWordIndex = i
+  console.log('i', i, dict.type)
+  if (store.current.dictType === dict.type) {
+    emit('update:index', i)
+  } else {
+    store.changeDict(dict, dict.chapterIndex, i)
+  }
 }
 
 </script>
@@ -59,11 +78,12 @@ function changeIndex(i: number) {
     <div class="panel" v-if="settingStore.showPanel">
       <header>
         <div class="tabs">
-          <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">{{ store.dictTitle }}</div>
+          <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">
+            {{ currentDict.name + `  第${currentDict.chapterIndex + 1}章` }}
+          </div>
           <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.newWordDict.name }}</div>
-          <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{
-              store.wrongWordDict.name
-            }}
+          <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">
+            {{ store.wrongWordDict.name }}
           </div>
           <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.skipWordDict.name }}</div>
         </div>
@@ -72,20 +92,20 @@ function changeIndex(i: number) {
         <div class="slide-list" :class="`step${tabIndex}`">
           <div class="slide-item">
             <header>
-              <div class="dict-name">词数：{{ props.list.length }}</div>
+              <div class="dict-name">词数：{{ currentData.list.length }}</div>
             </header>
             <div class="content">
               <WordList
                   class="word-list"
-                  @change="(e:number) => store.changeDict(store.currentDict,store.currentDict.chapterIndex,e)"
+                  @change="(i:number) => changeIndex(i,currentDict)"
                   :isActive="settingStore.showPanel && tabIndex === 0"
-                  :list="props.list??[]"
-                  :activeIndex="props.index"/>
+                  :list="currentData.list"
+                  :activeIndex="currentData.index"/>
             </div>
             <footer v-if="![DictType.customDict,DictType.publicDict].includes(store.current.dictType)">
               <PopConfirm
                   :title="`确认切换？`"
-                  @confirm="store.changeDict(store.currentDict)"
+                  @confirm="changeIndex(0,currentDict)"
               >
                 <BaseButton>切换</BaseButton>
               </PopConfirm>
@@ -93,20 +113,20 @@ function changeIndex(i: number) {
           </div>
           <div class="slide-item">
             <header>
-              <div class="dict-name">总词数：{{ store.newWordDict.originWords.length }}</div>
+              <div class="dict-name">总词数：{{ newWordDictData.list.length }}</div>
             </header>
             <div class="content">
               <WordList
                   class="word-list"
-                  @change="(e:number) => store.changeDict(store.newWordDict,store.newWordDict.chapterIndex,e)"
+                  @change="(i:number) => changeIndex(i,store.newWordDict)"
                   :isActive="settingStore.showPanel && tabIndex === 1"
-                  :list="store.newWordDict.words"
-                  :activeIndex="newWordDictActiveIndex"/>
+                  :list="newWordDictData.list"
+                  :activeIndex="newWordDictData.index"/>
             </div>
-            <footer v-if="store.current.dictType !== DictType.newDict && store.newWordDict.words.length">
+            <footer v-if="store.current.dictType !== DictType.newWordDict && newWordDictData.list.length">
               <PopConfirm
                   :title="`确认切换？`"
-                  @confirm="store.changeDict(store.newWordDict)"
+                  @confirm="changeIndex(0,store.newWordDict)"
               >
                 <BaseButton>切换</BaseButton>
               </PopConfirm>
@@ -115,21 +135,21 @@ function changeIndex(i: number) {
           <div class="slide-item">
             <header>
               <a href="" target="_blank"></a>
-              <div class="dict-name">总词数：{{ store.wrongWordDict.originWords.length }}</div>
+              <div class="dict-name">总词数：{{ wrongWordDictData.list.length }}</div>
             </header>
             <div class="content">
               <WordList
                   class="word-list"
-                  @change="(e:number) => store.changeDict(store.wrongWordDict,store.wrongWordDict.chapterIndex,e)"
+                  @change="(i:number) => changeIndex(i,store.wrongWordDict)"
                   :isActive="settingStore.showPanel && tabIndex === 2"
-                  :list="store.wrongWordDict.words"
-                  :activeIndex="wrongWordDictActiveIndex"/>
+                  :list="wrongWordDictData.list"
+                  :activeIndex="wrongWordDictData.index"/>
             </div>
             <footer
-                v-if="store.current.dictType !== DictType.wrongDict && store.wrongWordDict.words.length">
+                v-if="store.current.dictType !== DictType.wrongWordDict && wrongWordDictData.list.length">
               <PopConfirm
                   :title="`确认切换？`"
-                  @confirm="store.changeDict(store.wrongWordDict)"
+                  @confirm="changeIndex(0,store.wrongWordDict)"
               >
                 <BaseButton>切换</BaseButton>
               </PopConfirm>
@@ -137,20 +157,20 @@ function changeIndex(i: number) {
           </div>
           <div class="slide-item">
             <header>
-              <div class="dict-name">总词数：{{ store.skipWordDict.originWords.length }}</div>
+              <div class="dict-name">总词数：{{ skipWordDictData.list.length }}</div>
             </header>
             <div class="content">
               <WordList
                   class="word-list"
-                  @change="(e:number) => store.changeDict(store.skipWordDict,store.skipWordDict.chapterIndex,e)"
+                  @change="(i:number) => changeIndex(i,store.skipWordDict)"
                   :isActive="settingStore.showPanel && tabIndex === 3"
-                  :list="store.skipWordDict.words"
-                  :activeIndex="skipWordDictActiveIndex"/>
+                  :list="skipWordDictData.list"
+                  :activeIndex="skipWordDictData.index"/>
             </div>
-            <footer v-if="store.current.dictType !== DictType.skipDict && store.skipWordDict.words.length">
+            <footer v-if="store.current.dictType !== DictType.skipWordDict && skipWordDictData.list.length">
               <PopConfirm
                   :title="`确认切换？`"
-                  @confirm="store.changeDict(store.skipWordDict)"
+                  @confirm="changeIndex(0,store.skipWordDict)"
               >
                 <BaseButton>切换</BaseButton>
               </PopConfirm>

@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {Dict, DictType, SaveDictKey, Sort, Statistics, Word} from "../types.ts"
+import {Dict, DictType, DisplayStatistics, SaveDictKey, Sort, Statistics, Word} from "../types.ts"
 import {chunk, cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {v4 as uuidv4} from 'uuid';
@@ -26,7 +26,7 @@ export const useBaseStore = defineStore('base', {
       newWordDict: {
         name: '生词本',
         sort: Sort.normal,
-        type: DictType.newDict,
+        type: DictType.newWordDict,
         originWords: [],
         articles: [],
         words: [],
@@ -40,7 +40,7 @@ export const useBaseStore = defineStore('base', {
       skipWordDict: {
         name: '简单词',
         sort: Sort.normal,
-        type: DictType.skipDict,
+        type: DictType.skipWordDict,
         originWords: [],
         articles: [],
         words: [],
@@ -54,7 +54,7 @@ export const useBaseStore = defineStore('base', {
       wrongWordDict: {
         name: '错词本',
         sort: Sort.normal,
-        type: DictType.wrongDict,
+        type: DictType.wrongWordDict,
         originWords: [],
         articles: [],
         words: [],
@@ -155,11 +155,11 @@ export const useBaseStore = defineStore('base', {
     },
     currentDict(state: State): Dict {
       switch (state.current.dictType) {
-        case DictType.newDict:
+        case DictType.newWordDict:
           return state.newWordDict
-        case DictType.skipDict:
+        case DictType.skipWordDict:
           return state.skipWordDict
-        case DictType.wrongDict:
+        case DictType.wrongWordDict:
           return state.wrongWordDict
         case DictType.publicDict:
         case DictType.publicArticle:
@@ -204,9 +204,9 @@ export const useBaseStore = defineStore('base', {
       }
 
       if ([
-        DictType.newDict,
-        DictType.wrongDict,
-        DictType.skipDict,
+        DictType.newWordDict,
+        DictType.wrongWordDict,
+        DictType.skipWordDict,
       ].includes(this.current.dictType)) {
 
       } else {
@@ -242,8 +242,9 @@ export const useBaseStore = defineStore('base', {
         }
       }
     },
-    saveStatistics(statistics: Statistics) {
+    saveStatistics(statistics: DisplayStatistics) {
       if (statistics.spend > 1000 * 10) {
+        delete statistics.wrongWords
         this.currentDict.statistics.push(statistics)
       }
     },
@@ -252,13 +253,13 @@ export const useBaseStore = defineStore('base', {
       // this.saveStatistics()
       console.log('changeDict', cloneDeep(dict), chapterIndex, chapterWordIndex)
       this.current.dictType = dict.type
-      if ([DictType.newDict,
-        DictType.skipDict,
-        DictType.wrongDict].includes(dict.type)) {
+      if ([DictType.newWordDict,
+        DictType.skipWordDict,
+        DictType.wrongWordDict].includes(dict.type)) {
         this[dict.type].chapterIndex = chapterIndex
         this[dict.type].chapterWordIndex = chapterWordIndex
       } else {
-        let rIndex = this.myDicts.findIndex(v => v.name === dict.name)
+        let rIndex = this.myDicts.findIndex((v: Dict) => v.name === dict.name)
         if (rIndex > -1) {
           this.current.index = rIndex
         } else {

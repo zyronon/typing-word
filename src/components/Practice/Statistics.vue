@@ -26,6 +26,7 @@ onMounted(() => {
   emitter.on(EventKey.openStatModal, (stat: DisplayStatistics) => {
     currentStat = {...DefaultDisplayStatistics, ...stat}
     statModalIsOpen = true
+    store.saveStatistics(stat)
   })
 })
 

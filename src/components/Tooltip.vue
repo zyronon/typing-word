@@ -47,17 +47,18 @@ export default {
   render() {
     let Vnode = this.$slots.default()[0]
     return <>
-      <Teleport to="body">
-        <Transition name="fade">
-          {
-              this.show && this.title && (
-                  <div ref="tip" class="tip">
+      {
+          this.show && this.title && (
+              <Teleport to="body">
+                <Transition name="fade">
+
+                  <div ref="tip" className="tip">
                     {this.title}
                   </div>
-              )
-          }
-        </Transition>
-      </Teleport>
+                </Transition>
+              </Teleport>
+          )
+      }
       <Vnode
           onClick={() => this.show = false}
           onmouseenter={(e) => this.showPop(e)}

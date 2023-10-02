@@ -48,7 +48,7 @@ const volumeIconRef: any = $ref()
 
 watch(() => props.words, () => {
   data.words = props.words
-  data.index = props.words.length ? 0 : -1
+  data.index = props.index
 
   practiceStore.wrongWords = []
   practiceStore.repeatNumber = 0
@@ -58,6 +58,13 @@ watch(() => props.words, () => {
   practiceStore.inputWordNumber = 0
   practiceStore.wrongWordNumber = 0
 }, {immediate: true})
+
+watch(() => data.index, (n) => {
+  wrong = input = ''
+  practiceStore.index = n
+  playWordAudio(word.name)
+  volumeIconRef?.play()
+})
 
 const word = $computed(() => {
   return data.words[data.index] ?? {
@@ -119,15 +126,11 @@ function next(isTyping: boolean = true) {
     }
   } else {
     data.index++
-    practiceStore.index++
     isTyping && practiceStore.inputWordNumber++
     console.log('这个词完了')
     if ([DictType.customDict, DictType.publicDict].includes(store.current.dictType)
         && store.skipWordNames.includes(word.name.toLowerCase())) {
       next()
-    } else {
-      playWordAudio(word.name)
-      volumeIconRef?.play()
     }
   }
   wrong = input = ''
@@ -312,7 +315,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
         跳过
       </BaseButton>
     </div>
-    <Panel :list="data.words" :index="data.index"/>
+    <Panel :list="data.words" v-model:index="data.index"/>
   </div>
 </template>
 

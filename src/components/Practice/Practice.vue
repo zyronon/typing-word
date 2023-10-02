@@ -130,7 +130,8 @@ function getCurrentPractice() {
     }
   } else {
     wordData.words = cloneDeep(store.chapter)
-    wordData.index = 0
+    wordData.index = store.currentDict.chapterWordIndex
+    console.log('wordData', wordData)
   }
 }
 
