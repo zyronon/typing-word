@@ -68,7 +68,7 @@ useWatchAllSound()
           <div class="row">
             <label class="sub-title">倍速</label>
             <div class="wrapper">
-              <el-slider v-model="settingStore.wordSoundSpeed" :step="0.1" :min="1" :max="4"/>
+              <el-slider v-model="settingStore.wordSoundSpeed" :step="0.1" :min="0.5" :max="4"/>
               <span>{{ settingStore.wordSoundSpeed }}</span>
             </div>
           </div>

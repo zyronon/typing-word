@@ -114,7 +114,6 @@ header {
   width: var(--toolbar-width);
   margin-top: 10rem;
   background: var(--color-header-bg);
-
   border-radius: 8rem;
   margin-bottom: 30rem;
   //position: absolute;

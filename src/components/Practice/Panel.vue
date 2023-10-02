@@ -36,33 +36,22 @@ watch(() => settingStore.showPanel, n => {
 })
 const newWordDictActiveIndex = computed(() => {
   if (store.current.dictType !== DictType.newDict) return -1
-  else {
-    if (store.current.repeatNumber) {
-      return store.chapter.findIndex(v => v.name === store.word.name)
-    }
-    return store.current.index
-  }
+  else return props.index
 })
 
 const wrongWordDictActiveIndex = computed(() => {
   if (store.current.dictType !== DictType.wrongDict) return -1
-  else {
-    if (store.current.repeatNumber) {
-      return store.chapter.findIndex(v => v.name === store.word.name)
-    }
-    return store.current.index
-  }
+  else return props.index
 })
 
 const skipWordDictActiveIndex = computed(() => {
   if (store.current.dictType !== DictType.skipDict) return -1
-  else {
-    if (store.current.repeatNumber) {
-      return store.chapter.findIndex(v => v.name === store.word.name)
-    }
-    return store.current.index
-  }
+  else return props.index
 })
+
+function changeIndex(i: number) {
+
+}
 
 </script>
 <template>
@@ -83,7 +72,7 @@ const skipWordDictActiveIndex = computed(() => {
         <div class="slide-list" :class="`step${tabIndex}`">
           <div class="slide-item">
             <header>
-              <div class="dict-name">{{ store.currentDict.chapterIndex + 1 }}.</div>
+              <div class="dict-name">词数：{{ props.list.length }}</div>
             </header>
             <div class="content">
               <WordList
@@ -237,11 +226,12 @@ $header-height: 50rem;
 .panel {
   position: fixed;
   left: 0;
-  top: 0;
+  top: 10rem;
+  border-radius: 8rem;
   margin-left: calc(50% + (var(--toolbar-width) / 2) + $space);
   width: $width;
   background: var(--color-second-bg);
-  height: 100%;
+  height: calc(100% - 40rem);
   display: flex;
   flex-direction: column;
   transition: all .3s;

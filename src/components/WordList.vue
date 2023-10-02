@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import {Word} from "../types";
 import {watch} from "vue"
-import {useBaseStore} from "@/stores/base.ts"
-import {Icon} from '@iconify/vue';
-import {usePlayWordAudio} from "@/hooks/sound.ts";
+import {useSettingStore} from "@/stores/setting.ts";
+import WordItem from "@/components/WordItem.vue";
 
-const store = useBaseStore()
-const emit = defineEmits(['change'])
+const settingStore = useSettingStore()
+const emit = defineEmits<{
+  del: [i: number],
+  change: [i: number]
+}>()
 const props = defineProps<{
   list: Word[],
   activeIndex: number,
   isActive: boolean
 }>()
 
-const playWordAudio = usePlayWordAudio()
 const listRef: HTMLElement = $ref(null as any)
 
 function scrollViewToCenter(index: number) {
@@ -22,7 +23,7 @@ function scrollViewToCenter(index: number) {
 }
 
 watch(() => props.activeIndex, (n: any) => {
-  if (store.sideIsOpen) {
+  if (settingStore.showPanel) {
     scrollViewToCenter(n)
   }
 })
@@ -43,19 +44,11 @@ watch(() => props.list, () => {
   <div class="list" ref="listRef">
     <TransitionGroup name="list">
       <template v-for="(item,i) in list" :key="i">
-        <div class="item" @click="$emit('change',i)" :class="activeIndex === i && 'active'">
-          <div class="left">
-            <div class="letter">{{ item.name }}</div>
-            <div class="info">
-              <div class="translate">{{ item.trans.join('；') }}</div>
-              <div class="phonetic">{{ item.usphone }}</div>
-            </div>
-          </div>
-          <div class="right">
-            <div class="audio" @click="playWordAudio(item.name)">播放</div>
-            <Icon icon="fluent:delete-28-regular" width="20" color="#929596"/>
-          </div>
-        </div>
+        <WordItem
+            @click="emit('change',i)"
+            @del="emit('del',i)"
+            :active="activeIndex === i"
+            :word="item"/>
       </template>
     </TransitionGroup>
   </div>
