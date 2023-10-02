@@ -28,7 +28,6 @@
     "mitt": "^3.0.1",
     "pinia": "^2.1.6",
     "sentence-splitter": "^4.2.1",
-    "swiper": "^10.1.0",
     "tesseract.js": "^4.1.1",
     "uuid": "^9.0.1",
     "vue": "^3.3.4",

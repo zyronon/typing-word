@@ -57,10 +57,15 @@ watch(() => store.load, n => {
   }
 })
 
+watch([() => store.current.index, () => store.current.dictType], n => {
+  getCurrentPractice()
+})
+
+
 function getCurrentPractice() {
   // console.log('store.currentDict',store.currentDict)
   if (store.isArticle) {
-    return
+    // return
     let currentArticle = store.currentDict.articles[store.currentDict.chapterIndex]
     let tempArticle = {...DefaultArticle, ...currentArticle}
     console.log('article', tempArticle)

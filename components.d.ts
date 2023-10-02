@@ -39,6 +39,7 @@ declare module 'vue' {
     List: typeof import('./src/components/List.vue')['default']
     MiniModal: typeof import('./src/components/MiniModal.vue')['default']
     Modal: typeof import('./src/components/Modal/Modal.vue')['default']
+    Panel: typeof import('./src/components/Practice/Panel.vue')['default']
     PopConfirm: typeof import('./src/components/PopConfirm.vue')['default']
     Practice: typeof import('./src/components/Practice/Practice.vue')['default']
     RepeatSetting: typeof import('./src/components/Toolbar/RepeatSetting.vue')['default']

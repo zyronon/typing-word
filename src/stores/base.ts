@@ -17,7 +17,6 @@ export interface State {
     repeatNumber: number,
   },
   simpleWords: string[],
-  sideIsOpen: boolean,
   load: boolean
 }
 
@@ -130,7 +129,6 @@ export const useBaseStore = defineStore('base', {
         editIndex: 0,
         repeatNumber: 0,
       },
-      sideIsOpen: false,
       simpleWords: [
         'a', 'an', 'of', 'and',
         'i', 'my', 'you', 'your',

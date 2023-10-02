@@ -13,6 +13,7 @@ import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {Icon} from "@iconify/vue";
 import VolumeIcon from "@/components/VolumeIcon.vue";
 import Tooltip from "@/components/Tooltip.vue";
+import Panel from "@/components/Practice/Panel.vue";
 
 interface IProps {
   words: Word[],
@@ -142,6 +143,9 @@ function prev() {
 function ignore() {
   activeBtnIndex = 2
   next(false)
+  setTimeout(() => {
+    activeBtnIndex = -1
+  }, 200)
 }
 
 function collect() {
@@ -151,9 +155,12 @@ function collect() {
     store.newWordDict.chapterWords = [store.newWordDict.words]
   }
   activeBtnIndex = 1
+  setTimeout(() => {
+    activeBtnIndex = -1
+  }, 200)
 }
 
-function remove(){
+function remove() {
   if (!store.skipWordNames.includes(word.name.toLowerCase())) {
     store.skipWordDict.originWords.push(word)
     store.skipWordDict.words.push(word)
@@ -161,6 +168,9 @@ function remove(){
   }
   activeBtnIndex = 0
   next(false)
+  setTimeout(() => {
+    activeBtnIndex = -1
+  }, 200)
 }
 
 function onKeyUp(e: KeyboardEvent) {
@@ -286,16 +296,23 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     </div>
     <div class="phonetic">{{ word.usphone }}</div>
     <div class="options">
-      <BaseButton keyboard="`" :active="activeBtnIndex === 0">
+      <BaseButton keyboard="`"
+                  @click="remove"
+                  :active="activeBtnIndex === 0">
         忽略
       </BaseButton>
-      <BaseButton keyboard="Enter" :active="activeBtnIndex === 1">
+      <BaseButton keyboard="Enter"
+                  @click="collect"
+                  :active="activeBtnIndex === 1">
         收藏
       </BaseButton>
-      <BaseButton keyboard="Tab" :active="activeBtnIndex === 2">
+      <BaseButton keyboard="Tab"
+                  @click="ignore"
+                  :active="activeBtnIndex === 2">
         跳过
       </BaseButton>
     </div>
+    <Panel :list="data.words" :index="data.index"/>
   </div>
 </template>
 
@@ -313,11 +330,12 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
   color: gray;
   gap: 2rem;
   position: relative;
+  width: var(--toolbar-width);
 
   .near-word {
     position: absolute;
     top: 0;
-    width: var(--toolbar-width);
+    width: 100%;
 
     .word {
       div {

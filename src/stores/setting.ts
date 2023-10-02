@@ -29,7 +29,7 @@ export interface SettingState {
     wordForeignFontSize: number,
     wordTranslateFontSize: number,
   },
-
+  showPanel: boolean,
   theme: string,
 }
 
@@ -58,6 +58,7 @@ export const useSettingStore = defineStore('setting', {
       showNearWord: true,
       ignoreCase: true,
       allowWordTip: true,
+      showPanel: true,
       fontSize: {
         articleForeignFontSize: 48,
         articleTranslateFontSize: 20,

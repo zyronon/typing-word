@@ -47,7 +47,6 @@ watch(() => settingStore.showToolbar, n => {
         {{ store.dictTitle }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
       </div>
       <div class="options">
-
         <Tooltip title="开关默写模式">
           <IconWrapper>
             <Icon icon="majesticons:eye-off-line"
@@ -89,7 +88,7 @@ watch(() => settingStore.showToolbar, n => {
 
         <Tooltip title="单词本">
           <IconWrapper>
-            <Icon icon="tdesign:menu-unfold" class="menu" @click="emitter.emit(EventKey.openSide)"/>
+            <Icon icon="tdesign:menu-unfold" class="menu" @click="settingStore.showPanel = !settingStore.showPanel"/>
           </IconWrapper>
         </Tooltip>
       </div>
@@ -130,15 +129,24 @@ header {
   .content {
     min-height: 60rem;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 
     .info {
       font-size: 16rem;
+      padding: 6rem 10rem;
+      border-radius: 6rem;
       color: var(--color-font-1);
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      transition: all .3s;
+
+      &:hover {
+        background: var(--color-main-active);
+        color: white;
+      }
     }
 
     .options {
