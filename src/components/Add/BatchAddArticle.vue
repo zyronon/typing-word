@@ -30,7 +30,7 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/colors.scss";
+@import "@/assets/css/variable";
 
 #BatchAddArticle {
   width: 100vw;

@@ -444,7 +444,7 @@ html, body {
 }
 </style>
 <style scoped lang="scss">
-@import "assets/css/colors";
+@import "assets/css/variable";
 
 .mobile {
   width: 100vw;

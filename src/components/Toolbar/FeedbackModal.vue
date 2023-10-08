@@ -42,7 +42,7 @@ const emit = defineEmits([
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/colors.scss";
+@import "@/assets/css/variable";
 
 .feedback-modal {
   width: 500rem;

@@ -59,7 +59,7 @@ useEventListener('keyup', (e: KeyboardEvent) => {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/colors.scss";
+@import "@/assets/css/variable";
 
 .main-page {
   position: absolute;

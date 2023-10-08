@@ -182,7 +182,7 @@ function changeIndex(i: number, dict: Dict) {
   </Transition>
 </template>
 <style scoped lang="scss">
-@import "@/assets/css/colors";
+@import "@/assets/css/variable.scss";
 
 $width: 20vw;
 $header-height: 50rem;

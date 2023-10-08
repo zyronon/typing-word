@@ -44,7 +44,7 @@ onMounted(() => {
 })
 </script>
 <style scoped lang="scss">
-@import "@/assets/css/colors";
+@import "@/assets/css/variable.scss";
 
 $w: 100rem;
 $w2: calc($w / 2);

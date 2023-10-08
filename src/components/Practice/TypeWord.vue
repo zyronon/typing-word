@@ -49,6 +49,8 @@ const volumeIconRef: any = $ref()
 watch(() => props.words, () => {
   data.words = props.words
   data.index = props.index
+  data.originWrongWords = []
+  data.wrongWords = []
 
   practiceStore.wrongWords = []
   practiceStore.repeatNumber = 0
@@ -320,7 +322,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/colors.scss";
+@import "@/assets/css/variable";
 
 .type-word {
   flex: 1;
@@ -343,6 +345,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     .word {
       div {
         font-size: 24rem;
+        margin-bottom: 4rem;
       }
 
       div:last-child {

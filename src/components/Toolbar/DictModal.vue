@@ -19,6 +19,9 @@ import VolumeIcon from "@/components/VolumeIcon.vue";
 import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
+import ChapterList from "@/components/ChapterList.vue";
+import WordListModal from "@/components/WordListModal.vue";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 const store = useBaseStore()
 
@@ -42,7 +45,6 @@ const options = [
   {id: 'code', name: 'Code', flag: codeFlag},
 ]
 
-const playWordAudio = usePlayWordAudio()
 let currentLanguage = $ref('en')
 let currentSelectDict: Dict = $ref(cloneDeep(store.currentDict))
 let step = $ref(1)
@@ -144,6 +146,13 @@ let radio1 = $ref('')
 function clickEvent(e) {
   console.log('e', e)
 }
+
+let showModal = $ref(false)
+
+function showWord(list: Word[]) {
+  console.log('list', list)
+}
+
 </script>
 
 <template>
@@ -197,11 +206,11 @@ function clickEvent(e) {
             <div class="detail">
               <div class="name">{{ currentSelectDict.name }}</div>
               <div class="desc">{{ currentSelectDict.description }}</div>
-              <div class="num">总词汇：{{ currentSelectDict.length }}词</div>
-              <div class="num">{{
-                  currentSelectDict.chapterWords.length
-                }}章(每章{{ currentSelectDict.chapterWordNumber }}词)
+              <div class="num"
+                   @click="emitter.emit(EventKey.openWordListModal,{title:'所有单词',list:currentSelectDict.words})">
+                总词汇：<span class="count">{{ currentSelectDict.length }}词</span>
               </div>
+
               <div class="num">开始日期：-</div>
               <div class="num">花费时间：-</div>
               <div class="num">累积错误：-</div>
@@ -212,7 +221,7 @@ function clickEvent(e) {
               </div>
             </div>
             <div class="setting">
-              <div class="title">学习设置</div>
+              <div class="common-title">学习设置</div>
               <div class="row">
                 <div class="label">每章单词数</div>
                 <el-slider :min="10"
@@ -284,30 +293,18 @@ function clickEvent(e) {
               </div>
             </div>
             <div class="other">
-              <virtual-list class="virtual-list"
-                            :keeps="20"
-                            data-key="name"
-                            :data-sources="currentSelectDict.words"
-                            :estimate-size="85"
-                            item-class="dict-virtual-item"
-              >
-                <template #={source}>
-                  <div class="left">
-                    <div class="title">
-                      <span class="word">{{ source.name }}</span>
-                      <span class="phonetic">{{ source.usphone }}</span>
-                    </div>
-                    <div class="translate">{{ source.trans.join('；') }}</div>
-                  </div>
-                  <div class="right">
-                    <VolumeIcon @click="playWordAudio(source.name)"></VolumeIcon>
-                    <Icon icon="fluent:delete-28-regular" width="20" color="#929596"/>
-                  </div>
-                </template>
-              </virtual-list>
+              <div class="common-title">
+                章节列表：共{{
+                  currentSelectDict.chapterWords.length
+                }}章(每章{{ currentSelectDict.chapterWordNumber }}词)
+              </div>
+              <ChapterList
+                  @showWord="showWord"
+                  v-model:active-index="currentSelectDict.chapterIndex"
+                  :list="currentSelectDict.chapterWords"/>
             </div>
           </div>
-          <div class="activity">
+          <div v-if="false" class="activity">
             <ActivityCalendar
                 :data="[{ date: '2023-05-22', count: 5 }]"
                 :width="40"
@@ -329,16 +326,16 @@ function clickEvent(e) {
       </div>
     </div>
   </Modal>
+  <WordListModal/>
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/colors";
+@import "@/assets/css/variable.scss";
 
 $modal-mask-bg: rgba(#000, .15);
 $radius: 16rem;
 $time: 0.3s;
 $header-height: 60rem;
-$footer-height: 40rem;
 
 .slide {
   width: 1100rem;
@@ -405,7 +402,6 @@ $footer-height: 40rem;
       overflow: auto;
       height: 100%;
       padding-right: $space;
-
     }
   }
 }
@@ -443,17 +439,24 @@ $footer-height: 40rem;
     position: relative;
     gap: $space;
 
+    .common-title {
+      font-size: 20rem;
+      color: gray;
+      text-align: center;
+      margin-bottom: 10rem;
+    }
+
     .detail {
+      overflow: auto;
       flex: 3;
       display: flex;
       flex-direction: column;
       gap: 10rem;
-      cursor: pointer;
       padding: 15rem;
       min-height: 100rem;
       position: relative;
       border-radius: 10rem;
-      background: var(--color-item-bg);
+      background: var(--color-second-bg);
       color: var(--color-font-1);
       font-size: 14rem;
 
@@ -466,21 +469,21 @@ $footer-height: 40rem;
         font-size: 18rem;
         margin-bottom: 30rem;
       }
+
+      .count {
+        cursor: pointer;
+        border-bottom: 2px solid var(--color-item-active);
+      }
     }
 
     .setting {
+      overflow: auto;
       flex: 5;
       background: white;
       border-radius: 10rem;
-      background: var(--color-item-bg);
+      background: var(--color-second-bg);
       color: var(--color-font-1);
       padding: 15rem;
-
-      .title {
-        font-size: 20rem;
-        color: gray;
-        text-align: center;
-      }
 
       .row {
         display: flex;
@@ -494,15 +497,12 @@ $footer-height: 40rem;
 
     .other {
       flex: 5;
-      background: white;
       border-radius: 10rem;
-      background: var(--color-item-bg);
+      background: var(--color-second-bg);
       color: var(--color-font-1);
       padding: 10rem;
-
-      .word-list {
-        height: calc(100% - $footer-height);
-      }
+      display: flex;
+      flex-direction: column;
     }
   }
 
@@ -512,71 +512,12 @@ $footer-height: 40rem;
   }
 
   .footer {
-    margin-top: 10rem;
     box-sizing: content-box;
-    height: $footer-height;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
     gap: $space;
   }
 }
-
 </style>
 
-<style lang="scss">
-@import "@/assets/css/colors";
-
-.virtual-list {
-  overflow: auto;
-  height: 100%;
-}
-
-.dict-virtual-item {
-  background: var(--color-header-bg);
-  border-radius: 6rem;
-  padding: 8rem 12rem;
-  display: flex;
-  justify-content: space-between;
-  transition: all .3s;
-  color: var(--color-font-1);
-
-  &.active {
-    background: $second;
-    color: white;
-  }
-
-  &:hover {
-    //background: $dark-main-bg;
-    //background: $item-hover;
-    background: rgb(226, 226, 226);
-  }
-
-  .left {
-    .title {
-      display: flex;
-      align-items: center;
-      gap: 10rem;
-
-      .word {
-        font-size: 24rem;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-        display: flex;
-      }
-
-      .phonetic {
-        font-size: 14rem;
-        color: gray;
-      }
-    }
-  }
-
-  .right {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 5rem;
-  }
-}
-
-</style>

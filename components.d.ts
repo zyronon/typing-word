@@ -57,5 +57,6 @@ declare module 'vue' {
     Word: typeof import('./src/components/Word.vue')['default']
     WordItem: typeof import('./src/components/WordItem.vue')['default']
     WordList: typeof import('./src/components/WordList.vue')['default']
+    WordListModal: typeof import('./src/components/WordListModal.vue')['default']
   }
 }

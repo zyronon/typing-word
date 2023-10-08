@@ -230,7 +230,7 @@ useWatchAllSound()
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/colors.scss";
+@import "@/assets/css/variable";
 
 .setting-modal {
   width: 40vw;

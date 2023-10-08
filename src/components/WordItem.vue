@@ -41,7 +41,7 @@ const emit = defineEmits<{
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/colors";
+@import "@/assets/css/variable.scss";
 
 .word-item {
   background: var(--color-header-bg);

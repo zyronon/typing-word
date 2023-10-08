@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/css/colors";
+@import "@/assets/css/variable.scss";
 
 $w: 22rem;
 .icon-wrapper {

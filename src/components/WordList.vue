@@ -56,7 +56,7 @@ watch(() => props.list, () => {
 
 
 <style scoped lang="scss">
-@import "@/assets/css/colors";
+@import "@/assets/css/variable.scss";
 
 .list {
   display: flex;

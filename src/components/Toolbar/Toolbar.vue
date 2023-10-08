@@ -108,7 +108,7 @@ watch(() => settingStore.showToolbar, n => {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/colors.scss";
+@import "@/assets/css/variable";
 
 header {
   width: var(--toolbar-width);
