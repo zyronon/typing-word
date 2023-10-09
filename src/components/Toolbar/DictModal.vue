@@ -51,47 +51,55 @@ let currentLanguage = $ref('en')
 let currentSelectDict: Dict = $ref(cloneDeep(store.currentDict))
 let step = $ref(1)
 
-const currentSelectChapter: Word[] = $computed(() => {
-  return currentSelectDict.chapterWords?.[currentSelectDict.chapterIndex] ?? []
-})
-
 watch(() => props.modelValue, (n: boolean) => {
-  currentSelectDict = store.currentDict
+  let rIndex = base.myDicts.findIndex((v: Dict) => v.name === store.currentDict.name)
+  if (rIndex > -1) {
+    base.current.editIndex = rIndex
+  }
 })
 
 async function selectDict(item: DictionaryResource) {
   step = 1
-  if (item.name === currentSelectDict.name) return
-  currentSelectDict = {
-    ...item,
-    sort: Sort.normal,
-    type: DictType.publicDict,
-    originWords: [],
-    words: [],
-    chapterWordNumber: 30,
-    chapterWords: [],
-    chapterIndex: 0,
-    chapterWordIndex: 0,
-    statistics: [],
-    articles: []
-  }
-  if (item.languageCategory === 'article') {
-    currentSelectDict.type = DictType.publicArticle
-    let r = await fetch(`${item.url}`)
-    r.json().then(v => {
-      currentSelectDict.articles = cloneDeep(v.map(v => {
-        v.id = uuidv4()
-        return v
-      }))
-    })
+  let rIndex = base.myDicts.findIndex((v: Dict) => v.name === item.name)
+  if (rIndex > -1) {
+    base.current.editIndex = rIndex
   } else {
-    currentSelectDict.type = DictType.publicDict
-    let r = await fetch(`${item.url}`)
-    r.json().then(v => {
-      currentSelectDict.originWords = v
-      currentSelectDict.words = v
-      currentSelectDict.chapterWords = chunk(v, currentSelectDict.chapterWordNumber)
-    })
+    let data = {
+      ...item,
+      sort: Sort.normal,
+      type: DictType.publicDict,
+      originWords: [],
+      words: [],
+      chapterWordNumber: 30,
+      chapterWords: [],
+      chapterIndex: 0,
+      chapterWordIndex: 0,
+      statistics: [],
+      articles: []
+    }
+
+    if (item.languageCategory === 'article') {
+      data.type = DictType.publicArticle
+      let r = await fetch(`${item.url}`)
+      r.json().then(v => {
+        data.articles = cloneDeep(v.map(v => {
+          v.id = uuidv4()
+          return v
+        }))
+        base.myDicts.push(data)
+        base.current.editIndex = base.myDicts.length - 1
+      })
+    } else {
+      data.type = DictType.publicDict
+      let r = await fetch(`${item.url}`)
+      r.json().then(v => {
+        data.originWords = v
+        data.words = v
+        data.chapterWords = chunk(v, currentSelectDict.chapterWordNumber)
+        base.myDicts.push(data)
+        base.current.editIndex = base.myDicts.length - 1
+      })
+    }
   }
 }
 
@@ -154,7 +162,7 @@ function showWord(list: Word[]) {
 }
 
 const dictIsArticle = $computed(() => {
-  return isArticle(currentSelectDict.type)
+  return isArticle(base.currentEditDict.type)
 })
 
 </script>
@@ -208,16 +216,16 @@ const dictIsArticle = $computed(() => {
           </header>
           <div class="page-content">
             <div class="detail">
-              <div class="name">{{ currentSelectDict.name }}</div>
-              <div class="desc">{{ currentSelectDict.description }}</div>
+              <div class="name">{{ base.currentEditDict.name }}</div>
+              <div class="desc">{{ base.currentEditDict.description }}</div>
               <div class="num"
                    v-if="dictIsArticle"
-              >总文章：{{ currentSelectDict.articles.length }}篇
+              >总文章：{{ base.currentEditDict.articles.length }}篇
               </div>
               <div class="num"
                    v-else
-                   @click="emitter.emit(EventKey.openWordListModal,{title:'所有单词',list:currentSelectDict.words})">
-                总词汇：<span class="count">{{ currentSelectDict.length }}词</span>
+                   @click="emitter.emit(EventKey.openWordListModal,{title:'所有单词',list:base.currentEditDict.words})">
+                总词汇：<span class="count">{{ base.currentEditDict.length }}词</span>
               </div>
               <div class="num">开始日期：-</div>
               <div class="num">花费时间：-</div>
@@ -230,16 +238,16 @@ const dictIsArticle = $computed(() => {
             </div>
             <div class="setting">
               <div class="common-title">学习设置</div>
-              <div class="row" v-if="!isArticle(currentSelectDict.type)">
+              <div class="row" v-if="!isArticle(base.currentEditDict.type)">
                 <div class="label">每章单词数</div>
                 <el-slider :min="10"
                            :step="10"
                            :max="100"
-                           v-model="currentSelectDict.chapterWordNumber"
+                           v-model="base.currentEditDict.chapterWordNumber"
                            @change="resetChapterList"
                 />
                 <div class="option">
-                  <span>{{ currentSelectDict.chapterWordNumber }}</span>
+                  <span>{{ base.currentEditDict.chapterWordNumber }}</span>
                 </div>
               </div>
               <div class="row">
@@ -303,19 +311,19 @@ const dictIsArticle = $computed(() => {
             <div class="other">
               <div class="common-title">
                 <template v-if="dictIsArticle">
-                  文章列表：共{{ currentSelectDict.articles.length }}章
+                  文章列表：共{{ base.currentEditDict.articles.length }}章
                 </template>
                 <template v-else>
                   章节列表：共{{
-                    currentSelectDict.chapterWords.length
-                  }}章(每章{{ currentSelectDict.chapterWordNumber }}词)
+                    base.currentEditDict.chapterWords.length
+                  }}章(每章{{ base.currentEditDict.chapterWordNumber }}词)
                 </template>
               </div>
               <ChapterList
                   @showWord="showWord"
                   :is-article="dictIsArticle"
-                  v-model:active-index="currentSelectDict.chapterIndex"
-                  :dict="currentSelectDict"/>
+                  v-model:active-index="base.currentEditDict.chapterIndex"
+                  :dict="base.currentEditDict"/>
             </div>
           </div>
           <div v-if="false" class="activity">
