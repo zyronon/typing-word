@@ -4,7 +4,6 @@ import WordList from "@/components/WordList.vue"
 
 import {$computed, $ref} from "vue/macros"
 import {computed, provide, watch} from "vue"
-import 'swiper/css';
 import {Dict, DictType, Word} from "@/types.ts"
 import PopConfirm from "@/components/PopConfirm.vue"
 import BaseButton from "@/components/BaseButton.vue";

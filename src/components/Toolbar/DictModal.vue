@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {dictionaryResources} from '@/assets/dictionary.ts'
-import {useBaseStore} from "@/stores/base.ts"
+import {State, useBaseStore} from "@/stores/base.ts"
 import {watch} from "vue"
 import {Dict, DictionaryResource, DictType, Sort, Word} from "@/types.ts"
 import {chunk, cloneDeep} from "lodash-es";
@@ -22,6 +22,7 @@ import {usePlayWordAudio} from "@/hooks/sound.ts";
 import ChapterList from "@/components/ChapterList.vue";
 import WordListModal from "@/components/WordListModal.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
+import {isArticle} from "@/hooks/article.ts";
 
 const store = useBaseStore()
 
@@ -45,6 +46,7 @@ const options = [
   {id: 'code', name: 'Code', flag: codeFlag},
 ]
 
+const base = useBaseStore()
 let currentLanguage = $ref('en')
 let currentSelectDict: Dict = $ref(cloneDeep(store.currentDict))
 let step = $ref(1)
@@ -147,11 +149,13 @@ function clickEvent(e) {
   console.log('e', e)
 }
 
-let showModal = $ref(false)
-
 function showWord(list: Word[]) {
   console.log('list', list)
 }
+
+const dictIsArticle = $computed(() => {
+  return isArticle(currentSelectDict.type)
+})
 
 </script>
 
@@ -207,10 +211,14 @@ function showWord(list: Word[]) {
               <div class="name">{{ currentSelectDict.name }}</div>
               <div class="desc">{{ currentSelectDict.description }}</div>
               <div class="num"
+                   v-if="dictIsArticle"
+              >总文章：{{ currentSelectDict.articles.length }}篇
+              </div>
+              <div class="num"
+                   v-else
                    @click="emitter.emit(EventKey.openWordListModal,{title:'所有单词',list:currentSelectDict.words})">
                 总词汇：<span class="count">{{ currentSelectDict.length }}词</span>
               </div>
-
               <div class="num">开始日期：-</div>
               <div class="num">花费时间：-</div>
               <div class="num">累积错误：-</div>
@@ -222,7 +230,7 @@ function showWord(list: Word[]) {
             </div>
             <div class="setting">
               <div class="common-title">学习设置</div>
-              <div class="row">
+              <div class="row" v-if="!isArticle(currentSelectDict.type)">
                 <div class="label">每章单词数</div>
                 <el-slider :min="10"
                            :step="10"
@@ -294,14 +302,20 @@ function showWord(list: Word[]) {
             </div>
             <div class="other">
               <div class="common-title">
-                章节列表：共{{
-                  currentSelectDict.chapterWords.length
-                }}章(每章{{ currentSelectDict.chapterWordNumber }}词)
+                <template v-if="dictIsArticle">
+                  文章列表：共{{ currentSelectDict.articles.length }}章
+                </template>
+                <template v-else>
+                  章节列表：共{{
+                    currentSelectDict.chapterWords.length
+                  }}章(每章{{ currentSelectDict.chapterWordNumber }}词)
+                </template>
               </div>
               <ChapterList
                   @showWord="showWord"
+                  :is-article="dictIsArticle"
                   v-model:active-index="currentSelectDict.chapterIndex"
-                  :list="currentSelectDict.chapterWords"/>
+                  :dict="currentSelectDict"/>
             </div>
           </div>
           <div v-if="false" class="activity">

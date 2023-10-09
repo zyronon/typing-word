@@ -1,17 +1,25 @@
 <script setup lang="ts">
 
-import {Word} from "@/types.ts"
+import {Dict} from "@/types.ts"
 import {emitter, EventKey} from "@/utils/eventBus.ts";
+import {$computed} from "vue/macros";
 
-defineProps<{
-  list: Word[][],
+const props = defineProps<{
+  dict: Dict,
   activeIndex?: number
+  isArticle?: boolean
 }>()
 
 const emit = defineEmits<{
   'update:activeIndex': [index: number]
   showWord: [list: any[]]
 }>()
+
+
+const list: any[] = $computed(() => {
+  if (props.isArticle) return props.dict.articles
+  return props.dict.chapterWords
+})
 
 </script>
 
@@ -23,11 +31,19 @@ const emit = defineEmits<{
          @click="emit('update:activeIndex', index)">
       <input type="radio" :checked="activeIndex === index">
       <div class="title">
-        <div>第{{ index + 1 }}章</div>
-        <div class="count"
-             @click.stop="emitter.emit(EventKey.openWordListModal,{title:`第${index + 1}章`,list:item})"
-        >{{ item.length }}词
-        </div>
+        <template v-if="isArticle">
+          <div>{{ index + 1 }}.</div>
+          <div class="count"
+               @click.stop="emitter.emit(EventKey.openWordListModal,{title:`第${index + 1}章`,list:item})"
+          >{{ item.title }}</div>
+        </template>
+        <template v-else>
+          <div>第{{ index + 1 }}章</div>
+          <div class="count"
+               @click.stop="emitter.emit(EventKey.openWordListModal,{title:`第${index + 1}章`,list:item})"
+          >{{ item.length }}词
+          </div>
+        </template>
       </div>
     </div>
   </div>
