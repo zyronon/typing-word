@@ -4,12 +4,9 @@ import {onMounted, watch} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {SaveDictKey} from "@/types.ts"
 import Practice from "@/components/Practice/Practice.vue"
-import AddArticle from "@/components/Practice/AddArticle.vue";
 import {useEventListener, useStartKeyboardEventListener} from "@/hooks/event.ts";
-import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
-import BatchAddArticle from "@/components/Add/BatchAddArticle.vue";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()

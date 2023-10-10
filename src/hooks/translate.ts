@@ -8,7 +8,7 @@ export function renewSectionTranslates(article: Article, translate: string) {
   let failCount = 0
   if (translate.trim()) {
     let articleTranslate = translate.split('\n')
-    console.log('articleTranslate', articleTranslate)
+    // console.log('articleTranslate', articleTranslate)
     // console.log('articleTranslate', articleTranslate)
     let count = 0
     for (let i = 0; i < article.sections.length; i++) {

@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import {saveAs} from 'file-saver';
-import {watch} from "vue";
+import {saveAs} from "file-saver";
+import {onMounted, reactive, watch} from "vue";
 import {Article, DefaultArticle, DictType, Sentence, Sort, TranslateEngine, TranslateType} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {
   getNetworkTranslate,
   getSentenceAllText,
   getSentenceAllTranslateText,
-  renewSectionTranslates,
-  renewSectionTexts
+  renewSectionTexts,
+  renewSectionTranslates
 } from "@/hooks/translate.ts";
 import * as copy from "copy-to-clipboard";
 import {getSplitTranslateText} from "@/hooks/article.ts";
@@ -21,36 +21,34 @@ import {$ref} from "vue/macros";
 import List from "@/components/List.vue";
 import {v4 as uuidv4} from 'uuid';
 import {Icon} from "@iconify/vue";
+import Modal from "@/components/Modal/Modal.vue";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
 
-interface IProps {
-  article?: Article
-}
-
-const props = withDefaults(defineProps<IProps>(), {
-  article: () => DefaultArticle
-})
 
 const base = useBaseStore()
-let article = $ref<Article>(cloneDeep(props.article))
+let article = $ref<Article>(cloneDeep(DefaultArticle))
 let networkTranslateEngine = $ref('baidu')
 let progress = $ref(0)
 let failCount = $ref(0)
+const data = reactive({
+  show: false
+})
 const TranslateEngineOptions = [
   {value: 'baidu', label: '百度'},
   {value: 'youdao', label: '有道'},
 ]
 
 const emit = defineEmits([
-  'update:modelValue',
-  'close',
   'save'
 ])
 
-// useDisableEventListener(() => props.modelValue)
+// useDisableEventListener(() => data.show)
 
-watch(() => props.article, n => {
-  if (n) {
-    article = cloneDeep(props.article)
+onMounted(() => {
+  emitter.on(EventKey.openArticleListModal, (val: Article) => {
+    console.log('val',val)
+    data.show = true
+    article = cloneDeep(val)
     if (article.text.trim()) {
       if (article.useTranslateType === TranslateType.custom) {
         if (article.textCustomTranslate.trim()) {
@@ -69,7 +67,7 @@ watch(() => props.article, n => {
       }
     }
     renewSections()
-  }
+  })
 })
 
 async function startNetworkTranslate() {
@@ -359,166 +357,176 @@ function exportData() {
 </script>
 
 <template>
-  <div class="add-article">
-    <div class="slide">
-      <header>
-        <div class="dict-name">{{ base.currentEditDict.name }}</div>
-        <BaseIcon title="选择其他词典/文章" icon="carbon:change-catalog"/>
-      </header>
-      <List
-          v-model:list="base.currentEditDict.articles"
-          :select-item="article"
-          @del-select-item="article = cloneDeep(DefaultArticle)"
-          @select-item="selectArticle"
-      >
-        <template v-slot="{item,index}">
-          <div class="name"> {{ `${index + 1}. ${item.title}` }}</div>
-          <div class="translate-name"> {{ `   ${item.titleTranslate}` }}</div>
-        </template>
-      </List>
-      <div class="footer">
-        <div class="import" v-if="showImportBtn">
-          <BaseButton>导入</BaseButton>
-          <input type="file" accept="application/json" @change="importData">
+  <Modal
+      v-model="data.show"
+      :full-screen="true"
+      :header="false"
+  >
+    <div class="add-article">
+      <div class="slide">
+        <header>
+          <div class="dict-name">{{ base.currentEditDict.name }}</div>
+          <BaseIcon title="选择其他词典/文章" icon="carbon:change-catalog"/>
+        </header>
+        <List
+            v-model:list="base.currentEditDict.articles"
+            :select-item="article"
+            @del-select-item="article = cloneDeep(DefaultArticle)"
+            @select-item="selectArticle"
+        >
+          <template v-slot="{item,index}">
+            <div class="name"> {{ `${index + 1}. ${item.title}` }}</div>
+            <div class="translate-name"> {{ `   ${item.titleTranslate}` }}</div>
+          </template>
+        </List>
+        <div class="footer">
+          <div class="import" v-if="showImportBtn">
+            <BaseButton>导入</BaseButton>
+            <input type="file" accept="application/json" @change="importData">
+          </div>
+          <BaseButton @click="exportData">导出</BaseButton>
+          <BaseButton @click="add">新增</BaseButton>
         </div>
-        <BaseButton @click="exportData">导出</BaseButton>
-        <BaseButton @click="add">新增</BaseButton>
       </div>
-    </div>
 
-    <div class="content">
-      <div class="row">
-        <div class="title">原文</div>
-        <div class="item">
-          <div class="label">标题：</div>
-          <textarea
-              v-model="article.title"
-              type="textarea"
-              class="base-textarea"
-              placeholder="请填写原文标题"
-          >
-            </textarea>
-        </div>
-        <div class="item basic">
-          <div class="label">正文：</div>
-          <textarea
-              v-model="article.text"
-              @input="renewSections"
-              :readonly="![100,0].includes(progress)"
-              type="textarea"
-              class="base-textarea"
-              placeholder="请填写原文正文"
-          >
-            </textarea>
-        </div>
-      </div>
-      <div class="row">
-        <div class="title">译文</div>
-        <div class="item">
-          <div class="label">
-            <span>标题：</span>
-            <el-radio-group
-                v-model="article.useTranslateType"
-                @change="renewSections"
+      <div class="content">
+        <div class="row">
+          <div class="title">原文</div>
+          <div class="item">
+            <div class="label">标题：</div>
+            <textarea
+                v-model="article.title"
+                type="textarea"
+                class="base-textarea"
+                placeholder="请填写原文标题"
             >
-              <el-radio-button :label="TranslateType.custom">本地翻译</el-radio-button>
-              <el-radio-button :label="TranslateType.network">网络翻译</el-radio-button>
-              <el-radio-button :label="TranslateType.none">不需要翻译</el-radio-button>
-            </el-radio-group>
-          </div>
-          <textarea
-              v-model="article.titleTranslate"
-              type="textarea"
-              class="base-textarea"
-              placeholder="请填写翻译标题"
-          >
             </textarea>
+          </div>
+          <div class="item basic">
+            <div class="label">正文：</div>
+            <textarea
+                v-model="article.text"
+                @input="renewSections"
+                :readonly="![100,0].includes(progress)"
+                type="textarea"
+                class="base-textarea"
+                placeholder="请填写原文正文"
+            >
+            </textarea>
+          </div>
         </div>
-        <div class="item basic">
-          <div class="label">
-            <span>正文：</span>
-            <div class="translate-item" v-if="article.useTranslateType === TranslateType.network">
-              <el-progress :percentage="progress"
-                           :duration="30"
-                           :striped="progress !== 100"
-                           :striped-flow="progress !== 100"
-                           :stroke-width="8"
-                           :show-text="true"/>
-              <el-select v-model="networkTranslateEngine"
-                         style="width: 80rem;"
+        <div class="row">
+          <div class="title">译文</div>
+          <div class="item">
+            <div class="label">
+              <span>标题：</span>
+              <el-radio-group
+                  v-model="article.useTranslateType"
+                  @change="renewSections"
               >
-                <el-option
-                    v-for="item in TranslateEngineOptions"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                />
-              </el-select>
-              <BaseButton
-                  size="small"
-                  @click="startNetworkTranslate"
-                  :loading="progress!==0 && progress !== 100"
-              >开始翻译
-              </BaseButton>
+                <el-radio-button :label="TranslateType.custom">本地翻译</el-radio-button>
+                <el-radio-button :label="TranslateType.network">网络翻译</el-radio-button>
+                <el-radio-button :label="TranslateType.none">不需要翻译</el-radio-button>
+              </el-radio-group>
+            </div>
+            <textarea
+                v-model="article.titleTranslate"
+                type="textarea"
+                class="base-textarea"
+                placeholder="请填写翻译标题"
+            >
+            </textarea>
+          </div>
+          <div class="item basic">
+            <div class="label">
+              <span>正文：</span>
+              <div class="translate-item" v-if="article.useTranslateType === TranslateType.network">
+                <el-progress :percentage="progress"
+                             :duration="30"
+                             :striped="progress !== 100"
+                             :striped-flow="progress !== 100"
+                             :stroke-width="8"
+                             :show-text="true"/>
+                <el-select v-model="networkTranslateEngine"
+                           style="width: 80rem;"
+                >
+                  <el-option
+                      v-for="item in TranslateEngineOptions"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                  />
+                </el-select>
+                <BaseButton
+                    size="small"
+                    @click="startNetworkTranslate"
+                    :loading="progress!==0 && progress !== 100"
+                >开始翻译
+                </BaseButton>
 
+              </div>
+            </div>
+            <textarea
+                v-if="article.useTranslateType === TranslateType.custom"
+                v-model="article.textCustomTranslate"
+                @input="renewSections"
+                :readonly="![100,0].includes(progress)"
+                @blur="onBlur"
+                @focus="onFocus"
+                type="textarea"
+                class="base-textarea"
+                placeholder="请填写翻译正文"
+            >
+            </textarea>
+            <textarea
+                v-if="article.useTranslateType === TranslateType.network"
+                v-model="article.textNetworkTranslate"
+                @input="renewSections"
+                @blur="onBlur"
+                @focus="onFocus"
+                type="textarea"
+                class="base-textarea"
+                placeholder="等待网络翻译中..."
+            >
+            </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="title">译文对照</div>
+          <div class="article-translate">
+            <div class="section" v-for="(item,indexI) in article.sections">
+              <div class="sentence" v-for="(sentence,indexJ) in item">
+                <EditAbleText
+                    :value="sentence.text"
+                    @save="(e:string) => saveSentenceText(sentence,e)"
+                />
+                <EditAbleText
+                    :value="sentence.translate"
+                    @save="(e:string) => saveSentenceTranslate(sentence,e)"
+                />
+              </div>
             </div>
           </div>
-          <textarea
-              v-if="article.useTranslateType === TranslateType.custom"
-              v-model="article.textCustomTranslate"
-              @input="renewSections"
-              :readonly="![100,0].includes(progress)"
-              @blur="onBlur"
-              @focus="onFocus"
-              type="textarea"
-              class="base-textarea"
-              placeholder="请填写翻译正文"
-          >
-            </textarea>
-          <textarea
-              v-if="article.useTranslateType === TranslateType.network"
-              v-model="article.textNetworkTranslate"
-              @input="renewSections"
-              @blur="onBlur"
-              @focus="onFocus"
-              type="textarea"
-              class="base-textarea"
-              placeholder="等待网络翻译中..."
-          >
-            </textarea>
-        </div>
-      </div>
-      <div class="row">
-        <div class="title">译文对照</div>
-        <div class="article-translate">
-          <div class="section" v-for="(item,indexI) in article.sections">
-            <div class="sentence" v-for="(sentence,indexJ) in item">
-              <EditAbleText
-                  :value="sentence.text"
-                  @save="(e:string) => saveSentenceText(sentence,e)"
-              />
-              <EditAbleText
-                  :value="sentence.translate"
-                  @save="(e:string) => saveSentenceTranslate(sentence,e)"
-              />
+          <div class="options" v-if="article.text.trim()">
+            <div class="warning">
+              <template v-if="failCount">
+                <Icon icon="typcn:warning-outline"/>
+                共有{{ failCount }}句没有翻译！
+              </template>
+            </div>
+            <div class="left">
+              <BaseButton @click="save('save')">保存</BaseButton>
+              <BaseButton @click="save('next')">保存并添加下一篇</BaseButton>
             </div>
           </div>
         </div>
-        <div class="options" v-if="article.text.trim()">
-          <div class="warning">
-            <template v-if="failCount">
-              <Icon icon="typcn:warning-outline"/>
-              共有{{ failCount }}句没有翻译！
-            </template>
-          </div>
-          <div class="left">
-            <BaseButton @click="save('save')">保存</BaseButton>
-            <BaseButton @click="save('next')">保存并添加下一篇</BaseButton>
-          </div>
-        </div>
       </div>
+      <Icon @click="data.show = false"
+            class="close hvr-grow pointer"
+            width="20" color="#929596"
+            icon="ion:close-outline"/>
     </div>
-  </div>
+  </Modal>
 </template>
 
 <style scoped lang="scss">
@@ -526,6 +534,7 @@ function exportData() {
 
 .add-article {
   //position: fixed;
+  position: relative;
   left: 0;
   top: 0;
   z-index: 9;
@@ -535,6 +544,12 @@ function exportData() {
   color: black;
   background: var(--color-main-bg);
   display: flex;
+
+  .close {
+    position: absolute;
+    right: 20rem;
+    top: 20rem;
+  }
 
   .slide {
     height: 100%;

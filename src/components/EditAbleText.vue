@@ -65,6 +65,7 @@ function save() {
 }
 
 .text {
+  color: black;
   min-height: 18rem;
 }
 </style>

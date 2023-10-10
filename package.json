@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@iconify/vue": "^4.1.1",
+    "@types/file-saver": "^2.0.5",
     "@types/lodash-es": "^4.17.9",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",

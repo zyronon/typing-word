@@ -8,7 +8,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Add: typeof import('./src/components/Toolbar/Add.vue')['default']
-    AddArticle: typeof import('./src/components/Practice/AddArticle.vue')['default']
     AddArticle2: typeof import('./src/components/Add/AddArticle2.vue')['default']
     Backgorund: typeof import('./src/components/Backgorund.vue')['default']
     BaseButton: typeof import('./src/components/BaseButton.vue')['default']
@@ -20,7 +19,12 @@ declare module 'vue' {
     DictGroup: typeof import('./src/components/Toolbar/DictGroup.vue')['default']
     DictList: typeof import('./src/components/DictList.vue')['default']
     DictModal: typeof import('./src/components/Toolbar/DictModal.vue')['default']
+    Edit: typeof import('./src/components/Article/Edit.vue')['default']
     EditAbleText: typeof import('./src/components/EditAbleText.vue')['default']
+    EditArticle: typeof import('./src/components/Article/EditArticle.vue')['default']
+    EditArticleModal: typeof import('./src/components/Article/EditArticleModal.vue')['default']
+    EditBatchArticleModal: typeof import('./src/components/Article/EditBatchArticleModal.vue')['default']
+    EditSingleArticleModal: typeof import('./src/components/Article/EditSingleArticleModal.vue')['default']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElOption: typeof import('element-plus/es')['ElOption']

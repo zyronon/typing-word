@@ -237,7 +237,7 @@ export function splitCNArticle(text: string): Sentence[][] {
       // console.log('sentence', sentenceRow)
     })
   })
-  console.log('sections', sections)
+  // console.log('sections', sections)
   return sections
 }
 

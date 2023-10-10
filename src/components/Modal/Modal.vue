@@ -5,6 +5,7 @@ import {Icon} from '@iconify/vue';
 import {useEsc} from "@/hooks/event.ts";
 import {$ref} from "vue/macros";
 import BaseButton from "@/components/BaseButton.vue";
+import {useRuntimeStore} from "@/stores/runtime.ts";
 
 export interface ModalProps {
   modelValue?: boolean,
@@ -36,10 +37,12 @@ const emit = defineEmits([
   'cancel',
 ])
 
+let zIndex = $ref(999)
 let visible = $ref(false)
 let openTime = $ref(Date.now())
 let maskRef = $ref<HTMLDivElement>(null)
 let modalRef = $ref<HTMLDivElement>(null)
+const runtimeStore = useRuntimeStore()
 
 function close() {
   if (!visible) {
@@ -62,6 +65,7 @@ function close() {
       emit('close')
       visible = false
       resolve(true)
+      runtimeStore.modalList.pop()
     }, closeTime)
   });
 }
@@ -69,6 +73,11 @@ function close() {
 watch(() => props.modelValue, n => {
   // console.log('n', n)
   if (n) {
+    runtimeStore.modalList.push({
+      id: Date.now(),
+      close
+    })
+    zIndex = zIndex + runtimeStore.modalList.length
     visible = true
   } else {
     close()
@@ -79,6 +88,11 @@ onMounted(() => {
   // console.log('props.modelValue', props.modelValue)
   if (props.modelValue === undefined) {
     visible = true
+    runtimeStore.modalList.push({
+      id: Date.now(),
+      close
+    })
+    zIndex = zIndex + runtimeStore.modalList.length
   }
 })
 
@@ -98,7 +112,7 @@ async function cancel() {
 
 <template>
   <Teleport to="body">
-    <div class="modal-root" v-if="visible">
+    <div class="modal-root" :style="{'z-index': zIndex}" v-if="visible">
       <div class="modal-mask"
            ref="maskRef"
            v-if="!fullScreen"

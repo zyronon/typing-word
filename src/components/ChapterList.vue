@@ -30,21 +30,18 @@ const list: any[] = $computed(() => {
          v-for="(item,index) in list"
          @click="emit('update:activeIndex', index)">
       <input type="radio" :checked="activeIndex === index">
-      <div class="title">
-        <template v-if="isArticle">
-          <div>{{ index + 1 }}.</div>
-          <div class="count"
-               @click.stop="emitter.emit(EventKey.openWordListModal,{title:`第${index + 1}章`,list:item})"
-          >{{ item.title }}</div>
-        </template>
-        <template v-else>
-          <div>第{{ index + 1 }}章</div>
-          <div class="count"
-               @click.stop="emitter.emit(EventKey.openWordListModal,{title:`第${index + 1}章`,list:item})"
-          >{{ item.length }}词
-          </div>
-        </template>
-      </div>
+      <template v-if="isArticle">
+        <div class="title"
+             @click.stop="emitter.emit(EventKey.openArticleListModal,item)"
+        >{{ index + 1 }}.&nbsp;&nbsp;&nbsp;{{ item.title }}
+        </div>
+      </template>
+      <template v-else>
+        <div class="title"
+             @click.stop="emitter.emit(EventKey.openWordListModal,{title:`第${index + 1}章`,list:item})"
+        >第{{ index + 1 }}章&nbsp;&nbsp;&nbsp;{{ item.length }}词
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -75,8 +72,16 @@ const list: any[] = $computed(() => {
       background: var(--color-item-active);
       color: var(--color-font-active-1);
 
-      .count {
-        border-bottom: 2px solid white !important;
+      &:hover {
+        .title {
+          border-bottom: 2px solid white !important;
+        }
+      }
+    }
+
+    &:hover {
+      .title {
+        border-bottom: 2px solid var(--color-item-active);
       }
     }
 
@@ -85,13 +90,9 @@ const list: any[] = $computed(() => {
     }
 
     .title {
-      display: flex;
-      gap: 10rem;
-
-      .count {
-        cursor: pointer;
-        border-bottom: 2px solid var(--color-item-active);
-      }
+      transition: all .3s;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
     }
   }
 }

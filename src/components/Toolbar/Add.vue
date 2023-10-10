@@ -3,19 +3,11 @@
 import {Icon} from "@iconify/vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import Tooltip from "@/components/Tooltip.vue";
-import {useBaseStore} from "@/stores/base.ts";
-import {useWindowClick} from "@/hooks/event.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import AddArticle from "@/components/Practice/AddArticle.vue";
-
-const store = useBaseStore()
-let show = $ref(false)
-
-useWindowClick(() => show = false)
+import EditBatchArticleModal from "@/components/Article/EditBatchArticleModal.vue";
 
 function toggle() {
-  if (!show) emitter.emit(EventKey.closeOther)
-  show = !show
+  emitter.emit(EventKey.openArticleListModal)
 }
 </script>
 
@@ -28,8 +20,7 @@ function toggle() {
         />
       </IconWrapper>
     </Tooltip>
-    <AddArticle v-model="show"
-    />
+    <EditBatchArticleModal/>
   </div>
 </template>
 

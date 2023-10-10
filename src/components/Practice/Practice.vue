@@ -13,12 +13,10 @@ import {emitter, EventKey} from "@/utils/eventBus";
 import {useSettingStore} from "@/stores/setting";
 import {cloneDeep} from "lodash-es";
 import {Article, DefaultArticle, TranslateType} from "@/types.ts";
-import AddArticle from "@/components/Practice/AddArticle.vue";
-import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {renewSectionTranslates, renewSectionTexts} from "@/hooks/translate.ts";
-import BaseButton from "@/components/BaseButton.vue";
+import {renewSectionTexts, renewSectionTranslates} from "@/hooks/translate.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
+import EditArticleModal from "@/components/Article/EditSingleArticleModal.vue";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
@@ -201,9 +199,9 @@ function test() {
       @repeat="repeat"
       @next="next"
   />
-  <AddArticle v-model="showEditArticle"
-              :article="editArticle"
-              @save="saveArticle"
+  <EditArticleModal v-model="showEditArticle"
+                    :article="editArticle"
+                    @save="saveArticle"
   />
 </template>
 

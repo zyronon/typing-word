@@ -65,7 +65,6 @@ async function selectDict(item: DictionaryResource) {
     base.current.editIndex = rIndex
   } else {
     let data = {
-      ...item,
       sort: Sort.normal,
       type: DictType.publicDict,
       originWords: [],
@@ -75,7 +74,8 @@ async function selectDict(item: DictionaryResource) {
       chapterIndex: 0,
       chapterWordIndex: 0,
       statistics: [],
-      articles: []
+      articles: [],
+      ...item,
     }
 
     if (item.languageCategory === 'article') {
@@ -95,7 +95,7 @@ async function selectDict(item: DictionaryResource) {
       r.json().then(v => {
         data.originWords = v
         data.words = v
-        data.chapterWords = chunk(v, currentSelectDict.chapterWordNumber)
+        data.chapterWords = chunk(v, data.chapterWordNumber)
         base.myDicts.push(data)
         base.current.editIndex = base.myDicts.length - 1
       })
@@ -104,7 +104,7 @@ async function selectDict(item: DictionaryResource) {
 }
 
 function changeDict() {
-  store.changeDict(currentSelectDict)
+  store.changeDict(base.currentEditDict)
   close()
 }
 
@@ -113,7 +113,7 @@ function close() {
 }
 
 function resetChapterList() {
-  currentSelectDict.chapterWords = chunk(currentSelectDict.words, currentSelectDict.chapterWordNumber)
+  base.currentEditDict.chapterWords = chunk(base.currentEditDict.words, base.currentEditDict.chapterWordNumber)
 }
 
 function groupBy<T>(elements: T[], iteratee: (value: T) => string) {
@@ -193,7 +193,7 @@ const dictIsArticle = $computed(() => {
             <div class="dict-list-wrapper">
               <DictGroup
                   v-for="item in groupedByCategoryAndTag"
-                  :select-dict-name="currentSelectDict.name"
+                  :select-dict-name="base.currentEditDict.name"
                   @selectDict="selectDict"
                   @detail="step = 1"
                   :groupByTag="item[1]"/>
