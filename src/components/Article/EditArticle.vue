@@ -17,16 +17,23 @@ import {MessageBox} from "@/utils/MessageBox.tsx";
 import {getSplitTranslateText} from "@/hooks/article.ts";
 import {cloneDeep} from "lodash-es";
 import {v4 as uuidv4} from "uuid";
-import {watch} from "vue";
+import {h, watch} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
 
 interface IProps {
-  article?: Article
+  article?: Article,
+  type?: 'single' | 'batch'
 }
 
 const props = withDefaults(defineProps<IProps>(), {
   article: () => cloneDeep(DefaultArticle),
+  type: 'single'
 })
+
+const emit = defineEmits<{
+  save: [val: Article],
+  saveAndNext: [val: Article]
+}>()
 
 let networkTranslateEngine = $ref('baidu')
 let progress = $ref(0)
@@ -36,22 +43,21 @@ const TranslateEngineOptions = [
   {value: 'youdao', label: '有道'},
 ]
 
-const base = useBaseStore()
-let article = $ref<Article>(cloneDeep(DefaultArticle))
+let editArticle = $ref<Article>(cloneDeep(DefaultArticle))
 
 watch(() => props.article, val => {
-  article = cloneDeep(val)
-  if (article.text.trim()) {
-    if (article.useTranslateType === TranslateType.custom) {
-      if (article.textCustomTranslate.trim()) {
-        if (!article.textCustomTranslateIsFormat) {
-          let r = getSplitTranslateText(article.textCustomTranslate)
+  editArticle = cloneDeep(val)
+  if (editArticle.text.trim()) {
+    if (editArticle.useTranslateType === TranslateType.custom) {
+      if (editArticle.textCustomTranslate.trim()) {
+        if (!editArticle.textCustomTranslateIsFormat) {
+          let r = getSplitTranslateText(editArticle.textCustomTranslate)
           if (r) {
-            article.textCustomTranslate = r
+            editArticle.textCustomTranslate = r
             ElMessage({
               message: '检测到本地翻译未格式化，已自动格式化',
               type: 'success',
-              duration: 5000
+              duration: 3000
             })
           }
         }
@@ -59,29 +65,29 @@ watch(() => props.article, val => {
     }
   }
   renewSections()
-  console.log('ar', article)
+  // console.log('ar', article)
 }, {immediate: true})
 
 function renewSections() {
-  if (article.text.trim()) {
-    renewSectionTexts(article)
-    if (article.useTranslateType === TranslateType.custom) {
-      failCount = renewSectionTranslates(article, article.textCustomTranslate)
+  if (editArticle.text.trim()) {
+    renewSectionTexts(editArticle)
+    if (editArticle.useTranslateType === TranslateType.custom) {
+      failCount = renewSectionTranslates(editArticle, editArticle.textCustomTranslate)
     }
-    if (article.useTranslateType === TranslateType.network) {
-      failCount = renewSectionTranslates(article, article.textNetworkTranslate)
+    if (editArticle.useTranslateType === TranslateType.network) {
+      failCount = renewSectionTranslates(editArticle, editArticle.textNetworkTranslate)
     }
   } else {
-    article.sections = []
+    editArticle.sections = []
   }
 }
 
 function appendTranslate(str: string) {
-  if (article.useTranslateType === TranslateType.custom) {
-    article.textCustomTranslate += str
+  if (editArticle.useTranslateType === TranslateType.custom) {
+    editArticle.textCustomTranslate += str
   }
-  if (article.useTranslateType === TranslateType.network) {
-    article.textNetworkTranslate += str
+  if (editArticle.useTranslateType === TranslateType.network) {
+    editArticle.textNetworkTranslate += str
   }
 }
 
@@ -118,129 +124,105 @@ function onFocus() {
   document.addEventListener('paste', onPaste);
 }
 
-function save(option: 'save' | 'next', mute: boolean = false) {
-  console.log('article', article)
-  copy(JSON.stringify(article))
-
-  if (mute) {
-    if (article.title.trim() && article.text.trim()) {
-      return false
-    }
-  }
-
-  article.title = article.title.trim()
-  article.titleTranslate = article.titleTranslate.trim()
-  article.text = article.text.trim()
-  article.textCustomTranslate = article.textCustomTranslate.trim()
-  article.textNetworkTranslate = article.textNetworkTranslate.trim()
-
-  if (!article.title) {
-    return ElMessage.error('请填写标题！')
-  }
-  if (!article.text) {
-    return ElMessage.error('请填写正文！')
-  }
-
-  let has = base.currentEditDict.articles.find((item: Article) => item.title === article.title)
-  if (has && !article.id) {
-    return ElMessage.error('已存在同名文章！')
-  }
-
-  const saveTemp = () => {
-    article.textCustomTranslateIsFormat = true
-    // emit('close')
-    // emit('save', cloneDeep(article))
-    if (article.id) {
-      let rIndex = base.currentEditDict.articles.findIndex(v => v.id === article.id)
-      if (rIndex > -1) {
-        base.currentEditDict.articles[rIndex] = cloneDeep(article)
-      }
-    } else {
-      let data = {...article, id: uuidv4()}
-      base.currentEditDict.articles.push(data)
-      if (option === 'save') {
-        article = cloneDeep(data)
-      }
-    }
-    if (option === 'next') {
-      article = cloneDeep(DefaultArticle)
-    }
-    //TODO 保存完成后滚动到对应位置
-    if (!mute) {
-      ElMessage.success('保存成功！')
-    }
-  }
-
-  if (article.useTranslateType === TranslateType.network) {
-    if (!article.textNetworkTranslate) {
-      return MessageBox.confirm(
-          '您选择了“网络翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
-          '提示',
-          () => {
-            article.useTranslateType = TranslateType.none
-            saveTemp()
-          },
-          () => void 0,
-      )
-    }
-  }
-
-  if (article.useTranslateType === TranslateType.custom) {
-    if (!article.textCustomTranslate) {
-      return MessageBox.confirm(
-          '您选择了“本地翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
-          '提示',
-          () => {
-            article.useTranslateType = TranslateType.none
-            saveTemp()
-          },
-          () => void 0,
-      )
-    }
-  }
-
-  saveTemp()
-}
-
 async function startNetworkTranslate() {
-  if (!article.title.trim()) {
+  if (!editArticle.title.trim()) {
     return ElMessage.error('请填写标题！')
   }
-  if (!article.text.trim()) {
+  if (!editArticle.text.trim()) {
     return ElMessage.error('请填写正文！')
   }
-  renewSectionTexts(article)
-  article.textNetworkTranslate = ''
+  renewSectionTexts(editArticle)
+  editArticle.textNetworkTranslate = ''
   //注意！！！
   //这里需要用异步，因为watch了article.networkTranslate，改变networkTranslate了之后，会重新设置article.sections
   //导致getNetworkTranslate里面拿到的article.sections是废弃的值
   setTimeout(async () => {
-    await getNetworkTranslate(article, TranslateEngine.Baidu, true, (v: number) => {
+    await getNetworkTranslate(editArticle, TranslateEngine.Baidu, true, (v: number) => {
       progress = v
     })
 
-    copy(JSON.stringify(article.sections))
+    copy(JSON.stringify(editArticle.sections))
   })
 }
 
 function saveSentenceTranslate(sentence: Sentence, val: string) {
   sentence.translate = val
-  if (article.useTranslateType === TranslateType.custom) {
-    article.textCustomTranslate = getSentenceAllTranslateText(article)
+  if (editArticle.useTranslateType === TranslateType.custom) {
+    editArticle.textCustomTranslate = getSentenceAllTranslateText(editArticle)
   }
-  if (article.useTranslateType === TranslateType.network) {
-    article.textNetworkTranslate = getSentenceAllTranslateText(article)
+  if (editArticle.useTranslateType === TranslateType.network) {
+    editArticle.textNetworkTranslate = getSentenceAllTranslateText(editArticle)
   }
   renewSections()
 }
 
 function saveSentenceText(sentence: Sentence, val: string) {
   sentence.text = val
-  article.text = getSentenceAllText(article)
+  editArticle.text = getSentenceAllText(editArticle)
   renewSections()
 }
 
-defineExpose({save})
+function save(option: 'save' | 'saveAndNext') {
+  return new Promise((resolve: Function) => {
+    // console.log('article', article)
+    // copy(JSON.stringify(article))
+
+    editArticle.title = editArticle.title.trim()
+    editArticle.titleTranslate = editArticle.titleTranslate.trim()
+    editArticle.text = editArticle.text.trim()
+    editArticle.textCustomTranslate = editArticle.textCustomTranslate.trim()
+    editArticle.textNetworkTranslate = editArticle.textNetworkTranslate.trim()
+
+    if (!editArticle.title) {
+      ElMessage.error('请填写标题！')
+      return resolve(false)
+    }
+    if (!editArticle.text) {
+      ElMessage.error('请填写正文！')
+      return resolve(false)
+    }
+
+    const saveTemp = () => {
+      editArticle.textCustomTranslateIsFormat = true
+      emit(option as any, editArticle)
+
+      return resolve(true)
+    }
+
+    if (editArticle.useTranslateType === TranslateType.network) {
+      if (!editArticle.textNetworkTranslate) {
+        return MessageBox.confirm(
+            '您选择了“网络翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
+            '提示',
+            () => {
+              editArticle.useTranslateType = TranslateType.none
+              saveTemp()
+            },
+            () => void 0,
+        )
+      }
+    }
+
+    if (editArticle.useTranslateType === TranslateType.custom) {
+      if (!editArticle.textCustomTranslate) {
+        return MessageBox.confirm(
+            '您选择了“本地翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
+            '提示',
+            () => {
+              editArticle.useTranslateType = TranslateType.none
+              saveTemp()
+            },
+            () => void 0,
+        )
+      }
+    }
+
+    saveTemp()
+  })
+}
+
+//不知道直接用editArticle，取到是空的默认值
+defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
 </script>
 
 <template>
@@ -250,7 +232,7 @@ defineExpose({save})
       <div class="item">
         <div class="label">标题：</div>
         <textarea
-            v-model="article.title"
+            v-model="editArticle.title"
             type="textarea"
             class="base-textarea"
             placeholder="请填写原文标题"
@@ -260,7 +242,7 @@ defineExpose({save})
       <div class="item basic">
         <div class="label">正文：</div>
         <textarea
-            v-model="article.text"
+            v-model="editArticle.text"
             @input="renewSections"
             :readonly="![100,0].includes(progress)"
             type="textarea"
@@ -276,7 +258,7 @@ defineExpose({save})
         <div class="label">
           <span>标题：</span>
           <el-radio-group
-              v-model="article.useTranslateType"
+              v-model="editArticle.useTranslateType"
               @change="renewSections"
           >
             <el-radio-button :label="TranslateType.custom">本地翻译</el-radio-button>
@@ -285,7 +267,7 @@ defineExpose({save})
           </el-radio-group>
         </div>
         <textarea
-            v-model="article.titleTranslate"
+            v-model="editArticle.titleTranslate"
             type="textarea"
             class="base-textarea"
             placeholder="请填写翻译标题"
@@ -295,7 +277,7 @@ defineExpose({save})
       <div class="item basic">
         <div class="label">
           <span>正文：</span>
-          <div class="translate-item" v-if="article.useTranslateType === TranslateType.network">
+          <div class="translate-item" v-if="editArticle.useTranslateType === TranslateType.network">
             <el-progress :percentage="progress"
                          :duration="30"
                          :striped="progress !== 100"
@@ -322,8 +304,8 @@ defineExpose({save})
           </div>
         </div>
         <textarea
-            v-if="article.useTranslateType === TranslateType.custom"
-            v-model="article.textCustomTranslate"
+            v-if="editArticle.useTranslateType === TranslateType.custom"
+            v-model="editArticle.textCustomTranslate"
             @input="renewSections"
             :readonly="![100,0].includes(progress)"
             @blur="onBlur"
@@ -334,8 +316,8 @@ defineExpose({save})
         >
             </textarea>
         <textarea
-            v-if="article.useTranslateType === TranslateType.network"
-            v-model="article.textNetworkTranslate"
+            v-if="editArticle.useTranslateType === TranslateType.network"
+            v-model="editArticle.textNetworkTranslate"
             @input="renewSections"
             @blur="onBlur"
             @focus="onFocus"
@@ -349,7 +331,7 @@ defineExpose({save})
     <div class="row">
       <div class="title">译文对照</div>
       <div class="article-translate">
-        <div class="section" v-for="(item,indexI) in article.sections">
+        <div class="section" v-for="(item,indexI) in editArticle.sections">
           <div class="sentence" v-for="(sentence,indexJ) in item">
             <EditAbleText
                 :value="sentence.text"
@@ -362,16 +344,16 @@ defineExpose({save})
           </div>
         </div>
       </div>
-      <div class="options" v-if="article.text.trim()">
+      <div class="options" v-if="editArticle.text.trim()">
         <div class="warning">
-          <template v-if="failCount && article.useTranslateType !== TranslateType.none">
+          <template v-if="failCount && editArticle.useTranslateType !== TranslateType.none">
             <Icon icon="typcn:warning-outline"/>
             共有{{ failCount }}句没有翻译！
           </template>
         </div>
         <div class="left">
           <BaseButton @click="save('save')">保存</BaseButton>
-          <BaseButton @click="save('next')">保存并添加下一篇</BaseButton>
+          <BaseButton v-if="type === 'batch'" @click="save('saveAndNext')">保存并添加下一篇</BaseButton>
         </div>
       </div>
     </div>
@@ -382,6 +364,7 @@ defineExpose({save})
 @import "@/assets/css/style.scss";
 
 .content {
+  color: black;
   flex: 1;
   display: flex;
   gap: $space;

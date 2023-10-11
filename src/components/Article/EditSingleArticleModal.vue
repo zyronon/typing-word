@@ -14,6 +14,9 @@ const props = withDefaults(defineProps<IProps>(), {
   article: () => cloneDeep(DefaultArticle),
   modelValue: false
 })
+const emit = defineEmits<{
+  save: [],
+}>()
 
 </script>
 
@@ -25,7 +28,9 @@ const props = withDefaults(defineProps<IProps>(), {
   >
     <div class="wrapper">
       <EditArticle
-          :article="article"/>
+          :article="article"
+          @save="emit('save')"
+      />
     </div>
   </Modal>
 </template>

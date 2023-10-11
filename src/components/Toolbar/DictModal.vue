@@ -147,7 +147,7 @@ const groupedByCategoryAndTag = $computed(() => {
   const groupedByCategoryAndTag = groupedByCategory.map(
       ([category, dicts]) => [category, groupByDictTags(dicts)] as [string, Record<string, DictionaryResource[]>],
   )
-  console.log('groupedByCategoryAndTag', groupedByCategoryAndTag)
+  // console.log('groupedByCategoryAndTag', groupedByCategoryAndTag)
   return groupedByCategoryAndTag
 })
 

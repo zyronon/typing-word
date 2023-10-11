@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import {saveAs} from "file-saver";
-import {reactive} from "vue";
-import {Article, DefaultArticle, DictType, Sort} from "@/types.ts";
+import {onUnmounted, reactive} from "vue";
+import {Article, DefaultArticle, DictType, Sort, TranslateType} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {cloneDeep} from "lodash-es";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useBaseStore} from "@/stores/base.ts";
-import {$ref} from "vue/macros";
+import {$computed, $ref} from "vue/macros";
 import List from "@/components/List.vue";
 import {v4 as uuidv4} from 'uuid';
 import {Icon} from "@iconify/vue";
@@ -14,13 +14,15 @@ import Modal from "@/components/Modal/Modal.vue";
 import EditArticle from "@/components/Article/EditArticle.vue";
 import {onMounted} from "vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
+import {useDisableEventListener} from "@/hooks/event.ts";
+import {MessageBox} from "@/utils/MessageBox.tsx";
 
 
 const base = useBaseStore()
 let article = $ref<Article>(cloneDeep(DefaultArticle))
 let show = $ref(false)
 let showImportBtn = $ref(true)
-let editArticleRef = $ref()
+let editArticleRef: any = $ref()
 
 onMounted(() => {
   emitter.on(EventKey.openArticleListModal, (val: Article) => {
@@ -32,7 +34,11 @@ onMounted(() => {
   })
 })
 
-// useDisableEventListener(() => data.show)
+onUnmounted(() => {
+  emitter.off(EventKey.openArticleListModal)
+})
+
+useDisableEventListener(() => show)
 
 function selectArticle(item: Article) {
   article = cloneDeep(item)
@@ -40,11 +46,53 @@ function selectArticle(item: Article) {
 }
 
 function add() {
-  if (article.title.trim() && article.text.trim()) {
-    // return save('next', true)
+  let editArticle: Article = editArticleRef.getEditArticle()
+
+  const newArticle = () => {
+    article = cloneDeep(DefaultArticle)
+    // article.title = 'a'
+    // article.text = 'b'
   }
-  // editArticleRef.save('save',true)
-  article = cloneDeep(DefaultArticle)
+  if (editArticle.id !== '-1') {
+    editArticle.title = editArticle.title.trim()
+    editArticle.titleTranslate = editArticle.titleTranslate.trim()
+    editArticle.text = editArticle.text.trim()
+    editArticle.textCustomTranslate = editArticle.textCustomTranslate.trim()
+    editArticle.textNetworkTranslate = editArticle.textNetworkTranslate.trim()
+
+    if (
+        editArticle.title !== article.title ||
+        editArticle.titleTranslate !== article.titleTranslate ||
+        editArticle.text !== article.text ||
+        editArticle.textCustomTranslate !== article.textCustomTranslate ||
+        editArticle.textNetworkTranslate !== article.textNetworkTranslate ||
+        editArticle.useTranslateType !== article.useTranslateType
+    ) {
+      return MessageBox.confirm(
+          '检测到数据有变动，是否保存？',
+          '提示',
+          async () => {
+            let r = await editArticleRef.save('save')
+            if (r) newArticle()
+          },
+          () => void 0,
+      )
+    }
+  } else {
+    if (editArticle.title.trim() && editArticle.text.trim()) {
+      return MessageBox.confirm(
+          '检测到数据有变动，是否保存？',
+          '提示',
+          async () => {
+            let r = await editArticleRef.save('save')
+            if (r) newArticle()
+          },
+          () => void 0,
+      )
+    }
+  }
+
+  newArticle()
 }
 
 function importData(e: Event) {
@@ -142,6 +190,38 @@ function exportData() {
   let blob = new Blob([JSON.stringify(data, null, 2)], {type: "text/plain;charset=utf-8"});
   saveAs(blob, `${data.name}.json`);
 }
+
+function saveArticle(val: Article) {
+  console.log('saveArticle', val)
+  if (val.id !== '-1') {
+    let rIndex = base.currentEditDict.articles.findIndex(v => v.id === val.id)
+    if (rIndex > -1) {
+      base.currentEditDict.articles[rIndex] = cloneDeep(val)
+    }
+  } else {
+    let has = base.currentEditDict.articles.find((item: Article) => item.title === val.title)
+    if (has) {
+      return ElMessage.error('已存在同名文章！')
+    }
+    val.id = uuidv4()
+    base.currentEditDict.articles.push(val)
+    article = cloneDeep(val)
+  }
+  //TODO 保存完成后滚动到对应位置
+  ElMessage.success('保存成功！')
+}
+
+const list = $computed(() => {
+  if (article.id === '-1') {
+    return base.currentEditDict.articles.concat([article])
+  }
+  return base.currentEditDict.articles
+})
+
+function getTitle(item: Article, index: number,) {
+  if (item.id === '-1') return 'New article'
+  return `${index + 1}. ${item.title}`
+}
 </script>
 
 <template>
@@ -157,13 +237,13 @@ function exportData() {
           <BaseIcon title="选择其他词典/文章" icon="carbon:change-catalog"/>
         </header>
         <List
-            v-model:list="base.currentEditDict.articles"
+            v-model:list="list"
             :select-item="article"
             @del-select-item="article = cloneDeep(DefaultArticle)"
             @select-item="selectArticle"
         >
           <template v-slot="{item,index}">
-            <div class="name"> {{ `${index + 1}. ${item.title}` }}</div>
+            <div class="name"> {{ getTitle(item, index) }}</div>
             <div class="translate-name"> {{ `   ${item.titleTranslate}` }}</div>
           </template>
         </List>
@@ -178,6 +258,8 @@ function exportData() {
       </div>
       <EditArticle
           ref="editArticleRef"
+          type="batch"
+          @save="saveArticle"
           :article="article"/>
 
       <Icon @click="show = false"

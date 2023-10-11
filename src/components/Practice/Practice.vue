@@ -157,10 +157,11 @@ function next() {
   repeat()
 }
 
-function saveArticle(article: Article) {
-  console.log('saveArticle', article)
+function saveArticle() {
+  console.log('saveArticle')
   showEditArticle = false
-  store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = article
+  articleData.article = cloneDeep(store.currentDict.articles[store.currentDict.chapterIndex])
+  // store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = article
 }
 
 function test() {
