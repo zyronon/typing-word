@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<IProps>(), {
   modelValue: false
 })
 const emit = defineEmits<{
-  save: [],
+  save: [val: Article]
 }>()
 
 </script>
@@ -29,7 +29,7 @@ const emit = defineEmits<{
     <div class="wrapper">
       <EditArticle
           :article="article"
-          @save="emit('save')"
+          @save="val => emit('save',val)"
       />
     </div>
   </Modal>

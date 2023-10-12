@@ -38,3 +38,5 @@ BaseIcon 在选中模式下，应该显示白色
 没有内容时，要显示占位符
 
 A cold welcome 有bug
+
+[EditAbleText.vue](src%2Fcomponents%2FEditAbleText.vue) 不能自动聚焦

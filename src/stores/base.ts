@@ -262,6 +262,7 @@ export const useBaseStore = defineStore('base', {
       } else {
         let rIndex = this.myDicts.findIndex((v: Dict) => v.name === dict.name)
         if (rIndex > -1) {
+          this.myDicts[rIndex] = dict
           this.current.index = rIndex
         } else {
           this.myDicts.push(cloneDeep(dict))

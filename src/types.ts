@@ -103,7 +103,7 @@ export interface Article {
 
 export const DefaultArticle: Article = {
   // id: uuidv4(),
-  id: '-1',
+  id: '',
   title: '',
   titleTranslate: '',
   text: '',

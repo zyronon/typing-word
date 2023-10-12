@@ -345,11 +345,16 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
         </div>
       </div>
       <div class="options" v-if="editArticle.text.trim()">
-        <div class="warning">
-          <template v-if="failCount && editArticle.useTranslateType !== TranslateType.none">
+        <div class="status">
+          <span>状态：</span>
+          <div class="warning" v-if="failCount && editArticle.useTranslateType !== TranslateType.none">
             <Icon icon="typcn:warning-outline"/>
             共有{{ failCount }}句没有翻译！
-          </template>
+          </div>
+          <div class="success" v-else>
+            <Icon icon="mdi:success-circle-outline"/>
+            翻译完成！
+          </div>
         </div>
         <div class="left">
           <BaseButton @click="save('save')">保存</BaseButton>
@@ -456,13 +461,24 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
     align-items: center;
     justify-content: space-between;
 
+
+    .status {
+      display: flex;
+      align-items: center;
+    }
+
     .warning {
       display: flex;
       align-items: center;
       font-size: 20rem;
       color: red;
-      gap: 10rem;
+    }
 
+    .success {
+      display: flex;
+      align-items: center;
+      font-size: 20rem;
+      color: #67C23A;
     }
 
     .left {

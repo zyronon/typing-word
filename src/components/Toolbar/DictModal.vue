@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {dictionaryResources} from '@/assets/dictionary.ts'
-import {State, useBaseStore} from "@/stores/base.ts"
+import {useBaseStore} from "@/stores/base.ts"
 import {watch} from "vue"
 import {Dict, DictionaryResource, DictType, Sort, Word} from "@/types.ts"
 import {chunk, cloneDeep} from "lodash-es";
@@ -15,16 +15,16 @@ import jpFlag from '@/assets/img/flags/ja.png'
 import bookFlag from '@/assets/img/flags/book.png'
 import DictGroup from "@/components/Toolbar/DictGroup.vue";
 import {v4 as uuidv4} from "uuid";
-import VolumeIcon from "@/components/VolumeIcon.vue";
 import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
-import {usePlayWordAudio} from "@/hooks/sound.ts";
 import ChapterList from "@/components/ChapterList.vue";
 import WordListModal from "@/components/WordListModal.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {isArticle} from "@/hooks/article.ts";
+import {useRuntimeStore} from "@/stores/runtime.ts";
 
 const store = useBaseStore()
+const runtimeStore = useRuntimeStore()
 
 interface IProps {
   modelValue?: boolean,
@@ -48,21 +48,20 @@ const options = [
 
 const base = useBaseStore()
 let currentLanguage = $ref('en')
-let currentSelectDict: Dict = $ref(cloneDeep(store.currentDict))
 let step = $ref(1)
 
 watch(() => props.modelValue, (n: boolean) => {
-  let rIndex = base.myDicts.findIndex((v: Dict) => v.name === store.currentDict.name)
-  if (rIndex > -1) {
-    base.current.editIndex = rIndex
+  let find = base.myDicts.find((v: Dict) => v.name === store.currentDict.name)
+  if (find) {
+    runtimeStore.editDict = cloneDeep(find)
   }
 })
 
 async function selectDict(item: DictionaryResource) {
   step = 1
-  let rIndex = base.myDicts.findIndex((v: Dict) => v.name === item.name)
-  if (rIndex > -1) {
-    base.current.editIndex = rIndex
+  let find = base.myDicts.find((v: Dict) => v.name === item.name)
+  if (find) {
+    runtimeStore.editDict = cloneDeep(find)
   } else {
     let data = {
       sort: Sort.normal,
@@ -86,8 +85,7 @@ async function selectDict(item: DictionaryResource) {
           v.id = uuidv4()
           return v
         }))
-        base.myDicts.push(data)
-        base.current.editIndex = base.myDicts.length - 1
+        runtimeStore.editDict = cloneDeep(data)
       })
     } else {
       data.type = DictType.publicDict
@@ -96,15 +94,15 @@ async function selectDict(item: DictionaryResource) {
         data.originWords = v
         data.words = v
         data.chapterWords = chunk(v, data.chapterWordNumber)
-        base.myDicts.push(data)
-        base.current.editIndex = base.myDicts.length - 1
+        runtimeStore.editDict = cloneDeep(data)
+        console.log(' runtimeStore.editDict', runtimeStore.editDict)
       })
     }
   }
 }
 
 function changeDict() {
-  store.changeDict(base.currentEditDict)
+  store.changeDict(runtimeStore.editDict)
   close()
 }
 
@@ -113,7 +111,7 @@ function close() {
 }
 
 function resetChapterList() {
-  base.currentEditDict.chapterWords = chunk(base.currentEditDict.words, base.currentEditDict.chapterWordNumber)
+  runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
 }
 
 function groupBy<T>(elements: T[], iteratee: (value: T) => string) {
@@ -162,15 +160,17 @@ function showWord(list: Word[]) {
 }
 
 const dictIsArticle = $computed(() => {
-  return isArticle(base.currentEditDict.type)
+  return isArticle(runtimeStore.editDict.type)
 })
 
 </script>
 
 <template>
-  <Modal :show-close="false"
-         :header="false"
-         @close="close">
+  <Modal
+      :header="false"
+      :model-value="props.modelValue"
+      :show-close="false"
+      @close="close">
     <div class="slide">
       <div class="slide-list" :class="`step${step}`">
         <div class="dict-page">
@@ -193,7 +193,7 @@ const dictIsArticle = $computed(() => {
             <div class="dict-list-wrapper">
               <DictGroup
                   v-for="item in groupedByCategoryAndTag"
-                  :select-dict-name="base.currentEditDict.name"
+                  :select-dict-name="runtimeStore.editDict.name"
                   @selectDict="selectDict"
                   @detail="step = 1"
                   :groupByTag="item[1]"/>
@@ -216,16 +216,16 @@ const dictIsArticle = $computed(() => {
           </header>
           <div class="page-content">
             <div class="detail">
-              <div class="name">{{ base.currentEditDict.name }}</div>
-              <div class="desc">{{ base.currentEditDict.description }}</div>
+              <div class="name">{{ runtimeStore.editDict.name }}</div>
+              <div class="desc">{{ runtimeStore.editDict.description }}</div>
               <div class="num"
                    v-if="dictIsArticle"
-              >总文章：{{ base.currentEditDict.articles.length }}篇
+              >总文章：{{ runtimeStore.editDict.articles.length }}篇
               </div>
               <div class="num"
                    v-else
-                   @click="emitter.emit(EventKey.openWordListModal,{title:'所有单词',list:base.currentEditDict.words})">
-                总词汇：<span class="count">{{ base.currentEditDict.length }}词</span>
+                   @click="emitter.emit(EventKey.openWordListModal,{title:'所有单词',list:runtimeStore.editDict.words})">
+                总词汇：<span class="count">{{ runtimeStore.editDict.length }}词</span>
               </div>
               <div class="num">开始日期：-</div>
               <div class="num">花费时间：-</div>
@@ -238,16 +238,16 @@ const dictIsArticle = $computed(() => {
             </div>
             <div class="setting">
               <div class="common-title">学习设置</div>
-              <div class="row" v-if="!isArticle(base.currentEditDict.type)">
+              <div class="row" v-if="!isArticle(runtimeStore.editDict.type)">
                 <div class="label">每章单词数</div>
                 <el-slider :min="10"
                            :step="10"
                            :max="100"
-                           v-model="base.currentEditDict.chapterWordNumber"
+                           v-model="runtimeStore.editDict.chapterWordNumber"
                            @change="resetChapterList"
                 />
                 <div class="option">
-                  <span>{{ base.currentEditDict.chapterWordNumber }}</span>
+                  <span>{{ runtimeStore.editDict.chapterWordNumber }}</span>
                 </div>
               </div>
               <div class="row">
@@ -311,19 +311,19 @@ const dictIsArticle = $computed(() => {
             <div class="other">
               <div class="common-title">
                 <template v-if="dictIsArticle">
-                  文章列表：共{{ base.currentEditDict.articles.length }}章
+                  文章列表：共{{ runtimeStore.editDict.articles.length }}章
                 </template>
                 <template v-else>
                   章节列表：共{{
-                    base.currentEditDict.chapterWords.length
-                  }}章(每章{{ base.currentEditDict.chapterWordNumber }}词)
+                    runtimeStore.editDict.chapterWords.length
+                  }}章(每章{{ runtimeStore.editDict.chapterWordNumber }}词)
                 </template>
               </div>
               <ChapterList
                   @showWord="showWord"
                   :is-article="dictIsArticle"
-                  v-model:active-index="base.currentEditDict.chapterIndex"
-                  :dict="base.currentEditDict"/>
+                  v-model:active-index="runtimeStore.editDict.chapterIndex"
+                  :dict="runtimeStore.editDict"/>
             </div>
           </div>
           <div v-if="false" class="activity">
@@ -340,9 +340,9 @@ const dictIsArticle = $computed(() => {
             />
           </div>
           <div class="footer">
-            <BaseButton @click="step = 0">导出</BaseButton>
-            <BaseButton @click="step = 0">返回</BaseButton>
-            <BaseButton @click="changeDict">确定</BaseButton>
+            <!--            <BaseButton @click="step = 0">导出</BaseButton>-->
+            <BaseButton @click="close">关闭</BaseButton>
+            <BaseButton @click="changeDict">切换</BaseButton>
           </div>
         </div>
       </div>

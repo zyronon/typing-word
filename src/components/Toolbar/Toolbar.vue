@@ -102,7 +102,7 @@ watch(() => settingStore.showToolbar, n => {
             color="#999"/>
     </Tooltip>
   </header>
-  <DictModal v-if="showDictModal" @close="showDictModal = false"/>
+  <DictModal :model-value="showDictModal" @close="showDictModal = false"/>
   <SettingModal v-if="showSettingModal" @close="showSettingModal = false"/>
   <FeedbackModal v-if="showFeedbackModal" @close="showFeedbackModal = false"/>
 </template>

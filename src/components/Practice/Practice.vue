@@ -16,7 +16,7 @@ import {Article, DefaultArticle, TranslateType} from "@/types.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {renewSectionTexts, renewSectionTranslates} from "@/hooks/translate.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
-import EditArticleModal from "@/components/Article/EditSingleArticleModal.vue";
+import EditSingleArticleModal from "@/components/Article/EditSingleArticleModal.vue";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
@@ -55,10 +55,12 @@ watch(() => store.load, n => {
   }
 })
 
-watch([() => store.current.index, () => store.current.dictType], n => {
+watch([
+  () => store.current.index,
+  () => store.current.dictType,
+  () => store.currentDict.chapterIndex], n => {
   getCurrentPractice()
 })
-
 
 function getCurrentPractice() {
   // console.log('store.currentDict',store.currentDict)
@@ -157,11 +159,11 @@ function next() {
   repeat()
 }
 
-function saveArticle() {
-  console.log('saveArticle')
+function saveArticle(val: Article) {
+  console.log('saveArticle', val)
   showEditArticle = false
-  articleData.article = cloneDeep(store.currentDict.articles[store.currentDict.chapterIndex])
-  // store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = article
+  // articleData.article = cloneDeep(store.currentDict.articles[store.currentDict.chapterIndex])
+  store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = val
 }
 
 function test() {
@@ -200,9 +202,9 @@ function test() {
       @repeat="repeat"
       @next="next"
   />
-  <EditArticleModal v-model="showEditArticle"
-                    :article="editArticle"
-                    @save="saveArticle"
+  <EditSingleArticleModal v-model="showEditArticle"
+                          :article="editArticle"
+                          @save="saveArticle"
   />
 </template>
 

@@ -83,7 +83,7 @@ onUnmounted(() => {
 
 .footer {
   width: var(--toolbar-width);
-  margin-bottom: 30rem;
+  margin-bottom: 10rem;
   transition: all .3s;
   position: relative;
   margin-top: 30rem;
@@ -93,7 +93,7 @@ onUnmounted(() => {
     margin-top: 65rem;
 
     .progress {
-      bottom: calc(100% + 30rem);
+      bottom: calc(100% + 20rem);
     }
   }
   .bottom {
@@ -102,7 +102,7 @@ onUnmounted(() => {
     box-sizing: border-box;
     border-radius: 10rem;
     background: var(--color-header-bg);
-    padding: 2rem 10rem 10rem 10rem;
+    padding: 3rem 10rem 10rem 10rem;
     z-index: 2;
 
     .stat {

@@ -5,13 +5,11 @@ import {$ref} from "vue/macros";
 import {watchEffect} from "vue";
 
 interface IProps {
-  value?: string,
-  fontSize?: string,
+  value: string,
 }
 
 const props = withDefaults(defineProps<IProps>(), {
   value: '',
-  fontSize: '16rem'
 })
 
 const emit = defineEmits([
@@ -29,24 +27,34 @@ function save() {
   emit('save', editVal)
   edit = false
 }
+
+function toggle() {
+  edit = !edit
+}
 </script>
 
 <template>
-  <div class="edit-text" v-if="edit">
+  <div
+      v-if="edit"
+      class="edit-text">
     <el-input
         v-model="editVal"
+        ref="inputRef"
         autosize
+        autofocus
         type="textarea"
-        :input-style="`color:black;font-size: ${fontSize};`"
+        :input-style="`color:black;font-size: 16rem;`"
     />
     <div class="options">
-      <BaseButton @click="edit = false">取消</BaseButton>
+      <BaseButton @click="toggle">取消</BaseButton>
       <BaseButton @click="save">保存</BaseButton>
     </div>
   </div>
-  <div class="text"
-       :style="`font-size: ${fontSize};`"
-       v-else @click="edit = true">
+  <div
+      v-else
+      class="text"
+      :style="`font-size: 16rem;`"
+      @click="toggle">
     {{ value }}
   </div>
 </template>

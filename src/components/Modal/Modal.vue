@@ -124,15 +124,15 @@ async function cancel() {
             ]"
            @click.stop="null"
       >
+        <Tooltip title="关闭">
+          <Icon @click="close"
+                v-if="showClose"
+                class="close hvr-grow pointer"
+                width="20" color="#929596"
+                icon="ion:close-outline"/>
+        </Tooltip>
         <div class="modal-header" v-if="header">
           <div class="title">{{ props.title }}</div>
-          <Tooltip title="关闭">
-            <Icon @click="close"
-                  v-if="showClose"
-                  class="close hvr-grow pointer"
-                  width="20" color="#929596"
-                  icon="ion:close-outline"/>
-          </Tooltip>
         </div>
         <div class="modal-body" :class="{padding}">
           <slot></slot>
@@ -251,6 +251,13 @@ $header-height: 60rem;
     display: flex;
     flex-direction: column;
     transition: transform $time, opacity $time;
+
+    .close{
+      position: absolute;
+      right: 20rem;
+      top: 20rem;
+      z-index: 999;
+    }
 
     .modal-header {
       display: flex;

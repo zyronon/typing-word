@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {saveAs} from "file-saver";
-import {onUnmounted, reactive} from "vue";
-import {Article, DefaultArticle, DictType, Sort, TranslateType} from "@/types.ts";
+import {onMounted, onUnmounted} from "vue";
+import {Article, DefaultArticle, DictType, Sort} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {cloneDeep} from "lodash-es";
 import BaseIcon from "@/components/BaseIcon.vue";
@@ -9,16 +9,17 @@ import {useBaseStore} from "@/stores/base.ts";
 import {$computed, $ref} from "vue/macros";
 import List from "@/components/List.vue";
 import {v4 as uuidv4} from 'uuid';
-import {Icon} from "@iconify/vue";
 import Modal from "@/components/Modal/Modal.vue";
 import EditArticle from "@/components/Article/EditArticle.vue";
-import {onMounted} from "vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useDisableEventListener} from "@/hooks/event.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
+import {useRuntimeStore} from "@/stores/runtime.ts";
 
 
 const base = useBaseStore()
+const runtimeStore = useRuntimeStore()
+
 let article = $ref<Article>(cloneDeep(DefaultArticle))
 let show = $ref(false)
 let showImportBtn = $ref(true)
@@ -40,59 +41,64 @@ onUnmounted(() => {
 
 useDisableEventListener(() => show)
 
-function selectArticle(item: Article) {
-  article = cloneDeep(item)
-  // console.log('article', article)
+async function selectArticle(item: Article) {
+  let r = await checkDataChange()
+  if (r) {
+    article = cloneDeep(item)
+  }
 }
 
-function add() {
-  let editArticle: Article = editArticleRef.getEditArticle()
+function checkDataChange() {
+  return new Promise(resolve => {
+    let editArticle: Article = editArticleRef.getEditArticle()
 
-  const newArticle = () => {
+    if (editArticle.id !== '-1') {
+      editArticle.title = editArticle.title.trim()
+      editArticle.titleTranslate = editArticle.titleTranslate.trim()
+      editArticle.text = editArticle.text.trim()
+      editArticle.textCustomTranslate = editArticle.textCustomTranslate.trim()
+      editArticle.textNetworkTranslate = editArticle.textNetworkTranslate.trim()
+
+      if (
+          editArticle.title !== article.title ||
+          editArticle.titleTranslate !== article.titleTranslate ||
+          editArticle.text !== article.text ||
+          editArticle.textCustomTranslate !== article.textCustomTranslate ||
+          editArticle.textNetworkTranslate !== article.textNetworkTranslate ||
+          editArticle.useTranslateType !== article.useTranslateType
+      ) {
+        return MessageBox.confirm(
+            '检测到数据有变动，是否保存？',
+            '提示',
+            async () => {
+              let r = await editArticleRef.save('save')
+              if (r) resolve(true)
+            },
+            () => void 0,
+        )
+      }
+    } else {
+      if (editArticle.title.trim() && editArticle.text.trim()) {
+        return MessageBox.confirm(
+            '检测到数据有变动，是否保存？',
+            '提示',
+            async () => {
+              let r = await editArticleRef.save('save')
+              if (r) resolve(true)
+            },
+            () => void 0,
+        )
+      }
+    }
+    resolve(true)
+  })
+}
+
+async function add() {
+  let r = await checkDataChange()
+  if (r) {
     article = cloneDeep(DefaultArticle)
-    // article.title = 'a'
-    // article.text = 'b'
   }
-  if (editArticle.id !== '-1') {
-    editArticle.title = editArticle.title.trim()
-    editArticle.titleTranslate = editArticle.titleTranslate.trim()
-    editArticle.text = editArticle.text.trim()
-    editArticle.textCustomTranslate = editArticle.textCustomTranslate.trim()
-    editArticle.textNetworkTranslate = editArticle.textNetworkTranslate.trim()
-
-    if (
-        editArticle.title !== article.title ||
-        editArticle.titleTranslate !== article.titleTranslate ||
-        editArticle.text !== article.text ||
-        editArticle.textCustomTranslate !== article.textCustomTranslate ||
-        editArticle.textNetworkTranslate !== article.textNetworkTranslate ||
-        editArticle.useTranslateType !== article.useTranslateType
-    ) {
-      return MessageBox.confirm(
-          '检测到数据有变动，是否保存？',
-          '提示',
-          async () => {
-            let r = await editArticleRef.save('save')
-            if (r) newArticle()
-          },
-          () => void 0,
-      )
-    }
-  } else {
-    if (editArticle.title.trim() && editArticle.text.trim()) {
-      return MessageBox.confirm(
-          '检测到数据有变动，是否保存？',
-          '提示',
-          async () => {
-            let r = await editArticleRef.save('save')
-            if (r) newArticle()
-          },
-          () => void 0,
-      )
-    }
-  }
-
-  newArticle()
 }
 
 function importData(e: Event) {
@@ -166,7 +172,7 @@ function importData(e: Event) {
         duration: 5000
       })
       base.myDicts.push(obj)
-      base.current.editIndex = base.myDicts.length - 1
+      runtimeStore.editDict = cloneDeep(runtimeStore.editDict)
       showImportBtn = true
     } catch (e) {
       showImportBtn = true
@@ -177,49 +183,57 @@ function importData(e: Event) {
 
 function exportData() {
   let data = {
-    name: base.currentEditDict.name,
-    articles: cloneDeep(base.currentEditDict.articles).map(v => {
+    name: runtimeStore.editDict.name,
+    articles: cloneDeep(runtimeStore.editDict.articles).map(v => {
       delete v.sections
       delete v.id
       return v
     }),
-    url: location.origin + base.currentEditDict.url,
-    statistics: base.currentEditDict.statistics,
+    url: location.origin + runtimeStore.editDict.url,
+    statistics: runtimeStore.editDict.statistics,
   }
 
   let blob = new Blob([JSON.stringify(data, null, 2)], {type: "text/plain;charset=utf-8"});
   saveAs(blob, `${data.name}.json`);
 }
 
-function saveArticle(val: Article) {
+function saveArticle(val: Article): boolean {
   console.log('saveArticle', val)
-  if (val.id !== '-1') {
-    let rIndex = base.currentEditDict.articles.findIndex(v => v.id === val.id)
+  if (val.id) {
+    let rIndex = runtimeStore.editDict.articles.findIndex(v => v.id === val.id)
     if (rIndex > -1) {
-      base.currentEditDict.articles[rIndex] = cloneDeep(val)
+      runtimeStore.editDict.articles[rIndex] = cloneDeep(val)
     }
   } else {
-    let has = base.currentEditDict.articles.find((item: Article) => item.title === val.title)
+    let has = runtimeStore.editDict.articles.find((item: Article) => item.title === val.title)
     if (has) {
-      return ElMessage.error('已存在同名文章！')
+      ElMessage.error('已存在同名文章！')
+      return false
     }
     val.id = uuidv4()
-    base.currentEditDict.articles.push(val)
-    article = cloneDeep(val)
+    runtimeStore.editDict.articles.push(val)
   }
+  article = cloneDeep(val)
   //TODO 保存完成后滚动到对应位置
   ElMessage.success('保存成功！')
+  return true
+}
+
+function saveAndNext(val: Article) {
+  if (saveArticle(val)) {
+    add()
+  }
 }
 
 const list = $computed(() => {
-  if (article.id === '-1') {
-    return base.currentEditDict.articles.concat([article])
+  if (!article.id) {
+    return runtimeStore.editDict.articles.concat([article])
   }
-  return base.currentEditDict.articles
+  return runtimeStore.editDict.articles
 })
 
 function getTitle(item: Article, index: number,) {
-  if (item.id === '-1') return 'New article'
+  if (!item.id) return 'New article'
   return `${index + 1}. ${item.title}`
 }
 </script>
@@ -233,7 +247,7 @@ function getTitle(item: Article, index: number,) {
     <div class="add-article">
       <div class="slide">
         <header>
-          <div class="dict-name">{{ base.currentEditDict.name }}</div>
+          <div class="dict-name">{{ runtimeStore.editDict.name }}</div>
           <BaseIcon title="选择其他词典/文章" icon="carbon:change-catalog"/>
         </header>
         <List
@@ -260,12 +274,8 @@ function getTitle(item: Article, index: number,) {
           ref="editArticleRef"
           type="batch"
           @save="saveArticle"
+          @saveAndNext="saveAndNext"
           :article="article"/>
-
-      <Icon @click="show = false"
-            class="close hvr-grow pointer"
-            width="20" color="#929596"
-            icon="ion:close-outline"/>
     </div>
   </Modal>
 </template>
