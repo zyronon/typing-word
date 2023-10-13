@@ -51,7 +51,6 @@ useEventListener('keyup', (e: KeyboardEvent) => {
         <Practice/>
     <!--    <AddArticle/>-->
     <!--      <Side/>-->
-<!--    <BatchAddArticle/>-->
   </div>
 </template>
 

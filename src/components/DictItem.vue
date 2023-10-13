@@ -1,38 +1,20 @@
 <script setup lang="ts">
+import {Dict} from "@/types.ts";
 import {Icon} from "@iconify/vue";
-import {$computed, $ref} from "vue/macros";
-import {watch} from "vue";
-import {DictionaryResource} from "@/types.ts";
 
 const props = defineProps<{
-  category?: string,
-  groupByTag: any,
-  selectDictName: string
+  list?: Dict[],
+  selectDictName?: string
 }>()
-const emit = defineEmits<{
-  selectDict: [index: DictionaryResource],
-  detail: [],
-}>()
-const tagList = $computed(() => Object.keys(props.groupByTag))
-let currentTag = $ref(tagList[0])
-let list = $computed(() => {
-  return props.groupByTag[currentTag]
-})
-let step = $ref(0)
 
-watch(() => props.groupByTag, () => {
-  currentTag = tagList[0]
-})
+const emit = defineEmits<{
+  selectDict: [val: Dict]
+  detail: []
+}>()
 
 </script>
 
 <template>
-  <div class="tags">
-    <div class="tag" :class="i === currentTag &&'active'"
-         @click="currentTag = i"
-         v-for="i in Object.keys(groupByTag)">{{ i }}
-    </div>
-  </div>
   <div class="dict-list">
     <div class="dict-item anim"
          :class="selectDictName === i.name && 'active'"
@@ -51,24 +33,6 @@ watch(() => props.groupByTag, () => {
 </template>
 
 <style scoped lang="scss">
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 10rem 0;
-
-  .tag {
-    color: var(--color-font-1);
-    cursor: pointer;
-    padding: 5rem 10rem;
-    border-radius: 20rem;
-
-    &.active {
-      color: var(--color-font-active-1);
-      background: gray;
-    }
-  }
-}
-
 .dict-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -112,4 +76,5 @@ watch(() => props.groupByTag, () => {
     }
   }
 }
+
 </style>

@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Add: typeof import('./src/components/Toolbar/Add.vue')['default']
     AddArticle2: typeof import('./src/components/Add/AddArticle2.vue')['default']
+    AddDict: typeof import('./src/components/Add/AddDict.vue')['default']
     Backgorund: typeof import('./src/components/Backgorund.vue')['default']
     BaseButton: typeof import('./src/components/BaseButton.vue')['default']
     BaseIcon: typeof import('./src/components/BaseIcon.vue')['default']
@@ -17,6 +18,7 @@ declare module 'vue' {
     ChapterList: typeof import('./src/components/ChapterList.vue')['default']
     Close: typeof import('./src/components/Close.vue')['default']
     DictGroup: typeof import('./src/components/Toolbar/DictGroup.vue')['default']
+    DictItem: typeof import('./src/components/DictItem.vue')['default']
     DictList: typeof import('./src/components/DictList.vue')['default']
     DictModal: typeof import('./src/components/Toolbar/DictModal.vue')['default']
     Edit: typeof import('./src/components/Article/Edit.vue')['default']
