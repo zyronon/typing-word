@@ -6,31 +6,29 @@ import {Translator} from "@opentranslate/translator/src/translator.ts";
 
 export function renewSectionTranslates(article: Article, translate: string) {
   let failCount = 0
-  if (translate.trim()) {
     let articleTranslate = translate.split('\n')
     // console.log('articleTranslate', articleTranslate)
     // console.log('articleTranslate', articleTranslate)
     let count = 0
     for (let i = 0; i < article.sections.length; i++) {
-      let v = article.sections[i]
-      for (let j = 0; j < v.length; j++) {
-        let sentence = v[j]
-        try {
-          let trans = articleTranslate[count]
-          if (trans) {
-            sentence.translate = trans
-          } else {
-            failCount++
-          }
-        } catch (e) {
-          failCount++
-          // console.log('没有对应的翻译', sentence.text)
+        let v = article.sections[i]
+        for (let j = 0; j < v.length; j++) {
+            let sentence = v[j]
+            try {
+                let trans = articleTranslate[count]
+                if (trans) {
+                    sentence.translate = trans
+                } else {
+                    failCount++
+                }
+            } catch (e) {
+                failCount++
+                // console.log('没有对应的翻译', sentence.text)
+            }
+            count++
         }
         count++
-      }
-      count++
     }
-  }
   return failCount
 }
 

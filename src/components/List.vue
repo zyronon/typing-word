@@ -82,10 +82,24 @@ function delItem(item: T) {
   }
 }
 
+let el: HTMLDivElement = $ref()
+
+function scrollBottom() {
+  el.scrollTo({
+    top: el.scrollHeight,
+    left: 0,
+    behavior: "smooth",
+  });
+}
+
+defineExpose({scrollBottom})
+
 </script>
 
 <template>
-  <div class="list-wrapper">
+  <div class="list-wrapper"
+       ref="el"
+  >
     <div class="search">
       <Input v-model="searchKey"/>
     </div>
@@ -145,6 +159,7 @@ function delItem(item: T) {
 }
 
 .list-wrapper {
+  transition: all .3s;
   flex: 1;
   overflow: overlay;
   padding-right: 5rem;

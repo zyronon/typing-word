@@ -16,7 +16,6 @@ import {useDisableEventListener} from "@/hooks/event.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 
-
 const base = useBaseStore()
 const runtimeStore = useRuntimeStore()
 
@@ -24,6 +23,7 @@ let article = $ref<Article>(cloneDeep(DefaultArticle))
 let show = $ref(false)
 let showImportBtn = $ref(true)
 let editArticleRef: any = $ref()
+let listEl: any = $ref()
 
 onMounted(() => {
   emitter.on(EventKey.openArticleListModal, (val: Article) => {
@@ -212,6 +212,9 @@ function saveArticle(val: Article): boolean {
     }
     val.id = uuidv4()
     runtimeStore.editDict.articles.push(val)
+    setTimeout(()=>{
+      listEl.scrollBottom()
+    })
   }
   article = cloneDeep(val)
   //TODO 保存完成后滚动到对应位置
@@ -225,17 +228,6 @@ function saveAndNext(val: Article) {
   }
 }
 
-const list = $computed(() => {
-  if (!article.id) {
-    return runtimeStore.editDict.articles.concat([article])
-  }
-  return runtimeStore.editDict.articles
-})
-
-function getTitle(item: Article, index: number,) {
-  if (!item.id) return 'New article'
-  return `${index + 1}. ${item.title}`
-}
 </script>
 
 <template>
@@ -251,16 +243,20 @@ function getTitle(item: Article, index: number,) {
           <BaseIcon title="选择其他词典/文章" icon="carbon:change-catalog"/>
         </header>
         <List
-            v-model:list="list"
+            ref="listEl"
+            v-model:list="runtimeStore.editDict.articles"
             :select-item="article"
             @del-select-item="article = cloneDeep(DefaultArticle)"
             @select-item="selectArticle"
         >
           <template v-slot="{item,index}">
-            <div class="name"> {{ getTitle(item, index) }}</div>
+            <div class="name"> {{ `${index + 1}. ${item.title}` }}</div>
             <div class="translate-name"> {{ `   ${item.titleTranslate}` }}</div>
           </template>
         </List>
+        <div class="add" v-if="!article.title">
+          正在添加新文章...
+        </div>
         <div class="footer">
           <div class="import" v-if="showImportBtn">
             <BaseButton>导入</BaseButton>
@@ -330,6 +326,19 @@ function getTitle(item: Article, index: number,) {
 
     .translate-name {
       font-size: 16rem;
+    }
+
+    .add {
+      width: 260rem;
+      box-sizing: border-box;
+      border-radius: 8rem;
+      margin-bottom: 10rem;
+      padding: 10rem;
+      display: flex;
+      justify-content: space-between;
+      transition: all .3s;
+      color: white;
+      background: var(--color-item-active);
     }
 
     .footer {
