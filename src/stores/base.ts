@@ -8,7 +8,6 @@ export interface State {
   newWordDict: Dict,
   skipWordDict: Dict,
   wrongWordDict: Dict,
-  dict: Dict,
   myDicts: Dict[],
   current: {
     dictType: DictType,
@@ -24,6 +23,7 @@ export const useBaseStore = defineStore('base', {
   state: (): State => {
     return {
       newWordDict: {
+        id:'newWordDict',
         name: '生词本',
         sort: Sort.normal,
         type: DictType.newWordDict,
@@ -38,6 +38,7 @@ export const useBaseStore = defineStore('base', {
         url: '',
       },
       skipWordDict: {
+        id:'skipWordDict',
         name: '简单词',
         sort: Sort.normal,
         type: DictType.skipWordDict,
@@ -52,6 +53,7 @@ export const useBaseStore = defineStore('base', {
         url: '',
       },
       wrongWordDict: {
+        id:'wrongWordDict',
         name: '错词本',
         sort: Sort.normal,
         type: DictType.wrongWordDict,
@@ -65,36 +67,9 @@ export const useBaseStore = defineStore('base', {
         statistics: [],
         url: '',
       },
-      // dict: {
-      //     name: '新概念英语-2',
-      //     sort: Sort.normal,
-      //     type: DictType.innerDict,
-      //     originWords: [],
-      //     articles: [],
-      //     words: [],
-      //     chapterWordNumber: 15,
-      //     chapterWords: [],
-      //     chapterIndex: 0,
-      //     chapterWordIndex: 0,
-      //     statistics: [],
-      //     url: '/dicts/NCE_2.json',
-      // },
-      dict: {
-        name: '新概念英语2-课文',
-        sort: Sort.normal,
-        type: DictType.publicArticle,
-        originWords: [],
-        articles: [],
-        words: [],
-        chapterWordNumber: 15,
-        chapterWords: [],
-        chapterIndex: 0,
-        chapterWordIndex: 0,
-        statistics: [],
-        url: '/articles/NCE_2.json',
-      },
       myDicts: [
         {
+          id:'新概念英语2-课文',
           name: '新概念英语2-课文',
           sort: Sort.normal,
           type: DictType.publicArticle,
@@ -109,6 +84,7 @@ export const useBaseStore = defineStore('base', {
           url: '/articles/NCE_2.json',
         },
         {
+          id:'新概念英语2',
           name: '新概念英语2',
           sort: Sort.normal,
           type: DictType.publicDict,

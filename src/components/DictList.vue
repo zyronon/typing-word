@@ -9,26 +9,32 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   selectDict: [val: Dict]
-  detail: []
+  detail: [],
+  add: []
 }>()
 
 </script>
 
 <template>
   <div class="dict-list">
-    <div class="dict-item anim"
-         :class="selectDictName === i.name && 'active'"
-         @click="emit('selectDict',i)"
-         v-for="i in list"
-    >
-      <div class="name">{{ i.name }}</div>
-      <div class="desc">{{ i.description }}</div>
-      <div class="num">{{ i.length }}词</div>
+    <template v-for="i in list">
+      <div class="dict-item anim"
+           :class="selectDictName === i.name && 'active'"
+           @click="emit('selectDict',i)"
+           v-if="i.name"
+      >
+        <div class="name">{{ i.name }}</div>
+        <div class="desc">{{ i.description }}</div>
+        <div class="num">{{ i.length }}词</div>
 
-      <Icon icon="octicon:arrow-right-24" v-if="selectDictName === i.name"
-            @click.stop="emit('detail')"
-            class="go" width="20" color="#929596"/>
-    </div>
+        <Icon icon="octicon:arrow-right-24" v-if="selectDictName === i.name"
+              @click.stop="emit('detail')"
+              class="go" width="20" color="#929596"/>
+      </div>
+      <div v-else class="dict-item add" @click.stop="emit('add')">
+        <Icon icon="fluent:add-20-filled" width="60" color="#929596"/>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -74,6 +80,12 @@ const emit = defineEmits<{
         color: var(--color-font-active-2);
       }
     }
+  }
+
+  .add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 

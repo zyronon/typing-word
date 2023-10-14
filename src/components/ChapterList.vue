@@ -12,7 +12,6 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   'update:activeIndex': [index: number]
-  showWord: [list: any[]]
 }>()
 
 

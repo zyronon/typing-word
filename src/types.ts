@@ -1,3 +1,9 @@
+import bookFlag from "@/assets/img/flags/book.png";
+import enFlag from "@/assets/img/flags/en.png";
+import jpFlag from "@/assets/img/flags/ja.png";
+import deFlag from "@/assets/img/flags/de.png";
+import codeFlag from "@/assets/img/flags/code.png";
+
 export type Word = {
   "name": string,
   "usphone": string,
@@ -34,6 +40,7 @@ export type DictionaryResource = {
 }
 
 export interface Dict {
+  id: string,
   name: string,
   sort: Sort,
   type: DictType,
@@ -156,3 +163,11 @@ export const ShortKeyMap = {
 export enum TranslateEngine {
   Baidu = 0,
 }
+
+export const languageCategoryOptions = [
+  {id: 'article', name: '文章', flag: bookFlag},
+  {id: 'en', name: '英语', flag: enFlag},
+  {id: 'ja', name: '日语', flag: jpFlag},
+  {id: 'de', name: '德语', flag: deFlag},
+  {id: 'code', name: 'Code', flag: codeFlag},
+]

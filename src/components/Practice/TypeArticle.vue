@@ -412,7 +412,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
           <div class="article-wrapper">
             <header>
               <div class="title">{{ props.article.title }}</div>
-              <div class="titleTranslate" >{{ props.article.titleTranslate }}</div>
+              <div class="titleTranslate" v-if="settingStore.translate">{{ props.article.titleTranslate }}</div>
             </header>
             <div class="article-content" ref="articleWrapperRef">
               <article>

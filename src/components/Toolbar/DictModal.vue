@@ -2,7 +2,7 @@
 import {dictionaryResources} from '@/assets/dictionary.ts'
 import {useBaseStore} from "@/stores/base.ts"
 import {watch} from "vue"
-import {Dict, DictionaryResource, DictType, Sort, Word} from "@/types.ts"
+import {Dict, DictionaryResource, DictType, languageCategoryOptions, Sort, Word} from "@/types.ts"
 import {chunk, cloneDeep} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
 import Modal from "@/components/Modal/Modal.vue";
@@ -37,14 +37,6 @@ const props = withDefaults(defineProps<IProps>(), {
 const emit = defineEmits<{
   close: []
 }>()
-
-const options = [
-  {id: 'article', name: '文章', flag: bookFlag},
-  {id: 'en', name: '英语', flag: enFlag},
-  {id: 'ja', name: '日语', flag: jpFlag},
-  {id: 'de', name: '德语', flag: deFlag},
-  {id: 'code', name: 'Code', flag: codeFlag},
-]
 
 const base = useBaseStore()
 let currentLanguage = $ref('en')
@@ -155,10 +147,6 @@ function clickEvent(e) {
   console.log('e', e)
 }
 
-function showWord(list: Word[]) {
-  console.log('list', list)
-}
-
 const dictIsArticle = $computed(() => {
   return isArticle(runtimeStore.editDict.type)
 })
@@ -179,7 +167,7 @@ const dictIsArticle = $computed(() => {
               <div class="tab"
                    :class="currentLanguage === item.id && 'active'"
                    @click="currentLanguage = item.id"
-                   v-for="item in options">
+                   v-for="item in languageCategoryOptions">
                 <img :src='item.flag'/>
                 <span>{{ item.name }}</span>
               </div>
@@ -320,7 +308,6 @@ const dictIsArticle = $computed(() => {
                 </template>
               </div>
               <ChapterList
-                  @showWord="showWord"
                   :is-article="dictIsArticle"
                   v-model:active-index="runtimeStore.editDict.chapterIndex"
                   :dict="runtimeStore.editDict"/>
@@ -360,7 +347,7 @@ $time: 0.3s;
 $header-height: 60rem;
 
 .slide {
-  width: 1100rem;
+  width: 1000rem;
   height: 75vh;
 
   .slide-list {
@@ -500,7 +487,7 @@ $header-height: 60rem;
 
     .setting {
       overflow: auto;
-      flex: 5;
+      flex: 4;
       background: white;
       border-radius: 10rem;
       background: var(--color-second-bg);

@@ -12,7 +12,7 @@ let show = $ref(false)
 
 function toggle() {
   show = !show
-  emitter.emit(EventKey.openArticleListModal)
+  // emitter.emit(EventKey.openArticleListModal)
 }
 </script>
 
@@ -25,7 +25,7 @@ function toggle() {
         />
       </IconWrapper>
     </Tooltip>
-    <!--    <EditBatchArticleModal/>-->
+        <EditBatchArticleModal/>
     <AddDict v-if="show" @close="show = false"/>
   </div>
 </template>

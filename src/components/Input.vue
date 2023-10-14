@@ -37,13 +37,14 @@ useWindowClick((e: PointerEvent) => {
 @import "@/assets/css/style.scss";
 
 .base-input {
-  border: 1px solid var(--color-main-bg);
+  border: 1px solid var(--color-second-bg);
   border-radius: 4rem;
   padding: 3rem 5rem;
   transition: all .3s;
   display: flex;
   align-items: center;
   transition: all .3s;
+  background: white;
 
   :deep(svg) {
     transition: all .3s;

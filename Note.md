@@ -40,3 +40,5 @@ BaseIcon 在选中模式下，应该显示白色
 A cold welcome 有bug
 
 [EditAbleText.vue](src%2Fcomponents%2FEditAbleText.vue) 不能自动聚焦
+
+在文章模式下，背单词时不能调出面板

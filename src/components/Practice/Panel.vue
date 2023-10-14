@@ -250,7 +250,7 @@ $header-height: 50rem;
   margin-left: calc(50% + (var(--toolbar-width) / 2) + $space);
   width: $width;
   background: var(--color-second-bg);
-  height: calc(100% - 40rem);
+  height: calc(100% - 20rem);
   display: flex;
   flex-direction: column;
   transition: all .3s;

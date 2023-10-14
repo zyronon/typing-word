@@ -17,6 +17,8 @@ defineEmits(['click'])
 <style scoped lang="scss">
 .close {
   cursor: pointer;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
