@@ -100,9 +100,9 @@ export const useBaseStore = defineStore('base', {
         }
       ],
       current: {
-        // dictType: DictType.publicDict,
-        dictType: DictType.publicArticle,
-        index: 0,
+        dictType: DictType.publicDict,
+        // dictType: DictType.publicArticle,
+        index: 1,
         editIndex: 0,
         repeatNumber: 0,
       },

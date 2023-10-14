@@ -42,3 +42,5 @@ A cold welcome 有bug
 [EditAbleText.vue](src%2Fcomponents%2FEditAbleText.vue) 不能自动聚焦
 
 在文章模式下，背单词时不能调出面板
+
+单词发音，点击第二遍时减速

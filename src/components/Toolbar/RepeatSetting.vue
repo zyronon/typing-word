@@ -50,7 +50,7 @@ onMounted(() => {
         <label class="item-title">自定义循环次数</label>
         <el-input-number  v-model="settingStore.repeatCustomCount"
                   :min="6"
-                  :max="100"
+                  :max="15"
                   type="number"
         />
       </div>

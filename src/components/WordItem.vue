@@ -55,6 +55,10 @@ const emit = defineEmits<{
   &.active {
     background: $second;
     color: white;
+
+    .phonetic {
+      color: white!important;
+    }
   }
 
   &:hover {

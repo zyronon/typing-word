@@ -36,6 +36,7 @@ let input = $ref('')
 let wrong = $ref('')
 let showFullWord = $ref(false)
 let activeBtnIndex = $ref(-1)
+let wordRepeatCount = $ref(0)
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
 const settingStore = useSettingStore()
@@ -64,8 +65,11 @@ watch(() => props.words, () => {
 watch(() => data.index, (n) => {
   wrong = input = ''
   practiceStore.index = n
-  playWordAudio(word.name)
-  volumeIconRef?.play()
+  wordRepeatCount = 0
+  if (settingStore.wordSound) {
+    playWordAudio(word.name)
+    volumeIconRef?.play()
+  }
 })
 
 const word = $computed(() => {
@@ -135,14 +139,10 @@ function next(isTyping: boolean = true) {
       next()
     }
   }
-  wrong = input = ''
 }
 
 function prev() {
   data.index--
-  playWordAudio(word.name)
-  volumeIconRef?.play()
-  wrong = input = ''
 }
 
 function ignore() {
@@ -182,6 +182,18 @@ function onKeyUp(e: KeyboardEvent) {
   showFullWord = false
 }
 
+function repeat() {
+  setTimeout(() => {
+    wrong = input = ''
+    wordRepeatCount++
+
+    if (settingStore.wordSound) {
+      playWordAudio(word.name)
+      volumeIconRef?.play()
+    }
+  }, settingStore.waitTimeForChangeWord)
+}
+
 async function onKeyDown(e: KeyboardEvent) {
   //TODO 还有横杠
   if ((e.keyCode >= 65 && e.keyCode <= 90) || e.code === 'Space') {
@@ -192,11 +204,7 @@ async function onKeyDown(e: KeyboardEvent) {
     } else {
       isWrong = (input + letter) !== word.name.slice(0, input.length + 1)
     }
-    if (!isWrong) {
-      input += letter
-      wrong = ''
-      playKeyboardAudio()
-    } else {
+    if (isWrong) {
       if (!store.wrongWordDict.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
         store.wrongWordDict.originWords.push(word)
         store.wrongWordDict.words.push(word)
@@ -212,10 +220,26 @@ async function onKeyDown(e: KeyboardEvent) {
       setTimeout(() => {
         wrong = ''
       }, 500)
+    } else {
+      input += letter
+      wrong = ''
+      playKeyboardAudio()
     }
     if (input.toLowerCase() === word.name.toLowerCase()) {
       playCorrect()
-      setTimeout(next, settingStore.waitTimeForChangeWord)
+      if (settingStore.repeatCount == 100) {
+        if (settingStore.repeatCustomCount === wordRepeatCount + 1) {
+          setTimeout(next, settingStore.waitTimeForChangeWord)
+        } else {
+          repeat()
+        }
+      } else {
+        if (settingStore.repeatCount === wordRepeatCount + 1) {
+          setTimeout(next, settingStore.waitTimeForChangeWord)
+        } else {
+          repeat()
+        }
+      }
     }
   } else {
     // console.log('e', e)
@@ -262,7 +286,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
         <Icon icon="bi:arrow-left" width="22"/>
         <div class="word">
           <div>{{ prevWord.name }}</div>
-          <div>{{ prevWord.trans.join('；') }}</div>
+          <div v-show="settingStore.translate">{{ prevWord.trans.join('；') }}</div>
         </div>
       </div>
       <Tooltip title="快捷键：Tab">
@@ -271,14 +295,17 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
              v-if="nextWord">
           <div class="word">
             <div :class="settingStore.dictation && 'shadow'">{{ nextWord.name }}</div>
-            <div>{{ nextWord.trans.join('；') }}</div>
+            <div v-show="settingStore.translate">{{ nextWord.trans.join('；') }}</div>
           </div>
           <Icon icon="bi:arrow-right" width="22"/>
         </div>
       </Tooltip>
     </div>
     <div class="translate"
-         :style="{fontSize: settingStore.fontSize.wordTranslateFontSize +'rem'}"
+         :style="{
+      fontSize: settingStore.fontSize.wordTranslateFontSize +'rem',
+      opacity: settingStore.translate ? 1 : 0
+    }"
     >{{ word.trans.join('；') }}
     </div>
     <div class="word-wrapper">
@@ -299,7 +326,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
       </div>
       <VolumeIcon ref="volumeIconRef" :simple="true" @click="playWordAudio(word.name)"/>
     </div>
-    <div class="phonetic">{{ word.usphone }}</div>
+    <div class="phonetic">{{ settingStore.wordSoundType === 'us' ? word.usphone : word.ukphone }}</div>
     <div class="options">
       <BaseButton keyboard="`"
                   @click="remove"
@@ -333,7 +360,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
   flex-direction: column;
   font-size: 14rem;
   color: gray;
-  gap: 2rem;
+  gap: 6rem;
   position: relative;
   width: var(--toolbar-width);
 

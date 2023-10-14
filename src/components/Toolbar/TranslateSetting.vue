@@ -20,8 +20,9 @@ let showCustomTranslateModal = $ref(false)
 useWindowClick(() => show = false)
 
 function toggle() {
-  if (!show) emitter.emit(EventKey.closeOther)
-  show = !show
+  // if (!show) emitter.emit(EventKey.closeOther)
+  // show = !show
+  settingStore.translate = !settingStore.translate
 }
 
 let translateType = $ref(0)

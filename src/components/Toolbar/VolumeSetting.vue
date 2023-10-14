@@ -39,7 +39,7 @@ function toggle() {
       </IconWrapper>
     </Tooltip>
     <MiniModal
-        width="230rem"
+        width="250rem"
         v-model="show">
       <div class="mini-row">
         <label class="item-title">所有音效</label>
@@ -53,7 +53,7 @@ function toggle() {
         </div>
       </div>
       <div class="mini-row">
-        <label class="item-title">单词发音</label>
+        <label class="item-title">单词/句子自动发音</label>
         <div class="wrapper">
           <el-switch v-model="settingStore.wordSound"
                      inline-prompt
@@ -63,15 +63,26 @@ function toggle() {
         </div>
       </div>
       <div class="mini-row">
-        <label class="item-title">释义发音</label>
+        <label class="item-title">单词/句子发音口音</label>
         <div class="wrapper">
-          <el-switch v-model="settingStore.translateSound"
-                     inline-prompt
-                     active-text="开"
-                     inactive-text="关"
-          />
+          <el-select v-model="settingStore.wordSoundType"
+                     placeholder="请选择"
+                     size="small">
+            <el-option label="美音" value="us"/>
+            <el-option label="英音" value="uk"/>
+          </el-select>
         </div>
       </div>
+<!--      <div class="mini-row">-->
+<!--        <label class="item-title">释义发音</label>-->
+<!--        <div class="wrapper">-->
+<!--          <el-switch v-model="settingStore.translateSound"-->
+<!--                     inline-prompt-->
+<!--                     active-text="开"-->
+<!--                     inactive-text="关"-->
+<!--          />-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="mini-row">
         <label class="item-title">按键音</label>
         <div class="wrapper">
@@ -122,7 +133,9 @@ function toggle() {
 @import "@/assets/css/style";
 
 .wrapper {
+  width: 100rem;
   position: relative;
+  text-align: right;
 }
 
 .setting {

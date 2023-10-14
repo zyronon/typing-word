@@ -76,7 +76,7 @@ watch(() => settingStore.showToolbar, n => {
             <Icon icon="uil:setting" @click="showSettingModal = true"/>
           </IconWrapper>
         </Tooltip>
-        <div class="base-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>
+<!--        <div class="base-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>-->
 
         <Tooltip title="切换主题">
           <IconWrapper>

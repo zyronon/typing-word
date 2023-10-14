@@ -58,7 +58,9 @@ watch(() => store.load, n => {
 watch([
   () => store.current.index,
   () => store.current.dictType,
-  () => store.currentDict.chapterIndex], n => {
+  () => store.currentDict.chapterIndex,
+  () => store.currentDict.chapterWordNumber,
+], n => {
   getCurrentPractice()
 })
 
@@ -130,7 +132,7 @@ function getCurrentPractice() {
     }
   } else {
     wordData.words = cloneDeep(store.chapter)
-    wordData.index = store.currentDict.chapterWordIndex
+    wordData.index = 0
     console.log('wordData', wordData)
   }
 }

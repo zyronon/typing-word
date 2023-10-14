@@ -7,6 +7,7 @@ import {$ref} from "vue/macros";
 import {onMounted, onUnmounted} from "vue";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
+import WordItem from "@/components/WordItem.vue";
 
 let show = $ref(false)
 let list = $ref([])
@@ -50,6 +51,8 @@ onUnmounted(() => {
             <VolumeIcon @click="playWordAudio(source.name)"></VolumeIcon>
             <Icon icon="fluent:delete-28-regular" width="20" color="#929596"/>
           </div>
+<!--          <WordItem-->
+<!--              :word="source"/>-->
         </template>
       </virtual-list>
     </div>

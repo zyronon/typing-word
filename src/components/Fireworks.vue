@@ -12,8 +12,8 @@ import shotfire from '@/assets/sound/shotfire.mp3'
 import {useSound} from "@/hooks/sound.ts";
 
 const canvas = $ref()
-const [playBoom] = useSound([boom], 3)
-const [playShotfire] = useSound([shotfire], 3)
+const {play: playBoom} = useSound([boom], 3)
+const {play: playShotFire} = useSound([shotfire], 3)
 
 onMounted(() => {
   let ctx = canvas.getContext("2d");
@@ -120,7 +120,7 @@ onMounted(() => {
       this.dead = false;
       this.ba = getRandom(80, 200);
 
-      // playShotfire()
+      // playShotFire()
     }
 
     _move() {

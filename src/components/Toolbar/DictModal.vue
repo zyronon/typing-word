@@ -22,6 +22,7 @@ import WordListModal from "@/components/WordListModal.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {isArticle} from "@/hooks/article.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
+import {useSettingStore} from "@/stores/setting.ts";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -39,6 +40,7 @@ const emit = defineEmits<{
 }>()
 
 const base = useBaseStore()
+const settingStore = useSettingStore()
 let currentLanguage = $ref('en')
 let step = $ref(1)
 
@@ -241,34 +243,34 @@ const dictIsArticle = $computed(() => {
               <div class="row">
                 <div class="label">学习模式</div>
                 <div class="option">
-                  <el-radio-group v-model="radio1" class="ml-4">
-                    <el-radio label="1" size="large">再认</el-radio>
-                    <el-radio label="2" size="large">拼写</el-radio>
+                  <el-radio-group v-model="settingStore.dictation" class="ml-4">
+                    <el-radio :label="false" size="large">再认</el-radio>
+                    <el-radio :label="true" size="large">拼写</el-radio>
                   </el-radio-group>
                 </div>
               </div>
               <div class="row">
                 <div class="label">单词发音</div>
                 <div class="option">
-                  <el-radio-group v-model="radio1" class="ml-4">
-                    <el-radio label="1" size="large">美音</el-radio>
-                    <el-radio label="2" size="large">英音</el-radio>
+                  <el-radio-group v-model="settingStore.wordSoundType" class="ml-4">
+                    <el-radio label="us" size="large">美音</el-radio>
+                    <el-radio label="uk" size="large">英音</el-radio>
                   </el-radio-group>
                 </div>
               </div>
-              <div class="row">
-                <div class="label">词序</div>
-                <div class="option">
-                  <el-radio-group v-model="radio1" class="ml-4">
-                    <el-radio label="1" size="large">随机</el-radio>
-                    <el-radio label="2" size="large">正常</el-radio>
-                  </el-radio-group>
-                </div>
-              </div>
+<!--              <div class="row">-->
+<!--                <div class="label">词序</div>-->
+<!--                <div class="option">-->
+<!--                  <el-radio-group v-model="radio1" class="ml-4">-->
+<!--                    <el-radio label="1" size="large">随机</el-radio>-->
+<!--                    <el-radio label="2" size="large">正常</el-radio>-->
+<!--                  </el-radio-group>-->
+<!--                </div>-->
+<!--              </div>-->
               <div class="row">
                 <div class="label">单词自动发音</div>
                 <div class="option">
-                  <el-switch v-model="radio1"
+                  <el-switch v-model="settingStore.wordSound"
                              inline-prompt
                              active-text="开"
                              inactive-text="关"
@@ -278,7 +280,7 @@ const dictIsArticle = $computed(() => {
               <div class="row">
                 <div class="label">是否显示翻译</div>
                 <div class="option">
-                  <el-switch v-model="radio1"
+                  <el-switch v-model="settingStore.translate"
                              inline-prompt
                              active-text="开"
                              inactive-text="关"
@@ -288,7 +290,7 @@ const dictIsArticle = $computed(() => {
               <div class="row">
                 <div class="label">忽略大小写</div>
                 <div class="option">
-                  <el-switch v-model="radio1"
+                  <el-switch v-model="settingStore.ignoreCase"
                              inline-prompt
                              active-text="开"
                              inactive-text="关"
