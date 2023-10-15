@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "build2": "vite build",
+    "build": "vite build",
+    "build-tsc": "vue-tsc && vite build",
     "report": "vite build",
     "preview": "vite preview",
     "commit": "git-cz",
