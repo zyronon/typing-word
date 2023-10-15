@@ -91,6 +91,9 @@ devDependencies:
   husky:
     specifier: ^8.0.3
     version: 8.0.3
+  push-dir:
+    specifier: ^0.4.1
+    version: 0.4.1
   rollup-plugin-visualizer:
     specifier: ^5.9.2
     version: 5.9.2
@@ -2540,6 +2543,14 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /push-dir@0.4.1:
+    resolution: {integrity: sha512-Nrrsly0c3kCfu725Jnif/s5adHpBwKCGWBttHVxTndF4iyGBSFtNi/pduFxHF5ks0kWtHcbA3XXP5MEra6iiCA==}
+    engines: {node: '>=0.12'}
+    hasBin: true
+    dependencies:
+      minimist: 1.2.7
+    dev: true
 
   /qs@6.11.2:
     resolution: {integrity: sha512-tDNIz22aBzCDxLtVH++VnTfzxlfeK5CbqohpSqpJgj1Wg/cQbStNAz3NuqCs5vV+pjBsK4x4pN9HlVh7rcYRiA==}
