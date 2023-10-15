@@ -2,12 +2,6 @@
   Typing Word
 </h1>
 
-[//]: # (<p align="center">)
-
-[//]: # (  <a href="./docs/README_EN.md">English</a>)
-
-[//]: # (</p>)
-
 <p align="center">
   可在网页上使用的背单词软件
 </p>
@@ -18,12 +12,6 @@
   <a><img src="https://img.shields.io/badge/Powered%20by-Vue-blue"/></a>
 </p>
 
-[//]: # (<div align=center>)
-
-[//]: # (<img  src="docs/Screenshot.png"/>)
-
-[//]: # (</div>)
-
 ## 📸 在线访问
 
 Github Pages: <https://zyronon.github.io/typing-word/>(国内推荐访问这个)
@@ -32,22 +20,21 @@ Netlify: <https://typing-words.netlify.app/>(需要翻墙)
 
 ## 🛠 功能列表
 
-### 词库
+### 单词练习
+可以选择记忆或默写单词，提供了音标显示、发音功能（均可选美音、英音）、错误统计 
 
-内置了常用的 CET-4 、CET-6 、GMAT 、GRE 、IELTS 、SAT 、TOEFL 、考研英语、专业四级英语、专业八级英语，也有程序员常见英语单词以及多种编程语言
-API 等词库。 尽可能满足大部分用户对单词记忆的需求，也非常欢迎社区贡献更多的词库。
+### 文章练习
+内置经典教材书籍，可以练习和背诵文章，逐句输入，自动发音。也可以自行添加、导入文章，提供一键翻译、译文对照功能
 
-### 音标显示、发音功能
-
-方便用户在记忆单词时，同时记忆读音与音标。
+### 生词本、错词本、简单词
+默写单词时输入错误会自动添加到错词本，以便后续复习。也可以添加到简单词，之后再遇到这个词便会自动跳过，同时也可以将其添加到生词本中，以便巩固复习
 
 ### 默写模式
+在用户完成一个章节的练习后，如果有错误词，那么会重复练习错误词，直到没有错误词为止。完成之后弹出选项可选择默写本章、重复本章、下一章
 
-在用户完成一个章节的练习后，会弹出选项是否默写本章，方便用户巩固本章学习的单词。
-
-### 速度、正确率显示
-
-量化用户输入的速度和输入的正确率，让用户有感知的了解自己技能的提升
+### 词库
+内置了常用的 CET-4 、CET-6 、GMAT 、GRE 、IELTS 、SAT 、TOEFL 、考研英语、专业四级英语、专业八级英语，也有程序员常见英语单词以及多种编程语言
+API 等词库。 尽可能满足大部分用户对背单词的需求，也非常欢迎社区贡献更多的词库。
 
 ## 运行项目
 
@@ -79,18 +66,22 @@ API 等词库。 尽可能满足大部分用户对单词记忆的需求，也非
 - 商务英语
 - BEC
 - 人教版英语 3-9 年级
-- 王陆雅思王听力语料库 [@Saigyouji_WKKun](https://github.com/ggehuliang)
-- 日语常见词、N1 ～ N5 [@xiaojia](https://github.com/wetery)
+- 王陆雅思王听力语料库 
+- 日语常见词、N1 ～ N5 
+
+来源于：[qwerty-learner](https://github.com/RealKai42/qwerty-learner/)
 
 如果您需要背诵其他词库，欢迎在 Issue 中提出
 
 ## 📗 API 词库
 
-- JavaScript API. [@sdu-gyf](https://github.com/sdu-gyf)
-- Node.js API. [@chrysalis1215](https://github.com/chrysalis1215)
-- Java API. [@darkSheep](https://github.com/SFAfreshman)
-- Linux Command. [@归谜](https://github.com/vhxubo)
-- C#: List API [@nidbCN](https://github.com/nidbCN)
+- JavaScript API. 
+- Node.js API. 
+- Java API. 
+- Linux Command. 
+- C#: List API 
+
+来源于：[qwerty-learner](https://github.com/RealKai42/qwerty-learner/)
 
 ## 🎙 功能与建议
 
@@ -99,6 +90,7 @@ API 等词库。 尽可能满足大部分用户对单词记忆的需求，也非
 
 ### 灵感来源
 
-[qwerty-learner](https://github.com/RealKai42/qwerty-learner/)
-<br/><br/>
+[qwerty-learner](https://github.com/RealKai42/qwerty-learner/) 很喜欢作者的这个项目，但是没有背单词所必备的 **生词本、错词本、简单词** 的功能，可能是作者反复强调和提醒这个项目是“**为键盘工作者设计的单词记忆与英语肌肉记忆锻炼软件**”而不是一个“背单词”的软件吧，尽管绝大多数用户都是用它来背单词😂😂😂。
+
+本项目加上了 **生词本、错词本、简单词** 的功能，而且还新增可以 **文章练习** 的功能 
  
