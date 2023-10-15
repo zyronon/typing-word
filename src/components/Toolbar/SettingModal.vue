@@ -9,6 +9,7 @@ import {useDisableEventListener} from "@/hooks/event.ts";
 
 const tabIndex = $ref(0)
 const settingStore = useSettingStore()
+const gitLastCommitHash = ref(LATEST_COMMIT_HASH);
 
 const emit = defineEmits([
   'close',
@@ -36,7 +37,7 @@ useWatchAllSound()
           </div>
         </div>
         <div class="git-log">
-          Build {{ LATEST_COMMIT_HASH }}
+          Build {{ gitLastCommitHash }}
         </div>
       </div>
       <div class="content">
