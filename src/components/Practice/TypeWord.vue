@@ -35,6 +35,8 @@ let data = $ref({
 let input = $ref('')
 let wrong = $ref('')
 let showFullWord = $ref(false)
+//输入锁定，因为跳转到下一个单词有延时，如果重复在延时期间内重复输入，导致会跳转N次
+let inputLock = $ref(false)
 let activeBtnIndex = $ref(-1)
 let wordRepeatCount = $ref(0)
 const store = useBaseStore()
@@ -66,6 +68,7 @@ watch(() => data.index, (n) => {
   wrong = input = ''
   practiceStore.index = n
   wordRepeatCount = 0
+  inputLock = false
   if (settingStore.wordSound) {
     playWordAudio(word.name)
     volumeIconRef?.play()
@@ -186,6 +189,7 @@ function repeat() {
   setTimeout(() => {
     wrong = input = ''
     wordRepeatCount++
+    inputLock = false
 
     if (settingStore.wordSound) {
       playWordAudio(word.name)
@@ -197,6 +201,8 @@ function repeat() {
 async function onKeyDown(e: KeyboardEvent) {
   //TODO 还有横杠
   if ((e.keyCode >= 65 && e.keyCode <= 90) || e.code === 'Space') {
+    if (inputLock) return
+    inputLock = true
     let letter = e.key
     let isWrong = false
     if (settingStore.ignoreCase) {
@@ -228,18 +234,20 @@ async function onKeyDown(e: KeyboardEvent) {
     if (input.toLowerCase() === word.name.toLowerCase()) {
       playCorrect()
       if (settingStore.repeatCount == 100) {
-        if (settingStore.repeatCustomCount === wordRepeatCount + 1) {
+        if (settingStore.repeatCustomCount <= wordRepeatCount + 1) {
           setTimeout(next, settingStore.waitTimeForChangeWord)
         } else {
           repeat()
         }
       } else {
-        if (settingStore.repeatCount === wordRepeatCount + 1) {
+        if (settingStore.repeatCount <= wordRepeatCount + 1) {
           setTimeout(next, settingStore.waitTimeForChangeWord)
         } else {
           repeat()
         }
       }
+    } else {
+      inputLock = false
     }
   } else {
     // console.log('e', e)
