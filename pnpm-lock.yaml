@@ -29,6 +29,9 @@ dependencies:
   file-saver:
     specifier: ^2.0.5
     version: 2.0.5
+  git-last-commit:
+    specifier: ^1.0.1
+    version: 1.0.1
   hover.css:
     specifier: ^2.3.2
     version: 2.3.2
@@ -1837,6 +1840,10 @@ packages:
       has: 1.0.3
       has-proto: 1.0.1
       has-symbols: 1.0.3
+    dev: false
+
+  /git-last-commit@1.0.1:
+    resolution: {integrity: sha512-FDSgeMqa7GnJDxt/q0AbrxbfeTyxp4ImxEw1e4nw6NUHA5FMhFUq33dTXI4Xdgcj1VQ1q5QLWF6WxFrJ8KCBOg==}
     dev: false
 
   /glob-parent@5.1.2:

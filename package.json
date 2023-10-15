@@ -23,6 +23,7 @@
     "copy-to-clipboard": "^3.3.3",
     "element-plus": "^2.3.9",
     "file-saver": "^2.0.5",
+    "git-last-commit": "^1.0.1",
     "hover.css": "^2.3.2",
     "localforage": "^1.10.0",
     "lodash-es": "^4.17.21",

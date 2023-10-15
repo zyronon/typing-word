@@ -24,14 +24,19 @@ useWatchAllSound()
       @close="emit('close')"
       title="设置">
     <div class="setting-modal">
-      <div class="tabs">
-        <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">
-          <Icon icon="bx:headphone" width="20" color="#0C8CE9"/>
-          <span>音效设置</span>
+      <div class="left">
+        <div class="tabs">
+          <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">
+            <Icon icon="bx:headphone" width="20" color="#0C8CE9"/>
+            <span>音效设置</span>
+          </div>
+          <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">
+            <Icon icon="icon-park-outline:setting-config" width="20" color="#0C8CE9"/>
+            <span>其他设置</span>
+          </div>
         </div>
-        <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">
-          <Icon icon="icon-park-outline:setting-config" width="20" color="#0C8CE9"/>
-          <span>其他设置</span>
+        <div class="git-log">
+          Build {{ LATEST_COMMIT_HASH }}
         </div>
       </div>
       <div class="content">
@@ -234,31 +239,45 @@ useWatchAllSound()
 
 .setting-modal {
   width: 40vw;
-  height: 650rem;
+  height: 70vh;
   display: flex;
   color: var(--color-font-1);
 
-  .tabs {
-    padding: 10rem 20rem;
+  .left {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    //justify-content: center;
-    gap: 10rem;
 
-    .tab {
-      cursor: pointer;
-      padding: 10rem 15rem;
-      border-radius: 8rem;
+    .tabs {
+      padding: 10rem 20rem;
       display: flex;
+      flex-direction: column;
       align-items: center;
+      //justify-content: center;
       gap: 10rem;
 
-      &.active {
-        background: whitesmoke;
+      .tab {
+        cursor: pointer;
+        padding: 10rem 15rem;
+        border-radius: 8rem;
+        display: flex;
+        align-items: center;
+        gap: 10rem;
+
+        &.active {
+          background: whitesmoke;
+        }
       }
     }
+
+    .git-log{
+      font-size: 10rem;
+      color: gray;
+      margin-bottom: 5rem;
+    }
   }
+
 
   .content {
     background: var(--color-header-bg);
