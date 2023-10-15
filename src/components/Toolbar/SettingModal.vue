@@ -37,7 +37,7 @@ useWatchAllSound()
           </div>
         </div>
         <div class="git-log">
-          Build {{ gitLastCommitHash }}
+          Build {{ gitLastCommitHash }} test
         </div>
       </div>
       <div class="content">
