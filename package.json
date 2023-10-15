@@ -12,8 +12,7 @@
     "commit": "git-cz",
     "prepare": "husky install",
     "test": "",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
-    "d2": "git subtree push --prefix dist Web gh-pages"
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
     "@opentranslate/baidu": "^1.4.2",

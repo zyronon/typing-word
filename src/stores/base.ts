@@ -192,7 +192,7 @@ export const useBaseStore = defineStore('base', {
           DictType.customDict,
         ].includes(this.current.dictType)) {
           if (!this.currentDict.originWords.length) {
-            let r = await fetch(`${this.currentDict.url}`)
+            let r = await fetch(`.${this.currentDict.url}`)
             r.json().then(v => {
               this.currentDict.originWords = cloneDeep(v)
               this.currentDict.words = cloneDeep(v)
@@ -207,7 +207,7 @@ export const useBaseStore = defineStore('base', {
           DictType.customArticle,
         ].includes(this.current.dictType)) {
           if (!this.currentDict.articles.length) {
-            let r = await fetch(`${this.currentDict.url}`)
+            let r = await fetch(`.${this.currentDict.url}`)
             r.json().then((v: any[]) => {
               this.currentDict.articles = cloneDeep(v.map(v => {
                 v.id = uuidv4()
