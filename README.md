@@ -26,8 +26,9 @@
 
 ## 📸 在线访问
 
-Netlify: <https://typing-words.netlify.app/>
+Github Pages: <https://zyronon.github.io/typing-word/>(国内推荐访问这个)
 
+Netlify: <https://typing-words.netlify.app/>(需要翻墙)
 
 ## 🛠 功能列表
 
