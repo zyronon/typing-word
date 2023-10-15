@@ -50,38 +50,20 @@ API 等词库。 尽可能满足大部分用户对背单词的需求，也非常
 
 ## 📕 词库列表
 
-- CET-4
-- CET-6
-- GMAT
-- GRE
-- IELTS
-- SAT
-- TOEFL
-- 考研英语
-- 专业四级英语
-- 专业八级英语
+- CET-4、CET-6、GMAT、GRE、IELTS、SAT、TOEFL、BEC
+- 考研英语、专业四级英语、专业八级英语、商务英语
 - Coder Dict 程序员常用词
-- 高考
-- 中考
-- 商务英语
-- BEC
-- 人教版英语 3-9 年级
+- 高考、中考、人教版英语 3-9 年级
 - 王陆雅思王听力语料库 
 - 日语常见词、N1 ～ N5 
 
-来源于：[qwerty-learner](https://github.com/RealKai42/qwerty-learner/)
-
-如果您需要背诵其他词库，欢迎在 Issue 中提出
-
 ## 📗 API 词库
 
-- JavaScript API. 
-- Node.js API. 
-- Java API. 
-- Linux Command. 
-- C#: List API 
+- JavaScript API、Node.js API、Java API、Linux Command、C#: List API
 
-来源于：[qwerty-learner](https://github.com/RealKai42/qwerty-learner/)
+均来源于：[qwerty-learner](https://github.com/RealKai42/qwerty-learner/)
+
+如果您需要背诵其他词库，欢迎在 Issue 中提出
 
 ## 🎙 功能与建议
 
@@ -90,7 +72,7 @@ API 等词库。 尽可能满足大部分用户对背单词的需求，也非常
 
 ### 灵感来源
 
-[qwerty-learner](https://github.com/RealKai42/qwerty-learner/) 很喜欢作者的这个项目，但是没有背单词所必备的 **生词本、错词本、简单词** 的功能，可能是作者反复强调和提醒这个项目是“**为键盘工作者设计的单词记忆与英语肌肉记忆锻炼软件**”而不是一个“背单词”的软件吧，尽管绝大多数用户都是用它来背单词😂😂😂。
+[qwerty-learner](https://github.com/RealKai42/qwerty-learner/) 很喜欢作者的这个项目，但是它没有背单词所必备的 **生词本、错词本、简单词** 的功能，可能是作者反复强调和提醒这个项目是“**为键盘工作者设计的单词记忆与英语肌肉记忆锻炼软件**”而不是一个“背单词”的软件吧，尽管绝大多数用户都是用它来背单词😂😂😂。
 
-本项目加上了 **生词本、错词本、简单词** 的功能，而且还新增可以 **文章练习** 的功能 
+本项目加上了 **生词本、错词本、简单词** 的功能，而且还新增 **文章练习** 的功能 
  
