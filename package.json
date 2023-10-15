@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "commit": "git-cz",
     "prepare": "husky install",
-    "test": ""
+    "test": "",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
     "@opentranslate/baidu": "^1.4.2",
@@ -44,6 +45,7 @@
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^8.0.3",
+    "push-dir": "^0.4.1",
     "rollup-plugin-visualizer": "^5.9.2",
     "sass": "^1.64.2",
     "tslib": "^2.6.2",

@@ -101,13 +101,13 @@ export function usePlayAudio(url: string) {
 export function getAudioFileUrl(name: string) {
   if (name === '机械') {
     return [
-      `/sound/key-sounds/jixie/机械0.mp3`,
-      `/sound/key-sounds/jixie/机械1.mp3`,
-      `/sound/key-sounds/jixie/机械2.mp3`,
-      `/sound/key-sounds/jixie/机械3.mp3`,
+      `./sound/key-sounds/jixie/机械0.mp3`,
+      `./sound/key-sounds/jixie/机械1.mp3`,
+      `./sound/key-sounds/jixie/机械2.mp3`,
+      `./sound/key-sounds/jixie/机械3.mp3`,
     ]
   } else {
-    return [`/sound/key-sounds/${name}.mp3`]
+    return [`./sound/key-sounds/${name}.mp3`]
   }
 }
 
