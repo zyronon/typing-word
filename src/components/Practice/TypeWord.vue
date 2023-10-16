@@ -75,7 +75,19 @@ watch(() => data.index, (n) => {
   }
 })
 
+let allList = $ref([])
+
+
 const word = $computed(() => {
+  let w = data.words[data.index]
+  let s = allList.find(s => s.name === w.name)
+  if (s) return s
+  else return w ?? {
+    trans: [],
+    name: '',
+    usphone: '',
+    ukphone: '',
+  }
   return data.words[data.index] ?? {
     trans: [],
     name: '',
@@ -96,9 +108,16 @@ let resetWord = $computed(() => {
   return word.name.slice(input.length + wrong.length)
 })
 
+
 onMounted(() => {
   emitter.on(EventKey.resetWord, () => {
     wrong = input = ''
+  })
+  fetch('./dicts/coca20000.json').then(r => {
+    r.json().then(v => {
+      console.log('v', v)
+      allList = v
+    })
   })
 })
 
@@ -314,7 +333,8 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
       fontSize: settingStore.fontSize.wordTranslateFontSize +'rem',
       opacity: settingStore.translate ? 1 : 0
     }"
-    >{{ word.trans.join('；') }}
+    >
+      <div v-for="i in word.trans">{{i}}</div>
     </div>
     <div class="word-wrapper">
       <div class="word"
