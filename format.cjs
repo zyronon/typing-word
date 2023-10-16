@@ -36,6 +36,11 @@ try {
       ]
 
       s = s.split('；').filter(v => v)
+      s.map(v=>{
+        if(v === 'vt.& vi.'){
+          
+        }
+      })
 
       return s
     })
