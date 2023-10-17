@@ -184,7 +184,6 @@ function test() {
   <div class="practice">
     <Toolbar/>
     <!--    <BaseButton @click="test">test</BaseButton>-->
-
     <TypeArticle
         v-if="store.isArticle"
         :article="articleData.article"
@@ -219,4 +218,5 @@ function test() {
   justify-content: center;
   align-items: center;
 }
+
 </style>
