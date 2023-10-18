@@ -23,7 +23,7 @@ export const SaveConfigKey = 'typing-word-config'
 
 export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 
-export type LanguageType = 'en' | 'romaji' | 'zh' | 'ja' | 'code' | 'de'
+export type LanguageType = 'en' | 'zh-CN' | 'ja' | 'de'
 export type LanguageCategoryType = 'en' | 'ja' | 'de' | 'code' | 'article'
 
 
