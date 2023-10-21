@@ -64,12 +64,12 @@ onMounted(() => {
     // if (!languageCategoryList.find(w => w === v.languageCategory)) {
     //   languageCategoryList.push(v.languageCategory)
     // }
-    if (categoryList[v.languageCategory]) {
-      if (!categoryList[v.languageCategory].find(w => w === v.category)) {
-        categoryList[v.languageCategory].push(v.category)
+    if (categoryList[v.language]) {
+      if (!categoryList[v.language].find(w => w === v.category)) {
+        categoryList[v.language].push(v.category)
       }
     } else {
-      categoryList[v.languageCategory] = [v.category]
+      categoryList[v.language] = [v.category]
     }
     if (tagList[v.category]) {
       tagList[v.category] = Array.from(new Set(tagList[v.category].concat(v.tags)))

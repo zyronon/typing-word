@@ -71,7 +71,7 @@ async function selectDict(item: DictionaryResource) {
       ...item,
     }
 
-    if (item.languageCategory === 'article') {
+    if (item.language === 'article') {
       data.type = DictType.publicArticle
       let r = await fetch(`${item.url}`)
       r.json().then(v => {
@@ -134,7 +134,7 @@ function groupByDictTags(dicts: DictionaryResource[]) {
 }
 
 const groupedByCategoryAndTag = $computed(() => {
-  const currentLanguageCategoryDicts = dictionaryResources.filter((dict) => dict.languageCategory === currentLanguage)
+  const currentLanguageCategoryDicts = dictionaryResources.filter((dict) => dict.language === currentLanguage)
   const groupedByCategory = Object.entries(groupBy(currentLanguageCategoryDicts, (dict) => dict.category))
   const groupedByCategoryAndTag = groupedByCategory.map(
       ([category, dicts]) => [category, groupByDictTags(dicts)] as [string, Record<string, DictionaryResource[]>],

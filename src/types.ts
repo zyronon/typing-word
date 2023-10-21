@@ -23,9 +23,9 @@ export const SaveConfigKey = 'typing-word-config'
 
 export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 
-export type LanguageType = 'en' | 'zh-CN' | 'ja' | 'de'
-export type LanguageCategoryType = 'en' | 'ja' | 'de' | 'code' | 'article'
-
+export type TranslateLanguageType = 'en' | 'zh-CN' | 'ja' | 'de' | ''
+export type LanguageType = 'en' | 'ja' | 'de' | 'code'
+export type ResourceType = 'word' | 'article'
 
 export type DictionaryResource = {
   id: string
@@ -35,8 +35,9 @@ export type DictionaryResource = {
   tags: string[]
   url: string
   length: number
+  translateLanguage: TranslateLanguageType
+  type: ResourceType
   language: LanguageType
-  languageCategory: LanguageCategoryType
 }
 
 export interface Dict {
