@@ -79,15 +79,15 @@ let allList = $ref([])
 
 
 const word = $computed(() => {
-  let w = data.words[data.index]
-  let s = allList.find(s => s.name === w.name)
-  if (s) return s
-  else return w ?? {
-    trans: [],
-    name: '',
-    usphone: '',
-    ukphone: '',
-  }
+  // let w = data.words[data.index]
+  // let s = allList.find(s => s.name === w.name)
+  // if (s) return s
+  // else return w ?? {
+  //   trans: [],
+  //   name: '',
+  //   usphone: '',
+  //   ukphone: '',
+  // }
   return data.words[data.index] ?? {
     trans: [],
     name: '',
@@ -113,12 +113,7 @@ onMounted(() => {
   emitter.on(EventKey.resetWord, () => {
     wrong = input = ''
   })
-  fetch('./translate/en2zh_CN.json').then(r => {
-    r.json().then(v => {
-      console.log('v', v)
-      allList = v
-    })
-  })
+
 })
 
 function next(isTyping: boolean = true) {
@@ -445,6 +440,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
   .phonetic, .translate {
     font-size: 20rem;
     margin-left: -30rem;
+    transition: all .3s;
   }
 
   .word-wrapper {

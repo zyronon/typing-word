@@ -23,7 +23,7 @@ export const useBaseStore = defineStore('base', {
   state: (): State => {
     return {
       newWordDict: {
-        id:'newWordDict',
+        id: 'newWordDict',
         name: '生词本',
         sort: Sort.normal,
         type: DictType.newWordDict,
@@ -38,7 +38,7 @@ export const useBaseStore = defineStore('base', {
         url: '',
       },
       skipWordDict: {
-        id:'skipWordDict',
+        id: 'skipWordDict',
         name: '简单词',
         sort: Sort.normal,
         type: DictType.skipWordDict,
@@ -53,7 +53,7 @@ export const useBaseStore = defineStore('base', {
         url: '',
       },
       wrongWordDict: {
-        id:'wrongWordDict',
+        id: 'wrongWordDict',
         name: '错词本',
         sort: Sort.normal,
         type: DictType.wrongWordDict,
@@ -69,7 +69,7 @@ export const useBaseStore = defineStore('base', {
       },
       myDicts: [
         {
-          id:'新概念英语2-课文',
+          id: '新概念英语2-课文',
           name: '新概念英语2-课文',
           sort: Sort.normal,
           type: DictType.publicArticle,
@@ -87,7 +87,7 @@ export const useBaseStore = defineStore('base', {
           resourceType: "article"
         },
         {
-          id:'新概念英语2',
+          id: '新概念英语2',
           name: '新概念英语2',
           sort: Sort.normal,
           type: DictType.publicDict,
@@ -198,13 +198,31 @@ export const useBaseStore = defineStore('base', {
           DictType.customDict,
         ].includes(this.current.dictType)) {
           if (!this.currentDict.originWords.length) {
-            let r = await fetch(`/dicts/${this.currentDict.language}/${this.currentDict.resourceType}/${this.currentDict.translateLanguage}/${this.currentDict.url}`)
+            let r = await fetch(`./dicts/${this.currentDict.language}/${this.currentDict.resourceType}/${this.currentDict.translateLanguage}/${this.currentDict.url}`)
             // let r = await fetch(`.${this.currentDict.url}`)
             r.json().then(v => {
-              this.currentDict.originWords = cloneDeep(v)
-              this.currentDict.words = cloneDeep(v)
-              this.currentDict.chapterWords = chunk(this.currentDict.words, this.currentDict.chapterWordNumber)
-              this.load = true
+              fetch('./translate/en2zh_CN.json').then(r => {
+                r.json().then((list: Word[]) => {
+                  console.log('list', list)
+                  console.time()
+
+                  v.map((w: Word) => {
+                    let res = list.find(a => a.name === w.name)
+                    if (res) {
+                      w = Object.assign(w, res)
+                    }
+                    return w
+                  })
+                  console.log('v', v)
+
+                  this.currentDict.originWords = cloneDeep(v)
+                  this.currentDict.words = cloneDeep(v)
+                  this.currentDict.chapterWords = chunk(this.currentDict.words, this.currentDict.chapterWordNumber)
+                  this.load = true
+
+                  console.timeEnd()
+                })
+              })
             })
           }
         }
@@ -214,7 +232,7 @@ export const useBaseStore = defineStore('base', {
           DictType.customArticle,
         ].includes(this.current.dictType)) {
           if (!this.currentDict.articles.length) {
-            let r = await fetch(`/dicts/${this.currentDict.language}/${this.currentDict.resourceType}/${this.currentDict.translateLanguage}/${this.currentDict.url}`)
+            let r = await fetch(`./dicts/${this.currentDict.language}/${this.currentDict.resourceType}/${this.currentDict.translateLanguage}/${this.currentDict.url}`)
             r.json().then((v: any[]) => {
               this.currentDict.articles = cloneDeep(v.map(v => {
                 v.id = uuidv4()
