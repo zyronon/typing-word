@@ -113,7 +113,7 @@ onMounted(() => {
   emitter.on(EventKey.resetWord, () => {
     wrong = input = ''
   })
-  fetch('./dicts/coca20000.json').then(r => {
+  fetch('./translate/en2zh_CN.json').then(r => {
     r.json().then(v => {
       console.log('v', v)
       allList = v

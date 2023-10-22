@@ -2,8 +2,8 @@
 import {dictionaryResources} from '@/assets/dictionary.ts'
 import {useBaseStore} from "@/stores/base.ts"
 import {watch} from "vue"
-import {Dict, DictionaryResource, DictType, languageCategoryOptions, Sort, Word} from "@/types.ts"
-import {chunk, cloneDeep} from "lodash-es";
+import {Dict, DictResource, DictType, languageCategoryOptions, Sort, Word} from "@/types.ts"
+import {chunk, cloneDeep, groupBy} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
 import Modal from "@/components/Modal/Modal.vue";
 import BaseButton from "@/components/BaseButton.vue";
@@ -42,6 +42,10 @@ const emit = defineEmits<{
 const base = useBaseStore()
 const settingStore = useSettingStore()
 let currentLanguage = $ref('en')
+let currentTranslateLanguage = $ref('common')
+let groupByLanguage = groupBy(dictionaryResources, 'language')
+let translateLanguageList = $ref([])
+
 let step = $ref(1)
 
 watch(() => props.modelValue, (n: boolean) => {
@@ -51,7 +55,8 @@ watch(() => props.modelValue, (n: boolean) => {
   }
 })
 
-async function selectDict(item: DictionaryResource) {
+async function selectDict(item: DictResource) {
+  console.log('item',item)
   step = 1
   let find = base.myDicts.find((v: Dict) => v.name === item.name)
   if (find) {
@@ -71,10 +76,11 @@ async function selectDict(item: DictionaryResource) {
       ...item,
     }
 
-    if (item.language === 'article') {
+    if (item.resourceType === 'article') {
       data.type = DictType.publicArticle
-      let r = await fetch(`${item.url}`)
+      let r = await fetch(`/dicts/${item.language}/${item.resourceType}/${item.translateLanguage}/${item.url}`)
       r.json().then(v => {
+        console.log('v', v)
         data.articles = cloneDeep(v.map(v => {
           v.id = uuidv4()
           return v
@@ -83,7 +89,7 @@ async function selectDict(item: DictionaryResource) {
       })
     } else {
       data.type = DictType.publicDict
-      let r = await fetch(`${item.url}`)
+      let r = await fetch(`/dicts/${item.language}/${item.resourceType}/${item.translateLanguage}/${item.url}`)
       r.json().then(v => {
         data.originWords = v
         data.words = v
@@ -108,20 +114,8 @@ function resetChapterList() {
   runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
 }
 
-function groupBy<T>(elements: T[], iteratee: (value: T) => string) {
-  return elements.reduce<Record<string, T[]>>((result, value) => {
-    const key = iteratee(value)
-    if (Object.prototype.hasOwnProperty.call(result, key)) {
-      result[key].push(value)
-    } else {
-      result[key] = [value]
-    }
-    return result
-  }, {})
-}
-
-function groupByDictTags(dicts: DictionaryResource[]) {
-  return dicts.reduce<Record<string, DictionaryResource[]>>((result, dict) => {
+function groupByDictTags(dictList: DictResource[]) {
+  return dictList.reduce<Record<string, DictResource[]>>((result, dict) => {
     dict.tags.forEach((tag) => {
       if (Object.prototype.hasOwnProperty.call(result, tag)) {
         result[tag].push(dict)
@@ -133,17 +127,30 @@ function groupByDictTags(dicts: DictionaryResource[]) {
   }, {})
 }
 
-const groupedByCategoryAndTag = $computed(() => {
-  const currentLanguageCategoryDicts = dictionaryResources.filter((dict) => dict.language === currentLanguage)
-  const groupedByCategory = Object.entries(groupBy(currentLanguageCategoryDicts, (dict) => dict.category))
-  const groupedByCategoryAndTag = groupedByCategory.map(
-      ([category, dicts]) => [category, groupByDictTags(dicts)] as [string, Record<string, DictionaryResource[]>],
-  )
-  // console.log('groupedByCategoryAndTag', groupedByCategoryAndTag)
-  return groupedByCategoryAndTag
+const groupByTranslateLanguage = $computed(() => {
+  let data: any
+  if (currentLanguage === 'article') {
+    let articleList = dictionaryResources.filter(v => v.resourceType === 'article')
+    data = groupBy(articleList, 'translateLanguage')
+  } else {
+    data = groupBy(groupByLanguage[currentLanguage], 'translateLanguage')
+  }
+  translateLanguageList = Object.keys(data)
+  currentTranslateLanguage = translateLanguageList[0]
+  return data
 })
 
-let radio1 = $ref('')
+const groupedByCategoryAndTag = $computed(() => {
+  const currentTranslateLanguageDictList = groupByTranslateLanguage[currentTranslateLanguage]
+  const groupByCategory = groupBy(currentTranslateLanguageDictList, 'category')
+
+  let data = []
+  for (const [key, value] of Object.entries(groupByCategory)) {
+    data.push([key, groupByDictTags(value)])
+  }
+  // console.log('data', data)
+  return data
+})
 
 function clickEvent(e) {
   console.log('e', e)
@@ -181,12 +188,20 @@ const dictIsArticle = $computed(() => {
           </header>
           <div class="page-content">
             <div class="dict-list-wrapper">
+              <div class="translate">
+                <span>翻译：</span>
+                <el-radio-group v-model="currentTranslateLanguage">
+                  <el-radio v-for="i in translateLanguageList" :label="i">{{ i }}</el-radio>
+                </el-radio-group>
+              </div>
               <DictGroup
                   v-for="item in groupedByCategoryAndTag"
                   :select-dict-name="runtimeStore.editDict.name"
                   @selectDict="selectDict"
                   @detail="step = 1"
-                  :groupByTag="item[1]"/>
+                  :groupByTag="item[1]"
+                  :category="item[0]"
+              />
             </div>
           </div>
         </div>
@@ -258,15 +273,15 @@ const dictIsArticle = $computed(() => {
                   </el-radio-group>
                 </div>
               </div>
-<!--              <div class="row">-->
-<!--                <div class="label">词序</div>-->
-<!--                <div class="option">-->
-<!--                  <el-radio-group v-model="radio1" class="ml-4">-->
-<!--                    <el-radio label="1" size="large">随机</el-radio>-->
-<!--                    <el-radio label="2" size="large">正常</el-radio>-->
-<!--                  </el-radio-group>-->
-<!--                </div>-->
-<!--              </div>-->
+              <!--              <div class="row">-->
+              <!--                <div class="label">词序</div>-->
+              <!--                <div class="option">-->
+              <!--                  <el-radio-group v-model="radio1" class="ml-4">-->
+              <!--                    <el-radio label="1" size="large">随机</el-radio>-->
+              <!--                    <el-radio label="2" size="large">正常</el-radio>-->
+              <!--                  </el-radio-group>-->
+              <!--                </div>-->
+              <!--              </div>-->
               <div class="row">
                 <div class="label">单词自动发音</div>
                 <div class="option">
@@ -413,6 +428,15 @@ $header-height: 60rem;
       overflow: auto;
       height: 100%;
       padding-right: $space;
+
+      .translate {
+        color: black;
+        margin-bottom: 30rem;
+
+        & > span {
+          font-size: 22rem;
+        }
+      }
     }
   }
 }

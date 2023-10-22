@@ -2,15 +2,15 @@
 import {Icon} from "@iconify/vue";
 import {$computed, $ref} from "vue/macros";
 import {watch} from "vue";
-import {DictionaryResource} from "@/types.ts";
+import {DictResource} from "@/types.ts";
 
 const props = defineProps<{
-  category?: string,
+  category: string,
   groupByTag: any,
   selectDictName: string
 }>()
 const emit = defineEmits<{
-  selectDict: [index: DictionaryResource],
+  selectDict: [index: DictResource],
   detail: [],
 }>()
 const tagList = $computed(() => Object.keys(props.groupByTag))
@@ -18,7 +18,6 @@ let currentTag = $ref(tagList[0])
 let list = $computed(() => {
   return props.groupByTag[currentTag]
 })
-let step = $ref(0)
 
 watch(() => props.groupByTag, () => {
   currentTag = tagList[0]
@@ -27,30 +26,45 @@ watch(() => props.groupByTag, () => {
 </script>
 
 <template>
-  <div class="tags">
-    <div class="tag" :class="i === currentTag &&'active'"
-         @click="currentTag = i"
-         v-for="i in Object.keys(groupByTag)">{{ i }}
+  <div class="dict-group">
+    <div class="category">{{ category }}</div>
+    <div class="tags">
+      <div class="tag" :class="i === currentTag &&'active'"
+           @click="currentTag = i"
+           v-for="i in Object.keys(groupByTag)">{{ i }}
+      </div>
     </div>
-  </div>
-  <div class="dict-list">
-    <div class="dict-item anim"
-         :class="selectDictName === i.name && 'active'"
-         @click="emit('selectDict',i)"
-         v-for="i in list"
-    >
-      <div class="name">{{ i.name }}</div>
-      <div class="desc">{{ i.description }}</div>
-      <div class="num">{{ i.length }}词</div>
+    <div class="dict-list">
+      <div class="dict-item anim"
+           :class="selectDictName === i.name && 'active'"
+           @click="emit('selectDict',i)"
+           v-for="i in list"
+      >
+        <div class="name">{{ i.name }}</div>
+        <div class="desc">{{ i.description }}</div>
+        <div class="num">{{ i.length }}词</div>
 
-      <Icon icon="octicon:arrow-right-24" v-if="selectDictName === i.name"
-            @click.stop="emit('detail')"
-            class="go" width="20" color="#929596"/>
+        <Icon icon="octicon:arrow-right-24" v-if="selectDictName === i.name"
+              @click.stop="emit('detail')"
+              class="go" width="20" color="#929596"/>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+.dict-group {
+  color: black;
+  margin-bottom: 40rem;
+  //border-bottom: 1px dashed gray;
+
+  .category {
+    font-size: 24rem;
+    padding-bottom: 10rem;
+    border-bottom: 1px dashed gray;
+  }
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;

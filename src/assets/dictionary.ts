@@ -1,8 +1,7 @@
-// 中国考试
-import {DictionaryResource} from "@/types.ts"
+import {DictResource} from "@/types.ts"
 
 // 中国考试
-const chinaExam: DictionaryResource[] = [
+const chinaExam: DictResource[] = [
   {
     id: 'cet4',
     name: 'CET-4',
@@ -11,9 +10,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['大学英语'],
     url: 'CET4_T.json',
     length: 2607,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'cet6',
@@ -23,9 +22,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['大学英语'],
     url: 'CET6_T.json',
     length: 2345,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'xinghuoqiaoji_4',
@@ -35,9 +34,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['大学英语'],
     url: 'xinghuoqiaoji_4.json',
     length: 2522,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'xinghuoqiaoji_6',
@@ -47,9 +46,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['大学英语'],
     url: 'xinghuoqiaoji_6.json',
     length: 7520,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'cet4-sub',
@@ -59,9 +58,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['大学英语'],
     url: 'DanCiDeJianFa_4.json',
     length: 1957,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'cet6-sub',
@@ -71,9 +70,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['大学英语'],
     url: 'DanCiDeJianFa_6.json',
     length: 1949,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'kaoyan',
@@ -83,9 +82,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['考研'],
     url: 'KaoYan_3_T.json',
     length: 3728,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'kaoyan_2024',
@@ -95,9 +94,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['考研'],
     url: 'KaoYan_2024.json',
     length: 3731,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'kaoyanshanguo_2023',
@@ -107,9 +106,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['考研'],
     url: 'KaoYanShanGuo_2023.json',
     length: 1771,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'dancimimi_1',
@@ -119,9 +118,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['考研'],
     url: 'DanCiDeMimi_1.json',
     length: 5657,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'dancimimi_2',
@@ -131,9 +130,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['考研'],
     url: 'DanCiDeMimi_2.json',
     length: 3827,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'level4',
@@ -143,9 +142,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['大学英语'],
     url: 'Level4luan_2_T.json',
     length: 4025,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'level8',
@@ -155,9 +154,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['大学英语'],
     url: 'Level8luan_2_T.json',
     length: 12197,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'archVocabulary',
@@ -167,9 +166,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['专业英语'],
     url: 'archVocabulary.json',
     length: 630,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'itVocabulary',
@@ -179,9 +178,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['专业英语'],
     url: 'itVocabulary.json',
     length: 1665,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'pets3',
@@ -191,9 +190,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['PET'],
     url: 'PETS_3.json',
     length: 1942,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'pets3-2023',
@@ -203,9 +202,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['PET'],
     url: 'PETS3-2023.json',
     length: 4449,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'self-study_English1',
@@ -215,9 +214,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['自考英语二'],
     url: 'self-study_English1.json',
     length: 1800,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'self-study_English2',
@@ -227,9 +226,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['自考英语二'],
     url: 'self-study_English2.json',
     length: 2181,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'self-study_English3',
@@ -239,9 +238,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['自考英语二'],
     url: 'self-study_English3.json',
     length: 4603,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'coca_20000',
@@ -251,9 +250,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['其他'],
     url: 'coca20000.json',
     length: 20199,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: '4000_Essential_English_Words1',
@@ -265,7 +264,7 @@ const chinaExam: DictionaryResource[] = [
     length: 3600,
     translateLanguage: 'en',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: '4000_Essential_English_Words2',
@@ -277,7 +276,7 @@ const chinaExam: DictionaryResource[] = [
     length: 3600,
     translateLanguage: 'en',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'longman_communication_3000_words',
@@ -287,9 +286,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['其他'],
     url: 'Longman_Communication_3000.json',
     length: 3168,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'top_2000_English_Words',
@@ -301,7 +300,7 @@ const chinaExam: DictionaryResource[] = [
     length: 1867,
     translateLanguage: 'en',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'top_1500_nouns_Words',
@@ -313,7 +312,7 @@ const chinaExam: DictionaryResource[] = [
     length: 1525,
     translateLanguage: 'en',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'top_1000_verb_Words',
@@ -325,7 +324,7 @@ const chinaExam: DictionaryResource[] = [
     length: 1011,
     translateLanguage: 'en',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'top_500_Adj_Words',
@@ -337,7 +336,7 @@ const chinaExam: DictionaryResource[] = [
     length: 527,
     translateLanguage: 'en',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'top_250_Adv_Words',
@@ -349,7 +348,7 @@ const chinaExam: DictionaryResource[] = [
     length: 255,
     translateLanguage: 'en',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'top_60_Pronouns',
@@ -361,7 +360,7 @@ const chinaExam: DictionaryResource[] = [
     length: 59,
     translateLanguage: 'en',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'top_50_Prepositions',
@@ -373,7 +372,7 @@ const chinaExam: DictionaryResource[] = [
     length: 46,
     translateLanguage: 'en',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'suffix word',
@@ -385,7 +384,7 @@ const chinaExam: DictionaryResource[] = [
     length: 126,
     translateLanguage: 'en',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'word roots1',
@@ -397,7 +396,7 @@ const chinaExam: DictionaryResource[] = [
     length: 369,
     translateLanguage: 'en',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: '2024HongBao T1',
@@ -407,9 +406,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['其他'],
     url: '2024HongBao_T1.json',
     length: 997,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: '2024HongBao T2',
@@ -419,9 +418,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['其他'],
     url: '2024HongBao_T2.json',
     length: 854,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'adult self-study examination',
@@ -431,9 +430,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['其他'],
     url: 'adult-self-study-examination.json',
     length: 3692,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'Oxford5000',
@@ -443,9 +442,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['其他'],
     url: 'Oxford5000.json',
     length: 5836,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'Merriam_Webster_sVocabularyBuilder',
@@ -455,9 +454,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['其他'],
     url: 'Merriam_Webster_sVocabularyBuilder.json',
     length: 1191,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'TOEFL_ZhangHongYan',
@@ -467,9 +466,9 @@ const chinaExam: DictionaryResource[] = [
     tags: ['TOEFL'],
     url: 'TOEFL_ZhangHongYan.json',
     length: 4035,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'English_II',
@@ -479,14 +478,14 @@ const chinaExam: DictionaryResource[] = [
     tags: ['其他'],
     url: 'English_II.json',
     length: 4559,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
 ]
 
 // 国际考试
-const internationalExam: DictionaryResource[] = [
+const internationalExam: DictResource[] = [
   {
     id: 'gmat',
     name: 'GMAT',
@@ -495,9 +494,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['GMAT'],
     url: 'GMAT_3_T.json',
     length: 3047,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'gre',
@@ -507,9 +506,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['GRE'],
     url: 'GRE_3_T.json',
     length: 6515,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'gre3000',
@@ -519,9 +518,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['GRE'],
     url: 'GRE3000_3_T.json',
     length: 3041,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'IELTS_tinglichangjing',
@@ -531,9 +530,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['IELTS'],
     url: 'IELTS_tinglichangjing.json',
     length: 1204,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'ielts_disorder',
@@ -543,9 +542,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['IELTS'],
     url: 'IELTS_disorder.json',
     length: 9389,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'ielts_order',
@@ -555,9 +554,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['IELTS'],
     url: 'IELTS_order.json',
     length: 9389,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'ielts',
@@ -567,9 +566,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['IELTS'],
     url: 'IELTS_3_T.json',
     length: 3575,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'ieltsWang3',
@@ -579,9 +578,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['IELTS'],
     url: 'IELTS_WANG_3.json',
     length: 1135,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'ieltsWang4',
@@ -591,9 +590,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['IELTS'],
     url: 'IELTS_WANG_4.json',
     length: 346,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'ieltsWang5',
@@ -603,9 +602,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['IELTS'],
     url: 'IELTS_WANG_5.json',
     length: 1569,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'ieltsWang11',
@@ -615,9 +614,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['IELTS'],
     url: 'IELTS_WANG_11.json',
     length: 1738,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'DuckCircle_IELTS',
@@ -627,9 +626,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['IELTS'],
     url: 'DuckCircle_IELTS.json',
     length: 2644,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'IELTSVocabularyBible',
@@ -639,9 +638,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['IELTS'],
     url: 'IELTSVocabularyBible.json',
     length: 3672,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'sat',
@@ -651,9 +650,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['SAT'],
     url: 'SAT_3_T.json',
     length: 4464,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'SATen',
@@ -665,7 +664,7 @@ const internationalExam: DictionaryResource[] = [
     length: 2681,
     translateLanguage: 'en',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'toefl',
@@ -675,9 +674,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['TOEFL'],
     url: 'TOEFL_3_T.json',
     length: 4264,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'bec2',
@@ -687,9 +686,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['BEC'],
     url: 'BEC_2_T.json',
     length: 2753,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'bec3',
@@ -699,9 +698,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['BEC'],
     url: 'BEC_3_T.json',
     length: 2825,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'PTE_junior',
@@ -711,9 +710,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['PTE'],
     url: 'PTE_junior.json',
     length: 2651,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'PTE_senior',
@@ -723,9 +722,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['PTE'],
     url: 'PTE_senior.json',
     length: 3170,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'PTE_FIB_R_junior',
@@ -735,9 +734,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['PTE'],
     url: 'PTE_FIB_R_junior.json',
     length: 941,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'PTE_FIB_R_senior',
@@ -747,9 +746,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['PTE'],
     url: 'PTE_FIB_R_senior.json',
     length: 1272,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'PTE_WFD',
@@ -759,9 +758,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['PTE'],
     url: 'PTE_WFD.json',
     length: 1212,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'PTE_FIB_L',
@@ -771,9 +770,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['PTE'],
     url: 'PTE_FIB_L.json',
     length: 646,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'PTE_Basic_apeuni',
@@ -783,9 +782,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['PTE'],
     url: 'PTE_Basic_apeuni.json',
     length: 2652,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'PTE_Advanced_apeuni.json',
@@ -795,9 +794,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['PTE'],
     url: 'PTE_Advanced_apeuni.json',
     length: 3169,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'PTE_Read_apeuni.json',
@@ -807,9 +806,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['PTE'],
     url: 'PTE_Read_apeuni.json',
     length: 630,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'PTE_Listening_apeuni.json',
@@ -819,9 +818,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['PTE'],
     url: 'PTE_Listening_apeuni.json',
     length: 674,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'TOEIC',
@@ -831,9 +830,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['TOEIC'],
     url: 'TOEIC.json',
     length: 1694,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'Oxford3000',
@@ -843,9 +842,9 @@ const internationalExam: DictionaryResource[] = [
     tags: ['牛津版'],
     url: 'Oxford3000.json',
     length: 1342,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'Oxford5000',
@@ -855,14 +854,14 @@ const internationalExam: DictionaryResource[] = [
     tags: ['牛津版'],
     url: 'Oxford5000.json',
     length: 5836,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
 ]
 
 // 青少儿英语
-const childrenEnglish: DictionaryResource[] = [
+const childrenEnglish: DictResource[] = [
   {
     id: 'gaokao3500',
     name: '高考 3500 词',
@@ -871,9 +870,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['通用'],
     url: 'GaoKao_3500.json',
     length: 3893,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'gaokaozhentihexin',
@@ -883,9 +882,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['通用'],
     url: 'GaoKaoZhenTiHeXinGaoPin.json',
     length: 799,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'zhongkaohexin',
@@ -895,9 +894,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['通用'],
     url: 'ZhongKaoHeXin.json',
     length: 2140,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'nce-new-1',
@@ -907,9 +906,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['新概念英语'],
     url: 'nce-new-1.json',
     length: 908,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'nce-new-2',
@@ -919,9 +918,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['新概念英语'],
     url: 'nce-new-2.json',
     length: 862,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'nce-new-3',
@@ -931,9 +930,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['新概念英语'],
     url: 'nce-new-3.json',
     length: 1062,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'nce-new-4',
@@ -943,9 +942,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['新概念英语'],
     url: 'nce-new-4.json',
     length: 793,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'SHjuniormiddleOxford',
@@ -955,9 +954,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['牛津版'],
     url: 'OxfordVocabulary_juniorMiddleSH.json',
     length: 1270,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'san1',
@@ -967,9 +966,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPXiaoXue3_1_T.json',
     length: 64,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'san2',
@@ -979,9 +978,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPXiaoXue3_2_T.json',
     length: 72,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'si1',
@@ -991,9 +990,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPXiaoXue4_1_T.json',
     length: 84,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'si2',
@@ -1003,9 +1002,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPXiaoXue4_2_T.json',
     length: 104,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'wu1',
@@ -1015,9 +1014,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPXiaoXue5_1_T.json',
     length: 131,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'wu2',
@@ -1027,9 +1026,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPXiaoXue5_2_T.json',
     length: 156,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'liu1',
@@ -1039,9 +1038,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPXiaoXue6_1_T.json',
     length: 130,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'liu2',
@@ -1051,9 +1050,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPXiaoXue6_2_T.json',
     length: 108,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'qi1',
@@ -1063,9 +1062,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPChuZhong7_1_T.json',
     length: 392,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'qi2',
@@ -1075,9 +1074,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPChuZhong7_2_T.json',
     length: 492,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'ba1',
@@ -1087,9 +1086,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPChuZhong8_1_T.json',
     length: 419,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'ba2',
@@ -1099,9 +1098,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPChuZhong8_2_T.json',
     length: 466,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'jiu',
@@ -1111,9 +1110,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPChuZhong9_1_T.json',
     length: 551,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'renjiaogaozhong1',
@@ -1123,9 +1122,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPGaoZhong_1_T.json',
     length: 311,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'renjiaogaozhong2',
@@ -1135,9 +1134,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPGaoZhong_2_T.json',
     length: 319,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'renjiaogaozhong3',
@@ -1147,9 +1146,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPGaoZhong_3_T.json',
     length: 366,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'renjiaogaozhong4',
@@ -1159,9 +1158,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPGaoZhong_4_T.json',
     length: 307,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'renjiaogaozhong5',
@@ -1171,9 +1170,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPGaoZhong_5_T.json',
     length: 357,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'renjiaogaozhong6',
@@ -1183,9 +1182,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPGaoZhong_6_T.json',
     length: 391,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'renjiaogaozhong7',
@@ -1195,9 +1194,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPGaoZhong_7_T.json',
     length: 384,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'renjiaogaozhong8',
@@ -1207,9 +1206,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPGaoZhong_8_T.json',
     length: 420,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'renjiaogaozhong9',
@@ -1219,9 +1218,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPGaoZhong_9_T.json',
     length: 352,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'renjiaogaozhong10',
@@ -1231,9 +1230,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPGaoZhong_10_T.json',
     length: 361,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'renjiaogaozhong11',
@@ -1243,9 +1242,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['人教版'],
     url: 'PEPGaoZhong_11_T.json',
     length: 309,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
 
   {
@@ -1256,9 +1255,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['外研版'],
     url: 'WaiYanSheChuZhong_1_T.json',
     length: 629,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'waiyan2',
@@ -1268,9 +1267,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['外研版'],
     url: 'WaiYanSheChuZhong_2_T.json',
     length: 438,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'waiyan3',
@@ -1280,9 +1279,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['外研版'],
     url: 'WaiYanSheChuZhong_3_T.json',
     length: 320,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'waiyan4',
@@ -1292,9 +1291,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['外研版'],
     url: 'WaiYanSheChuZhong_4_T.json',
     length: 266,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'waiyan5',
@@ -1304,9 +1303,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['外研版'],
     url: 'WaiYanSheChuZhong_5_T.json',
     length: 381,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'waiyan6',
@@ -1316,9 +1315,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['外研版'],
     url: 'WaiYanSheChuZhong_6_T.json',
     length: 128,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'waiyan7',
@@ -1328,9 +1327,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['外研版'],
     url: 'WaiYanSheGaoZhong_1_T.json',
     length: 411,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'waiyan8',
@@ -1340,9 +1339,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['外研版'],
     url: 'WaiYanSheGaoZhong_2_T.json',
     length: 272,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'Yilin1',
@@ -1352,9 +1351,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['译林版'],
     url: '.YiLin_1.json',
     length: 276,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'Yilin2',
@@ -1364,9 +1363,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['译林版'],
     url: '.YiLin_2.json',
     length: 297,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'Yilin3',
@@ -1376,9 +1375,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['译林版'],
     url: '.YiLin_3.json',
     length: 295,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'beishi1',
@@ -1388,9 +1387,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['北师大'],
     url: 'BeiShiGaoZhong_1_T.json',
     length: 226,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'beishi2',
@@ -1400,9 +1399,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['北师大'],
     url: 'BeiShiGaoZhong_2_T.json',
     length: 244,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'beishi3',
@@ -1412,9 +1411,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['北师大'],
     url: 'BeiShiGaoZhong_3_T.json',
     length: 295,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'beishi4',
@@ -1424,9 +1423,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['北师大'],
     url: 'BeiShiGaoZhong_4_T.json',
     length: 336,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'beishi5',
@@ -1436,9 +1435,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['北师大'],
     url: 'BeiShiGaoZhong_5_T.json',
     length: 327,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'beishi6',
@@ -1448,9 +1447,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['北师大'],
     url: 'BeiShiGaoZhong_6_T.json',
     length: 271,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'beishi7',
@@ -1460,9 +1459,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['北师大'],
     url: 'BeiShiGaoZhong_7_T.json',
     length: 334,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'beishi8',
@@ -1472,9 +1471,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['北师大'],
     url: 'BeiShiGaoZhong_8_T.json',
     length: 364,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'beishi9',
@@ -1484,9 +1483,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['北师大'],
     url: 'BeiShiGaoZhong_9_T.json',
     length: 299,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'beishi10',
@@ -1496,9 +1495,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['北师大'],
     url: 'BeiShiGaoZhong_10_T.json',
     length: 267,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'beishi11',
@@ -1508,9 +1507,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['北师大'],
     url: 'BeiShiGaoZhong_11_T.json',
     length: 330,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel1',
@@ -1520,9 +1519,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_1.json',
     length: 297,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel2',
@@ -1532,9 +1531,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_2.json',
     length: 353,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel3',
@@ -1544,9 +1543,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_3.json',
     length: 172,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel4',
@@ -1556,9 +1555,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_4.json',
     length: 178,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel5',
@@ -1568,9 +1567,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_5.json',
     length: 172,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel6',
@@ -1580,9 +1579,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_6.json',
     length: 172,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel7',
@@ -1592,9 +1591,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_7.json',
     length: 171,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel8',
@@ -1604,9 +1603,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_8.json',
     length: 172,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel9',
@@ -1616,9 +1615,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_9.json',
     length: 165,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel10',
@@ -1628,9 +1627,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_10.json',
     length: 174,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel11',
@@ -1640,9 +1639,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_11.json',
     length: 176,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel12',
@@ -1652,9 +1651,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_12.json',
     length: 170,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel13',
@@ -1664,9 +1663,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_13.json',
     length: 172,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel14',
@@ -1676,9 +1675,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_14.json',
     length: 171,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel15',
@@ -1688,9 +1687,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_15.json',
     length: 168,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'eflevel16',
@@ -1700,9 +1699,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['EF'],
     url: 'EF_LEVEL_16.json',
     length: 170,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   //Reading_Explorer系列
   {
@@ -1713,9 +1712,9 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['青少年英语'],
     url: 'ReadingExplorer3.json',
     length: 239,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'Macmillan7000',
@@ -1725,14 +1724,14 @@ const childrenEnglish: DictionaryResource[] = [
     tags: ['其他'],
     url: 'Macmillan7000.json',
     length: 6268,
-    translateLanguage: 'zh-CN',
+    translateLanguage: 'common',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
 ]
 
 // 编程字典
-const programming: DictionaryResource[] = [
+const programming: DictResource[] = [
   {
     id: 'coder',
     name: 'Coder Dict',
@@ -1743,7 +1742,7 @@ const programming: DictionaryResource[] = [
     length: 1700,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'childCode',
@@ -1755,7 +1754,7 @@ const programming: DictionaryResource[] = [
     length: 19,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'childCode002',
@@ -1767,7 +1766,7 @@ const programming: DictionaryResource[] = [
     length: 27,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'childCode003',
@@ -1779,7 +1778,7 @@ const programming: DictionaryResource[] = [
     length: 39,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
 
   {
@@ -1792,7 +1791,7 @@ const programming: DictionaryResource[] = [
     length: 36,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'jsDate',
@@ -1804,7 +1803,7 @@ const programming: DictionaryResource[] = [
     length: 34,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'jsGlobal',
@@ -1816,7 +1815,7 @@ const programming: DictionaryResource[] = [
     length: 9,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'jsMapSet',
@@ -1828,7 +1827,7 @@ const programming: DictionaryResource[] = [
     length: 16,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'jsMath',
@@ -1840,7 +1839,7 @@ const programming: DictionaryResource[] = [
     length: 38,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'jsNumber',
@@ -1852,7 +1851,7 @@ const programming: DictionaryResource[] = [
     length: 22,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'jsObject',
@@ -1864,7 +1863,7 @@ const programming: DictionaryResource[] = [
     length: 37,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'jsPromise',
@@ -1876,7 +1875,7 @@ const programming: DictionaryResource[] = [
     length: 9,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'jsString',
@@ -1888,7 +1887,7 @@ const programming: DictionaryResource[] = [
     length: 32,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'python-builtin',
@@ -1900,7 +1899,7 @@ const programming: DictionaryResource[] = [
     length: 65,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'python-array',
@@ -1912,7 +1911,7 @@ const programming: DictionaryResource[] = [
     length: 11,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'python-date',
@@ -1924,7 +1923,7 @@ const programming: DictionaryResource[] = [
     length: 39,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'python-file',
@@ -1936,7 +1935,7 @@ const programming: DictionaryResource[] = [
     length: 21,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'python-class',
@@ -1948,7 +1947,7 @@ const programming: DictionaryResource[] = [
     length: 13,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'python-set',
@@ -1960,7 +1959,7 @@ const programming: DictionaryResource[] = [
     length: 29,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'python-math',
@@ -1972,7 +1971,7 @@ const programming: DictionaryResource[] = [
     length: 37,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'python-string',
@@ -1984,7 +1983,7 @@ const programming: DictionaryResource[] = [
     length: 40,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'python-system',
@@ -1996,7 +1995,7 @@ const programming: DictionaryResource[] = [
     length: 24,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'javeArrayList',
@@ -2008,7 +2007,7 @@ const programming: DictionaryResource[] = [
     length: 25,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'javaCharacter',
@@ -2020,7 +2019,7 @@ const programming: DictionaryResource[] = [
     length: 8,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'javaHashmap',
@@ -2032,7 +2031,7 @@ const programming: DictionaryResource[] = [
     length: 22,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'javaLinkedList',
@@ -2044,7 +2043,7 @@ const programming: DictionaryResource[] = [
     length: 25,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'javaString',
@@ -2056,7 +2055,7 @@ const programming: DictionaryResource[] = [
     length: 48,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'javaStringBuffer',
@@ -2068,7 +2067,7 @@ const programming: DictionaryResource[] = [
     length: 20,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'linuxCommand',
@@ -2080,7 +2079,7 @@ const programming: DictionaryResource[] = [
     length: 575,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'csharpList',
@@ -2092,7 +2091,7 @@ const programming: DictionaryResource[] = [
     length: 36,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'sql-lower-case',
@@ -2104,7 +2103,7 @@ const programming: DictionaryResource[] = [
     length: 12,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'sql-upper-case',
@@ -2116,7 +2115,7 @@ const programming: DictionaryResource[] = [
     length: 12,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'ai-machine-learning',
@@ -2128,7 +2127,7 @@ const programming: DictionaryResource[] = [
     length: 726,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'ai-ai-for-science',
@@ -2140,7 +2139,7 @@ const programming: DictionaryResource[] = [
     length: 491,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'go_keyword',
@@ -2152,7 +2151,7 @@ const programming: DictionaryResource[] = [
     length: 25,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'go_builtin',
@@ -2164,12 +2163,12 @@ const programming: DictionaryResource[] = [
     length: 46,
     translateLanguage: 'zh-CN',
     language: 'code',
-    type: "word"
+    resourceType: "word"
   },
 ]
 
 // 日语词典
-const japaneseExam: DictionaryResource[] = [
+const japaneseExam: DictResource[] = [
   {
     id: 'japanese001',
     name: '日语常见词',
@@ -2180,7 +2179,7 @@ const japaneseExam: DictionaryResource[] = [
     length: 100,
     translateLanguage: 'en',
     language: 'ja',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'japanese002',
@@ -2192,7 +2191,7 @@ const japaneseExam: DictionaryResource[] = [
     length: 670,
     translateLanguage: 'en',
     language: 'ja',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'japanese003',
@@ -2204,7 +2203,7 @@ const japaneseExam: DictionaryResource[] = [
     length: 635,
     translateLanguage: 'en',
     language: 'ja',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'japanese004',
@@ -2216,7 +2215,7 @@ const japaneseExam: DictionaryResource[] = [
     length: 1830,
     translateLanguage: 'en',
     language: 'ja',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'japanese005',
@@ -2228,7 +2227,7 @@ const japaneseExam: DictionaryResource[] = [
     length: 1836,
     translateLanguage: 'en',
     language: 'ja',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'japanese006',
@@ -2240,7 +2239,7 @@ const japaneseExam: DictionaryResource[] = [
     length: 3477,
     translateLanguage: 'en',
     language: 'ja',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'japanese007',
@@ -2252,7 +2251,7 @@ const japaneseExam: DictionaryResource[] = [
     length: 3000,
     translateLanguage: 'zh-CN',
     language: 'ja',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'japanese008',
@@ -2264,7 +2263,7 @@ const japaneseExam: DictionaryResource[] = [
     length: 2500,
     translateLanguage: 'zh-CN',
     language: 'ja',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'japanese009',
@@ -2276,7 +2275,7 @@ const japaneseExam: DictionaryResource[] = [
     length: 1999,
     translateLanguage: 'zh-CN',
     language: 'ja',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'japanese0010',
@@ -2288,12 +2287,12 @@ const japaneseExam: DictionaryResource[] = [
     length: 2000,
     translateLanguage: 'zh-CN',
     language: 'ja',
-    type: "word"
+    resourceType: "word"
   },
 ]
 
 // 德语词典
-const germanExam: DictionaryResource[] = [
+const germanExam: DictResource[] = [
   {
     id: 'german2en',
     name: '德语 英译',
@@ -2304,7 +2303,7 @@ const germanExam: DictionaryResource[] = [
     length: 5892,
     translateLanguage: 'en',
     language: 'de',
-    type: "word"
+    resourceType: "word"
   },
   {
     id: 'en2german',
@@ -2316,12 +2315,12 @@ const germanExam: DictionaryResource[] = [
     length: 5025,
     translateLanguage: 'de',
     language: 'en',
-    type: "word"
+    resourceType: "word"
   },
 ]
 
 // 英语文章
-const enArticle: DictionaryResource[] = [
+const enArticle: DictResource[] = [
   {
     id: 'article_nce2',
     name: "新概念英语2-课文",
@@ -2330,13 +2329,13 @@ const enArticle: DictionaryResource[] = [
     tags: ['新概念英语'],
     url: '/articles/NCE_2.json',
     length: 5892,
-    translateLanguage: '',
+    translateLanguage: 'common',
     language: 'en',
-    type: "article"
+    resourceType: "article"
   },
 ]
 
-export const dictionaryResources: DictionaryResource[] = [
+export const dictionaryResources: DictResource[] = [
   ...chinaExam,
   ...internationalExam,
   ...childrenEnglish,

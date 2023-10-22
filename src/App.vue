@@ -2,11 +2,14 @@
 
 import {onMounted, watch} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
-import {SaveDictKey} from "@/types.ts"
+import {DictResource, SaveDictKey} from "@/types.ts"
 import Practice from "@/components/Practice/Practice.vue"
 import {useEventListener, useStartKeyboardEventListener} from "@/hooks/event.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
+import {dictionaryResources} from "@/assets/dictionary.ts";
+import {groupBy} from "lodash-es";
+import {$ref} from "vue/macros";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -43,12 +46,16 @@ useEventListener('keyup', (e: KeyboardEvent) => {
     lastItem && lastItem.close()
   }
 })
+
+
+onMounted(() => {
+})
 </script>
 
 <template>
   <!--    <Backgorund/>-->
   <div class="main-page">
-        <Practice/>
+    <Practice/>
     <!--    <AddArticle/>-->
     <!--      <Side/>-->
   </div>

@@ -1,16 +1,16 @@
 let path = require("path");
 let fs = require("fs");
 
-const str = fs.readFileSync("../public/dicts/en/zh-CN/translate/translate.json", "utf8");
+const str = fs.readFileSync("../public/dicts/en/common/translate/en2zh_CN.json", "utf8");
 let translateDict = JSON.parse(str);
 
 
-let pathName = "../public/dicts/en/zh-CN";
+let pathName = "../public/dicts/en/common";
 // let pathName = "./d";
 
 const dirs = fs.readdirSync(pathName)
 dirs.forEach(dictName => {
-  if (!dictName.includes('translate.json') || !dictName.includes('ts.json')) {
+  if (!dictName.includes('en2zh_CN.json') || !dictName.includes('ts.json')) {
     let dictPath = path.join(pathName, dictName)
     // console.log('d', dictPath)
     formatDict(dictPath)

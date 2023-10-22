@@ -86,7 +86,7 @@ export async function getNetworkTranslate(
 
     if (translator) {
       if (!article.titleTranslate) {
-        translator.translate(article.title, 'en', 'zh-CN').then(r => {
+        translator.translate(article.title, 'en', 'common').then(r => {
           article.titleTranslate = r.trans.paragraphs[0]
         })
       }
@@ -97,7 +97,7 @@ export async function getNetworkTranslate(
 
       const translate = async (sentence: Sentence) => {
         try {
-          let r = await translator.translate(sentence.text, 'en', 'zh-CN')
+          let r = await translator.translate(sentence.text, 'en', 'common')
           if (r) {
             const cb = () => {
               sentence.translate = r.trans.paragraphs[0]

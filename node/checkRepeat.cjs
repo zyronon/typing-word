@@ -1,19 +1,19 @@
 let path = require("path");
 let fs = require("fs");
 
-const str = fs.readFileSync("../public/dicts/en/zh-CN/translate/translate.json", "utf8");
+const str = fs.readFileSync("../public/dicts/en/common/translate/en2zh_CN.json", "utf8");
 let translateDict = JSON.parse(str);
 let ts = []
 
 console.log(translateDict.length)
 
-let pathName = "../public/dicts/en/zh-CN";
+let pathName = "../public/dicts/en/common";
 // let pathName = "./d";
 
 //判断是不是目录
 const dirs = fs.readdirSync(pathName)
 dirs.forEach(dictName => {
-  if (!dictName.includes('translate.json') || !dictName.includes('ts.json')) {
+  if (!dictName.includes('en2zh_CN.json') || !dictName.includes('ts.json')) {
     let dictPath = path.join(pathName, dictName)
     // console.log('d', dictPath)
     formatDict(dictPath)
@@ -21,7 +21,7 @@ dirs.forEach(dictName => {
 })
 
 fs.writeFileSync(
-  "../public/dicts/en/zh-CN/translate/ts.json",
+  "../public/dicts/en/common/translate/ts.json",
   JSON.stringify(ts, null, 2)
 );
 console.log(ts.length)
