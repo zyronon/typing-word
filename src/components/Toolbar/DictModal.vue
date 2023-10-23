@@ -2,17 +2,12 @@
 import {dictionaryResources} from '@/assets/dictionary.ts'
 import {useBaseStore} from "@/stores/base.ts"
 import {watch} from "vue"
-import {DefaultDict, Dict, DictResource, DictType, languageCategoryOptions, Sort, Word} from "@/types.ts"
+import {DefaultDict, Dict, DictResource, DictType, languageCategoryOptions, Word} from "@/types.ts"
 import {chunk, cloneDeep, groupBy} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
 import Modal from "@/components/Modal/Modal.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {Icon} from '@iconify/vue';
-import codeFlag from '@/assets/img/flags/code.png'
-import deFlag from '@/assets/img/flags/de.png'
-import enFlag from '@/assets/img/flags/en.png'
-import jpFlag from '@/assets/img/flags/ja.png'
-import bookFlag from '@/assets/img/flags/book.png'
 import DictGroup from "@/components/Toolbar/DictGroup.vue";
 import {v4 as uuidv4} from "uuid";
 import {ActivityCalendar} from "vue-activity-calendar";
@@ -23,9 +18,6 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {isArticle} from "@/hooks/article.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
-
-const store = useBaseStore()
-const runtimeStore = useRuntimeStore()
 
 interface IProps {
   modelValue?: boolean,
@@ -39,8 +31,9 @@ const emit = defineEmits<{
   close: []
 }>()
 
-const base = useBaseStore()
+const baseStore = useBaseStore()
 const settingStore = useSettingStore()
+const runtimeStore = useRuntimeStore()
 let currentLanguage = $ref('en')
 let currentTranslateLanguage = $ref('common')
 let groupByLanguage = groupBy(dictionaryResources, 'language')
@@ -49,16 +42,17 @@ let translateLanguageList = $ref([])
 let step = $ref(1)
 
 watch(() => props.modelValue, (n: boolean) => {
-  let find = base.myDicts.find((v: Dict) => v.name === store.currentDict.name)
+  let find = baseStore.myDicts.find((v: Dict) => v.name === baseStore.currentDict.name)
   if (find) {
     runtimeStore.editDict = cloneDeep(find)
   }
 })
 
 async function selectDict(item: DictResource) {
+
   console.log('item', item)
   step = 1
-  let find = base.myDicts.find((v: Dict) => v.name === item.name)
+  let find = baseStore.myDicts.find((v: Dict) => v.name === item.name)
   if (find) {
     runtimeStore.editDict = cloneDeep(find)
   } else {
@@ -77,6 +71,15 @@ async function selectDict(item: DictResource) {
         }))
         runtimeStore.editDict = cloneDeep(data)
       } else {
+        if (data.translateLanguage === 'common') {
+          console.time()
+          v.map((w: Word) => {
+            let res =  runtimeStore.translateWordList.find(a => a.name === w.name)
+            if (res) w = Object.assign(w, res)
+          })
+          console.timeEnd()
+        }
+
         data.originWords = v
         data.words = v
         data.chapterWords = chunk(v, data.chapterWordNumber)
@@ -88,7 +91,7 @@ async function selectDict(item: DictResource) {
 }
 
 function changeDict() {
-  store.changeDict(runtimeStore.editDict)
+  baseStore.changeDict(runtimeStore.editDict)
   close()
 }
 

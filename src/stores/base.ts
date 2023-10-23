@@ -3,6 +3,7 @@ import {DefaultDict, Dict, DictType, DisplayStatistics, SaveDictKey, Sort, Stati
 import {chunk, cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {v4 as uuidv4} from 'uuid';
+import {useRuntimeStore} from "@/stores/runtime.ts";
 
 export interface State {
   new: Dict,
@@ -74,7 +75,7 @@ export const useBaseStore = defineStore('base', {
         'am', 'is', 'do', 'are', 'did', 'were',
         'what', 'who', 'where', 'how', 'no', 'yes',
         'not', 'can', 'could',
-        'the', 'to', 'of', 'for', 'and', 'that', 'this','be'
+        'the', 'to', 'of', 'for', 'and', 'that', 'this', 'be'
       ],
       load: false
     }
@@ -157,10 +158,12 @@ export const useBaseStore = defineStore('base', {
             let r = await fetch(`./dicts/${this.currentDict.language}/${this.currentDict.type}/${this.currentDict.translateLanguage}/${this.currentDict.url}`)
             // let r = await fetch(`.${this.currentDict.url}`)0
             r.json().then(v => {
-              if (this.currentDict.translateLanguage === 'common'){
+              if (this.currentDict.translateLanguage === 'common') {
+                const runtimeStore = useRuntimeStore()
                 fetch('./translate/en2zh_CN.json').then(r => {
                   r.json().then((list: Word[]) => {
                     console.time()
+                    runtimeStore.translateWordList = list
 
                     v.map((w: Word) => {
                       let res = list.find(a => a.name === w.name)
@@ -175,7 +178,7 @@ export const useBaseStore = defineStore('base', {
                     console.timeEnd()
                   })
                 })
-              }else{
+              } else {
                 this.currentDict.originWords = cloneDeep(v)
                 this.currentDict.words = cloneDeep(v)
                 this.currentDict.chapterWords = chunk(this.currentDict.words, this.currentDict.chapterWordNumber)
