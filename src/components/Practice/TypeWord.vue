@@ -14,6 +14,7 @@ import {Icon} from "@iconify/vue";
 import VolumeIcon from "@/components/VolumeIcon.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Panel from "@/components/Practice/Panel.vue";
+import IconWrapper from "@/components/IconWrapper.vue";
 
 interface IProps {
   words: Word[],
@@ -75,19 +76,7 @@ watch(() => data.index, (n) => {
   }
 })
 
-let allList = $ref([])
-
-
 const word = $computed(() => {
-  // let w = data.words[data.index]
-  // let s = allList.find(s => s.name === w.name)
-  // if (s) return s
-  // else return w ?? {
-  //   trans: [],
-  //   name: '',
-  //   usphone: '',
-  //   ukphone: '',
-  // }
   return data.words[data.index] ?? {
     trans: [],
     name: '',
@@ -151,7 +140,7 @@ function next(isTyping: boolean = true) {
     data.index++
     isTyping && practiceStore.inputWordNumber++
     console.log('这个词完了')
-    if ([DictType.customDict, DictType.publicDict].includes(store.current.dictType)
+    if ([DictType.customWord, DictType.word].includes(store.current.dictType)
         && store.skipWordNames.includes(word.name.toLowerCase())) {
       next()
     }
@@ -171,10 +160,10 @@ function ignore() {
 }
 
 function collect() {
-  if (!store.newWordDict.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
-    store.newWordDict.originWords.push(word)
-    store.newWordDict.words.push(word)
-    store.newWordDict.chapterWords = [store.newWordDict.words]
+  if (!store.new.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
+    store.new.originWords.push(word)
+    store.new.words.push(word)
+    store.new.chapterWords = [store.new.words]
   }
   activeBtnIndex = 1
   setTimeout(() => {
@@ -184,9 +173,9 @@ function collect() {
 
 function remove() {
   if (!store.skipWordNames.includes(word.name.toLowerCase())) {
-    store.skipWordDict.originWords.push(word)
-    store.skipWordDict.words.push(word)
-    store.skipWordDict.chapterWords = [store.skipWordDict.words]
+    store.skip.originWords.push(word)
+    store.skip.words.push(word)
+    store.skip.chapterWords = [store.skip.words]
   }
   activeBtnIndex = 0
   next(false)
@@ -225,10 +214,10 @@ async function onKeyDown(e: KeyboardEvent) {
       isWrong = (input + letter) !== word.name.slice(0, input.length + 1)
     }
     if (isWrong) {
-      if (!store.wrongWordDict.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
-        store.wrongWordDict.originWords.push(word)
-        store.wrongWordDict.words.push(word)
-        store.wrongWordDict.chapterWords = [store.wrongWordDict.words]
+      if (!store.wrong.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
+        store.wrong.originWords.push(word)
+        store.wrong.words.push(word)
+        store.wrong.chapterWords = [store.wrong.words]
       }
       if (!data.wrongWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
         data.wrongWords.push(word)
@@ -305,21 +294,15 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
       <div class="prev"
            @click="prev"
            v-if="prevWord">
-        <Icon icon="bi:arrow-left" width="22"/>
-        <div class="word">
-          <div>{{ prevWord.name }}</div>
-          <div v-show="settingStore.translate">{{ prevWord.trans.join('；') }}</div>
-        </div>
+        <Icon class="arrow" icon="bi:arrow-left" width="22"/>
+        <div class="word">{{ prevWord.name }}</div>
       </div>
       <Tooltip title="快捷键：Tab">
         <div class="next"
              @click="next(false)"
              v-if="nextWord">
-          <div class="word">
-            <div :class="settingStore.dictation && 'shadow'">{{ nextWord.name }}</div>
-            <div v-show="settingStore.translate">{{ nextWord.trans.join('；') }}</div>
-          </div>
-          <Icon icon="bi:arrow-right" width="22"/>
+          <div class="word" :class="settingStore.dictation && 'shadow'">{{ nextWord.name }}</div>
+          <Icon class="arrow" icon="bi:arrow-right" width="22"/>
         </div>
       </Tooltip>
     </div>
@@ -329,7 +312,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
       opacity: settingStore.translate ? 1 : 0
     }"
     >
-      <div v-for="i in word.trans">{{i}}</div>
+      <div v-for="i in word.trans">{{ i }}</div>
     </div>
     <div class="word-wrapper">
       <div class="word"
@@ -351,21 +334,27 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     </div>
     <div class="phonetic">{{ settingStore.wordSoundType === 'us' ? word.usphone : word.ukphone }}</div>
     <div class="options">
-      <BaseButton keyboard="`"
-                  @click="remove"
-                  :active="activeBtnIndex === 0">
-        忽略
-      </BaseButton>
-      <BaseButton keyboard="Enter"
-                  @click="collect"
-                  :active="activeBtnIndex === 1">
-        收藏
-      </BaseButton>
-      <BaseButton keyboard="Tab"
-                  @click="ignore"
-                  :active="activeBtnIndex === 2">
-        跳过
-      </BaseButton>
+      <Tooltip title="忽略(快捷键：`)">
+        <IconWrapper>
+          <Icon icon="fluent:delete-20-regular" class="menu"
+                :active="activeBtnIndex === 0"
+                @click="remove"/>
+        </IconWrapper>
+      </Tooltip>
+      <Tooltip title="收藏(快捷键：Enter)">
+        <IconWrapper>
+          <Icon icon="ph:star" class="menu"
+                @click="collect"
+                :active="activeBtnIndex === 1"/>
+        </IconWrapper>
+      </Tooltip>
+      <Tooltip title="跳过(快捷键：Tab)">
+        <IconWrapper>
+          <Icon icon="icon-park-outline:go-ahead" class="menu"
+                @click="ignore"
+                :active="activeBtnIndex === 2"/>
+        </IconWrapper>
+      </Tooltip>
     </div>
     <Panel :list="data.words" v-model:index="data.index"/>
   </div>
@@ -392,35 +381,35 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     top: 0;
     width: 100%;
 
-    .word {
-      div {
-        font-size: 24rem;
-        margin-bottom: 4rem;
-      }
+    & > div {
+      width: 45%;
+      align-items: center;
 
-      div:last-child {
-        font-size: 14rem;
+      .arrow {
+        min-width: 22rem;
+        min-height: 22rem;
       }
     }
+
+    .word {
+      font-size: 24rem;
+      margin-bottom: 4rem;
+    }
+
 
     .prev {
       cursor: pointer;
       display: flex;
       float: left;
-      align-items: center;
       gap: 10rem;
     }
 
     .next {
       cursor: pointer;
       display: flex;
-      align-items: center;
+      justify-content: flex-end;
       gap: 10rem;
       float: right;
-
-      .word {
-        text-align: right;
-      }
     }
 
     .shadow {
@@ -437,7 +426,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     font-size: 18rem;
   }
 
-  .phonetic, .translate {
+  .phonetic, .translate, .options {
     font-size: 20rem;
     margin-left: -30rem;
     transition: all .3s;

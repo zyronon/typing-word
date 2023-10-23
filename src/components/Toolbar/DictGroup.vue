@@ -36,7 +36,7 @@ watch(() => props.groupByTag, () => {
     </div>
     <div class="dict-list">
       <div class="dict-item anim"
-           :class="selectDictName === i.name && 'active'"
+           :class="selectDictName === i.id && 'active'"
            @click="emit('selectDict',i)"
            v-for="i in list"
       >

@@ -47,44 +47,54 @@ watch(() => settingStore.showToolbar, n => {
         {{ store.dictTitle }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
       </div>
       <div class="options">
-        <Tooltip title="开关默写模式">
+        <Tooltip title="收起图标">
           <IconWrapper>
-            <Icon icon="majesticons:eye-off-line"
-                  v-if="settingStore.dictation"
-                  @click="settingStore.dictation = false"/>
-            <Icon icon="mdi:eye-outline"
-                  v-else
-                  @click="settingStore.dictation = true"/>
+            <Icon :icon="`system-uicons:window-collapse-${settingStore.collapse?'left':'right'}`"
+                  @click="settingStore.collapse = !settingStore.collapse"/>
           </IconWrapper>
         </Tooltip>
 
-        <TranslateSetting/>
+        <div class="more"  v-if="!settingStore.collapse">
+          <Tooltip title="开关默写模式">
+            <IconWrapper>
+              <Icon icon="majesticons:eye-off-line"
+                    v-if="settingStore.dictation"
+                    @click="settingStore.dictation = false"/>
+              <Icon icon="mdi:eye-outline"
+                    v-else
+                    @click="settingStore.dictation = true"/>
+            </IconWrapper>
+          </Tooltip>
 
-        <VolumeSetting/>
+          <TranslateSetting/>
 
-        <RepeatSetting/>
+          <VolumeSetting/>
 
-        <Add/>
+          <RepeatSetting/>
 
-        <Tooltip title="反馈">
-          <IconWrapper>
-            <Icon icon="octicon:bug-24" @click="showFeedbackModal = true"/>
-          </IconWrapper>
-        </Tooltip>
+          <Add/>
+
+          <Tooltip title="反馈">
+            <IconWrapper>
+              <Icon icon="octicon:bug-24" @click="showFeedbackModal = true"/>
+            </IconWrapper>
+          </Tooltip>
+
+          <Tooltip title="切换主题">
+            <IconWrapper>
+              <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
+                    @click="toggle"/>
+              <Icon icon="tabler:sun" v-else @click="toggle"/>
+            </IconWrapper>
+          </Tooltip>
+        </div>
+
         <Tooltip title="设置">
           <IconWrapper>
             <Icon icon="uil:setting" @click="showSettingModal = true"/>
           </IconWrapper>
         </Tooltip>
-<!--        <div class="base-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>-->
-
-        <Tooltip title="切换主题">
-          <IconWrapper>
-            <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
-                  @click="toggle"/>
-            <Icon icon="tabler:sun" v-else @click="toggle"/>
-          </IconWrapper>
-        </Tooltip>
+        <!--        <div class="base-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>-->
 
         <Tooltip title="单词本">
           <IconWrapper>
@@ -152,6 +162,14 @@ header {
       display: flex;
       align-items: center;
       gap: 10rem;
+
+      .more {
+        display: flex;
+        gap: 10rem;
+        align-items: center;
+        overflow: hidden;
+        transition: all .3s;
+      }
     }
   }
 

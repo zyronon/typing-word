@@ -281,10 +281,10 @@ function onKeyDown(e: KeyboardEvent) {
           }
         }
       } else {
-        if (!store.wrongWordDict.originWords.find((v: Word) => v.name.toLowerCase() === currentWord.name.toLowerCase())) {
-          store.wrongWordDict.originWords.push(currentWord)
-          store.wrongWordDict.words.push(currentWord)
-          store.wrongWordDict.chapterWords = [store.wrongWordDict.words]
+        if (!store.wrong.originWords.find((v: Word) => v.name.toLowerCase() === currentWord.name.toLowerCase())) {
+          store.wrong.originWords.push(currentWord)
+          store.wrong.words.push(currentWord)
+          store.wrong.chapterWords = [store.wrong.words]
         }
 
         if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase())) {

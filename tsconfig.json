@@ -28,6 +28,7 @@
     ],
     "types": [
       "vue/ref-macros",
+      "vite/client",
       "element-plus/global"
     ],
     "baseUrl": "src",
@@ -41,9 +42,10 @@
     }
   },
   "include": [
+    "src",
     "src/**/*.ts",
-    "src/**/*.d.ts",
     "src/**/*.tsx",
+    "src/**/*.d.ts",
     "src/**/*.vue",
     "auto-imports.d.ts",
     "src/vite-env.d.ts"

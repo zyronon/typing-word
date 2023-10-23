@@ -2,7 +2,7 @@
 import {dictionaryResources} from '@/assets/dictionary.ts'
 import {useBaseStore} from "@/stores/base.ts"
 import {watch} from "vue"
-import {Dict, DictResource, DictType, languageCategoryOptions, Sort, Word} from "@/types.ts"
+import {DefaultDict, Dict, DictResource, DictType, languageCategoryOptions, Sort, Word} from "@/types.ts"
 import {chunk, cloneDeep, groupBy} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
 import Modal from "@/components/Modal/Modal.vue";
@@ -56,48 +56,34 @@ watch(() => props.modelValue, (n: boolean) => {
 })
 
 async function selectDict(item: DictResource) {
-  console.log('item',item)
+  console.log('item', item)
   step = 1
   let find = base.myDicts.find((v: Dict) => v.name === item.name)
   if (find) {
     runtimeStore.editDict = cloneDeep(find)
   } else {
-    let data = {
-      sort: Sort.normal,
-      type: DictType.publicDict,
-      originWords: [],
-      words: [],
-      chapterWordNumber: 30,
-      chapterWords: [],
-      chapterIndex: 0,
-      chapterWordIndex: 0,
-      statistics: [],
-      articles: [],
+    let data: Dict = {
+      ...DefaultDict,
       ...item,
     }
 
-    if (item.resourceType === 'article') {
-      data.type = DictType.publicArticle
-      let r = await fetch(`/dicts/${item.language}/${item.resourceType}/${item.translateLanguage}/${item.url}`)
-      r.json().then(v => {
-        console.log('v', v)
-        data.articles = cloneDeep(v.map(v => {
-          v.id = uuidv4()
-          return v
+    let r = await fetch(`./dicts/${data.language}/${data.type}/${data.translateLanguage}/${item.url}`)
+    r.json().then(v => {
+      console.log('v', v)
+      if (data.type === DictType.article) {
+        data.articles = cloneDeep(v.map(s => {
+          s.id = uuidv4()
+          return s
         }))
         runtimeStore.editDict = cloneDeep(data)
-      })
-    } else {
-      data.type = DictType.publicDict
-      let r = await fetch(`/dicts/${item.language}/${item.resourceType}/${item.translateLanguage}/${item.url}`)
-      r.json().then(v => {
+      } else {
         data.originWords = v
         data.words = v
         data.chapterWords = chunk(v, data.chapterWordNumber)
         runtimeStore.editDict = cloneDeep(data)
         console.log(' runtimeStore.editDict', runtimeStore.editDict)
-      })
-    }
+      }
+    })
   }
 }
 
@@ -130,7 +116,7 @@ function groupByDictTags(dictList: DictResource[]) {
 const groupByTranslateLanguage = $computed(() => {
   let data: any
   if (currentLanguage === 'article') {
-    let articleList = dictionaryResources.filter(v => v.resourceType === 'article')
+    let articleList = dictionaryResources.filter(v => v.type === 'article')
     data = groupBy(articleList, 'translateLanguage')
   } else {
     data = groupBy(groupByLanguage[currentLanguage], 'translateLanguage')
@@ -191,12 +177,12 @@ const dictIsArticle = $computed(() => {
               <div class="translate">
                 <span>翻译：</span>
                 <el-radio-group v-model="currentTranslateLanguage">
-                  <el-radio v-for="i in translateLanguageList" :label="i">{{ i }}</el-radio>
+                  <el-radio border v-for="i in translateLanguageList" :label="i">{{ i }}</el-radio>
                 </el-radio-group>
               </div>
               <DictGroup
                   v-for="item in groupedByCategoryAndTag"
-                  :select-dict-name="runtimeStore.editDict.name"
+                  :select-dict-name="runtimeStore.editDict.resourceId"
                   @selectDict="selectDict"
                   @detail="step = 1"
                   :groupByTag="item[1]"

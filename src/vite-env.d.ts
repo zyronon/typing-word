@@ -1,11 +1,11 @@
 import {ElMessageBox} from "element-plus";
 
-/// <reference types="vite/client" />
-/// <reference types="vue/macros-global" />
+
 // declare module '*.json' {
 //   const src: string
 //   export default src
 // }
+
 declare const LATEST_COMMIT_HASH: string
 
 declare module '*.mp3' {
@@ -17,10 +17,16 @@ declare module '*.wav' {
   const src: string;
   export default src;
 }
-declare module '*.png' {
-  const src: string;
-  export default src;
-}
+
+declare module "*.png";
+declare module "*.svg";
+declare module "*.jpeg";
+declare module "*.jpg";
+
+// declare module '*.png' {
+//   const src: string;
+//   export default src;
+// }
 
 declare module "*.vue" {
   import type {DefineComponent} from 'vue'
@@ -33,7 +39,7 @@ declare module "*.vue" {
 //   export default Vue
 // }
 
-declare module '*.ts';
+// declare module '*.ts';
 
 // declare global {
 //   interface Window {
@@ -42,3 +48,6 @@ declare module '*.ts';
 // }
 
 declare var ElMessageBox: ElMessageBox;
+
+/// <reference types="vite/client" />
+/// <reference types="vue/macros-global" />

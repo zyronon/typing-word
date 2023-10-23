@@ -1,5 +1,5 @@
 import {defineStore} from "pinia"
-import {Dict, DictType, Sort} from "@/types.ts";
+import {DefaultDict, Dict, DictType, Sort} from "@/types.ts";
 
 export interface RuntimeState {
   disableEventListener: boolean,
@@ -12,20 +12,7 @@ export const useRuntimeStore = defineStore('runtime', {
     return {
       disableEventListener: false,
       modalList: [],
-      editDict: {
-        name: '',
-        sort: Sort.normal,
-        type: DictType.publicArticle,
-        originWords: [],
-        articles: [],
-        words: [],
-        chapterWordNumber: 15,
-        chapterWords: [],
-        chapterIndex: 0,
-        chapterWordIndex: 0,
-        statistics: [],
-        url: '',
-      },
+      editDict: {...DefaultDict},
     }
   },
 })

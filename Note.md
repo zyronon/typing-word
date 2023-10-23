@@ -45,4 +45,6 @@ A cold welcome 有bug
 
 单词发音，点击第二遍时减速
 
+http://enpuz.com/ 语法分析工具
+
 键盘音效应该多放几遍

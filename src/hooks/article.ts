@@ -257,7 +257,7 @@ export function getSplitTranslateText(article: string) {
 
 export function isArticle(type: DictType): boolean {
   return [
-    DictType.publicArticle,
+    DictType.article,
     DictType.customArticle
   ].includes(type)
 }

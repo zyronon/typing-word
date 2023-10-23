@@ -1,7 +1,7 @@
 import bookFlag from "@/assets/img/flags/book.png";
 import enFlag from "@/assets/img/flags/en.png";
 import jpFlag from "@/assets/img/flags/ja.png";
-import deFlag from "@/assets/img/flags/de.png";
+import deFlag from "./assets/img/flags/de.png";
 import codeFlag from "@/assets/img/flags/code.png";
 
 export type Word = {
@@ -25,7 +25,6 @@ export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 
 export type TranslateLanguageType = 'en' | 'zh-CN' | 'ja' | 'de' | 'common' | ''
 export type LanguageType = 'en' | 'ja' | 'de' | 'code'
-export type ResourceType = 'word' | 'article'
 
 export type DictResource = {
   id: string
@@ -36,7 +35,7 @@ export type DictResource = {
   url: string
   length: number
   translateLanguage: TranslateLanguageType
-  resourceType: ResourceType
+  type: DictType
   language: LanguageType
 }
 
@@ -44,25 +43,29 @@ export interface Dict {
   id: string,
   name: string,
   sort: Sort,
-  type: DictType,
   originWords: Word[],//原始单词
   words: Word[],
   chapterWordNumber: number,//章节单词数量
   chapterWords: Word[][],
+  chapterIndex: number,//章节下标
+  wordIndex: number,//单词下标
   articles: Article[],
-  chapterIndex: number,
-  chapterWordIndex: number,
   statistics: Statistics[],
+  resourceId: string,
+  type: DictType,
+  translateLanguage: TranslateLanguageType
+  language: LanguageType
   url: string,
 }
 
+
 export enum DictType {
-  newWordDict = 'newWordDict',
-  skipWordDict = 'skipWordDict',
-  wrongWordDict = 'wrongWordDict',
-  publicDict = 'publicDict',
-  customDict = 'customDict',
-  publicArticle = 'publicArticle',
+  new = 'new',
+  skip = 'skip',
+  wrong = 'wrong',
+  word = 'word',
+  customWord = 'customWord',
+  article = 'article',
   customArticle = 'customArticle'
 }
 
@@ -172,3 +175,22 @@ export const languageCategoryOptions = [
   {id: 'de', name: '德语', flag: deFlag},
   {id: 'code', name: 'Code', flag: codeFlag},
 ]
+
+export const DefaultDict: Dict = {
+  id: '',
+  name: '',
+  sort: Sort.normal,
+  originWords: [],//原始单词
+  words: [],
+  chapterWordNumber: 30,//章节单词数量
+  chapterWords: [],
+  chapterIndex: 0,//章节下标
+  wordIndex: 0,//单词下标
+  articles: [],
+  statistics: [],
+  resourceId: '',
+  type: DictType.word,
+  translateLanguage: 'common',
+  language: 'en',
+  url: '',
+}

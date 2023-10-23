@@ -1,4 +1,4 @@
-import {DictResource} from "@/types.ts"
+import {DictResource, DictType} from "@/types.ts"
 
 // 中国考试
 const chinaExam: DictResource[] = [
@@ -12,7 +12,7 @@ const chinaExam: DictResource[] = [
     length: 2607,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'cet6',
@@ -24,7 +24,7 @@ const chinaExam: DictResource[] = [
     length: 2345,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'xinghuoqiaoji_4',
@@ -36,7 +36,7 @@ const chinaExam: DictResource[] = [
     length: 2522,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'xinghuoqiaoji_6',
@@ -48,7 +48,7 @@ const chinaExam: DictResource[] = [
     length: 7520,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'cet4-sub',
@@ -60,7 +60,7 @@ const chinaExam: DictResource[] = [
     length: 1957,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'cet6-sub',
@@ -72,7 +72,7 @@ const chinaExam: DictResource[] = [
     length: 1949,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'kaoyan',
@@ -84,7 +84,7 @@ const chinaExam: DictResource[] = [
     length: 3728,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'kaoyan_2024',
@@ -96,7 +96,7 @@ const chinaExam: DictResource[] = [
     length: 3731,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'kaoyanshanguo_2023',
@@ -108,7 +108,7 @@ const chinaExam: DictResource[] = [
     length: 1771,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'dancimimi_1',
@@ -120,7 +120,7 @@ const chinaExam: DictResource[] = [
     length: 5657,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'dancimimi_2',
@@ -132,7 +132,7 @@ const chinaExam: DictResource[] = [
     length: 3827,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'level4',
@@ -144,7 +144,7 @@ const chinaExam: DictResource[] = [
     length: 4025,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'level8',
@@ -156,7 +156,7 @@ const chinaExam: DictResource[] = [
     length: 12197,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'archVocabulary',
@@ -168,7 +168,7 @@ const chinaExam: DictResource[] = [
     length: 630,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'itVocabulary',
@@ -180,7 +180,7 @@ const chinaExam: DictResource[] = [
     length: 1665,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'pets3',
@@ -192,7 +192,7 @@ const chinaExam: DictResource[] = [
     length: 1942,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'pets3-2023',
@@ -204,7 +204,7 @@ const chinaExam: DictResource[] = [
     length: 4449,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'self-study_English1',
@@ -216,7 +216,7 @@ const chinaExam: DictResource[] = [
     length: 1800,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'self-study_English2',
@@ -228,7 +228,7 @@ const chinaExam: DictResource[] = [
     length: 2181,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'self-study_English3',
@@ -240,7 +240,7 @@ const chinaExam: DictResource[] = [
     length: 4603,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'coca_20000',
@@ -252,7 +252,7 @@ const chinaExam: DictResource[] = [
     length: 20199,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: '4000_Essential_English_Words1',
@@ -264,7 +264,7 @@ const chinaExam: DictResource[] = [
     length: 3600,
     translateLanguage: 'en',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: '4000_Essential_English_Words2',
@@ -276,7 +276,7 @@ const chinaExam: DictResource[] = [
     length: 3600,
     translateLanguage: 'en',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'longman_communication_3000_words',
@@ -288,7 +288,7 @@ const chinaExam: DictResource[] = [
     length: 3168,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'top_2000_English_Words',
@@ -300,7 +300,7 @@ const chinaExam: DictResource[] = [
     length: 1867,
     translateLanguage: 'en',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'top_1500_nouns_Words',
@@ -312,7 +312,7 @@ const chinaExam: DictResource[] = [
     length: 1525,
     translateLanguage: 'en',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'top_1000_verb_Words',
@@ -324,7 +324,7 @@ const chinaExam: DictResource[] = [
     length: 1011,
     translateLanguage: 'en',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'top_500_Adj_Words',
@@ -336,7 +336,7 @@ const chinaExam: DictResource[] = [
     length: 527,
     translateLanguage: 'en',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'top_250_Adv_Words',
@@ -348,7 +348,7 @@ const chinaExam: DictResource[] = [
     length: 255,
     translateLanguage: 'en',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'top_60_Pronouns',
@@ -360,7 +360,7 @@ const chinaExam: DictResource[] = [
     length: 59,
     translateLanguage: 'en',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'top_50_Prepositions',
@@ -372,7 +372,7 @@ const chinaExam: DictResource[] = [
     length: 46,
     translateLanguage: 'en',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'suffix word',
@@ -384,7 +384,7 @@ const chinaExam: DictResource[] = [
     length: 126,
     translateLanguage: 'en',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'word roots1',
@@ -396,7 +396,7 @@ const chinaExam: DictResource[] = [
     length: 369,
     translateLanguage: 'en',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: '2024HongBao T1',
@@ -408,7 +408,7 @@ const chinaExam: DictResource[] = [
     length: 997,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: '2024HongBao T2',
@@ -420,7 +420,7 @@ const chinaExam: DictResource[] = [
     length: 854,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'adult self-study examination',
@@ -432,7 +432,7 @@ const chinaExam: DictResource[] = [
     length: 3692,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'Oxford5000',
@@ -444,7 +444,7 @@ const chinaExam: DictResource[] = [
     length: 5836,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'Merriam_Webster_sVocabularyBuilder',
@@ -456,7 +456,7 @@ const chinaExam: DictResource[] = [
     length: 1191,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'TOEFL_ZhangHongYan',
@@ -468,7 +468,7 @@ const chinaExam: DictResource[] = [
     length: 4035,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'English_II',
@@ -480,7 +480,7 @@ const chinaExam: DictResource[] = [
     length: 4559,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
 ]
 
@@ -496,7 +496,7 @@ const internationalExam: DictResource[] = [
     length: 3047,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'gre',
@@ -508,7 +508,7 @@ const internationalExam: DictResource[] = [
     length: 6515,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'gre3000',
@@ -520,7 +520,7 @@ const internationalExam: DictResource[] = [
     length: 3041,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'IELTS_tinglichangjing',
@@ -532,7 +532,7 @@ const internationalExam: DictResource[] = [
     length: 1204,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'ielts_disorder',
@@ -544,7 +544,7 @@ const internationalExam: DictResource[] = [
     length: 9389,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'ielts_order',
@@ -556,7 +556,7 @@ const internationalExam: DictResource[] = [
     length: 9389,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'ielts',
@@ -568,7 +568,7 @@ const internationalExam: DictResource[] = [
     length: 3575,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'ieltsWang3',
@@ -580,7 +580,7 @@ const internationalExam: DictResource[] = [
     length: 1135,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'ieltsWang4',
@@ -592,7 +592,7 @@ const internationalExam: DictResource[] = [
     length: 346,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'ieltsWang5',
@@ -604,7 +604,7 @@ const internationalExam: DictResource[] = [
     length: 1569,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'ieltsWang11',
@@ -616,7 +616,7 @@ const internationalExam: DictResource[] = [
     length: 1738,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'DuckCircle_IELTS',
@@ -628,7 +628,7 @@ const internationalExam: DictResource[] = [
     length: 2644,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'IELTSVocabularyBible',
@@ -640,7 +640,7 @@ const internationalExam: DictResource[] = [
     length: 3672,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'sat',
@@ -652,7 +652,7 @@ const internationalExam: DictResource[] = [
     length: 4464,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'SATen',
@@ -664,7 +664,7 @@ const internationalExam: DictResource[] = [
     length: 2681,
     translateLanguage: 'en',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'toefl',
@@ -676,7 +676,7 @@ const internationalExam: DictResource[] = [
     length: 4264,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'bec2',
@@ -688,7 +688,7 @@ const internationalExam: DictResource[] = [
     length: 2753,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'bec3',
@@ -700,7 +700,7 @@ const internationalExam: DictResource[] = [
     length: 2825,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'PTE_junior',
@@ -712,7 +712,7 @@ const internationalExam: DictResource[] = [
     length: 2651,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'PTE_senior',
@@ -724,7 +724,7 @@ const internationalExam: DictResource[] = [
     length: 3170,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'PTE_FIB_R_junior',
@@ -736,7 +736,7 @@ const internationalExam: DictResource[] = [
     length: 941,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'PTE_FIB_R_senior',
@@ -748,7 +748,7 @@ const internationalExam: DictResource[] = [
     length: 1272,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'PTE_WFD',
@@ -760,7 +760,7 @@ const internationalExam: DictResource[] = [
     length: 1212,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'PTE_FIB_L',
@@ -772,7 +772,7 @@ const internationalExam: DictResource[] = [
     length: 646,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'PTE_Basic_apeuni',
@@ -784,7 +784,7 @@ const internationalExam: DictResource[] = [
     length: 2652,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'PTE_Advanced_apeuni.json',
@@ -796,7 +796,7 @@ const internationalExam: DictResource[] = [
     length: 3169,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'PTE_Read_apeuni.json',
@@ -808,7 +808,7 @@ const internationalExam: DictResource[] = [
     length: 630,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'PTE_Listening_apeuni.json',
@@ -820,7 +820,7 @@ const internationalExam: DictResource[] = [
     length: 674,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'TOEIC',
@@ -832,7 +832,7 @@ const internationalExam: DictResource[] = [
     length: 1694,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'Oxford3000',
@@ -844,7 +844,7 @@ const internationalExam: DictResource[] = [
     length: 1342,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'Oxford5000',
@@ -856,7 +856,7 @@ const internationalExam: DictResource[] = [
     length: 5836,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
 ]
 
@@ -872,7 +872,7 @@ const childrenEnglish: DictResource[] = [
     length: 3893,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'gaokaozhentihexin',
@@ -884,7 +884,7 @@ const childrenEnglish: DictResource[] = [
     length: 799,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'zhongkaohexin',
@@ -896,7 +896,7 @@ const childrenEnglish: DictResource[] = [
     length: 2140,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'nce-new-1',
@@ -908,7 +908,7 @@ const childrenEnglish: DictResource[] = [
     length: 908,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'nce-new-2',
@@ -920,7 +920,7 @@ const childrenEnglish: DictResource[] = [
     length: 862,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'nce-new-3',
@@ -932,7 +932,7 @@ const childrenEnglish: DictResource[] = [
     length: 1062,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'nce-new-4',
@@ -944,7 +944,7 @@ const childrenEnglish: DictResource[] = [
     length: 793,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'SHjuniormiddleOxford',
@@ -956,7 +956,7 @@ const childrenEnglish: DictResource[] = [
     length: 1270,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'san1',
@@ -968,7 +968,7 @@ const childrenEnglish: DictResource[] = [
     length: 64,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'san2',
@@ -980,7 +980,7 @@ const childrenEnglish: DictResource[] = [
     length: 72,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'si1',
@@ -992,7 +992,7 @@ const childrenEnglish: DictResource[] = [
     length: 84,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'si2',
@@ -1004,7 +1004,7 @@ const childrenEnglish: DictResource[] = [
     length: 104,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'wu1',
@@ -1016,7 +1016,7 @@ const childrenEnglish: DictResource[] = [
     length: 131,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'wu2',
@@ -1028,7 +1028,7 @@ const childrenEnglish: DictResource[] = [
     length: 156,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'liu1',
@@ -1040,7 +1040,7 @@ const childrenEnglish: DictResource[] = [
     length: 130,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'liu2',
@@ -1052,7 +1052,7 @@ const childrenEnglish: DictResource[] = [
     length: 108,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'qi1',
@@ -1064,7 +1064,7 @@ const childrenEnglish: DictResource[] = [
     length: 392,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'qi2',
@@ -1076,7 +1076,7 @@ const childrenEnglish: DictResource[] = [
     length: 492,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'ba1',
@@ -1088,7 +1088,7 @@ const childrenEnglish: DictResource[] = [
     length: 419,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'ba2',
@@ -1100,7 +1100,7 @@ const childrenEnglish: DictResource[] = [
     length: 466,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'jiu',
@@ -1112,7 +1112,7 @@ const childrenEnglish: DictResource[] = [
     length: 551,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'renjiaogaozhong1',
@@ -1124,7 +1124,7 @@ const childrenEnglish: DictResource[] = [
     length: 311,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'renjiaogaozhong2',
@@ -1136,7 +1136,7 @@ const childrenEnglish: DictResource[] = [
     length: 319,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'renjiaogaozhong3',
@@ -1148,7 +1148,7 @@ const childrenEnglish: DictResource[] = [
     length: 366,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'renjiaogaozhong4',
@@ -1160,7 +1160,7 @@ const childrenEnglish: DictResource[] = [
     length: 307,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'renjiaogaozhong5',
@@ -1172,7 +1172,7 @@ const childrenEnglish: DictResource[] = [
     length: 357,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'renjiaogaozhong6',
@@ -1184,7 +1184,7 @@ const childrenEnglish: DictResource[] = [
     length: 391,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'renjiaogaozhong7',
@@ -1196,7 +1196,7 @@ const childrenEnglish: DictResource[] = [
     length: 384,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'renjiaogaozhong8',
@@ -1208,7 +1208,7 @@ const childrenEnglish: DictResource[] = [
     length: 420,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'renjiaogaozhong9',
@@ -1220,7 +1220,7 @@ const childrenEnglish: DictResource[] = [
     length: 352,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'renjiaogaozhong10',
@@ -1232,7 +1232,7 @@ const childrenEnglish: DictResource[] = [
     length: 361,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'renjiaogaozhong11',
@@ -1244,7 +1244,7 @@ const childrenEnglish: DictResource[] = [
     length: 309,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
 
   {
@@ -1257,7 +1257,7 @@ const childrenEnglish: DictResource[] = [
     length: 629,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'waiyan2',
@@ -1269,7 +1269,7 @@ const childrenEnglish: DictResource[] = [
     length: 438,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'waiyan3',
@@ -1281,7 +1281,7 @@ const childrenEnglish: DictResource[] = [
     length: 320,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'waiyan4',
@@ -1293,7 +1293,7 @@ const childrenEnglish: DictResource[] = [
     length: 266,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'waiyan5',
@@ -1305,7 +1305,7 @@ const childrenEnglish: DictResource[] = [
     length: 381,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'waiyan6',
@@ -1317,7 +1317,7 @@ const childrenEnglish: DictResource[] = [
     length: 128,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'waiyan7',
@@ -1329,7 +1329,7 @@ const childrenEnglish: DictResource[] = [
     length: 411,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'waiyan8',
@@ -1341,7 +1341,7 @@ const childrenEnglish: DictResource[] = [
     length: 272,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'Yilin1',
@@ -1353,7 +1353,7 @@ const childrenEnglish: DictResource[] = [
     length: 276,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'Yilin2',
@@ -1365,7 +1365,7 @@ const childrenEnglish: DictResource[] = [
     length: 297,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'Yilin3',
@@ -1377,7 +1377,7 @@ const childrenEnglish: DictResource[] = [
     length: 295,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'beishi1',
@@ -1389,7 +1389,7 @@ const childrenEnglish: DictResource[] = [
     length: 226,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'beishi2',
@@ -1401,7 +1401,7 @@ const childrenEnglish: DictResource[] = [
     length: 244,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'beishi3',
@@ -1413,7 +1413,7 @@ const childrenEnglish: DictResource[] = [
     length: 295,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'beishi4',
@@ -1425,7 +1425,7 @@ const childrenEnglish: DictResource[] = [
     length: 336,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'beishi5',
@@ -1437,7 +1437,7 @@ const childrenEnglish: DictResource[] = [
     length: 327,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'beishi6',
@@ -1449,7 +1449,7 @@ const childrenEnglish: DictResource[] = [
     length: 271,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'beishi7',
@@ -1461,7 +1461,7 @@ const childrenEnglish: DictResource[] = [
     length: 334,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'beishi8',
@@ -1473,7 +1473,7 @@ const childrenEnglish: DictResource[] = [
     length: 364,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'beishi9',
@@ -1485,7 +1485,7 @@ const childrenEnglish: DictResource[] = [
     length: 299,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'beishi10',
@@ -1497,7 +1497,7 @@ const childrenEnglish: DictResource[] = [
     length: 267,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'beishi11',
@@ -1509,7 +1509,7 @@ const childrenEnglish: DictResource[] = [
     length: 330,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel1',
@@ -1521,7 +1521,7 @@ const childrenEnglish: DictResource[] = [
     length: 297,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel2',
@@ -1533,7 +1533,7 @@ const childrenEnglish: DictResource[] = [
     length: 353,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel3',
@@ -1545,7 +1545,7 @@ const childrenEnglish: DictResource[] = [
     length: 172,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel4',
@@ -1557,7 +1557,7 @@ const childrenEnglish: DictResource[] = [
     length: 178,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel5',
@@ -1569,7 +1569,7 @@ const childrenEnglish: DictResource[] = [
     length: 172,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel6',
@@ -1581,7 +1581,7 @@ const childrenEnglish: DictResource[] = [
     length: 172,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel7',
@@ -1593,7 +1593,7 @@ const childrenEnglish: DictResource[] = [
     length: 171,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel8',
@@ -1605,7 +1605,7 @@ const childrenEnglish: DictResource[] = [
     length: 172,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel9',
@@ -1617,7 +1617,7 @@ const childrenEnglish: DictResource[] = [
     length: 165,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel10',
@@ -1629,7 +1629,7 @@ const childrenEnglish: DictResource[] = [
     length: 174,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel11',
@@ -1641,7 +1641,7 @@ const childrenEnglish: DictResource[] = [
     length: 176,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel12',
@@ -1653,7 +1653,7 @@ const childrenEnglish: DictResource[] = [
     length: 170,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel13',
@@ -1665,7 +1665,7 @@ const childrenEnglish: DictResource[] = [
     length: 172,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel14',
@@ -1677,7 +1677,7 @@ const childrenEnglish: DictResource[] = [
     length: 171,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel15',
@@ -1689,7 +1689,7 @@ const childrenEnglish: DictResource[] = [
     length: 168,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'eflevel16',
@@ -1701,7 +1701,7 @@ const childrenEnglish: DictResource[] = [
     length: 170,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   //Reading_Explorer系列
   {
@@ -1714,7 +1714,7 @@ const childrenEnglish: DictResource[] = [
     length: 239,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'Macmillan7000',
@@ -1726,7 +1726,7 @@ const childrenEnglish: DictResource[] = [
     length: 6268,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
 ]
 
@@ -1742,7 +1742,7 @@ const programming: DictResource[] = [
     length: 1700,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'childCode',
@@ -1754,7 +1754,7 @@ const programming: DictResource[] = [
     length: 19,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'childCode002',
@@ -1766,7 +1766,7 @@ const programming: DictResource[] = [
     length: 27,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'childCode003',
@@ -1778,7 +1778,7 @@ const programming: DictResource[] = [
     length: 39,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
 
   {
@@ -1791,7 +1791,7 @@ const programming: DictResource[] = [
     length: 36,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'jsDate',
@@ -1803,7 +1803,7 @@ const programming: DictResource[] = [
     length: 34,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'jsGlobal',
@@ -1815,7 +1815,7 @@ const programming: DictResource[] = [
     length: 9,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'jsMapSet',
@@ -1827,7 +1827,7 @@ const programming: DictResource[] = [
     length: 16,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'jsMath',
@@ -1839,7 +1839,7 @@ const programming: DictResource[] = [
     length: 38,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'jsNumber',
@@ -1851,7 +1851,7 @@ const programming: DictResource[] = [
     length: 22,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'jsObject',
@@ -1863,7 +1863,7 @@ const programming: DictResource[] = [
     length: 37,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'jsPromise',
@@ -1875,7 +1875,7 @@ const programming: DictResource[] = [
     length: 9,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'jsString',
@@ -1887,7 +1887,7 @@ const programming: DictResource[] = [
     length: 32,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'python-builtin',
@@ -1899,7 +1899,7 @@ const programming: DictResource[] = [
     length: 65,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'python-array',
@@ -1911,7 +1911,7 @@ const programming: DictResource[] = [
     length: 11,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'python-date',
@@ -1923,7 +1923,7 @@ const programming: DictResource[] = [
     length: 39,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'python-file',
@@ -1935,7 +1935,7 @@ const programming: DictResource[] = [
     length: 21,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'python-class',
@@ -1947,7 +1947,7 @@ const programming: DictResource[] = [
     length: 13,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'python-set',
@@ -1959,7 +1959,7 @@ const programming: DictResource[] = [
     length: 29,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'python-math',
@@ -1971,7 +1971,7 @@ const programming: DictResource[] = [
     length: 37,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'python-string',
@@ -1983,7 +1983,7 @@ const programming: DictResource[] = [
     length: 40,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'python-system',
@@ -1995,7 +1995,7 @@ const programming: DictResource[] = [
     length: 24,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'javeArrayList',
@@ -2007,7 +2007,7 @@ const programming: DictResource[] = [
     length: 25,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'javaCharacter',
@@ -2019,7 +2019,7 @@ const programming: DictResource[] = [
     length: 8,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'javaHashmap',
@@ -2031,7 +2031,7 @@ const programming: DictResource[] = [
     length: 22,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'javaLinkedList',
@@ -2043,7 +2043,7 @@ const programming: DictResource[] = [
     length: 25,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'javaString',
@@ -2055,7 +2055,7 @@ const programming: DictResource[] = [
     length: 48,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'javaStringBuffer',
@@ -2067,7 +2067,7 @@ const programming: DictResource[] = [
     length: 20,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'linuxCommand',
@@ -2079,7 +2079,7 @@ const programming: DictResource[] = [
     length: 575,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'csharpList',
@@ -2091,7 +2091,7 @@ const programming: DictResource[] = [
     length: 36,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'sql-lower-case',
@@ -2103,7 +2103,7 @@ const programming: DictResource[] = [
     length: 12,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'sql-upper-case',
@@ -2115,7 +2115,7 @@ const programming: DictResource[] = [
     length: 12,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'ai-machine-learning',
@@ -2127,7 +2127,7 @@ const programming: DictResource[] = [
     length: 726,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'ai-ai-for-science',
@@ -2139,7 +2139,7 @@ const programming: DictResource[] = [
     length: 491,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'go_keyword',
@@ -2151,7 +2151,7 @@ const programming: DictResource[] = [
     length: 25,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'go_builtin',
@@ -2163,7 +2163,7 @@ const programming: DictResource[] = [
     length: 46,
     translateLanguage: 'zh-CN',
     language: 'code',
-    resourceType: "word"
+    type: DictType.word
   },
 ]
 
@@ -2179,7 +2179,7 @@ const japaneseExam: DictResource[] = [
     length: 100,
     translateLanguage: 'en',
     language: 'ja',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'japanese002',
@@ -2191,7 +2191,7 @@ const japaneseExam: DictResource[] = [
     length: 670,
     translateLanguage: 'en',
     language: 'ja',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'japanese003',
@@ -2203,7 +2203,7 @@ const japaneseExam: DictResource[] = [
     length: 635,
     translateLanguage: 'en',
     language: 'ja',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'japanese004',
@@ -2215,7 +2215,7 @@ const japaneseExam: DictResource[] = [
     length: 1830,
     translateLanguage: 'en',
     language: 'ja',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'japanese005',
@@ -2227,7 +2227,7 @@ const japaneseExam: DictResource[] = [
     length: 1836,
     translateLanguage: 'en',
     language: 'ja',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'japanese006',
@@ -2239,7 +2239,7 @@ const japaneseExam: DictResource[] = [
     length: 3477,
     translateLanguage: 'en',
     language: 'ja',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'japanese007',
@@ -2251,7 +2251,7 @@ const japaneseExam: DictResource[] = [
     length: 3000,
     translateLanguage: 'zh-CN',
     language: 'ja',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'japanese008',
@@ -2263,7 +2263,7 @@ const japaneseExam: DictResource[] = [
     length: 2500,
     translateLanguage: 'zh-CN',
     language: 'ja',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'japanese009',
@@ -2275,7 +2275,7 @@ const japaneseExam: DictResource[] = [
     length: 1999,
     translateLanguage: 'zh-CN',
     language: 'ja',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'japanese0010',
@@ -2287,7 +2287,7 @@ const japaneseExam: DictResource[] = [
     length: 2000,
     translateLanguage: 'zh-CN',
     language: 'ja',
-    resourceType: "word"
+    type: DictType.word
   },
 ]
 
@@ -2303,7 +2303,7 @@ const germanExam: DictResource[] = [
     length: 5892,
     translateLanguage: 'en',
     language: 'de',
-    resourceType: "word"
+    type: DictType.word
   },
   {
     id: 'en2german',
@@ -2315,7 +2315,7 @@ const germanExam: DictResource[] = [
     length: 5025,
     translateLanguage: 'de',
     language: 'en',
-    resourceType: "word"
+    type: DictType.word
   },
 ]
 
@@ -2331,7 +2331,7 @@ const enArticle: DictResource[] = [
     length: 5892,
     translateLanguage: 'common',
     language: 'en',
-    resourceType: "article"
+    type: DictType.article
   },
 ]
 

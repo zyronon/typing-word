@@ -32,6 +32,7 @@ export interface SettingState {
   },
   showPanel: boolean,
   theme: string,
+  collapse: boolean,
 }
 
 export const useSettingStore = defineStore('setting', {
@@ -70,6 +71,7 @@ export const useSettingStore = defineStore('setting', {
       waitTimeForChangeWord: 300,
 
       theme: 'auto',
+      collapse:false,
     }
   },
 })
