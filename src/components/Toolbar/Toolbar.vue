@@ -167,7 +167,7 @@ header {
         display: flex;
         gap: 10rem;
         align-items: center;
-        overflow: hidden;
+        //overflow: hidden;
         transition: all .3s;
       }
     }

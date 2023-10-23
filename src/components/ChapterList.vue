@@ -1,8 +1,9 @@
 <script setup lang="ts">
 
-import {Dict} from "@/types.ts"
+import {Dict, Word} from "@/types.ts"
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {$computed} from "vue/macros";
+import {useRuntimeStore} from "@/stores/runtime.ts";
 
 const props = defineProps<{
   dict: Dict,
@@ -14,12 +15,27 @@ const emit = defineEmits<{
   'update:activeIndex': [index: number]
 }>()
 
+const runtimeStore = useRuntimeStore()
 
 const list: any[] = $computed(() => {
   if (props.isArticle) return props.dict.articles
   return props.dict.chapterWords
 })
 
+
+function showWordListModal(index: number, item: Word[]) {
+  if (runtimeStore.editDict.translateLanguage === 'common') {
+    console.time()
+    item.map((w: Word) => {
+      if (!w.trans.length){
+        let res =  runtimeStore.translateWordList.find(a => a.name === w.name)
+        if (res) w = Object.assign(w, res)
+      }
+    })
+    console.timeEnd()
+  }
+  emitter.emit(EventKey.openWordListModal, {title: `第${index + 1}章`, list: item})
+}
 </script>
 
 <template>
@@ -37,7 +53,7 @@ const list: any[] = $computed(() => {
       </template>
       <template v-else>
         <div class="title"
-             @click.stop="emitter.emit(EventKey.openWordListModal,{title:`第${index + 1}章`,list:item})"
+             @click.stop="showWordListModal(index,item)"
         >第{{ index + 1 }}章&nbsp;&nbsp;&nbsp;{{ item.length }}词
         </div>
       </template>

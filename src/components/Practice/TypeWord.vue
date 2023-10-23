@@ -203,7 +203,22 @@ function repeat() {
 
 async function onKeyDown(e: KeyboardEvent) {
   //TODO 还有横杠
-  if ((e.keyCode >= 65 && e.keyCode <= 90) || e.code === 'Space') {
+  //非英文模式下，输入区域的 keyCode 均为 229时，
+  if ((e.keyCode >= 65 && e.keyCode <= 90)
+      || (e.keyCode >= 48 && e.keyCode <= 57)
+      || e.code === 'Space'
+      || e.code === 'Slash'
+      || e.code === 'Quote'
+      || e.code === 'Comma'
+      || e.code === 'BracketLeft'
+      || e.code === 'BracketRight'
+      || e.code === 'Period'
+      || e.code === 'Minus'
+      || e.code === 'Equal'
+      || e.code === 'Semicolon'
+      || e.code === 'Backquote'
+      || e.keyCode === 229
+  ) {
     if (inputLock) return
     inputLock = true
     let letter = e.key
@@ -422,7 +437,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
   .options {
     margin-top: 10rem;
     display: flex;
-    gap: 15rem;
+    gap: 25rem;
     font-size: 18rem;
   }
 

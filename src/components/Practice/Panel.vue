@@ -8,6 +8,7 @@ import {Dict, DictType, Word} from "@/types.ts"
 import PopConfirm from "@/components/PopConfirm.vue"
 import BaseButton from "@/components/BaseButton.vue";
 import {useSettingStore} from "@/stores/setting.ts";
+import Close from "@/components/Close.vue";
 
 const props = defineProps<{
   list?: Word[],
@@ -42,7 +43,10 @@ const currentDict: Dict = $computed(() => {
 })
 
 const currentData = $computed(() => {
-  if (store.current.dictType !== currentDict.type) return {list: currentDict.chapterWords[currentDict.chapterIndex] ?? [], index: -1}
+  if (store.current.dictType !== currentDict.type) return {
+    list: currentDict.chapterWords[currentDict.chapterIndex] ?? [],
+    index: -1
+  }
   else return props
 })
 
@@ -76,8 +80,13 @@ function changeIndex(i: number, dict: Dict) {
   <Transition name="fade">
     <div class="panel" v-if="settingStore.showPanel">
       <header>
+        <Transition name="fade">
+          <Close
+              @click="settingStore.showPanel = false"
+              v-if="!settingStore.showToolbar"/>
+        </Transition>
         <div class="tabs">
-          <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">
+          <div class="tab current" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">
             {{ currentDict.name + `  第${currentDict.chapterIndex + 1}章` }}
           </div>
           <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.new.name }}</div>
@@ -188,7 +197,7 @@ $header-height: 50rem;
 
 .slide {
   width: 100%;
-  height: calc(100% - $header-height);
+  flex: 1;
   overflow: hidden;
 
   .slide-list {
@@ -257,38 +266,44 @@ $header-height: 50rem;
   z-index: 1;
 
   & > header {
-    height: $header-height;
+    min-height: 50rem;
+    box-sizing: border-box;
     position: relative;
     display: flex;
     align-items: center;
+    padding: 10rem 15rem;
+    border-bottom: 1px solid #e1e1e1;
+    gap: 15rem;
+
+    .close {
+      cursor: pointer;
+    }
 
     .tabs {
-      padding: 10rem 20rem;
       justify-content: flex-end;
       width: 100%;
       display: flex;
-      align-items: flex-end;
-      border-bottom: 1px solid #e1e1e1;
+      align-items: center;
       gap: 15rem;
       font-size: 14rem;
       color: gray;
 
       .tab {
         cursor: pointer;
+        word-break: keep-all;
+        font-size: 16rem;
 
         &.active {
-          font-size: 16rem;
           color: rgb(36, 127, 255);
           font-weight: bold;
         }
       }
+
+      .current {
+        word-break: break-word;
+      }
     }
 
-    .close {
-      cursor: pointer;
-      position: absolute;
-      right: 20rem;
-    }
   }
 }
 

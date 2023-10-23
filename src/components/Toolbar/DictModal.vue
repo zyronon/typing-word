@@ -2,7 +2,7 @@
 import {dictionaryResources} from '@/assets/dictionary.ts'
 import {useBaseStore} from "@/stores/base.ts"
 import {watch} from "vue"
-import {DefaultDict, Dict, DictResource, DictType, languageCategoryOptions, Word} from "@/types.ts"
+import {DefaultDict, Dict, DictResource, DictType, languageCategoryOptions} from "@/types.ts"
 import {chunk, cloneDeep, groupBy} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
 import Modal from "@/components/Modal/Modal.vue";
@@ -14,7 +14,6 @@ import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
 import ChapterList from "@/components/ChapterList.vue";
 import WordListModal from "@/components/WordListModal.vue";
-import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {isArticle} from "@/hooks/article.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -49,12 +48,21 @@ watch(() => props.modelValue, (n: boolean) => {
 })
 
 async function selectDict(item: DictResource) {
-
   console.log('item', item)
   step = 1
-  let find = baseStore.myDicts.find((v: Dict) => v.name === item.name)
+  let find: Dict = baseStore.myDicts.find((v: Dict) => v.name === item.name)
   if (find) {
-    runtimeStore.editDict = cloneDeep(find)
+    if (find.type === DictType.article) {
+      if (!find.articles.length) {
+        let r = await fetch(`./dicts/${find.language}/${find.type}/${find.translateLanguage}/${find.url}`)
+        let v = await r.json()
+        find.articles = v.map(s => {
+          s.id = uuidv4()
+          return s
+        })
+      }
+      runtimeStore.editDict = cloneDeep(find)
+    }
   } else {
     let data: Dict = {
       ...DefaultDict,
@@ -71,15 +79,6 @@ async function selectDict(item: DictResource) {
         }))
         runtimeStore.editDict = cloneDeep(data)
       } else {
-        if (data.translateLanguage === 'common') {
-          console.time()
-          v.map((w: Word) => {
-            let res =  runtimeStore.translateWordList.find(a => a.name === w.name)
-            if (res) w = Object.assign(w, res)
-          })
-          console.timeEnd()
-        }
-
         data.originWords = v
         data.words = v
         data.chapterWords = chunk(v, data.chapterWordNumber)
@@ -216,10 +215,8 @@ const dictIsArticle = $computed(() => {
                    v-if="dictIsArticle"
               >总文章：{{ runtimeStore.editDict.articles.length }}篇
               </div>
-              <div class="num"
-                   v-else
-                   @click="emitter.emit(EventKey.openWordListModal,{title:'所有单词',list:runtimeStore.editDict.words})">
-                总词汇：<span class="count">{{ runtimeStore.editDict.length }}词</span>
+              <div class="num" v-else>
+                总词汇：<span>{{ runtimeStore.editDict.length }}词</span>
               </div>
               <div class="num">开始日期：-</div>
               <div class="num">花费时间：-</div>
