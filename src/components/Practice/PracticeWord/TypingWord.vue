@@ -2,8 +2,7 @@
 import {onMounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
-import {DictType, DisplayStatistics, ShortKeyMap, Word} from "../../types";
-import BaseButton from "@/components/BaseButton.vue";
+import {DictType, DisplayStatistics, ShortKeyMap, Word} from "../../../types";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
@@ -13,7 +12,7 @@ import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {Icon} from "@iconify/vue";
 import VolumeIcon from "@/components/VolumeIcon.vue";
 import Tooltip from "@/components/Tooltip.vue";
-import WordPanel from "@/components/Practice/WordPanel.vue";
+import WordPanel from "./WordPanel.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 
 interface IProps {

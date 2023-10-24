@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import {computed, nextTick, onMounted, watch, watchEffect} from "vue"
+import {computed, nextTick, onMounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros";
 import {Article, ArticleWord, DefaultArticle, DisplayStatistics, ShortKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
 import {usePracticeStore} from "@/stores/practice.ts";
-import TypeWord from "@/components/Practice/TypeWord.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
@@ -13,15 +12,13 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import Tooltip from "@/components/Tooltip.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import {Icon} from "@iconify/vue";
-import WordPanel from "@/components/Practice/WordPanel.vue";
-import ArticlePanel from "@/components/Practice/ArticlePanel.vue";
 
 interface IProps {
   article: Article,
-  sectionIndex: number,
-  sentenceIndex: number,
-  wordIndex: number,
-  stringIndex: number,
+  sectionIndex?: number,
+  sentenceIndex?: number,
+  wordIndex?: number,
+  stringIndex?: number,
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -428,49 +425,44 @@ function toggleCollect() {
   }
 }
 
-let index = $ref(0)
 </script>
 
 <template>
-  <div class="typing-wrapper">
-    <div class="swiper-wrapper content">
-      <div class="swiper-list" :class="`step${tabIndex}`">
-        <div class="swiper-item">
-          <div class="article-wrapper">
-            <header>
-              <div class="title">{{ props.article.title }}</div>
-              <div class="titleTranslate" v-if="settingStore.translate">{{ props.article.titleTranslate }}</div>
-              <div class="options">
-                <Tooltip title="编辑(快捷键：Ctrl + E)">
-                  <IconWrapper>
-                    <Icon icon="tabler:edit" class="menu"
-                          @click="emit('edit',props.article)"/>
-                  </IconWrapper>
-                </Tooltip>
-                <Tooltip title="忽略(快捷键：`)">
-                  <IconWrapper>
-                    <Icon icon="fluent:delete-20-regular" class="menu"
-                          @click="tabIndex = 1"/>
-                  </IconWrapper>
-                </Tooltip>
-                <Tooltip title="收藏(快捷键：Enter)">
-                  <IconWrapper>
-                    <Icon :icon="`ph:star${collectIndex > -1?'-fill':''}`" class="menu"
-                          @click="toggleCollect"/>
-                  </IconWrapper>
-                </Tooltip>
-                <Tooltip title="跳过(快捷键：Tab)">
-                  <IconWrapper>
-                    <Icon icon="icon-park-outline:go-ahead" class="menu"
-                          @click="emit('next')"/>
-                  </IconWrapper>
-                </Tooltip>
-              </div>
-            </header>
-            <div class="article-content" ref="articleWrapperRef">
-              <article>
-                <div class="section"
-                     v-for="(section,indexI) in props.article.sections">
+  <div class="typing-article">
+    <header>
+      <div class="title">{{ props.article.title }}</div>
+      <div class="titleTranslate" v-if="settingStore.translate">{{ props.article.titleTranslate }}</div>
+      <div class="options">
+        <Tooltip title="编辑(快捷键：Ctrl + E)">
+          <IconWrapper>
+            <Icon icon="tabler:edit" class="menu"
+                  @click="emit('edit',props.article)"/>
+          </IconWrapper>
+        </Tooltip>
+        <Tooltip title="忽略(快捷键：`)">
+          <IconWrapper>
+            <Icon icon="fluent:delete-20-regular" class="menu"
+                  @click="tabIndex = 1"/>
+          </IconWrapper>
+        </Tooltip>
+        <Tooltip title="收藏(快捷键：Enter)">
+          <IconWrapper>
+            <Icon :icon="`ph:star${collectIndex > -1?'-fill':''}`" class="menu"
+                  @click="toggleCollect"/>
+          </IconWrapper>
+        </Tooltip>
+        <Tooltip title="跳过(快捷键：Tab)">
+          <IconWrapper>
+            <Icon icon="icon-park-outline:go-ahead" class="menu"
+                  @click="emit('next')"/>
+          </IconWrapper>
+        </Tooltip>
+      </div>
+    </header>
+    <div class="article-content" ref="articleWrapperRef">
+      <article>
+        <div class="section"
+             v-for="(section,indexI) in props.article.sections">
                 <span class="sentence"
                       :class="[
                           sectionIndex === indexI && sentenceIndex === indexJ && settingStore.dictation
@@ -517,35 +509,19 @@ let index = $ref(0)
                     </span>
                   </span>
                 </span>
-                </div>
-              </article>
-              <div class="translate" v-show="settingStore.translate">
-                <template v-for="(v,i) in props.article.sections">
-                  <div class="row"
-                       :class="`translate${i+'-'+j}`"
-                       v-for="(item,j) in v">
-                    <span class="space"></span>
-                    <Transition name="fade">
-                      <span class="text" v-if="item.translate">{{ item.translate }}</span>
-                    </Transition>
-                  </div>
-                </template>
-              </div>
-            </div>
+        </div>
+      </article>
+      <div class="translate" v-show="settingStore.translate">
+        <template v-for="(v,i) in props.article.sections">
+          <div class="row"
+               :class="`translate${i+'-'+j}`"
+               v-for="(item,j) in v">
+            <span class="space"></span>
+            <Transition name="fade">
+              <span class="text" v-if="item.translate">{{ item.translate }}</span>
+            </Transition>
           </div>
-          <Teleport to="body">
-            <div class="panel-wrapper">
-              <ArticlePanel :list="[]" v-model:index="index"/>
-            </div>
-          </Teleport>
-        </div>
-        <div class="swiper-item">
-          <TypeWord
-              :words="wordData.words"
-              :index="wordData.index"
-              v-if="tabIndex === 1"
-          />
-        </div>
+        </template>
       </div>
     </div>
   </div>
@@ -560,104 +536,92 @@ let index = $ref(0)
 }
 
 $article-width: 1000px;
-.typing-wrapper {
-  flex: 1;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.typing-article {
 
-  .content {
-    width: $article-width;
-  }
+  header {
+    word-wrap: break-word;
+    position: relative;
+    padding: 15rem 0;
 
-  .article-wrapper {
-
-    header {
-      word-wrap: break-word;
-      position: relative;
-      padding: 15rem 0;
-
-      .title {
-        text-align: center;
-        color: rgba(gray, .8);
-        font-size: 36rem;
-        font-weight: 500;
-        word-spacing: 3rem;
-        //opacity: 0;
-      }
-
-      .titleTranslate {
-        @extend .title;
-        font-size: 20rem;
-      }
-
-      .options {
-        position: absolute;
-        right: 20rem;
-        top: 0;
-        display: flex;
-        gap: 10rem;
-        font-size: 18rem;
-      }
-    }
-
-    .article-content {
-      position: relative;
+    .title {
+      text-align: center;
+      color: rgba(gray, .8);
+      font-size: 36rem;
+      font-weight: 500;
+      word-spacing: 3rem;
       //opacity: 0;
     }
 
-    article {
-      //height: 100%;
-      font-size: 24rem;
-      line-height: 2.5;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-      color: gray;
-      word-break: keep-all;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-      padding-top: 20rem;
-
-      .section {
-        margin-bottom: $space;
-
-        .sentence {
-          transition: all .3s;
-
-          &.dictation {
-            letter-spacing: 3rem;
-          }
-        }
-
-        .word {
-          display: inline-block;
-        }
-      }
+    .titleTranslate {
+      @extend .title;
+      font-size: 20rem;
     }
 
-    .translate {
-      pointer-events: none;
+    .options {
       position: absolute;
+      right: 20rem;
       top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
+      display: flex;
+      gap: 10rem;
       font-size: 18rem;
-      color: gray;
-      line-height: 3.5;
-      letter-spacing: 3rem;
-      //display: none;
+    }
+  }
 
-      .row {
-        position: absolute;
-        left: 0;
-        width: 100%;
-        opacity: 0;
+  .article-content {
+    position: relative;
+    //opacity: 0;
+  }
 
-        .space {
-          transition: all .3s;
-          display: inline-block;
+  article {
+    //height: 100%;
+    font-size: 24rem;
+    line-height: 2.5;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    color: gray;
+    word-break: keep-all;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    padding-top: 20rem;
+
+    .section {
+      margin-bottom: $space;
+
+      .sentence {
+        transition: all .3s;
+
+        &.dictation {
+          letter-spacing: 3rem;
         }
+      }
+
+      .word {
+        display: inline-block;
+      }
+    }
+  }
+
+  .translate {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    font-size: 18rem;
+    color: gray;
+    line-height: 3.5;
+    letter-spacing: 3rem;
+    //display: none;
+
+    .row {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+
+      .space {
+        transition: all .3s;
+        display: inline-block;
       }
     }
   }
@@ -713,27 +677,6 @@ $article-width: 1000px;
   }
 }
 
-.swiper-wrapper {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-
-  .swiper-list {
-    transition: transform .3s;
-    height: 200%;
-
-    .swiper-item {
-      height: 50%;
-      overflow: auto;
-      display: flex;
-    }
-  }
-
-  .step1 {
-    transform: translate3d(0, -50%, 0);
-  }
-}
-
 @keyframes underline {
   0%, 100% {
     border-left: 1.3rem solid black;
@@ -743,12 +686,4 @@ $article-width: 1000px;
   }
 }
 
-.panel-wrapper {
-  position: fixed;
-  left: 0;
-  top: 10rem;
-  z-index: 1;
-  margin-left: calc(50% + ($article-width / 2) + $space);
-  height: calc(100% - 20rem);
-}
 </style>

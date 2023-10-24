@@ -4,8 +4,6 @@ import Toolbar from "@/components/Toolbar/Toolbar.vue"
 import {onMounted, watch} from "vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 import Footer from "@/components/Practice/Footer.vue";
-import TypeWord from "@/components/Practice/TypeWord.vue";
-import TypeArticle from "@/components/Practice/TypeArticle.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {$ref} from "vue/macros";
 import Statistics from "@/components/Practice/Statistics.vue";
@@ -17,14 +15,13 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {renewSectionTexts, renewSectionTranslates} from "@/hooks/translate.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import EditSingleArticleModal from "@/components/Article/EditSingleArticleModal.vue";
+import PracticeArticle from "@/components/Practice/PracticeArticle/PracticeArticle.vue";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 
-let showEditArticle = $ref(false)
-let editArticle = $ref<Article>(cloneDeep(DefaultArticle))
 
 watch(practiceStore, () => {
   if (practiceStore.inputWordNumber < 1) {
@@ -66,75 +63,9 @@ watch([
 
 function getCurrentPractice() {
   // console.log('store.currentDict',store.currentDict)
-  if (store.isArticle) {
-    // return
-    let currentArticle = store.currentDict.articles[store.currentDict.chapterIndex]
-    let tempArticle = {...DefaultArticle, ...currentArticle}
-    console.log('article', tempArticle)
-    if (tempArticle.sections.length) {
-      articleData.article = tempArticle
-    } else {
-      if (tempArticle.useTranslateType === TranslateType.none) {
-        renewSectionTexts(tempArticle)
-        articleData.article = tempArticle
-      } else {
-        if (tempArticle.useTranslateType === TranslateType.custom) {
-          if (tempArticle.textCustomTranslate.trim()) {
-            if (tempArticle.textCustomTranslateIsFormat) {
-              renewSectionTexts(tempArticle)
-              renewSectionTranslates(tempArticle, tempArticle.textCustomTranslate)
-              articleData.article = tempArticle
-            } else {
-              //说明有本地翻译，但是没格式化成一行一行的
-              MessageBox.confirm('检测到存在本地翻译，但未格式化，是否进行编辑?',
-                  '提示',
-                  () => {
-                    editArticle = tempArticle
-                    showEditArticle = true
-                  },
-                  () => {
-                    renewSectionTexts(tempArticle)
-                    tempArticle.useTranslateType = TranslateType.none
-                    store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = tempArticle
-                  },
-                  {
-                    confirmButtonText: '去编辑',
-                    cancelButtonText: '不需要翻译',
-                  })
-            }
-          } else {
-            //没有本地翻译
-            MessageBox.confirm(
-                '没有本地翻译，是否进行编辑?',
-                '提示',
-                () => {
-                  editArticle = tempArticle
-                  showEditArticle = true
-                },
-                () => {
-                  renewSectionTexts(tempArticle)
-                  tempArticle.useTranslateType = TranslateType.none
-                  store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = tempArticle
-                },
-                {
-                  confirmButtonText: '去编辑',
-                  cancelButtonText: '不需要翻译',
-                })
-          }
-        }
-
-        if (tempArticle.useTranslateType === TranslateType.network) {
-          renewSectionTexts(tempArticle)
-          renewSectionTranslates(tempArticle, tempArticle.textNetworkTranslate)
-          store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = tempArticle
-        }
-      }
-    }
-  } else {
-    wordData.words = cloneDeep(store.chapter)
-    wordData.index = 0
-    console.log('wordData', wordData)
-  }
+  wordData.words = cloneDeep(store.chapter)
+  wordData.index = 0
+  console.log('wordData', wordData)
 }
 
 onMounted(() => {
@@ -161,18 +92,6 @@ function next() {
   // repeat()
 }
 
-function saveArticle(val: Article) {
-  console.log('saveArticle', val)
-  showEditArticle = false
-  // articleData.article = cloneDeep(store.currentDict.articles[store.currentDict.chapterIndex])
-  store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = val
-}
-
-function edit(val: Article) {
-  editArticle = val
-  showEditArticle = true
-}
-
 function test() {
   MessageBox.confirm(
       '2您选择了“本地翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
@@ -189,32 +108,13 @@ function test() {
   <div class="practice">
     <Toolbar/>
     <!--    <BaseButton @click="test">test</BaseButton>-->
-    <TypeArticle
-        v-if="store.isArticle"
-        :article="articleData.article"
-        :sectionIndex="articleData.sectionIndex"
-        :sentenceIndex="articleData.sentenceIndex"
-        :wordIndex="articleData.wordIndex"
-        :stringIndex="articleData.stringIndex"
-        @next="next"
-        @edit="edit"
-    />
-    <TypeWord
-        v-else
-        :words="wordData.words"
-        :index="wordData.index"
-    />
+    <PracticeArticle v-if="store.isArticle"/>
     <Footer/>
   </div>
   <Statistics
       @write="write"
       @repeat="repeat"
       @next="next"
-  />
-  <EditSingleArticleModal
-      v-model="showEditArticle"
-      :article="editArticle"
-      @save="saveArticle"
   />
 </template>
 
@@ -224,7 +124,7 @@ function test() {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 

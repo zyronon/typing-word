@@ -86,7 +86,7 @@ onUnmounted(() => {
   margin-bottom: 10rem;
   transition: all .3s;
   position: relative;
-  margin-top: 30rem;
+  margin-top: 20rem;
 
   &.hide {
     margin-bottom: -90rem;
