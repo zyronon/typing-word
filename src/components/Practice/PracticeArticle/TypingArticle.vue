@@ -13,6 +13,8 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import Tooltip from "@/components/Tooltip.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import {Icon} from "@iconify/vue";
+import WordPanel from "@/components/Practice/WordPanel.vue";
+import ArticlePanel from "@/components/Practice/ArticlePanel.vue";
 
 interface IProps {
   article: Article,
@@ -426,6 +428,7 @@ function toggleCollect() {
   }
 }
 
+let index = $ref(0)
 </script>
 
 <template>
@@ -447,7 +450,7 @@ function toggleCollect() {
                 <Tooltip title="忽略(快捷键：`)">
                   <IconWrapper>
                     <Icon icon="fluent:delete-20-regular" class="menu"
-                          @click="emit('ignore')"/>
+                          @click="tabIndex = 1"/>
                   </IconWrapper>
                 </Tooltip>
                 <Tooltip title="收藏(快捷键：Enter)">
@@ -530,6 +533,11 @@ function toggleCollect() {
               </div>
             </div>
           </div>
+          <Teleport to="body">
+            <div class="panel-wrapper">
+              <ArticlePanel :list="[]" v-model:index="index"/>
+            </div>
+          </Teleport>
         </div>
         <div class="swiper-item">
           <TypeWord
@@ -551,6 +559,7 @@ function toggleCollect() {
   color: rgb(22, 163, 74);
 }
 
+$article-width: 1000px;
 .typing-wrapper {
   flex: 1;
   overflow: hidden;
@@ -559,7 +568,7 @@ function toggleCollect() {
   align-items: center;
 
   .content {
-    width: 1000px;
+    width: $article-width;
   }
 
   .article-wrapper {
@@ -732,5 +741,14 @@ function toggleCollect() {
   50% {
     border-left: 1.3rem solid transparent;
   }
+}
+
+.panel-wrapper {
+  position: fixed;
+  left: 0;
+  top: 10rem;
+  z-index: 1;
+  margin-left: calc(50% + ($article-width / 2) + $space);
+  height: calc(100% - 20rem);
 }
 </style>

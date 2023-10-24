@@ -13,7 +13,7 @@ import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {Icon} from "@iconify/vue";
 import VolumeIcon from "@/components/VolumeIcon.vue";
 import Tooltip from "@/components/Tooltip.vue";
-import Panel from "@/components/Practice/Panel.vue";
+import WordPanel from "@/components/Practice/WordPanel.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 
 interface IProps {
@@ -371,7 +371,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
         </IconWrapper>
       </Tooltip>
     </div>
-    <Panel :list="data.words" v-model:index="data.index"/>
+    <WordPanel :list="data.words" v-model:index="data.index"/>
   </div>
 </template>
 

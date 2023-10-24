@@ -252,14 +252,10 @@ $header-height: 50rem;
 }
 
 .panel {
-  position: fixed;
-  left: 0;
-  top: 10rem;
   border-radius: 8rem;
-  margin-left: calc(50% + (var(--toolbar-width) / 2) + $space);
   width: $width;
   background: var(--color-second-bg);
-  height: calc(100% - 20rem);
+  height: 100%;
   display: flex;
   flex-direction: column;
   transition: all .3s;
