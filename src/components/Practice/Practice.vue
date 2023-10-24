@@ -158,7 +158,7 @@ function repeat() {
 function next() {
   // console.log('next')
   store.currentDict.chapterIndex++
-  repeat()
+  // repeat()
 }
 
 function saveArticle(val: Article) {
@@ -166,6 +166,11 @@ function saveArticle(val: Article) {
   showEditArticle = false
   // articleData.article = cloneDeep(store.currentDict.articles[store.currentDict.chapterIndex])
   store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = val
+}
+
+function edit(val: Article) {
+  editArticle = val
+  showEditArticle = true
 }
 
 function test() {
@@ -191,11 +196,14 @@ function test() {
         :sentenceIndex="articleData.sentenceIndex"
         :wordIndex="articleData.wordIndex"
         :stringIndex="articleData.stringIndex"
+        @next="next"
+        @edit="edit"
     />
     <TypeWord
+        v-else
         :words="wordData.words"
         :index="wordData.index"
-        v-else/>
+    />
     <Footer/>
   </div>
   <Statistics
@@ -203,9 +211,10 @@ function test() {
       @repeat="repeat"
       @next="next"
   />
-  <EditSingleArticleModal v-model="showEditArticle"
-                          :article="editArticle"
-                          @save="saveArticle"
+  <EditSingleArticleModal
+      v-model="showEditArticle"
+      :article="editArticle"
+      @save="saveArticle"
   />
 </template>
 

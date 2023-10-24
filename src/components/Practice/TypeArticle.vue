@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, nextTick, onMounted, watch, watchEffect} from "vue"
-import {$ref} from "vue/macros";
+import {$computed, $ref} from "vue/macros";
 import {Article, ArticleWord, DefaultArticle, DisplayStatistics, ShortKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
 import {usePracticeStore} from "@/stores/practice.ts";
@@ -10,6 +10,9 @@ import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} fro
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
+import Tooltip from "@/components/Tooltip.vue";
+import IconWrapper from "@/components/IconWrapper.vue";
+import {Icon} from "@iconify/vue";
 
 interface IProps {
   article: Article,
@@ -27,6 +30,12 @@ const props = withDefaults(defineProps<IProps>(), {
   stringIndex: 0,
 })
 
+const emit = defineEmits<{
+  ignore: [],
+  next: [],
+  edit: [val: Article]
+}>()
+
 let isPlay = $ref(false)
 let articleWrapperRef = $ref<HTMLInputElement>(null)
 let tabIndex = $ref(0)
@@ -41,18 +50,22 @@ let hoverIndex = $ref({
   sectionIndex: -1,
   sentenceIndex: -1,
 })
-const currentIndex = computed(() => {
-  return `${sectionIndex}${sentenceIndex}${wordIndex}`
-})
 let wordData = $ref({
   words: [],
   index: -1
+})
+const currentIndex = computed(() => {
+  return `${sectionIndex}${sentenceIndex}${wordIndex}`
+})
+const collectIndex = $computed(() => {
+  return store.collect.articles.findIndex((v: Article) => v.title.toLowerCase() === props.article.title.toLowerCase())
 })
 
 const playBeep = usePlayBeep()
 const playCorrect = usePlayCorrect()
 const playKeyboardAudio = usePlayKeyboardAudio()
 const playWordAudio = usePlayWordAudio()
+
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
 const settingStore = useSettingStore()
@@ -81,6 +94,7 @@ watch(() => props.article, () => {
   practiceStore.startDate = Date.now()
   calcTranslateLocation()
 }, {immediate: true})
+
 
 watch(() => settingStore.dictation, () => {
   calcTranslateLocation()
@@ -402,10 +416,20 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
   return str
 }
 
+function toggleCollect() {
+  if (collectIndex === -1) {
+    store.collect.articles.push(props.article)
+    ElMessage.success('收藏成功')
+  } else {
+    store.collect.articles.splice(collectIndex, 1)
+    ElMessage.success('取消成功')
+  }
+}
+
 </script>
 
 <template>
-  <div class="type-wrapper">
+  <div class="typing-wrapper">
     <div class="swiper-wrapper content">
       <div class="swiper-list" :class="`step${tabIndex}`">
         <div class="swiper-item">
@@ -413,6 +437,32 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
             <header>
               <div class="title">{{ props.article.title }}</div>
               <div class="titleTranslate" v-if="settingStore.translate">{{ props.article.titleTranslate }}</div>
+              <div class="options">
+                <Tooltip title="编辑(快捷键：Ctrl + E)">
+                  <IconWrapper>
+                    <Icon icon="tabler:edit" class="menu"
+                          @click="emit('edit',props.article)"/>
+                  </IconWrapper>
+                </Tooltip>
+                <Tooltip title="忽略(快捷键：`)">
+                  <IconWrapper>
+                    <Icon icon="fluent:delete-20-regular" class="menu"
+                          @click="emit('ignore')"/>
+                  </IconWrapper>
+                </Tooltip>
+                <Tooltip title="收藏(快捷键：Enter)">
+                  <IconWrapper>
+                    <Icon :icon="`ph:star${collectIndex > -1?'-fill':''}`" class="menu"
+                          @click="toggleCollect"/>
+                  </IconWrapper>
+                </Tooltip>
+                <Tooltip title="跳过(快捷键：Tab)">
+                  <IconWrapper>
+                    <Icon icon="icon-park-outline:go-ahead" class="menu"
+                          @click="emit('next')"/>
+                  </IconWrapper>
+                </Tooltip>
+              </div>
             </header>
             <div class="article-content" ref="articleWrapperRef">
               <article>
@@ -501,7 +551,7 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
   color: rgb(22, 163, 74);
 }
 
-.type-wrapper {
+.typing-wrapper {
   flex: 1;
   overflow: hidden;
   display: flex;
@@ -515,6 +565,10 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
   .article-wrapper {
 
     header {
+      word-wrap: break-word;
+      position: relative;
+      padding: 15rem 0;
+
       .title {
         text-align: center;
         color: rgba(gray, .8);
@@ -527,6 +581,15 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
       .titleTranslate {
         @extend .title;
         font-size: 20rem;
+      }
+
+      .options {
+        position: absolute;
+        right: 20rem;
+        top: 0;
+        display: flex;
+        gap: 10rem;
+        font-size: 18rem;
       }
     }
 

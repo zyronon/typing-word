@@ -60,7 +60,7 @@ export interface Dict {
 
 
 export enum DictType {
-  new = 'new',
+  collect = 'collect',
   skip = 'skip',
   wrong = 'wrong',
   word = 'word',

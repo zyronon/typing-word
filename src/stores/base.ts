@@ -6,7 +6,7 @@ import {v4 as uuidv4} from 'uuid';
 import {useRuntimeStore} from "@/stores/runtime.ts";
 
 export interface State {
-  new: Dict,
+  collect: Dict,
   skip: Dict,
   wrong: Dict,
   myDicts: Dict[],
@@ -23,11 +23,11 @@ export interface State {
 export const useBaseStore = defineStore('base', {
   state: (): State => {
     return {
-      new: {
+      collect: {
         ...DefaultDict,
-        id: 'new',
-        name: '生词本',
-        type: DictType.new,
+        id: 'collect',
+        name: '收藏',
+        type: DictType.collect,
       },
       skip: {
         ...DefaultDict,
@@ -63,9 +63,9 @@ export const useBaseStore = defineStore('base', {
         }
       ],
       current: {
-        dictType: DictType.word,
-        // dictType: DictType.publicArticle,
-        index: 1,
+        // dictType: DictType.word,
+        dictType: DictType.article,
+        index: 0,
         editIndex: 0,
         repeatNumber: 0,
       },
@@ -95,8 +95,8 @@ export const useBaseStore = defineStore('base', {
     },
     currentDict(state: State): Dict {
       switch (state.current.dictType) {
-        case DictType.new:
-          return state.new
+        case DictType.collect:
+          return state.collect
         case DictType.skip:
           return state.skip
         case DictType.wrong:
@@ -144,7 +144,7 @@ export const useBaseStore = defineStore('base', {
       }
 
       if ([
-        DictType.new,
+        DictType.collect,
         DictType.wrong,
         DictType.skip,
       ].includes(this.current.dictType)) {
@@ -216,7 +216,7 @@ export const useBaseStore = defineStore('base', {
       // this.saveStatistics()
       console.log('changeDict', cloneDeep(dict), chapterIndex, chapterWordIndex)
       this.current.dictType = dict.type
-      if ([DictType.new,
+      if ([DictType.collect,
         DictType.skip,
         DictType.wrong].includes(dict.type)) {
         this[dict.type].chapterIndex = chapterIndex

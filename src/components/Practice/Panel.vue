@@ -25,7 +25,7 @@ provide('tabIndex', computed(() => tabIndex))
 watch(() => settingStore.showPanel, n => {
   if (n) {
     switch (store.current.dictType) {
-      case DictType.new:
+      case DictType.collect:
         return tabIndex = 1;
       case DictType.skip:
         return tabIndex = 3;
@@ -51,7 +51,7 @@ const currentData = $computed(() => {
 })
 
 const newData = $computed(() => {
-  if (store.current.dictType !== DictType.new) return {list: store.new.words ?? [], index: -1}
+  if (store.current.dictType !== DictType.collect) return {list: store.collect.words ?? [], index: -1}
   else return props
 })
 
@@ -89,7 +89,7 @@ function changeIndex(i: number, dict: Dict) {
           <div class="tab current" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">
             {{ currentDict.name + `  第${currentDict.chapterIndex + 1}章` }}
           </div>
-          <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.new.name }}</div>
+          <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.collect.name }}</div>
           <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">
             {{ store.wrong.name }}
           </div>
@@ -126,15 +126,15 @@ function changeIndex(i: number, dict: Dict) {
             <div class="content">
               <WordList
                   class="word-list"
-                  @change="(i:number) => changeIndex(i,store.new)"
+                  @change="(i:number) => changeIndex(i,store.collect)"
                   :isActive="settingStore.showPanel && tabIndex === 1"
                   :list="newData.list"
                   :activeIndex="newData.index"/>
             </div>
-            <footer v-if="store.current.dictType !== DictType.new && newData.list.length">
+            <footer v-if="store.current.dictType !== DictType.collect && newData.list.length">
               <PopConfirm
                   :title="`确认切换？`"
-                  @confirm="changeIndex(0,store.new)"
+                  @confirm="changeIndex(0,store.collect)"
               >
                 <BaseButton>切换</BaseButton>
               </PopConfirm>

@@ -160,10 +160,10 @@ function ignore() {
 }
 
 function collect() {
-  if (!store.new.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
-    store.new.originWords.push(word)
-    store.new.words.push(word)
-    store.new.chapterWords = [store.new.words]
+  if (!store.collect.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
+    store.collect.originWords.push(word)
+    store.collect.words.push(word)
+    store.collect.chapterWords = [store.collect.words]
   }
   activeBtnIndex = 1
   setTimeout(() => {
