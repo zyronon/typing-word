@@ -12,6 +12,7 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import Tooltip from "@/components/Tooltip.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import {Icon} from "@iconify/vue";
+import Options from "@/components/Practice/Options.vue";
 
 interface IProps {
   article: Article,
@@ -432,31 +433,12 @@ function toggleCollect() {
     <header>
       <div class="title">{{ props.article.title }}</div>
       <div class="titleTranslate" v-if="settingStore.translate">{{ props.article.titleTranslate }}</div>
-      <div class="options">
-        <Tooltip title="编辑(快捷键：Ctrl + E)">
-          <IconWrapper>
-            <Icon icon="tabler:edit" class="menu"
-                  @click="emit('edit',props.article)"/>
-          </IconWrapper>
-        </Tooltip>
-        <Tooltip title="忽略(快捷键：`)">
-          <IconWrapper>
-            <Icon icon="fluent:delete-20-regular" class="menu"
-                  @click="tabIndex = 1"/>
-          </IconWrapper>
-        </Tooltip>
-        <Tooltip title="收藏(快捷键：Enter)">
-          <IconWrapper>
-            <Icon :icon="`ph:star${collectIndex > -1?'-fill':''}`" class="menu"
-                  @click="toggleCollect"/>
-          </IconWrapper>
-        </Tooltip>
-        <Tooltip title="跳过(快捷键：Tab)">
-          <IconWrapper>
-            <Icon icon="icon-park-outline:go-ahead" class="menu"
-                  @click="emit('next')"/>
-          </IconWrapper>
-        </Tooltip>
+      <div class="options-wrapper">
+        <Options
+            @edit="emit('edit',props.article)"
+            @collect="toggleCollect"
+            @skip="emit('next')"
+        />
       </div>
     </header>
     <div class="article-content" ref="articleWrapperRef">
@@ -557,7 +539,7 @@ $article-width: 1000px;
       font-size: 20rem;
     }
 
-    .options {
+    .options-wrapper {
       position: absolute;
       right: 20rem;
       top: 0;

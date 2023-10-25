@@ -126,7 +126,7 @@ function edit(val: Article) {
 
 <template>
   <div class="practice-article">
-    <div class="swiper-wrapper content">
+    <div class="swiper-wrapper">
       <div class="swiper-list" :class="`step${tabIndex}`">
         <div class="swiper-item">
           <TypingArticle

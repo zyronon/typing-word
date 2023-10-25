@@ -13,7 +13,7 @@ import {Icon} from "@iconify/vue";
 import VolumeIcon from "@/components/VolumeIcon.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import WordPanel from "./WordPanel.vue";
-import IconWrapper from "@/components/IconWrapper.vue";
+import Options from "@/components/Practice/Options.vue";
 
 interface IProps {
   words: Word[],
@@ -37,7 +37,6 @@ let wrong = $ref('')
 let showFullWord = $ref(false)
 //输入锁定，因为跳转到下一个单词有延时，如果重复在延时期间内重复输入，导致会跳转N次
 let inputLock = $ref(false)
-let activeBtnIndex = $ref(-1)
 let wordRepeatCount = $ref(0)
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
@@ -150,12 +149,8 @@ function prev() {
   data.index--
 }
 
-function ignore() {
-  activeBtnIndex = 2
+function skip() {
   next(false)
-  setTimeout(() => {
-    activeBtnIndex = -1
-  }, 200)
 }
 
 function collect() {
@@ -164,10 +159,6 @@ function collect() {
     store.collect.words.push(word)
     store.collect.chapterWords = [store.collect.words]
   }
-  activeBtnIndex = 1
-  setTimeout(() => {
-    activeBtnIndex = -1
-  }, 200)
 }
 
 function remove() {
@@ -176,11 +167,7 @@ function remove() {
     store.skip.words.push(word)
     store.skip.chapterWords = [store.skip.words]
   }
-  activeBtnIndex = 0
   next(false)
-  setTimeout(() => {
-    activeBtnIndex = -1
-  }, 200)
 }
 
 function onKeyUp(e: KeyboardEvent) {
@@ -283,7 +270,7 @@ async function onKeyDown(e: KeyboardEvent) {
         remove()
         break
       case ShortKeyMap.Ignore:
-        ignore()
+        skip()
         e.preventDefault()
         break
       case ShortKeyMap.Show:
@@ -292,9 +279,6 @@ async function onKeyDown(e: KeyboardEvent) {
         }
         break
     }
-    setTimeout(() => {
-      activeBtnIndex = -1
-    }, 200)
   }
 }
 
@@ -347,30 +331,11 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
       <VolumeIcon ref="volumeIconRef" :simple="true" @click="playWordAudio(word.name)"/>
     </div>
     <div class="phonetic">{{ settingStore.wordSoundType === 'us' ? word.usphone : word.ukphone }}</div>
-    <div class="options">
-      <Tooltip title="忽略(快捷键：`)">
-        <IconWrapper>
-          <Icon icon="fluent:delete-20-regular" class="menu"
-                :active="activeBtnIndex === 0"
-                @click="remove"/>
-        </IconWrapper>
-      </Tooltip>
-      <Tooltip title="收藏(快捷键：Enter)">
-        <IconWrapper>
-          <Icon icon="ph:star" class="menu"
-                @click="collect"
-                :active="activeBtnIndex === 1"/>
-        </IconWrapper>
-      </Tooltip>
-      <Tooltip title="跳过(快捷键：Tab)">
-        <IconWrapper>
-          <Icon icon="icon-park-outline:go-ahead" class="menu"
-                @click="ignore"
-                :active="activeBtnIndex === 2"/>
-        </IconWrapper>
-      </Tooltip>
-    </div>
-    <WordPanel :list="data.words" v-model:index="data.index"/>
+    <Options
+        @remove="remove"
+        @skip="skip"
+        @collect="collect"
+    />
   </div>
 </template>
 
@@ -433,14 +398,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     }
   }
 
-  .options {
-    margin-top: 10rem;
-    display: flex;
-    gap: 25rem;
-    font-size: 18rem;
-  }
-
-  .phonetic, .translate, .options {
+  .phonetic, .translate {
     font-size: 20rem;
     margin-left: -30rem;
     transition: all .3s;

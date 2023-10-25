@@ -10,12 +10,10 @@ import Statistics from "@/components/Practice/Statistics.vue";
 import {emitter, EventKey} from "@/utils/eventBus";
 import {useSettingStore} from "@/stores/setting";
 import {cloneDeep} from "lodash-es";
-import {Article, DefaultArticle, TranslateType} from "@/types.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {renewSectionTexts, renewSectionTranslates} from "@/hooks/translate.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
-import EditSingleArticleModal from "@/components/Article/EditSingleArticleModal.vue";
 import PracticeArticle from "@/components/Practice/PracticeArticle/PracticeArticle.vue";
+import PracticeWord from "@/components/Practice/PracticeWord/PracticeWord.vue";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
@@ -33,45 +31,6 @@ watch(practiceStore, () => {
   practiceStore.correctRate = 100 - Math.trunc(((practiceStore.wrongWordNumber) / (practiceStore.inputWordNumber)) * 100)
 })
 
-let wordData = $ref({
-  words: [],
-  index: -1
-})
-
-let articleData = $ref({
-  article: cloneDeep(DefaultArticle),
-  sectionIndex: 0,
-  sentenceIndex: 0,
-  wordIndex: 0,
-  stringIndex: 0,
-})
-
-watch(() => store.load, n => {
-  if (n) {
-    getCurrentPractice()
-  }
-})
-
-watch([
-  () => store.current.index,
-  () => store.current.dictType,
-  () => store.currentDict.chapterIndex,
-  () => store.currentDict.chapterWordNumber,
-], n => {
-  getCurrentPractice()
-})
-
-function getCurrentPractice() {
-  // console.log('store.currentDict',store.currentDict)
-  wordData.words = cloneDeep(store.chapter)
-  wordData.index = 0
-  console.log('wordData', wordData)
-}
-
-onMounted(() => {
-
-})
-
 function write() {
   // console.log('write')
   settingStore.dictation = true
@@ -81,7 +40,7 @@ function write() {
 //TODO 需要判断是否已忽略
 function repeat() {
   // console.log('repeat')
-  getCurrentPractice()
+  // getCurrentPractice()
   emitter.emit(EventKey.resetWord)
 }
 
@@ -109,6 +68,7 @@ function test() {
     <Toolbar/>
     <!--    <BaseButton @click="test">test</BaseButton>-->
     <PracticeArticle v-if="store.isArticle"/>
+    <PracticeWord v-else/>
     <Footer/>
   </div>
   <Statistics
