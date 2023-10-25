@@ -13,7 +13,6 @@ import {Icon} from "@iconify/vue";
 import VolumeIcon from "@/components/VolumeIcon.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Options from "@/components/Practice/Options.vue";
-import Typing from "@/components/Practice/PracticeWord/Typing.vue";
 
 interface IProps {
   words: Word[],
@@ -34,9 +33,19 @@ let data = $ref({
 
 let input = $ref('')
 let wrong = $ref('')
+let showFullWord = $ref(false)
+//输入锁定，因为跳转到下一个单词有延时，如果重复在延时期间内重复输入，导致会跳转N次
+let inputLock = $ref(false)
+let wordRepeatCount = $ref(0)
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
 const settingStore = useSettingStore()
+
+const playBeep = usePlayBeep()
+const playCorrect = usePlayCorrect()
+const playKeyboardAudio = usePlayKeyboardAudio()
+const playWordAudio = usePlayWordAudio()
+const volumeIconRef: any = $ref()
 
 watch(() => props.words, () => {
   data.words = props.words
@@ -52,6 +61,17 @@ watch(() => props.words, () => {
   practiceStore.inputWordNumber = 0
   practiceStore.wrongWordNumber = 0
 }, {immediate: true})
+
+watch(() => data.index, (n) => {
+  wrong = input = ''
+  practiceStore.index = n
+  wordRepeatCount = 0
+  inputLock = false
+  if (settingStore.wordSound) {
+    playWordAudio(word.name)
+    volumeIconRef?.play()
+  }
+})
 
 const word = $computed(() => {
   return data.words[data.index] ?? {
@@ -70,7 +90,15 @@ const nextWord: Word = $computed(() => {
   return data.words?.[data.index + 1] ?? undefined
 })
 
+let resetWord = $computed(() => {
+  return word.name.slice(input.length + wrong.length)
+})
+
+
 onMounted(() => {
+  emitter.on(EventKey.resetWord, () => {
+    wrong = input = ''
+  })
 
 })
 
@@ -79,7 +107,6 @@ function next(isTyping: boolean = true) {
     if (data.wrongWords.length) {
       console.log('当前背完了，但还有错词')
       data.words = cloneDeep(data.wrongWords)
-      //如果原始错词没值就复制当前错词的，因为第一遍错词是最多的，后续的练习都是从错词中练习
       if (!data.originWrongWords.length) {
         data.originWrongWords = cloneDeep(data.wrongWords)
       }
@@ -143,46 +170,114 @@ function remove() {
 }
 
 function onKeyUp(e: KeyboardEvent) {
-  // showFullWord = false
+  showFullWord = false
 }
 
-function wordWrong() {
-  if (!store.wrong.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
-    store.wrong.originWords.push(word)
-    store.wrong.words.push(word)
-    store.wrong.chapterWords = [store.wrong.words]
-  }
-  if (!data.wrongWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
-    data.wrongWords.push(word)
-    practiceStore.wrongWordNumber++
-  }
+function repeat() {
+  setTimeout(() => {
+    wrong = input = ''
+    wordRepeatCount++
+    inputLock = false
+
+    if (settingStore.wordSound) {
+      playWordAudio(word.name)
+      volumeIconRef?.play()
+    }
+  }, settingStore.waitTimeForChangeWord)
 }
 
 async function onKeyDown(e: KeyboardEvent) {
-  // console.log('e', e)
-  switch (e.key) {
-    case 'Backspace':
-      if (wrong) {
+  //TODO 还有横杠
+  //非英文模式下，输入区域的 keyCode 均为 229时，
+  if ((e.keyCode >= 65 && e.keyCode <= 90)
+      || (e.keyCode >= 48 && e.keyCode <= 57)
+      || e.code === 'Space'
+      || e.code === 'Slash'
+      || e.code === 'Quote'
+      || e.code === 'Comma'
+      || e.code === 'BracketLeft'
+      || e.code === 'BracketRight'
+      || e.code === 'Period'
+      || e.code === 'Minus'
+      || e.code === 'Equal'
+      || e.code === 'Semicolon'
+      || e.code === 'Backquote'
+      || e.keyCode === 229
+  ) {
+    if (inputLock) return
+    inputLock = true
+    let letter = e.key
+    let isWrong = false
+    if (settingStore.ignoreCase) {
+      isWrong = (input + letter).toLowerCase() !== word.name.toLowerCase().slice(0, input.length + 1)
+    } else {
+      isWrong = (input + letter) !== word.name.slice(0, input.length + 1)
+    }
+    if (isWrong) {
+      if (!store.wrong.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
+        store.wrong.originWords.push(word)
+        store.wrong.words.push(word)
+        store.wrong.chapterWords = [store.wrong.words]
+      }
+      if (!data.wrongWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
+        data.wrongWords.push(word)
+        practiceStore.wrongWordNumber++
+      }
+      wrong = letter
+      playKeyboardAudio()
+      playBeep()
+      setTimeout(() => {
         wrong = ''
+      }, 500)
+    } else {
+      input += letter
+      wrong = ''
+      playKeyboardAudio()
+    }
+    if (input.toLowerCase() === word.name.toLowerCase()) {
+      playCorrect()
+      if (settingStore.repeatCount == 100) {
+        if (settingStore.repeatCustomCount <= wordRepeatCount + 1) {
+          setTimeout(next, settingStore.waitTimeForChangeWord)
+        } else {
+          repeat()
+        }
       } else {
-        input = input.slice(0, -1)
+        if (settingStore.repeatCount <= wordRepeatCount + 1) {
+          setTimeout(next, settingStore.waitTimeForChangeWord)
+        } else {
+          repeat()
+        }
       }
-      break
-    case ShortKeyMap.Collect:
-      collect()
-      break
-    case ShortKeyMap.Remove:
-      remove()
-      break
-    case ShortKeyMap.Ignore:
-      skip()
-      e.preventDefault()
-      break
-    case ShortKeyMap.Show:
-      if (settingStore.allowWordTip) {
-        // showFullWord = true
-      }
-      break
+    } else {
+      inputLock = false
+    }
+  } else {
+    // console.log('e', e)
+    switch (e.key) {
+      case 'Backspace':
+        if (wrong) {
+          wrong = ''
+        } else {
+          input = input.slice(0, -1)
+        }
+        break
+      case ShortKeyMap.Collect:
+        collect()
+        break
+      case ShortKeyMap.Remove:
+        remove()
+        break
+      case ShortKeyMap.Ignore:
+        skip()
+        e.preventDefault()
+        break
+      case ShortKeyMap.Show:
+        if (settingStore.allowWordTip) {
+          showFullWord = true
+        }
+        break
+    }
   }
 }
 
@@ -208,11 +303,33 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
         </div>
       </Tooltip>
     </div>
-    <Typing
-        :word="word"
-        @wrong="wordWrong"
-        @next="next"
-    />
+    <div class="translate"
+         :style="{
+      fontSize: settingStore.fontSize.wordTranslateFontSize +'rem',
+      opacity: settingStore.translate ? 1 : 0
+    }"
+    >
+      <div v-for="i in word.trans">{{ i }}</div>
+    </div>
+    <div class="word-wrapper">
+      <div class="word"
+           :class="wrong && 'is-wrong'"
+           :style="{fontSize: settingStore.fontSize.wordForeignFontSize +'rem'}"
+      >
+        <span class="input" v-if="input">{{ input }}</span>
+        <span class="wrong" v-if="wrong">{{ wrong }}</span>
+        <template v-if="settingStore.dictation">
+          <span class="letter" v-if="!showFullWord"
+                @mouseenter="settingStore.allowWordTip && (showFullWord = true)">{{
+              resetWord.split('').map(v => '_').join('')
+            }}</span>
+          <span class="letter" v-else @mouseleave="showFullWord = false">{{ resetWord }}</span>
+        </template>
+        <span class="letter" v-else>{{ resetWord }}</span>
+      </div>
+      <VolumeIcon ref="volumeIconRef" :simple="true" @click="playWordAudio(word.name)"/>
+    </div>
+    <div class="phonetic">{{ settingStore.wordSoundType === 'us' ? word.usphone : word.ukphone }}</div>
     <Options
         @remove="remove"
         @skip="skip"
@@ -280,5 +397,35 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     }
   }
 
+  .phonetic, .translate {
+    font-size: 20rem;
+    margin-left: -30rem;
+    transition: all .3s;
+  }
+
+  .word-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+
+    .word {
+      font-size: 48rem;
+      line-height: 1;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+      letter-spacing: 5rem;
+
+      .input {
+        color: rgb(22, 163, 74);
+      }
+
+      .wrong {
+        color: rgba(red, 0.6);
+      }
+
+      &.is-wrong {
+        animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      }
+    }
+  }
 }
 </style>

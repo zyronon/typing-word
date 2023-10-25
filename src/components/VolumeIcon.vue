@@ -6,6 +6,7 @@ import IconWrapper from "@/components/IconWrapper.vue";
 const props = withDefaults(defineProps<{
   time?: number,
   simple?: boolean
+  cb?: Function
 }>(), {
   time: 400,
   simple: false
@@ -15,22 +16,21 @@ let count = $ref(0)
 const emit = defineEmits(['click'])
 
 function play(time = props.time) {
+  if (count === 0) {
+    props?.cb()
+  }
+  count++
   setTimeout(() => {
     if (step === 2) {
-      if (count === 0) {
-        play(time + 100)
+      if (count === 1) {
         step = 0
+        play(time + 100)
       } else {
         count = 0
       }
     } else {
       step++
-      if (step === 2) {
-        count++
-        play(time + 100)
-      } else {
-        play(time + 100)
-      }
+      play(time + 100)
     }
   }, time)
 }

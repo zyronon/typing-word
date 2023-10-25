@@ -9,4 +9,5 @@ export const EventKey = {
   closeOther: 'closeOther',
   keydown: 'keydown',
   keyup: 'keyup',
+  onTyping: 'onTyping',
 }

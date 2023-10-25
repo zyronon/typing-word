@@ -23,7 +23,26 @@ export function useStartKeyboardEventListener() {
 
   useEventListener('keydown', (e: KeyboardEvent) => {
     if (!runtimeStore.disableEventListener) {
-      emitter.emit(EventKey.keydown, e)
+      //非英文模式下，输入区域的 keyCode 均为 229时，
+      if ((e.keyCode >= 65 && e.keyCode <= 90)
+        || (e.keyCode >= 48 && e.keyCode <= 57)
+        || e.code === 'Space'
+        || e.code === 'Slash'
+        || e.code === 'Quote'
+        || e.code === 'Comma'
+        || e.code === 'BracketLeft'
+        || e.code === 'BracketRight'
+        || e.code === 'Period'
+        || e.code === 'Minus'
+        || e.code === 'Equal'
+        || e.code === 'Semicolon'
+        || e.code === 'Backquote'
+        || e.keyCode === 229
+      ) {
+        emitter.emit(EventKey.onTyping, e)
+      }else {
+        emitter.emit(EventKey.keydown, e)
+      }
     }
   })
   useEventListener('keyup', (e: KeyboardEvent) => {
