@@ -13,7 +13,6 @@ let wordData = $ref({
   words: [],
   index: -1
 })
-let index = $ref(0)
 
 watch([
   () => store.load,
@@ -38,15 +37,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="practice-word">
-    <TypingWord/>
-    <div class="panel-wrapper">
-      <WordPanel :list="[]" v-model:index="index"/>
-      <!--      <WordPanel :list="data.words" v-model:index="data.index"/>-->
-    </div>
+  <div class="practice">
+    <TypingWord :words="wordData.words" :index="wordData.index"/>
   </div>
 </template>
 
 <style scoped lang="scss">
-
+.practice {
+  //height: 100%;
+  flex: 1;
+}
 </style>

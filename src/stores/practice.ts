@@ -6,8 +6,8 @@ export interface PracticeState {
   repeatNumber: number,
   startDate: number,
   total: number,
-  index: number,
-  inputWordNumber: number,
+  index: number,//当前输入的第几个，用于和total计算进度
+  inputWordNumber: number,//当前总输入了多少个单词（不包含跳过）
   wrongWordNumber: number,
   correctRate: number,
 }

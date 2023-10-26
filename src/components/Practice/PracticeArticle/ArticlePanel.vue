@@ -103,12 +103,7 @@ function changeIndex(i: number, dict: Dict) {
               <div class="dict-name">词数：{{ currentData.list.length }}</div>
             </header>
             <div class="content">
-              <WordList
-                  class="word-list"
-                  @change="(i:number) => changeIndex(i,currentDict)"
-                  :isActive="settingStore.showPanel && tabIndex === 0"
-                  :list="currentData.list"
-                  :activeIndex="currentData.index"/>
+              <slot></slot>
             </div>
             <footer v-if="![DictType.customWord,DictType.word].includes(store.current.dictType)">
               <PopConfirm

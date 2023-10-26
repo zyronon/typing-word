@@ -17,7 +17,7 @@ const emit = defineEmits(['click'])
 
 function play(time = props.time) {
   if (count === 0) {
-    props?.cb()
+    props?.cb?.()
   }
   count++
   setTimeout(() => {

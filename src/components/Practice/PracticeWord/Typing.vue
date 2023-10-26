@@ -6,10 +6,9 @@ import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
-import {onMounted} from "vue/dist/vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {cloneDeep} from "lodash-es";
-import {onUnmounted, watch} from "vue";
+import {onUnmounted, watch, onMounted} from "vue";
 
 interface IProps {
   word: Word,
@@ -30,8 +29,6 @@ let showFullWord = $ref(false)
 //输入锁定，因为跳转到下一个单词有延时，如果重复在延时期间内重复输入，导致会跳转N次
 let inputLock = false
 let wordRepeatCount = 0
-const store = useBaseStore()
-const practiceStore = usePracticeStore()
 const settingStore = useSettingStore()
 
 const playBeep = usePlayBeep()
@@ -52,6 +49,7 @@ watch(() => props.word, () => {
     volumeIconRef?.play()
   }
 })
+
 onMounted(() => {
   emitter.on(EventKey.resetWord, () => {
     wrong = input = ''
@@ -65,7 +63,6 @@ onUnmounted(() => {
   emitter.off(EventKey.onTyping, onTyping)
 })
 
-
 function repeat() {
   setTimeout(() => {
     wrong = input = ''
@@ -78,7 +75,6 @@ function repeat() {
   }, settingStore.waitTimeForChangeWord)
 }
 
-
 async function onTyping(e: KeyboardEvent) {
   if (inputLock) return
   inputLock = true
@@ -86,11 +82,11 @@ async function onTyping(e: KeyboardEvent) {
   let isTypingRight = false
   let isWordRight = false
   if (settingStore.ignoreCase) {
-    isTypingRight = letter.toLowerCase() === props.word.name[input.length + 1].toLowerCase()
-    isWordRight = letter.toLowerCase() === props.word.name.slice(-1).toLowerCase()
+    isTypingRight = letter.toLowerCase() === props.word.name[input.length].toLowerCase()
+    isWordRight = (input + letter).toLowerCase() === props.word.name.toLowerCase()
   } else {
-    isTypingRight = letter === props.word.name[input.length + 1]
-    isWordRight = letter === props.word.name.slice(-1)
+    isTypingRight = letter === props.word.name[input.length]
+    isWordRight = (input + letter) === props.word.name
   }
   if (isTypingRight) {
     input += letter
@@ -126,6 +122,27 @@ async function onTyping(e: KeyboardEvent) {
   }
 }
 
+function del() {
+  playKeyboardAudio()
+
+  if (wrong) {
+    wrong = ''
+  } else {
+    input = input.slice(0, -1)
+  }
+}
+
+function showWord() {
+  if (settingStore.allowWordTip) {
+    showFullWord = true
+  }
+}
+
+function hideWord() {
+  showFullWord = false
+}
+
+defineExpose({del, showWord, hideWord})
 </script>
 
 <template>
@@ -154,7 +171,7 @@ async function onTyping(e: KeyboardEvent) {
         </template>
         <span class="letter" v-else>{{ displayWord }}</span>
       </div>
-      <VolumeIcon ref="volumeIconRef" :simple="true" :cb="playWordAudio(word.name)"/>
+      <VolumeIcon ref="volumeIconRef" :simple="true" :cb="()=>playWordAudio(word.name)"/>
     </div>
     <div class="phonetic">{{ settingStore.wordSoundType === 'us' ? word.usphone : word.ukphone }}</div>
   </div>
@@ -164,6 +181,11 @@ async function onTyping(e: KeyboardEvent) {
 @import "@/assets/css/variable";
 
 .typing-word {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   .phonetic, .translate {
     font-size: 20rem;
     margin-left: -30rem;

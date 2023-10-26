@@ -24,26 +24,26 @@ export const useBaseStore = defineStore('base', {
   state: (): State => {
     return {
       collect: {
-        ...DefaultDict,
+        ...cloneDeep(DefaultDict),
         id: 'collect',
         name: '收藏',
         type: DictType.collect,
       },
       skip: {
-        ...DefaultDict,
+        ...cloneDeep(DefaultDict),
         id: 'skip',
         name: '简单词',
         type: DictType.skip,
       },
       wrong: {
-        ...DefaultDict,
+        ...cloneDeep(DefaultDict),
         id: 'wrong',
         name: '错词本',
         type: DictType.wrong,
       },
       myDicts: [
         {
-          ...DefaultDict,
+          ...cloneDeep(DefaultDict),
           id: '新概念英语2-课文',
           name: '新概念英语2-课文',
           type: DictType.article,
@@ -52,7 +52,7 @@ export const useBaseStore = defineStore('base', {
           language: 'en',
         },
         {
-          ...DefaultDict,
+          ...cloneDeep(DefaultDict),
           id: '新概念英语2',
           name: '新概念英语2',
           type: DictType.word,
@@ -63,9 +63,10 @@ export const useBaseStore = defineStore('base', {
         }
       ],
       current: {
-        dictType: DictType.word,
-        // dictType: DictType.article,
-        index: 1,
+        // dictType: DictType.word,
+        // index: 1,
+        dictType: DictType.article,
+        index: 0,
         editIndex: 0,
         repeatNumber: 0,
       },

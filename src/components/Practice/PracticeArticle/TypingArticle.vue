@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {computed, nextTick, onMounted, watch} from "vue"
+import {computed, nextTick, onMounted, onUnmounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros";
-import {Article, ArticleWord, DefaultArticle, DisplayStatistics, ShortKeyMap, Word} from "@/types";
+import {Article, ArticleWord, DefaultArticle, ShortKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -9,9 +9,6 @@ import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} fro
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import Tooltip from "@/components/Tooltip.vue";
-import IconWrapper from "@/components/IconWrapper.vue";
-import {Icon} from "@iconify/vue";
 import Options from "@/components/Practice/Options.vue";
 
 interface IProps {
@@ -20,6 +17,7 @@ interface IProps {
   sentenceIndex?: number,
   wordIndex?: number,
   stringIndex?: number,
+  active: boolean,
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -28,17 +26,19 @@ const props = withDefaults(defineProps<IProps>(), {
   sentenceIndex: 0,
   wordIndex: 0,
   stringIndex: 0,
+  active: true,
 })
 
 const emit = defineEmits<{
   ignore: [],
-  next: [],
+  wrong: [val: Word],
+  nextWord: [val: ArticleWord],
+  over: [],
   edit: [val: Article]
 }>()
 
 let isPlay = $ref(false)
 let articleWrapperRef = $ref<HTMLInputElement>(null)
-let tabIndex = $ref(0)
 let sectionIndex = $ref(0)
 let sentenceIndex = $ref(0)
 let wordIndex = $ref(0)
@@ -49,10 +49,6 @@ let isSpace = $ref(false)
 let hoverIndex = $ref({
   sectionIndex: -1,
   sentenceIndex: -1,
-})
-let wordData = $ref({
-  words: [],
-  index: -1
 })
 const currentIndex = computed(() => {
   return `${sectionIndex}${sentenceIndex}${wordIndex}`
@@ -75,26 +71,8 @@ watch(() => props.article, () => {
   sentenceIndex = props.sentenceIndex
   wordIndex = props.wordIndex
   stringIndex = props.stringIndex
-
-  tabIndex = 0
-  practiceStore.inputWordNumber = 0
-  practiceStore.wrongWordNumber = 0
-  practiceStore.repeatNumber = 0
-  practiceStore.total = 0
-  props.article.sections.map((v, i) => {
-    v.map((w, j) => {
-      w.words.map(s => {
-        if (!store.skipWordNamesWithSimpleWords.includes(s.name.toLowerCase()) && !s.isSymbol) {
-          practiceStore.total++
-        }
-      })
-    })
-  })
-  practiceStore.wrongWords = []
-  practiceStore.startDate = Date.now()
   calcTranslateLocation()
 }, {immediate: true})
-
 
 watch(() => settingStore.dictation, () => {
   calcTranslateLocation()
@@ -104,7 +82,142 @@ onMounted(() => {
   emitter.on(EventKey.resetWord, () => {
     wrong = input = ''
   })
+  emitter.on(EventKey.onTyping, onTyping)
 })
+
+onUnmounted(() => {
+  emitter.off(EventKey.resetWord,)
+  emitter.off(EventKey.onTyping, onTyping)
+})
+
+function nextSentence() {
+  // wordData.words = [
+  //   {"name": "pharmacy", "trans": ["药房；配药学，药剂学；制药业；一批备用药品"], "usphone": "'fɑrməsi", "ukphone": "'fɑːməsɪ"},
+  //   // {"name": "foregone", "trans": ["过去的；先前的；预知的；预先决定的", "发生在…之前（forego的过去分词）"], "usphone": "'fɔrɡɔn", "ukphone": "fɔː'gɒn"}, {"name": "president", "trans": ["总统；董事长；校长；主席"], "usphone": "'prɛzɪdənt", "ukphone": "'prezɪd(ə)nt"}, {"name": "plastic", "trans": ["塑料的；（外科）造型的；可塑的", "塑料制品；整形；可塑体"], "usphone": "'plæstɪk", "ukphone": "'plæstɪk"}, {"name": "provisionally", "trans": ["临时地，暂时地"], "usphone": "", "ukphone": ""}, {"name": "incentive", "trans": ["动机；刺激", "激励的；刺激的"], "usphone": "ɪn'sɛntɪv", "ukphone": "ɪn'sentɪv"}, {"name": "calculate", "trans": ["计算；以为；作打算"], "usphone": "'kælkjulet", "ukphone": "'kælkjʊleɪt"}
+  // ]
+  // return
+
+  let currentSection = props.article.sections[sectionIndex]
+
+  isSpace = false
+  stringIndex = 0
+  wordIndex = 0
+  input = wrong = ''
+
+  //todo 计得把略过的单词加上统计里面去
+  // if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase()) && !currentWord.isSymbol) {
+  //   practiceStore.inputNumber++
+  // }
+
+  sentenceIndex++
+  if (!currentSection[sentenceIndex]) {
+    sentenceIndex = 0
+    sectionIndex++
+    if (!props.article.sections[sectionIndex]) {
+      console.log('打完了')
+      emit('over')
+    }
+  } else {
+    if (settingStore.dictation) {
+      calcTranslateLocation()
+    }
+    playWordAudio(currentSection[sentenceIndex].text)
+  }
+}
+
+function onTyping(e: KeyboardEvent) {
+  if (!props.active) return
+  if (!props.article.sections.length) return
+  // console.log('keyDown', e.key, e.code, e.keyCode)
+  wrong = ''
+  let currentSection = props.article.sections[sectionIndex]
+  let currentSentence = currentSection[sentenceIndex]
+  let currentWord: ArticleWord = currentSentence.words[wordIndex]
+
+  const nextWord = () => {
+    isSpace = false
+    stringIndex = 0
+    wordIndex++
+
+    emit('nextWord', currentWord)
+
+
+
+    if (!currentSentence.words[wordIndex]) {
+      wordIndex = 0
+      sentenceIndex++
+      if (!currentSection[sentenceIndex]) {
+        sentenceIndex = 0
+        sectionIndex++
+
+        if (!props.article.sections[sectionIndex]) {
+          console.log('打完了')
+        }
+      } else {
+        if (settingStore.dictation) {
+          calcTranslateLocation()
+        }
+        playWordAudio(currentSection[sentenceIndex].text)
+      }
+    }
+  }
+
+  if (isSpace) {
+    if (e.code === 'Space') {
+      nextWord()
+    } else {
+      wrong = ' '
+      playBeep()
+
+      setTimeout(() => {
+        wrong = ''
+        wrong = input = ''
+      }, 500)
+    }
+    playKeyboardAudio()
+  } else {
+    let letter = e.key
+
+    let key = currentWord.name[stringIndex]
+    // console.log('key', key,)
+
+    let isRight = false
+    if (settingStore.ignoreCase) {
+      isRight = key.toLowerCase() === letter.toLowerCase()
+    } else {
+      isRight = key === letter
+    }
+    if (isRight) {
+      input += letter
+      wrong = ''
+      // console.log('匹配上了')
+      stringIndex++
+      //如果当前词没有index，说明这个词完了，下一个是空格
+      if (!currentWord.name[stringIndex]) {
+        input = wrong = ''
+        if (!currentWord.isSymbol) {
+          playCorrect()
+        }
+        if (currentWord.nextSpace) {
+          isSpace = true
+        } else {
+          nextWord()
+        }
+      }
+    } else {
+      emit('wrong', currentWord)
+      wrong = letter
+      playBeep()
+      setTimeout(() => {
+        wrong = ''
+      }, 500)
+      // console.log('未匹配')
+    }
+    playKeyboardAudio()
+  }
+  e.preventDefault()
+
+}
 
 function calcTranslateLocation() {
   nextTick(() => {
@@ -148,201 +261,31 @@ function play() {
 }
 
 function onKeyDown(e: KeyboardEvent) {
-  if (tabIndex !== 0) return
-  if (!props.article.sections.length) return
-  // console.log('keyDown', e.key, e.code, e.keyCode)
-  wrong = ''
-  let currentSection = props.article.sections[sectionIndex]
-  let currentSentence = currentSection[sentenceIndex]
-  let currentWord: ArticleWord = currentSentence.words[wordIndex]
-
-  const nextWord = () => {
-    isSpace = false
-    stringIndex = 0
-    wordIndex++
-
-    if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase()) && !currentWord.isSymbol) {
-      practiceStore.inputWordNumber++
-    }
-
-    if (!currentSentence.words[wordIndex]) {
-      wordIndex = 0
-      sentenceIndex++
-      if (!currentSection[sentenceIndex]) {
-        sentenceIndex = 0
-        sectionIndex++
-
-        if (!props.article.sections[sectionIndex]) {
-          console.log('打完了')
-        }
-      } else {
-        if (settingStore.dictation) {
-          calcTranslateLocation()
-        }
-        playWordAudio(currentSection[sentenceIndex].text)
-      }
-    }
-  }
-
-  const nextSentence = () => {
-    // tabIndex = 1
-    // // wordData.words = practiceStore.wrongWords
-    // wordData.words = [
-    //   {"name": "pharmacy", "trans": ["药房；配药学，药剂学；制药业；一批备用药品"], "usphone": "'fɑrməsi", "ukphone": "'fɑːməsɪ"},
-    //   // {"name": "foregone", "trans": ["过去的；先前的；预知的；预先决定的", "发生在…之前（forego的过去分词）"], "usphone": "'fɔrɡɔn", "ukphone": "fɔː'gɒn"}, {"name": "president", "trans": ["总统；董事长；校长；主席"], "usphone": "'prɛzɪdənt", "ukphone": "'prezɪd(ə)nt"}, {"name": "plastic", "trans": ["塑料的；（外科）造型的；可塑的", "塑料制品；整形；可塑体"], "usphone": "'plæstɪk", "ukphone": "'plæstɪk"}, {"name": "provisionally", "trans": ["临时地，暂时地"], "usphone": "", "ukphone": ""}, {"name": "incentive", "trans": ["动机；刺激", "激励的；刺激的"], "usphone": "ɪn'sɛntɪv", "ukphone": "ɪn'sentɪv"}, {"name": "calculate", "trans": ["计算；以为；作打算"], "usphone": "'kælkjulet", "ukphone": "'kælkjʊleɪt"}
-    // ]
-    // return
-
-    isSpace = false
-    stringIndex = 0
-    wordIndex = 0
-    input = wrong = ''
-
-    //todo 计得把略过的单词加上统计里面去
-    // if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase()) && !currentWord.isSymbol) {
-    //   practiceStore.inputNumber++
-    // }
-
-    sentenceIndex++
-    if (!currentSection[sentenceIndex]) {
-      sentenceIndex = 0
-      sectionIndex++
-      if (!props.article.sections[sectionIndex]) {
-        console.log('打完了')
-        if (practiceStore.wrongWordNumber === 0) {
-          // if (false) {
-          console.log('这章节完了')
-          let now = Date.now()
-          let stat: DisplayStatistics = {
-            startDate: practiceStore.startDate,
-            endDate: now,
-            spend: now - practiceStore.startDate,
-            total: practiceStore.total,
-            correctRate: -1,
-            wrongWordNumber: practiceStore.wrongWordNumber,
-            wrongWords: practiceStore.wrongWords,
-          }
-          stat.correctRate = 100 - Math.trunc(((stat.wrongWordNumber) / (stat.total)) * 100)
-          emitter.emit(EventKey.openStatModal, stat)
-        } else {
-          tabIndex = 1
-          wordData.words = practiceStore.wrongWords
-        }
-      }
-    } else {
-      if (settingStore.dictation) {
-        calcTranslateLocation()
-      }
-      playWordAudio(currentSection[sentenceIndex].text)
-    }
-  }
-  //非英文模式下，输入区域的 keyCode 均为 229时，
-  if ((e.keyCode >= 65 && e.keyCode <= 90)
-      || (e.keyCode >= 48 && e.keyCode <= 57)
-      || e.code === 'Space'
-      || e.code === 'Slash'
-      || e.code === 'Quote'
-      || e.code === 'Comma'
-      || e.code === 'BracketLeft'
-      || e.code === 'BracketRight'
-      || e.code === 'Period'
-      || e.code === 'Minus'
-      || e.code === 'Equal'
-      || e.code === 'Semicolon'
-      || e.code === 'Backquote'
-      || e.keyCode === 229
-  ) {
-    if (isSpace) {
-      if (e.code === 'Space') {
-        nextWord()
-      } else {
-        wrong = ' '
-        playBeep()
-
-        setTimeout(() => {
-          wrong = ''
-          wrong = input = ''
-        }, 500)
-      }
-      playKeyboardAudio()
-    } else {
-      let letter = e.key
-
-      let key = currentWord.name[stringIndex]
-      // console.log('key', key,)
-
-      let isWrong = false
-      if (settingStore.ignoreCase) {
-        isWrong = key.toLowerCase() !== letter.toLowerCase()
-      } else {
-        isWrong = key !== letter
-      }
-      if (!isWrong) {
-        input += letter
+  if (!props.active) return
+  switch (e.key) {
+    case 'Backspace':
+      if (wrong) {
         wrong = ''
-        // console.log('匹配上了')
-        stringIndex++
-        //如果当前词没有index，说明这个词完了，下一个是空格
-        if (!currentWord.name[stringIndex]) {
-          input = wrong = ''
-          if (!currentWord.isSymbol) {
-            playCorrect()
-          }
-          if (currentWord.nextSpace) {
-            isSpace = true
-          } else {
-            nextWord()
-          }
-        }
       } else {
-        if (!store.wrong.originWords.find((v: Word) => v.name.toLowerCase() === currentWord.name.toLowerCase())) {
-          store.wrong.originWords.push(currentWord)
-          store.wrong.words.push(currentWord)
-          store.wrong.chapterWords = [store.wrong.words]
-        }
-
-        if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase())) {
-          if (!practiceStore.wrongWords.find((v) => v.name.toLowerCase() === currentWord.name.toLowerCase())) {
-            practiceStore.wrongWords.push(currentWord)
-            practiceStore.wrongWordNumber++
-          }
-        }
-
-        wrong = letter
-        playBeep()
-        setTimeout(() => {
-          wrong = ''
-        }, 500)
-        // console.log('未匹配')
+        input = input.slice(0, -1)
       }
-      playKeyboardAudio()
-    }
-  } else {
-    switch (e.key) {
-      case 'Backspace':
-        if (wrong) {
-          wrong = ''
-        } else {
-          input = input.slice(0, -1)
-        }
-        break
-      case ShortKeyMap.Collect:
+      break
+    case ShortKeyMap.Collect:
 
-        break
-      case ShortKeyMap.Remove:
-        break
-      case ShortKeyMap.Ignore:
-        nextSentence()
-        break
-      case ShortKeyMap.Show:
-        if (settingStore.allowWordTip) {
-          hoverIndex = {
-            sectionIndex: sectionIndex,
-            sentenceIndex: sentenceIndex,
-          }
+      break
+    case ShortKeyMap.Remove:
+      break
+    case ShortKeyMap.Ignore:
+      nextSentence()
+      break
+    case ShortKeyMap.Show:
+      if (settingStore.allowWordTip) {
+        hoverIndex = {
+          sectionIndex: sectionIndex,
+          sentenceIndex: sentenceIndex,
         }
-        break
-    }
+      }
+      break
   }
 
   // console.log(

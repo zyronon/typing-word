@@ -65,7 +65,7 @@ async function selectDict(item: DictResource) {
     }
   } else {
     let data: Dict = {
-      ...DefaultDict,
+      ...cloneDeep(DefaultDict),
       ...item,
     }
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onMounted, watch} from "vue"
+import {watch} from "vue"
 import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
 import {DictType, DisplayStatistics, ShortKeyMap, Word} from "../../../types";
@@ -7,13 +7,12 @@ import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
 import {useSettingStore} from "@/stores/setting.ts";
-import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {Icon} from "@iconify/vue";
-import VolumeIcon from "@/components/VolumeIcon.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Options from "@/components/Practice/Options.vue";
 import Typing from "@/components/Practice/PracticeWord/Typing.vue";
+import WordPanel from "@/components/Practice/PracticeWord/WordPanel.vue";
 
 interface IProps {
   words: Word[],
@@ -32,8 +31,7 @@ let data = $ref({
   originWrongWords: [],
 })
 
-let input = $ref('')
-let wrong = $ref('')
+let typingRef: any = $ref()
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
 const settingStore = useSettingStore()
@@ -70,10 +68,6 @@ const nextWord: Word = $computed(() => {
   return data.words?.[data.index + 1] ?? undefined
 })
 
-onMounted(() => {
-
-})
-
 function next(isTyping: boolean = true) {
   if (data.index === data.words.length - 1) {
     if (data.wrongWords.length) {
@@ -83,9 +77,8 @@ function next(isTyping: boolean = true) {
       if (!data.originWrongWords.length) {
         data.originWrongWords = cloneDeep(data.wrongWords)
       }
-      data.index = 0
       practiceStore.total = data.words.length
-      practiceStore.index = 0
+      practiceStore.index = data.index = 0
       practiceStore.inputWordNumber = 0
       practiceStore.wrongWordNumber = 0
       practiceStore.repeatNumber++
@@ -143,7 +136,7 @@ function remove() {
 }
 
 function onKeyUp(e: KeyboardEvent) {
-  // showFullWord = false
+  typingRef.hideWord()
 }
 
 function wordWrong() {
@@ -162,11 +155,7 @@ async function onKeyDown(e: KeyboardEvent) {
   // console.log('e', e)
   switch (e.key) {
     case 'Backspace':
-      if (wrong) {
-        wrong = ''
-      } else {
-        input = input.slice(0, -1)
-      }
+      typingRef.del()
       break
     case ShortKeyMap.Collect:
       collect()
@@ -179,9 +168,7 @@ async function onKeyDown(e: KeyboardEvent) {
       e.preventDefault()
       break
     case ShortKeyMap.Show:
-      if (settingStore.allowWordTip) {
-        // showFullWord = true
-      }
+      typingRef.showWord()
       break
   }
 }
@@ -191,7 +178,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
 </script>
 
 <template>
-  <div class="type-word">
+  <div class="practice-word">
     <div class="near-word" v-if="settingStore.showNearWord">
       <div class="prev"
            @click="prev"
@@ -209,6 +196,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
       </Tooltip>
     </div>
     <Typing
+        ref="typingRef"
         :word="word"
         @wrong="wordWrong"
         @next="next"
@@ -218,13 +206,15 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
         @skip="skip"
         @collect="collect"
     />
+    <WordPanel :list="data.words" v-model:index="data.index"/>
   </div>
 </template>
 
 <style scoped lang="scss">
 @import "@/assets/css/variable";
 
-.type-word {
+.practice-word {
+  height: 100%;
   flex: 1;
   display: flex;
   //display: none;
@@ -279,6 +269,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
       user-select: none;
     }
   }
+
 
 }
 </style>

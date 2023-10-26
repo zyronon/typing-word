@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {$ref} from "vue/macros";
 import TypingArticle from "./TypingArticle.vue";
-import {Article, DefaultArticle, TranslateType} from "@/types.ts";
+import {Article, ArticleWord, DefaultArticle, DefaultWord, DisplayStatistics, TranslateType, Word} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import TypingWord from "@/components/Practice/PracticeWord/TypingWord.vue";
 import ArticlePanel from "./ArticlePanel.vue";
@@ -10,8 +10,12 @@ import {renewSectionTexts, renewSectionTranslates} from "@/hooks/translate.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {useBaseStore} from "@/stores/base.ts";
 import EditSingleArticleModal from "@/components/Article/EditSingleArticleModal.vue";
+import {usePracticeStore} from "@/stores/practice.ts";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 const store = useBaseStore()
+const practiceStore = usePracticeStore()
+
 let tabIndex = $ref(0)
 let wordData = $ref({
   words: [],
@@ -42,26 +46,49 @@ onMounted(() => {
   getCurrentPractice()
 })
 
+function setArticle(val: Article) {
+  store.currentDict.articles[store.currentDict.chapterIndex] = cloneDeep(val)
+  articleData.article = cloneDeep(val)
+  practiceStore.inputWordNumber = 0
+  practiceStore.wrongWordNumber = 0
+  practiceStore.repeatNumber = 0
+  practiceStore.total = 0
+  practiceStore.wrongWords = []
+  practiceStore.startDate = Date.now()
+  articleData.article.sections.map((v, i) => {
+    v.map((w, j) => {
+      w.words.map(s => {
+        if (!store.skipWordNamesWithSimpleWords.includes(s.name.toLowerCase()) && !s.isSymbol) {
+          practiceStore.total++
+        }
+      })
+    })
+  })
+}
+
 function getCurrentPractice() {
   // console.log('store.currentDict',store.currentDict)
   // return
   if (!store.currentDict.articles.length) return
+  tabIndex = 0
+  articleData.article = cloneDeep(DefaultArticle)
+
   let currentArticle = store.currentDict.articles[store.currentDict.chapterIndex]
   let tempArticle = {...DefaultArticle, ...currentArticle}
   console.log('article', tempArticle)
   if (tempArticle.sections.length) {
-    articleData.article = tempArticle
+    setArticle(tempArticle)
   } else {
     if (tempArticle.useTranslateType === TranslateType.none) {
       renewSectionTexts(tempArticle)
-      articleData.article = tempArticle
+      setArticle(tempArticle)
     } else {
       if (tempArticle.useTranslateType === TranslateType.custom) {
         if (tempArticle.textCustomTranslate.trim()) {
           if (tempArticle.textCustomTranslateIsFormat) {
             renewSectionTexts(tempArticle)
             renewSectionTranslates(tempArticle, tempArticle.textCustomTranslate)
-            articleData.article = tempArticle
+            setArticle(tempArticle)
           } else {
             //说明有本地翻译，但是没格式化成一行一行的
             MessageBox.confirm('检测到存在本地翻译，但未格式化，是否进行编辑?',
@@ -73,7 +100,7 @@ function getCurrentPractice() {
                 () => {
                   renewSectionTexts(tempArticle)
                   tempArticle.useTranslateType = TranslateType.none
-                  store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = tempArticle
+                  setArticle(tempArticle)
                 },
                 {
                   confirmButtonText: '去编辑',
@@ -92,7 +119,7 @@ function getCurrentPractice() {
               () => {
                 renewSectionTexts(tempArticle)
                 tempArticle.useTranslateType = TranslateType.none
-                store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = tempArticle
+                setArticle(tempArticle)
               },
               {
                 confirmButtonText: '去编辑',
@@ -104,7 +131,7 @@ function getCurrentPractice() {
       if (tempArticle.useTranslateType === TranslateType.network) {
         renewSectionTexts(tempArticle)
         renewSectionTranslates(tempArticle, tempArticle.textNetworkTranslate)
-        store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = tempArticle
+        setArticle(tempArticle)
       }
     }
   }
@@ -114,12 +141,65 @@ function saveArticle(val: Article) {
   console.log('saveArticle', val)
   showEditArticle = false
   // articleData.article = cloneDeep(store.currentDict.articles[store.currentDict.chapterIndex])
-  store.currentDict.articles[store.currentDict.chapterIndex] = articleData.article = val
+  setArticle(val)
 }
 
 function edit(val: Article) {
+  tabIndex = 1
+  wordData.words = [
+    {
+      ...cloneDeep(DefaultWord),
+      name: 'test'
+    }
+  ]
+  wordData.index = 0
+  return
   editArticle = val
   showEditArticle = true
+}
+
+function wrong(word: Word) {
+  let lowerName = word.name.toLowerCase();
+  if (!store.wrong.originWords.find((v: Word) => v.name.toLowerCase() === lowerName)) {
+    store.wrong.originWords.push(word)
+    store.wrong.words.push(word)
+    store.wrong.chapterWords = [store.wrong.words]
+  }
+  if (!store.skipWordNamesWithSimpleWords.includes(lowerName)) {
+    if (!practiceStore.wrongWords.find((v) => v.name.toLowerCase() === lowerName)) {
+      practiceStore.wrongWords.push(word)
+      practiceStore.wrongWordNumber++
+    }
+  }
+}
+
+function over() {
+  if (practiceStore.wrongWordNumber === 0) {
+    // if (false) {
+    console.log('这章节完了')
+    let now = Date.now()
+    let stat: DisplayStatistics = {
+      startDate: practiceStore.startDate,
+      endDate: now,
+      spend: now - practiceStore.startDate,
+      total: practiceStore.total,
+      correctRate: -1,
+      wrongWordNumber: practiceStore.wrongWordNumber,
+      wrongWords: practiceStore.wrongWords,
+    }
+    stat.correctRate = 100 - Math.trunc(((stat.wrongWordNumber) / (stat.total)) * 100)
+    emitter.emit(EventKey.openStatModal, stat)
+  } else {
+    tabIndex = 1
+    wordData.words = practiceStore.wrongWords
+    wordData.index = 0
+  }
+}
+
+function nextWord(word: ArticleWord) {
+  if (!store.skipWordNamesWithSimpleWords.includes(word.name.toLowerCase()) && !word.isSymbol) {
+    practiceStore.inputWordNumber++
+  }
 }
 
 </script>
@@ -130,6 +210,11 @@ function edit(val: Article) {
       <div class="swiper-list" :class="`step${tabIndex}`">
         <div class="swiper-item">
           <TypingArticle
+              :active="tabIndex === 0"
+              @edit="edit"
+              @wrong="wrong"
+              @over="over"
+              @nextWord="nextWord"
               :article="articleData.article"
           />
         </div>
@@ -144,7 +229,12 @@ function edit(val: Article) {
     </div>
 
     <div class="panel-wrapper">
-      <ArticlePanel :list="[]" v-model:index="index"/>
+      <ArticlePanel
+          v-if="tabIndex === 0"
+          :list="[]"
+          v-model:index="index">
+        1234
+      </ArticlePanel>
     </div>
 
     <EditSingleArticleModal
