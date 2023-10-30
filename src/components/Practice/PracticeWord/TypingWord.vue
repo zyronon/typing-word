@@ -104,6 +104,7 @@ function next(isTyping: boolean = true) {
       emitter.emit(EventKey.openStatModal, stat)
     }
   } else {
+    2
     data.index++
     isTyping && practiceStore.inputWordNumber++
     console.log('这个词完了')
@@ -205,11 +206,14 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
         @wrong="wordWrong"
         @next="next"
     />
-    <Options
-        @remove="remove"
-        @skip="skip"
-        @collect="collect"
-    />
+    <div class="options-wrapper">
+      <Options
+          @remove="remove"
+          @skip="skip"
+          @collect="collect"
+      />
+    </div>
+
     <Teleport to="body">
       <div class="word-panel-wrapper">
         <Panel>
@@ -302,6 +306,11 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     }
   }
 
+  .options-wrapper{
+    position: absolute;
+    //bottom: 0;
+    margin-top: 120rem;
+  }
 }
 
 $article-width: 50vw;

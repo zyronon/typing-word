@@ -5,6 +5,7 @@ import Input from "@/components/Input.vue";
 import {$computed, $ref} from "vue/macros";
 import {cloneDeep, throttle} from "lodash-es";
 import {Article} from "@/types.ts";
+import ListItem from "@/components/ListItem.vue";
 
 interface IProps {
   list: Article[]
@@ -19,9 +20,7 @@ const emit = defineEmits<{
   'update:list': [list: Article[]],
 }>()
 
-let dragItem: Article = $ref({id: ''} as any)
 let searchKey = $ref('')
-let draggable = $ref(false)
 
 let localList = $computed({
   get() {
@@ -40,47 +39,6 @@ let localList = $computed({
     emit('update:list', newValue)
   }
 })
-
-function dragstart(item: Article) {
-  dragItem = item;
-}
-
-const dragenter = throttle((e, item: Article) => {
-  // console.log('dragenter', 'item.id', item.id, 'dragItem.id', dragItem.id)
-  e.preventDefault();
-  // 避免源对象触发自身的dragenter事件
-  if (dragItem.id && dragItem.id !== item.id) {
-    let rIndex = props.list.findIndex(v => v.id === dragItem.id)
-    let rIndex2 = props.list.findIndex(v => v.id === item.id)
-    // console.log('dragenter', 'item-Index', rIndex2, 'dragItem.index', rIndex)
-    //这里不能直接用localList splice。不知道为什么会导致有筛选的情况下，多动无法变换位置
-    let temp = cloneDeep(props.list)
-    temp.splice(rIndex, 1);
-    temp.splice(rIndex2, 0, cloneDeep(dragItem));
-    localList = temp;
-  }
-}, 300)
-
-function dragover(e) {
-  // console.log('dragover')
-  e.preventDefault();
-}
-
-function dragend() {
-  // console.log('dragend')
-  draggable = false
-  dragItem = {id: ''} as Article
-}
-
-function delItem(item: Article) {
-  if (item.id === props.selectItem.id) {
-    emit('delSelectItem')
-  }
-  let rIndex = props.list.findIndex(v => v.id === item.id)
-  if (rIndex > -1) {
-    localList.splice(rIndex, 1)
-  }
-}
 
 let el: HTMLDivElement = $ref()
 
@@ -103,64 +61,16 @@ defineExpose({scrollBottom})
     <div class="search">
       <Input v-model="searchKey"/>
     </div>
-    <transition-group name="drag" class="list" tag="div">
-      <div class="item"
-           :class="[
-                (selectItem.id ===  item.id) && 'active',
-                draggable  && 'draggable',
-                (dragItem.id === item.id) && 'active'
-             ]"
-           @click="emit('selectItem',item)"
-           v-for="(item,index) in localList"
-           :key="item.id"
-           :draggable="draggable"
-           @dragstart="dragstart(item)"
-           @dragenter="dragenter($event, item)"
-           @dragover="dragover($event)"
-           @dragend="dragend()"
-      >
-        <div class="left">
-          <div class="name"> {{ `${index + 1}. ${item.title}` }}</div>
-          <div class="translate-name"> {{ `   ${item.titleTranslate}` }}</div>
-        </div>
-        <div class="right">
-          <BaseIcon
-              @click="delItem(item)"
-              title="删除" icon="ph:star"/>
-          <BaseIcon
-              @click="delItem(item)"
-              title="删除" icon="fluent:delete-24-regular"/>
-          <div
-              @mousedown="draggable = true"
-              @mouseup="draggable = false"
-          >
-            <BaseIcon icon="carbon:move"/>
-          </div>
-        </div>
-      </div>
-    </transition-group>
+    <ListItem @click="emit('selectItem',item)"
+              v-for="(item,index) in localList"
+              :key="item.id">
+      <div class="name"> {{ `${index + 1}. ${item.title}` }}</div>
+      <div class="translate-name"> {{ `   ${item.titleTranslate}` }}</div>
+    </ListItem>
   </div>
 </template>
 
 <style scoped lang="scss">
-.drag-move, /* 对移动中的元素应用的过渡 */
-.drag-enter-active,
-.drag-leave-active {
-  transition: all 0.5s ease;
-}
-
-.drag-enter-from,
-.drag-leave-to {
-  opacity: 0;
-  transform: translateX(50rem);
-}
-
-/* 确保将离开的元素从布局流中删除
-  以便能够正确地计算移动的动画。 */
-.drag-leave-active {
-  position: absolute;
-}
-
 .list-wrapper {
   transition: all .3s;
   flex: 1;
@@ -173,50 +83,7 @@ defineExpose({scrollBottom})
   }
 
   .list {
-    .item {
-      width: 100%;
-      box-sizing: border-box;
-      background: #e1e1e1;
-      border-radius: 8rem;
-      margin-bottom: 10rem;
-      padding: 10rem;
-      display: flex;
-      justify-content: space-between;
-      transition: all .3s;
-      color: black;
-
-      .left {
-        .name {
-          font-size: 18rem;
-        }
-
-        .translate-name {
-          font-size: 16rem;
-        }
-      }
-
-      .right {
-        display: flex;
-        flex-direction: column;
-        transition: all .3s;
-        opacity: 0;
-      }
-
-      &:hover {
-        .right {
-          opacity: 1;
-        }
-      }
-
-      &.active {
-        background: var(--color-item-active);
-        color: white;
-      }
-
-      &.draggable {
-        cursor: move;
-      }
-    }
   }
+
 }
 </style>

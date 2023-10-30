@@ -86,11 +86,11 @@ onUnmounted(() => {
   margin-bottom: 10rem;
   transition: all .3s;
   position: relative;
-  margin-top: 20rem;
+  margin-top: 15rem;
 
   &.hide {
     margin-bottom: -90rem;
-    margin-top: 65rem;
+    margin-top: 50rem;
 
     .progress {
       bottom: calc(100% + 20rem);

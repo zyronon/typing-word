@@ -71,46 +71,5 @@ watch(() => props.list, () => {
   padding: 0 $space;
   overflow: auto;
 
-  .item {
-    background: var(--color-header-bg);
-    border-radius: 6rem;
-    padding: 12rem;
-    display: flex;
-    justify-content: space-between;
-    transition: all .3s;
-    color: var(--color-font-1);
-
-    &.active {
-      background: $second;
-      color: white;
-    }
-
-    &:hover {
-      //background: $dark-main-bg;
-      //background: $item-hover;
-      background: rgb(226, 226, 226);
-    }
-
-    .left {
-      .letter {
-        margin-bottom: 10rem;
-        font-size: 24rem;
-        line-height: 1;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-        display: flex;
-      }
-
-      .info {
-        display: flex;
-        gap: 20rem
-      }
-    }
-
-    .right {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-  }
 }
 </style>

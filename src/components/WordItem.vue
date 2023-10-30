@@ -1,12 +1,12 @@
 <script setup lang="ts">
 
-import VolumeIcon from "@/components/VolumeIcon.vue";
-import {Icon} from "@iconify/vue";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
 import {Word} from "@/types.ts";
+import ListItem from "@/components/ListItem.vue";
+import VolumeIcon from "@/components/VolumeIcon.vue";
 
 const playWordAudio = usePlayWordAudio()
-const props = defineProps<{
+defineProps<{
   word: Word,
   active?: boolean
 }>()
@@ -17,84 +17,53 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="word-item"
-       :class="{active}">
-    <div class="left">
-      <div class="title">
-        <span class="word">{{ word.name }}</span>
-        <span class="phonetic">{{ word.usphone }}</span>
-      </div>
-      <div class="translate">{{ word.trans.join('；') }}</div>
+  <ListItem
+      class="item"
+      :show-volume="true"
+      @play="playWordAudio(word.name)"
+      :active="active">
+    <div class="title">
+      <span class="word">{{ word.name }}</span>
+      <span class="phonetic">{{ word.usphone }}</span>
+      <VolumeIcon class="volume" @click="playWordAudio(word.name)"></VolumeIcon>
     </div>
-    <div class="right">
-      <VolumeIcon @click="playWordAudio(word.name)"></VolumeIcon>
-      <div class="del"
-           @click.stop="emit('del')"
-      >
-        <Icon
-            icon="fluent:delete-28-regular"
-            width="20"
-            color="#929596"/>
-      </div>
-    </div>
-  </div>
+    <div class="translate" v-if="word.trans.length">{{ word.trans.join('；') }}</div>
+  </ListItem>
 </template>
 
 <style scoped lang="scss">
 @import "@/assets/css/variable.scss";
 
-.word-item {
-  background: var(--color-header-bg);
-  border-radius: 6rem;
-  padding: 12rem;
-  display: flex;
-  justify-content: space-between;
-  transition: all .3s;
-  color: var(--color-font-1);
-
-  &.active {
-    background: $second;
-    color: white;
-
-    .phonetic {
-      color: white!important;
-    }
+.item {
+  .volume {
+    opacity: 0;
   }
 
   &:hover {
-    //background: $dark-main-bg;
-    //background: $item-hover;
-    background: rgb(226, 226, 226);
-  }
-
-  .left {
-    .title {
-      display: flex;
-      align-items: center;
-      gap: 10rem;
-
-      .word {
-        font-size: 24rem;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-        display: flex;
-      }
-
-      .phonetic {
-        font-size: 14rem;
-        color: gray;
-      }
+    .volume {
+      opacity: 1;
     }
   }
+}
 
-  .right {
+.title {
+  display: flex;
+  align-items: center;
+  gap: 8rem;
+
+  .word {
+    font-size: 18rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 5rem;
-
-    .del {
-      cursor: pointer;
-    }
   }
+
+  .phonetic {
+    font-size: 14rem;
+    color: gray;
+  }
+}
+
+.translate {
+  font-size: 16rem;
 }
 </style>

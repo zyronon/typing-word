@@ -43,6 +43,7 @@ declare module 'vue' {
     IconWrapper: typeof import('./src/components/IconWrapper.vue')['default']
     Input: typeof import('./src/components/Input.vue')['default']
     List: typeof import('./src/components/List.vue')['default']
+    ListItem: typeof import('./src/components/ListItem.vue')['default']
     MiniModal: typeof import('./src/components/MiniModal.vue')['default']
     Modal: typeof import('./src/components/Modal/Modal.vue')['default']
     Options: typeof import('./src/components/Practice/Options.vue')['default']
