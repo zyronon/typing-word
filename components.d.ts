@@ -9,7 +9,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     Add: typeof import('./src/components/Toolbar/Add.vue')['default']
     AddDict: typeof import('./src/components/Add/AddDict.vue')['default']
-    ArticleItem: typeof import('./src/components/Article/ArticleItem.vue')['default']
     ArticleList: typeof import('./src/components/Article/ArticleList.vue')['default']
     ArticlePanel: typeof import('./src/components/Practice/PracticeArticle/ArticlePanel.vue')['default']
     Backgorund: typeof import('./src/components/Backgorund.vue')['default']
@@ -47,6 +46,7 @@ declare module 'vue' {
     MiniModal: typeof import('./src/components/MiniModal.vue')['default']
     Modal: typeof import('./src/components/Modal/Modal.vue')['default']
     Options: typeof import('./src/components/Practice/Options.vue')['default']
+    Panel: typeof import('./src/components/Practice/Panel.vue')['default']
     PopConfirm: typeof import('./src/components/PopConfirm.vue')['default']
     Practice: typeof import('./src/components/Practice/Practice.vue')['default']
     PracticeArticle: typeof import('./src/components/Practice/PracticeArticle/PracticeArticle.vue')['default']
@@ -61,7 +61,6 @@ declare module 'vue' {
     Typing: typeof import('./src/components/Practice/PracticeWord/Typing.vue')['default']
     TypingArticle: typeof import('./src/components/Practice/PracticeArticle/TypingArticle.vue')['default']
     TypingWord: typeof import('./src/components/Practice/PracticeWord/TypingWord.vue')['default']
-    TypingWord2: typeof import('./src/components/Practice/PracticeWord/TypingWord2.vue')['default']
     VolumeIcon: typeof import('./src/components/VolumeIcon.vue')['default']
     VolumeSetting: typeof import('./src/components/Toolbar/VolumeSetting.vue')['default']
     WordItem: typeof import('./src/components/WordItem.vue')['default']

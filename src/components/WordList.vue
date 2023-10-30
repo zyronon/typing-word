@@ -64,10 +64,9 @@ watch(() => props.list, () => {
   gap: 12rem;
   width: 100%;
   height: 100%;
-  padding: 0 $space;
-  overflow-y: auto;
-  overflow-x: hidden;
   box-sizing: border-box;
+  padding: 0 $space;
+  overflow: auto;
 
   .item {
     background: var(--color-header-bg);

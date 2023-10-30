@@ -2,9 +2,9 @@
 import {useBaseStore} from "@/stores/base.ts"
 import WordList from "@/components/WordList.vue"
 
-import {$computed, $ref} from "vue/macros"
+import {$ref} from "vue/macros"
 import {computed, provide, watch} from "vue"
-import {Dict, DictType, Word} from "@/types.ts"
+import {Dict, DictType} from "@/types.ts"
 import PopConfirm from "@/components/PopConfirm.vue"
 import BaseButton from "@/components/BaseButton.vue";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -46,7 +46,7 @@ function changeIndex(i: number, dict: Dict) {
               v-if="!settingStore.showToolbar"/>
         </Transition>
         <div class="tabs">
-          <div class="tab current" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前</div>
+          <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前</div>
           <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.collect.name }}</div>
           <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.wrong.name }}</div>
           <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.skip.name }}</div>
@@ -231,10 +231,6 @@ $header-height: 50rem;
           color: rgb(36, 127, 255);
           font-weight: bold;
         }
-      }
-
-      .current {
-        word-break: break-word;
       }
     }
 

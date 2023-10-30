@@ -4,7 +4,7 @@ import TypingArticle from "./TypingArticle.vue";
 import {Article, ArticleWord, DefaultArticle, DefaultWord, DisplayStatistics, TranslateType, Word} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import TypingWord from "@/components/Practice/PracticeWord/TypingWord.vue";
-import ArticlePanel from "./ArticlePanel.vue";
+import Panel from "../Panel.vue";
 import {onMounted, watch} from "vue";
 import {renewSectionTexts, renewSectionTranslates} from "@/hooks/translate.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
@@ -233,9 +233,9 @@ function nextWord(word: ArticleWord) {
     </div>
 
     <div class="panel-wrapper">
-      <ArticlePanel
+      <Panel
           v-if="tabIndex === 0">
-        <div class="current-practice-article-list">
+        <div class="current-practice-dict">
           <header>
             <div class="left">
               <Tooltip title="切换词典">
@@ -254,7 +254,7 @@ function nextWord(word: ArticleWord) {
           <ArticleList :select-item="articleData.article"
                        v-model:list="store.currentDict.articles"/>
         </div>
-      </ArticlePanel>
+      </Panel>
     </div>
 
     <EditSingleArticleModal
@@ -305,24 +305,4 @@ $article-width: 50vw;
   height: calc(100% - 20rem);
 }
 
-.current-practice-article-list {
-  padding: 20rem;
-  overflow: auto;
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14rem;
-    color: black;
-
-    .left {
-      display: flex;
-      align-items: center;
-      gap: 10rem;
-    }
-  }
-
-
-}
 </style>

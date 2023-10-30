@@ -129,9 +129,37 @@ footer {
   justify-content: space-between;
 }
 
-
 .flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.current-practice-dict {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-bottom: $space;
+  box-sizing: border-box;
+
+  header {
+    padding: 8rem $space;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14rem;
+    color: black;
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 10rem;
+    }
+  }
+
+  .scroll {
+    padding: 0 $space;
+    flex: 1;
+    overflow: auto;
+  }
 }

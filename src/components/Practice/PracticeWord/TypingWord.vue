@@ -13,6 +13,10 @@ import Tooltip from "@/components/Tooltip.vue";
 import Options from "@/components/Practice/Options.vue";
 import Typing from "@/components/Practice/PracticeWord/Typing.vue";
 import WordPanel from "@/components/Practice/PracticeWord/WordPanel.vue";
+import ArticleList from "@/components/Article/ArticleList.vue";
+import Panel from "@/components/Practice/Panel.vue";
+import IconWrapper from "@/components/IconWrapper.vue";
+import WordList from "@/components/WordList.vue";
 
 interface IProps {
   words: Word[],
@@ -196,6 +200,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
       </Tooltip>
     </div>
     <Typing
+        v-if="false"
         ref="typingRef"
         :word="word"
         @wrong="wordWrong"
@@ -206,7 +211,32 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
         @skip="skip"
         @collect="collect"
     />
-    <WordPanel :list="data.words" v-model:index="data.index"/>
+    <div class="word-panel-wrapper">
+      <Panel>
+        <div class="current-practice-dict">
+          <header>
+            <div class="left">
+              <Tooltip title="切换词典">
+                <IconWrapper>
+                  <Icon icon="basil:exchange-outline"/>
+                </IconWrapper>
+              </Tooltip>
+              <div class="title">
+                {{ store.currentDict.name + `  第${store.currentDict.chapterIndex + 1}章` }}
+              </div>
+            </div>
+            <div class="right">
+              共{{ data.words.length }}词
+            </div>
+          </header>
+          <WordList
+              class="word-list"
+              :is-active="true"
+              :list="data.words"
+              :activeIndex="data.index"/>
+        </div>
+      </Panel>
+    </div>
   </div>
 </template>
 
@@ -270,6 +300,17 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     }
   }
 
-
 }
+
+$article-width: 50vw;
+
+.word-panel-wrapper {
+  position: fixed;
+  left: 0;
+  top: 10rem;
+  z-index: 1;
+  margin-left: calc(50% + ($article-width / 2) + $space);
+  height: calc(100% - 20rem);
+}
+
 </style>
