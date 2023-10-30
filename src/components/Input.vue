@@ -13,6 +13,7 @@ let focus = $ref(false)
 let inputEl = $ref<HTMLDivElement>()
 
 useWindowClick((e: PointerEvent) => {
+  if (!e)return
   focus = inputEl.contains(e.target as any);
 })
 

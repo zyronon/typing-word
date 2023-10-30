@@ -19,6 +19,7 @@ useWindowClick(() => show = false)
 useWatchAllSound()
 
 function toggle() {
+  console.log('e')
   if (!show) emitter.emit(EventKey.closeOther)
   show = !show
 }
