@@ -37,6 +37,7 @@ declare module 'vue' {
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSlider: typeof import('element-plus/es')['ElSlider']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
+    Empty: typeof import('./src/components/Empty.vue')['default']
     FeedbackModal: typeof import('./src/components/Toolbar/FeedbackModal.vue')['default']
     Fireworks: typeof import('./src/components/Fireworks.vue')['default']
     Footer: typeof import('./src/components/Practice/Footer.vue')['default']
@@ -66,6 +67,5 @@ declare module 'vue' {
     WordItem: typeof import('./src/components/WordItem.vue')['default']
     WordList: typeof import('./src/components/WordList.vue')['default']
     WordListModal: typeof import('./src/components/WordListModal.vue')['default']
-    WordPanel: typeof import('./src/components/Practice/PracticeWord/WordPanel.vue')['default']
   }
 }

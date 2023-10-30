@@ -33,11 +33,18 @@ export default {
   methods: {
     showPop(e) {
       if (this.disabled) return
-      e.stopPropagation()
+      e?.stopPropagation()
       let rect = e.target.getBoundingClientRect()
       this.show = true
       nextTick(() => {
-        this.$refs.tip.style.top = rect.top + 'px'
+        let tip = this.$refs?.tip?.getBoundingClientRect()
+        console.log('rect', rect, tip)
+        if (!tip) return
+        if (rect.top < 150) {
+          this.$refs.tip.style.top = rect.top + rect.height + tip.height + 30 + 'px'
+        } else {
+          this.$refs.tip.style.top = rect.top - 10 + 'px'
+        }
         this.$refs.tip.style.left = rect.left + rect.width / 2 - 50 + 'px'
       })
     },
@@ -98,8 +105,8 @@ $bg-color: rgb(226, 226, 226);
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 10rem;
-    font-size: 10rem;
+    gap: 12rem;
+    font-size: 12rem;
 
     div {
       cursor: pointer;
@@ -108,8 +115,8 @@ $bg-color: rgb(226, 226, 226);
     .main {
       color: gray;
       background: $bg-color;
-      padding: 3rem 8rem;
-      border-radius: 2rem;
+      padding: 3rem 10rem;
+      border-radius: 4rem;
     }
   }
 }

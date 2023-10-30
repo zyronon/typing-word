@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {DefaultDict, Dict, DictType, DisplayStatistics, SaveDictKey, Sort, Statistics, Word} from "../types.ts"
+import {DefaultDict, Dict, DictType, DisplayStatistics, SaveDictKey, Word} from "../types.ts"
 import {chunk, cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {v4 as uuidv4} from 'uuid';
@@ -13,8 +13,7 @@ export interface State {
   current: {
     dictType: DictType,
     index: number,
-    editIndex: number,
-    repeatNumber: number,
+    practiceType: DictType,//练习类型，目前仅词典为collect时判断是练单词还是文章使用
   },
   simpleWords: string[],
   load: boolean
@@ -25,18 +24,150 @@ export const useBaseStore = defineStore('base', {
     return {
       collect: {
         ...cloneDeep(DefaultDict),
+        words: [
+          {
+            "name": "cancel",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "prepare",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "half",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "spacious",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "analyse",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "costing",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "nowadays",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+        ],
         id: 'collect',
         name: '收藏',
         type: DictType.collect,
       },
       skip: {
         ...cloneDeep(DefaultDict),
+        words: [
+          {
+            "name": "cancel",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "prepare",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "half",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "spacious",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "analyse",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "costing",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "nowadays",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+        ],
         id: 'skip',
         name: '简单词',
         type: DictType.skip,
       },
       wrong: {
         ...cloneDeep(DefaultDict),
+        words: [
+          {
+            "name": "cancel",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "prepare",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "half",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "spacious",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "analyse",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "costing",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+          {
+            "name": "nowadays",
+            "trans": [],
+            "usphone": "",
+            "ukphone": ""
+          },
+        ],
         id: 'wrong',
         name: '错词本',
         type: DictType.wrong,
@@ -67,8 +198,7 @@ export const useBaseStore = defineStore('base', {
         index: 1,
         // dictType: DictType.article,
         // index: 0,
-        editIndex: 0,
-        repeatNumber: 0,
+        practiceType: DictType.word,
       },
       simpleWords: [
         'a', 'an',
@@ -89,6 +219,10 @@ export const useBaseStore = defineStore('base', {
       return state.skip.originWords.map(v => v.name.toLowerCase()).concat(state.simpleWords)
     },
     isArticle(state: State): boolean {
+      //如果是收藏时，特殊判断
+      if (state.current.dictType === DictType.collect) {
+        return state.current.practiceType === DictType.article
+      }
       return [
         DictType.article,
         DictType.customArticle
@@ -124,8 +258,18 @@ export const useBaseStore = defineStore('base', {
     },
     dictTitle(state: State) {
       let title = this.currentDict.name
-      if ([DictType.word, DictType.customWord].includes(this.current.dictType)) {
-        title += `  第${this.currentDict.chapterIndex + 1}章`
+      switch (state.current.dictType) {
+        case DictType.collect:
+          if (state.current.dictType === DictType.collect) {
+            title += `  第${this.currentDict.chapterIndex + 1}章`
+          }
+          break
+        case DictType.word:
+        case DictType.article:
+        case DictType.customWord:
+        case DictType.customArticle:
+          title += `  第${this.currentDict.chapterIndex + 1}章`
+          break
       }
       return title
     }
@@ -193,7 +337,7 @@ export const useBaseStore = defineStore('base', {
           DictType.article,
           DictType.customArticle,
         ].includes(this.current.dictType)) {
-          console.log(1,this.currentDict)
+          console.log(1, this.currentDict)
           if (!this.currentDict.articles.length) {
             console.log(2)
             let r = await fetch(`./dicts/${this.currentDict.language}/${this.currentDict.type}/${this.currentDict.translateLanguage}/${this.currentDict.url}`)
@@ -215,16 +359,18 @@ export const useBaseStore = defineStore('base', {
         this.currentDict.statistics.push(statistics)
       }
     },
-    async changeDict(dict: Dict, chapterIndex: number = dict.chapterIndex, chapterWordIndex: number = dict.chapterWordNumber) {
+    async changeDict(dict: Dict, chapterIndex: number = dict.chapterIndex, chapterWordIndex: number = dict.chapterWordNumber, practiceType: DictType) {
       //TODO 保存统计
       // this.saveStatistics()
       console.log('changeDict', cloneDeep(dict), chapterIndex, chapterWordIndex)
       this.current.dictType = dict.type
+      this.current.practiceType = practiceType
       if ([DictType.collect,
         DictType.skip,
         DictType.wrong].includes(dict.type)) {
-        this[dict.type].chapterIndex = chapterIndex
+        this[dict.type].chapterIndex = 0
         this[dict.type].chapterWordIndex = chapterWordIndex
+        this[dict.type].chapterWords = [this[dict.type].words]
       } else {
         let rIndex = this.myDicts.findIndex((v: Dict) => v.name === dict.name)
         if (rIndex > -1) {

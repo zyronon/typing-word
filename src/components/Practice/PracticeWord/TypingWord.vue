@@ -12,11 +12,10 @@ import {Icon} from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Options from "@/components/Practice/Options.vue";
 import Typing from "@/components/Practice/PracticeWord/Typing.vue";
-import WordPanel from "@/components/Practice/PracticeWord/WordPanel.vue";
-import ArticleList from "@/components/Article/ArticleList.vue";
 import Panel from "@/components/Practice/Panel.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import WordList from "@/components/WordList.vue";
+import {useRuntimeStore} from "@/stores/runtime.ts";
 
 interface IProps {
   words: Word[],
@@ -37,6 +36,7 @@ let data = $ref({
 
 let typingRef: any = $ref()
 const store = useBaseStore()
+const runtimeStore = useRuntimeStore()
 const practiceStore = usePracticeStore()
 const settingStore = useSettingStore()
 
@@ -200,7 +200,6 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
       </Tooltip>
     </div>
     <Typing
-        v-if="false"
         ref="typingRef"
         :word="word"
         @wrong="wordWrong"
@@ -213,25 +212,26 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     />
     <div class="word-panel-wrapper">
       <Panel>
-        <div class="current-practice-dict">
+        <div class="panel-page-item">
           <header>
             <div class="left">
               <Tooltip title="切换词典">
                 <IconWrapper>
-                  <Icon icon="basil:exchange-outline"/>
+                  <Icon @click="runtimeStore.showDictModal = true" icon="basil:exchange-outline"/>
                 </IconWrapper>
               </Tooltip>
               <div class="title">
-                {{ store.currentDict.name + `  第${store.currentDict.chapterIndex + 1}章` }}
+                {{ store.dictTitle }}
               </div>
             </div>
             <div class="right">
-              共{{ data.words.length }}词
+              {{ data.words.length }}个单词
             </div>
           </header>
           <WordList
               class="word-list"
               :is-active="true"
+              @change="(i:number) => data.index = i"
               :list="data.words"
               :activeIndex="data.index"/>
         </div>

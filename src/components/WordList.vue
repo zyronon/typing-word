@@ -9,11 +9,14 @@ const emit = defineEmits<{
   del: [i: number],
   change: [i: number]
 }>()
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   list: Word[],
-  activeIndex: number,
-  isActive: boolean
-}>()
+  activeIndex?: number,
+  isActive?: boolean
+}>(), {
+  activeIndex: -1,
+  isActive: false
+})
 
 const listRef: HTMLElement = $ref(null as any)
 

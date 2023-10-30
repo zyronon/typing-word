@@ -179,7 +179,7 @@ const dictIsArticle = $computed(() => {
               <div class="translate">
                 <span>翻译：</span>
                 <el-radio-group v-model="currentTranslateLanguage">
-                  <el-radio border v-for="i in translateLanguageList" :label="i">{{ i }}</el-radio>
+                  <el-radio-button border v-for="i in translateLanguageList" :label="i">{{ i }}</el-radio-button>
                 </el-radio-group>
               </div>
               <DictGroup
@@ -416,6 +416,8 @@ $header-height: 60rem;
       padding-right: $space;
 
       .translate {
+        display: flex;
+        align-items: center;
         color: black;
         margin-bottom: 30rem;
 

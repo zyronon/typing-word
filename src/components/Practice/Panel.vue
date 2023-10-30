@@ -9,6 +9,8 @@ import PopConfirm from "@/components/PopConfirm.vue"
 import BaseButton from "@/components/BaseButton.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import Close from "@/components/Close.vue";
+import Empty from "@/components/Empty.vue";
+import ArticleList from "@/components/Article/ArticleList.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -31,9 +33,12 @@ watch(() => settingStore.showPanel, n => {
   }
 })
 
+let practiceType = $ref(DictType.word)
+
 function changeIndex(i: number, dict: Dict) {
-  store.changeDict(dict, dict.chapterIndex, i)
+  store.changeDict(dict, dict.chapterIndex, i,practiceType)
 }
+
 
 </script>
 <template>
@@ -58,69 +63,84 @@ function changeIndex(i: number, dict: Dict) {
             <slot></slot>
           </div>
           <div class="slide-item">
-            <header>
-              <div class="dict-name">总词数：{{ store.collect.words.length }}</div>
-            </header>
-            <div class="content">
-              <WordList
-                  class="word-list"
-                  @change="(i:number) => changeIndex(i,store.collect)"
-                  :isActive="settingStore.showPanel && tabIndex === 1"
-                  :list="store.collect.words"
-                  :activeIndex="-1"/>
+            <div class="panel-page-item">
+              <header>
+                <div class="left">
+                  <el-radio-group v-model="practiceType">
+                    <el-radio-button border :label="DictType.word">单词</el-radio-button>
+                    <el-radio-button border :label="DictType.article">文章</el-radio-button>
+                  </el-radio-group>
+                  <div class="dict-name" v-if="practiceType === DictType.word">{{ store.collect.words.length }}个单词</div>
+                  <div class="dict-name" v-else> {{ store.collect.articles.length }}篇文章</div>
+                </div>
+                <template v-if="store.current.dictType !== DictType.collect &&
+              (
+                   ( practiceType === DictType.word && store.collect.words.length) ||
+                ( practiceType === DictType.article && store.collect.articles.length)
+              )">
+                  <PopConfirm
+                      :title="`确认切换？`"
+                      @confirm="changeIndex(0,store.collect)"
+                  >
+                    <BaseButton size="small">切换</BaseButton>
+                  </PopConfirm>
+                </template>
+              </header>
+              <template v-if="practiceType === DictType.word">
+                <WordList
+                    v-if="store.collect.words.length"
+                    class="word-list"
+                    :list="store.collect.words"/>
+                <Empty v-else/>
+              </template>
+              <template v-else>
+                <ArticleList
+                    v-if="store.collect.articles.length"
+                    style="padding: 0 20rem;"
+                    :select-item="{id: ''} as any"
+                    v-model:list="store.collect.articles"/>
+                <Empty v-else/>
+              </template>
             </div>
-            <footer v-if="store.current.dictType !== DictType.collect && store.collect.words.length">
-              <PopConfirm
-                  :title="`确认切换？`"
-                  @confirm="changeIndex(0,store.collect)"
-              >
-                <BaseButton>切换</BaseButton>
-              </PopConfirm>
-            </footer>
           </div>
           <div class="slide-item">
-            <header>
-              <a href="" target="_blank"></a>
-              <div class="dict-name">总词数：{{ store.wrong.words.length }}</div>
-            </header>
-            <div class="content">
+            <div class="panel-page-item" v-if="store.wrong.words.length">
+              <header>
+                <div class="dict-name">总词数：{{ store.wrong.words.length }}</div>
+                <template
+                    v-if="store.current.dictType !== DictType.wrong && store.wrong.words.length">
+                  <PopConfirm
+                      :title="`确认切换？`"
+                      @confirm="changeIndex(0,store.wrong)"
+                  >
+                    <BaseButton size="small">切换</BaseButton>
+                  </PopConfirm>
+                </template>
+              </header>
               <WordList
                   class="word-list"
-                  @change="(i:number) => changeIndex(i,store.wrong)"
-                  :isActive="settingStore.showPanel && tabIndex === 2"
-                  :list="store.wrong.words"
-                  :activeIndex="-1"/>
+                  :list="store.wrong.words"/>
             </div>
-            <footer
-                v-if="store.current.dictType !== DictType.wrong && store.wrong.words.length">
-              <PopConfirm
-                  :title="`确认切换？`"
-                  @confirm="changeIndex(0,store.wrong)"
-              >
-                <BaseButton>切换</BaseButton>
-              </PopConfirm>
-            </footer>
+            <Empty v-else/>
           </div>
           <div class="slide-item">
-            <header>
-              <div class="dict-name">总词数：{{ store.skip.words.length }}</div>
-            </header>
-            <div class="content">
+            <div class="panel-page-item" v-if="store.skip.words.length">
+              <header>
+                <div class="dict-name">总词数：{{ store.skip.words.length }}</div>
+                <template v-if="store.current.dictType !== DictType.skip && store.skip.words.length">
+                  <PopConfirm
+                      :title="`确认切换？`"
+                      @confirm="changeIndex(0,store.skip)"
+                  >
+                    <BaseButton size="small">切换</BaseButton>
+                  </PopConfirm>
+                </template>
+              </header>
               <WordList
                   class="word-list"
-                  @change="(i:number) => changeIndex(i,store.skip)"
-                  :isActive="settingStore.showPanel && tabIndex === 3"
-                  :list="store.skip.words"
-                  :activeIndex="-1"/>
+                  :list="store.skip.words"/>
             </div>
-            <footer v-if="store.current.dictType !== DictType.skip && store.skip.words.length">
-              <PopConfirm
-                  :title="`确认切换？`"
-                  @confirm="changeIndex(0,store.skip)"
-              >
-                <BaseButton>切换</BaseButton>
-              </PopConfirm>
-            </footer>
+            <Empty v-else/>
           </div>
         </div>
       </div>
@@ -158,7 +178,7 @@ $header-height: 50rem;
         align-items: center;
         justify-content: flex-end;
         gap: 10rem;
-        font-size: 18rem;
+        font-size: 16rem;
         color: black;
       }
 
@@ -170,7 +190,7 @@ $header-height: 50rem;
 
       footer {
         padding-right: $space;
-        height: 50rem;
+        margin-bottom: 10rem;
         align-items: center;
       }
     }

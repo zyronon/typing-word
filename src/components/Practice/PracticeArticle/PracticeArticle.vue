@@ -16,16 +16,17 @@ import ArticleList from "@/components/Article/ArticleList.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";
+import {useRuntimeStore} from "@/stores/runtime.ts";
 
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
+const runtimeStore = useRuntimeStore()
 
 let tabIndex = $ref(0)
 let wordData = $ref({
   words: [],
   index: -1
 })
-let index = $ref(0)
 let articleData = $ref({
   article: cloneDeep(DefaultArticle),
   sectionIndex: 0,
@@ -235,20 +236,20 @@ function nextWord(word: ArticleWord) {
     <div class="panel-wrapper">
       <Panel
           v-if="tabIndex === 0">
-        <div class="current-practice-dict">
+        <div class="panel-page-item">
           <header>
             <div class="left">
               <Tooltip title="切换词典">
                 <IconWrapper>
-                  <Icon icon="basil:exchange-outline"/>
+                  <Icon @click="runtimeStore.showDictModal = true" icon="basil:exchange-outline"/>
                 </IconWrapper>
               </Tooltip>
               <div class="title">
-                {{ store.currentDict.name + `  第${store.currentDict.chapterIndex + 1}章` }}
+                {{ store.dictTitle }}
               </div>
             </div>
             <div class="right">
-              共{{ store.currentDict.articles.length }}章
+              {{ store.currentDict.articles.length }}篇文章
             </div>
           </header>
           <ArticleList :select-item="articleData.article"

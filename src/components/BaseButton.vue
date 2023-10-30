@@ -11,22 +11,19 @@ interface IProps {
   type?: 'primary' | 'link'
 }
 
-const props = withDefaults(defineProps<IProps>(), {
+withDefaults(defineProps<IProps>(), {
   type: 'primary',
   size: 'normal',
 })
 
 defineEmits(['click'])
 
-function click() {
-
-}
 </script>
 
 <template>
   <Tooltip :disabled="!keyboard" :title="`快捷键: ${keyboard}`">
     <div class="base-button"
-         @click="(!disabled && !loading) && $emit('click')"
+         @click="e => (!disabled && !loading) && $emit('click',e)"
          :class="[
              active && 'active',
              size,
@@ -113,7 +110,8 @@ function click() {
   &.link {
     border-radius: 0;
     border-bottom: 2px solid transparent;
-    &:hover{
+
+    &:hover {
       border-bottom: 2px solid black;
     }
   }

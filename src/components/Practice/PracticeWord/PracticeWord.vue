@@ -1,6 +1,5 @@
 <script setup lang="ts">
 
-import WordPanel from "@/components/Practice/PracticeWord/WordPanel.vue";
 import TypingWord from "@/components/Practice/PracticeWord/TypingWord.vue";
 import {$ref} from "vue/macros";
 import {cloneDeep} from "lodash-es";

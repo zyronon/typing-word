@@ -135,7 +135,7 @@ footer {
   justify-content: center;
 }
 
-.current-practice-dict {
+.panel-page-item {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -143,17 +143,28 @@ footer {
   box-sizing: border-box;
 
   header {
-    padding: 8rem $space;
+    min-height: 50rem;
+    padding: 10rem $space;
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 14rem;
+    font-size: 16rem;
     color: black;
 
     .left {
+      flex: 1;
       display: flex;
       align-items: center;
       gap: 10rem;
+    }
+
+    .title{
+      max-width: 70%;
+    }
+
+    .right{
+      word-break: keep-all;
     }
   }
 
