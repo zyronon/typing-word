@@ -19,6 +19,7 @@ import {cloneDeep} from "lodash-es";
 import {v4 as uuidv4} from "uuid";
 import {h, watch} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
+import Empty from "@/components/Empty.vue";
 
 interface IProps {
   article?: Article,
@@ -140,6 +141,7 @@ async function startNetworkTranslate() {
     await getNetworkTranslate(editArticle, TranslateEngine.Baidu, true, (v: number) => {
       progress = v
     })
+    failCount = 0
 
     copy(JSON.stringify(editArticle.sections))
   })
@@ -221,8 +223,9 @@ function save(option: 'save' | 'saveAndNext') {
   })
 }
 
-//不知道直接用editArticle，取到是空的默认值
+//不知道为什么直接用editArticle，取到是空的默认值
 defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
+
 </script>
 
 <template>
@@ -300,14 +303,12 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
                 :loading="progress!==0 && progress !== 100"
             >开始翻译
             </BaseButton>
-
           </div>
         </div>
         <textarea
             v-if="editArticle.useTranslateType === TranslateType.custom"
             v-model="editArticle.textCustomTranslate"
             @input="renewSections"
-            :readonly="![100,0].includes(progress)"
             @blur="onBlur"
             @focus="onFocus"
             type="textarea"
@@ -318,6 +319,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
         <textarea
             v-if="editArticle.useTranslateType === TranslateType.network"
             v-model="editArticle.textNetworkTranslate"
+            :readonly="![100,0].includes(progress)"
             @input="renewSections"
             @blur="onBlur"
             @focus="onFocus"
@@ -326,6 +328,9 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
             placeholder="等待网络翻译中..."
         >
             </textarea>
+        <Empty
+            v-if="editArticle.useTranslateType === TranslateType.none"
+        />
       </div>
     </div>
     <div class="row">

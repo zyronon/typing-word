@@ -10,7 +10,6 @@ declare module 'vue' {
     Add: typeof import('./src/components/Toolbar/Add.vue')['default']
     AddDict: typeof import('./src/components/Add/AddDict.vue')['default']
     ArticleList: typeof import('./src/components/Article/ArticleList.vue')['default']
-    ArticlePanel: typeof import('./src/components/Practice/PracticeArticle/ArticlePanel.vue')['default']
     Backgorund: typeof import('./src/components/Backgorund.vue')['default']
     BaseButton: typeof import('./src/components/BaseButton.vue')['default']
     BaseIcon: typeof import('./src/components/BaseIcon.vue')['default']
