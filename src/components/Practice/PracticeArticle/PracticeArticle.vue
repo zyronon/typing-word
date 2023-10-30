@@ -207,6 +207,12 @@ function nextWord(word: ArticleWord) {
   }
 }
 
+function changePracticeArticle(val: Article) {
+  let rIndex = store.currentDict.articles.findIndex(v => v.id === val.id)
+  if (rIndex > -1) {
+    store.currentDict.chapterIndex = rIndex
+  }
+}
 </script>
 
 <template>
@@ -224,11 +230,13 @@ function nextWord(word: ArticleWord) {
           />
         </div>
         <div class="swiper-item">
-          <TypingWord
-              :words="wordData.words"
-              :index="wordData.index"
-              v-if="tabIndex === 1"
-          />
+          <div class="typing-word-wrapper">
+            <TypingWord
+                :words="wordData.words"
+                :index="wordData.index"
+                v-if="tabIndex === 1"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -252,8 +260,11 @@ function nextWord(word: ArticleWord) {
               {{ store.currentDict.articles.length }}篇文章
             </div>
           </header>
-          <ArticleList :select-item="articleData.article"
-                       v-model:list="store.currentDict.articles"/>
+          <ArticleList
+              style="padding: 0 20rem;"
+              @select-item="changePracticeArticle"
+              :select-item="articleData.article"
+              v-model:list="store.currentDict.articles"/>
         </div>
       </Panel>
     </div>
@@ -283,6 +294,7 @@ $article-width: 50vw;
       height: 50%;
       overflow: auto;
       display: flex;
+      justify-content: center;
     }
   }
 
@@ -295,6 +307,10 @@ $article-width: 50vw;
   flex: 1;
   overflow: hidden;
   width: $article-width;
+}
+
+.typing-word-wrapper {
+  width: var(--toolbar-width);
 }
 
 .panel-wrapper {

@@ -13,7 +13,7 @@ interface IProps {
 
 const props = defineProps<IProps>()
 const emit = defineEmits<{
-  selectItem: [index: Article],
+  selectItem: [val: Article],
   delSelectItem: [],
   'update:searchKey': [val: string],
   'update:list': [list: Article[]],

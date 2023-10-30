@@ -36,7 +36,10 @@ watch(() => settingStore.showPanel, n => {
 let practiceType = $ref(DictType.word)
 
 function changeIndex(i: number, dict: Dict) {
-  store.changeDict(dict, dict.chapterIndex, i,practiceType)
+  store.changeDict(dict, dict.chapterIndex, i, practiceType)
+  setTimeout(() => {
+    tabIndex = 0
+  })
 }
 
 
@@ -70,7 +73,10 @@ function changeIndex(i: number, dict: Dict) {
                     <el-radio-button border :label="DictType.word">单词</el-radio-button>
                     <el-radio-button border :label="DictType.article">文章</el-radio-button>
                   </el-radio-group>
-                  <div class="dict-name" v-if="practiceType === DictType.word">{{ store.collect.words.length }}个单词</div>
+                  <div class="dict-name" v-if="practiceType === DictType.word">{{
+                      store.collect.words.length
+                    }}个单词
+                  </div>
                   <div class="dict-name" v-else> {{ store.collect.articles.length }}篇文章</div>
                 </div>
                 <template v-if="store.current.dictType !== DictType.collect &&

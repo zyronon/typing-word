@@ -210,33 +210,35 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
         @skip="skip"
         @collect="collect"
     />
-    <div class="word-panel-wrapper">
-      <Panel>
-        <div class="panel-page-item">
-          <header>
-            <div class="left">
-              <Tooltip title="切换词典">
-                <IconWrapper>
-                  <Icon @click="runtimeStore.showDictModal = true" icon="basil:exchange-outline"/>
-                </IconWrapper>
-              </Tooltip>
-              <div class="title">
-                {{ store.dictTitle }}
+    <Teleport to="body">
+      <div class="word-panel-wrapper">
+        <Panel>
+          <div class="panel-page-item">
+            <header>
+              <div class="left">
+                <Tooltip title="切换词典">
+                  <IconWrapper>
+                    <Icon @click="runtimeStore.showDictModal = true" icon="basil:exchange-outline"/>
+                  </IconWrapper>
+                </Tooltip>
+                <div class="title">
+                  {{ store.dictTitle }}
+                </div>
               </div>
-            </div>
-            <div class="right">
-              {{ data.words.length }}个单词
-            </div>
-          </header>
-          <WordList
-              class="word-list"
-              :is-active="true"
-              @change="(i:number) => data.index = i"
-              :list="data.words"
-              :activeIndex="data.index"/>
-        </div>
-      </Panel>
-    </div>
+              <div class="right">
+                {{ data.words.length }}个单词
+              </div>
+            </header>
+            <WordList
+                class="word-list"
+                :is-active="true"
+                @change="(i:number) => data.index = i"
+                :list="data.words"
+                :activeIndex="data.index"/>
+          </div>
+        </Panel>
+      </div>
+    </Teleport>
   </div>
 </template>
 
@@ -309,7 +311,7 @@ $article-width: 50vw;
   left: 0;
   top: 10rem;
   z-index: 1;
-  margin-left: calc(50% + ($article-width / 2) + $space);
+  margin-left: calc(50% + (var(--toolbar-width) / 2) + $space);
   height: calc(100% - 20rem);
 }
 
