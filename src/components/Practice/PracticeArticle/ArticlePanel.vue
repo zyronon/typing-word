@@ -10,13 +10,6 @@ import BaseButton from "@/components/BaseButton.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import Close from "@/components/Close.vue";
 
-const props = defineProps<{
-  list?: Word[],
-  index: number
-}>()
-const emit = defineEmits<{
-  'update:index': [i: number]
-}>()
 const store = useBaseStore()
 const settingStore = useSettingStore()
 let tabIndex = $ref(0)
@@ -38,41 +31,8 @@ watch(() => settingStore.showPanel, n => {
   }
 })
 
-const currentDict: Dict = $computed(() => {
-  return store.myDicts[store.current.index]
-})
-
-const currentData = $computed(() => {
-  if (store.current.dictType !== currentDict.type) return {
-    list: currentDict.chapterWords[currentDict.chapterIndex] ?? [],
-    index: -1
-  }
-  else return props
-})
-
-const newData = $computed(() => {
-  if (store.current.dictType !== DictType.collect) return {list: store.collect.words ?? [], index: -1}
-  else return props
-})
-
-const wrongData = $computed(() => {
-  if (store.current.dictType !== DictType.wrong) return {list: store.wrong.words ?? [], index: -1}
-  else return props
-})
-
-const skipData = $computed(() => {
-  if (store.current.dictType !== DictType.skip) return {list: store.skip.words ?? [], index: -1}
-  else return props
-})
-
 function changeIndex(i: number, dict: Dict) {
-  dict.wordIndex = i
-  console.log('i', i, dict.type)
-  if (store.current.dictType === dict.type) {
-    emit('update:index', i)
-  } else {
-    store.changeDict(dict, dict.chapterIndex, i)
-  }
+  store.changeDict(dict, dict.chapterIndex, i)
 }
 
 </script>
@@ -86,47 +46,30 @@ function changeIndex(i: number, dict: Dict) {
               v-if="!settingStore.showToolbar"/>
         </Transition>
         <div class="tabs">
-          <div class="tab current" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">
-            {{ currentDict.name + `  第${currentDict.chapterIndex + 1}章` }}
-          </div>
+          <div class="tab current" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前</div>
           <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.collect.name }}</div>
-          <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">
-            {{ store.wrong.name }}
-          </div>
+          <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.wrong.name }}</div>
           <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.skip.name }}</div>
         </div>
       </header>
       <div class="slide">
         <div class="slide-list" :class="`step${tabIndex}`">
           <div class="slide-item">
-            <header>
-              <div class="dict-name">词数：{{ currentData.list.length }}</div>
-            </header>
-            <div class="content">
-              <slot></slot>
-            </div>
-            <footer v-if="![DictType.customWord,DictType.word].includes(store.current.dictType)">
-              <PopConfirm
-                  :title="`确认切换？`"
-                  @confirm="changeIndex(0,currentDict)"
-              >
-                <BaseButton>切换</BaseButton>
-              </PopConfirm>
-            </footer>
+            <slot></slot>
           </div>
           <div class="slide-item">
             <header>
-              <div class="dict-name">总词数：{{ newData.list.length }}</div>
+              <div class="dict-name">总词数：{{ store.collect.words.length }}</div>
             </header>
             <div class="content">
               <WordList
                   class="word-list"
                   @change="(i:number) => changeIndex(i,store.collect)"
                   :isActive="settingStore.showPanel && tabIndex === 1"
-                  :list="newData.list"
-                  :activeIndex="newData.index"/>
+                  :list="store.collect.words"
+                  :activeIndex="-1"/>
             </div>
-            <footer v-if="store.current.dictType !== DictType.collect && newData.list.length">
+            <footer v-if="store.current.dictType !== DictType.collect && store.collect.words.length">
               <PopConfirm
                   :title="`确认切换？`"
                   @confirm="changeIndex(0,store.collect)"
@@ -138,18 +81,18 @@ function changeIndex(i: number, dict: Dict) {
           <div class="slide-item">
             <header>
               <a href="" target="_blank"></a>
-              <div class="dict-name">总词数：{{ wrongData.list.length }}</div>
+              <div class="dict-name">总词数：{{ store.wrong.words.length }}</div>
             </header>
             <div class="content">
               <WordList
                   class="word-list"
                   @change="(i:number) => changeIndex(i,store.wrong)"
                   :isActive="settingStore.showPanel && tabIndex === 2"
-                  :list="wrongData.list"
-                  :activeIndex="wrongData.index"/>
+                  :list="store.wrong.words"
+                  :activeIndex="-1"/>
             </div>
             <footer
-                v-if="store.current.dictType !== DictType.wrong && wrongData.list.length">
+                v-if="store.current.dictType !== DictType.wrong && store.wrong.words.length">
               <PopConfirm
                   :title="`确认切换？`"
                   @confirm="changeIndex(0,store.wrong)"
@@ -160,17 +103,17 @@ function changeIndex(i: number, dict: Dict) {
           </div>
           <div class="slide-item">
             <header>
-              <div class="dict-name">总词数：{{ skipData.list.length }}</div>
+              <div class="dict-name">总词数：{{ store.skip.words.length }}</div>
             </header>
             <div class="content">
               <WordList
                   class="word-list"
                   @change="(i:number) => changeIndex(i,store.skip)"
                   :isActive="settingStore.showPanel && tabIndex === 3"
-                  :list="skipData.list"
-                  :activeIndex="skipData.index"/>
+                  :list="store.skip.words"
+                  :activeIndex="-1"/>
             </div>
-            <footer v-if="store.current.dictType !== DictType.skip && skipData.list.length">
+            <footer v-if="store.current.dictType !== DictType.skip && store.skip.words.length">
               <PopConfirm
                   :title="`确认切换？`"
                   @confirm="changeIndex(0,store.skip)"

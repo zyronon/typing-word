@@ -12,6 +12,10 @@ import {useBaseStore} from "@/stores/base.ts";
 import EditSingleArticleModal from "@/components/Article/EditSingleArticleModal.vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
+import ArticleList from "@/components/Article/ArticleList.vue";
+import IconWrapper from "@/components/IconWrapper.vue";
+import {Icon} from "@iconify/vue";
+import Tooltip from "@/components/Tooltip.vue";
 
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
@@ -230,10 +234,26 @@ function nextWord(word: ArticleWord) {
 
     <div class="panel-wrapper">
       <ArticlePanel
-          v-if="tabIndex === 0"
-          :list="[]"
-          v-model:index="index">
-        1234
+          v-if="tabIndex === 0">
+        <div class="current-practice-article-list">
+          <header>
+            <div class="left">
+              <Tooltip title="切换词典">
+                <IconWrapper>
+                  <Icon icon="basil:exchange-outline"/>
+                </IconWrapper>
+              </Tooltip>
+              <div class="title">
+                {{ store.currentDict.name + `  第${store.currentDict.chapterIndex + 1}章` }}
+              </div>
+            </div>
+            <div class="right">
+              共{{ store.currentDict.articles.length }}章
+            </div>
+          </header>
+          <ArticleList :select-item="articleData.article"
+                       v-model:list="store.currentDict.articles"/>
+        </div>
       </ArticlePanel>
     </div>
 
@@ -283,5 +303,26 @@ $article-width: 50vw;
   z-index: 1;
   margin-left: calc(50% + ($article-width / 2) + $space);
   height: calc(100% - 20rem);
+}
+
+.current-practice-article-list {
+  padding: 20rem;
+  overflow: auto;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14rem;
+    color: black;
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 10rem;
+    }
+  }
+
+
 }
 </style>
