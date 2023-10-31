@@ -216,13 +216,13 @@ const dictIsArticle = $computed(() => {
               >总文章：{{ runtimeStore.editDict.articles.length }}篇
               </div>
               <div class="num" v-else>
-                总词汇：<span>{{ runtimeStore.editDict.length }}词</span>
+                总词汇：<span>{{ runtimeStore.editDict.originWords.length }}词</span>
               </div>
               <div class="num">开始日期：-</div>
               <div class="num">花费时间：-</div>
               <div class="num">累积错误：-</div>
               <div class="num">进度：
-                <el-progress :percentage="10"
+                <el-progress :percentage="0"
                              :stroke-width="8"
                              :show-text="false"/>
               </div>

@@ -58,10 +58,14 @@ watch(() => props.words, () => {
   practiceStore.repeatNumber = 0
   practiceStore.startDate = Date.now()
   practiceStore.correctRate = -1
-  practiceStore.total = props.words.length
   practiceStore.inputWordNumber = 0
   practiceStore.wrongWordNumber = 0
 }, {immediate: true})
+
+watch(data, () => {
+  practiceStore.total = data.words.length
+  practiceStore.index = data.index
+})
 
 const word = $computed(() => {
   return data.words[data.index] ?? {
@@ -112,7 +116,6 @@ function next(isTyping: boolean = true) {
       emitter.emit(EventKey.openStatModal, stat)
     }
   } else {
-    2
     data.index++
     isTyping && practiceStore.inputWordNumber++
     console.log('这个词完了')
