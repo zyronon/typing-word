@@ -246,7 +246,7 @@ $header-height: 60rem;
 
   .modal {
     position: relative;
-    background: var(--color-main-bg);
+    background: var(--color-second-bg);
     overflow: hidden;
     display: flex;
     flex-direction: column;

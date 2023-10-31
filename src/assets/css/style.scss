@@ -161,11 +161,11 @@ footer {
       gap: 10rem;
     }
 
-    .title{
+    .title {
       max-width: 70%;
     }
 
-    .right{
+    .right {
       word-break: keep-all;
     }
   }
@@ -175,4 +175,46 @@ footer {
     flex: 1;
     overflow: auto;
   }
+}
+
+.word-item {
+  .volume {
+    opacity: 0;
+  }
+
+  &:hover {
+    .volume {
+      opacity: 1;
+    }
+  }
+
+  &.active {
+    .phonetic {
+      color: white !important;
+    }
+
+    .volume {
+      color: #E6A23C;
+    }
+  }
+
+  .word-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8rem;
+
+    .word {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+      display: flex;
+    }
+
+    .phonetic {
+      font-size: 14rem;
+      color: gray;
+    }
+  }
+}
+
+.item-translate {
+  font-size: 16rem;
 }

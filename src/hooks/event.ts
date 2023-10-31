@@ -22,6 +22,7 @@ export function useStartKeyboardEventListener() {
   const runtimeStore = useRuntimeStore()
 
   useEventListener('keydown', (e: KeyboardEvent) => {
+    // console.log('e',e.keyCode,e.code)
     if (!runtimeStore.disableEventListener) {
       //非英文模式下，输入区域的 keyCode 均为 229时，
       if ((e.keyCode >= 65 && e.keyCode <= 90)
@@ -36,7 +37,7 @@ export function useStartKeyboardEventListener() {
         || e.code === 'Minus'
         || e.code === 'Equal'
         || e.code === 'Semicolon'
-        || e.code === 'Backquote'
+        // || e.code === 'Backquote'
         || e.keyCode === 229
       ) {
         emitter.emit(EventKey.onTyping, e)

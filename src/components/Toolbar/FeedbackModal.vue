@@ -49,7 +49,7 @@ const emit = defineEmits([
   //height: 80vh;
   display: flex;
   flex-direction: column;
-  background: white;
+  background: var(--color-second-bg);
   align-items: center;
   padding: $space;
   //justify-content: center;

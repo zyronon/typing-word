@@ -2,19 +2,21 @@
 import {Word} from "../types";
 import {watch} from "vue"
 import {useSettingStore} from "@/stores/setting.ts";
-import WordItem from "@/components/WordItem.vue";
 import ListItem from "@/components/ListItem.vue";
 import VolumeIcon from "@/components/VolumeIcon.vue";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
-
+import {useBaseStore} from "@/stores/base.ts";
+import {useWordOptions} from "@/hooks/dict.ts";
 
 const props = withDefaults(defineProps<{
   list: Word[],
   activeIndex?: number,
+  showDel?: boolean,
   isActive?: boolean
 }>(), {
   activeIndex: -1,
-  isActive: false
+  isActive: false,
+  showDel: false
 })
 
 const emit = defineEmits<{
@@ -48,6 +50,13 @@ watch(() => props.list, () => {
 })
 
 const playWordAudio = usePlayWordAudio()
+const {
+  isWordCollect,
+  toggleWordCollect,
+  isWordSimple,
+  toggleWordSimple,
+  delWrongWord
+} = useWordOptions()
 
 </script>
 
@@ -55,18 +64,24 @@ const playWordAudio = usePlayWordAudio()
   <div class="list" ref="listRef">
     <ListItem
         v-for="(word,i) in list" :key="i"
-        @click="emit('change',i)"
+        class="word-item"
         :active="activeIndex === i"
-        class="item"
         :class="{active:activeIndex === i}"
         :show-volume="true"
-        @play="playWordAudio(word.name)">
-      <div class="title">
+        @click="emit('change',i)"
+        :isCollect="isWordCollect(word)"
+        @toggle-collect="toggleWordCollect(word)"
+        :is-simple="isWordSimple(word)"
+        @toggle-simple="toggleWordSimple(word)"
+        :show-del="showDel"
+        @del="delWrongWord(word)"
+    >
+      <div class="word-wrapper">
         <span class="word">{{ word.name }}</span>
         <span class="phonetic">{{ word.usphone }}</span>
         <VolumeIcon class="volume" @click="playWordAudio(word.name)"></VolumeIcon>
       </div>
-      <div class="translate" v-if="word.trans.length">{{ word.trans.join('；') }}</div>
+      <div class="item-translate" v-if="word.trans.length">{{ word.trans.join('；') }}</div>
     </ListItem>
   </div>
 </template>
@@ -82,43 +97,5 @@ const playWordAudio = usePlayWordAudio()
   flex: 1;
   overflow: overlay;
   padding: 0 $space;
-
-  .item {
-    .volume {
-      opacity: 0;
-    }
-
-    &:hover {
-      .volume {
-        opacity: 1;
-      }
-    }
-
-    &.active {
-      .phonetic {
-        color: white !important;
-      }
-    }
-
-    .title {
-      display: flex;
-      align-items: center;
-      gap: 8rem;
-
-      .word {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-        display: flex;
-      }
-
-      .phonetic {
-        font-size: 14rem;
-        color: gray;
-      }
-    }
-
-    .translate {
-      font-size: 16rem;
-    }
-  }
 }
 </style>

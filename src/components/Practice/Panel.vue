@@ -46,7 +46,7 @@ function changeIndex(i: number, dict: Dict) {
           <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前</div>
           <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.collect.name }}</div>
           <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.wrong.name }}</div>
-          <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.skip.name }}</div>
+          <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.simple.name }}</div>
         </div>
       </header>
       <div class="slide">
@@ -114,18 +114,19 @@ function changeIndex(i: number, dict: Dict) {
               </header>
               <WordList
                   class="word-list"
+                  :show-del="true"
                   :list="store.wrong.words"/>
             </div>
             <Empty v-else/>
           </div>
           <div class="slide-item">
-            <div class="panel-page-item" v-if="store.skip.words.length">
+            <div class="panel-page-item" v-if="store.simple.words.length">
               <header>
-                <div class="dict-name">总词数：{{ store.skip.words.length }}</div>
-                <template v-if="store.current.dictType !== DictType.skip && store.skip.words.length">
+                <div class="dict-name">总词数：{{ store.simple.words.length }}</div>
+                <template v-if="store.current.dictType !== DictType.simple && store.simple.words.length">
                   <PopConfirm
                       :title="`确认切换？`"
-                      @confirm="changeIndex(0,store.skip)"
+                      @confirm="changeIndex(0,store.simple)"
                   >
                     <BaseButton size="small">切换</BaseButton>
                   </PopConfirm>
@@ -133,7 +134,7 @@ function changeIndex(i: number, dict: Dict) {
               </header>
               <WordList
                   class="word-list"
-                  :list="store.skip.words"/>
+                  :list="store.simple.words"/>
             </div>
             <Empty v-else/>
           </div>

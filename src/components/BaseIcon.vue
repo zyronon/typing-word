@@ -7,6 +7,7 @@ import {Icon} from "@iconify/vue";
 defineProps<{
   title?: string,
   icon: string,
+  className: string
 }>()
 
 defineEmits(['click'])
@@ -14,7 +15,7 @@ defineEmits(['click'])
 
 <template>
   <Tooltip :title="title">
-    <IconWrapper>
+    <IconWrapper :class="className">
       <Icon @click.stop="$emit('click')" :icon="icon"/>
     </IconWrapper>
   </Tooltip>

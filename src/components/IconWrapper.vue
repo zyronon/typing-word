@@ -1,16 +1,8 @@
-<script lang="jsx">
-export default {
-  render() {
-    let Vnode = this.$slots.default()[0]
-    return (
-        <div class="icon-wrapper ">
-          <Vnode
-          />
-        </div>
-    )
-  }
-}
-</script>
+<template>
+  <div class="icon-wrapper">
+    <slot></slot>
+  </div>
+</template>
 
 <style scoped lang="scss">
 @import "@/assets/css/variable.scss";

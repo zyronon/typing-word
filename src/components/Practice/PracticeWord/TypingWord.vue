@@ -16,6 +16,7 @@ import Panel from "@/components/Practice/Panel.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import WordList from "@/components/WordList.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
+import {useWordOptions} from "@/hooks/dict.ts";
 
 interface IProps {
   words: Word[],
@@ -39,6 +40,13 @@ const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
 const practiceStore = usePracticeStore()
 const settingStore = useSettingStore()
+
+const {
+  isWordCollect,
+  toggleWordCollect,
+  isWordSimple,
+  toggleWordSimple
+} = useWordOptions()
 
 watch(() => props.words, () => {
   data.words = props.words
@@ -119,25 +127,13 @@ function prev() {
   data.index--
 }
 
-function skip() {
-  next(false)
-}
-
-function collect() {
-  if (!store.collect.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
-    store.collect.originWords.push(word)
-    store.collect.words.push(word)
-    store.collect.chapterWords = [store.collect.words]
+function toggleWordSimpleWrapper() {
+  if (!isWordSimple(word)) {
+    toggleWordSimple(word)
+    next(false)
+  } else {
+    toggleWordSimple(word)
   }
-}
-
-function remove() {
-  if (!store.skipWordNames.includes(word.name.toLowerCase())) {
-    store.skip.originWords.push(word)
-    store.skip.words.push(word)
-    store.skip.chapterWords = [store.skip.words]
-  }
-  next(false)
 }
 
 function onKeyUp(e: KeyboardEvent) {
@@ -147,8 +143,6 @@ function onKeyUp(e: KeyboardEvent) {
 function wordWrong() {
   if (!store.wrong.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
     store.wrong.originWords.push(word)
-    store.wrong.words.push(word)
-    store.wrong.chapterWords = [store.wrong.words]
   }
   if (!data.wrongWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
     data.wrongWords.push(word)
@@ -163,13 +157,13 @@ async function onKeyDown(e: KeyboardEvent) {
       typingRef.del()
       break
     case ShortKeyMap.Collect:
-      collect()
+      toggleWordCollect(word)
       break
     case ShortKeyMap.Remove:
-      remove()
+      toggleWordSimpleWrapper()
       break
     case ShortKeyMap.Ignore:
-      skip()
+      next(false)
       e.preventDefault()
       break
     case ShortKeyMap.Show:
@@ -208,9 +202,11 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     />
     <div class="options-wrapper">
       <Options
-          @remove="remove"
-          @skip="skip"
-          @collect="collect"
+          :is-simple="isWordSimple(word)"
+          @toggle-simple="toggleWordSimpleWrapper"
+          :is-collect="isWordCollect(word)"
+          @toggle-collect="toggleWordCollect(word)"
+          @skip="next(false)"
       />
     </div>
 

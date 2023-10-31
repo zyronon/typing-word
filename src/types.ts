@@ -61,7 +61,7 @@ export interface Dict {
 
 export enum DictType {
   collect = 'collect',
-  skip = 'skip',
+  simple = 'simple',
   wrong = 'wrong',
   word = 'word',
   customWord = 'customWord',

@@ -8,7 +8,7 @@ import {useEventListener, useStartKeyboardEventListener} from "@/hooks/event.ts"
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {dictionaryResources} from "@/assets/dictionary.ts";
-import {groupBy} from "lodash-es";
+import {cloneDeep, groupBy} from "lodash-es";
 import {$ref} from "vue/macros";
 
 const store = useBaseStore()
@@ -29,6 +29,20 @@ watch(store.$state, (n) => {
   // console.log('state', JSON.stringify(n.current, null, 2))
   // console.log('state', n)
   localStorage.setItem(SaveDictKey, JSON.stringify(n))
+})
+
+//检测几个特定词典
+watch(store.collect.originWords, (n) => {
+  store.collect.words = cloneDeep(n)
+  store.collect.chapterWords = [store.collect.words]
+})
+watch(store.simple.originWords, (n) => {
+  store.simple.words = cloneDeep(n)
+  store.simple.chapterWords = [store.simple.words]
+})
+watch(store.wrong.originWords, (n) => {
+  store.wrong.words = cloneDeep(n)
+  store.wrong.chapterWords = [store.wrong.words]
 })
 
 useStartKeyboardEventListener()

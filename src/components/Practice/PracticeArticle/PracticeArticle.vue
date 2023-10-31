@@ -167,8 +167,6 @@ function wrong(word: Word) {
   let lowerName = word.name.toLowerCase();
   if (!store.wrong.originWords.find((v: Word) => v.name.toLowerCase() === lowerName)) {
     store.wrong.originWords.push(word)
-    store.wrong.words.push(word)
-    store.wrong.chapterWords = [store.wrong.words]
   }
   if (!store.skipWordNamesWithSimpleWords.includes(lowerName)) {
     if (!practiceStore.wrongWords.find((v) => v.name.toLowerCase() === lowerName)) {

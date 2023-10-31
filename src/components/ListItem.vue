@@ -5,13 +5,16 @@ import VolumeIcon from "@/components/VolumeIcon.vue";
 
 defineProps<{
   showVolume?: boolean,
+  showDel?: boolean,
   active?: boolean
+  isCollect: boolean
+  isSimple: boolean
 }>()
 
 defineEmits<{
-  toggleDel: [val: any],
-  toggleCollect: [val: any],
-  play: [],
+  toggleSimple: [],
+  toggleCollect: [],
+  del: [],
 }>()
 </script>
 
@@ -24,12 +27,38 @@ defineEmits<{
     </div>
     <div class="right">
       <BaseIcon
-          @click="$emit('toggleDel')"
-          title="收藏" icon="ph:star"/>
-      <BaseIcon
-          @click="$emit('toggleCollect')"
-          title="删除" icon="fluent:delete-24-regular"/>
+          v-if="showDel"
+          class-name="del"
+          @click="$emit('del')"
+          title="移除"
+          icon="solar:trash-bin-minimalistic-linear"/>
+      <template v-else>
+        <BaseIcon
+            v-if="!isCollect"
+            class-name="collect"
+            @click="$emit('toggleCollect')"
+            title="收藏" icon="ph:star"/>
+        <BaseIcon
+            v-else
+            class-name="fill"
+            @click="$emit('toggleCollect')"
+            title="取消收藏" icon="ph:star-fill"/>
 
+
+        <BaseIcon
+            v-if="!isSimple"
+            class-name="easy"
+            @click="$emit('toggleSimple')"
+            title="忽略(快捷键：`)"
+            icon="material-symbols:check-circle-outline-rounded"/>
+        <BaseIcon
+            v-else
+            class-name="fill"
+            @click="$emit('toggleSimple')"
+            title="取消忽略(快捷键：`)"
+            icon="material-symbols:check-circle-rounded"/>
+
+      </template>
     </div>
   </div>
 </template>
@@ -60,13 +89,24 @@ defineEmits<{
     flex-direction: column;
     gap: 5rem;
     transition: all .3s;
+  }
+
+  :deep(.collect) {
+    opacity: 0;
+  }
+
+  :deep(.easy) {
     opacity: 0;
   }
 
   &:hover {
     background: rgb(226, 226, 226);
 
-    .right {
+    :deep(.collect) {
+      opacity: 1;
+    }
+
+    :deep(.easy) {
       opacity: 1;
     }
   }
@@ -74,6 +114,20 @@ defineEmits<{
   &.active {
     background: var(--color-item-active);
     color: white !important;
+
+    $c: #E6A23C;
+
+    :deep(.collect) {
+      color: $c;
+    }
+
+    :deep(.fill) {
+      color: $c;
+    }
+
+    :deep(.easy) {
+      color: $c;
+    }
   }
 }
 </style>

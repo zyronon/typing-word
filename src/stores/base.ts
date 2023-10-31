@@ -7,7 +7,7 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 
 export interface State {
   collect: Dict,
-  skip: Dict,
+  simple: Dict,
   wrong: Dict,
   myDicts: Dict[],
   current: {
@@ -19,155 +19,68 @@ export interface State {
   load: boolean
 }
 
+// words: [
+//   {
+//     "name": "cancelcancelcancelcancelcancelcancelcancelcancel",
+//     "trans": ['取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消'],
+//     "usphone": "",
+//     "ukphone": ""
+//   },
+//   {
+//     "name": "prepare",
+//     "trans": [],
+//     "usphone": "",
+//     "ukphone": ""
+//   },
+//   {
+//     "name": "half",
+//     "trans": [],
+//     "usphone": "",
+//     "ukphone": ""
+//   },
+//   {
+//     "name": "spacious",
+//     "trans": [],
+//     "usphone": "",
+//     "ukphone": ""
+//   },
+//   {
+//     "name": "analyse",
+//     "trans": [],
+//     "usphone": "",
+//     "ukphone": ""
+//   },
+//   {
+//     "name": "costing",
+//     "trans": [],
+//     "usphone": "",
+//     "ukphone": ""
+//   },
+//   {
+//     "name": "nowadays",
+//     "trans": [],
+//     "usphone": "",
+//     "ukphone": ""
+//   },
+// ],
+
 export const useBaseStore = defineStore('base', {
   state: (): State => {
     return {
       collect: {
         ...cloneDeep(DefaultDict),
-        words: [
-          {
-            "name": "cancelcancelcancelcancelcancelcancelcancelcancel",
-            "trans": ['取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消'],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "prepare",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "half",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "spacious",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "analyse",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "costing",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "nowadays",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-        ],
         id: 'collect',
         name: '收藏',
         type: DictType.collect,
       },
-      skip: {
+      simple: {
         ...cloneDeep(DefaultDict),
-        words: [
-          {
-            "name": "cancel",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "prepare",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "half",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "spacious",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "analyse",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "costing",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "nowadays",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-        ],
         id: 'skip',
         name: '简单词',
-        type: DictType.skip,
+        type: DictType.simple,
       },
       wrong: {
         ...cloneDeep(DefaultDict),
-        words: [
-          {
-            "name": "cancel",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "prepare",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "half",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "spacious",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "analyse",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "costing",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-          {
-            "name": "nowadays",
-            "trans": [],
-            "usphone": "",
-            "ukphone": ""
-          },
-        ],
         id: 'wrong',
         name: '错词本',
         type: DictType.wrong,
@@ -213,10 +126,10 @@ export const useBaseStore = defineStore('base', {
   },
   getters: {
     skipWordNames: (state: State) => {
-      return state.skip.originWords.map(v => v.name.toLowerCase())
+      return state.simple.originWords.map(v => v.name.toLowerCase())
     },
     skipWordNamesWithSimpleWords: (state: State) => {
-      return state.skip.originWords.map(v => v.name.toLowerCase()).concat(state.simpleWords)
+      return state.simple.originWords.map(v => v.name.toLowerCase()).concat(state.simpleWords)
     },
     isArticle(state: State): boolean {
       //如果是收藏时，特殊判断
@@ -232,8 +145,8 @@ export const useBaseStore = defineStore('base', {
       switch (state.current.dictType) {
         case DictType.collect:
           return state.collect
-        case DictType.skip:
-          return state.skip
+        case DictType.simple:
+          return state.simple
         case DictType.wrong:
           return state.wrong
         case DictType.word:
@@ -291,7 +204,7 @@ export const useBaseStore = defineStore('base', {
       if ([
         DictType.collect,
         DictType.wrong,
-        DictType.skip,
+        DictType.simple,
       ].includes(this.current.dictType)) {
 
       } else {
@@ -366,7 +279,7 @@ export const useBaseStore = defineStore('base', {
       this.current.dictType = dict.type
       this.current.practiceType = practiceType
       if ([DictType.collect,
-        DictType.skip,
+        DictType.simple,
         DictType.wrong].includes(dict.type)) {
         this[dict.type].chapterIndex = 0
         this[dict.type].chapterWordIndex = chapterWordIndex

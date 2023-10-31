@@ -28,7 +28,7 @@ withDefaults(defineProps<IProps>(), {
   justify-content: space-between;
   align-items: center;
   gap: $space;
-  color: black;
+  color: var(--color-font-1);
   word-break: keep-all;
 }
 
@@ -36,7 +36,7 @@ withDefaults(defineProps<IProps>(), {
   position: absolute;
   z-index: 9;
   width: 180rem;
-  background: white;
+  background: var(--color-second-bg);
   border-radius: 8rem;
   box-shadow: 1px 1px 6px #bbbbbb;
   padding: 10rem $space;

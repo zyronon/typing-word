@@ -83,7 +83,7 @@ watch(() => props.list, () => {
         :active="activeIndex === i"
         :key="item.id">
       <div class="name"> {{ `${i + 1}. ${item.title}` }}</div>
-      <div class="translate"> {{ `   ${item.titleTranslate}` }}</div>
+      <div class="item-translate"> {{ `   ${item.titleTranslate}` }}</div>
     </ListItem>
   </div>
 </template>
