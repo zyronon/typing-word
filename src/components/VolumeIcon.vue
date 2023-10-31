@@ -15,7 +15,11 @@ let step = $ref(2)
 let count = $ref(0)
 const emit = defineEmits(['click'])
 
-function play(time = props.time) {
+function play(time = props.time, reset = false) {
+  if (reset) {
+    step = 2
+    count = 0
+  }
   if (count === 0) {
     props?.cb?.()
   }

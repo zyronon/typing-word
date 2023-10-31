@@ -38,8 +38,8 @@ defineEmits<{
 .list-item {
   width: 100%;
   box-sizing: border-box;
-  background: white;
-  color: black;
+  background: var(--color-item-bg);
+  color: var(--color-font-1);
   font-size: 18rem;
   border-radius: 8rem;
   display: flex;

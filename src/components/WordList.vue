@@ -55,6 +55,7 @@ const playWordAudio = usePlayWordAudio()
   <div class="list" ref="listRef">
     <ListItem
         v-for="(word,i) in list" :key="i"
+        @click="emit('change',i)"
         :active="activeIndex === i"
         class="item"
         :class="{active:activeIndex === i}"

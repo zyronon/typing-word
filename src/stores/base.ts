@@ -194,10 +194,10 @@ export const useBaseStore = defineStore('base', {
         }
       ],
       current: {
-        // dictType: DictType.word,
-        // index: 1,
-        dictType: DictType.article,
-        index: 0,
+        dictType: DictType.word,
+        index: 1,
+        // dictType: DictType.article,
+        // index: 0,
         practiceType: DictType.word,
       },
       simpleWords: [
@@ -301,7 +301,7 @@ export const useBaseStore = defineStore('base', {
         ].includes(this.current.dictType)) {
           if (!this.currentDict.originWords.length) {
             let r = await fetch(`./dicts/${this.currentDict.language}/${this.currentDict.type}/${this.currentDict.translateLanguage}/${this.currentDict.url}`)
-            // let r = await fetch(`.${this.currentDict.url}`)0
+            // let r = await fetch(`.${this.currentDict.url}`)
             r.json().then(v => {
               if (this.currentDict.translateLanguage === 'common') {
                 const runtimeStore = useRuntimeStore()
@@ -310,14 +310,14 @@ export const useBaseStore = defineStore('base', {
                     console.time()
                     runtimeStore.translateWordList = list
 
-                    v.map((w: Word) => {
+                    this.currentDict.originWords = cloneDeep(v)
+                    this.currentDict.words = cloneDeep(v)
+                    this.currentDict.chapterWords = chunk(this.currentDict.words, this.currentDict.chapterWordNumber)
+                    this.currentDict.chapterWords[this.currentDict.chapterIndex].map((w: Word) => {
                       let res = list.find(a => a.name === w.name)
                       if (res) w = Object.assign(w, res)
                     })
 
-                    this.currentDict.originWords = cloneDeep(v)
-                    this.currentDict.words = cloneDeep(v)
-                    this.currentDict.chapterWords = chunk(this.currentDict.words, this.currentDict.chapterWordNumber)
                     this.load = true
 
                     console.timeEnd()

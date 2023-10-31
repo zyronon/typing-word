@@ -2,11 +2,14 @@
 
 import TypingWord from "@/components/Practice/PracticeWord/TypingWord.vue";
 import {$ref} from "vue/macros";
-import {cloneDeep} from "lodash-es";
+import {chunk, cloneDeep} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
 import {onMounted, watch} from "vue";
+import {useRuntimeStore} from "@/stores/runtime.ts";
+import {Word} from "@/types.ts";
 
 const store = useBaseStore()
+const runtimeStore = useRuntimeStore()
 
 let wordData = $ref({
   words: [],
@@ -25,6 +28,12 @@ watch([
 
 function getCurrentPractice() {
   // console.log('store.currentDict',store.currentDict)
+  if (store.currentDict.translateLanguage === 'common') {
+    store.chapter.map((w: Word) => {
+      let res = runtimeStore.translateWordList.find(a => a.name === w.name)
+      if (res) w = Object.assign(w, res)
+    })
+  }
   wordData.words = cloneDeep(store.chapter)
   wordData.index = 0
   console.log('wordData', wordData)

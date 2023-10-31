@@ -378,6 +378,7 @@ function toggleCollect() {
       <div class="titleTranslate" v-if="settingStore.translate">{{ props.article.titleTranslate }}</div>
       <div class="options-wrapper">
         <Options
+            :show-edit="true"
             @edit="emit('edit',props.article)"
             @collect="toggleCollect"
             @skip="emit('next')"

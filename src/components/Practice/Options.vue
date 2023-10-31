@@ -4,6 +4,10 @@ import Tooltip from "@/components/Tooltip.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import {Icon} from "@iconify/vue";
 
+defineProps<{
+  showEdit?: boolean
+}>()
+
 const emit = defineEmits<{
   remove: [],
   collect: [],
@@ -14,7 +18,7 @@ const emit = defineEmits<{
 
 <template>
   <div class="options">
-    <Tooltip title="编辑(快捷键：Ctrl + E)">
+    <Tooltip  v-if="showEdit" title="编辑(快捷键：Ctrl + E)">
       <IconWrapper>
         <Icon icon="tabler:edit" class="menu"
               @click="emit('edit')"/>

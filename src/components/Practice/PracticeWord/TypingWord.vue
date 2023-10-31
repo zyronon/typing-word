@@ -308,9 +308,10 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     }
   }
 
-  .options-wrapper{
+  .options-wrapper {
     position: absolute;
     //bottom: 0;
+    margin-left: -30rem;
     margin-top: 120rem;
   }
 }

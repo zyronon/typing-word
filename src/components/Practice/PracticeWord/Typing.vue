@@ -46,7 +46,7 @@ watch(() => props.word, () => {
   wordRepeatCount = 0
   inputLock = false
   if (settingStore.wordSound) {
-    volumeIconRef?.play()
+    volumeIconRef?.play(400,true)
   }
 })
 
