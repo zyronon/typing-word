@@ -194,10 +194,10 @@ export const useBaseStore = defineStore('base', {
         }
       ],
       current: {
-        dictType: DictType.word,
-        index: 1,
-        // dictType: DictType.article,
-        // index: 0,
+        // dictType: DictType.word,
+        // index: 1,
+        dictType: DictType.article,
+        index: 0,
         practiceType: DictType.word,
       },
       simpleWords: [

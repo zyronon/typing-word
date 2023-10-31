@@ -1,18 +1,22 @@
 <script setup lang="ts">
 
-import BaseIcon from "@/components/BaseIcon.vue";
 import Input from "@/components/Input.vue";
 import {$computed, $ref} from "vue/macros";
-import {cloneDeep, throttle} from "lodash-es";
-import {Article} from "@/types.ts";
+import {Article, Word} from "@/types.ts";
 import ListItem from "@/components/ListItem.vue";
+import {useSettingStore} from "@/stores/setting.ts";
+import {watch} from "vue";
 
-interface IProps {
-  list: Article[]
-  selectItem: Article,
-}
 
-const props = defineProps<IProps>()
+const props = withDefaults(defineProps<{
+  list: Article[],
+  activeIndex?: number,
+  isActive?: boolean
+}>(), {
+  activeIndex: -1,
+  isActive: false
+})
+
 const emit = defineEmits<{
   selectItem: [val: Article],
   delSelectItem: [],
@@ -21,7 +25,6 @@ const emit = defineEmits<{
 }>()
 
 let searchKey = $ref('')
-
 let localList = $computed({
   get() {
     if (searchKey) {
@@ -40,50 +43,68 @@ let localList = $computed({
   }
 })
 
-let el: HTMLDivElement = $ref()
+const settingStore = useSettingStore()
 
-function scrollBottom() {
-  el.scrollTo({
-    top: el.scrollHeight,
-    left: 0,
-    behavior: "smooth",
-  });
+const listRef: HTMLElement = $ref(null as any)
+
+function scrollViewToCenter(index: number) {
+  if (index === -1) return
+  listRef.children[index + 1]?.scrollIntoView({block: 'center', behavior: 'smooth'})
 }
 
-defineExpose({scrollBottom})
+watch(() => props.activeIndex, (n: any) => {
+  if (settingStore.showPanel) {
+    scrollViewToCenter(n)
+  }
+})
+
+watch(() => props.isActive, (n: boolean) => {
+  setTimeout(() => {
+    if (n) scrollViewToCenter(props.activeIndex)
+  }, 300)
+})
+
+watch(() => props.list, () => {
+  listRef.scrollTo(0, 0)
+})
 
 </script>
 
 <template>
-  <div class="list-wrapper"
-       ref="el"
+  <div class="list"
+       ref="listRef"
   >
     <div class="search">
       <Input v-model="searchKey"/>
     </div>
-    <ListItem @click="emit('selectItem',item)"
-              v-for="(item,index) in localList"
-              :key="item.id">
-      <div class="name"> {{ `${index + 1}. ${item.title}` }}</div>
-      <div class="translate-name"> {{ `   ${item.titleTranslate}` }}</div>
+    <ListItem
+        @click="emit('selectItem',item)"
+        v-for="(item,i) in localList"
+        :active="activeIndex === i"
+        :key="item.id">
+      <div class="name"> {{ `${i + 1}. ${item.title}` }}</div>
+      <div class="translate"> {{ `   ${item.titleTranslate}` }}</div>
     </ListItem>
   </div>
 </template>
 
 <style scoped lang="scss">
-.list-wrapper {
-  transition: all .3s;
+@import "@/assets/css/variable.scss";
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 15rem;
   flex: 1;
   overflow: overlay;
-  padding-right: 5rem;
+  padding: 0 $space;
 
   .search {
-    margin: 10rem 0;
     width: 100%;
   }
 
-  .list {
+  .translate {
+    font-size: 16rem;
   }
-
 }
 </style>

@@ -19,9 +19,9 @@ const emit = defineEmits<{
 <template>
   <ListItem
       class="item"
+      :class="{active}"
       :show-volume="true"
-      @play="playWordAudio(word.name)"
-      :active="active">
+      @play="playWordAudio(word.name)">
     <div class="title">
       <span class="word">{{ word.name }}</span>
       <span class="phonetic">{{ word.usphone }}</span>
@@ -43,6 +43,12 @@ const emit = defineEmits<{
     .volume {
       opacity: 1;
     }
+  }
+}
+
+.active {
+  .phonetic {
+    color: white !important;
   }
 }
 

@@ -187,6 +187,7 @@ defineExpose({del, showWord, hideWord})
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  word-break: break-word;
 
   .phonetic, .translate {
     font-size: 20rem;

@@ -17,7 +17,7 @@ defineEmits<{
 
 <template>
   <div class="list-item"
-       :class="active"
+       :class="{active}"
   >
     <div class="left">
       <slot></slot>
@@ -42,7 +42,6 @@ defineEmits<{
   color: black;
   font-size: 18rem;
   border-radius: 8rem;
-  margin-bottom: 10rem;
   display: flex;
   justify-content: space-between;
   transition: all .3s;
@@ -74,7 +73,7 @@ defineEmits<{
 
   &.active {
     background: var(--color-item-active);
-    color: white;
+    color: white !important;
   }
 }
 </style>

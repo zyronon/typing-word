@@ -19,17 +19,7 @@ provide('tabIndex', computed(() => tabIndex))
 
 watch(() => settingStore.showPanel, n => {
   if (n) {
-    switch (store.current.dictType) {
-      case DictType.collect:
-        return tabIndex = 1;
-      case DictType.skip:
-        return tabIndex = 3;
-      case DictType.wrong:
-        return tabIndex = 2;
-      case DictType.word:
-      case DictType.customWord:
-        return tabIndex = 0;
-    }
+    tabIndex = 0
   }
 })
 
@@ -42,11 +32,10 @@ function changeIndex(i: number, dict: Dict) {
   })
 }
 
-
 </script>
 <template>
   <Transition name="fade">
-    <div class="panel" v-if="settingStore.showPanel">
+    <div class="panel" v-show="settingStore.showPanel">
       <header>
         <Transition name="fade">
           <Close
@@ -63,7 +52,7 @@ function changeIndex(i: number, dict: Dict) {
       <div class="slide">
         <div class="slide-list" :class="`step${tabIndex}`">
           <div class="slide-item">
-            <slot></slot>
+            <slot :active="tabIndex === 0 && settingStore.showPanel"></slot>
           </div>
           <div class="slide-item">
             <div class="panel-page-item">

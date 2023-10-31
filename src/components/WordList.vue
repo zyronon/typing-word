@@ -3,12 +3,11 @@ import {Word} from "../types";
 import {watch} from "vue"
 import {useSettingStore} from "@/stores/setting.ts";
 import WordItem from "@/components/WordItem.vue";
+import ListItem from "@/components/ListItem.vue";
+import VolumeIcon from "@/components/VolumeIcon.vue";
+import {usePlayWordAudio} from "@/hooks/sound.ts";
 
-const settingStore = useSettingStore()
-const emit = defineEmits<{
-  del: [i: number],
-  change: [i: number]
-}>()
+
 const props = withDefaults(defineProps<{
   list: Word[],
   activeIndex?: number,
@@ -17,6 +16,13 @@ const props = withDefaults(defineProps<{
   activeIndex: -1,
   isActive: false
 })
+
+const emit = defineEmits<{
+  del: [i: number],
+  change: [i: number]
+}>()
+
+const settingStore = useSettingStore()
 
 const listRef: HTMLElement = $ref(null as any)
 
@@ -41,19 +47,26 @@ watch(() => props.list, () => {
   listRef.scrollTo(0, 0)
 })
 
+const playWordAudio = usePlayWordAudio()
+
 </script>
 
 <template>
   <div class="list" ref="listRef">
-    <TransitionGroup name="list">
-      <template v-for="(item,i) in list" :key="i">
-        <WordItem
-            @click="emit('change',i)"
-            @del="emit('del',i)"
-            :active="activeIndex === i"
-            :word="item"/>
-      </template>
-    </TransitionGroup>
+    <ListItem
+        v-for="(word,i) in list" :key="i"
+        :active="activeIndex === i"
+        class="item"
+        :class="{active:activeIndex === i}"
+        :show-volume="true"
+        @play="playWordAudio(word.name)">
+      <div class="title">
+        <span class="word">{{ word.name }}</span>
+        <span class="phonetic">{{ word.usphone }}</span>
+        <VolumeIcon class="volume" @click="playWordAudio(word.name)"></VolumeIcon>
+      </div>
+      <div class="translate" v-if="word.trans.length">{{ word.trans.join('；') }}</div>
+    </ListItem>
   </div>
 </template>
 
@@ -64,12 +77,47 @@ watch(() => props.list, () => {
 .list {
   display: flex;
   flex-direction: column;
-  gap: 12rem;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
+  gap: 15rem;
+  flex: 1;
+  overflow: overlay;
   padding: 0 $space;
-  overflow: auto;
 
+  .item {
+    .volume {
+      opacity: 0;
+    }
+
+    &:hover {
+      .volume {
+        opacity: 1;
+      }
+    }
+
+    &.active {
+      .phonetic {
+        color: white !important;
+      }
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 8rem;
+
+      .word {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+        display: flex;
+      }
+
+      .phonetic {
+        font-size: 14rem;
+        color: gray;
+      }
+    }
+
+    .translate {
+      font-size: 16rem;
+    }
+  }
 }
 </style>

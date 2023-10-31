@@ -217,29 +217,31 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     <Teleport to="body">
       <div class="word-panel-wrapper">
         <Panel>
-          <div class="panel-page-item">
-            <header>
-              <div class="left">
-                <Tooltip title="切换词典">
-                  <IconWrapper>
-                    <Icon @click="runtimeStore.showDictModal = true" icon="basil:exchange-outline"/>
-                  </IconWrapper>
-                </Tooltip>
-                <div class="title">
-                  {{ store.dictTitle }}
+          <template v-slot="{active}">
+            <div class="panel-page-item">
+              <header>
+                <div class="left">
+                  <Tooltip title="切换词典">
+                    <IconWrapper>
+                      <Icon @click="runtimeStore.showDictModal = true" icon="basil:exchange-outline"/>
+                    </IconWrapper>
+                  </Tooltip>
+                  <div class="title">
+                    {{ store.dictTitle }}
+                  </div>
                 </div>
-              </div>
-              <div class="right">
-                {{ data.words.length }}个单词
-              </div>
-            </header>
-            <WordList
-                class="word-list"
-                :is-active="true"
-                @change="(i:number) => data.index = i"
-                :list="data.words"
-                :activeIndex="data.index"/>
-          </div>
+                <div class="right">
+                  {{ data.words.length }}个单词
+                </div>
+              </header>
+              <WordList
+                  class="word-list"
+                  :is-active="active"
+                  @change="(i:number) => data.index = i"
+                  :list="data.words"
+                  :activeIndex="data.index"/>
+            </div>
+          </template>
         </Panel>
       </div>
     </Teleport>

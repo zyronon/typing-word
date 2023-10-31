@@ -242,30 +242,31 @@ function changePracticeArticle(val: Article) {
     </div>
 
     <div class="panel-wrapper">
-      <Panel
-          v-if="tabIndex === 0">
-        <div class="panel-page-item">
-          <header>
-            <div class="left">
-              <Tooltip title="切换词典">
-                <IconWrapper>
-                  <Icon @click="runtimeStore.showDictModal = true" icon="basil:exchange-outline"/>
-                </IconWrapper>
-              </Tooltip>
-              <div class="title">
-                {{ store.dictTitle }}
+      <Panel v-if="tabIndex === 0">
+        <template v-slot="{active}">
+          <div class="panel-page-item">
+            <header>
+              <div class="left">
+                <Tooltip title="切换词典">
+                  <IconWrapper>
+                    <Icon @click="runtimeStore.showDictModal = true" icon="basil:exchange-outline"/>
+                  </IconWrapper>
+                </Tooltip>
+                <div class="title">
+                  {{ store.dictTitle }}
+                </div>
               </div>
-            </div>
-            <div class="right">
-              {{ store.currentDict.articles.length }}篇文章
-            </div>
-          </header>
-          <ArticleList
-              style="padding: 0 20rem;"
-              @select-item="changePracticeArticle"
-              :select-item="articleData.article"
-              v-model:list="store.currentDict.articles"/>
-        </div>
+              <div class="right">
+                {{ store.currentDict.articles.length }}篇文章
+              </div>
+            </header>
+            <ArticleList
+                :isActive="active"
+                @select-item="changePracticeArticle"
+                :active-index="store.currentDict.chapterIndex"
+                v-model:list="store.currentDict.articles"/>
+          </div>
+        </template>
       </Panel>
     </div>
 
