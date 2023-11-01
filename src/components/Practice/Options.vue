@@ -34,13 +34,13 @@ const emit = defineEmits<{
         v-if="!isSimple"
         class-name="collect"
         @click="$emit('toggleSimple')"
-        title="忽略(快捷键：`)"
+        title="标记为简单词(快捷键：`)"
         icon="material-symbols:check-circle-outline-rounded"/>
     <BaseIcon
         v-else
         class-name="fill"
         @click="$emit('toggleSimple')"
-        title="已忽略(快捷键：`)"
+        title="取消标记简单词(快捷键：`)"
         icon="material-symbols:check-circle-rounded"/>
 
     <BaseIcon
@@ -53,7 +53,7 @@ const emit = defineEmits<{
         v-else
         class-name="fill"
         @click="$emit('toggleCollect')"
-        title="已收藏(快捷键：Enter)"
+        title="取消收藏(快捷键：Enter)"
         icon="ph:star-fill"/>
 
     <Tooltip title="跳过(快捷键：Tab)">
