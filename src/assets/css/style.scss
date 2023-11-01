@@ -8,6 +8,7 @@
   --color-second-bg: rgb(238, 240, 244);
   --color-header-bg: white;
   --color-tooltip-bg: white;
+  --color-tooltip-shadow: #bbbbbb;
   --color-font-1: black;
   --color-font-2: gray;
   --color-font-active-1: white;
@@ -28,8 +29,8 @@ html[data-theme='dark'] {
   --color-header-bg: rgb(60, 63, 65);
   //--color-tooltip-bg: rgb(60, 63, 65);
   --color-tooltip-bg: #252525;
+  --color-tooltip-shadow: #3b3b3b;
   --color-font-1: white;
-
   --color-item-bg: gray;
 }
 
@@ -204,6 +205,7 @@ footer {
     gap: 8rem;
 
     .word {
+      font-size: 20rem;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
       display: flex;
     }

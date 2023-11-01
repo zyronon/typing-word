@@ -79,6 +79,7 @@ export default {
   padding: 10rem;
   color: var(--color-font-1);
   background: var(--color-tooltip-bg);
-  box-shadow: 1px 1px 6px #bbbbbb;
+  //box-shadow: 1px 1px 6px #bbbbbb;
+  box-shadow: 0 0 6px 1px var(--color-tooltip-shadow);
 }
 </style>

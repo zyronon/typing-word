@@ -81,7 +81,9 @@ const {
         <span class="phonetic">{{ word.usphone }}</span>
         <VolumeIcon class="volume" @click="playWordAudio(word.name)"></VolumeIcon>
       </div>
-      <div class="item-translate" v-if="word.trans.length">{{ word.trans.join('；') }}</div>
+      <div class="item-translate" v-if="word.trans.length">
+        <div v-for="item in word.trans">{{item}}</div>
+      </div>
     </ListItem>
   </div>
 </template>
