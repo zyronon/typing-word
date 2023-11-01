@@ -9,6 +9,7 @@ import {useDisableEventListener, useEventListener} from "@/hooks/event.ts";
 import {$computed, $ref} from "vue/macros";
 import {cloneDeep} from "lodash-es";
 import {DefaultShortcutKeyMap} from "@/types.ts";
+import BaseButton from "@/components/BaseButton.vue";
 
 const tabIndex = $ref(2)
 const settingStore = useSettingStore()
@@ -37,10 +38,25 @@ useEventListener('keydown', (e: KeyboardEvent) => {
     if (e.keyCode >= 65 && e.keyCode <= 90) {
       shortcutKey += e.key.toUpperCase()
     } else {
-      shortcutKey += e.key
+      if (e.key === 'ArrowRight') {
+        shortcutKey += '➡'
+      } else if (e.key === 'ArrowLeft') {
+        shortcutKey += '⬅'
+      } else if (e.key === 'ArrowUp') {
+        shortcutKey += '⬆'
+      } else if (e.key === 'ArrowDown') {
+        shortcutKey += '⬇'
+      } else {
+        shortcutKey += e.key
+      }
     }
   }
   shortcutKey = shortcutKey.trim()
+
+  // if (shortcutKey[shortcutKey.length-1] === '+') {
+  //   settingStore.shortcutKeyMap[editShortcutKey] = DefaultShortcutKeyMap[editShortcutKey]
+  //   return ElMessage.warning('设备失败！')
+  // }
 
   if (editShortcutKey) {
     for (const [k, v] of Object.entries(settingStore.shortcutKeyMap)) {
@@ -51,7 +67,6 @@ useEventListener('keydown', (e: KeyboardEvent) => {
     }
     settingStore.shortcutKeyMap[editShortcutKey] = shortcutKey
   }
-
   console.log('key', shortcutKey)
 })
 
@@ -286,6 +301,12 @@ useEventListener('keydown', (e: KeyboardEvent) => {
               <div v-else> {{ item[1] }}</div>
             </div>
           </div>
+          <div class="row">
+            <label class="item-title"></label>
+            <div class="wrapper">
+              <BaseButton @click="settingStore.shortcutKeyMap = cloneDeep(DefaultShortcutKeyMap)">恢复默认</BaseButton>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -368,10 +389,16 @@ useEventListener('keydown', (e: KeyboardEvent) => {
 
           input {
             width: 150rem;
+            box-sizing: border-box;
             margin-right: 10rem;
-            height: 24rem;
+            height: 28rem;
             outline: none;
             font-size: 16rem;
+            border: 1px solid gray;
+            border-radius: 3rem;
+            padding: 0 5rem;
+            background: var(--color-second-bg);
+            color: var(--color-font-1);
           }
         }
       }

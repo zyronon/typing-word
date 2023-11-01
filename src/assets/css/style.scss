@@ -4,6 +4,7 @@
 @import "anim";
 
 :root {
+  --color-background: #E6E8EB;
   --color-main-bg: #E6E8EB;
   --color-second-bg: rgb(240, 242, 244);
 
@@ -33,6 +34,7 @@
 html[data-theme='dark'] {
   //--color-main-bg: rgba(0, 5, 24, 1);
   //--color-main-bg: rgba(17,24,39, 1);
+  --color-background: transparent;
   --color-main-bg: rgba(14, 18, 23, 1);
   --color-second-bg: rgb(60, 63, 65);
 

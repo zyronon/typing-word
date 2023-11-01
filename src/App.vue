@@ -2,14 +2,13 @@
 
 import {onMounted, watch} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
-import {DictResource, SaveDictKey} from "@/types.ts"
+import {SaveConfig, SaveDict} from "@/types.ts"
 import Practice from "@/components/Practice/Practice.vue"
 import {useEventListener, useStartKeyboardEventListener} from "@/hooks/event.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
-import {dictionaryResources} from "@/assets/dictionary.ts";
-import {cloneDeep, groupBy} from "lodash-es";
-import {$ref} from "vue/macros";
+import {cloneDeep} from "lodash-es";
+import Backgorund from "@/components/Backgorund.vue";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -26,9 +25,11 @@ function followSystem() {
 }
 
 watch(store.$state, (n) => {
-  // console.log('state', JSON.stringify(n.current, null, 2))
-  // console.log('state', n)
-  localStorage.setItem(SaveDictKey, JSON.stringify(n))
+  localStorage.setItem(SaveDict.key, JSON.stringify({val: n, version: SaveDict.version}))
+})
+
+watch(settingStore.$state, (n) => {
+  localStorage.setItem(SaveConfig.key, JSON.stringify({val: n, version: SaveConfig.version}))
 })
 
 //检测几个特定词典
@@ -49,6 +50,7 @@ useStartKeyboardEventListener()
 
 onMounted(() => {
   store.init()
+  settingStore.init()
   if (settingStore.theme !== 'auto') {
     document.documentElement.setAttribute('data-theme', settingStore.theme)
   }
@@ -67,7 +69,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <!--    <Backgorund/>-->
+  <Transition name="fade">
+    <Backgorund v-if="settingStore.theme === 'dark'"/>
+  </Transition>
   <div class="main-page">
     <Practice/>
     <!--    <AddArticle/>-->
@@ -87,6 +91,6 @@ onMounted(() => {
   font-size: 14rem;
   display: flex;
   justify-content: center;
-  background-color: var(--color-main-bg);
+  background-color: var(--color-background);
 }
 </style>
