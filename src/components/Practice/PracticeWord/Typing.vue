@@ -46,7 +46,7 @@ watch(() => props.word, () => {
   wordRepeatCount = 0
   inputLock = false
   if (settingStore.wordSound) {
-    volumeIconRef?.play(400,true)
+    volumeIconRef?.play(400, true)
   }
 })
 
@@ -147,33 +147,33 @@ defineExpose({del, showWord, hideWord})
 
 <template>
   <div class="typing-word">
-      <div class="translate"
-           :style="{
+    <div class="translate"
+         :style="{
       fontSize: settingStore.fontSize.wordTranslateFontSize +'rem',
       opacity: settingStore.translate ? 1 : 0
     }"
+    >
+      <div v-for="i in word.trans">{{ i }}</div>
+    </div>
+    <div class="word-wrapper">
+      <div class="word"
+           :class="wrong && 'is-wrong'"
+           :style="{fontSize: settingStore.fontSize.wordForeignFontSize +'rem'}"
       >
-        <div v-for="i in word.trans">{{ i }}</div>
-      </div>
-      <div class="word-wrapper">
-        <div class="word"
-             :class="wrong && 'is-wrong'"
-             :style="{fontSize: settingStore.fontSize.wordForeignFontSize +'rem'}"
-        >
-          <span class="input" v-if="input">{{ input }}</span>
-          <span class="wrong" v-if="wrong">{{ wrong }}</span>
-          <template v-if="settingStore.dictation">
+        <span class="input" v-if="input">{{ input }}</span>
+        <span class="wrong" v-if="wrong">{{ wrong }}</span>
+        <template v-if="settingStore.dictation">
           <span class="letter" v-if="!showFullWord"
                 @mouseenter="settingStore.allowWordTip && (showFullWord = true)">{{
               displayWord.split('').map(() => '_').join('')
             }}</span>
-            <span class="letter" v-else @mouseleave="showFullWord = false">{{ displayWord }}</span>
-          </template>
-          <span class="letter" v-else>{{ displayWord }}</span>
-        </div>
-        <VolumeIcon ref="volumeIconRef" :simple="true" :cb="()=>playWordAudio(word.name)"/>
+          <span class="letter" v-else @mouseleave="showFullWord = false">{{ displayWord }}</span>
+        </template>
+        <span class="letter" v-else>{{ displayWord }}</span>
       </div>
-      <div class="phonetic">{{ settingStore.wordSoundType === 'us' ? word.usphone : word.ukphone }}</div>
+      <VolumeIcon ref="volumeIconRef" :simple="true" :cb="()=>playWordAudio(word.name)"/>
+    </div>
+    <div class="phonetic">{{ settingStore.wordSoundType === 'us' ? word.usphone : word.ukphone }}</div>
   </div>
 </template>
 
@@ -195,16 +195,18 @@ defineExpose({del, showWord, hideWord})
     transition: all .3s;
   }
 
-  .translate{
+  .translate {
     position: absolute;
     transform: translateY(-50%);
     margin-bottom: 90rem;
+    color: var(--color-font-2);
   }
 
   .word-wrapper {
     display: flex;
     align-items: center;
     gap: 10rem;
+    color: var(--color-font-1);
 
     .word {
       font-size: 48rem;

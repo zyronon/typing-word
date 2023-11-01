@@ -113,7 +113,13 @@ defineEmits<{
 
   &.active {
     background: var(--color-item-active);
-    color: white !important;
+
+    :deep(.sub-title) {
+      color: white !important;
+    }
+    :deep(.title) {
+      color: white !important;
+    }
 
     $c: #E6A23C;
 

@@ -77,11 +77,11 @@ const {
         @del="delWrongWord(word)"
     >
       <div class="word-wrapper">
-        <span class="word">{{ word.name }}</span>
+        <span class="title">{{ word.name }}</span>
         <span class="phonetic">{{ word.usphone }}</span>
         <VolumeIcon class="volume" @click="playWordAudio(word.name)"></VolumeIcon>
       </div>
-      <div class="item-translate" v-if="word.trans.length">
+      <div class="sub-title" v-if="word.trans.length">
         <div v-for="item in word.trans">{{item}}</div>
       </div>
     </ListItem>
