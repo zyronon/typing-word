@@ -196,8 +196,7 @@ const dictIsArticle = $computed(() => {
         <div class="dict-detail-page">
           <header>
             <div class="left" @click.stop="step = 0">
-              <Icon icon="octicon:arrow-left-24"
-                    class="go" width="20" color="#000000"/>
+              <Icon icon="octicon:arrow-left-24" class="go" width="20"/>
               <div class="title">
                 词典详情
               </div>
@@ -418,7 +417,7 @@ $header-height: 60rem;
       .translate {
         display: flex;
         align-items: center;
-        color: black;
+        color: var(--color-font-1);
         margin-bottom: 30rem;
 
         & > span {
@@ -446,7 +445,7 @@ $header-height: 60rem;
     height: $header-height;
     align-items: center;
     justify-content: space-between;
-    color: #000;
+    color: var(--color-font-3);
 
     .left {
       display: flex;
@@ -464,7 +463,7 @@ $header-height: 60rem;
 
     .common-title {
       font-size: 20rem;
-      color: gray;
+      color: var(--color-font-1);
       text-align: center;
       margin-bottom: 10rem;
     }

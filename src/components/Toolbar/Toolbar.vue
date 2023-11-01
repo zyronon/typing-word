@@ -44,7 +44,7 @@ watch(() => settingStore.showToolbar, n => {
 <template>
   <header ref="headerRef">
     <div class="content">
-      <div class="info" @click="runtimeStore.showDictModal = true">
+      <div class="info hvr-grow" @click="runtimeStore.showDictModal = true">
         {{ store.dictTitle }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
       </div>
       <div class="options">
@@ -124,17 +124,17 @@ watch(() => settingStore.showToolbar, n => {
 header {
   width: var(--toolbar-width);
   margin-top: 10rem;
-  background: var(--color-header-bg);
+  background: var(--color-second-bg);
   border-radius: 8rem;
   margin-bottom: 30rem;
-  //position: absolute;
   position: relative;
   z-index: 2;
   padding: 10rem $space;
   box-sizing: border-box;
   transition: all .3s;
   gap: 10rem;
-  //opacity: 0;
+  border: 1px solid var(--color-item-border);
+
 
   .content {
     min-height: 60rem;
@@ -143,7 +143,7 @@ header {
     justify-content: space-between;
 
     .info {
-      font-size: 16rem;
+      font-size: 17rem;
       padding: 6rem 10rem;
       border-radius: 6rem;
       color: var(--color-font-1);

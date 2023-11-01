@@ -188,14 +188,14 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
         <Icon class="arrow" icon="bi:arrow-left" width="22"/>
         <div class="word">{{ prevWord.name }}</div>
       </div>
-      <Tooltip title="快捷键：Tab">
-        <div class="next"
-             @click="next(false)"
-             v-if="nextWord">
-          <div class="word" :class="settingStore.dictation && 'shadow'">{{ nextWord.name }}</div>
-          <Icon class="arrow" icon="bi:arrow-right" width="22"/>
-        </div>
-      </Tooltip>
+      <div class="next"
+           @click="next(false)"
+           v-if="nextWord">
+        <Tooltip title="快捷键：Tab">
+          <div class="word" :class="settingStore.dictation && 'text-shadow'">{{ nextWord.name }}</div>
+        </Tooltip>
+        <Icon class="arrow" icon="bi:arrow-right" width="22"/>
+      </div>
     </div>
     <Typing
         ref="typingRef"
@@ -282,8 +282,8 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
     .word {
       font-size: 24rem;
       margin-bottom: 4rem;
+      font-family: $word-font-family;
     }
-
 
     .prev {
       cursor: pointer;
@@ -298,12 +298,6 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
       justify-content: flex-end;
       gap: 10rem;
       float: right;
-    }
-
-    .shadow {
-      color: transparent !important;
-      text-shadow: #b0b0b0 0 0 6px;
-      user-select: none;
     }
   }
 

@@ -267,7 +267,7 @@ useWatchAllSound()
         gap: 10rem;
 
         &.active {
-          background: whitesmoke;
+          background: var(--color-item-bg);
         }
       }
     }

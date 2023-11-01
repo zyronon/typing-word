@@ -4,36 +4,54 @@
 @import "anim";
 
 :root {
-  --color-main-bg: rgb(226, 226, 226);
-  --color-second-bg: rgb(238, 240, 244);
+  --color-main-bg: #E6E8EB;
+  --color-second-bg: rgb(240, 242, 244);
+
+  --color-item-bg: rgb(228, 230, 232);
+  --color-item-hover: white;
+  //--color-item-active: rgb(75, 110, 175);
+  --color-item-active: rgb(253, 246, 236);
+  --color-item-border: rgb(226, 226, 226);
+
   --color-header-bg: white;
   --color-tooltip-bg: white;
   --color-tooltip-shadow: #bbbbbb;
-  --color-font-1: rgb(75,85,99);
+  --color-font-1: rgb(75, 85, 99);
   --color-font-2: rgb(46, 46, 46);
+  --color-font-3: black;
   --color-font-active-1: white;
   --color-font-active-2: whitesmoke;
-  --color-item-bg: white;
-  --color-item-hover: white;
-  --color-item-active: rgb(75, 110, 175);
   --color-main-active: rgb(12, 140, 233);
   --toolbar-width: 700rem;
   //--toolbar-width: 50vw;
 
+  --color-gray: gray;
+
+  --color-scrollbar: rgb(147, 173, 227);
 }
 
 html[data-theme='dark'] {
   //--color-main-bg: rgba(0, 5, 24, 1);
-  --color-main-bg: rgba(14, 18, 23, 1);
   //--color-main-bg: rgba(17,24,39, 1);
+  --color-main-bg: rgba(14, 18, 23, 1);
   --color-second-bg: rgb(60, 63, 65);
-  --color-header-bg: rgb(60, 63, 65);
-  //--color-tooltip-bg: rgb(60, 63, 65);
+
+  --color-item-bg: rgb(51, 51, 51);
+  --color-item-hover: #5e5e5e;
+  //--color-item-active: rgb(75, 110, 175);
+  --color-item-active: rgb(103, 103, 103);
+  --color-item-border: rgb(73, 73, 73);
+
+  --color-header-bg: rgb(51, 51, 51);
   --color-tooltip-bg: #252525;
   --color-tooltip-shadow: #3b3b3b;
   --color-font-1: rgba(249, 250, 251, 0.8);
   --color-font-2: rgba(255, 255, 255, 0.8);
-  --color-item-bg: gray;
+  --color-font-3: white;
+
+  --color-gray: #bebebe;
+
+  --color-scrollbar:  rgb(59, 87, 138);
 }
 
 $anim-time: 0.3s;
@@ -41,8 +59,6 @@ $anim-time: 0.3s;
   transition: background $anim-time, color $anim-time;
 }
 
-
-$font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
 html, body {
   padding: 0;
   margin: 0;
@@ -87,7 +103,6 @@ a {
   }
 }
 
-
 ::-webkit-scrollbar {
   width: 8rem;
   height: 10rem;
@@ -99,14 +114,14 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $second;
+  background: var(--color-scrollbar);
   border-radius: 10rem;
 }
 
 
 /* 火狐美化滚动条 */
 * {
-  scrollbar-color: $second #f3f4f9;
+  scrollbar-color: var(--color-scrollbar) #f3f4f9;
   /* 滑块颜色  滚动条背景颜色 */
   scrollbar-width: thin;
   /* 滚动条宽度有三种：thin、auto、none */
@@ -127,6 +142,10 @@ footer {
 
 .flex {
   display: flex;
+}
+
+.gap10 {
+  gap: 10rem;
 }
 
 .justify-content-between {
@@ -154,7 +173,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     font-size: 16rem;
-    color: black;
+    color: var(--color-font-3);
 
     .left {
       flex: 1;
@@ -179,36 +198,53 @@ footer {
   }
 }
 
-.word-item {
+.common-list-item {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--color-item-bg);
+  color: var(--color-font-1);
+  font-size: 18rem;
+  border-radius: 8rem;
+  display: flex;
+  justify-content: space-between;
+  transition: all .3s;
+  padding: 10rem;
+  gap: 20rem;
+  border: 1px solid var(--color-item-border);
+
   .volume {
     opacity: 0;
   }
 
   &:hover {
+    background: var(--color-item-hover);
+
     .volume {
       opacity: 1;
     }
   }
 
   &.active {
-    .phonetic {
-      color: white !important;
-    }
+    background: var(--color-item-active);
 
     .volume {
       color: #E6A23C;
     }
+
+    .phonetic, .item-sub-title {
+      color: var(--color-gray) !important;
+    }
   }
 
-  .word-wrapper {
+  .item-title {
     display: flex;
     align-items: center;
     gap: 8rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    color: var(--color-font-1);
 
-    .title {
+    .word {
       font-size: 20rem;
-      color: var(--color-font-1);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
       display: flex;
     }
 
@@ -219,7 +255,13 @@ footer {
   }
 }
 
-.sub-title {
+.item-sub-title {
   font-size: 16rem;
-  color: var(--color-font-2);
+  color: gray;
+}
+
+.text-shadow {
+  color: transparent !important;
+  text-shadow: #b0b0b0 0 0 8rem;
+  user-select: none;
 }

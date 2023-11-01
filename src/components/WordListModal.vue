@@ -41,14 +41,14 @@ onUnmounted(() => {
       >
         <template #={source}>
           <ListItem
-              class="word-item"
+              class="common-list-item"
               :show-volume="true">
-            <div class="word-wrapper">
+            <div class="item-title">
               <span class="word">{{ source.name }}</span>
               <span class="phonetic">{{ source.usphone }}</span>
               <VolumeIcon class="volume" @click="playWordAudio(source.name)"></VolumeIcon>
             </div>
-            <div class="item-translate" v-if="source.trans.length">{{ source.trans.join('；') }}</div>
+            <div class="item-sub-title" v-if="source.trans.length">{{ source.trans.join('；') }}</div>
           </ListItem>
         </template>
       </virtual-list>
@@ -76,13 +76,7 @@ onUnmounted(() => {
 }
 
 .dict-virtual-item {
-  background: var(--color-header-bg);
-  border-radius: 6rem;
-  display: flex;
-  justify-content: space-between;
-  transition: all .3s;
-  color: var(--color-font-1);
-  margin-bottom: 10rem;
+  margin-bottom: 15rem;
 }
 
 </style>

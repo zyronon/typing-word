@@ -64,7 +64,7 @@ const {
   <div class="list" ref="listRef">
     <ListItem
         v-for="(word,i) in list" :key="i"
-        class="word-item"
+        class="common-list-item"
         :active="activeIndex === i"
         :class="{active:activeIndex === i}"
         :show-volume="true"
@@ -76,13 +76,13 @@ const {
         :show-del="showDel"
         @del="delWrongWord(word)"
     >
-      <div class="word-wrapper">
-        <span class="title">{{ word.name }}</span>
+      <div class="item-title">
+        <span class="word" :class="settingStore.dictation && 'text-shadow'">{{ word.name }}</span>
         <span class="phonetic">{{ word.usphone }}</span>
         <VolumeIcon class="volume" @click="playWordAudio(word.name)"></VolumeIcon>
       </div>
-      <div class="sub-title" v-if="word.trans.length">
-        <div v-for="item in word.trans">{{item}}</div>
+      <div class="item-sub-title" v-if="word.trans.length && settingStore.translate">
+        <div v-for="item in word.trans">{{ item }}</div>
       </div>
     </ListItem>
   </div>

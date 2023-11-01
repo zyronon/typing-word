@@ -38,7 +38,7 @@ withDefaults(defineProps<IProps>(), {
   width: 180rem;
   background: var(--color-second-bg);
   border-radius: 8rem;
-  box-shadow: 1px 1px 6px #bbbbbb;
+  box-shadow: 0 0 8px 2px var(--color-item-border);
   padding: 10rem $space;
   left: 50%;
   transform: translateX(-50%);

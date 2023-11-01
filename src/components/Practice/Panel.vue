@@ -214,6 +214,8 @@ $header-height: 50rem;
   flex-direction: column;
   transition: all .3s;
   z-index: 1;
+  border: 1px solid var(--color-item-border);
+
 
   & > header {
     min-height: 50rem;

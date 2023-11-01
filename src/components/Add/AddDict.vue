@@ -161,8 +161,7 @@ function close() {
         <div class="page add-page">
           <header>
             <div class="left" @click.stop="step = 0">
-              <Icon icon="octicon:arrow-left-24"
-                    class="go" width="20" color="#000000"/>
+              <Icon icon="octicon:arrow-left-24" class="go" width="20"/>
               <div class="title">
                 词典详情
               </div>
@@ -268,7 +267,7 @@ $header-height: 60rem;
   width: 50%;
 
   header {
-    color: black;
+    color: var(--color-font-3);
     display: flex;
     justify-content: space-between;
     align-items: center;

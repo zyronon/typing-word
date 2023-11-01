@@ -195,6 +195,10 @@ defineExpose({del, showWord, hideWord})
     transition: all .3s;
   }
 
+  .phonetic {
+    font-family: $word-font-family;
+  }
+
   .translate {
     position: absolute;
     transform: translateY(-50%);
@@ -211,7 +215,7 @@ defineExpose({del, showWord, hideWord})
     .word {
       font-size: 48rem;
       line-height: 1;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+      font-family: $word-font-family;
       letter-spacing: 5rem;
 
       .input {

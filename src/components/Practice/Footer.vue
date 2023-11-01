@@ -41,8 +41,8 @@ onUnmounted(() => {
     <div class="bottom">
       <el-progress
           :percentage="progress"
-                   :stroke-width="8"
-                   :show-text="false"/>
+          :stroke-width="8"
+          :show-text="false"/>
       <div class="stat">
         <div class="row">
           <div class="num">{{ speedMinute }}分钟</div>
@@ -97,14 +97,16 @@ onUnmounted(() => {
       bottom: calc(100% + 20rem);
     }
   }
+
   .bottom {
     position: relative;
     width: 100%;
     box-sizing: border-box;
     border-radius: 10rem;
-    background: var(--color-header-bg);
+    background: var(--color-second-bg);
     padding: 3rem 10rem 10rem 10rem;
     z-index: 2;
+    border: 1px solid var(--color-item-border);
 
     .stat {
       margin-top: 10rem;

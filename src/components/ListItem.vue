@@ -7,8 +7,8 @@ defineProps<{
   showVolume?: boolean,
   showDel?: boolean,
   active?: boolean
-  isCollect: boolean
-  isSimple: boolean
+  isCollect?: boolean
+  isSimple?: boolean
 }>()
 
 defineEmits<{
@@ -65,18 +65,6 @@ defineEmits<{
 
 <style scoped lang="scss">
 .list-item {
-  width: 100%;
-  box-sizing: border-box;
-  background: var(--color-item-bg);
-  color: var(--color-font-1);
-  font-size: 18rem;
-  border-radius: 8rem;
-  display: flex;
-  justify-content: space-between;
-  transition: all .3s;
-  padding: 10rem;
-  gap: 20rem;
-
   .left {
     display: flex;
     gap: 10rem;
@@ -100,7 +88,6 @@ defineEmits<{
   }
 
   &:hover {
-    background: rgb(226, 226, 226);
 
     :deep(.collect) {
       opacity: 1;
@@ -112,13 +99,13 @@ defineEmits<{
   }
 
   &.active {
-    background: var(--color-item-active);
 
     :deep(.sub-title) {
-      color: white !important;
+      //color: black;
     }
+
     :deep(.title) {
-      color: white !important;
+      //color: black;
     }
 
     $c: #E6A23C;

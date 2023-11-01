@@ -54,7 +54,7 @@ watch(() => props.groupByTag, () => {
 
 <style scoped lang="scss">
 .dict-group {
-  color: black;
+  color: var(--color-font-1);
   margin-bottom: 40rem;
   //border-bottom: 1px dashed gray;
 
