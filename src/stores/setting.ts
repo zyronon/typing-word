@@ -1,4 +1,6 @@
 import {defineStore} from "pinia"
+import {cloneDeep} from "lodash-es";
+import {DefaultShortcutKeyMap} from "@/types.ts";
 
 export interface SettingState {
   showToolbar: boolean,
@@ -33,6 +35,7 @@ export interface SettingState {
   showPanel: boolean,
   theme: string,
   collapse: boolean,
+  shortcutKeyMap: Record<string, string>
 }
 
 export const useSettingStore = defineStore('setting', {
@@ -71,7 +74,8 @@ export const useSettingStore = defineStore('setting', {
       waitTimeForChangeWord: 300,
 
       theme: 'auto',
-      collapse:false,
+      collapse: false,
+      shortcutKeyMap: cloneDeep(DefaultShortcutKeyMap)
     }
   },
 })

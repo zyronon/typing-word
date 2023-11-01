@@ -164,6 +164,13 @@ export const ShortcutKeyMap = {
   Collect: 'Enter',
 }
 
+export const DefaultShortcutKeyMap = {
+  Show: 'Escape',
+  Ignore: 'Tab',
+  Remove: '`',
+  Collect: 'Enter',
+}
+
 
 
 export enum TranslateEngine {

@@ -8,6 +8,7 @@ import {useChangeAllSound, useWatchAllSound} from "@/hooks/sound.ts";
 import {useDisableEventListener, useEventListener} from "@/hooks/event.ts";
 import {$computed, $ref} from "vue/macros";
 import {cloneDeep} from "lodash-es";
+import {DefaultShortcutKeyMap} from "@/types.ts";
 
 const tabIndex = $ref(2)
 const settingStore = useSettingStore()
@@ -20,14 +21,8 @@ const emit = defineEmits([
 
 useDisableEventListener()
 useWatchAllSound()
-let ShortcutKeyMap = {
-  Show: 'Esc',
-  Ignore: 'Tab',
-  Remove: '`',
-  Collect: 'Enter',
-}
+
 let editShortcutKey = $ref('')
-let shortcutKeyMapRef = $ref(cloneDeep(ShortcutKeyMap))
 
 useEventListener('keydown', (e: KeyboardEvent) => {
   console.log('e', e, e.keyCode, e.ctrlKey, e.altKey, e.shiftKey)
@@ -48,13 +43,13 @@ useEventListener('keydown', (e: KeyboardEvent) => {
   shortcutKey = shortcutKey.trim()
 
   if (editShortcutKey) {
-    for (const [k, v] of Object.entries(shortcutKeyMapRef)) {
+    for (const [k, v] of Object.entries(settingStore.shortcutKeyMap)) {
       if (v === shortcutKey && k !== editShortcutKey) {
-        shortcutKeyMapRef[editShortcutKey] = ShortcutKeyMap[editShortcutKey]
+        settingStore.shortcutKeyMap[editShortcutKey] = DefaultShortcutKeyMap[editShortcutKey]
         return ElMessage.warning('快捷键重复！')
       }
     }
-    shortcutKeyMapRef[editShortcutKey] = shortcutKey
+    settingStore.shortcutKeyMap[editShortcutKey] = shortcutKey
   }
 
   console.log('key', shortcutKey)
@@ -281,7 +276,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
             <label class="item-title">功能</label>
             <div class="wrapper">快捷键(点击可修改)</div>
           </div>
-          <div class="row" v-for="item of Object.entries(shortcutKeyMapRef)">
+          <div class="row" v-for="item of Object.entries(settingStore.shortcutKeyMap)">
             <label class="item-title">{{ item[0] }}</label>
             <div class="wrapper" @click="editShortcutKey = item[0]">
               <div class="set-key" v-if="editShortcutKey === item[0]">
@@ -355,10 +350,6 @@ useEventListener('keydown', (e: KeyboardEvent) => {
       align-items: center;
       gap: $space * 5;
 
-      label {
-
-      }
-
       .wrapper {
         flex: 1;
         display: flex;
@@ -376,10 +367,11 @@ useEventListener('keydown', (e: KeyboardEvent) => {
           align-items: center;
 
           input {
-            width: 100rem;
+            width: 150rem;
             margin-right: 10rem;
             height: 24rem;
             outline: none;
+            font-size: 16rem;
           }
         }
       }
