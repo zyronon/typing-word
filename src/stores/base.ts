@@ -165,10 +165,6 @@ export const useBaseStore = defineStore('base', {
         chapter(state: State): Word[] {
             return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []
         },
-        //TODO 废弃
-        word(state: State): Word {
-            return {trans: [], name: '', usphone: '', ukphone: '',}
-        },
         dictTitle(state: State) {
             let title = this.currentDict.name
             switch (state.current.dictType) {

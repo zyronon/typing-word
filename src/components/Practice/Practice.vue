@@ -44,11 +44,14 @@ function repeat() {
   emitter.emit(EventKey.resetWord)
 }
 
-//TODO 能否下一章
 function next() {
   // console.log('next')
   store.currentDict.chapterIndex++
   // repeat()
+}
+
+function restart() {
+  store.currentDict.chapterIndex = 0
 }
 
 function test() {
@@ -75,6 +78,7 @@ function test() {
       @write="write"
       @repeat="repeat"
       @next="next"
+      @restart="restart"
   />
 </template>
 

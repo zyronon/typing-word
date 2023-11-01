@@ -38,6 +38,7 @@ export interface SettingState {
     shortcutKeyMap: Record<string, string>
 }
 
+
 export const useSettingStore = defineStore('setting', {
     state: (): SettingState => {
         return {
@@ -85,11 +86,25 @@ export const useSettingStore = defineStore('setting', {
             }
         },
         init() {
+            const setDefaultConfig = () => {
+                localStorage.setItem(SaveConfig.key, JSON.stringify({val: this.$state, version: SaveConfig.version}))
+            }
             let configStr = localStorage.getItem(SaveConfig.key)
             if (configStr) {
-                let obj = JSON.parse(configStr)
-                // this.setState(obj)
-                this.setState(obj.val)
+                try {
+                    let obj: any = JSON.parse(configStr)
+                    if (!obj.version) {
+                        setDefaultConfig()
+                    } else {
+                        if (obj.version !== SaveConfig.version) {
+                            setDefaultConfig()
+                        } else {
+                            this.setState(obj.val)
+                        }
+                    }
+                } catch (e) {
+                    setDefaultConfig()
+                }
             }
         }
     }

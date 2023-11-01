@@ -10,7 +10,7 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {onMounted, reactive} from "vue";
 import {cloneDeep} from "lodash-es";
 import {Icon} from '@iconify/vue';
-import {$ref} from "vue/macros";
+import {$computed, $ref} from "vue/macros";
 
 const store = useBaseStore()
 let statModalIsOpen = $ref(false)
@@ -19,7 +19,8 @@ let currentStat = reactive<DisplayStatistics>(cloneDeep(DefaultDisplayStatistics
 const emit = defineEmits([
   'repeat',
   'next',
-  'write'
+  'write',
+  'restart'
 ])
 
 onMounted(() => {
@@ -32,18 +33,25 @@ onMounted(() => {
 
 let optionType = $ref('')
 
-function options(emitType: 'write' | 'repeat' | 'next') {
+function options(emitType: 'write' | 'repeat' | 'next' | 'restart') {
   statModalIsOpen = false
   optionType = emitType
   emit(emitType)
 }
 
+const isEnd = $computed(() => {
+  return store.isArticle ?
+      store.currentDict.chapterIndex === store.currentDict.articles.length - 1 :
+      store.currentDict.chapterIndex === store.currentDict.chapterWords.length - 1
+})
+
 function onClose() {
   if (!optionType) {
-    options('next')
+    options(isEnd ? 'restart' : 'next')
   }
   optionType = ''
 }
+
 </script>
 
 <template>
@@ -95,15 +103,28 @@ function onClose() {
         </div>
       </div>
       <div class="footer">
-        <BaseButton keyboard="Ctrl + Enter" @click="options('write')">
-          默写本章
-        </BaseButton>
-        <BaseButton keyboard="Alt + Enter" @click="options('repeat')">
-          重复本章
-        </BaseButton>
-        <BaseButton keyboard="Tab" @click="options('next')">
-          下一章
-        </BaseButton>
+        <template v-if="isEnd">
+          <BaseButton keyboard="Ctrl + Enter" @click="options('write')">
+            默写本章
+          </BaseButton>
+          <BaseButton keyboard="Alt + Enter" @click="options('repeat')">
+            重复本章
+          </BaseButton>
+          <BaseButton keyboard="Tab" @click="options('restart')">
+            重新练习
+          </BaseButton>
+        </template>
+        <template v-else>
+          <BaseButton keyboard="Ctrl + Enter" @click="options('write')">
+            默写本章
+          </BaseButton>
+          <BaseButton keyboard="Alt + Enter" @click="options('repeat')">
+            重复本章
+          </BaseButton>
+          <BaseButton keyboard="Tab" @click="options('next')">
+            下一章
+          </BaseButton>
+        </template>
       </div>
     </div>
   </Modal>
