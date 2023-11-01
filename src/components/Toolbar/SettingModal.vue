@@ -5,18 +5,60 @@ import {Icon} from '@iconify/vue';
 import {watch, ref} from "vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useChangeAllSound, useWatchAllSound} from "@/hooks/sound.ts";
-import {useDisableEventListener} from "@/hooks/event.ts";
+import {useDisableEventListener, useEventListener} from "@/hooks/event.ts";
+import {$computed, $ref} from "vue/macros";
+import {cloneDeep} from "lodash-es";
 
-const tabIndex = $ref(0)
+const tabIndex = $ref(2)
 const settingStore = useSettingStore()
+//@ts-ignore
 const gitLastCommitHash = ref(LATEST_COMMIT_HASH);
 
 const emit = defineEmits([
   'close',
 ])
 
-// useDisableEventListener()
+useDisableEventListener()
 useWatchAllSound()
+let ShortcutKeyMap = {
+  Show: 'Esc',
+  Ignore: 'Tab',
+  Remove: '`',
+  Collect: 'Enter',
+}
+let editShortcutKey = $ref('')
+let shortcutKeyMapRef = $ref(cloneDeep(ShortcutKeyMap))
+
+useEventListener('keydown', (e: KeyboardEvent) => {
+  console.log('e', e, e.keyCode, e.ctrlKey, e.altKey, e.shiftKey)
+  if (!editShortcutKey) return
+  e.preventDefault()
+
+  let shortcutKey = ''
+  if (e.ctrlKey) shortcutKey += 'Ctrl+'
+  if (e.altKey) shortcutKey += 'Alt+'
+  if (e.shiftKey) shortcutKey += 'Shift+'
+  if (e.key !== 'Control' && e.key !== 'Alt' && e.key !== 'Shift') {
+    if (e.keyCode >= 65 && e.keyCode <= 90) {
+      shortcutKey += e.key.toUpperCase()
+    } else {
+      shortcutKey += e.key
+    }
+  }
+  shortcutKey = shortcutKey.trim()
+
+  if (editShortcutKey) {
+    for (const [k, v] of Object.entries(shortcutKeyMapRef)) {
+      if (v === shortcutKey && k !== editShortcutKey) {
+        shortcutKeyMapRef[editShortcutKey] = ShortcutKeyMap[editShortcutKey]
+        return ElMessage.warning('快捷键重复！')
+      }
+    }
+    shortcutKeyMapRef[editShortcutKey] = shortcutKey
+  }
+
+  console.log('key', shortcutKey)
+})
 
 </script>
 
@@ -34,6 +76,10 @@ useWatchAllSound()
           <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">
             <Icon icon="icon-park-outline:setting-config" width="20" color="#0C8CE9"/>
             <span>其他设置</span>
+          </div>
+          <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">
+            <Icon icon="icon-park-outline:setting-config" width="20" color="#0C8CE9"/>
+            <span>快捷键设置</span>
           </div>
         </div>
         <div class="git-log">
@@ -230,6 +276,22 @@ useWatchAllSound()
             </div>
           </div>
         </div>
+        <div v-if="tabIndex === 2">
+          <div class="row">
+            <label class="item-title">功能</label>
+            <div class="wrapper">快捷键(点击可修改)</div>
+          </div>
+          <div class="row" v-for="item of Object.entries(shortcutKeyMapRef)">
+            <label class="item-title">{{ item[0] }}</label>
+            <div class="wrapper" @click="editShortcutKey = item[0]">
+              <div class="set-key" v-if="editShortcutKey === item[0]">
+                <input :value="item[1]" readonly type="text" @blur="editShortcutKey = ''">
+                <span @click.stop="editShortcutKey = ''">直接按键盘进行设置</span>
+              </div>
+              <div v-else> {{ item[1] }}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </Modal>
@@ -254,7 +316,7 @@ useWatchAllSound()
       padding: 10rem 20rem;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      //align-items: center;
       //justify-content: center;
       gap: 10rem;
 
@@ -272,13 +334,12 @@ useWatchAllSound()
       }
     }
 
-    .git-log{
+    .git-log {
       font-size: 10rem;
       color: gray;
       margin-bottom: 5rem;
     }
   }
-
 
   .content {
     background: var(--color-header-bg);
@@ -309,6 +370,17 @@ useWatchAllSound()
           width: 30rem;
           font-size: 12rem;
           color: gray;
+        }
+
+        .set-key {
+          align-items: center;
+
+          input {
+            width: 100rem;
+            margin-right: 10rem;
+            height: 24rem;
+            outline: none;
+          }
         }
       }
 

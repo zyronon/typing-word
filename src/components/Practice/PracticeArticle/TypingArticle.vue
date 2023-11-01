@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed, nextTick, onMounted, onUnmounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros";
-import {Article, ArticleWord, DefaultArticle, ShortKeyMap, Word} from "@/types";
+import {Article, ArticleWord, DefaultArticle, ShortcutKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -270,15 +270,15 @@ function onKeyDown(e: KeyboardEvent) {
         input = input.slice(0, -1)
       }
       break
-    case ShortKeyMap.Collect:
+    case ShortcutKeyMap.Collect:
 
       break
-    case ShortKeyMap.Remove:
+    case ShortcutKeyMap.Remove:
       break
-    case ShortKeyMap.Ignore:
+    case ShortcutKeyMap.Ignore:
       nextSentence()
       break
-    case ShortKeyMap.Show:
+    case ShortcutKeyMap.Show:
       if (settingStore.allowWordTip) {
         hoverIndex = {
           sectionIndex: sectionIndex,

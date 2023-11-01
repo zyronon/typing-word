@@ -2,7 +2,7 @@
 import {watch} from "vue"
 import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
-import {DictType, DisplayStatistics, ShortKeyMap, Word} from "../../../types";
+import {DictType, DisplayStatistics, ShortcutKeyMap, Word} from "../../../types";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
@@ -159,17 +159,17 @@ async function onKeyDown(e: KeyboardEvent) {
     case 'Backspace':
       typingRef.del()
       break
-    case ShortKeyMap.Collect:
+    case ShortcutKeyMap.Collect:
       toggleWordCollect(word)
       break
-    case ShortKeyMap.Remove:
+    case ShortcutKeyMap.Remove:
       toggleWordSimpleWrapper()
       break
-    case ShortKeyMap.Ignore:
+    case ShortcutKeyMap.Ignore:
       next(false)
       e.preventDefault()
       break
-    case ShortKeyMap.Show:
+    case ShortcutKeyMap.Show:
       typingRef.showWord()
       break
   }

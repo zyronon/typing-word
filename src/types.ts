@@ -157,12 +157,14 @@ export enum Sort {
   reverse = 2
 }
 
-export const ShortKeyMap = {
+export const ShortcutKeyMap = {
   Show: 'Escape',
   Ignore: 'Tab',
   Remove: '`',
   Collect: 'Enter',
 }
+
+
 
 export enum TranslateEngine {
   Baidu = 0,
