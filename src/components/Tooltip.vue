@@ -51,7 +51,6 @@ export default {
           this.show && this.title && (
               <Teleport to="body">
                 <Transition name="fade">
-
                   <div ref="tip" className="tip">
                     {this.title}
                   </div>

@@ -18,8 +18,9 @@ import Add from "@/components/Toolbar/Add.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
+import {$ref} from "vue/macros";
 
-const {toggle} = useTheme()
+const {toggleTheme} = useTheme()
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
@@ -28,9 +29,9 @@ const practiceStore = usePracticeStore()
 const showFeedbackModal = $ref(false)
 const showSettingModal = $ref(false)
 const headerRef = $ref<HTMLDivElement>(null)
+const moreOptionsRef = $ref<HTMLDivElement>(null)
 
 watch([() => settingStore.showToolbar, () => headerRef], n => {
-  console.log('n', n)
   if (n[1]) {
     if (n[0]) {
       n[1].style.marginTop = '10rem'
@@ -40,6 +41,18 @@ watch([() => settingStore.showToolbar, () => headerRef], n => {
     }
   }
 })
+
+function toggle() {
+  if (settingStore.collapse) {
+    setTimeout(() => {
+      moreOptionsRef.style.overflow = 'unset'
+    }, 300)
+  } else {
+    moreOptionsRef.style.overflow = 'hidden'
+  }
+  settingStore.collapse = !settingStore.collapse
+
+}
 </script>
 
 <template>
@@ -48,15 +61,15 @@ watch([() => settingStore.showToolbar, () => headerRef], n => {
       <div class="info hvr-grow" @click="runtimeStore.showDictModal = true">
         {{ store.dictTitle }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
       </div>
-      <div class="options">
-        <Tooltip title="收起图标">
-          <IconWrapper>
-            <Icon :icon="`system-uicons:window-collapse-${settingStore.collapse?'left':'right'}`"
-                  @click="settingStore.collapse = !settingStore.collapse"/>
-          </IconWrapper>
-        </Tooltip>
+      <div class="options" ref="moreOptionsRef">
+        <div class="more" :class="settingStore.collapse && 'hide'">
+          <Tooltip title="收起图标">
+            <IconWrapper>
+              <Icon :icon="`system-uicons:window-collapse-${settingStore.collapse?'left':'right'}`"
+                    @click="toggle"/>
+            </IconWrapper>
+          </Tooltip>
 
-        <div class="more" v-if="!settingStore.collapse">
           <Tooltip title="开关默写模式">
             <IconWrapper>
               <Icon icon="majesticons:eye-off-line"
@@ -74,7 +87,7 @@ watch([() => settingStore.showToolbar, () => headerRef], n => {
 
           <RepeatSetting/>
 
-<!--          <Add/>-->
+          <!--          <Add/>-->
 
           <Tooltip title="反馈">
             <IconWrapper>
@@ -85,24 +98,26 @@ watch([() => settingStore.showToolbar, () => headerRef], n => {
           <Tooltip title="切换主题">
             <IconWrapper>
               <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
-                    @click="toggle"/>
-              <Icon icon="tabler:sun" v-else @click="toggle"/>
+                    @click="toggleTheme"/>
+              <Icon icon="tabler:sun" v-else @click="toggleTheme"/>
             </IconWrapper>
           </Tooltip>
         </div>
 
-        <Tooltip title="设置">
-          <IconWrapper>
-            <Icon icon="uil:setting" @click="showSettingModal = true"/>
-          </IconWrapper>
-        </Tooltip>
-        <!--        <div class="base-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>-->
+        <div class="with-bg">
+          <Tooltip title="设置">
+            <IconWrapper>
+              <Icon icon="uil:setting" @click="showSettingModal = true"/>
+            </IconWrapper>
+          </Tooltip>
+          <!--        <div class="base-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>-->
 
-        <Tooltip title="单词本">
-          <IconWrapper>
-            <Icon icon="tdesign:menu-unfold" class="menu" @click="settingStore.showPanel = !settingStore.showPanel"/>
-          </IconWrapper>
-        </Tooltip>
+          <Tooltip title="单词本">
+            <IconWrapper>
+              <Icon icon="tdesign:menu-unfold" class="menu" @click="settingStore.showPanel = !settingStore.showPanel"/>
+            </IconWrapper>
+          </Tooltip>
+        </div>
       </div>
     </div>
     <Tooltip :title="settingStore.showToolbar?'收起':'展开'">
@@ -122,6 +137,16 @@ watch([() => settingStore.showToolbar, () => headerRef], n => {
 <style scoped lang="scss">
 @import "@/assets/css/variable";
 
+.test-enter-active,
+.test-leave-active {
+  transition: all 0.3s;
+}
+
+.test-enter-from,
+.test-leave-to {
+  width: 0;
+}
+
 header {
   width: var(--toolbar-width);
   margin-top: 10rem;
@@ -135,7 +160,6 @@ header {
   transition: all .3s;
   gap: 10rem;
   border: 1px solid var(--color-item-border);
-
 
   .content {
     min-height: 60rem;
@@ -160,17 +184,31 @@ header {
       }
     }
 
+    .hide {
+      transform: translateX(calc(100% - 36rem))
+    }
+
     .options {
       display: flex;
       align-items: center;
-      gap: 10rem;
+
+      .icon-wrapper {
+        margin-left: 10rem;
+      }
+
+      :deep(.icon-wrapper) {
+        margin-left: 10rem;
+      }
 
       .more {
         display: flex;
-        gap: 10rem;
         align-items: center;
-        //overflow: hidden;
         transition: all .3s;
+      }
+
+      .with-bg {
+        position: relative;
+        background: var(--color-second-bg);
       }
     }
   }

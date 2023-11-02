@@ -70,8 +70,8 @@ function test() {
   <div class="practice">
     <Toolbar/>
     <!--    <BaseButton @click="test">test</BaseButton>-->
-    <PracticeArticle v-if="store.isArticle"/>
-    <PracticeWord v-else/>
+<!--    <PracticeArticle v-if="store.isArticle"/>-->
+<!--    <PracticeWord v-else/>-->
     <Footer/>
   </div>
   <Statistics

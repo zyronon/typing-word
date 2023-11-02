@@ -9,19 +9,12 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {cloneDeep} from "lodash-es";
 import Backgorund from "@/components/Backgorund.vue";
+import useTheme from "@/hooks/useTheme.ts";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
 const settingStore = useSettingStore()
-
-// 查询当前系统主题颜色
-const match: MediaQueryList = window.matchMedia("(prefers-color-scheme: dark)")
-// 监听系统主题变化
-match.addEventListener('change', followSystem)
-
-function followSystem() {
-  document.documentElement.className = match.matches ? 'dark' : 'light'
-}
+const {setTheme} = useTheme()
 
 watch(store.$state, (n) => {
   localStorage.setItem(SaveDict.key, JSON.stringify({val: n, version: SaveDict.version}))
@@ -50,9 +43,7 @@ useStartKeyboardEventListener()
 onMounted(() => {
   store.init()
   settingStore.init()
-  if (settingStore.theme !== 'auto') {
-    document.documentElement.className = settingStore.theme
-  }
+  setTheme(settingStore.theme)
 })
 
 useEventListener('keyup', (e: KeyboardEvent) => {
