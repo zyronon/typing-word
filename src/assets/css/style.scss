@@ -38,12 +38,15 @@ html.dark {
   //--color-main-bg: rgba(17,24,39, 1);
   --color-background: transparent;
   --color-main-bg: rgba(14, 18, 23, 1);
-  --color-second-bg: rgb(60, 63, 65);
+  //--color-main-bg: rgba(30,31,34, 1);
+  --color-second-bg: rgb(43,45,48);
 
   --color-item-bg: rgb(51, 51, 51);
   --color-item-hover: #5e5e5e;
+  --color-item-hover: rgb(67,69,74);
   //--color-item-active: rgb(75, 110, 175);
-  --color-item-active: rgb(103, 103, 103);
+  //--color-item-active: rgb(103, 103, 103);
+  --color-item-active: rgb(67,69,74);
   --color-item-border: rgb(73, 73, 73);
 
   --color-header-bg: rgb(51, 51, 51);
@@ -56,6 +59,8 @@ html.dark {
   --color-gray: #bebebe;
 
   --color-scrollbar:  rgb(59, 87, 138);
+  --color-scrollbar:  rgb(77,78,81);
+  --color-scrollbar:  rgb(92,93,94);
 }
 
 $anim-time: 0.3s;

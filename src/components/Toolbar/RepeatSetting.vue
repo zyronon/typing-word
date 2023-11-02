@@ -18,6 +18,7 @@ let radio1 = $ref('1')
 useWindowClick(() => show = false)
 
 let timer = 0
+
 function toggle(val) {
   clearTimeout(timer)
   if (val) {
@@ -36,14 +37,12 @@ onMounted(() => {
 
 <template>
   <div class="setting" @click.stop="null">
-    <Tooltip title="单词循环设置">
-      <IconWrapper>
-        <Icon icon="tabler:repeat"
-              @mouseenter="toggle(true)"
-              @mouseleave="toggle(false)"
-        />
-      </IconWrapper>
-    </Tooltip>
+    <IconWrapper>
+      <Icon icon="tabler:repeat"
+            @mouseenter="toggle(true)"
+            @mouseleave="toggle(false)"
+      />
+    </IconWrapper>
     <MiniModal
         v-model="show"
         @mouseenter="toggle(true)"
@@ -51,7 +50,7 @@ onMounted(() => {
         style="width: 230rem;"
     >
       <div class="mini-row-title">
-        设置单词的循环次数
+        单词循环设置
       </div>
       <el-radio-group v-model="settingStore.repeatCount">
         <el-radio :label="1" size="default">1</el-radio>
@@ -62,10 +61,10 @@ onMounted(() => {
       </el-radio-group>
       <div class="mini-row" v-if="settingStore.repeatCount === 100">
         <label class="item-title">自定义循环次数</label>
-        <el-input-number  v-model="settingStore.repeatCustomCount"
-                  :min="6"
-                  :max="15"
-                  type="number"
+        <el-input-number v-model="settingStore.repeatCustomCount"
+                         :min="6"
+                         :max="15"
+                         type="number"
         />
       </div>
     </MiniModal>
