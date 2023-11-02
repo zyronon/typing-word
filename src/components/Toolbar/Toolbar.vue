@@ -74,7 +74,7 @@ watch([() => settingStore.showToolbar, () => headerRef], n => {
 
           <RepeatSetting/>
 
-          <Add/>
+<!--          <Add/>-->
 
           <Tooltip title="反馈">
             <IconWrapper>

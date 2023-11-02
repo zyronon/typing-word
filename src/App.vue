@@ -20,8 +20,7 @@ const match: MediaQueryList = window.matchMedia("(prefers-color-scheme: dark)")
 match.addEventListener('change', followSystem)
 
 function followSystem() {
-  const theme = match.matches ? 'dark' : 'light'
-  document.documentElement.setAttribute('data-theme', theme)
+  document.documentElement.className = match.matches ? 'dark' : 'light'
 }
 
 watch(store.$state, (n) => {
@@ -52,7 +51,7 @@ onMounted(() => {
   store.init()
   settingStore.init()
   if (settingStore.theme !== 'auto') {
-    document.documentElement.setAttribute('data-theme', settingStore.theme)
+    document.documentElement.className = settingStore.theme
   }
 })
 

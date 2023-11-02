@@ -10,7 +10,7 @@ export default function useTheme() {
     } else {
       settingStore.theme = settingStore.theme === 'light' ? 'dark' : 'light'
     }
-    document.documentElement.setAttribute('data-theme', settingStore.theme)
+    document.documentElement.className = settingStore.theme
   }
 
   return {
