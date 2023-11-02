@@ -10,7 +10,7 @@ import {Icon} from '@iconify/vue';
 
 import IconWrapper from "@/components/IconWrapper.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
-import {watch} from "vue"
+import {onMounted, watch} from "vue"
 import VolumeSetting from "@/components/Toolbar/VolumeSetting.vue";
 import RepeatSetting from "@/components/Toolbar/RepeatSetting.vue";
 import TranslateSetting from "@/components/Toolbar/TranslateSetting.vue";
@@ -51,8 +51,15 @@ function toggle() {
     moreOptionsRef.style.overflow = 'hidden'
   }
   settingStore.collapse = !settingStore.collapse
-
 }
+
+watch(() => store.load, n => {
+  if (!settingStore.collapse) {
+    moreOptionsRef.style.overflow = 'unset'
+  }
+})
+
+
 </script>
 
 <template>
@@ -185,12 +192,13 @@ header {
     }
 
     .hide {
-      transform: translateX(calc(100% - 36rem))
+      transform: translateX(calc(100% - 36rem));
     }
 
     .options {
       display: flex;
       align-items: center;
+      overflow: hidden;
 
       .icon-wrapper {
         margin-left: 10rem;

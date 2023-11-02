@@ -14,6 +14,7 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import PracticeArticle from "@/components/Practice/PracticeArticle/PracticeArticle.vue";
 import PracticeWord from "@/components/Practice/PracticeWord/PracticeWord.vue";
+import VolumeSetting from "@/components/Toolbar/VolumeSetting.vue";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
@@ -70,8 +71,8 @@ function test() {
   <div class="practice">
     <Toolbar/>
     <!--    <BaseButton @click="test">test</BaseButton>-->
-<!--    <PracticeArticle v-if="store.isArticle"/>-->
-<!--    <PracticeWord v-else/>-->
+    <PracticeArticle v-if="store.isArticle"/>
+    <PracticeWord v-else/>
     <Footer/>
   </div>
   <Statistics

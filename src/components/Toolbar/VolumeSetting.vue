@@ -10,6 +10,7 @@ import {useSettingStore} from "@/stores/setting.ts";
 import VolumeIcon from "@/components/VolumeIcon.vue";
 import {getAudioFileUrl, useChangeAllSound, usePlayAudio, useWatchAllSound} from "@/hooks/sound.ts";
 import {SoundFileOptions} from "@/utils/const.ts";
+import {throttle} from "lodash-es";
 
 const settingStore = useSettingStore()
 
@@ -18,30 +19,45 @@ let show = $ref(false)
 useWindowClick(() => show = false)
 useWatchAllSound()
 
-function toggle() {
-  console.log('e')
-  if (!show) emitter.emit(EventKey.closeOther)
-  show = !show
+let timer = 0
+function toggle(val) {
+  clearTimeout(timer)
+  if (val) {
+    emitter.emit(EventKey.closeOther)
+    show = val
+  } else {
+    timer = setTimeout(() => {
+      show = val
+    }, 100)
+  }
 }
+
 
 </script>
 
 <template>
   <div class="setting"
-       @click.stop="null">
-    <Tooltip title="音效设置">
-      <IconWrapper>
-        <Icon v-if="settingStore.allSound" icon="icon-park-outline:volume-notice"
-              @click="toggle"
-        />
-        <Icon v-else icon="icon-park-outline:volume-mute"
-              @click="toggle"
-        />
-      </IconWrapper>
-    </Tooltip>
+       @click.stop="null"
+  >
+    <IconWrapper>
+      <Icon v-if="settingStore.allSound" icon="icon-park-outline:volume-notice"
+            @mouseenter="toggle(true)"
+            @mouseleave="toggle(false)"
+      />
+      <Icon v-else icon="icon-park-outline:volume-mute"
+            @mouseenter="toggle(true)"
+            @mouseleave="toggle(false)"
+
+      />
+    </IconWrapper>
     <MiniModal
         width="250rem"
+        @mouseenter="toggle(true)"
+        @mouseleave="toggle(false)"
         v-model="show">
+      <div class="mini-row-title">
+        音效设置
+      </div>
       <div class="mini-row">
         <label class="item-title">所有音效</label>
         <div class="wrapper">
@@ -74,16 +90,16 @@ function toggle() {
           </el-select>
         </div>
       </div>
-<!--      <div class="mini-row">-->
-<!--        <label class="item-title">释义发音</label>-->
-<!--        <div class="wrapper">-->
-<!--          <el-switch v-model="settingStore.translateSound"-->
-<!--                     inline-prompt-->
-<!--                     active-text="开"-->
-<!--                     inactive-text="关"-->
-<!--          />-->
-<!--        </div>-->
-<!--      </div>-->
+      <!--      <div class="mini-row">-->
+      <!--        <label class="item-title">释义发音</label>-->
+      <!--        <div class="wrapper">-->
+      <!--          <el-switch v-model="settingStore.translateSound"-->
+      <!--                     inline-prompt-->
+      <!--                     active-text="开"-->
+      <!--                     inactive-text="关"-->
+      <!--          />-->
+      <!--        </div>-->
+      <!--      </div>-->
       <div class="mini-row">
         <label class="item-title">按键音</label>
         <div class="wrapper">

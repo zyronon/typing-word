@@ -17,9 +17,17 @@ let show = $ref(false)
 let radio1 = $ref('1')
 useWindowClick(() => show = false)
 
-function toggle() {
-  if (!show) emitter.emit(EventKey.closeOther)
-  show = !show
+let timer = 0
+function toggle(val) {
+  clearTimeout(timer)
+  if (val) {
+    emitter.emit(EventKey.closeOther)
+    show = val
+  } else {
+    timer = setTimeout(() => {
+      show = val
+    }, 100)
+  }
 }
 
 onMounted(() => {
@@ -31,11 +39,15 @@ onMounted(() => {
     <Tooltip title="单词循环设置">
       <IconWrapper>
         <Icon icon="tabler:repeat"
-              @click="toggle"/>
+              @mouseenter="toggle(true)"
+              @mouseleave="toggle(false)"
+        />
       </IconWrapper>
     </Tooltip>
     <MiniModal
         v-model="show"
+        @mouseenter="toggle(true)"
+        @mouseleave="toggle(false)"
         style="width: 230rem;"
     >
       <div class="title">选择单词的循环次数</div>

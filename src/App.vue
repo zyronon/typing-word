@@ -41,9 +41,12 @@ watch(store.wrong.originWords, (n) => {
 useStartKeyboardEventListener()
 
 onMounted(() => {
-  store.init()
-  settingStore.init()
-  setTheme(settingStore.theme)
+  console.time()
+  Promise.allSettled([store.init(), settingStore.init()]).then(e => {
+    store.load = true
+    setTheme(settingStore.theme)
+    console.timeEnd()
+  })
 })
 
 useEventListener('keyup', (e: KeyboardEvent) => {

@@ -22,6 +22,14 @@ withDefaults(defineProps<IProps>(), {
 <style lang="scss">
 @import "@/assets/css/style.scss";
 
+.mini-row-title {
+  min-height: 35rem;
+  text-align: center;
+  font-size: 16rem;
+  font-weight: bold;
+  color: var(--color-font-1);
+}
+
 .mini-row {
   min-height: 35rem;
   display: flex;
@@ -40,8 +48,9 @@ withDefaults(defineProps<IProps>(), {
   border-radius: 8rem;
   box-shadow: 0 0 8px 2px var(--color-item-border);
   padding: 10rem $space;
+  top: 40rem;
   left: 50%;
-  transform: translateX(-50%);
-  margin-top: 10rem;
+  transform: translate3d(-50%, 0, 0);
+  //margin-top: 10rem;
 }
 </style>
