@@ -50,7 +50,9 @@ onMounted(() => {
         @mouseleave="toggle(false)"
         style="width: 230rem;"
     >
-      <div class="title">选择单词的循环次数</div>
+      <div class="mini-row-title">
+        设置单词的循环次数
+      </div>
       <el-radio-group v-model="settingStore.repeatCount">
         <el-radio :label="1" size="default">1</el-radio>
         <el-radio :label="2" size="default">2</el-radio>
