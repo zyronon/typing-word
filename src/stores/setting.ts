@@ -44,7 +44,7 @@ export const useSettingStore = defineStore('setting', {
         return {
             showToolbar: true,
             show: false,
-            showPanel: false,
+            showPanel: true,
 
             allSound: true,
             wordSound: true,

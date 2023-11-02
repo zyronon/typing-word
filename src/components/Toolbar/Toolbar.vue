@@ -29,13 +29,14 @@ const showFeedbackModal = $ref(false)
 const showSettingModal = $ref(false)
 const headerRef = $ref<HTMLDivElement>(null)
 
-watch(() => settingStore.showToolbar, n => {
-  if (headerRef) {
-    if (n) {
-      headerRef.style.marginTop = '10rem'
+watch([() => settingStore.showToolbar, () => headerRef], n => {
+  console.log('n', n)
+  if (n[1]) {
+    if (n[0]) {
+      n[1].style.marginTop = '10rem'
     } else {
-      let rect = headerRef.getBoundingClientRect()
-      headerRef.style.marginTop = `-${rect.height}px`
+      let rect = n[1].getBoundingClientRect()
+      n[1].style.marginTop = `-${rect.height}px`
     }
   }
 })
@@ -55,7 +56,7 @@ watch(() => settingStore.showToolbar, n => {
           </IconWrapper>
         </Tooltip>
 
-        <div class="more"  v-if="!settingStore.collapse">
+        <div class="more" v-if="!settingStore.collapse">
           <Tooltip title="开关默写模式">
             <IconWrapper>
               <Icon icon="majesticons:eye-off-line"
