@@ -237,6 +237,8 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
                   class="word-list"
                   :is-active="active"
                   @change="(i:number) => data.index = i"
+                  :show-word="!settingStore.dictation"
+                  :show-translate="settingStore.translate"
                   :list="data.words"
                   :activeIndex="data.index"/>
             </div>

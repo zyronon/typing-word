@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {dictionaryResources} from '@/assets/dictionary.ts'
 import {useBaseStore} from "@/stores/base.ts"
-import {watch} from "vue"
-import {DefaultDict, Dict, DictResource, DictType, languageCategoryOptions} from "@/types.ts"
-import {chunk, cloneDeep, groupBy} from "lodash-es";
+import {onUnmounted, watch} from "vue"
+import {DefaultDict, Dict, DictResource, DictType, languageCategoryOptions, Sort} from "@/types.ts"
+import {chunk, cloneDeep, groupBy, reverse, shuffle} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
 import Modal from "@/components/Modal/Modal.vue";
 import BaseButton from "@/components/BaseButton.vue";
@@ -99,9 +99,6 @@ function close() {
   emit('close')
 }
 
-function resetChapterList() {
-  runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
-}
 
 function groupByDictTags(dictList: DictResource[]) {
   return dictList.reduce<Record<string, DictResource[]>>((result, dict) => {
@@ -149,7 +146,7 @@ const dictIsArticle = $computed(() => {
   return isArticle(runtimeStore.editDict.type)
 })
 
-function showWordListModal() {
+function showAllWordModal() {
   emitter.emit(EventKey.openWordListModal, {
     title: runtimeStore.editDict.name,
     translateLanguage: runtimeStore.editDict.translateLanguage,
@@ -157,6 +154,24 @@ function showWordListModal() {
   })
 }
 
+function resetChapterList() {
+  runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
+}
+
+function changeSort(v) {
+  if (v === Sort.normal) {
+    runtimeStore.editDict.words = cloneDeep(runtimeStore.editDict.originWords)
+  } else if (v === Sort.random) {
+    runtimeStore.editDict.words = shuffle(cloneDeep(runtimeStore.editDict.originWords))
+  } else {
+    runtimeStore.editDict.words = reverse(cloneDeep(runtimeStore.editDict.originWords))
+  }
+  resetChapterList()
+}
+
+onUnmounted(() => {
+  close()
+})
 </script>
 
 <template>
@@ -225,7 +240,7 @@ function showWordListModal() {
               </div>
               <div class="num" v-else>
                 总词汇：<span class="count"
-                             @click="showWordListModal"
+                             @click="showAllWordModal"
               >{{ runtimeStore.editDict.originWords.length }}词</span>
               </div>
               <div class="num">开始日期：-</div>
@@ -252,9 +267,21 @@ function showWordListModal() {
                 </div>
               </div>
               <div class="row">
+                <div class="label">单词顺序</div>
+                <div class="option">
+                  <el-radio-group v-model="runtimeStore.editDict.sort"
+                                  @change="changeSort"
+                  >
+                    <el-radio :label="Sort.normal" size="large">默认</el-radio>
+                    <el-radio :label="Sort.random" size="large">随机</el-radio>
+                    <el-radio :label="Sort.reverse" size="large">反转</el-radio>
+                  </el-radio-group>
+                </div>
+              </div>
+              <div class="row">
                 <div class="label">学习模式</div>
                 <div class="option">
-                  <el-radio-group v-model="settingStore.dictation" class="ml-4">
+                  <el-radio-group v-model="settingStore.dictation">
                     <el-radio :label="false" size="large">再认</el-radio>
                     <el-radio :label="true" size="large">拼写</el-radio>
                   </el-radio-group>
@@ -263,21 +290,12 @@ function showWordListModal() {
               <div class="row">
                 <div class="label">单词发音</div>
                 <div class="option">
-                  <el-radio-group v-model="settingStore.wordSoundType" class="ml-4">
+                  <el-radio-group v-model="settingStore.wordSoundType">
                     <el-radio label="us" size="large">美音</el-radio>
                     <el-radio label="uk" size="large">英音</el-radio>
                   </el-radio-group>
                 </div>
               </div>
-              <!--              <div class="row">-->
-              <!--                <div class="label">词序</div>-->
-              <!--                <div class="option">-->
-              <!--                  <el-radio-group v-model="radio1" class="ml-4">-->
-              <!--                    <el-radio label="1" size="large">随机</el-radio>-->
-              <!--                    <el-radio label="2" size="large">正常</el-radio>-->
-              <!--                  </el-radio-group>-->
-              <!--                </div>-->
-              <!--              </div>-->
               <div class="row">
                 <div class="label">单词自动发音</div>
                 <div class="option">
@@ -525,6 +543,10 @@ $header-height: 60rem;
         height: 40rem;
         word-break: keep-all;
         gap: 10rem;
+
+        .el-radio {
+          margin-right: 10rem;
+        }
       }
     }
 

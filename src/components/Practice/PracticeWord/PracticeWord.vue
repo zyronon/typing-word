@@ -18,10 +18,8 @@ let wordData = $ref({
 
 watch([
   () => store.load,
-  () => store.current.index,
-  () => store.current.dictType,
   () => store.currentDict.chapterIndex,
-  () => store.currentDict.chapterWordNumber,
+  () => store.currentDict.words,
 ], n => {
   getCurrentPractice()
 })
@@ -36,7 +34,7 @@ function getCurrentPractice() {
   }
   wordData.words = cloneDeep(store.chapter)
   wordData.index = 0
-  console.log('wordData', wordData)
+  // console.log('wordData', wordData)
 }
 
 onMounted(() => {

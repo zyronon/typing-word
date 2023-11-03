@@ -25,7 +25,6 @@ onMounted(() => {
     title = val.title
     let count = 0
     if (val.translateLanguage === 'common') {
-      console.time()
       for (let index = 0; index < list.length; index++) {
         let w = list[index]
         if (!w.trans.length) {
@@ -55,7 +54,6 @@ onMounted(() => {
 })
 
 watch(() => show, v => {
-  console.log('show', v)
   if (!v) {
     list = []
     progress = 0

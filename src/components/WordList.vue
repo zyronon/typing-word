@@ -13,10 +13,14 @@ const props = withDefaults(defineProps<{
   activeIndex?: number,
   showDel?: boolean,
   isActive?: boolean
+  showTranslate?: boolean
+  showWord?: boolean
 }>(), {
   activeIndex: -1,
   isActive: false,
-  showDel: false
+  showDel: false,
+  showTranslate: true,
+  showWord: true
 })
 
 const emit = defineEmits<{
@@ -77,11 +81,11 @@ const {
         @del="delWrongWord(word)"
     >
       <div class="item-title">
-        <span class="word" :class="settingStore.dictation && 'text-shadow'">{{ word.name }}</span>
+        <span class="word" :class="!showWord && 'text-shadow'">{{ word.name }}</span>
         <span class="phonetic">{{ word.usphone }}</span>
         <VolumeIcon class="volume" @click="playWordAudio(word.name)"></VolumeIcon>
       </div>
-      <div class="item-sub-title" v-if="word.trans.length && settingStore.translate">
+      <div class="item-sub-title" v-if="word.trans.length && showTranslate">
         <div v-for="item in word.trans">{{ item }}</div>
       </div>
     </ListItem>

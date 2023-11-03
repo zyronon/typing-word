@@ -41,8 +41,6 @@ A cold welcome 有bug
 
 [EditAbleText.vue](src%2Fcomponents%2FEditAbleText.vue) 不能自动聚焦
 
-在文章模式下，背单词时不能调出面板
-
 单词发音，点击第二遍时减速
 
 http://enpuz.com/ 语法分析工具
@@ -50,8 +48,6 @@ http://enpuz.com/ 语法分析工具
 键盘音效应该多放几遍
 
 加载单词列表时需要loading
-
-背单词页面div，位置应该恒定，不应该随翻译内容变动而跳动
 
 点击句子播放的音乐，需要可暂停
 

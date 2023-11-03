@@ -285,6 +285,15 @@ export const useBaseStore = defineStore('base', {
         this[dict.type].chapterWordIndex = chapterWordIndex
         this[dict.type].chapterWords = [this[dict.type].words]
       } else {
+        if (dict.type === DictType.article || dict.type === DictType.customArticle) {
+          if (chapterIndex > dict.articles.length) {
+            dict.chapterIndex = 0
+          }
+        } else {
+          if (chapterIndex > dict.chapterWords.length) {
+            dict.chapterIndex = 0
+          }
+        }
         let rIndex = this.myDicts.findIndex((v: Dict) => v.name === dict.name)
         if (rIndex > -1) {
           this.myDicts[rIndex] = dict
