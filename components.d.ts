@@ -66,5 +66,9 @@ declare module 'vue' {
     VolumeSetting: typeof import('./src/components/Toolbar/VolumeSetting.vue')['default']
     WordList: typeof import('./src/components/WordList.vue')['default']
     WordListModal: typeof import('./src/components/WordListModal.vue')['default']
+    WordListModal2: typeof import('./src/components/WordListModal2.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

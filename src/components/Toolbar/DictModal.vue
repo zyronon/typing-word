@@ -17,6 +17,7 @@ import WordListModal from "@/components/WordListModal.vue";
 import {isArticle} from "@/hooks/article.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 interface IProps {
   modelValue?: boolean,
@@ -148,6 +149,14 @@ const dictIsArticle = $computed(() => {
   return isArticle(runtimeStore.editDict.type)
 })
 
+function showWordListModal() {
+  emitter.emit(EventKey.openWordListModal, {
+    title: runtimeStore.editDict.name,
+    translateLanguage: runtimeStore.editDict.translateLanguage,
+    list: runtimeStore.editDict.words
+  })
+}
+
 </script>
 
 <template>
@@ -215,7 +224,9 @@ const dictIsArticle = $computed(() => {
               >总文章：{{ runtimeStore.editDict.articles.length }}篇
               </div>
               <div class="num" v-else>
-                总词汇：<span>{{ runtimeStore.editDict.originWords.length }}词</span>
+                总词汇：<span class="count"
+                             @click="showWordListModal"
+              >{{ runtimeStore.editDict.originWords.length }}词</span>
               </div>
               <div class="num">开始日期：-</div>
               <div class="num">花费时间：-</div>

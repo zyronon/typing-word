@@ -111,7 +111,7 @@ watch(() => store.load, n => {
           </Tooltip>
         </div>
 
-        <div class="with-bg">
+        <div class="with-bg anim">
           <Tooltip title="设置">
             <IconWrapper>
               <Icon icon="uil:setting" @click="showSettingModal = true"/>
