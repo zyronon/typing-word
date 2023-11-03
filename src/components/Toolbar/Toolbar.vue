@@ -65,9 +65,12 @@ watch(() => store.load, n => {
 <template>
   <header ref="headerRef">
     <div class="content">
-      <div class="info hvr-grow" @click="runtimeStore.showDictModal = true">
-        {{ store.dictTitle }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
-      </div>
+      <Tooltip title="词典详情">
+        <div class="info hvr-grow" @click="runtimeStore.showDictModal = true">
+          {{ store.dictTitle }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
+        </div>
+      </Tooltip>
+
       <div class="options" ref="moreOptionsRef">
         <div class="more" :class="settingStore.collapse && 'hide'">
           <Tooltip title="收起图标">

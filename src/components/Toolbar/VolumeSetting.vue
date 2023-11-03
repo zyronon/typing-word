@@ -20,7 +20,8 @@ useWindowClick(() => show = false)
 useWatchAllSound()
 
 let timer = 0
-function toggle(val) {
+
+function toggle(val: boolean) {
   clearTimeout(timer)
   if (val) {
     emitter.emit(EventKey.closeOther)
@@ -33,27 +34,32 @@ function toggle(val) {
 }
 
 
+function toggle2() {
+  if (!show){
+    emitter.emit(EventKey.closeOther)
+  }
+  show = !show
+}
+
+
 </script>
 
 <template>
   <div class="setting"
        @click.stop="null"
   >
-    <IconWrapper>
-      <Icon v-if="settingStore.allSound" icon="icon-park-outline:volume-notice"
-            @mouseenter="toggle(true)"
-            @mouseleave="toggle(false)"
-      />
-      <Icon v-else icon="icon-park-outline:volume-mute"
-            @mouseenter="toggle(true)"
-            @mouseleave="toggle(false)"
-
-      />
-    </IconWrapper>
+    <Tooltip title="音效设置">
+      <IconWrapper>
+        <Icon v-if="settingStore.allSound" icon="icon-park-outline:volume-notice"
+              @click="toggle2()"
+        />
+        <Icon v-else icon="icon-park-outline:volume-mute"
+              @click="toggle2()"
+        />
+      </IconWrapper>
+    </Tooltip>
     <MiniModal
         width="250rem"
-        @mouseenter="toggle(true)"
-        @mouseleave="toggle(false)"
         v-model="show">
       <div class="mini-row-title">
         音效设置
