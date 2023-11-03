@@ -23,9 +23,6 @@ declare module 'vue' {
     EditArticle: typeof import('./src/components/Article/EditArticle.vue')['default']
     EditBatchArticleModal: typeof import('./src/components/Article/EditBatchArticleModal.vue')['default']
     EditSingleArticleModal: typeof import('./src/components/Article/EditSingleArticleModal.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElForm: typeof import('element-plus/es')['ElForm']
-    ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElOption: typeof import('element-plus/es')['ElOption']
@@ -67,8 +64,5 @@ declare module 'vue' {
     WordList: typeof import('./src/components/WordList.vue')['default']
     WordListModal: typeof import('./src/components/WordListModal.vue')['default']
     WordListModal2: typeof import('./src/components/WordListModal2.vue')['default']
-  }
-  export interface ComponentCustomProperties {
-    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

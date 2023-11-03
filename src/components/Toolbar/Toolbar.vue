@@ -59,7 +59,6 @@ watch(() => store.load, n => {
   }
 })
 
-
 </script>
 
 <template>

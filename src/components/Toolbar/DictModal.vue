@@ -503,7 +503,6 @@ $header-height: 60rem;
       display: flex;
       flex-direction: column;
       gap: 10rem;
-      padding: 15rem;
       min-height: 100rem;
       position: relative;
       border-radius: 10rem;
@@ -529,12 +528,11 @@ $header-height: 60rem;
 
     .setting {
       overflow: auto;
-      flex: 4;
+      flex: 5;
       background: white;
       border-radius: 10rem;
       background: var(--color-second-bg);
       color: var(--color-font-1);
-      padding: 15rem;
 
       .row {
         display: flex;
@@ -555,7 +553,6 @@ $header-height: 60rem;
       border-radius: 10rem;
       background: var(--color-second-bg);
       color: var(--color-font-1);
-      padding: 10rem;
       display: flex;
       flex-direction: column;
     }

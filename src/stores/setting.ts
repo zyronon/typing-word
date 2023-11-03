@@ -107,7 +107,7 @@ export const useSettingStore = defineStore('setting', {
             setDefaultConfig()
           }
         }
-        resolve()
+        resolve(true)
       })
     }
   }

@@ -17,7 +17,8 @@ export interface ModalProps {
   footer?: boolean
   header?: boolean
   confirmButtonText?: string
-  cancelButtonText?: string
+  cancelButtonText?: string,
+  keyboard?: boolean
 }
 
 const props = withDefaults(defineProps<ModalProps>(), {
@@ -28,6 +29,7 @@ const props = withDefaults(defineProps<ModalProps>(), {
   header: true,
   confirmButtonText: '确认',
   cancelButtonText: '取消',
+  keyboard: true
 })
 
 const emit = defineEmits([
@@ -67,7 +69,7 @@ function close() {
       visible = false
       resolve(true)
       let rIndex = runtimeStore.modalList.findIndex(item => item.id === id)
-      if (rIndex > 0) {
+      if (rIndex > -1) {
         runtimeStore.modalList.splice(rIndex, 1)
       }
     }, closeTime)
@@ -79,7 +81,7 @@ watch(() => props.modelValue, n => {
   if (n) {
     id = Date.now()
     runtimeStore.modalList.push({id, close})
-    zIndex = zIndex + runtimeStore.modalList.length
+    zIndex = 999 + runtimeStore.modalList.length
     visible = true
   } else {
     close()
@@ -92,7 +94,7 @@ onMounted(() => {
     visible = true
     id = Date.now()
     runtimeStore.modalList.push({id, close})
-    zIndex = zIndex + runtimeStore.modalList.length
+    zIndex = 999 + runtimeStore.modalList.length
   }
 })
 
@@ -100,14 +102,14 @@ onUnmounted(() => {
   if (props.modelValue === undefined) {
     visible = false
     let rIndex = runtimeStore.modalList.findIndex(item => item.id === id)
-    if (rIndex > 0) {
+    if (rIndex > -1) {
       runtimeStore.modalList.splice(rIndex, 1)
     }
   }
 })
 
 useEventListener('keyup', (e: KeyboardEvent) => {
-  if (e.key === 'Escape') {
+  if (e.key === 'Escape' && props.keyboard) {
     let lastItem = runtimeStore.modalList[runtimeStore.modalList.length - 1]
     if (lastItem?.id === id) {
       close()

@@ -5,7 +5,7 @@ import {Icon} from '@iconify/vue';
 import {watch, ref} from "vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useChangeAllSound, useWatchAllSound} from "@/hooks/sound.ts";
-import {useDisableEventListener, useEventListener} from "@/hooks/event.ts";
+import {getShortcutKey, useDisableEventListener, useEventListener} from "@/hooks/event.ts";
 import {$computed, $ref} from "vue/macros";
 import {cloneDeep} from "lodash-es";
 import {DefaultShortcutKeyMap} from "@/types.ts";
@@ -25,33 +25,17 @@ useWatchAllSound()
 
 let editShortcutKey = $ref('')
 
+const disabledDefaultKeyboardEvent = $computed(()=>{
+  return editShortcutKey && tabIndex === 2
+})
+
 useEventListener('keydown', (e: KeyboardEvent) => {
-  console.log('e', e, e.keyCode, e.ctrlKey, e.altKey, e.shiftKey)
-  if (!editShortcutKey) return
+  if (!disabledDefaultKeyboardEvent) return
   e.preventDefault()
 
-  let shortcutKey = ''
-  if (e.ctrlKey) shortcutKey += 'Ctrl+'
-  if (e.altKey) shortcutKey += 'Alt+'
-  if (e.shiftKey) shortcutKey += 'Shift+'
-  if (e.key !== 'Control' && e.key !== 'Alt' && e.key !== 'Shift') {
-    if (e.keyCode >= 65 && e.keyCode <= 90) {
-      shortcutKey += e.key.toUpperCase()
-    } else {
-      if (e.key === 'ArrowRight') {
-        shortcutKey += '➡'
-      } else if (e.key === 'ArrowLeft') {
-        shortcutKey += '⬅'
-      } else if (e.key === 'ArrowUp') {
-        shortcutKey += '⬆'
-      } else if (e.key === 'ArrowDown') {
-        shortcutKey += '⬇'
-      } else {
-        shortcutKey += e.key
-      }
-    }
-  }
-  shortcutKey = shortcutKey.trim()
+  let shortcutKey = getShortcutKey(e)
+  // console.log('e', e, e.keyCode, e.ctrlKey, e.altKey, e.shiftKey)
+  // console.log('key', shortcutKey)
 
   // if (shortcutKey[shortcutKey.length-1] === '+') {
   //   settingStore.shortcutKeyMap[editShortcutKey] = DefaultShortcutKeyMap[editShortcutKey]
@@ -67,7 +51,6 @@ useEventListener('keydown', (e: KeyboardEvent) => {
     }
     settingStore.shortcutKeyMap[editShortcutKey] = shortcutKey
   }
-  console.log('key', shortcutKey)
 })
 
 </script>
@@ -75,6 +58,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
 <template>
   <Modal
       @close="emit('close')"
+      :keyboard="!disabledDefaultKeyboardEvent"
       title="设置">
     <div class="setting-modal">
       <div class="left">

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {watch} from "vue"
+import {onMounted, onUnmounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
-import {DictType, DisplayStatistics, ShortcutKeyMap, Word} from "../../../types";
+import {DefaultShortcutKeyMap, DictType, DisplayStatistics, ShortcutKey, ShortcutKeyMap, Word} from "../../../types";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
@@ -130,14 +130,6 @@ function prev() {
   data.index--
 }
 
-function toggleWordSimpleWrapper() {
-  if (!isWordSimple(word)) {
-    toggleWordSimple(word)
-    next(false)
-  } else {
-    toggleWordSimple(word)
-  }
-}
 
 function onKeyUp(e: KeyboardEvent) {
   typingRef.hideWord()
@@ -159,23 +151,46 @@ async function onKeyDown(e: KeyboardEvent) {
     case 'Backspace':
       typingRef.del()
       break
-    case ShortcutKeyMap.Collect:
-      toggleWordCollect(word)
-      break
-    case ShortcutKeyMap.Remove:
-      toggleWordSimpleWrapper()
-      break
-    case ShortcutKeyMap.Ignore:
-      next(false)
-      e.preventDefault()
-      break
-    case ShortcutKeyMap.Show:
-      typingRef.showWord()
-      break
   }
 }
 
 useOnKeyboardEventListener(onKeyDown, onKeyUp)
+
+function skip(e: KeyboardEvent) {
+  next(false)
+  e.preventDefault()
+}
+
+function show(e: KeyboardEvent) {
+  typingRef.showWord()
+}
+
+function collect(e: KeyboardEvent) {
+  toggleWordCollect(word)
+}
+
+function toggleWordSimpleWrapper() {
+  if (!isWordSimple(word)) {
+    toggleWordSimple(word)
+    next(false)
+  } else {
+    toggleWordSimple(word)
+  }
+}
+
+onMounted(() => {
+  emitter.on(ShortcutKey.Show, show)
+  emitter.on(ShortcutKey.Skip, skip)
+  emitter.on(ShortcutKey.ToggleCollect, collect)
+  emitter.on(ShortcutKey.ToggleSimple, toggleWordSimpleWrapper)
+})
+
+onUnmounted(() => {
+  emitter.off(ShortcutKey.Show, show)
+  emitter.off(ShortcutKey.Skip, skip)
+  emitter.off(ShortcutKey.ToggleCollect, collect)
+  emitter.off(ShortcutKey.ToggleSimple, toggleWordSimpleWrapper)
+})
 
 </script>
 

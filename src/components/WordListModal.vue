@@ -23,33 +23,35 @@ onMounted(() => {
     show = true
     list = val.list
     title = val.title
-    let count = 0
-    if (val.translateLanguage === 'common') {
-      for (let index = 0; index < list.length; index++) {
-        let w = list[index]
-        if (!w.trans.length) {
-          requestIdleCallback(() => {
-            if (list.length) {
-              let res = runtimeStore.translateWordList.find(a => a.name === w.name)
-              if (res) w = Object.assign(w, res)
-              count++
-              if (count === list.length) {
-                progress = 100
-              } else {
-                if (count % 30 === 0) progress = (count / list.length) * 100
+    requestIdleCallback(() => {
+      let count = 0
+      if (val.translateLanguage === 'common') {
+        for (let index = 0; index < list.length; index++) {
+          let w = list[index]
+          if (!w.trans.length) {
+            requestIdleCallback(() => {
+              if (list.length) {
+                let res = runtimeStore.translateWordList.find(a => a.name === w.name)
+                if (res) w = Object.assign(w, res)
+                count++
+                if (count === list.length) {
+                  progress = 100
+                } else {
+                  if (count % 30 === 0) progress = (count / list.length) * 100
+                }
               }
-            }
-          })
-        } else {
-          count++
-          if (count === list.length) {
-            progress = 100
+            })
           } else {
-            if (count % 30 === 0) progress = (count / list.length) * 100
+            count++
+            if (count === list.length) {
+              progress = 100
+            } else {
+              if (count % 30 === 0) progress = (count / list.length) * 100
+            }
           }
         }
       }
-    }
+    })
   })
 })
 
