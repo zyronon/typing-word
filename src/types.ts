@@ -48,6 +48,7 @@ export type DictResource = {
 export interface Dict {
     id: string,
     name: string,
+    description: string,
     sort: Sort,
     originWords: Word[],//原始单词
     words: Word[],
@@ -199,6 +200,7 @@ export const languageCategoryOptions = [
 export const DefaultDict: Dict = {
     id: '',
     name: '',
+    description: '',
     sort: Sort.normal,
     originWords: [],//原始单词
     words: [],

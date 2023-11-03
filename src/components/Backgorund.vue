@@ -12,7 +12,7 @@ import {onMounted} from "vue"
 const canvas = $ref<HTMLCanvasElement>()
 
 onMounted(() => {
-  console.log('canvas;', canvas)
+  // console.log('canvas;', canvas)
   let ctx = canvas.getContext("2d");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
