@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {onMounted, toRef, watch} from "vue";
+import {onMounted, onUnmounted, watch} from "vue";
 import Tooltip from "@/components/Tooltip.vue";
 import {Icon} from '@iconify/vue';
-import {useEsc} from "@/hooks/event.ts";
+import {useEventListener} from "@/hooks/event.ts";
 import {$ref} from "vue/macros";
 import BaseButton from "@/components/BaseButton.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
@@ -43,6 +43,7 @@ let openTime = $ref(Date.now())
 let maskRef = $ref<HTMLDivElement>(null)
 let modalRef = $ref<HTMLDivElement>(null)
 const runtimeStore = useRuntimeStore()
+let id = Date.now()
 
 function close() {
   if (!visible) {
@@ -65,7 +66,10 @@ function close() {
       emit('close')
       visible = false
       resolve(true)
-      runtimeStore.modalList.pop()
+      let rIndex = runtimeStore.modalList.findIndex(item => item.id === id)
+      if (rIndex > 0) {
+        runtimeStore.modalList.splice(rIndex, 1)
+      }
     }, closeTime)
   });
 }
@@ -73,10 +77,8 @@ function close() {
 watch(() => props.modelValue, n => {
   // console.log('n', n)
   if (n) {
-    runtimeStore.modalList.push({
-      id: Date.now(),
-      close
-    })
+    id = Date.now()
+    runtimeStore.modalList.push({id, close})
     zIndex = zIndex + runtimeStore.modalList.length
     visible = true
   } else {
@@ -88,15 +90,30 @@ onMounted(() => {
   // console.log('props.modelValue', props.modelValue)
   if (props.modelValue === undefined) {
     visible = true
-    runtimeStore.modalList.push({
-      id: Date.now(),
-      close
-    })
+    id = Date.now()
+    runtimeStore.modalList.push({id, close})
     zIndex = zIndex + runtimeStore.modalList.length
   }
 })
 
-useEsc(close, () => props.modelValue)
+onUnmounted(() => {
+  if (props.modelValue === undefined) {
+    visible = false
+    let rIndex = runtimeStore.modalList.findIndex(item => item.id === id)
+    if (rIndex > 0) {
+      runtimeStore.modalList.splice(rIndex, 1)
+    }
+  }
+})
+
+useEventListener('keyup', (e: KeyboardEvent) => {
+  if (e.key === 'Escape') {
+    let lastItem = runtimeStore.modalList[runtimeStore.modalList.length - 1]
+    if (lastItem?.id === id) {
+      close()
+    }
+  }
+})
 
 async function ok() {
   await close()
@@ -252,7 +269,7 @@ $header-height: 60rem;
     flex-direction: column;
     transition: transform $time, opacity $time;
 
-    .close{
+    .close {
       position: absolute;
       right: 20rem;
       top: 20rem;

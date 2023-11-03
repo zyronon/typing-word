@@ -228,6 +228,12 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
                   <div class="title">
                     {{ store.dictTitle }}
                   </div>
+                  <Tooltip title="下一章"
+                           v-if="store.currentDict.chapterIndex < store.currentDict.chapterWords.length - 1 && !store.isArticle">
+                    <IconWrapper>
+                      <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
+                    </IconWrapper>
+                  </Tooltip>
                 </div>
                 <div class="right">
                   {{ data.words.length }}个单词

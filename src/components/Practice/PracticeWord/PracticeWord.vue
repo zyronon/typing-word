@@ -4,12 +4,15 @@ import TypingWord from "@/components/Practice/PracticeWord/TypingWord.vue";
 import {$ref} from "vue/macros";
 import {chunk, cloneDeep} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
-import {onMounted, watch} from "vue";
+import {onMounted, onUnmounted, watch} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {Word} from "@/types.ts";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
+import {useSettingStore} from "@/stores/setting.ts";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
+const settingStore = useSettingStore()
 
 let wordData = $ref({
   words: [],
@@ -18,7 +21,6 @@ let wordData = $ref({
 
 watch([
   () => store.load,
-  () => store.currentDict.chapterIndex,
   () => store.currentDict.words,
 ], n => {
   getCurrentPractice()
@@ -37,8 +39,43 @@ function getCurrentPractice() {
   // console.log('wordData', wordData)
 }
 
-onMounted(() => {
+function write() {
+  // console.log('write')
+  settingStore.dictation = true
+  repeat()
+}
+
+//TODO 需要判断是否已忽略
+function repeat() {
+  // console.log('repeat')
+  emitter.emit(EventKey.resetWord)
   getCurrentPractice()
+}
+
+function next() {
+  // console.log('next')
+  store.currentDict.chapterIndex++
+  repeat()
+}
+
+function restart() {
+  store.currentDict.chapterIndex = 0
+  repeat()
+}
+
+onMounted(() => {
+  emitter.on(EventKey.next, next)
+  emitter.on(EventKey.write, write)
+  emitter.on(EventKey.repeat, repeat)
+  emitter.on(EventKey.restart, restart)
+  getCurrentPractice()
+})
+
+onUnmounted(() => {
+  emitter.off(EventKey.next, next)
+  emitter.off(EventKey.write, write)
+  emitter.off(EventKey.repeat, repeat)
+  emitter.off(EventKey.restart, restart)
 })
 </script>
 

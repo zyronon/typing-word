@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<{
 })
 
 const emit = defineEmits<{
-  del: [i: number],
+  del: [val: Word],
   change: [i: number]
 }>()
 
@@ -78,7 +78,7 @@ const {
         :is-simple="isWordSimple(word)"
         @toggle-simple="toggleWordSimple(word)"
         :show-del="showDel"
-        @del="delWrongWord(word)"
+        @del="emit('del',word)"
     >
       <div class="item-title">
         <span class="word" :class="!showWord && 'text-shadow'">{{ word.name }}</span>

@@ -85,15 +85,15 @@ $bg-color: rgb(226, 226, 226);
 
 .pop-confirm-content {
   position: fixed;
-  background: white;
+  background: var(--color-tooltip-bg);
   padding: 15rem;
-  box-shadow: 0 0 12px rgba(0, 0, 0, .2);
   border-radius: 4rem;
   transform: translate(-50%, calc(-100% - 10rem));
+  box-shadow: 0 0 6px 1px var(--color-tooltip-shadow);
   z-index: 999;
 
   .text {
-    color: black;
+    color: var(--color-font-1);
     text-align: start;
     font-size: 14rem;
     width: 150rem;

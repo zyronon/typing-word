@@ -32,28 +32,6 @@ watch(practiceStore, () => {
   practiceStore.correctRate = 100 - Math.trunc(((practiceStore.wrongWordNumber) / (practiceStore.inputWordNumber)) * 100)
 })
 
-function write() {
-  // console.log('write')
-  settingStore.dictation = true
-  repeat()
-}
-
-//TODO 需要判断是否已忽略
-function repeat() {
-  // console.log('repeat')
-  // getCurrentPractice()
-  emitter.emit(EventKey.resetWord)
-}
-
-function next() {
-  // console.log('next')
-  store.currentDict.chapterIndex++
-  // repeat()
-}
-
-function restart() {
-  store.currentDict.chapterIndex = 0
-}
 
 function test() {
   MessageBox.confirm(
@@ -75,12 +53,7 @@ function test() {
     <PracticeWord v-else/>
     <Footer/>
   </div>
-  <Statistics
-      @write="write"
-      @repeat="repeat"
-      @next="next"
-      @restart="restart"
-  />
+  <Statistics/>
 </template>
 
 <style scoped lang="scss">

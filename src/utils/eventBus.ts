@@ -10,4 +10,8 @@ export const EventKey = {
   keydown: 'keydown',
   keyup: 'keyup',
   onTyping: 'onTyping',
+  repeat: 'repeat',
+  next: 'next',
+  write: 'write',
+  restart: 'restart'
 }

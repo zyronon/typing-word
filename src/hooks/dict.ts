@@ -46,11 +46,19 @@ export function useWordOptions() {
     }
   }
 
+  function delSimpleWord(val: Word) {
+    let rIndex = store.simple.originWords.findIndex(v => v.name.toLowerCase() === val.name.toLowerCase())
+    if (rIndex > -1) {
+      store.simple.originWords.splice(rIndex, 1)
+    }
+  }
+
   return {
     isWordCollect,
     toggleWordCollect,
     isWordSimple,
     toggleWordSimple,
-    delWrongWord
+    delWrongWord,
+    delSimpleWord
   }
 }

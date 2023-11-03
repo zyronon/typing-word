@@ -16,13 +16,6 @@ const store = useBaseStore()
 let statModalIsOpen = $ref(false)
 let currentStat = reactive<DisplayStatistics>(cloneDeep(DefaultDisplayStatistics))
 
-const emit = defineEmits([
-  'repeat',
-  'next',
-  'write',
-  'restart'
-])
-
 onMounted(() => {
   emitter.on(EventKey.openStatModal, (stat: DisplayStatistics) => {
     currentStat = {...DefaultDisplayStatistics, ...stat}
@@ -36,7 +29,7 @@ let optionType = $ref('')
 function options(emitType: 'write' | 'repeat' | 'next' | 'restart') {
   statModalIsOpen = false
   optionType = emitType
-  emit(emitType)
+  emitter.emit(EventKey[emitType])
 }
 
 const isEnd = $computed(() => {

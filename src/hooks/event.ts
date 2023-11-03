@@ -41,7 +41,7 @@ export function useStartKeyboardEventListener() {
         || e.keyCode === 229
       ) {
         emitter.emit(EventKey.onTyping, e)
-      }else {
+      } else {
         emitter.emit(EventKey.keydown, e)
       }
     }
@@ -84,35 +84,3 @@ export function useDisableEventListener(watchVal?: any) {
     }
   })
 }
-
-export function useEsc(close: () => void, watchVal?: any) {
-  const runtimeStore = useRuntimeStore()
-  const id = $ref(Date.now())
-
-  watch(watchVal, n => {
-    if (n) {
-      runtimeStore.modalList.push({id, close})
-    } else {
-      let rIndex = runtimeStore.modalList.findIndex(item => item.id === id)
-      if (rIndex > 0) {
-        runtimeStore.modalList.splice(rIndex, 1)
-      }
-    }
-  })
-
-  onMounted(() => {
-    if (watchVal() === undefined) {
-      runtimeStore.modalList.push({id, close})
-    }
-  })
-
-  onUnmounted(() => {
-    if (watchVal() === undefined) {
-      let rIndex = runtimeStore.modalList.findIndex(item => item.id === id)
-      if (rIndex > 0) {
-        runtimeStore.modalList.splice(rIndex, 1)
-      }
-    }
-  })
-}
-

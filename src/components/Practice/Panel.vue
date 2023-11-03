@@ -11,6 +11,10 @@ import {useSettingStore} from "@/stores/setting.ts";
 import Close from "@/components/Close.vue";
 import Empty from "@/components/Empty.vue";
 import ArticleList from "@/components/Article/ArticleList.vue";
+import {useWordOptions} from "@/hooks/dict.ts";
+import {Icon} from "@iconify/vue";
+import Tooltip from "@/components/Tooltip.vue";
+import IconWrapper from "@/components/IconWrapper.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -32,6 +36,11 @@ function changeIndex(i: number, dict: Dict) {
   })
 }
 
+const {
+  delWrongWord,
+  delSimpleWord
+} = useWordOptions()
+
 </script>
 <template>
   <Transition name="fade">
@@ -45,8 +54,8 @@ function changeIndex(i: number, dict: Dict) {
         <div class="tabs">
           <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前</div>
           <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.collect.name }}</div>
-          <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.wrong.name }}</div>
-          <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.simple.name }}</div>
+          <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.simple.name }}</div>
+          <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.wrong.name }}</div>
         </div>
       </header>
       <div class="slide">
@@ -62,14 +71,18 @@ function changeIndex(i: number, dict: Dict) {
                     <el-radio-button border :label="DictType.word">单词</el-radio-button>
                     <el-radio-button border :label="DictType.article">文章</el-radio-button>
                   </el-radio-group>
-                  <div class="dict-name" v-if="practiceType === DictType.word">{{
-                      store.collect.words.length
-                    }}个单词
+                  <div class="dict-name" v-if="practiceType === DictType.word">
+                    {{ store.collect.words.length }}个单词
                   </div>
                   <div class="dict-name" v-else> {{ store.collect.articles.length }}篇文章</div>
+<!--                  <Tooltip title="添加">-->
+<!--                    <IconWrapper>-->
+<!--                      <Icon icon="fluent:add-12-regular"/>-->
+<!--                    </IconWrapper>-->
+<!--                  </Tooltip>-->
                 </div>
                 <template v-if="store.current.dictType !== DictType.collect &&
-              (
+             (
                    ( practiceType === DictType.word && store.collect.words.length) ||
                 ( practiceType === DictType.article && store.collect.articles.length)
               )">
@@ -99,6 +112,27 @@ function changeIndex(i: number, dict: Dict) {
             </div>
           </div>
           <div class="slide-item">
+            <div class="panel-page-item" v-if="store.simple.words.length">
+              <header>
+                <div class="dict-name">总词数：{{ store.simple.words.length }}</div>
+                <template v-if="store.current.dictType !== DictType.simple && store.simple.words.length">
+                  <PopConfirm
+                      :title="`确认切换？`"
+                      @confirm="changeIndex(0,store.simple)"
+                  >
+                    <BaseButton size="small">切换</BaseButton>
+                  </PopConfirm>
+                </template>
+              </header>
+              <WordList
+                  class="word-list"
+                  :show-del="true"
+                  @del="delSimpleWord"
+                  :list="store.simple.words"/>
+            </div>
+            <Empty v-else/>
+          </div>
+          <div class="slide-item">
             <div class="panel-page-item" v-if="store.wrong.words.length">
               <header>
                 <div class="dict-name">总词数：{{ store.wrong.words.length }}</div>
@@ -115,26 +149,8 @@ function changeIndex(i: number, dict: Dict) {
               <WordList
                   class="word-list"
                   :show-del="true"
+                  @del="delWrongWord"
                   :list="store.wrong.words"/>
-            </div>
-            <Empty v-else/>
-          </div>
-          <div class="slide-item">
-            <div class="panel-page-item" v-if="store.simple.words.length">
-              <header>
-                <div class="dict-name">总词数：{{ store.simple.words.length }}</div>
-                <template v-if="store.current.dictType !== DictType.simple && store.simple.words.length">
-                  <PopConfirm
-                      :title="`确认切换？`"
-                      @confirm="changeIndex(0,store.simple)"
-                  >
-                    <BaseButton size="small">切换</BaseButton>
-                  </PopConfirm>
-                </template>
-              </header>
-              <WordList
-                  class="word-list"
-                  :list="store.simple.words"/>
             </div>
             <Empty v-else/>
           </div>
