@@ -158,7 +158,7 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
 
 function skip(e: KeyboardEvent) {
   next(false)
-  e.preventDefault()
+  // e.preventDefault()
 }
 
 function show(e: KeyboardEvent) {
