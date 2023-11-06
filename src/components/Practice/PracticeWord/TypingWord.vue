@@ -214,7 +214,9 @@ onUnmounted(() => {
       <div class="next"
            @click="next(false)"
            v-if="nextWord">
-        <Tooltip title="快捷键：Tab">
+        <Tooltip
+            :title="`下一个(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Skip]})`"
+        >
           <div class="word" :class="settingStore.dictation && 'text-shadow'">{{ nextWord.name }}</div>
         </Tooltip>
         <Icon class="arrow" icon="bi:arrow-right" width="22"/>
