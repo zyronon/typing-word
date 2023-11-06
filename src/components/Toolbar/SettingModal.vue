@@ -8,7 +8,7 @@ import {useChangeAllSound, useWatchAllSound} from "@/hooks/sound.ts";
 import {getShortcutKey, useDisableEventListener, useEventListener} from "@/hooks/event.ts";
 import {$computed, $ref} from "vue/macros";
 import {cloneDeep} from "lodash-es";
-import {DefaultShortcutKeyMap} from "@/types.ts";
+import {DefaultShortcutKeyMap, ShortcutKey} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 
 const tabIndex = $ref(0)
@@ -185,20 +185,6 @@ function resetShortcutKeyMap() {
         </div>
         <div v-if="tabIndex === 1">
           <div class="row">
-            <label class="item-title">章节乱序</label>
-            <div class="wrapper">
-              <el-switch v-model="settingStore.show"
-                         inline-prompt
-                         active-text="开"
-                         inactive-text="关"
-              />
-            </div>
-          </div>
-          <div class="desc">
-            开启后，每次练习章节中单词会随机排序。下一章节生效
-          </div>
-          <div class="line"></div>
-          <div class="row">
             <label class="item-title">练习时展示上一个/下一个单词</label>
             <div class="wrapper">
               <el-switch v-model="settingStore.showNearWord"
@@ -237,7 +223,7 @@ function resetShortcutKeyMap() {
             </div>
           </div>
           <div class="desc">
-            开启后，可以通过鼠标 hover 单词或者按 Esc键 显示正确答案
+            开启后，可以通过鼠标 hover 单词或者按 {{ settingStore.shortcutKeyMap[ShortcutKey.ShowWord] }} 显示正确答案
           </div>
           <div class="line"></div>
           <div class="row">
