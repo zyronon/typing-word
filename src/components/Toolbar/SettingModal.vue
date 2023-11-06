@@ -25,7 +25,7 @@ useWatchAllSound()
 
 let editShortcutKey = $ref('')
 
-const disabledDefaultKeyboardEvent = $computed(()=>{
+const disabledDefaultKeyboardEvent = $computed(() => {
   return editShortcutKey && tabIndex === 2
 })
 
@@ -52,6 +52,11 @@ useEventListener('keydown', (e: KeyboardEvent) => {
     settingStore.shortcutKeyMap[editShortcutKey] = shortcutKey
   }
 })
+
+function resetShortcutKeyMap() {
+  settingStore.shortcutKeyMap = cloneDeep(DefaultShortcutKeyMap)
+  ElMessage.success('恢复成功')
+}
 
 </script>
 
@@ -288,7 +293,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
           <div class="row">
             <label class="item-title"></label>
             <div class="wrapper">
-              <BaseButton @click="settingStore.shortcutKeyMap = cloneDeep(DefaultShortcutKeyMap)">恢复默认</BaseButton>
+              <BaseButton @click="resetShortcutKeyMap">恢复默认</BaseButton>
             </div>
           </div>
         </div>

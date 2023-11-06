@@ -185,7 +185,7 @@ function play() {
 }
 
 onMounted(() => {
-  emitter.on(ShortcutKey.Show, show)
+  emitter.on(ShortcutKey.ShowWord, show)
   emitter.on(ShortcutKey.Skip, skip)
   emitter.on(ShortcutKey.ToggleCollect, collect)
   emitter.on(ShortcutKey.ToggleSimple, toggleWordSimpleWrapper)
@@ -193,7 +193,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  emitter.off(ShortcutKey.Show, show)
+  emitter.off(ShortcutKey.ShowWord, show)
   emitter.off(ShortcutKey.Skip, skip)
   emitter.off(ShortcutKey.ToggleCollect, collect)
   emitter.off(ShortcutKey.ToggleSimple, toggleWordSimpleWrapper)

@@ -27,7 +27,7 @@ const settingStore = useSettingStore()
 
 <template>
   <div class="options">
-    <Tooltip v-if="showEdit" :title="`编辑(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Edit]})`">
+    <Tooltip v-if="showEdit" :title="`编辑(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.EditArticle]})`">
       <IconWrapper>
         <Icon icon="tabler:edit" class="menu"
               @click="emit('edit')"/>

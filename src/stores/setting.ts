@@ -98,11 +98,16 @@ export const useSettingStore = defineStore('setting', {
               setDefaultConfig()
             } else {
               if (obj.version !== SaveConfig.version) {
-                debugger
                 for (const [key, value] of Object.entries(this.shortcutKeyMap)) {
                   if (obj.val.shortcutKeyMap[key]) this.shortcutKeyMap[key] = obj.val.shortcutKeyMap[key]
                 }
                 delete obj.val.shortcutKeyMap
+
+                for (const [key, value] of Object.entries(this.fontSize)) {
+                  if (obj.val.fontSize[key]) this.fontSize[key] = obj.val.fontSize[key]
+                }
+                delete obj.val.fontSize
+
                 this.setState(obj.val)
               } else {
                 this.setState(obj.val)

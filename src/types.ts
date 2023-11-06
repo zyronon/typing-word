@@ -18,14 +18,6 @@ export const DefaultWord: Word = {
   trans: []
 }
 
-export const SaveDict = {
-  key: 'typing-word-dict',
-  version: 1
-}
-export const SaveConfig = {
-  key: 'typing-word-config',
-  version: 6
-}
 
 export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 
@@ -171,9 +163,18 @@ export const ShortcutKeyMap = {
   Collect: 'Enter',
 }
 
+export const SaveDict = {
+  key: 'typing-word-dict',
+  version: 1
+}
+export const SaveConfig = {
+  key: 'typing-word-config',
+  version: 5
+}
+
 export enum ShortcutKey {
-  Show = 'Show',
-  Edit = 'Edit',
+  ShowWord = 'ShowWord',
+  EditArticle = 'EditArticle',
   Skip = 'Skip',
   ToggleSimple = 'ToggleSimple',
   ToggleCollect = 'ToggleCollect',
@@ -190,8 +191,8 @@ export enum ShortcutKey {
 }
 
 export const DefaultShortcutKeyMap = {
-  [ShortcutKey.Edit]: 'Ctrl+E',
-  [ShortcutKey.Show]: 'Escape',
+  [ShortcutKey.EditArticle]: 'Ctrl+E',
+  [ShortcutKey.ShowWord]: 'Escape',
   [ShortcutKey.Skip]: 'Tab',
   [ShortcutKey.ToggleSimple]: '`',
   [ShortcutKey.ToggleCollect]: 'Enter',
