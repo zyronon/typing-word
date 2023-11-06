@@ -24,7 +24,7 @@ export const SaveDict = {
 }
 export const SaveConfig = {
   key: 'typing-word-config',
-  version: 1
+  version: 6
 }
 
 export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
@@ -173,28 +173,38 @@ export const ShortcutKeyMap = {
 
 export enum ShortcutKey {
   Show = 'Show',
+  Edit = 'Edit',
   Skip = 'Skip',
   ToggleSimple = 'ToggleSimple',
   ToggleCollect = 'ToggleCollect',
   NextChapter = 'NextChapter',
-  ReplayChapter = 'ReplayChapter',
+  RepeatChapter = 'RepeatChapter',
   DictationChapter = 'DictationChapter',
   PlaySound = 'PlaySound',
   ToggleShowTranslate = 'ToggleShowTranslate',
   ToggleDictation = 'ToggleDictation',
+  OpenSetting = 'OpenSetting',
+  OpenDictDetail = 'OpenDictDetail',
+  ToggleTheme = 'ToggleTheme',
+  ToggleConciseMode = 'ToggleConciseMode',
 }
 
 export const DefaultShortcutKeyMap = {
+  [ShortcutKey.Edit]: 'Ctrl+E',
   [ShortcutKey.Show]: 'Escape',
   [ShortcutKey.Skip]: 'Tab',
   [ShortcutKey.ToggleSimple]: '`',
   [ShortcutKey.ToggleCollect]: 'Enter',
   [ShortcutKey.NextChapter]: 'Ctrl+➡',
-  [ShortcutKey.ReplayChapter]: 'Ctrl+Enter',
+  [ShortcutKey.RepeatChapter]: 'Ctrl+Enter',
   [ShortcutKey.DictationChapter]: 'Alt+Enter',
   [ShortcutKey.PlaySound]: 'Ctrl+P',
-  [ShortcutKey.ToggleShowTranslate]: 'Ctrl+T',
+  [ShortcutKey.ToggleShowTranslate]: 'Ctrl+Z',
   [ShortcutKey.ToggleDictation]: 'Ctrl+I',
+  [ShortcutKey.OpenSetting]: 'Ctrl+S',
+  [ShortcutKey.ToggleTheme]: 'Ctrl+Q',
+  [ShortcutKey.OpenDictDetail]: 'Ctrl+J',
+  [ShortcutKey.ToggleConciseMode]: 'Ctrl+M',
 }
 
 

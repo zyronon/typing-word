@@ -13,5 +13,4 @@ export const EventKey = {
   repeat: 'repeat',
   next: 'next',
   write: 'write',
-  restart: 'restart'
 }

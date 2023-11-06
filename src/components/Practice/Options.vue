@@ -5,6 +5,8 @@ import IconWrapper from "@/components/IconWrapper.vue";
 import {Icon} from "@iconify/vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useWordOptions} from "@/hooks/dict.ts";
+import {useSettingStore} from "@/stores/setting.ts";
+import {ShortcutKey} from "@/types.ts";
 
 defineProps<{
   showEdit?: boolean,
@@ -19,11 +21,13 @@ const emit = defineEmits<{
   skip: [],
 }>()
 
+const settingStore = useSettingStore()
+
 </script>
 
 <template>
   <div class="options">
-    <Tooltip v-if="showEdit" title="编辑(快捷键：Ctrl + E)">
+    <Tooltip v-if="showEdit" :title="`编辑(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Edit]})`">
       <IconWrapper>
         <Icon icon="tabler:edit" class="menu"
               @click="emit('edit')"/>
@@ -34,29 +38,31 @@ const emit = defineEmits<{
         v-if="!isSimple"
         class-name="collect"
         @click="$emit('toggleSimple')"
-        title="标记为简单词(快捷键：`)"
+        :title="`标记为简单词(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
         icon="material-symbols:check-circle-outline-rounded"/>
     <BaseIcon
         v-else
         class-name="fill"
         @click="$emit('toggleSimple')"
-        title="取消标记简单词(快捷键：`)"
+        :title="`取消标记简单词(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
         icon="material-symbols:check-circle-rounded"/>
 
     <BaseIcon
         v-if="!isCollect"
         class-name="collect"
         @click="$emit('toggleCollect')"
-        title="收藏(快捷键：Enter)"
+        :title="`收藏(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
         icon="ph:star"/>
     <BaseIcon
         v-else
         class-name="fill"
         @click="$emit('toggleCollect')"
-        title="取消收藏(快捷键：Enter)"
+        :title="`取消收藏(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
         icon="ph:star-fill"/>
 
-    <Tooltip title="跳过(快捷键：Tab)">
+    <Tooltip
+        :title="`跳过(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Skip]})`"
+    >
       <IconWrapper>
         <Icon icon="icon-park-outline:go-ahead" class="menu"
               @click="emit('skip')"/>

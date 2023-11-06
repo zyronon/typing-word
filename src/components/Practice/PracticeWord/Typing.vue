@@ -142,7 +142,11 @@ function hideWord() {
   showFullWord = false
 }
 
-defineExpose({del, showWord, hideWord})
+function play() {
+  volumeIconRef?.play()
+}
+
+defineExpose({del, showWord, hideWord, play})
 </script>
 
 <template>

@@ -10,6 +10,7 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import Modal from "@/components/Modal/Modal.vue";
 import {useSettingStore} from "@/stores/setting.ts";
+import {ShortcutKey} from "@/types.ts";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -40,7 +41,9 @@ function save() {
 
 <template>
   <div class="setting" @click.stop="null">
-    <Tooltip title="开关释义显示">
+    <Tooltip
+        :title="`开关释义显示(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
+    >
       <IconWrapper>
         <Icon v-if="settingStore.translate" icon="mdi:translate"
               @click="toggle"

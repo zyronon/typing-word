@@ -39,44 +39,8 @@ function getCurrentPractice() {
   // console.log('wordData', wordData)
 }
 
-function write() {
-  // console.log('write')
-  settingStore.dictation = true
-  repeat()
-}
+defineExpose({getCurrentPractice})
 
-//TODO 需要判断是否已忽略
-function repeat() {
-  // console.log('repeat')
-  emitter.emit(EventKey.resetWord)
-  getCurrentPractice()
-}
-
-function next() {
-  // console.log('next')
-  store.currentDict.chapterIndex++
-  repeat()
-}
-
-function restart() {
-  store.currentDict.chapterIndex = 0
-  repeat()
-}
-
-onMounted(() => {
-  emitter.on(EventKey.next, next)
-  emitter.on(EventKey.write, write)
-  emitter.on(EventKey.repeat, repeat)
-  emitter.on(EventKey.restart, restart)
-  getCurrentPractice()
-})
-
-onUnmounted(() => {
-  emitter.off(EventKey.next, next)
-  emitter.off(EventKey.write, write)
-  emitter.off(EventKey.repeat, repeat)
-  emitter.off(EventKey.restart, restart)
-})
 </script>
 
 <template>

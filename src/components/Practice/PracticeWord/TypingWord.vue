@@ -17,6 +17,7 @@ import IconWrapper from "@/components/IconWrapper.vue";
 import WordList from "@/components/WordList.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
+import {usePlayWordAudio} from "@/hooks/sound.ts";
 
 interface IProps {
   words: Word[],
@@ -40,6 +41,7 @@ const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
 const practiceStore = usePracticeStore()
 const settingStore = useSettingStore()
+const playWordAudio = usePlayWordAudio()
 
 const {
   isWordCollect,
@@ -130,7 +132,6 @@ function prev() {
   data.index--
 }
 
-
 function onKeyUp(e: KeyboardEvent) {
   typingRef.hideWord()
 }
@@ -172,10 +173,15 @@ function collect(e: KeyboardEvent) {
 function toggleWordSimpleWrapper() {
   if (!isWordSimple(word)) {
     toggleWordSimple(word)
-    next(false)
+    //延迟一下，不知道为什么不延迟会导致当前条目不自动定位到列表中间
+    setTimeout(() => next(false))
   } else {
     toggleWordSimple(word)
   }
+}
+
+function play() {
+  typingRef.play()
 }
 
 onMounted(() => {
@@ -183,6 +189,7 @@ onMounted(() => {
   emitter.on(ShortcutKey.Skip, skip)
   emitter.on(ShortcutKey.ToggleCollect, collect)
   emitter.on(ShortcutKey.ToggleSimple, toggleWordSimpleWrapper)
+  emitter.on(ShortcutKey.PlaySound, play)
 })
 
 onUnmounted(() => {
@@ -190,6 +197,7 @@ onUnmounted(() => {
   emitter.off(ShortcutKey.Skip, skip)
   emitter.off(ShortcutKey.ToggleCollect, collect)
   emitter.off(ShortcutKey.ToggleSimple, toggleWordSimpleWrapper)
+  emitter.off(ShortcutKey.PlaySound, play)
 })
 
 </script>
@@ -243,8 +251,9 @@ onUnmounted(() => {
                   <div class="title">
                     {{ store.dictTitle }}
                   </div>
-                  <Tooltip title="下一章"
-                           v-if="store.currentDict.chapterIndex < store.currentDict.chapterWords.length - 1 && !store.isArticle">
+                  <Tooltip
+                      :title="`下一章(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
+                      v-if="store.currentDict.chapterIndex < store.currentDict.chapterWords.length - 1 && !store.isArticle">
                     <IconWrapper>
                       <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
                     </IconWrapper>

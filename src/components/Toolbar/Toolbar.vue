@@ -19,6 +19,8 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {$ref} from "vue/macros";
+import {ShortcutKey} from "@/types.ts";
+import BaseIcon from "@/components/BaseIcon.vue";
 
 const {toggleTheme} = useTheme()
 const store = useBaseStore()
@@ -27,7 +29,6 @@ const runtimeStore = useRuntimeStore()
 const practiceStore = usePracticeStore()
 
 const showFeedbackModal = $ref(false)
-const showSettingModal = $ref(false)
 const headerRef = $ref<HTMLDivElement>(null)
 const moreOptionsRef = $ref<HTMLDivElement>(null)
 
@@ -64,7 +65,8 @@ watch(() => store.load, n => {
 <template>
   <header ref="headerRef">
     <div class="content">
-      <Tooltip title="词典详情">
+      <Tooltip
+          :title="`词典详情(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.OpenDictDetail]})`">
         <div class="info hvr-grow" @click="runtimeStore.showDictModal = true">
           {{ store.dictTitle }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
         </div>
@@ -79,7 +81,9 @@ watch(() => store.load, n => {
             </IconWrapper>
           </Tooltip>
 
-          <Tooltip title="开关默写模式">
+          <Tooltip
+              :title="`开关默写模式(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleShowTranslate]})`"
+          >
             <IconWrapper>
               <Icon icon="majesticons:eye-off-line"
                     v-if="settingStore.dictation"
@@ -104,7 +108,9 @@ watch(() => store.load, n => {
             </IconWrapper>
           </Tooltip>
 
-          <Tooltip title="切换主题">
+          <Tooltip
+              :title="`切换主题(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
+           >
             <IconWrapper>
               <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
                     @click="toggleTheme"/>
@@ -114,9 +120,11 @@ watch(() => store.load, n => {
         </div>
 
         <div class="with-bg anim">
-          <Tooltip title="设置">
+          <Tooltip
+              :title="`设置(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
+          >
             <IconWrapper>
-              <Icon icon="uil:setting" @click="showSettingModal = true"/>
+              <Icon icon="uil:setting" @click="runtimeStore.showSettingModal = true"/>
             </IconWrapper>
           </Tooltip>
           <!--        <div class="base-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>-->
@@ -139,7 +147,7 @@ watch(() => store.load, n => {
     </Tooltip>
   </header>
   <DictModal :model-value="runtimeStore.showDictModal" @close="runtimeStore.showDictModal = false"/>
-  <SettingModal v-if="showSettingModal" @close="showSettingModal = false"/>
+  <SettingModal v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
   <FeedbackModal v-if="showFeedbackModal" @close="showFeedbackModal = false"/>
 </template>
 

@@ -2,18 +2,23 @@
 import {Icon} from "@iconify/vue";
 import {$ref} from "vue/macros";
 import IconWrapper from "@/components/IconWrapper.vue";
+import Tooltip from "@/components/Tooltip.vue";
+import {ShortcutKey} from "@/types.ts";
+import {useSettingStore} from "@/stores/setting.ts";
 
 const props = withDefaults(defineProps<{
   time?: number,
   simple?: boolean
   cb?: Function
 }>(), {
-  time: 400,
+  time: 300,
   simple: false
 })
+const emit = defineEmits(['click'])
+const settingStore = useSettingStore()
+
 let step = $ref(2)
 let count = $ref(0)
-const emit = defineEmits(['click'])
 
 function play(time = props.time, reset = false) {
   if (reset) {
@@ -48,11 +53,15 @@ defineExpose({play})
 </script>
 
 <template>
-  <div class="center" @click.stop="click" v-if="props.simple">
-    <Icon v-if="step === 0" icon="bx:volume"/>
-    <Icon v-if="step === 1" icon="bx:volume-low"/>
-    <Icon v-if="step === 2" icon="bx:volume-full"/>
-  </div>
+  <Tooltip v-if="props.simple"
+           :title="`发音(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.PlaySound]})`"
+  >
+    <div class="center" @click.stop="click">
+      <Icon v-if="step === 0" icon="bx:volume"/>
+      <Icon v-if="step === 1" icon="bx:volume-low"/>
+      <Icon v-if="step === 2" icon="bx:volume-full"/>
+    </div>
+  </Tooltip>
   <IconWrapper @click.stop="click" v-else>
     <div class="center">
       <Icon v-if="step === 0" icon="bx:volume"/>

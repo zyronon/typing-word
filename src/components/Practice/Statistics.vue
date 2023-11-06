@@ -5,14 +5,17 @@ import Ring from "@/components/Ring.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Fireworks from "@/components/Fireworks.vue";
 import BaseButton from "@/components/BaseButton.vue";
-import {DefaultDisplayStatistics, DisplayStatistics} from "@/types.ts";
+import {DefaultDisplayStatistics, DisplayStatistics, ShortcutKey} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {onMounted, reactive} from "vue";
 import {cloneDeep} from "lodash-es";
 import {Icon} from '@iconify/vue';
 import {$computed, $ref} from "vue/macros";
+import BaseIcon from "@/components/BaseIcon.vue";
+import {useSettingStore} from "@/stores/setting.ts";
 
 const store = useBaseStore()
+const settingStore = useSettingStore()
 let statModalIsOpen = $ref(false)
 let currentStat = reactive<DisplayStatistics>(cloneDeep(DefaultDisplayStatistics))
 
@@ -26,7 +29,7 @@ onMounted(() => {
 
 let optionType = $ref('')
 
-function options(emitType: 'write' | 'repeat' | 'next' | 'restart') {
+function options(emitType: 'write' | 'repeat' | 'next') {
   statModalIsOpen = false
   optionType = emitType
   emitter.emit(EventKey[emitType])
@@ -40,7 +43,7 @@ const isEnd = $computed(() => {
 
 function onClose() {
   if (!optionType) {
-    options(isEnd ? 'restart' : 'next')
+    options('next')
   }
   optionType = ''
 }
@@ -96,28 +99,21 @@ function onClose() {
         </div>
       </div>
       <div class="footer">
-        <template v-if="isEnd">
-          <BaseButton keyboard="Ctrl + Enter" @click="options('write')">
-            默写本章
-          </BaseButton>
-          <BaseButton keyboard="Alt + Enter" @click="options('repeat')">
-            重复本章
-          </BaseButton>
-          <BaseButton keyboard="Tab" @click="options('restart')">
-            重新练习
-          </BaseButton>
-        </template>
-        <template v-else>
-          <BaseButton keyboard="Ctrl + Enter" @click="options('write')">
-            默写本章
-          </BaseButton>
-          <BaseButton keyboard="Alt + Enter" @click="options('repeat')">
-            重复本章
-          </BaseButton>
-          <BaseButton keyboard="Tab" @click="options('next')">
-            下一章
-          </BaseButton>
-        </template>
+        <BaseButton
+            :keyboard="settingStore.shortcutKeyMap[ShortcutKey.DictationChapter]"
+            @click="options('write')">
+          默写本章
+        </BaseButton>
+        <BaseButton
+            :keyboard="settingStore.shortcutKeyMap[ShortcutKey.RepeatChapter]"
+            @click="options('repeat')">
+          重复本章
+        </BaseButton>
+        <BaseButton
+            :keyboard="settingStore.shortcutKeyMap[ShortcutKey.NextChapter]"
+            @click="options('next')">
+          {{ isEnd ? '重新练习' : '下一章' }}
+        </BaseButton>
       </div>
     </div>
   </Modal>

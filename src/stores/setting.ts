@@ -98,10 +98,16 @@ export const useSettingStore = defineStore('setting', {
               setDefaultConfig()
             } else {
               if (obj.version !== SaveConfig.version) {
-                setDefaultConfig()
+                debugger
+                for (const [key, value] of Object.entries(this.shortcutKeyMap)) {
+                  if (obj.val.shortcutKeyMap[key]) this.shortcutKeyMap[key] = obj.val.shortcutKeyMap[key]
+                }
+                delete obj.val.shortcutKeyMap
+                this.setState(obj.val)
               } else {
                 this.setState(obj.val)
               }
+              localStorage.setItem(SaveConfig.key, JSON.stringify({val: this.$state, version: SaveConfig.version}))
             }
           } catch (e) {
             setDefaultConfig()

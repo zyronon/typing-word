@@ -7,6 +7,7 @@ export interface RuntimeState {
   editDict: Dict
   translateWordList: Word[]
   showDictModal: boolean
+  showSettingModal: boolean
 }
 
 export const useRuntimeStore = defineStore('runtime', {
@@ -17,6 +18,7 @@ export const useRuntimeStore = defineStore('runtime', {
       editDict: {...DefaultDict},
       translateWordList: [],
       showDictModal: false,
+      showSettingModal: false,
     }
   },
 })
