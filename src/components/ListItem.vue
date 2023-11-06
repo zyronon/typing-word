@@ -49,13 +49,13 @@ defineEmits<{
             v-if="!isSimple"
             class-name="easy"
             @click="$emit('toggleSimple')"
-            title="标记为简单词(快捷键：`)"
+            title="标记为简单词"
             icon="material-symbols:check-circle-outline-rounded"/>
         <BaseIcon
             v-else
             class-name="fill"
             @click="$emit('toggleSimple')"
-            title="取消标记简单词(快捷键：`)"
+            title="取消标记简单词"
             icon="material-symbols:check-circle-rounded"/>
 
       </template>

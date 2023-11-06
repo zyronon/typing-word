@@ -11,7 +11,7 @@ import {cloneDeep} from "lodash-es";
 import {DefaultShortcutKeyMap} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 
-const tabIndex = $ref(2)
+const tabIndex = $ref(0)
 const settingStore = useSettingStore()
 //@ts-ignore
 const gitLastCommitHash = ref(LATEST_COMMIT_HASH);
@@ -43,17 +43,22 @@ useEventListener('keydown', (e: KeyboardEvent) => {
   // }
 
   if (editShortcutKey) {
-    for (const [k, v] of Object.entries(settingStore.shortcutKeyMap)) {
-      if (v === shortcutKey && k !== editShortcutKey) {
-        settingStore.shortcutKeyMap[editShortcutKey] = DefaultShortcutKeyMap[editShortcutKey]
-        return ElMessage.warning('快捷键重复！')
+    if (shortcutKey === 'Delete') {
+      settingStore.shortcutKeyMap[editShortcutKey] = ''
+    } else {
+      for (const [k, v] of Object.entries(settingStore.shortcutKeyMap)) {
+        if (v === shortcutKey && k !== editShortcutKey) {
+          settingStore.shortcutKeyMap[editShortcutKey] = DefaultShortcutKeyMap[editShortcutKey]
+          return ElMessage.warning('快捷键重复！')
+        }
       }
+      settingStore.shortcutKeyMap[editShortcutKey] = shortcutKey
     }
-    settingStore.shortcutKeyMap[editShortcutKey] = shortcutKey
   }
 })
 
 function resetShortcutKeyMap() {
+  editShortcutKey = ''
   settingStore.shortcutKeyMap = cloneDeep(DefaultShortcutKeyMap)
   ElMessage.success('恢复成功')
 }
@@ -77,7 +82,7 @@ function resetShortcutKeyMap() {
             <span>其他设置</span>
           </div>
           <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">
-            <Icon icon="icon-park-outline:setting-config" width="20" color="#0C8CE9"/>
+            <Icon icon="material-symbols:keyboard-outline" width="20" color="#0C8CE9"/>
             <span>快捷键设置</span>
           </div>
         </div>
@@ -239,7 +244,7 @@ function resetShortcutKeyMap() {
             <label class="item-title">字体设置(仅可调整单词练习)</label>
           </div>
           <div class="row">
-            <label class="sut-title">外语字体</label>
+            <label class="sub-title">外语字体</label>
             <div class="wrapper">
               <el-slider
                   :min="10"
@@ -249,7 +254,7 @@ function resetShortcutKeyMap() {
             </div>
           </div>
           <div class="row">
-            <label class="sut-title">中文字体</label>
+            <label class="sub-title">中文字体</label>
             <div class="wrapper">
               <el-slider
                   :min="10"
@@ -264,7 +269,7 @@ function resetShortcutKeyMap() {
             <label class="item-title">其他设置</label>
           </div>
           <div class="row">
-            <label class="sut-title">切换下一个单词时间</label>
+            <label class="sub-title">切换下一个单词时间</label>
             <div class="wrapper">
               <el-input-number v-model="settingStore.waitTimeForChangeWord"
                                :min="6"
@@ -275,22 +280,27 @@ function resetShortcutKeyMap() {
             </div>
           </div>
         </div>
-        <div v-if="tabIndex === 2">
+        <div class="body" v-if="tabIndex === 2">
           <div class="row">
-            <label class="item-title">功能</label>
+            <label class="main-title">功能</label>
             <div class="wrapper">快捷键(点击可修改)</div>
           </div>
-          <div class="row" v-for="item of Object.entries(settingStore.shortcutKeyMap)">
-            <label class="item-title">{{ item[0] }}</label>
-            <div class="wrapper" @click="editShortcutKey = item[0]">
-              <div class="set-key" v-if="editShortcutKey === item[0]">
-                <input :value="item[1]" readonly type="text" @blur="editShortcutKey = ''">
-                <span @click.stop="editShortcutKey = ''">直接按键盘进行设置</span>
+          <div class="scroll">
+            <div class="row" v-for="item of Object.entries(settingStore.shortcutKeyMap)">
+              <label class="item-title">{{ $t(item[0]) }}</label>
+              <div class="wrapper" @click="editShortcutKey = item[0]">
+                <div class="set-key" v-if="editShortcutKey === item[0]">
+                  <input :value="item[1]?item[1]:'未设置快捷键'" readonly type="text" @blur="editShortcutKey = ''">
+                  <span @click.stop="editShortcutKey = ''">直接按键盘进行设置</span>
+                </div>
+                <div v-else>
+                  <div v-if="item[1]">{{ item[1] }}</div>
+                  <span v-else>未设置快捷键</span>
+                </div>
               </div>
-              <div v-else> {{ item[1] }}</div>
             </div>
           </div>
-          <div class="row">
+          <div class="row footer">
             <label class="item-title"></label>
             <div class="wrapper">
               <BaseButton @click="resetShortcutKeyMap">恢复默认</BaseButton>
@@ -350,17 +360,18 @@ function resetShortcutKeyMap() {
     background: var(--color-header-bg);
     flex: 1;
     height: 100%;
-    padding: 0 $space;
     overflow: auto;
+    padding: 0 $space;
 
     .row {
-      height: 50rem;
+      height: 40rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: $space * 5;
 
       .wrapper {
+        height: 30rem;
         flex: 1;
         display: flex;
         justify-content: flex-end;
@@ -368,7 +379,7 @@ function resetShortcutKeyMap() {
 
         span {
           text-align: right;
-          width: 30rem;
+          //width: 30rem;
           font-size: 12rem;
           color: gray;
         }
@@ -393,22 +404,39 @@ function resetShortcutKeyMap() {
       }
 
       .main-title {
-        font-size: 26rem;
+        font-size: 18rem;
         font-weight: bold;
       }
 
       .item-title {
-        font-size: 22rem;
+        font-size: 16rem;
       }
 
       .sub-title {
-        font-size: 18rem;
+        font-size: 14rem;
       }
+    }
+
+    .body {
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .scroll {
+      flex: 1;
+      padding-right: 10rem;
+      overflow: auto;
+    }
+
+    .footer {
+      margin-bottom: 20rem;
     }
 
     .desc {
       margin-bottom: 10rem;
-      font-size: 14rem;
+      font-size: 12rem;
     }
 
     .line {

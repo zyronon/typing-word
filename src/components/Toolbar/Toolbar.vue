@@ -82,7 +82,7 @@ watch(() => store.load, n => {
           </Tooltip>
 
           <Tooltip
-              :title="`开关默写模式(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleShowTranslate]})`"
+              :title="`开关默写模式(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
           >
             <IconWrapper>
               <Icon icon="majesticons:eye-off-line"

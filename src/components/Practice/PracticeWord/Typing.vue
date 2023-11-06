@@ -200,6 +200,7 @@ defineExpose({del, showWord, hideWord, play})
   }
 
   .phonetic {
+    margin-top: 5rem;
     font-family: $word-font-family;
   }
 

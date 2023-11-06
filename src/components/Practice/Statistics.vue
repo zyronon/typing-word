@@ -25,13 +25,19 @@ onMounted(() => {
     statModalIsOpen = true
     store.saveStatistics(stat)
   })
+
+  const close = () => {
+    statModalIsOpen = false
+  }
+
+  emitter.on(ShortcutKey.NextChapter, close)
+  emitter.on(ShortcutKey.RepeatChapter, close)
+  emitter.on(ShortcutKey.DictationChapter, close)
 })
 
-let optionType = $ref('')
 
 function options(emitType: 'write' | 'repeat' | 'next') {
   statModalIsOpen = false
-  optionType = emitType
   emitter.emit(EventKey[emitType])
 }
 
@@ -41,20 +47,12 @@ const isEnd = $computed(() => {
       store.currentDict.chapterIndex === store.currentDict.chapterWords.length - 1
 })
 
-function onClose() {
-  if (!optionType) {
-    options('next')
-  }
-  optionType = ''
-}
-
 </script>
 
 <template>
   <Modal
       :header="false"
-      v-model="statModalIsOpen"
-      @close="onClose">
+      v-model="statModalIsOpen">
     <div class="statistics">
       <header>
         <div class="title">{{ store.currentDict.name }}</div>
