@@ -228,18 +228,18 @@ export const useBaseStore = defineStore('base', {
                         if (res) w = Object.assign(w, res)
                       })
 
-                      resolve()
+                      resolve(true)
                     })
                   })
                 } else {
                   this.currentDict.originWords = cloneDeep(v)
                   this.currentDict.words = cloneDeep(v)
                   this.currentDict.chapterWords = chunk(this.currentDict.words, this.currentDict.chapterWordNumber)
-                  resolve()
+                  resolve(true)
                 }
               })
             } else {
-              resolve()
+              resolve(true)
             }
           }
 
@@ -257,10 +257,10 @@ export const useBaseStore = defineStore('base', {
                   v.id = uuidv4()
                   return v
                 }))
-                resolve()
+                resolve(true)
               })
             } else {
-              resolve()
+              resolve(true)
             }
           }
         }

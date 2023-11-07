@@ -73,7 +73,7 @@ export default {
 .tip {
   position: fixed;
   font-size: 14rem;
-  z-index: 999;
+  z-index: 9999;
   border-radius: 4rem;
   padding: 10rem;
   color: var(--color-font-1);

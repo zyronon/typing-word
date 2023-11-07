@@ -138,6 +138,7 @@ export interface Statistics {
 
 export interface DisplayStatistics extends Statistics {
   wrongWords: Word[]
+  inputWordNumber: number//输入数
 }
 
 export const DefaultDisplayStatistics: DisplayStatistics = {
@@ -147,6 +148,7 @@ export const DefaultDisplayStatistics: DisplayStatistics = {
   total: -1,
   correctRate: -1,
   wrongWordNumber: -1,
+  inputWordNumber: -1,
   wrongWords: [],
 }
 

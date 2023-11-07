@@ -2,7 +2,15 @@
 import {onMounted, onUnmounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
-import {DefaultShortcutKeyMap, DictType, DisplayStatistics, ShortcutKey, ShortcutKeyMap, Word} from "../../../types";
+import {
+  DefaultDisplayStatistics,
+  DefaultShortcutKeyMap,
+  DictType,
+  DisplayStatistics,
+  ShortcutKey,
+  ShortcutKeyMap,
+  Word
+} from "../../../types";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
@@ -29,19 +37,11 @@ const props = withDefaults(defineProps<IProps>(), {
   index: -1
 })
 
-let data = $ref({
-  index: props.index,
-  words: props.words,
-  wrongWords: [],
-  originWrongWords: [],
-})
-
-let typingRef: any = $ref()
+const typingRef: any = $ref()
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
 const practiceStore = usePracticeStore()
 const settingStore = useSettingStore()
-const playWordAudio = usePlayWordAudio()
 
 const {
   isWordCollect,
@@ -50,10 +50,17 @@ const {
   toggleWordSimple
 } = useWordOptions()
 
+let data = $ref({
+  index: props.index,
+  words: props.words,
+  wrongWords: [],
+})
+
+let stat = cloneDeep(DefaultDisplayStatistics)
+
 watch(() => props.words, () => {
   data.words = props.words
   data.index = props.index
-  data.originWrongWords = []
   data.wrongWords = []
 
   practiceStore.wrongWords = []
@@ -62,6 +69,8 @@ watch(() => props.words, () => {
   practiceStore.correctRate = -1
   practiceStore.inputWordNumber = 0
   practiceStore.wrongWordNumber = 0
+  stat = cloneDeep(DefaultDisplayStatistics)
+
 }, {immediate: true})
 
 watch(data, () => {
@@ -88,13 +97,27 @@ const nextWord: Word = $computed(() => {
 
 function next(isTyping: boolean = true) {
   if (data.index === data.words.length - 1) {
+
+    //复制当前错词，因为第一遍错词是最多的，后续的练习都是从错词中练习
+    if (stat.total === -1) {
+      let now = Date.now()
+      stat = {
+        startDate: practiceStore.startDate,
+        endDate: now,
+        spend: now - practiceStore.startDate,
+        total: props.words.length,
+        correctRate: -1,
+        inputWordNumber: practiceStore.inputWordNumber,
+        wrongWordNumber: data.wrongWords.length,
+        wrongWords: data.wrongWords,
+      }
+      stat.correctRate = 100 - Math.trunc(((stat.wrongWordNumber) / (stat.total)) * 100)
+    }
+
     if (data.wrongWords.length) {
       console.log('当前背完了，但还有错词')
       data.words = cloneDeep(data.wrongWords)
-      //如果原始错词没值就复制当前错词的，因为第一遍错词是最多的，后续的练习都是从错词中练习
-      if (!data.originWrongWords.length) {
-        data.originWrongWords = cloneDeep(data.wrongWords)
-      }
+
       practiceStore.total = data.words.length
       practiceStore.index = data.index = 0
       practiceStore.inputWordNumber = 0
@@ -104,17 +127,11 @@ function next(isTyping: boolean = true) {
     } else {
       console.log('这章节完了')
       isTyping && practiceStore.inputWordNumber++
+
       let now = Date.now()
-      let stat: DisplayStatistics = {
-        startDate: practiceStore.startDate,
-        endDate: now,
-        spend: now - practiceStore.startDate,
-        total: props.words.length,
-        correctRate: -1,
-        wrongWordNumber: data.originWrongWords.length,
-        wrongWords: data.originWrongWords,
-      }
-      stat.correctRate = 100 - Math.trunc(((stat.wrongWordNumber) / (stat.total)) * 100)
+      stat.endDate = now
+      stat.spend = now - stat.startDate
+
       emitter.emit(EventKey.openStatModal, stat)
     }
   } else {

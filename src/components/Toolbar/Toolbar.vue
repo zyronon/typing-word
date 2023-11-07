@@ -110,7 +110,7 @@ watch(() => store.load, n => {
 
           <Tooltip
               :title="`切换主题(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
-           >
+          >
             <IconWrapper>
               <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
                     @click="toggleTheme"/>
@@ -127,7 +127,8 @@ watch(() => store.load, n => {
               <Icon icon="uil:setting" @click="runtimeStore.showSettingModal = true"/>
             </IconWrapper>
           </Tooltip>
-          <!--        <div class="base-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>-->
+
+<!--          <div class="base-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>-->
 
           <Tooltip title="单词本">
             <IconWrapper>

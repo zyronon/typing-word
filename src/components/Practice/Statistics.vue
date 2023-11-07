@@ -21,9 +21,12 @@ let currentStat = reactive<DisplayStatistics>(cloneDeep(DefaultDisplayStatistics
 
 onMounted(() => {
   emitter.on(EventKey.openStatModal, (stat: DisplayStatistics) => {
-    currentStat = {...DefaultDisplayStatistics, ...stat}
+    if (stat) {
+      currentStat = {...DefaultDisplayStatistics, ...stat}
+      store.saveStatistics(stat)
+      console.log('stat', stat)
+    }
     statModalIsOpen = true
-    store.saveStatistics(stat)
   })
 
   const close = () => {
@@ -66,6 +69,11 @@ const isEnd = $computed(() => {
           <Ring
               :value="currentStat.wrongWordNumber"
               desc="错误数"
+              :percentage="0"
+          />
+          <Ring
+              :value="currentStat.inputWordNumber"
+              desc="输入数"
               :percentage="0"
           />
           <Ring
@@ -146,7 +154,7 @@ const isEnd = $computed(() => {
     .result {
       box-sizing: border-box;
       overflow: hidden;
-      height: 320rem;
+      height: 340rem;
       display: flex;
       flex-direction: column;
       border-radius: $card-radius;

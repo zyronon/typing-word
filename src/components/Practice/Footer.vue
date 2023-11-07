@@ -3,14 +3,11 @@
 import {$computed, $ref} from "vue/macros"
 import {onMounted, onUnmounted} from "vue"
 import {useBaseStore} from "@/stores/base.ts"
-import Tooltip from "@/components/Tooltip.vue"
 import {usePracticeStore} from "@/stores/practice.ts";
-import {Icon} from "@iconify/vue";
 import {useSettingStore} from "@/stores/setting.ts";
 
 const practiceStore = usePracticeStore()
 const settingStore = useSettingStore()
-const store = useBaseStore()
 
 function format(val: number, suffix: string = '', check: number = -1) {
   return val === check ? '-' : (val + suffix)
