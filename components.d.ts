@@ -9,9 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Add: typeof import('./src/components/Toolbar/Add.vue')['default']
     AddDict: typeof import('./src/components/Add/AddDict.vue')['default']
-    AddWord: typeof import('./src/components/Modal/AddWord.vue')['default']
     AddWordDialog: typeof import('./src/components/Modal/AddWordDialog.vue')['default']
-    AddWordModal: typeof import('./src/components/Modal/AddWordModal.vue')['default']
     ArticleList: typeof import('./src/components/Article/ArticleList.vue')['default']
     Backgorund: typeof import('./src/components/Backgorund.vue')['default']
     BaseButton: typeof import('./src/components/BaseButton.vue')['default']
@@ -60,7 +58,6 @@ declare module 'vue' {
     SettingModal: typeof import('./src/components/Modal/SettingModal.vue')['default']
     Slide: typeof import('./src/components/Slide.vue')['default']
     Statistics: typeof import('./src/components/Practice/Statistics.vue')['default']
-    Swiper: typeof import('./src/components/Swiper.vue')['default']
     Toolbar: typeof import('./src/components/Toolbar/Toolbar.vue')['default']
     Tooltip: typeof import('./src/components/Tooltip.vue')['default']
     TranslateSetting: typeof import('./src/components/Toolbar/TranslateSetting.vue')['default']
