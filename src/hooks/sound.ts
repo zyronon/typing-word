@@ -3,6 +3,7 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {PronunciationApi} from "@/types.ts";
 import beep from "@/assets/sound/beep.wav";
 import correct from "@/assets/sound/correct.wav";
+import {$ref} from "vue/macros";
 
 export function useSound(audioSrcList?: string[], audioFileLength?: number) {
   let audioList: HTMLAudioElement[] = $ref([])
@@ -93,6 +94,30 @@ export function usePlayWordAudio() {
 
   return playAudio
 }
+
+export function useTTsPlayAudio() {
+  let isPlay = $ref(false)
+
+  function play(text: string) {
+    // if (isPlay) {
+    //   isPlay = false
+    //   return window.speechSynthesis.pause();
+    // }
+    let msg = new SpeechSynthesisUtterance();
+    msg.text = text
+    msg.rate = 1;
+    msg.pitch = 1;
+    // msg.lang = 'en-US';
+    msg.lang = 'zh-CN';
+    isPlay = true
+    window.speechSynthesis.speak(msg);
+    console.log('text',text)
+
+  }
+
+  return play
+}
+
 
 export function usePlayAudio(url: string) {
   new Audio(url).play().then(r => void 0)

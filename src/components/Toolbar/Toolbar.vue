@@ -2,25 +2,20 @@
 import Tooltip from "@/components/Tooltip.vue"
 import useTheme from "@/hooks/useTheme.ts"
 import {useBaseStore} from "@/stores/base.ts"
-import SettingModal from "@/components/Toolbar/SettingModal.vue"
 import FeedbackModal from "@/components/Toolbar/FeedbackModal.vue"
-import DictModal from "@/components/Toolbar/DictModal.vue"
 
 import {Icon} from '@iconify/vue';
 
 import IconWrapper from "@/components/IconWrapper.vue";
-import {emitter, EventKey} from "@/utils/eventBus.ts"
-import {onMounted, watch} from "vue"
+import {watch} from "vue"
 import VolumeSetting from "@/components/Toolbar/VolumeSetting.vue";
 import RepeatSetting from "@/components/Toolbar/RepeatSetting.vue";
 import TranslateSetting from "@/components/Toolbar/TranslateSetting.vue";
-import Add from "@/components/Toolbar/Add.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {$ref} from "vue/macros";
 import {ShortcutKey} from "@/types.ts";
-import BaseIcon from "@/components/BaseIcon.vue";
 
 const {toggleTheme} = useTheme()
 const store = useBaseStore()
@@ -147,8 +142,6 @@ watch(() => store.load, n => {
             color="#999"/>
     </Tooltip>
   </header>
-  <DictModal :model-value="runtimeStore.showDictModal" @close="runtimeStore.showDictModal = false"/>
-  <SettingModal v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
   <FeedbackModal v-if="showFeedbackModal" @close="showFeedbackModal = false"/>
 </template>
 

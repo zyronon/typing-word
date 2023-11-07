@@ -1,21 +1,29 @@
 <script setup lang="ts">
-import Modal from "@/components/Modal/Modal.vue"
-import {Icon} from '@iconify/vue';
-import {useSettingStore} from "@/stores/setting.ts";
-import DictList from "@/components/DictList.vue";
-import {Dict, DictType, languageCategoryOptions, Sort} from "@/types.ts";
+
+import WordList from "@/components/WordList.vue";
 import {$computed, $ref} from "vue/macros";
+import Slide from "@/components/Slide.vue";
+import DictList from "@/components/DictList.vue";
+import {Icon} from "@iconify/vue";
+import {useBaseStore} from "@/stores/base.ts";
+import {useSettingStore} from "@/stores/setting.ts";
+import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useDisableEventListener} from "@/hooks/event.ts";
+import {Dict, DictType, languageCategoryOptions, Sort} from "@/types.ts";
 import {onMounted, reactive, watch} from "vue";
+import {FormInstance, FormRules} from "element-plus";
 import {dictionaryResources} from "@/assets/dictionary.ts";
 import {cloneDeep} from "lodash-es";
-import {useRuntimeStore} from "@/stores/runtime.ts";
-import {FormInstance, FormRules} from "element-plus";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import ChapterList from "@/components/ChapterList.vue";
-import {useBaseStore} from "@/stores/base.ts";
 
-const baseStore = useBaseStore()
+let data = $ref({
+  words: [],
+  index: 0
+})
+
+
+const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 
@@ -23,15 +31,21 @@ const emit = defineEmits([
   'close',
 ])
 
-let step = $ref(1)
+let step = $ref(0)
 let isEdit = $ref(true)
 
 useDisableEventListener()
 
-
 let list = $computed(() => {
-  return baseStore.myDicts.filter(v => v.type === DictType.customArticle).concat([{name: '',} as any])
+  return store.myDicts.filter(v => v.type === DictType.customArticle)
+      .concat([
+        store.simple,
+        store.wrong,
+        store.collect
+      ])
+      .concat([{name: '',} as any])
 })
+
 let form = reactive({
   id: '',
   name: '123',
@@ -40,6 +54,13 @@ let form = reactive({
   tags: [],
   languageCategory: '',
   language: '',
+})
+
+let wordForm = reactive({
+  name: '',
+  translate: '',
+  usphone: '',
+  ukphone: '',
 })
 
 let languageCategoryList = []
@@ -107,16 +128,16 @@ async function onSubmit() {
         ...form,
       }
       if (form.id) {
-        let rIndex = baseStore.myDicts.findIndex(v => v.id === form.id)
+        let rIndex = store.myDicts.findIndex(v => v.id === form.id)
         runtimeStore.editDict = data
-        baseStore.myDicts[rIndex] = cloneDeep(data)
+        store.myDicts[rIndex] = cloneDeep(data)
         isEdit = false
       } else {
-        if (baseStore.myDicts.find(v => v.name === form.name)) {
+        if (store.myDicts.find(v => v.name === form.name)) {
           return ElMessage.warning('已有相同名称词典！')
         } else {
           runtimeStore.editDict = data
-          baseStore.myDicts.push(cloneDeep(data))
+          store.myDicts.push(cloneDeep(data))
           isEdit = false
           console.log('submit!', data)
         }
@@ -130,49 +151,44 @@ async function onSubmit() {
 function close() {
   emit('close')
 }
-
 </script>
 
 <template>
-  <Modal
-      :show-close="false"
-      :header="false"
-      @close="close"
-      title="我的词典">
-    <div class="slide">
-      <div class="slide-list" :class="`step${step}`">
-        <div class="page">
-          <header>
-            <div class="title">
-              我的词典
-            </div>
-            <Icon @click="close"
-                  class="hvr-grow pointer"
-                  width="20" color="#929596"
-                  icon="ion:close-outline"/>
-          </header>
-          <div class="list">
-            <DictList
-                @add="step = 1;isEdit = true"
-                @selectDict="selectDict"
-                :list="list"/>
+  <div id="AddWordDialog">
+    <Slide slide-count="2" :step="step">
+      <div class="page dict-list-page">
+        <header>
+          <div class="title">
+            我的词典
           </div>
+          <Icon @click="close"
+                class="hvr-grow pointer"
+                width="20" color="#929596"
+                icon="ion:close-outline"/>
+        </header>
+        <div class="list">
+          <DictList
+              @add="step = 1;isEdit = true"
+              @selectDict="selectDict"
+              :list="list"/>
         </div>
-        <div class="page add-page">
-          <header>
-            <div class="left" @click.stop="step = 0">
-              <Icon icon="octicon:arrow-left-24" class="go" width="20"/>
-              <div class="title">
-                词典详情
-              </div>
+      </div>
+      <div class="page add-page">
+        <header>
+          <div class="left" @click.stop="step = 0">
+            <Icon icon="octicon:arrow-left-24" class="go" width="20"/>
+            <div class="title">
+              词典详情
             </div>
-            <Icon @click="close"
-                  class="hvr-grow pointer"
-                  width="20" color="#929596"
-                  icon="ion:close-outline"/>
-          </header>
-          <div class="detail" v-if="!isEdit">
-            <div class="dict">
+          </div>
+          <Icon @click="close"
+                class="hvr-grow pointer"
+                width="20" color="#929596"
+                icon="ion:close-outline"/>
+        </header>
+        <div class="detail" v-if="!isEdit">
+          <div class="dict">
+            <div class="info">
               <div class="name">{{ runtimeStore.editDict.name }}</div>
               <div class="desc">{{ runtimeStore.editDict.description }}</div>
               <div class="num">总文章：{{ runtimeStore.editDict.articles.length }}篇</div>
@@ -185,86 +201,103 @@ function close() {
                              :show-text="false"/>
               </div>
             </div>
-            <div class="other">
-              <div class="common-title">
-                文章列表：共{{ runtimeStore.editDict.articles.length }}章
+            <div class="add" v-if="false">
+              <el-form
+                  ref="ruleFormRef"
+                  :rules="rules"
+                  :model="wordForm"
+                  label-width="60px">
+                <el-form-item label="单词" prop="name">
+                  <el-input v-model="wordForm.name"/>
+                </el-form-item>
+                <el-form-item label="翻译">
+                  <el-input v-model="wordForm.translate" type="textarea"/>
+                </el-form-item>
+                <el-form-item label="音标">
+                  <el-input v-model="wordForm.ukphone"/>
+                </el-form-item>
+                <el-form-item>
+                  <el-button @click="step = 0">返回</el-button>
+                  <el-button type="primary" @click="onSubmit">确定</el-button>
+                </el-form-item>
+              </el-form>
+            </div>
+          </div>
+          <div class="list">
+            <div class="list-header">
+              <div class="name">{{ runtimeStore.editDict.name }}</div>
+              <div class="flex-center gap10">
+                <div class="name">{{ runtimeStore.editDict.words.length }}个单词</div>
                 <Icon @click="emitter.emit(EventKey.openArticleListModal)"
                       class="hvr-grow pointer"
                       width="24" color="#929596"
                       icon="mi:add"/>
               </div>
-              <ChapterList
-                  :is-article="true"
-                  v-model:active-index="runtimeStore.editDict.chapterIndex"
-                  :dict="runtimeStore.editDict"/>
             </div>
-          </div>
-          <div class="edit" v-else>
-            <el-form
-                ref="ruleFormRef"
-                :rules="rules"
-                :model="form"
-                label-width="120px">
-              <el-form-item label="名称" prop="name">
-                <el-input v-model="form.name"/>
-              </el-form-item>
-              <el-form-item label="描述">
-                <el-input v-model="form.description" type="textarea"/>
-              </el-form-item>
-              <el-form-item label="分类" prop="languageCategory">
-                <el-select
-                    v-model="form.languageCategory" placeholder="请选择选项">
-                  <el-option :label="i.name" :value="i.id" v-for="i in languageCategoryOptions"/>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="用途" prop="category">
-                <el-select v-model="form.category" placeholder="请选择选项">
-                  <el-option :label="i" :value="i" v-for="i in categoryList[form.languageCategory]"/>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="标签" prop="tags">
-                <el-select
-                    multiple
-                    v-model="form.tags" placeholder="请选择选项">
-                  <el-option :label="i" :value="i" v-for="i in tagList[form.category]"/>
-                </el-select>
-              </el-form-item>
-              <el-form-item>
-                <el-button @click="step = 0">返回</el-button>
-                <el-button type="primary" @click="onSubmit">确定</el-button>
-              </el-form-item>
-            </el-form>
+            <WordList
+                class="word-list"
+                :is-active="true"
+                @change="(i:number) => data.index = i"
+                :list="runtimeStore.editDict.words"
+                :activeIndex="data.index"/>
           </div>
         </div>
+        <div class="edit" v-else>
+          <el-form
+              ref="ruleFormRef"
+              :rules="rules"
+              :model="form"
+              label-width="120px">
+            <el-form-item label="名称" prop="name">
+              <el-input v-model="form.name"/>
+            </el-form-item>
+            <el-form-item label="描述">
+              <el-input v-model="form.description" type="textarea"/>
+            </el-form-item>
+            <el-form-item label="分类" prop="languageCategory">
+              <el-select
+                  v-model="form.languageCategory" placeholder="请选择选项">
+                <el-option :label="i.name" :value="i.id" v-for="i in languageCategoryOptions"/>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="用途" prop="category">
+              <el-select v-model="form.category" placeholder="请选择选项">
+                <el-option :label="i" :value="i" v-for="i in categoryList[form.languageCategory]"/>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="标签" prop="tags">
+              <el-select
+                  multiple
+                  v-model="form.tags" placeholder="请选择选项">
+                <el-option :label="i" :value="i" v-for="i in tagList[form.category]"/>
+              </el-select>
+            </el-form-item>
+            <el-form-item>
+              <el-button @click="step = 0">返回</el-button>
+              <el-button type="primary" @click="onSubmit">确定</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
       </div>
-    </div>
-  </Modal>
+    </Slide>
+  </div>
 </template>
 
 <style scoped lang="scss">
 @import "@/assets/css/variable";
 
-.slide {
+#AddWordDialog {
+  position: fixed;
   width: 700rem;
-  height: 75vh;
+  height: 70vh;
+  left: 50%;
+  top: 50%;
+  transform: translate3D(-50%, -50%, 0);
+  z-index: 9999999;
+  background: var(--color-second-bg);
 
-  .slide-list {
-    width: 200%;
-    height: 100%;
-    display: flex;
-    transition: all .5s;
-  }
+  $header-height: 60rem;
 
-  .step1 {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-$header-height: 60rem;
-.page {
-  padding: $space;
-  padding-top: 0;
-  width: 50%;
 
   header {
     color: var(--color-font-3);
@@ -280,62 +313,76 @@ $header-height: 60rem;
       align-items: center;
     }
   }
-}
 
-.add-page {
-  color: black;
+  .dict-list-page {
+    padding: 0 $space;
+    box-sizing: border-box;
 
-  .detail {
-    display: flex;
-    position: relative;
-    gap: $space;
+  }
 
-    .dict {
-      overflow: auto;
-      flex: 3;
-      display: flex;
-      flex-direction: column;
-      gap: 10rem;
-      padding: 15rem;
-      min-height: 100rem;
-      position: relative;
-      border-radius: 10rem;
-      background: var(--color-second-bg);
-      color: var(--color-font-1);
-      font-size: 14rem;
+  .add-page {
+    color: var(--color-font-1);
+    //display: flex;
+    //flex-direction: column;
 
-      .name {
-        font-size: 28rem;
-        margin-bottom: 10rem;
-      }
-
-      .desc {
-        font-size: 18rem;
-        margin-bottom: 30rem;
-      }
-
-      .count {
-        cursor: pointer;
-        border-bottom: 2px solid var(--color-item-active);
-      }
+    header {
+      padding: 0 $space;
     }
 
-    .other {
-      flex: 5;
-      border-radius: 10rem;
-      background: var(--color-second-bg);
-      color: var(--color-font-1);
-      padding: 10rem;
+    .detail {
+      flex: 1;
+      height: calc(100% - $header-height);
       display: flex;
-      flex-direction: column;
+      position: relative;
 
-      .common-title {
+      .dict {
+        width: 50%;
+        border-radius: 10rem;
+        background: var(--color-second-bg);
+        color: var(--color-font-1);
+        padding-left: $space;
+        box-sizing: border-box;
+
+        .info {
+          border-radius: 8rem;
+          background: gray;
+          padding: 20rem;
+
+          .name {
+            font-size: 28rem;
+            margin-bottom: 10rem;
+          }
+
+          .desc {
+            font-size: 18rem;
+            margin-bottom: 30rem;
+          }
+        }
+      }
+
+      .list {
+        flex: 1;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
+        font-size: 14rem;
+        padding-bottom: 20rem;
+
+        .list-header {
+          min-height: 50rem;
+          padding: 10rem 24rem;
+          box-sizing: border-box;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 16rem;
+          color: var(--color-font-3);
+
+          .name {
+            font-size: 18rem;
+          }
+        }
       }
     }
   }
 }
-
 </style>

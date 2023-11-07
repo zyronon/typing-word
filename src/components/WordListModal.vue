@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import VolumeIcon from "@/components/VolumeIcon.vue";
+import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import Modal from "@/components/Modal/Modal.vue";
 import {$ref} from "vue/macros";
 import {onMounted, onUnmounted, watch} from "vue";

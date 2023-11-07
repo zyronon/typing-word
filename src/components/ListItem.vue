@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import BaseIcon from "@/components/BaseIcon.vue";
-import VolumeIcon from "@/components/VolumeIcon.vue";
+import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 
 defineProps<{
   showVolume?: boolean,

@@ -25,7 +25,7 @@ function toggle() {
         />
       </IconWrapper>
     </Tooltip>
-        <EditBatchArticleModal/>
+    <EditBatchArticleModal/>
     <AddDict v-if="show" @close="show = false"/>
   </div>
 </template>

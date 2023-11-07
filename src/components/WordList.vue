@@ -3,9 +3,8 @@ import {Word} from "../types";
 import {watch} from "vue"
 import {useSettingStore} from "@/stores/setting.ts";
 import ListItem from "@/components/ListItem.vue";
-import VolumeIcon from "@/components/VolumeIcon.vue";
+import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
-import {useBaseStore} from "@/stores/base.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
 
 const props = withDefaults(defineProps<{
@@ -59,7 +58,6 @@ const {
   toggleWordCollect,
   isWordSimple,
   toggleWordSimple,
-  delWrongWord
 } = useWordOptions()
 
 </script>

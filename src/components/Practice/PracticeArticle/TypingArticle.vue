@@ -141,8 +141,6 @@ function onTyping(e: KeyboardEvent) {
 
     emit('nextWord', currentWord)
 
-
-
     if (!currentSentence.words[wordIndex]) {
       wordIndex = 0
       sentenceIndex++

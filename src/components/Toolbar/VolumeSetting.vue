@@ -1,13 +1,13 @@
 <script setup lang="ts">
 
-import MiniModal from "@/components/MiniModal.vue";
+import MiniModal from "@/components/Modal/MiniModal.vue";
 import {Icon} from "@iconify/vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import {useWindowClick} from "@/hooks/event.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
-import VolumeIcon from "@/components/VolumeIcon.vue";
+import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {getAudioFileUrl, useChangeAllSound, usePlayAudio, useWatchAllSound} from "@/hooks/sound.ts";
 import {SoundFileOptions} from "@/utils/const.ts";
 import {throttle} from "lodash-es";

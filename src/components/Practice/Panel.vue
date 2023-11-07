@@ -8,7 +8,7 @@ import {Dict, DictType} from "@/types.ts"
 import PopConfirm from "@/components/PopConfirm.vue"
 import BaseButton from "@/components/BaseButton.vue";
 import {useSettingStore} from "@/stores/setting.ts";
-import Close from "@/components/Close.vue";
+import Close from "@/components/icon/Close.vue";
 import Empty from "@/components/Empty.vue";
 import ArticleList from "@/components/Article/ArticleList.vue";
 import {useWordOptions} from "@/hooks/dict.ts";
@@ -65,21 +65,23 @@ const {
           </div>
           <div class="slide-item">
             <div class="panel-page-item">
-              <header>
+              <div class="list-header">
                 <div class="left">
                   <el-radio-group v-model="practiceType">
                     <el-radio-button border :label="DictType.word">单词</el-radio-button>
                     <el-radio-button border :label="DictType.article">文章</el-radio-button>
                   </el-radio-group>
-                  <div class="dict-name" v-if="practiceType === DictType.word">
+                  <Tooltip title="添加">
+                    <IconWrapper>
+                      <Icon icon="fluent:add-12-regular"/>
+                    </IconWrapper>
+                  </Tooltip>
+                  <div class="dict-name" v-if="practiceType === DictType.word && store.collect.words.length">
                     {{ store.collect.words.length }}个单词
                   </div>
-                  <div class="dict-name" v-else> {{ store.collect.articles.length }}篇文章</div>
-<!--                  <Tooltip title="添加">-->
-<!--                    <IconWrapper>-->
-<!--                      <Icon icon="fluent:add-12-regular"/>-->
-<!--                    </IconWrapper>-->
-<!--                  </Tooltip>-->
+                  <div class="dict-name" v-if="practiceType === DictType.article && store.collect.articles.length">
+                    {{ store.collect.articles.length }}篇文章
+                  </div>
                 </div>
                 <template v-if="store.current.dictType !== DictType.collect &&
              (
@@ -93,7 +95,7 @@ const {
                     <BaseButton size="small">切换</BaseButton>
                   </PopConfirm>
                 </template>
-              </header>
+              </div>
               <template v-if="practiceType === DictType.word">
                 <WordList
                     v-if="store.collect.words.length"
@@ -113,7 +115,7 @@ const {
           </div>
           <div class="slide-item">
             <div class="panel-page-item" v-if="store.simple.words.length">
-              <header>
+              <div class="list-header">
                 <div class="dict-name">总词数：{{ store.simple.words.length }}</div>
                 <template v-if="store.current.dictType !== DictType.simple && store.simple.words.length">
                   <PopConfirm
@@ -123,7 +125,7 @@ const {
                     <BaseButton size="small">切换</BaseButton>
                   </PopConfirm>
                 </template>
-              </header>
+              </div>
               <WordList
                   class="word-list"
                   :show-del="true"
@@ -134,7 +136,7 @@ const {
           </div>
           <div class="slide-item">
             <div class="panel-page-item" v-if="store.wrong.words.length">
-              <header>
+              <div class="list-header">
                 <div class="dict-name">总词数：{{ store.wrong.words.length }}</div>
                 <template
                     v-if="store.current.dictType !== DictType.wrong && store.wrong.words.length">
@@ -145,7 +147,7 @@ const {
                     <BaseButton size="small">切换</BaseButton>
                   </PopConfirm>
                 </template>
-              </header>
+              </div>
               <WordList
                   class="word-list"
                   :show-del="true"

@@ -53,15 +53,13 @@ defineExpose({play})
 </script>
 
 <template>
-  <Tooltip v-if="props.simple"
-           :title="`发音(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.PlaySound]})`"
-  >
-    <div class="center" @click.stop="click">
-      <Icon v-if="step === 0" icon="bx:volume"/>
-      <Icon v-if="step === 1" icon="bx:volume-low"/>
-      <Icon v-if="step === 2" icon="bx:volume-full"/>
-    </div>
-  </Tooltip>
+  <div class="center"
+       v-if="props.simple"
+       @click.stop="click">
+    <Icon v-if="step === 0" icon="bx:volume"/>
+    <Icon v-if="step === 1" icon="bx:volume-low"/>
+    <Icon v-if="step === 2" icon="bx:volume-full"/>
+  </div>
   <IconWrapper @click.stop="click" v-else>
     <div class="center">
       <Icon v-if="step === 0" icon="bx:volume"/>

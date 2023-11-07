@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import {DefaultWord, Word} from "@/types.ts";
-import VolumeIcon from "@/components/VolumeIcon.vue";
+import {DefaultWord, ShortcutKey, Word} from "@/types.ts";
+import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {$computed, $ref} from "vue/macros";
 import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
-import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
+import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio, useTTsPlayAudio} from "@/hooks/sound.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {cloneDeep} from "lodash-es";
 import {onUnmounted, watch, onMounted} from "vue";
+import Tooltip from "@/components/Tooltip.vue";
 
 interface IProps {
   word: Word,
@@ -35,7 +36,9 @@ const playBeep = usePlayBeep()
 const playCorrect = usePlayCorrect()
 const playKeyboardAudio = usePlayKeyboardAudio()
 const playWordAudio = usePlayWordAudio()
+const ttsPlayAudio = useTTsPlayAudio()
 const volumeIconRef: any = $ref()
+const volumeTranslateIconRef: any = $ref()
 
 let displayWord = $computed(() => {
   return props.word.name.slice(input.length + wrong.length)
@@ -157,7 +160,20 @@ defineExpose({del, showWord, hideWord, play})
       opacity: settingStore.translate ? 1 : 0
     }"
     >
-      <div v-for="i in word.trans">{{ i }}</div>
+      <div class="translate-item" v-for="(v,i) in word.trans">
+        <span>{{ v }}</span>
+<!--        <div class="volumeIcon">-->
+<!--          <Tooltip-->
+<!--              v-if="i === word.trans.length - 1"-->
+<!--              :title="`发音(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.PlayTranslatePronunciation]})`"-->
+<!--          >-->
+<!--            <VolumeIcon-->
+<!--                ref="volumeTranslateIconRef"-->
+<!--                :simple="true"-->
+<!--                :cb="()=>ttsPlayAudio(word.trans.join(';'))"/>-->
+<!--          </Tooltip>-->
+<!--        </div>-->
+      </div>
     </div>
     <div class="word-wrapper">
       <div class="word"
@@ -175,7 +191,11 @@ defineExpose({del, showWord, hideWord, play})
         </template>
         <span class="letter" v-else>{{ displayWord }}</span>
       </div>
-      <VolumeIcon ref="volumeIconRef" :simple="true" :cb="()=>playWordAudio(word.name)"/>
+      <Tooltip
+          :title="`发音(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.PlayWordPronunciation]})`"
+      >
+        <VolumeIcon ref="volumeIconRef" :simple="true" :cb="() => playWordAudio(word.name)"/>
+      </Tooltip>
     </div>
     <div class="phonetic">{{ settingStore.wordSoundType === 'us' ? word.usphone : word.ukphone }}</div>
   </div>
@@ -209,6 +229,23 @@ defineExpose({del, showWord, hideWord, play})
     transform: translateY(-50%);
     margin-bottom: 90rem;
     color: var(--color-font-2);
+
+    &:hover {
+      .volumeIcon {
+        opacity: 1;
+      }
+    }
+
+    .translate-item {
+      display: flex;
+      align-items: center;
+      gap: 10rem;
+    }
+
+    .volumeIcon {
+      transition: opacity .3s;
+      opacity: 0;
+    }
   }
 
   .word-wrapper {

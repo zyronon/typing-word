@@ -206,7 +206,7 @@ onMounted(() => {
   emitter.on(ShortcutKey.Skip, skip)
   emitter.on(ShortcutKey.ToggleCollect, collect)
   emitter.on(ShortcutKey.ToggleSimple, toggleWordSimpleWrapper)
-  emitter.on(ShortcutKey.PlaySound, play)
+  emitter.on(ShortcutKey.PlayWordPronunciation, play)
 })
 
 onUnmounted(() => {
@@ -214,7 +214,7 @@ onUnmounted(() => {
   emitter.off(ShortcutKey.Skip, skip)
   emitter.off(ShortcutKey.ToggleCollect, collect)
   emitter.off(ShortcutKey.ToggleSimple, toggleWordSimpleWrapper)
-  emitter.off(ShortcutKey.PlaySound, play)
+  emitter.off(ShortcutKey.PlayWordPronunciation, play)
 })
 
 </script>
@@ -260,7 +260,7 @@ onUnmounted(() => {
         <Panel>
           <template v-slot="{active}">
             <div class="panel-page-item">
-              <header>
+              <div class="list-header">
                 <div class="left">
                   <Tooltip title="切换词典">
                     <IconWrapper>
@@ -281,7 +281,7 @@ onUnmounted(() => {
                 <div class="right">
                   {{ data.words.length }}个单词
                 </div>
-              </header>
+              </div>
               <WordList
                   class="word-list"
                   :is-active="active"
