@@ -7,7 +7,7 @@ import {Icon} from "@iconify/vue";
 defineProps<{
   title?: string,
   icon: string,
-  className: string
+  className?: string
 }>()
 
 defineEmits(['click'])

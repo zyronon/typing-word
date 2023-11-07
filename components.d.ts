@@ -67,6 +67,6 @@ declare module 'vue' {
     VolumeIcon: typeof import('./src/components/icon/VolumeIcon.vue')['default']
     VolumeSetting: typeof import('./src/components/Toolbar/VolumeSetting.vue')['default']
     WordList: typeof import('./src/components/WordList.vue')['default']
-    WordListModal: typeof import('./src/components/WordListModal.vue')['default']
+    WordListModal: typeof import('./src/components/Modal/WordListModal.vue')['default']
   }
 }

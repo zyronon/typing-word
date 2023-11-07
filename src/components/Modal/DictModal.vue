@@ -13,7 +13,7 @@ import {v4 as uuidv4} from "uuid";
 import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
 import ChapterList from "@/components/ChapterList.vue";
-import WordListModal from "@/components/WordListModal.vue";
+import WordListModal from "@/components/Modal/WordListModal.vue";
 import {isArticle} from "@/hooks/article.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -489,13 +489,6 @@ $header-height: 60rem;
     display: flex;
     position: relative;
     gap: $space;
-
-    .common-title {
-      font-size: 20rem;
-      color: var(--color-font-1);
-      text-align: center;
-      margin-bottom: 10rem;
-    }
 
     .detail {
       overflow: auto;

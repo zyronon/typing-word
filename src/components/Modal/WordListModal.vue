@@ -130,7 +130,7 @@ onUnmounted(() => {
 </style>
 
 <style lang="scss">
-@import "@/assets/css/variable.scss";
+@import "@/assets/css/variable";
 
 .virtual-list {
   overflow: auto;
