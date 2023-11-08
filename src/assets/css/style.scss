@@ -25,12 +25,15 @@
   --color-font-active-1: white;
   --color-font-active-2: whitesmoke;
   --color-main-active: rgb(12, 140, 233);
-  --toolbar-width: 700rem;
-  //--toolbar-width: 50vw;
-
+  --color-scrollbar: rgb(147, 173, 227);
   --color-gray: gray;
 
-  --color-scrollbar: rgb(147, 173, 227);
+  --practice-wrapper-padding-right: 1px;
+  --toolbar-width: 700rem;
+  --toolbar-height: 60rem;
+  --panel-width: 400rem;
+  --space: 24rem;
+  --panel-margin-left: calc(50% - var(--practice-wrapper-padding-right) / 2 + var(--toolbar-width) / 2 + 24rem);
 }
 
 html.dark {
@@ -61,12 +64,59 @@ html.dark {
   --color-scrollbar: rgb(92, 93, 94);
 }
 
+@media (max-width: 1680px) {
+  :root {
+    --practice-wrapper-padding-right: 25vw;
+    --toolbar-width: 40vw;
+    --panel-width: 380rem;
+    --toolbar-height: 48rem;
+  }
+  .footer {
+    .bottom {
+      padding: 1.5rem 5rem 5rem 5rem !important;
+    }
+
+    .stat {
+      margin-top: 4rem !important;
+
+      .row {
+        gap: 5rem !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 1366px) {
+  :root {
+    --space: 10rem;
+    --practice-wrapper-padding-right: 30vw;
+    --panel-width: 30vw;
+    --toolbar-width: 50vw;
+    --toolbar-height: 40rem;
+  }
+
+  .footer {
+    .bottom {
+      padding: 1.5rem 5rem 5rem 5rem !important;
+    }
+
+    .stat {
+      margin-top: 4rem !important;
+
+      .row {
+        gap: 5rem !important;
+      }
+    }
+  }
+}
+
 $anim-time: 0.3s;
 .anim {
   transition: background $anim-time, color $anim-time;
 }
 
 html, body {
+  font-size: 1px;
   padding: 0;
   margin: 0;
   width: 100%;
@@ -140,7 +190,7 @@ footer {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  gap: $space;
+  gap: var(--space);
 }
 
 .pointer {
@@ -169,12 +219,12 @@ footer {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding-bottom: $space;
+  padding-bottom: var(--space);
   box-sizing: border-box;
 
   .list-header {
     min-height: 50rem;
-    padding: 10rem $space;
+    padding: 10rem var(--space);
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
@@ -199,7 +249,7 @@ footer {
   }
 
   .scroll {
-    padding: 0 $space;
+    padding: 0 var(--space);
     flex: 1;
     overflow: auto;
   }

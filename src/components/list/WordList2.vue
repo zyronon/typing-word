@@ -72,7 +72,7 @@ const settingStore = useSettingStore()
 .virtual-list {
   overflow: overlay;
   height: 100%;
-  padding: 0 $space;
+  padding: 0 var(--space);
 }
 
 .dict-virtual-item {

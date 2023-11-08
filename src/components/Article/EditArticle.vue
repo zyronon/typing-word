@@ -377,8 +377,8 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
   color: black;
   flex: 1;
   display: flex;
-  gap: $space;
-  padding: $space;
+  gap: var(--space);
+  padding: var(--space);
   padding-top: 10rem;
 }
 
@@ -423,7 +423,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: calc($space / 2);
+    gap: calc(var(--space) / 2);
   }
 
   .el-progress {
@@ -440,7 +440,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
     .section {
       background: white;
       margin-bottom: 20rem;
-      padding: $space;
+      padding: var(--space);
       border-radius: 8rem;
 
       &:last-child {
@@ -487,7 +487,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
     }
 
     .left {
-      gap: $space;
+      gap: var(--space);
       display: flex;
     }
   }

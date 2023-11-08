@@ -349,7 +349,7 @@ $header-height: 60rem;
         align-items: center;
         justify-content: flex-end;
         height: 100%;
-        gap: $space;
+        gap: var(--space);
       }
     }
   }

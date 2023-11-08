@@ -317,7 +317,7 @@ $article-width: 50vw;
   left: 0;
   top: 10rem;
   z-index: 1;
-  margin-left: calc(50% + ($article-width / 2) + $space);
+  margin-left: calc(50% + ($article-width / 2) + var(--space));
   height: calc(100% - 20rem);
 }
 

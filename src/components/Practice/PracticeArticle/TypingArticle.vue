@@ -508,7 +508,7 @@ $article-width: 1000px;
     padding-top: 20rem;
 
     .section {
-      margin-bottom: $space;
+      margin-bottom: var(--space);
 
       .sentence {
         transition: all .3s;

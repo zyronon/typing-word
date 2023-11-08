@@ -146,27 +146,28 @@ onUnmounted(() => {
 
 </script>
 <template>
-  <div class="practice">
+  <div class="practice-wrapper">
     <Toolbar/>
     <!--    <BaseButton @click="test">test</BaseButton>-->
     <PracticeArticle ref="practiceRef" v-if="store.isArticle"/>
     <PracticeWord ref="practiceRef" v-else/>
     <Footer/>
   </div>
-  <AddWordDialog></AddWordDialog>
+<!--  <AddWordDialog></AddWordDialog>-->
   <DictModal :model-value="runtimeStore.showDictModal" @close="runtimeStore.showDictModal = false"/>
   <SettingModal v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
   <Statistics/>
 </template>
 
 <style scoped lang="scss">
-.practice {
+.practice-wrapper {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding-right: var(--practice-wrapper-padding-right);
 }
 
 </style>

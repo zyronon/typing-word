@@ -100,6 +100,6 @@ const {
   gap: 15rem;
   flex: 1;
   overflow: overlay;
-  padding: 0 $space;
+  padding: 0 var(--space);
 }
 </style>

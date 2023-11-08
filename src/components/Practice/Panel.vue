@@ -164,7 +164,6 @@ const {
 <style scoped lang="scss">
 @import "@/assets/css/variable.scss";
 
-$width: 20vw;
 $header-height: 50rem;
 
 .slide {
@@ -179,13 +178,13 @@ $header-height: 50rem;
     transition: all .5s;
 
     .slide-item {
-      width: $width;
+      width: var(--panel-width);
       height: 100%;
       display: flex;
       flex-direction: column;
 
       > header {
-        padding: 0 $space;
+        padding: 0 var(--space);
         height: $header-height;
         position: relative;
         display: flex;
@@ -199,11 +198,11 @@ $header-height: 50rem;
       .content {
         flex: 1;
         overflow: auto;
-        padding-bottom: $space;
+        padding-bottom: var(--space);
       }
 
       footer {
-        padding-right: $space;
+        padding-right: var(--space);
         margin-bottom: 10rem;
         align-items: center;
       }
@@ -225,7 +224,7 @@ $header-height: 50rem;
 
 .panel {
   border-radius: 8rem;
-  width: $width;
+  width: var(--panel-width);
   background: var(--color-second-bg);
   height: 100%;
   display: flex;

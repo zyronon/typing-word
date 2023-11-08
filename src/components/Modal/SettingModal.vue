@@ -347,21 +347,21 @@ function resetShortcutKeyMap() {
     flex: 1;
     height: 100%;
     overflow: auto;
-    padding: 0 $space;
+    padding: 0 var(--space);
 
     .row {
       height: 40rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: $space * 5;
+      gap: calc(var(--space) * 5);
 
       .wrapper {
         height: 30rem;
         flex: 1;
         display: flex;
         justify-content: flex-end;
-        gap: $space;
+        gap: var(--space);
 
         span {
           text-align: right;

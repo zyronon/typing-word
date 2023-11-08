@@ -166,14 +166,14 @@ header {
   margin-bottom: 30rem;
   position: relative;
   z-index: 2;
-  padding: 10rem $space;
+  padding: 10rem var(--space);
   box-sizing: border-box;
   transition: all .3s;
   gap: 10rem;
   border: 1px solid var(--color-item-border);
 
   .content {
-    min-height: 60rem;
+    min-height: var(--toolbar-height);
     display: flex;
     align-items: center;
     justify-content: space-between;

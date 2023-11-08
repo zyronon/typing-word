@@ -45,7 +45,6 @@ declare module 'vue' {
     Input: typeof import('./src/components/Input.vue')['default']
     List: typeof import('./src/components/list/List.vue')['default']
     ListItem: typeof import('./src/components/list/ListItem.vue')['default']
-    ListItem2: typeof import('./src/components/list/ListItem2.vue')['default']
     MiniModal: typeof import('./src/components/Modal/MiniModal.vue')['default']
     Modal: typeof import('./src/components/Modal/Modal.vue')['default']
     Options: typeof import('./src/components/Practice/Options.vue')['default']

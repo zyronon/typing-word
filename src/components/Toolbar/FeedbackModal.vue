@@ -51,7 +51,7 @@ const emit = defineEmits([
   flex-direction: column;
   background: var(--color-second-bg);
   align-items: center;
-  padding: $space;
+  padding: var(--space);
   //justify-content: center;
   color: var(--color-font-1);
 
@@ -62,7 +62,7 @@ const emit = defineEmits([
   .github {
     display: flex;
     align-items: center;
-    gap: $space;
+    gap: var(--space);
 
     .options {
       display: flex;

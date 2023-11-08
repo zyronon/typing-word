@@ -130,7 +130,7 @@ const isEnd = $computed(() => {
 
 .statistics {
   width: 800rem;
-  padding: $space;
+  padding: var(--space);
   background: $dark-second-bg;
   border-radius: $card-radius;
 
@@ -148,7 +148,7 @@ const isEnd = $computed(() => {
 
   .content {
     display: flex;
-    gap: $space;
+    gap: var(--space);
     margin-bottom: 15rem;
 
     .result {
@@ -164,7 +164,7 @@ const isEnd = $computed(() => {
       .wrong-words-wrapper {
         flex: 1;
         overflow: auto;
-        padding: $space;
+        padding: var(--space);
       }
 
       .wrong-words {
@@ -189,14 +189,14 @@ const isEnd = $computed(() => {
         display: flex;
         gap: 10rem;
         align-items: center;
-        padding-left: $space;
+        padding-left: var(--space);
       }
     }
 
     .shares {
       display: flex;
       flex-direction: column;
-      gap: $space;
+      gap: var(--space);
     }
   }
 

@@ -100,6 +100,7 @@ async function onTyping(e: KeyboardEvent) {
     wrong = letter
     playKeyboardAudio()
     playBeep()
+    volumeIconRef?.play()
     setTimeout(() => {
       wrong = ''
     }, 500)

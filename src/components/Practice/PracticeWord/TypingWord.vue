@@ -172,7 +172,11 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
 
 //TODO 略过忽略的单词上
 function prev() {
-  data.index--
+  if (data.index === 0){
+    ElMessage.warning('已经是第一个了~')
+  }else {
+    data.index--
+  }
 }
 
 function skip(e: KeyboardEvent) {
@@ -370,7 +374,8 @@ $article-width: 50vw;
   left: 0;
   top: 10rem;
   z-index: 1;
-  margin-left: calc(50% + (var(--toolbar-width) / 2) + $space);
+  //margin-left: calc(50% + (var(--toolbar-width) / 2) + var(--space));
+  margin-left: var(--panel-margin-left);
   height: calc(100% - 20rem);
 }
 

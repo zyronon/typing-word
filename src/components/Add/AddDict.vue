@@ -315,7 +315,7 @@ function close() {
   }
 
   .dict-list-page {
-    padding: 0 $space;
+    padding: 0 var(--space);
     box-sizing: border-box;
 
   }
@@ -326,7 +326,7 @@ function close() {
     //flex-direction: column;
 
     header {
-      padding: 0 $space;
+      padding: 0 var(--space);
     }
 
     .detail {
@@ -340,7 +340,7 @@ function close() {
         border-radius: 10rem;
         background: var(--color-second-bg);
         color: var(--color-font-1);
-        padding-left: $space;
+        padding-left: var(--space);
         box-sizing: border-box;
 
         .info {

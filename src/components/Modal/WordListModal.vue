@@ -109,7 +109,7 @@ onUnmounted(() => {
 @import "@/assets/css/style";
 
 .all-word {
-  padding: $space;
+  padding: var(--space);
   padding-top: 0;
   width: 400rem;
   height: 75vh;

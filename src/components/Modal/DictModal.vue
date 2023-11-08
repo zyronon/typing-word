@@ -397,7 +397,7 @@ $header-height: 60rem;
   width: 50%;
   height: 100%;
   $header-height: 60rem;
-  padding: $space;
+  padding: var(--space);
   padding-top: 0;
   box-sizing: border-box;
 
@@ -441,7 +441,7 @@ $header-height: 60rem;
       flex: 1;
       overflow: auto;
       height: 100%;
-      padding-right: $space;
+      padding-right: var(--space);
 
       .translate {
         display: flex;
@@ -461,7 +461,7 @@ $header-height: 60rem;
   width: 50%;
   height: 100%;
   $header-height: 60rem;
-  padding: $space;
+  padding: var(--space);
   padding-top: 0;
   box-sizing: border-box;
   display: flex;
@@ -488,7 +488,7 @@ $header-height: 60rem;
     overflow: hidden;
     display: flex;
     position: relative;
-    gap: $space;
+    gap: var(--space);
 
     .detail {
       overflow: auto;
@@ -561,7 +561,7 @@ $header-height: 60rem;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    gap: $space;
+    gap: var(--space);
   }
 }
 </style>

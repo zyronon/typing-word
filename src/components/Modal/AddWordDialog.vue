@@ -412,7 +412,7 @@ const {
   }
 
   .dict-list-page {
-    padding: 0 $space;
+    padding: 0 var(--space);
     box-sizing: border-box;
   }
 
@@ -422,7 +422,7 @@ const {
     //flex-direction: column;
 
     header {
-      padding: 0 $space;
+      padding: 0 var(--space);
     }
 
     .detail {
@@ -436,7 +436,7 @@ const {
         border-radius: 10rem;
         background: var(--color-second-bg);
         color: var(--color-font-1);
-        padding-left: $space;
+        padding-left: var(--space);
         box-sizing: border-box;
 
         .info {
@@ -496,7 +496,7 @@ const {
     }
 
     .edit {
-      padding: 0 $space;
+      padding: 0 var(--space);
       width: 100%;
       box-sizing: border-box;
     }
