@@ -77,6 +77,16 @@ function next() {
   repeat()
 }
 
+function prev() {
+  // console.log('next')
+  if (store.currentDict.chapterIndex === 0) {
+    ElMessage.warning('已经在第一章了~')
+  } else {
+    store.currentDict.chapterIndex--
+    repeat()
+  }
+}
+
 function toggleShowTranslate() {
   settingStore.translate = !settingStore.translate
 }
@@ -93,7 +103,7 @@ function openDictDetail() {
   runtimeStore.showDictModal = true
 }
 
-function toggleConciseMode(){
+function toggleConciseMode() {
   settingStore.showToolbar = !settingStore.showToolbar
   settingStore.showPanel = !settingStore.showPanel
 }
@@ -104,6 +114,7 @@ onMounted(() => {
   emitter.on(EventKey.repeat, repeat)
 
   emitter.on(ShortcutKey.NextChapter, next)
+  emitter.on(ShortcutKey.PreviousChapter, prev)
   emitter.on(ShortcutKey.RepeatChapter, repeat)
   emitter.on(ShortcutKey.DictationChapter, write)
   emitter.on(ShortcutKey.ToggleShowTranslate, toggleShowTranslate)
@@ -121,6 +132,7 @@ onUnmounted(() => {
   emitter.off(EventKey.repeat, repeat)
 
   emitter.off(ShortcutKey.NextChapter, next)
+  emitter.off(ShortcutKey.PreviousChapter, prev)
   emitter.off(ShortcutKey.RepeatChapter, repeat)
   emitter.off(ShortcutKey.DictationChapter, write)
   emitter.off(ShortcutKey.ToggleShowTranslate, toggleShowTranslate)

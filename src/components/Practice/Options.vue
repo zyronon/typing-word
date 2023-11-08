@@ -61,7 +61,7 @@ const settingStore = useSettingStore()
         icon="ph:star-fill"/>
 
     <Tooltip
-        :title="`跳过(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Skip]})`"
+        :title="`跳过(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
     >
       <IconWrapper>
         <Icon icon="icon-park-outline:go-ahead" class="menu"

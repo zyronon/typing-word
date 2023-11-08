@@ -171,16 +171,18 @@ export const SaveDict = {
 }
 export const SaveConfig = {
   key: 'typing-word-config',
-  version: 6
+  version: 7
 }
 
 export enum ShortcutKey {
   ShowWord = 'ShowWord',
   EditArticle = 'EditArticle',
-  Skip = 'Skip',
+  Next = 'Next',
+  Previous = 'Previous',
   ToggleSimple = 'ToggleSimple',
   ToggleCollect = 'ToggleCollect',
   NextChapter = 'NextChapter',
+  PreviousChapter = 'PreviousChapter',
   RepeatChapter = 'RepeatChapter',
   DictationChapter = 'DictationChapter',
   PlayWordPronunciation = 'PlayWordPronunciation',
@@ -196,9 +198,11 @@ export enum ShortcutKey {
 export const DefaultShortcutKeyMap = {
   [ShortcutKey.EditArticle]: 'Ctrl+E',
   [ShortcutKey.ShowWord]: 'Escape',
-  [ShortcutKey.Skip]: 'Tab',
+  [ShortcutKey.Previous]: 'Alt+⬅',
+  [ShortcutKey.Next]: 'Tab',
   [ShortcutKey.ToggleSimple]: '`',
   [ShortcutKey.ToggleCollect]: 'Enter',
+  [ShortcutKey.PreviousChapter]: 'Ctrl+⬅',
   [ShortcutKey.NextChapter]: 'Ctrl+➡',
   [ShortcutKey.RepeatChapter]: 'Ctrl+Enter',
   [ShortcutKey.DictationChapter]: 'Alt+Enter',

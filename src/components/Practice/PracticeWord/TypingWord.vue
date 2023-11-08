@@ -145,10 +145,6 @@ function next(isTyping: boolean = true) {
   }
 }
 
-function prev() {
-  data.index--
-}
-
 function onKeyUp(e: KeyboardEvent) {
   typingRef.hideWord()
 }
@@ -173,6 +169,11 @@ async function onKeyDown(e: KeyboardEvent) {
 }
 
 useOnKeyboardEventListener(onKeyDown, onKeyUp)
+
+//TODO 略过忽略的单词上
+function prev() {
+  data.index--
+}
 
 function skip(e: KeyboardEvent) {
   next(false)
@@ -203,7 +204,8 @@ function play() {
 
 onMounted(() => {
   emitter.on(ShortcutKey.ShowWord, show)
-  emitter.on(ShortcutKey.Skip, skip)
+  emitter.on(ShortcutKey.Previous, prev)
+  emitter.on(ShortcutKey.Next, skip)
   emitter.on(ShortcutKey.ToggleCollect, collect)
   emitter.on(ShortcutKey.ToggleSimple, toggleWordSimpleWrapper)
   emitter.on(ShortcutKey.PlayWordPronunciation, play)
@@ -211,7 +213,8 @@ onMounted(() => {
 
 onUnmounted(() => {
   emitter.off(ShortcutKey.ShowWord, show)
-  emitter.off(ShortcutKey.Skip, skip)
+  emitter.off(ShortcutKey.Previous, prev)
+  emitter.off(ShortcutKey.Next, skip)
   emitter.off(ShortcutKey.ToggleCollect, collect)
   emitter.off(ShortcutKey.ToggleSimple, toggleWordSimpleWrapper)
   emitter.off(ShortcutKey.PlayWordPronunciation, play)
@@ -232,7 +235,7 @@ onUnmounted(() => {
            @click="next(false)"
            v-if="nextWord">
         <Tooltip
-            :title="`下一个(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Skip]})`"
+            :title="`下一个(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
         >
           <div class="word" :class="settingStore.dictation && 'text-shadow'">{{ nextWord.name }}</div>
         </Tooltip>
