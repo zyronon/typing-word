@@ -12,7 +12,7 @@ import DictGroup from "@/components/Toolbar/DictGroup.vue";
 import {v4 as uuidv4} from "uuid";
 import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
-import ChapterList from "@/components/ChapterList.vue";
+import ChapterList from "@/components/list/ChapterList.vue";
 import WordListModal from "@/components/Modal/WordListModal.vue";
 import {isArticle} from "@/hooks/article.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";

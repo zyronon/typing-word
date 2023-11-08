@@ -3,7 +3,7 @@
 import Input from "@/components/Input.vue";
 import {$computed, $ref} from "vue/macros";
 import {Article, Word} from "@/types.ts";
-import ListItem from "@/components/ListItem.vue";
+import ListItem from "@/components/list/ListItem.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {watch} from "vue";
 

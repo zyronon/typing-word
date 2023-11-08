@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
-import WordList from "@/components/WordList.vue";
+import WordList from "@/components/list/WordList.vue";
 import {$computed, $ref} from "vue/macros";
 import Slide from "@/components/Slide.vue";
-import DictList from "@/components/DictList.vue";
+import DictList from "@/components/list/DictList.vue";
 import {Icon} from "@iconify/vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -15,7 +15,7 @@ import {FormInstance, FormRules} from "element-plus";
 import {dictionaryResources} from "@/assets/dictionary.ts";
 import {cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import ChapterList from "@/components/ChapterList.vue";
+import ChapterList from "@/components/list/ChapterList.vue";
 
 let data = $ref({
   words: [],

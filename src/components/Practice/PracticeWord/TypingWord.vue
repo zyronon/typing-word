@@ -22,7 +22,7 @@ import Options from "@/components/Practice/Options.vue";
 import Typing from "@/components/Practice/PracticeWord/Typing.vue";
 import Panel from "@/components/Practice/Panel.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
-import WordList from "@/components/WordList.vue";
+import WordList from "@/components/list/WordList.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
 import {usePlayWordAudio} from "@/hooks/sound.ts";

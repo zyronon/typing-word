@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useBaseStore} from "@/stores/base.ts"
-import WordList from "@/components/WordList.vue"
+import WordList from "@/components/list/WordList.vue"
 
 import {$ref} from "vue/macros"
 import {computed, provide, watch} from "vue"

@@ -6,7 +6,7 @@ import {$ref} from "vue/macros";
 import {onMounted, onUnmounted, watch} from "vue";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import ListItem from "@/components/ListItem.vue";
+import ListItem from "@/components/list/ListItem.vue";
 import {Word} from "@/types.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 

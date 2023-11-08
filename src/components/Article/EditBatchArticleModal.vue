@@ -7,7 +7,7 @@ import {cloneDeep} from "lodash-es";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {$computed, $ref} from "vue/macros";
-import List from "@/components/List.vue";
+import List from "@/components/list/List.vue";
 import {v4 as uuidv4} from 'uuid';
 import Modal from "@/components/Modal/Modal.vue";
 import EditArticle from "@/components/Article/EditArticle.vue";

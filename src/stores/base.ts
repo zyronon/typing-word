@@ -216,8 +216,8 @@ export const useBaseStore = defineStore('base', {
               r.json().then(v => {
                 if (this.currentDict.translateLanguage === 'common') {
                   const runtimeStore = useRuntimeStore()
-                  fetch('./translate/en2zh_CN.json').then(r => {
-                    r.json().then((list: Word[]) => {
+                  fetch('./translate/en2zh_CN.json').then(r2 => {
+                    r2.json().then((list: Word[]) => {
                       runtimeStore.translateWordList = list
 
                       this.currentDict.originWords = cloneDeep(v)

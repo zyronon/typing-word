@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {Word} from "../types";
+import {Word} from "../../types.ts";
 import {watch} from "vue"
 import {useSettingStore} from "@/stores/setting.ts";
-import ListItem from "@/components/ListItem.vue";
+import ListItem from "@/components/list/ListItem.vue";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
@@ -92,7 +92,7 @@ const {
 
 
 <style scoped lang="scss">
-@import "@/assets/css/variable.scss";
+@import "@/assets/css/variable";
 
 .list {
   display: flex;

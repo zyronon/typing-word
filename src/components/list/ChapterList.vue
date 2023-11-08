@@ -58,7 +58,7 @@ function showWordListModal(index: number, item: Word[]) {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/variable.scss";
+@import "@/assets/css/variable";
 
 .list {
   display: flex;

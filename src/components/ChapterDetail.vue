@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {Icon} from "@iconify/vue";
 import {computed, inject} from "vue"
-import WordList from "@/components/WordList.vue"
+import WordList from "@/components/list/WordList.vue"
 import {useBaseStore} from "@/stores/base.ts"
 
 const store = useBaseStore()
