@@ -233,7 +233,11 @@ onUnmounted(() => {
            @click="prev"
            v-if="prevWord">
         <Icon class="arrow" icon="bi:arrow-left" width="22"/>
-        <div class="word">{{ prevWord.name }}</div>
+        <Tooltip
+            :title="`上一个(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Previous]})`"
+        >
+          <div class="word">{{ prevWord.name }}</div>
+        </Tooltip>
       </div>
       <div class="next"
            @click="next(false)"
