@@ -70,6 +70,7 @@ html.dark {
     --toolbar-width: 40vw;
     --panel-width: 380rem;
     --toolbar-height: 48rem;
+    --panel-margin-left: calc(50% - var(--practice-wrapper-padding-right) / 2 + var(--toolbar-width) / 2 + 9vw);
   }
   .footer {
     .bottom {
@@ -93,6 +94,7 @@ html.dark {
     --panel-width: 30vw;
     --toolbar-width: 50vw;
     --toolbar-height: 40rem;
+    --panel-margin-left: calc(50% - var(--practice-wrapper-padding-right) / 2 + var(--toolbar-width) / 2 + 9vw);
   }
 
   .footer {

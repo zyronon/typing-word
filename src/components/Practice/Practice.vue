@@ -108,6 +108,10 @@ function toggleConciseMode() {
   settingStore.showPanel = !settingStore.showPanel
 }
 
+function togglePanel() {
+  settingStore.showPanel = !settingStore.showPanel
+}
+
 onMounted(() => {
   emitter.on(EventKey.next, next)
   emitter.on(EventKey.write, write)
@@ -123,6 +127,7 @@ onMounted(() => {
   emitter.on(ShortcutKey.OpenDictDetail, openDictDetail)
   emitter.on(ShortcutKey.ToggleTheme, toggleTheme)
   emitter.on(ShortcutKey.ToggleConciseMode, toggleConciseMode)
+  emitter.on(ShortcutKey.TogglePanel, togglePanel)
   practiceRef.getCurrentPractice()
 })
 
@@ -141,7 +146,7 @@ onUnmounted(() => {
   emitter.off(ShortcutKey.OpenDictDetail, openDictDetail)
   emitter.off(ShortcutKey.ToggleTheme, toggleTheme)
   emitter.off(ShortcutKey.ToggleConciseMode, toggleConciseMode)
-
+  emitter.off(ShortcutKey.TogglePanel, togglePanel)
 })
 
 </script>
@@ -153,7 +158,7 @@ onUnmounted(() => {
     <PracticeWord ref="practiceRef" v-else/>
     <Footer/>
   </div>
-<!--  <AddWordDialog></AddWordDialog>-->
+  <!--  <AddWordDialog></AddWordDialog>-->
   <DictModal :model-value="runtimeStore.showDictModal" @close="runtimeStore.showDictModal = false"/>
   <SettingModal v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
   <Statistics/>

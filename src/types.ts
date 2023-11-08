@@ -171,7 +171,7 @@ export const SaveDict = {
 }
 export const SaveConfig = {
   key: 'typing-word-config',
-  version: 7
+  version: 8
 }
 
 export enum ShortcutKey {
@@ -193,6 +193,7 @@ export enum ShortcutKey {
   OpenDictDetail = 'OpenDictDetail',
   ToggleTheme = 'ToggleTheme',
   ToggleConciseMode = 'ToggleConciseMode',
+  TogglePanel = 'TogglePanel'
 }
 
 export const DefaultShortcutKeyMap = {
@@ -214,6 +215,7 @@ export const DefaultShortcutKeyMap = {
   [ShortcutKey.ToggleTheme]: 'Ctrl+Q',
   [ShortcutKey.OpenDictDetail]: 'Ctrl+J',
   [ShortcutKey.ToggleConciseMode]: 'Ctrl+M',
+  [ShortcutKey.TogglePanel]: 'Ctrl+L',
 }
 
 
