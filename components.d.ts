@@ -71,4 +71,7 @@ declare module 'vue' {
     WordList2: typeof import('./src/components/list/WordList2.vue')['default']
     WordListModal: typeof import('./src/components/Modal/WordListModal.vue')['default']
   }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
+  }
 }

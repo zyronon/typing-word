@@ -40,17 +40,20 @@ watch(store.wrong.originWords, (n) => {
 
 useStartKeyboardEventListener()
 
-onMounted(() => {
+async function init() {
   console.time()
-  Promise.allSettled([store.init(), settingStore.init()]).then(e => {
+  store.init().then(() => {
     store.load = true
-    setTheme(settingStore.theme)
     console.timeEnd()
   })
-})
+  await settingStore.init()
+  setTheme(settingStore.theme)
+}
 
 onMounted(() => {
+  init()
 })
+
 </script>
 
 <template>

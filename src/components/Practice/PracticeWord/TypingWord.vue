@@ -251,6 +251,7 @@ onUnmounted(() => {
       </div>
     </div>
     <Typing
+        v-loading="!store.load"
         ref="typingRef"
         :word="word"
         @wrong="wordWrong"
@@ -270,7 +271,9 @@ onUnmounted(() => {
       <div class="word-panel-wrapper">
         <Panel>
           <template v-slot="{active}">
-            <div class="panel-page-item">
+            <div class="panel-page-item"
+                 v-loading="!store.load"
+            >
               <div class="list-header">
                 <div class="left">
                   <Tooltip title="切换词典">
