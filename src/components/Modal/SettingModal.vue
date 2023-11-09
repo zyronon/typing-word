@@ -4,12 +4,14 @@ import {useBaseStore} from "@/stores/base.ts"
 import {Icon} from '@iconify/vue';
 import {watch, ref} from "vue";
 import {useSettingStore} from "@/stores/setting.ts";
-import {useChangeAllSound, useWatchAllSound} from "@/hooks/sound.ts";
+import {getAudioFileUrl, useChangeAllSound, usePlayAudio, useWatchAllSound} from "@/hooks/sound.ts";
 import {getShortcutKey, useDisableEventListener, useEventListener} from "@/hooks/event.ts";
 import {$computed, $ref} from "vue/macros";
 import {cloneDeep} from "lodash-es";
 import {DefaultShortcutKeyMap, ShortcutKey} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
+import {SoundFileOptions} from "@/utils/const.ts";
+import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 
 const tabIndex = $ref(0)
 const settingStore = useSettingStore()
@@ -105,13 +107,24 @@ function resetShortcutKeyMap() {
           </div>
           <div class="line"></div>
           <div class="row">
-            <label class="item-title">单词发音</label>
+            <label class="item-title">单词/句子自动发音</label>
             <div class="wrapper">
               <el-switch v-model="settingStore.wordSound"
                          inline-prompt
                          active-text="开"
                          inactive-text="关"
               />
+            </div>
+          </div>
+          <div class="row">
+            <label class="sub-title">单词/句子发音口音</label>
+            <div class="wrapper">
+              <el-select v-model="settingStore.wordSoundType"
+                         placeholder="请选择"
+              >
+                <el-option label="美音" value="us"/>
+                <el-option label="英音" value="uk"/>
+              </el-select>
             </div>
           </div>
           <div class="row">
@@ -124,7 +137,7 @@ function resetShortcutKeyMap() {
           <div class="row">
             <label class="sub-title">倍速</label>
             <div class="wrapper">
-              <el-slider v-model="settingStore.wordSoundSpeed" :step="0.1" :min="0.5" :max="4"/>
+              <el-slider v-model="settingStore.wordSoundSpeed" :step="0.1" :min="0.5" :max="3"/>
               <span>{{ settingStore.wordSoundSpeed }}</span>
             </div>
           </div>
@@ -140,6 +153,28 @@ function resetShortcutKeyMap() {
             </div>
           </div>
           <div class="row">
+            <label class="item-title">按键音效</label>
+            <div class="wrapper">
+              <el-select v-model="settingStore.keyboardSoundFile"
+                         placeholder="请选择"
+              >
+                <el-option
+                    v-for="item in SoundFileOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                >
+                  <div class="el-option-row">
+                    <span>{{ item.label }}</span>
+                    <VolumeIcon
+                        :time="100"
+                        @click="usePlayAudio(getAudioFileUrl(item.value)[0])"/>
+                  </div>
+                </el-option>
+              </el-select>
+            </div>
+          </div>
+          <div class="row">
             <label class="sub-title">音量</label>
             <div class="wrapper">
               <el-slider v-model="settingStore.keyboardSoundVolume"/>
@@ -147,23 +182,23 @@ function resetShortcutKeyMap() {
             </div>
           </div>
           <div class="line"></div>
-          <div class="row">
-            <label class="item-title">释义发音</label>
-            <div class="wrapper">
-              <el-switch v-model="settingStore.translateSound"
-                         inline-prompt
-                         active-text="开"
-                         inactive-text="关"
-              />
-            </div>
-          </div>
-          <div class="row">
-            <label class="sub-title">音量</label>
-            <div class="wrapper">
-              <el-slider v-model="settingStore.translateSoundVolume"/>
-              <span>{{ settingStore.translateSoundVolume }}%</span>
-            </div>
-          </div>
+          <!--          <div class="row">-->
+          <!--            <label class="item-title">释义发音</label>-->
+          <!--            <div class="wrapper">-->
+          <!--              <el-switch v-model="settingStore.translateSound"-->
+          <!--                         inline-prompt-->
+          <!--                         active-text="开"-->
+          <!--                         inactive-text="关"-->
+          <!--              />-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!--          <div class="row">-->
+          <!--            <label class="sub-title">音量</label>-->
+          <!--            <div class="wrapper">-->
+          <!--              <el-slider v-model="settingStore.translateSoundVolume"/>-->
+          <!--              <span>{{ settingStore.translateSoundVolume }}%</span>-->
+          <!--            </div>-->
+          <!--          </div>-->
           <div class="line"></div>
           <div class="row">
             <label class="item-title">效果音（章节结算页烟花音效）</label>
@@ -185,7 +220,7 @@ function resetShortcutKeyMap() {
         </div>
         <div v-if="tabIndex === 1">
           <div class="row">
-            <label class="item-title">练习时展示上一个/下一个单词</label>
+            <label class="item-title">显示上一个/下一个单词</label>
             <div class="wrapper">
               <el-switch v-model="settingStore.showNearWord"
                          inline-prompt
@@ -195,11 +230,11 @@ function resetShortcutKeyMap() {
             </div>
           </div>
           <div class="desc">
-            开启后，练习中会在上方展示上一个/下一个单词
+            开启后，练习中会在上方显示上一个/下一个单词
           </div>
           <div class="line"></div>
           <div class="row">
-            <label class="item-title">是否忽略大小写</label>
+            <label class="item-title">忽略大小写</label>
             <div class="wrapper">
               <el-switch v-model="settingStore.ignoreCase"
                          inline-prompt
@@ -213,7 +248,7 @@ function resetShortcutKeyMap() {
           </div>
           <div class="line"></div>
           <div class="row">
-            <label class="item-title">是否允许默写模式下显示提示</label>
+            <label class="item-title">允许默写模式下显示提示</label>
             <div class="wrapper">
               <el-switch v-model="settingStore.allowWordTip"
                          inline-prompt
@@ -387,6 +422,8 @@ function resetShortcutKeyMap() {
             color: var(--color-font-1);
           }
         }
+
+
       }
 
       .main-title {
@@ -428,6 +465,17 @@ function resetShortcutKeyMap() {
     .line {
       border-bottom: 1px solid #c4c3c3;
     }
+  }
+}
+
+.el-option-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .icon-wrapper {
+    transform: translateX(10rem);
   }
 }
 

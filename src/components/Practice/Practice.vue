@@ -105,7 +105,7 @@ function openDictDetail() {
 
 function toggleConciseMode() {
   settingStore.showToolbar = !settingStore.showToolbar
-  settingStore.showPanel = !settingStore.showPanel
+  settingStore.showPanel = settingStore.showToolbar
 }
 
 function togglePanel() {

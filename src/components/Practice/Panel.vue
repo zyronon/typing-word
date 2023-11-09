@@ -4,7 +4,7 @@ import WordList from "@/components/list/WordList.vue"
 
 import {$ref} from "vue/macros"
 import {computed, provide, watch} from "vue"
-import {Dict, DictType} from "@/types.ts"
+import {Dict, DictType, ShortcutKey} from "@/types.ts"
 import PopConfirm from "@/components/PopConfirm.vue"
 import BaseButton from "@/components/BaseButton.vue";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -47,9 +47,12 @@ const {
     <div class="panel" v-show="settingStore.showPanel">
       <header>
         <Transition name="fade">
-          <Close
-              @click="settingStore.showPanel = false"
-              v-if="!settingStore.showToolbar"/>
+          <Tooltip
+              v-if="!settingStore.showToolbar"
+              :title="`关闭(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
+          >
+            <Close @click="settingStore.showPanel = false"/>
+          </Tooltip>
         </Transition>
         <div class="tabs">
           <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前</div>

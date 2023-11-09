@@ -23,17 +23,20 @@ export function useSound(audioSrcList?: string[], audioFileLength?: number) {
     index = 0
   }
 
-  function play() {
+  function play(volume: number = 100) {
     index++
     if (audioList.length > 1 && audioList.length !== audioLength) {
+      audioList[index % audioList.length].volume = volume / 100
       audioList[index % audioList.length].play()
     } else {
+      audioList[index % audioLength].volume = volume / 100
       audioList[index % audioLength].play()
     }
   }
 
   return {play, setAudio}
 }
+
 
 export function usePlayKeyboardAudio() {
   const settingStore = useSettingStore()
@@ -46,7 +49,7 @@ export function usePlayKeyboardAudio() {
 
   function playAudio() {
     if (settingStore.keyboardSound) {
-      play()
+      play(settingStore.keyboardSoundVolume)
     }
   }
 
@@ -59,7 +62,7 @@ export function usePlayBeep() {
 
   function playAudio() {
     if (settingStore.effectSound) {
-      play()
+      play(settingStore.effectSoundVolume)
     }
   }
 
@@ -72,7 +75,7 @@ export function usePlayCorrect() {
 
   function playAudio() {
     if (settingStore.effectSound) {
-      play()
+      play(settingStore.effectSoundVolume)
     }
   }
 
@@ -89,6 +92,8 @@ export function usePlayWordAudio() {
     } else if (settingStore.wordSoundType === 'us') {
       audio.src = `${PronunciationApi}${word}&type=2`
     }
+    audio.volume = settingStore.wordSoundVolume / 100
+    audio.playbackRate = settingStore.wordSoundSpeed
     audio.play()
   }
 
@@ -111,13 +116,12 @@ export function useTTsPlayAudio() {
     msg.lang = 'zh-CN';
     isPlay = true
     window.speechSynthesis.speak(msg);
-    console.log('text',text)
+    console.log('text', text)
 
   }
 
   return play
 }
-
 
 export function usePlayAudio(url: string) {
   new Audio(url).play().then(r => void 0)

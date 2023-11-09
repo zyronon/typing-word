@@ -228,9 +228,7 @@ export const useBaseStore = defineStore('base', {
                         if (res) w = Object.assign(w, res)
                       })
 
-                      setTimeout(()=>{
-                        resolve(true)
-                      },5000)
+                      resolve(true)
                     })
                   })
                 } else {

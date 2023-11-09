@@ -123,9 +123,11 @@ watch(() => store.load, n => {
             </IconWrapper>
           </Tooltip>
 
-<!--          <div class="base-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>-->
+          <!--          <div class="base-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>-->
 
-          <Tooltip title="单词本">
+          <Tooltip
+              :title="`单词本(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
+          >
             <IconWrapper>
               <Icon icon="tdesign:menu-unfold" class="menu" @click="settingStore.showPanel = !settingStore.showPanel"/>
             </IconWrapper>
@@ -188,6 +190,7 @@ header {
       align-items: center;
       cursor: pointer;
       transition: all .3s;
+      max-width: 45%;
 
       &:hover {
         background: var(--color-main-active);
@@ -219,6 +222,8 @@ header {
       }
 
       .with-bg {
+        display: flex;
+        align-items: center;
         position: relative;
         background: var(--color-second-bg);
       }
