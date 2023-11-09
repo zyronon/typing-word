@@ -38,7 +38,7 @@ watch(store.wrong.originWords, (n) => {
   store.wrong.chapterWords = [store.wrong.words]
 })
 
-useStartKeyboardEventListener()
+// useStartKeyboardEventListener()
 
 async function init() {
   console.time()

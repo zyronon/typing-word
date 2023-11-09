@@ -2,6 +2,9 @@
 import {Word} from "../../types.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import WordItem from "@/components/list/WordItem.vue";
+import VolumeIcon from "@/components/icon/VolumeIcon.vue";
+import {usePlayWordAudio} from "@/hooks/sound.ts";
+import {watch} from 'vue'
 
 const props = withDefaults(defineProps<{
   list: Word[],
@@ -24,29 +27,37 @@ const emit = defineEmits<{
 }>()
 
 const settingStore = useSettingStore()
-//
-// const listRef: HTMLElement = $ref(null as any)
-//
-// function scrollViewToCenter(index: number) {
-//   if (index === -1) return
-//   listRef.children[index]?.scrollIntoView({block: 'center', behavior: 'smooth'})
-// }
-//
-// watch(() => props.activeIndex, (n: any) => {
-//   if (settingStore.showPanel) {
-//     scrollViewToCenter(n)
-//   }
-// })
-//
-// watch(() => props.isActive, (n: boolean) => {
-//   setTimeout(() => {
-//     if (n) scrollViewToCenter(props.activeIndex)
-//   }, 300)
-// })
-//
+const listRef: any = $ref()
+
+function scrollViewToCenter(index: number) {
+  if (index === -1) return
+  listRef.scrollToIndex(index)
+  // listRef.children[index]?.scrollIntoView({block: 'center', behavior: 'smooth'})
+}
+
+watch(() => props.activeIndex, (n: any) => {
+  if (settingStore.showPanel) {
+    scrollViewToCenter(n)
+  }
+})
+
+watch(() => props.isActive, (n: boolean) => {
+  setTimeout(() => {
+    if (n) scrollViewToCenter(props.activeIndex)
+  }, 300)
+})
+
 // watch(() => props.list, () => {
 //   listRef.scrollTo(0, 0)
 // })
+
+const playWordAudio = usePlayWordAudio()
+
+function reset() {
+  listRef.reset()
+}
+
+defineExpose({reset})
 
 </script>
 
@@ -56,12 +67,28 @@ const settingStore = useSettingStore()
                 data-key="name"
                 :data-sources="list"
                 :estimate-size="85"
+                ref="listRef"
                 item-class="dict-virtual-item"
   >
-    <template #={source}>
-      <WordItem :word="source">
-        <slot :word="source"></slot>
-      </WordItem>
+    <template #={source,index}>
+      <div class="common-list-item"
+           :class="{active:activeIndex === index}"
+           @click="emit('change',index)"
+      >
+        <div class="left">
+          <div class="item-title">
+            <span class="word" :class="!showWord && 'text-shadow'">{{ source.name }}</span>
+            <span class="phonetic">{{ source.usphone }}</span>
+            <VolumeIcon class="volume" @click="playWordAudio(source.name)"></VolumeIcon>
+          </div>
+          <div class="item-sub-title" v-if="source.trans.length && showTranslate">
+            <div v-for="item in source.trans">{{ item }}</div>
+          </div>
+        </div>
+        <div class="right">
+          <slot :word="source"></slot>
+        </div>
+      </div>
     </template>
   </virtual-list>
 </template>

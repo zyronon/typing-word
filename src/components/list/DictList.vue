@@ -8,7 +8,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  selectDict: [val: Dict]
+  selectDict: [val: { dict: Dict, index: number }]
   detail: [],
   add: []
 }>()
@@ -17,17 +17,17 @@ const emit = defineEmits<{
 
 <template>
   <div class="dict-list">
-    <template v-for="i in list">
+    <template v-for="(dict,index) in list">
       <div class="dict-item anim"
-           :class="selectDictName === i.name && 'active'"
-           @click="emit('selectDict',i)"
-           v-if="i.name"
+           :class="selectDictName === dict.name && 'active'"
+           @click="emit('selectDict',{dict,index})"
+           v-if="dict.name"
       >
-        <div class="name">{{ i.name }}</div>
-        <div class="desc">{{ i.description }}</div>
-        <div class="num">{{ i.length }}词</div>
+        <div class="name">{{ dict.name }}</div>
+        <div class="desc">{{ dict.description }}</div>
+        <div class="num">{{ dict.length }}词</div>
 
-        <Icon icon="octicon:arrow-right-24" v-if="selectDictName === i.name"
+        <Icon icon="octicon:arrow-right-24" v-if="selectDictName === dict.name"
               @click.stop="emit('detail')"
               class="go" width="20" color="#929596"/>
       </div>

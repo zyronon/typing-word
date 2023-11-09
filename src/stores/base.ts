@@ -13,6 +13,7 @@ export interface State {
   current: {
     dictType: DictType,
     index: number,
+    editIndex: number,
     practiceType: DictType,//练习类型，目前仅词典为collect时判断是练单词还是文章使用
   },
   simpleWords: string[],
@@ -109,6 +110,7 @@ export const useBaseStore = defineStore('base', {
       current: {
         dictType: DictType.word,
         index: 1,
+        editIndex: 0,
         // dictType: DictType.article,
         // index: 0,
         practiceType: DictType.word,
@@ -140,6 +142,21 @@ export const useBaseStore = defineStore('base', {
         DictType.article,
         DictType.customArticle
       ].includes(state.current.dictType)
+    },
+    editDict(state: State) {
+      if (state.current.editIndex === -1) {
+        return cloneDeep(DefaultDict)
+      }
+      switch (state.current.editIndex) {
+        case 0:
+          return state.collect
+        case 1:
+          return state.simple
+        case 2:
+          return state.wrong
+        default:
+          return state.myDicts[state.current.editIndex]
+      }
     },
     currentDict(state: State): Dict {
       switch (state.current.dictType) {

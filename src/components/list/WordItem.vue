@@ -6,26 +6,14 @@ import {usePlayWordAudio} from "@/hooks/sound.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
 
 const props = withDefaults(defineProps<{
-  list?: Word[],
-  activeIndex?: number,
-  showDel?: boolean,
-  isActive?: boolean
   active?: boolean
   showTranslate?: boolean
   showWord?: boolean
   word: Word
 }>(), {
-  activeIndex: -1,
-  isActive: false,
-  showDel: false,
   showTranslate: true,
   showWord: true
 })
-
-const emit = defineEmits<{
-  del: [val: Word],
-  change: [i: number]
-}>()
 
 const playWordAudio = usePlayWordAudio()
 const {

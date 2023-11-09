@@ -9,7 +9,7 @@ import {useBaseStore} from "@/stores/base.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useDisableEventListener} from "@/hooks/event.ts";
-import {Dict, DictType, languageCategoryOptions, Sort, Word} from "@/types.ts";
+import {DefaultDict, Dict, DictType, languageCategoryOptions, Sort, Word} from "@/types.ts";
 import {onMounted, reactive, watch} from "vue";
 import {FormInstance, FormRules} from "element-plus";
 import {dictionaryResources} from "@/assets/dictionary.ts";
@@ -39,12 +39,11 @@ let step = $ref(1)
 let isAddDict = $ref(false)
 
 let list = $computed(() => {
-  return store.myDicts.filter(v => v.type === DictType.customArticle)
-      .concat([
-        store.simple,
-        store.wrong,
-        store.collect
-      ])
+  return [
+    store.collect,
+    store.simple,
+    store.wrong
+  ].concat(store.myDicts.filter(v => v.type === DictType.customArticle))
       .concat([{name: '',} as any])
 })
 
@@ -99,9 +98,11 @@ onMounted(() => {
   console.log('tagList', tagList)
 })
 
-function selectDict(dict: Dict) {
-  // runtimeStore.editDict = cloneDeep(dict)
-  runtimeStore.editDict = dict
+function selectDict(val: {
+  dict: Dict,
+  index: number
+}) {
+  store.current.editIndex = val.index
   isAddDict = false
   step = 1
 }
@@ -109,31 +110,20 @@ function selectDict(dict: Dict) {
 async function onSubmit() {
   await dictFormRef.validate((valid, fields) => {
     if (valid) {
-      let data = {
-        sort: Sort.normal,
-        type: DictType.customArticle,
-        originWords: [],
-        words: [],
-        chapterWordNumber: 30,
-        chapterWords: [],
-        chapterIndex: 0,
-        chapterWordIndex: 0,
-        statistics: [],
-        articles: [],
-        url: '',
+      let data: Dict = {
+        ...DefaultDict,
         ...dictForm,
       }
       if (dictForm.id) {
         let rIndex = store.myDicts.findIndex(v => v.id === dictForm.id)
-        runtimeStore.editDict = data
         store.myDicts[rIndex] = cloneDeep(data)
         isAddDict = false
       } else {
         if (store.myDicts.find(v => v.name === dictForm.name)) {
           return ElMessage.warning('已有相同名称词典！')
         } else {
-          runtimeStore.editDict = data
           store.myDicts.push(cloneDeep(data))
+          store.current.editIndex = store.myDicts.length - 1
           isAddDict = false
           console.log('submit!', data)
         }
@@ -145,8 +135,8 @@ async function onSubmit() {
 }
 
 function editDict() {
-  dictForm.name = runtimeStore.editDict.name
-  dictForm.description = runtimeStore.editDict.description
+  dictForm.name = store.editDict.name
+  dictForm.description = store.editDict.description
   wordFormMode = FormMode.None;
   isAddDict = true
 }
@@ -171,23 +161,30 @@ const wordRules = reactive<FormRules>({
     {max: 30, message: '名称不能超过30个字符', trigger: 'blur'},
   ],
 })
+let wordListRef: any = $ref()
 
 async function onSubmitWord() {
   await wordFormRef.validate((valid, fields) => {
     if (valid) {
       if (wordFormMode === FormMode.Add) {
-        if (runtimeStore.editDict.originWords.find(v => v.name === wordForm.name)) {
+        if (store.editDict.originWords.find(v => v.name === wordForm.name)) {
           return ElMessage.warning('已有相同名称单词！')
         } else {
+          // let list = cloneDeep(store.editDict.originWords)
           let data: any = cloneDeep(wordForm)
           if (data.trans) {
             data.trans = data.trans.split('\n');
           } else {
             data.trans = []
           }
-          runtimeStore.editDict.originWords.push(data)
+          store.editDict.originWords.push(data)
+          console.log('wordListRef',wordListRef)
+          wordListRef?.reset()
+          // store.editDict.originWords = list
+          //因为虚拟列表，必须重新赋值才能检测到更新
+          // store.editDict.originWords = cloneDeep(store.editDict.originWords)
         }
-        console.log('runtimeStore.editDict', runtimeStore.editDict)
+        console.log('store.editDict', store.editDict)
       }
     } else {
       ElMessage.warning('请填写完整')
@@ -245,10 +242,10 @@ const {
         <div class="detail" v-if="!isAddDict">
           <div class="dict">
             <div class="info">
-              <div class="name">{{ runtimeStore.editDict.name }}</div>
-              <div class="desc">{{ runtimeStore.editDict.description }}</div>
+              <div class="name">{{ store.editDict.name }}</div>
+              <div class="desc">{{ store.editDict.description }}</div>
               <div class="more-info">
-                <div class="item">词汇量：{{ runtimeStore.editDict.originWords.length }}词</div>
+                <div class="item">词汇量：{{ store.editDict.originWords.length }}词</div>
                 <div class="item">创建日期：-</div>
                 <div class="item">花费时间：-</div>
                 <div class="item">累积错误：-</div>
@@ -293,25 +290,19 @@ const {
             <div class="list-header">
               <div class="name">单词列表</div>
               <div class="flex-center gap10">
-                <div class="name">{{ store.currentDict.originWords.length }}个单词</div>
+                <div class="name">{{ store.editDict.originWords.length }}个单词</div>
                 <BaseIcon icon="mi:add"
                           @click='wordFormMode = FormMode.Add'
                 />
               </div>
             </div>
-            <!--            <WordList-->
-            <!--                v-if="runtimeStore.editDict.originWords.length"-->
-            <!--                class="word-list"-->
-            <!--                :is-active="true"-->
-            <!--                @change="(i:number) => data.index = i"-->
-            <!--                :list="runtimeStore.editDict.originWords"-->
-            <!--                :activeIndex="data.index"/>-->
             <WordList2
-                v-if="store.currentDict.words.length"
+                ref="wordListRef"
+                v-if="store.editDict.originWords.length"
                 class="word-list"
                 :is-active="true"
                 @change="(i:number) => data.index = i"
-                :list="store.currentDict.words"
+                :list="store.editDict.originWords"
                 :activeIndex="data.index">
               <template v-slot="{word}">
                 <BaseIcon
