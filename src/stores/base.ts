@@ -201,6 +201,20 @@ export const useBaseStore = defineStore('base', {
     }
   },
   actions: {
+    setEditDict(val: Dict) {
+      if (this.current.editIndex !== -1) {
+        switch (this.current.editIndex) {
+          case 0:
+            return this.collect = val
+          case 1:
+            return this.simple = val
+          case 2:
+            return this.wrong = val
+          default:
+            return this.myDicts[this.current.editIndex] = val
+        }
+      }
+    },
     setState(obj: any) {
       for (const [key, value] of Object.entries(obj)) {
         this[key] = value

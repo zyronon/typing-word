@@ -98,11 +98,14 @@ onMounted(() => {
   console.log('tagList', tagList)
 })
 
+let wordList = $ref([])
+
 function selectDict(val: {
   dict: Dict,
   index: number
 }) {
   store.current.editIndex = val.index
+  wordList = cloneDeep(store.editDict.originWords)
   isAddDict = false
   step = 1
 }
@@ -167,10 +170,9 @@ async function onSubmitWord() {
   await wordFormRef.validate((valid, fields) => {
     if (valid) {
       if (wordFormMode === FormMode.Add) {
-        if (store.editDict.originWords.find(v => v.name === wordForm.name)) {
+        if (wordList.find(v => v.name === wordForm.name)) {
           return ElMessage.warning('已有相同名称单词！')
         } else {
-          // let list = cloneDeep(store.editDict.originWords)
           let data: any = cloneDeep(wordForm)
           if (data.trans) {
             data.trans = data.trans.split('\n');
@@ -178,8 +180,10 @@ async function onSubmitWord() {
             data.trans = []
           }
           store.editDict.originWords.push(data)
-          console.log('wordListRef',wordListRef)
-          wordListRef?.reset()
+          wordList = cloneDeep(store.editDict.originWords)
+          // store.setEditDict(temp)
+          // console.log('wordListRef',wordListRef)
+          // wordListRef?.reset()
           // store.editDict.originWords = list
           //因为虚拟列表，必须重新赋值才能检测到更新
           // store.editDict.originWords = cloneDeep(store.editDict.originWords)
@@ -290,7 +294,7 @@ const {
             <div class="list-header">
               <div class="name">单词列表</div>
               <div class="flex-center gap10">
-                <div class="name">{{ store.editDict.originWords.length }}个单词</div>
+                <div class="name">{{ wordList.length }}个单词</div>
                 <BaseIcon icon="mi:add"
                           @click='wordFormMode = FormMode.Add'
                 />
@@ -298,11 +302,11 @@ const {
             </div>
             <WordList2
                 ref="wordListRef"
-                v-if="store.editDict.originWords.length"
+                v-if="wordList.length"
                 class="word-list"
                 :is-active="true"
                 @change="(i:number) => data.index = i"
-                :list="store.editDict.originWords"
+                :list="wordList"
                 :activeIndex="data.index">
               <template v-slot="{word}">
                 <BaseIcon
