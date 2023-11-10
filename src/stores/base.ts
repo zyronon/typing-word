@@ -247,8 +247,8 @@ export const useBaseStore = defineStore('base', {
               r.json().then(v => {
                 if (this.currentDict.translateLanguage === 'common') {
                   const runtimeStore = useRuntimeStore()
-                  // fetch('./translate/en2zh_CN.json').then(r2 => {
-                  fetch('http://sc.ttentau.top/en2zh_CN-min.json').then(r2 => {
+                  fetch('./translate/en2zh_CN-min.json').then(r2 => {
+                  // fetch('http://sc.ttentau.top/en2zh_CN-min.json').then(r2 => {
                     r2.json().then((list: Word[]) => {
                       runtimeStore.translateWordList = list
 
