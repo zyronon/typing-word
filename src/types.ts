@@ -18,7 +18,6 @@ export const DefaultWord: Word = {
   trans: []
 }
 
-
 export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 
 export type TranslateLanguageType = 'en' | 'zh-CN' | 'ja' | 'de' | 'common' | ''
@@ -28,33 +27,13 @@ export type DictResource = {
   id: string
   name: string
   description: string
-  category: string
-  tags: string[]
   url: string
   length: number
+  category: string
+  tags: string[]
   translateLanguage: TranslateLanguageType
   type: DictType
   language: LanguageType
-}
-
-export interface Dict {
-  id: string,
-  name: string,
-  description: string,
-  sort: Sort,
-  originWords: Word[],//原始单词
-  words: Word[],
-  chapterWordNumber: number,//章节单词数量
-  chapterWords: Word[][],
-  chapterIndex: number,//章节下标
-  wordIndex: number,//单词下标
-  articles: Article[],
-  statistics: Statistics[],
-  resourceId: string,
-  type: DictType,
-  translateLanguage: TranslateLanguageType
-  language: LanguageType
-  url: string,
 }
 
 
@@ -244,9 +223,36 @@ export const DefaultDict: Dict = {
   wordIndex: 0,//单词下标
   articles: [],
   statistics: [],
+  /*资源属性*/
   resourceId: '',
-  type: DictType.word,
-  translateLanguage: 'common',
-  language: 'en',
   url: '',
+  category: '',
+  tags: [],
+  translateLanguage: 'common',
+  type: DictType.word,
+  language: 'en',
 }
+
+export interface Dict {
+  id: string,
+  name: string,
+  description: string,
+  sort: Sort,
+  originWords: Word[],//原始单词
+  words: Word[],
+  chapterWordNumber: number,//章节单词数量
+  chapterWords: Word[][],
+  chapterIndex: number,//章节下标
+  wordIndex: number,//单词下标
+  articles: Article[],
+  statistics: Statistics[],
+  /*资源属性*/
+  resourceId: string,
+  url: string,
+  category: string
+  tags: string[]
+  translateLanguage: TranslateLanguageType
+  type: DictType
+  language: LanguageType
+}
+

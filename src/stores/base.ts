@@ -105,6 +105,16 @@ export const useBaseStore = defineStore('base', {
           resourceId: 'nce-new-2',
           translateLanguage: 'common',
           language: 'en',
+        },
+        {
+          ...cloneDeep(DefaultDict),
+          id: '新概11',
+          name: '新22',
+          type: DictType.customWord,
+          url: 'nce-new-2.json',
+          resourceId: 'nce-new-2',
+          translateLanguage: 'common',
+          language: 'en',
         }
       ],
       current: {
@@ -155,7 +165,7 @@ export const useBaseStore = defineStore('base', {
         case 2:
           return state.wrong
         default:
-          return state.myDicts[state.current.editIndex]
+          return state.myDicts.filter(v => [DictType.customWord, DictType.customArticle].includes(v.type))[state.current.editIndex - 3]
       }
     },
     currentDict(state: State): Dict {
@@ -248,7 +258,7 @@ export const useBaseStore = defineStore('base', {
                 if (this.currentDict.translateLanguage === 'common') {
                   const runtimeStore = useRuntimeStore()
                   fetch('./translate/en2zh_CN-min.json').then(r2 => {
-                  // fetch('http://sc.ttentau.top/en2zh_CN-min.json').then(r2 => {
+                    // fetch('http://sc.ttentau.top/en2zh_CN-min.json').then(r2 => {
                     r2.json().then((list: Word[]) => {
                       runtimeStore.translateWordList = list
 

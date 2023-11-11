@@ -32,7 +32,7 @@ const emit = defineEmits<{
               class="go" width="20" color="#929596"/>
       </div>
       <div v-else class="dict-item add" @click.stop="emit('add')">
-        <Icon icon="fluent:add-20-filled" width="60" color="#929596"/>
+        <Icon icon="fluent:add-20-filled" width="38" color="#929596"/>
       </div>
     </template>
   </div>

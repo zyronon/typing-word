@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{
   del: [val: Word],
-  change: [i: number]
+  change: [val: { word: Word, index: number }],
 }>()
 
 const settingStore = useSettingStore()
@@ -57,7 +57,12 @@ function reset() {
   listRef.reset()
 }
 
-defineExpose({reset})
+function scrollToBottom() {
+  listRef.scrollToIndex(props.list.length - 1)
+
+}
+
+defineExpose({scrollToBottom})
 
 </script>
 
@@ -73,7 +78,7 @@ defineExpose({reset})
     <template #={source,index}>
       <div class="common-list-item"
            :class="{active:activeIndex === index}"
-           @click="emit('change',index)"
+           @click="emit('change',{word:source,index})"
       >
         <div class="left">
           <div class="item-title">
@@ -86,7 +91,7 @@ defineExpose({reset})
           </div>
         </div>
         <div class="right">
-          <slot :word="source"></slot>
+          <slot :word="source" :index="index"></slot>
         </div>
       </div>
     </template>

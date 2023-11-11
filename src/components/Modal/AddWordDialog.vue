@@ -1,6 +1,5 @@
 <script setup lang="ts">
 
-import WordList from "@/components/list/WordList.vue";
 import {$computed, $ref} from "vue/macros";
 import Slide from "@/components/Slide.vue";
 import DictList from "@/components/list/DictList.vue";
@@ -9,7 +8,7 @@ import {useBaseStore} from "@/stores/base.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useDisableEventListener} from "@/hooks/event.ts";
-import {DefaultDict, Dict, DictType, languageCategoryOptions, Sort, Word} from "@/types.ts";
+import {DefaultDict, Dict, DictType, languageCategoryOptions, Word} from "@/types.ts";
 import {onMounted, reactive, watch} from "vue";
 import {FormInstance, FormRules} from "element-plus";
 import {dictionaryResources} from "@/assets/dictionary.ts";
@@ -17,13 +16,6 @@ import {cloneDeep} from "lodash-es";
 import Empty from "@/components/Empty.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import WordList2 from "@/components/list/WordList2.vue";
-import {usePlayWordAudio} from "@/hooks/sound.ts";
-import {useWordOptions} from "@/hooks/dict.ts";
-
-let data = $ref({
-  words: [],
-  index: -1
-})
 
 useDisableEventListener()
 
@@ -37,29 +29,31 @@ const emit = defineEmits([
 
 let step = $ref(1)
 let isAddDict = $ref(false)
+let wordList = $ref([])
 
-let list = $computed(() => {
+let dictList = $computed(() => {
   return [
     store.collect,
     store.simple,
     store.wrong
-  ].concat(store.myDicts.filter(v => v.type === DictType.customArticle))
+  ].concat(store.myDicts.filter(v => [DictType.customWord, DictType.customArticle].includes(v.type)))
       .concat([{name: '',} as any])
 })
 
-let languageCategoryList = []
 let categoryList = {}
 let tagList = {}
 
-let dictForm = reactive({
+const DefaultDictForm = {
   id: '',
-  name: '123',
+  name: '',
   description: '',
   category: '',
   tags: [],
-  languageCategory: '',
-  language: '',
-})
+  translateLanguage: 'zh-CN',
+  language: 'en',
+  type: DictType.customWord
+}
+let dictForm: any = $ref(cloneDeep(DefaultDictForm))
 const dictFormRef = $ref<FormInstance>()
 const dictRules = reactive<FormRules>({
   name: [
@@ -68,17 +62,13 @@ const dictRules = reactive<FormRules>({
   ],
   category: [{required: true, message: '请选择', trigger: 'change'}],
   tags: [{required: true, message: '请选择', trigger: 'change'}],
-  languageCategory: [{required: true, message: '请选择', trigger: 'change'}],
 })
 
-watch(() => dictForm.languageCategory, () => dictForm.category = '')
-watch(() => dictForm.category, () => dictForm.tags = [])
+watch(() => dictForm.language, () => isAddDict && (dictForm.category = ''))
+watch(() => dictForm.category, () => isAddDict && (dictForm.tags = []))
 
 onMounted(() => {
   dictionaryResources.map(v => {
-    // if (!languageCategoryList.find(w => w === v.languageCategory)) {
-    //   languageCategoryList.push(v.languageCategory)
-    // }
     if (categoryList[v.language]) {
       if (!categoryList[v.language].find(w => w === v.category)) {
         categoryList[v.language].push(v.category)
@@ -93,21 +83,34 @@ onMounted(() => {
     }
   })
 
-  console.log('languageCategoryList', languageCategoryList)
   console.log('categoryList', categoryList)
   console.log('tagList', tagList)
 })
 
-let wordList = $ref([])
-
-function selectDict(val: {
-  dict: Dict,
-  index: number
-}) {
+function selectDict(val: { dict: Dict, index: number }) {
   store.current.editIndex = val.index
   wordList = cloneDeep(store.editDict.originWords)
   isAddDict = false
   step = 1
+}
+
+function editDict() {
+  // dictForm.id = store.editDict.id
+  // dictForm.name = store.editDict.name
+  // dictForm.description = store.editDict.description
+  console.log('store.editDict', store.editDict)
+  dictForm = cloneDeep(store.editDict)
+  //直接复制，上面会watch到category，然后把tags 设置为空
+  setTimeout(() => isAddDict = true, 0)
+}
+
+function closeDictForm() {
+  if (dictForm.id) {
+    isAddDict = false
+    dictForm = cloneDeep(DefaultDictForm)
+  } else {
+    step = 0
+  }
 }
 
 async function onSubmit() {
@@ -117,46 +120,47 @@ async function onSubmit() {
         ...DefaultDict,
         ...dictForm,
       }
-      if (dictForm.id) {
-        let rIndex = store.myDicts.findIndex(v => v.id === dictForm.id)
+      if (data.id) {
+        let rIndex = store.myDicts.findIndex(v => v.id === data.id)
         store.myDicts[rIndex] = cloneDeep(data)
         isAddDict = false
+        ElMessage.success('修改成功')
       } else {
+        data.id = 'custom-dict-' + Date.now()
         if (store.myDicts.find(v => v.name === dictForm.name)) {
           return ElMessage.warning('已有相同名称词典！')
         } else {
           store.myDicts.push(cloneDeep(data))
-          store.current.editIndex = store.myDicts.length - 1
+          store.current.editIndex = 3 + store.myDicts.filter(v => [DictType.customWord, DictType.customArticle].includes(v.type)).length - 1
           isAddDict = false
-          console.log('submit!', data)
+          ElMessage.success('添加成功')
         }
       }
+      console.log('submit!', data)
+
     } else {
       ElMessage.warning('请填写完整')
     }
   })
 }
 
-function editDict() {
-  dictForm.name = store.editDict.name
-  dictForm.description = store.editDict.description
-  wordFormMode = FormMode.None;
-  isAddDict = true
+/**/
+/**/
+/**/
+enum FormMode {
+  None = -1,
+  Add = -2,
 }
 
-enum FormMode {
-  None = 'None',
-  Edit = 'Edit',
-  Add = 'Add'
+const DefaultFormWord = {
+  name: '',
+  usphone: '',
+  ukphone: '',
+  trans: ''
 }
 
 let wordFormMode = $ref(FormMode.None)
-let wordForm = reactive({
-  name: '',
-  trans: '',
-  usphone: '',
-  ukphone: '',
-})
+let wordForm = $ref(cloneDeep(DefaultFormWord))
 const wordFormRef = $ref<FormInstance>()
 const wordRules = reactive<FormRules>({
   name: [
@@ -169,26 +173,29 @@ let wordListRef: any = $ref()
 async function onSubmitWord() {
   await wordFormRef.validate((valid, fields) => {
     if (valid) {
+      let data: any = cloneDeep(wordForm)
+      if (data.trans) {
+        data.trans = data.trans.split('\n');
+      } else {
+        data.trans = []
+      }
       if (wordFormMode === FormMode.Add) {
         if (wordList.find(v => v.name === wordForm.name)) {
           return ElMessage.warning('已有相同名称单词！')
         } else {
-          let data: any = cloneDeep(wordForm)
-          if (data.trans) {
-            data.trans = data.trans.split('\n');
-          } else {
-            data.trans = []
-          }
           store.editDict.originWords.push(data)
-          wordList = cloneDeep(store.editDict.originWords)
-          // store.setEditDict(temp)
-          // console.log('wordListRef',wordListRef)
-          // wordListRef?.reset()
-          // store.editDict.originWords = list
           //因为虚拟列表，必须重新赋值才能检测到更新
-          // store.editDict.originWords = cloneDeep(store.editDict.originWords)
+          wordList = cloneDeep(store.editDict.originWords)
+          ElMessage.success('添加成功')
+          wordForm = cloneDeep(DefaultFormWord)
+          setTimeout(wordListRef?.scrollToBottom, 100)
         }
         console.log('store.editDict', store.editDict)
+      } else {
+        store.editDict.originWords[wordFormMode] = data
+        //因为虚拟列表，必须重新赋值才能检测到更新
+        wordList = cloneDeep(store.editDict.originWords)
+        ElMessage.success('修改成功')
       }
     } else {
       ElMessage.warning('请填写完整')
@@ -196,17 +203,39 @@ async function onSubmitWord() {
   })
 }
 
+function delWord(index: number) {
+  store.editDict.originWords.splice(index, 1)
+  wordList = cloneDeep(store.editDict.originWords)
+}
+
+function editWord(val: { word: Word, index: number }) {
+  wordFormMode = val.index
+  wordForm.name = val.word.name
+  wordForm.ukphone = val.word.ukphone
+  wordForm.usphone = val.word.usphone
+  wordForm.trans = val.word.trans.join('\n')
+}
+
+function closeWordForm() {
+  wordFormMode = FormMode.None
+  wordForm = cloneDeep(DefaultFormWord)
+}
+
+function addWord() {
+  wordFormMode = FormMode.Add
+  wordForm = cloneDeep(DefaultFormWord)
+}
+
+watch(() => step, v => {
+  if (v === 0) {
+    closeWordForm()
+    closeDictForm()
+  }
+})
+
 function close() {
   emit('close')
 }
-
-const playWordAudio = usePlayWordAudio()
-const {
-  isWordCollect,
-  toggleWordCollect,
-  isWordSimple,
-  toggleWordSimple,
-} = useWordOptions()
 
 </script>
 
@@ -227,7 +256,7 @@ const {
           <DictList
               @add="step = 1;isAddDict = true"
               @selectDict="selectDict"
-              :list="list"/>
+              :list="dictList"/>
         </div>
       </div>
       <div class="page add-page">
@@ -261,7 +290,7 @@ const {
               />
             </div>
             <div class="add" v-if="wordFormMode !== FormMode.None">
-              <div class="common-title">添加单词</div>
+              <div class="common-title">{{ wordFormMode === FormMode.Add ? '添加' : '修改' }}单词</div>
               <el-form
                   class="form"
                   ref="wordFormRef"
@@ -274,7 +303,7 @@ const {
                 <el-form-item label="翻译">
                   <el-input v-model="wordForm.trans"
                             placeholder="多个翻译请换行"
-                            :autosize="{ minRows: 2, maxRows: 8 }"
+                            :autosize="{ minRows: 2, maxRows: 6 }"
                             type="textarea"/>
                 </el-form-item>
                 <el-form-item label="音标/发音/注音①">
@@ -284,8 +313,11 @@ const {
                   <el-input v-model="wordForm.ukphone"/>
                 </el-form-item>
                 <div class="flex-center">
-                  <el-button @click="wordFormMode = FormMode.None">关闭</el-button>
-                  <el-button type="primary" @click="onSubmitWord">确定</el-button>
+                  <el-button @click="closeWordForm">关闭</el-button>
+                  <el-button type="primary" @click="onSubmitWord">{{
+                      wordFormMode === FormMode.Add ? '添加' : '保存'
+                    }}
+                  </el-button>
                 </div>
               </el-form>
             </div>
@@ -296,7 +328,7 @@ const {
               <div class="flex-center gap10">
                 <div class="name">{{ wordList.length }}个单词</div>
                 <BaseIcon icon="mi:add"
-                          @click='wordFormMode = FormMode.Add'
+                          @click='addWord'
                 />
               </div>
             </div>
@@ -305,26 +337,22 @@ const {
                 v-if="wordList.length"
                 class="word-list"
                 :is-active="true"
-                @change="(i:number) => data.index = i"
+                @change="editWord"
                 :list="wordList"
-                :activeIndex="data.index">
-              <template v-slot="{word}">
+                :activeIndex="wordFormMode">
+              <template v-slot="{word,index}">
                 <BaseIcon
-                    v-if="!isWordCollect(word)"
-                    class-name="collect"
-                    @click="toggleWordCollect(word)"
-                    title="收藏" icon="ph:star"/>
-                <BaseIcon
-                    v-else
-                    class-name="fill"
-                    @click="toggleWordCollect(word)"
-                    title="取消收藏" icon="ph:star-fill"/>
+                    class-name="del"
+                    @click="delWord(index)"
+                    title="移除"
+                    icon="solar:trash-bin-minimalistic-linear"/>
               </template>
             </WordList2>
             <Empty v-else/>
           </div>
         </div>
         <div class="edit" v-else>
+          <div class="common-title">{{ dictForm.id ? '修改' : '添加' }}词典</div>
           <el-form
               ref="dictFormRef"
               :rules="dictRules"
@@ -336,15 +364,26 @@ const {
             <el-form-item label="描述">
               <el-input v-model="dictForm.description" type="textarea"/>
             </el-form-item>
-            <el-form-item label="分类" prop="languageCategory">
-              <el-select
-                  v-model="dictForm.languageCategory" placeholder="请选择选项">
-                <el-option :label="i.name" :value="i.id" v-for="i in languageCategoryOptions"/>
+            <el-form-item label="语言">
+              <el-select v-model="dictForm.language" placeholder="请选择选项">
+                <el-option label="英语" value="en"/>
+                <el-option label="德语" value="de"/>
+                <el-option label="日语" value="ja"/>
+                <el-option label="代码" value="code"/>
               </el-select>
             </el-form-item>
-            <el-form-item label="用途" prop="category">
+            <el-form-item label="翻译语言">
+              <el-select v-model="dictForm.translateLanguage" placeholder="请选择选项">
+                <!--                <el-option label="通用" value="common"/>-->
+                <el-option label="中文" value="zh-CN"/>
+                <el-option label="英语" value="en"/>
+                <el-option label="德语" value="de"/>
+                <el-option label="日语" value="ja"/>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="分类" prop="category">
               <el-select v-model="dictForm.category" placeholder="请选择选项">
-                <el-option :label="i" :value="i" v-for="i in categoryList[dictForm.languageCategory]"/>
+                <el-option :label="i" :value="i" v-for="i in categoryList[dictForm.language]"/>
               </el-select>
             </el-form-item>
             <el-form-item label="标签" prop="tags">
@@ -354,8 +393,14 @@ const {
                 <el-option :label="i" :value="i" v-for="i in tagList[dictForm.category]"/>
               </el-select>
             </el-form-item>
+            <el-form-item label="类型">
+              <el-select v-model="dictForm.type" placeholder="请选择选项">
+                <el-option label="单词" :value="DictType.customWord"/>
+                <el-option label="文章" :value="DictType.customArticle"/>
+              </el-select>
+            </el-form-item>
             <div class="flex-center">
-              <el-button @click="step = 0">返回</el-button>
+              <el-button @click="closeDictForm">关闭</el-button>
               <el-button type="primary" @click="onSubmit">确定</el-button>
             </div>
           </el-form>
@@ -432,7 +477,10 @@ const {
         background: var(--color-second-bg);
         color: var(--color-font-1);
         padding-left: var(--space);
+        padding-right: var(--space);
+        padding-bottom: var(--space);
         box-sizing: border-box;
+        overflow: auto;
 
         .info {
           border-radius: 8rem;
@@ -491,9 +539,12 @@ const {
     }
 
     .edit {
-      padding: 0 var(--space);
+      height: calc(100% - $header-height);
+      padding: var(--space);
+      padding-top: 0;
       width: 100%;
       box-sizing: border-box;
+      overflow: auto;
     }
   }
 }
