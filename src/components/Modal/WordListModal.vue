@@ -1,21 +1,17 @@
 <script setup lang="ts">
 
-import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import Modal from "@/components/Modal/Modal.vue";
 import {$ref} from "vue/macros";
 import {onMounted, onUnmounted, watch} from "vue";
-import {usePlayWordAudio} from "@/hooks/sound.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import ListItem from "@/components/list/ListItem.vue";
-import {Word} from "@/types.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
+import VirtualWordList from "@/components/list/VirtualWordList.vue";
 
 let show = $ref(false)
 let loading = $ref(false)
 let list = $ref([])
 let title = $ref('')
 let progress = $ref(0)
-const playWordAudio = usePlayWordAudio()
 const runtimeStore = useRuntimeStore()
 
 onMounted(() => {
@@ -81,26 +77,10 @@ onUnmounted(() => {
                      :indeterminate="false"
                      :show-text="false"/>
       </div>
-      <virtual-list class="virtual-list"
-                    :keeps="20"
-                    data-key="name"
-                    :data-sources="list"
-                    :estimate-size="85"
-                    item-class="dict-virtual-item"
-      >
-        <template #={source}>
-          <ListItem
-              class="common-list-item"
-              :show-volume="true">
-            <div class="item-title">
-              <span class="word">{{ source.name }}</span>
-              <span class="phonetic">{{ source.usphone }}</span>
-              <VolumeIcon class="volume" @click="playWordAudio(source.name)"></VolumeIcon>
-            </div>
-            <div class="item-sub-title" v-if="source.trans.length">{{ source.trans.join('；') }}</div>
-          </ListItem>
-        </template>
-      </virtual-list>
+      <VirtualWordList
+          class="word-list"
+          :list="list">
+      </VirtualWordList>
     </div>
   </Modal>
 </template>
@@ -109,7 +89,7 @@ onUnmounted(() => {
 @import "@/assets/css/style";
 
 .all-word {
-  padding: var(--space);
+  padding-bottom: var(--space);
   padding-top: 0;
   width: 400rem;
   height: 75vh;
@@ -127,18 +107,4 @@ onUnmounted(() => {
     }
   }
 }
-</style>
-
-<style lang="scss">
-@import "@/assets/css/variable";
-
-.virtual-list {
-  overflow: auto;
-  height: 100%;
-}
-
-.dict-virtual-item {
-  margin-bottom: 15rem;
-}
-
 </style>

@@ -194,18 +194,18 @@ export const useBaseStore = defineStore('base', {
     },
     dictTitle(state: State) {
       let title = this.currentDict.name
+      return title + this.chapterName
+    },
+    chapterName(state: State) {
+      let title = ''
       switch (state.current.dictType) {
         case DictType.collect:
-          if (state.current.dictType === DictType.collect) {
-            title += `  第${this.currentDict.chapterIndex + 1}章`
+          if (state.current.practiceType === DictType.word) {
+            return `第${this.currentDict.chapterIndex + 1}章`
           }
-          break
         case DictType.word:
-        case DictType.article:
         case DictType.customWord:
-        case DictType.customArticle:
-          title += `  第${this.currentDict.chapterIndex + 1}章`
-          break
+          return `第${this.currentDict.chapterIndex + 1}章`
       }
       return title
     }

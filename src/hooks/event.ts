@@ -53,10 +53,9 @@ export function useStartKeyboardEventListener() {
   const settingStore = useSettingStore()
 
   useEventListener('keydown', (e: KeyboardEvent) => {
-    e.preventDefault()
-
     // console.log('e',e.keyCode,e.code)
     if (!runtimeStore.disableEventListener) {
+      e.preventDefault()
       let shortcutKey = getShortcutKey(e)
       // console.log('shortcutKey', shortcutKey)
 
@@ -117,7 +116,7 @@ export function useOnKeyboardEventListener(onKeyDown: (e: KeyboardEvent) => void
 
 export function useDisableEventListener(watchVal?: any) {
   const runtimeStore = useRuntimeStore()
-  watch(() => watchVal, n => {
+  watch(watchVal, n => {
     if (n) {
       runtimeStore.disableEventListener = true
     } else {
@@ -125,12 +124,12 @@ export function useDisableEventListener(watchVal?: any) {
     }
   })
   onMounted(() => {
-    if (!watchVal) {
+    if (watchVal === undefined) {
       runtimeStore.disableEventListener = true
     }
   })
   onUnmounted(() => {
-    if (!watchVal) {
+    if (watchVal === undefined) {
       runtimeStore.disableEventListener = false
     }
   })

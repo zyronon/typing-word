@@ -19,7 +19,6 @@ import VirtualWordList from "@/components/list/VirtualWordList.vue";
 import Modal from "@/components/Modal/Modal.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 
-// useDisableEventListener()
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -33,7 +32,7 @@ let step = $ref(1)
 let isAddDict = $ref(false)
 let wordList = $ref([])
 
-let dictList = $computed(() => {
+let dictList: Dict[] = $computed(() => {
   return [
     store.collect,
     store.simple,
@@ -85,11 +84,11 @@ onMounted(() => {
     }
   })
 
-  console.log('categoryList', categoryList)
-  console.log('tagList', tagList)
+  // console.log('categoryList', categoryList)
+  // console.log('tagList', tagList)
 })
 
-function selectDict(val: { dict: Dict, index: number }) {
+function selectDict(val: { index: number }) {
   store.current.editIndex = val.index
   wordList = cloneDeep(store.editDict.originWords)
   isAddDict = false
@@ -237,13 +236,20 @@ watch(() => step, v => {
 
 let show = $ref(false)
 
+useDisableEventListener(() => show)
+
 function close() {
   show = false
 }
 
 onMounted(() => {
   emitter.on(EventKey.editDict, (dict: Dict) => {
-    show = true
+    let rIndex = dictList.findIndex(v => v.id === dict.id)
+    if (rIndex > -1) {
+      selectDict({index: rIndex})
+      addWord()
+      show = true
+    }
   })
 })
 </script>
@@ -429,14 +435,8 @@ onMounted(() => {
 @import "@/assets/css/variable";
 
 #AddWordDialog {
-  position: fixed;
-  width: 600rem;
+  width: 650rem;
   height: 70vh;
-  left: 50%;
-  top: 50%;
-  transform: translate3D(-50%, -50%, 0);
-  z-index: 9999999;
-  background: var(--color-second-bg);
   transition: all .3s;
 
   &.add-word-mode {
@@ -446,6 +446,10 @@ onMounted(() => {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       display: none;
+    }
+
+    .dict{
+      padding-right: var(--space);
     }
   }
 
@@ -492,7 +496,6 @@ onMounted(() => {
         background: var(--color-second-bg);
         color: var(--color-font-1);
         padding-left: var(--space);
-        padding-right: var(--space);
         padding-bottom: var(--space);
         box-sizing: border-box;
         overflow: auto;
@@ -530,7 +533,7 @@ onMounted(() => {
       }
 
       .list-wrapper {
-        width: 350rem;
+        width: 400rem;
         display: flex;
         flex-direction: column;
         font-size: 14rem;

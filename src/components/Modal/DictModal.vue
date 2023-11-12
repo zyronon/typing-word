@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {dictionaryResources} from '@/assets/dictionary.ts'
 import {useBaseStore} from "@/stores/base.ts"
-import {onUnmounted, watch} from "vue"
+import {watch} from "vue"
 import {DefaultDict, Dict, DictResource, DictType, languageCategoryOptions, Sort} from "@/types.ts"
 import {chunk, cloneDeep, groupBy, reverse, shuffle} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
@@ -19,18 +19,6 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 
-interface IProps {
-  modelValue?: boolean,
-}
-
-const props = withDefaults(defineProps<IProps>(), {
-  modelValue: true,
-})
-
-const emit = defineEmits<{
-  close: []
-}>()
-
 const baseStore = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
@@ -40,52 +28,51 @@ let groupByLanguage = groupBy(dictionaryResources, 'language')
 let translateLanguageList = $ref([])
 
 let step = $ref(1)
+let loading = $ref(false)
 
-watch(() => props.modelValue, (n: boolean) => {
-  let find = baseStore.myDicts.find((v: Dict) => v.name === baseStore.currentDict.name)
-  if (find) {
-    runtimeStore.editDict = cloneDeep(find)
-  }
+watch(() => runtimeStore.showDictModal, (n: boolean) => {
+  runtimeStore.editDict = cloneDeep(baseStore.currentDict)
 })
 
 async function selectDict(item: DictResource) {
   console.log('item', item)
   step = 1
+  loading = true
   let find: Dict = baseStore.myDicts.find((v: Dict) => v.name === item.name)
   if (find) {
+    runtimeStore.editDict = cloneDeep(find)
     if (find.type === DictType.article) {
       if (!find.articles.length) {
         let r = await fetch(`./dicts/${find.language}/${find.type}/${find.translateLanguage}/${find.url}`)
         let v = await r.json()
-        find.articles = v.map(s => {
+        runtimeStore.editDict.articles = v.map(s => {
           s.id = uuidv4()
           return s
         })
       }
-      runtimeStore.editDict = cloneDeep(find)
     }
+    loading = false
   } else {
     let data: Dict = {
       ...cloneDeep(DefaultDict),
       ...item,
     }
-
+    runtimeStore.editDict = cloneDeep(data)
     let r = await fetch(`./dicts/${data.language}/${data.type}/${data.translateLanguage}/${item.url}`)
     r.json().then(v => {
       console.log('v', v)
       if (data.type === DictType.article) {
-        data.articles = cloneDeep(v.map(s => {
+        runtimeStore.editDict.articles = cloneDeep(v.map(s => {
           s.id = uuidv4()
           return s
         }))
-        runtimeStore.editDict = cloneDeep(data)
       } else {
-        data.originWords = v
-        data.words = v
-        data.chapterWords = chunk(v, data.chapterWordNumber)
-        runtimeStore.editDict = cloneDeep(data)
+        runtimeStore.editDict.originWords = v
+        runtimeStore.editDict.words = v
+        runtimeStore.editDict.chapterWords = chunk(v, runtimeStore.editDict.chapterWordNumber)
         console.log(' runtimeStore.editDict', runtimeStore.editDict)
       }
+      loading = false
     })
   }
 }
@@ -96,9 +83,8 @@ function changeDict() {
 }
 
 function close() {
-  emit('close')
+  runtimeStore.showDictModal = false
 }
-
 
 function groupByDictTags(dictList: DictResource[]) {
   return dictList.reduce<Record<string, DictResource[]>>((result, dict) => {
@@ -169,17 +155,13 @@ function changeSort(v) {
   resetChapterList()
 }
 
-onUnmounted(() => {
-  close()
-})
 </script>
 
 <template>
   <Modal
       :header="false"
-      :model-value="props.modelValue"
-      :show-close="false"
-      @close="close">
+      v-model="runtimeStore.showDictModal"
+      :show-close="false">
     <div class="slide">
       <div class="slide-list" :class="`step${step}`">
         <div class="dict-page">
@@ -327,7 +309,7 @@ onUnmounted(() => {
                 </div>
               </div>
             </div>
-            <div class="other">
+            <div class="other" v-loading="loading">
               <div class="common-title">
                 <template v-if="dictIsArticle">
                   文章列表：共{{ runtimeStore.editDict.articles.length }}章

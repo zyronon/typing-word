@@ -16,6 +16,7 @@ declare module 'vue' {
     BaseIcon: typeof import('./src/components/BaseIcon.vue')['default']
     ChapterDetail: typeof import('./src/components/ChapterDetail.vue')['default']
     ChapterList: typeof import('./src/components/list/ChapterList.vue')['default']
+    ChapterName: typeof import('./src/components/Toolbar/ChapterName.vue')['default']
     Close: typeof import('./src/components/icon/Close.vue')['default']
     CommonWordList: typeof import('./src/components/list/CommonWordList.vue')['default']
     DictGroup: typeof import('./src/components/Toolbar/DictGroup.vue')['default']

@@ -112,10 +112,16 @@ function togglePanel() {
   settingStore.showPanel = !settingStore.showPanel
 }
 
+function jumpSpecifiedChapter(val: number) {
+  store.currentDict.chapterIndex = val
+  repeat()
+}
+
 onMounted(() => {
   emitter.on(EventKey.next, next)
   emitter.on(EventKey.write, write)
   emitter.on(EventKey.repeat, repeat)
+  emitter.on(EventKey.jumpSpecifiedChapter, jumpSpecifiedChapter)
 
   emitter.on(ShortcutKey.NextChapter, next)
   emitter.on(ShortcutKey.PreviousChapter, prev)
@@ -135,6 +141,7 @@ onUnmounted(() => {
   emitter.off(EventKey.next, next)
   emitter.off(EventKey.write, write)
   emitter.off(EventKey.repeat, repeat)
+  emitter.off(EventKey.jumpSpecifiedChapter, jumpSpecifiedChapter)
 
   emitter.off(ShortcutKey.NextChapter, next)
   emitter.off(ShortcutKey.PreviousChapter, prev)
@@ -159,7 +166,7 @@ onUnmounted(() => {
     <Footer/>
   </div>
   <AddWordDialog></AddWordDialog>
-  <DictModal :model-value="runtimeStore.showDictModal" @close="runtimeStore.showDictModal = false"/>
+  <DictModal/>
   <SettingModal v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
   <Statistics/>
 </template>

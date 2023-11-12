@@ -17,6 +17,7 @@ import Tooltip from "@/components/Tooltip.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import CommonWordList from "@/components/list/CommonWordList.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -80,7 +81,7 @@ const {
                   </el-radio-group>
                   <Tooltip title="添加">
                     <IconWrapper>
-                      <Icon icon="fluent:add-12-regular"/>
+                      <Icon icon="fluent:add-12-regular" @click="emitter.emit(EventKey.editDict,store.collect)"/>
                     </IconWrapper>
                   </Tooltip>
                   <div class="dict-name" v-if="practiceType === DictType.word && store.collect.words.length">

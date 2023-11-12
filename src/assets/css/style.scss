@@ -32,7 +32,7 @@
   --toolbar-width: 700rem;
   --toolbar-height: 60rem;
   --panel-width: 400rem;
-  --space: 24rem;
+  --space: 20rem;
   --panel-margin-left: calc(50% - var(--practice-wrapper-padding-right) / 2 + var(--toolbar-width) / 2 + 24rem);
 }
 
@@ -268,7 +268,7 @@ footer {
   justify-content: space-between;
   transition: all .3s;
   padding: 10rem;
-  gap: 20rem;
+  gap: 10rem;
   border: 1px solid var(--color-item-border);
 
   .left {

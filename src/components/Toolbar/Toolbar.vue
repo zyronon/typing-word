@@ -16,6 +16,7 @@ import {usePracticeStore} from "@/stores/practice.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {$ref} from "vue/macros";
 import {ShortcutKey} from "@/types.ts";
+import ChapterName from "@/components/Toolbar/ChapterName.vue";
 
 const {toggleTheme} = useTheme()
 const store = useBaseStore()
@@ -60,12 +61,18 @@ watch(() => store.load, n => {
 <template>
   <header ref="headerRef">
     <div class="content">
-      <Tooltip
-          :title="`词典详情(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.OpenDictDetail]})`">
-        <div class="info hvr-grow" @click="runtimeStore.showDictModal = true">
-          {{ store.dictTitle }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
+      <div class="dict-name">
+        <Tooltip
+            :title="`词典详情(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.OpenDictDetail]})`">
+          <div class="info hvr-grow" @click="runtimeStore.showDictModal = true">
+            {{ store.currentDict.name }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
+          </div>
+        </Tooltip>
+        <ChapterName/>
+        <div class="info-text" v-if="practiceStore.repeatNumber">
+          复习错词
         </div>
-      </Tooltip>
+      </div>
 
       <div class="options" ref="moreOptionsRef">
         <div class="more" :class="settingStore.collapse && 'hide'">
@@ -147,6 +154,32 @@ watch(() => store.load, n => {
   <FeedbackModal v-if="showFeedbackModal" @close="showFeedbackModal = false"/>
 </template>
 
+<style lang="scss">
+.info {
+  border-radius: 6rem;
+  color: var(--color-font-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all .3s;
+  padding: 6rem 8rem;
+
+  &:hover {
+    background: var(--color-main-active);
+    color: white;
+  }
+}
+
+.info-text {
+  @extend .info;
+  cursor: unset;
+
+  &:hover {
+    background: unset;
+  }
+}
+</style>
 <style scoped lang="scss">
 @import "@/assets/css/variable";
 
@@ -180,22 +213,11 @@ header {
     align-items: center;
     justify-content: space-between;
 
-    .info {
-      font-size: 17rem;
-      padding: 6rem 10rem;
-      border-radius: 6rem;
-      color: var(--color-font-1);
+    .dict-name {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: all .3s;
       max-width: 45%;
-
-      &:hover {
-        background: var(--color-main-active);
-        color: white;
-      }
+      font-size: 17rem;
+      position: relative;
     }
 
     .hide {
