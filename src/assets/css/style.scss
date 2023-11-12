@@ -271,27 +271,43 @@ footer {
   gap: 20rem;
   border: 1px solid var(--color-item-border);
 
-  .volume {
+  .left {
+    display: flex;
+    gap: 3rem;
+    flex-direction: column;
+    word-break: break-word;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    transition: all .3s;
+  }
+
+  .volume, .collect, .easy {
     opacity: 0;
   }
+
 
   &:hover {
     background: var(--color-item-hover);
 
-    .volume {
+    .volume, .collect, .easy {
       opacity: 1;
     }
   }
 
   &.active {
     background: var(--color-item-active);
-
-    .volume {
-      color: #E6A23C;
-    }
+    $c: #E6A23C;
 
     .phonetic, .item-sub-title {
       color: var(--color-gray) !important;
+    }
+
+    .volume, .collect, .easy, .fill {
+      color: $c;
     }
   }
 
@@ -324,7 +340,6 @@ footer {
   text-shadow: #b0b0b0 0 0 8rem;
   user-select: none;
 }
-
 
 .common-title {
   font-size: 20rem;

@@ -26,6 +26,8 @@ import WordList from "@/components/list/WordList.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
+import BaseIcon from "@/components/BaseIcon.vue";
+import CommonWordList from "@/components/list/CommonWordList.vue";
 
 interface IProps {
   words: Word[],
@@ -172,9 +174,9 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
 
 //TODO 略过忽略的单词上
 function prev() {
-  if (data.index === 0){
+  if (data.index === 0) {
     ElMessage.warning('已经是第一个了~')
-  }else {
+  } else {
     data.index--
   }
 }
@@ -296,14 +298,39 @@ onUnmounted(() => {
                   {{ data.words.length }}个单词
                 </div>
               </div>
-              <WordList
+              <CommonWordList
                   class="word-list"
                   :is-active="active"
-                  @change="(i:number) => data.index = i"
+                  @change="(val:any) => data.index = val.index"
                   :show-word="!settingStore.dictation"
                   :show-translate="settingStore.translate"
                   :list="data.words"
-                  :activeIndex="data.index"/>
+                  :activeIndex="data.index">
+                <template v-slot="{word,index}">
+                  <BaseIcon
+                      v-if="!isWordCollect(word)"
+                      class-name="collect"
+                      @click="toggleWordCollect(word)"
+                      title="收藏" icon="ph:star"/>
+                  <BaseIcon
+                      v-else
+                      class-name="fill"
+                      @click="toggleWordCollect(word)"
+                      title="取消收藏" icon="ph:star-fill"/>
+                  <BaseIcon
+                      v-if="!isWordSimple(word)"
+                      class-name="easy"
+                      @click="toggleWordCollect(word)"
+                      title="标记为简单词"
+                      icon="material-symbols:check-circle-outline-rounded"/>
+                  <BaseIcon
+                      v-else
+                      class-name="fill"
+                      @click="toggleWordCollect(word)"
+                      title="取消标记简单词"
+                      icon="material-symbols:check-circle-rounded"/>
+                </template>
+              </CommonWordList>
             </div>
           </template>
         </Panel>

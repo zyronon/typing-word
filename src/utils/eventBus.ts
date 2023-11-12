@@ -13,4 +13,6 @@ export const EventKey = {
   repeat: 'repeat',
   next: 'next',
   write: 'write',
+  editDict: 'editDict',
+  openMyDictDialog: 'openMyDictDialog',
 }

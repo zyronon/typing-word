@@ -1,30 +1,25 @@
 <script setup lang="ts">
 import {Word} from "../../types.ts";
-import {watch} from "vue"
 import {useSettingStore} from "@/stores/setting.ts";
-import ListItem from "@/components/list/ListItem.vue";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
-import {useWordOptions} from "@/hooks/dict.ts";
+import {watch} from 'vue'
 
 const props = withDefaults(defineProps<{
   list: Word[],
   activeIndex?: number,
-  showDel?: boolean,
   isActive?: boolean
   showTranslate?: boolean
   showWord?: boolean
 }>(), {
   activeIndex: -1,
   isActive: false,
-  showDel: false,
   showTranslate: true,
   showWord: true
 })
 
 const emit = defineEmits<{
-  del: [val: Word],
-  change: [i: number]
+  change: [val: { word: Word, index: number }],
 }>()
 
 const settingStore = useSettingStore()
@@ -53,48 +48,37 @@ watch(() => props.list, () => {
 })
 
 const playWordAudio = usePlayWordAudio()
-const {
-  isWordCollect,
-  toggleWordCollect,
-  isWordSimple,
-  toggleWordSimple,
-} = useWordOptions()
 
 </script>
 
 <template>
-  <div class="list" ref="listRef">
-    <ListItem
-        v-for="(word,i) in list" :key="i"
-        class="common-list-item"
-        :active="activeIndex === i"
-        :class="{active:activeIndex === i}"
-        :show-volume="true"
-        @click="emit('change',i)"
-        :isCollect="isWordCollect(word)"
-        @toggle-collect="toggleWordCollect(word)"
-        :is-simple="isWordSimple(word)"
-        @toggle-simple="toggleWordCollect(word)"
-        :show-del="showDel"
-        @del="emit('del',word)"
+  <div class="common-list" ref="listRef">
+    <div class="common-list-item"
+         v-for="(source,index) in list" :key="index"
+         :class="{active:activeIndex === index}"
+         @click="emit('change',{word:source,index})"
     >
-      <div class="item-title">
-        <span class="word" :class="!showWord && 'text-shadow'">{{ word.name }}</span>
-        <span class="phonetic">{{ word.usphone }}</span>
-        <VolumeIcon class="volume" @click="playWordAudio(word.name)"></VolumeIcon>
+      <div class="left">
+        <div class="item-title">
+          <span class="word" :class="!showWord && 'text-shadow'">{{ source.name }}</span>
+          <span class="phonetic">{{ source.usphone }}</span>
+          <VolumeIcon class="volume" @click="playWordAudio(source.name)"></VolumeIcon>
+        </div>
+        <div class="item-sub-title" v-if="source.trans.length && showTranslate">
+          <div v-for="item in source.trans">{{ item }}</div>
+        </div>
       </div>
-      <div class="item-sub-title" v-if="word.trans.length && showTranslate">
-        <div v-for="item in word.trans">{{ item }}</div>
+      <div class="right">
+        <slot :word="source" :index="index"></slot>
       </div>
-    </ListItem>
+    </div>
   </div>
 </template>
 
-
-<style scoped lang="scss">
+<style lang="scss">
 @import "@/assets/css/variable";
 
-.list {
+.common-list {
   display: flex;
   flex-direction: column;
   gap: 15rem;

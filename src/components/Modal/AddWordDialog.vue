@@ -15,9 +15,11 @@ import {dictionaryResources} from "@/assets/dictionary.ts";
 import {cloneDeep} from "lodash-es";
 import Empty from "@/components/Empty.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
-import WordList2 from "@/components/list/WordList2.vue";
+import VirtualWordList from "@/components/list/VirtualWordList.vue";
+import Modal from "@/components/Modal/Modal.vue";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
 
-useDisableEventListener()
+// useDisableEventListener()
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -233,181 +235,194 @@ watch(() => step, v => {
   }
 })
 
+let show = $ref(false)
+
 function close() {
-  emit('close')
+  show = false
 }
 
+onMounted(() => {
+  emitter.on(EventKey.editDict, (dict: Dict) => {
+    show = true
+  })
+})
 </script>
 
 <template>
-  <div id="AddWordDialog" :class="wordFormMode !== FormMode.None && 'add-word-mode'">
-    <Slide :slide-count="2" :step="step">
-      <div class="page dict-list-page">
-        <header>
-          <div class="title">
-            我的词典
-          </div>
-          <Icon @click="close"
-                class="hvr-grow pointer"
-                width="20" color="#929596"
-                icon="ion:close-outline"/>
-        </header>
-        <div class="list">
-          <DictList
-              @add="step = 1;isAddDict = true"
-              @selectDict="selectDict"
-              :list="dictList"/>
-        </div>
-      </div>
-      <div class="page add-page">
-        <header>
-          <div class="left" @click.stop="step = 0">
-            <Icon icon="octicon:arrow-left-24" class="go" width="20"/>
+  <Modal
+      :header="false"
+      v-model="show"
+      :show-close="false">
+    <div id="AddWordDialog" :class="wordFormMode !== FormMode.None && 'add-word-mode'">
+      <Slide :slide-count="2" :step="step">
+        <div class="page dict-list-page">
+          <header>
             <div class="title">
-              词典详情
+              我的词典
             </div>
+            <Icon @click="close"
+                  class="hvr-grow pointer"
+                  width="20" color="#929596"
+                  icon="ion:close-outline"/>
+          </header>
+          <div class="list">
+            <DictList
+                @add="step = 1;isAddDict = true"
+                @selectDict="selectDict"
+                :list="dictList"/>
           </div>
-          <Icon @click="close"
-                class="hvr-grow pointer"
-                width="20" color="#929596"
-                icon="ion:close-outline"/>
-        </header>
-        <div class="detail" v-if="!isAddDict">
-          <div class="dict">
-            <div class="info">
-              <div class="name">{{ store.editDict.name }}</div>
-              <div class="desc">{{ store.editDict.description }}</div>
-              <div class="more-info">
-                <div class="item">词汇量：{{ store.editDict.originWords.length }}词</div>
-                <div class="item">创建日期：-</div>
-                <div class="item">花费时间：-</div>
-                <div class="item">累积错误：-</div>
+        </div>
+        <div class="page add-page">
+          <header>
+            <div class="left" @click.stop="step = 0">
+              <Icon icon="octicon:arrow-left-24" class="go" width="20"/>
+              <div class="title">
+                词典详情
               </div>
-              <BaseIcon
-                  class-name="edit-icon"
-                  icon="tabler:edit"
-                  @click='editDict'
-              />
             </div>
-            <div class="add" v-if="wordFormMode !== FormMode.None">
-              <div class="common-title">{{ wordFormMode === FormMode.Add ? '添加' : '修改' }}单词</div>
-              <el-form
-                  class="form"
-                  ref="wordFormRef"
-                  :rules="wordRules"
-                  :model="wordForm"
-                  label-width="140rem">
-                <el-form-item label="单词" prop="name">
-                  <el-input v-model="wordForm.name"/>
-                </el-form-item>
-                <el-form-item label="翻译">
-                  <el-input v-model="wordForm.trans"
-                            placeholder="多个翻译请换行"
-                            :autosize="{ minRows: 2, maxRows: 6 }"
-                            type="textarea"/>
-                </el-form-item>
-                <el-form-item label="音标/发音/注音①">
-                  <el-input v-model="wordForm.usphone"/>
-                </el-form-item>
-                <el-form-item label="音标/发音/注音②">
-                  <el-input v-model="wordForm.ukphone"/>
-                </el-form-item>
-                <div class="flex-center">
-                  <el-button @click="closeWordForm">关闭</el-button>
-                  <el-button type="primary" @click="onSubmitWord">{{
-                      wordFormMode === FormMode.Add ? '添加' : '保存'
-                    }}
-                  </el-button>
+            <Icon @click="close"
+                  class="hvr-grow pointer"
+                  width="20" color="#929596"
+                  icon="ion:close-outline"/>
+          </header>
+          <div class="detail" v-if="!isAddDict">
+            <div class="dict">
+              <div class="info">
+                <div class="name">{{ store.editDict.name }}</div>
+                <div class="desc">{{ store.editDict.description }}</div>
+                <div class="more-info">
+                  <div class="item">词汇量：{{ store.editDict.originWords.length }}词</div>
+                  <div class="item">创建日期：-</div>
+                  <div class="item">花费时间：-</div>
+                  <div class="item">累积错误：-</div>
                 </div>
-              </el-form>
-            </div>
-          </div>
-          <div class="list-wrapper">
-            <div class="list-header">
-              <div class="name">单词列表</div>
-              <div class="flex-center gap10">
-                <div class="name">{{ wordList.length }}个单词</div>
-                <BaseIcon icon="mi:add"
-                          @click='addWord'
+                <BaseIcon
+                    v-if="![DictType.collect,DictType.wrong,DictType.simple].includes(store.editDict.type)"
+                    class-name="edit-icon"
+                    icon="tabler:edit"
+                    @click='editDict'
                 />
               </div>
+              <div class="add" v-if="wordFormMode !== FormMode.None">
+                <div class="common-title">{{ wordFormMode === FormMode.Add ? '添加' : '修改' }}单词</div>
+                <el-form
+                    class="form"
+                    ref="wordFormRef"
+                    :rules="wordRules"
+                    :model="wordForm"
+                    label-width="140rem">
+                  <el-form-item label="单词" prop="name">
+                    <el-input v-model="wordForm.name"/>
+                  </el-form-item>
+                  <el-form-item label="翻译">
+                    <el-input v-model="wordForm.trans"
+                              placeholder="多个翻译请换行"
+                              :autosize="{ minRows: 2, maxRows: 6 }"
+                              type="textarea"/>
+                  </el-form-item>
+                  <el-form-item label="音标/发音/注音①">
+                    <el-input v-model="wordForm.usphone"/>
+                  </el-form-item>
+                  <el-form-item label="音标/发音/注音②">
+                    <el-input v-model="wordForm.ukphone"/>
+                  </el-form-item>
+                  <div class="flex-center">
+                    <el-button @click="closeWordForm">关闭</el-button>
+                    <el-button type="primary" @click="onSubmitWord">{{
+                        wordFormMode === FormMode.Add ? '添加' : '保存'
+                      }}
+                    </el-button>
+                  </div>
+                </el-form>
+              </div>
             </div>
-            <WordList2
-                ref="wordListRef"
-                v-if="wordList.length"
-                class="word-list"
-                :is-active="true"
-                @change="editWord"
-                :list="wordList"
-                :activeIndex="wordFormMode">
-              <template v-slot="{word,index}">
-                <BaseIcon
-                    class-name="del"
-                    @click="delWord(index)"
-                    title="移除"
-                    icon="solar:trash-bin-minimalistic-linear"/>
-              </template>
-            </WordList2>
-            <Empty v-else/>
+            <div class="list-wrapper">
+              <div class="list-header">
+                <div class="name">单词列表</div>
+                <div class="flex-center gap10">
+                  <div class="name">{{ wordList.length }}个单词</div>
+                  <BaseIcon icon="mi:add"
+                            @click='addWord'
+                  />
+                </div>
+              </div>
+              <VirtualWordList
+                  ref="wordListRef"
+                  v-if="wordList.length"
+                  class="word-list"
+                  :is-active="true"
+                  @change="editWord"
+                  :list="wordList"
+                  :activeIndex="wordFormMode">
+                <template v-slot="{word,index}">
+                  <BaseIcon
+                      class-name="del"
+                      @click="delWord(index)"
+                      title="移除"
+                      icon="solar:trash-bin-minimalistic-linear"/>
+                </template>
+              </VirtualWordList>
+              <Empty v-else/>
+            </div>
+          </div>
+          <div class="edit" v-else>
+            <div class="common-title">{{ dictForm.id ? '修改' : '添加' }}词典</div>
+            <el-form
+                ref="dictFormRef"
+                :rules="dictRules"
+                :model="dictForm"
+                label-width="120rem">
+              <el-form-item label="名称" prop="name">
+                <el-input v-model="dictForm.name"/>
+              </el-form-item>
+              <el-form-item label="描述">
+                <el-input v-model="dictForm.description" type="textarea"/>
+              </el-form-item>
+              <el-form-item label="语言">
+                <el-select v-model="dictForm.language" placeholder="请选择选项">
+                  <el-option label="英语" value="en"/>
+                  <el-option label="德语" value="de"/>
+                  <el-option label="日语" value="ja"/>
+                  <el-option label="代码" value="code"/>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="翻译语言">
+                <el-select v-model="dictForm.translateLanguage" placeholder="请选择选项">
+                  <!--                <el-option label="通用" value="common"/>-->
+                  <el-option label="中文" value="zh-CN"/>
+                  <el-option label="英语" value="en"/>
+                  <el-option label="德语" value="de"/>
+                  <el-option label="日语" value="ja"/>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="分类" prop="category">
+                <el-select v-model="dictForm.category" placeholder="请选择选项">
+                  <el-option :label="i" :value="i" v-for="i in categoryList[dictForm.language]"/>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="标签" prop="tags">
+                <el-select
+                    multiple
+                    v-model="dictForm.tags" placeholder="请选择选项">
+                  <el-option :label="i" :value="i" v-for="i in tagList[dictForm.category]"/>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="类型">
+                <el-select v-model="dictForm.type" placeholder="请选择选项">
+                  <el-option label="单词" :value="DictType.customWord"/>
+                  <el-option label="文章" :value="DictType.customArticle"/>
+                </el-select>
+              </el-form-item>
+              <div class="flex-center">
+                <el-button @click="closeDictForm">关闭</el-button>
+                <el-button type="primary" @click="onSubmit">确定</el-button>
+              </div>
+            </el-form>
           </div>
         </div>
-        <div class="edit" v-else>
-          <div class="common-title">{{ dictForm.id ? '修改' : '添加' }}词典</div>
-          <el-form
-              ref="dictFormRef"
-              :rules="dictRules"
-              :model="dictForm"
-              label-width="120rem">
-            <el-form-item label="名称" prop="name">
-              <el-input v-model="dictForm.name"/>
-            </el-form-item>
-            <el-form-item label="描述">
-              <el-input v-model="dictForm.description" type="textarea"/>
-            </el-form-item>
-            <el-form-item label="语言">
-              <el-select v-model="dictForm.language" placeholder="请选择选项">
-                <el-option label="英语" value="en"/>
-                <el-option label="德语" value="de"/>
-                <el-option label="日语" value="ja"/>
-                <el-option label="代码" value="code"/>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="翻译语言">
-              <el-select v-model="dictForm.translateLanguage" placeholder="请选择选项">
-                <!--                <el-option label="通用" value="common"/>-->
-                <el-option label="中文" value="zh-CN"/>
-                <el-option label="英语" value="en"/>
-                <el-option label="德语" value="de"/>
-                <el-option label="日语" value="ja"/>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="分类" prop="category">
-              <el-select v-model="dictForm.category" placeholder="请选择选项">
-                <el-option :label="i" :value="i" v-for="i in categoryList[dictForm.language]"/>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="标签" prop="tags">
-              <el-select
-                  multiple
-                  v-model="dictForm.tags" placeholder="请选择选项">
-                <el-option :label="i" :value="i" v-for="i in tagList[dictForm.category]"/>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="类型">
-              <el-select v-model="dictForm.type" placeholder="请选择选项">
-                <el-option label="单词" :value="DictType.customWord"/>
-                <el-option label="文章" :value="DictType.customArticle"/>
-              </el-select>
-            </el-form-item>
-            <div class="flex-center">
-              <el-button @click="closeDictForm">关闭</el-button>
-              <el-button type="primary" @click="onSubmit">确定</el-button>
-            </div>
-          </el-form>
-        </div>
-      </div>
-    </Slide>
-  </div>
+      </Slide>
+    </div>
+  </Modal>
 </template>
 
 <style scoped lang="scss">

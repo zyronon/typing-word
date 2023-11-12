@@ -9,20 +9,17 @@ import {watch} from 'vue'
 const props = withDefaults(defineProps<{
   list: Word[],
   activeIndex?: number,
-  showDel?: boolean,
   isActive?: boolean
   showTranslate?: boolean
   showWord?: boolean
 }>(), {
   activeIndex: -1,
   isActive: false,
-  showDel: false,
   showTranslate: true,
   showWord: true
 })
 
 const emit = defineEmits<{
-  del: [val: Word],
   change: [val: { word: Word, index: number }],
 }>()
 

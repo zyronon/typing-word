@@ -15,6 +15,8 @@ import {useWordOptions} from "@/hooks/dict.ts";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
+import CommonWordList from "@/components/list/CommonWordList.vue";
+import BaseIcon from "@/components/BaseIcon.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -38,8 +40,10 @@ function changeIndex(i: number, dict: Dict) {
 
 const {
   delWrongWord,
-  delSimpleWord
+  delSimpleWord,
+  toggleWordCollect,
 } = useWordOptions()
+
 
 </script>
 <template>
@@ -100,10 +104,18 @@ const {
                 </template>
               </div>
               <template v-if="practiceType === DictType.word">
-                <WordList
+                <CommonWordList
                     v-if="store.collect.words.length"
                     class="word-list"
-                    :list="store.collect.words"/>
+                    :list="store.collect.words">
+                  <template v-slot="{word,index}">
+                    <BaseIcon
+                        class-name="del"
+                        @click="toggleWordCollect(word)"
+                        title="移除"
+                        icon="solar:trash-bin-minimalistic-linear"/>
+                  </template>
+                </CommonWordList>
                 <Empty v-else/>
               </template>
               <template v-else>
@@ -129,11 +141,17 @@ const {
                   </PopConfirm>
                 </template>
               </div>
-              <WordList
+              <CommonWordList
                   class="word-list"
-                  :show-del="true"
-                  @del="delSimpleWord"
-                  :list="store.simple.words"/>
+                  :list="store.simple.words">
+                <template v-slot="{word,index}">
+                  <BaseIcon
+                      class-name="del"
+                      @click="delSimpleWord(word)"
+                      title="移除"
+                      icon="solar:trash-bin-minimalistic-linear"/>
+                </template>
+              </CommonWordList>
             </div>
             <Empty v-else/>
           </div>
@@ -151,11 +169,17 @@ const {
                   </PopConfirm>
                 </template>
               </div>
-              <WordList
+              <CommonWordList
                   class="word-list"
-                  :show-del="true"
-                  @del="delWrongWord"
-                  :list="store.wrong.words"/>
+                  :list="store.wrong.words">
+                <template v-slot="{word,index}">
+                  <BaseIcon
+                      class-name="del"
+                      @click="delWrongWord(word)"
+                      title="移除"
+                      icon="solar:trash-bin-minimalistic-linear"/>
+                </template>
+              </CommonWordList>
             </div>
             <Empty v-else/>
           </div>

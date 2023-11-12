@@ -158,7 +158,7 @@ onUnmounted(() => {
     <PracticeWord ref="practiceRef" v-else/>
     <Footer/>
   </div>
-<!--  <AddWordDialog></AddWordDialog>-->
+  <AddWordDialog></AddWordDialog>
   <DictModal :model-value="runtimeStore.showDictModal" @close="runtimeStore.showDictModal = false"/>
   <SettingModal v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
   <Statistics/>
