@@ -19,9 +19,9 @@
   --color-header-bg: white;
   --color-tooltip-bg: white;
   --color-tooltip-shadow: #bbbbbb;
-  --color-font-1: rgb(75, 85, 99);
+  --color-font-1: black;
   --color-font-2: rgb(46, 46, 46);
-  --color-font-3: black;
+  --color-font-3: rgb(75, 85, 99);
   --color-font-active-1: white;
   --color-font-active-2: whitesmoke;
   --color-main-active: rgb(12, 140, 233);
@@ -54,8 +54,8 @@ html.dark {
   --color-tooltip-bg: #252525;
   --color-tooltip-shadow: #3b3b3b;
   --color-font-1: rgba(249, 250, 251, 0.8);
-  --color-font-2: rgba(255, 255, 255, 0.8);
-  --color-font-3: white;
+  --color-font-2: rgba(255, 255, 255, 0.5);
+  --color-font-3: rgba(255, 255, 255, 0.3);
 
   --color-gray: #bebebe;
 

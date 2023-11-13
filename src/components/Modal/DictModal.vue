@@ -20,6 +20,7 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import Slide from "@/components/Slide.vue";
 import DictList from "@/components/list/DictList.vue";
+import VirtualWordList from "@/components/list/VirtualWordList.vue";
 
 const baseStore = useBaseStore()
 const settingStore = useSettingStore()
@@ -167,6 +168,11 @@ function changeSort(v) {
   resetChapterList()
 }
 
+let detailListTabIndex = $ref(0)
+
+function changeDetailListTab(val: number) {
+
+}
 </script>
 
 <template>
@@ -324,21 +330,28 @@ function changeSort(v) {
               </div>
             </div>
           </div>
-          <div class="other" v-loading="loading">
-            <div class="common-title">
-              <template v-if="dictIsArticle">
-                文章列表：共{{ runtimeStore.editDict.articles.length }}章
-              </template>
-              <template v-else>
-                章节列表：共{{
-                  runtimeStore.editDict.chapterWords.length
-                }}章(每章{{ runtimeStore.editDict.chapterWordNumber }}词)
-              </template>
+          <div class="list-wrapper" v-loading="loading">
+            <div class="tabs">
+              <div class="tab"
+                   @click="detailListTabIndex = 0"
+                   :class="detailListTabIndex === 0 && 'active'">
+                <span>{{ dictIsArticle ? '文章' : '章节' }}列表</span>
+              </div>
+              <div class="tab"
+                   @click="detailListTabIndex = 1"
+                   :class="detailListTabIndex === 1 && 'active'">
+                <span>文章列表</span>
+              </div>
             </div>
             <ChapterList
+                v-if="detailListTabIndex === 0"
                 :is-article="dictIsArticle"
                 v-model:active-index="runtimeStore.editDict.chapterIndex"
                 :dict="runtimeStore.editDict"/>
+            <div class="scroll" v-else>
+              <VirtualWordList
+                  :list="runtimeStore.editDict.originWords"/>
+            </div>
           </div>
         </div>
         <div v-if="false" class="activity">
@@ -454,6 +467,7 @@ $header-height: 60rem;
   $header-height: 60rem;
   padding: var(--space);
   padding-top: 0;
+  padding-right: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -462,10 +476,12 @@ $header-height: 60rem;
     cursor: pointer;
     width: 100%;
     display: flex;
+    box-sizing: border-box;
     height: $header-height;
     align-items: center;
     justify-content: space-between;
     color: var(--color-font-3);
+    padding-right: var(--space);
 
     .left {
       display: flex;
@@ -532,13 +548,47 @@ $header-height: 60rem;
       }
     }
 
-    .other {
+    .list-wrapper {
       flex: 5;
       border-radius: 10rem;
       background: var(--color-second-bg);
       color: var(--color-font-1);
       display: flex;
       flex-direction: column;
+
+      .tabs {
+        display: flex;
+        margin-bottom: 10rem;
+
+        .tab {
+          font-size: 20rem;
+          color: var(--color-font-3);
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          span {
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            padding-bottom: 10rem;
+            transition: all .3s;
+          }
+
+          &.active {
+            color: var(--color-font-1);
+
+            span {
+              border-bottom: 3px solid var(--color-main-active);
+            }
+          }
+        }
+
+      }
+
+      .scroll {
+        height: calc(100% - 45rem);
+      }
     }
   }
 
@@ -553,6 +603,7 @@ $header-height: 60rem;
     align-items: flex-end;
     justify-content: flex-end;
     gap: var(--space);
+    padding-right: var(--space);
   }
 }
 </style>

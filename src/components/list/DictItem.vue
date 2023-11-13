@@ -72,11 +72,6 @@ const emit = defineEmits<{
 
   &:hover {
     background: var(--color-item-active);
-    color: var(--color-font-active-1);
-
-    .desc {
-      color: var(--color-font-active-2);
-    }
   }
 
   .add {

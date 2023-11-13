@@ -68,6 +68,7 @@ function showWordListModal(index: number, item: Word[]) {
   overflow: auto;
   box-sizing: border-box;
   gap: 10rem;
+  padding: 0 var(--space);
   //padding-right: 10rem;
 
   .common-list-item {
