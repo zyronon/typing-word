@@ -8,7 +8,7 @@ import {useBaseStore} from "@/stores/base.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useDisableEventListener} from "@/hooks/event.ts";
-import {DefaultDict, Dict, DictType, languageCategoryOptions, Word} from "@/types.ts";
+import {DefaultDict, Dict, DictType, Word} from "@/types.ts";
 import {onMounted, reactive, watch} from "vue";
 import {FormInstance, FormRules} from "element-plus";
 import {dictionaryResources} from "@/assets/dictionary.ts";
@@ -21,8 +21,6 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 
 const store = useBaseStore()
-const settingStore = useSettingStore()
-const runtimeStore = useRuntimeStore()
 
 const emit = defineEmits([
   'close',

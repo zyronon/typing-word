@@ -16,7 +16,7 @@ import PracticeWord from "@/components/Practice/PracticeWord/PracticeWord.vue";
 import {ShortcutKey} from "@/types.ts";
 import useTheme from "@/hooks/useTheme.ts";
 import SettingModal from "@/components/Modal/SettingModal.vue";
-import DictModal from "@/components/Modal/DictModal.vue";
+import DictModal from "@/components/Modal/DictDialog/index.vue";
 import AddWordDialog from "@/components/Modal/AddWordDialog.vue";
 
 const practiceStore = usePracticeStore()

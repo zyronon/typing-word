@@ -95,6 +95,7 @@ onUnmounted(() => {
   height: 75vh;
 
   .progress-wrapper {
+    padding: 0 var(--space);
     height: 45rem;
     display: flex;
     align-items: center;
