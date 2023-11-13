@@ -53,7 +53,7 @@ onMounted(() => {
   init()
 })
 
-useStartKeyboardEventListener()
+// useStartKeyboardEventListener()
 
 </script>
 

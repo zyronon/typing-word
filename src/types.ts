@@ -3,6 +3,7 @@ import enFlag from "@/assets/img/flags/en.png";
 import jpFlag from "@/assets/img/flags/ja.png";
 import deFlag from "./assets/img/flags/de.png";
 import codeFlag from "@/assets/img/flags/code.png";
+import myFlag from "@/assets/img/flags/my.png";
 
 export type Word = {
   "name": string,
@@ -208,6 +209,7 @@ export const languageCategoryOptions = [
   {id: 'ja', name: '日语', flag: jpFlag},
   {id: 'de', name: '德语', flag: deFlag},
   {id: 'code', name: 'Code', flag: codeFlag},
+  {id: 'my', name: '我的', flag: myFlag},
 ]
 
 export const DefaultDict: Dict = {

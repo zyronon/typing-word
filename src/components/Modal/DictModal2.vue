@@ -18,8 +18,6 @@ import {isArticle} from "@/hooks/article.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import Slide from "@/components/Slide.vue";
-import DictList from "@/components/list/DictList.vue";
 
 const baseStore = useBaseStore()
 const settingStore = useSettingStore()
@@ -106,19 +104,9 @@ const groupByTranslateLanguage = $computed(() => {
   if (currentLanguage === 'article') {
     let articleList = dictionaryResources.filter(v => v.type === 'article')
     data = groupBy(articleList, 'translateLanguage')
-  } else if (currentLanguage === 'my') {
-    data = {
-      common: [
-        baseStore.collect,
-        baseStore.simple,
-        baseStore.wrong
-      ].concat(baseStore.myDicts.filter(v => [DictType.customWord, DictType.customArticle].includes(v.type)))
-          .concat([{name: '',} as any])
-    }
   } else {
     data = groupBy(groupByLanguage[currentLanguage], 'translateLanguage')
   }
-  console.log('groupByTranslateLanguage', data)
   translateLanguageList = Object.keys(data)
   currentTranslateLanguage = translateLanguageList[0]
   return data
@@ -132,7 +120,7 @@ const groupedByCategoryAndTag = $computed(() => {
   for (const [key, value] of Object.entries(groupByCategory)) {
     data.push([key, groupByDictTags(value)])
   }
-  console.log('groupedByCategoryAndTag', data)
+  // console.log('data', data)
   return data
 })
 
@@ -170,32 +158,30 @@ function changeSort(v) {
 </script>
 
 <template>
-  <div id="DictDialog">
-    <Slide :slide-count="2" :step="step">
-      <div class="dict-page">
-        <header>
-          <div class="tabs">
-            <div class="tab"
-                 :class="currentLanguage === item.id && 'active'"
-                 @click="currentLanguage = item.id"
-                 v-for="item in languageCategoryOptions">
-              <img :src='item.flag'/>
-              <span>{{ item.name }}</span>
+  <Modal
+      :header="false"
+      v-model="runtimeStore.showDictModal"
+      :show-close="false">
+    <div class="slide">
+      <div class="slide-list" :class="`step${step}`">
+        <div class="dict-page">
+          <header>
+            <div class="tabs">
+              <div class="tab"
+                   :class="currentLanguage === item.id && 'active'"
+                   @click="currentLanguage = item.id"
+                   v-for="item in languageCategoryOptions">
+                <img :src='item.flag'/>
+                <span>{{ item.name }}</span>
+              </div>
             </div>
-          </div>
-          <Icon @click="close"
-                class="hvr-grow pointer"
-                width="20" color="#929596"
-                icon="ion:close-outline"/>
-        </header>
-        <div class="page-content">
-          <div class="dict-list-wrapper">
-            <template v-if="currentLanguage === 'my'">
-              <DictList
-                  @add="step = 1"
-                  :list="groupByTranslateLanguage['common']"/>
-            </template>
-            <template v-else>
+            <Icon @click="close"
+                  class="hvr-grow pointer"
+                  width="20" color="#929596"
+                  icon="ion:close-outline"/>
+          </header>
+          <div class="page-content">
+            <div class="dict-list-wrapper">
               <div class="translate">
                 <span>翻译：</span>
                 <el-radio-group v-model="currentTranslateLanguage">
@@ -210,158 +196,158 @@ function changeSort(v) {
                   :groupByTag="item[1]"
                   :category="item[0]"
               />
-            </template>
+            </div>
+          </div>
+        </div>
+        <div class="dict-detail-page">
+          <header>
+            <div class="left" @click.stop="step = 0">
+              <Icon icon="octicon:arrow-left-24" class="go" width="20"/>
+              <div class="title">
+                词典详情
+              </div>
+            </div>
+            <Icon @click="close"
+                  class="hvr-grow pointer"
+                  width="20" color="#929596"
+                  icon="ion:close-outline"/>
+          </header>
+          <div class="page-content">
+            <div class="detail">
+              <div class="name">{{ runtimeStore.editDict.name }}</div>
+              <div class="desc">{{ runtimeStore.editDict.description }}</div>
+              <div class="num"
+                   v-if="dictIsArticle"
+              >总文章：{{ runtimeStore.editDict.articles.length }}篇
+              </div>
+              <div class="num" v-else>
+                总词汇：<span class="count"
+                             @click="showAllWordModal"
+              >{{ runtimeStore.editDict.originWords.length }}词</span>
+              </div>
+              <div class="num">开始日期：-</div>
+              <div class="num">花费时间：-</div>
+              <div class="num">累积错误：-</div>
+              <div class="num">进度：
+                <el-progress :percentage="0"
+                             :stroke-width="8"
+                             :show-text="false"/>
+              </div>
+            </div>
+            <div class="setting">
+              <div class="common-title">学习设置</div>
+              <div class="row" v-if="!isArticle(runtimeStore.editDict.type)">
+                <div class="label">每章单词数</div>
+                <el-slider :min="10"
+                           :step="10"
+                           :max="100"
+                           v-model="runtimeStore.editDict.chapterWordNumber"
+                           @change="resetChapterList"
+                />
+                <div class="option">
+                  <span>{{ runtimeStore.editDict.chapterWordNumber }}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="label">单词顺序</div>
+                <div class="option">
+                  <el-radio-group v-model="runtimeStore.editDict.sort"
+                                  @change="changeSort"
+                  >
+                    <el-radio :label="Sort.normal" size="large">默认</el-radio>
+                    <el-radio :label="Sort.random" size="large">随机</el-radio>
+                    <el-radio :label="Sort.reverse" size="large">反转</el-radio>
+                  </el-radio-group>
+                </div>
+              </div>
+              <div class="row">
+                <div class="label">学习模式</div>
+                <div class="option">
+                  <el-radio-group v-model="settingStore.dictation">
+                    <el-radio :label="false" size="large">再认</el-radio>
+                    <el-radio :label="true" size="large">拼写</el-radio>
+                  </el-radio-group>
+                </div>
+              </div>
+              <div class="row">
+                <div class="label">单词发音</div>
+                <div class="option">
+                  <el-radio-group v-model="settingStore.wordSoundType">
+                    <el-radio label="us" size="large">美音</el-radio>
+                    <el-radio label="uk" size="large">英音</el-radio>
+                  </el-radio-group>
+                </div>
+              </div>
+              <div class="row">
+                <div class="label">单词自动发音</div>
+                <div class="option">
+                  <el-switch v-model="settingStore.wordSound"
+                             inline-prompt
+                             active-text="开"
+                             inactive-text="关"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="label">是否显示翻译</div>
+                <div class="option">
+                  <el-switch v-model="settingStore.translate"
+                             inline-prompt
+                             active-text="开"
+                             inactive-text="关"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="label">忽略大小写</div>
+                <div class="option">
+                  <el-switch v-model="settingStore.ignoreCase"
+                             inline-prompt
+                             active-text="开"
+                             inactive-text="关"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="other" v-loading="loading">
+              <div class="common-title">
+                <template v-if="dictIsArticle">
+                  文章列表：共{{ runtimeStore.editDict.articles.length }}章
+                </template>
+                <template v-else>
+                  章节列表：共{{
+                    runtimeStore.editDict.chapterWords.length
+                  }}章(每章{{ runtimeStore.editDict.chapterWordNumber }}词)
+                </template>
+              </div>
+              <ChapterList
+                  :is-article="dictIsArticle"
+                  v-model:active-index="runtimeStore.editDict.chapterIndex"
+                  :dict="runtimeStore.editDict"/>
+            </div>
+          </div>
+          <div v-if="false" class="activity">
+            <ActivityCalendar
+                :data="[{ date: '2023-05-22', count: 5 }]"
+                :width="40"
+                :height="7"
+                :cellLength="16"
+                :cellInterval="8"
+                :fontSize="12"
+                :showLevelFlag="false"
+                :showWeekDayFlag="false"
+                :clickEvent="clickEvent"
+            />
+          </div>
+          <div class="footer">
+            <!--            <BaseButton @click="step = 0">导出</BaseButton>-->
+            <BaseButton @click="close">关闭</BaseButton>
+            <BaseButton @click="changeDict">切换</BaseButton>
           </div>
         </div>
       </div>
-      <div class="dict-detail-page">
-        <header>
-          <div class="left" @click.stop="step = 0">
-            <Icon icon="octicon:arrow-left-24" class="go" width="20"/>
-            <div class="title">
-              词典详情
-            </div>
-          </div>
-          <Icon @click="close"
-                class="hvr-grow pointer"
-                width="20" color="#929596"
-                icon="ion:close-outline"/>
-        </header>
-        <div class="page-content">
-          <div class="detail">
-            <div class="name">{{ runtimeStore.editDict.name }}</div>
-            <div class="desc">{{ runtimeStore.editDict.description }}</div>
-            <div class="num"
-                 v-if="dictIsArticle"
-            >总文章：{{ runtimeStore.editDict.articles.length }}篇
-            </div>
-            <div class="num" v-else>
-              总词汇：<span class="count"
-                           @click="showAllWordModal"
-            >{{ runtimeStore.editDict.originWords.length }}词</span>
-            </div>
-            <div class="num">开始日期：-</div>
-            <div class="num">花费时间：-</div>
-            <div class="num">累积错误：-</div>
-            <div class="num">进度：
-              <el-progress :percentage="0"
-                           :stroke-width="8"
-                           :show-text="false"/>
-            </div>
-          </div>
-          <div class="setting">
-            <div class="common-title">学习设置</div>
-            <div class="row" v-if="!isArticle(runtimeStore.editDict.type)">
-              <div class="label">每章单词数</div>
-              <el-slider :min="10"
-                         :step="10"
-                         :max="100"
-                         v-model="runtimeStore.editDict.chapterWordNumber"
-                         @change="resetChapterList"
-              />
-              <div class="option">
-                <span>{{ runtimeStore.editDict.chapterWordNumber }}</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="label">单词顺序</div>
-              <div class="option">
-                <el-radio-group v-model="runtimeStore.editDict.sort"
-                                @change="changeSort"
-                >
-                  <el-radio :label="Sort.normal" size="large">默认</el-radio>
-                  <el-radio :label="Sort.random" size="large">随机</el-radio>
-                  <el-radio :label="Sort.reverse" size="large">反转</el-radio>
-                </el-radio-group>
-              </div>
-            </div>
-            <div class="row">
-              <div class="label">学习模式</div>
-              <div class="option">
-                <el-radio-group v-model="settingStore.dictation">
-                  <el-radio :label="false" size="large">再认</el-radio>
-                  <el-radio :label="true" size="large">拼写</el-radio>
-                </el-radio-group>
-              </div>
-            </div>
-            <div class="row">
-              <div class="label">单词发音</div>
-              <div class="option">
-                <el-radio-group v-model="settingStore.wordSoundType">
-                  <el-radio label="us" size="large">美音</el-radio>
-                  <el-radio label="uk" size="large">英音</el-radio>
-                </el-radio-group>
-              </div>
-            </div>
-            <div class="row">
-              <div class="label">单词自动发音</div>
-              <div class="option">
-                <el-switch v-model="settingStore.wordSound"
-                           inline-prompt
-                           active-text="开"
-                           inactive-text="关"
-                />
-              </div>
-            </div>
-            <div class="row">
-              <div class="label">是否显示翻译</div>
-              <div class="option">
-                <el-switch v-model="settingStore.translate"
-                           inline-prompt
-                           active-text="开"
-                           inactive-text="关"
-                />
-              </div>
-            </div>
-            <div class="row">
-              <div class="label">忽略大小写</div>
-              <div class="option">
-                <el-switch v-model="settingStore.ignoreCase"
-                           inline-prompt
-                           active-text="开"
-                           inactive-text="关"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="other" v-loading="loading">
-            <div class="common-title">
-              <template v-if="dictIsArticle">
-                文章列表：共{{ runtimeStore.editDict.articles.length }}章
-              </template>
-              <template v-else>
-                章节列表：共{{
-                  runtimeStore.editDict.chapterWords.length
-                }}章(每章{{ runtimeStore.editDict.chapterWordNumber }}词)
-              </template>
-            </div>
-            <ChapterList
-                :is-article="dictIsArticle"
-                v-model:active-index="runtimeStore.editDict.chapterIndex"
-                :dict="runtimeStore.editDict"/>
-          </div>
-        </div>
-        <div v-if="false" class="activity">
-          <ActivityCalendar
-              :data="[{ date: '2023-05-22', count: 5 }]"
-              :width="40"
-              :height="7"
-              :cellLength="16"
-              :cellInterval="8"
-              :fontSize="12"
-              :showLevelFlag="false"
-              :showWeekDayFlag="false"
-              :clickEvent="clickEvent"
-          />
-        </div>
-        <div class="footer">
-          <!--            <BaseButton @click="step = 0">导出</BaseButton>-->
-          <BaseButton @click="close">关闭</BaseButton>
-          <BaseButton @click="changeDict">切换</BaseButton>
-        </div>
-      </div>
-    </Slide>
-  </div>
+    </div>
+  </Modal>
   <WordListModal/>
 </template>
 
@@ -373,15 +359,20 @@ $radius: 16rem;
 $time: 0.3s;
 $header-height: 60rem;
 
-#DictDialog {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--color-second-bg);
-  z-index: 99999;
+.slide {
   width: 1000rem;
   height: 75vh;
+
+  .slide-list {
+    width: 200%;
+    height: 100%;
+    display: flex;
+    transition: all .5s;
+  }
+
+  .step1 {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 .dict-page {

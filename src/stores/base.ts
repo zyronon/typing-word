@@ -73,18 +73,22 @@ export const useBaseStore = defineStore('base', {
         id: 'collect',
         name: '收藏',
         type: DictType.collect,
+        category: '自带字典',
+        tags: ['自带'],
       },
       simple: {
         ...cloneDeep(DefaultDict),
         id: 'skip',
         name: '简单词',
         type: DictType.simple,
+        category: '自带字典'
       },
       wrong: {
         ...cloneDeep(DefaultDict),
         id: 'wrong',
         name: '错词本',
         type: DictType.wrong,
+        category: '自带字典'
       },
       myDicts: [
         {

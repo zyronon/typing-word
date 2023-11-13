@@ -20,8 +20,10 @@ declare module 'vue' {
     Close: typeof import('./src/components/icon/Close.vue')['default']
     CommonWordList: typeof import('./src/components/list/CommonWordList.vue')['default']
     DictGroup: typeof import('./src/components/Toolbar/DictGroup.vue')['default']
+    DictItem: typeof import('./src/components/list/DictItem.vue')['default']
     DictList: typeof import('./src/components/list/DictList.vue')['default']
     DictModal: typeof import('./src/components/Modal/DictModal.vue')['default']
+    DictModal2: typeof import('./src/components/Modal/DictModal2.vue')['default']
     EditAbleText: typeof import('./src/components/EditAbleText.vue')['default']
     EditArticle: typeof import('./src/components/Article/EditArticle.vue')['default']
     EditBatchArticleModal: typeof import('./src/components/Article/EditBatchArticleModal.vue')['default']
@@ -71,7 +73,6 @@ declare module 'vue' {
     VolumeSetting: typeof import('./src/components/Toolbar/VolumeSetting.vue')['default']
     WordItem: typeof import('./src/components/list/WordItem.vue')['default']
     WordList: typeof import('./src/components/list/WordList.vue')['default']
-    WordList2: typeof import('./src/components/list/WordList2.vue')['default']
     WordListModal: typeof import('./src/components/Modal/WordListModal.vue')['default']
   }
   export interface ComponentCustomProperties {
