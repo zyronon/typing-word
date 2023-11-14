@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {dictionaryResources} from '@/assets/dictionary.ts'
 import {useBaseStore} from "@/stores/base.ts"
-import {watch, reactive,onMounted} from "vue"
+import {watch, reactive, onMounted} from "vue"
 import {DefaultDict, Dict, DictResource, DictType, languageCategoryOptions, Sort, Word} from "@/types.ts"
 import {chunk, cloneDeep, groupBy, reverse, shuffle} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
@@ -40,7 +40,16 @@ watch(() => runtimeStore.showDictModal, (n: boolean) => {
   runtimeStore.editDict = cloneDeep(store.currentDict)
 })
 
-async function selectDict(item: DictResource) {
+let myAllDict = $computed(() => {
+  return [
+    store.collect,
+    store.simple,
+    store.wrong
+  ].concat(store.myDicts);
+})
+
+async function selectDict(val: { dict: DictResource, index: number }) {
+  let item = val.dict
   console.log('item', item)
   step = 1
   isAddDict = false
@@ -119,12 +128,7 @@ const groupByTranslateLanguage = $computed(() => {
     data = groupBy(articleList, 'translateLanguage')
   } else if (currentLanguage === 'my') {
     data = {
-      common: [
-        store.collect,
-        store.simple,
-        store.wrong
-      ].concat(store.myDicts.filter(v => [DictType.customWord, DictType.customArticle].includes(v.type)))
-          .concat([{name: '',} as any])
+      common: myAllDict.concat([{name: '',} as any])
     }
   } else {
     data = groupBy(groupByLanguage[currentLanguage], 'translateLanguage')
@@ -442,6 +446,12 @@ watch(() => step, v => {
         <div class="detail" v-if="!isAddDict">
           <div class="page-content">
             <div class="left-column">
+              <BaseIcon
+                  v-if="![DictType.collect,DictType.wrong,DictType.simple].includes(runtimeStore.editDict.type)"
+                  class-name="edit-icon"
+                  icon="tabler:edit"
+                  @click='editDict'
+              />
               <div class="name">{{ runtimeStore.editDict.name }}</div>
               <div class="desc">{{ runtimeStore.editDict.description }}</div>
               <div class="text flex align-center gap10">
@@ -625,65 +635,67 @@ watch(() => step, v => {
                 :clickEvent="clickEvent"
             />
           </div>
+          <div class="footer">
+            <!--            <BaseButton @click="step = 0">导出</BaseButton>-->
+            <BaseButton @click="close">关闭</BaseButton>
+            <BaseButton @click="changeDict">切换</BaseButton>
+          </div>
         </div>
-        <div class="edit" v-else>
-          <div class="common-title">{{ dictForm.id ? '修改' : '添加' }}词典</div>
-          <el-form
-              ref="dictFormRef"
-              :rules="dictRules"
-              :model="dictForm"
-              label-width="120rem">
-            <el-form-item label="名称" prop="name">
-              <el-input v-model="dictForm.name"/>
-            </el-form-item>
-            <el-form-item label="描述">
-              <el-input v-model="dictForm.description" type="textarea"/>
-            </el-form-item>
-            <el-form-item label="语言">
-              <el-select v-model="dictForm.language" placeholder="请选择选项">
-                <el-option label="英语" value="en"/>
-                <el-option label="德语" value="de"/>
-                <el-option label="日语" value="ja"/>
-                <el-option label="代码" value="code"/>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="翻译语言">
-              <el-select v-model="dictForm.translateLanguage" placeholder="请选择选项">
-                <!--                <el-option label="通用" value="common"/>-->
-                <el-option label="中文" value="zh-CN"/>
-                <el-option label="英语" value="en"/>
-                <el-option label="德语" value="de"/>
-                <el-option label="日语" value="ja"/>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="分类" prop="category">
-              <el-select v-model="dictForm.category" placeholder="请选择选项">
-                <el-option :label="i" :value="i" v-for="i in categoryList[dictForm.language]"/>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="标签" prop="tags">
-              <el-select
-                  multiple
-                  v-model="dictForm.tags" placeholder="请选择选项">
-                <el-option :label="i" :value="i" v-for="i in tagList[dictForm.category]"/>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="类型">
-              <el-select v-model="dictForm.type" placeholder="请选择选项">
-                <el-option label="单词" :value="DictType.customWord"/>
-                <el-option label="文章" :value="DictType.customArticle"/>
-              </el-select>
-            </el-form-item>
-            <div class="flex-center">
-              <el-button @click="closeDictForm">关闭</el-button>
-              <el-button type="primary" @click="onSubmit">确定</el-button>
-            </div>
-          </el-form>
-        </div>
-        <div class="footer">
-          <!--            <BaseButton @click="step = 0">导出</BaseButton>-->
-          <BaseButton @click="close">关闭</BaseButton>
-          <BaseButton @click="changeDict">切换</BaseButton>
+        <div class="edit-dict" v-else>
+          <div class="wrapper">
+            <div class="common-title">{{ dictForm.id ? '修改' : '添加' }}词典</div>
+            <el-form
+                ref="dictFormRef"
+                :rules="dictRules"
+                :model="dictForm"
+                label-width="120rem">
+              <el-form-item label="名称" prop="name">
+                <el-input v-model="dictForm.name"/>
+              </el-form-item>
+              <el-form-item label="描述">
+                <el-input v-model="dictForm.description" type="textarea"/>
+              </el-form-item>
+              <el-form-item label="语言">
+                <el-select v-model="dictForm.language" placeholder="请选择选项">
+                  <el-option label="英语" value="en"/>
+                  <el-option label="德语" value="de"/>
+                  <el-option label="日语" value="ja"/>
+                  <el-option label="代码" value="code"/>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="翻译语言">
+                <el-select v-model="dictForm.translateLanguage" placeholder="请选择选项">
+                  <!--                <el-option label="通用" value="common"/>-->
+                  <el-option label="中文" value="zh-CN"/>
+                  <el-option label="英语" value="en"/>
+                  <el-option label="德语" value="de"/>
+                  <el-option label="日语" value="ja"/>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="分类" prop="category">
+                <el-select v-model="dictForm.category" placeholder="请选择选项">
+                  <el-option :label="i" :value="i" v-for="i in categoryList[dictForm.language]"/>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="标签" prop="tags">
+                <el-select
+                    multiple
+                    v-model="dictForm.tags" placeholder="请选择选项">
+                  <el-option :label="i" :value="i" v-for="i in tagList[dictForm.category]"/>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="类型">
+                <el-select v-model="dictForm.type" placeholder="请选择选项">
+                  <el-option label="单词" :value="DictType.customWord"/>
+                  <el-option label="文章" :value="DictType.customArticle"/>
+                </el-select>
+              </el-form-item>
+              <div class="flex-center">
+                <el-button @click="closeDictForm">关闭</el-button>
+                <el-button type="primary" @click="onSubmit">确定</el-button>
+              </div>
+            </el-form>
+          </div>
         </div>
       </div>
     </Slide>
@@ -778,9 +790,6 @@ $header-height: 60rem;
   width: 50%;
   height: 100%;
   $header-height: 60rem;
-  padding: var(--space);
-  padding-top: 0;
-  padding-right: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -794,7 +803,7 @@ $header-height: 60rem;
     align-items: center;
     justify-content: space-between;
     color: var(--color-font-3);
-    padding-right: var(--space);
+    padding: 0 var(--space);
 
     .left {
       display: flex;
@@ -803,130 +812,156 @@ $header-height: 60rem;
     }
   }
 
-  .detail{
+  .detail {
+    padding-left: var(--space);
     flex: 1;
     display: flex;
+    flex-direction: column;
     overflow: hidden;
-  }
 
-  .page-content {
-    flex: 1;
-    overflow: hidden;
-    display: flex;
-    position: relative;
-    gap: var(--space);
-
-    .left-column {
-      overflow: auto;
-      flex: 4;
+    .page-content {
+      flex: 1;
+      overflow: hidden;
       display: flex;
-      flex-direction: column;
-      gap: 10rem;
-      min-height: 100rem;
       position: relative;
-      border-radius: 10rem;
-      background: var(--color-second-bg);
-      color: var(--color-font-1);
-      font-size: 14rem;
+      gap: var(--space);
 
-      .name {
-        font-size: 28rem;
-        margin-bottom: 10rem;
-      }
+      .left-column {
+        overflow: auto;
+        flex: 4;
+        display: flex;
+        flex-direction: column;
+        gap: 10rem;
+        min-height: 100rem;
+        position: relative;
+        border-radius: 10rem;
+        background: var(--color-second-bg);
+        color: var(--color-font-1);
+        font-size: 14rem;
+        position: relative;
 
-      .desc {
-        font-size: 18rem;
-        margin-bottom: 30rem;
-      }
+        .name {
+          font-size: 28rem;
+          margin-bottom: 10rem;
+        }
 
-      .count {
-        cursor: pointer;
-        border-bottom: 2px solid var(--color-item-active);
-      }
-    }
+        .desc {
+          font-size: 18rem;
+          margin-bottom: 30rem;
+        }
 
-    .center-column {
-      overflow: auto;
-      flex: 7;
-      background: white;
-      border-radius: 10rem;
-      background: var(--color-second-bg);
-      color: var(--color-font-1);
+        .count {
+          cursor: pointer;
+          border-bottom: 2px solid var(--color-item-active);
+        }
 
-      .setting {
-        .row {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          height: 40rem;
-          word-break: keep-all;
-          gap: 10rem;
+        .edit-icon {
 
-          .el-radio {
-            margin-right: 10rem;
-          }
+        }
+
+        :deep(.edit-icon) {
+          position: absolute;
+          top: 10rem;
+          right: 10rem;
         }
       }
 
-    }
+      .center-column {
+        overflow: auto;
+        flex: 7;
+        background: white;
+        border-radius: 10rem;
+        background: var(--color-second-bg);
+        color: var(--color-font-1);
 
-    .right-column {
-      flex: 8;
-      border-radius: 10rem;
-      background: var(--color-second-bg);
-      color: var(--color-font-1);
-      display: flex;
-      flex-direction: column;
+        .setting {
+          .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 40rem;
+            word-break: keep-all;
+            gap: 10rem;
 
-      .tabs {
-        display: flex;
-        margin-bottom: 10rem;
-
-        .tab {
-          font-size: 20rem;
-          color: var(--color-font-3);
-          flex: 1;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          span {
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            padding-bottom: 10rem;
-            transition: all .3s;
-          }
-
-          &.active {
-            color: var(--color-font-1);
-
-            span {
-              border-bottom: 3px solid var(--color-main-active);
+            .el-radio {
+              margin-right: 10rem;
             }
           }
         }
 
       }
 
-      .scroll {
-        height: calc(100% - 45rem);
+      .right-column {
+        flex: 8;
+        border-radius: 10rem;
+        background: var(--color-second-bg);
+        color: var(--color-font-1);
+        display: flex;
+        flex-direction: column;
+
+        .tabs {
+          display: flex;
+          margin-bottom: 10rem;
+
+          .tab {
+            font-size: 20rem;
+            color: var(--color-font-3);
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            span {
+              cursor: pointer;
+              border-bottom: 3px solid transparent;
+              padding-bottom: 10rem;
+              transition: all .3s;
+            }
+
+            &.active {
+              color: var(--color-font-1);
+
+              span {
+                border-bottom: 3px solid var(--color-main-active);
+              }
+            }
+          }
+
+        }
+
+        .scroll {
+          height: calc(100% - 45rem);
+        }
       }
+    }
+
+    .activity {
+      display: flex;
+      justify-content: center;
+    }
+
+    .footer {
+      box-sizing: content-box;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      gap: var(--space);
+      padding-right: var(--space);
     }
   }
 
-  .activity {
+  .edit-dict {
+    flex: 1;
+    width: 100%;
     display: flex;
     justify-content: center;
+
+    .wrapper {
+      width: 70%;
+    }
+
   }
 
-  .footer {
-    box-sizing: content-box;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    gap: var(--space);
-    padding-right: var(--space);
-  }
 }
 </style>
 

@@ -3,7 +3,7 @@ import {Dict} from "@/types.ts";
 import {Icon} from "@iconify/vue";
 import DictItem from "@/components/list/DictItem.vue";
 
-const props = defineProps<{
+defineProps<{
   list?: Dict[],
   selectDictName?: string
 }>()

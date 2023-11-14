@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {Icon} from "@iconify/vue";
 import {$computed, $ref} from "vue/macros";
 import {watch} from "vue";
 import {DictResource} from "@/types.ts";
+import DictItem from "@/components/list/DictItem.vue";
 
 const props = defineProps<{
   category: string,
@@ -10,7 +10,7 @@ const props = defineProps<{
   selectDictName: string
 }>()
 const emit = defineEmits<{
-  selectDict: [index: DictResource],
+  selectDict: [val: { dict: DictResource, index: number }]
   detail: [],
 }>()
 const tagList = $computed(() => Object.keys(props.groupByTag))
@@ -35,19 +35,10 @@ watch(() => props.groupByTag, () => {
       </div>
     </div>
     <div class="dict-list">
-      <div class="dict-item anim"
-           :class="selectDictName === i.id && 'active'"
-           @click="emit('selectDict',i)"
-           v-for="i in list"
-      >
-        <div class="name">{{ i.name }}</div>
-        <div class="desc">{{ i.description }}</div>
-        <div class="num">{{ i.length }}词</div>
-
-        <Icon icon="octicon:arrow-right-24" v-if="selectDictName === i.name"
-              @click.stop="emit('detail')"
-              class="go" width="20" color="#929596"/>
-      </div>
+      <DictItem v-for="(dict,index) in list"
+                @click="emit('selectDict',{dict,index})"
+                :active="selectDictName === dict.id"
+                :dict="dict"/>
     </div>
   </div>
 </template>
@@ -87,43 +78,5 @@ watch(() => props.groupByTag, () => {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 15rem;
-
-  .dict-item {
-    cursor: pointer;
-    padding: 10rem;
-    min-height: 100rem;
-    border-radius: 10rem;
-    position: relative;
-    background: var(--color-item-bg);
-    color: var(--color-font-1);
-    font-size: 14rem;
-
-    .name {
-      font-size: 18rem;
-    }
-
-    .desc {
-      color: var(--color-font-2);
-    }
-
-    .num {
-      font-weight: bold;
-    }
-
-    .go {
-      position: absolute;
-      right: 10rem;
-      bottom: 15rem;
-    }
-
-    &.active {
-      background: var(--color-item-active);
-      color: var(--color-font-active-1);
-
-      .desc {
-        color: var(--color-font-active-2);
-      }
-    }
-  }
 }
 </style>
