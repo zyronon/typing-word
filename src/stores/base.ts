@@ -6,9 +6,6 @@ import {v4 as uuidv4} from 'uuid';
 import {useRuntimeStore} from "@/stores/runtime.ts";
 
 export interface State {
-  collect: Dict,
-  simple: Dict,
-  wrong: Dict,
   myDicts: Dict[],
   current: {
     dictType: DictType,
@@ -68,62 +65,56 @@ export interface State {
 export const useBaseStore = defineStore('base', {
   state: (): State => {
     return {
-      collect: {
-        ...cloneDeep(DefaultDict),
-        id: 'collect',
-        name: '收藏',
-        type: DictType.collect,
-        category: '自带字典',
-        tags: ['自带'],
-      },
-      simple: {
-        ...cloneDeep(DefaultDict),
-        id: 'skip',
-        name: '简单词',
-        type: DictType.simple,
-        category: '自带字典'
-      },
-      wrong: {
-        ...cloneDeep(DefaultDict),
-        id: 'wrong',
-        name: '错词本',
-        type: DictType.wrong,
-        category: '自带字典'
-      },
       myDicts: [
         {
           ...cloneDeep(DefaultDict),
-          id: '新概念英语2-课文',
-          name: '新概念英语2-课文',
-          type: DictType.article,
+          id: 'collect',
+          name: '收藏',
+          type: DictType.collect,
+          category: '自带字典',
+          tags: ['自带'],
+        },
+        {
+          ...cloneDeep(DefaultDict),
+          id: 'skip',
+          name: '简单词',
+          type: DictType.simple,
+          category: '自带字典'
+        },
+        {
+          ...cloneDeep(DefaultDict),
+          id: 'wrong',
+          name: '错词本',
+          type: DictType.wrong,
+          category: '自带字典'
+        },
+        {
+          ...cloneDeep(DefaultDict),
+          id: 'article_nce2',
+          name: "新概念英语2-课文",
+          description: '新概念英语2-课文',
+          category: '英语学习',
+          tags: ['新概念英语'],
           url: 'NCE_2.json',
           translateLanguage: 'common',
           language: 'en',
+          type: DictType.article
         },
         {
           ...cloneDeep(DefaultDict),
-          id: '新概念英语2',
-          name: '新概念英语2',
-          type: DictType.word,
+          name: '新概念英语(新版)-2',
+          description: '新概念英语新版第二册',
+          category: '青少年英语',
+          tags: ['新概念英语'],
           url: 'nce-new-2.json',
-          resourceId: 'nce-new-2',
           translateLanguage: 'common',
           language: 'en',
+          type: DictType.word
         },
-        {
-          ...cloneDeep(DefaultDict),
-          id: '新概11',
-          name: '新22',
-          type: DictType.customWord,
-          url: 'nce-new-2.json',
-          resourceId: 'nce-new-2',
-          translateLanguage: 'common',
-          language: 'en',
-        }
       ],
       current: {
         dictType: DictType.word,
-        index: 1,
+        index: 4,
         editIndex: 0,
         // dictType: DictType.article,
         // index: 0,
@@ -141,51 +132,39 @@ export const useBaseStore = defineStore('base', {
     }
   },
   getters: {
-    skipWordNames: (state: State) => {
-      return state.simple.originWords.map(v => v.name.toLowerCase())
+    collect() {
+      return this.myDicts[0]
     },
-    skipWordNamesWithSimpleWords: (state: State) => {
-      return state.simple.originWords.map(v => v.name.toLowerCase()).concat(state.simpleWords)
+    simple(): Dict {
+      return this.myDicts[1]
+    },
+    wrong() {
+      return this.myDicts[2]
+    },
+    skipWordNames() {
+      return this.simple.originWords.map(v => v.name.toLowerCase())
+    },
+    skipWordNamesWithSimpleWords() {
+      return this.simple.originWords.map(v => v.name.toLowerCase()).concat(this.simpleWords)
     },
     isArticle(state: State): boolean {
       //如果是收藏时，特殊判断
-      if (state.current.dictType === DictType.collect) {
+      if (this.currentDict.type === DictType.collect) {
         return state.current.practiceType === DictType.article
       }
       return [
         DictType.article,
         DictType.customArticle
-      ].includes(state.current.dictType)
+      ].includes(this.currentDict.type)
     },
     editDict(state: State) {
       if (state.current.editIndex === -1) {
         return cloneDeep(DefaultDict)
       }
-      switch (state.current.editIndex) {
-        case 0:
-          return state.collect
-        case 1:
-          return state.simple
-        case 2:
-          return state.wrong
-        default:
-          return state.myDicts.filter(v => [DictType.customWord, DictType.customArticle].includes(v.type))[state.current.editIndex - 3]
-      }
+      return state.myDicts.filter(v => [DictType.customWord, DictType.customArticle].includes(v.type))[state.current.editIndex - 3]
     },
-    currentDict(state: State): Dict {
-      switch (state.current.dictType) {
-        case DictType.collect:
-          return state.collect
-        case DictType.simple:
-          return state.simple
-        case DictType.wrong:
-          return state.wrong
-        case DictType.word:
-        case DictType.article:
-        case DictType.customWord:
-        case DictType.customArticle:
-          return this.myDicts[this.current.index]
-      }
+    currentDict(): Dict {
+      return this.myDicts[this.current.index]
     },
     currentEditDict(): Dict {
       return this.myDicts[this.current.editIndex]
@@ -202,7 +181,7 @@ export const useBaseStore = defineStore('base', {
     },
     chapterName(state: State) {
       let title = ''
-      switch (state.current.dictType) {
+      switch (this.currentDict.type) {
         case DictType.collect:
           if (state.current.practiceType === DictType.word) {
             return `第${this.currentDict.chapterIndex + 1}章`
@@ -215,20 +194,6 @@ export const useBaseStore = defineStore('base', {
     }
   },
   actions: {
-    setEditDict(val: Dict) {
-      if (this.current.editIndex !== -1) {
-        switch (this.current.editIndex) {
-          case 0:
-            return this.collect = val
-          case 1:
-            return this.simple = val
-          case 2:
-            return this.wrong = val
-          default:
-            return this.myDicts[this.current.editIndex] = val
-        }
-      }
-    },
     setState(obj: any) {
       for (const [key, value] of Object.entries(obj)) {
         this[key] = value
@@ -244,17 +209,13 @@ export const useBaseStore = defineStore('base', {
           // this.setState(obj)
         }
 
-        if ([
-          DictType.collect,
-          DictType.wrong,
-          DictType.simple,
-        ].includes(this.current.dictType)) {
+        if (this.current.index < 3) {
 
         } else {
           if ([
             DictType.word,
             DictType.customWord,
-          ].includes(this.current.dictType)) {
+          ].includes(this.currentDict.type)) {
             if (!this.currentDict.originWords.length) {
               let r = await fetch(`./dicts/${this.currentDict.language}/${this.currentDict.type}/${this.currentDict.translateLanguage}/${this.currentDict.url}`)
               // let r = await fetch(`.${this.currentDict.url}`)
@@ -292,8 +253,7 @@ export const useBaseStore = defineStore('base', {
           if ([
             DictType.article,
             DictType.customArticle,
-          ].includes(this.current.dictType)) {
-            console.log(1, this.currentDict)
+          ].includes(this.currentDict.type)) {
             if (!this.currentDict.articles.length) {
               console.log(2)
               let r = await fetch(`./dicts/${this.currentDict.language}/${this.currentDict.type}/${this.currentDict.translateLanguage}/${this.currentDict.url}`)
@@ -322,7 +282,7 @@ export const useBaseStore = defineStore('base', {
       //TODO 保存统计
       // this.saveStatistics()
       console.log('changeDict', cloneDeep(dict), chapterIndex, chapterWordIndex)
-      this.current.dictType = dict.type
+      this.currentDict.type = dict.type
       this.current.practiceType = practiceType
       if ([DictType.collect,
         DictType.simple,

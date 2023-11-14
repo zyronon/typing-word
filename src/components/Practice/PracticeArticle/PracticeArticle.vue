@@ -40,7 +40,7 @@ let editArticle = $ref<Article>(cloneDeep(DefaultArticle))
 watch([
   () => store.current.index,
   () => store.load,
-  () => store.current.dictType,
+  () => store.currentDict.type,
   () => store.currentDict.chapterIndex,
 ], n => {
   console.log('n', n)

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {dictionaryResources} from '@/assets/dictionary.ts'
 import {useBaseStore} from "@/stores/base.ts"
-import {watch, reactive, onMounted} from "vue"
+import {onMounted, reactive, watch} from "vue"
 import {DefaultDict, Dict, DictResource, DictType, languageCategoryOptions, Sort, Word} from "@/types.ts"
 import {chunk, cloneDeep, groupBy, reverse, shuffle} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
@@ -40,14 +40,6 @@ watch(() => runtimeStore.showDictModal, (n: boolean) => {
   runtimeStore.editDict = cloneDeep(store.currentDict)
 })
 
-let myAllDict = $computed(() => {
-  return [
-    store.collect,
-    store.simple,
-    store.wrong
-  ].concat(store.myDicts);
-})
-
 async function selectDict(val: { dict: DictResource, index: number }) {
   let item = val.dict
   console.log('item', item)
@@ -59,44 +51,40 @@ async function selectDict(val: { dict: DictResource, index: number }) {
   let find: Dict = store.myDicts.find((v: Dict) => v.name === item.name)
   if (find) {
     runtimeStore.editDict = cloneDeep(find)
-    if (find.type === DictType.article) {
-      if (!find.articles.length) {
-        let r = await fetch(`./dicts/${find.language}/${find.type}/${find.translateLanguage}/${find.url}`)
-        let v = await r.json()
-        runtimeStore.editDict.articles = v.map(s => {
-          s.id = uuidv4()
-          return s
-        })
-      }
-    } else {
-      wordList = cloneDeep(runtimeStore.editDict.originWords)
-    }
-    loading = false
   } else {
-    let data: Dict = {
+    runtimeStore.editDict = cloneDeep({
       ...cloneDeep(DefaultDict),
       ...item,
+    })
+  }
+
+  if ([DictType.collect, DictType.simple, DictType.simple].includes(runtimeStore.editDict.type)) {
+    wordList = cloneDeep(runtimeStore.editDict.originWords)
+  } else {
+    let url = `./dicts/${runtimeStore.editDict.language}/${runtimeStore.editDict.type}/${runtimeStore.editDict.translateLanguage}/${runtimeStore.editDict.url}`;
+    if (runtimeStore.editDict.type === DictType.word) {
+      if (!runtimeStore.editDict.originWords.length) {
+        let r = await fetch(url)
+        let v = await r.json()
+        runtimeStore.editDict.originWords = cloneDeep(v)
+        runtimeStore.editDict.words = cloneDeep(v)
+        runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
+      }
+      wordList = cloneDeep(runtimeStore.editDict.originWords)
     }
-    runtimeStore.editDict = cloneDeep(data)
-    let r = await fetch(`./dicts/${data.language}/${data.type}/${data.translateLanguage}/${item.url}`)
-    r.json().then(v => {
-      console.log('v', v)
-      if (data.type === DictType.article) {
+
+    if (runtimeStore.editDict.type === DictType.article) {
+      if (!runtimeStore.editDict.articles.length) {
+        let r = await fetch(url)
+        let v = await r.json()
         runtimeStore.editDict.articles = cloneDeep(v.map(s => {
           s.id = uuidv4()
           return s
         }))
-      } else {
-        runtimeStore.editDict.originWords = v
-        runtimeStore.editDict.words = v
-        runtimeStore.editDict.chapterWords = chunk(v, runtimeStore.editDict.chapterWordNumber)
-        console.log(' runtimeStore.editDict', runtimeStore.editDict)
-        wordList = cloneDeep(runtimeStore.editDict.originWords)
       }
-      loading = false
-    })
+    }
   }
-
+  loading = false
 }
 
 function changeDict() {
@@ -128,12 +116,12 @@ const groupByTranslateLanguage = $computed(() => {
     data = groupBy(articleList, 'translateLanguage')
   } else if (currentLanguage === 'my') {
     data = {
-      common: myAllDict.concat([{name: '',} as any])
+      common: store.myDicts.concat([{name: '',} as any])
     }
   } else {
     data = groupBy(groupByLanguage[currentLanguage], 'translateLanguage')
   }
-  console.log('groupByTranslateLanguage', data)
+  // console.log('groupByTranslateLanguage', data)
   translateLanguageList = Object.keys(data)
   currentTranslateLanguage = translateLanguageList[0]
   return data
@@ -147,7 +135,7 @@ const groupedByCategoryAndTag = $computed(() => {
   for (const [key, value] of Object.entries(groupByCategory)) {
     data.push([key, groupByDictTags(value)])
   }
-  console.log('groupedByCategoryAndTag', data)
+  // console.log('groupedByCategoryAndTag', data)
   return data
 })
 
@@ -270,6 +258,7 @@ async function onSubmit() {
       if (data.id) {
         let rIndex = store.myDicts.findIndex(v => v.id === data.id)
         store.myDicts[rIndex] = cloneDeep(data)
+        runtimeStore.editDict = cloneDeep(data)
         isAddDict = false
         ElMessage.success('修改成功')
       } else {
@@ -278,13 +267,12 @@ async function onSubmit() {
           return ElMessage.warning('已有相同名称词典！')
         } else {
           store.myDicts.push(cloneDeep(data))
-          store.current.editIndex = 3 + store.myDicts.filter(v => [DictType.customWord, DictType.customArticle].includes(v.type)).length - 1
+          runtimeStore.editDict = cloneDeep(data)
           isAddDict = false
           ElMessage.success('添加成功')
         }
       }
       console.log('submit!', data)
-
     } else {
       ElMessage.warning('请填写完整')
     }
@@ -408,7 +396,8 @@ watch(() => step, v => {
           <div class="dict-list-wrapper">
             <template v-if="currentLanguage === 'my'">
               <DictList
-                  @add="step = 1"
+                  @add="step = 1;isAddDict = true"
+                  @selectDict="selectDict"
                   :list="groupByTranslateLanguage['common']"/>
             </template>
             <template v-else>
@@ -824,7 +813,6 @@ $header-height: 60rem;
       overflow: hidden;
       display: flex;
       position: relative;
-      gap: var(--space);
 
       .left-column {
         overflow: auto;
@@ -834,11 +822,10 @@ $header-height: 60rem;
         gap: 10rem;
         min-height: 100rem;
         position: relative;
-        border-radius: 10rem;
-        background: var(--color-second-bg);
         color: var(--color-font-1);
         font-size: 14rem;
         position: relative;
+        padding-right: var(--space);
 
         .name {
           font-size: 28rem;
@@ -861,8 +848,8 @@ $header-height: 60rem;
 
         :deep(.edit-icon) {
           position: absolute;
-          top: 10rem;
-          right: 10rem;
+          top: 8rem;
+          right: 0;
         }
       }
 
@@ -957,7 +944,11 @@ $header-height: 60rem;
     justify-content: center;
 
     .wrapper {
-      width: 70%;
+      width: 50%;
+    }
+
+    .el-select {
+      width: 100%;
     }
 
   }

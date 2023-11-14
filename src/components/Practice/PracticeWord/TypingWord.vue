@@ -140,7 +140,7 @@ function next(isTyping: boolean = true) {
     data.index++
     isTyping && practiceStore.inputWordNumber++
     console.log('这个词完了')
-    if ([DictType.customWord, DictType.word].includes(store.current.dictType)
+    if ([DictType.customWord, DictType.word].includes(store.currentDict.type)
         && store.skipWordNames.includes(word.name.toLowerCase())) {
       next()
     }

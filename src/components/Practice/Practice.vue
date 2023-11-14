@@ -17,7 +17,6 @@ import {ShortcutKey} from "@/types.ts";
 import useTheme from "@/hooks/useTheme.ts";
 import SettingModal from "@/components/Modal/SettingModal.vue";
 import DictModal from "@/components/Modal/DictDialog/index.vue";
-import AddWordDialog from "@/components/Modal/AddWordDialog.vue";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
@@ -165,7 +164,7 @@ onUnmounted(() => {
     <PracticeWord ref="practiceRef" v-else/>
     <Footer/>
   </div>
-  <AddWordDialog></AddWordDialog>
+<!--  <AddWordDialog></AddWordDialog>-->
   <DictModal/>
   <SettingModal v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
   <Statistics/>

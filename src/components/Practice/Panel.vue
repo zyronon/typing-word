@@ -91,7 +91,7 @@ const {
                     {{ store.collect.articles.length }}篇文章
                   </div>
                 </div>
-                <template v-if="store.current.dictType !== DictType.collect &&
+                <template v-if="store.currentDict.type !== DictType.collect &&
              (
                    ( practiceType === DictType.word && store.collect.words.length) ||
                 ( practiceType === DictType.article && store.collect.articles.length)
@@ -133,7 +133,7 @@ const {
             <div class="panel-page-item" v-if="store.simple.words.length">
               <div class="list-header">
                 <div class="dict-name">总词数：{{ store.simple.words.length }}</div>
-                <template v-if="store.current.dictType !== DictType.simple && store.simple.words.length">
+                <template v-if="store.currentDict.type !== DictType.simple && store.simple.words.length">
                   <PopConfirm
                       :title="`确认切换？`"
                       @confirm="changeIndex(0,store.simple)"
@@ -161,7 +161,7 @@ const {
               <div class="list-header">
                 <div class="dict-name">总词数：{{ store.wrong.words.length }}</div>
                 <template
-                    v-if="store.current.dictType !== DictType.wrong && store.wrong.words.length">
+                    v-if="store.currentDict.type !== DictType.wrong && store.wrong.words.length">
                   <PopConfirm
                       :title="`确认切换？`"
                       @confirm="changeIndex(0,store.wrong)"

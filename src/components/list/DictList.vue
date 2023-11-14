@@ -9,7 +9,7 @@ defineProps<{
 }>()
 
 const emit = defineEmits<{
-  selectDict: [val: { dict: Dict, index: number }]
+  selectDict: [val: { dict: any, index: number }]
   detail: [],
   add: []
 }>()

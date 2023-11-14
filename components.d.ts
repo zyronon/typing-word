@@ -9,7 +9,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     Add: typeof import('./src/components/Toolbar/Add.vue')['default']
     AddDict: typeof import('./src/components/Add/AddDict.vue')['default']
-    AddWordDialog: typeof import('./src/components/Modal/AddWordDialog.vue')['default']
     ArticleList: typeof import('./src/components/Article/ArticleList.vue')['default']
     Backgorund: typeof import('./src/components/Backgorund.vue')['default']
     BaseButton: typeof import('./src/components/BaseButton.vue')['default']
