@@ -1,23 +1,32 @@
 <script setup lang="ts">
 
 import {onMounted, watch} from "vue";
-import {useBaseStore} from "@/stores/base.ts";
-import {SaveConfig, SaveDict} from "@/types.ts"
+import {BaseState, useBaseStore} from "@/stores/base.ts";
+import {DictType, SaveConfig, SaveDict} from "@/types.ts"
 import Practice from "@/components/Practice/Practice.vue"
-import {useEventListener, useStartKeyboardEventListener} from "@/hooks/event.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {cloneDeep} from "lodash-es";
 import Backgorund from "@/components/Backgorund.vue";
 import useTheme from "@/hooks/useTheme.ts";
+import * as localforage from "localforage";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
 const settingStore = useSettingStore()
 const {setTheme} = useTheme()
 
-watch(store.$state, (n) => {
-  localStorage.setItem(SaveDict.key, JSON.stringify({val: n, version: SaveDict.version}))
+watch(store.$state, (n: BaseState) => {
+  let data: BaseState = cloneDeep(n)
+  data.myDicts.map((v: any) => {
+    if (v.type === DictType.word && v.translateLanguage === 'common') {
+      v.originWordsSimple = v.originWords.map(s => s.name)
+      v.originWords = []
+    }
+    v.words = []
+    v.chapterWords = []
+  })
+  localforage.setItem(SaveDict.key, JSON.stringify({val: data, version: SaveDict.version}))
 })
 
 watch(settingStore.$state, (n) => {
@@ -37,7 +46,6 @@ watch(store.wrong.originWords, (n) => {
   store.wrong.words = cloneDeep(n)
   store.wrong.chapterWords = [store.wrong.words]
 })
-
 
 async function init() {
   console.time()

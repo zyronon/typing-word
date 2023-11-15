@@ -58,7 +58,7 @@ async function selectDict(val: { dict: DictResource, index: number }) {
     })
   }
 
-  if ([DictType.collect, DictType.simple, DictType.simple].includes(runtimeStore.editDict.type)) {
+  if ([DictType.collect, DictType.simple, DictType.wrong].includes(runtimeStore.editDict.type)) {
     wordList = cloneDeep(runtimeStore.editDict.originWords)
   } else {
     let url = `./dicts/${runtimeStore.editDict.language}/${runtimeStore.editDict.type}/${runtimeStore.editDict.translateLanguage}/${runtimeStore.editDict.url}`;
