@@ -48,7 +48,7 @@ async function selectDict(val: { dict: DictResource, index: number }) {
   detailListTabIndex = 0
   wordFormMode = FormMode.None
   loading = true
-  let find: Dict = store.myDicts.find((v: Dict) => v.name === item.name)
+  let find: Dict = store.myDictList.find((v: Dict) => v.name === item.name)
   if (find) {
     runtimeStore.editDict = cloneDeep(find)
   } else {
@@ -59,7 +59,7 @@ async function selectDict(val: { dict: DictResource, index: number }) {
   }
 
   if ([DictType.collect, DictType.simple, DictType.wrong].includes(runtimeStore.editDict.type)) {
-    wordList = cloneDeep(runtimeStore.editDict.originWords)
+    wordList = cloneDeep(runtimeStore.editDict.words)
   } else {
     let url = `./dicts/${runtimeStore.editDict.language}/${runtimeStore.editDict.type}/${runtimeStore.editDict.translateLanguage}/${runtimeStore.editDict.url}`;
     if (runtimeStore.editDict.type === DictType.word) {
@@ -67,10 +67,16 @@ async function selectDict(val: { dict: DictResource, index: number }) {
         let r = await fetch(url)
         let v = await r.json()
         runtimeStore.editDict.originWords = cloneDeep(v)
-        runtimeStore.editDict.words = cloneDeep(v)
-        runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
+        changeSort(runtimeStore.editDict.sort)
       }
-      wordList = cloneDeep(runtimeStore.editDict.originWords)
+      wordList = cloneDeep(runtimeStore.editDict.words)
+    }
+
+    if (runtimeStore.editDict.type === DictType.customWord) {
+      if (!runtimeStore.editDict.words.length) {
+        changeSort(runtimeStore.editDict.sort)
+      }
+      wordList = cloneDeep(runtimeStore.editDict.words)
     }
 
     if (runtimeStore.editDict.type === DictType.article) {
@@ -83,6 +89,8 @@ async function selectDict(val: { dict: DictResource, index: number }) {
         }))
       }
     }
+
+
   }
   loading = false
 }
@@ -116,7 +124,7 @@ const groupByTranslateLanguage = $computed(() => {
     data = groupBy(articleList, 'translateLanguage')
   } else if (currentLanguage === 'my') {
     data = {
-      common: store.myDicts.concat([{name: '',} as any])
+      common: store.myDictList.concat([{name: '',} as any])
     }
   } else {
     data = groupBy(groupByLanguage[currentLanguage], 'translateLanguage')
@@ -255,18 +263,22 @@ async function onSubmit() {
         ...DefaultDict,
         ...dictForm,
       }
+      //任意修改，都将其变为自定义词典
+      if (data.type === DictType.word) data.type = DictType.customWord
+      if (data.type === DictType.article) data.type = DictType.customArticle
+
       if (data.id) {
-        let rIndex = store.myDicts.findIndex(v => v.id === data.id)
-        store.myDicts[rIndex] = cloneDeep(data)
+        let rIndex = store.myDictList.findIndex(v => v.id === data.id)
+        store.myDictList[rIndex] = cloneDeep(data)
         runtimeStore.editDict = cloneDeep(data)
         isAddDict = false
         ElMessage.success('修改成功')
       } else {
         data.id = 'custom-dict-' + Date.now()
-        if (store.myDicts.find(v => v.name === dictForm.name)) {
+        if (store.myDictList.find(v => v.name === dictForm.name)) {
           return ElMessage.warning('已有相同名称词典！')
         } else {
-          store.myDicts.push(cloneDeep(data))
+          store.myDictList.push(cloneDeep(data))
           runtimeStore.editDict = cloneDeep(data)
           isAddDict = false
           ElMessage.success('添加成功')
@@ -306,6 +318,20 @@ const wordRules = reactive<FormRules>({
 })
 let wordListRef: any = $ref()
 
+//同步到我的词典列表
+function syncMyDictList() {
+  //任意修改，都将其变为自定义词典
+  if (runtimeStore.editDict.type === DictType.word) runtimeStore.editDict.type = DictType.customWord
+  if (runtimeStore.editDict.type === DictType.article) runtimeStore.editDict.type = DictType.customArticle
+
+  let rIndex = store.myDictList.findIndex(v => v.id === runtimeStore.editDict.id)
+  if (rIndex > -1) {
+    store.myDictList[rIndex] = cloneDeep(runtimeStore.editDict)
+  } else {
+    store.myDictList.push(cloneDeep(runtimeStore.editDict))
+  }
+}
+
 async function onSubmitWord() {
   await wordFormRef.validate((valid, fields) => {
     if (valid) {
@@ -320,28 +346,70 @@ async function onSubmitWord() {
           return ElMessage.warning('已有相同名称单词！')
         } else {
           runtimeStore.editDict.originWords.push(data)
+          runtimeStore.editDict.words.push(data)
           //因为虚拟列表，必须重新赋值才能检测到更新
-          wordList = cloneDeep(runtimeStore.editDict.originWords)
+          wordList = cloneDeep(runtimeStore.editDict.words)
+
+          runtimeStore.editDict.chapterWords[runtimeStore.editDict.chapterWords.length - 1].push(data)
+
           ElMessage.success('添加成功')
           wordForm = cloneDeep(DefaultFormWord)
           setTimeout(wordListRef?.scrollToBottom, 100)
         }
         console.log('runtimeStore.editDict', runtimeStore.editDict)
       } else {
-        runtimeStore.editDict.originWords[wordFormMode] = data
+        runtimeStore.editDict.words[wordFormMode] = data
         //因为虚拟列表，必须重新赋值才能检测到更新
-        wordList = cloneDeep(runtimeStore.editDict.originWords)
+        wordList = cloneDeep(runtimeStore.editDict.words)
+        //同步到原始列表，因为word可能是随机的，所以需要自己寻找index去修改原始列表
+        let rIndex = runtimeStore.editDict.originWords.findIndex(v => v.name === data.name)
+        if (rIndex > -1) {
+          runtimeStore.editDict.originWords[rIndex] = data
+        }
+
+        runtimeStore.editDict.chapterWords = runtimeStore.editDict.chapterWords.map(list => {
+          let rIndex2 = list.findIndex(v => v.name === data.name)
+          if (rIndex2 > -1) {
+            list[rIndex2] = data
+          }
+          return list
+        })
         ElMessage.success('修改成功')
       }
+      syncMyDictList()
     } else {
       ElMessage.warning('请填写完整')
     }
   })
 }
 
-function delWord(index: number) {
-  runtimeStore.editDict.originWords.splice(index, 1)
-  wordList = cloneDeep(runtimeStore.editDict.originWords)
+function delWord(word: Word, index: number) {
+  //同步到原始列表，因为word可能是随机的，所以需要自己寻找index去修改原始列表
+  let rIndex = runtimeStore.editDict.originWords.findIndex(v => v.name === word.name)
+  if (rIndex > -1) {
+    runtimeStore.editDict.originWords.splice(rIndex, 1)
+  }
+
+  runtimeStore.editDict.chapterWords.map(list => {
+    let rIndex2 = list.findIndex(v => v.name === word.name)
+    if (rIndex2 > -1) {
+      list.splice(rIndex2, 1)
+    }
+  })
+
+  runtimeStore.editDict.chapterWords = runtimeStore.editDict.chapterWords.filter(v => v.length)
+  if (runtimeStore.editDict.chapterWords.length === 0) runtimeStore.editDict.chapterIndex = -1
+  else {
+    if (runtimeStore.editDict.chapterIndex >= runtimeStore.editDict.chapterWords.length) {
+      runtimeStore.editDict.chapterIndex = runtimeStore.editDict.chapterWords.length - 1
+    }
+  }
+
+  runtimeStore.editDict.words.splice(index, 1)
+  wordList = cloneDeep(runtimeStore.editDict.words)
+  syncMyDictList()
+
+  closeWordForm()
 }
 
 function editWord(val: { word: Word, index: number }) {
@@ -602,7 +670,7 @@ watch(() => step, v => {
                   <template v-slot="{word,index}">
                     <BaseIcon
                         class-name="del"
-                        @click="delWord(index)"
+                        @click="delWord(word,index)"
                         title="移除"
                         icon="solar:trash-bin-minimalistic-linear"/>
                   </template>

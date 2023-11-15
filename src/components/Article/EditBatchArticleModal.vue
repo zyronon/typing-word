@@ -116,7 +116,7 @@ function importData(e: Event) {
         showImportBtn = true
         return ElMessage.error('请填写词典名称！')
       } else {
-        if (base.myDicts.find(v => v.name === obj.name)) {
+        if (base.myDictList.find(v => v.name === obj.name)) {
           showImportBtn = true
           return ElMessage.error('词典名称已存在！')
         }
@@ -171,7 +171,7 @@ function importData(e: Event) {
         message: '导入成功，已切换到',
         duration: 5000
       })
-      base.myDicts.push(obj)
+      base.myDictList.push(obj)
       runtimeStore.editDict = cloneDeep(runtimeStore.editDict)
       showImportBtn = true
     } catch (e) {

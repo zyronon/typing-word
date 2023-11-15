@@ -18,11 +18,9 @@ const {setTheme} = useTheme()
 
 watch(store.$state, (n: BaseState) => {
   let data: BaseState = cloneDeep(n)
-  data.myDicts.map((v: any) => {
-    if (v.type === DictType.word && v.translateLanguage === 'common') {
-      v.originWordsSimple = v.originWords.map(s => s.name)
-      v.originWords = []
-    }
+  data.myDictList.map((v: any) => {
+    if (v.type === DictType.word) v.originWords = []
+    if (v.type === DictType.article) v.articles = []
     v.words = []
     v.chapterWords = []
   })

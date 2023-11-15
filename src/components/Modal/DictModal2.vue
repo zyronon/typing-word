@@ -38,7 +38,7 @@ async function selectDict(item: DictResource) {
   console.log('item', item)
   step = 1
   loading = true
-  let find: Dict = baseStore.myDicts.find((v: Dict) => v.name === item.name)
+  let find: Dict = baseStore.myDictList.find((v: Dict) => v.name === item.name)
   if (find) {
     runtimeStore.editDict = cloneDeep(find)
     if (find.type === DictType.article) {

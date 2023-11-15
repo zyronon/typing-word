@@ -37,7 +37,7 @@ let isEdit = $ref(true)
 useDisableEventListener()
 
 let list = $computed(() => {
-  return store.myDicts.filter(v => v.type === DictType.customArticle)
+  return store.myDictList.filter(v => v.type === DictType.customArticle)
       .concat([
         store.simple,
         store.wrong,
@@ -128,16 +128,16 @@ async function onSubmit() {
         ...form,
       }
       if (form.id) {
-        let rIndex = store.myDicts.findIndex(v => v.id === form.id)
+        let rIndex = store.myDictList.findIndex(v => v.id === form.id)
         runtimeStore.editDict = data
-        store.myDicts[rIndex] = cloneDeep(data)
+        store.myDictList[rIndex] = cloneDeep(data)
         isEdit = false
       } else {
-        if (store.myDicts.find(v => v.name === form.name)) {
+        if (store.myDictList.find(v => v.name === form.name)) {
           return ElMessage.warning('已有相同名称词典！')
         } else {
           runtimeStore.editDict = data
-          store.myDicts.push(cloneDeep(data))
+          store.myDictList.push(cloneDeep(data))
           isEdit = false
           console.log('submit!', data)
         }

@@ -231,7 +231,7 @@ export const DefaultDict: Dict = {
   category: '',
   tags: [],
   translateLanguage: 'common',
-  type: DictType.word,
+  type: DictType.customWord,
   language: 'en',
 }
 
