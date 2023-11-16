@@ -350,7 +350,12 @@ async function onSubmitWord() {
           //因为虚拟列表，必须重新赋值才能检测到更新
           wordList = cloneDeep(runtimeStore.editDict.words)
 
-          runtimeStore.editDict.chapterWords[runtimeStore.editDict.chapterWords.length - 1].push(data)
+          if (runtimeStore.editDict.chapterWords.length) {
+            runtimeStore.editDict.chapterWords[runtimeStore.editDict.chapterWords.length - 1].push(data)
+          } else {
+            runtimeStore.editDict.chapterWords.push([data])
+            runtimeStore.editDict.chapterIndex = 0
+          }
 
           ElMessage.success('添加成功')
           wordForm = cloneDeep(DefaultFormWord)
@@ -358,22 +363,24 @@ async function onSubmitWord() {
         }
         console.log('runtimeStore.editDict', runtimeStore.editDict)
       } else {
+        let oldData = cloneDeep(runtimeStore.editDict.words[wordFormMode])
         runtimeStore.editDict.words[wordFormMode] = data
         //因为虚拟列表，必须重新赋值才能检测到更新
         wordList = cloneDeep(runtimeStore.editDict.words)
         //同步到原始列表，因为word可能是随机的，所以需要自己寻找index去修改原始列表
-        let rIndex = runtimeStore.editDict.originWords.findIndex(v => v.name === data.name)
+        let rIndex = runtimeStore.editDict.originWords.findIndex(v => v.name === oldData.name)
         if (rIndex > -1) {
           runtimeStore.editDict.originWords[rIndex] = data
         }
 
         runtimeStore.editDict.chapterWords = runtimeStore.editDict.chapterWords.map(list => {
-          let rIndex2 = list.findIndex(v => v.name === data.name)
+          let rIndex2 = list.findIndex(v => v.name === oldData.name)
           if (rIndex2 > -1) {
             list[rIndex2] = data
           }
           return list
         })
+        console.log('runtimeStore.editDict.chapterWords', runtimeStore.editDict.chapterWords)
         ElMessage.success('修改成功')
       }
       syncMyDictList()
@@ -652,12 +659,18 @@ watch(() => step, v => {
                   <span>单词列表</span>
                 </div>
               </div>
-              <ChapterList
-                  v-loading="loading"
+              <template
                   v-if="detailListTabIndex === 0"
-                  :is-article="dictIsArticle"
-                  v-model:active-index="runtimeStore.editDict.chapterIndex"
-                  :dict="runtimeStore.editDict"/>
+              >
+                <ChapterList
+                    v-if="runtimeStore.editDict.chapterWords.length"
+                    v-loading="loading"
+                    :is-article="dictIsArticle"
+                    v-model:active-index="runtimeStore.editDict.chapterIndex"
+                    :dict="runtimeStore.editDict"/>
+                <Empty v-else :show-add="true" @add="addWord"/>
+              </template>
+
               <div class="scroll" v-else>
                 <VirtualWordList
                     ref="wordListRef"
@@ -675,7 +688,7 @@ watch(() => step, v => {
                         icon="solar:trash-bin-minimalistic-linear"/>
                   </template>
                 </VirtualWordList>
-                <Empty v-else/>
+                <Empty v-else :show-add="true" @add="addWord"/>
               </div>
             </div>
           </div>

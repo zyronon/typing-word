@@ -1,13 +1,21 @@
 <script setup lang="ts">
+import BaseButton from "@/components/BaseButton.vue";
+
 defineProps<{
   text?: string
+  showAdd?: boolean
+}>()
+
+defineEmits<{
+  add: []
 }>()
 </script>
 
 <template>
   <div class="empty">
     <img src="@/assets/img/缺省页_空白页-通用.svg" alt="">
-    <span>{{ text ?? '空荡荡的~'}}</span>
+    <span>{{ text ?? '空荡荡的~' }}</span>
+    <BaseButton v-if="showAdd" @click="$emit('add')">添加</BaseButton>
   </div>
 </template>
 
@@ -23,6 +31,7 @@ defineProps<{
   gap: 20rem;
 
   img {
+    margin-top: -50rem;
     width: 120rem;
   }
 }
