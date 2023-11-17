@@ -23,6 +23,7 @@ import VirtualWordList from "@/components/list/VirtualWordList.vue";
 import {FormInstance, FormRules} from "element-plus";
 import Empty from "@/components/Empty.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
+import Modal from "@/components/Modal/Modal.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -449,327 +450,334 @@ watch(() => step, v => {
 </script>
 
 <template>
-  <div id="DictDialog">
-    <Slide :slide-count="2" :step="step">
-      <div class="dict-page">
-        <header>
-          <div class="tabs">
-            <div class="tab"
-                 :class="currentLanguage === item.id && 'active'"
-                 @click="currentLanguage = item.id"
-                 v-for="item in languageCategoryOptions">
-              <img :src='item.flag'/>
-              <span>{{ item.name }}</span>
-            </div>
-          </div>
-          <Icon @click="close"
-                class="hvr-grow pointer"
-                width="20" color="#929596"
-                icon="ion:close-outline"/>
-        </header>
-        <div class="page-content">
-          <div class="dict-list-wrapper">
-            <template v-if="currentLanguage === 'my'">
-              <DictList
-                  @add="step = 1;isAddDict = true"
-                  @selectDict="selectDict"
-                  :list="groupByTranslateLanguage['common']"/>
-            </template>
-            <template v-else>
-              <div class="translate">
-                <span>翻译：</span>
-                <el-radio-group v-model="currentTranslateLanguage">
-                  <el-radio-button border v-for="i in translateLanguageList" :label="i">{{ i }}</el-radio-button>
-                </el-radio-group>
+  <Modal
+      :header="false"
+      v-model="runtimeStore.showDictModal"
+      :show-close="false">
+    <div id="DictDialog">
+      <Slide :slide-count="2" :step="step">
+        <div class="dict-page">
+          <header>
+            <div class="tabs">
+              <div class="tab"
+                   :class="currentLanguage === item.id && 'active'"
+                   @click="currentLanguage = item.id"
+                   v-for="item in languageCategoryOptions">
+                <img :src='item.flag'/>
+                <span>{{ item.name }}</span>
               </div>
-              <DictGroup
-                  v-for="item in groupedByCategoryAndTag"
-                  :select-dict-name="runtimeStore.editDict.resourceId"
-                  @selectDict="selectDict"
-                  @detail="step = 1"
-                  :groupByTag="item[1]"
-                  :category="item[0]"
-              />
-            </template>
-          </div>
-        </div>
-      </div>
-      <div class="dict-detail-page">
-        <header>
-          <div class="left" @click.stop="step = 0">
-            <Icon icon="octicon:arrow-left-24" class="go" width="20"/>
-            <div class="title">
-              词典详情
             </div>
-          </div>
-          <Icon @click="close"
-                class="hvr-grow pointer"
-                width="20" color="#929596"
-                icon="ion:close-outline"/>
-        </header>
-        <div class="detail" v-if="!isAddDict">
+            <Icon @click="close"
+                  class="hvr-grow pointer"
+                  width="20" color="#929596"
+                  icon="ion:close-outline"/>
+          </header>
           <div class="page-content">
-            <div class="left-column">
-              <BaseIcon
-                  v-if="![DictType.collect,DictType.wrong,DictType.simple].includes(runtimeStore.editDict.type)"
-                  class-name="edit-icon"
-                  icon="tabler:edit"
-                  @click='editDict'
-              />
-              <div class="name">{{ runtimeStore.editDict.name }}</div>
-              <div class="desc">{{ runtimeStore.editDict.description }}</div>
-              <div class="text flex align-center gap10">
-                <div v-if="dictIsArticle">总文章：{{ runtimeStore.editDict.articles.length }}篇
-                </div>
-                <div v-else>总词汇：
-                  <span class="count" @click="showAllWordModal">{{ runtimeStore.editDict.originWords.length }}词</span>
-                </div>
-                <BaseIcon icon="mi:add"
-                          @click='addWord'
-                />
-              </div>
-              <div class="text">开始日期：-</div>
-              <div class="text">花费时间：-</div>
-              <div class="text">累积错误：-</div>
-              <div class="text">进度：
-                <el-progress :percentage="0"
-                             :stroke-width="8"
-                             :show-text="false"/>
-              </div>
-            </div>
-            <div class="center-column">
-              <div class="setting" v-if="wordFormMode === FormMode.None">
-                <div class="common-title">学习设置</div>
-                <div class="row" v-if="!isArticle(runtimeStore.editDict.type)">
-                  <div class="label">每章单词数</div>
-                  <el-slider :min="10"
-                             :step="10"
-                             :max="100"
-                             v-model="runtimeStore.editDict.chapterWordNumber"
-                             @change="resetChapterList"
-                  />
-                  <div class="option">
-                    <span>{{ runtimeStore.editDict.chapterWordNumber }}</span>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="label">单词顺序</div>
-                  <div class="option">
-                    <el-radio-group v-model="runtimeStore.editDict.sort"
-                                    @change="changeSort"
-                    >
-                      <el-radio :label="Sort.normal" size="large">默认</el-radio>
-                      <el-radio :label="Sort.random" size="large">随机</el-radio>
-                      <el-radio :label="Sort.reverse" size="large">反转</el-radio>
-                    </el-radio-group>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="label">学习模式</div>
-                  <div class="option">
-                    <el-radio-group v-model="settingStore.dictation">
-                      <el-radio :label="false" size="large">再认</el-radio>
-                      <el-radio :label="true" size="large">拼写</el-radio>
-                    </el-radio-group>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="label">单词发音</div>
-                  <div class="option">
-                    <el-radio-group v-model="settingStore.wordSoundType">
-                      <el-radio label="us" size="large">美音</el-radio>
-                      <el-radio label="uk" size="large">英音</el-radio>
-                    </el-radio-group>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="label">单词自动发音</div>
-                  <div class="option">
-                    <el-switch v-model="settingStore.wordSound"
-                               inline-prompt
-                               active-text="开"
-                               inactive-text="关"
-                    />
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="label">是否显示翻译</div>
-                  <div class="option">
-                    <el-switch v-model="settingStore.translate"
-                               inline-prompt
-                               active-text="开"
-                               inactive-text="关"
-                    />
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="label">忽略大小写</div>
-                  <div class="option">
-                    <el-switch v-model="settingStore.ignoreCase"
-                               inline-prompt
-                               active-text="开"
-                               inactive-text="关"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="add" v-else>
-                <div class="common-title">{{ wordFormMode === FormMode.Add ? '添加' : '修改' }}单词</div>
-                <el-form
-                    class="form"
-                    ref="wordFormRef"
-                    :rules="wordRules"
-                    :model="wordForm"
-                    label-width="140rem">
-                  <el-form-item label="单词" prop="name">
-                    <el-input v-model="wordForm.name"/>
-                  </el-form-item>
-                  <el-form-item label="翻译">
-                    <el-input v-model="wordForm.trans"
-                              placeholder="多个翻译请换行"
-                              :autosize="{ minRows: 2, maxRows: 6 }"
-                              type="textarea"/>
-                  </el-form-item>
-                  <el-form-item label="音标/发音/注音①">
-                    <el-input v-model="wordForm.usphone"/>
-                  </el-form-item>
-                  <el-form-item label="音标/发音/注音②">
-                    <el-input v-model="wordForm.ukphone"/>
-                  </el-form-item>
-                  <div class="flex-center">
-                    <el-button @click="closeWordForm">关闭</el-button>
-                    <el-button type="primary" @click="onSubmitWord">{{
-                        wordFormMode === FormMode.Add ? '添加' : '保存'
-                      }}
-                    </el-button>
-                  </div>
-                </el-form>
-              </div>
-            </div>
-            <div class="right-column">
-              <div class="tabs">
-                <div class="tab"
-                     @click="detailListTabIndex = 0"
-                     :class="detailListTabIndex === 0 && 'active'">
-                  <span>{{ dictIsArticle ? '文章' : '章节' }}列表</span>
-                </div>
-                <div class="tab"
-                     @click="detailListTabIndex = 1"
-                     :class="detailListTabIndex === 1 && 'active'">
-                  <span>单词列表</span>
-                </div>
-              </div>
-              <template
-                  v-if="detailListTabIndex === 0"
-              >
-                <ChapterList
-                    v-if="runtimeStore.editDict.chapterWords.length"
-                    v-loading="loading"
-                    :is-article="dictIsArticle"
-                    v-model:active-index="runtimeStore.editDict.chapterIndex"
-                    :dict="runtimeStore.editDict"/>
-                <Empty v-else :show-add="true" @add="addWord"/>
+            <div class="dict-list-wrapper">
+              <template v-if="currentLanguage === 'my'">
+                <DictList
+                    @add="step = 1;isAddDict = true"
+                    @selectDict="selectDict"
+                    :list="groupByTranslateLanguage['common']"/>
               </template>
-
-              <div class="scroll" v-else>
-                <VirtualWordList
-                    ref="wordListRef"
-                    v-if="wordList.length"
-                    class="word-list"
-                    :is-active="true"
-                    @change="editWord"
-                    :list="wordList"
-                    :activeIndex="wordFormMode">
-                  <template v-slot="{word,index}">
-                    <BaseIcon
-                        class-name="del"
-                        @click="delWord(word,index)"
-                        title="移除"
-                        icon="solar:trash-bin-minimalistic-linear"/>
-                  </template>
-                </VirtualWordList>
-                <Empty v-else :show-add="true" @add="addWord"/>
-              </div>
+              <template v-else>
+                <div class="translate">
+                  <span>翻译：</span>
+                  <el-radio-group v-model="currentTranslateLanguage">
+                    <el-radio-button border v-for="i in translateLanguageList" :label="i">{{ i }}</el-radio-button>
+                  </el-radio-group>
+                </div>
+                <DictGroup
+                    v-for="item in groupedByCategoryAndTag"
+                    :select-dict-name="runtimeStore.editDict.resourceId"
+                    @selectDict="selectDict"
+                    @detail="step = 1"
+                    :groupByTag="item[1]"
+                    :category="item[0]"
+                />
+              </template>
             </div>
           </div>
-          <div v-if="false" class="activity">
-            <ActivityCalendar
-                :data="[{ date: '2023-05-22', count: 5 }]"
-                :width="40"
-                :height="7"
-                :cellLength="16"
-                :cellInterval="8"
-                :fontSize="12"
-                :showLevelFlag="false"
-                :showWeekDayFlag="false"
-                :clickEvent="clickEvent"
-            />
-          </div>
-          <div class="footer">
-            <!--            <BaseButton @click="step = 0">导出</BaseButton>-->
-            <BaseButton @click="close">关闭</BaseButton>
-            <BaseButton @click="changeDict">切换</BaseButton>
-          </div>
         </div>
-        <div class="edit-dict" v-else>
-          <div class="wrapper">
-            <div class="common-title">{{ dictForm.id ? '修改' : '添加' }}词典</div>
-            <el-form
-                ref="dictFormRef"
-                :rules="dictRules"
-                :model="dictForm"
-                label-width="120rem">
-              <el-form-item label="名称" prop="name">
-                <el-input v-model="dictForm.name"/>
-              </el-form-item>
-              <el-form-item label="描述">
-                <el-input v-model="dictForm.description" type="textarea"/>
-              </el-form-item>
-              <el-form-item label="语言">
-                <el-select v-model="dictForm.language" placeholder="请选择选项">
-                  <el-option label="英语" value="en"/>
-                  <el-option label="德语" value="de"/>
-                  <el-option label="日语" value="ja"/>
-                  <el-option label="代码" value="code"/>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="翻译语言">
-                <el-select v-model="dictForm.translateLanguage" placeholder="请选择选项">
-                  <!--                <el-option label="通用" value="common"/>-->
-                  <el-option label="中文" value="zh-CN"/>
-                  <el-option label="英语" value="en"/>
-                  <el-option label="德语" value="de"/>
-                  <el-option label="日语" value="ja"/>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="分类" prop="category">
-                <el-select v-model="dictForm.category" placeholder="请选择选项">
-                  <el-option :label="i" :value="i" v-for="i in categoryList[dictForm.language]"/>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="标签" prop="tags">
-                <el-select
-                    multiple
-                    v-model="dictForm.tags" placeholder="请选择选项">
-                  <el-option :label="i" :value="i" v-for="i in tagList[dictForm.category]"/>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="类型">
-                <el-select v-model="dictForm.type" placeholder="请选择选项">
-                  <el-option label="单词" :value="DictType.customWord"/>
-                  <el-option label="文章" :value="DictType.customArticle"/>
-                </el-select>
-              </el-form-item>
-              <div class="flex-center">
-                <el-button @click="closeDictForm">关闭</el-button>
-                <el-button type="primary" @click="onSubmit">确定</el-button>
+        <div class="dict-detail-page">
+          <header>
+            <div class="left" @click.stop="step = 0">
+              <Icon icon="octicon:arrow-left-24" class="go" width="20"/>
+              <div class="title">
+                词典详情
               </div>
-            </el-form>
+            </div>
+            <Icon @click="close"
+                  class="hvr-grow pointer"
+                  width="20" color="#929596"
+                  icon="ion:close-outline"/>
+          </header>
+          <div class="detail" v-if="!isAddDict">
+            <div class="page-content">
+              <div class="left-column">
+                <BaseIcon
+                    v-if="![DictType.collect,DictType.wrong,DictType.simple].includes(runtimeStore.editDict.type)"
+                    class-name="edit-icon"
+                    icon="tabler:edit"
+                    @click='editDict'
+                />
+                <div class="name">{{ runtimeStore.editDict.name }}</div>
+                <div class="desc">{{ runtimeStore.editDict.description }}</div>
+                <div class="text flex align-center gap10">
+                  <div v-if="dictIsArticle">总文章：{{ runtimeStore.editDict.articles.length }}篇
+                  </div>
+                  <div v-else>总词汇：
+                    <span class="count" @click="showAllWordModal">{{
+                        runtimeStore.editDict.originWords.length
+                      }}词</span>
+                  </div>
+                  <BaseIcon icon="mi:add"
+                            @click='addWord'
+                  />
+                </div>
+                <div class="text">开始日期：-</div>
+                <div class="text">花费时间：-</div>
+                <div class="text">累积错误：-</div>
+                <div class="text">进度：
+                  <el-progress :percentage="0"
+                               :stroke-width="8"
+                               :show-text="false"/>
+                </div>
+              </div>
+              <div class="center-column">
+                <div class="setting" v-if="wordFormMode === FormMode.None">
+                  <div class="common-title">学习设置</div>
+                  <div class="row" v-if="!isArticle(runtimeStore.editDict.type)">
+                    <div class="label">每章单词数</div>
+                    <el-slider :min="10"
+                               :step="10"
+                               :max="100"
+                               v-model="runtimeStore.editDict.chapterWordNumber"
+                               @change="resetChapterList"
+                    />
+                    <div class="option">
+                      <span>{{ runtimeStore.editDict.chapterWordNumber }}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="label">单词顺序</div>
+                    <div class="option">
+                      <el-radio-group v-model="runtimeStore.editDict.sort"
+                                      @change="changeSort"
+                      >
+                        <el-radio :label="Sort.normal" size="large">默认</el-radio>
+                        <el-radio :label="Sort.random" size="large">随机</el-radio>
+                        <el-radio :label="Sort.reverse" size="large">反转</el-radio>
+                      </el-radio-group>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="label">学习模式</div>
+                    <div class="option">
+                      <el-radio-group v-model="settingStore.dictation">
+                        <el-radio :label="false" size="large">再认</el-radio>
+                        <el-radio :label="true" size="large">拼写</el-radio>
+                      </el-radio-group>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="label">单词发音</div>
+                    <div class="option">
+                      <el-radio-group v-model="settingStore.wordSoundType">
+                        <el-radio label="us" size="large">美音</el-radio>
+                        <el-radio label="uk" size="large">英音</el-radio>
+                      </el-radio-group>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="label">单词自动发音</div>
+                    <div class="option">
+                      <el-switch v-model="settingStore.wordSound"
+                                 inline-prompt
+                                 active-text="开"
+                                 inactive-text="关"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="label">是否显示翻译</div>
+                    <div class="option">
+                      <el-switch v-model="settingStore.translate"
+                                 inline-prompt
+                                 active-text="开"
+                                 inactive-text="关"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="label">忽略大小写</div>
+                    <div class="option">
+                      <el-switch v-model="settingStore.ignoreCase"
+                                 inline-prompt
+                                 active-text="开"
+                                 inactive-text="关"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="add" v-else>
+                  <div class="common-title">{{ wordFormMode === FormMode.Add ? '添加' : '修改' }}单词</div>
+                  <el-form
+                      class="form"
+                      ref="wordFormRef"
+                      :rules="wordRules"
+                      :model="wordForm"
+                      label-width="140rem">
+                    <el-form-item label="单词" prop="name">
+                      <el-input v-model="wordForm.name"/>
+                    </el-form-item>
+                    <el-form-item label="翻译">
+                      <el-input v-model="wordForm.trans"
+                                placeholder="多个翻译请换行"
+                                :autosize="{ minRows: 2, maxRows: 6 }"
+                                type="textarea"/>
+                    </el-form-item>
+                    <el-form-item label="音标/发音/注音①">
+                      <el-input v-model="wordForm.usphone"/>
+                    </el-form-item>
+                    <el-form-item label="音标/发音/注音②">
+                      <el-input v-model="wordForm.ukphone"/>
+                    </el-form-item>
+                    <div class="flex-center">
+                      <el-button @click="closeWordForm">关闭</el-button>
+                      <el-button type="primary" @click="onSubmitWord">{{
+                          wordFormMode === FormMode.Add ? '添加' : '保存'
+                        }}
+                      </el-button>
+                    </div>
+                  </el-form>
+                </div>
+              </div>
+              <div class="right-column">
+                <div class="tabs">
+                  <div class="tab"
+                       @click="detailListTabIndex = 0"
+                       :class="detailListTabIndex === 0 && 'active'">
+                    <span>{{ dictIsArticle ? '文章' : '章节' }}列表</span>
+                  </div>
+                  <div class="tab"
+                       @click="detailListTabIndex = 1"
+                       :class="detailListTabIndex === 1 && 'active'">
+                    <span>单词列表</span>
+                  </div>
+                </div>
+                <template
+                    v-if="detailListTabIndex === 0"
+                >
+                  <ChapterList
+                      v-if="runtimeStore.editDict.chapterWords.length"
+                      v-loading="loading"
+                      :is-article="dictIsArticle"
+                      v-model:active-index="runtimeStore.editDict.chapterIndex"
+                      :dict="runtimeStore.editDict"/>
+                  <Empty v-else :show-add="true" @add="addWord"/>
+                </template>
+
+                <div class="scroll" v-else>
+                  <VirtualWordList
+                      ref="wordListRef"
+                      v-if="wordList.length"
+                      class="word-list"
+                      :is-active="true"
+                      @change="editWord"
+                      :list="wordList"
+                      :activeIndex="wordFormMode">
+                    <template v-slot="{word,index}">
+                      <BaseIcon
+                          class-name="del"
+                          @click="delWord(word,index)"
+                          title="移除"
+                          icon="solar:trash-bin-minimalistic-linear"/>
+                    </template>
+                  </VirtualWordList>
+                  <Empty v-else :show-add="true" @add="addWord"/>
+                </div>
+              </div>
+            </div>
+            <div v-if="false" class="activity">
+              <ActivityCalendar
+                  :data="[{ date: '2023-05-22', count: 5 }]"
+                  :width="40"
+                  :height="7"
+                  :cellLength="16"
+                  :cellInterval="8"
+                  :fontSize="12"
+                  :showLevelFlag="false"
+                  :showWeekDayFlag="false"
+                  :clickEvent="clickEvent"
+              />
+            </div>
+            <div class="footer">
+              <!--            <BaseButton @click="step = 0">导出</BaseButton>-->
+              <BaseButton @click="close">关闭</BaseButton>
+              <BaseButton @click="changeDict">切换</BaseButton>
+            </div>
+          </div>
+          <div class="edit-dict" v-else>
+            <div class="wrapper">
+              <div class="common-title">{{ dictForm.id ? '修改' : '添加' }}词典</div>
+              <el-form
+                  ref="dictFormRef"
+                  :rules="dictRules"
+                  :model="dictForm"
+                  label-width="120rem">
+                <el-form-item label="名称" prop="name">
+                  <el-input v-model="dictForm.name"/>
+                </el-form-item>
+                <el-form-item label="描述">
+                  <el-input v-model="dictForm.description" type="textarea"/>
+                </el-form-item>
+                <el-form-item label="语言">
+                  <el-select v-model="dictForm.language" placeholder="请选择选项">
+                    <el-option label="英语" value="en"/>
+                    <el-option label="德语" value="de"/>
+                    <el-option label="日语" value="ja"/>
+                    <el-option label="代码" value="code"/>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="翻译语言">
+                  <el-select v-model="dictForm.translateLanguage" placeholder="请选择选项">
+                    <!--                <el-option label="通用" value="common"/>-->
+                    <el-option label="中文" value="zh-CN"/>
+                    <el-option label="英语" value="en"/>
+                    <el-option label="德语" value="de"/>
+                    <el-option label="日语" value="ja"/>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="分类" prop="category">
+                  <el-select v-model="dictForm.category" placeholder="请选择选项">
+                    <el-option :label="i" :value="i" v-for="i in categoryList[dictForm.language]"/>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="标签" prop="tags">
+                  <el-select
+                      multiple
+                      v-model="dictForm.tags" placeholder="请选择选项">
+                    <el-option :label="i" :value="i" v-for="i in tagList[dictForm.category]"/>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="类型">
+                  <el-select v-model="dictForm.type" placeholder="请选择选项">
+                    <el-option label="单词" :value="DictType.customWord"/>
+                    <el-option label="文章" :value="DictType.customArticle"/>
+                  </el-select>
+                </el-form-item>
+                <div class="flex-center">
+                  <el-button @click="closeDictForm">关闭</el-button>
+                  <el-button type="primary" @click="onSubmit">确定</el-button>
+                </div>
+              </el-form>
+            </div>
           </div>
         </div>
-      </div>
-    </Slide>
-  </div>
+      </Slide>
+    </div>
+  </Modal>
   <WordListModal/>
 </template>
 
@@ -782,10 +790,10 @@ $time: 0.3s;
 $header-height: 60rem;
 
 #DictDialog {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  //position: fixed;
+  //left: 50%;
+  //top: 50%;
+  //transform: translate(-50%, -50%);
   background: var(--color-second-bg);
   z-index: 99999;
   width: 1000rem;

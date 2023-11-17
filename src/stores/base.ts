@@ -5,6 +5,7 @@ import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {v4 as uuidv4} from 'uuid';
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import * as localforage from "localforage";
+import {sizeofByte} from "@/utils";
 
 export interface BaseState {
   myDictList: Dict[],
@@ -88,20 +89,21 @@ export const useBaseStore = defineStore('base', {
           type: DictType.wrong,
           category: '自带字典'
         },
+        // {
+        //   ...cloneDeep(DefaultDict),
+        //   id: 'article_nce2',
+        //   name: "新概念英语2-课文",
+        //   description: '新概念英语2-课文',
+        //   category: '英语学习',
+        //   tags: ['新概念英语'],
+        //   url: 'NCE_2.json',
+        //   translateLanguage: 'common',
+        //   language: 'en',
+        //   type: DictType.article
+        // },
         {
           ...cloneDeep(DefaultDict),
-          id: 'article_nce2',
-          name: "新概念英语2-课文",
-          description: '新概念英语2-课文',
-          category: '英语学习',
-          tags: ['新概念英语'],
-          url: 'NCE_2.json',
-          translateLanguage: 'common',
-          language: 'en',
-          type: DictType.article
-        },
-        {
-          ...cloneDeep(DefaultDict),
+          id: 'nce-new-2',
           name: '新概念英语(新版)-2',
           description: '新概念英语新版第二册',
           category: '青少年英语',
@@ -113,7 +115,7 @@ export const useBaseStore = defineStore('base', {
         },
       ],
       current: {
-        index: 4,
+        index: 3,
         editIndex: 0,
         // dictType: DictType.article,
         // index: 0,
@@ -203,7 +205,8 @@ export const useBaseStore = defineStore('base', {
       return new Promise(async resolve => {
         try {
           let configStr: string = await localforage.getItem(SaveDict.key)
-          console.log('s', configStr)
+          // console.log('s', configStr)
+          console.log('s', new Blob([configStr]).size)
           if (configStr) {
             let data = JSON.parse(configStr)
             let state: BaseState = data.val
