@@ -3,7 +3,7 @@ import {useBaseStore} from "@/stores/base.ts"
 import WordList from "@/components/list/WordList.vue"
 
 import {$ref} from "vue/macros"
-import {computed, provide, watch} from "vue"
+import {computed, onMounted, provide, watch} from "vue"
 import {Dict, DictType, ShortcutKey} from "@/types.ts"
 import PopConfirm from "@/components/PopConfirm.vue"
 import BaseButton from "@/components/BaseButton.vue";
@@ -34,10 +34,13 @@ let practiceType = $ref(DictType.word)
 
 function changeIndex(i: number, dict: Dict) {
   store.changeDict(dict, dict.chapterIndex, i, practiceType)
-  setTimeout(() => {
+}
+
+onMounted(() => {
+  emitter.on(EventKey.changeDict, () => {
     tabIndex = 0
   })
-}
+})
 
 const {
   delWrongWord,
@@ -79,17 +82,17 @@ const {
                     <el-radio-button border :label="DictType.word">单词</el-radio-button>
                     <el-radio-button border :label="DictType.article">文章</el-radio-button>
                   </el-radio-group>
-                  <Tooltip title="添加">
-                    <IconWrapper>
-                      <Icon icon="fluent:add-12-regular" @click="emitter.emit(EventKey.editDict,store.collect)"/>
-                    </IconWrapper>
-                  </Tooltip>
                   <div class="dict-name" v-if="practiceType === DictType.word && store.collect.words.length">
                     {{ store.collect.words.length }}个单词
                   </div>
                   <div class="dict-name" v-if="practiceType === DictType.article && store.collect.articles.length">
                     {{ store.collect.articles.length }}篇文章
                   </div>
+                  <Tooltip title="添加">
+                    <IconWrapper>
+                      <Icon icon="fluent:add-12-regular" @click="emitter.emit(EventKey.openDictModal,'collect')"/>
+                    </IconWrapper>
+                  </Tooltip>
                 </div>
                 <template v-if="store.currentDict.type !== DictType.collect &&
              (
@@ -130,9 +133,16 @@ const {
             </div>
           </div>
           <div class="slide-item">
-            <div class="panel-page-item" v-if="store.simple.words.length">
+            <div class="panel-page-item">
               <div class="list-header">
-                <div class="dict-name">总词数：{{ store.simple.words.length }}</div>
+                <div class="left">
+                  <div class="dict-name">总词数：{{ store.simple.words.length }}</div>
+                  <Tooltip title="添加">
+                    <IconWrapper>
+                      <Icon icon="fluent:add-12-regular" @click="emitter.emit(EventKey.openDictModal,'simple')"/>
+                    </IconWrapper>
+                  </Tooltip>
+                </div>
                 <template v-if="store.currentDict.type !== DictType.simple && store.simple.words.length">
                   <PopConfirm
                       :title="`确认切换？`"
@@ -143,6 +153,7 @@ const {
                 </template>
               </div>
               <CommonWordList
+                  v-if="store.simple.words.length"
                   class="word-list"
                   :list="store.simple.words">
                 <template v-slot="{word,index}">
@@ -153,8 +164,8 @@ const {
                       icon="solar:trash-bin-minimalistic-linear"/>
                 </template>
               </CommonWordList>
+              <Empty v-else/>
             </div>
-            <Empty v-else/>
           </div>
           <div class="slide-item">
             <div class="panel-page-item" v-if="store.wrong.words.length">

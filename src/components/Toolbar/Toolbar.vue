@@ -17,6 +17,7 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {$ref} from "vue/macros";
 import {ShortcutKey} from "@/types.ts";
 import ChapterName from "@/components/Toolbar/ChapterName.vue";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 const {toggleTheme} = useTheme()
 const store = useBaseStore()
@@ -64,7 +65,7 @@ watch(() => store.load, n => {
       <div class="dict-name">
         <Tooltip
             :title="`词典详情(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.OpenDictDetail]})`">
-          <div class="info hvr-grow" @click="runtimeStore.showDictModal = true">
+          <div class="info hvr-grow" @click="emitter.emit(EventKey.openDictModal,'detail')">
             {{ store.currentDict.name }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
           </div>
         </Tooltip>
@@ -102,7 +103,16 @@ watch(() => store.load, n => {
 
           <RepeatSetting/>
 
-          <!--          <Add/>-->
+          <!--                    <Add/>-->
+
+          <Tooltip title="添加">
+            <IconWrapper>
+              <Icon icon="ic:outline-cloud-upload"
+                    @click="emitter.emit(EventKey.openDictModal,'my')"
+              />
+            </IconWrapper>
+          </Tooltip>
+
 
           <Tooltip title="反馈">
             <IconWrapper>

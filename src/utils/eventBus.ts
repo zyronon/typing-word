@@ -3,8 +3,10 @@ import mitt from 'mitt'
 export const emitter = mitt()
 export const EventKey = {
   resetWord: 'resetWord',
+  changeDict: 'changeDict',
   openStatModal: 'openStatModal',
   openWordListModal: 'openWordListModal',
+  openDictModal: 'openDictModal',
   openArticleListModal: 'openArticleListModal',
   closeOther: 'closeOther',
   keydown: 'keydown',

@@ -10,6 +10,7 @@ import {cloneDeep} from "lodash-es";
 import Backgorund from "@/components/Backgorund.vue";
 import useTheme from "@/hooks/useTheme.ts";
 import * as localforage from "localforage";
+import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -33,6 +34,7 @@ watch(settingStore.$state, (n) => {
 
 //检测几个特定词典
 watch(store.collect.originWords, (n) => {
+  console.log('watch(store.collect.originWords', n)
   store.collect.words = cloneDeep(n)
   store.collect.chapterWords = [store.collect.words]
 })
@@ -59,7 +61,7 @@ onMounted(() => {
   init()
 })
 
-// useStartKeyboardEventListener()
+useStartKeyboardEventListener()
 
 </script>
 

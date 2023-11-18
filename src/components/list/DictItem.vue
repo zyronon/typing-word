@@ -23,7 +23,7 @@ const emit = defineEmits<{
     <template v-if="dict.name">
       <div class="name">{{ dict.name }}</div>
       <div class="desc">{{ dict.description }}</div>
-      <div class="num">{{ dict.length }}词</div>
+      <div class="num">{{ dict.length ?? dict.originWords.length }}词</div>
     </template>
     <div v-else class="add" @click.stop="emit('add')">
       <Icon icon="fluent:add-20-filled" width="38" color="#929596"/>

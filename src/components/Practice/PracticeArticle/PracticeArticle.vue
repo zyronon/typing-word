@@ -247,7 +247,7 @@ function changePracticeArticle(val: Article) {
               <div class="left">
                 <Tooltip title="切换词典">
                   <IconWrapper>
-                    <Icon @click="runtimeStore.showDictModal = true" icon="basil:exchange-outline"/>
+                    <Icon @click="emitter.emit(EventKey.openDictModal,'list')" icon="basil:exchange-outline"/>
                   </IconWrapper>
                 </Tooltip>
                 <div class="title">

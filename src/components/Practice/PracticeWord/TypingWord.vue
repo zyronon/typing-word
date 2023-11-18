@@ -280,7 +280,7 @@ onUnmounted(() => {
                 <div class="left">
                   <Tooltip title="切换词典">
                     <IconWrapper>
-                      <Icon @click="runtimeStore.showDictModal = true" icon="basil:exchange-outline"/>
+                      <Icon @click="emitter.emit(EventKey.openDictModal,'list')" icon="basil:exchange-outline"/>
                     </IconWrapper>
                   </Tooltip>
                   <div class="title">
@@ -320,13 +320,13 @@ onUnmounted(() => {
                   <BaseIcon
                       v-if="!isWordSimple(word)"
                       class-name="easy"
-                      @click="toggleWordCollect(word)"
+                      @click="toggleWordSimple(word)"
                       title="标记为简单词"
                       icon="material-symbols:check-circle-outline-rounded"/>
                   <BaseIcon
                       v-else
                       class-name="fill"
-                      @click="toggleWordCollect(word)"
+                      @click="toggleWordSimple(word)"
                       title="取消标记简单词"
                       icon="material-symbols:check-circle-rounded"/>
                 </template>

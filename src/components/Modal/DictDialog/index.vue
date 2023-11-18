@@ -36,12 +36,13 @@ let wordList = $ref([])
 
 let step = $ref(1)
 let loading = $ref(false)
+let show = $ref(false)
 
-watch(() => runtimeStore.showDictModal, (n: boolean) => {
-  runtimeStore.editDict = cloneDeep(store.currentDict)
-})
+function close() {
+  show = false
+}
 
-async function selectDict(val: { dict: DictResource, index: number }) {
+async function selectDict(val: { dict: DictResource | Dict, index: number }) {
   let item = val.dict
   console.log('item', item)
   step = 1
@@ -49,7 +50,7 @@ async function selectDict(val: { dict: DictResource, index: number }) {
   detailListTabIndex = 0
   wordFormMode = FormMode.None
   loading = true
-  let find: Dict = store.myDictList.find((v: Dict) => v.name === item.name)
+  let find: Dict = store.myDictList.find((v: Dict) => v.id === item.id)
   if (find) {
     runtimeStore.editDict = cloneDeep(find)
   } else {
@@ -90,8 +91,6 @@ async function selectDict(val: { dict: DictResource, index: number }) {
         }))
       }
     }
-
-
   }
   loading = false
 }
@@ -101,9 +100,6 @@ function changeDict() {
   close()
 }
 
-function close() {
-  runtimeStore.showDictModal = false
-}
 
 function groupByDictTags(dictList: DictResource[]) {
   return dictList.reduce<Record<string, DictResource[]>>((result, dict) => {
@@ -218,26 +214,6 @@ const dictRules = reactive<FormRules>({
 watch(() => dictForm.language, () => isAddDict && (dictForm.category = ''))
 watch(() => dictForm.category, () => isAddDict && (dictForm.tags = []))
 
-onMounted(() => {
-  dictionaryResources.map(v => {
-    if (categoryList[v.language]) {
-      if (!categoryList[v.language].find(w => w === v.category)) {
-        categoryList[v.language].push(v.category)
-      }
-    } else {
-      categoryList[v.language] = [v.category]
-    }
-    if (tagList[v.category]) {
-      tagList[v.category] = Array.from(new Set(tagList[v.category].concat(v.tags)))
-    } else {
-      tagList[v.category] = v.tags
-    }
-  })
-
-  // console.log('categoryList', categoryList)
-  // console.log('tagList', tagList)
-})
-
 function editDict() {
   // dictForm.id = store.editDict.id
   // dictForm.name = store.editDict.name
@@ -291,6 +267,10 @@ async function onSubmit() {
     }
   })
 }
+
+/**/
+/*词典相关*/
+/**/
 
 
 /**/
@@ -440,6 +420,10 @@ function addWord() {
   wordForm = cloneDeep(DefaultFormWord)
 }
 
+/**/
+/* 单词修改相关*/
+/**/
+
 watch(() => step, v => {
   if (v === 0) {
     closeWordForm()
@@ -447,12 +431,58 @@ watch(() => step, v => {
   }
 })
 
+
+onMounted(() => {
+  dictionaryResources.map(v => {
+    if (categoryList[v.language]) {
+      if (!categoryList[v.language].find(w => w === v.category)) {
+        categoryList[v.language].push(v.category)
+      }
+    } else {
+      categoryList[v.language] = [v.category]
+    }
+    if (tagList[v.category]) {
+      tagList[v.category] = Array.from(new Set(tagList[v.category].concat(v.tags)))
+    } else {
+      tagList[v.category] = v.tags
+    }
+  })
+
+  emitter.on(EventKey.openDictModal, (type: 'detail' | 'list' | 'my' | 'collect' | 'simple') => {
+    if (type === "detail") {
+      selectDict({dict: store.currentDict, index: 0})
+    }
+    if (type === "list") {
+      currentLanguage = 'en'
+      step = 0
+    }
+    if (type === "my") {
+      currentLanguage = 'my'
+      step = 0
+    }
+    if (type === "collect") {
+      selectDict({dict: store.collect, index: 0})
+      wordFormMode = FormMode.Add
+      addWord()
+    }
+    if (type === "simple") {
+      selectDict({dict: store.simple, index: 0})
+      addWord()
+    }
+
+    show = true
+  })
+
+  // console.log('categoryList', categoryList)
+  // console.log('tagList', tagList)
+})
+
 </script>
 
 <template>
   <Modal
       :header="false"
-      v-model="runtimeStore.showDictModal"
+      v-model="show"
       :show-close="false">
     <div id="DictDialog">
       <Slide :slide-count="2" :step="step">

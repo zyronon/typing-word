@@ -99,7 +99,7 @@ function openSetting() {
 }
 
 function openDictDetail() {
-  runtimeStore.showDictModal = true
+  emitter.emit(EventKey.openDictModal, 'detail')
 }
 
 function toggleConciseMode() {
@@ -164,7 +164,7 @@ onUnmounted(() => {
     <PracticeWord ref="practiceRef" v-else/>
     <Footer/>
   </div>
-<!--  <AddWordDialog></AddWordDialog>-->
+  <!--  <AddWordDialog></AddWordDialog>-->
   <DictModal/>
   <SettingModal v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
   <Statistics/>

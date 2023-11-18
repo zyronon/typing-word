@@ -1,17 +1,16 @@
 import {defineStore} from 'pinia'
-import {DefaultDict, DefaultWord, Dict, DictType, DisplayStatistics, SaveDict, Word} from "../types.ts"
-import {chunk, cloneDeep} from "lodash-es";
+import {DefaultDict, Dict, DictType, DisplayStatistics, SaveDict, Word} from "../types.ts"
+import {chunk, cloneDeep, merge} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {v4 as uuidv4} from 'uuid';
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import * as localforage from "localforage";
-import {sizeofByte} from "@/utils";
+import {checkDictHasTranslate} from "@/hooks/dict.ts";
 
 export interface BaseState {
   myDictList: Dict[],
   current: {
     index: number,
-    editIndex: number,
     practiceType: DictType,//练习类型，目前仅词典为collect时判断是练单词还是文章使用
   },
   simpleWords: string[],
@@ -116,7 +115,6 @@ export const useBaseStore = defineStore('base', {
       ],
       current: {
         index: 3,
-        editIndex: 0,
         // dictType: DictType.article,
         // index: 0,
         practiceType: DictType.word,
@@ -134,7 +132,7 @@ export const useBaseStore = defineStore('base', {
   },
   getters: {
     collect() {
-      return this.myDictList[0]
+      return this.myDictList[0] ?? {}
     },
     simple(): Dict {
       return this.myDictList[1]
@@ -158,20 +156,8 @@ export const useBaseStore = defineStore('base', {
         DictType.customArticle
       ].includes(this.currentDict.type)
     },
-    editDict(state: BaseState) {
-      if (state.current.editIndex === -1) {
-        return cloneDeep(DefaultDict)
-      }
-      return state.myDictList.filter(v => [DictType.customWord, DictType.customArticle].includes(v.type))[state.current.editIndex - 3]
-    },
     currentDict(): Dict {
       return this.myDictList[this.current.index]
-    },
-    currentEditDict(): Dict {
-      return this.myDictList[this.current.editIndex]
-    },
-    wordIndex(state: BaseState): number {
-      return this.currentDict.wordIndex
     },
     chapter(state: BaseState): Word[] {
       return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []
@@ -184,9 +170,10 @@ export const useBaseStore = defineStore('base', {
       let title = ''
       switch (this.currentDict.type) {
         case DictType.collect:
-          if (state.current.practiceType === DictType.word) {
+          if (state.current.practiceType === DictType.article || state.current.practiceType === DictType.customArticle) {
             return `第${this.currentDict.chapterIndex + 1}章`
           }
+          return ''
         case DictType.word:
         case DictType.customWord:
           return `第${this.currentDict.chapterIndex + 1}章`
@@ -196,17 +183,16 @@ export const useBaseStore = defineStore('base', {
   },
   actions: {
     setState(obj: any) {
-      for (const [key, value] of Object.entries(obj)) {
-        this[key] = value
-      }
-      // console.log('this/', this)
+      //这样不会丢失watch的值的引用
+      merge(this, obj)
     },
     async init() {
       return new Promise(async resolve => {
         try {
           let configStr: string = await localforage.getItem(SaveDict.key)
-          // console.log('s', configStr)
+          console.log(configStr)
           console.log('s', new Blob([configStr]).size)
+          configStr = ''
           if (configStr) {
             let data = JSON.parse(configStr)
             let state: BaseState = data.val
@@ -219,7 +205,7 @@ export const useBaseStore = defineStore('base', {
             }
           }
         } catch (e) {
-          console.error('读取本地dict数据失败',e)
+          console.error('读取本地dict数据失败', e)
         }
 
         if (this.current.index < 3) {
@@ -239,21 +225,13 @@ export const useBaseStore = defineStore('base', {
                 let r2 = await fetch('./translate/en2zh_CN-min.json')
                 // fetch('http://sc.ttentau.top/en2zh_CN-min.json').then(r2 => {
                 let list: Word[] = await r2.json()
-
-                runtimeStore.translateWordList = list
-
-                this.currentDict.originWords = cloneDeep(v)
-                this.currentDict.words = cloneDeep(v)
-                this.currentDict.chapterWords = chunk(this.currentDict.words, this.currentDict.chapterWordNumber)
-                this.currentDict.chapterWords[this.currentDict.chapterIndex].map((w: Word) => {
-                  let res = list.find(a => a.name === w.name)
-                  if (res) w = Object.assign(w, res)
-                })
-              } else {
-                this.currentDict.originWords = cloneDeep(v)
-                this.currentDict.words = cloneDeep(v)
-                this.currentDict.chapterWords = chunk(this.currentDict.words, this.currentDict.chapterWordNumber)
+                if (list && list.length) {
+                  runtimeStore.translateWordList = list
+                }
               }
+              this.currentDict.originWords = cloneDeep(v)
+              this.currentDict.words = cloneDeep(v)
+              this.currentDict.chapterWords = chunk(this.currentDict.words, this.currentDict.chapterWordNumber)
             }
           }
 
@@ -280,38 +258,45 @@ export const useBaseStore = defineStore('base', {
         this.currentDict.statistics.push(statistics)
       }
     },
-    async changeDict(dict: Dict, chapterIndex: number = dict.chapterIndex, chapterWordIndex: number = dict.chapterWordNumber, practiceType: DictType) {
+    async changeDict(dict: Dict, chapterIndex: number = dict.chapterIndex, wordIndex: number = dict.wordIndex, practiceType: DictType) {
       //TODO 保存统计
       // this.saveStatistics()
-      console.log('changeDict', cloneDeep(dict), chapterIndex, chapterWordIndex)
+      console.log('changeDict', cloneDeep(dict), chapterIndex, wordIndex)
       this.currentDict.type = dict.type
       this.current.practiceType = practiceType
       if ([DictType.collect,
         DictType.simple,
         DictType.wrong].includes(dict.type)) {
-        this[dict.type].chapterIndex = 0
-        this[dict.type].chapterWordIndex = chapterWordIndex
-        this[dict.type].chapterWords = [this[dict.type].words]
+        dict.chapterIndex = 0
+        dict.wordIndex = wordIndex
+        dict.chapterWordNumber = dict.words.length
+        dict.chapterWords = [dict.words]
       } else {
         if (dict.type === DictType.article || dict.type === DictType.customArticle) {
           if (chapterIndex > dict.articles.length) {
             dict.chapterIndex = 0
+            dict.wordIndex = 0
           }
         } else {
           if (chapterIndex > dict.chapterWords.length) {
             dict.chapterIndex = 0
+            dict.wordIndex = 0
           }
         }
-        let rIndex = this.myDictList.findIndex((v: Dict) => v.name === dict.name)
-        if (rIndex > -1) {
-          this.myDictList[rIndex] = dict
-          this.current.index = rIndex
-        } else {
-          this.myDictList.push(cloneDeep(dict))
-          this.current.index = this.myDictList.length - 1
-        }
+      }
+
+      // await checkDictHasTranslate(dict)
+
+      let rIndex = this.myDictList.findIndex((v: Dict) => v.id === dict.id)
+      if (rIndex > -1) {
+        this.myDictList[rIndex] = dict
+        this.current.index = rIndex
+      } else {
+        this.myDictList.push(cloneDeep(dict))
+        this.current.index = this.myDictList.length - 1
       }
       emitter.emit(EventKey.resetWord)
+      emitter.emit(EventKey.changeDict)
     }
   },
 })
