@@ -15,8 +15,8 @@ import PracticeArticle from "@/components/Practice/PracticeArticle/PracticeArtic
 import PracticeWord from "@/components/Practice/PracticeWord/PracticeWord.vue";
 import {ShortcutKey} from "@/types.ts";
 import useTheme from "@/hooks/useTheme.ts";
-import SettingModal from "@/components/Modal/SettingModal.vue";
-import DictModal from "@/components/Modal/DictDialog/index.vue";
+import SettingDialog from "@/components/dialog/SettingDialog.vue";
+import DictModal from "@/components/dialog/DictDiglog.vue";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
@@ -166,7 +166,7 @@ onUnmounted(() => {
   </div>
   <!--  <AddWordDialog></AddWordDialog>-->
   <DictModal/>
-  <SettingModal v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
+  <SettingDialog v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
   <Statistics/>
 </template>
 

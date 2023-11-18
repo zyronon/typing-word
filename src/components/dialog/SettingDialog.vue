@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Modal from "@/components/Modal/Modal.vue"
+import Dialog from "@/components/dialog/Dialog.vue"
 import {useBaseStore} from "@/stores/base.ts"
 import {Icon} from '@iconify/vue';
 import {watch, ref} from "vue";
@@ -68,7 +68,7 @@ function resetShortcutKeyMap() {
 </script>
 
 <template>
-  <Modal
+  <Dialog
       @close="emit('close')"
       :keyboard="!disabledDefaultKeyboardEvent"
       title="设置">
@@ -330,7 +330,7 @@ function resetShortcutKeyMap() {
         </div>
       </div>
     </div>
-  </Modal>
+  </Dialog>
 </template>
 
 <style scoped lang="scss">

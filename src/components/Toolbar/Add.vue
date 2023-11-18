@@ -3,9 +3,7 @@
 import {Icon} from "@iconify/vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import Tooltip from "@/components/Tooltip.vue";
-import {emitter, EventKey} from "@/utils/eventBus.ts";
 import EditBatchArticleModal from "@/components/Article/EditBatchArticleModal.vue";
-import AddDict from "@/components/Add/AddDict.vue";
 import {$ref} from "vue/macros";
 
 let show = $ref(false)
@@ -26,7 +24,6 @@ function toggle() {
       </IconWrapper>
     </Tooltip>
     <EditBatchArticleModal/>
-    <AddDict v-if="show" @close="show = false"/>
   </div>
 </template>
 

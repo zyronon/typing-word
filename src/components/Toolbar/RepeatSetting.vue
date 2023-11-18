@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import MiniModal from "@/components/Modal/MiniModal.vue";
+import MiniDialog from "@/components/dialog/MiniDialog.vue";
 import {Icon} from "@iconify/vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import Tooltip from "@/components/Tooltip.vue";
@@ -43,7 +43,7 @@ onMounted(() => {
             @mouseleave="toggle(false)"
       />
     </IconWrapper>
-    <MiniModal
+    <MiniDialog
         v-model="show"
         @mouseenter="toggle(true)"
         @mouseleave="toggle(false)"
@@ -67,7 +67,7 @@ onMounted(() => {
                          type="number"
         />
       </div>
-    </MiniModal>
+    </MiniDialog>
   </div>
 </template>
 

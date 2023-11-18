@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Modal from "@/components/Modal/Modal.vue";
+import Dialog from "@/components/dialog/Dialog.vue";
 import {$ref} from "vue/macros";
 import {onMounted, onUnmounted, watch} from "vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
@@ -65,7 +65,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <Modal
+  <Dialog
       :title="title"
       v-model="show">
     <div class="all-word">
@@ -82,7 +82,7 @@ onUnmounted(() => {
           :list="list">
       </VirtualWordList>
     </div>
-  </Modal>
+  </Dialog>
 </template>
 
 <style lang="scss" scoped>

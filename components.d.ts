@@ -8,7 +8,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Add: typeof import('./src/components/Toolbar/Add.vue')['default']
-    AddDict: typeof import('./src/components/Add/AddDict.vue')['default']
     ArticleList: typeof import('./src/components/Article/ArticleList.vue')['default']
     Backgorund: typeof import('./src/components/Backgorund.vue')['default']
     BaseButton: typeof import('./src/components/BaseButton.vue')['default']
@@ -17,7 +16,9 @@ declare module 'vue' {
     ChapterName: typeof import('./src/components/Toolbar/ChapterName.vue')['default']
     Close: typeof import('./src/components/icon/Close.vue')['default']
     CommonWordList: typeof import('./src/components/list/CommonWordList.vue')['default']
+    Dialog: typeof import('./src/components/dialog/Dialog.vue')['default']
     DictDialog: typeof import('./src/components/Modal/DictDialog/index.vue')['default']
+    DictDiglog: typeof import('./src/components/dialog/DictDiglog.vue')['default']
     DictGroup: typeof import('./src/components/Toolbar/DictGroup.vue')['default']
     DictItem: typeof import('./src/components/list/DictItem.vue')['default']
     DictList: typeof import('./src/components/list/DictList.vue')['default']
@@ -47,8 +48,9 @@ declare module 'vue' {
     Input: typeof import('./src/components/Input.vue')['default']
     List: typeof import('./src/components/list/List.vue')['default']
     ListItem: typeof import('./src/components/list/ListItem.vue')['default']
+    MiniDialog: typeof import('./src/components/dialog/MiniDialog.vue')['default']
     MiniModal: typeof import('./src/components/Modal/MiniModal.vue')['default']
-    Modal: typeof import('./src/components/Modal/Modal.vue')['default']
+    Modal: typeof import('./src/components/dialog/Modal.vue')['default']
     Options: typeof import('./src/components/Practice/Options.vue')['default']
     Panel: typeof import('./src/components/Practice/Panel.vue')['default']
     PopConfirm: typeof import('./src/components/PopConfirm.vue')['default']
@@ -57,7 +59,8 @@ declare module 'vue' {
     PracticeWord: typeof import('./src/components/Practice/PracticeWord/PracticeWord.vue')['default']
     RepeatSetting: typeof import('./src/components/Toolbar/RepeatSetting.vue')['default']
     Ring: typeof import('./src/components/Ring.vue')['default']
-    SettingModal: typeof import('./src/components/Modal/SettingModal.vue')['default']
+    SettingDialog: typeof import('./src/components/dialog/SettingDialog.vue')['default']
+    SettingModal: typeof import('./src/components/dialog/SettingModal.vue')['default']
     Slide: typeof import('./src/components/Slide.vue')['default']
     Statistics: typeof import('./src/components/Practice/Statistics.vue')['default']
     Toolbar: typeof import('./src/components/Toolbar/Toolbar.vue')['default']
@@ -71,7 +74,7 @@ declare module 'vue' {
     VolumeSetting: typeof import('./src/components/Toolbar/VolumeSetting.vue')['default']
     WordItem: typeof import('./src/components/list/WordItem.vue')['default']
     WordList: typeof import('./src/components/list/WordList.vue')['default']
-    WordListModal: typeof import('./src/components/Modal/WordListModal.vue')['default']
+    WordListDialog: typeof import('./src/components/dialog/WordListDialog.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']

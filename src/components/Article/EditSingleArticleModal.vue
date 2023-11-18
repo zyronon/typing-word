@@ -2,7 +2,7 @@
 
 import {Article, DefaultArticle} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
-import Modal from "@/components/Modal/Modal.vue";
+import Dialog from "@/components/dialog/Dialog.vue";
 import EditArticle from "@/components/Article/EditArticle.vue";
 
 interface IProps {
@@ -21,7 +21,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <Modal
+  <Dialog
       :header="false"
       :model-value="props.modelValue"
       :full-screen="true"
@@ -32,7 +32,7 @@ const emit = defineEmits<{
           @save="val => emit('save',val)"
       />
     </div>
-  </Modal>
+  </Dialog>
 </template>
 
 <style scoped lang="scss">

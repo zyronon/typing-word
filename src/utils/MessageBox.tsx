@@ -1,5 +1,5 @@
 import {createApp} from 'vue'
-import Modal, {ModalProps} from "@/components/Modal/Modal.vue";
+import Dialog, {ModalProps} from "@/components/dialog/Dialog.vue";
 import {AppContext, Component, ComponentPublicInstance, createVNode, getCurrentInstance, render, VNode} from 'vue';
 
 export class MessageBox {
@@ -23,7 +23,7 @@ export class MessageBox {
       onOk()
       close()
     }
-    const vNode = createVNode(Modal, {
+    const vNode = createVNode(Dialog, {
       title,
       content,
       onCancel: tempOnCancel,
@@ -51,7 +51,7 @@ export class MessageBox {
       render(null, container);
       container.remove()
     }
-    const vNode = createVNode(Modal, {
+    const vNode = createVNode(Dialog, {
       title,
       content,
       onCancel: tempOnCancel,

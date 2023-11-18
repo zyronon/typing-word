@@ -12,7 +12,7 @@ import {v4 as uuidv4} from "uuid";
 import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
 import ChapterList from "@/components/list/ChapterList.vue";
-import WordListModal from "@/components/Modal/WordListModal.vue";
+import WordListDialog from "@/components/dialog/WordListDialog.vue";
 import {isArticle} from "@/hooks/article.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -23,7 +23,7 @@ import VirtualWordList from "@/components/list/VirtualWordList.vue";
 import {FormInstance, FormRules} from "element-plus";
 import Empty from "@/components/Empty.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
-import Modal from "@/components/Modal/Modal.vue";
+import Dialog from "@/components/dialog/Dialog.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -393,7 +393,7 @@ function delWord(word: Word, index: number) {
     }
   }
 
-  runtimeStore.editDict.words.splice(index, 1)
+  runtimeStore.editDict.words.splice(DictDiglog, 1)
   wordList = cloneDeep(runtimeStore.editDict.words)
   syncMyDictList()
 
@@ -480,7 +480,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Modal
+  <Dialog
       :header="false"
       v-model="show"
       :show-close="false">
@@ -720,7 +720,7 @@ onMounted(() => {
                     <template v-slot="{word,index}">
                       <BaseIcon
                           class-name="del"
-                          @click="delWord(word,index)"
+                          @click="delWord(word,DictDiglog)"
                           title="移除"
                           icon="solar:trash-bin-minimalistic-linear"/>
                     </template>
@@ -807,8 +807,8 @@ onMounted(() => {
         </div>
       </Slide>
     </div>
-  </Modal>
-  <WordListModal/>
+  </Dialog>
+  <WordListDialog/>
 </template>
 
 <style scoped lang="scss">

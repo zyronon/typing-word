@@ -9,7 +9,7 @@ import {useBaseStore} from "@/stores/base.ts";
 import {$computed, $ref} from "vue/macros";
 import List from "@/components/list/List.vue";
 import {v4 as uuidv4} from 'uuid';
-import Modal from "@/components/Modal/Modal.vue";
+import Dialog from "@/components/dialog/Dialog.vue";
 import EditArticle from "@/components/Article/EditArticle.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useDisableEventListener} from "@/hooks/event.ts";
@@ -231,7 +231,7 @@ function saveAndNext(val: Article) {
 </script>
 
 <template>
-  <Modal
+  <Dialog
       v-model="show"
       :full-screen="true"
       :header="false"
@@ -273,7 +273,7 @@ function saveAndNext(val: Article) {
           @saveAndNext="saveAndNext"
           :article="article"/>
     </div>
-  </Modal>
+  </Dialog>
 </template>
 
 <style scoped lang="scss">

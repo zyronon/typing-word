@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import MiniModal from "@/components/Modal/MiniModal.vue";
+import MiniDialog from "@/components/dialog/MiniDialog.vue";
 import {Icon} from "@iconify/vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import Tooltip from "@/components/Tooltip.vue";
@@ -8,7 +8,7 @@ import {useBaseStore} from "@/stores/base.ts";
 import {useWindowClick} from "@/hooks/event.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import BaseButton from "@/components/BaseButton.vue";
-import Modal from "@/components/Modal/Modal.vue";
+import Dialog from "@/components/dialog/Dialog.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {ShortcutKey} from "@/types.ts";
 
@@ -53,7 +53,7 @@ function save() {
         />
       </IconWrapper>
     </Tooltip>
-    <MiniModal v-model="show"
+    <MiniDialog v-model="show"
                style="width: 230rem;"
     >
       <div class="mini-row">
@@ -102,7 +102,7 @@ function save() {
         <BaseButton size="small" @click="show = false">取消</BaseButton>
         <BaseButton size="small" @click="save">确定</BaseButton>
       </div>
-    </MiniModal>
+    </MiniDialog>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Modal from "@/components/Modal/Modal.vue"
+import Dialog from "@/components/dialog/Dialog.vue"
 import BaseButton from "@/components/BaseButton.vue";
 import {GITHUB} from "@/config/ENV.ts";
 
@@ -10,7 +10,7 @@ const emit = defineEmits([
 </script>
 
 <template>
-  <Modal
+  <Dialog
       @close="emit('close')"
       title="反馈">
     <div class="feedback-modal">
@@ -38,7 +38,7 @@ const emit = defineEmits([
         </div>
       </div>
     </div>
-  </Modal>
+  </Dialog>
 </template>
 
 <style scoped lang="scss">

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useBaseStore} from "@/stores/base.ts";
-import MiniModal from "@/components/Modal/MiniModal.vue";
+import MiniDialog from "@/components/dialog/MiniDialog.vue";
 import {useWindowClick} from "@/hooks/event.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {nextTick, watch} from "vue";
@@ -45,7 +45,7 @@ watch(() => show, n => {
     >
       {{ store.chapterName }}
     </div>
-    <MiniModal
+    <MiniDialog
         v-model="show"
         @mouseenter="toggle(true)"
         @mouseleave="toggle(false)"
@@ -60,7 +60,7 @@ watch(() => show, n => {
           <div class="title">第{{ index + 1 }}章&nbsp;&nbsp;&nbsp;{{ item.length }}词</div>
         </div>
       </div>
-    </MiniModal>
+    </MiniDialog>
   </div>
 </template>
 

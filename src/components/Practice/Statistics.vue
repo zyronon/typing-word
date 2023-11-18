@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Modal from "@/components/Modal/Modal.vue";
+import Dialog from "@/components/dialog/Dialog.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import Ring from "@/components/Ring.vue";
 import Tooltip from "@/components/Tooltip.vue";
@@ -53,7 +53,7 @@ const isEnd = $computed(() => {
 </script>
 
 <template>
-  <Modal
+  <Dialog
       :header="false"
       v-model="statModalIsOpen">
     <div class="statistics">
@@ -122,7 +122,7 @@ const isEnd = $computed(() => {
         </BaseButton>
       </div>
     </div>
-  </Modal>
+  </Dialog>
   <Fireworks v-if="statModalIsOpen"/>
 </template>
 <style scoped lang="scss">

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import MiniModal from "@/components/Modal/MiniModal.vue";
+import MiniDialog from "@/components/dialog/MiniDialog.vue";
 import {Icon} from "@iconify/vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import Tooltip from "@/components/Tooltip.vue";
@@ -58,7 +58,7 @@ function toggle2() {
         />
       </IconWrapper>
     </Tooltip>
-    <MiniModal
+    <MiniDialog
         width="250rem"
         v-model="show">
       <div class="mini-row-title">
@@ -148,7 +148,7 @@ function toggle2() {
           />
         </div>
       </div>
-    </MiniModal>
+    </MiniDialog>
   </div>
 </template>
 
