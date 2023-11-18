@@ -88,18 +88,18 @@ export const useBaseStore = defineStore('base', {
           type: DictType.wrong,
           category: '自带字典'
         },
-        // {
-        //   ...cloneDeep(DefaultDict),
-        //   id: 'article_nce2',
-        //   name: "新概念英语2-课文",
-        //   description: '新概念英语2-课文',
-        //   category: '英语学习',
-        //   tags: ['新概念英语'],
-        //   url: 'NCE_2.json',
-        //   translateLanguage: 'common',
-        //   language: 'en',
-        //   type: DictType.article
-        // },
+        {
+          ...cloneDeep(DefaultDict),
+          id: 'article_nce2',
+          name: "新概念英语2-课文",
+          description: '新概念英语2-课文',
+          category: '英语学习',
+          tags: ['新概念英语'],
+          url: 'NCE_2.json',
+          translateLanguage: 'common',
+          language: 'en',
+          type: DictType.article
+        },
         {
           ...cloneDeep(DefaultDict),
           id: 'nce-new-2',

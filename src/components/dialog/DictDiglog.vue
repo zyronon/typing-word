@@ -50,6 +50,7 @@ async function selectDict(val: { dict: DictResource | Dict, index: number }) {
   detailListTabIndex = 0
   wordFormMode = FormMode.None
   loading = true
+  wordList = []
   let find: Dict = store.myDictList.find((v: Dict) => v.id === item.id)
   if (find) {
     runtimeStore.editDict = cloneDeep(find)
@@ -100,7 +101,6 @@ function changeDict() {
   close()
 }
 
-
 function groupByDictTags(dictList: DictResource[]) {
   return dictList.reduce<Record<string, DictResource[]>>((result, dict) => {
     dict.tags.forEach((tag) => {
@@ -150,6 +150,10 @@ function clickEvent(e) {
 
 const dictIsArticle = $computed(() => {
   return isArticle(runtimeStore.editDict.type)
+})
+
+const chapterList = $computed(() => {
+  return dictIsArticle ? runtimeStore.editDict.articles : runtimeStore.editDict.chapterWords
 })
 
 function showAllWordModal() {
@@ -418,6 +422,14 @@ function addWord() {
   detailListTabIndex = 1
   wordFormMode = FormMode.Add
   wordForm = cloneDeep(DefaultFormWord)
+}
+
+function add() {
+  if (dictIsArticle) {
+
+  } else {
+    addWord()
+  }
 }
 
 /**/
@@ -691,6 +703,7 @@ onMounted(() => {
                     <span>{{ dictIsArticle ? '文章' : '章节' }}列表</span>
                   </div>
                   <div class="tab"
+                       v-if="!dictIsArticle"
                        @click="detailListTabIndex = 1"
                        :class="detailListTabIndex === 1 && 'active'">
                     <span>单词列表</span>
@@ -700,12 +713,12 @@ onMounted(() => {
                     v-if="detailListTabIndex === 0"
                 >
                   <ChapterList
-                      v-if="runtimeStore.editDict.chapterWords.length"
+                      v-if="chapterList"
                       v-loading="loading"
                       :is-article="dictIsArticle"
                       v-model:active-index="runtimeStore.editDict.chapterIndex"
                       :dict="runtimeStore.editDict"/>
-                  <Empty v-else :show-add="true" @add="addWord"/>
+                  <Empty v-else :show-add="true" @add="add"/>
                 </template>
 
                 <div class="scroll" v-else>
