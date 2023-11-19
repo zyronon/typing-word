@@ -34,8 +34,8 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="footer" :class="!settingStore.showToolbar && 'hide'">
-    <div class="bottom">
+  <div class="footer " :class="!settingStore.showToolbar && 'hide'">
+    <div class="bottom anim">
       <el-progress
           :percentage="progress"
           :stroke-width="8"

@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import {$ref} from "vue/macros";
 import TypingArticle from "./TypingArticle.vue";
-import {Article, ArticleWord, DefaultArticle, DefaultWord, DisplayStatistics, TranslateType, Word} from "@/types.ts";
+import {
+  Article,
+  ArticleWord,
+  DefaultArticle,
+  DefaultWord,
+  DisplayStatistics,
+  ShortcutKey,
+  TranslateType,
+  Word
+} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import TypingWord from "@/components/Practice/PracticeWord/TypingWord.vue";
 import Panel from "../Panel.vue";
@@ -17,6 +26,7 @@ import IconWrapper from "@/components/IconWrapper.vue";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
+import {useSettingStore} from "@/stores/setting.ts";
 
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
@@ -150,15 +160,15 @@ function saveArticle(val: Article) {
 }
 
 function edit(val: Article) {
-  tabIndex = 1
-  wordData.words = [
-    {
-      ...cloneDeep(DefaultWord),
-      name: 'test'
-    }
-  ]
-  wordData.index = 0
-  return
+  // tabIndex = 1
+  // wordData.words = [
+  //   {
+  //     ...cloneDeep(DefaultWord),
+  //     name: 'test'
+  //   }
+  // ]
+  // wordData.index = 0
+  // return
   editArticle = val
   showEditArticle = true
 }
@@ -211,6 +221,10 @@ function changePracticeArticle(val: Article) {
     store.currentDict.chapterIndex = rIndex
   }
 }
+
+defineExpose({getCurrentPractice})
+const settingStore = useSettingStore()
+
 </script>
 
 <template>
@@ -243,7 +257,7 @@ function changePracticeArticle(val: Article) {
       <Panel v-if="tabIndex === 0">
         <template v-slot="{active}">
           <div class="panel-page-item">
-            <header>
+            <div class="list-header">
               <div class="left">
                 <Tooltip title="切换词典">
                   <IconWrapper>
@@ -253,11 +267,18 @@ function changePracticeArticle(val: Article) {
                 <div class="title">
                   {{ store.dictTitle }}
                 </div>
+                <Tooltip
+                    :title="`下一章(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
+                    v-if="store.currentDict.chapterIndex < store.currentDict.articles.length - 1">
+                  <IconWrapper>
+                    <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
+                  </IconWrapper>
+                </Tooltip>
               </div>
               <div class="right">
                 {{ store.currentDict.articles.length }}篇文章
               </div>
-            </header>
+            </div>
             <ArticleList
                 :isActive="active"
                 @select-item="changePracticeArticle"

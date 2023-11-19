@@ -1,15 +1,19 @@
 <template>
   <div id="background" class="anim">
     <img src="@/assets/img/moon.png" alt="" id="moon" style="display:none">
-    <canvas ref="canvas"/>
+    <Transition name="fade">
+      <canvas ref="canvas" v-show="settingStore.theme === 'dark'"/>
+    </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
 
 import {onMounted} from "vue"
+import {useSettingStore} from "@/stores/setting.ts";
 
 const canvas = $ref<HTMLCanvasElement>()
+const settingStore = useSettingStore()
 
 onMounted(() => {
   // console.log('canvas;', canvas)

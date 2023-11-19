@@ -66,10 +66,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <Transition name="fade">
-    <Backgorund v-if="settingStore.theme === 'dark'"/>
-  </Transition>
-  <div class="main-page">
+  <Backgorund/>
+  <div class="main-page anim">
     <Practice/>
     <!--    <AddArticle/>-->
     <!--      <Side/>-->
@@ -80,7 +78,7 @@ onMounted(() => {
 @import "@/assets/css/variable";
 
 .main-page {
-  position: absolute;
+  position: relative;
   z-index: 1;
   width: 100%;
   height: 100%;
@@ -88,6 +86,5 @@ onMounted(() => {
   font-size: 14rem;
   display: flex;
   justify-content: center;
-  background-color: var(--color-background);
 }
 </style>

@@ -39,7 +39,7 @@
 html.dark {
   //--color-main-bg: rgba(0, 5, 24, 1);
   //--color-main-bg: rgba(17,24,39, 1);
-  --color-background: transparent;
+  //--color-background: transparent;
   --color-main-bg: rgba(14, 18, 23, 1);
   //--color-main-bg: rgba(30,31,34, 1);
   --color-second-bg: rgb(43, 45, 48);
@@ -112,9 +112,9 @@ html.dark {
   }
 }
 
-$anim-time: 0.3s;
+$anim-time: .3s;
 .anim {
-  transition: background $anim-time, color $anim-time;
+  transition: background $anim-time, color $anim-time, border $anim-time;
 }
 
 html, body {

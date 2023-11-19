@@ -2,21 +2,21 @@
 import Tooltip from "@/components/Tooltip.vue"
 import useTheme from "@/hooks/useTheme.ts"
 import {useBaseStore} from "@/stores/base.ts"
-import FeedbackModal from "@/components/Toolbar/FeedbackModal.vue"
+import FeedbackModal from "@/components/toolbar/FeedbackModal.vue"
 
 import {Icon} from '@iconify/vue';
 
 import IconWrapper from "@/components/IconWrapper.vue";
 import {watch} from "vue"
-import VolumeSetting from "@/components/Toolbar/VolumeSetting.vue";
-import RepeatSetting from "@/components/Toolbar/RepeatSetting.vue";
-import TranslateSetting from "@/components/Toolbar/TranslateSetting.vue";
+import VolumeSetting from "@/components/toolbar/VolumeSetting.vue";
+import RepeatSetting from "@/components/toolbar/RepeatSetting.vue";
+import TranslateSetting from "@/components/toolbar/TranslateSetting.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {$ref} from "vue/macros";
 import {ShortcutKey} from "@/types.ts";
-import ChapterName from "@/components/Toolbar/ChapterName.vue";
+import ChapterName from "@/components/toolbar/ChapterName.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 const {toggleTheme} = useTheme()
@@ -60,7 +60,7 @@ watch(() => store.load, n => {
 </script>
 
 <template>
-  <header ref="headerRef">
+  <header ref="headerRef" class="anim">
     <div class="content">
       <div class="dict-name">
         <Tooltip
@@ -213,7 +213,6 @@ header {
   z-index: 2;
   padding: 10rem var(--space);
   box-sizing: border-box;
-  transition: all .3s;
   gap: 10rem;
   border: 1px solid var(--color-item-border);
 

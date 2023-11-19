@@ -52,7 +52,7 @@ const {
 </script>
 <template>
   <Transition name="fade">
-    <div class="panel" v-show="settingStore.showPanel">
+    <div class="panel anim" v-show="settingStore.showPanel">
       <header>
         <Transition name="fade">
           <Tooltip

@@ -3,7 +3,6 @@
 import {Icon} from "@iconify/vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import Tooltip from "@/components/Tooltip.vue";
-import EditBatchArticleModal from "@/components/Article/EditBatchArticleModal.vue";
 import {$ref} from "vue/macros";
 
 let show = $ref(false)
@@ -23,7 +22,6 @@ function toggle() {
         />
       </IconWrapper>
     </Tooltip>
-    <EditBatchArticleModal/>
   </div>
 </template>
 

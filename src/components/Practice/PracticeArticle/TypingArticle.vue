@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed, nextTick, onMounted, onUnmounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros";
-import {Article, ArticleWord, DefaultArticle, ShortcutKeyMap, Word} from "@/types";
+import {Article, ArticleWord, DefaultArticle, ShortcutKey, ShortcutKeyMap, Word} from "@/types";
 import {useBaseStore} from "@/stores/base";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -10,6 +10,10 @@ import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import Options from "@/components/Practice/Options.vue";
+import {Icon} from "@iconify/vue";
+import IconWrapper from "@/components/IconWrapper.vue";
+import Tooltip from "@/components/Tooltip.vue";
+import BaseIcon from "@/components/BaseIcon.vue";
 
 interface IProps {
   article: Article,
@@ -375,12 +379,29 @@ function toggleCollect() {
       <div class="title">{{ props.article.title }}</div>
       <div class="titleTranslate" v-if="settingStore.translate">{{ props.article.titleTranslate }}</div>
       <div class="options-wrapper">
-        <Options
-            :show-edit="true"
-            @edit="emit('edit',props.article)"
-            @collect="toggleCollect"
-            @skip="emit('next')"
-        />
+        <div class="flex gap10">
+          <BaseIcon
+              :title="`编辑(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.EditArticle]})`"
+              icon="tabler:edit"
+              @click="emit('edit',props.article)"
+          />
+          <BaseIcon
+              v-if="!false"
+              class-name="collect"
+              @click="$emit('toggleCollect')"
+              :title="`收藏(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
+              icon="ph:star"/>
+          <BaseIcon
+              v-else
+              class-name="fill"
+              @click="toggleCollect"
+              :title="`取消收藏(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
+              icon="ph:star-fill"/>
+          <BaseIcon
+              :title="`跳过(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
+              icon="icon-park-outline:go-ahead"
+              @click="emit('over')"/>
+        </div>
       </div>
     </header>
     <div class="article-content" ref="articleWrapperRef">

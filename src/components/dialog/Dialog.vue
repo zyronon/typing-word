@@ -310,7 +310,7 @@ $header-height: 60rem;
 
       .content {
         width: 350rem;
-        color: black;
+        color: var(--color-font-1);
         padding: 4rem 24rem 24rem;
       }
     }

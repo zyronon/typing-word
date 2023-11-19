@@ -374,7 +374,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
 @import "@/assets/css/style.scss";
 
 .content {
-  color: black;
+  color: var(--color-font-1);
   flex: 1;
   display: flex;
   gap: var(--space);

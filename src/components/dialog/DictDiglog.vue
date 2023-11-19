@@ -7,7 +7,7 @@ import {chunk, cloneDeep, groupBy, reverse, shuffle} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
 import BaseButton from "@/components/BaseButton.vue";
 import {Icon} from '@iconify/vue';
-import DictGroup from "@/components/Toolbar/DictGroup.vue";
+import DictGroup from "@/components/toolbar/DictGroup.vue";
 import {v4 as uuidv4} from "uuid";
 import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
@@ -24,6 +24,7 @@ import {FormInstance, FormRules} from "element-plus";
 import Empty from "@/components/Empty.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/components/dialog/Dialog.vue";
+import EditBatchArticleModal from "@/components/Article/EditBatchArticleModal.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -822,6 +823,7 @@ onMounted(() => {
     </div>
   </Dialog>
   <WordListDialog/>
+  <EditBatchArticleModal/>
 </template>
 
 <style scoped lang="scss">

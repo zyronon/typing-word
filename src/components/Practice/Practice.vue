@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Toolbar from "@/components/Toolbar/Toolbar.vue"
+import Toolbar from "@/components/toolbar/Toolbar.vue"
 import {onMounted, onUnmounted, watch} from "vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 import Footer from "@/components/Practice/Footer.vue";
@@ -164,7 +164,6 @@ onUnmounted(() => {
     <PracticeWord ref="practiceRef" v-else/>
     <Footer/>
   </div>
-  <!--  <AddWordDialog></AddWordDialog>-->
   <DictModal/>
   <SettingDialog v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
   <Statistics/>
