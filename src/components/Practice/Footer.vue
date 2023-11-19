@@ -101,12 +101,12 @@ onUnmounted(() => {
     box-sizing: border-box;
     border-radius: 10rem;
     background: var(--color-second-bg);
-    padding: 3rem 10rem 10rem 10rem;
+    padding: 3rem var(--space) 6rem var(--space);
     z-index: 2;
     border: 1px solid var(--color-item-border);
 
     .stat {
-      margin-top: 10rem;
+      margin-top: 8rem;
       display: flex;
       justify-content: space-around;
 
@@ -114,13 +114,14 @@ onUnmounted(() => {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 10rem;
+        gap: 5rem;
         width: 80rem;
 
         .line {
           height: 1px;
           width: 100%;
-          background: gainsboro;
+          //background: gainsboro;
+          background: var(--color-font-1);
         }
       }
     }

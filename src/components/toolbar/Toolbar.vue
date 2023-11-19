@@ -60,7 +60,7 @@ watch(() => store.load, n => {
 </script>
 
 <template>
-  <header ref="headerRef" class="anim">
+  <header ref="headerRef">
     <div class="content">
       <div class="dict-name">
         <Tooltip
@@ -191,7 +191,7 @@ watch(() => store.load, n => {
 }
 </style>
 <style scoped lang="scss">
-@import "@/assets/css/variable";
+@import "@/assets/css/style";
 
 .test-enter-active,
 .test-leave-active {
@@ -211,10 +211,11 @@ header {
   margin-bottom: 30rem;
   position: relative;
   z-index: 2;
-  padding: 10rem var(--space);
+  padding: 4rem var(--space);
   box-sizing: border-box;
   gap: 10rem;
   border: 1px solid var(--color-item-border);
+  transition: all var(--anim-time);
 
   .content {
     min-height: var(--toolbar-height);

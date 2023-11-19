@@ -30,10 +30,11 @@
 
   --practice-wrapper-padding-right: 1px;
   --toolbar-width: 700rem;
-  --toolbar-height: 60rem;
+  --toolbar-height: 54rem;
   --panel-width: 400rem;
   --space: 20rem;
   --panel-margin-left: calc(50% - var(--practice-wrapper-padding-right) / 2 + var(--toolbar-width) / 2 + 24rem);
+  --anim-time: 0.5s;
 }
 
 html.dark {
@@ -112,9 +113,8 @@ html.dark {
   }
 }
 
-$anim-time: .3s;
 .anim {
-  transition: background $anim-time, color $anim-time, border $anim-time;
+  transition: background var(--anim-time), color var(--anim-time), border var(--anim-time);
 }
 
 html, body {
@@ -124,6 +124,7 @@ html, body {
   width: 100%;
   height: 100%;
   color: $font-color;
+  //color: var(--color-font-1);
   font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

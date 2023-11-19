@@ -10,7 +10,6 @@ import {cloneDeep} from "lodash-es";
 import Backgorund from "@/components/Backgorund.vue";
 import useTheme from "@/hooks/useTheme.ts";
 import * as localforage from "localforage";
-import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -69,8 +68,6 @@ onMounted(() => {
   <Backgorund/>
   <div class="main-page anim">
     <Practice/>
-    <!--    <AddArticle/>-->
-    <!--      <Side/>-->
   </div>
 </template>
 
