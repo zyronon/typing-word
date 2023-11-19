@@ -73,7 +73,7 @@ function toggle() {
 }
 
 .text {
-  color: black;
+  color: var(--color-font-1);
   min-height: 18rem;
 }
 </style>

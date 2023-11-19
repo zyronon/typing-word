@@ -24,7 +24,7 @@ import {FormInstance, FormRules} from "element-plus";
 import Empty from "@/components/Empty.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/components/dialog/Dialog.vue";
-import EditBatchArticleModal from "@/components/Article/EditBatchArticleModal.vue";
+import EditBatchArticleModal from "@/components/article/EditBatchArticleModal.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()

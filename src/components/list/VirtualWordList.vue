@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {Word} from "../../types.ts";
 import {useSettingStore} from "@/stores/setting.ts";
-import WordItem from "@/components/list/WordItem.vue";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
 import {watch} from 'vue'

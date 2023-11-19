@@ -1,4 +1,4 @@
-import {Dict, DictType, Word} from "@/types.ts";
+import {Article, Dict, DictType, Word} from "@/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {chunk, cloneDeep} from "lodash-es";
@@ -65,6 +65,29 @@ export function useWordOptions() {
         delSimpleWord
     }
 }
+
+export function useArticleOptions() {
+    const store = useBaseStore()
+
+    function isArticleCollect(val: Article) {
+        return !!store.collect.articles.find(v => v.title.toLowerCase() === val.title.toLowerCase())
+    }
+
+    function toggleArticleCollect(val: Article) {
+        let rIndex = store.collect.articles.findIndex(v => v.title.toLowerCase() === val.title.toLowerCase())
+        if (rIndex > -1) {
+            store.collect.articles.splice(rIndex, 1)
+        } else {
+            store.collect.articles.push(val)
+        }
+    }
+
+    return {
+        isArticleCollect,
+        toggleArticleCollect,
+    }
+}
+
 
 export async function checkDictHasTranslate(dict: Dict) {
     let dictResourceUrl = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {useBaseStore} from "@/stores/base.ts"
-import WordList from "@/components/list/WordList.vue"
 
 import {$ref} from "vue/macros"
 import {computed, onMounted, provide, watch} from "vue"
@@ -10,14 +9,15 @@ import BaseButton from "@/components/BaseButton.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import Close from "@/components/icon/Close.vue";
 import Empty from "@/components/Empty.vue";
-import ArticleList from "@/components/Article/ArticleList.vue";
-import {useWordOptions} from "@/hooks/dict.ts";
+import ArticleList from "@/components/article/ArticleList-FQ.vue";
+import {useArticleOptions, useWordOptions} from "@/hooks/dict.ts";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import CommonWordList from "@/components/list/CommonWordList.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
+import ArticleList2 from "@/components/list/ArticleList2.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -48,6 +48,10 @@ const {
   toggleWordCollect,
 } = useWordOptions()
 
+const {
+  isArticleCollect,
+  toggleArticleCollect
+} = useArticleOptions()
 
 </script>
 <template>
@@ -123,11 +127,19 @@ const {
                 <Empty v-else/>
               </template>
               <template v-else>
-                <ArticleList
+                <ArticleList2
                     v-if="store.collect.articles.length"
-                    style="padding: 0 20rem;"
-                    :select-item="{id: ''} as any"
-                    v-model:list="store.collect.articles"/>
+                    :show-translate="true"
+                    v-model:list="store.collect.articles">
+                  <template v-slot="{source,index}">
+                    <BaseIcon
+                        class-name="del"
+                        @click="toggleArticleCollect(source)"
+                        title="移除"
+                        icon="solar:trash-bin-minimalistic-linear"/>
+                  </template>
+                </ArticleList2>
+
                 <Empty v-else/>
               </template>
             </div>

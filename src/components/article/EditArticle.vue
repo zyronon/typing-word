@@ -436,9 +436,10 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
     flex: 1;
     overflow: auto;
     border-radius: 8rem;
+    background: var(--color-main-bg);
 
     .section {
-      background: white;
+      background: var(--color-item-bg);
       margin-bottom: 20rem;
       padding: var(--space);
       border-radius: 8rem;
@@ -465,7 +466,6 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 
     .status {
       display: flex;

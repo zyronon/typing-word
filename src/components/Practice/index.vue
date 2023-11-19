@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Toolbar from "@/components/toolbar/Toolbar.vue"
+import Toolbar from "@/components/toolbar/index.vue"
 import {onMounted, onUnmounted, watch} from "vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 import Footer from "@/components/Practice/Footer.vue";
@@ -11,8 +11,8 @@ import {emitter, EventKey} from "@/utils/eventBus";
 import {useSettingStore} from "@/stores/setting";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
-import PracticeArticle from "@/components/Practice/PracticeArticle/PracticeArticle.vue";
-import PracticeWord from "@/components/Practice/PracticeWord/PracticeWord.vue";
+import PracticeArticle from "@/components/Practice/practice-article/index.vue";
+import PracticeWord from "@/components/Practice/practice-word/index.vue";
 import {ShortcutKey} from "@/types.ts";
 import useTheme from "@/hooks/useTheme.ts";
 import SettingDialog from "@/components/dialog/SettingDialog.vue";

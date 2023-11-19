@@ -134,8 +134,6 @@ onUnmounted(() => {
     box-sizing: border-box;
     position: absolute;
     bottom: 0;
-
-
   }
 
   :deep(.el-progress-bar__inner) {

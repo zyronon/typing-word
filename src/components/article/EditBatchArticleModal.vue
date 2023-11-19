@@ -10,7 +10,7 @@ import {$computed, $ref} from "vue/macros";
 import List from "@/components/list/List.vue";
 import {v4 as uuidv4} from 'uuid';
 import Dialog from "@/components/dialog/Dialog.vue";
-import EditArticle from "@/components/Article/EditArticle.vue";
+import EditArticle from "@/components/article/EditArticle.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useDisableEventListener} from "@/hooks/event.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
@@ -300,7 +300,7 @@ function saveAndNext(val: Article) {
 
   .slide {
     height: 100%;
-    background: white;
+    background: var(--color-main-bg);
     padding: 0 10rem;
     display: flex;
     flex-direction: column;
@@ -316,7 +316,7 @@ function saveAndNext(val: Article) {
 
       .dict-name {
         font-size: 30rem;
-        color: black;
+        color: var(--color-font-1);
       }
     }
 
@@ -337,7 +337,7 @@ function saveAndNext(val: Article) {
       display: flex;
       justify-content: space-between;
       transition: all .3s;
-      color: white;
+      color: var(--color-font-1);
       background: var(--color-item-active);
     }
 

@@ -3,7 +3,7 @@
 import {onMounted, watch} from "vue";
 import {BaseState, useBaseStore} from "@/stores/base.ts";
 import {DictType, SaveConfig, SaveDict} from "@/types.ts"
-import Practice from "@/components/Practice/Practice.vue"
+import Practice from "@/components/Practice/index.vue"
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {cloneDeep} from "lodash-es";

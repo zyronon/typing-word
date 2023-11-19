@@ -14,6 +14,7 @@ import {Icon} from "@iconify/vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
+import {useArticleOptions} from "@/hooks/dict.ts";
 
 interface IProps {
   article: Article,
@@ -371,6 +372,11 @@ function toggleCollect() {
   }
 }
 
+const {
+  isArticleCollect,
+  toggleArticleCollect
+} = useArticleOptions()
+
 </script>
 
 <template>
@@ -386,15 +392,15 @@ function toggleCollect() {
               @click="emit('edit',props.article)"
           />
           <BaseIcon
-              v-if="!false"
+              v-if="!isArticleCollect(props.article)"
               class-name="collect"
-              @click="$emit('toggleCollect')"
+              @click="toggleArticleCollect(props.article)"
               :title="`收藏(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
               icon="ph:star"/>
           <BaseIcon
               v-else
               class-name="fill"
-              @click="toggleCollect"
+              @click="toggleArticleCollect(props.article)"
               :title="`取消收藏(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
               icon="ph:star-fill"/>
           <BaseIcon

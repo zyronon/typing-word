@@ -3,7 +3,7 @@
 import {Article, DefaultArticle} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import Dialog from "@/components/dialog/Dialog.vue";
-import EditArticle from "@/components/Article/EditArticle.vue";
+import EditArticle from "@/components/article/EditArticle.vue";
 
 interface IProps {
   article?: Article

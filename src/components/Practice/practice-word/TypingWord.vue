@@ -2,15 +2,7 @@
 import {onMounted, onUnmounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
-import {
-  DefaultDisplayStatistics,
-  DefaultShortcutKeyMap,
-  DictType,
-  DisplayStatistics,
-  ShortcutKey,
-  ShortcutKeyMap,
-  Word
-} from "../../../types";
+import {DefaultDisplayStatistics, DictType, ShortcutKey, Word} from "../../../types";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
@@ -19,13 +11,11 @@ import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Options from "@/components/Practice/Options.vue";
-import Typing from "@/components/Practice/PracticeWord/Typing.vue";
+import Typing from "@/components/Practice/practice-word/Typing.vue";
 import Panel from "@/components/Practice/Panel.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
-import WordList from "@/components/list/WordList.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
-import {usePlayWordAudio} from "@/hooks/sound.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import CommonWordList from "@/components/list/CommonWordList.vue";
 

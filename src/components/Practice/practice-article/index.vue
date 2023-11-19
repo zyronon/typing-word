@@ -12,21 +12,24 @@ import {
   Word
 } from "@/types.ts";
 import {cloneDeep} from "lodash-es";
-import TypingWord from "@/components/Practice/PracticeWord/TypingWord.vue";
+import TypingWord from "@/components/Practice/practice-word/TypingWord.vue";
 import Panel from "../Panel.vue";
 import {onMounted, watch} from "vue";
 import {renewSectionTexts, renewSectionTranslates} from "@/hooks/translate.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {useBaseStore} from "@/stores/base.ts";
-import EditSingleArticleModal from "@/components/Article/EditSingleArticleModal.vue";
+import EditSingleArticleModal from "@/components/article/EditSingleArticleModal.vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import ArticleList from "@/components/Article/ArticleList.vue";
+import ArticleList from "@/components/article/ArticleList-FQ.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
+import ArticleList2 from "@/components/list/ArticleList2.vue";
+import BaseIcon from "@/components/BaseIcon.vue";
+import {useArticleOptions} from "@/hooks/dict.ts";
 
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
@@ -225,6 +228,10 @@ function changePracticeArticle(val: Article) {
 defineExpose({getCurrentPractice})
 const settingStore = useSettingStore()
 
+const {
+  isArticleCollect,
+  toggleArticleCollect
+} = useArticleOptions()
 </script>
 
 <template>
@@ -279,11 +286,25 @@ const settingStore = useSettingStore()
                 {{ store.currentDict.articles.length }}篇文章
               </div>
             </div>
-            <ArticleList
+            <ArticleList2
                 :isActive="active"
+                :show-translate="settingStore.translate"
                 @select-item="changePracticeArticle"
                 :active-index="store.currentDict.chapterIndex"
-                v-model:list="store.currentDict.articles"/>
+                v-model:list="store.currentDict.articles">
+              <template v-slot="{source,index}">
+                <BaseIcon
+                    v-if="!isArticleCollect(source)"
+                    class-name="collect"
+                    @click="toggleArticleCollect(source)"
+                    title="收藏" icon="ph:star"/>
+                <BaseIcon
+                    v-else
+                    class-name="fill"
+                    @click="toggleArticleCollect(source)"
+                    title="取消收藏" icon="ph:star-fill"/>
+              </template>
+            </ArticleList2>
           </div>
         </template>
       </Panel>
