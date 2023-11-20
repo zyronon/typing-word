@@ -231,7 +231,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
 <template>
   <div class="content">
     <div class="row">
-      <div class="title">原文</div>
+      <div class="title">①原文</div>
       <div class="item">
         <div class="label">标题：</div>
         <textarea
@@ -256,7 +256,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
       </div>
     </div>
     <div class="row">
-      <div class="title">译文</div>
+      <div class="title">②译文</div>
       <div class="item">
         <div class="label">
           <span>标题：</span>
@@ -329,43 +329,47 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
         >
             </textarea>
         <Empty
+            text="不需要翻译~"
             v-if="editArticle.useTranslateType === TranslateType.none"
         />
       </div>
     </div>
     <div class="row">
-      <div class="title">译文对照</div>
-      <div class="article-translate">
-        <div class="section" v-for="(item,indexI) in editArticle.sections">
-          <div class="sentence" v-for="(sentence,indexJ) in item">
-            <EditAbleText
-                :value="sentence.text"
-                @save="(e:string) => saveSentenceText(sentence,e)"
-            />
-            <EditAbleText
-                :value="sentence.translate"
-                @save="(e:string) => saveSentenceTranslate(sentence,e)"
-            />
+      <div class="title">③译文对照</div>
+      <template v-if="editArticle.sections.length">
+        <div class="article-translate">
+          <div class="section" v-for="(item,indexI) in editArticle.sections">
+            <div class="sentence" v-for="(sentence,indexJ) in item">
+              <EditAbleText
+                  :value="sentence.text"
+                  @save="(e:string) => saveSentenceText(sentence,e)"
+              />
+              <EditAbleText
+                  :value="sentence.translate"
+                  @save="(e:string) => saveSentenceTranslate(sentence,e)"
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div class="options" v-if="editArticle.text.trim()">
-        <div class="status">
-          <span>状态：</span>
-          <div class="warning" v-if="failCount && editArticle.useTranslateType !== TranslateType.none">
-            <Icon icon="typcn:warning-outline"/>
-            共有{{ failCount }}句没有翻译！
+        <div class="options" v-if="editArticle.text.trim()">
+          <div class="status">
+            <span>状态：</span>
+            <div class="warning" v-if="failCount && editArticle.useTranslateType !== TranslateType.none">
+              <Icon icon="typcn:warning-outline"/>
+              共有{{ failCount }}句没有翻译！
+            </div>
+            <div class="success" v-else>
+              <Icon icon="mdi:success-circle-outline"/>
+              翻译完成！
+            </div>
           </div>
-          <div class="success" v-else>
-            <Icon icon="mdi:success-circle-outline"/>
-            翻译完成！
+          <div class="left">
+            <BaseButton @click="save('save')">保存</BaseButton>
+            <BaseButton v-if="type === 'batch'" @click="save('saveAndNext')">保存并添加下一篇</BaseButton>
           </div>
         </div>
-        <div class="left">
-          <BaseButton @click="save('save')">保存</BaseButton>
-          <BaseButton v-if="type === 'batch'" @click="save('saveAndNext')">保存并添加下一篇</BaseButton>
-        </div>
-      </div>
+      </template>
+      <Empty v-else text="没有译文对照~"/>
     </div>
   </div>
 </template>

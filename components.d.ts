@@ -25,7 +25,6 @@ declare module 'vue' {
     EditAbleText: typeof import('./src/components/EditAbleText.vue')['default']
     EditArticle: typeof import('./src/components/article/EditArticle.vue')['default']
     EditBatchArticleModal: typeof import('./src/components/article/EditBatchArticleModal.vue')['default']
-    EditBatchArticleModal2: typeof import('./src/components/article/EditBatchArticleModal2.vue')['default']
     EditBatchArticleModalFQ: typeof import('./src/components/article/EditBatchArticleModal-FQ.vue')['default']
     EditSingleArticleModal: typeof import('./src/components/article/EditSingleArticleModal.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
