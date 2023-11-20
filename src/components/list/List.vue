@@ -166,14 +166,13 @@ defineExpose({scrollBottom})
 
   .search {
     margin: 10rem 0;
-    width: 260rem;
   }
 
   .list {
     .item {
-      width: 260rem;
       box-sizing: border-box;
-      background: #e1e1e1;
+      background: var(--color-item-bg);
+      color: var(--color-font-1);
       border-radius: 8rem;
       margin-bottom: 10rem;
       padding: 10rem;
@@ -196,7 +195,7 @@ defineExpose({scrollBottom})
 
       &.active {
         background: var(--color-item-active);
-        color: white;
+        color: var(--color-font-1);
       }
 
       &.draggable {

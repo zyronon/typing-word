@@ -268,11 +268,9 @@ onUnmounted(() => {
             >
               <div class="list-header">
                 <div class="left">
-                  <Tooltip title="切换词典">
-                    <IconWrapper>
-                      <Icon @click="emitter.emit(EventKey.openDictModal,'list')" icon="basil:exchange-outline"/>
-                    </IconWrapper>
-                  </Tooltip>
+                  <BaseIcon title="切换词典"
+                            @click="emitter.emit(EventKey.openDictModal,'list')"
+                            icon="carbon:change-catalog"/>
                   <div class="title">
                     {{ store.dictTitle }}
                   </div>

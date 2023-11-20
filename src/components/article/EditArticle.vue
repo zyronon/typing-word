@@ -383,7 +383,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
 }
 
 .row {
-  flex: 1;
+  flex: 10;
   width: 33%;
   //height: 100%;
   display: flex;
@@ -396,8 +396,8 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
     flex-direction: column;
   }
 
-  &:nth-child(2) {
-    opacity: 1;
+  &:nth-child(1) {
+    flex: 7;
   }
 
   .title {
@@ -436,7 +436,6 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
     flex: 1;
     overflow: auto;
     border-radius: 8rem;
-    background: var(--color-main-bg);
 
     .section {
       background: var(--color-item-bg);

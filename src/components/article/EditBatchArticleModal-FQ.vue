@@ -240,6 +240,7 @@ function saveAndNext(val: Article) {
       <div class="slide">
         <header>
           <div class="dict-name">{{ runtimeStore.editDict.name }}</div>
+          <BaseIcon title="选择其他词典/文章" icon="carbon:change-catalog"/>
         </header>
         <List
             ref="listEl"
@@ -298,8 +299,8 @@ function saveAndNext(val: Article) {
   }
 
   .slide {
-    width: 14vw;
     height: 100%;
+    background: var(--color-main-bg);
     padding: 0 10rem;
     display: flex;
     flex-direction: column;

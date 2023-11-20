@@ -41,10 +41,11 @@ function showWordListModal(index: number, item: Word[]) {
       <div class="flex gap10">
         <input type="radio" :checked="activeIndex === index">
         <template v-if="isArticle">
-          <div
-              @click.stop="emitter.emit(EventKey.openArticleListModal,item)"
-          >
-            <div class="title">{{ index + 1 }}.&nbsp;&nbsp;&nbsp;{{ item.title }}</div>
+          <div>
+            <div class="title"
+                 @click.stop="emitter.emit(EventKey.openArticleListModal,item)"
+            >{{ index + 1 }}.&nbsp;&nbsp;&nbsp;{{ item.title }}
+            </div>
             <div class="item-sub-title" v-if="item.titleTranslate"> {{ item.titleTranslate }}</div>
           </div>
         </template>

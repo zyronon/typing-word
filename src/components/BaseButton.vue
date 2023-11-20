@@ -112,7 +112,7 @@ defineEmits(['click'])
     border-bottom: 2px solid transparent;
 
     &:hover {
-      border-bottom: 2px solid black;
+      border-bottom: 2px solid var(--color-font-1);
     }
   }
 
