@@ -288,8 +288,8 @@ function saveAndNext(val: Article) {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  color: black;
-  background: var(--color-main-bg);
+  color: var(--color-font-1);
+  background: var(--color-second-bg);
   display: flex;
 
   .close {

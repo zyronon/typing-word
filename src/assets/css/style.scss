@@ -35,6 +35,9 @@
   --space: 20rem;
   --panel-margin-left: calc(50% - var(--practice-wrapper-padding-right) / 2 + var(--toolbar-width) / 2 + 24rem);
   --anim-time: 0.5s;
+
+  --color-input-bg: white;
+  --color-input-icon: #d3d4d7;
 }
 
 html.dark {
@@ -63,6 +66,9 @@ html.dark {
   --color-scrollbar: rgb(59, 87, 138);
   --color-scrollbar: rgb(77, 78, 81);
   --color-scrollbar: rgb(92, 93, 94);
+
+  --color-input-bg: rgba(14, 18, 23, 1);
+  --color-input-icon: #383737;
 }
 
 @media (max-width: 1680px) {

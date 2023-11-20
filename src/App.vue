@@ -33,7 +33,6 @@ watch(settingStore.$state, (n) => {
 
 //检测几个特定词典
 watch(store.collect.originWords, (n) => {
-  console.log('watch(store.collect.originWords', n)
   store.collect.words = cloneDeep(n)
   store.collect.chapterWords = [store.collect.words]
 })

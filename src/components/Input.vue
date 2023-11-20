@@ -13,7 +13,7 @@ let focus = $ref(false)
 let inputEl = $ref<HTMLDivElement>()
 
 useWindowClick((e: PointerEvent) => {
-  if (!e)return
+  if (!e) return
   focus = inputEl.contains(e.target as any);
 })
 
@@ -45,11 +45,11 @@ useWindowClick((e: PointerEvent) => {
   display: flex;
   align-items: center;
   transition: all .3s;
-  background: white;
+  background: var(--color-input-bg);
 
   :deep(svg) {
     transition: all .3s;
-    color: var(--color-main-bg);
+    color: var(--color-input-icon);
   }
 
   &.focus {
@@ -69,6 +69,7 @@ useWindowClick((e: PointerEvent) => {
     box-sizing: border-box;
     outline: none;
     border: none;
+    background: transparent;
 
     &[readonly] {
       cursor: not-allowed;
