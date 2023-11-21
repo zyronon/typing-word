@@ -154,7 +154,7 @@ const dictIsArticle = $computed(() => {
 })
 
 const chapterList = $computed(() => {
-  return dictIsArticle ? runtimeStore.editDict.articles : runtimeStore.editDict.chapterWords
+  return dictIsArticle ? runtimeStore.editDict.articles.length : runtimeStore.editDict.chapterWords.length
 })
 
 function showAllWordModal() {
@@ -444,8 +444,15 @@ function add() {
 
 function delChapter(index: number) {
   runtimeStore.editDict.articles.splice(index, 1)
+  if (runtimeStore.editDict.chapterIndex >= index) runtimeStore.editDict.chapterIndex--
+  if (runtimeStore.editDict.chapterIndex < 0) runtimeStore.editDict.chapterIndex = 0
+
   syncMyDictList()
 }
+
+/**/
+/* 文章修改相关*/
+/**/
 
 watch(() => step, v => {
   if (v === 0) {
@@ -600,30 +607,32 @@ onMounted(() => {
               <div class="center-column">
                 <div class="setting" v-if="wordFormMode === FormMode.None">
                   <div class="common-title">学习设置</div>
-                  <div class="row" v-if="!isArticle(runtimeStore.editDict.type)">
-                    <div class="label">每章单词数</div>
-                    <el-slider :min="10"
-                               :step="10"
-                               :max="100"
-                               v-model="runtimeStore.editDict.chapterWordNumber"
-                               @change="resetChapterList"
-                    />
-                    <div class="option">
-                      <span>{{ runtimeStore.editDict.chapterWordNumber }}</span>
+                  <template v-if="!dictIsArticle">
+                    <div class="row">
+                      <div class="label">每章单词数</div>
+                      <el-slider :min="10"
+                                 :step="10"
+                                 :max="100"
+                                 v-model="runtimeStore.editDict.chapterWordNumber"
+                                 @change="resetChapterList"
+                      />
+                      <div class="option">
+                        <span>{{ runtimeStore.editDict.chapterWordNumber }}</span>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="label">单词顺序</div>
-                    <div class="option">
-                      <el-radio-group v-model="runtimeStore.editDict.sort"
-                                      @change="changeSort"
-                      >
-                        <el-radio :label="Sort.normal" size="large">默认</el-radio>
-                        <el-radio :label="Sort.random" size="large">随机</el-radio>
-                        <el-radio :label="Sort.reverse" size="large">反转</el-radio>
-                      </el-radio-group>
+                    <div class="row">
+                      <div class="label">单词顺序</div>
+                      <div class="option">
+                        <el-radio-group v-model="runtimeStore.editDict.sort"
+                                        @change="changeSort"
+                        >
+                          <el-radio :label="Sort.normal" size="large">默认</el-radio>
+                          <el-radio :label="Sort.random" size="large">随机</el-radio>
+                          <el-radio :label="Sort.reverse" size="large">反转</el-radio>
+                        </el-radio-group>
+                      </div>
                     </div>
-                  </div>
+                  </template>
                   <div class="row">
                     <div class="label">学习模式</div>
                     <div class="option">
@@ -634,7 +643,7 @@ onMounted(() => {
                     </div>
                   </div>
                   <div class="row">
-                    <div class="label">单词发音</div>
+                    <div class="label">{{dictIsArticle?'句子':'单词'}}发音</div>
                     <div class="option">
                       <el-radio-group v-model="settingStore.wordSoundType">
                         <el-radio label="us" size="large">美音</el-radio>
@@ -643,7 +652,7 @@ onMounted(() => {
                     </div>
                   </div>
                   <div class="row">
-                    <div class="label">单词自动发音</div>
+                    <div class="label">{{dictIsArticle?'句子':'单词'}}自动发音</div>
                     <div class="option">
                       <el-switch v-model="settingStore.wordSound"
                                  inline-prompt
@@ -745,7 +754,7 @@ onMounted(() => {
                     <template v-slot="{word,index}">
                       <BaseIcon
                           class-name="del"
-                          @click="delWord(word,DictDiglog)"
+                          @click="delWord(word,index)"
                           title="移除"
                           icon="solar:trash-bin-minimalistic-linear"/>
                     </template>
