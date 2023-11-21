@@ -398,7 +398,7 @@ function delWord(word: Word, index: number) {
     }
   }
 
-  runtimeStore.editDict.words.splice(DictDiglog, 1)
+  runtimeStore.editDict.words.splice(index, 1)
   wordList = cloneDeep(runtimeStore.editDict.words)
   syncMyDictList()
 
@@ -436,6 +436,16 @@ function add() {
 /**/
 /* 单词修改相关*/
 /**/
+
+
+/**/
+/* 文章修改相关*/
+/**/
+
+function delChapter(index: number) {
+  runtimeStore.editDict.articles.splice(index, 1)
+  syncMyDictList()
+}
 
 watch(() => step, v => {
   if (v === 0) {
@@ -717,6 +727,7 @@ onMounted(() => {
                       v-if="chapterList"
                       v-loading="loading"
                       :is-article="dictIsArticle"
+                      @del="delChapter"
                       v-model:active-index="runtimeStore.editDict.chapterIndex"
                       :dict="runtimeStore.editDict"/>
                   <Empty v-else :show-add="true" @add="add"/>

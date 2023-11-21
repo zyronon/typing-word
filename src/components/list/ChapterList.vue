@@ -4,6 +4,7 @@ import {Dict, Word} from "@/types.ts"
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {$computed} from "vue/macros";
 import {useRuntimeStore} from "@/stores/runtime.ts";
+import BaseIcon from "@/components/BaseIcon.vue";
 
 const props = defineProps<{
   dict: Dict,
@@ -13,6 +14,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   'update:activeIndex': [index: number]
+  del: [index: number]
 }>()
 
 const runtimeStore = useRuntimeStore()
@@ -40,21 +42,28 @@ function showWordListModal(index: number, item: Word[]) {
          @click="emit('update:activeIndex', index)">
       <div class="flex gap10">
         <input type="radio" :checked="activeIndex === index">
-        <template v-if="isArticle">
-          <div>
-            <div class="title"
+        <div class="left">
+          <template v-if="isArticle">
+            <div class="item-title"
                  @click.stop="emitter.emit(EventKey.openArticleListModal,item)"
-            >{{ index + 1 }}.&nbsp;&nbsp;&nbsp;{{ item.title }}
+            >{{ index + 1 }}.&nbsp;{{ item.title }}
             </div>
             <div class="item-sub-title" v-if="item.titleTranslate"> {{ item.titleTranslate }}</div>
-          </div>
-        </template>
-        <template v-else>
-          <div class="title"
-               @click.stop="showWordListModal(index,item)"
-          >第{{ index + 1 }}章&nbsp;&nbsp;&nbsp;{{ item.length }}词
-          </div>
-        </template>
+          </template>
+          <template v-else>
+            <div class="item-title"
+                 @click.stop="showWordListModal(index,item)"
+            >第{{ index + 1 }}章&nbsp;&nbsp;&nbsp;{{ item.length }}词
+            </div>
+          </template>
+        </div>
+      </div>
+      <div class="right" v-if="isArticle">
+        <BaseIcon
+            class-name="del"
+            @click="emit('del',index)"
+            title="移除"
+            icon="solar:trash-bin-minimalistic-linear"/>
       </div>
     </div>
   </div>
@@ -76,21 +85,30 @@ function showWordListModal(index: number, item: Word[]) {
 
   .common-list-item {
 
-    &:hover {
-      .title {
-        border-bottom: 2px solid gray !important;
-      }
-    }
-
     input {
       cursor: pointer;
     }
 
-    .title {
+    .item-title {
       transition: all .3s;
       cursor: pointer;
       border-bottom: 2px solid transparent;
     }
+
+    :deep(.del) {
+      opacity: 0;
+    }
+
+    &:hover {
+      .item-title {
+        border-bottom: 2px solid gray !important;
+      }
+
+      :deep(.del) {
+        opacity: 1;
+      }
+    }
+
   }
 }
 </style>
