@@ -64,7 +64,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Backgorund/>
+<!--  <Backgorund/>-->
   <router-view/>
 </template>
 

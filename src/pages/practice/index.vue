@@ -171,6 +171,7 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 .practice-wrapper {
+  font-size: 13rem;
   width: 100%;
   height: 100%;
   display: flex;
