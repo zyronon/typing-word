@@ -495,6 +495,14 @@ let currentChapterWordList: any[] = $computed(() => {
   return runtimeStore.editDict.chapterWords[chapterIndex] ?? []
 })
 
+let currentChapterWordListCheckedTotal: any[] = $computed(() => {
+  return currentChapterWordList.filter(v => v.checked).length
+})
+
+let residueWordListCheckedTotal: any[] = $computed(() => {
+  return residueWordList.filter(v => v.checked).length
+})
+
 function toResidueWordList() {
   let list = currentChapterWordList.filter(v => v.checked)
   runtimeStore.editDict.chapterWords[chapterIndex] = currentChapterWordList.filter(v => !v.checked)
@@ -583,10 +591,6 @@ function handleCurrentResidueWordListCheckAll() {
               <span>{{ item.name }}</span>
             </div>
           </div>
-          <Icon @click="close"
-                class="hvr-grow pointer"
-                width="20" color="#929596"
-                icon="ion:close-outline"/>
         </header>
         <div class="page-content">
           <div class="dict-list-wrapper">
@@ -628,153 +632,214 @@ function handleCurrentResidueWordListCheckAll() {
                 icon="tabler:edit"
                 @click='editDict'
             />
+            <BaseButton size="small" @click="showAllocationChapterDialog = true">恢复默认</BaseButton>
+
           </div>
-          <Icon @click="close"
-                class="hvr-grow pointer"
-                width="20" color="#929596"
-                icon="ion:close-outline"/>
         </header>
         <div class="detail" v-if="!isAddDict">
           <div class="page-content">
             <div class="left-column">
-              <div class="header flex space-between">
-                <div class="common-title">章节管理</div>
-                <BaseButton @click="showAllocationChapterDialog = true">智能分配</BaseButton>
-                <BaseIcon
-                    @click="addNewChapter"
-                    icon="fluent:add-20-filled"
-                    title="新增章节"/>
-              </div>
-              <virtual-list class="virtual-list"
-                            v-loading="loading"
-                            v-if="chapterList2.length"
-                            :keeps="20"
-                            data-key="id"
-                            :data-sources="chapterList2"
-                            :estimate-size="45"
-              >
-                <template #={source,index}>
-                  <div class="common-list-item space15"
-                       :class="chapterIndex === index && 'active'"
-                       @click="chapterIndex = index">
-                    <div class="flex gap10 flex1 ">
-                      <input type="radio" :checked="chapterIndex === index">
-                      <div class="item-title flex flex1 space-between">
-                        <span>第{{ index + 1 }}章</span>
-                        <span>{{ runtimeStore.editDict.chapterWords[index].length }}词</span>
-                      </div>
-                    </div>
-                    <div class="right">
-                      <BaseIcon
-                          class-name="del"
-                          @click="delWordChapter(index)"
-                          title="移除"
-                          icon="solar:trash-bin-minimalistic-linear"/>
-                    </div>
+              <div class="header">
+                <div class="common-title">
+                  <span>章节管理</span>
+                  <div class="options">
+                    <BaseIcon
+                        @click="addNewChapter"
+                        icon="fluent:add-20-filled"
+                        title="新增章节"/>
                   </div>
-                </template>
-              </virtual-list>
-              <Empty v-else :show-add="true" @add="add"/>
-            </div>
-            <div class="center-column">
-              <div class="common-title flex space-between">
-                <div class="left">
-                  <el-checkbox
-                      v-model="currentChapterWordListCheckAll"
-                      :indeterminate="currentChapterWordListIsIndeterminate"
-                      @change="handleCurrentChapterWordListCheckAll"
-                      size="large"/>
-                  <span>全选</span>
                 </div>
-                <span>{{ chapterIndex > -1 ? `第${chapterIndex + 1}章` : '' }} 单词列表</span>
+                <div class="select">
+                  <BaseButton size="small" @click="showAllocationChapterDialog = true">智能分配</BaseButton>
+                  <span>{{ runtimeStore.editDict.chapterWords.length }}章</span>
+                </div>
               </div>
-              <virtual-list class="virtual-list"
-                            v-loading="loading"
-                            v-if="currentChapterWordList.length"
-                            :keeps="20"
-                            data-key="name"
-                            :data-sources="currentChapterWordList"
-                            :estimate-size="45"
-              >
-                <template #={source,index}>
-                  <div class="common-list-item space15"
-                       @click="handleCheckedChapterWordListChange(source)">
-                    <div class="flex gap10">
-                      <el-checkbox v-model="source.checked"
-                                   @change="handleCheckedChapterWordListChange(source)"
-                                   size="large"/>
-                      <div class="left">
-                        <div class="item-title">
-                          <span class="word">{{ source.name }}</span>
-                          <span class="phonetic">{{ source.usphone }}</span>
-                          <VolumeIcon class="volume" @click="playWordAudio(source.name)"></VolumeIcon>
-                        </div>
-                        <div class="item-sub-title" v-if="source.trans.length">
-                          <div v-for="item in source.trans">{{ item }}</div>
+              <div class="wrapper">
+                <virtual-list class="virtual-list"
+                              v-loading="loading"
+                              v-if="chapterList2.length"
+                              :keeps="20"
+                              data-key="id"
+                              :data-sources="chapterList2"
+                              :estimate-size="45"
+                >
+                  <template #={source,index}>
+                    <div class="common-list-item space15"
+                         :class="chapterIndex === index && 'active'"
+                         @click="chapterIndex = index">
+                      <div class="flex gap10 flex1 ">
+                        <input type="radio" :checked="chapterIndex === index">
+                        <div class="item-title flex flex1 space-between">
+                          <span>第{{ index + 1 }}章</span>
+                          <span>{{ runtimeStore.editDict.chapterWords[index].length }}词</span>
                         </div>
                       </div>
+                      <div class="right">
+                        <BaseIcon
+                            class-name="del"
+                            @click="delWordChapter(index)"
+                            title="移除"
+                            icon="solar:trash-bin-minimalistic-linear"/>
+                      </div>
                     </div>
+                  </template>
+                </virtual-list>
+                <Empty v-else :show-add="true" @add="add"/>
+              </div>
+            </div>
+            <div class="column">
+              <div class="header">
+                <div class="common-title">
+                  <span>{{ chapterIndex > -1 ? `第${chapterIndex + 1}章` : '' }} 单词列表</span>
+                  <div class="options">
+                    <BaseIcon
+                        @click="addWord"
+                        icon="icon-park-outline:sort-two"
+                        title="改变顺序"/>
                   </div>
-                </template>
-              </virtual-list>
-              <Empty v-else :show-add="true" @add="addWord"/>
+                </div>
+                <div class="select"
+                     v-if="currentChapterWordList.length"
+                >
+                  <div class="left">
+                    <el-checkbox
+                        v-model="currentChapterWordListCheckAll"
+                        :indeterminate="currentChapterWordListIsIndeterminate"
+                        @change="handleCurrentChapterWordListCheckAll"
+                        size="large"/>
+                    <span>全选</span>
+                  </div>
+                  <div class="right">{{ currentChapterWordListCheckedTotal }}/{{ currentChapterWordList.length }}</div>
+                </div>
+              </div>
+              <div class="wrapper">
+                <virtual-list class="virtual-list"
+                              v-loading="loading"
+                              v-if="currentChapterWordList.length"
+                              :keeps="20"
+                              data-key="name"
+                              :data-sources="currentChapterWordList"
+                              :estimate-size="45"
+                >
+                  <template #={source,index}>
+                    <div class="common-list-item space15"
+                         @click="handleCheckedChapterWordListChange(source)">
+                      <div class="flex gap10">
+                        <el-checkbox v-model="source.checked"
+                                     @change="handleCheckedChapterWordListChange(source)"
+                                     size="large"/>
+                        <div class="left">
+                          <div class="item-title">
+                            <span class="word">{{ source.name }}</span>
+                            <span class="phonetic">{{ source.usphone }}</span>
+                            <VolumeIcon class="volume" @click="playWordAudio(source.name)"></VolumeIcon>
+                          </div>
+                          <div class="item-sub-title" v-if="source.trans.length">
+                            <div v-for="item in source.trans">{{ item }}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="right">
+                        <BaseIcon
+                            class-name="del"
+                            @click="delWordChapter(index)"
+                            title="移除"
+                            icon="tabler:edit"/>
+                        <BaseIcon
+                            class-name="del"
+                            @click="delWordChapter(index)"
+                            title="移除"
+                            icon="solar:trash-bin-minimalistic-linear"/>
+                      </div>
+                    </div>
+                  </template>
+                </virtual-list>
+                <Empty text="请选择章节" v-else/>
+              </div>
             </div>
             <div class="options-column">
               <BaseButton @click="toChapterWordList"
                           :disabled="!residueWordListIsIndeterminate?!residueWordListCheckAll:false">
-                左
+                &lt;
               </BaseButton>
               <BaseButton @click="toResidueWordList"
                           :disabled="!currentChapterWordListIsIndeterminate?!currentChapterWordListCheckAll:false">
-                右
+                &gt;
               </BaseButton>
             </div>
-            <div class="center-column">
-              <div class="common-title flex space-between">
-                <div class="left">
-                  <el-checkbox
-                      v-model="residueWordListCheckAll"
-                      :indeterminate="residueWordListIsIndeterminate"
-                      @change="handleCurrentResidueWordListCheckAll"
-                      size="large"/>
-                  <span>全选</span>
+            <div class="column">
+              <div class="header">
+                <div class="common-title">
+                  <span>未分配单词列表</span>
+                  <div class="options">
+                    <BaseIcon
+                        @click="addWord"
+                        icon="icon-park-outline:sort-two"
+                        title="改变顺序"/>
+                    <BaseIcon
+                        @click="addWord"
+                        icon="fluent:add-20-filled"
+                        title="新增单词"/>
+                  </div>
                 </div>
-                <span>未分配单词列表</span>
-                <BaseIcon
-                    @click="addWord"
-                    icon="fluent:add-20-filled"
-                    title="新增单词"/>
+                <div class="select"
+                     v-if="residueWordList.length"
+                >
+                  <div class="left">
+                    <el-checkbox
+                        v-model="residueWordListCheckAll"
+                        :indeterminate="residueWordListIsIndeterminate"
+                        @change="handleCurrentResidueWordListCheckAll"
+                        size="large"/>
+                    <span>全选</span>
+                  </div>
+                  <div class="right">{{ residueWordListCheckedTotal }}/{{ residueWordList.length }}</div>
+                </div>
               </div>
-              <virtual-list class="virtual-list"
-                            v-loading="loading"
-                            v-if="residueWordList.length"
-                            :keeps="20"
-                            data-key="name"
-                            :data-sources="residueWordList"
-                            :estimate-size="45"
-              >
-                <template #={source,index}>
-                  <div class="common-list-item space15"
-                       @click="handleCheckedResidueWordListChange(source)">
-                    <div class="flex gap10">
-                      <el-checkbox v-model="source.checked"
-                                   @change="handleCheckedResidueWordListChange(source)"
-                                   size="large"/>
-                      <div class="left">
-                        <div class="item-title">
-                          <span class="word">{{ source.name }}</span>
-                          <span class="phonetic">{{ source.usphone }}</span>
-                          <VolumeIcon class="volume" @click="playWordAudio(source.name)"></VolumeIcon>
-                        </div>
-                        <div class="item-sub-title" v-if="source.trans.length">
-                          <div v-for="item in source.trans">{{ item }}</div>
+              <div class="wrapper">
+                <virtual-list class="virtual-list"
+                              v-loading="loading"
+                              v-if="residueWordList.length"
+                              :keeps="20"
+                              data-key="name"
+                              :data-sources="residueWordList"
+                              :estimate-size="45"
+                >
+                  <template #={source,index}>
+                    <div class="common-list-item space15"
+                         @click="handleCheckedResidueWordListChange(source)">
+                      <div class="flex gap10">
+                        <el-checkbox v-model="source.checked"
+                                     @change="handleCheckedResidueWordListChange(source)"
+                                     size="large"/>
+                        <div class="left">
+                          <div class="item-title">
+                            <span class="word">{{ source.name }}</span>
+                            <span class="phonetic">{{ source.usphone }}</span>
+                            <VolumeIcon class="volume" @click="playWordAudio(source.name)"></VolumeIcon>
+                          </div>
+                          <div class="item-sub-title" v-if="source.trans.length">
+                            <div v-for="item in source.trans">{{ item }}</div>
+                          </div>
                         </div>
                       </div>
+                      <div class="right">
+                        <BaseIcon
+                            class-name="del"
+                            @click="delWordChapter(index)"
+                            title="编辑"
+                            icon="tabler:edit"/>
+                        <BaseIcon
+                            class-name="del"
+                            @click="delWordChapter(index)"
+                            title="移除"
+                            icon="solar:trash-bin-minimalistic-linear"/>
+                      </div>
                     </div>
-                  </div>
-                </template>
-              </virtual-list>
-              <Empty v-else :show-add="true" @add="addWord"/>
+                  </template>
+                </virtual-list>
+                <Empty v-else/>
+              </div>
             </div>
             <div class="right-column">
               <div class="add" v-if="wordFormMode !== FormMode.None">
@@ -786,7 +851,7 @@ function handleCurrentResidueWordListCheckAll() {
                     ref="wordFormRef"
                     :rules="wordRules"
                     :model="wordForm"
-                    label-width="140rem">
+                    label-width="100rem">
                   <el-form-item label="单词" prop="name">
                     <el-input v-model="wordForm.name"/>
                   </el-form-item>
@@ -796,10 +861,10 @@ function handleCurrentResidueWordListCheckAll() {
                               :autosize="{ minRows: 2, maxRows: 6 }"
                               type="textarea"/>
                   </el-form-item>
-                  <el-form-item label="音标/发音/注音①">
+                  <el-form-item label="音标/发音①">
                     <el-input v-model="wordForm.usphone"/>
                   </el-form-item>
-                  <el-form-item label="音标/发音/注音②">
+                  <el-form-item label="音标/发音②">
                     <el-input v-model="wordForm.ukphone"/>
                   </el-form-item>
                   <div class="flex-center">
@@ -937,9 +1002,8 @@ $header-height: 60rem;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: var(--color-second-bg);
   z-index: 1;
-  width: 70vw;
+  width: 90vw;
   height: 75vh;
 }
 
@@ -1044,38 +1108,60 @@ $header-height: 60rem;
       overflow: hidden;
       display: flex;
       position: relative;
+      gap: var(--space);
 
-      .virtual-list {
-        height: 80%;
+      .header {
+        padding: 0 var(--space);
+
+        .common-title {
+          margin-bottom: 0;
+          position: relative;
+
+          .options {
+            position: absolute;
+            right: 0;
+            display: flex;
+            gap: 10rem;
+          }
+        }
+
+        .select {
+          height: 45rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .left {
+            display: flex;
+            gap: 5rem;
+            align-items: center;
+          }
+        }
       }
 
-      .left-column {
-        width: 250rem;
-        display: flex;
-        flex-direction: column;
-        min-height: 100rem;
-        position: relative;
-        color: var(--color-font-1);
-        font-size: 14rem;
-        position: relative;
+      .wrapper {
+        flex: 1;
+        overflow: hidden;
       }
 
-      .center-column {
+      .column{
         flex: 1;
         background: white;
         border-radius: 10rem;
         background: var(--color-second-bg);
-        background: #000;
-
         color: var(--color-font-1);
+        padding-bottom: var(--space);
+        display: flex;
+        flex-direction: column;
+      }
 
-        .scroll {
-          height: calc(100% - 45rem);
-        }
+      .left-column {
+        max-width: 250rem;
+        width: 16vw;
+        @extend .column;
       }
 
       .options-column {
-        width: 150rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1083,12 +1169,14 @@ $header-height: 60rem;
       }
 
       .right-column {
+        //@extend .column;
         flex: 1;
-        border-radius: 10rem;
-        background: var(--color-second-bg);
-        color: var(--color-font-1);
-        display: flex;
-        flex-direction: column;
+        box-sizing: border-box;
+        align-items: center;
+
+        .add{
+          width: 90%;
+        }
       }
     }
   }
@@ -1136,8 +1224,8 @@ $header-height: 60rem;
     }
   }
 
-  .notice{
-    transform: translate3d(110rem,-20rem,0);
+  .notice {
+    transform: translate3d(110rem, -20rem, 0);
     font-size: 11rem;
   }
 }

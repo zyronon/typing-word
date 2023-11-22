@@ -1,16 +1,21 @@
 <script setup lang="ts">
 
+import DictManage from "@/pages/dict/DictManage.vue";
 </script>
 
 <template>
-  <div class="dict">
-
+  <div id="page">
+    <DictManage/>
   </div>
 
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/variable";
+#page{
+  background: var(--color-main-bg);
+  height: 100%;
+  width: 100%;
+}
 
 </style>
 

@@ -52,6 +52,8 @@ declare module 'vue' {
     PopConfirm: typeof import('./src/components/PopConfirm.vue')['default']
     RepeatSetting: typeof import('./src/components/toolbar/RepeatSetting.vue')['default']
     Ring: typeof import('./src/components/Ring.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     SettingDialog: typeof import('./src/components/dialog/SettingDialog.vue')['default']
     Slide: typeof import('./src/components/Slide.vue')['default']
     Toolbar: typeof import('./src/components/toolbar/index.vue')['default']

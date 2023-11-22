@@ -379,8 +379,11 @@ footer {
 }
 
 .common-title {
+  height: 40rem;
   font-size: 20rem;
   color: var(--color-font-1);
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 10rem;
 }
