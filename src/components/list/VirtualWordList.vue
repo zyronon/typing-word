@@ -69,10 +69,9 @@ defineExpose({scrollToBottom})
                 :data-sources="list"
                 :estimate-size="85"
                 ref="listRef"
-                item-class="dict-virtual-item"
   >
     <template #={source,index}>
-      <div class="common-list-item"
+      <div class="common-list-item space15"
            :class="{active:activeIndex === index}"
            @click="emit('change',{word:source,index})"
       >
@@ -94,7 +93,7 @@ defineExpose({scrollToBottom})
   </virtual-list>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/css/variable";
 
 .virtual-list {
@@ -103,8 +102,5 @@ defineExpose({scrollToBottom})
   padding: 0 var(--space);
 }
 
-.dict-virtual-item {
-  margin-bottom: 15rem;
-}
 
 </style>

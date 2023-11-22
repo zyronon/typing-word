@@ -211,6 +211,10 @@ footer {
   display: flex;
 }
 
+.flex1 {
+  flex: 1;
+}
+
 .gap10 {
   gap: 10rem;
 }
@@ -267,6 +271,27 @@ footer {
     flex: 1;
     overflow: auto;
   }
+}
+
+.virtual-list {
+  overflow: overlay;
+  height: 100%;
+  padding: 0 var(--space);
+}
+
+.space15 {
+  margin-bottom: 15rem;
+}
+
+.common-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+  overflow: auto;
+  box-sizing: border-box;
+  gap: 10rem;
+  padding: 0 var(--space);
 }
 
 .common-list-item {

@@ -5,13 +5,10 @@ import {onMounted, reactive, watch} from "vue"
 import {DefaultDict, Dict, DictResource, DictType, languageCategoryOptions, Sort, Word} from "@/types.ts"
 import {chunk, cloneDeep, groupBy, reverse, shuffle} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
-import BaseButton from "@/components/BaseButton.vue";
 import {Icon} from '@iconify/vue';
 import DictGroup from "@/components/toolbar/DictGroup.vue";
 import {v4 as uuidv4} from "uuid";
-import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
-import ChapterList from "@/components/list/ChapterList.vue";
 import WordListDialog from "@/components/dialog/WordListDialog.vue";
 import {isArticle} from "@/hooks/article.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
@@ -19,13 +16,16 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import Slide from "@/components/Slide.vue";
 import DictList from "@/components/list/DictList.vue";
-import VirtualWordList from "@/components/list/VirtualWordList.vue";
 import {FormInstance, FormRules} from "element-plus";
 import Empty from "@/components/Empty.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
-import Dialog from "@/components/dialog/Dialog.vue";
 import EditBatchArticleModal from "@/components/article/EditBatchArticleModal.vue";
-
+import VolumeIcon from "@/components/icon/VolumeIcon.vue";
+import {usePlayWordAudio} from "@/hooks/sound.ts";
+import BaseButton from "@/components/BaseButton.vue";
+import VirtualWordList from "@/components/list/VirtualWordList.vue";
+import Dialog from "@/components/dialog/Dialog.vue";
+// import ArrowRight from 'ico'
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
@@ -38,17 +38,21 @@ let wordList = $ref([])
 let step = $ref(1)
 let loading = $ref(false)
 let show = $ref(false)
+let chapterList2 = $ref([])
+let chapterWordNumber = $ref(settingStore.chapterWordNumber)
 
 function close() {
   show = false
 }
 
-async function selectDict(val: { dict: DictResource | Dict, index: number }) {
+async function selectDict(val: {
+  dict: DictResource | Dict,
+  index: number
+}) {
   let item = val.dict
   console.log('item', item)
   step = 1
   isAddDict = false
-  detailListTabIndex = 0
   wordFormMode = FormMode.None
   loading = true
   wordList = []
@@ -94,6 +98,8 @@ async function selectDict(val: { dict: DictResource | Dict, index: number }) {
       }
     }
   }
+
+  chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
   loading = false
 }
 
@@ -157,18 +163,6 @@ const chapterList = $computed(() => {
   return dictIsArticle ? runtimeStore.editDict.articles.length : runtimeStore.editDict.chapterWords.length
 })
 
-function showAllWordModal() {
-  emitter.emit(EventKey.openWordListModal, {
-    title: runtimeStore.editDict.name,
-    translateLanguage: runtimeStore.editDict.translateLanguage,
-    list: runtimeStore.editDict.words
-  })
-}
-
-function resetChapterList() {
-  runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
-}
-
 function changeSort(v) {
   if (v === Sort.normal) {
     runtimeStore.editDict.words = cloneDeep(runtimeStore.editDict.originWords)
@@ -180,11 +174,6 @@ function changeSort(v) {
   resetChapterList()
 }
 
-let detailListTabIndex = $ref(0)
-
-function changeDetailListTab(val: number) {
-  detailListTabIndex = val
-}
 
 /**/
 /*词典相关*/
@@ -405,7 +394,10 @@ function delWord(word: Word, index: number) {
   closeWordForm()
 }
 
-function editWord(val: { word: Word, index: number }) {
+function editWord(val: {
+  word: Word,
+  index: number
+}) {
   wordFormMode = val.index
   wordForm.name = val.word.name
   wordForm.ukphone = val.word.ukphone
@@ -420,7 +412,6 @@ function closeWordForm() {
 
 function addWord() {
   // setTimeout(wordListRef?.scrollToBottom, 100)
-  detailListTabIndex = 1
   wordFormMode = FormMode.Add
   wordForm = cloneDeep(DefaultFormWord)
 }
@@ -437,30 +428,15 @@ function add() {
 /* 单词修改相关*/
 /**/
 
-
-/**/
-/* 文章修改相关*/
-/**/
-
-function delChapter(index: number) {
-  runtimeStore.editDict.articles.splice(index, 1)
-  if (runtimeStore.editDict.chapterIndex >= index) runtimeStore.editDict.chapterIndex--
-  if (runtimeStore.editDict.chapterIndex < 0) runtimeStore.editDict.chapterIndex = 0
-
-  syncMyDictList()
-}
-
-/**/
-/* 文章修改相关*/
-/**/
-
 watch(() => step, v => {
   if (v === 0) {
     closeWordForm()
     closeDictForm()
+    chapterWordNumber = settingStore.chapterWordNumber
   }
 })
 
+const playWordAudio = usePlayWordAudio()
 
 onMounted(() => {
   dictionaryResources.map(v => {
@@ -508,10 +484,89 @@ onMounted(() => {
 })
 
 let chapterIndex = $ref(-1)
+let residueWordList = $ref([])
 
-function selectChapter(){
+let currentChapterWordListCheckAll = $ref(false)
+let currentChapterWordListIsIndeterminate = $ref(false)
+let residueWordListCheckAll = $ref(false)
+let residueWordListIsIndeterminate = $ref(false)
 
+let currentChapterWordList: any[] = $computed(() => {
+  return runtimeStore.editDict.chapterWords[chapterIndex] ?? []
+})
+
+function toResidueWordList() {
+  let list = currentChapterWordList.filter(v => v.checked)
+  runtimeStore.editDict.chapterWords[chapterIndex] = currentChapterWordList.filter(v => !v.checked)
+  list.map(v => v.checked = false)
+  residueWordList = residueWordList.concat(list)
+  currentChapterWordListIsIndeterminate = currentChapterWordListCheckAll = false
 }
+
+function toChapterWordList() {
+  let list = residueWordList.filter(v => v.checked)
+  residueWordList = residueWordList.filter(v => !v.checked)
+  list.map(v => v.checked = false)
+  runtimeStore.editDict.chapterWords[chapterIndex] = runtimeStore.editDict.chapterWords[chapterIndex].concat(list)
+  residueWordListCheckAll = residueWordListIsIndeterminate = false
+}
+
+function addNewChapter() {
+  runtimeStore.editDict.chapterWords.push([])
+  chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
+}
+
+function delWordChapter(index: number) {
+  let list = runtimeStore.editDict.chapterWords[index]
+  list.map(v => v.checked = false)
+  residueWordList = residueWordList.concat(list)
+  runtimeStore.editDict.chapterWords.splice(index, 1)
+  if (chapterIndex >= index) chapterIndex--
+  if (chapterIndex < 0) chapterIndex = 0
+
+  syncMyDictList()
+}
+
+let showAllocationChapterDialog = $ref(false)
+
+function resetChapterList() {
+  residueWordList = []
+  chapterIndex = -1
+  runtimeStore.editDict.words.map(v => v.checked = false)
+  runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, chapterWordNumber)
+  chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
+}
+
+function handleCheckedChapterWordListChange(source: any) {
+  source.checked = !source.checked
+  currentChapterWordListCheckAll = currentChapterWordList.every(v => v.checked)
+  if (currentChapterWordListCheckAll) {
+    currentChapterWordListIsIndeterminate = false
+  } else {
+    currentChapterWordListIsIndeterminate = currentChapterWordList.some(v => v.checked)
+  }
+}
+
+function handleCurrentChapterWordListCheckAll() {
+  currentChapterWordList.map(v => v.checked = currentChapterWordListCheckAll)
+  currentChapterWordListIsIndeterminate = false
+}
+
+function handleCheckedResidueWordListChange(source: any) {
+  source.checked = !source.checked
+  residueWordListCheckAll = residueWordList.every(v => v.checked)
+  if (residueWordListCheckAll) {
+    residueWordListIsIndeterminate = false
+  } else {
+    residueWordListIsIndeterminate = residueWordList.some(v => v.checked)
+  }
+}
+
+function handleCurrentResidueWordListCheckAll() {
+  residueWordList.map(v => v.checked = residueWordListCheckAll)
+  residueWordListIsIndeterminate = false
+}
+
 </script>
 
 <template>
@@ -582,74 +637,150 @@ function selectChapter(){
         <div class="detail" v-if="!isAddDict">
           <div class="page-content">
             <div class="left-column">
-              <div class="common-title">{{ dictIsArticle ? '文章' : '章节' }}列表</div>
-              <ChapterList
-                  :is-article="dictIsArticle"
-                  v-model:active-index="runtimeStore.editDict.chapterIndex"
-                  :dict="runtimeStore.editDict"/>
-
-              <div class="list"
-                   v-loading="loading"
-                   v-if="chapterList"
+              <div class="header flex space-between">
+                <div class="common-title">章节列表</div>
+                <BaseButton @click="showAllocationChapterDialog = true">智能分配</BaseButton>
+                <BaseIcon
+                    @click="addNewChapter"
+                    icon="fluent:add-20-filled"
+                    title="新增章节"/>
+              </div>
+              <virtual-list class="virtual-list"
+                            v-loading="loading"
+                            v-if="chapterList2.length"
+                            :keeps="20"
+                            data-key="id"
+                            :data-sources="chapterList2"
+                            :estimate-size="45"
               >
-                <div class="common-list-item"
-                     :class="chapterIndex === index && 'active'"
-                     v-for="(item,index) in runtimeStore.editDict.chapterWords"
-                     @click="selectChapter(index)">
-                  <div class="flex gap10">
-                    <input type="radio" :checked="chapterIndex === index">
-                    <div class="left">
-                      <template v-if="dictIsArticle">
-                        <div class="item-title"
-                             @click.stop="emitter.emit(EventKey.openArticleListModal,item)"
-                        >{{ index + 1 }}.&nbsp;{{ item.title }}
-                        </div>
-                        <div class="item-sub-title" v-if="item.titleTranslate"> {{ item.titleTranslate }}</div>
-                      </template>
-                      <template v-else>
-                        <div class="item-title"
-                        >第{{ index + 1 }}章&nbsp;&nbsp;&nbsp;{{ item.length }}词
-                        </div>
-                      </template>
+                <template #={source,index}>
+                  <div class="common-list-item space15"
+                       :class="chapterIndex === index && 'active'"
+                       @click="chapterIndex = index">
+                    <div class="flex gap10 flex1 ">
+                      <input type="radio" :checked="chapterIndex === index">
+                      <div class="item-title flex flex1 space-between">
+                        <span>第{{ index + 1 }}章</span>
+                        <span>{{ runtimeStore.editDict.chapterWords[index].length }}词</span>
+                      </div>
+                    </div>
+                    <div class="right">
+                      <BaseIcon
+                          class-name="del"
+                          @click="delWordChapter(index)"
+                          title="移除"
+                          icon="solar:trash-bin-minimalistic-linear"/>
                     </div>
                   </div>
-                  <div class="right" v-if="dictIsArticle">
-                    <BaseIcon
-                        class-name="del"
-                        @click="delChapter(index)"
-                        title="移除"
-                        icon="solar:trash-bin-minimalistic-linear"/>
-                  </div>
-                </div>
-              </div>
-
+                </template>
+              </virtual-list>
               <Empty v-else :show-add="true" @add="add"/>
             </div>
             <div class="center-column">
-              <div class="common-title">单词列表</div>
-              <div class="scroll">
-                <VirtualWordList
-                    ref="wordListRef"
-                    v-if="wordList.length"
-                    class="word-list"
-                    :is-active="true"
-                    @change="editWord"
-                    :list="wordList"
-                    :activeIndex="wordFormMode">
-                  <template v-slot="{word,index}">
-                    <BaseIcon
-                        class-name="del"
-                        @click="delWord(word,index)"
-                        title="移除"
-                        icon="solar:trash-bin-minimalistic-linear"/>
-                  </template>
-                </VirtualWordList>
-                <Empty v-else :show-add="true" @add="addWord"/>
+              <div class="common-title flex space-between">
+                <div class="left">
+                  <el-checkbox
+                      v-model="currentChapterWordListCheckAll"
+                      :indeterminate="currentChapterWordListIsIndeterminate"
+                      @change="handleCurrentChapterWordListCheckAll"
+                      size="large"/>
+                  <span>全选</span>
+                </div>
+                <span>{{ chapterIndex > -1 ? `第${chapterIndex + 1}章` : '' }} 单词列表</span>
               </div>
+              <virtual-list class="virtual-list"
+                            v-loading="loading"
+                            v-if="currentChapterWordList.length"
+                            :keeps="20"
+                            data-key="name"
+                            :data-sources="currentChapterWordList"
+                            :estimate-size="45"
+              >
+                <template #={source,index}>
+                  <div class="common-list-item space15"
+                       @click="handleCheckedChapterWordListChange(source)">
+                    <div class="flex gap10">
+                      <el-checkbox v-model="source.checked"
+                                   @change="handleCheckedChapterWordListChange(source)"
+                                   size="large"/>
+                      <div class="left">
+                        <div class="item-title">
+                          <span class="word">{{ source.name }}</span>
+                          <span class="phonetic">{{ source.usphone }}</span>
+                          <VolumeIcon class="volume" @click="playWordAudio(source.name)"></VolumeIcon>
+                        </div>
+                        <div class="item-sub-title" v-if="source.trans.length">
+                          <div v-for="item in source.trans">{{ item }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </virtual-list>
+              <Empty v-else :show-add="true" @add="addWord"/>
+            </div>
+            <div class="options-column">
+              <BaseButton @click="toChapterWordList"
+                          :disabled="!residueWordListIsIndeterminate?!residueWordListCheckAll:false">
+                >左
+              </BaseButton>
+              <BaseButton @click="toResidueWordList"
+                          :disabled="!currentChapterWordListIsIndeterminate?!currentChapterWordListCheckAll:false">
+                右
+              </BaseButton>
+            </div>
+            <div class="center-column">
+              <div class="common-title flex space-between">
+                <div class="left">
+                  <el-checkbox
+                      v-model="residueWordListCheckAll"
+                      :indeterminate="residueWordListIsIndeterminate"
+                      @change="handleCurrentResidueWordListCheckAll"
+                      size="large"/>
+                  <span>全选</span>
+                </div>
+                <span>未分配单词列表</span>
+                <BaseIcon
+                    @click="addWord"
+                    icon="fluent:add-20-filled"
+                    title="新增单词"/>
+              </div>
+              <virtual-list class="virtual-list"
+                            v-loading="loading"
+                            v-if="residueWordList.length"
+                            :keeps="20"
+                            data-key="name"
+                            :data-sources="residueWordList"
+                            :estimate-size="45"
+              >
+                <template #={source,index}>
+                  <div class="common-list-item space15"
+                       @click="handleCheckedResidueWordListChange(source)">
+                    <div class="flex gap10">
+                      <el-checkbox v-model="source.checked"
+                                   @change="handleCheckedResidueWordListChange(source)"
+                                   size="large"/>
+                      <div class="left">
+                        <div class="item-title">
+                          <span class="word">{{ source.name }}</span>
+                          <span class="phonetic">{{ source.usphone }}</span>
+                          <VolumeIcon class="volume" @click="playWordAudio(source.name)"></VolumeIcon>
+                        </div>
+                        <div class="item-sub-title" v-if="source.trans.length">
+                          <div v-for="item in source.trans">{{ item }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </virtual-list>
+              <Empty v-else :show-add="true" @add="addWord"/>
             </div>
             <div class="right-column">
               <div class="add" v-if="wordFormMode !== FormMode.None">
-                <div class="common-title">{{ wordFormMode === FormMode.Add ? '添加' : '修改' }}单词</div>
+                <div class="common-title">
+                  {{ wordFormMode === FormMode.Add ? '添加' : '修改' }}单词
+                </div>
                 <el-form
                     class="form"
                     ref="wordFormRef"
@@ -743,6 +874,43 @@ function selectChapter(){
     </Slide>
   </div>
 
+  <Dialog
+      title="智能分配单词"
+      :footer="true"
+      @ok="resetChapterList"
+      @cancel="chapterWordNumber = settingStore.chapterWordNumber"
+      v-model="showAllocationChapterDialog">
+    <div class="allocation-chapter">
+      <div class="notice">
+        <div>为您自动创建章节以及分配单词</div>
+        <div>注意：已存在的章节将被删除！</div>
+      </div>
+      <div class="row">
+        <div class="label">每章单词数</div>
+        <span class="text">最小:10</span>
+        <el-slider :min="10"
+                   :step="10"
+                   :max="runtimeStore.editDict.words.length ?? 10"
+                   v-model="chapterWordNumber"
+        />
+        <span class="text">最大:{{ runtimeStore.editDict.words.length ?? 10 }}</span>
+      </div>
+
+      <div class="row">
+        <div class="label">将会创建</div>
+        <div class="option">
+          <span>{{ Math.round(runtimeStore.editDict.words.length / chapterWordNumber) }}章</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label">每章</div>
+        <div class="option">
+          <span>{{ chapterWordNumber }}个单词</span>
+        </div>
+      </div>
+    </div>
+  </Dialog>
+
   <WordListDialog/>
   <EditBatchArticleModal/>
 </template>
@@ -762,8 +930,8 @@ $header-height: 60rem;
   top: 50%;
   transform: translate(-50%, -50%);
   background: var(--color-second-bg);
-  z-index: 99999;
-  width: 60vw;
+  z-index: 1;
+  width: 70vw;
   height: 75vh;
 }
 
@@ -869,11 +1037,14 @@ $header-height: 60rem;
       display: flex;
       position: relative;
 
+      .virtual-list {
+        height: 80%;
+      }
+
       .left-column {
-        flex: 1;
+        width: 250rem;
         display: flex;
         flex-direction: column;
-        gap: 10rem;
         min-height: 100rem;
         position: relative;
         color: var(--color-font-1);
@@ -886,11 +1057,21 @@ $header-height: 60rem;
         background: white;
         border-radius: 10rem;
         background: var(--color-second-bg);
+        background: #000;
+
         color: var(--color-font-1);
 
         .scroll {
           height: calc(100% - 45rem);
         }
+      }
+
+      .options-column {
+        width: 150rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10rem;
       }
 
       .right-column {
@@ -900,8 +1081,6 @@ $header-height: 60rem;
         color: var(--color-font-1);
         display: flex;
         flex-direction: column;
-
-
       }
     }
   }
@@ -918,6 +1097,34 @@ $header-height: 60rem;
 
     .el-select {
       width: 100%;
+    }
+  }
+}
+
+.allocation-chapter {
+  width: 500rem;
+  padding: var(--space);
+  padding-top: 0;
+
+  .notice {
+    margin-top: 10rem;
+    margin-bottom: 35rem;
+    text-align: center;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 20rem;
+    margin-bottom: 15rem;
+    word-break: keep-all;
+
+    .label {
+      width: 90rem;
+    }
+
+    .text {
+      font-size: 12rem;
     }
   }
 }

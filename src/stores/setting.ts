@@ -35,6 +35,7 @@ export interface SettingState {
   showPanel: boolean,
   theme: string,
   collapse: boolean,
+  chapterWordNumber: number,
   shortcutKeyMap: Record<string, string>
 }
 
@@ -76,6 +77,7 @@ export const useSettingStore = defineStore('setting', {
 
       theme: 'auto',
       collapse: false,
+      chapterWordNumber: 30,
       shortcutKeyMap: cloneDeep(DefaultShortcutKeyMap)
     }
   },
