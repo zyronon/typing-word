@@ -3,16 +3,16 @@
 import Toolbar from "@/components/toolbar/index.vue"
 import {onMounted, onUnmounted, watch} from "vue";
 import {usePracticeStore} from "@/stores/practice.ts";
-import Footer from "@/components/Practice/Footer.vue";
+import Footer from "@/pages/practice/Footer.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {$ref} from "vue/macros";
-import Statistics from "@/components/Practice/Statistics.vue";
-import {emitter, EventKey} from "@/utils/eventBus";
-import {useSettingStore} from "@/stores/setting";
+import Statistics from "@/pages/practice/Statistics.vue";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
+import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
-import PracticeArticle from "@/components/Practice/practice-article/index.vue";
-import PracticeWord from "@/components/Practice/practice-word/index.vue";
+import PracticeArticle from "@/pages/practice/practice-article/index.vue";
+import PracticeWord from "@/pages/practice/practice-word/index.vue";
 import {ShortcutKey} from "@/types.ts";
 import useTheme from "@/hooks/useTheme.ts";
 import SettingDialog from "@/components/dialog/SettingDialog.vue";

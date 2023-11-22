@@ -213,7 +213,7 @@ const {
   </Transition>
 </template>
 <style scoped lang="scss">
-@import "@/assets/css/variable.scss";
+@import "@/assets/css/variable";
 
 $header-height: 50rem;
 

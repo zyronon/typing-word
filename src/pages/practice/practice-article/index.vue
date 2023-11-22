@@ -12,7 +12,7 @@ import {
   Word
 } from "@/types.ts";
 import {cloneDeep} from "lodash-es";
-import TypingWord from "@/components/Practice/practice-word/TypingWord.vue";
+import TypingWord from "@/pages/practice/practice-word/TypingWord.vue";
 import Panel from "../Panel.vue";
 import {onMounted, watch} from "vue";
 import {renewSectionTexts, renewSectionTranslates} from "@/hooks/translate.ts";
@@ -317,7 +317,7 @@ const {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style.scss";
+@import "@/assets/css/style";
 
 $article-width: 50vw;
 

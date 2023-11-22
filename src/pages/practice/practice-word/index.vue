@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import TypingWord from "@/components/Practice/practice-word/TypingWord.vue";
+import TypingWord from "@/pages/practice/practice-word/TypingWord.vue";
 import {$ref} from "vue/macros";
 import {chunk, cloneDeep} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";

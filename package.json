@@ -36,6 +36,7 @@
     "vue": "^3.3.4",
     "vue-activity-calendar": "^1.2.2",
     "vue-i18n": "9",
+    "vue-router": "4",
     "vue-virtual-list-v3": "^1.5.1"
   },
   "devDependencies": {
@@ -47,6 +48,8 @@
     "@vue/compiler-sfc": "^3.3.4",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
+    "esm": "^3.2.25",
+    "gulp": "^4.0.2",
     "husky": "^8.0.3",
     "push-dir": "^0.4.1",
     "rollup-plugin-visualizer": "^5.9.2",
@@ -57,8 +60,6 @@
     "unplugin-vue-components": "^0.25.2",
     "vite": "^4.4.5",
     "vue-tsc": "^1.8.5",
-    "esm": "^3.2.25",
-    "gulp": "^4.0.2",
     "xlsx": "^0.18.5"
   },
   "config": {

@@ -65,6 +65,9 @@ dependencies:
   vue-i18n:
     specifier: '9'
     version: 9.6.5(vue@3.3.4)
+  vue-router:
+    specifier: '4'
+    version: 4.2.5(vue@3.3.4)
   vue-virtual-list-v3:
     specifier: ^1.5.1
     version: 1.5.1
@@ -5073,6 +5076,15 @@ packages:
     dependencies:
       '@intlify/core-base': 9.6.5
       '@intlify/shared': 9.6.5
+      '@vue/devtools-api': 6.5.0
+      vue: 3.3.4
+    dev: false
+
+  /vue-router@4.2.5(vue@3.3.4):
+    resolution: {integrity: sha512-DIUpKcyg4+PTQKfFPX88UWhlagBEBEfJ5A8XDXRJLUnZOvcpMF8o/dnL90vpVkGaPbjvXazV/rC1qBKrZlFugw==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
       '@vue/devtools-api': 6.5.0
       vue: 3.3.4
     dev: false

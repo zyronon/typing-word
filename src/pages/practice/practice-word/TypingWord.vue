@@ -2,7 +2,7 @@
 import {onMounted, onUnmounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
-import {DefaultDisplayStatistics, DictType, ShortcutKey, Word} from "../../../types";
+import {DefaultDisplayStatistics, DictType, ShortcutKey, Word} from "../../../types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
@@ -10,9 +10,9 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";
-import Options from "@/components/Practice/Options.vue";
-import Typing from "@/components/Practice/practice-word/Typing.vue";
-import Panel from "@/components/Practice/Panel.vue";
+import Options from "@/pages/practice/Options.vue";
+import Typing from "@/pages/practice/practice-word/Typing.vue";
+import Panel from "@/pages/practice/Panel.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useWordOptions} from "@/hooks/dict.ts";

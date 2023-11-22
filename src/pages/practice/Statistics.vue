@@ -126,7 +126,7 @@ const isEnd = $computed(() => {
   <Fireworks v-if="statModalIsOpen"/>
 </template>
 <style scoped lang="scss">
-@import "@/assets/css/style.scss";
+@import "@/assets/css/style";
 
 .statistics {
   width: 800rem;

@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import {computed, nextTick, onMounted, onUnmounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros";
-import {Article, ArticleWord, DefaultArticle, ShortcutKey, ShortcutKeyMap, Word} from "@/types";
-import {useBaseStore} from "@/stores/base";
+import {Article, ArticleWord, DefaultArticle, ShortcutKey, ShortcutKeyMap, Word} from "@/types.ts";
+import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import Options from "@/components/Practice/Options.vue";
+import Options from "@/pages/practice/Options.vue";
 import {Icon} from "@iconify/vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import Tooltip from "@/components/Tooltip.vue";
@@ -479,7 +479,7 @@ const {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style.scss";
+@import "@/assets/css/style";
 
 .wrote {
   //color: green;
