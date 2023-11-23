@@ -588,6 +588,9 @@ function importData() {
   no()
 }
 
+const isPinDict = $computed(() => {
+  return [DictType.collect, DictType.wrong, DictType.simple].includes(runtimeStore.editDict.type)
+})
 
 </script>
 
@@ -635,26 +638,27 @@ function importData() {
       </div>
       <div class="dict-detail-page">
         <header>
+          <Icon icon="octicon:arrow-left-24"
+                @click.stop="step = 0"
+                width="20"/>
           <div class="left">
-            <Icon icon="octicon:arrow-left-24"
-                  @click.stop="step = 0"
-                  width="20"/>
-            <div class="title">
-              {{ runtimeStore.editDict.name }}
+            <div class="top">
+              <div class="title">
+                {{ runtimeStore.editDict.name }}
+              </div>
+              <template v-if="!isPinDict">
+                <BaseIcon icon="tabler:edit" @click='editDict'/>
+                <BaseIcon icon="ph:star" @click='no'/>
+                <BaseButton size="small" @click="no">恢复默认</BaseButton>
+              </template>
+              <div class="import hvr-grow">
+                <BaseButton size="small">导入</BaseButton>
+                <input type="file" accept="application/json" @change="importData">
+              </div>
+              <BaseButton size="small" @click="exportData">导出</BaseButton>
             </div>
-            <BaseIcon
-                v-if="![DictType.collect,DictType.wrong,DictType.simple].includes(runtimeStore.editDict.type)"
-                class-name="edit-icon"
-                icon="tabler:edit"
-                @click='editDict'
-            />
-            <BaseButton size="small" @click="no">恢复默认</BaseButton>
-
-            <div class="import hvr-grow">
-              <BaseButton size="small">导入</BaseButton>
-              <input type="file" accept="application/json" @change="importData">
-            </div>
-            <BaseButton size="small" @click="exportData">导出</BaseButton>
+            <div class="desc" v-if="runtimeStore.editDict.description">{{runtimeStore.editDict.description}}</div>
+            <div class="num">总词汇: {{ runtimeStore.editDict.originWords.length }}词</div>
           </div>
         </header>
         <div class="detail" v-if="!isAddDict">
@@ -1108,11 +1112,11 @@ $header-height: 60rem;
     width: 100%;
     display: flex;
     box-sizing: border-box;
-    height: $header-height;
     align-items: center;
-    justify-content: space-between;
     color: var(--color-font-1);
     padding: 0 var(--space);
+    gap: 20rem;
+    margin-bottom: 20rem;
 
     svg {
       cursor: pointer
@@ -1121,8 +1125,16 @@ $header-height: 60rem;
     .left {
       display: flex;
       gap: 10rem;
-      font-size: 20rem;
-      align-items: center;
+      flex-direction: column;
+      color: var(--color-font-2);
+
+      .top {
+        color: var(--color-font-1);
+        display: flex;
+        gap: 10rem;
+        font-size: 20rem;
+        align-items: center;
+      }
 
       .import {
         display: inline-flex;
