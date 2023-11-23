@@ -10,6 +10,8 @@ export type Word = {
   "usphone": string,
   "ukphone": string,
   "trans": string[]
+  checked?: boolean,
+  id?: any,
 }
 
 export const DefaultWord: Word = {

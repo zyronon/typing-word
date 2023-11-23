@@ -6,6 +6,7 @@ import {v4 as uuidv4} from 'uuid';
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import * as localforage from "localforage";
 import {checkDictHasTranslate} from "@/hooks/dict.ts";
+import {nanoid} from "nanoid";
 
 export interface BaseState {
   myDictList: Dict[],
@@ -88,18 +89,18 @@ export const useBaseStore = defineStore('base', {
           type: DictType.wrong,
           category: '自带字典'
         },
-        {
-          ...cloneDeep(DefaultDict),
-          id: 'article_nce2',
-          name: "新概念英语2-课文",
-          description: '新概念英语2-课文',
-          category: '英语学习',
-          tags: ['新概念英语'],
-          url: 'NCE_2.json',
-          translateLanguage: 'common',
-          language: 'en',
-          type: DictType.article
-        },
+        // {
+        //   ...cloneDeep(DefaultDict),
+        //   id: 'article_nce2',
+        //   name: "新概念英语2-课文",
+        //   description: '新概念英语2-课文',
+        //   category: '英语学习',
+        //   tags: ['新概念英语'],
+        //   url: 'NCE_2.json',
+        //   translateLanguage: 'common',
+        //   language: 'en',
+        //   type: DictType.article
+        // },
         {
           ...cloneDeep(DefaultDict),
           id: 'nce-new-2',
@@ -190,7 +191,7 @@ export const useBaseStore = defineStore('base', {
       return new Promise(async resolve => {
         try {
           let configStr: string = await localforage.getItem(SaveDict.key)
-          console.log(configStr)
+          // console.log(configStr)
           console.log('s', new Blob([configStr]).size)
           configStr = ''
           if (configStr) {
@@ -214,12 +215,12 @@ export const useBaseStore = defineStore('base', {
           let dictResourceUrl = `./dicts/${this.currentDict.language}/${this.currentDict.type}/${this.currentDict.translateLanguage}/${this.currentDict.url}`;
           if ([
             DictType.word,
-            DictType.customWord,
           ].includes(this.currentDict.type)) {
             if (!this.currentDict.originWords.length) {
               let r = await fetch(dictResourceUrl)
               // let r = await fetch(`.${this.currentDict.url}`)
               let v = await r.json()
+              v.map(s => s.id = nanoid(6))
               if (this.currentDict.translateLanguage === 'common') {
                 const runtimeStore = useRuntimeStore()
                 let r2 = await fetch('./translate/en2zh_CN-min.json')

@@ -18,7 +18,6 @@
   "dependencies": {
     "@opentranslate/baidu": "^1.4.2",
     "@opentranslate/translator": "^1.4.2",
-    "@types/uuid": "^9.0.4",
     "axios": "^1.5.0",
     "compromise": "^14.10.0",
     "copy-to-clipboard": "^3.3.3",
@@ -29,6 +28,7 @@
     "localforage": "^1.10.0",
     "lodash-es": "^4.17.21",
     "mitt": "^3.0.1",
+    "nanoid": "^5.0.3",
     "pinia": "^2.1.6",
     "sentence-splitter": "^4.2.1",
     "tesseract.js": "^4.1.1",
@@ -43,6 +43,7 @@
     "@iconify/vue": "^4.1.1",
     "@types/file-saver": "^2.0.5",
     "@types/lodash-es": "^4.17.9",
+    "@types/uuid": "^9.0.4",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "@vue/compiler-sfc": "^3.3.4",
