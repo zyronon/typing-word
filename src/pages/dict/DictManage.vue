@@ -975,7 +975,6 @@ function handleCurrentResidueWordListCheckAll() {
       </div>
     </div>
   </Dialog>
-
   <WordListDialog/>
   <EditBatchArticleModal/>
 </template>
@@ -995,7 +994,7 @@ $header-height: 60rem;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  width: 90vw;
+  width: 80vw;
   height: 75vh;
 }
 
@@ -1180,7 +1179,7 @@ $header-height: 60rem;
     justify-content: center;
 
     .wrapper {
-      width: 50%;
+      width: 500rem;
     }
 
     .el-select {
