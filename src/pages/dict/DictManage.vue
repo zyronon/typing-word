@@ -25,7 +25,7 @@ import {usePlayWordAudio} from "@/hooks/sound.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import VirtualWordList from "@/components/list/VirtualWordList.vue";
 import Dialog from "@/components/dialog/Dialog.vue";
-// import ArrowRight from 'ico'
+
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
@@ -37,13 +37,17 @@ let wordList = $ref([])
 
 let step = $ref(0)
 let loading = $ref(false)
-let show = $ref(false)
 let chapterList2 = $ref([])
 let chapterWordNumber = $ref(settingStore.chapterWordNumber)
 
-function close() {
-  show = false
-}
+let chapterIndex = $ref(-1)
+let residueWordList = $ref([])
+
+let currentChapterWordListCheckAll = $ref(false)
+let currentChapterWordListIsIndeterminate = $ref(false)
+let residueWordListCheckAll = $ref(false)
+let residueWordListIsIndeterminate = $ref(false)
+
 
 async function selectDict(val: {
   dict: DictResource | Dict,
@@ -81,10 +85,7 @@ async function selectDict(val: {
     }
 
     if (runtimeStore.editDict.type === DictType.customWord) {
-      if (!runtimeStore.editDict.words.length) {
-        changeSort(runtimeStore.editDict.sort)
-      }
-      wordList = cloneDeep(runtimeStore.editDict.words)
+
     }
 
     if (runtimeStore.editDict.type === DictType.article) {
@@ -105,7 +106,6 @@ async function selectDict(val: {
 
 function changeDict() {
   store.changeDict(runtimeStore.editDict)
-  close()
 }
 
 function groupByDictTags(dictList: DictResource[]) {
@@ -151,16 +151,8 @@ const groupedByCategoryAndTag = $computed(() => {
   return data
 })
 
-function clickEvent(e) {
-  console.log('e', e)
-}
-
 const dictIsArticle = $computed(() => {
   return isArticle(runtimeStore.editDict.type)
-})
-
-const chapterList = $computed(() => {
-  return dictIsArticle ? runtimeStore.editDict.articles.length : runtimeStore.editDict.chapterWords.length
 })
 
 function changeSort(v) {
@@ -270,9 +262,17 @@ async function onSubmit() {
 /**/
 /* 单词修改相关*/
 /**/
+
+let wordFormData = $ref({
+  where: '',
+  type: '',
+  index: 0
+})
+
 enum FormMode {
-  None = -1,
-  Add = -2,
+  None = '',
+  Add = 'Add',
+  Edit = 'Edit',
 }
 
 const DefaultFormWord = {
@@ -316,20 +316,17 @@ async function onSubmitWord() {
       } else {
         data.trans = []
       }
-      if (wordFormMode === FormMode.Add) {
+      if (wordFormData.type === FormMode.Add) {
         if (wordList.find(v => v.name === wordForm.name)) {
           return ElMessage.warning('已有相同名称单词！')
         } else {
           runtimeStore.editDict.originWords.push(data)
           runtimeStore.editDict.words.push(data)
-          //因为虚拟列表，必须重新赋值才能检测到更新
-          wordList = cloneDeep(runtimeStore.editDict.words)
 
-          if (runtimeStore.editDict.chapterWords.length) {
-            runtimeStore.editDict.chapterWords[runtimeStore.editDict.chapterWords.length - 1].push(data)
+          if (wordFormData.where === 'chapter') {
+            runtimeStore.editDict.chapterWords[chapterIndex].push(data)
           } else {
-            runtimeStore.editDict.chapterWords.push([data])
-            runtimeStore.editDict.chapterIndex = 0
+            residueWordList.push(data)
           }
 
           ElMessage.success('添加成功')
@@ -338,8 +335,13 @@ async function onSubmitWord() {
         }
         console.log('runtimeStore.editDict', runtimeStore.editDict)
       } else {
-        let oldData = cloneDeep(runtimeStore.editDict.words[wordFormMode])
-        runtimeStore.editDict.words[wordFormMode] = data
+        let oldData
+        if (wordFormData.where === 'chapter') {
+          oldData = cloneDeep(currentChapterWordList[wordFormData.index])
+        }else {
+          oldData = cloneDeep(residueWordList[wordFormData.index])
+        }
+        runtimeStore.editDict.words[wordFormData.index] = data
         //因为虚拟列表，必须重新赋值才能检测到更新
         wordList = cloneDeep(runtimeStore.editDict.words)
         //同步到原始列表，因为word可能是随机的，所以需要自己寻找index去修改原始列表
@@ -476,30 +478,21 @@ onMounted(() => {
       addWord()
     }
 
-    show = true
   })
 
   // console.log('categoryList', categoryList)
   // console.log('tagList', tagList)
 })
 
-let chapterIndex = $ref(-1)
-let residueWordList = $ref([])
-
-let currentChapterWordListCheckAll = $ref(false)
-let currentChapterWordListIsIndeterminate = $ref(false)
-let residueWordListCheckAll = $ref(false)
-let residueWordListIsIndeterminate = $ref(false)
-
 let currentChapterWordList: any[] = $computed(() => {
   return runtimeStore.editDict.chapterWords[chapterIndex] ?? []
 })
 
-let currentChapterWordListCheckedTotal: any[] = $computed(() => {
+let currentChapterWordListCheckedTotal = $computed(() => {
   return currentChapterWordList.filter(v => v.checked).length
 })
 
-let residueWordListCheckedTotal: any[] = $computed(() => {
+let residueWordListCheckedTotal = $computed(() => {
   return residueWordList.filter(v => v.checked).length
 })
 
@@ -633,7 +626,6 @@ function handleCurrentResidueWordListCheckAll() {
                 @click='editDict'
             />
             <BaseButton size="small" @click="showAllocationChapterDialog = true">恢复默认</BaseButton>
-
           </div>
         </header>
         <div class="detail" v-if="!isAddDict">
@@ -842,7 +834,7 @@ function handleCurrentResidueWordListCheckAll() {
               </div>
             </div>
             <div class="right-column">
-              <div class="add" v-if="wordFormMode !== FormMode.None">
+              <div class="add" v-if="wordFormData.type">
                 <div class="common-title">
                   {{ wordFormMode === FormMode.Add ? '添加' : '修改' }}单词
                 </div>
@@ -1144,7 +1136,7 @@ $header-height: 60rem;
         overflow: hidden;
       }
 
-      .column{
+      .column {
         flex: 1;
         background: white;
         border-radius: 10rem;
@@ -1174,7 +1166,7 @@ $header-height: 60rem;
         box-sizing: border-box;
         align-items: center;
 
-        .add{
+        .add {
           width: 90%;
         }
       }
