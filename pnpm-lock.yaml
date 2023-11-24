@@ -74,6 +74,9 @@ dependencies:
   vue-virtual-scroll-list:
     specifier: ^2.3.5
     version: 2.3.5
+  vue-virtual-scroller:
+    specifier: 2.0.0-beta.8
+    version: 2.0.0-beta.8(vue@3.3.4)
 
 devDependencies:
   '@iconify/vue':
@@ -3533,6 +3536,10 @@ packages:
     resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}
     dev: true
 
+  /mitt@2.1.0:
+    resolution: {integrity: sha512-ILj2TpLiysu2wkBbWjAmww7TkZb65aiQO+DkVdUTBpBXq+MHYiETENkKFMtsJZX1Lf4pe4QOrTSjIfUwN5lRdg==}
+    dev: false
+
   /mitt@3.0.1:
     resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
     dev: false
@@ -5096,6 +5103,22 @@ packages:
       vue: 3.3.4
     dev: false
 
+  /vue-observe-visibility@2.0.0-alpha.1(vue@3.3.4):
+    resolution: {integrity: sha512-flFbp/gs9pZniXR6fans8smv1kDScJ8RS7rEpMjhVabiKeq7Qz3D9+eGsypncjfIyyU84saU88XZ0zjbD6Gq/g==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.3.4
+    dev: false
+
+  /vue-resize@2.0.0-alpha.1(vue@3.3.4):
+    resolution: {integrity: sha512-7+iqOueLU7uc9NrMfrzbG8hwMqchfVfSzpVlCMeJQe4pyibqyoifDNbKTZvwxZKDvGkB+PdFeKvnGZMoEb8esg==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.3.4
+    dev: false
+
   /vue-router@4.2.5(vue@3.3.4):
     resolution: {integrity: sha512-DIUpKcyg4+PTQKfFPX88UWhlagBEBEfJ5A8XDXRJLUnZOvcpMF8o/dnL90vpVkGaPbjvXazV/rC1qBKrZlFugw==}
     peerDependencies:
@@ -5132,6 +5155,17 @@ packages:
 
   /vue-virtual-scroll-list@2.3.5:
     resolution: {integrity: sha512-YFK6u5yltqtAOfTBcij/KGAS2SoZvzbNIAf9qTULauPObEp53xj22tDuohrrM2vNkgoD5kejXICIUBt2Q4ZDqQ==}
+    dev: false
+
+  /vue-virtual-scroller@2.0.0-beta.8(vue@3.3.4):
+    resolution: {integrity: sha512-b8/f5NQ5nIEBRTNi6GcPItE4s7kxNHw2AIHLtDp+2QvqdTjVN0FgONwX9cr53jWRgnu+HRLPaWDOR2JPI5MTfQ==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      mitt: 2.1.0
+      vue: 3.3.4
+      vue-observe-visibility: 2.0.0-alpha.1(vue@3.3.4)
+      vue-resize: 2.0.0-alpha.1(vue@3.3.4)
     dev: false
 
   /vue@3.3.4:
