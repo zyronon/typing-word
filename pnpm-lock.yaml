@@ -11,9 +11,6 @@ dependencies:
   '@opentranslate/translator':
     specifier: ^1.4.2
     version: 1.4.2
-  '@types/uuid':
-    specifier: ^9.0.4
-    version: 9.0.4
   axios:
     specifier: ^1.5.0
     version: 1.5.1
@@ -44,6 +41,9 @@ dependencies:
   mitt:
     specifier: ^3.0.1
     version: 3.0.1
+  nanoid:
+    specifier: ^5.0.3
+    version: 5.0.3
   pinia:
     specifier: ^2.1.6
     version: 2.1.6(typescript@5.2.2)(vue@3.3.4)
@@ -85,6 +85,9 @@ devDependencies:
   '@types/lodash-es':
     specifier: ^4.17.9
     version: 4.17.9
+  '@types/uuid':
+    specifier: ^9.0.4
+    version: 9.0.4
   '@vitejs/plugin-vue':
     specifier: ^4.2.3
     version: 4.3.4(vite@4.4.9)(vue@3.3.4)
@@ -939,7 +942,7 @@ packages:
 
   /@types/uuid@9.0.4:
     resolution: {integrity: sha512-zAuJWQflfx6dYJM62vna+Sn5aeSWhh3OB+wfUEACNcqUSc0AGc5JKl+ycL1vrH7frGTXhJchYjE1Hak8L819dA==}
-    dev: false
+    dev: true
 
   /@types/web-bluetooth@0.0.16:
     resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==}
@@ -3585,6 +3588,12 @@ packages:
     resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /nanoid@5.0.3:
+    resolution: {integrity: sha512-I7X2b22cxA4LIHXPSqbBCEQSL+1wv8TuoefejsX4HFWyC6jc5JG7CEaxOltiKjc1M+YCS2YkrZZcj4+dytw9GA==}
+    engines: {node: ^18 || >=20}
+    hasBin: true
+    dev: false
 
   /nanomatch@1.2.13:
     resolution: {integrity: sha512-fpoe2T0RbHwBTBUOftAfBPaDEi06ufaUai0mE6Yn1kacc3SnTErfb/h+X94VXzI64rKFHYImXSvdwGGCmwOqCA==}
