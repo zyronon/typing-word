@@ -8,6 +8,8 @@ import VirtualList from 'vue-virtual-list-v3';
 import ZH from "@/locales/zh-CN.ts";
 import {createI18n} from 'vue-i18n'
 import router from "@/router.ts";
+import VueVirtualScroller from 'vue-virtual-scroller'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 const i18n = createI18n({
   locale: 'zh-CN',
@@ -21,6 +23,7 @@ const pinia = createPinia()
 // const app = createApp(Mobile)
 const app = createApp(App)
 
+app.use(VueVirtualScroller)
 // app.use(ElementPlus)
 app.use(pinia)
 app.use(VirtualList);

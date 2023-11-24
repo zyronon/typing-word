@@ -60,8 +60,10 @@ declare module 'vue' {
     Tooltip: typeof import('./src/components/Tooltip.vue')['default']
     TranslateSetting: typeof import('./src/components/toolbar/TranslateSetting.vue')['default']
     VirtualWordList: typeof import('./src/components/list/VirtualWordList.vue')['default']
+    VirtualWordList2: typeof import('./src/components/list/VirtualWordList2.vue')['default']
     VolumeIcon: typeof import('./src/components/icon/VolumeIcon.vue')['default']
     VolumeSetting: typeof import('./src/components/toolbar/VolumeSetting.vue')['default']
+    WordItem: typeof import('./src/components/list/WordItem.vue')['default']
     WordListDialog: typeof import('./src/components/dialog/WordListDialog.vue')['default']
   }
   export interface ComponentCustomProperties {

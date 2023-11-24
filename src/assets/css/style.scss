@@ -294,6 +294,10 @@ footer {
   padding: 0 var(--space);
 }
 
+.list-item-wrapper{
+  padding-bottom: 15rem;
+}
+
 .common-list-item {
   width: 100%;
   box-sizing: border-box;
@@ -310,9 +314,14 @@ footer {
 
   .left {
     display: flex;
-    gap: 3rem;
-    flex-direction: column;
-    word-break: break-word;
+    gap: 10rem;
+
+    .title-wrapper{
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      word-break: break-word;
+    }
   }
 
   .right {
@@ -325,7 +334,6 @@ footer {
   .volume, .collect, .easy {
     opacity: 0;
   }
-
 
   &:hover {
     background: var(--color-item-hover);

@@ -27,6 +27,8 @@ import VirtualWordList from "@/components/list/VirtualWordList.vue";
 import Dialog from "@/components/dialog/Dialog.vue";
 import {nanoid} from "nanoid";
 import {no} from "@/utils";
+import Test from "@/pages/dict/Test.vue";
+import VirtualWordList2 from "@/components/list/VirtualWordList2.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -80,7 +82,9 @@ async function selectDict(val: {
       if (!runtimeStore.editDict.originWords.length) {
         let r = await fetch(url)
         let v = await r.json()
-        v.map(s => s.id = nanoid(6))
+        v.map(s => {
+          s.id = nanoid(6)
+        })
         runtimeStore.editDict.originWords = cloneDeep(v)
         changeSort(runtimeStore.editDict.sort)
       }
@@ -550,8 +554,13 @@ function resetChapterList() {
   chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
 }
 
-function handleCheckedChapterWordListChange(source: any) {
-  source.checked = !source.checked
+function handleCheckedChapterWordListChange({word: source}: any) {
+  // source.checked = !source.checked
+  let rIndex = currentChapterWordList.findIndex(v => v.id === source.id)
+  console.log('handleCheckedChapterWordListChange', currentChapterWordList[rIndex].checked)
+  if (rIndex > -1) {
+    currentChapterWordList[rIndex].checked = !currentChapterWordList[rIndex].checked
+  }
   currentChapterWordListCheckAll = currentChapterWordList.every(v => v.checked)
   if (currentChapterWordListCheckAll) {
     currentChapterWordListIsIndeterminate = false
@@ -657,7 +666,7 @@ const isPinDict = $computed(() => {
               </div>
               <BaseButton size="small" @click="exportData">导出</BaseButton>
             </div>
-            <div class="desc" v-if="runtimeStore.editDict.description">{{runtimeStore.editDict.description}}</div>
+            <div class="desc" v-if="runtimeStore.editDict.description">{{ runtimeStore.editDict.description }}</div>
             <div class="num">总词汇: {{ runtimeStore.editDict.originWords.length }}词</div>
           </div>
         </header>
@@ -742,48 +751,72 @@ const isPinDict = $computed(() => {
                 </div>
               </div>
               <div class="wrapper">
-                <virtual-list class="virtual-list"
-                              v-loading="loading"
-                              v-if="currentChapterWordList.length"
-                              :keeps="20"
-                              data-key="id"
-                              :data-sources="currentChapterWordList"
-                              :estimate-size="45"
-                >
-                  <template #={source,index}>
-                    <div class="common-list-item space15"
-                         @click="handleCheckedChapterWordListChange(source)">
-                      <div class="flex gap10">
-                        <el-checkbox v-model="source.checked"
-                                     @change="handleCheckedChapterWordListChange(source)"
-                                     size="large"/>
-                        <div class="left">
-                          <div class="item-title">
-                            <span class="word">{{ source.name }}</span>
-                            <span class="phonetic">{{ source.usphone }}</span>
-                            <VolumeIcon class="volume" @click="playWordAudio(source.name)"></VolumeIcon>
-                          </div>
-                          <div class="item-sub-title" v-if="source.trans.length">
-                            <div v-for="item in source.trans">{{ item }}</div>
+                <VirtualWordList2
+                    :list="currentChapterWordList"
+                    @click="handleCheckedChapterWordListChange"
+                  >
+                  <template v-slot:prefix="{word}">
+                    <el-checkbox v-model="word.checked"
+                                 @change="handleCheckedChapterWordListChange({word})"
+                                 size="large"/>
+                  </template>
+                  <template v-slot="{word,index}">
+                    <BaseIcon
+                        class-name="del"
+                        @click="editWord(word,index,'chapter')"
+                        title="编辑"
+                        icon="tabler:edit"/>
+                    <BaseIcon
+                        class-name="del"
+                        @click="delWord(word,index,'chapter')"
+                        title="移除"
+                        icon="solar:trash-bin-minimalistic-linear"/>
+                  </template>
+                </VirtualWordList2>
+                <template v-if="false">
+                  <virtual-list class="virtual-list"
+                                v-loading="loading"
+                                v-if="currentChapterWordList.length"
+                                :keeps="20"
+                                data-key="id"
+                                :data-sources="currentChapterWordList"
+                                :estimate-size="45"
+                  >
+                    <template #={source,index}>
+                      <div class="common-list-item space15"
+                           @click="handleCheckedChapterWordListChange(source)">
+                        <div class="flex gap10">
+                          <el-checkbox v-model="source.checked"
+                                       @change="handleCheckedChapterWordListChange(source)"
+                                       size="large"/>
+                          <div class="left">
+                            <div class="item-title">
+                              <span class="word">{{ source.name }}</span>
+                              <span class="phonetic">{{ source.usphone }}</span>
+                              <VolumeIcon class="volume" @click="playWordAudio(source.name)"></VolumeIcon>
+                            </div>
+                            <div class="item-sub-title" v-if="source.trans.length">
+                              <div v-for="item in source.trans">{{ item }}</div>
+                            </div>
                           </div>
                         </div>
+                        <div class="right">
+                          <BaseIcon
+                              class-name="del"
+                              @click="editWord(source,index,'chapter')"
+                              title="编辑"
+                              icon="tabler:edit"/>
+                          <BaseIcon
+                              class-name="del"
+                              @click="delWord(source,index,'chapter')"
+                              title="移除"
+                              icon="solar:trash-bin-minimalistic-linear"/>
+                        </div>
                       </div>
-                      <div class="right">
-                        <BaseIcon
-                            class-name="del"
-                            @click="editWord(source,index,'chapter')"
-                            title="编辑"
-                            icon="tabler:edit"/>
-                        <BaseIcon
-                            class-name="del"
-                            @click="delWord(source,index,'chapter')"
-                            title="移除"
-                            icon="solar:trash-bin-minimalistic-linear"/>
-                      </div>
-                    </div>
-                  </template>
-                </virtual-list>
-                <Empty text="请选择章节" v-else/>
+                    </template>
+                  </virtual-list>
+                  <Empty text="请选择章节" v-else/>
+                </template>
               </div>
             </div>
             <div class="options-column">

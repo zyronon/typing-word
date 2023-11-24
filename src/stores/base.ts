@@ -220,7 +220,9 @@ export const useBaseStore = defineStore('base', {
               let r = await fetch(dictResourceUrl)
               // let r = await fetch(`.${this.currentDict.url}`)
               let v = await r.json()
-              v.map(s => s.id = nanoid(6))
+              v.map(s => {
+                s.id = nanoid(6)
+              })
               if (this.currentDict.translateLanguage === 'common') {
                 const runtimeStore = useRuntimeStore()
                 let r2 = await fetch('./translate/en2zh_CN-min.json')
