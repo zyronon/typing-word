@@ -37,7 +37,8 @@
     "vue-activity-calendar": "^1.2.2",
     "vue-i18n": "9",
     "vue-router": "4",
-    "vue-virtual-list-v3": "^1.5.1"
+    "vue-virtual-list-v3": "^1.5.1",
+    "vue-virtual-scroll-list": "^2.3.5"
   },
   "devDependencies": {
     "@iconify/vue": "^4.1.1",

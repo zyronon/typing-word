@@ -71,6 +71,9 @@ dependencies:
   vue-virtual-list-v3:
     specifier: ^1.5.1
     version: 1.5.1
+  vue-virtual-scroll-list:
+    specifier: ^2.3.5
+    version: 2.3.5
 
 devDependencies:
   '@iconify/vue':
@@ -1753,6 +1756,7 @@ packages:
   /color-convert@2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
     engines: {node: '>=7.0.0'}
+    requiresBuild: true
     dependencies:
       color-name: 1.1.4
     dev: true
@@ -1763,6 +1767,7 @@ packages:
 
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+    requiresBuild: true
     dev: true
 
   /color-support@1.1.3:
@@ -2772,6 +2777,7 @@ packages:
   /has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
+    requiresBuild: true
     dev: true
 
   /has-property-descriptors@1.0.1:
@@ -4553,6 +4559,7 @@ packages:
   /supports-color@7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
+    requiresBuild: true
     dependencies:
       has-flag: 4.0.0
     dev: true
@@ -5112,6 +5119,10 @@ packages:
     resolution: {integrity: sha512-HbI2DTTRmw6GotG//wrKj6qcYpS8ecPFTxCxRUzXbz929xgXuO/VlcxxIQ9eusGVv5T64twk4l93MnKgyscL9g==}
     dependencies:
       '@juggle/resize-observer': 3.4.0
+    dev: false
+
+  /vue-virtual-scroll-list@2.3.5:
+    resolution: {integrity: sha512-YFK6u5yltqtAOfTBcij/KGAS2SoZvzbNIAf9qTULauPObEp53xj22tDuohrrM2vNkgoD5kejXICIUBt2Q4ZDqQ==}
     dev: false
 
   /vue@3.3.4:
