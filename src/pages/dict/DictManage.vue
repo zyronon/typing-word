@@ -30,6 +30,7 @@ import {no} from "@/utils";
 import Test from "@/pages/dict/Test.vue";
 import VirtualWordList2 from "@/components/list/VirtualWordList2.vue";
 import ChapterWordList from "@/pages/dict/ChapterWordList.vue";
+import {MessageBox} from "@/utils/MessageBox.tsx";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -43,6 +44,9 @@ let step = $ref(1)
 let loading = $ref(false)
 let chapterList2 = $ref([])
 let chapterWordNumber = $ref(settingStore.chapterWordNumber)
+let chapterWordListRef: any = $ref()
+let residueWordListRef: any = $ref()
+let chapterListRef: any = $ref()
 
 let chapterIndex = $ref(-1)
 let residueWordList = $ref([])
@@ -65,35 +69,35 @@ async function selectDict(val: {
       ...cloneDeep(DefaultDict),
       ...item,
     })
+    //设置默认章节单词数
+    runtimeStore.editDict.chapterWordNumber = settingStore.chapterWordNumber
   }
 
   if ([DictType.collect, DictType.simple, DictType.wrong].includes(runtimeStore.editDict.type)) {
   } else {
-    let url = `./dicts/${runtimeStore.editDict.language}/${runtimeStore.editDict.type}/${runtimeStore.editDict.translateLanguage}/${runtimeStore.editDict.url}`;
-    if (runtimeStore.editDict.type === DictType.word) {
-      if (!runtimeStore.editDict.originWords.length) {
-        let r = await fetch(url)
-        let v = await r.json()
-        v.map(s => {
-          s.id = nanoid(6)
-        })
-        runtimeStore.editDict.originWords = cloneDeep(v)
-        changeSort(runtimeStore.editDict.sort)
+    //如果不是自定义词典，并且有url地址才去下载
+    if (!runtimeStore.editDict.isCustom && runtimeStore.editDict.url) {
+      let url = `./dicts/${runtimeStore.editDict.language}/${runtimeStore.editDict.type}/${runtimeStore.editDict.translateLanguage}/${runtimeStore.editDict.url}`;
+      if (runtimeStore.editDict.type === DictType.word) {
+        if (!runtimeStore.editDict.originWords.length) {
+          let r = await fetch(url)
+          let v = await r.json()
+          v.map(s => {
+            s.id = nanoid(6)
+          })
+          runtimeStore.editDict.originWords = cloneDeep(v)
+          changeSort(runtimeStore.editDict.sort)
+        }
       }
-    }
-
-    if (runtimeStore.editDict.type === DictType.customWord) {
-
-    }
-
-    if (runtimeStore.editDict.type === DictType.article) {
-      if (!runtimeStore.editDict.articles.length) {
-        let r = await fetch(url)
-        let v = await r.json()
-        runtimeStore.editDict.articles = cloneDeep(v.map(s => {
-          s.id = uuidv4()
-          return s
-        }))
+      if (runtimeStore.editDict.type === DictType.article) {
+        if (!runtimeStore.editDict.articles.length) {
+          let r = await fetch(url)
+          let v = await r.json()
+          runtimeStore.editDict.articles = cloneDeep(v.map(s => {
+            s.id = uuidv4()
+            return s
+          }))
+        }
       }
     }
   }
@@ -153,13 +157,13 @@ const dictIsArticle = $computed(() => {
   return isArticle(runtimeStore.editDict.type)
 })
 
-function changeSort(v) {
+function changeSort(v: Sort) {
   if (v === Sort.normal) {
     runtimeStore.editDict.words = cloneDeep(runtimeStore.editDict.originWords)
   } else if (v === Sort.random) {
-    runtimeStore.editDict.words = shuffle(cloneDeep(runtimeStore.editDict.originWords))
+    runtimeStore.editDict.words = shuffle(runtimeStore.editDict.originWords)
   } else {
-    runtimeStore.editDict.words = reverse(cloneDeep(runtimeStore.editDict.originWords))
+    runtimeStore.editDict.words = reverse(runtimeStore.editDict.originWords)
   }
   resetChapterList()
 }
@@ -290,13 +294,11 @@ const wordRules = reactive<FormRules>({
     {max: 30, message: '名称不能超过30个字符', trigger: 'blur'},
   ],
 })
-let wordListRef: any = $ref()
 
 //同步到我的词典列表
 function syncMyDictList() {
   //任意修改，都将其变为自定义词典
-  if (runtimeStore.editDict.type === DictType.word) runtimeStore.editDict.type = DictType.customWord
-  if (runtimeStore.editDict.type === DictType.article) runtimeStore.editDict.type = DictType.customArticle
+  runtimeStore.editDict.isCustom = true
 
   let rIndex = store.myDictList.findIndex(v => v.id === runtimeStore.editDict.id)
   if (rIndex > -1) {
@@ -315,47 +317,29 @@ async function onSubmitWord() {
       } else {
         data.trans = []
       }
+      //直接使用引用修改
+      let index = wordFormData.where === 'chapter' ? 0 : 1;
+      let list = [chapterWordList, residueWordList][index]
+      let listRef = [chapterWordListRef, residueWordListRef][index]
       if (wordFormData.type === FormMode.Add) {
         data.id = nanoid(6)
         data.checked = false
-        let r
-        if (wordFormData.where === 'chapter') {
-          r = currentChapterWordList.find(v => v.name === wordForm.name)
-          if (r) return ElMessage.warning('已有相同名称单词！')
-          else {
-            currentChapterWordList.push(data)
-          }
-        } else {
-          r = residueWordList.find(v => v.name === wordForm.name)
-          if (r) return ElMessage.warning('已有相同名称单词！')
-          else {
-            residueWordList.push(data)
-          }
-        }
-
+        let r = list.find(v => v.name === wordForm.name)
+        if (r) return ElMessage.warning('已有相同名称单词！')
+        else list.push(data)
         runtimeStore.editDict.originWords.push(data)
         runtimeStore.editDict.words.push(data)
         ElMessage.success('添加成功')
         wordForm = cloneDeep(DefaultFormWord)
-        setTimeout(wordListRef?.scrollToBottom, 100)
-
-        console.log('runtimeStore.editDict', runtimeStore.editDict)
+        setTimeout(listRef?.scrollToBottom, 100)
       } else {
-        //直接使用引用修改
-        let r
-        if (wordFormData.where === 'chapter') {
-          r = currentChapterWordList.find(v => v.id === wordFormData.id)
-          if (r) assign(r, data)
-        } else {
-          r = residueWordList.find(v => v.id === wordFormData.id)
-          if (r) assign(r, data)
-        }
+        let r = list.find(v => v.id === wordFormData.id)
+        if (r) assign(r, data)
         //同步修改到列表
         r = runtimeStore.editDict.originWords.find(v => v.id === wordFormData.id)
         if (r) assign(r, data)
         r = runtimeStore.editDict.words.find(v => v.id === wordFormData.id)
         if (r) assign(r, data)
-
         ElMessage.success('修改成功')
       }
       syncMyDictList()
@@ -421,7 +405,6 @@ watch(() => store.load, v => {
   }
 })
 
-const playWordAudio = usePlayWordAudio()
 let showAllocationChapterDialog = $ref(false)
 
 onMounted(() => {
@@ -468,12 +451,17 @@ onMounted(() => {
   // console.log('tagList', tagList)
 })
 
-let currentChapterWordList: any[] = $computed(() => {
-  return runtimeStore.editDict.chapterWords[chapterIndex] ?? []
+let chapterWordList: any[] = $computed({
+  get() {
+    return runtimeStore.editDict.chapterWords[chapterIndex] ?? []
+  },
+  set(newValue) {
+    runtimeStore.editDict.chapterWords[chapterIndex] = newValue
+  }
 })
 
-let currentChapterWordListCheckedTotal = $computed(() => {
-  return currentChapterWordList.filter(v => v.checked).length
+let chapterWordListCheckedTotal = $computed(() => {
+  return chapterWordList.filter(v => v.checked).length
 })
 
 let residueWordListCheckedTotal = $computed(() => {
@@ -481,19 +469,19 @@ let residueWordListCheckedTotal = $computed(() => {
 })
 
 function handleChangeCurrentChapter(index: number) {
-  currentChapterWordList.map(v => v.checked = false)
+  chapterWordList.map(v => v.checked = false)
   chapterIndex = index
   closeWordForm()
 }
 
 function toResidueWordList() {
-  let list = currentChapterWordList.filter(v => v.checked)
+  let list = chapterWordList.filter(v => v.checked)
   if (wordFormData.type === FormMode.Edit && wordFormData.where === 'chapter') {
     if (list.find(v => v.name === wordForm.name)) {
       wordFormData.where = 'residue'
     }
   }
-  runtimeStore.editDict.chapterWords[chapterIndex] = currentChapterWordList.filter(v => !v.checked)
+  runtimeStore.editDict.chapterWords[chapterIndex] = chapterWordList.filter(v => !v.checked)
   list.map(v => v.checked = false)
   residueWordList = residueWordList.concat(list)
 }
@@ -508,12 +496,15 @@ function toChapterWordList() {
   }
   residueWordList = residueWordList.filter(v => !v.checked)
   list.map(v => v.checked = false)
-  runtimeStore.editDict.chapterWords[chapterIndex] = currentChapterWordList.concat(list)
+  runtimeStore.editDict.chapterWords[chapterIndex] = chapterWordList.concat(list)
 }
 
 function addNewChapter() {
   runtimeStore.editDict.chapterWords.push([])
   chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
+  chapterListRef?.scrollToItem(chapterList2.length - 1)
+  ElMessage.success('新增章节成功')
+  console.log('scrollToBottom', chapterListRef)
 }
 
 function delWordChapter(index: number) {
@@ -529,14 +520,17 @@ function delWordChapter(index: number) {
   syncMyDictList()
 }
 
-function resetChapterList() {
+function resetChapterList(num?: number) {
+  if (num !== undefined) {
+    runtimeStore.editDict.chapterWordNumber = num
+  }
   residueWordList = []
   chapterIndex = -1
   runtimeStore.editDict.words.map(v => v.checked = false)
-  runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, chapterWordNumber)
+  runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
   chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
-  console.log('runtimeStore.editDict.chapterWords',runtimeStore.editDict.chapterWords)
-  console.log('chapterList2',chapterList2)
+  // console.log('runtimeStore.editDict.chapterWords',runtimeStore.editDict.chapterWords)
+  // console.log('chapterList2',chapterList2)
 }
 
 function exportData() {
@@ -550,6 +544,31 @@ function importData() {
 const isPinDict = $computed(() => {
   return [DictType.collect, DictType.wrong, DictType.simple].includes(runtimeStore.editDict.type)
 })
+
+async function resetDict() {
+  MessageBox.confirm(
+      '删除所有自定义内容: 章节、排序、单词，并恢复至默认状态，确认恢复？',
+      '提示',
+      async () => {
+        isAddDict = false
+        dictForm = cloneDeep(DefaultDictForm)
+        closeWordForm()
+        chapterIndex = -1
+        if (runtimeStore.editDict.url) {
+          runtimeStore.editDict.chapterWordNumber = settingStore.chapterWordNumber
+          let url = `./dicts/${runtimeStore.editDict.language}/${runtimeStore.editDict.type}/${runtimeStore.editDict.translateLanguage}/${runtimeStore.editDict.url}`;
+          let r = await fetch(url)
+          let v = await r.json()
+          v.map(s => {
+            s.id = nanoid(6)
+          })
+          runtimeStore.editDict.originWords = cloneDeep(v)
+          changeSort(runtimeStore.editDict.sort)
+        }
+      }
+  )
+  // runtimeStore.editDict
+}
 
 </script>
 
@@ -608,7 +627,7 @@ const isPinDict = $computed(() => {
               <template v-if="!isPinDict">
                 <BaseIcon icon="tabler:edit" @click='editDict'/>
                 <BaseIcon icon="ph:star" @click='no'/>
-                <BaseButton size="small" @click="no">恢复默认</BaseButton>
+                <BaseButton size="small" @click="resetDict">恢复默认</BaseButton>
               </template>
               <div class="import hvr-grow">
                 <BaseButton size="small">导入</BaseButton>
@@ -641,6 +660,7 @@ const isPinDict = $computed(() => {
               <div class="wrapper">
                 <RecycleScroller
                     v-if="chapterList2.length"
+                    ref="chapterListRef"
                     style="height: 100%;"
                     :items="chapterList2"
                     :item-size="63"
@@ -671,30 +691,34 @@ const isPinDict = $computed(() => {
                 <Empty v-else/>
               </div>
             </div>
-            <ChapterWordList :title="`${chapterIndex > -1 ? `第${chapterIndex + 1}章` : ''} 单词列表`"
-                             :show-add="chapterIndex > -1"
-                             @add="addWord('chapter')"
-                             @del="delWord"
-                             empty-title="请选择章节"
-                             @edit="val => editWord(val.word,val.index,'chapter')"
-                             :list="currentChapterWordList"/>
+            <ChapterWordList
+                ref="chapterWordListRef"
+                :title="`${chapterIndex > -1 ? `第${chapterIndex + 1}章` : ''} 单词列表`"
+                :show-add="chapterIndex > -1"
+                @add="addWord('chapter')"
+                @del="delWord"
+                :empty-title="chapterIndex === -1?'请选择章节':null"
+                @edit="val => editWord(val.word,val.index,'chapter')"
+                v-model:list="chapterWordList"/>
             <div class="options-column">
               <BaseButton @click="toChapterWordList"
                           :disabled="residueWordListCheckedTotal === 0">
                 &lt;
               </BaseButton>
               <BaseButton @click="toResidueWordList"
-                          :disabled="currentChapterWordListCheckedTotal === 0">
+                          :disabled="chapterWordListCheckedTotal === 0">
                 &gt;
               </BaseButton>
             </div>
-            <ChapterWordList title="未分配单词列表"
-                             :empty-title="null"
-                             :show-add="true"
-                             @add="addWord('residue')"
-                             @del="delWord"
-                             @edit="val => editWord(val.word,val.index,'residue')"
-                             :list="residueWordList"/>
+            <ChapterWordList
+                ref="residueWordListRef"
+                title="未分配单词列表"
+                :empty-title="null"
+                :show-add="true"
+                @add="addWord('residue')"
+                @del="delWord"
+                @edit="val => editWord(val.word,val.index,'residue')"
+                v-model:list="residueWordList"/>
             <div class="right-column">
               <div class="add" v-if="wordFormData.type">
                 <div class="common-title">
@@ -796,7 +820,7 @@ const isPinDict = $computed(() => {
   <Dialog
       title="智能分配单词"
       :footer="true"
-      @ok="resetChapterList"
+      @ok="resetChapterList(chapterWordNumber)"
       @cancel="chapterWordNumber = settingStore.chapterWordNumber"
       v-model="showAllocationChapterDialog">
     <div class="allocation-chapter">

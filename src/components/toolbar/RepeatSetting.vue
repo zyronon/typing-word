@@ -14,7 +14,6 @@ const store = useBaseStore()
 const settingStore = useSettingStore()
 
 let show = $ref(false)
-let radio1 = $ref('1')
 useWindowClick(() => show = false)
 
 let timer = 0

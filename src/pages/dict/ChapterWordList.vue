@@ -1,12 +1,15 @@
 <script setup lang="ts">
 
-import {no} from "@/utils";
-import {Word} from "@/types.ts";
+import {Sort, Word} from "@/types.ts";
 import VirtualWordList2 from "@/components/list/VirtualWordList2.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Empty from "@/components/Empty.vue";
 import {$computed, $ref} from "vue/macros";
 import {watch} from "vue";
+import MiniDialog from "@/components/dialog/MiniDialog.vue";
+import BaseButton from "@/components/BaseButton.vue";
+import {useWindowClick} from "@/hooks/event.ts";
+import {reverse, shuffle} from "lodash-es";
 
 const props = defineProps<{
   title: string,
@@ -18,7 +21,8 @@ const props = defineProps<{
 const emit = defineEmits<{
   add: []
   edit: [val: { word: Word, index: number }]
-  del: [val: { word: Word, index: number }]
+  del: [val: { word: Word, index: number }],
+  'update:list': [val: Word[]]
 }>()
 
 let checkedAll = $ref(false)
@@ -57,6 +61,33 @@ function del(val: { word: Word, index: number }) {
   props.list.splice(val.index, 1)
   emit('del', val)
 }
+
+function sort(type: Sort) {
+  if (type === Sort.reverse) {
+    ElMessage.success('已翻转排序')
+    emit('update:list', reverse(props.list))
+  }
+  if (type === Sort.random) {
+    ElMessage.success('已随机排序')
+    emit('update:list', shuffle(props.list))
+  }
+}
+
+let listRef: any = $ref()
+
+function scrollToBottom() {
+  listRef.scrollToBottom()
+}
+
+function scrollToItem(index: number) {
+  listRef.scrollToItem(index)
+}
+
+defineExpose({scrollToBottom, scrollToItem})
+
+let show = $ref(false)
+useWindowClick(() => show = false)
+
 </script>
 
 <template>
@@ -65,11 +96,27 @@ function del(val: { word: Word, index: number }) {
       <div class="common-title">
         <span>{{ title }}</span>
         <div class="options">
-          <BaseIcon
-              v-if="list.length"
-              @click="no"
-              icon="icon-park-outline:sort-two"
-              title="改变顺序"/>
+          <div class="setting"
+               v-if="list.length"
+               @click.stop="null">
+            <BaseIcon
+                title="改变顺序"
+                icon="icon-park-outline:sort-two"
+                @click="show = !show"
+            />
+            <MiniDialog
+                v-model="show"
+                style="width: 130rem;"
+            >
+              <div class="mini-row-title">
+                列表循环设置
+              </div>
+              <div class="mini-row">
+                <BaseButton size="small" @click="sort(Sort.reverse)">翻转</BaseButton>
+                <BaseButton size="small" @click="sort(Sort.random)">随机</BaseButton>
+              </div>
+            </MiniDialog>
+          </div>
           <BaseIcon
               v-if="showAdd"
               @click="emit('add')"
@@ -93,6 +140,7 @@ function del(val: { word: Word, index: number }) {
     </div>
     <div class="wrapper">
       <VirtualWordList2
+          ref="listRef"
           :list="list"
           v-if="list.length"
           @click="handleCheckedChange"

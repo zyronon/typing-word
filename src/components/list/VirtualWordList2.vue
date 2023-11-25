@@ -54,10 +54,14 @@ function reset() {
 }
 
 function scrollToBottom() {
-  listRef.scrollToIndex(props.list.length - 1)
+  listRef.scrollToBottom()
 }
 
-defineExpose({scrollToBottom})
+function scrollToItem(index: number) {
+  listRef.scrollToItem(index)
+}
+
+defineExpose({scrollToBottom, scrollToItem})
 
 </script>
 

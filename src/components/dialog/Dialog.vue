@@ -18,7 +18,8 @@ export interface ModalProps {
   header?: boolean
   confirmButtonText?: string
   cancelButtonText?: string,
-  keyboard?: boolean
+  keyboard?: boolean,
+  confirm?: any
 }
 
 const props = withDefaults(defineProps<ModalProps>(), {
@@ -39,6 +40,7 @@ const emit = defineEmits([
   'cancel',
 ])
 
+let confirmButtonLoading = $ref(false)
 let zIndex = $ref(999)
 let visible = $ref(false)
 let openTime = $ref(Date.now())
@@ -118,6 +120,11 @@ useEventListener('keyup', (e: KeyboardEvent) => {
 })
 
 async function ok() {
+  if (props.confirm) {
+    confirmButtonLoading = true
+    await props.confirm()
+    confirmButtonLoading = false
+  }
   await close()
   emit('ok')
 }
@@ -162,7 +169,10 @@ async function cancel() {
           </div>
           <div class="right">
             <BaseButton type="link" @click="cancel">{{ cancelButtonText }}</BaseButton>
-            <BaseButton @click="ok">{{ confirmButtonText }}</BaseButton>
+            <BaseButton
+                :loading="confirmButtonLoading"
+                @click="ok">{{ confirmButtonText }}
+            </BaseButton>
           </div>
         </div>
       </div>
