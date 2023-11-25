@@ -8,12 +8,14 @@ export class MessageBox {
         title: string,
         onOk: () => any = () => void 0,
         onCancel: () => any = () => void 0,
+        onClose: () => any = () => void 0,
         config: ModalProps = {}
     ) {
         let container = document.createElement('div')
         const close = () => {
             render(null, container);
             container.remove()
+            onClose?.()
         }
 
         const vNode = createVNode(Dialog, {

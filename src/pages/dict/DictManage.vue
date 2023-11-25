@@ -3,7 +3,7 @@ import {dictionaryResources} from '@/assets/dictionary.ts'
 import {useBaseStore} from "@/stores/base.ts"
 import {onMounted, reactive, watch} from "vue"
 import {DefaultDict, Dict, DictResource, DictType, languageCategoryOptions, Sort, Word} from "@/types.ts"
-import {assign, chunk, cloneDeep, groupBy, merge, reverse, shuffle} from "lodash-es";
+import {assign, chunk, cloneDeep, groupBy, reverse, shuffle} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
 import {Icon} from '@iconify/vue';
 import DictGroup from "@/components/toolbar/DictGroup.vue";
@@ -20,17 +20,14 @@ import {FormInstance, FormRules} from "element-plus";
 import Empty from "@/components/Empty.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import EditBatchArticleModal from "@/components/article/EditBatchArticleModal.vue";
-import VolumeIcon from "@/components/icon/VolumeIcon.vue";
-import {usePlayWordAudio} from "@/hooks/sound.ts";
 import BaseButton from "@/components/BaseButton.vue";
-import VirtualWordList from "@/components/list/VirtualWordList.vue";
 import Dialog from "@/components/dialog/Dialog.vue";
 import {nanoid} from "nanoid";
 import {no} from "@/utils";
-import Test from "@/pages/dict/Test.vue";
-import VirtualWordList2 from "@/components/list/VirtualWordList2.vue";
 import ChapterWordList from "@/pages/dict/ChapterWordList.vue";
 import {MessageBox} from "@/utils/MessageBox.tsx";
+import * as  XLSX from 'xlsx'
+
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -48,7 +45,7 @@ let chapterWordListRef: any = $ref()
 let residueWordListRef: any = $ref()
 let chapterListRef: any = $ref()
 
-let chapterIndex = $ref(-1)
+let chapterIndex = $ref(1)
 let residueWordList = $ref([])
 
 async function selectDict(val: {
@@ -451,7 +448,7 @@ onMounted(() => {
   // console.log('tagList', tagList)
 })
 
-let chapterWordList: any[] = $computed({
+let chapterWordList: Word[] = $computed({
   get() {
     return runtimeStore.editDict.chapterWords[chapterIndex] ?? []
   },
@@ -475,28 +472,75 @@ function handleChangeCurrentChapter(index: number) {
 }
 
 function toResidueWordList() {
-  let list = chapterWordList.filter(v => v.checked)
-  if (wordFormData.type === FormMode.Edit && wordFormData.where === 'chapter') {
-    if (list.find(v => v.name === wordForm.name)) {
-      wordFormData.where = 'residue'
-    }
-  }
-  runtimeStore.editDict.chapterWords[chapterIndex] = chapterWordList.filter(v => !v.checked)
+  let list = cloneDeep(chapterWordList.filter(v => v.checked))
   list.map(v => v.checked = false)
-  residueWordList = residueWordList.concat(list)
+  checkRepeatWord(list, residueWordList,
+      noRepeatWords => {
+        if (wordFormData.type === FormMode.Edit && wordFormData.where === 'chapter') {
+          if (noRepeatWords.find(v => v.name === wordForm.name)) {
+            wordFormData.where = 'residue'
+          }
+        }
+        noRepeatWords.map(v => {
+          let rIndex = chapterWordList.findIndex(s => s.id === v.id)
+          if (rIndex > -1) chapterWordList.splice(rIndex, 1)
+        })
+        residueWordList = residueWordList.concat(noRepeatWords)
+        setTimeout(residueWordListRef?.scrollToBottom, 100)
+      },
+      repeatWords => {
+        if (wordFormData.type === FormMode.Edit && wordFormData.where === 'chapter') {
+          if (repeatWords.find(v => v.name === wordForm.name)) {
+            wordFormData.where = 'residue'
+          }
+        }
+        repeatWords.map(v => {
+          residueWordList[v.index] = v
+          delete residueWordList[v.index].index
+
+          let rIndex = chapterWordList.findIndex(s => s.id === v.id)
+          if (rIndex > -1) chapterWordList.splice(rIndex, 1)
+        })
+        setTimeout(residueWordListRef?.scrollToBottom, 100)
+      }
+  )
 }
 
 function toChapterWordList() {
   if (chapterIndex == -1) return ElMessage.warning('请选择章节')
-  let list = residueWordList.filter(v => v.checked)
-  if (wordFormData.type === FormMode.Edit && wordFormData.where !== 'chapter') {
-    if (list.find(v => v.name === wordForm.name)) {
-      wordFormData.where = 'chapter'
-    }
-  }
-  residueWordList = residueWordList.filter(v => !v.checked)
+  let list = cloneDeep(residueWordList.filter(v => v.checked))
   list.map(v => v.checked = false)
-  runtimeStore.editDict.chapterWords[chapterIndex] = chapterWordList.concat(list)
+
+  checkRepeatWord(list, chapterWordList,
+      noRepeatWords => {
+        if (wordFormData.type === FormMode.Edit && wordFormData.where !== 'chapter') {
+          if (noRepeatWords.find(v => v.name === wordForm.name)) {
+            wordFormData.where = 'chapter'
+          }
+        }
+        noRepeatWords.map(v => {
+          let rIndex = residueWordList.findIndex(s => s.id === v.id)
+          if (rIndex > -1) residueWordList.splice(rIndex, 1)
+        })
+        chapterWordList = chapterWordList.concat(noRepeatWords)
+        setTimeout(chapterWordListRef?.scrollToBottom, 100)
+      },
+      repeatWords => {
+        if (wordFormData.type === FormMode.Edit && wordFormData.where !== 'chapter') {
+          if (repeatWords.find(v => v.name === wordForm.name)) {
+            wordFormData.where = 'chapter'
+          }
+        }
+        repeatWords.map(v => {
+          chapterWordList[v.index] = v
+          delete chapterWordList[v.index].index
+
+          let rIndex = residueWordList.findIndex(s => s.id === v.id)
+          if (rIndex > -1) residueWordList.splice(rIndex, 1)
+        })
+        setTimeout(chapterWordListRef?.scrollToBottom, 100)
+      }
+  )
 }
 
 function addNewChapter() {
@@ -533,17 +577,103 @@ function resetChapterList(num?: number) {
   // console.log('chapterList2',chapterList2)
 }
 
-function exportData() {
-  no()
-}
-
-function importData() {
-  no()
-}
-
 const isPinDict = $computed(() => {
   return [DictType.collect, DictType.wrong, DictType.simple].includes(runtimeStore.editDict.type)
 })
+
+function exportData() {
+  let wb = XLSX.utils.book_new()
+// 一个简单的sheet
+  let sheetData = chapterWordList.map(v => {
+    return {
+      单词: v.name,
+      '音标①': v.usphone,
+      '音标②': v.ukphone,
+      '释义(一行一个释义)': v.trans.join('\n')
+    }
+  })
+  let sheet = XLSX.utils.json_to_sheet(sheetData)
+  wb.Sheets['Sheet1'] = sheet
+  wb.SheetNames = ['Sheet1']
+  XLSX.writeFile(wb, `${runtimeStore.editDict.name}-zh-CN.xlsx`);
+  ElMessage.success('导出成功！')
+}
+
+function checkRepeatWord(
+    words: Word[],
+    targetList: Word[],
+    concatNoRepeat: Function,
+    concatRepeat: Function,
+    notice?: Function
+) {
+  let repeatWords = []
+  let noRepeatWords = []
+  words.map(v => {
+    let rIndex = targetList.findIndex(s => s.name === v.name)
+    if (rIndex > -1) {
+      v.index = rIndex
+      repeatWords.push(v)
+    } else {
+      noRepeatWords.push(v)
+    }
+  })
+  concatNoRepeat(noRepeatWords)
+  if (repeatWords.length) {
+    MessageBox.confirm(
+        '单词"' + repeatWords.map(v => v.name).join(', ') + '" 已存在，继续将会覆盖原有单词，是否继续？',
+        '检测到重复单词',
+        () => concatRepeat(repeatWords),
+        null,
+        () => notice?.()
+    )
+  } else {
+    notice?.()
+  }
+}
+
+function importData(e: any) {
+  let file = e.target.files[0]
+  if (!file) return
+  // no()
+  let reader = new FileReader();
+  reader.onload = function (e) {
+    let data = e.target.result;
+    // 读取二进制的excel
+    let workbook = XLSX.read(data, {type: 'binary'});
+    let res: any[] = XLSX.utils.sheet_to_json(workbook.Sheets['Sheet1']);
+    if (res.length) {
+      let words = res.map(v => {
+        if (v['单词']) {
+          let word: Word = {
+            id: nanoid(6),
+            checked: false,
+            name: String(v['单词']),
+            usphone: String(v['音标①'] ?? ''),
+            ukphone: String(v['音标②'] ?? ''),
+            trans: String(v['释义(一行一个释义)'] ?? '').split('\n')
+          }
+          return word
+        }
+      }).filter(v => v)
+
+      checkRepeatWord(words, residueWordList, noRepeatWords => {
+            residueWordList = residueWordList.concat(noRepeatWords)
+            setTimeout(residueWordListRef?.scrollToBottom, 100)
+          },
+          repeatWords => {
+            repeatWords.map(v => {
+              residueWordList[v.index] = v
+              delete residueWordList[v.index].index
+            })
+            setTimeout(residueWordListRef?.scrollToBottom, 100)
+          },
+          () => ElMessage.success('导入成功！'))
+    } else {
+      ElMessage.warning('导入失败！原因：没有数据')
+    }
+  };
+  reader.readAsBinaryString(file);
+}
 
 async function resetDict() {
   MessageBox.confirm(
@@ -555,6 +685,8 @@ async function resetDict() {
         closeWordForm()
         chapterIndex = -1
         if (runtimeStore.editDict.url) {
+          runtimeStore.editDict.sort = Sort.normal
+          runtimeStore.editDict.isCustom = false
           runtimeStore.editDict.chapterWordNumber = settingStore.chapterWordNumber
           let url = `./dicts/${runtimeStore.editDict.language}/${runtimeStore.editDict.type}/${runtimeStore.editDict.translateLanguage}/${runtimeStore.editDict.url}`;
           let r = await fetch(url)
@@ -564,6 +696,9 @@ async function resetDict() {
           })
           runtimeStore.editDict.originWords = cloneDeep(v)
           changeSort(runtimeStore.editDict.sort)
+          ElMessage.success('恢复成功')
+        } else {
+          ElMessage.success('恢复失败')
         }
       }
   )
@@ -631,7 +766,9 @@ async function resetDict() {
               </template>
               <div class="import hvr-grow">
                 <BaseButton size="small">导入</BaseButton>
-                <input type="file" accept="application/json" @change="importData">
+                <input type="file"
+                       accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                       @change="importData">
               </div>
               <BaseButton size="small" @click="exportData">导出</BaseButton>
             </div>
