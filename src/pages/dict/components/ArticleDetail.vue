@@ -98,7 +98,7 @@ function handleCheckedChange(val) {
       </div>
     </div>
     <div class="article-content">
-      <div class="title">①原文</div>
+      <div class="common-title">原文</div>
       <div class="item">
         <div class="label">标题：</div>
         <p>{{ article.title }}</p>
@@ -111,7 +111,7 @@ function handleCheckedChange(val) {
       </div>
     </div>
     <div class="article-content">
-      <div class="title">①原文</div>
+      <div class="common-title">译文</div>
       <div class="item">
         <div class="label">标题：</div>
         <p>{{ article.titleTranslate }}</p>
@@ -134,17 +134,20 @@ function handleCheckedChange(val) {
   display: flex;
   gap: var(--space);
 
-  .chapter-list {
-    width: 400rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+  .box {
     background: white;
     border-radius: 10rem;
     background: var(--color-second-bg);
     color: var(--color-font-1);
     padding-bottom: var(--space);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chapter-list {
+    width: 400rem;
+    height: 100%;
+    @extend .box;
 
     .header {
       padding: 0 var(--space);
@@ -182,8 +185,16 @@ function handleCheckedChange(val) {
   }
 
   .article-content {
+    @extend .box;
     flex: 1;
     overflow: auto;
+    padding: var(--space);
+
+    .item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space);
+    }
   }
 }
 </style>
