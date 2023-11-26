@@ -7,13 +7,19 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import ArticleList3 from "@/components/list/ArticleList3.vue";
 import {$ref} from "vue/macros";
 import VirtualWordList2 from "@/components/list/VirtualWordList2.vue";
+import {cloneDeep} from "lodash-es";
+import {Article, DefaultArticle, TranslateType} from "@/types.ts";
 
 const runtimeStore = useRuntimeStore()
 let chapterIndex = $ref(0)
+let article: Article = $ref(cloneDeep(DefaultArticle))
 
 function handleCheckedChange(val) {
   chapterIndex = val.index
+  article = val.data
 }
+
+
 </script>
 
 <template>
@@ -91,6 +97,32 @@ function handleCheckedChange(val) {
         </template>
       </div>
     </div>
+    <div class="article-content">
+      <div class="title">①原文</div>
+      <div class="item">
+        <div class="label">标题：</div>
+        <p>{{ article.title }}</p>
+      </div>
+      <div class="item basic">
+        <div class="label">正文：</div>
+        <p>
+          {{ article.text }}
+        </p>
+      </div>
+    </div>
+    <div class="article-content">
+      <div class="title">①原文</div>
+      <div class="item">
+        <div class="label">标题：</div>
+        <p>{{ article.titleTranslate }}</p>
+      </div>
+      <div class="item basic">
+        <div class="label">正文：</div>
+        <p>
+          {{ article.textCustomTranslate }}
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -99,6 +131,8 @@ function handleCheckedChange(val) {
 .article-detail {
   width: 100%;
   height: 100%;
+  display: flex;
+  gap: var(--space);
 
   .chapter-list {
     width: 400rem;
@@ -145,6 +179,11 @@ function handleCheckedChange(val) {
       flex: 1;
       overflow: hidden;
     }
+  }
+
+  .article-content {
+    flex: 1;
+    overflow: auto;
   }
 }
 </style>
