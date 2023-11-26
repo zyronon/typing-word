@@ -24,9 +24,10 @@ import BaseButton from "@/components/BaseButton.vue";
 import Dialog from "@/components/dialog/Dialog.vue";
 import {nanoid} from "nanoid";
 import {no} from "@/utils";
-import ChapterWordList from "@/pages/dict/ChapterWordList.vue";
+import ChapterWordList from "@/pages/dict/components/ChapterWordList.vue";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import * as  XLSX from 'xlsx'
+import ArticleDetail from "@/pages/dict/components/ArticleDetail.vue";
 
 
 const store = useBaseStore()
@@ -86,6 +87,7 @@ async function selectDict(val: {
           changeSort(runtimeStore.editDict.sort)
         }
       }
+
       if (runtimeStore.editDict.type === DictType.article) {
         if (!runtimeStore.editDict.articles.length) {
           let r = await fetch(url)
@@ -777,7 +779,8 @@ async function resetDict() {
           </div>
         </header>
         <div class="detail" v-if="!isAddDict">
-          <div class="page-content">
+          <ArticleDetail v-if="dictIsArticle"/>
+          <div class="page-content" v-else>
             <div class="left-column">
               <div class="header">
                 <div class="common-title">
