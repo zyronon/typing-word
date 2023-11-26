@@ -30,6 +30,10 @@ defineEmits<{
   font-size: 12rem;
   gap: 20rem;
 
+  span {
+    font-family: var(--font-family);
+  }
+
   img {
     margin-top: -50rem;
     width: 120rem;

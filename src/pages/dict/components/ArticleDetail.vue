@@ -9,9 +9,10 @@ import {$ref} from "vue/macros";
 import VirtualWordList2 from "@/components/list/VirtualWordList2.vue";
 import {cloneDeep} from "lodash-es";
 import {Article, DefaultArticle, TranslateType} from "@/types.ts";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 const runtimeStore = useRuntimeStore()
-let chapterIndex = $ref(0)
+let chapterIndex = $ref(-1)
 let article: Article = $ref(cloneDeep(DefaultArticle))
 
 function handleCheckedChange(val) {
@@ -19,6 +20,19 @@ function handleCheckedChange(val) {
   article = val.data
 }
 
+function delArticle(index: number) {
+  runtimeStore.editDict.articles.splice(index, 1)
+
+  if (runtimeStore.editDict.articles.length) {
+    if (chapterIndex === index) {
+      article = runtimeStore.editDict.articles[index]
+    }
+  } else {
+    article = cloneDeep(DefaultArticle)
+  }
+
+  ElMessage.success('删除成功！')
+}
 
 </script>
 
@@ -30,13 +44,11 @@ function handleCheckedChange(val) {
           <span>章节管理</span>
           <div class="options">
             <BaseIcon
+                @click="emitter.emit(EventKey.openArticleListModal)"
                 icon="fluent:add-20-filled"
                 title="新增章节"/>
+            <span>{{ runtimeStore.editDict.articles.length }}章</span>
           </div>
-        </div>
-        <div class="select">
-          <BaseButton size="small" @click="showAllocationChapterDialog = true">智能分配</BaseButton>
-          <span>{{ runtimeStore.editDict.articles.length }}章</span>
         </div>
       </div>
       <div class="wrapper">
@@ -52,82 +64,41 @@ function handleCheckedChange(val) {
           <template v-slot="{data,index}">
             <BaseIcon
                 class-name="del"
-                @click="emit('edit',{data,index})"
+                @click="emitter.emit(EventKey.openArticleListModal,data)"
                 title="编辑"
                 icon="tabler:edit"/>
             <BaseIcon
                 class-name="del"
-                @click="del({data,index})"
+                @click="delArticle(index)"
                 title="删除"
                 icon="solar:trash-bin-minimalistic-linear"/>
           </template>
         </ArticleList3>
-        <template v-if="false">
-          <RecycleScroller
-              v-if="runtimeStore.editDict.articles.length"
-              ref="chapterListRef"
-              style="height: 100%;"
-              :items="runtimeStore.editDict.articles"
-              :item-size="63"
-              key-field="id"
-              v-slot="{ item,index }"
-          >
-            <div style="padding: 0 15rem;">
-              <div class="common-list-item"
-                   :class="chapterIndex === item.id && 'active'"
-                   @click="handleChangeCurrentChapter(item.id)">
-                <div class="flex gap10 flex1 ">
-                  <input type="radio" :checked="chapterIndex === item.id">
-                  <div class="item-title flex flex1 space-between">
-                    <span>{{ index + 1 }}.</span>
-                    <span>{{ item.title }}</span>
-                  </div>
-                </div>
-                <div class="right">
-                  <BaseIcon
-                      class-name="del"
-                      @click="delWordChapter(item.id)"
-                      title="移除"
-                      icon="solar:trash-bin-minimalistic-linear"/>
-                </div>
-              </div>
-            </div>
-          </RecycleScroller>
-          <Empty v-else/>
-        </template>
+        <Empty v-else/>
       </div>
     </div>
-    <div class="article-content">
-      <div class="common-title">原文</div>
-      <div class="item">
-        <div class="label">标题：</div>
-        <p>{{ article.title }}</p>
+    <div class="article-content word-font-family">
+      <div class="title">
+        <div>{{ article.title }}</div>
       </div>
-      <div class="item basic">
-        <div class="label">正文：</div>
-        <p>
-          {{ article.text }}
-        </p>
+      <div class="text" v-if="article.text">
+        <div class="sentence" v-for="t in article.text.split('\n')">{{ t }}</div>
       </div>
+      <Empty v-else/>
     </div>
     <div class="article-content">
-      <div class="common-title">译文</div>
-      <div class="item">
-        <div class="label">标题：</div>
-        <p>{{ article.titleTranslate }}</p>
+      <div class="title">
+        <div>{{ article.titleTranslate }}</div>
       </div>
-      <div class="item basic">
-        <div class="label">正文：</div>
-        <p>
-          {{ article.textCustomTranslate }}
-        </p>
+      <div class="text" v-if="article.textCustomTranslate">
+        {{ article.textCustomTranslate }}
       </div>
+      <Empty v-else/>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-
 .article-detail {
   width: 100%;
   height: 100%;
@@ -180,6 +151,7 @@ function handleCheckedChange(val) {
 
     .wrapper {
       flex: 1;
+      padding-bottom: var(--space);
       overflow: hidden;
     }
   }
@@ -187,13 +159,27 @@ function handleCheckedChange(val) {
   .article-content {
     @extend .box;
     flex: 1;
-    overflow: auto;
     padding: var(--space);
+    overflow: hidden;
+    font-size: 20rem;
 
-    .item {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space);
+    .title {
+      text-align: center;
+      margin-bottom: var(--space);
+      font-size: 24rem;
+    }
+
+    .text {
+      //white-space: pre-wrap;
+      text-indent: 1.5em;
+      line-height: 35rem;
+      overflow: auto;
+      padding-right: 10rem;
+      padding-bottom: 50rem;
+
+      .sentence {
+        margin-bottom: 30rem;
+      }
     }
   }
 }

@@ -38,6 +38,9 @@
 
   --color-input-bg: white;
   --color-input-icon: #d3d4d7;
+
+  --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  --word-font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
 }
 
 html.dark {
@@ -123,6 +126,14 @@ html.dark {
   transition: background var(--anim-time), color var(--anim-time), border var(--anim-time);
 }
 
+.word-font-family {
+  font-family: var(--word-font-family);
+  //font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif; //medium
+  //font-family: Optimistic Text,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji; // react
+  //font-family: Google Sans Text,Noto Sans,Noto Sans JP,Noto Sans KR,Noto Naskh Arabic,Noto Sans Thai,Noto Sans Hebrew,Noto Sans Bengali,sans-serif; //android-dev
+  line-height: 30rem;
+}
+
 html, body {
   font-size: 1px;
   padding: 0;
@@ -131,9 +142,13 @@ html, body {
   height: 100%;
   color: $font-color;
   //color: var(--color-font-1);
-  font-family: $font-family;
+  //font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.en-word {
+  font-family: var(--word-font-family);
 }
 
 #app {
@@ -294,7 +309,7 @@ footer {
   padding: 0 var(--space);
 }
 
-.list-item-wrapper{
+.list-item-wrapper {
   padding-bottom: 15rem;
 }
 
@@ -316,7 +331,7 @@ footer {
     display: flex;
     gap: 10rem;
 
-    .title-wrapper{
+    .title-wrapper {
       display: flex;
       flex-direction: column;
       gap: 3rem;
@@ -360,7 +375,6 @@ footer {
     display: flex;
     align-items: center;
     gap: 8rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
     color: var(--color-font-1);
 
     .word {
@@ -387,7 +401,7 @@ footer {
 }
 
 .common-title {
-  height: 40rem;
+  min-height: 40rem;
   font-size: 18rem;
   color: var(--color-font-1);
   display: flex;

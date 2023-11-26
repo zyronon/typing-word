@@ -11,7 +11,7 @@ import DictManage from "@/pages/dict/DictManage.vue";
 </template>
 
 <style scoped lang="scss">
-#page{
+#page {
   background: var(--color-main-bg);
   height: 100%;
   width: 100%;

@@ -382,7 +382,7 @@ const {
 <template>
   <div class="typing-article">
     <header>
-      <div class="title">{{ props.article.title }}</div>
+      <div class="title word">{{ props.article.title }}</div>
       <div class="titleTranslate" v-if="settingStore.translate">{{ props.article.titleTranslate }}</div>
       <div class="options-wrapper">
         <div class="flex gap10">
@@ -498,14 +498,13 @@ $article-width: 1000px;
       text-align: center;
       color: rgba(gray, .8);
       font-size: 36rem;
-      font-weight: 500;
-      word-spacing: 3rem;
-      //opacity: 0;
+      font-family: var(--word-font-family);
     }
 
     .titleTranslate {
       @extend .title;
       font-size: 20rem;
+      font-family: unset;
     }
 
     .options-wrapper {
@@ -527,7 +526,6 @@ $article-width: 1000px;
     //height: 100%;
     font-size: 24rem;
     line-height: 2.5;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
     color: gray;
     word-break: keep-all;
     word-wrap: break-word;
@@ -535,10 +533,15 @@ $article-width: 1000px;
     padding-top: 20rem;
 
     .section {
+      font-family: var(--word-font-family);
       margin-bottom: var(--space);
 
       .sentence {
         transition: all .3s;
+
+        &:first-child{
+          padding-left: 50rem;
+        }
 
         &.dictation {
           letter-spacing: 3rem;
