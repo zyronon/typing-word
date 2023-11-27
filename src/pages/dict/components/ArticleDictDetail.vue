@@ -10,6 +10,7 @@ import VirtualWordList2 from "@/components/list/VirtualWordList2.vue";
 import {cloneDeep} from "lodash-es";
 import {Article, DefaultArticle, TranslateType} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
+import EditBatchArticleModal from "@/components/article/EditBatchArticleModal.vue";
 
 const runtimeStore = useRuntimeStore()
 let chapterIndex = $ref(-1)
@@ -96,6 +97,7 @@ function delArticle(index: number) {
       <Empty v-else/>
     </div>
   </div>
+  <EditBatchArticleModal/>
 </template>
 
 <style scoped lang="scss">
