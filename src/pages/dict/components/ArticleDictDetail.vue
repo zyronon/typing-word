@@ -20,6 +20,7 @@ import MiniDialog from "@/components/dialog/MiniDialog.vue";
 import * as XLSX from "xlsx";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {syncMyDictList} from "@/hooks/dict.ts";
+import {useWindowClick} from "@/hooks/event.ts";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -30,6 +31,7 @@ let isEditDict = $ref(false)
 let showExport = $ref(false)
 let loading = $ref(false)
 let listRef = $ref()
+useWindowClick(() => showExport = false)
 
 const isPinDict = $computed(() => {
   return [DictType.collect, DictType.wrong, DictType.simple].includes(runtimeStore.editDict.type)
@@ -186,15 +188,16 @@ function importData(e: any) {
   reader.readAsBinaryString(file);
 }
 
-function exportData(type: string) {
+function exportData(val: { type: string, data?: Article }) {
+  const {type, data} = val
   let list = []
   let filename = ''
   if (type === 'chapter') {
-    if (chapterIndex === -1) {
+    if (!data.id) {
       return ElMessage.error('请选择文章')
     }
-    list = [article]
-    filename = runtimeStore.editDict.name + `-第${chapterIndex + 1}章`
+    list = [data]
+    filename = runtimeStore.editDict.name + `-${data.title}`
   } else {
     list = runtimeStore.editDict.articles
     filename = runtimeStore.editDict.name
@@ -256,10 +259,10 @@ defineExpose({getDictDetail})
                 导出选项
               </div>
               <div class="mini-row">
-                <BaseButton size="small" @click="exportData('all')">全部文章</BaseButton>
+                <BaseButton size="small" @click="exportData({type:'all',data:[]})">全部文章</BaseButton>
               </div>
               <div class="mini-row">
-                <BaseButton size="small" @click="exportData('chapter')">当前章节</BaseButton>
+                <BaseButton size="small" @click="exportData({type:'chapter',data:article})">当前章节</BaseButton>
               </div>
             </MiniDialog>
           </div>
@@ -334,7 +337,9 @@ defineExpose({getDictDetail})
       </div>
     </div>
   </div>
-  <EditBatchArticleModal/>
+  <EditBatchArticleModal
+      @export-data="exportData"
+      @import-data="importData"/>
 </template>
 
 <style scoped lang="scss">

@@ -10,17 +10,22 @@ import List from "@/components/list/List.vue";
 import Dialog from "@/components/dialog/Dialog.vue";
 import EditArticle from "@/components/article/EditArticle.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import {useDisableEventListener} from "@/hooks/event.ts";
+import {useDisableEventListener, useWindowClick} from "@/hooks/event.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {nanoid} from "nanoid";
+import {syncMyDictList} from "@/hooks/dict.ts";
+import MiniDialog from "@/components/dialog/MiniDialog.vue";
 
+const emit = defineEmits<{
+  importData: [val: Event]
+  exportData: [val: string]
+}>()
 const base = useBaseStore()
 const runtimeStore = useRuntimeStore()
 
 let article = $ref<Article>(cloneDeep(DefaultArticle))
 let show = $ref(false)
-let showImportBtn = $ref(true)
 let editArticleRef: any = $ref()
 let listEl: any = $ref()
 
@@ -100,102 +105,6 @@ async function add() {
   }
 }
 
-function importData(e: Event) {
-  showImportBtn = false
-  let file = e.target.files[0]
-  let reader = new FileReader();//新建一个FileReader
-  reader.readAsText(file, "UTF-8");//读取文件
-  reader.onload = function (evt) { //读取完文件之后会回来这里
-    let fileString = evt.target.result; // 读取文件内容
-    // console.log('fileString', fileString)
-    try {
-      let obj: any = JSON.parse(fileString)
-      console.log('obj', obj)
-      if (!obj?.name) {
-        showImportBtn = true
-        return ElMessage.error('请填写词典名称！')
-      } else {
-        if (base.myDictList.find(v => v.name === obj.name)) {
-          showImportBtn = true
-          return ElMessage.error('词典名称已存在！')
-        }
-      }
-      if (!obj?.articles) {
-        showImportBtn = true
-        return ElMessage.error('请填写文章！')
-      }
-      if (!obj?.articles instanceof Array) {
-        showImportBtn = true
-        return ElMessage.error('请填写文章！')
-      }
-      for (let i = 0; i < obj.articles.length; i++) {
-        let item = obj.articles[i]
-        if (!item?.title) {
-          showImportBtn = true
-          return ElMessage.error(`请填写第${i + 1}篇文章名称！`)
-        }
-        if (!item?.text) {
-          showImportBtn = true
-          return ElMessage.error(`请填写第${i + 1}篇文章正文！`)
-        }
-        if (item?.useTranslateType === 'custom') {
-          if (!item?.textCustomTranslate) {
-            showImportBtn = true
-            return ElMessage.error(`请填写第${i + 1}篇文章 翻译 正文！`)
-          }
-        }
-
-        if (!obj.articles[i]?.titleTranslate) obj.articles[i].titleTranslate = ''
-        if (!obj.articles[i]?.textFormat) obj.articles[i].textFormat = ''
-        if (!obj.articles[i]?.textCustomTranslate) obj.articles[i].textCustomTranslate = ''
-        if (!obj.articles[i]?.newWords) obj.articles[i].newWords = []
-        if (!obj.articles[i]?.textCustomTranslateIsFormat) obj.articles[i].textCustomTranslateIsFormat = false
-        if (!obj.articles[i]?.useTranslateType) obj.articles[i].useTranslateType = 'none'
-        if (!obj.articles[i]?.textAllWords) obj.articles[i].textAllWords = []
-        if (!obj.articles[i]?.sections) obj.articles[i].sections = []
-        obj.articles[i].id = nanoid(6)
-      }
-      obj.sort = Sort.normal
-      obj.type = DictType.customArticle
-      obj.originWords = []
-      obj.words = []
-      obj.chapterWords = []
-      obj.chapterWordNumber = 0
-      obj.chapterIndex = 0
-      obj.chapterWordIndex = 0
-      obj.url = ''
-      if (!obj.statistics) obj.statistics = []
-
-      ElMessage.success({
-        message: '导入成功，已切换到',
-        duration: 5000
-      })
-      base.myDictList.push(obj)
-      runtimeStore.editDict = cloneDeep(runtimeStore.editDict)
-      showImportBtn = true
-    } catch (e) {
-      showImportBtn = true
-      ElMessage.error('文件解析失败，报错原因：' + e.message)
-    }
-  }
-}
-
-function exportData() {
-  let data = {
-    name: runtimeStore.editDict.name,
-    articles: cloneDeep(runtimeStore.editDict.articles).map(v => {
-      delete v.sections
-      delete v.id
-      return v
-    }),
-    url: location.origin + runtimeStore.editDict.url,
-    statistics: runtimeStore.editDict.statistics,
-  }
-
-  let blob = new Blob([JSON.stringify(data, null, 2)], {type: "text/plain;charset=utf-8"});
-  saveAs(blob, `${data.name}.json`);
-}
-
 function saveArticle(val: Article): boolean {
   console.log('saveArticle', val)
   if (val.id) {
@@ -211,13 +120,14 @@ function saveArticle(val: Article): boolean {
     }
     val.id = nanoid(6)
     runtimeStore.editDict.articles.push(val)
-    setTimeout(()=>{
+    setTimeout(() => {
       listEl.scrollBottom()
     })
   }
   article = cloneDeep(val)
   //TODO 保存完成后滚动到对应位置
   ElMessage.success('保存成功！')
+  syncMyDictList(runtimeStore.editDict)
   return true
 }
 
@@ -226,6 +136,9 @@ function saveAndNext(val: Article) {
     add()
   }
 }
+
+let showExport = $ref(false)
+useWindowClick(() => showExport = false)
 
 </script>
 
@@ -256,12 +169,32 @@ function saveAndNext(val: Article) {
           正在添加新文章...
         </div>
         <div class="footer">
-          <div class="import" v-if="showImportBtn">
-            <BaseButton>导入</BaseButton>
-            <input type="file" accept="application/json" @change="importData">
+          <div class="import">
+            <BaseButton size="small">导入</BaseButton>
+            <input type="file"
+                   accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                   @change="e => emit('importData',e)">
           </div>
-          <BaseButton @click="exportData">导出</BaseButton>
-          <BaseButton @click="add">新增</BaseButton>
+          <div class="export"
+               style="position: relative"
+               @click.stop="null">
+            <BaseButton size="small" @click="showExport = true">导出</BaseButton>
+            <MiniDialog
+                v-model="showExport"
+                style="width: 80rem;bottom: calc(100% + 10rem);top:unset;"
+            >
+              <div class="mini-row-title">
+                导出选项
+              </div>
+              <div class="mini-row">
+                <BaseButton size="small" @click="emit('exportData',{type:'all',data:[]})">全部文章</BaseButton>
+              </div>
+              <div class="mini-row">
+                <BaseButton size="small" @click="emit('exportData',{type:'chapter',data:article})">当前章节</BaseButton>
+              </div>
+            </MiniDialog>
+          </div>
+          <BaseButton size="small" @click="add">新增</BaseButton>
         </div>
       </div>
       <EditArticle

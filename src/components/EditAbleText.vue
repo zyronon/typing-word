@@ -43,7 +43,7 @@ function toggle() {
         autosize
         autofocus
         type="textarea"
-        :input-style="`color:black;font-size: 16rem;`"
+        :input-style="`color: var(--color-font-1);font-size: 16rem;`"
     />
     <div class="options">
       <BaseButton @click="toggle">取消</BaseButton>
@@ -62,7 +62,7 @@ function toggle() {
 <style scoped lang="scss">
 .edit-text {
   margin-top: 10rem;
-  color: black;
+  color: var(--color-font-1);
 
   .options {
     margin-top: 10rem;

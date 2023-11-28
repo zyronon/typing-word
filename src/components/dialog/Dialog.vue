@@ -148,7 +148,6 @@ async function cancel() {
            :class="[
                 fullScreen?'full':'window'
             ]"
-           @click.stop="null"
       >
         <Tooltip title="关闭">
           <Icon @click="close"
