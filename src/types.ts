@@ -95,7 +95,7 @@ export interface Article {
 }
 
 export const DefaultArticle: Article = {
-    // id: uuidv4(),
+    // id: nanoid(6),
     id: '',
     title: '',
     titleTranslate: '',

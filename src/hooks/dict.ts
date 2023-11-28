@@ -2,8 +2,8 @@ import {Article, Dict, DictType, Word} from "@/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {chunk, cloneDeep} from "lodash-es";
-import {v4 as uuidv4} from "uuid";
 import {isArticle} from "@/hooks/article.ts";
+import {nanoid} from "nanoid";
 
 
 export function useWordOptions() {
@@ -131,7 +131,7 @@ export async function checkDictHasTranslate(dict: Dict) {
             let r = await fetch(dictResourceUrl)
             let s: any[] = await r.json()
             dict.articles = cloneDeep(s.map(v => {
-                v.id = uuidv4()
+                v.id = nanoid(6)
                 return v
             }))
         }

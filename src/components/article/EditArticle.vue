@@ -16,9 +16,7 @@ import {$ref} from "vue/macros";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {getSplitTranslateText} from "@/hooks/article.ts";
 import {cloneDeep} from "lodash-es";
-import {v4 as uuidv4} from "uuid";
-import {h, watch} from "vue";
-import {useBaseStore} from "@/stores/base.ts";
+import {watch} from "vue";
 import Empty from "@/components/Empty.vue";
 
 interface IProps {

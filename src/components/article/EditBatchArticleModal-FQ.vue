@@ -6,15 +6,15 @@ import BaseButton from "@/components/BaseButton.vue";
 import {cloneDeep} from "lodash-es";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useBaseStore} from "@/stores/base.ts";
-import {$computed, $ref} from "vue/macros";
+import {$ref} from "vue/macros";
 import List from "@/components/list/List.vue";
-import {v4 as uuidv4} from 'uuid';
 import Dialog from "@/components/dialog/Dialog.vue";
 import EditArticle from "@/components/article/EditArticle.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useDisableEventListener} from "@/hooks/event.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {useRuntimeStore} from "@/stores/runtime.ts";
+import {nanoid} from "nanoid";
 
 const base = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -154,7 +154,7 @@ function importData(e: Event) {
         if (!obj.articles[i]?.useTranslateType) obj.articles[i].useTranslateType = 'none'
         if (!obj.articles[i]?.textAllWords) obj.articles[i].textAllWords = []
         if (!obj.articles[i]?.sections) obj.articles[i].sections = []
-        obj.articles[i].id = uuidv4()
+        obj.articles[i].id = nanoid(6)
       }
       obj.sort = Sort.normal
       obj.type = DictType.customArticle
@@ -210,9 +210,9 @@ function saveArticle(val: Article): boolean {
       ElMessage.error('已存在同名文章！')
       return false
     }
-    val.id = uuidv4()
+    val.id = nanoid(6)
     runtimeStore.editDict.articles.push(val)
-    setTimeout(()=>{
+    setTimeout(() => {
       listEl.scrollBottom()
     })
   }

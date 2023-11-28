@@ -2,7 +2,6 @@ import {defineStore} from 'pinia'
 import {DefaultDict, Dict, DictType, DisplayStatistics, SaveDict, Word} from "../types.ts"
 import {chunk, cloneDeep, merge} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
-import {v4 as uuidv4} from 'uuid';
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import * as localforage from "localforage";
 import {nanoid} from "nanoid";
@@ -242,7 +241,7 @@ export const useBaseStore = defineStore('base', {
                             let r = await fetch(dictResourceUrl)
                             let s: any[] = await r.json()
                             this.currentDict.articles = cloneDeep(s.map(v => {
-                                v.id = uuidv4()
+                                v.id = nanoid(6)
                                 return v
                             }))
                         }

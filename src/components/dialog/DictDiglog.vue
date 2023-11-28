@@ -8,7 +8,6 @@ import {$computed, $ref} from "vue/macros";
 import BaseButton from "@/components/BaseButton.vue";
 import {Icon} from '@iconify/vue';
 import DictGroup from "@/components/toolbar/DictGroup.vue";
-import {v4 as uuidv4} from "uuid";
 import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
 import ChapterList from "@/components/list/ChapterList.vue";
@@ -88,7 +87,7 @@ async function selectDict(val: { dict: DictResource | Dict, index: number }) {
         let r = await fetch(url)
         let v = await r.json()
         runtimeStore.editDict.articles = cloneDeep(v.map(s => {
-          s.id = uuidv4()
+          s.id = nanoid(6)
           return s
         }))
       }
@@ -643,7 +642,7 @@ onMounted(() => {
                     </div>
                   </div>
                   <div class="row">
-                    <div class="label">{{dictIsArticle?'句子':'单词'}}发音</div>
+                    <div class="label">{{ dictIsArticle ? '句子' : '单词' }}发音</div>
                     <div class="option">
                       <el-radio-group v-model="settingStore.wordSoundType">
                         <el-radio label="us" size="large">美音</el-radio>
@@ -652,7 +651,7 @@ onMounted(() => {
                     </div>
                   </div>
                   <div class="row">
-                    <div class="label">{{dictIsArticle?'句子':'单词'}}自动发音</div>
+                    <div class="label">{{ dictIsArticle ? '句子' : '单词' }}自动发音</div>
                     <div class="option">
                       <el-switch v-model="settingStore.wordSound"
                                  inline-prompt
