@@ -42,13 +42,13 @@ function delArticle(index: number) {
     <div class="chapter-list">
       <div class="header">
         <div class="common-title">
-          <span>章节管理</span>
+          <span>文章管理</span>
           <div class="options">
             <BaseIcon
                 @click="emitter.emit(EventKey.openArticleListModal)"
                 icon="fluent:add-20-filled"
                 title="新增章节"/>
-            <span>{{ runtimeStore.editDict.articles.length }}章</span>
+            <span>{{ runtimeStore.editDict.articles.length }}篇</span>
           </div>
         </div>
       </div>

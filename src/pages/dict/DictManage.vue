@@ -258,6 +258,15 @@ const isPinDict = $computed(() => {
   return [DictType.collect, DictType.wrong, DictType.simple].includes(runtimeStore.editDict.type)
 })
 
+function resetDict() {
+}
+
+function importData() {
+}
+
+function exportData() {
+}
+
 </script>
 
 <template>
@@ -280,7 +289,7 @@ const isPinDict = $computed(() => {
               <template v-if="!isPinDict">
                 <BaseIcon icon="tabler:edit" @click='editDict'/>
                 <BaseIcon icon="ph:star" @click='no'/>
-                <BaseButton size="small" @click="resetDict">恢复默认</BaseButton>
+                <BaseButton size="small" v-if="runtimeStore.editDict.isCustom" @click="resetDict">恢复默认</BaseButton>
               </template>
               <div class="import hvr-grow">
                 <BaseButton size="small">导入</BaseButton>
@@ -291,7 +300,8 @@ const isPinDict = $computed(() => {
               <BaseButton size="small" @click="exportData">导出</BaseButton>
             </div>
             <div class="desc" v-if="runtimeStore.editDict.description">{{ runtimeStore.editDict.description }}</div>
-            <div class="num">总词汇: {{ runtimeStore.editDict.originWords.length }}词</div>
+            <div class="num" v-if="dictIsArticle">文章: {{ runtimeStore.editDict.articles.length }}篇</div>
+            <div class="num" v-else>总词汇: {{ runtimeStore.editDict.originWords.length }}词</div>
           </div>
         </header>
         <div class="detail" v-if="!isAddDict">
