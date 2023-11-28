@@ -3,6 +3,7 @@ import {useBaseStore} from "@/stores/base.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {chunk, cloneDeep} from "lodash-es";
 import {v4 as uuidv4} from "uuid";
+import {isArticle} from "@/hooks/article.ts";
 
 
 export function useWordOptions() {
@@ -144,7 +145,11 @@ export function syncMyDictList(dict: Dict) {
     const store = useBaseStore()
     //任意修改，都将其变为自定义词典
     dict.isCustom = true
-    dict.length = dict.words.length + dict.residueWords.length
+    if (isArticle(dict.type)) {
+        dict.length = dict.articles.length
+    } else {
+        dict.length = dict.words.length + dict.residueWords.length
+    }
 
     let rIndex = store.myDictList.findIndex(v => v.id === dict.id)
     if (rIndex > -1) {

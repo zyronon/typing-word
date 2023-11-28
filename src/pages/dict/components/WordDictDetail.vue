@@ -407,6 +407,7 @@ async function resetDict() {
           })
           runtimeStore.editDict.originWords = cloneDeep(v)
           changeSort(runtimeStore.editDict.sort)
+          syncMyDictList(runtimeStore.editDict)
           ElMessage.success('恢复成功')
         } else {
           ElMessage.success('恢复失败')

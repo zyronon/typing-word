@@ -19,6 +19,7 @@ import {useSettingStore} from "@/stores/setting.ts";
 import MiniDialog from "@/components/dialog/MiniDialog.vue";
 import * as XLSX from "xlsx";
 import {MessageBox} from "@/utils/MessageBox.tsx";
+import {syncMyDictList} from "@/hooks/dict.ts";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -29,6 +30,7 @@ let isEditDict = $ref(false)
 let showExport = $ref(false)
 let loading = $ref(false)
 let listRef = $ref()
+
 const isPinDict = $computed(() => {
   return [DictType.collect, DictType.wrong, DictType.simple].includes(runtimeStore.editDict.type)
 })
@@ -48,7 +50,7 @@ function delArticle(index: number) {
   } else {
     article = cloneDeep(DefaultArticle)
   }
-
+  syncMyDictList(runtimeStore.editDict)
   ElMessage.success('删除成功！')
 }
 
@@ -93,11 +95,10 @@ async function resetDict() {
       '删除所有自定义内容: 章节、排序、单词，并恢复至默认状态，确认恢复？',
       '提示',
       async () => {
-        closeWordForm()
         chapterIndex = -1
+        article = cloneDeep(DefaultArticle)
         if (runtimeStore.editDict.url) {
           runtimeStore.editDict.sort = Sort.normal
-          runtimeStore.editDict.isCustom = false
           runtimeStore.editDict.chapterWordNumber = settingStore.chapterWordNumber
           let url = `./dicts/${runtimeStore.editDict.language}/${runtimeStore.editDict.type}/${runtimeStore.editDict.translateLanguage}/${runtimeStore.editDict.url}`;
           let r = await fetch(url)
@@ -105,8 +106,8 @@ async function resetDict() {
           v.map(s => {
             s.id = nanoid(6)
           })
-          runtimeStore.editDict.originWords = cloneDeep(v)
-          changeSort(runtimeStore.editDict.sort)
+          runtimeStore.editDict.articles = cloneDeep(v)
+          syncMyDictList(runtimeStore.editDict)
           ElMessage.success('恢复成功')
         } else {
           ElMessage.success('恢复失败')
@@ -169,9 +170,13 @@ function importData(e: any) {
               setTimeout(listRef?.scrollToBottom, 100)
             },
             null,
-            () => ElMessage.success('导入成功！')
+            () => {
+              syncMyDictList(runtimeStore.editDict)
+              ElMessage.success('导入成功！')
+            }
         )
       } else {
+        syncMyDictList(runtimeStore.editDict)
         ElMessage.success('导入成功！')
       }
     } else {
