@@ -224,11 +224,13 @@ export const DefaultDict: Dict = {
     words: [],
     chapterWordNumber: DefaultChapterWordNumber,//章节单词数量
     chapterWords: [],
+    residueWords: [],//未分配单词
     chapterIndex: 0,//章节下标
     wordIndex: 0,//单词下标
     articles: [],
     statistics: [],
     isCustom: false,
+    length: 0,
     /*资源属性*/
     resourceId: '',
     url: '',
@@ -248,11 +250,13 @@ export interface Dict {
     words: Word[],
     chapterWordNumber: number,//章节单词数量
     chapterWords: Word[][],
+    residueWords: Word[],
     chapterIndex: number,//章节下标
     wordIndex: number,//单词下标
     articles: Article[],
     statistics: Statistics[],
     isCustom: boolean,
+    length: number,
     /*资源属性*/
     resourceId: string,
     category: string

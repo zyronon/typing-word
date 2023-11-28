@@ -71,6 +71,16 @@ watch(() => props.list, () => {
   // listRef.scrollTo(0, 0)
 })
 
+function scrollToBottom() {
+  listRef.scrollToBottom()
+}
+
+function scrollToItem(index: number) {
+  listRef.scrollToItem(index)
+}
+
+defineExpose({scrollToBottom, scrollToItem})
+
 </script>
 
 <template>

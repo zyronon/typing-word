@@ -138,3 +138,18 @@ export async function checkDictHasTranslate(dict: Dict) {
 
 
 }
+
+//同步到我的词典列表
+export function syncMyDictList(dict: Dict) {
+    const store = useBaseStore()
+    //任意修改，都将其变为自定义词典
+    dict.isCustom = true
+    dict.length = dict.words.length + dict.residueWords.length
+
+    let rIndex = store.myDictList.findIndex(v => v.id === dict.id)
+    if (rIndex > -1) {
+        store.myDictList[rIndex] = cloneDeep(dict)
+    } else {
+        store.myDictList.push(cloneDeep(dict))
+    }
+}

@@ -6,10 +6,10 @@ import ChapterWordList from "@/pages/dict/components/ChapterWordList.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {$computed, $ref} from "vue/macros";
 import {assign, chunk, cloneDeep, reverse, shuffle} from "lodash-es";
-import {Sort, Word} from "@/types.ts";
+import {DefaultDict, Dict, DictResource, DictType, Sort, Word} from "@/types.ts";
 import {nanoid} from "nanoid";
 import {FormInstance, FormRules} from "element-plus";
-import {reactive} from "vue";
+import {reactive, watch} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -17,6 +17,16 @@ import Dialog from "@/components/dialog/Dialog.vue";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import * as XLSX from "xlsx";
 import WordListDialog from "@/components/dialog/WordListDialog.vue";
+import {no} from "@/utils";
+import {Icon} from "@iconify/vue";
+import EditDict from "@/pages/dict/components/EditDict.vue";
+import {syncMyDictList} from "@/hooks/dict.ts";
+import MiniDialog from "@/components/dialog/MiniDialog.vue";
+import {useWindowClick} from "@/hooks/event.ts";
+
+const emit = defineEmits<{
+  back: []
+}>()
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -29,6 +39,15 @@ let residueWordListRef: any = $ref()
 let chapterListRef: any = $ref()
 let chapterIndex = $ref(1)
 let residueWordList = $ref([])
+let isEditDict = $ref(false)
+let showExport = $ref(false)
+let chapterWordNumber = $ref(settingStore.chapterWordNumber)
+
+useWindowClick(() => showExport = false)
+
+const isPinDict = $computed(() => {
+  return [DictType.collect, DictType.wrong, DictType.simple].includes(runtimeStore.editDict.type)
+})
 
 let chapterWordList: Word[] = $computed({
   get() {
@@ -39,14 +58,56 @@ let chapterWordList: Word[] = $computed({
   }
 })
 
+async function getDictDetail(val: { dict: DictResource | Dict, index: number }) {
+  let item = val.dict
+  // console.log('word-getDictDetail', item)
+  chapterList2 = []
+  chapterIndex = -1
+  wordFormData.type = FormMode.None
+  loading = true
+  let find: Dict = store.myDictList.find((v: Dict) => v.id === item.id)
+  if (find) {
+    runtimeStore.editDict = cloneDeep(find)
+  } else {
+    runtimeStore.editDict = cloneDeep({
+      ...cloneDeep(DefaultDict),
+      ...item,
+    })
+    runtimeStore.editDict.id = nanoid(6)
+    //设置默认章节单词数
+    runtimeStore.editDict.chapterWordNumber = settingStore.chapterWordNumber
+  }
+
+  if ([DictType.collect, DictType.simple, DictType.wrong].includes(runtimeStore.editDict.type)) {
+  } else {
+    //如果不是自定义词典，并且有url地址才去下载
+    if (!runtimeStore.editDict.isCustom && runtimeStore.editDict.url) {
+      let url = `./dicts/${runtimeStore.editDict.language}/${runtimeStore.editDict.type}/${runtimeStore.editDict.translateLanguage}/${runtimeStore.editDict.url}`;
+      if (runtimeStore.editDict.type === DictType.word) {
+        if (!runtimeStore.editDict.originWords.length) {
+          let r = await fetch(url)
+          let v = await r.json()
+          v.map(s => {
+            s.id = nanoid(6)
+          })
+          runtimeStore.editDict.originWords = cloneDeep(v)
+          changeSort(runtimeStore.editDict.sort)
+        } else {
+          runtimeStore.editDict.length = runtimeStore.editDict.words.length + runtimeStore.editDict.residueWords.length
+        }
+      }
+    }
+  }
+  chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
+  loading = false
+}
+
 function addNewChapter() {
   runtimeStore.editDict.chapterWords.push([])
   chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
-  chapterListRef?.scrollToItem(chapterList2.length - 1)
   ElMessage.success('新增章节成功')
-  console.log('scrollToBottom', chapterListRef)
+  setTimeout(() => chapterListRef?.scrollToItem(chapterList2.length -1), 100)
 }
-
 
 function delWordChapter(index: number) {
   let list = runtimeStore.editDict.chapterWords[index]
@@ -58,9 +119,8 @@ function delWordChapter(index: number) {
   if (chapterIndex >= index) chapterIndex--
   if (chapterIndex < 0) chapterIndex = 0
 
-  syncMyDictList()
+  syncEditDict2MyDictList()
 }
-
 
 let chapterWordListCheckedTotal = $computed(() => {
   return chapterWordList.filter(v => v.checked).length
@@ -75,7 +135,6 @@ function handleChangeCurrentChapter(index: number) {
   chapterIndex = index
   closeWordForm()
 }
-
 
 function checkRepeatWord(
     words: Word[],
@@ -108,7 +167,6 @@ function checkRepeatWord(
     notice?.()
   }
 }
-
 
 function toResidueWordList() {
   let list = cloneDeep(chapterWordList.filter(v => v.checked))
@@ -183,9 +241,14 @@ function toChapterWordList() {
   )
 }
 
+//同步到我的词典列表
+function syncEditDict2MyDictList() {
+  syncMyDictList(runtimeStore.editDict)
+}
+
 
 /**/
-/* 单词修改相关*/
+/* start单词修改相关start*/
 /**/
 
 let wordFormData = $ref({
@@ -216,7 +279,6 @@ const wordRules = reactive<FormRules>({
     {max: 30, message: '名称不能超过30个字符', trigger: 'blur'},
   ],
 })
-
 
 async function onSubmitWord() {
   await wordFormRef.validate((valid, fields) => {
@@ -252,24 +314,11 @@ async function onSubmitWord() {
         if (r) assign(r, data)
         ElMessage.success('修改成功')
       }
-      syncMyDictList()
+      syncEditDict2MyDictList()
     } else {
       ElMessage.warning('请填写完整')
     }
   })
-}
-
-//同步到我的词典列表
-function syncMyDictList() {
-  //任意修改，都将其变为自定义词典
-  runtimeStore.editDict.isCustom = true
-
-  let rIndex = store.myDictList.findIndex(v => v.id === runtimeStore.editDict.id)
-  if (rIndex > -1) {
-    store.myDictList[rIndex] = cloneDeep(runtimeStore.editDict)
-  } else {
-    store.myDictList.push(cloneDeep(runtimeStore.editDict))
-  }
 }
 
 function delWord(val: { word: Word }) {
@@ -285,7 +334,7 @@ function delWord(val: { word: Word }) {
   if (wordFormData.type === FormMode.Edit && wordForm.name === val.word.name) {
     closeWordForm()
   }
-  syncMyDictList()
+  syncEditDict2MyDictList()
 }
 
 function editWord(word: Word, index: number, where: string) {
@@ -297,7 +346,6 @@ function editWord(word: Word, index: number, where: string) {
   wordForm.usphone = word.usphone
   wordForm.trans = word.trans.join('\n')
 }
-
 
 function addWord(where: string) {
   // setTimeout(wordListRef?.scrollToBottom, 100)
@@ -312,24 +360,10 @@ function closeWordForm() {
 }
 
 /**/
-/* 单词修改相关*/
+/* end单词修改相关end*/
 /**/
 
 let showAllocationChapterDialog = $ref(false)
-let chapterWordNumber = $ref(settingStore.chapterWordNumber)
-
-function resetChapterList(num?: number) {
-  if (num !== undefined) {
-    runtimeStore.editDict.chapterWordNumber = num
-  }
-  residueWordList = []
-  chapterIndex = -1
-  runtimeStore.editDict.words.map(v => v.checked = false)
-  runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
-  chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
-  // console.log('runtimeStore.editDict.chapterWords',runtimeStore.editDict.chapterWords)
-  // console.log('chapterList2',chapterList2)
-}
 
 function changeSort(v: Sort) {
   if (v === Sort.normal) {
@@ -340,6 +374,18 @@ function changeSort(v: Sort) {
     runtimeStore.editDict.words = reverse(runtimeStore.editDict.originWords)
   }
   resetChapterList()
+}
+
+function resetChapterList(num?: number) {
+  if (num !== undefined) {
+    runtimeStore.editDict.chapterWordNumber = num
+  }
+  residueWordList = []
+  chapterIndex = -1
+  runtimeStore.editDict.words.map(v => v.checked = false)
+  runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
+  runtimeStore.editDict.length = runtimeStore.editDict.words.length + runtimeStore.editDict.residueWords.length
+  chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
 }
 
 async function resetDict() {
@@ -370,10 +416,21 @@ async function resetDict() {
   // runtimeStore.editDict
 }
 
-function exportData() {
+function exportData(type: string) {
+  let list = []
+  let filename = ''
+  if (type === 'chapter') {
+    if (chapterIndex === -1) {
+      return ElMessage.error('请选择章节')
+    }
+    list = chapterWordList
+    filename = runtimeStore.editDict.name + `-第${chapterIndex + 1}章`
+  } else {
+    list = runtimeStore.editDict.words
+    filename = runtimeStore.editDict.name
+  }
   let wb = XLSX.utils.book_new()
-// 一个简单的sheet
-  let sheetData = chapterWordList.map(v => {
+  let sheetData = list.map(v => {
     return {
       单词: v.name,
       '音标①': v.usphone,
@@ -381,11 +438,11 @@ function exportData() {
       '释义(一行一个释义)': v.trans.join('\n')
     }
   })
-  let sheet = XLSX.utils.json_to_sheet(sheetData)
-  wb.Sheets['Sheet1'] = sheet
+  wb.Sheets['Sheet1'] = XLSX.utils.json_to_sheet(sheetData)
   wb.SheetNames = ['Sheet1']
-  XLSX.writeFile(wb, `${runtimeStore.editDict.name}-zh-CN.xlsx`);
-  ElMessage.success('导出成功！')
+  XLSX.writeFile(wb, `${filename}-zh-CN.xlsx`);
+  ElMessage.success(filename + ' 导出成功！')
+  showExport = false
 }
 
 function importData(e: any) {
@@ -432,122 +489,175 @@ function importData(e: any) {
   reader.readAsBinaryString(file);
 }
 
+defineExpose({getDictDetail})
+
 </script>
 
 <template>
-  <div class="page-content">
-    <div class="left-column">
-      <div class="header">
-        <div class="common-title">
-          <span>章节管理</span>
-          <div class="options">
-            <BaseIcon
-                @click="addNewChapter"
-                icon="fluent:add-20-filled"
-                title="新增章节"/>
+  <div class="dict-detail">
+    <header>
+      <div class="back" @click.stop="emit('back')">
+        <Icon icon="octicon:arrow-left-24" width="20"/>
+      </div>
+      <div class="left">
+        <div class="top">
+          <div class="title">
+            {{ runtimeStore.editDict.name }}
+          </div>
+          <template v-if="!isPinDict">
+            <BaseIcon icon="tabler:edit" @click='isEditDict = true'/>
+            <BaseIcon icon="ph:star" @click='no'/>
+            <BaseButton size="small" v-if="runtimeStore.editDict.isCustom" @click="resetDict">恢复默认</BaseButton>
+          </template>
+          <div class="import hvr-grow">
+            <BaseButton size="small">导入</BaseButton>
+            <input type="file"
+                   accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                   @change="importData">
+          </div>
+          <div class="export"
+               style="position: relative"
+               @click.stop="null">
+            <BaseButton size="small" @click="showExport = true">导出</BaseButton>
+            <MiniDialog
+                v-model="showExport"
+                style="width: 80rem;"
+            >
+              <div class="mini-row-title">
+                导出选项
+              </div>
+              <div class="mini-row">
+                <BaseButton size="small" @click="exportData('all')">全部单词</BaseButton>
+              </div>
+              <div class="mini-row">
+                <BaseButton size="small" @click="exportData('chapter')">当前章节</BaseButton>
+              </div>
+            </MiniDialog>
           </div>
         </div>
-        <div class="select">
-          <BaseButton size="small" @click="showAllocationChapterDialog = true">智能分配</BaseButton>
-          <span>{{ runtimeStore.editDict.chapterWords.length }}章</span>
-        </div>
+        <div class="desc" v-if="runtimeStore.editDict.description">{{ runtimeStore.editDict.description }}</div>
+        <div class="num">总词汇: {{ runtimeStore.editDict.length }}词</div>
       </div>
-      <div class="wrapper">
-        <RecycleScroller
-            v-if="chapterList2.length"
-            ref="chapterListRef"
-            style="height: 100%;"
-            :items="chapterList2"
-            :item-size="63"
-            key-field="id"
-            v-slot="{ item,index }"
-        >
-          <div style="padding: 0 15rem;">
-            <div class="common-list-item"
-                 :class="chapterIndex === item.id && 'active'"
-                 @click="handleChangeCurrentChapter(item.id)">
-              <div class="flex gap10 flex1 ">
-                <input type="radio" :checked="chapterIndex === item.id">
-                <div class="item-title flex flex1 space-between">
-                  <span>第{{ item.id + 1 }}章</span>
-                  <span>{{ runtimeStore.editDict.chapterWords[item.id]?.length }}词</span>
-                </div>
-              </div>
-              <div class="right">
-                <BaseIcon
-                    class-name="del"
-                    @click="delWordChapter(item.id)"
-                    title="移除"
-                    icon="solar:trash-bin-minimalistic-linear"/>
-              </div>
+    </header>
+    <EditDict
+        :isAdd="false"
+        v-if="isEditDict"
+        @cancel="isEditDict = false"
+        @submit="isEditDict = false"/>
+    <div v-else class="content">
+      <div class="left-column">
+        <div class="header">
+          <div class="common-title">
+            <span>章节管理</span>
+            <div class="options">
+              <BaseIcon
+                  @click="addNewChapter"
+                  icon="fluent:add-20-filled"
+                  title="新增章节"/>
             </div>
           </div>
-        </RecycleScroller>
-        <Empty v-else/>
-      </div>
-    </div>
-    <ChapterWordList
-        ref="chapterWordListRef"
-        :title="`${chapterIndex > -1 ? `第${chapterIndex + 1}章` : ''} 单词列表`"
-        :show-add="chapterIndex > -1"
-        @add="addWord('chapter')"
-        @del="delWord"
-        :empty-title="chapterIndex === -1?'请选择章节':null"
-        @edit="val => editWord(val.word,val.index,'chapter')"
-        v-model:list="chapterWordList"/>
-    <div class="options-column">
-      <BaseButton @click="toChapterWordList"
-                  :disabled="residueWordListCheckedTotal === 0">
-        &lt;
-      </BaseButton>
-      <BaseButton @click="toResidueWordList"
-                  :disabled="chapterWordListCheckedTotal === 0">
-        &gt;
-      </BaseButton>
-    </div>
-    <ChapterWordList
-        ref="residueWordListRef"
-        title="未分配单词列表"
-        :empty-title="null"
-        :show-add="true"
-        @add="addWord('residue')"
-        @del="delWord"
-        @edit="val => editWord(val.word,val.index,'residue')"
-        v-model:list="residueWordList"/>
-    <div class="right-column">
-      <div class="add" v-if="wordFormData.type">
-        <div class="common-title">
-          {{ wordFormData.type === FormMode.Add ? '添加' : '修改' }}单词
-          {{
-            wordFormData.type === FormMode.Add ? (wordFormData.where === 'chapter' ? `> 第${chapterIndex + 1}章` : '> 未分配') : ''
-          }}
-        </div>
-        <el-form
-            class="form"
-            ref="wordFormRef"
-            :rules="wordRules"
-            :model="wordForm"
-            label-width="100rem">
-          <el-form-item label="单词" prop="name">
-            <el-input v-model="wordForm.name"/>
-          </el-form-item>
-          <el-form-item label="翻译">
-            <el-input v-model="wordForm.trans"
-                      placeholder="多个翻译请换行"
-                      :autosize="{ minRows: 2, maxRows: 6 }"
-                      type="textarea"/>
-          </el-form-item>
-          <el-form-item label="音标/发音①">
-            <el-input v-model="wordForm.usphone"/>
-          </el-form-item>
-          <el-form-item label="音标/发音②">
-            <el-input v-model="wordForm.ukphone"/>
-          </el-form-item>
-          <div class="flex-center">
-            <el-button @click="closeWordForm">关闭</el-button>
-            <el-button type="primary" @click="onSubmitWord">保存</el-button>
+          <div class="select">
+            <BaseButton size="small" @click="showAllocationChapterDialog = true">智能分配</BaseButton>
+            <span>{{ runtimeStore.editDict.chapterWords.length }}章</span>
           </div>
-        </el-form>
+        </div>
+        <div class="wrapper">
+          <RecycleScroller
+              v-if="chapterList2.length"
+              ref="chapterListRef"
+              style="height: 100%;"
+              :items="chapterList2"
+              :item-size="63"
+              key-field="id"
+              v-slot="{ item,index }"
+          >
+            <div style="padding: 0 15rem;">
+              <div class="common-list-item"
+                   :class="chapterIndex === item.id && 'active'"
+                   @click="handleChangeCurrentChapter(item.id)">
+                <div class="flex gap10 flex1 ">
+                  <input type="radio" :checked="chapterIndex === item.id">
+                  <div class="item-title flex flex1 space-between">
+                    <span>第{{ item.id + 1 }}章</span>
+                    <span>{{ runtimeStore.editDict.chapterWords[item.id]?.length }}词</span>
+                  </div>
+                </div>
+                <div class="right">
+                  <BaseIcon
+                      class-name="del"
+                      @click="delWordChapter(item.id)"
+                      title="移除"
+                      icon="solar:trash-bin-minimalistic-linear"/>
+                </div>
+              </div>
+            </div>
+          </RecycleScroller>
+          <Empty v-else/>
+        </div>
+      </div>
+      <ChapterWordList
+          ref="chapterWordListRef"
+          :title="`${chapterIndex > -1 ? `第${chapterIndex + 1}章` : ''} 单词列表`"
+          :show-add="chapterIndex > -1"
+          @add="addWord('chapter')"
+          @del="delWord"
+          :empty-title="chapterIndex === -1?'请选择章节':null"
+          @edit="val => editWord(val.word,val.index,'chapter')"
+          v-model:list="chapterWordList"/>
+      <div class="options-column">
+        <BaseButton @click="toChapterWordList"
+                    :disabled="residueWordListCheckedTotal === 0">
+          &lt;
+        </BaseButton>
+        <BaseButton @click="toResidueWordList"
+                    :disabled="chapterWordListCheckedTotal === 0">
+          &gt;
+        </BaseButton>
+      </div>
+      <ChapterWordList
+          ref="residueWordListRef"
+          title="未分配单词列表"
+          :empty-title="null"
+          :show-add="true"
+          @add="addWord('residue')"
+          @del="delWord"
+          @edit="val => editWord(val.word,val.index,'residue')"
+          v-model:list="residueWordList"/>
+      <div class="right-column">
+        <div class="add" v-if="wordFormData.type">
+          <div class="common-title">
+            {{ wordFormData.type === FormMode.Add ? '添加' : '修改' }}单词
+            {{
+              wordFormData.type === FormMode.Add ? (wordFormData.where === 'chapter' ? `> 第${chapterIndex + 1}章` : '> 未分配') : ''
+            }}
+          </div>
+          <el-form
+              class="form"
+              ref="wordFormRef"
+              :rules="wordRules"
+              :model="wordForm"
+              label-width="100rem">
+            <el-form-item label="单词" prop="name">
+              <el-input v-model="wordForm.name"/>
+            </el-form-item>
+            <el-form-item label="翻译">
+              <el-input v-model="wordForm.trans"
+                        placeholder="多个翻译请换行"
+                        :autosize="{ minRows: 2, maxRows: 6 }"
+                        type="textarea"/>
+            </el-form-item>
+            <el-form-item label="音标/发音①">
+              <el-input v-model="wordForm.usphone"/>
+            </el-form-item>
+            <el-form-item label="音标/发音②">
+              <el-input v-model="wordForm.ukphone"/>
+            </el-form-item>
+            <div class="flex-center">
+              <el-button @click="closeWordForm">关闭</el-button>
+              <el-button type="primary" @click="onSubmitWord">保存</el-button>
+            </div>
+          </el-form>
+        </div>
       </div>
     </div>
   </div>
@@ -599,8 +709,61 @@ function importData(e: any) {
 </template>
 
 <style scoped lang="scss">
+.dict-detail {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 
-.page-content {
+  header {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    color: var(--color-font-1);
+    padding: 0 var(--space);
+    gap: 20rem;
+    margin-bottom: 20rem;
+
+    .back {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .left {
+      display: flex;
+      gap: 10rem;
+      flex-direction: column;
+      color: var(--color-font-2);
+
+      .top {
+        color: var(--color-font-1);
+        display: flex;
+        gap: 10rem;
+        font-size: 20rem;
+        align-items: center;
+      }
+
+      .import {
+        display: inline-flex;
+        position: relative;
+
+        input {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+}
+
+.content {
   flex: 1;
   overflow: hidden;
   display: flex;

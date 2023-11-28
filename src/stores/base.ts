@@ -193,7 +193,7 @@ export const useBaseStore = defineStore('base', {
                 try {
                     let configStr: string = await localforage.getItem(SaveDict.key)
                     // console.log(configStr)
-                    console.log('s', new Blob([configStr]).size)
+                    // console.log('s', new Blob([configStr]).size)
                     configStr = ''
                     if (configStr) {
                         let data = JSON.parse(configStr)
@@ -214,9 +214,7 @@ export const useBaseStore = defineStore('base', {
 
                 } else {
                     let dictResourceUrl = `./dicts/${this.currentDict.language}/${this.currentDict.type}/${this.currentDict.translateLanguage}/${this.currentDict.url}`;
-                    if ([
-                        DictType.word,
-                    ].includes(this.currentDict.type)) {
+                    if ([DictType.word].includes(this.currentDict.type)) {
                         if (!this.currentDict.originWords.length) {
                             let r = await fetch(dictResourceUrl)
                             // let r = await fetch(`.${this.currentDict.url}`)
@@ -239,10 +237,7 @@ export const useBaseStore = defineStore('base', {
                         }
                     }
 
-                    if ([
-                        DictType.article,
-                        DictType.customArticle,
-                    ].includes(this.currentDict.type)) {
+                    if ([DictType.article].includes(this.currentDict.type)) {
                         if (!this.currentDict.articles.length) {
                             let r = await fetch(dictResourceUrl)
                             let s: any[] = await r.json()
