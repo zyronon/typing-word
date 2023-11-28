@@ -219,9 +219,15 @@ function exportData(val: { type: string, data?: Article }) {
 }
 
 function editDict() {
+  isEditDict = true
 }
 
-defineExpose({getDictDetail})
+function add() {
+  emitter.emit(EventKey.openArticleListModal)
+}
+
+defineExpose({getDictDetail, add, editDict})
+
 
 </script>
 
@@ -237,7 +243,7 @@ defineExpose({getDictDetail})
             {{ runtimeStore.editDict.name }}
           </div>
           <template v-if="!isPinDict">
-            <BaseIcon icon="tabler:edit" @click='isEditDict = true'/>
+            <BaseIcon icon="tabler:edit" @click='editDict'/>
             <BaseIcon icon="ph:star" @click='no'/>
             <BaseButton size="small" v-if="runtimeStore.editDict.isCustom" @click="resetDict">恢复默认</BaseButton>
           </template>
@@ -283,7 +289,7 @@ defineExpose({getDictDetail})
             <span>文章管理</span>
             <div class="options">
               <BaseIcon
-                  @click="emitter.emit(EventKey.openArticleListModal)"
+                  @click="add"
                   icon="fluent:add-20-filled"
                   title="新增章节"/>
               <span>{{ runtimeStore.editDict.articles.length }}篇</span>

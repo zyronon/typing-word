@@ -9,7 +9,7 @@ import {assign, chunk, cloneDeep, reverse, shuffle} from "lodash-es";
 import {DefaultDict, Dict, DictResource, DictType, Sort, Word} from "@/types.ts";
 import {nanoid} from "nanoid";
 import {FormInstance, FormRules} from "element-plus";
-import {reactive, watch} from "vue";
+import {reactive} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -47,6 +47,9 @@ useWindowClick(() => showExport = false)
 
 const isPinDict = $computed(() => {
   return [DictType.collect, DictType.wrong, DictType.simple].includes(runtimeStore.editDict.type)
+})
+const isCanOperation = $computed(() => {
+  return runtimeStore.editDict.type !== DictType.wrong
 })
 
 let chapterWordList: Word[] = $computed({
@@ -106,7 +109,7 @@ function addNewChapter() {
   runtimeStore.editDict.chapterWords.push([])
   chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
   ElMessage.success('新增章节成功')
-  setTimeout(() => chapterListRef?.scrollToItem(chapterList2.length -1), 100)
+  setTimeout(() => chapterListRef?.scrollToItem(chapterList2.length - 1), 100)
 }
 
 function delWordChapter(index: number) {
@@ -490,7 +493,11 @@ function importData(e: any) {
   reader.readAsBinaryString(file);
 }
 
-defineExpose({getDictDetail})
+function editDict() {
+  isEditDict = true
+}
+
+defineExpose({getDictDetail, add: addWord, editDict})
 
 </script>
 
@@ -506,7 +513,7 @@ defineExpose({getDictDetail})
             {{ runtimeStore.editDict.name }}
           </div>
           <template v-if="!isPinDict">
-            <BaseIcon icon="tabler:edit" @click='isEditDict = true'/>
+            <BaseIcon icon="tabler:edit" @click='editDict'/>
             <BaseIcon icon="ph:star" @click='no'/>
             <BaseButton size="small" v-if="runtimeStore.editDict.isCustom" @click="resetDict">恢复默认</BaseButton>
           </template>
@@ -552,13 +559,14 @@ defineExpose({getDictDetail})
             <span>章节管理</span>
             <div class="options">
               <BaseIcon
+                  v-if="isCanOperation"
                   @click="addNewChapter"
                   icon="fluent:add-20-filled"
                   title="新增章节"/>
             </div>
           </div>
           <div class="select">
-            <BaseButton size="small" @click="showAllocationChapterDialog = true">智能分配</BaseButton>
+            <BaseButton v-if="isCanOperation" size="small" @click="showAllocationChapterDialog = true">智能分配</BaseButton>
             <span>{{ runtimeStore.editDict.chapterWords.length }}章</span>
           </div>
         </div>
@@ -583,7 +591,9 @@ defineExpose({getDictDetail})
                     <span>{{ runtimeStore.editDict.chapterWords[item.id]?.length }}词</span>
                   </div>
                 </div>
-                <div class="right">
+                <div class="right"
+                     v-if="isCanOperation"
+                >
                   <BaseIcon
                       class-name="del"
                       @click="delWordChapter(item.id)"
@@ -598,6 +608,7 @@ defineExpose({getDictDetail})
       </div>
       <ChapterWordList
           ref="chapterWordListRef"
+          :can-operation="isCanOperation"
           :title="`${chapterIndex > -1 ? `第${chapterIndex + 1}章` : ''} 单词列表`"
           :show-add="chapterIndex > -1"
           @add="addWord('chapter')"
@@ -605,7 +616,7 @@ defineExpose({getDictDetail})
           :empty-title="chapterIndex === -1?'请选择章节':null"
           @edit="val => editWord(val.word,val.index,'chapter')"
           v-model:list="chapterWordList"/>
-      <div class="options-column">
+      <div class="options-column" v-if="isCanOperation">
         <BaseButton @click="toChapterWordList"
                     :disabled="residueWordListCheckedTotal === 0">
           &lt;
@@ -616,6 +627,8 @@ defineExpose({getDictDetail})
         </BaseButton>
       </div>
       <ChapterWordList
+          v-if="isCanOperation"
+          :can-operation="isCanOperation"
           ref="residueWordListRef"
           title="未分配单词列表"
           :empty-title="null"

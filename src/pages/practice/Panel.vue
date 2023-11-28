@@ -9,7 +9,6 @@ import BaseButton from "@/components/BaseButton.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import Close from "@/components/icon/Close.vue";
 import Empty from "@/components/Empty.vue";
-import ArticleList from "@/components/article/ArticleList-FQ.vue";
 import {useArticleOptions, useWordOptions} from "@/hooks/dict.ts";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";
@@ -18,8 +17,13 @@ import CommonWordList from "@/components/list/CommonWordList.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import ArticleList2 from "@/components/list/ArticleList2.vue";
+import {useRouter} from "vue-router";
+import {useRuntimeStore} from "@/stores/runtime.ts";
+import {cloneDeep} from "lodash-es";
 
+const router = useRouter()
 const store = useBaseStore()
+const runtimeStore = useRuntimeStore()
 const settingStore = useSettingStore()
 let tabIndex = $ref(0)
 provide('tabIndex', computed(() => tabIndex))
@@ -52,6 +56,16 @@ const {
   isArticleCollect,
   toggleArticleCollect
 } = useArticleOptions()
+
+function addCollect() {
+  runtimeStore.editDict = cloneDeep(store.collect)
+  router.push({path: '/dict', query: {type: 'addWordOrArticle'}})
+}
+
+function addSimple() {
+  runtimeStore.editDict = cloneDeep(store.simple)
+  router.push({path: '/dict', query: {type: 'addWordOrArticle'}})
+}
 
 </script>
 <template>
@@ -94,7 +108,7 @@ const {
                   </div>
                   <Tooltip title="添加">
                     <IconWrapper>
-                      <Icon icon="fluent:add-12-regular" @click="emitter.emit(EventKey.openDictModal,'collect')"/>
+                      <Icon icon="fluent:add-12-regular" @click="addCollect"/>
                     </IconWrapper>
                   </Tooltip>
                 </div>
@@ -151,7 +165,7 @@ const {
                   <div class="dict-name">总词数：{{ store.simple.words.length }}</div>
                   <Tooltip title="添加">
                     <IconWrapper>
-                      <Icon icon="fluent:add-12-regular" @click="emitter.emit(EventKey.openDictModal,'simple')"/>
+                      <Icon icon="fluent:add-12-regular" @click="addSimple"/>
                     </IconWrapper>
                   </Tooltip>
                 </div>

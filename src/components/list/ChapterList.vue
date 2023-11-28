@@ -14,7 +14,6 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   'update:activeIndex': [index: number]
-  del: [index: number]
 }>()
 
 const runtimeStore = useRuntimeStore()
@@ -43,27 +42,22 @@ function showWordListModal(index: number, item: Word[]) {
       <div class="flex gap10">
         <input type="radio" :checked="activeIndex === index">
         <div class="left">
-          <template v-if="isArticle">
-            <div class="item-title"
-                 @click.stop="emitter.emit(EventKey.openArticleListModal,item)"
-            >{{ index + 1 }}.&nbsp;{{ item.title }}
-            </div>
-            <div class="item-sub-title" v-if="item.titleTranslate"> {{ item.titleTranslate }}</div>
-          </template>
-          <template v-else>
-            <div class="item-title"
-                 @click.stop="showWordListModal(index,item)"
-            >第{{ index + 1 }}章&nbsp;&nbsp;&nbsp;{{ item.length }}词
-            </div>
-          </template>
+          <div class="title-wrapper">
+            <template v-if="isArticle">
+              <div class="item-title"
+                   @click.stop="emitter.emit(EventKey.openArticleListModal,item)"
+              >{{ index + 1 }}.&nbsp;{{ item.title }}
+              </div>
+              <div class="item-sub-title" v-if="item.titleTranslate"> {{ item.titleTranslate }}</div>
+            </template>
+            <template v-else>
+              <div class="item-title"
+                   @click.stop="showWordListModal(index,item)"
+              >第{{ index + 1 }}章&nbsp;&nbsp;&nbsp;{{ item.length }}词
+              </div>
+            </template>
+          </div>
         </div>
-      </div>
-      <div class="right" v-if="isArticle">
-        <BaseIcon
-            class-name="del"
-            @click="emit('del',index)"
-            title="移除"
-            icon="solar:trash-bin-minimalistic-linear"/>
       </div>
     </div>
   </div>

@@ -1,16 +1,7 @@
 <script setup lang="ts">
 import {$ref} from "vue/macros";
 import TypingArticle from "./TypingArticle.vue";
-import {
-  Article,
-  ArticleWord,
-  DefaultArticle,
-  DefaultWord,
-  DisplayStatistics,
-  ShortcutKey,
-  TranslateType,
-  Word
-} from "@/types.ts";
+import {Article, ArticleWord, DefaultArticle, DisplayStatistics, ShortcutKey, TranslateType, Word} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import TypingWord from "@/pages/practice/practice-word/TypingWord.vue";
 import Panel from "../Panel.vue";
@@ -21,7 +12,6 @@ import {useBaseStore} from "@/stores/base.ts";
 import EditSingleArticleModal from "@/components/article/EditSingleArticleModal.vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import ArticleList from "@/components/article/ArticleList-FQ.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";

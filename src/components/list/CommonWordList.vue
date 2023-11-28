@@ -59,13 +59,15 @@ const playWordAudio = usePlayWordAudio()
          @click="emit('change',{word:source,index})"
     >
       <div class="left">
-        <div class="item-title">
-          <span class="word" :class="!showWord && 'text-shadow'">{{ source.name }}</span>
-          <span class="phonetic">{{ source.usphone }}</span>
-          <VolumeIcon class="volume" @click="playWordAudio(source.name)"></VolumeIcon>
-        </div>
-        <div class="item-sub-title" v-if="source.trans.length && showTranslate">
-          <div v-for="item in source.trans">{{ item }}</div>
+        <div class="title-wrapper">
+          <div class="item-title">
+            <span class="word" :class="!showWord && 'text-shadow'">{{ source.name }}</span>
+            <span class="phonetic">{{ source.usphone }}</span>
+            <VolumeIcon class="volume" @click="playWordAudio(source.name)"></VolumeIcon>
+          </div>
+          <div class="item-sub-title" v-if="source.trans.length && showTranslate">
+            <div v-for="item in source.trans">{{ item }}</div>
+          </div>
         </div>
       </div>
       <div class="right">

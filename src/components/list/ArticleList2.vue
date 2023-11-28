@@ -82,11 +82,13 @@ watch(() => props.list, () => {
          @click="emit('selectItem',source)"
     >
       <div class="left">
-        <div class="item-title">
-          <div class="name"> {{ `${index + 1}. ${source.title}` }}</div>
-        </div>
-        <div class="item-sub-title" v-if="source.titleTranslate && showTranslate">
-          <div class="item-translate"> {{ `   ${source.titleTranslate}` }}</div>
+        <div class="title-wrapper">
+          <div class="item-title">
+            <div class="name"> {{ `${index + 1}. ${source.title}` }}</div>
+          </div>
+          <div class="item-sub-title" v-if="source.titleTranslate && showTranslate">
+            <div class="item-translate"> {{ `   ${source.titleTranslate}` }}</div>
+          </div>
         </div>
       </div>
       <div class="right">

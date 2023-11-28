@@ -84,7 +84,6 @@ export interface Article {
     title: string,
     titleTranslate: string,
     text: string,
-    textFormat: string,
     textCustomTranslate: string,
     textCustomTranslateIsFormat: boolean,//翻译是否格式化
     textNetworkTranslate: string,
@@ -100,7 +99,6 @@ export const DefaultArticle: Article = {
     title: '',
     titleTranslate: '',
     text: '',
-    textFormat: '',
     textCustomTranslate: '',
     textNetworkTranslate: '',
     textCustomTranslateIsFormat: false,

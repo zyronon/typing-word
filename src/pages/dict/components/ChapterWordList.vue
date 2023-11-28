@@ -16,6 +16,7 @@ const props = defineProps<{
   emptyTitle?: string,
   showAdd?: boolean,
   list: Word[]
+  canOperation: boolean
 }>()
 
 const emit = defineEmits<{
@@ -95,7 +96,7 @@ useWindowClick(() => show = false)
     <div class="header">
       <div class="common-title">
         <span>{{ title }}</span>
-        <div class="options">
+        <div class="options" v-if="canOperation">
           <div class="setting"
                v-if="list.length"
                @click.stop="null">
@@ -125,7 +126,7 @@ useWindowClick(() => show = false)
         </div>
       </div>
       <div class="select"
-           v-if="list.length"
+           v-if="list.length && canOperation"
       >
         <div class="left">
           <el-checkbox
@@ -145,12 +146,12 @@ useWindowClick(() => show = false)
           v-if="list.length"
           @click="handleCheckedChange"
       >
-        <template v-slot:prefix="{word}">
+        <template v-slot:prefix="{word}" v-if="canOperation">
           <el-checkbox v-model="word.checked"
                        @change="handleCheckedChange({word})"
                        size="large"/>
         </template>
-        <template v-slot="{word,index}">
+        <template v-slot="{word,index}" v-if="canOperation">
           <BaseIcon
               class-name="del"
               @click="emit('edit',{word,index})"

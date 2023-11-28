@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import {useBaseStore} from "@/stores/base.ts"
 import {nextTick, onMounted, watch} from "vue"
-import {Dict, DictResource, DictType, Sort} from "@/types.ts"
-import {cloneDeep, reverse, shuffle} from "lodash-es";
+import {Dict, DictResource, DictType} from "@/types.ts"
 import {$ref} from "vue/macros";
 import "vue-activity-calendar/style.css";
 import {useRuntimeStore} from "@/stores/runtime.ts";
@@ -11,27 +10,26 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import Slide from "@/components/Slide.vue";
 import ArticleDictDetail from "@/pages/dict/components/ArticleDictDetail.vue";
 import WordDictDetail from "@/pages/dict/components/WordDictDetail.vue";
-import DictListPanel from "@/pages/dict/components/DictListPanel.vue";
+import DictListPanel from "@/components/DictListPanel.vue";
 import EditDict from "@/pages/dict/components/EditDict.vue";
+import {useRoute} from "vue-router";
 
-
+const route = useRoute()
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 let detailRef = $ref()
 let dictIsArticle = $ref(false)
-let step = $ref(1)
+let step = $ref(0)
 let isAddDict = $ref(false)
 
-async function selectDict(val: {
-  dict: DictResource | Dict,
-  index: number
-}) {
+async function selectDict(val: { dict: DictResource | Dict }, cb?: any) {
   step = 1
   isAddDict = false
   dictIsArticle = val.dict.type === DictType.article
   nextTick(() => {
     detailRef?.getDictDetail(val)
+    cb?.()
   })
 }
 
@@ -39,58 +37,63 @@ function changeDict() {
   store.changeDict(runtimeStore.editDict)
 }
 
-function changeSort(v: Sort) {
-  if (v === Sort.normal) {
-    runtimeStore.editDict.words = cloneDeep(runtimeStore.editDict.originWords)
-  } else if (v === Sort.random) {
-    runtimeStore.editDict.words = shuffle(runtimeStore.editDict.originWords)
-  } else {
-    runtimeStore.editDict.words = reverse(runtimeStore.editDict.originWords)
-  }
-  // resetChapterList()
-}
-
-/**/
-/*词典相关*/
-/**/
-
-
-let categoryList = {}
-let tagList = {}
-
-
-/**/
-/*词典相关*/
-/**/
-
-watch(() => step, v => {
-  if (v === 0) {
-    // closeWordForm()
-    // closeDictForm()
-    // chapterWordNumber = settingStore.chapterWordNumber
-  }
-})
-
 watch(() => store.load, v => {
   if (v) {
-    selectDict({dict: store.currentDict, index: 0})
+    // selectDict({dict: store.currentDict, index: 0})
   }
 })
 
+function addDict() {
+  step = 1
+  isAddDict = true
+}
+
+function back() {
+  step = 0
+}
+
+function cancelAddDict() {
+  step = 0
+  setTimeout(() => {
+    isAddDict = false
+  }, 500)
+}
+
+
 onMounted(() => {
-
-  selectDict({dict: store.currentDict, index: 0})
-
+  // selectDict({dict: store.currentDict, index: 0})
+  console.log('router.params', route)
+  switch (route.query.type) {
+    case 'addDict':
+      setTimeout(() => {
+        addDict()
+      }, 300)
+      break
+    case 'addWordOrArticle':
+      setTimeout(() => {
+        selectDict({dict: runtimeStore.editDict}, () => {
+          detailRef?.add()
+        })
+      }, 300)
+      break
+    case 'editDict':
+      setTimeout(() => {
+        selectDict({dict: runtimeStore.editDict}, () => {
+          detailRef?.editDict()
+        })
+      }, 300)
+      break
+  }
   emitter.on(EventKey.openDictModal, (type: 'detail' | 'list' | 'my' | 'collect' | 'simple') => {
     if (type === "detail") {
-      selectDict({dict: store.currentDict, index: 0})
+      selectDict({dict: store.currentDict})
     }
     if (type === "list") {
-      currentLanguage = 'en'
+      // currentLanguage = 'en'
       step = 0
     }
     if (type === "my") {
-      currentLanguage = 'my'
+      // currentLanguage = 'my'
       step = 0
     }
     if (type === "collect") {
@@ -105,19 +108,6 @@ onMounted(() => {
   // console.log('categoryList', categoryList)
   // console.log('tagList', tagList)
 })
-
-
-function addDict() {
-  step = 1
-  isAddDict = true
-}
-
-function back() {
-  step = 0
-  // isAddDict = false
-}
-
-
 </script>
 
 <template>
@@ -131,7 +121,7 @@ function back() {
         <EditDict
             v-if="isAddDict"
             :isAdd="true"
-            @cancel="isAddDict = false;step = 0"
+            @cancel="cancelAddDict"
             @submit="selectDict({dict:runtimeStore.editDict})"/>
         <template v-else>
           <ArticleDictDetail
@@ -150,11 +140,6 @@ function back() {
 
 <style scoped lang="scss">
 @import "@/assets/css/variable";
-
-$modal-mask-bg: rgba(#000, .15);
-$radius: 16rem;
-$time: 0.3s;
-$header-height: 60rem;
 
 #DictDialog {
   font-size: 14rem;
