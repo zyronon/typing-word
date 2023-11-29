@@ -10,6 +10,7 @@ import {cloneDeep} from "lodash-es";
 import Backgorund from "@/components/Backgorund.vue";
 import useTheme from "@/hooks/useTheme.ts";
 import * as localforage from "localforage";
+import SettingDialog from "@/components/dialog/SettingDialog.vue";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -64,8 +65,9 @@ onMounted(() => {
 </script>
 
 <template>
-<!--  <Backgorund/>-->
+  <Backgorund/>
   <router-view/>
+  <SettingDialog v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
 </template>
 
 <style scoped lang="scss">

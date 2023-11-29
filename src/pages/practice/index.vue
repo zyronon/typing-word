@@ -165,7 +165,6 @@ onUnmounted(() => {
     <Footer/>
   </div>
   <DictModal/>
-  <SettingDialog v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
   <Statistics/>
 </template>
 
