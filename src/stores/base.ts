@@ -154,7 +154,6 @@ export const useBaseStore = defineStore('base', {
             }
             return [
                 DictType.article,
-                DictType.customArticle
             ].includes(this.currentDict.type)
         },
         currentDict(): Dict {

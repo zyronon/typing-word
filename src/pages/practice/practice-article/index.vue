@@ -20,6 +20,7 @@ import {useSettingStore} from "@/stores/setting.ts";
 import ArticleList2 from "@/components/list/ArticleList2.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useArticleOptions} from "@/hooks/dict.ts";
+import ArticleList4 from "@/components/list2/ArticleList4.vue";
 
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
@@ -109,7 +110,7 @@ function getCurrentPractice() {
                   renewSectionTexts(tempArticle)
                   tempArticle.useTranslateType = TranslateType.none
                   setArticle(tempArticle)
-                },
+                }, null,
                 {
                   confirmButtonText: '去编辑',
                   cancelButtonText: '不需要翻译',
@@ -128,7 +129,7 @@ function getCurrentPractice() {
                 renewSectionTexts(tempArticle)
                 tempArticle.useTranslateType = TranslateType.none
                 setArticle(tempArticle)
-              },
+              }, null,
               {
                 confirmButtonText: '去编辑',
                 cancelButtonText: '不需要翻译',
@@ -274,7 +275,29 @@ const {
                 {{ store.currentDict.articles.length }}篇文章
               </div>
             </div>
+
+            <ArticleList4
+                v-if="true"
+                :isActive="active"
+                :show-translate="settingStore.translate"
+                :active-id="articleData.article.id"
+                :list="store.currentDict.articles">
+              <template v-slot:suffix="{item,index}">
+                <BaseIcon
+                    v-if="!isArticleCollect(item)"
+                    class-name="collect"
+                    @click="toggleArticleCollect(item)"
+                    title="收藏" icon="ph:star"/>
+                <BaseIcon
+                    v-else
+                    class-name="fill"
+                    @click="toggleArticleCollect(item)"
+                    title="取消收藏" icon="ph:star-fill"/>
+              </template>
+            </ArticleList4>
+
             <ArticleList2
+                v-else
                 :isActive="active"
                 :show-translate="settingStore.translate"
                 @select-item="changePracticeArticle"

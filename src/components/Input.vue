@@ -39,7 +39,8 @@ useWindowClick((e: PointerEvent) => {
 
 .base-input {
   border: 1px solid var(--color-second-bg);
-  border-radius: 4rem;
+  border-radius: 6rem;
+  overflow: hidden;
   padding: 3rem 5rem;
   transition: all .3s;
   display: flex;
