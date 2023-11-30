@@ -116,6 +116,4 @@ defineExpose({scrollToBottom, scrollToItem})
   height: 100%;
   padding: 0 var(--space);
 }
-
-
 </style>
