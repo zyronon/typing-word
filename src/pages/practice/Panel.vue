@@ -20,6 +20,7 @@ import ArticleList2 from "@/components/list/ArticleList2.vue";
 import {useRouter} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {cloneDeep} from "lodash-es";
+import WordList from "@/components/list2/WordList.vue";
 
 const router = useRouter()
 const store = useBaseStore()
@@ -126,18 +127,18 @@ function addSimple() {
                 </template>
               </div>
               <template v-if="practiceType === DictType.word">
-                <CommonWordList
+                <WordList
                     v-if="store.collect.words.length"
                     class="word-list"
                     :list="store.collect.words">
-                  <template v-slot="{word,index}">
+                  <template v-slot:suffix="{item,index}">
                     <BaseIcon
                         class-name="del"
-                        @click="toggleWordCollect(word)"
+                        @click="toggleWordCollect(item)"
                         title="移除"
                         icon="solar:trash-bin-minimalistic-linear"/>
                   </template>
-                </CommonWordList>
+                </WordList>
                 <Empty v-else/>
               </template>
               <template v-else>
@@ -178,18 +179,18 @@ function addSimple() {
                   </PopConfirm>
                 </template>
               </div>
-              <CommonWordList
+              <WordList
                   v-if="store.simple.words.length"
                   class="word-list"
                   :list="store.simple.words">
-                <template v-slot="{word,index}">
+                <template v-slot:suffix="{item,index}">
                   <BaseIcon
                       class-name="del"
-                      @click="delSimpleWord(word)"
+                      @click="delSimpleWord(item)"
                       title="移除"
                       icon="solar:trash-bin-minimalistic-linear"/>
                 </template>
-              </CommonWordList>
+              </WordList>
               <Empty v-else/>
             </div>
           </div>
@@ -207,17 +208,17 @@ function addSimple() {
                   </PopConfirm>
                 </template>
               </div>
-              <CommonWordList
+              <WordList
                   class="word-list"
                   :list="store.wrong.words">
-                <template v-slot="{word,index}">
+                <template v-slot="{item,index}">
                   <BaseIcon
                       class-name="del"
-                      @click="delWrongWord(word)"
+                      @click="delWrongWord(item)"
                       title="移除"
                       icon="solar:trash-bin-minimalistic-linear"/>
                 </template>
-              </CommonWordList>
+              </WordList>
             </div>
             <Empty v-else/>
           </div>

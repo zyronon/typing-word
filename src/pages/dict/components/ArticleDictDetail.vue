@@ -21,6 +21,7 @@ import * as XLSX from "xlsx";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {syncMyDictList} from "@/hooks/dict.ts";
 import {useWindowClick} from "@/hooks/event.ts";
+import ArticleList4 from "@/components/list2/ArticleList4.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -39,7 +40,7 @@ const isPinDict = $computed(() => {
 
 function handleCheckedChange(val) {
   chapterIndex = val.index
-  article = val.data
+  article = val.item
 }
 
 function delArticle(index: number) {
@@ -297,20 +298,21 @@ defineExpose({getDictDetail, add, editDict})
           </div>
         </div>
         <div class="wrapper">
-          <ArticleList3
+          <ArticleList4
               ref="listRef"
+              :isActive="false"
               v-if="runtimeStore.editDict.articles.length"
               :list="runtimeStore.editDict.articles"
+              @title="handleCheckedChange"
               @click="handleCheckedChange"
-              :active-index="chapterIndex"
-          >
-            <template v-slot:prefix="{data,index}">
+              :active-index="chapterIndex">
+            <template v-slot:prefix="{item,index}">
               <input type="radio" :checked="chapterIndex === index">
             </template>
-            <template v-slot="{data,index}">
+            <template v-slot="{item,index}">
               <BaseIcon
                   class-name="del"
-                  @click="emitter.emit(EventKey.openArticleListModal,data)"
+                  @click="emitter.emit(EventKey.openArticleListModal,item)"
                   title="编辑"
                   icon="tabler:edit"/>
               <BaseIcon
@@ -319,7 +321,7 @@ defineExpose({getDictDetail, add, editDict})
                   title="删除"
                   icon="solar:trash-bin-minimalistic-linear"/>
             </template>
-          </ArticleList3>
+          </ArticleList4>
           <Empty v-else/>
         </div>
       </div>
@@ -454,6 +456,7 @@ defineExpose({getDictDetail, add, editDict})
 
     .wrapper {
       flex: 1;
+      display: flex;
       padding-bottom: var(--space);
       overflow: hidden;
     }

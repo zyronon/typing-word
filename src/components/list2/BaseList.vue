@@ -102,7 +102,10 @@ defineExpose({scrollToBottom, scrollToItem})
       >
         <div class="list-item-wrapper">
           <div class="common-list-item"
-               :class="{active:itemIsActive(item,index)}"
+               :class="{
+            active:itemIsActive(item,index),
+            border:showBorder
+          }"
                @click="emit('click',{item,index})"
           >
             <div class="left">

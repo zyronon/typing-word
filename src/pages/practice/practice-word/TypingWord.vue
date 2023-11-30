@@ -18,6 +18,8 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import CommonWordList from "@/components/list/CommonWordList.vue";
+import WordList from "@/components/list2/WordList.vue";
+import Empty from "@/components/Empty.vue";
 
 interface IProps {
   words: Word[],
@@ -286,39 +288,41 @@ onUnmounted(() => {
                   {{ data.words.length }}个单词
                 </div>
               </div>
-              <CommonWordList
-                  class="word-list"
+              <WordList
+                  v-if="data.words.length"
                   :is-active="active"
-                  @change="(val:any) => data.index = val.index"
                   :show-word="!settingStore.dictation"
                   :show-translate="settingStore.translate"
                   :list="data.words"
-                  :activeIndex="data.index">
-                <template v-slot="{word,index}">
+                  :activeIndex="data.index"
+                  @click="(val:any) => data.index = val.index"
+              >
+                <template v-slot:suffix="{item,index}">
                   <BaseIcon
-                      v-if="!isWordCollect(word)"
+                      v-if="!isWordCollect(item)"
                       class-name="collect"
-                      @click="toggleWordCollect(word)"
+                      @click="toggleWordCollect(item)"
                       title="收藏" icon="ph:star"/>
                   <BaseIcon
                       v-else
                       class-name="fill"
-                      @click="toggleWordCollect(word)"
+                      @click="toggleWordCollect(item)"
                       title="取消收藏" icon="ph:star-fill"/>
                   <BaseIcon
-                      v-if="!isWordSimple(word)"
+                      v-if="!isWordSimple(item)"
                       class-name="easy"
-                      @click="toggleWordSimple(word)"
+                      @click="toggleWordSimple(item)"
                       title="标记为简单词"
                       icon="material-symbols:check-circle-outline-rounded"/>
                   <BaseIcon
                       v-else
                       class-name="fill"
-                      @click="toggleWordSimple(word)"
+                      @click="toggleWordSimple(item)"
                       title="取消标记简单词"
                       icon="material-symbols:check-circle-rounded"/>
                 </template>
-              </CommonWordList>
+              </WordList>
+              <Empty v-else/>
             </div>
           </template>
         </Panel>

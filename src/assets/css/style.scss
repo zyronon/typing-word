@@ -372,6 +372,12 @@ footer {
   }
 
   &.border {
+    &.active {
+      .item-title {
+        border-bottom: 2px solid gray !important;
+      }
+    }
+
     .item-title {
       transition: all .3s;
       cursor: pointer;
