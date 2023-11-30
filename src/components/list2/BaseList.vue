@@ -1,24 +1,20 @@
 <script setup lang="ts">
-import {Word} from "../../types.ts";
 import {useSettingStore} from "@/stores/setting.ts";
-import VolumeIcon from "@/components/icon/VolumeIcon.vue";
-import {usePlayWordAudio} from "@/hooks/sound.ts";
 import {watch} from 'vue'
+import {$computed} from "vue/macros";
 
 const props = withDefaults(defineProps<{
   list?: any[],
   activeIndex?: number,
   activeId?: string,
   isActive?: boolean
-  showTranslate?: boolean
-  showWord?: boolean
+  showBorder?: boolean
 }>(), {
   list: [],
   activeIndex: -1,
   activeId: '',
   isActive: false,
-  showTranslate: true,
-  showWord: true
+  showBorder: false
 })
 
 const emit = defineEmits<{
@@ -28,36 +24,47 @@ const emit = defineEmits<{
   }],
 }>()
 
+//虚拟列表长度限制
+const limit = 1
+
 const settingStore = useSettingStore()
 const listRef: any = $ref()
 
+const localActiveIndex = $computed(() => {
+  if (props.activeId) {
+    return props.list.findIndex(v => v.id === props.activeId)
+  }
+  return props.activeIndex
+})
+
 function scrollViewToCenter(index: number) {
   if (index === -1) return
-  listRef.scrollToIndex(index)
-  // listRef.children[index]?.scrollIntoView({block: 'center', behavior: 'smooth'})
+  if (props.list.length > limit) {
+    listRef?.scrollToItem(index)
+  } else {
+    listRef?.children[index]?.scrollIntoView({block: 'center', behavior: 'smooth'})
+  }
 }
-//
-// watch(() => props.activeIndex, (n: any) => {
-//   if (settingStore.showPanel) {
-//     scrollViewToCenter(n)
-//   }
-// })
-//
-// watch(() => props.isActive, (n: boolean) => {
-//   setTimeout(() => {
-//     if (n) scrollViewToCenter(props.activeIndex)
-//   }, 300)
-// })
 
-// watch(() => props.list, () => {
-//   listRef.scrollTo(0, 0)
-// })
+watch(() => localActiveIndex, (n: any) => {
+  if (settingStore.showPanel) {
+    scrollViewToCenter(n)
+  }
+})
 
-const playWordAudio = usePlayWordAudio()
+watch(() => props.isActive, (n: boolean) => {
+  setTimeout(() => {
+    if (n) scrollViewToCenter(localActiveIndex)
+  }, 300)
+})
 
-function reset() {
-  listRef.reset()
-}
+watch(() => props.list, () => {
+  if (props.list.length > limit) {
+    listRef?.scrollToItem(0)
+  } else {
+    listRef?.scrollTo(0, 0)
+  }
+})
 
 function scrollToBottom() {
   listRef.scrollToBottom()

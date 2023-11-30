@@ -42,10 +42,8 @@ let showEditArticle = $ref(false)
 let editArticle = $ref<Article>(cloneDeep(DefaultArticle))
 
 watch([
-  () => store.current.index,
-  () => store.load,
-  () => store.currentDict.type,
-  () => store.currentDict.chapterIndex,
+  // () => store.load,
+  () => store.currentDict.articles,
 ], n => {
   console.log('n', n)
   getCurrentPractice()
@@ -84,7 +82,7 @@ function getCurrentPractice() {
 
   let currentArticle = store.currentDict.articles[store.currentDict.chapterIndex]
   let tempArticle = {...DefaultArticle, ...currentArticle}
-  console.log('article', tempArticle)
+  // console.log('article', tempArticle)
   if (tempArticle.sections.length) {
     setArticle(tempArticle)
   } else {
@@ -125,6 +123,7 @@ function getCurrentPractice() {
                 editArticle = tempArticle
                 showEditArticle = true
               },
+
               () => {
                 renewSectionTexts(tempArticle)
                 tempArticle.useTranslateType = TranslateType.none
@@ -209,10 +208,11 @@ function nextWord(word: ArticleWord) {
   }
 }
 
-function changePracticeArticle(val: Article) {
-  let rIndex = store.currentDict.articles.findIndex(v => v.id === val.id)
+function changePracticeArticle(val: { item: Article, index: number }) {
+  let rIndex = store.currentDict.articles.findIndex(v => v.id === val.item.id)
   if (rIndex > -1) {
     store.currentDict.chapterIndex = rIndex
+    getCurrentPractice()
   }
 }
 
@@ -277,9 +277,9 @@ const {
             </div>
 
             <ArticleList4
-                v-if="true"
                 :isActive="active"
                 :show-translate="settingStore.translate"
+                @click="changePracticeArticle"
                 :active-id="articleData.article.id"
                 :list="store.currentDict.articles">
               <template v-slot:suffix="{item,index}">
@@ -295,27 +295,6 @@ const {
                     title="取消收藏" icon="ph:star-fill"/>
               </template>
             </ArticleList4>
-
-            <ArticleList2
-                v-else
-                :isActive="active"
-                :show-translate="settingStore.translate"
-                @select-item="changePracticeArticle"
-                :active-index="store.currentDict.chapterIndex"
-                v-model:list="store.currentDict.articles">
-              <template v-slot="{source,index}">
-                <BaseIcon
-                    v-if="!isArticleCollect(source)"
-                    class-name="collect"
-                    @click="toggleArticleCollect(source)"
-                    title="收藏" icon="ph:star"/>
-                <BaseIcon
-                    v-else
-                    class-name="fill"
-                    @click="toggleArticleCollect(source)"
-                    title="取消收藏" icon="ph:star-fill"/>
-              </template>
-            </ArticleList2>
           </div>
         </template>
       </Panel>

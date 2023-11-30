@@ -371,6 +371,20 @@ footer {
     }
   }
 
+  &.border {
+    .item-title {
+      transition: all .3s;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+
+    &:hover {
+      .item-title {
+        border-bottom: 2px solid gray !important;
+      }
+    }
+  }
+
   .item-title {
     display: flex;
     align-items: center;
@@ -387,11 +401,12 @@ footer {
       color: gray;
     }
   }
-}
 
-.item-sub-title {
-  font-size: 16rem;
-  color: gray;
+  .item-sub-title {
+    font-size: 16rem;
+    color: gray;
+  }
+
 }
 
 .text-shadow {

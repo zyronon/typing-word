@@ -50,7 +50,7 @@ async function init() {
   console.time()
   store.init().then(() => {
     store.load = true
-    console.timeEnd()
+    // console.timeEnd()
   })
   await settingStore.init()
   setTheme(settingStore.theme)
