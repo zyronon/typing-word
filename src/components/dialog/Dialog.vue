@@ -20,6 +20,7 @@ export interface ModalProps {
   cancelButtonText?: string,
   keyboard?: boolean,
   confirm?: any
+  beforeClose?: any
 }
 
 const props = withDefaults(defineProps<ModalProps>(), {
@@ -49,9 +50,14 @@ let modalRef = $ref<HTMLDivElement>(null)
 const runtimeStore = useRuntimeStore()
 let id = Date.now()
 
-function close() {
+async function close() {
   if (!visible) {
     return
+  }
+  if (props.beforeClose) {
+    if (!await props.beforeClose()) {
+      return
+    }
   }
   //记录停留时间，避免时间太短，弹框闪烁
   let stayTime = Date.now() - openTime;
@@ -110,11 +116,11 @@ onUnmounted(() => {
   }
 })
 
-useEventListener('keyup', (e: KeyboardEvent) => {
+useEventListener('keyup', async (e: KeyboardEvent) => {
   if (e.key === 'Escape' && props.keyboard) {
     let lastItem = runtimeStore.modalList[runtimeStore.modalList.length - 1]
     if (lastItem?.id === id) {
-      close()
+      await cancel()
     }
   }
 })
@@ -125,13 +131,13 @@ async function ok() {
     await props.confirm()
     confirmButtonLoading = false
   }
-  await close()
   emit('ok')
+  await close()
 }
 
 async function cancel() {
-  await close()
   emit('cancel')
+  await close()
 }
 
 </script>

@@ -20,6 +20,7 @@ import {useSettingStore} from "@/stores/setting.ts";
 import ArticleList2 from "@/components/list/ArticleList2.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useArticleOptions} from "@/hooks/dict.ts";
+import ArticleList4 from "@/components/list2/ArticleList4.vue";
 
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
@@ -41,10 +42,8 @@ let showEditArticle = $ref(false)
 let editArticle = $ref<Article>(cloneDeep(DefaultArticle))
 
 watch([
-  () => store.current.index,
-  () => store.load,
-  () => store.currentDict.type,
-  () => store.currentDict.chapterIndex,
+  // () => store.load,
+  () => store.currentDict.articles,
 ], n => {
   console.log('n', n)
   getCurrentPractice()
@@ -83,7 +82,7 @@ function getCurrentPractice() {
 
   let currentArticle = store.currentDict.articles[store.currentDict.chapterIndex]
   let tempArticle = {...DefaultArticle, ...currentArticle}
-  console.log('article', tempArticle)
+  // console.log('article', tempArticle)
   if (tempArticle.sections.length) {
     setArticle(tempArticle)
   } else {
@@ -109,7 +108,7 @@ function getCurrentPractice() {
                   renewSectionTexts(tempArticle)
                   tempArticle.useTranslateType = TranslateType.none
                   setArticle(tempArticle)
-                },
+                }, null,
                 {
                   confirmButtonText: '去编辑',
                   cancelButtonText: '不需要翻译',
@@ -124,11 +123,12 @@ function getCurrentPractice() {
                 editArticle = tempArticle
                 showEditArticle = true
               },
+
               () => {
                 renewSectionTexts(tempArticle)
                 tempArticle.useTranslateType = TranslateType.none
                 setArticle(tempArticle)
-              },
+              }, null,
               {
                 confirmButtonText: '去编辑',
                 cancelButtonText: '不需要翻译',
@@ -208,10 +208,11 @@ function nextWord(word: ArticleWord) {
   }
 }
 
-function changePracticeArticle(val: Article) {
-  let rIndex = store.currentDict.articles.findIndex(v => v.id === val.id)
+function changePracticeArticle(val: { item: Article, index: number }) {
+  let rIndex = store.currentDict.articles.findIndex(v => v.id === val.item.id)
   if (rIndex > -1) {
     store.currentDict.chapterIndex = rIndex
+    getCurrentPractice()
   }
 }
 
@@ -274,25 +275,26 @@ const {
                 {{ store.currentDict.articles.length }}篇文章
               </div>
             </div>
-            <ArticleList2
+
+            <ArticleList4
                 :isActive="active"
                 :show-translate="settingStore.translate"
-                @select-item="changePracticeArticle"
-                :active-index="store.currentDict.chapterIndex"
-                v-model:list="store.currentDict.articles">
-              <template v-slot="{source,index}">
+                @click="changePracticeArticle"
+                :active-id="articleData.article.id"
+                :list="store.currentDict.articles">
+              <template v-slot:suffix="{item,index}">
                 <BaseIcon
-                    v-if="!isArticleCollect(source)"
+                    v-if="!isArticleCollect(item)"
                     class-name="collect"
-                    @click="toggleArticleCollect(source)"
+                    @click="toggleArticleCollect(item)"
                     title="收藏" icon="ph:star"/>
                 <BaseIcon
                     v-else
                     class-name="fill"
-                    @click="toggleArticleCollect(source)"
+                    @click="toggleArticleCollect(item)"
                     title="取消收藏" icon="ph:star-fill"/>
               </template>
-            </ArticleList2>
+            </ArticleList4>
           </div>
         </template>
       </Panel>

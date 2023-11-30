@@ -62,7 +62,7 @@ function cancelAddDict() {
 
 onMounted(() => {
   // selectDict({dict: store.currentDict, index: 0})
-  console.log('router.params', route)
+  // console.log('router.params', route)
   switch (route.query.type) {
     case 'addDict':
       setTimeout(() => {

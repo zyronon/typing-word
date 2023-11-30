@@ -22,6 +22,7 @@ import EditBatchArticleModal from "@/components/article/EditBatchArticleModal.vu
 import {nanoid} from "nanoid";
 import DictListPanel from "@/components/DictListPanel.vue";
 import {useRouter} from "vue-router";
+import ArticleList4 from "@/components/list2/ArticleList4.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -316,13 +317,26 @@ function addDict() {
               </div>
               <div class="right-column">
                 <div class="common-title">{{ dictIsArticle ? '文章' : '章节' }}列表</div>
-                <ChapterList
-                    v-if="chapterList"
+
+                <ArticleList4
+                    :isActive="false"
                     v-loading="loading"
-                    :is-article="dictIsArticle"
-                    v-model:active-index="runtimeStore.editDict.chapterIndex"
-                    :dict="runtimeStore.editDict"/>
-                <Empty v-else :show-add="true" @add="add"/>
+                    :show-border="true"
+                    @title="val => emitter.emit(EventKey.openArticleListModal,val.item)"
+                    @click="(val:any) => runtimeStore.editDict.chapterIndex = val.index"
+                    :active-index="runtimeStore.editDict.chapterIndex"
+                    :list="runtimeStore.editDict.articles">
+                </ArticleList4>
+                <template>
+                  <ChapterList
+                      v-if="chapterList"
+                      v-loading="loading"
+                      :is-article="dictIsArticle"
+                      v-model:active-index="runtimeStore.editDict.chapterIndex"
+                      :dict="runtimeStore.editDict"/>
+                  <Empty v-else :show-add="true" @add="add"/>
+                </template>
+
               </div>
             </div>
             <div v-if="false" class="activity">

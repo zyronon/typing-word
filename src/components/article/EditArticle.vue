@@ -107,7 +107,7 @@ function onPaste(event: ClipboardEvent) {
       () => {
         appendTranslate(paste)
         renewSections()
-      },
+      },null,
       {
         confirmButtonText: '需要',
         cancelButtonText: '关闭',

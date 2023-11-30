@@ -1,37 +1,52 @@
 <script setup lang="ts">
-import {Word} from "../../types.ts";
 import {useSettingStore} from "@/stores/setting.ts";
-import VolumeIcon from "@/components/icon/VolumeIcon.vue";
-import {usePlayWordAudio} from "@/hooks/sound.ts";
 import {watch} from 'vue'
+import {$computed} from "vue/macros";
 
 const props = withDefaults(defineProps<{
-  list: Word[],
+  list?: any[],
   activeIndex?: number,
+  activeId?: string,
   isActive?: boolean
-  showTranslate?: boolean
-  showWord?: boolean
+  showBorder?: boolean
 }>(), {
+  list: [],
   activeIndex: -1,
+  activeId: '',
   isActive: false,
-  showTranslate: true,
-  showWord: true
+  showBorder: false
 })
 
 const emit = defineEmits<{
-  click: [val: { word: Word, index: number }],
+  click: [val: {
+    item: any,
+    index: number
+  }],
 }>()
+
+//虚拟列表长度限制
+const limit = 1
 
 const settingStore = useSettingStore()
 const listRef: any = $ref()
 
+const localActiveIndex = $computed(() => {
+  if (props.activeId) {
+    return props.list.findIndex(v => v.id === props.activeId)
+  }
+  return props.activeIndex
+})
+
 function scrollViewToCenter(index: number) {
   if (index === -1) return
-  listRef.scrollToIndex(index)
-  // listRef.children[index]?.scrollIntoView({block: 'center', behavior: 'smooth'})
+  if (props.list.length > limit) {
+    listRef?.scrollToItem(index)
+  } else {
+    listRef?.children[index]?.scrollIntoView({block: 'center', behavior: 'smooth'})
+  }
 }
 
-watch(() => props.activeIndex, (n: any) => {
+watch(() => localActiveIndex, (n: any) => {
   if (settingStore.showPanel) {
     scrollViewToCenter(n)
   }
@@ -39,19 +54,17 @@ watch(() => props.activeIndex, (n: any) => {
 
 watch(() => props.isActive, (n: boolean) => {
   setTimeout(() => {
-    if (n) scrollViewToCenter(props.activeIndex)
+    if (n) scrollViewToCenter(localActiveIndex)
   }, 300)
 })
 
-// watch(() => props.list, () => {
-//   listRef.scrollTo(0, 0)
-// })
-
-const playWordAudio = usePlayWordAudio()
-
-function reset() {
-  listRef.reset()
-}
+watch(() => props.list, () => {
+  if (props.list.length > limit) {
+    listRef?.scrollToItem(0)
+  } else {
+    listRef?.scrollTo(0, 0)
+  }
+})
 
 function scrollToBottom() {
   listRef.scrollToBottom()
@@ -59,6 +72,12 @@ function scrollToBottom() {
 
 function scrollToItem(index: number) {
   listRef.scrollToItem(index)
+}
+
+function itemIsActive(item: any, index: number) {
+  return props.activeId ?
+      props.activeId === item.id
+      : props.activeIndex === index
 }
 
 defineExpose({scrollToBottom, scrollToItem})
@@ -83,24 +102,20 @@ defineExpose({scrollToBottom, scrollToItem})
       >
         <div class="list-item-wrapper">
           <div class="common-list-item"
-               :class="{active:activeIndex === index}"
-               @click="emit('click',{data:item,index})"
+               :class="{
+            active:itemIsActive(item,index),
+            border:showBorder
+          }"
+               @click="emit('click',{item,index})"
           >
             <div class="left">
-              <slot name="prefix" :word="item" :index="index"></slot>
+              <slot name="prefix" :item="item" :index="index"></slot>
               <div class="title-wrapper">
-                <div class="item-title">
-                  <span class="word" :class="!showWord && 'text-shadow'">{{ item.name }}</span>
-                  <span class="phonetic">{{ item.usphone }}</span>
-                  <VolumeIcon class="volume" @click="playWordAudio(item.name)"></VolumeIcon>
-                </div>
-                <div class="item-sub-title" v-if="item.trans.length && showTranslate">
-                  <div v-for="tran in item.trans">{{ tran }}</div>
-                </div>
+                <slot :item="item" :index="index"></slot>
               </div>
             </div>
             <div class="right">
-              <slot :word="item" :index="index"></slot>
+              <slot name="suffix" :item="item" :index="index"></slot>
             </div>
           </div>
         </div>
@@ -113,7 +128,7 @@ defineExpose({scrollToBottom, scrollToItem})
 @import "@/assets/css/variable";
 
 .scroller {
-  height: 100%;
+  flex: 1;
   padding: 0 var(--space);
 }
 </style>

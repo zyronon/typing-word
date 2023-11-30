@@ -115,7 +115,7 @@ export const useBaseStore = defineStore('base', {
                 },
             ],
             current: {
-                index: 3,
+                index: 4,
                 // dictType: DictType.article,
                 // index: 0,
                 practiceType: DictType.word,
@@ -154,7 +154,6 @@ export const useBaseStore = defineStore('base', {
             }
             return [
                 DictType.article,
-                DictType.customArticle
             ].includes(this.currentDict.type)
         },
         currentDict(): Dict {
