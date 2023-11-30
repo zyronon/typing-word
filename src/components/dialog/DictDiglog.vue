@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {useBaseStore} from "@/stores/base.ts"
 import {onMounted, watch} from "vue"
-import {DefaultDict, Dict, DictResource, DictType, Sort} from "@/types.ts"
+import {DefaultDict, Dict, DictResource, DictType, Sort, Word} from "@/types.ts"
 import {chunk, cloneDeep, reverse, shuffle} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
 import BaseButton from "@/components/BaseButton.vue";
@@ -23,6 +23,7 @@ import {nanoid} from "nanoid";
 import DictListPanel from "@/components/DictListPanel.vue";
 import {useRouter} from "vue-router";
 import ArticleList4 from "@/components/list2/ArticleList4.vue";
+import WordChapterList from "@/components/list2/WordChapterList.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -36,6 +37,8 @@ let show = $ref(false)
 function close() {
   show = false
 }
+
+let chapterList2 = $ref([])
 
 async function selectDict(val: { dict: DictResource | Dict, index: number }) {
   let item = val.dict
@@ -64,12 +67,6 @@ async function selectDict(val: { dict: DictResource | Dict, index: number }) {
       }
     }
 
-    if (runtimeStore.editDict.type === DictType.customWord) {
-      if (!runtimeStore.editDict.words.length) {
-        changeSort(runtimeStore.editDict.sort)
-      }
-    }
-
     if (runtimeStore.editDict.type === DictType.article) {
       if (!runtimeStore.editDict.articles.length) {
         let r = await fetch(url)
@@ -81,6 +78,7 @@ async function selectDict(val: { dict: DictResource | Dict, index: number }) {
       }
     }
   }
+  chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
   loading = false
 }
 
@@ -177,6 +175,15 @@ function addDict() {
   setTimeout(() => {
     router.push({path: '/dict', query: {type: 'addDict'}})
   }, 500)
+}
+
+
+function showWordListModal(val: { item: Word, index: number }) {
+  emitter.emit(EventKey.openWordListModal, {
+    title: `第${val.index + 1}章`,
+    translateLanguage: runtimeStore.editDict.translateLanguage,
+    list: runtimeStore.editDict.chapterWords[val.index]
+  })
 }
 </script>
 
@@ -317,26 +324,37 @@ function addDict() {
               </div>
               <div class="right-column">
                 <div class="common-title">{{ dictIsArticle ? '文章' : '章节' }}列表</div>
-
-                <ArticleList4
-                    :isActive="false"
-                    v-loading="loading"
-                    :show-border="true"
-                    @title="val => emitter.emit(EventKey.openArticleListModal,val.item)"
-                    @click="(val:any) => runtimeStore.editDict.chapterIndex = val.index"
-                    :active-index="runtimeStore.editDict.chapterIndex"
-                    :list="runtimeStore.editDict.articles">
-                </ArticleList4>
-                <template>
-                  <ChapterList
-                      v-if="chapterList"
+                <template v-if="dictIsArticle">
+                  <ArticleList4
+                      v-if="runtimeStore.editDict.articles.length"
+                      :isActive="false"
                       v-loading="loading"
-                      :is-article="dictIsArticle"
-                      v-model:active-index="runtimeStore.editDict.chapterIndex"
-                      :dict="runtimeStore.editDict"/>
-                  <Empty v-else :show-add="true" @add="add"/>
+                      :show-border="true"
+                      @title="(val:any) => emitter.emit(EventKey.openArticleListModal,val.item)"
+                      @click="(val:any) => runtimeStore.editDict.chapterIndex = val.index"
+                      :active-index="runtimeStore.editDict.chapterIndex"
+                      :list="runtimeStore.editDict.articles">
+                    <template v-slot:prefix="{item,index}">
+                      <input type="radio" :checked="runtimeStore.editDict.chapterIndex === index">
+                    </template>
+                  </ArticleList4>
+                  <Empty v-else/>
                 </template>
-
+                <template v-else>
+                  <WordChapterList
+                      v-if="chapterList2.length"
+                      :list="chapterList2"
+                      :show-border="true"
+                      @title="showWordListModal"
+                      @click="(val:any) => runtimeStore.editDict.chapterIndex = val.index"
+                      :active-index="runtimeStore.editDict.chapterIndex"
+                  >
+                    <template v-slot:prefix="{item,index}">
+                      <input type="radio" :checked="runtimeStore.editDict.chapterIndex === index">
+                    </template>
+                  </WordChapterList>
+                  <Empty v-else/>
+                </template>
               </div>
             </div>
             <div v-if="false" class="activity">
