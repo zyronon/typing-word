@@ -291,6 +291,7 @@ onUnmounted(() => {
               <WordList
                   v-if="data.words.length"
                   :is-active="active"
+                  :static="false"
                   :show-word="!settingStore.dictation"
                   :show-translate="settingStore.translate"
                   :list="data.words"

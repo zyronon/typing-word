@@ -8,7 +8,6 @@ import BaseButton from "@/components/BaseButton.vue";
 import {Icon} from '@iconify/vue';
 import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
-import ChapterList from "@/components/list/ChapterList.vue";
 import WordListDialog from "@/components/dialog/WordListDialog.vue";
 import {isArticle} from "@/hooks/article.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
@@ -23,7 +22,7 @@ import {nanoid} from "nanoid";
 import DictListPanel from "@/components/DictListPanel.vue";
 import {useRouter} from "vue-router";
 import ArticleList4 from "@/components/list2/ArticleList4.vue";
-import WordChapterList from "@/components/list2/WordChapterList.vue";
+import BaseList from "@/components/list2/BaseList.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -78,7 +77,7 @@ async function selectDict(val: { dict: DictResource | Dict, index: number }) {
       }
     }
   }
-  chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
+  chapterList2 = runtimeStore.editDict.chapterWords.map((v, i) => ({id: i}))
   loading = false
 }
 
@@ -341,18 +340,24 @@ function showWordListModal(val: { item: Word, index: number }) {
                   <Empty v-else/>
                 </template>
                 <template v-else>
-                  <WordChapterList
+                  <BaseList
+                      ref="chapterListRef"
                       v-if="chapterList2.length"
                       :list="chapterList2"
                       :show-border="true"
-                      @title="showWordListModal"
                       @click="(val:any) => runtimeStore.editDict.chapterIndex = val.index"
                       :active-index="runtimeStore.editDict.chapterIndex"
                   >
-                    <template v-slot:prefix="{item,index}">
-                      <input type="radio" :checked="runtimeStore.editDict.chapterIndex === index">
+                    <template v-slot:prefix="{ item, index }">
+                      <input type="radio" :checked="runtimeStore.editDict.chapterIndex === item.id">
                     </template>
-                  </WordChapterList>
+                    <template v-slot="{ item, index }">
+                      <div class="item-title" @click.stop="showWordListModal({item,index})">
+                        <span>第{{ item.id + 1 }}章</span>&nbsp;&nbsp;&nbsp;
+                        <span>{{ runtimeStore.editDict.chapterWords[item.id]?.length }}词</span>
+                      </div>
+                    </template>
+                  </BaseList>
                   <Empty v-else/>
                 </template>
               </div>

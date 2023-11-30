@@ -21,6 +21,7 @@ import ArticleList2 from "@/components/list/ArticleList2.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useArticleOptions} from "@/hooks/dict.ts";
 import ArticleList4 from "@/components/list2/ArticleList4.vue";
+import WordList from "@/components/list2/WordList.vue";
 
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
@@ -208,7 +209,10 @@ function nextWord(word: ArticleWord) {
   }
 }
 
-function changePracticeArticle(val: { item: Article, index: number }) {
+function changePracticeArticle(val: {
+  item: Article,
+  index: number
+}) {
   let rIndex = store.currentDict.articles.findIndex(v => v.id === val.item.id)
   if (rIndex > -1) {
     store.currentDict.chapterIndex = rIndex
@@ -278,6 +282,7 @@ const {
 
             <ArticleList4
                 :isActive="active"
+                :static="false"
                 :show-translate="settingStore.translate"
                 @click="changePracticeArticle"
                 :active-id="articleData.article.id"

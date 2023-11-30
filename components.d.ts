@@ -65,7 +65,6 @@ declare module 'vue' {
     VirtualWordList2: typeof import('./src/components/list/VirtualWordList2.vue')['default']
     VolumeIcon: typeof import('./src/components/icon/VolumeIcon.vue')['default']
     VolumeSetting: typeof import('./src/components/toolbar/VolumeSetting.vue')['default']
-    WordChapterList: typeof import('./src/components/list2/WordChapterList.vue')['default']
     WordItem: typeof import('./src/components/list/WordItem.vue')['default']
     WordList: typeof import('./src/components/list2/WordList.vue')['default']
     WordListDialog: typeof import('./src/components/dialog/WordListDialog.vue')['default']

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 
 import BaseIcon from "@/components/BaseIcon.vue";
-import Empty from "@/components/Empty.vue";
 import ChapterWordList from "@/pages/dict/components/ChapterWordList.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {$computed, $ref} from "vue/macros";
@@ -23,6 +22,7 @@ import EditDict from "@/pages/dict/components/EditDict.vue";
 import {syncMyDictList} from "@/hooks/dict.ts";
 import MiniDialog from "@/components/dialog/MiniDialog.vue";
 import {useWindowClick} from "@/hooks/event.ts";
+import BaseList from "@/components/list2/BaseList.vue";
 
 const emit = defineEmits<{
   back: []
@@ -61,7 +61,10 @@ let chapterWordList: Word[] = $computed({
   }
 })
 
-async function getDictDetail(val: { dict: DictResource | Dict, index: number }) {
+async function getDictDetail(val: {
+  dict: DictResource | Dict,
+  index: number
+}) {
   let item = val.dict
   // console.log('word-getDictDetail', item)
   chapterList2 = []
@@ -101,13 +104,13 @@ async function getDictDetail(val: { dict: DictResource | Dict, index: number }) 
       }
     }
   }
-  chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
+  chapterList2 = runtimeStore.editDict.chapterWords.map((v, i) => ({id: i}))
   loading = false
 }
 
 function addNewChapter() {
   runtimeStore.editDict.chapterWords.push([])
-  chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
+  chapterList2 = runtimeStore.editDict.chapterWords.map((v, i) => ({id: i}))
   ElMessage.success('新增章节成功')
   setTimeout(() => chapterListRef?.scrollToItem(chapterList2.length - 1), 100)
 }
@@ -117,8 +120,17 @@ function delWordChapter(index: number) {
   list.map(v => v.checked = false)
   residueWordList = residueWordList.concat(list)
   runtimeStore.editDict.chapterWords.splice(index, 1)
-  chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
+  chapterList2 = runtimeStore.editDict.chapterWords.map((v, i) => ({id: i}))
 
+  // if (runtimeStore.editDict.chapterWords.length) {
+  //   if (chapterIndex >= runtimeStore.editDict.chapterWords.length - 1) {
+  //     chapterIndex = runtimeStore.editDict.chapterWords.length - 1
+  //   }
+  // } else {
+  //   chapterIndex = -1
+  // }
+
+  //这里采用删除后跳到上一张的做法，因为章节名是index，如果保持删除后的index不变，看起来就像未删除一样，但是实际删除了
   if (chapterIndex >= index) chapterIndex--
   if (chapterIndex < 0) chapterIndex = 0
 
@@ -133,9 +145,11 @@ let residueWordListCheckedTotal = $computed(() => {
   return residueWordList.filter(v => v.checked).length
 })
 
-function handleChangeCurrentChapter(index: number) {
+function handleChangeCurrentChapter(val: {
+  index: number
+}) {
   chapterWordList.map(v => v.checked = false)
-  chapterIndex = index
+  chapterIndex = val.index
   closeWordForm()
 }
 
@@ -324,17 +338,19 @@ async function onSubmitWord() {
   })
 }
 
-function delWord(val: { word: Word }) {
-  let rIndex = runtimeStore.editDict.originWords.findIndex(v => v.id === val.word.id)
+function delWord(val: {
+  item: Word
+}) {
+  let rIndex = runtimeStore.editDict.originWords.findIndex(v => v.id === val.item.id)
   if (rIndex > -1) {
     runtimeStore.editDict.originWords.splice(rIndex, 1)
   }
-  let rIndex2 = runtimeStore.editDict.words.findIndex(v => v.id === val.word.id)
+  let rIndex2 = runtimeStore.editDict.words.findIndex(v => v.id === val.item.id)
   if (rIndex2 > -1) {
     runtimeStore.editDict.words.splice(rIndex2, 1)
   }
 
-  if (wordFormData.type === FormMode.Edit && wordForm.name === val.word.name) {
+  if (wordFormData.type === FormMode.Edit && wordForm.name === val.item.name) {
     closeWordForm()
   }
   syncEditDict2MyDictList()
@@ -388,7 +404,7 @@ function resetChapterList(num?: number) {
   runtimeStore.editDict.words.map(v => v.checked = false)
   runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
   runtimeStore.editDict.length = runtimeStore.editDict.words.length + runtimeStore.editDict.residueWords.length
-  chapterList2 = Array.from({length: runtimeStore.editDict.chapterWords.length}).map((v, i) => ({id: i}))
+  chapterList2 = runtimeStore.editDict.chapterWords.map((v, i) => ({id: i}))
 }
 
 async function resetDict() {
@@ -566,44 +582,34 @@ defineExpose({getDictDetail, add: addWord, editDict})
             </div>
           </div>
           <div class="select">
-            <BaseButton v-if="isCanOperation" size="small" @click="showAllocationChapterDialog = true">智能分配</BaseButton>
+            <BaseButton v-if="isCanOperation" size="small" @click="showAllocationChapterDialog = true">智能分配
+            </BaseButton>
             <span>{{ runtimeStore.editDict.chapterWords.length }}章</span>
           </div>
         </div>
         <div class="wrapper">
-          <RecycleScroller
-              v-if="chapterList2.length"
+          <BaseList
               ref="chapterListRef"
-              style="height: 100%;"
-              :items="chapterList2"
-              :item-size="63"
-              key-field="id"
-              v-slot="{ item,index }"
-          >
-            <div style="padding: 0 15rem;">
-              <div class="common-list-item"
-                   :class="chapterIndex === item.id && 'active'"
-                   @click="handleChangeCurrentChapter(item.id)">
-                <div class="flex gap10 flex1 ">
-                  <input type="radio" :checked="chapterIndex === item.id">
-                  <div class="item-title flex flex1 space-between">
-                    <span>第{{ item.id + 1 }}章</span>
-                    <span>{{ runtimeStore.editDict.chapterWords[item.id]?.length }}词</span>
-                  </div>
-                </div>
-                <div class="right"
-                     v-if="isCanOperation"
-                >
-                  <BaseIcon
-                      class-name="del"
-                      @click="delWordChapter(item.id)"
-                      title="移除"
-                      icon="solar:trash-bin-minimalistic-linear"/>
-                </div>
+              :list="chapterList2"
+              @click="handleChangeCurrentChapter"
+              :active-index="chapterIndex">
+            <template v-slot:prefix="{ item, index }">
+              <input type="radio" :checked="chapterIndex === item.id">
+            </template>
+            <template v-slot="{ item, index }">
+              <div class="item-title">
+                <span>第{{ item.id + 1 }}章</span>
+                <span>{{ runtimeStore.editDict.chapterWords[item.id]?.length }}词</span>
               </div>
-            </div>
-          </RecycleScroller>
-          <Empty v-else/>
+            </template>
+            <template v-slot:suffix="{ item, index }" v-if="isCanOperation">
+              <BaseIcon
+                  class-name="del"
+                  @click="delWordChapter(item.id)"
+                  title="移除"
+                  icon="solar:trash-bin-minimalistic-linear"/>
+            </template>
+          </BaseList>
         </div>
       </div>
       <ChapterWordList
@@ -614,7 +620,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
           @add="addWord('chapter')"
           @del="delWord"
           :empty-title="chapterIndex === -1?'请选择章节':null"
-          @edit="val => editWord(val.word,val.index,'chapter')"
+          @edit="val => editWord(val.item,val.index,'chapter')"
           v-model:list="chapterWordList"/>
       <div class="options-column" v-if="isCanOperation">
         <BaseButton @click="toChapterWordList"
@@ -635,7 +641,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
           :show-add="true"
           @add="addWord('residue')"
           @del="delWord"
-          @edit="val => editWord(val.word,val.index,'residue')"
+          @edit="val => editWord(val.item,val.index,'residue')"
           v-model:list="residueWordList"/>
       <div class="right-column">
         <div class="add" v-if="wordFormData.type">
@@ -814,6 +820,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
   }
 
   .wrapper {
+    display: flex;
     flex: 1;
     overflow: hidden;
   }

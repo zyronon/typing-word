@@ -10,6 +10,9 @@ import MiniDialog from "@/components/dialog/MiniDialog.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {useWindowClick} from "@/hooks/event.ts";
 import {reverse, shuffle} from "lodash-es";
+import BaseList from "@/components/list2/BaseList.vue";
+import VolumeIcon from "@/components/icon/VolumeIcon.vue";
+import {usePlayWordAudio} from "@/hooks/sound.ts";
 
 const props = defineProps<{
   title: string,
@@ -36,7 +39,7 @@ watch(() => props.list, (n) => {
   checkStatus()
 })
 
-function handleCheckedChange({word: source}: any) {
+function handleCheckedChange({item: source}: any) {
   source.checked = !source.checked
   checkStatus()
 }
@@ -89,6 +92,7 @@ defineExpose({scrollToBottom, scrollToItem})
 let show = $ref(false)
 useWindowClick(() => show = false)
 
+const playWordAudio = usePlayWordAudio()
 </script>
 
 <template>
@@ -140,30 +144,41 @@ useWindowClick(() => show = false)
       </div>
     </div>
     <div class="wrapper">
-      <VirtualWordList2
+<!--      TODO -->
+      <BaseList
           ref="listRef"
           :list="list"
           v-if="list.length"
           @click="handleCheckedChange"
       >
-        <template v-slot:prefix="{word}" v-if="canOperation">
-          <el-checkbox v-model="word.checked"
-                       @change="handleCheckedChange({word})"
+        <template v-slot:prefix="{item}" v-if="canOperation">
+          <el-checkbox v-model="item.checked"
+                       @change="handleCheckedChange({item})"
                        size="large"/>
         </template>
-        <template v-slot="{word,index}" v-if="canOperation">
+        <template v-slot="{item,index}">
+          <div class="item-title">
+            <span class="word">{{ item.name }}</span>
+            <span class="phonetic">{{ item.usphone }}</span>
+            <VolumeIcon class="volume" @click="playWordAudio(item.name)"></VolumeIcon>
+          </div>
+          <div class="item-sub-title" v-if="item.trans.length">
+            <div v-for="tran in item.trans">{{ tran }}</div>
+          </div>
+        </template>
+        <template v-slot:suffix="{item,index}" v-if="canOperation">
           <BaseIcon
               class-name="del"
-              @click="emit('edit',{word,index})"
+              @click="emit('edit',{item,index})"
               title="编辑"
               icon="tabler:edit"/>
           <BaseIcon
               class-name="del"
-              @click="del({word,index})"
+              @click="del({item,index})"
               title="删除"
               icon="solar:trash-bin-minimalistic-linear"/>
         </template>
-      </VirtualWordList2>
+      </BaseList>
       <Empty :text="emptyTitle" v-else/>
     </div>
   </div>
@@ -200,6 +215,7 @@ useWindowClick(() => show = false)
 }
 
 .wrapper {
+  display: flex;
   flex: 1;
   overflow: hidden;
 }

@@ -9,12 +9,14 @@ const props = withDefaults(defineProps<{
   activeId?: string,
   isActive?: boolean
   showBorder?: boolean
+  static?: boolean
 }>(), {
   list: [],
   activeIndex: -1,
   activeId: '',
   isActive: false,
-  showBorder: false
+  showBorder: false,
+  static: true
 })
 
 const emit = defineEmits<{
@@ -25,8 +27,7 @@ const emit = defineEmits<{
 }>()
 
 //虚拟列表长度限制
-const limit = 1
-
+const limit = 0
 const settingStore = useSettingStore()
 const listRef: any = $ref()
 
@@ -47,18 +48,21 @@ function scrollViewToCenter(index: number) {
 }
 
 watch(() => localActiveIndex, (n: any) => {
+  if (props.static) return
   if (settingStore.showPanel) {
     scrollViewToCenter(n)
   }
 })
 
 watch(() => props.isActive, (n: boolean) => {
-  setTimeout(() => {
-    if (n) scrollViewToCenter(localActiveIndex)
-  }, 300)
+  if (props.static) return
+  if (n) {
+    setTimeout(() => scrollViewToCenter(localActiveIndex), 300)
+  }
 })
 
 watch(() => props.list, () => {
+  if (props.static) return
   if (props.list.length > limit) {
     listRef?.scrollToItem(0)
   } else {

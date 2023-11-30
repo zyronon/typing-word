@@ -47,11 +47,16 @@ function delArticle(index: number) {
   runtimeStore.editDict.articles.splice(index, 1)
 
   if (runtimeStore.editDict.articles.length) {
+    if (chapterIndex >= runtimeStore.editDict.articles.length - 1) {
+      chapterIndex = runtimeStore.editDict.articles.length - 1
+      article = runtimeStore.editDict.articles[chapterIndex]
+    }
     if (chapterIndex === index) {
-      article = runtimeStore.editDict.articles[index]
+      article = runtimeStore.editDict.articles[chapterIndex]
     }
   } else {
     article = cloneDeep(DefaultArticle)
+    chapterIndex = -1
   }
   syncMyDictList(runtimeStore.editDict)
   ElMessage.success('删除成功！')
@@ -61,7 +66,10 @@ const emit = defineEmits<{
   back: []
 }>()
 
-async function getDictDetail(val: { dict: DictResource | Dict, index: number }) {
+async function getDictDetail(val: {
+  dict: DictResource | Dict,
+  index: number
+}) {
   let item = val.dict
   // console.log('word-getDictDetail', item)
   chapterIndex = -1
@@ -189,7 +197,10 @@ function importData(e: any) {
   reader.readAsBinaryString(file);
 }
 
-function exportData(val: { type: string, data?: Article }) {
+function exportData(val: {
+  type: string,
+  data?: Article
+}) {
   const {type, data} = val
   let list = []
   let filename = ''
@@ -309,7 +320,7 @@ defineExpose({getDictDetail, add, editDict})
             <template v-slot:prefix="{item,index}">
               <input type="radio" :checked="chapterIndex === index">
             </template>
-            <template v-slot="{item,index}">
+            <template v-slot:suffix="{item,index}">
               <BaseIcon
                   class-name="del"
                   @click="emitter.emit(EventKey.openArticleListModal,item)"
