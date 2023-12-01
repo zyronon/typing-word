@@ -2,11 +2,7 @@
 
 import Input from "@/components/Input.vue";
 import {$computed, $ref} from "vue/macros";
-import {Article, Word} from "@/types.ts";
-import ListItem from "@/components/list/ListItem.vue";
-import {useSettingStore} from "@/stores/setting.ts";
-import {onMounted, useAttrs, watch} from "vue";
-import VolumeIcon from "@/components/icon/VolumeIcon.vue";
+import {Article} from "@/types.ts";
 import BaseList from "@/components/list2/BaseList.vue";
 
 const props = withDefaults(defineProps<{

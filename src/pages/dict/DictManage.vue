@@ -76,6 +76,11 @@ onMounted(() => {
         })
       }, 300)
       break
+    case 'detail':
+      setTimeout(() => {
+        selectDict({dict: runtimeStore.editDict})
+      }, 300)
+      break
     case 'editDict':
       setTimeout(() => {
         selectDict({dict: runtimeStore.editDict}, () => {
@@ -97,12 +102,10 @@ onMounted(() => {
       step = 0
     }
     if (type === "collect") {
-      selectDict({dict: store.collect, index: 0})
-      // addWord('residue')
+      selectDict({dict: store.collect})
     }
     if (type === "simple") {
-      selectDict({dict: store.simple, index: 0})
-      // addWord('residue')
+      selectDict({dict: store.simple})
     }
   })
   // console.log('categoryList', categoryList)

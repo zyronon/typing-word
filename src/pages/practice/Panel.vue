@@ -13,14 +13,13 @@ import {useArticleOptions, useWordOptions} from "@/hooks/dict.ts";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
-import CommonWordList from "@/components/list/CommonWordList.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import ArticleList2 from "@/components/list/ArticleList2.vue";
 import {useRouter} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {cloneDeep} from "lodash-es";
 import WordList from "@/components/list2/WordList.vue";
+import ArticleList4 from "@/components/list2/ArticleList4.vue";
 
 const router = useRouter()
 const store = useBaseStore()
@@ -133,7 +132,7 @@ function addSimple() {
                     :list="store.collect.words">
                   <template v-slot:suffix="{item,index}">
                     <BaseIcon
-                        class-name="del"
+                        class="del"
                         @click="toggleWordCollect(item)"
                         title="移除"
                         icon="solar:trash-bin-minimalistic-linear"/>
@@ -142,19 +141,17 @@ function addSimple() {
                 <Empty v-else/>
               </template>
               <template v-else>
-                <ArticleList2
+                <ArticleList4
                     v-if="store.collect.articles.length"
-                    :show-translate="true"
                     v-model:list="store.collect.articles">
-                  <template v-slot="{source,index}">
+                  <template v-slot:suffix="{item,index}">
                     <BaseIcon
-                        class-name="del"
-                        @click="toggleArticleCollect(source)"
+                        class="del"
+                        @click="toggleArticleCollect(item)"
                         title="移除"
                         icon="solar:trash-bin-minimalistic-linear"/>
                   </template>
-                </ArticleList2>
-
+                </ArticleList4>
                 <Empty v-else/>
               </template>
             </div>
@@ -185,7 +182,7 @@ function addSimple() {
                   :list="store.simple.words">
                 <template v-slot:suffix="{item,index}">
                   <BaseIcon
-                      class-name="del"
+                      class="del"
                       @click="delSimpleWord(item)"
                       title="移除"
                       icon="solar:trash-bin-minimalistic-linear"/>
@@ -213,7 +210,7 @@ function addSimple() {
                   :list="store.wrong.words">
                 <template v-slot="{item,index}">
                   <BaseIcon
-                      class-name="del"
+                      class="del"
                       @click="delWrongWord(item)"
                       title="移除"
                       icon="solar:trash-bin-minimalistic-linear"/>

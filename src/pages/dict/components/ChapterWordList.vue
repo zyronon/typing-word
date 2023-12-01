@@ -1,7 +1,6 @@
 <script setup lang="ts">
 
 import {Sort, Word} from "@/types.ts";
-import VirtualWordList2 from "@/components/list/VirtualWordList2.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Empty from "@/components/Empty.vue";
 import {$computed, $ref} from "vue/macros";
@@ -10,9 +9,8 @@ import MiniDialog from "@/components/dialog/MiniDialog.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {useWindowClick} from "@/hooks/event.ts";
 import {reverse, shuffle} from "lodash-es";
-import BaseList from "@/components/list2/BaseList.vue";
-import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
+import WordList from '@/components/list2/WordList.vue'
 
 const props = defineProps<{
   title: string,
@@ -24,8 +22,8 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   add: []
-  edit: [val: { word: Word, index: number }]
-  del: [val: { word: Word, index: number }],
+  edit: [val: { item: Word, index: number }]
+  del: [val: { item: Word, index: number }],
   'update:list': [val: Word[]]
 }>()
 
@@ -61,7 +59,7 @@ let checkedTotal = $computed(() => {
   return props.list.filter(v => v.checked).length
 })
 
-function del(val: { word: Word, index: number }) {
+function del(val: { item: Word, index: number }) {
   props.list.splice(val.index, 1)
   emit('del', val)
 }
@@ -144,8 +142,7 @@ const playWordAudio = usePlayWordAudio()
       </div>
     </div>
     <div class="wrapper">
-<!--      TODO -->
-      <BaseList
+      <WordList
           ref="listRef"
           :list="list"
           v-if="list.length"
@@ -156,29 +153,19 @@ const playWordAudio = usePlayWordAudio()
                        @change="handleCheckedChange({item})"
                        size="large"/>
         </template>
-        <template v-slot="{item,index}">
-          <div class="item-title">
-            <span class="word">{{ item.name }}</span>
-            <span class="phonetic">{{ item.usphone }}</span>
-            <VolumeIcon class="volume" @click="playWordAudio(item.name)"></VolumeIcon>
-          </div>
-          <div class="item-sub-title" v-if="item.trans.length">
-            <div v-for="tran in item.trans">{{ tran }}</div>
-          </div>
-        </template>
         <template v-slot:suffix="{item,index}" v-if="canOperation">
           <BaseIcon
-              class-name="del"
+              class="del"
               @click="emit('edit',{item,index})"
               title="编辑"
               icon="tabler:edit"/>
           <BaseIcon
-              class-name="del"
+              class="del"
               @click="del({item,index})"
               title="删除"
               icon="solar:trash-bin-minimalistic-linear"/>
         </template>
-      </BaseList>
+      </WordList>
       <Empty :text="emptyTitle" v-else/>
     </div>
   </div>

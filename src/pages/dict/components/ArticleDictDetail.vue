@@ -4,7 +4,6 @@ import BaseIcon from "@/components/BaseIcon.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import Empty from "@/components/Empty.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import ArticleList3 from "@/components/list/ArticleList3.vue";
 import {$computed, $ref} from "vue/macros";
 import {cloneDeep} from "lodash-es";
 import {Article, DefaultArticle, DefaultDict, Dict, DictResource, DictType, Sort, TranslateType} from "@/types.ts";
@@ -95,9 +94,10 @@ async function getDictDetail(val: {
         s.id = nanoid(6)
       })
       runtimeStore.editDict.articles = cloneDeep(v)
+    } else {
+      runtimeStore.editDict.length = runtimeStore.editDict.articles.length
     }
   }
-  runtimeStore.editDict.length = runtimeStore.editDict.articles.length + runtimeStore.editDict
   loading = false
 }
 
@@ -322,12 +322,12 @@ defineExpose({getDictDetail, add, editDict})
             </template>
             <template v-slot:suffix="{item,index}">
               <BaseIcon
-                  class-name="del"
+                  class="del"
                   @click="emitter.emit(EventKey.openArticleListModal,item)"
                   title="编辑"
                   icon="tabler:edit"/>
               <BaseIcon
-                  class-name="del"
+                  class="del"
                   @click="delArticle(index)"
                   title="删除"
                   icon="solar:trash-bin-minimalistic-linear"/>

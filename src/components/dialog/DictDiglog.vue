@@ -52,28 +52,40 @@ async function selectDict(val: { dict: DictResource | Dict, index: number }) {
       ...cloneDeep(DefaultDict),
       ...item,
     })
+    runtimeStore.editDict.id = nanoid(6)
+    //设置默认章节单词数
+    runtimeStore.editDict.chapterWordNumber = settingStore.chapterWordNumber
   }
 
   if ([DictType.collect, DictType.simple, DictType.wrong].includes(runtimeStore.editDict.type)) {
   } else {
-    let url = `./dicts/${runtimeStore.editDict.language}/${runtimeStore.editDict.type}/${runtimeStore.editDict.translateLanguage}/${runtimeStore.editDict.url}`;
-    if (runtimeStore.editDict.type === DictType.word) {
-      if (!runtimeStore.editDict.originWords.length) {
-        let r = await fetch(url)
-        let v = await r.json()
-        runtimeStore.editDict.originWords = cloneDeep(v)
-        changeSort(runtimeStore.editDict.sort)
+    //如果不是自定义词典，并且有url地址才去下载
+    if (!runtimeStore.editDict.isCustom && runtimeStore.editDict.url) {
+      let url = `./dicts/${runtimeStore.editDict.language}/${runtimeStore.editDict.type}/${runtimeStore.editDict.translateLanguage}/${runtimeStore.editDict.url}`;
+      if (runtimeStore.editDict.type === DictType.word) {
+        if (!runtimeStore.editDict.originWords.length) {
+          let r = await fetch(url)
+          let v = await r.json()
+          v.map(s => {
+            s.id = nanoid(6)
+          })
+          runtimeStore.editDict.originWords = cloneDeep(v)
+          changeSort(runtimeStore.editDict.sort)
+        } else {
+          runtimeStore.editDict.length = runtimeStore.editDict.words.length + runtimeStore.editDict.residueWords.length
+        }
       }
-    }
-
-    if (runtimeStore.editDict.type === DictType.article) {
-      if (!runtimeStore.editDict.articles.length) {
-        let r = await fetch(url)
-        let v = await r.json()
-        runtimeStore.editDict.articles = cloneDeep(v.map(s => {
-          s.id = nanoid(6)
-          return s
-        }))
+      if (runtimeStore.editDict.type === DictType.article) {
+        if (!runtimeStore.editDict.articles.length) {
+          let r = await fetch(url)
+          let v = await r.json()
+          v.map(s => {
+            s.id = nanoid(6)
+          })
+          runtimeStore.editDict.articles = cloneDeep(v)
+        } else {
+          runtimeStore.editDict.length = runtimeStore.editDict.articles.length
+        }
       }
     }
   }
@@ -121,24 +133,13 @@ function changeSort(v) {
   resetChapterList()
 }
 
-function editDict() {
-  show = false
-  setTimeout(() => {
-    router.push({path: '/dict', query: {type: 'editDict'}})
-  }, 500)
-}
-
 let wordListRef: any = $ref()
 
-function add() {
+function option(type: string) {
   show = false
   setTimeout(() => {
-    router.push({path: '/dict', query: {type: 'addWordOrArticle'}})
+    router.push({path: '/dict', query: {type: type}})
   }, 500)
-  if (dictIsArticle) {
-
-  } else {
-  }
 }
 
 /**/
@@ -215,9 +216,10 @@ function showWordListModal(val: { item: Word, index: number }) {
               <div class="left-column">
                 <BaseIcon
                     v-if="![DictType.collect,DictType.wrong,DictType.simple].includes(runtimeStore.editDict.type)"
-                    class-name="edit-icon"
+                    class="edit-icon"
+                    title="编辑词典"
                     icon="tabler:edit"
-                    @click='editDict'
+                    @click='option("editDict")'
                 />
                 <div class="name">{{ runtimeStore.editDict.name }}</div>
                 <div class="desc">{{ runtimeStore.editDict.description }}</div>
@@ -230,7 +232,8 @@ function showWordListModal(val: { item: Word, index: number }) {
                       }}词</span>
                   </div>
                   <BaseIcon icon="mi:add"
-                            @click='add'
+                            @click='option("addWordOrArticle")'
+                            :title="`添加${dictIsArticle?'文章':'单词'}`"
                   />
                 </div>
                 <div class="text">开始日期：-</div>
@@ -322,7 +325,15 @@ function showWordListModal(val: { item: Word, index: number }) {
                 </div>
               </div>
               <div class="right-column">
-                <div class="common-title">{{ dictIsArticle ? '文章' : '章节' }}列表</div>
+                <div class="common-title">
+                  <span>{{ dictIsArticle ? '文章' : '章节' }}列表</span>
+                  <BaseIcon
+                      icon="fluent:notepad-edit-20-regular"
+                      @click='option("detail")'
+                      style="position: absolute;right: 20rem;"
+                      :title="`管理${dictIsArticle?'文章':'章节'}`"
+                  />
+                </div>
                 <template v-if="dictIsArticle">
                   <ArticleList4
                       v-if="runtimeStore.editDict.articles.length"
@@ -457,13 +468,13 @@ $header-height: 60rem;
         padding-right: var(--space);
 
         .name {
-          font-size: 28rem;
-          margin-bottom: 10rem;
+          font-size: 24rem;
+          width: 95%;
         }
 
         .desc {
-          font-size: 18rem;
-          margin-bottom: 30rem;
+          font-size: 16rem;
+          margin-bottom: 20rem;
         }
 
         .count {
@@ -471,13 +482,9 @@ $header-height: 60rem;
           border-bottom: 2px solid var(--color-item-active);
         }
 
-        .edit-icon {
-
-        }
-
         :deep(.edit-icon) {
           position: absolute;
-          top: 8rem;
+          top: 0;
           right: 0;
         }
       }

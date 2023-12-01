@@ -604,7 +604,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
             </template>
             <template v-slot:suffix="{ item, index }" v-if="isCanOperation">
               <BaseIcon
-                  class-name="del"
+                  class="del"
                   @click="delWordChapter(item.id)"
                   title="移除"
                   icon="solar:trash-bin-minimalistic-linear"/>

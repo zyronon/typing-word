@@ -17,11 +17,9 @@ import {Icon} from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
-import ArticleList2 from "@/components/list/ArticleList2.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useArticleOptions} from "@/hooks/dict.ts";
 import ArticleList4 from "@/components/list2/ArticleList4.vue";
-import WordList from "@/components/list2/WordList.vue";
 
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
@@ -290,12 +288,12 @@ const {
               <template v-slot:suffix="{item,index}">
                 <BaseIcon
                     v-if="!isArticleCollect(item)"
-                    class-name="collect"
+                    class="collect"
                     @click="toggleArticleCollect(item)"
                     title="收藏" icon="ph:star"/>
                 <BaseIcon
                     v-else
-                    class-name="fill"
+                    class="fill"
                     @click="toggleArticleCollect(item)"
                     title="取消收藏" icon="ph:star-fill"/>
               </template>

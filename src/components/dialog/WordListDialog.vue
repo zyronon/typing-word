@@ -5,7 +5,7 @@ import {$ref} from "vue/macros";
 import {onMounted, onUnmounted, watch} from "vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import VirtualWordList from "@/components/list/VirtualWordList.vue";
+import WordList from "@/components/list2/WordList.vue";
 
 let show = $ref(false)
 let loading = $ref(false)
@@ -18,7 +18,7 @@ onMounted(() => {
   emitter.on(EventKey.openWordListModal, (val: any) => {
     show = true
     list = val.list
-    title = val.title
+    title = val.title + `(${list.length}词)`
     requestIdleCallback(() => {
       let count = 0
       if (val.translateLanguage === 'common') {
@@ -77,10 +77,10 @@ onUnmounted(() => {
                      :indeterminate="false"
                      :show-text="false"/>
       </div>
-      <VirtualWordList
+      <WordList
           class="word-list"
           :list="list">
-      </VirtualWordList>
+      </WordList>
     </div>
   </Dialog>
 </template>
@@ -93,6 +93,8 @@ onUnmounted(() => {
   padding-top: 0;
   width: 400rem;
   height: 75vh;
+  display: flex;
+  flex-direction: column;
 
   .progress-wrapper {
     padding: 0 var(--space);

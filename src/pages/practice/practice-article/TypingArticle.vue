@@ -393,13 +393,13 @@ const {
           />
           <BaseIcon
               v-if="!isArticleCollect(props.article)"
-              class-name="collect"
+              class="collect"
               @click="toggleArticleCollect(props.article)"
               :title="`收藏(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
               icon="ph:star"/>
           <BaseIcon
               v-else
-              class-name="fill"
+              class="fill"
               @click="toggleArticleCollect(props.article)"
               :title="`取消收藏(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
               icon="ph:star-fill"/>

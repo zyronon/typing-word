@@ -29,26 +29,26 @@ const settingStore = useSettingStore()
   <div class="options">
     <BaseIcon
         v-if="!isSimple"
-        class-name="collect"
+        class="collect"
         @click="$emit('toggleSimple')"
         :title="`标记为简单词(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
         icon="material-symbols:check-circle-outline-rounded"/>
     <BaseIcon
         v-else
-        class-name="fill"
+        class="fill"
         @click="$emit('toggleSimple')"
         :title="`取消标记简单词(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
         icon="material-symbols:check-circle-rounded"/>
 
     <BaseIcon
         v-if="!isCollect"
-        class-name="collect"
+        class="collect"
         @click="$emit('toggleCollect')"
         :title="`收藏(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
         icon="ph:star"/>
     <BaseIcon
         v-else
-        class-name="fill"
+        class="fill"
         @click="$emit('toggleCollect')"
         :title="`取消收藏(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
         icon="ph:star-fill"/>
