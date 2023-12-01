@@ -3,7 +3,7 @@
 import Input from "@/components/Input.vue";
 import {$computed, $ref} from "vue/macros";
 import {Article} from "@/types.ts";
-import BaseList from "@/components/list2/BaseList.vue";
+import BaseList from "@/components/list/BaseList.vue";
 
 const props = withDefaults(defineProps<{
   list: Article[],

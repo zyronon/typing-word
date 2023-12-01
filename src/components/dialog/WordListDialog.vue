@@ -5,7 +5,7 @@ import {$ref} from "vue/macros";
 import {onMounted, onUnmounted, watch} from "vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import WordList from "@/components/list2/WordList.vue";
+import WordList from "@/components/list/WordList.vue";
 
 let show = $ref(false)
 let loading = $ref(false)

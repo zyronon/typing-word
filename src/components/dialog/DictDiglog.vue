@@ -21,8 +21,8 @@ import EditBatchArticleModal from "@/components/article/EditBatchArticleModal.vu
 import {nanoid} from "nanoid";
 import DictListPanel from "@/components/DictListPanel.vue";
 import {useRouter} from "vue-router";
-import ArticleList4 from "@/components/list2/ArticleList4.vue";
-import BaseList from "@/components/list2/BaseList.vue";
+import ArticleList from "@/components/list/ArticleList.vue";
+import BaseList from "@/components/list/BaseList.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -335,7 +335,7 @@ function showWordListModal(val: { item: Word, index: number }) {
                   />
                 </div>
                 <template v-if="dictIsArticle">
-                  <ArticleList4
+                  <ArticleList
                       v-if="runtimeStore.editDict.articles.length"
                       :isActive="false"
                       v-loading="loading"
@@ -347,7 +347,7 @@ function showWordListModal(val: { item: Word, index: number }) {
                     <template v-slot:prefix="{item,index}">
                       <input type="radio" :checked="runtimeStore.editDict.chapterIndex === index">
                     </template>
-                  </ArticleList4>
+                  </ArticleList>
                   <Empty v-else/>
                 </template>
                 <template v-else>

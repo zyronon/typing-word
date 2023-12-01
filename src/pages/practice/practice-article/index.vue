@@ -19,7 +19,7 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useArticleOptions} from "@/hooks/dict.ts";
-import ArticleList4 from "@/components/list2/ArticleList4.vue";
+import ArticleList from "@/components/list/ArticleList.vue";
 
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
@@ -278,7 +278,7 @@ const {
               </div>
             </div>
 
-            <ArticleList4
+            <ArticleList
                 :isActive="active"
                 :static="false"
                 :show-translate="settingStore.translate"
@@ -297,7 +297,7 @@ const {
                     @click="toggleArticleCollect(item)"
                     title="取消收藏" icon="ph:star-fill"/>
               </template>
-            </ArticleList4>
+            </ArticleList>
           </div>
         </template>
       </Panel>

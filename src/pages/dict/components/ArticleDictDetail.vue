@@ -20,7 +20,7 @@ import * as XLSX from "xlsx";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {syncMyDictList} from "@/hooks/dict.ts";
 import {useWindowClick} from "@/hooks/event.ts";
-import ArticleList4 from "@/components/list2/ArticleList4.vue";
+import ArticleList from "@/components/list/ArticleList.vue";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -309,7 +309,7 @@ defineExpose({getDictDetail, add, editDict})
           </div>
         </div>
         <div class="wrapper">
-          <ArticleList4
+          <ArticleList
               ref="listRef"
               :isActive="false"
               v-if="runtimeStore.editDict.articles.length"
@@ -332,7 +332,7 @@ defineExpose({getDictDetail, add, editDict})
                   title="删除"
                   icon="solar:trash-bin-minimalistic-linear"/>
             </template>
-          </ArticleList4>
+          </ArticleList>
           <Empty v-else/>
         </div>
       </div>

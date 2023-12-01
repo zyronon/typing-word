@@ -22,7 +22,7 @@ import EditDict from "@/pages/dict/components/EditDict.vue";
 import {syncMyDictList} from "@/hooks/dict.ts";
 import MiniDialog from "@/components/dialog/MiniDialog.vue";
 import {useWindowClick} from "@/hooks/event.ts";
-import BaseList from "@/components/list2/BaseList.vue";
+import BaseList from "@/components/list/BaseList.vue";
 
 const emit = defineEmits<{
   back: []

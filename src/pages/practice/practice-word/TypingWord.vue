@@ -17,7 +17,7 @@ import IconWrapper from "@/components/IconWrapper.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
-import WordList from "@/components/list2/WordList.vue";
+import WordList from "@/components/list/WordList.vue";
 import Empty from "@/components/Empty.vue";
 
 interface IProps {

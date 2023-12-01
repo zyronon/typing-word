@@ -18,8 +18,8 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useRouter} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {cloneDeep} from "lodash-es";
-import WordList from "@/components/list2/WordList.vue";
-import ArticleList4 from "@/components/list2/ArticleList4.vue";
+import WordList from "@/components/list/WordList.vue";
+import ArticleList from "@/components/list/ArticleList.vue";
 
 const router = useRouter()
 const store = useBaseStore()
@@ -141,7 +141,7 @@ function addSimple() {
                 <Empty v-else/>
               </template>
               <template v-else>
-                <ArticleList4
+                <ArticleList
                     v-if="store.collect.articles.length"
                     v-model:list="store.collect.articles">
                   <template v-slot:suffix="{item,index}">
@@ -151,7 +151,7 @@ function addSimple() {
                         title="移除"
                         icon="solar:trash-bin-minimalistic-linear"/>
                   </template>
-                </ArticleList4>
+                </ArticleList>
                 <Empty v-else/>
               </template>
             </div>

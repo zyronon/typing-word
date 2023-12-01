@@ -10,7 +10,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import {useWindowClick} from "@/hooks/event.ts";
 import {reverse, shuffle} from "lodash-es";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
-import WordList from '@/components/list2/WordList.vue'
+import WordList from '@/components/list/WordList.vue'
 
 const props = defineProps<{
   title: string,

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useSettingStore} from "@/stores/setting.ts";
-import {watch} from 'vue'
+import {nextTick, watch} from 'vue'
 import {$computed} from "vue/macros";
 
 const props = withDefaults(defineProps<{
@@ -27,7 +27,7 @@ const emit = defineEmits<{
 }>()
 
 //虚拟列表长度限制
-const limit = 0
+const limit = 99
 const settingStore = useSettingStore()
 const listRef: any = $ref()
 
@@ -40,11 +40,13 @@ const localActiveIndex = $computed(() => {
 
 function scrollViewToCenter(index: number) {
   if (index === -1) return
-  if (props.list.length > limit) {
-    listRef?.scrollToItem(index)
-  } else {
-    listRef?.children[index]?.scrollIntoView({block: 'center', behavior: 'smooth'})
-  }
+  nextTick(()=>{
+    if (props.list.length > limit) {
+      listRef?.scrollToItem(index)
+    } else {
+      listRef?.children[index]?.scrollIntoView({block: 'center', behavior: 'smooth'})
+    }
+  })
 }
 
 watch(() => localActiveIndex, (n: any) => {
@@ -63,19 +65,25 @@ watch(() => props.isActive, (n: boolean) => {
 
 watch(() => props.list, () => {
   if (props.static) return
-  if (props.list.length > limit) {
-    listRef?.scrollToItem(0)
-  } else {
-    listRef?.scrollTo(0, 0)
-  }
+  nextTick(()=>{
+    if (props.list.length > limit) {
+      listRef?.scrollToItem(0)
+    } else {
+      listRef?.scrollTo(0, 0)
+    }
+  })
 })
 
 function scrollToBottom() {
-  listRef.scrollToBottom()
+  nextTick(()=>{
+    listRef.scrollToBottom()
+  })
 }
 
 function scrollToItem(index: number) {
-  listRef.scrollToItem(index)
+  nextTick(()=>{
+    listRef.scrollToItem(index)
+  })
 }
 
 function itemIsActive(item: any, index: number) {
@@ -90,6 +98,7 @@ defineExpose({scrollToBottom, scrollToItem})
 
 <template>
   <DynamicScroller
+      v-if="list.length>limit"
       :items="list"
       ref="listRef"
       :min-item-size="90"
@@ -126,6 +135,34 @@ defineExpose({scrollToBottom, scrollToItem})
       </DynamicScrollerItem>
     </template>
   </DynamicScroller>
+  <div
+      v-else
+      class="scroller"
+      style="overflow: auto;"
+      ref="listRef">
+    <div class="list-item-wrapper"
+         v-for="(item,index) in list"
+         :key="item.id"
+    >
+      <div class="common-list-item"
+           :class="{
+            active:itemIsActive(item,index),
+            border:showBorder
+          }"
+           @click="emit('click',{item,index})"
+      >
+        <div class="left">
+          <slot name="prefix" :item="item" :index="index"></slot>
+          <div class="title-wrapper">
+            <slot :item="item" :index="index"></slot>
+          </div>
+        </div>
+        <div class="right">
+          <slot name="suffix" :item="item" :index="index"></slot>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>

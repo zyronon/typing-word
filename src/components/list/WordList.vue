@@ -3,7 +3,7 @@
 import {$ref} from "vue/macros";
 import {Word} from "@/types.ts";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
-import BaseList from "@/components/list2/BaseList.vue";
+import BaseList from "@/components/list/BaseList.vue";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
 
 const props = withDefaults(defineProps<{
