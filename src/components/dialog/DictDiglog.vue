@@ -355,7 +355,7 @@ function handleChangeArticleChapterIndex(val) {
                       :isActive="false"
                       v-loading="loading"
                       :show-border="true"
-                      @title="(val:any) => emitter.emit(EventKey.openArticleListModal,val.item)"
+                      @title="(val:any) => emitter.emit(EventKey.openArticleContentModal,val.item)"
                       @click="handleChangeArticleChapterIndex"
                       :active-id="activeId"
                       :list="runtimeStore.editDict.articles">

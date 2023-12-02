@@ -22,6 +22,7 @@ import {syncMyDictList} from "@/hooks/dict.ts";
 import {useWindowClick} from "@/hooks/event.ts";
 import ArticleList from "@/components/list/ArticleList.vue";
 import * as copy from "copy-to-clipboard";
+import {getTranslateText} from "@/hooks/article.ts";
 
 const emit = defineEmits<{
   back: []
@@ -352,6 +353,11 @@ defineExpose({getDictDetail, add, editDict})
       <div class="article-content word-font-family">
         <div class="title">
           <div>{{ article.title }}</div>
+          <BaseIcon
+              style="position:absolute;right: 0;"
+              title="大屏显示"
+              @click="emitter.emit(EventKey.openArticleContentModal,article)"
+              icon="iconoir:expand"/>
         </div>
         <div class="text" v-if="article.text">
           <div class="sentence" v-for="t in article.text.split('\n')">{{ t }}</div>
@@ -361,9 +367,14 @@ defineExpose({getDictDetail, add, editDict})
       <div class="article-content">
         <div class="title">
           <div>{{ article.titleTranslate }}</div>
+          <BaseIcon
+              style="position:absolute;right: 0;"
+              title="大屏显示"
+              @click="emitter.emit(EventKey.openArticleContentModal,article)"
+              icon="iconoir:expand"/>
         </div>
-        <div class="text" v-if="article.textCustomTranslate">
-          {{ article.textCustomTranslate }}
+        <div class="text" v-if="getTranslateText(article).length">
+          <div class="sentence" v-for="t in getTranslateText(article)">{{ t }}</div>
         </div>
         <Empty v-else/>
       </div>
@@ -494,13 +505,15 @@ defineExpose({getDictDetail, add, editDict})
     font-size: 20rem;
 
     .title {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
       margin-bottom: var(--space);
       font-size: 24rem;
     }
 
     .text {
-      //white-space: pre-wrap;
       text-indent: 1.5em;
       line-height: 35rem;
       overflow: auto;

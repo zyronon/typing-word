@@ -11,6 +11,7 @@ import Backgorund from "@/components/Backgorund.vue";
 import useTheme from "@/hooks/theme.ts";
 import * as localforage from "localforage";
 import SettingDialog from "@/components/dialog/SettingDialog.vue";
+import ArticleContentDialog from "@/components/dialog/ArticleContentDialog.vue";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -67,6 +68,7 @@ onMounted(() => {
 <template>
   <Backgorund/>
   <router-view/>
+  <ArticleContentDialog/>
   <SettingDialog v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
 </template>
 

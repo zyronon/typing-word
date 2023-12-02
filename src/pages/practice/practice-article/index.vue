@@ -286,7 +286,9 @@ defineExpose({getCurrentPractice})
             <ArticleList
                 :isActive="active"
                 :static="false"
+                :show-border="true"
                 :show-translate="settingStore.translate"
+                @title="e => emitter.emit(EventKey.openArticleContentModal,e.item)"
                 @click="changePracticeArticle"
                 :active-id="articleData.article.id"
                 :list="store.currentDict.articles">

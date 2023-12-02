@@ -1,4 +1,4 @@
-import {ArticleWord, DefaultArticleWord, DictType, Sentence} from "@/types.ts";
+import {Article, ArticleWord, DefaultArticleWord, DictType, Sentence, TranslateType} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import nlp from "compromise";
 import {split} from "sentence-splitter";
@@ -260,4 +260,16 @@ export function isArticle(type: DictType): boolean {
     DictType.article,
     DictType.customArticle
   ].includes(type)
+}
+
+export function getTranslateText(article: Article) {
+  if (article.useTranslateType === TranslateType.custom) {
+    return article.textCustomTranslate
+      .split('\r\n\r\n').filter(v => v)
+  } else if (article.useTranslateType === TranslateType.network) {
+    return article.textNetworkTranslate
+      .split('\r\n\r\n').filter(v => v)
+  } else {
+    return []
+  }
 }

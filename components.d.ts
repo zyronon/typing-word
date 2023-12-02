@@ -8,6 +8,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Add: typeof import('./src/components/toolbar/Add.vue')['default']
+    ArticleContentDialog: typeof import('./src/components/dialog/ArticleContentDialog.vue')['default']
+    ArticleDetailDialog: typeof import('./src/components/dialog/ArticleDetailDialog.vue')['default']
     ArticleList: typeof import('./src/components/list/ArticleList.vue')['default']
     Backgorund: typeof import('./src/components/Backgorund.vue')['default']
     BaseButton: typeof import('./src/components/BaseButton.vue')['default']
