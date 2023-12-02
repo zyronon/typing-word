@@ -721,18 +721,20 @@ defineExpose({getDictDetail, add: addWord, editDict})
       </div>
       <div class="row">
         <div class="label">每章单词数</div>
-        <span class="text">最小:10</span>
         <el-slider :min="10"
                    :step="10"
+                   show-input
+                   size="small"
                    :max="runtimeStore.editDict.words.length < 10 ? 10 : runtimeStore.editDict.words.length"
                    v-model="chapterWordNumber"
         />
-        <span class="text">最大:{{
-            runtimeStore.editDict.words.length < 10 ? 10 : runtimeStore.editDict.words.length
-          }}</span>
+
       </div>
 
-      <div class="notice">鼠标按住滑块，按键盘左右箭头可进行微调</div>
+      <div class="notice">
+        <span class="text">最小:10</span>
+        <span class="text">最大:{{ runtimeStore.editDict.words.length}}</span>
+      </div>
 
       <div class="row">
         <div class="label">将会创建</div>
@@ -918,8 +920,11 @@ defineExpose({getDictDetail, add: addWord, editDict})
   }
 
   .notice {
-    transform: translate3d(110rem, -20rem, 0);
-    font-size: 11rem;
+    display: flex;
+    justify-content: space-between;
+    transform: translate3d(0, -15rem, 0);
+    padding-left: 110rem;
+    font-size: 13rem;
   }
 }
 

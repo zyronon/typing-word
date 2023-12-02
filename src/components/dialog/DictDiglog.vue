@@ -23,6 +23,7 @@ import DictListPanel from "@/components/DictListPanel.vue";
 import {useRouter} from "vue-router";
 import ArticleList from "@/components/list/ArticleList.vue";
 import BaseList from "@/components/list/BaseList.vue";
+import {MessageBox} from "@/utils/MessageBox.tsx";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -33,6 +34,7 @@ let step = $ref(1)
 let loading = $ref(false)
 let show = $ref(false)
 let chapterList2 = $ref([])
+let chapterWordNumber = $ref(0)
 
 const activeId = $computed(() => {
   if (dictIsArticle) {
@@ -72,7 +74,7 @@ async function selectDict(val: { dict: DictResource | Dict, index: number }) {
             s.id = nanoid(6)
           })
           runtimeStore.editDict.originWords = cloneDeep(v)
-          changeSort(runtimeStore.editDict.sort)
+          changeSort(runtimeStore.editDict.sort, false)
         } else {
           runtimeStore.editDict.length = runtimeStore.editDict.words.length
         }
@@ -91,6 +93,7 @@ async function selectDict(val: { dict: DictResource | Dict, index: number }) {
       }
     }
   }
+  chapterWordNumber = runtimeStore.editDict.chapterWordNumber
   chapterList2 = runtimeStore.editDict.chapterWords.map((v, i) => ({id: i}))
   loading = false
 }
@@ -125,22 +128,49 @@ function showAllWordModal() {
   })
 }
 
-function resetChapterList() {
-  runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
-}
-
-function changeSort(v) {
-  if (v === Sort.normal) {
-    runtimeStore.editDict.words = cloneDeep(runtimeStore.editDict.originWords)
-  } else if (v === Sort.random) {
-    runtimeStore.editDict.words = shuffle(cloneDeep(runtimeStore.editDict.originWords))
-  } else {
-    runtimeStore.editDict.words = reverse(cloneDeep(runtimeStore.editDict.originWords))
+function resetChapterList(v) {
+  const temp = () => {
+    runtimeStore.editDict.chapterWordNumber = v
+    runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
+    chapterList2 = runtimeStore.editDict.chapterWords.map((v, i) => ({id: i}))
   }
-  resetChapterList()
+  if (runtimeStore.editDict.isCustom) {
+    MessageBox.confirm(
+        '检测到您已对这本词典自定义修改，修改“每章单词数”将会导致所有章节被重新分配，原有章节内容将被清除且不可恢复，是否继续？',
+        '提示',
+        () => temp(),
+        () => {
+          chapterWordNumber = runtimeStore.editDict.chapterWordNumber
+        }
+    )
+  } else {
+    temp()
+  }
 }
 
-let wordListRef: any = $ref()
+function changeSort(v, notice: boolean = true) {
+  const temp = () => {
+    runtimeStore.editDict.sort = v
+    if (v === Sort.normal) {
+      runtimeStore.editDict.words = cloneDeep(runtimeStore.editDict.originWords)
+    } else if (v === Sort.random) {
+      runtimeStore.editDict.words = shuffle(cloneDeep(runtimeStore.editDict.originWords))
+    } else {
+      runtimeStore.editDict.words = reverse(cloneDeep(runtimeStore.editDict.originWords))
+    }
+    resetChapterList()
+    notice && ElMessage.success('已重新排序')
+  }
+  if (runtimeStore.editDict.isCustom) {
+    MessageBox.confirm(
+        '检测到您已对这本词典自定义修改，修改“单词排序”将会导致所有章节被重新分配，原有章节内容将被清除且不可恢复，是否继续？',
+        '提示',
+        () => temp()
+    )
+  } else {
+    temp()
+  }
+}
 
 function option(type: string) {
   show = false
@@ -152,7 +182,6 @@ function option(type: string) {
 /**/
 /* 单词修改相关*/
 /**/
-
 
 watch(() => step, v => {
   if (v === 0) {
@@ -266,20 +295,27 @@ function handleChangeArticleChapterIndex(val) {
                   <template v-if="!dictIsArticle">
                     <div class="row">
                       <div class="label">每章单词数</div>
-                      <el-slider :min="10"
-                                 :step="10"
-                                 :max="100"
-                                 v-model="runtimeStore.editDict.chapterWordNumber"
-                                 @change="resetChapterList"
+                      <el-slider
+                          class="my-slider"
+                          :min="10"
+                          :step="10"
+                          :max="runtimeStore.editDict.words.length < 10 ? 10 : runtimeStore.editDict.words.length"
+                          show-input
+                          :show-input-controls="false"
+                          size="small"
+                          v-model="chapterWordNumber"
+                          @change="resetChapterList"
                       />
-                      <div class="option">
-                        <span>{{ runtimeStore.editDict.chapterWordNumber }}</span>
-                      </div>
+                    </div>
+
+                    <div class="notice">
+                      <span class="text">最小:10</span>
+                      <span class="text">最大:{{ runtimeStore.editDict.words.length }}</span>
                     </div>
                     <div class="row">
                       <div class="label">单词顺序</div>
                       <div class="option">
-                        <el-radio-group v-model="runtimeStore.editDict.sort"
+                        <el-radio-group :model-value="runtimeStore.editDict.sort"
                                         @change="changeSort"
                         >
                           <el-radio :label="Sort.normal" size="large">默认</el-radio>
@@ -516,13 +552,27 @@ $header-height: 60rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 40rem;
+            height: 34rem;
             word-break: keep-all;
             gap: 10rem;
 
             .el-radio {
               margin-right: 10rem;
             }
+          }
+
+          .my-slider {
+            :deep(.el-slider__input) {
+              width: 55px;
+            }
+          }
+
+          .notice {
+            display: flex;
+            justify-content: space-between;
+            transform: translate3d(0, -5rem, 0);
+            padding-left: 100rem;
+            font-size: 13rem;
           }
         }
 

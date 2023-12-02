@@ -27,7 +27,7 @@ import Tooltip from "@/components/Tooltip.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
-import {useArticleOptions} from "@/hooks/dict.ts";
+import {syncMyDictList, useArticleOptions} from "@/hooks/dict.ts";
 import ArticleList from "@/components/list/ArticleList.vue";
 
 const store = useBaseStore()
@@ -228,6 +228,11 @@ const {
   toggleArticleCollect
 } = useArticleOptions()
 
+function sort(list: Word[]) {
+  wordData.words = list
+  wordData.index = 0
+}
+
 defineExpose({getCurrentPractice})
 
 </script>
@@ -249,6 +254,7 @@ defineExpose({getCurrentPractice})
         <div class="swiper-item">
           <div class="typing-word-wrapper">
             <TypingWord
+                @sort="sort"
                 :words="wordData.words"
                 :index="wordData.index"
                 v-if="tabIndex === 1"

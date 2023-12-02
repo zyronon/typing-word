@@ -289,19 +289,12 @@ onUnmounted(() => {
             >
               <div class="list-header">
                 <div class="left">
+                  <div class="title">
+                    {{ store.chapterName }}
+                  </div>
                   <BaseIcon title="切换词典"
                             @click="emitter.emit(EventKey.openDictModal,'list')"
                             icon="carbon:change-catalog"/>
-                  <div class="title">
-                    {{ store.dictTitle }}
-                  </div>
-                  <Tooltip
-                      :title="`下一章(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
-                      v-if="store.currentDict.chapterIndex < store.currentDict.chapterWords.length - 1">
-                    <IconWrapper>
-                      <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
-                    </IconWrapper>
-                  </Tooltip>
                   <div style="position:relative;"
                        @click.stop="null">
                     <BaseIcon
@@ -322,7 +315,13 @@ onUnmounted(() => {
                       </div>
                     </MiniDialog>
                   </div>
-
+                  <Tooltip
+                      :title="`下一章(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
+                      v-if="store.currentDict.chapterIndex < store.currentDict.chapterWords.length - 1">
+                    <IconWrapper>
+                      <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
+                    </IconWrapper>
+                  </Tooltip>
                 </div>
                 <div class="right">
                   {{ data.words.length }}个单词
