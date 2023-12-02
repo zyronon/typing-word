@@ -23,6 +23,10 @@ import {useWindowClick} from "@/hooks/event.ts";
 import ArticleList from "@/components/list/ArticleList.vue";
 import * as copy from "copy-to-clipboard";
 
+const emit = defineEmits<{
+  back: []
+}>()
+
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
@@ -38,33 +42,9 @@ const isPinDict = $computed(() => {
   return [DictType.collect, DictType.wrong, DictType.simple].includes(runtimeStore.editDict.type)
 })
 
-function handleCheckedChange(val) {
-  chapterIndex = val.index
-  article = val.item
-}
-
-function delArticle(index: number) {
-  runtimeStore.editDict.articles.splice(index, 1)
-
-  if (runtimeStore.editDict.articles.length) {
-    if (chapterIndex >= runtimeStore.editDict.articles.length - 1) {
-      chapterIndex = runtimeStore.editDict.articles.length - 1
-      article = runtimeStore.editDict.articles[chapterIndex]
-    }
-    if (chapterIndex === index) {
-      article = runtimeStore.editDict.articles[chapterIndex]
-    }
-  } else {
-    article = cloneDeep(DefaultArticle)
-    chapterIndex = -1
-  }
-  syncMyDictList(runtimeStore.editDict)
-  ElMessage.success('删除成功！')
-}
-
-const emit = defineEmits<{
-  back: []
-}>()
+const activeId = $computed(() => {
+  return runtimeStore.editDict.articles?.[chapterIndex]?.id ?? ''
+})
 
 async function getDictDetail(val: {
   dict: DictResource | Dict,
@@ -100,6 +80,34 @@ async function getDictDetail(val: {
     }
   }
   loading = false
+}
+
+
+function handleCheckedChange(val) {
+  let rIndex = runtimeStore.editDict.articles.findIndex(v => v.id === val.item.id)
+  if (rIndex > -1) {
+    chapterIndex = rIndex
+    article = val.item
+  }
+}
+
+function delArticle(index: number) {
+  runtimeStore.editDict.articles.splice(index, 1)
+
+  if (runtimeStore.editDict.articles.length) {
+    if (chapterIndex >= runtimeStore.editDict.articles.length - 1) {
+      chapterIndex = runtimeStore.editDict.articles.length - 1
+      article = runtimeStore.editDict.articles[chapterIndex]
+    }
+    if (chapterIndex === index) {
+      article = runtimeStore.editDict.articles[chapterIndex]
+    }
+  } else {
+    article = cloneDeep(DefaultArticle)
+    chapterIndex = -1
+  }
+  syncMyDictList(runtimeStore.editDict)
+  ElMessage.success('删除成功！')
 }
 
 async function resetDict() {
@@ -321,9 +329,9 @@ defineExpose({getDictDetail, add, editDict})
               :list="runtimeStore.editDict.articles"
               @title="handleCheckedChange"
               @click="handleCheckedChange"
-              :active-index="chapterIndex">
+              :active-id="activeId">
             <template v-slot:prefix="{item,index}">
-              <input type="radio" :checked="chapterIndex === index">
+              <input type="radio" :checked="activeId === item.id">
             </template>
             <template v-slot:suffix="{item,index}">
               <BaseIcon

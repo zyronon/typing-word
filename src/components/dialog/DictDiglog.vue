@@ -32,12 +32,14 @@ let router = useRouter()
 let step = $ref(1)
 let loading = $ref(false)
 let show = $ref(false)
-
-function close() {
-  show = false
-}
-
 let chapterList2 = $ref([])
+
+const activeId = $computed(() => {
+  if (dictIsArticle) {
+    return runtimeStore.editDict.articles?.[runtimeStore.editDict.chapterIndex].id ?? ''
+  }
+  return ''
+})
 
 async function selectDict(val: { dict: DictResource | Dict, index: number }) {
   let item = val.dict
@@ -91,6 +93,11 @@ async function selectDict(val: { dict: DictResource | Dict, index: number }) {
   }
   chapterList2 = runtimeStore.editDict.chapterWords.map((v, i) => ({id: i}))
   loading = false
+}
+
+
+function close() {
+  show = false
 }
 
 function changeDict() {
@@ -185,6 +192,14 @@ function showWordListModal(val: { item: Word, index: number }) {
     list: runtimeStore.editDict.chapterWords[val.index]
   })
 }
+
+function handleChangeArticleChapterIndex(val) {
+  let rIndex = runtimeStore.editDict.articles.findIndex(v => v.id === val.item.id)
+  if (rIndex > -1) {
+    runtimeStore.editDict.chapterIndex = rIndex
+  }
+}
+
 </script>
 
 <template>
@@ -341,11 +356,11 @@ function showWordListModal(val: { item: Word, index: number }) {
                       v-loading="loading"
                       :show-border="true"
                       @title="(val:any) => emitter.emit(EventKey.openArticleListModal,val.item)"
-                      @click="(val:any) => runtimeStore.editDict.chapterIndex = val.index"
-                      :active-index="runtimeStore.editDict.chapterIndex"
+                      @click="handleChangeArticleChapterIndex"
+                      :active-id="activeId"
                       :list="runtimeStore.editDict.articles">
                     <template v-slot:prefix="{item,index}">
-                      <input type="radio" :checked="runtimeStore.editDict.chapterIndex === index">
+                      <input type="radio" :checked="activeId === item.id">
                     </template>
                   </ArticleList>
                   <Empty v-else/>

@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import {$ref} from "vue/macros";
 import TypingArticle from "./TypingArticle.vue";
-import {Article, ArticleWord, DefaultArticle, DisplayStatistics, ShortcutKey, TranslateType, Word} from "@/types.ts";
+import {
+  Article,
+  ArticleItem,
+  ArticleWord,
+  DefaultArticle,
+  DisplayStatistics,
+  ShortcutKey,
+  TranslateType,
+  Word
+} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import TypingWord from "@/pages/practice/practice-word/TypingWord.vue";
 import Panel from "../Panel.vue";
@@ -204,10 +213,7 @@ function nextWord(word: ArticleWord) {
   }
 }
 
-function changePracticeArticle(val: {
-  item: Article,
-  index: number
-}) {
+function changePracticeArticle(val: ArticleItem) {
   let rIndex = store.currentDict.articles.findIndex(v => v.id === val.item.id)
   if (rIndex > -1) {
     store.currentDict.chapterIndex = rIndex
