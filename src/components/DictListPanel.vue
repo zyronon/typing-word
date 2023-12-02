@@ -8,7 +8,7 @@ import {useBaseStore} from "@/stores/base.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import DictList from "@/components/list/DictList.vue";
-import DictGroup from "@/components/toolbar/DictGroup.vue";
+import DictGroup from "@/components/list/DictGroup.vue";
 
 const emit = defineEmits<{
   add: [],
@@ -160,7 +160,7 @@ const groupedByCategoryAndTag = $computed(() => {
       flex: 1;
       overflow: auto;
       height: 100%;
-      padding-right: var(--space);
+      padding-right: 10rem;
 
       .translate {
         display: flex;

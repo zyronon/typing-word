@@ -27,8 +27,8 @@ const emit = defineEmits<{
 
 <style scoped lang="scss">
 .dict-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 15rem;
 }
 

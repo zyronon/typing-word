@@ -38,7 +38,7 @@ let chapterWordListRef: any = $ref()
 let residueWordListRef: any = $ref()
 let chapterListRef: any = $ref()
 let chapterIndex = $ref(1)
-let residueWordList = $ref([])
+// let residueWordList = $ref([])
 let isEditDict = $ref(false)
 let showExport = $ref(false)
 let chapterWordNumber = $ref(settingStore.chapterWordNumber)
@@ -58,6 +58,15 @@ let chapterWordList: Word[] = $computed({
   },
   set(newValue) {
     runtimeStore.editDict.chapterWords[chapterIndex] = newValue
+  }
+})
+
+let residueWordList: Word[] = $computed({
+  get() {
+    return runtimeStore.editDict.residueWords ?? []
+  },
+  set(newValue) {
+    runtimeStore.editDict.residueWords = newValue
   }
 })
 
@@ -99,7 +108,7 @@ async function getDictDetail(val: {
           runtimeStore.editDict.originWords = cloneDeep(v)
           changeSort(runtimeStore.editDict.sort)
         } else {
-          runtimeStore.editDict.length = runtimeStore.editDict.words.length + runtimeStore.editDict.residueWords.length
+          runtimeStore.editDict.length = runtimeStore.editDict.words.length
         }
       }
     }
@@ -403,7 +412,7 @@ function resetChapterList(num?: number) {
   chapterIndex = -1
   runtimeStore.editDict.words.map(v => v.checked = false)
   runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
-  runtimeStore.editDict.length = runtimeStore.editDict.words.length + runtimeStore.editDict.residueWords.length
+  runtimeStore.editDict.length = runtimeStore.editDict.words.length
   chapterList2 = runtimeStore.editDict.chapterWords.map((v, i) => ({id: i}))
 }
 
@@ -513,6 +522,14 @@ function editDict() {
   isEditDict = true
 }
 
+function s() {
+  if (runtimeStore.editDict.words.length) {
+    showAllocationChapterDialog = true
+  } else {
+    ElMessage.warning('请先添加单词')
+  }
+}
+
 defineExpose({getDictDetail, add: addWord, editDict})
 
 </script>
@@ -582,8 +599,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
             </div>
           </div>
           <div class="select">
-            <BaseButton v-if="isCanOperation" size="small" @click="showAllocationChapterDialog = true">智能分配
-            </BaseButton>
+            <BaseButton v-if="isCanOperation" size="small" @click="s">智能分配</BaseButton>
             <span>{{ runtimeStore.editDict.chapterWords.length }}章</span>
           </div>
         </div>
@@ -697,10 +713,12 @@ defineExpose({getDictDetail, add: addWord, editDict})
         <span class="text">最小:10</span>
         <el-slider :min="10"
                    :step="10"
-                   :max="runtimeStore.editDict.words.length ?? 10"
+                   :max="runtimeStore.editDict.words.length < 10 ? 10 : runtimeStore.editDict.words.length"
                    v-model="chapterWordNumber"
         />
-        <span class="text">最大:{{ runtimeStore.editDict.words.length ?? 10 }}</span>
+        <span class="text">最大:{{
+            runtimeStore.editDict.words.length < 10 ? 10 : runtimeStore.editDict.words.length
+          }}</span>
       </div>
 
       <div class="notice">鼠标按住滑块，按键盘左右箭头可进行微调</div>

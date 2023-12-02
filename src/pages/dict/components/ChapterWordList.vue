@@ -4,7 +4,7 @@ import {Sort, Word} from "@/types.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Empty from "@/components/Empty.vue";
 import {$computed, $ref} from "vue/macros";
-import {watch} from "vue";
+import {nextTick, watch} from "vue";
 import MiniDialog from "@/components/dialog/MiniDialog.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {useWindowClick} from "@/hooks/event.ts";
@@ -90,7 +90,6 @@ defineExpose({scrollToBottom, scrollToItem})
 let show = $ref(false)
 useWindowClick(() => show = false)
 
-const playWordAudio = usePlayWordAudio()
 </script>
 
 <template>

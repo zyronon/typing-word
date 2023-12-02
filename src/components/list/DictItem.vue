@@ -21,8 +21,10 @@ const emit = defineEmits<{
       :class="active && 'active'"
   >
     <template v-if="dict.name">
-      <div class="name">{{ dict.name }}</div>
-      <div class="desc">{{ dict.description }}</div>
+      <div class="top">
+        <div class="name">{{ dict.name }}</div>
+        <div class="desc">{{ dict.description }}</div>
+      </div>
       <div class="num">{{ dict.length ?? dict.originWords.length }}词</div>
     </template>
     <div v-else class="add" @click.stop="emit('add')">
@@ -35,24 +37,41 @@ const emit = defineEmits<{
 <style scoped lang="scss">
 .dict-item {
   cursor: pointer;
+  box-sizing: border-box;
   padding: 10rem;
-  min-height: 100rem;
+  width: 125rem;
+  height: 165rem;
   border-radius: 10rem;
   position: relative;
   background: var(--color-item-bg);
   color: var(--color-font-1);
   font-size: 14rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .name {
-    font-size: 18rem;
+    font-size: 16rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display:-webkit-box; //作为弹性伸缩盒子模型显示。
+    -webkit-box-orient:vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
+    -webkit-line-clamp:2; //显示的行
   }
 
   .desc {
     color: var(--color-font-2);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display:-webkit-box; //作为弹性伸缩盒子模型显示。
+    -webkit-box-orient:vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
+    -webkit-line-clamp:2; //显示的行
   }
 
   .num {
-    font-weight: bold;
+    text-align: right;
+    color: var(--color-font-2);
+    //font-weight: bold;
   }
 
   .go {

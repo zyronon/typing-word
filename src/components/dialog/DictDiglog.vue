@@ -412,7 +412,7 @@ $header-height: 60rem;
   //transform: translate(-50%, -50%);
   background: var(--color-second-bg);
   z-index: 99999;
-  width: 1000rem;
+  width: 1030rem;
   height: 75vh;
 }
 

@@ -40,7 +40,7 @@ const localActiveIndex = $computed(() => {
 
 function scrollViewToCenter(index: number) {
   if (index === -1) return
-  nextTick(()=>{
+  nextTick(() => {
     if (props.list.length > limit) {
       listRef?.scrollToItem(index)
     } else {
@@ -65,7 +65,7 @@ watch(() => props.isActive, (n: boolean) => {
 
 watch(() => props.list, () => {
   if (props.static) return
-  nextTick(()=>{
+  nextTick(() => {
     if (props.list.length > limit) {
       listRef?.scrollToItem(0)
     } else {
@@ -75,14 +75,22 @@ watch(() => props.list, () => {
 })
 
 function scrollToBottom() {
-  nextTick(()=>{
-    listRef.scrollToBottom()
+  nextTick(() => {
+    if (props.list.length > limit) {
+      listRef.scrollToBottom()
+    } else {
+      listRef?.scrollTo(0, listRef.scrollHeight)
+    }
   })
 }
 
 function scrollToItem(index: number) {
-  nextTick(()=>{
-    listRef.scrollToItem(index)
+  nextTick(() => {
+    if (props.list.length > limit) {
+      listRef?.scrollToItem(index)
+    } else {
+      listRef?.children[index]?.scrollIntoView({block: 'center', behavior: 'smooth'})
+    }
   })
 }
 

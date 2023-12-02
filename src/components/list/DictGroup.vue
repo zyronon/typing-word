@@ -3,6 +3,7 @@ import {$computed, $ref} from "vue/macros";
 import {watch} from "vue";
 import {DictResource} from "@/types.ts";
 import DictItem from "@/components/list/DictItem.vue";
+import DictList from "@/components/list/DictList.vue";
 
 const props = defineProps<{
   category: string,
@@ -34,12 +35,9 @@ watch(() => props.groupByTag, () => {
            v-for="i in Object.keys(groupByTag)">{{ i }}
       </div>
     </div>
-    <div class="dict-list">
-      <DictItem v-for="(dict,index) in list"
-                @click="emit('selectDict',{dict,index})"
-                :active="selectDictName === dict.id"
-                :dict="dict"/>
-    </div>
+    <DictList
+        @selectDict="e => emit('selectDict',e)"
+        :list="list" :select-dict-name="selectDictName"/>
   </div>
 </template>
 
@@ -74,9 +72,4 @@ watch(() => props.groupByTag, () => {
   }
 }
 
-.dict-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15rem;
-}
 </style>
