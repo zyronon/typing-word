@@ -133,7 +133,6 @@ onMounted(() => {
   emitter.on(ShortcutKey.ToggleTheme, toggleTheme)
   emitter.on(ShortcutKey.ToggleConciseMode, toggleConciseMode)
   emitter.on(ShortcutKey.TogglePanel, togglePanel)
-  practiceRef.getCurrentPractice()
 })
 
 onUnmounted(() => {

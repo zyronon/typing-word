@@ -20,24 +20,26 @@ let wordData = $ref({
 })
 
 watch([
-  () => store.load,
   () => store.currentDict.words,
 ], n => {
   getCurrentPractice()
 })
 
 function getCurrentPractice() {
-  // console.log('store.currentDict',store.currentDict)
-  if (store.currentDict.translateLanguage === 'common') {
+  if (store.chapter.length) {
+    wordData.words = store.chapter
+    wordData.index = 0
+
     store.chapter.map((w: Word) => {
-      let res = runtimeStore.translateWordList.find(a => a.name === w.name)
-      if (res) w = Object.assign(w, res)
+      if (!w.trans.length){
+        let res = runtimeStore.translateWordList.find(a => a.name === w.name)
+        if (res) w = Object.assign(w, res)
+      }
     })
   }
-  wordData.words = cloneDeep(store.chapter)
-  wordData.index = 0
-  // console.log('wordData', wordData)
 }
+
+onMounted(getCurrentPractice)
 
 defineExpose({getCurrentPractice})
 

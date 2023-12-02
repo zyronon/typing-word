@@ -44,13 +44,10 @@ watch([
   // () => store.load,
   () => store.currentDict.articles,
 ], n => {
-  console.log('n', n)
   getCurrentPractice()
 })
 
-onMounted(() => {
-  getCurrentPractice()
-})
+onMounted(getCurrentPractice)
 
 function setArticle(val: Article) {
   store.currentDict.articles[store.currentDict.chapterIndex] = cloneDeep(val)
@@ -218,13 +215,15 @@ function changePracticeArticle(val: {
   }
 }
 
-defineExpose({getCurrentPractice})
 const settingStore = useSettingStore()
 
 const {
   isArticleCollect,
   toggleArticleCollect
 } = useArticleOptions()
+
+defineExpose({getCurrentPractice})
+
 </script>
 
 <template>

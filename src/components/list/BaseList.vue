@@ -27,7 +27,7 @@ const emit = defineEmits<{
 }>()
 
 //虚拟列表长度限制
-const limit = 99
+const limit = 101
 const settingStore = useSettingStore()
 const listRef: any = $ref()
 

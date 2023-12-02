@@ -5,6 +5,7 @@ import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import * as localforage from "localforage";
 import {nanoid} from "nanoid";
+import {state} from "vue-tsc/out/shared";
 
 export interface BaseState {
   myDictList: Dict[],
@@ -290,6 +291,7 @@ export const useBaseStore = defineStore('base', {
         this.myDictList.push(cloneDeep(dict))
         this.current.index = this.myDictList.length - 1
       }
+
       emitter.emit(EventKey.resetWord)
       emitter.emit(EventKey.changeDict)
     }
