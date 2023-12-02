@@ -14,7 +14,7 @@ import {MessageBox} from "@/utils/MessageBox.tsx";
 import PracticeArticle from "@/pages/practice/practice-article/index.vue";
 import PracticeWord from "@/pages/practice/practice-word/index.vue";
 import {ShortcutKey} from "@/types.ts";
-import useTheme from "@/hooks/useTheme.ts";
+import useTheme from "@/hooks/theme.ts";
 import SettingDialog from "@/components/dialog/SettingDialog.vue";
 import DictModal from "@/components/dialog/DictDiglog.vue";
 

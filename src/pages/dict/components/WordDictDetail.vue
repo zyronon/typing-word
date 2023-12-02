@@ -157,8 +157,17 @@ let residueWordListCheckedTotal = $computed(() => {
 function handleChangeCurrentChapter(val: {
   index: number
 }) {
-  chapterWordList.map(v => v.checked = false)
   chapterIndex = val.index
+  chapterWordList.map(v => {
+    v.checked = false
+    //TODO 可能会存在卡的问题
+    if (!v.trans.length && runtimeStore.translateWordList.length) {
+      let res = runtimeStore.translateWordList.find(a => a.name === v.name)
+      if (res) v = Object.assign(v, res)
+    }
+  })
+
+  chapterWordListRef?.scrollToItem(0)
   closeWordForm()
 }
 

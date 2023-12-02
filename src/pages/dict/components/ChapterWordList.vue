@@ -82,7 +82,7 @@ function scrollToBottom() {
 }
 
 function scrollToItem(index: number) {
-  listRef.scrollToItem(index)
+  nextTick(() => listRef.scrollToItem(index))
 }
 
 defineExpose({scrollToBottom, scrollToItem})

@@ -260,7 +260,6 @@ export const useBaseStore = defineStore('base', {
       //TODO 保存统计
       // this.saveStatistics()
       console.log('changeDict', cloneDeep(dict), chapterIndex, wordIndex)
-      this.currentDict.type = dict.type
       this.current.practiceType = practiceType
       if ([DictType.collect,
         DictType.simple,

@@ -8,7 +8,7 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {cloneDeep} from "lodash-es";
 import Backgorund from "@/components/Backgorund.vue";
-import useTheme from "@/hooks/useTheme.ts";
+import useTheme from "@/hooks/theme.ts";
 import * as localforage from "localforage";
 import SettingDialog from "@/components/dialog/SettingDialog.vue";
 

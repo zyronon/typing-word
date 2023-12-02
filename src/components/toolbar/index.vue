@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Tooltip from "@/components/Tooltip.vue"
-import useTheme from "@/hooks/useTheme.ts"
+import useTheme from "@/hooks/theme.ts"
 import {useBaseStore} from "@/stores/base.ts"
 import FeedbackModal from "@/components/toolbar/FeedbackModal.vue"
 

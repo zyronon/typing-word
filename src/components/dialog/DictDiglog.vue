@@ -72,7 +72,7 @@ async function selectDict(val: { dict: DictResource | Dict, index: number }) {
           runtimeStore.editDict.originWords = cloneDeep(v)
           changeSort(runtimeStore.editDict.sort)
         } else {
-          runtimeStore.editDict.length = runtimeStore.editDict.words.length + runtimeStore.editDict.residueWords.length
+          runtimeStore.editDict.length = runtimeStore.editDict.words.length
         }
       }
       if (runtimeStore.editDict.type === DictType.article) {
@@ -456,7 +456,7 @@ $header-height: 60rem;
 
       .left-column {
         overflow: auto;
-        flex: 4;
+        flex: 6;
         display: flex;
         flex-direction: column;
         gap: 10rem;
@@ -464,7 +464,6 @@ $header-height: 60rem;
         position: relative;
         color: var(--color-font-1);
         font-size: 14rem;
-        position: relative;
         padding-right: var(--space);
 
         .name {
@@ -515,7 +514,7 @@ $header-height: 60rem;
       }
 
       .right-column {
-        flex: 8;
+        flex: 7;
         border-radius: 10rem;
         background: var(--color-second-bg);
         color: var(--color-font-1);
@@ -570,6 +569,7 @@ $header-height: 60rem;
       justify-content: flex-end;
       gap: var(--space);
       padding-right: var(--space);
+      margin-bottom: 20rem;
     }
   }
 }
