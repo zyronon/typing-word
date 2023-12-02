@@ -17,6 +17,7 @@ import {ShortcutKey} from "@/types.ts";
 import useTheme from "@/hooks/theme.ts";
 import SettingDialog from "@/components/dialog/SettingDialog.vue";
 import DictModal from "@/components/dialog/DictDiglog.vue";
+import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
@@ -153,6 +154,8 @@ onUnmounted(() => {
   emitter.off(ShortcutKey.ToggleConciseMode, toggleConciseMode)
   emitter.off(ShortcutKey.TogglePanel, togglePanel)
 })
+
+useStartKeyboardEventListener()
 
 </script>
 <template>

@@ -58,6 +58,7 @@ let chapterWordList: Word[] = $computed({
   },
   set(newValue) {
     runtimeStore.editDict.chapterWords[chapterIndex] = newValue
+    syncMyDictList(runtimeStore.editDict)
   }
 })
 
@@ -67,6 +68,7 @@ let residueWordList: Word[] = $computed({
   },
   set(newValue) {
     runtimeStore.editDict.residueWords = newValue
+    syncMyDictList(runtimeStore.editDict)
   }
 })
 
@@ -413,7 +415,7 @@ function changeSort(v: Sort) {
   resetChapterList()
 }
 
-function resetChapterList(num?: number) {
+function resetChapterList(num?: number, sync?: boolean) {
   if (num !== undefined) {
     runtimeStore.editDict.chapterWordNumber = num
   }
@@ -423,6 +425,9 @@ function resetChapterList(num?: number) {
   runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
   runtimeStore.editDict.length = runtimeStore.editDict.words.length
   chapterList2 = runtimeStore.editDict.chapterWords.map((v, i) => ({id: i}))
+  if (sync!==undefined){
+    syncMyDictList(runtimeStore.editDict)
+  }
 }
 
 async function resetDict() {
@@ -711,7 +716,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
   <Dialog
       title="智能分配单词"
       :footer="true"
-      @ok="resetChapterList(chapterWordNumber)"
+      @ok="resetChapterList(chapterWordNumber,true)"
       @cancel="chapterWordNumber = settingStore.chapterWordNumber"
       v-model="showAllocationChapterDialog">
     <div class="allocation-chapter">
@@ -733,7 +738,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
 
       <div class="notice">
         <span class="text">最小:10</span>
-        <span class="text">最大:{{ runtimeStore.editDict.words.length}}</span>
+        <span class="text">最大:{{ runtimeStore.editDict.words.length }}</span>
       </div>
 
       <div class="row">

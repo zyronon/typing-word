@@ -12,6 +12,7 @@ import useTheme from "@/hooks/theme.ts";
 import * as localforage from "localforage";
 import SettingDialog from "@/components/dialog/SettingDialog.vue";
 import ArticleContentDialog from "@/components/dialog/ArticleContentDialog.vue";
+import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -61,7 +62,6 @@ onMounted(() => {
   init()
 })
 
-// useStartKeyboardEventListener()
 
 </script>
 

@@ -25,6 +25,8 @@ export function useWordOptions() {
       }
       store.collect.originWords.push(val)
     }
+
+    store.collect.length = store.collect.originWords.length
   }
 
   function isWordSimple(val: Word) {
@@ -42,6 +44,8 @@ export function useWordOptions() {
       }
       store.simple.originWords.push(val)
     }
+
+    store.simple.length = store.simple.originWords.length
   }
 
   function delWrongWord(val: Word) {
