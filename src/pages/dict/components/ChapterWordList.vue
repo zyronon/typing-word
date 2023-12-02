@@ -8,7 +8,7 @@ import {nextTick, watch} from "vue";
 import MiniDialog from "@/components/dialog/MiniDialog.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {useWindowClick} from "@/hooks/event.ts";
-import {reverse, shuffle} from "lodash-es";
+import {cloneDeep, reverse, shuffle} from "lodash-es";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
 import WordList from '@/components/list/WordList.vue'
 
@@ -22,6 +22,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   add: []
+  sync: []
   edit: [val: { item: Word, index: number }]
   del: [val: { item: Word, index: number }],
   'update:list': [val: Word[]]
@@ -67,12 +68,13 @@ function del(val: { item: Word, index: number }) {
 function sort(type: Sort) {
   if (type === Sort.reverse) {
     ElMessage.success('已翻转排序')
-    emit('update:list', reverse(props.list))
+    emit('update:list', reverse(cloneDeep(props.list)))
   }
   if (type === Sort.random) {
     ElMessage.success('已随机排序')
     emit('update:list', shuffle(props.list))
   }
+  emit('sync')
 }
 
 let listRef: any = $ref()

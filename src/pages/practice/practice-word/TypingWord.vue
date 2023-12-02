@@ -2,12 +2,12 @@
 import {onMounted, onUnmounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
-import {DefaultDisplayStatistics, DictType, ShortcutKey, Word} from "../../../types.ts";
+import {DefaultDisplayStatistics, DictType, ShortcutKey, Sort, Word} from "../../../types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
-import {cloneDeep} from "lodash-es"
+import {cloneDeep, reverse, shuffle} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
 import {useSettingStore} from "@/stores/setting.ts";
-import {useOnKeyboardEventListener} from "@/hooks/event.ts";
+import {useOnKeyboardEventListener, useWindowClick} from "@/hooks/event.ts";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Options from "@/pages/practice/Options.vue";
@@ -15,10 +15,12 @@ import Typing from "@/pages/practice/practice-word/Typing.vue";
 import Panel from "@/pages/practice/Panel.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {useWordOptions} from "@/hooks/dict.ts";
+import {syncMyDictList, useWordOptions} from "@/hooks/dict.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import WordList from "@/components/list/WordList.vue";
 import Empty from "@/components/Empty.vue";
+import MiniDialog from "@/components/dialog/MiniDialog.vue";
+import BaseButton from "@/components/BaseButton.vue";
 
 interface IProps {
   words: Word[],
@@ -29,6 +31,11 @@ const props = withDefaults(defineProps<IProps>(), {
   words: [],
   index: -1
 })
+
+const emit = defineEmits<{
+  'update:words': [val: Word[]],
+  sort: [val: Word[]]
+}>()
 
 const typingRef: any = $ref()
 const store = useBaseStore()
@@ -50,6 +57,8 @@ let data = $ref({
 })
 
 let stat = cloneDeep(DefaultDisplayStatistics)
+let showSortOption = $ref(false)
+useWindowClick(() => showSortOption = false)
 
 watch(() => props.words, () => {
   data.words = props.words
@@ -199,6 +208,17 @@ function play() {
   typingRef.play()
 }
 
+function sort(type: Sort) {
+  if (type === Sort.reverse) {
+    ElMessage.success('已翻转排序')
+    emit('sort', reverse(cloneDeep(data.words)))
+  }
+  if (type === Sort.random) {
+    ElMessage.success('已随机排序')
+    emit('sort', shuffle(data.words))
+  }
+}
+
 onMounted(() => {
   emitter.on(ShortcutKey.ShowWord, show)
   emitter.on(ShortcutKey.Previous, prev)
@@ -282,6 +302,27 @@ onUnmounted(() => {
                       <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
                     </IconWrapper>
                   </Tooltip>
+                  <div style="position:relative;"
+                       @click.stop="null">
+                    <BaseIcon
+                        title="改变顺序"
+                        icon="icon-park-outline:sort-two"
+                        @click="showSortOption = !showSortOption"
+                    />
+                    <MiniDialog
+                        v-model="showSortOption"
+                        style="width: 130rem;"
+                    >
+                      <div class="mini-row-title">
+                        列表循环设置
+                      </div>
+                      <div class="mini-row">
+                        <BaseButton size="small" @click="sort(Sort.reverse)">翻转</BaseButton>
+                        <BaseButton size="small" @click="sort(Sort.random)">随机</BaseButton>
+                      </div>
+                    </MiniDialog>
+                  </div>
+
                 </div>
                 <div class="right">
                   {{ data.words.length }}个单词

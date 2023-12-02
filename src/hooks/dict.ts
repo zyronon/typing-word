@@ -136,8 +136,6 @@ export async function checkDictHasTranslate(dict: Dict) {
       }))
     }
   }
-
-
 }
 
 //同步到我的词典列表
@@ -148,7 +146,7 @@ export function syncMyDictList(dict: Dict) {
   if (isArticle(dict.type)) {
     dict.length = dict.articles.length
   } else {
-    dict.length = dict.words.length + dict.residueWords.length
+    dict.length = dict.words.length
   }
 
   let rIndex = store.myDictList.findIndex(v => v.id === dict.id)

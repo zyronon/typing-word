@@ -646,6 +646,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
           @del="delWord"
           :empty-title="chapterIndex === -1?'请选择章节':null"
           @edit="val => editWord(val.item,val.index,'chapter')"
+          @sync="syncMyDictList(runtimeStore.editDict)"
           v-model:list="chapterWordList"/>
       <div class="options-column" v-if="isCanOperation">
         <BaseButton @click="toChapterWordList"
@@ -667,6 +668,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
           @add="addWord('residue')"
           @del="delWord"
           @edit="val => editWord(val.item,val.index,'residue')"
+          @sync="syncMyDictList(runtimeStore.editDict)"
           v-model:list="residueWordList"/>
       <div class="right-column">
         <div class="add" v-if="wordFormData.type">

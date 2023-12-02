@@ -9,6 +9,7 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {Word} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
+import {syncMyDictList} from "@/hooks/dict.ts";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -31,12 +32,18 @@ function getCurrentPractice() {
     wordData.index = 0
 
     store.chapter.map((w: Word) => {
-      if (!w.trans.length){
+      if (!w.trans.length) {
         let res = runtimeStore.translateWordList.find(a => a.name === w.name)
         if (res) w = Object.assign(w, res)
       }
     })
   }
+}
+
+function sort(list: Word[]) {
+  store.currentDict.chapterWords[store.currentDict.chapterIndex] = wordData.words = list
+  wordData.index = 0
+  syncMyDictList(store.currentDict)
 }
 
 onMounted(getCurrentPractice)
@@ -47,7 +54,10 @@ defineExpose({getCurrentPractice})
 
 <template>
   <div class="practice">
-    <TypingWord :words="wordData.words" :index="wordData.index"/>
+    <TypingWord
+        @sort="sort"
+        v-model:words="wordData.words"
+        :index="wordData.index"/>
   </div>
 </template>
 
