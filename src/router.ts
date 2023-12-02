@@ -5,7 +5,7 @@ import Dict from '@/pages/dict'
 const routes: any[] = [
   {path: '/practice', component: Practice},
   {path: '/dict', name: 'dict', component: Dict},
-  {path: '/', redirect: '/dict'},
+  {path: '/', redirect: '/practice'},
 ]
 
 const router = VueRouter.createRouter({
