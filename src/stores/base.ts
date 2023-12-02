@@ -116,7 +116,7 @@ export const useBaseStore = defineStore('base', {
         },
       ],
       current: {
-        index: 4,
+        index: 3,
         // dictType: DictType.article,
         // index: 0,
         practiceType: DictType.word,

@@ -21,6 +21,7 @@ import {MessageBox} from "@/utils/MessageBox.tsx";
 import {syncMyDictList} from "@/hooks/dict.ts";
 import {useWindowClick} from "@/hooks/event.ts";
 import ArticleList from "@/components/list/ArticleList.vue";
+import * as copy from "copy-to-clipboard";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -201,6 +202,10 @@ function exportData(val: {
   type: string,
   data?: Article
 }) {
+  // return copy( JSON.stringify(cloneDeep(runtimeStore.editDict.articles).map(v=>{
+  //   delete v.sections
+  //   return v
+  // })))
   const {type, data} = val
   let list = []
   let filename = ''
