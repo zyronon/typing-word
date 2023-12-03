@@ -37,6 +37,7 @@ const emit = defineEmits<{
 let networkTranslateEngine = $ref('baidu')
 let progress = $ref(0)
 let failCount = $ref(0)
+let textareaRef = $ref<HTMLTextAreaElement>()
 const TranslateEngineOptions = [
   {value: 'baidu', label: '百度'},
   {value: 'youdao', label: '有道'},
@@ -46,6 +47,8 @@ let editArticle = $ref<Article>(cloneDeep(DefaultArticle))
 
 watch(() => props.article, val => {
   editArticle = cloneDeep(val)
+  progress = 0
+  failCount = 0
   if (editArticle.text.trim()) {
     if (editArticle.useTranslateType === TranslateType.custom) {
       if (editArticle.textCustomTranslate.trim()) {
@@ -76,18 +79,19 @@ function renewSections() {
     if (editArticle.useTranslateType === TranslateType.network) {
       failCount = renewSectionTranslates(editArticle, editArticle.textNetworkTranslate)
     }
-    console.log('failCount',failCount)
   } else {
     editArticle.sections = []
   }
 }
 
 function appendTranslate(str: string) {
+  let selectionStart = textareaRef.selectionStart;
+  let selectionEnd = textareaRef.selectionEnd;
   if (editArticle.useTranslateType === TranslateType.custom) {
-    editArticle.textCustomTranslate += str
+    editArticle.textCustomTranslate = editArticle.textCustomTranslate.slice(0, selectionStart) + str + editArticle.textCustomTranslate.slice(selectionEnd)
   }
   if (editArticle.useTranslateType === TranslateType.network) {
-    editArticle.textNetworkTranslate += str
+    editArticle.textNetworkTranslate = editArticle.textNetworkTranslate.slice(0, selectionStart) + str + editArticle.textNetworkTranslate.slice(selectionEnd)
   }
 }
 
@@ -108,7 +112,7 @@ function onPaste(event: ClipboardEvent) {
       () => {
         appendTranslate(paste)
         renewSections()
-      },null,
+      }, null,
       {
         confirmButtonText: '需要',
         cancelButtonText: '关闭',
@@ -314,6 +318,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
             type="textarea"
             class="base-textarea"
             placeholder="请填写翻译正文"
+            ref="textareaRef"
         >
             </textarea>
         <textarea
@@ -326,6 +331,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
             type="textarea"
             class="base-textarea"
             placeholder="等待网络翻译中..."
+            ref="textareaRef"
         >
             </textarea>
         <Empty

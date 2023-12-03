@@ -43,6 +43,7 @@ const emit = defineEmits<{
 }>()
 
 let isPlay = $ref(false)
+let typeArticleRef = $ref<HTMLInputElement>(null)
 let articleWrapperRef = $ref<HTMLInputElement>(null)
 let sectionIndex = $ref(0)
 let sentenceIndex = $ref(0)
@@ -57,9 +58,6 @@ let hoverIndex = $ref({
 })
 const currentIndex = computed(() => {
   return `${sectionIndex}${sentenceIndex}${wordIndex}`
-})
-const collectIndex = $computed(() => {
-  return store.collect.articles.findIndex((v: Article) => v.title.toLowerCase() === props.article.title.toLowerCase())
 })
 
 const playBeep = usePlayBeep()
@@ -76,6 +74,7 @@ watch(() => props.article, () => {
   sentenceIndex = props.sentenceIndex
   wordIndex = props.wordIndex
   stringIndex = props.stringIndex
+  typeArticleRef?.scrollTo({top: 0, behavior: "smooth"})
   calcTranslateLocation()
 }, {immediate: true})
 
@@ -362,16 +361,6 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
   return str
 }
 
-function toggleCollect() {
-  if (collectIndex === -1) {
-    store.collect.articles.push(props.article)
-    ElMessage.success('收藏成功')
-  } else {
-    store.collect.articles.splice(collectIndex, 1)
-    ElMessage.success('取消成功')
-  }
-}
-
 const {
   isArticleCollect,
   toggleArticleCollect
@@ -380,7 +369,7 @@ const {
 </script>
 
 <template>
-  <div class="typing-article">
+  <div class="typing-article" ref="typeArticleRef">
     <header>
       <div class="title word">{{ props.article.title }}</div>
       <div class="titleTranslate" v-if="settingStore.translate">{{ props.article.titleTranslate }}</div>
@@ -488,6 +477,9 @@ const {
 
 $article-width: 1000px;
 .typing-article {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
 
   header {
     word-wrap: break-word;
@@ -539,7 +531,7 @@ $article-width: 1000px;
       .sentence {
         transition: all .3s;
 
-        &:first-child{
+        &:first-child {
           padding-left: 50rem;
         }
 
