@@ -138,8 +138,9 @@ html, body {
   font-size: 1px;
   padding: 0;
   margin: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   color: $font-color;
   //color: var(--color-font-1);
   //font-family: var(--font-family);
