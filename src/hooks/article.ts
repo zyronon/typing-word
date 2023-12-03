@@ -46,6 +46,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
     let doc = nlp.tokenize(rowSection)
     let sentences = doc.json()
     // console.log('--')
+    console.log('ss', sentences)
     sentences.map(sentenceRow => {
       let sentence: Sentence = {
         //他没有空格，导致修改一行一行的数据时，汇总时全没有空格了，库无法正常断句
@@ -56,16 +57,20 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
       }
       section.push(sentence)
 
-      const checkQuote = (pre: string) => {
+      const checkQuote = (pre: string, index?: number) => {
         let nearSymbolPosition = null
-        //TODO 可以优化成for+break
-        section.toReversed().map((sentenceItem, b) => {
-          sentenceItem.words.toReversed().map((wordItem, c) => {
-            if (wordItem.symbolPosition !== '' && nearSymbolPosition === null) {
-              nearSymbolPosition = wordItem.symbolPosition
-            }
+        if (index === 0) {
+          nearSymbolPosition = 'end'
+        } else {
+          //TODO 可以优化成for+break
+          section.toReversed().map((sentenceItem, b) => {
+            sentenceItem.words.toReversed().map((wordItem, c) => {
+              if (wordItem.symbolPosition !== '' && nearSymbolPosition === null) {
+                nearSymbolPosition = wordItem.symbolPosition
+              }
+            })
           })
-        })
+        }
 
         let word3: ArticleWord = {
           ...DefaultArticleWord,
@@ -74,7 +79,8 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
           isSymbol: true,
           symbolPosition: ''
         };
-
+        // console.log('rrr', sentenceRow)
+        // console.log('nearSymbolPosition', nearSymbolPosition)
         if (nearSymbolPosition === 'end' || nearSymbolPosition === null) {
           word3.symbolPosition = 'start'
           sentence.words.push(word3)
@@ -96,7 +102,8 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
             let lastSentence = section[section.length - 2]
             lastSentence.words = lastSentence.words.concat(sentence.words)
             lastSentence.words.push(word3)
-            section.pop()
+            sentence.words = []
+            // section.pop()
           }
         }
       }
@@ -131,6 +138,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
             break
           //类似于这种的“' -- ”的。需要保留空格，用了一个占位符才处理，因为每个符号都会把前面的那个字符的nextSpace改为false
           case ' ':
+            console.log('sentence', sentence)
             sentence.words[sentence.words.length - 1].nextSpace = true
             let word3 = cloneDeep({
               ...DefaultArticleWord,
@@ -161,12 +169,12 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
         }
       }
 
-      sentenceRow.terms.map(v => {
+      sentenceRow.terms.map((v, index: number) => {
         // console.log('v', v)
         if (v.text) {
           let pre: string = v.pre.trim()
           if (pre) {
-            checkQuote(pre)
+            checkQuote(pre, index)
           }
 
           let word = cloneDeep({...DefaultArticleWord, name: v.text, nextSpace: true});
@@ -175,7 +183,11 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
           let post: string = v.post
           //判断是不是等于空，因为正常的词后面都会有个空格。这种不需要处理。
           if (post && post !== ' ') {
-            checkSymbol(post)
+            try {
+              checkSymbol(post)
+            } catch (e) {
+              console.log('err', v)
+            }
           }
         }
       })
@@ -196,6 +208,8 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
   // })
   // console.log(sections)
   // console.timeEnd()
+
+  console.log('sections', sections)
   return {
     newText: text,
     sections

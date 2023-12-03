@@ -70,6 +70,8 @@ watch(() => props.article, val => {
 function renewSections() {
   if (editArticle.text.trim()) {
     renewSectionTexts(editArticle)
+    editArticle.sections = []
+    return
     if (editArticle.useTranslateType === TranslateType.custom) {
       failCount = renewSectionTranslates(editArticle, editArticle.textCustomTranslate)
     }

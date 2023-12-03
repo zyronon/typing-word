@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {Dict} from "@/types.ts";
+import {Dict, DictType} from "@/types.ts";
 import {Icon} from "@iconify/vue";
 
 defineProps<{
@@ -25,7 +25,10 @@ const emit = defineEmits<{
         <div class="name">{{ dict.name }}</div>
         <div class="desc">{{ dict.description }}</div>
       </div>
-      <div class="num">{{ dict.length ?? dict.originWords.length }}词</div>
+      <div class="bottom">
+        <div class="num">{{ dict.length ?? dict.originWords.length }}词</div>
+      </div>
+      <div class="pin" v-if="dict.type === DictType.article">文章</div>
     </template>
     <div v-else class="add" @click.stop="emit('add')">
       <Icon icon="fluent:add-20-filled" width="38" color="#929596"/>
@@ -49,23 +52,24 @@ const emit = defineEmits<{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 
   .name {
     font-size: 16rem;
     overflow: hidden;
     text-overflow: ellipsis;
-    display:-webkit-box; //作为弹性伸缩盒子模型显示。
-    -webkit-box-orient:vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
-    -webkit-line-clamp:2; //显示的行
+    display: -webkit-box; //作为弹性伸缩盒子模型显示。
+    -webkit-box-orient: vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
+    -webkit-line-clamp: 2; //显示的行
   }
 
   .desc {
     color: var(--color-font-2);
     overflow: hidden;
     text-overflow: ellipsis;
-    display:-webkit-box; //作为弹性伸缩盒子模型显示。
-    -webkit-box-orient:vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
-    -webkit-line-clamp:2; //显示的行
+    display: -webkit-box; //作为弹性伸缩盒子模型显示。
+    -webkit-box-orient: vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
+    -webkit-line-clamp: 2; //显示的行
   }
 
   .num {
@@ -99,6 +103,22 @@ const emit = defineEmits<{
     justify-content: center;
     width: 100%;
     height: 100%;
+  }
+
+  .pin {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 50rem;
+    width: 50rem;
+    color: white;  background-color: skyblue;
+    clip-path: polygon(0 10%, 0% 100%, 100% 100%);
+    font-size: 12rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: 5rem;
+    box-sizing: border-box;
   }
 }
 
