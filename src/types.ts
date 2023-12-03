@@ -148,7 +148,7 @@ export const ShortcutKeyMap = {
 
 export const SaveDict = {
   key: 'typing-word-dict',
-  version: 2
+  version: 3
 }
 export const SaveConfig = {
   key: 'typing-word-config',

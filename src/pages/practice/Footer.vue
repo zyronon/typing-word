@@ -35,7 +35,7 @@ onUnmounted(() => {
 
 <template>
   <div class="footer " :class="!settingStore.showToolbar && 'hide'">
-    <div class="bottom anim">
+    <div class="bottom ">
       <el-progress
           :percentage="progress"
           :stroke-width="8"
@@ -82,7 +82,7 @@ onUnmounted(() => {
 .footer {
   width: var(--toolbar-width);
   margin-bottom: 10rem;
-  transition: all .3s;
+  transition: all var(--anim-time);
   position: relative;
   margin-top: 15rem;
 
@@ -91,7 +91,7 @@ onUnmounted(() => {
     margin-top: 50rem;
 
     .progress {
-      bottom: calc(100% + 20rem);
+      bottom: calc(100% + 25rem);
     }
   }
 

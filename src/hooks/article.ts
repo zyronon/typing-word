@@ -46,7 +46,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
     let doc = nlp.tokenize(rowSection)
     let sentences = doc.json()
     // console.log('--')
-    console.log('ss', sentences)
+    // console.log('ss', sentences)
     sentences.map(sentenceRow => {
       let sentence: Sentence = {
         //他没有空格，导致修改一行一行的数据时，汇总时全没有空格了，库无法正常断句
@@ -138,15 +138,20 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
             break
           //类似于这种的“' -- ”的。需要保留空格，用了一个占位符才处理，因为每个符号都会把前面的那个字符的nextSpace改为false
           case ' ':
-            console.log('sentence', sentence)
-            sentence.words[sentence.words.length - 1].nextSpace = true
-            let word3 = cloneDeep({
-              ...DefaultArticleWord,
-              name: 'placeholder',
-              isSymbol: true,
-              nextSpace: false,
-            });
-            sentence.words.push(word3)
+            // console.log('sentence', sentence)
+            //遇到“The clock has stopped!' I looked at my watch.”
+            //检测到stopped!' 的'时，如果前引号不在当前句，会把当前句的word合并到前一句。那么当前句的word就为空了，会报错
+            //所以需要检测一下
+            if (sentence.words.length) {
+              sentence.words[sentence.words.length - 1].nextSpace = true
+              let word3 = cloneDeep({
+                ...DefaultArticleWord,
+                name: 'placeholder',
+                isSymbol: true,
+                nextSpace: false,
+              });
+              sentence.words.push(word3)
+            }
             break
           default:
             // console.log('post', post)
@@ -183,11 +188,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
           let post: string = v.post
           //判断是不是等于空，因为正常的词后面都会有个空格。这种不需要处理。
           if (post && post !== ' ') {
-            try {
-              checkSymbol(post)
-            } catch (e) {
-              console.log('err', v)
-            }
+            checkSymbol(post)
           }
         }
       })
@@ -197,19 +198,19 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
     })
   })
 
-  // sections = sections.filter(sectionItem => sectionItem.length)
-  // sections.map((sectionItem, a) => {
-  //   sectionItem.map((sentenceItem, b) => {
-  //     sentenceItem.text = sentenceItem.words.reduce((previousValue: string, currentValue) => {
-  //       previousValue += currentValue.name + (currentValue.nextSpace ? ' ' : '')
-  //       return previousValue
-  //     }, '')
-  //   })
-  // })
+  sections = sections.filter(sectionItem => sectionItem.length)
+  sections.map((sectionItem, a) => {
+    sectionItem.map((sentenceItem, b) => {
+      sentenceItem.text = sentenceItem.words.reduce((previousValue: string, currentValue) => {
+        previousValue += currentValue.name + (currentValue.nextSpace ? ' ' : '')
+        return previousValue
+      }, '')
+    })
+  })
   // console.log(sections)
   // console.timeEnd()
 
-  console.log('sections', sections)
+  // console.log('sections', sections)
   return {
     newText: text,
     sections
@@ -278,11 +279,12 @@ export function isArticle(type: DictType): boolean {
 
 export function getTranslateText(article: Article) {
   if (article.useTranslateType === TranslateType.custom) {
+
     return article.textCustomTranslate
-      .split('\r\n\r\n').filter(v => v)
+      .split('\n\n').filter(v => v)
   } else if (article.useTranslateType === TranslateType.network) {
     return article.textNetworkTranslate
-      .split('\r\n\r\n').filter(v => v)
+      .split('\n\n').filter(v => v)
   } else {
     return []
   }

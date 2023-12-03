@@ -193,16 +193,21 @@ export const useBaseStore = defineStore('base', {
           let configStr: string = await localforage.getItem(SaveDict.key)
           // console.log(configStr)
           // console.log('s', new Blob([configStr]).size)
-          // configStr = ''
+          configStr = ''
           if (configStr) {
             let data = JSON.parse(configStr)
             let state: BaseState = data.val
+            let version = Number(data.version)
+            // console.log('state', state)
             state.load = false
 
-            if (data.version === SaveDict.version) {
+            if (version === SaveDict.version) {
               this.setState(state)
             } else {
-              this.setState(state)
+              if (version === 2) {
+
+              }
+              // this.setState(state)
             }
           }
         } catch (e) {

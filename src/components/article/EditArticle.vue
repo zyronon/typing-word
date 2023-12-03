@@ -70,14 +70,13 @@ watch(() => props.article, val => {
 function renewSections() {
   if (editArticle.text.trim()) {
     renewSectionTexts(editArticle)
-    editArticle.sections = []
-    return
     if (editArticle.useTranslateType === TranslateType.custom) {
       failCount = renewSectionTranslates(editArticle, editArticle.textCustomTranslate)
     }
     if (editArticle.useTranslateType === TranslateType.network) {
       failCount = renewSectionTranslates(editArticle, editArticle.textNetworkTranslate)
     }
+    console.log('failCount',failCount)
   } else {
     editArticle.sections = []
   }
@@ -165,6 +164,7 @@ function saveSentenceText(sentence: Sentence, val: string) {
 }
 
 function save(option: 'save' | 'saveAndNext') {
+  // return console.log(cloneDeep(editArticle))
   return new Promise((resolve: Function) => {
     // console.log('article', article)
     // copy(JSON.stringify(article))

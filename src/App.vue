@@ -2,7 +2,7 @@
 
 import {onMounted, watch} from "vue";
 import {BaseState, useBaseStore} from "@/stores/base.ts";
-import {DictType, SaveConfig, SaveDict} from "@/types.ts"
+import {Dict, DictType, SaveConfig, SaveDict} from "@/types.ts"
 import Practice from "@/pages/practice/index.vue"
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -21,11 +21,19 @@ const {setTheme} = useTheme()
 
 watch(store.$state, (n: BaseState) => {
   let data: BaseState = cloneDeep(n)
-  data.myDictList.map((v: any) => {
-    if (v.type === DictType.word) v.originWords = []
-    if (v.type === DictType.article) v.articles = []
-    v.words = []
-    v.chapterWords = []
+  data.myDictList.map((v: Dict) => {
+    if (v.isCustom) {
+      if (v.type === DictType.article) {
+        v.articles.map(s => {
+          delete s.sections
+        })
+      }
+    } else {
+      if (v.type === DictType.word) v.originWords = []
+      if (v.type === DictType.article) v.articles = []
+      v.words = []
+      v.chapterWords = []
+    }
   })
   localforage.setItem(SaveDict.key, JSON.stringify({val: data, version: SaveDict.version}))
 })

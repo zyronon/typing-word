@@ -252,6 +252,13 @@ function add() {
   emitter.emit(EventKey.openArticleListModal)
 }
 
+function back() {
+  emit('back')
+  setTimeout(() => {
+    isEditDict = false
+  }, 500)
+}
+
 defineExpose({getDictDetail, add, editDict})
 
 
@@ -260,7 +267,7 @@ defineExpose({getDictDetail, add, editDict})
 <template>
   <div class="article-detail">
     <header>
-      <div class="back" @click.stop="emit('back')">
+      <div class="back" @click.stop="back">
         <Icon icon="octicon:arrow-left-24" width="20"/>
       </div>
       <div class="left">

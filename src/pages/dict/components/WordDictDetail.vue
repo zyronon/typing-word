@@ -425,7 +425,7 @@ function resetChapterList(num?: number, sync?: boolean) {
   runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
   runtimeStore.editDict.length = runtimeStore.editDict.words.length
   chapterList2 = runtimeStore.editDict.chapterWords.map((v, i) => ({id: i}))
-  if (sync!==undefined){
+  if (sync !== undefined) {
     syncMyDictList(runtimeStore.editDict)
   }
 }
@@ -544,6 +544,13 @@ function s() {
   }
 }
 
+function back() {
+  emit('back')
+  setTimeout(() => {
+    isEditDict = false
+  }, 500)
+}
+
 defineExpose({getDictDetail, add: addWord, editDict})
 
 </script>
@@ -551,7 +558,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
 <template>
   <div class="dict-detail">
     <header>
-      <div class="back" @click.stop="emit('back')">
+      <div class="back" @click.stop="back">
         <Icon icon="octicon:arrow-left-24" width="20"/>
       </div>
       <div class="left">
