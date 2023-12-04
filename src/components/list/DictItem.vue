@@ -20,7 +20,7 @@ const emit = defineEmits<{
       class="dict-item anim"
       :class="active && 'active'"
   >
-    <template v-if="dict.name">
+    <template v-if="dict.id">
       <div class="top">
         <div class="name">{{ dict.name }}</div>
         <div class="desc">{{ dict.description }}</div>
@@ -109,15 +109,17 @@ const emit = defineEmits<{
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 50rem;
-    width: 50rem;
-    color: white;  background-color: skyblue;
+    height: 55rem;
+    width: 55rem;
+    color: white;
+    //background-color: skyblue;
+    background-color: var(--color-main-active);
     clip-path: polygon(0 10%, 0% 100%, 100% 100%);
     font-size: 12rem;
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    padding: 5rem;
+    padding: 3rem;
     box-sizing: border-box;
   }
 }

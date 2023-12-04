@@ -116,12 +116,12 @@ onUnmounted(() => {
         align-items: center;
         gap: 5rem;
         width: 80rem;
+        color: gray;
 
         .line {
           height: 1px;
           width: 100%;
-          //background: gainsboro;
-          background: var(--color-font-1);
+          background: var(--color-sub-gray);
         }
       }
     }

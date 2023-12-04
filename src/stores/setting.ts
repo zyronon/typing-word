@@ -54,7 +54,7 @@ export const useSettingStore = defineStore('setting', {
             wordSoundType: 'us',
             keyboardSound: true,
             keyboardSoundVolume: 100,
-            keyboardSoundFile: '老式机械',
+            keyboardSoundFile: '机械键盘2',
             translateSound: true,
             translateSoundVolume: 100,
             effectSound: true,

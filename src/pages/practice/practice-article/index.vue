@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {$ref} from "vue/macros";
+import {$computed, $ref} from "vue/macros";
 import TypingArticle from "./TypingArticle.vue";
 import {
   Article,
@@ -14,7 +14,7 @@ import {
 import {cloneDeep} from "lodash-es";
 import TypingWord from "@/pages/practice/practice-word/TypingWord.vue";
 import Panel from "../Panel.vue";
-import {onMounted, watch} from "vue";
+import {onMounted, onUnmounted, watch} from "vue";
 import {renewSectionTexts, renewSectionTranslates} from "@/hooks/translate.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {useBaseStore} from "@/stores/base.ts";
@@ -29,6 +29,7 @@ import {useSettingStore} from "@/stores/setting.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {syncMyDictList, useArticleOptions} from "@/hooks/dict.ts";
 import ArticleList from "@/components/list/ArticleList.vue";
+import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
@@ -40,6 +41,7 @@ let wordData = $ref({
   index: -1
 })
 let articleData = $ref({
+  articles: [],
   article: cloneDeep(DefaultArticle),
   sectionIndex: 0,
   sentenceIndex: 0,
@@ -47,20 +49,30 @@ let articleData = $ref({
   stringIndex: 0,
 })
 let showEditArticle = $ref(false)
+let typingArticleRef = $ref<any>()
 let editArticle = $ref<Article>(cloneDeep(DefaultArticle))
+let articleIsActive = $computed(() => tabIndex === 0)
 
-watch([
-  // () => store.load,
-  () => store.currentDict.articles,
-], n => {
+function next() {
+  if (!articleIsActive) return
+  if (store.currentDict.chapterIndex >= articleData.articles.length - 1) {
+    store.currentDict.chapterIndex = 0
+  } else store.currentDict.chapterIndex++
+
+  emitter.emit(EventKey.resetWord)
   getCurrentPractice()
-})
+}
 
-onMounted(getCurrentPractice)
+function init() {
+  if (!store.currentDict.articles.length) return
+  articleData.articles = cloneDeep(store.currentDict.articles)
+  getCurrentPractice()
+}
 
 function setArticle(val: Article) {
-  store.currentDict.articles[store.currentDict.chapterIndex] = cloneDeep(val)
-  articleData.article = cloneDeep(val)
+  let tempVal = cloneDeep(val)
+  articleData.articles[store.currentDict.chapterIndex] = tempVal
+  articleData.article = tempVal
   practiceStore.inputWordNumber = 0
   practiceStore.wrongWordNumber = 0
   practiceStore.repeatNumber = 0
@@ -81,11 +93,10 @@ function setArticle(val: Article) {
 function getCurrentPractice() {
   // console.log('store.currentDict',store.currentDict)
   // return
-  if (!store.currentDict.articles.length) return
   tabIndex = 0
   articleData.article = cloneDeep(DefaultArticle)
 
-  let currentArticle = store.currentDict.articles[store.currentDict.chapterIndex]
+  let currentArticle = articleData.articles [store.currentDict.chapterIndex]
   let tempArticle = {...DefaultArticle, ...currentArticle}
   // console.log('article', tempArticle)
   if (tempArticle.sections.length) {
@@ -153,11 +164,15 @@ function getCurrentPractice() {
 function saveArticle(val: Article) {
   console.log('saveArticle', val)
   showEditArticle = false
-  // articleData.article = cloneDeep(store.currentDict.articles[store.currentDict.chapterIndex])
+  let rIndex = store.currentDict.articles.findIndex(v => v.id === val.id)
+  if (rIndex > -1) {
+    store.currentDict.articles[rIndex] = cloneDeep(val)
+  }
   setArticle(val)
 }
 
-function edit(val: Article) {
+function edit(val: Article = articleData.article) {
+  if (!articleIsActive) return
   // tabIndex = 1
   // wordData.words = [
   //   {
@@ -213,8 +228,8 @@ function nextWord(word: ArticleWord) {
   }
 }
 
-function changePracticeArticle(val: ArticleItem) {
-  let rIndex = store.currentDict.articles.findIndex(v => v.id === val.item.id)
+function handleChangeChapterIndex(val: ArticleItem) {
+  let rIndex = articleData.articles.findIndex(v => v.id === val.item.id)
   if (rIndex > -1) {
     store.currentDict.chapterIndex = rIndex
     getCurrentPractice()
@@ -233,6 +248,71 @@ function sort(list: Word[]) {
   wordData.index = 0
 }
 
+function play() {
+  if (!articleIsActive) return
+  typingArticleRef?.play()
+}
+
+function show() {
+  if (!articleIsActive) return
+  typingArticleRef?.showSentence()
+}
+
+
+function onKeyUp(e: KeyboardEvent) {
+  typingArticleRef.hideSentence()
+}
+
+async function onKeyDown(e: KeyboardEvent) {
+  // console.log('e', e)
+  switch (e.key) {
+    case 'Backspace':
+      typingArticleRef.del()
+      break
+  }
+}
+
+useOnKeyboardEventListener(onKeyDown, onKeyUp)
+
+function skip() {
+  if (!articleIsActive) return
+  typingArticleRef?.nextSentence()
+}
+
+function collect(e: KeyboardEvent) {
+  if (!articleIsActive) return
+  toggleArticleCollect(articleData.article)
+}
+
+//包装一遍，因为快捷建的默认参数是Event
+function shortcutKeyEdit() {
+  edit()
+}
+
+onMounted(() => {
+  init()
+  emitter.on(EventKey.changeDict, init)
+  emitter.on(EventKey.next, next)
+
+  emitter.on(ShortcutKey.NextChapter, next)
+  emitter.on(ShortcutKey.PlayWordPronunciation, play)
+  emitter.on(ShortcutKey.ShowWord, show)
+  emitter.on(ShortcutKey.Next, skip)
+  emitter.on(ShortcutKey.ToggleCollect, collect)
+  emitter.on(ShortcutKey.EditArticle, shortcutKeyEdit)
+})
+
+onUnmounted(() => {
+  emitter.off(EventKey.changeDict, init)
+  emitter.off(EventKey.next, next)
+  emitter.off(ShortcutKey.NextChapter, next)
+  emitter.off(ShortcutKey.PlayWordPronunciation, play)
+  emitter.off(ShortcutKey.ShowWord, show)
+  emitter.off(ShortcutKey.Next, skip)
+  emitter.off(ShortcutKey.ToggleCollect, collect)
+  emitter.off(ShortcutKey.EditArticle, shortcutKeyEdit)
+})
+
 defineExpose({getCurrentPractice})
 
 </script>
@@ -243,10 +323,11 @@ defineExpose({getCurrentPractice})
       <div class="swiper-list" :class="`step${tabIndex}`">
         <div class="swiper-item">
           <TypingArticle
+              ref="typingArticleRef"
               :active="tabIndex === 0"
               @edit="edit"
               @wrong="wrong"
-              @over="over"
+              @over="skip"
               @nextWord="nextWord"
               :article="articleData.article"
           />
@@ -264,57 +345,59 @@ defineExpose({getCurrentPractice})
       </div>
     </div>
 
-    <div class="panel-wrapper">
-      <Panel v-if="tabIndex === 0">
-        <template v-slot="{active}">
-          <div class="panel-page-item">
-            <div class="list-header">
-              <div class="left">
-                <BaseIcon title="切换词典"
-                          @click="emitter.emit(EventKey.openDictModal,'list')"
-                          icon="carbon:change-catalog"/>
-                <div class="title">
-                  {{ store.dictTitle }}
+    <Teleport to="body">
+      <div class="panel-wrapper">
+        <Panel v-if="tabIndex === 0">
+          <template v-slot="{active}">
+            <div class="panel-page-item">
+              <div class="list-header">
+                <div class="left">
+                  <BaseIcon title="切换词典"
+                            @click="emitter.emit(EventKey.openDictModal,'list')"
+                            icon="carbon:change-catalog"/>
+                  <div class="title">
+                    {{ store.currentDict.name }}
+                  </div>
+                  <Tooltip
+                      :title="`下一章(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
+                      v-if="store.currentDict.chapterIndex < articleData.articles .length - 1">
+                    <IconWrapper>
+                      <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
+                    </IconWrapper>
+                  </Tooltip>
                 </div>
-                <Tooltip
-                    :title="`下一章(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
-                    v-if="store.currentDict.chapterIndex < store.currentDict.articles.length - 1">
-                  <IconWrapper>
-                    <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
-                  </IconWrapper>
-                </Tooltip>
+                <div class="right">
+                  {{ articleData.articles.length }}篇文章
+                </div>
               </div>
-              <div class="right">
-                {{ store.currentDict.articles.length }}篇文章
-              </div>
-            </div>
 
-            <ArticleList
-                :isActive="active"
-                :static="false"
-                :show-border="true"
-                :show-translate="settingStore.translate"
-                @title="e => emitter.emit(EventKey.openArticleContentModal,e.item)"
-                @click="changePracticeArticle"
-                :active-id="articleData.article.id"
-                :list="store.currentDict.articles">
-              <template v-slot:suffix="{item,index}">
-                <BaseIcon
-                    v-if="!isArticleCollect(item)"
-                    class="collect"
-                    @click="toggleArticleCollect(item)"
-                    title="收藏" icon="ph:star"/>
-                <BaseIcon
-                    v-else
-                    class="fill"
-                    @click="toggleArticleCollect(item)"
-                    title="取消收藏" icon="ph:star-fill"/>
-              </template>
-            </ArticleList>
-          </div>
-        </template>
-      </Panel>
-    </div>
+              <ArticleList
+                  :isActive="active"
+                  :static="false"
+                  :show-border="true"
+                  :show-translate="settingStore.translate"
+                  @title="e => emitter.emit(EventKey.openArticleContentModal,e.item)"
+                  @click="handleChangeChapterIndex"
+                  :active-id="articleData.article.id"
+                  :list="articleData.articles ">
+                <template v-slot:suffix="{item,index}">
+                  <BaseIcon
+                      v-if="!isArticleCollect(item)"
+                      class="collect"
+                      @click="toggleArticleCollect(item)"
+                      title="收藏" icon="ph:star"/>
+                  <BaseIcon
+                      v-else
+                      class="fill"
+                      @click="toggleArticleCollect(item)"
+                      title="取消收藏" icon="ph:star-fill"/>
+                </template>
+              </ArticleList>
+            </div>
+          </template>
+        </Panel>
+      </div>
+    </Teleport>
 
     <EditSingleArticleModal
         v-model="showEditArticle"
@@ -326,8 +409,6 @@ defineExpose({getCurrentPractice})
 
 <style scoped lang="scss">
 @import "@/assets/css/style";
-
-$article-width: 50vw;
 
 .swiper-wrapper {
   height: 100%;
@@ -353,7 +434,7 @@ $article-width: 50vw;
 .practice-article {
   flex: 1;
   overflow: hidden;
-  width: $article-width;
+  width: var(--article-width);
 }
 
 .typing-word-wrapper {
@@ -365,7 +446,7 @@ $article-width: 50vw;
   left: 0;
   top: 10rem;
   z-index: 1;
-  margin-left: calc(50% + ($article-width / 2) + var(--space));
+  margin-left: var(--article-panel-margin-left);
   height: calc(100% - 20rem);
 }
 

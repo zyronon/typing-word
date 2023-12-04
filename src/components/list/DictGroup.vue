@@ -8,7 +8,7 @@ import DictList from "@/components/list/DictList.vue";
 const props = defineProps<{
   category: string,
   groupByTag: any,
-  selectDictName: string
+  selectId: string
 }>()
 const emit = defineEmits<{
   selectDict: [val: { dict: DictResource, index: number }]
@@ -37,7 +37,8 @@ watch(() => props.groupByTag, () => {
     </div>
     <DictList
         @selectDict="e => emit('selectDict',e)"
-        :list="list" :select-dict-name="selectDictName"/>
+        :list="list"
+        :select-id="selectId"/>
   </div>
 </template>
 

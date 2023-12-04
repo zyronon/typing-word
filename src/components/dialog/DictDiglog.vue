@@ -35,6 +35,7 @@ let loading = $ref(false)
 let show = $ref(false)
 let chapterList2 = $ref([])
 let chapterWordNumber = $ref(0)
+let toggleLoading = $ref(false)
 
 const activeId = $computed(() => {
   if (dictIsArticle) {
@@ -104,20 +105,13 @@ function close() {
 }
 
 function changeDict() {
-  store.changeDict(runtimeStore.editDict)
   close()
-}
-
-function clickEvent(e) {
-  console.log('e', e)
+  store.changeDict(runtimeStore.editDict)
+  ElMessage.success('切换成功')
 }
 
 const dictIsArticle = $computed(() => {
   return isArticle(runtimeStore.editDict.type)
-})
-
-const chapterList = $computed(() => {
-  return dictIsArticle ? runtimeStore.editDict.articles.length : runtimeStore.editDict.chapterWords.length
 })
 
 function showAllWordModal() {
@@ -128,7 +122,7 @@ function showAllWordModal() {
   })
 }
 
-function resetChapterList(v) {
+function resetChapterList(v: number) {
   const temp = () => {
     runtimeStore.editDict.chapterWordNumber = v
     runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
@@ -148,7 +142,7 @@ function resetChapterList(v) {
   }
 }
 
-function changeSort(v, notice: boolean = true) {
+function changeSort(v: Sort, notice: boolean = true) {
   const temp = () => {
     runtimeStore.editDict.sort = v
     if (v === Sort.normal) {
@@ -158,7 +152,7 @@ function changeSort(v, notice: boolean = true) {
     } else {
       runtimeStore.editDict.words = reverse(cloneDeep(runtimeStore.editDict.originWords))
     }
-    resetChapterList()
+    resetChapterList(runtimeStore.editDict.chapterWordNumber)
     notice && ElMessage.success('已重新排序')
   }
   if (runtimeStore.editDict.isCustom) {
@@ -179,16 +173,6 @@ function option(type: string) {
   }, 500)
 }
 
-/**/
-/* 单词修改相关*/
-/**/
-
-watch(() => step, v => {
-  if (v === 0) {
-  }
-})
-
-
 onMounted(() => {
   emitter.on(EventKey.openDictModal, (type: 'detail' | 'list' | 'my') => {
     if (type === "detail") {
@@ -206,14 +190,6 @@ onMounted(() => {
   })
 })
 
-function addDict() {
-  show = false
-  setTimeout(() => {
-    router.push({path: '/dict', query: {type: 'addDict'}})
-  }, 500)
-}
-
-
 function showWordListModal(val: { item: Word, index: number }) {
   emitter.emit(EventKey.openWordListModal, {
     title: `第${val.index + 1}章`,
@@ -222,7 +198,7 @@ function showWordListModal(val: { item: Word, index: number }) {
   })
 }
 
-function handleChangeArticleChapterIndex(val) {
+function handleChangeArticleChapterIndex(val: any) {
   let rIndex = runtimeStore.editDict.articles.findIndex(v => v.id === val.item.id)
   if (rIndex > -1) {
     runtimeStore.editDict.chapterIndex = rIndex
@@ -239,7 +215,7 @@ function handleChangeArticleChapterIndex(val) {
     <div id="DictDialog">
       <Slide :slide-count="2" :step="step">
         <DictListPanel
-            @add="addDict"
+            @add="option('addDict')"
             @select-dict="selectDict"
         />
         <div class="dict-detail-page">
@@ -280,14 +256,16 @@ function handleChangeArticleChapterIndex(val) {
                             :title="`添加${dictIsArticle?'文章':'单词'}`"
                   />
                 </div>
-                <div class="text">开始日期：-</div>
-                <div class="text">花费时间：-</div>
-                <div class="text">累积错误：-</div>
-                <div class="text">进度：
-                  <el-progress :percentage="0"
-                               :stroke-width="8"
-                               :show-text="false"/>
-                </div>
+                <template v-if="false">
+                  <div class="text">开始日期：-</div>
+                  <div class="text">花费时间：-</div>
+                  <div class="text">累积错误：-</div>
+                  <div class="text">进度：
+                    <el-progress :percentage="0"
+                                 :stroke-width="8"
+                                 :show-text="false"/>
+                  </div>
+                </template>
               </div>
               <div class="center-column">
                 <div class="common-title">学习设置</div>
@@ -385,62 +363,51 @@ function handleChangeArticleChapterIndex(val) {
                       :title="`管理${dictIsArticle?'文章':'章节'}`"
                   />
                 </div>
-                <template v-if="dictIsArticle">
-                  <ArticleList
-                      v-if="runtimeStore.editDict.articles.length"
-                      :isActive="false"
-                      v-loading="loading"
-                      :show-border="true"
-                      @title="(val:any) => emitter.emit(EventKey.openArticleContentModal,val.item)"
-                      @click="handleChangeArticleChapterIndex"
-                      :active-id="activeId"
-                      :list="runtimeStore.editDict.articles">
-                    <template v-slot:prefix="{item,index}">
-                      <input type="radio" :checked="activeId === item.id">
-                    </template>
-                  </ArticleList>
-                  <Empty v-else/>
-                </template>
-                <template v-else>
-                  <BaseList
-                      ref="chapterListRef"
-                      v-if="chapterList2.length"
-                      :list="chapterList2"
-                      :show-border="true"
-                      @click="(val:any) => runtimeStore.editDict.chapterIndex = val.index"
-                      :active-index="runtimeStore.editDict.chapterIndex"
-                  >
-                    <template v-slot:prefix="{ item, index }">
-                      <input type="radio" :checked="runtimeStore.editDict.chapterIndex === item.id">
-                    </template>
-                    <template v-slot="{ item, index }">
-                      <div class="item-title" @click.stop="showWordListModal({item,index})">
-                        <span>第{{ item.id + 1 }}章</span>&nbsp;&nbsp;&nbsp;
-                        <span>{{ runtimeStore.editDict.chapterWords[item.id]?.length }}词</span>
-                      </div>
-                    </template>
-                  </BaseList>
-                  <Empty v-else/>
-                </template>
+                <div class="list-content">
+                  <template v-if="dictIsArticle">
+                    <ArticleList
+                        v-if="runtimeStore.editDict.articles.length"
+                        :isActive="false"
+                        v-loading="loading"
+                        :show-border="true"
+                        @title="(val:any) => emitter.emit(EventKey.openArticleContentModal,val.item)"
+                        @click="handleChangeArticleChapterIndex"
+                        :active-id="activeId"
+                        :list="runtimeStore.editDict.articles">
+                      <template v-slot:prefix="{item,index}">
+                        <input type="radio" :checked="activeId === item.id">
+                      </template>
+                    </ArticleList>
+                    <Empty v-else/>
+                  </template>
+                  <template v-else>
+                    <BaseList
+                        ref="chapterListRef"
+                        v-if="chapterList2.length"
+                        :list="chapterList2"
+                        :show-border="true"
+                        @click="(val:any) => runtimeStore.editDict.chapterIndex = val.index"
+                        :active-index="runtimeStore.editDict.chapterIndex"
+                    >
+                      <template v-slot:prefix="{ item, index }">
+                        <input type="radio" :checked="runtimeStore.editDict.chapterIndex === item.id">
+                      </template>
+                      <template v-slot="{ item, index }">
+                        <div class="item-title" @click.stop="showWordListModal({item,index})">
+                          <span>第{{ item.id + 1 }}章</span>&nbsp;&nbsp;&nbsp;
+                          <span>{{ runtimeStore.editDict.chapterWords[item.id]?.length }}词</span>
+                        </div>
+                      </template>
+                    </BaseList>
+                    <Empty v-else/>
+                  </template>
+                </div>
+                <div class="footer">
+                  <!--            <BaseButton @click="step = 0">导出</BaseButton>-->
+                  <BaseButton @click="close">关闭</BaseButton>
+                  <BaseButton :loading="toggleLoading" @click="changeDict">切换</BaseButton>
+                </div>
               </div>
-            </div>
-            <div v-if="false" class="activity">
-              <ActivityCalendar
-                  :data="[{ date: '2023-05-22', count: 5 }]"
-                  :width="40"
-                  :height="7"
-                  :cellLength="16"
-                  :cellInterval="8"
-                  :fontSize="12"
-                  :showLevelFlag="false"
-                  :showWeekDayFlag="false"
-                  :clickEvent="clickEvent"
-              />
-            </div>
-            <div class="footer">
-              <!--            <BaseButton @click="step = 0">导出</BaseButton>-->
-              <BaseButton @click="close">关闭</BaseButton>
-              <BaseButton @click="changeDict">切换</BaseButton>
             </div>
           </div>
         </div>
@@ -505,17 +472,21 @@ $header-height: 60rem;
       display: flex;
       position: relative;
 
-      .left-column {
-        overflow: auto;
-        flex: 6;
+      .column {
+        background: var(--color-second-bg);
+        color: var(--color-font-1);
         display: flex;
         flex-direction: column;
+      }
+
+      .left-column {
+        flex: 5;
         gap: 10rem;
-        min-height: 100rem;
         position: relative;
-        color: var(--color-font-1);
         font-size: 14rem;
         padding-right: var(--space);
+        @extend .column;
+
 
         .name {
           font-size: 24rem;
@@ -542,10 +513,7 @@ $header-height: 60rem;
       .center-column {
         overflow: auto;
         flex: 7;
-        background: white;
-        border-radius: 10rem;
-        background: var(--color-second-bg);
-        color: var(--color-font-1);
+        @extend .column;
 
         .setting {
           .row {
@@ -575,56 +543,18 @@ $header-height: 60rem;
             font-size: 13rem;
           }
         }
-
       }
 
       .right-column {
         flex: 7;
-        border-radius: 10rem;
-        background: var(--color-second-bg);
-        color: var(--color-font-1);
-        display: flex;
-        flex-direction: column;
+        @extend .column;
 
-        .tabs {
+        .list-content {
+          flex: 1;
+          overflow: hidden;
           display: flex;
-          margin-bottom: 10rem;
-
-          .tab {
-            font-size: 20rem;
-            color: var(--color-font-3);
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            span {
-              cursor: pointer;
-              border-bottom: 3px solid transparent;
-              padding-bottom: 10rem;
-              transition: all .3s;
-            }
-
-            &.active {
-              color: var(--color-font-1);
-
-              span {
-                border-bottom: 3px solid var(--color-main-active);
-              }
-            }
-          }
-
-        }
-
-        .scroll {
-          height: calc(100% - 45rem);
         }
       }
-    }
-
-    .activity {
-      display: flex;
-      justify-content: center;
     }
 
     .footer {
@@ -634,7 +564,7 @@ $header-height: 60rem;
       justify-content: flex-end;
       gap: var(--space);
       padding-right: var(--space);
-      margin-bottom: 20rem;
+      margin: var(--space) 0;
     }
   }
 }

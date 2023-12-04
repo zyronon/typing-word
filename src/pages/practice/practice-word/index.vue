@@ -6,7 +6,7 @@ import {chunk, cloneDeep} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
 import {onMounted, onUnmounted, watch} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {Word} from "@/types.ts";
+import {ShortcutKey, Word} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {syncMyDictList} from "@/hooks/dict.ts";
@@ -20,12 +20,6 @@ let wordData = $ref({
   index: -1
 })
 
-watch([
-  () => store.currentDict.words,
-], n => {
-  getCurrentPractice()
-})
-
 function getCurrentPractice() {
   if (store.chapter.length) {
     wordData.words = store.chapter
@@ -37,6 +31,9 @@ function getCurrentPractice() {
         if (res) w = Object.assign(w, res)
       }
     })
+
+    wordData.words = cloneDeep(store.chapter)
+    emitter.emit(EventKey.resetWord)
   }
 }
 
@@ -46,7 +43,26 @@ function sort(list: Word[]) {
   syncMyDictList(store.currentDict)
 }
 
-onMounted(getCurrentPractice)
+function next() {
+  if (store.currentDict.chapterIndex >= store.currentDict.chapterWords.length - 1) {
+    store.currentDict.chapterIndex = 0
+  } else store.currentDict.chapterIndex++
+
+  getCurrentPractice()
+}
+
+onMounted(() => {
+  getCurrentPractice()
+  emitter.on(EventKey.changeDict, getCurrentPractice)
+  emitter.on(EventKey.next, next)
+  emitter.on(ShortcutKey.NextChapter, next)
+})
+
+onUnmounted(() => {
+  emitter.off(EventKey.changeDict, getCurrentPractice)
+  emitter.off(EventKey.next, next)
+  emitter.off(ShortcutKey.NextChapter, next)
+})
 
 defineExpose({getCurrentPractice})
 

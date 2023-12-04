@@ -30,7 +30,7 @@ const DefaultDictForm = {
   tags: [],
   translateLanguage: 'zh-CN',
   language: 'en',
-  type: DictType.customWord
+  type: DictType.word
 }
 let dictForm: any = $ref(cloneDeep(DefaultDictForm))
 const dictFormRef = $ref<FormInstance>()
@@ -156,9 +156,9 @@ onMounted(() => {
           </el-select>
         </el-form-item>
         <el-form-item label="类型">
-          <el-select v-model="dictForm.type" placeholder="请选择选项">
-            <el-option label="单词" :value="DictType.customWord"/>
-            <el-option label="文章" :value="DictType.customArticle"/>
+          <el-select v-model="dictForm.type" placeholder="请选择选项" :disabled="dictForm.id">
+            <el-option label="单词" :value="DictType.word"/>
+            <el-option label="文章" :value="DictType.article"/>
           </el-select>
         </el-form-item>
         <div class="flex-center">

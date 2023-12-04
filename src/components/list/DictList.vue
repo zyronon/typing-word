@@ -5,7 +5,7 @@ import DictItem from "@/components/list/DictItem.vue";
 
 defineProps<{
   list?: Dict[],
-  selectDictName?: string
+  selectId?: string
 }>()
 
 const emit = defineEmits<{
@@ -19,6 +19,7 @@ const emit = defineEmits<{
 <template>
   <div class="dict-list">
     <DictItem v-for="(dict,index) in list"
+              :active="selectId === dict.id"
               @click="emit('selectDict',{dict,index})"
               @add="emit('add')"
               :dict="dict"/>

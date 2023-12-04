@@ -90,6 +90,19 @@ export const useBaseStore = defineStore('base', {
         },
         {
           ...cloneDeep(DefaultDict),
+          id: 'cet4',
+          name: 'CET-4',
+          description: '大学英语四级词库',
+          category: '中国考试',
+          tags: ['大学英语'],
+          url: 'CET4_T.json',
+          length: 2607,
+          translateLanguage: 'common',
+          language: 'en',
+          type: DictType.word
+        },
+        {
+          ...cloneDeep(DefaultDict),
           id: 'article_nce2',
           name: "新概念英语2-课文",
           description: '新概念英语2-课文',
@@ -100,6 +113,7 @@ export const useBaseStore = defineStore('base', {
           language: 'en',
           type: DictType.article,
           resourceId: 'article_nce2',
+          length: 10
         },
         {
           ...cloneDeep(DefaultDict),
@@ -113,10 +127,11 @@ export const useBaseStore = defineStore('base', {
           language: 'en',
           type: DictType.word,
           resourceId: 'nce-new-2',
+          length: 862
         },
       ],
       current: {
-        index: 4,
+        index: 3,
         // dictType: DictType.article,
         // index: 0,
         practiceType: DictType.word,
@@ -163,20 +178,17 @@ export const useBaseStore = defineStore('base', {
     chapter(state: BaseState): Word[] {
       return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []
     },
-    dictTitle(state: BaseState) {
-      let title = this.currentDict.name
-      return title + this.chapterName
-    },
     chapterName(state: BaseState) {
       let title = ''
       switch (this.currentDict.type) {
         case DictType.collect:
-          if (state.current.practiceType === DictType.article || state.current.practiceType === DictType.customArticle) {
+          if (state.current.practiceType === DictType.article) {
             return `第${this.currentDict.chapterIndex + 1}章`
           }
-          return ''
+        case DictType.wrong:
+        case DictType.simple:
+          return this.currentDict.name
         case DictType.word:
-        case DictType.customWord:
           return `第${this.currentDict.chapterIndex + 1}章`
       }
       return title
@@ -213,6 +225,7 @@ export const useBaseStore = defineStore('base', {
         } catch (e) {
           console.error('读取本地dict数据失败', e)
         }
+        const runtimeStore = useRuntimeStore()
 
         if (this.current.index < 3) {
 
@@ -227,7 +240,6 @@ export const useBaseStore = defineStore('base', {
                 s.id = nanoid(6)
               })
               if (this.currentDict.translateLanguage === 'common') {
-                const runtimeStore = useRuntimeStore()
                 let r2 = await fetch('./translate/en2zh_CN-min.json')
                 // fetch('http://sc.ttentau.top/en2zh_CN-min.json').then(r2 => {
                 let list: Word[] = await r2.json()
@@ -252,6 +264,19 @@ export const useBaseStore = defineStore('base', {
             }
           }
         }
+
+        //TODO 先这样，默认加载
+        if (!runtimeStore.translateWordList.length) {
+          setTimeout(async () => {
+            let r2 = await fetch('./translate/en2zh_CN-min.json')
+            // fetch('http://sc.ttentau.top/en2zh_CN-min.json').then(r2 => {
+            let list: Word[] = await r2.json()
+            if (list && list.length) {
+              runtimeStore.translateWordList = list
+            }
+          })
+        }
+        emitter.emit(EventKey.changeDict)
         resolve(true)
       })
     },
@@ -261,11 +286,13 @@ export const useBaseStore = defineStore('base', {
         this.currentDict.statistics.push(statistics)
       }
     },
-    async changeDict(dict: Dict, chapterIndex: number = dict.chapterIndex, wordIndex: number = dict.wordIndex, practiceType: DictType) {
+    async changeDict(dict: Dict, practiceType?: DictType, chapterIndex?: number, wordIndex?: number) {
       //TODO 保存统计
       // this.saveStatistics()
       console.log('changeDict', cloneDeep(dict), chapterIndex, wordIndex)
-      this.current.practiceType = practiceType
+      if (chapterIndex === undefined) chapterIndex = dict.chapterIndex
+      if (wordIndex === undefined) wordIndex = dict.wordIndex
+      if (practiceType === undefined) this.current.practiceType = practiceType
       if ([DictType.collect,
         DictType.simple,
         DictType.wrong].includes(dict.type)) {
@@ -296,7 +323,6 @@ export const useBaseStore = defineStore('base', {
         this.current.index = this.myDictList.length - 1
       }
 
-      emitter.emit(EventKey.resetWord)
       emitter.emit(EventKey.changeDict)
     }
   },

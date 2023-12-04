@@ -140,15 +140,11 @@ function next(isTyping: boolean = true) {
     data.index++
     isTyping && practiceStore.inputWordNumber++
     console.log('这个词完了')
-    if ([DictType.customWord, DictType.word].includes(store.currentDict.type)
+    if ([DictType.word].includes(store.currentDict.type)
         && store.skipWordNames.includes(word.name.toLowerCase())) {
       next()
     }
   }
-}
-
-function onKeyUp(e: KeyboardEvent) {
-  typingRef.hideWord()
 }
 
 function wordWrong() {
@@ -159,6 +155,10 @@ function wordWrong() {
     data.wrongWords.push(word)
     practiceStore.wrongWordNumber++
   }
+}
+
+function onKeyUp(e: KeyboardEvent) {
+  typingRef.hideWord()
 }
 
 async function onKeyDown(e: KeyboardEvent) {
@@ -433,14 +433,11 @@ onUnmounted(() => {
   }
 }
 
-$article-width: 50vw;
-
 .word-panel-wrapper {
   position: fixed;
   left: 0;
   top: 10rem;
   z-index: 1;
-  //margin-left: calc(50% + (var(--toolbar-width) / 2) + var(--space));
   margin-left: var(--panel-margin-left);
   height: calc(100% - 20rem);
 }

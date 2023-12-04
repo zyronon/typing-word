@@ -19,7 +19,7 @@
   --color-header-bg: white;
   --color-tooltip-bg: white;
   --color-tooltip-shadow: #bbbbbb;
-  --color-font-1: black;
+  --color-font-1: rgb(91, 91, 91);
   --color-font-2: rgb(46, 46, 46);
   --color-font-3: rgb(75, 85, 99);
   --color-font-active-1: white;
@@ -27,17 +27,23 @@
   --color-main-active: rgb(12, 140, 233);
   --color-scrollbar: rgb(147, 173, 227);
   --color-gray: gray;
+  --color-sub-gray: #c0bfbf;
 
-  --practice-wrapper-padding-right: 1px;
+  --practice-wrapper-translateX: 1px;
+  --article-width: 50vw;
   --toolbar-width: 700rem;
   --toolbar-height: 54rem;
   --panel-width: 400rem;
   --space: 20rem;
-  --panel-margin-left: calc(50% - var(--practice-wrapper-padding-right) / 2 + var(--toolbar-width) / 2 + 24rem);
+  --panel-margin-left: calc(50% - var(--practice-wrapper-translateX) / 2 + var(--toolbar-width) / 2 + 24rem);
+  --article-panel-margin-left: calc(50% - var(--practice-wrapper-translateX) / 2 + var(--article-width) / 2 + 24rem);
   --anim-time: 0.5s;
 
   --color-input-bg: white;
   --color-input-icon: #d3d4d7;
+
+  --color-textarea-bg: white;
+
 
   --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   --word-font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
@@ -65,22 +71,27 @@ html.dark {
   --color-font-3: rgba(255, 255, 255, 0.3);
 
   --color-gray: #bebebe;
+  --color-sub-gray: #383737;
 
-  --color-scrollbar: rgb(59, 87, 138);
-  --color-scrollbar: rgb(77, 78, 81);
+  --color-main-active: rgb(147, 173, 227);
   --color-scrollbar: rgb(92, 93, 94);
 
   --color-input-bg: rgba(14, 18, 23, 1);
   --color-input-icon: #383737;
+
+  --color-textarea-bg: rgb(43, 45, 48);
+
 }
 
 @media (max-width: 1680px) {
   :root {
-    --practice-wrapper-padding-right: 25vw;
+    --practice-wrapper-translateX: -12vw;
     --toolbar-width: 40vw;
+    --article-width: 60vw;
     --panel-width: 380rem;
     --toolbar-height: 48rem;
-    --panel-margin-left: calc(50% - var(--practice-wrapper-padding-right) / 2 + var(--toolbar-width) / 2 + 9vw);
+    --panel-margin-left: calc(50vw + var(--practice-wrapper-translateX) + var(--toolbar-width) / 2 + 5vw);
+    --article-panel-margin-left: calc(50% + var(--practice-wrapper-translateX) + var(--article-width) / 2 + 48rem);
   }
   .footer {
     .bottom {
@@ -100,11 +111,13 @@ html.dark {
 @media (max-width: 1366px) {
   :root {
     --space: 10rem;
-    --practice-wrapper-padding-right: 30vw;
+    --practice-wrapper-translateX: -22vw;
+    --article-width: 53vw;
     --panel-width: 30vw;
     --toolbar-width: 50vw;
     --toolbar-height: 40rem;
-    --panel-margin-left: calc(50% - var(--practice-wrapper-padding-right) / 2 + var(--toolbar-width) / 2 + 9vw);
+    --panel-margin-left: calc(50vw + var(--practice-wrapper-translateX) + var(--toolbar-width) / 2 + 14vw);
+    --article-panel-margin-left: calc(50% + var(--practice-wrapper-translateX) + var(--article-width) / 2 + 12vw);
   }
 
   .footer {
@@ -174,7 +187,7 @@ a {
   min-height: 20rem;
   width: 100%;
   box-sizing: border-box;
-  background: var(--color-item-bg);
+  background: var(--color-textarea-bg);
 
   &:focus {
     border: 1px solid var(--color-main-active);
@@ -429,5 +442,4 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10rem;
 }

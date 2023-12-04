@@ -65,7 +65,7 @@ onUnmounted(() => {
   display: flex;
   gap: var(--space);
   padding: var(--space);
-
+  color: var(--color-font-1);
 
   .article-content {
     flex: 1;

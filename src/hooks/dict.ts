@@ -53,6 +53,7 @@ export function useWordOptions() {
     if (rIndex > -1) {
       store.wrong.originWords.splice(rIndex, 1)
     }
+    store.wrong.length = store.wrong.originWords.length
   }
 
   function delSimpleWord(val: Word) {
@@ -60,6 +61,7 @@ export function useWordOptions() {
     if (rIndex > -1) {
       store.simple.originWords.splice(rIndex, 1)
     }
+    store.simple.length = store.simple.originWords.length
   }
 
   return {
@@ -98,7 +100,6 @@ export async function checkDictHasTranslate(dict: Dict) {
   let dictResourceUrl = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
   if ([
     DictType.word,
-    DictType.customWord,
   ].includes(dict.type)) {
     if (!dict.originWords.length) {
       let r = await fetch(dictResourceUrl)
@@ -129,7 +130,6 @@ export async function checkDictHasTranslate(dict: Dict) {
 
   if ([
     DictType.article,
-    DictType.customArticle,
   ].includes(dict.type)) {
     if (!dict.articles.length) {
       let r = await fetch(dictResourceUrl)

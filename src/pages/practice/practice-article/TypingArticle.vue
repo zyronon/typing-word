@@ -82,18 +82,6 @@ watch(() => settingStore.dictation, () => {
   calcTranslateLocation()
 })
 
-onMounted(() => {
-  emitter.on(EventKey.resetWord, () => {
-    wrong = input = ''
-  })
-  emitter.on(EventKey.onTyping, onTyping)
-})
-
-onUnmounted(() => {
-  emitter.off(EventKey.resetWord,)
-  emitter.off(EventKey.onTyping, onTyping)
-})
-
 function nextSentence() {
   // wordData.words = [
   //   {"name": "pharmacy", "trans": ["药房；配药学，药剂学；制药业；一批备用药品"], "usphone": "'fɑrməsi", "ukphone": "'fɑːməsɪ"},
@@ -218,7 +206,6 @@ function onTyping(e: KeyboardEvent) {
     playKeyboardAudio()
   }
   e.preventDefault()
-
 }
 
 function calcTranslateLocation() {
@@ -247,7 +234,9 @@ function calcTranslateLocation() {
 }
 
 function play() {
-  return playWordAudio('article1')
+  let currentSection = props.article.sections[sectionIndex]
+
+  return playWordAudio(currentSection[sentenceIndex].text)
   if (isPlay) {
     isPlay = false
     return window.speechSynthesis.pause();
@@ -262,54 +251,13 @@ function play() {
   window.speechSynthesis.speak(msg);
 }
 
-function onKeyDown(e: KeyboardEvent) {
-  if (!props.active) return
-  switch (e.key) {
-    case 'Backspace':
-      if (wrong) {
-        wrong = ''
-      } else {
-        input = input.slice(0, -1)
-      }
-      break
-    case ShortcutKeyMap.Collect:
-
-      break
-    case ShortcutKeyMap.Remove:
-      break
-    case ShortcutKeyMap.Ignore:
-      nextSentence()
-      break
-    case ShortcutKeyMap.Show:
-      if (settingStore.allowWordTip) {
-        hoverIndex = {
-          sectionIndex: sectionIndex,
-          sentenceIndex: sentenceIndex,
-        }
-      }
-      break
-  }
-
-  // console.log(
-  //     'sectionIndex', sectionIndex,
-  //     'sentenceIndex', sentenceIndex,
-  //     'wordIndex', wordIndex,
-  //     'stringIndex', stringIndex,
-  // )
-  e.preventDefault()
-}
-
-function onKeyUp() {
-  hoverIndex = {
-    sectionIndex: -1,
-    sentenceIndex: -1,
+function del() {
+  if (wrong) {
+    wrong = ''
+  } else {
+    input = input.slice(0, -1)
   }
 }
-
-useOnKeyboardEventListener(onKeyDown, onKeyUp)
-
-// useEventListener('keydown', onKeyDown)
-// useEventListener('keyup', onKeyUp)
 
 function playWord(word: ArticleWord) {
   playWordAudio(word.name)
@@ -366,6 +314,30 @@ const {
   toggleArticleCollect
 } = useArticleOptions()
 
+
+function showSentence(i1: number = sectionIndex, i2: number = sentenceIndex) {
+  hoverIndex = {sectionIndex: i1, sentenceIndex: i2}
+}
+
+function hideSentence() {
+  hoverIndex = {sectionIndex: -1, sentenceIndex: -1}
+}
+
+onMounted(() => {
+  emitter.on(EventKey.resetWord, () => {
+    wrong = input = ''
+  })
+  emitter.on(EventKey.onTyping, onTyping)
+
+})
+
+onUnmounted(() => {
+  emitter.off(EventKey.resetWord,)
+  emitter.off(EventKey.onTyping, onTyping)
+})
+
+defineExpose({showSentence, play, del,hideSentence,nextSentence})
+
 </script>
 
 <template>
@@ -408,8 +380,8 @@ const {
                           sectionIndex === indexI && sentenceIndex === indexJ && settingStore.dictation
                           ?'dictation':''
                       ]"
-                      @mouseenter="settingStore.allowWordTip && (hoverIndex = {sectionIndex : indexI,sentenceIndex :indexJ})"
-                      @mouseleave="hoverIndex = {sectionIndex : -1,sentenceIndex :-1}"
+                      @mouseenter="settingStore.allowWordTip && showSentence(indexI,indexJ)"
+                      @mouseleave="hideSentence"
                       @click="playWordAudio(sentence.text)"
                       v-for="(sentence,indexJ) in section">
                   <span

@@ -70,7 +70,7 @@ $w2: calc($w / 2);
     .circle-detail {
       transform-origin: $w2 $w2;
       transform: rotate(-90deg);
-      stroke: $main;
+      stroke: var(--color-main-active);
     }
   }
 
