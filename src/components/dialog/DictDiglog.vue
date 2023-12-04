@@ -35,6 +35,7 @@ let loading = $ref(false)
 let show = $ref(false)
 let chapterList2 = $ref([])
 let chapterWordNumber = $ref(0)
+let toggleLoading = $ref(false)
 
 const activeId = $computed(() => {
   if (dictIsArticle) {
@@ -104,16 +105,13 @@ function close() {
 }
 
 function changeDict() {
-  store.changeDict(runtimeStore.editDict)
   close()
+  store.changeDict(runtimeStore.editDict)
+  ElMessage.success('切换成功')
 }
 
 const dictIsArticle = $computed(() => {
   return isArticle(runtimeStore.editDict.type)
-})
-
-const chapterList = $computed(() => {
-  return dictIsArticle ? runtimeStore.editDict.articles.length : runtimeStore.editDict.chapterWords.length
 })
 
 function showAllWordModal() {
@@ -124,7 +122,7 @@ function showAllWordModal() {
   })
 }
 
-function resetChapterList(v:number) {
+function resetChapterList(v: number) {
   const temp = () => {
     runtimeStore.editDict.chapterWordNumber = v
     runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
@@ -144,7 +142,7 @@ function resetChapterList(v:number) {
   }
 }
 
-function changeSort(v, notice: boolean = true) {
+function changeSort(v: Sort, notice: boolean = true) {
   const temp = () => {
     runtimeStore.editDict.sort = v
     if (v === Sort.normal) {
@@ -175,16 +173,6 @@ function option(type: string) {
   }, 500)
 }
 
-/**/
-/* 单词修改相关*/
-/**/
-
-watch(() => step, v => {
-  if (v === 0) {
-  }
-})
-
-
 onMounted(() => {
   emitter.on(EventKey.openDictModal, (type: 'detail' | 'list' | 'my') => {
     if (type === "detail") {
@@ -202,14 +190,6 @@ onMounted(() => {
   })
 })
 
-function addDict() {
-  show = false
-  setTimeout(() => {
-    router.push({path: '/dict', query: {type: 'addDict'}})
-  }, 500)
-}
-
-
 function showWordListModal(val: { item: Word, index: number }) {
   emitter.emit(EventKey.openWordListModal, {
     title: `第${val.index + 1}章`,
@@ -218,7 +198,7 @@ function showWordListModal(val: { item: Word, index: number }) {
   })
 }
 
-function handleChangeArticleChapterIndex(val) {
+function handleChangeArticleChapterIndex(val: any) {
   let rIndex = runtimeStore.editDict.articles.findIndex(v => v.id === val.item.id)
   if (rIndex > -1) {
     runtimeStore.editDict.chapterIndex = rIndex
@@ -235,7 +215,7 @@ function handleChangeArticleChapterIndex(val) {
     <div id="DictDialog">
       <Slide :slide-count="2" :step="step">
         <DictListPanel
-            @add="addDict"
+            @add="option('addDict')"
             @select-dict="selectDict"
         />
         <div class="dict-detail-page">
@@ -425,7 +405,7 @@ function handleChangeArticleChapterIndex(val) {
                 <div class="footer">
                   <!--            <BaseButton @click="step = 0">导出</BaseButton>-->
                   <BaseButton @click="close">关闭</BaseButton>
-                  <BaseButton @click="changeDict">切换</BaseButton>
+                  <BaseButton :loading="toggleLoading" @click="changeDict">切换</BaseButton>
                 </div>
               </div>
             </div>

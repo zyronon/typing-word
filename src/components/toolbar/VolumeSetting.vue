@@ -10,7 +10,6 @@ import {useSettingStore} from "@/stores/setting.ts";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {getAudioFileUrl, useChangeAllSound, usePlayAudio, useWatchAllSound} from "@/hooks/sound.ts";
 import {SoundFileOptions} from "@/utils/const.ts";
-import {throttle} from "lodash-es";
 
 const settingStore = useSettingStore()
 

@@ -4,6 +4,7 @@ import {PronunciationApi} from "@/types.ts";
 import beep from "@/assets/sound/beep.wav";
 import correct from "@/assets/sound/correct.wav";
 import {$ref} from "vue/macros";
+import {SoundFileOptions} from "@/utils/const.ts";
 
 export function useSound(audioSrcList?: string[], audioFileLength?: number) {
   let audioList: HTMLAudioElement[] = $ref([])
@@ -43,6 +44,9 @@ export function usePlayKeyboardAudio() {
   const {play, setAudio} = useSound()
 
   watchEffect(() => {
+    if (!SoundFileOptions.find(v => v.label === settingStore.keyboardSoundFile)) {
+      settingStore.keyboardSoundFile = '机械键盘2'
+    }
     let urlList = getAudioFileUrl(settingStore.keyboardSoundFile)
     setAudio(urlList, urlList.length === 1 ? 3 : 1)
   })
@@ -128,7 +132,7 @@ export function usePlayAudio(url: string) {
 }
 
 export function getAudioFileUrl(name: string) {
-  if (name === '机械') {
+  if (name === '机械键盘') {
     return [
       `./sound/key-sounds/jixie/机械0.mp3`,
       `./sound/key-sounds/jixie/机械1.mp3`,

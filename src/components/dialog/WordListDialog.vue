@@ -6,6 +6,7 @@ import {onMounted, onUnmounted, watch} from "vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import WordList from "@/components/list/WordList.vue";
+import Empty from "@/components/Empty.vue";
 
 let show = $ref(false)
 let loading = $ref(false)
@@ -78,9 +79,11 @@ onUnmounted(() => {
                      :show-text="false"/>
       </div>
       <WordList
+          v-if="list.length"
           class="word-list"
           :list="list">
       </WordList>
+      <Empty v-else/>
     </div>
   </Dialog>
 </template>

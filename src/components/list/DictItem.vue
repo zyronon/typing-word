@@ -20,7 +20,7 @@ const emit = defineEmits<{
       class="dict-item anim"
       :class="active && 'active'"
   >
-    <template v-if="dict.name">
+    <template v-if="dict.id">
       <div class="top">
         <div class="name">{{ dict.name }}</div>
         <div class="desc">{{ dict.description }}</div>
