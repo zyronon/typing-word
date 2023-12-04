@@ -225,7 +225,7 @@ export const DefaultDict: Dict = {
   wordIndex: 0,//单词下标
   articles: [],
   statistics: [],
-  isCustom: true,
+  isCustom: false,
   length: 0,
   /*资源属性*/
   resourceId: '',

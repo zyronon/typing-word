@@ -78,7 +78,7 @@ function checkDataChange() {
               let r = await editArticleRef.save('save')
               if (r) resolve(true)
             },
-            () => void 0,
+            () => resolve(true),
         )
       }
     } else {
@@ -90,7 +90,7 @@ function checkDataChange() {
               let r = await editArticleRef.save('save')
               if (r) resolve(true)
             },
-            () => void 0,
+            () => resolve(true),
         )
       }
     }

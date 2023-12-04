@@ -15,7 +15,7 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {$ref} from "vue/macros";
-import {ShortcutKey} from "@/types.ts";
+import {DictType, ShortcutKey} from "@/types.ts";
 import ChapterName from "@/components/toolbar/ChapterName.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 
@@ -69,7 +69,7 @@ watch(() => store.load, n => {
             {{ store.currentDict.name }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
           </div>
         </Tooltip>
-        <ChapterName/>
+        <ChapterName v-if="store.currentDict.type === DictType.word"/>
         <div class="info-text" v-if="practiceStore.repeatNumber">
           复习错词
         </div>
