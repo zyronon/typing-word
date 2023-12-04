@@ -4,6 +4,7 @@ import {Article, DefaultArticle} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import Dialog from "@/components/dialog/Dialog.vue";
 import EditArticle from "@/components/article/EditArticle.vue";
+import {useDisableEventListener} from "@/hooks/event.ts";
 
 interface IProps {
   article?: Article
@@ -16,7 +17,10 @@ const props = withDefaults(defineProps<IProps>(), {
 })
 const emit = defineEmits<{
   save: [val: Article]
+  'update:modelValue': [val: boolean]
 }>()
+
+useDisableEventListener(() => props.modelValue)
 
 </script>
 
@@ -24,6 +28,7 @@ const emit = defineEmits<{
   <Dialog
       :header="false"
       :model-value="props.modelValue"
+      @close="emit('update:modelValue',false)"
       :full-screen="true"
   >
     <div class="wrapper">

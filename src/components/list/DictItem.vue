@@ -109,15 +109,15 @@ const emit = defineEmits<{
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 50rem;
-    width: 50rem;
+    height: 55rem;
+    width: 55rem;
     color: white;  background-color: skyblue;
     clip-path: polygon(0 10%, 0% 100%, 100% 100%);
     font-size: 12rem;
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    padding: 5rem;
+    padding: 3rem;
     box-sizing: border-box;
   }
 }

@@ -89,7 +89,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <!--  <Backgorund/>-->
+  <Backgorund/>
   <router-view/>
   <ArticleContentDialog/>
   <SettingDialog v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>

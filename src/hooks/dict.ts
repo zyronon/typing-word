@@ -53,6 +53,7 @@ export function useWordOptions() {
     if (rIndex > -1) {
       store.wrong.originWords.splice(rIndex, 1)
     }
+    store.wrong.length = store.wrong.originWords.length
   }
 
   function delSimpleWord(val: Word) {
@@ -60,6 +61,7 @@ export function useWordOptions() {
     if (rIndex > -1) {
       store.simple.originWords.splice(rIndex, 1)
     }
+    store.simple.length = store.simple.originWords.length
   }
 
   return {

@@ -303,7 +303,7 @@ $header-height: 50rem;
         font-size: 16rem;
 
         &.active {
-          color: rgb(36, 127, 255);
+          color: var(--color-main-active);
           font-weight: bold;
         }
       }

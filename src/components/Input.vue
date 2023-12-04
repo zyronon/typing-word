@@ -2,7 +2,8 @@
 import {$ref} from "vue/macros";
 import {Icon} from "@iconify/vue";
 import Close from "@/components/icon/Close.vue";
-import {useWindowClick} from "@/hooks/event.ts";
+import {useDisableEventListener, useWindowClick} from "@/hooks/event.ts";
+import {watch} from "vue";
 
 defineProps<{
   modelValue: string
@@ -17,6 +18,8 @@ useWindowClick((e: PointerEvent) => {
   focus = inputEl.contains(e.target as any);
 })
 
+useDisableEventListener(() => focus)
+
 </script>
 
 <template>
@@ -30,7 +33,9 @@ useWindowClick((e: PointerEvent) => {
            :value="modelValue"
            @input="e=>$emit('update:modelValue',e.target.value)"
     >
-    <Close @click="$emit('update:modelValue','')"/>
+    <transition name="fade">
+      <Close v-if="modelValue" @click="$emit('update:modelValue','')"/>
+    </transition>
   </div>
 </template>
 

@@ -147,10 +147,6 @@ function next(isTyping: boolean = true) {
   }
 }
 
-function onKeyUp(e: KeyboardEvent) {
-  typingRef.hideWord()
-}
-
 function wordWrong() {
   if (!store.wrong.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
     store.wrong.originWords.push(word)
@@ -159,6 +155,10 @@ function wordWrong() {
     data.wrongWords.push(word)
     practiceStore.wrongWordNumber++
   }
+}
+
+function onKeyUp(e: KeyboardEvent) {
+  typingRef.hideWord()
 }
 
 async function onKeyDown(e: KeyboardEvent) {

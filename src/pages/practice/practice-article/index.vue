@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {$ref} from "vue/macros";
+import {$computed, $ref} from "vue/macros";
 import TypingArticle from "./TypingArticle.vue";
 import {
   Article,
@@ -29,6 +29,7 @@ import {useSettingStore} from "@/stores/setting.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {syncMyDictList, useArticleOptions} from "@/hooks/dict.ts";
 import ArticleList from "@/components/list/ArticleList.vue";
+import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 
 const store = useBaseStore()
 const practiceStore = usePracticeStore()
@@ -48,9 +49,12 @@ let articleData = $ref({
   stringIndex: 0,
 })
 let showEditArticle = $ref(false)
+let typingArticleRef = $ref<any>()
 let editArticle = $ref<Article>(cloneDeep(DefaultArticle))
+let articleIsActive = $computed(() => tabIndex === 0)
 
 function next() {
+  if (!articleIsActive) return
   if (store.currentDict.chapterIndex >= articleData.articles.length - 1) {
     store.currentDict.chapterIndex = 0
   } else store.currentDict.chapterIndex++
@@ -58,19 +62,6 @@ function next() {
   emitter.emit(EventKey.resetWord)
   getCurrentPractice()
 }
-
-onMounted(() => {
-  init()
-  emitter.on(EventKey.changeDict, init)
-  emitter.on(EventKey.next, next)
-  emitter.on(ShortcutKey.NextChapter, next)
-})
-
-onUnmounted(() => {
-  emitter.off(EventKey.changeDict, init)
-  emitter.off(EventKey.next, next)
-  emitter.off(ShortcutKey.NextChapter, next)
-})
 
 function init() {
   if (!store.currentDict.articles.length) return
@@ -180,7 +171,8 @@ function saveArticle(val: Article) {
   setArticle(val)
 }
 
-function edit(val: Article) {
+function edit(val: Article = articleData.article) {
+  if (!articleIsActive)return
   // tabIndex = 1
   // wordData.words = [
   //   {
@@ -256,6 +248,71 @@ function sort(list: Word[]) {
   wordData.index = 0
 }
 
+function play() {
+  if (!articleIsActive) return
+  typingArticleRef?.play()
+}
+
+function show() {
+  if (!articleIsActive) return
+  typingArticleRef?.showSentence()
+}
+
+
+function onKeyUp(e: KeyboardEvent) {
+  typingArticleRef.hideSentence()
+}
+
+async function onKeyDown(e: KeyboardEvent) {
+  // console.log('e', e)
+  switch (e.key) {
+    case 'Backspace':
+      typingArticleRef.del()
+      break
+  }
+}
+
+useOnKeyboardEventListener(onKeyDown, onKeyUp)
+
+function skip() {
+  if (!articleIsActive) return
+  typingArticleRef?.nextSentence()
+}
+
+function collect(e: KeyboardEvent) {
+  if (!articleIsActive) return
+  toggleArticleCollect(articleData.article)
+}
+
+//包装一遍，因为快捷建的默认参数是Event
+function shortcutKeyEdit(){
+  edit()
+}
+
+onMounted(() => {
+  init()
+  emitter.on(EventKey.changeDict, init)
+  emitter.on(EventKey.next, next)
+
+  emitter.on(ShortcutKey.NextChapter, next)
+  emitter.on(ShortcutKey.PlayWordPronunciation, play)
+  emitter.on(ShortcutKey.ShowWord, show)
+  emitter.on(ShortcutKey.Next, skip)
+  emitter.on(ShortcutKey.ToggleCollect, collect)
+  emitter.on(ShortcutKey.EditArticle, shortcutKeyEdit)
+})
+
+onUnmounted(() => {
+  emitter.off(EventKey.changeDict, init)
+  emitter.off(EventKey.next, next)
+  emitter.off(ShortcutKey.NextChapter, next)
+  emitter.off(ShortcutKey.PlayWordPronunciation, play)
+  emitter.off(ShortcutKey.ShowWord, show)
+  emitter.off(ShortcutKey.Next, skip)
+  emitter.off(ShortcutKey.ToggleCollect, collect)
+  emitter.off(ShortcutKey.EditArticle, shortcutKeyEdit)
+})
+
 defineExpose({getCurrentPractice})
 
 </script>
@@ -266,10 +323,11 @@ defineExpose({getCurrentPractice})
       <div class="swiper-list" :class="`step${tabIndex}`">
         <div class="swiper-item">
           <TypingArticle
+              ref="typingArticleRef"
               :active="tabIndex === 0"
               @edit="edit"
               @wrong="wrong"
-              @over="over"
+              @over="skip"
               @nextWord="nextWord"
               :article="articleData.article"
           />

@@ -448,7 +448,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
     border-radius: 8rem;
 
     .section {
-      background: var(--color-item-bg);
+      background: var(--color-textarea-bg);
       margin-bottom: 20rem;
       padding: var(--space);
       border-radius: 8rem;
