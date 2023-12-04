@@ -44,16 +44,31 @@ watch(settingStore.$state, (n) => {
 
 //检测几个特定词典
 watch(store.collect.originWords, (n) => {
-  store.collect.words = cloneDeep(n)
-  store.collect.chapterWords = [store.collect.words]
+  if (n.length === 0) {
+    store.collect.words = []
+    store.collect.chapterWords = []
+  } else {
+    store.collect.words = cloneDeep(n)
+    store.collect.chapterWords = [store.collect.words]
+  }
 })
 watch(store.simple.originWords, (n) => {
-  store.simple.words = cloneDeep(n)
-  store.simple.chapterWords = [store.simple.words]
+  if (n.length === 0) {
+    store.simple.words = []
+    store.simple.chapterWords = []
+  } else {
+    store.simple.words = cloneDeep(n)
+    store.simple.chapterWords = [store.simple.words]
+  }
 })
 watch(store.wrong.originWords, (n) => {
-  store.wrong.words = cloneDeep(n)
-  store.wrong.chapterWords = [store.wrong.words]
+  if (n.length === 0) {
+    store.wrong.words = []
+    store.wrong.chapterWords = []
+  } else {
+    store.wrong.words = cloneDeep(n)
+    store.wrong.chapterWords = [store.wrong.words]
+  }
 })
 
 async function init() {
@@ -74,7 +89,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Backgorund/>
+  <!--  <Backgorund/>-->
   <router-view/>
   <ArticleContentDialog/>
   <SettingDialog v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>

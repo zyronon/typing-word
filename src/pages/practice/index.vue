@@ -62,21 +62,6 @@ function repeat() {
   practiceRef.getCurrentPractice()
 }
 
-function next() {
-  // console.log('next')
-  if (store.isArticle) {
-    if (store.currentDict.chapterIndex >= store.currentDict.articles.length - 1) {
-      store.currentDict.chapterIndex = 0
-    } else store.currentDict.chapterIndex++
-  } else {
-    if (store.currentDict.chapterIndex >= store.currentDict.chapterWords.length - 1) {
-      store.currentDict.chapterIndex = 0
-    } else store.currentDict.chapterIndex++
-  }
-
-  repeat()
-}
-
 function prev() {
   // console.log('next')
   if (store.currentDict.chapterIndex === 0) {
@@ -118,12 +103,10 @@ function jumpSpecifiedChapter(val: number) {
 }
 
 onMounted(() => {
-  emitter.on(EventKey.next, next)
   emitter.on(EventKey.write, write)
   emitter.on(EventKey.repeat, repeat)
   emitter.on(EventKey.jumpSpecifiedChapter, jumpSpecifiedChapter)
 
-  emitter.on(ShortcutKey.NextChapter, next)
   emitter.on(ShortcutKey.PreviousChapter, prev)
   emitter.on(ShortcutKey.RepeatChapter, repeat)
   emitter.on(ShortcutKey.DictationChapter, write)
@@ -137,12 +120,10 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  emitter.off(EventKey.next, next)
   emitter.off(EventKey.write, write)
   emitter.off(EventKey.repeat, repeat)
   emitter.off(EventKey.jumpSpecifiedChapter, jumpSpecifiedChapter)
 
-  emitter.off(ShortcutKey.NextChapter, next)
   emitter.off(ShortcutKey.PreviousChapter, prev)
   emitter.off(ShortcutKey.RepeatChapter, repeat)
   emitter.off(ShortcutKey.DictationChapter, write)

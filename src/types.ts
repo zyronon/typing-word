@@ -46,9 +46,7 @@ export enum DictType {
   simple = 'simple',
   wrong = 'wrong',
   word = 'word',
-  customWord = 'customWord',
   article = 'article',
-  customArticle = 'customArticle'
 }
 
 export const DefaultArticleWord: ArticleWord = {
@@ -227,7 +225,7 @@ export const DefaultDict: Dict = {
   wordIndex: 0,//单词下标
   articles: [],
   statistics: [],
-  isCustom: false,
+  isCustom: true,
   length: 0,
   /*资源属性*/
   resourceId: '',
@@ -235,7 +233,7 @@ export const DefaultDict: Dict = {
   category: '',
   tags: [],
   translateLanguage: 'common',
-  type: DictType.customWord,
+  type: DictType.word,
   language: 'en',
 }
 

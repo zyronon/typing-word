@@ -14,7 +14,7 @@ import {
 import {cloneDeep} from "lodash-es";
 import TypingWord from "@/pages/practice/practice-word/TypingWord.vue";
 import Panel from "../Panel.vue";
-import {onMounted, watch} from "vue";
+import {onMounted, onUnmounted, watch} from "vue";
 import {renewSectionTexts, renewSectionTranslates} from "@/hooks/translate.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {useBaseStore} from "@/stores/base.ts";
@@ -40,6 +40,7 @@ let wordData = $ref({
   index: -1
 })
 let articleData = $ref({
+  articles: [],
   article: cloneDeep(DefaultArticle),
   sectionIndex: 0,
   sentenceIndex: 0,
@@ -49,18 +50,38 @@ let articleData = $ref({
 let showEditArticle = $ref(false)
 let editArticle = $ref<Article>(cloneDeep(DefaultArticle))
 
-watch([
-  // () => store.load,
-  () => store.currentDict.articles,
-], n => {
+function next() {
+  if (store.currentDict.chapterIndex >= articleData.articles.length - 1) {
+    store.currentDict.chapterIndex = 0
+  } else store.currentDict.chapterIndex++
+
+  emitter.emit(EventKey.resetWord)
   getCurrentPractice()
+}
+
+onMounted(() => {
+  init()
+  emitter.on(EventKey.changeDict, init)
+  emitter.on(EventKey.next, next)
+  emitter.on(ShortcutKey.NextChapter, next)
 })
 
-onMounted(getCurrentPractice)
+onUnmounted(() => {
+  emitter.off(EventKey.changeDict, init)
+  emitter.off(EventKey.next, next)
+  emitter.off(ShortcutKey.NextChapter, next)
+})
+
+function init() {
+  if (!store.currentDict.articles.length) return
+  articleData.articles = cloneDeep(store.currentDict.articles)
+  getCurrentPractice()
+}
 
 function setArticle(val: Article) {
-  store.currentDict.articles[store.currentDict.chapterIndex] = cloneDeep(val)
-  articleData.article = cloneDeep(val)
+  let tempVal = cloneDeep(val)
+  articleData.articles[store.currentDict.chapterIndex] = tempVal
+  articleData.article = tempVal
   practiceStore.inputWordNumber = 0
   practiceStore.wrongWordNumber = 0
   practiceStore.repeatNumber = 0
@@ -81,11 +102,10 @@ function setArticle(val: Article) {
 function getCurrentPractice() {
   // console.log('store.currentDict',store.currentDict)
   // return
-  if (!store.currentDict.articles.length) return
   tabIndex = 0
   articleData.article = cloneDeep(DefaultArticle)
 
-  let currentArticle = store.currentDict.articles[store.currentDict.chapterIndex]
+  let currentArticle = articleData.articles [store.currentDict.chapterIndex]
   let tempArticle = {...DefaultArticle, ...currentArticle}
   // console.log('article', tempArticle)
   if (tempArticle.sections.length) {
@@ -153,7 +173,10 @@ function getCurrentPractice() {
 function saveArticle(val: Article) {
   console.log('saveArticle', val)
   showEditArticle = false
-  // articleData.article = cloneDeep(store.currentDict.articles[store.currentDict.chapterIndex])
+  let rIndex = store.currentDict.articles.findIndex(v => v.id === val.id)
+  if (rIndex > -1) {
+    store.currentDict.articles[rIndex] = cloneDeep(val)
+  }
   setArticle(val)
 }
 
@@ -213,8 +236,8 @@ function nextWord(word: ArticleWord) {
   }
 }
 
-function changePracticeArticle(val: ArticleItem) {
-  let rIndex = store.currentDict.articles.findIndex(v => v.id === val.item.id)
+function handleChangeChapterIndex(val: ArticleItem) {
+  let rIndex = articleData.articles.findIndex(v => v.id === val.item.id)
   if (rIndex > -1) {
     store.currentDict.chapterIndex = rIndex
     getCurrentPractice()
@@ -274,18 +297,18 @@ defineExpose({getCurrentPractice})
                           @click="emitter.emit(EventKey.openDictModal,'list')"
                           icon="carbon:change-catalog"/>
                 <div class="title">
-                  {{ store.dictTitle }}
+                  {{ store.currentDict.name }}
                 </div>
                 <Tooltip
                     :title="`下一章(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
-                    v-if="store.currentDict.chapterIndex < store.currentDict.articles.length - 1">
+                    v-if="store.currentDict.chapterIndex < articleData.articles .length - 1">
                   <IconWrapper>
                     <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
                   </IconWrapper>
                 </Tooltip>
               </div>
               <div class="right">
-                {{ store.currentDict.articles.length }}篇文章
+                {{ articleData.articles.length }}篇文章
               </div>
             </div>
 
@@ -295,9 +318,9 @@ defineExpose({getCurrentPractice})
                 :show-border="true"
                 :show-translate="settingStore.translate"
                 @title="e => emitter.emit(EventKey.openArticleContentModal,e.item)"
-                @click="changePracticeArticle"
+                @click="handleChangeChapterIndex"
                 :active-id="articleData.article.id"
-                :list="store.currentDict.articles">
+                :list="articleData.articles ">
               <template v-slot:suffix="{item,index}">
                 <BaseIcon
                     v-if="!isArticleCollect(item)"

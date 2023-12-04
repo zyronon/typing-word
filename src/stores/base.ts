@@ -163,20 +163,17 @@ export const useBaseStore = defineStore('base', {
     chapter(state: BaseState): Word[] {
       return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []
     },
-    dictTitle(state: BaseState) {
-      let title = this.currentDict.name
-      return title + this.chapterName
-    },
     chapterName(state: BaseState) {
       let title = ''
       switch (this.currentDict.type) {
         case DictType.collect:
-          if (state.current.practiceType === DictType.article || state.current.practiceType === DictType.customArticle) {
+          if (state.current.practiceType === DictType.article) {
             return `第${this.currentDict.chapterIndex + 1}章`
           }
-          return ''
+        case DictType.wrong:
+        case DictType.simple:
+          return this.currentDict.name
         case DictType.word:
-        case DictType.customWord:
           return `第${this.currentDict.chapterIndex + 1}章`
       }
       return title
@@ -252,6 +249,8 @@ export const useBaseStore = defineStore('base', {
             }
           }
         }
+
+        emitter.emit(EventKey.changeDict)
         resolve(true)
       })
     },
@@ -296,7 +295,6 @@ export const useBaseStore = defineStore('base', {
         this.current.index = this.myDictList.length - 1
       }
 
-      emitter.emit(EventKey.resetWord)
       emitter.emit(EventKey.changeDict)
     }
   },

@@ -98,7 +98,6 @@ export async function checkDictHasTranslate(dict: Dict) {
   let dictResourceUrl = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
   if ([
     DictType.word,
-    DictType.customWord,
   ].includes(dict.type)) {
     if (!dict.originWords.length) {
       let r = await fetch(dictResourceUrl)
@@ -129,7 +128,6 @@ export async function checkDictHasTranslate(dict: Dict) {
 
   if ([
     DictType.article,
-    DictType.customArticle,
   ].includes(dict.type)) {
     if (!dict.articles.length) {
       let r = await fetch(dictResourceUrl)
