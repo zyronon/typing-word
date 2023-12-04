@@ -172,7 +172,7 @@ function saveArticle(val: Article) {
 }
 
 function edit(val: Article = articleData.article) {
-  if (!articleIsActive)return
+  if (!articleIsActive) return
   // tabIndex = 1
   // wordData.words = [
   //   {
@@ -285,7 +285,7 @@ function collect(e: KeyboardEvent) {
 }
 
 //包装一遍，因为快捷建的默认参数是Event
-function shortcutKeyEdit(){
+function shortcutKeyEdit() {
   edit()
 }
 
@@ -345,57 +345,59 @@ defineExpose({getCurrentPractice})
       </div>
     </div>
 
-    <div class="panel-wrapper">
-      <Panel v-if="tabIndex === 0">
-        <template v-slot="{active}">
-          <div class="panel-page-item">
-            <div class="list-header">
-              <div class="left">
-                <BaseIcon title="切换词典"
-                          @click="emitter.emit(EventKey.openDictModal,'list')"
-                          icon="carbon:change-catalog"/>
-                <div class="title">
-                  {{ store.currentDict.name }}
+    <Teleport to="body">
+      <div class="panel-wrapper">
+        <Panel v-if="tabIndex === 0">
+          <template v-slot="{active}">
+            <div class="panel-page-item">
+              <div class="list-header">
+                <div class="left">
+                  <BaseIcon title="切换词典"
+                            @click="emitter.emit(EventKey.openDictModal,'list')"
+                            icon="carbon:change-catalog"/>
+                  <div class="title">
+                    {{ store.currentDict.name }}
+                  </div>
+                  <Tooltip
+                      :title="`下一章(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
+                      v-if="store.currentDict.chapterIndex < articleData.articles .length - 1">
+                    <IconWrapper>
+                      <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
+                    </IconWrapper>
+                  </Tooltip>
                 </div>
-                <Tooltip
-                    :title="`下一章(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
-                    v-if="store.currentDict.chapterIndex < articleData.articles .length - 1">
-                  <IconWrapper>
-                    <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
-                  </IconWrapper>
-                </Tooltip>
+                <div class="right">
+                  {{ articleData.articles.length }}篇文章
+                </div>
               </div>
-              <div class="right">
-                {{ articleData.articles.length }}篇文章
-              </div>
-            </div>
 
-            <ArticleList
-                :isActive="active"
-                :static="false"
-                :show-border="true"
-                :show-translate="settingStore.translate"
-                @title="e => emitter.emit(EventKey.openArticleContentModal,e.item)"
-                @click="handleChangeChapterIndex"
-                :active-id="articleData.article.id"
-                :list="articleData.articles ">
-              <template v-slot:suffix="{item,index}">
-                <BaseIcon
-                    v-if="!isArticleCollect(item)"
-                    class="collect"
-                    @click="toggleArticleCollect(item)"
-                    title="收藏" icon="ph:star"/>
-                <BaseIcon
-                    v-else
-                    class="fill"
-                    @click="toggleArticleCollect(item)"
-                    title="取消收藏" icon="ph:star-fill"/>
-              </template>
-            </ArticleList>
-          </div>
-        </template>
-      </Panel>
-    </div>
+              <ArticleList
+                  :isActive="active"
+                  :static="false"
+                  :show-border="true"
+                  :show-translate="settingStore.translate"
+                  @title="e => emitter.emit(EventKey.openArticleContentModal,e.item)"
+                  @click="handleChangeChapterIndex"
+                  :active-id="articleData.article.id"
+                  :list="articleData.articles ">
+                <template v-slot:suffix="{item,index}">
+                  <BaseIcon
+                      v-if="!isArticleCollect(item)"
+                      class="collect"
+                      @click="toggleArticleCollect(item)"
+                      title="收藏" icon="ph:star"/>
+                  <BaseIcon
+                      v-else
+                      class="fill"
+                      @click="toggleArticleCollect(item)"
+                      title="取消收藏" icon="ph:star-fill"/>
+                </template>
+              </ArticleList>
+            </div>
+          </template>
+        </Panel>
+      </div>
+    </Teleport>
 
     <EditSingleArticleModal
         v-model="showEditArticle"
@@ -407,8 +409,6 @@ defineExpose({getCurrentPractice})
 
 <style scoped lang="scss">
 @import "@/assets/css/style";
-
-$article-width: 50vw;
 
 .swiper-wrapper {
   height: 100%;
@@ -434,7 +434,7 @@ $article-width: 50vw;
 .practice-article {
   flex: 1;
   overflow: hidden;
-  width: $article-width;
+  width: var(--article-width);
 }
 
 .typing-word-wrapper {
@@ -446,7 +446,7 @@ $article-width: 50vw;
   left: 0;
   top: 10rem;
   z-index: 1;
-  margin-left: calc(50% + ($article-width / 2) + var(--space));
+  margin-left: var(--article-panel-margin-left);
   height: calc(100% - 20rem);
 }
 

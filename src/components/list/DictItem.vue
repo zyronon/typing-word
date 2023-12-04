@@ -111,7 +111,9 @@ const emit = defineEmits<{
     left: 0;
     height: 55rem;
     width: 55rem;
-    color: white;  background-color: skyblue;
+    color: white;
+    //background-color: skyblue;
+    background-color: var(--color-main-active);
     clip-path: polygon(0 10%, 0% 100%, 100% 100%);
     font-size: 12rem;
     display: flex;

@@ -433,14 +433,11 @@ onUnmounted(() => {
   }
 }
 
-$article-width: 50vw;
-
 .word-panel-wrapper {
   position: fixed;
   left: 0;
   top: 10rem;
   z-index: 1;
-  //margin-left: calc(50% + (var(--toolbar-width) / 2) + var(--space));
   margin-left: var(--panel-margin-left);
   height: calc(100% - 20rem);
 }

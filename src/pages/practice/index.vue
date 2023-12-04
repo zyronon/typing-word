@@ -160,7 +160,8 @@ useStartKeyboardEventListener()
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding-right: var(--practice-wrapper-padding-right);
+  //padding-right: var(--practice-wrapper-padding-right);
+  transform: translateX(var(--practice-wrapper-translateX));
 }
 
 </style>

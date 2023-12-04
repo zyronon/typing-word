@@ -5,7 +5,6 @@
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/variable.scss";
 
 $w: 22rem;
 .icon-wrapper {
@@ -18,10 +17,10 @@ $w: 22rem;
   border-radius: 3rem;
   background: transparent;
   transition: all .3s;
-  color: $main;
+  color: var(--color-main-active);
 
   &:hover {
-    background: $main;
+    background: var(--color-main-active);
     color: white;
   }
 
