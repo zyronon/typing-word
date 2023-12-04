@@ -80,6 +80,7 @@ async function getDictDetail(val: {
       runtimeStore.editDict.length = runtimeStore.editDict.articles.length
     }
   }
+
   loading = false
 }
 

@@ -38,7 +38,7 @@ watch(() => settingStore.showPanel, n => {
 let practiceType = $ref(DictType.word)
 
 function changeIndex(dict: Dict) {
-  store.changeDict(dict, dict.chapterIndex, dict.wordIndex, practiceType)
+  store.changeDict(dict, practiceType)
 }
 
 onMounted(() => {

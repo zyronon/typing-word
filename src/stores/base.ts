@@ -260,11 +260,13 @@ export const useBaseStore = defineStore('base', {
         this.currentDict.statistics.push(statistics)
       }
     },
-    async changeDict(dict: Dict, chapterIndex: number = dict.chapterIndex, wordIndex: number = dict.wordIndex, practiceType: DictType) {
+    async changeDict(dict: Dict, practiceType?: DictType, chapterIndex?: number, wordIndex?: number) {
       //TODO 保存统计
       // this.saveStatistics()
       console.log('changeDict', cloneDeep(dict), chapterIndex, wordIndex)
-      this.current.practiceType = practiceType
+      if (chapterIndex === undefined) chapterIndex = dict.chapterIndex
+      if (wordIndex === undefined) wordIndex = dict.wordIndex
+      if (practiceType === undefined) this.current.practiceType = practiceType
       if ([DictType.collect,
         DictType.simple,
         DictType.wrong].includes(dict.type)) {
