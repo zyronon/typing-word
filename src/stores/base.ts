@@ -205,7 +205,7 @@ export const useBaseStore = defineStore('base', {
           let configStr: string = await localforage.getItem(SaveDict.key)
           // console.log(configStr)
           // console.log('s', new Blob([configStr]).size)
-          configStr = ''
+          // configStr = ''
           if (configStr) {
             let data = JSON.parse(configStr)
             let state: BaseState = data.val
