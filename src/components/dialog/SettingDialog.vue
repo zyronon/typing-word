@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import Dialog from "@/components/dialog/Dialog.vue"
-import {useBaseStore} from "@/stores/base.ts"
 import {Icon} from '@iconify/vue';
-import {watch, ref} from "vue";
+import {ref} from "vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {getAudioFileUrl, useChangeAllSound, usePlayAudio, useWatchAllSound} from "@/hooks/sound.ts";
 import {getShortcutKey, useDisableEventListener, useEventListener} from "@/hooks/event.ts";
