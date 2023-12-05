@@ -142,22 +142,21 @@ export const useBaseStore = defineStore('base', {
       simpleWords: [
         'a', 'an',
         'i', 'my', 'you', 'your', 'me', 'it',
-        'am', 'is', 'do', 'are', 'did', 'were',
-        'what', 'who', 'where', 'how', 'no', 'yes',
-        'not', 'can', 'could',
-        'the', 'to', 'of', 'for', 'and', 'that', 'this', 'be'
+        'what', 'who', 'where', 'how', 'when', 'which',
+        'be', 'am', 'is', 'do', 'are', 'did', 'were', 'was', 'can', 'could', 'will', 'would',
+        'the', 'that', 'this', 'to', 'of', 'for', 'and', 'at', 'not', 'no', 'yes',
       ],
       load: false
     }
   },
   getters: {
-    collect() {
-      return this.myDictList[0] ?? {}
+    collect(): Dict {
+      return this.myDictList[0]
     },
     simple(): Dict {
       return this.myDictList[1]
     },
-    wrong() {
+    wrong(): Dict {
       return this.myDictList[2]
     },
     skipWordNames() {
