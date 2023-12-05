@@ -212,10 +212,11 @@ function exportData(val: {
   type: string,
   data?: Article
 }) {
-  // return copy( JSON.stringify(cloneDeep(runtimeStore.editDict.articles).map(v=>{
-  //   delete v.sections
-  //   return v
-  // })))
+  copy(JSON.stringify(cloneDeep(runtimeStore.editDict.articles).map(v => {
+    delete v.sections
+    return v
+  })))
+
   const {type, data} = val
   let list = []
   let filename = ''

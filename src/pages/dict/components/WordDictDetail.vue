@@ -8,7 +8,7 @@ import {assign, chunk, cloneDeep, reverse, shuffle} from "lodash-es";
 import {DefaultDict, Dict, DictResource, DictType, Sort, Word} from "@/types.ts";
 import {nanoid} from "nanoid";
 import {FormInstance, FormRules} from "element-plus";
-import {reactive} from "vue";
+import {reactive, watch} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -38,7 +38,6 @@ let chapterWordListRef: any = $ref()
 let residueWordListRef: any = $ref()
 let chapterListRef: any = $ref()
 let chapterIndex = $ref(1)
-// let residueWordList = $ref([])
 let isEditDict = $ref(false)
 let showExport = $ref(false)
 let chapterWordNumber = $ref(settingStore.chapterWordNumber)
@@ -58,7 +57,6 @@ let chapterWordList: Word[] = $computed({
   },
   set(newValue) {
     runtimeStore.editDict.chapterWords[chapterIndex] = newValue
-    syncMyDictList(runtimeStore.editDict)
   }
 })
 
@@ -68,7 +66,6 @@ let residueWordList: Word[] = $computed({
   },
   set(newValue) {
     runtimeStore.editDict.residueWords = newValue
-    syncMyDictList(runtimeStore.editDict)
   }
 })
 
@@ -100,18 +97,16 @@ async function getDictDetail(val: {
     //如果不是自定义词典，并且有url地址才去下载
     if (!runtimeStore.editDict.isCustom && runtimeStore.editDict.url) {
       let url = `./dicts/${runtimeStore.editDict.language}/${runtimeStore.editDict.type}/${runtimeStore.editDict.translateLanguage}/${runtimeStore.editDict.url}`;
-      if (runtimeStore.editDict.type === DictType.word) {
-        if (!runtimeStore.editDict.originWords.length) {
-          let r = await fetch(url)
-          let v = await r.json()
-          v.map(s => {
-            s.id = nanoid(6)
-          })
-          runtimeStore.editDict.originWords = cloneDeep(v)
-          changeSort(runtimeStore.editDict.sort)
-        } else {
-          runtimeStore.editDict.length = runtimeStore.editDict.words.length
-        }
+      if (!runtimeStore.editDict.originWords.length) {
+        let r = await fetch(url)
+        let v = await r.json()
+        v.map(s => {
+          s.id = nanoid(6)
+        })
+        runtimeStore.editDict.originWords = cloneDeep(v)
+        changeSort(runtimeStore.editDict.sort)
+      } else {
+        runtimeStore.editDict.length = runtimeStore.editDict.words.length
       }
     }
   }
@@ -220,6 +215,7 @@ function toResidueWordList() {
           if (rIndex > -1) chapterWordList.splice(rIndex, 1)
         })
         residueWordList = residueWordList.concat(noRepeatWords)
+        syncEditDict2MyDictList()
         setTimeout(residueWordListRef?.scrollToBottom, 100)
       },
       repeatWords => {
@@ -257,6 +253,7 @@ function toChapterWordList() {
           if (rIndex > -1) residueWordList.splice(rIndex, 1)
         })
         chapterWordList = chapterWordList.concat(noRepeatWords)
+        syncEditDict2MyDictList()
         setTimeout(chapterWordListRef?.scrollToBottom, 100)
       },
       repeatWords => {
@@ -265,7 +262,6 @@ function toChapterWordList() {
             wordFormData.where = 'chapter'
           }
         }
-
         repeatWords.map((v) => {
           chapterWordList[v.index] = v
           delete chapterWordList[v.index].index
@@ -273,6 +269,7 @@ function toChapterWordList() {
           let rIndex = residueWordList.findIndex(s => s.id === v.id)
           if (rIndex > -1) residueWordList.splice(rIndex, 1)
         })
+        syncEditDict2MyDictList()
         setTimeout(chapterWordListRef?.scrollToBottom, 100)
       }
   )
@@ -426,7 +423,7 @@ function resetChapterList(num?: number, sync?: boolean) {
   runtimeStore.editDict.length = runtimeStore.editDict.words.length
   chapterList2 = runtimeStore.editDict.chapterWords.map((v, i) => ({id: i}))
   if (sync !== undefined) {
-    syncMyDictList(runtimeStore.editDict)
+    syncEditDict2MyDictList()
   }
 }
 
@@ -449,7 +446,7 @@ async function resetDict() {
           })
           runtimeStore.editDict.originWords = cloneDeep(v)
           changeSort(runtimeStore.editDict.sort)
-          syncMyDictList(runtimeStore.editDict)
+          syncMyDictList(runtimeStore.editDict, false)
           ElMessage.success('恢复成功')
         } else {
           ElMessage.success('恢复失败')
@@ -515,6 +512,7 @@ function importData(e: any) {
 
       checkRepeatWord(words, residueWordList, noRepeatWords => {
             residueWordList = residueWordList.concat(noRepeatWords)
+            syncEditDict2MyDictList()
             setTimeout(residueWordListRef?.scrollToBottom, 100)
           },
           repeatWords => {
@@ -522,6 +520,7 @@ function importData(e: any) {
               residueWordList[v.index] = v
               delete residueWordList[v.index].index
             })
+            syncEditDict2MyDictList()
             setTimeout(residueWordListRef?.scrollToBottom, 100)
           },
           () => ElMessage.success('导入成功！'))

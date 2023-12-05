@@ -2328,7 +2328,7 @@ const enArticle: DictResource[] = [
     category: '英语学习',
     tags: ['新概念英语'],
     url: 'NCE_2.json',
-    length: 5892,
+    length: 13,
     translateLanguage: 'common',
     language: 'en',
     type: DictType.article

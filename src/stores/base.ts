@@ -73,20 +73,23 @@ export const useBaseStore = defineStore('base', {
           type: DictType.collect,
           category: '自带字典',
           tags: ['自带'],
+          isCustom: true,
         },
         {
           ...cloneDeep(DefaultDict),
           id: 'skip',
           name: '简单词',
           type: DictType.simple,
-          category: '自带字典'
+          category: '自带字典',
+          isCustom: true,
         },
         {
           ...cloneDeep(DefaultDict),
           id: 'wrong',
           name: '错词本',
           type: DictType.wrong,
-          category: '自带字典'
+          category: '自带字典',
+          isCustom: true,
         },
         {
           ...cloneDeep(DefaultDict),
@@ -113,7 +116,7 @@ export const useBaseStore = defineStore('base', {
           language: 'en',
           type: DictType.article,
           resourceId: 'article_nce2',
-          length: 10
+          length: 13
         },
         {
           ...cloneDeep(DefaultDict),
