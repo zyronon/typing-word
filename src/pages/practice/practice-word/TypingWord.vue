@@ -406,7 +406,7 @@ onUnmounted(() => {
     .word {
       font-size: 24rem;
       margin-bottom: 4rem;
-      font-family: $word-font-family;
+      font-family: var(--word-font-family);
     }
 
     .prev {

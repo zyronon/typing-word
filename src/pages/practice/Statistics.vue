@@ -128,6 +128,10 @@ const isEnd = $computed(() => {
 <style scoped lang="scss">
 @import "@/assets/css/style";
 
+$card-radius: 8rem;
+$dark-second-bg: rgb(60, 63, 65);
+$item-hover: rgb(75, 75, 75);
+
 .statistics {
   width: 800rem;
   padding: var(--space);
@@ -184,6 +188,7 @@ const isEnd = $computed(() => {
       }
 
       .notice {
+        $main: rgb(64,158,255);
         background: $main;
         height: 40rem;
         display: flex;

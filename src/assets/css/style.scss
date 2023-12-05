@@ -135,13 +135,6 @@ html.dark {
   transition: background var(--anim-time), color var(--anim-time), border var(--anim-time);
 }
 
-.word-font-family {
-  font-family: var(--word-font-family);
-  //font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif; //medium
-  //font-family: Optimistic Text,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji; // react
-  //font-family: Google Sans Text,Noto Sans,Noto Sans JP,Noto Sans KR,Noto Naskh Arabic,Noto Sans Thai,Noto Sans Hebrew,Noto Sans Bengali,sans-serif; //android-dev
-  line-height: 30rem;
-}
 
 html, body {
   font-size: 1px;
@@ -150,15 +143,11 @@ html, body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  color: $font-color;
+  color: rgb(187, 187, 187);
   //color: var(--color-font-1);
   //font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.en-word {
-  font-family: var(--word-font-family);
 }
 
 #app {
@@ -167,13 +156,14 @@ html, body {
 }
 
 a {
+  $main: rgb(64,158,255);
   color: $main;
   text-decoration: none;
 }
 
 .base-textarea {
   flex: 1;
-  font-family: $font-family;
+  font-family: var(--font-family);
   font-size: 18rem;
   outline: none;
   border: 1px solid transparent;
@@ -220,6 +210,7 @@ a {
 }
 
 footer {
+  $footer-height: 60rem;
   box-sizing: content-box;
   height: $footer-height;
   display: flex;

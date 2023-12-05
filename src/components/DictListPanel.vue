@@ -143,6 +143,7 @@ const groupedByCategoryAndTag = $computed(() => {
         gap: 6rem;
 
         &.active {
+          $main: rgb(64,158,255);
           border-bottom: 2px solid $main;
         }
 

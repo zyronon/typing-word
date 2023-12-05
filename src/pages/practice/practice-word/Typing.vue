@@ -223,7 +223,7 @@ defineExpose({del, showWord, hideWord, play})
 
   .phonetic {
     margin-top: 5rem;
-    font-family: $word-font-family;
+    font-family: var(--word-font-family);
   }
 
   .translate {
@@ -259,7 +259,7 @@ defineExpose({del, showWord, hideWord, play})
     .word {
       font-size: 48rem;
       line-height: 1;
-      font-family: $word-font-family;
+      font-family: var(--word-font-family);
       letter-spacing: 5rem;
 
       .input {

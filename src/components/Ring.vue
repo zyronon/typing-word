@@ -64,6 +64,7 @@ $w2: calc($w / 2);
     position: absolute;
 
     .circle-full {
+      $item-hover: rgb(75, 75, 75);
       stroke: $item-hover;
     }
 
