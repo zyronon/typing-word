@@ -2,8 +2,9 @@
 
 import {Dict, DictType} from "@/types.ts";
 import {Icon} from "@iconify/vue";
+import {$computed} from "vue/macros";
 
-defineProps<{
+const props = defineProps<{
   dict?: Dict,
   active?: boolean
 }>()
@@ -13,6 +14,21 @@ const emit = defineEmits<{
   add: []
 }>()
 
+let length = $computed(() => {
+  let isWord = props.dict.type === DictType.word
+  let len: any = ''
+  if (props.dict.length) {
+    len = props.dict.length
+    len += (isWord ? '词' : '篇')
+  } else {
+    if (isWord) {
+      len = props.dict.originWords.length + '词'
+    } else {
+      len = props.dict.articles.length + '篇'
+    }
+  }
+  return len
+})
 </script>
 
 <template>
@@ -26,7 +42,7 @@ const emit = defineEmits<{
         <div class="desc">{{ dict.description }}</div>
       </div>
       <div class="bottom">
-        <div class="num">{{ dict.length ?? dict.originWords.length }}词</div>
+        <div class="num">{{ length }}</div>
       </div>
       <div class="pin" v-if="dict.type === DictType.article">文章</div>
     </template>
@@ -115,7 +131,7 @@ const emit = defineEmits<{
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    padding: 3rem;
+    padding: 4rem;
     box-sizing: border-box;
   }
 }
