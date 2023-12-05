@@ -25,7 +25,7 @@ const emit = defineEmits([
         <div class="options">
           <BaseButton>
             <a :href="`${GITHUB}/issues/new?assignees=&labels=&projects=&template=%E5%8D%95%E8%AF%8D%E9%94%99%E8%AF%AF---word-error.md&title=%E5%8D%95%E8%AF%8D%E9%94%99%E8%AF%AF+%7C+Word+error`"
-               target="_blank">字典错误？</a>
+               target="_blank">词典错误？</a>
           </BaseButton>
           <BaseButton>
             <a :href="`${GITHUB}/issues/new?assignees=&labels=&projects=&template=问题报告---bug-report-.md&title=问题报告+%7C+Bug+report+`"

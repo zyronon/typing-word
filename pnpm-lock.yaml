@@ -65,12 +65,6 @@ dependencies:
   vue-router:
     specifier: '4'
     version: 4.2.5(vue@3.3.4)
-  vue-virtual-list-v3:
-    specifier: ^1.5.1
-    version: 1.5.1
-  vue-virtual-scroll-list:
-    specifier: ^2.3.5
-    version: 2.3.5
   vue-virtual-scroller:
     specifier: 2.0.0-beta.8
     version: 2.0.0-beta.8(vue@3.3.4)
@@ -813,10 +807,6 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
     optional: true
-
-  /@juggle/resize-observer@3.4.0:
-    resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
-    dev: false
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -5138,16 +5128,6 @@ packages:
       semver: 7.5.4
       typescript: 5.2.2
     dev: true
-
-  /vue-virtual-list-v3@1.5.1:
-    resolution: {integrity: sha512-HbI2DTTRmw6GotG//wrKj6qcYpS8ecPFTxCxRUzXbz929xgXuO/VlcxxIQ9eusGVv5T64twk4l93MnKgyscL9g==}
-    dependencies:
-      '@juggle/resize-observer': 3.4.0
-    dev: false
-
-  /vue-virtual-scroll-list@2.3.5:
-    resolution: {integrity: sha512-YFK6u5yltqtAOfTBcij/KGAS2SoZvzbNIAf9qTULauPObEp53xj22tDuohrrM2vNkgoD5kejXICIUBt2Q4ZDqQ==}
-    dev: false
 
   /vue-virtual-scroller@2.0.0-beta.8(vue@3.3.4):
     resolution: {integrity: sha512-b8/f5NQ5nIEBRTNi6GcPItE4s7kxNHw2AIHLtDp+2QvqdTjVN0FgONwX9cr53jWRgnu+HRLPaWDOR2JPI5MTfQ==}
