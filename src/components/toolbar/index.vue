@@ -114,21 +114,9 @@ watch(() => store.load, n => {
           </Tooltip>
 
 
-          <Tooltip title="反馈">
-            <IconWrapper>
-              <Icon icon="octicon:bug-24" @click="showFeedbackModal = true"/>
-            </IconWrapper>
-          </Tooltip>
 
-          <Tooltip
-              :title="`切换主题(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
-          >
-            <IconWrapper>
-              <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
-                    @click="toggleTheme"/>
-              <Icon icon="tabler:sun" v-else @click="toggleTheme"/>
-            </IconWrapper>
-          </Tooltip>
+
+
         </div>
 
         <div class="with-bg anim">
@@ -161,7 +149,6 @@ watch(() => store.load, n => {
             color="#999"/>
     </Tooltip>
   </header>
-  <FeedbackModal v-if="showFeedbackModal" @close="showFeedbackModal = false"/>
 </template>
 
 <style lang="scss">
