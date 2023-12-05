@@ -14,7 +14,7 @@
 
 ## 📸 在线访问
 
-Github Pages: <https://zyronon.github.io/typing-word/>(国内推荐访问这个)
+Github Pages: <https://typing-word.ttentau.top>(国内推荐访问这个)
 
 Netlify: <https://typing-words.netlify.app/>(需要翻墙)
 

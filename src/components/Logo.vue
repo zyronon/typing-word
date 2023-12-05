@@ -10,8 +10,8 @@ function goHome(){
 
 <template>
   <div class="logo" @click="goHome">
-    <img v-show="settingStore.theme === 'light'" src="/logo-text-black.png" alt="">
-    <img v-show="settingStore.theme !== 'light'" src="/logo-text-white.png" alt="">
+    <img v-show="settingStore.theme === 'dark'" src="/logo-text-white.png" alt="">
+    <img v-show="settingStore.theme !== 'dark'" src="/logo-text-black.png" alt="">
   </div>
 </template>
 

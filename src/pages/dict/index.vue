@@ -25,7 +25,7 @@ onMounted(() => {
         <nav class="active">
           <router-link to="/dict">词典</router-link>
         </nav>
-        <nav @click.stop="runtimeStore.showSettingModal = true"><a href="javascript;;">设置</a></nav>
+        <nav @click.stop="runtimeStore.showSettingModal = true"><a href="javascript:void(0)">设置</a></nav>
       </div>
       <RightTopBar/>
     </header>
