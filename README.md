@@ -44,8 +44,8 @@ API 等词库。 尽可能满足大部分用户对背单词的需求，也非常
 
 1. 安装 NodeJS，参考[官方文档](https://nodejs.org/en/download)
 2. 使用 `git clone` 下载项目到本地, 不使用 git 可能因为缺少依赖而无法运行
-3. 打开命令行，在项目根目录下，运行`pnpm install`来下载依赖。
-4. 执行`pnpm start`来启动项目，项目默认地址为[`http://localhost:3000`](http://localhost:3000)
+3. 打开命令行，在项目根目录下，运行`npm install`来下载依赖。
+4. 执行`npm start`来启动项目，项目默认地址为[`http://localhost:3000`](http://localhost:3000)
 5. 在浏览器中打开[`http://localhost:3000`](http://localhost:3000)  来访问项目。
 
 ## 📕 词库列表
@@ -61,7 +61,7 @@ API 等词库。 尽可能满足大部分用户对背单词的需求，也非常
 
 - JavaScript API、Node.js API、Java API、Linux Command、C#: List API
 
-均来源于：[qwerty-learner](https://github.com/RealKai42/qwerty-learner/)
+词库均来源于(除文章以外)：[qwerty-learner](https://github.com/RealKai42/qwerty-learner/)
 
 如果您需要背诵其他词库，欢迎在 Issue 中提出
 
