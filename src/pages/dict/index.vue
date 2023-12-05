@@ -4,6 +4,8 @@ import DictManage from "@/pages/dict/DictManage.vue";
 import {onMounted} from "vue";
 import {useRoute} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
+import RightTopBar from "@/components/RightTopBar.vue";
+import Logo from "@/components/Logo.vue";
 
 const router = useRoute()
 const runtimeStore = useRuntimeStore()
@@ -13,8 +15,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="page">
-    <header>
+  <div id="page" class="anim">
+    <header class="anim">
+      <Logo/>
       <div class="nav-list">
         <nav>
           <router-link to="/practice">练习</router-link>
@@ -22,8 +25,9 @@ onMounted(() => {
         <nav class="active">
           <router-link to="/dict">词典</router-link>
         </nav>
-        <nav @click="runtimeStore.showSettingModal = true"><a href="#">设置</a></nav>
+        <nav @click.stop="runtimeStore.showSettingModal = true"><a href="javascript;;">设置</a></nav>
       </div>
+      <RightTopBar/>
     </header>
     <div class="content">
       <DictManage/>
@@ -41,12 +45,13 @@ onMounted(() => {
   font-size: 14rem;
 
   header {
+    background: var(--color-second-bg);
     height: 60rem;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid #d2d2d2;
+    border-bottom: 1px solid var(--color-item-border);
 
     .nav-list {
       display: flex;

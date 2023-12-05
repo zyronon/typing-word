@@ -14,23 +14,18 @@ import {MessageBox} from "@/utils/MessageBox.tsx";
 import PracticeArticle from "@/pages/practice/practice-article/index.vue";
 import PracticeWord from "@/pages/practice/practice-word/index.vue";
 import {ShortcutKey} from "@/types.ts";
-import useTheme from "@/hooks/theme.ts";
-import SettingDialog from "@/components/dialog/SettingDialog.vue";
 import DictModal from "@/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
-import BaseIcon from "@/components/BaseIcon.vue";
-import IconWrapper from "@/components/IconWrapper.vue";
-import {Icon} from "@iconify/vue";
-import Tooltip from "@/components/Tooltip.vue";
-import FeedbackModal from "@/components/toolbar/FeedbackModal.vue";
+import useTheme from "@/hooks/theme.ts";
+import RightTopBar from "@/components/RightTopBar.vue";
+import Logo from "@/components/Logo.vue";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
-const practiceRef: any = $ref()
 const {toggleTheme} = useTheme()
-let showFeedbackModal = $ref(false)
+const practiceRef: any = $ref()
 
 watch(practiceStore, () => {
   if (practiceStore.inputWordNumber < 1) {
@@ -147,38 +142,16 @@ useStartKeyboardEventListener()
 </script>
 <template>
   <div class="practice-wrapper">
+    <Logo/>
     <Toolbar/>
     <!--    <BaseButton @click="test">test</BaseButton>-->
     <PracticeArticle ref="practiceRef" v-if="store.isArticle"/>
     <PracticeWord ref="practiceRef" v-else/>
     <Footer/>
   </div>
-  <div class="right-bar">
-    <BaseIcon
-        @click="showFeedbackModal = true"
-        title="反馈"
-        icon="ph:bug-beetle"/>
-
-    <Tooltip
-        :title="`切换主题(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
-    >
-      <IconWrapper>
-        <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
-              @click="toggleTheme"/>
-        <Icon icon="tabler:sun" v-else @click="toggleTheme"/>
-      </IconWrapper>
-    </Tooltip>
-
-    <a href="https://github.com/zyronon/typing-word" target="_blank">
-      <BaseIcon
-          title="Github地址"
-          icon="mdi:github"/>
-    </a>
-  </div>
+  <RightTopBar/>
   <DictModal/>
   <Statistics/>
-  <FeedbackModal v-if="showFeedbackModal" @close="showFeedbackModal = false"/>
-
 </template>
 
 <style scoped lang="scss">
@@ -192,15 +165,8 @@ useStartKeyboardEventListener()
   align-items: center;
   //padding-right: var(--practice-wrapper-padding-right);
   transform: translateX(var(--practice-wrapper-translateX));
-}
 
-.right-bar {
-  position: fixed;
-  right: 30rem;
-  top: var(--space);
-  z-index: 1;
-  display: flex;
-  gap: 10rem;
+
 }
 
 </style>
