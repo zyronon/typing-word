@@ -7,7 +7,7 @@ const routes: any[] = [
   {path: '/practice', component: Practice},
   {path: '/dict', name: 'dict', component: Dict},
   {path: '/test', name: 'test', component: Test},
-  {path: '/', redirect: '/test'},
+  {path: '/', redirect: '/practice'},
 ]
 
 const router = VueRouter.createRouter({
