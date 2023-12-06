@@ -11,6 +11,7 @@
     "preview": "vite preview",
     "commit": "git-cz",
     "prepare": "husky install",
+    "start": "vite",
     "test": "",
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
     "i18n:write": "gulp i18nwrite"
