@@ -8,6 +8,7 @@
 
 $w: 22rem;
 .icon-wrapper {
+  cursor: pointer;
   //padding: 2rem;
   width: 26rem;
   height: 26rem;

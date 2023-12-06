@@ -254,6 +254,7 @@ export const useBaseStore = defineStore('base', {
             this.current.index = this.myDictList.length - 1
           }
         }
+
         if (this.current.index < 3) {
 
         } else {
