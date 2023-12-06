@@ -907,6 +907,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
   width: 500rem;
   padding: var(--space);
   padding-top: 0;
+  color: var(--color-font-1);
 
   .desc {
     margin-top: 10rem;
