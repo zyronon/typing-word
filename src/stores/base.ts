@@ -229,6 +229,31 @@ export const useBaseStore = defineStore('base', {
         }
         const runtimeStore = useRuntimeStore()
 
+        if (location.href.includes('?mode=article')) {
+          console.log('文章')
+          let dict = {
+            ...cloneDeep(DefaultDict),
+            id: 'article_nce2',
+            name: "新概念英语2-课文",
+            description: '新概念英语2-课文',
+            category: '英语学习',
+            tags: ['新概念英语'],
+            url: 'NCE_2.json',
+            translateLanguage: 'common',
+            language: 'en',
+            type: DictType.article,
+            resourceId: 'article_nce2',
+            length: 96
+          }
+          let rIndex = this.myDictList.findIndex((v: Dict) => v.id === dict.id)
+          if (rIndex > -1) {
+            this.myDictList[rIndex] = dict
+            this.current.index = rIndex
+          } else {
+            this.myDictList.push(cloneDeep(dict))
+            this.current.index = this.myDictList.length - 1
+          }
+        }
         if (this.current.index < 3) {
 
         } else {
