@@ -9,6 +9,7 @@ import {state} from "vue-tsc/out/shared";
 
 export interface BaseState {
   myDictList: Dict[],
+  collectDictIds: string[],
   current: {
     index: number,
     practiceType: DictType,//练习类型，目前仅词典为collect时判断是练单词还是文章使用
@@ -133,6 +134,7 @@ export const useBaseStore = defineStore('base', {
         //   length: 862
         // },
       ],
+      collectDictIds: [],
       current: {
         index: 3,
         // dictType: DictType.article,
