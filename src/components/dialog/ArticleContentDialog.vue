@@ -34,7 +34,7 @@ onUnmounted(() => {
       :header="false"
       v-model="show">
     <div class="content">
-      <div class="article-content word-font-family">
+      <div class="article-content">
         <div class="title">
           <div>{{ article.title }}</div>
         </div>

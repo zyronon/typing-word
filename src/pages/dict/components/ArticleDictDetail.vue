@@ -359,7 +359,7 @@ defineExpose({getDictDetail, add, editDict})
           <Empty v-else/>
         </div>
       </div>
-      <div class="article-content word-font-family">
+      <div class="article-content">
         <div class="title">
           <div>{{ article.title }}</div>
           <BaseIcon

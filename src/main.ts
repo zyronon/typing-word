@@ -4,7 +4,6 @@ import App from './App.vue'
 // import Mobile from './Mobile.vue'
 import {createPinia} from "pinia"
 // import ElementPlus from 'element-plus'
-import VirtualList from 'vue-virtual-list-v3';
 import ZH from "@/locales/zh-CN.ts";
 import {createI18n} from 'vue-i18n'
 import router from "@/router.ts";
@@ -26,7 +25,6 @@ const app = createApp(App)
 app.use(VueVirtualScroller)
 // app.use(ElementPlus)
 app.use(pinia)
-app.use(VirtualList);
 app.use(i18n)
 app.use(router)
 

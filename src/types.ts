@@ -103,7 +103,7 @@ export const DefaultArticle: Article = {
   newWords: [],
   textAllWords: [],
   sections: [],
-  useTranslateType: TranslateType.network
+  useTranslateType: TranslateType.custom
 }
 
 export interface Statistics {

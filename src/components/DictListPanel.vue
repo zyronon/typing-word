@@ -94,7 +94,7 @@ const groupedByCategoryAndTag = $computed(() => {
           <div class="translate">
             <span>翻译：</span>
             <el-radio-group v-model="currentTranslateLanguage">
-              <el-radio-button border v-for="i in translateLanguageList" :label="i">{{ i }}</el-radio-button>
+              <el-radio-button border v-for="i in translateLanguageList" :label="i">{{ $t(i) }}</el-radio-button>
             </el-radio-group>
           </div>
           <DictGroup
@@ -143,6 +143,7 @@ const groupedByCategoryAndTag = $computed(() => {
         gap: 6rem;
 
         &.active {
+          $main: rgb(64,158,255);
           border-bottom: 2px solid $main;
         }
 

@@ -67,7 +67,7 @@ useDisableEventListener(() => focus)
   }
 
   input {
-    font-family: $font-family;
+    font-family: var(--font-family);
     font-size: 18rem;
     outline: none;
     min-height: 20rem;

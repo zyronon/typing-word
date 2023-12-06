@@ -14,7 +14,6 @@ declare module 'vue' {
     BaseButton: typeof import('./src/components/BaseButton.vue')['default']
     BaseIcon: typeof import('./src/components/BaseIcon.vue')['default']
     BaseList: typeof import('./src/components/list/BaseList.vue')['default']
-    ChapterDetail: typeof import('./src/components/ChapterDetail.vue')['default']
     ChapterName: typeof import('./src/components/toolbar/ChapterName.vue')['default']
     Close: typeof import('./src/components/icon/Close.vue')['default']
     Dialog: typeof import('./src/components/dialog/Dialog.vue')['default']
@@ -47,7 +46,6 @@ declare module 'vue' {
     IconWrapper: typeof import('./src/components/IconWrapper.vue')['default']
     Input: typeof import('./src/components/Input.vue')['default']
     List: typeof import('./src/components/list/List.vue')['default']
-    ListItem: typeof import('./src/components/list/ListItem.vue')['default']
     Logo: typeof import('./src/components/Logo.vue')['default']
     MiniDialog: typeof import('./src/components/dialog/MiniDialog.vue')['default']
     PopConfirm: typeof import('./src/components/PopConfirm.vue')['default']
@@ -63,9 +61,7 @@ declare module 'vue' {
     TranslateSetting: typeof import('./src/components/toolbar/TranslateSetting.vue')['default']
     VolumeIcon: typeof import('./src/components/icon/VolumeIcon.vue')['default']
     VolumeSetting: typeof import('./src/components/toolbar/VolumeSetting.vue')['default']
-    WordItem: typeof import('./src/components/list/WordItem.vue')['default']
     WordList: typeof import('./src/components/list/WordList.vue')['default']
-    WordList2: typeof import('./src/components/list/WordList2.vue')['default']
     WordListDialog: typeof import('./src/components/dialog/WordListDialog.vue')['default']
   }
   export interface ComponentCustomProperties {

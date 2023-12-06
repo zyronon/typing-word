@@ -104,34 +104,34 @@ export const useBaseStore = defineStore('base', {
           language: 'en',
           type: DictType.word
         },
-        {
-          ...cloneDeep(DefaultDict),
-          id: 'article_nce2',
-          name: "新概念英语2-课文",
-          description: '新概念英语2-课文',
-          category: '英语学习',
-          tags: ['新概念英语'],
-          url: 'NCE_2.json',
-          translateLanguage: 'common',
-          language: 'en',
-          type: DictType.article,
-          resourceId: 'article_nce2',
-          length: 13
-        },
-        {
-          ...cloneDeep(DefaultDict),
-          id: 'nce-new-2',
-          name: '新概念英语(新版)-2',
-          description: '新概念英语新版第二册',
-          category: '青少年英语',
-          tags: ['新概念英语'],
-          url: 'nce-new-2.json',
-          translateLanguage: 'common',
-          language: 'en',
-          type: DictType.word,
-          resourceId: 'nce-new-2',
-          length: 862
-        },
+        // {
+        //   ...cloneDeep(DefaultDict),
+        //   id: 'article_nce2',
+        //   name: "新概念英语2-课文",
+        //   description: '新概念英语2-课文',
+        //   category: '英语学习',
+        //   tags: ['新概念英语'],
+        //   url: 'NCE_2.json',
+        //   translateLanguage: 'common',
+        //   language: 'en',
+        //   type: DictType.article,
+        //   resourceId: 'article_nce2',
+        //   length: 96
+        // },
+        // {
+        //   ...cloneDeep(DefaultDict),
+        //   id: 'nce-new-2',
+        //   name: '新概念英语(新版)-2',
+        //   description: '新概念英语新版第二册',
+        //   category: '青少年英语',
+        //   tags: ['新概念英语'],
+        //   url: 'nce-new-2.json',
+        //   translateLanguage: 'common',
+        //   language: 'en',
+        //   type: DictType.word,
+        //   resourceId: 'nce-new-2',
+        //   length: 862
+        // },
       ],
       current: {
         index: 3,
@@ -142,22 +142,21 @@ export const useBaseStore = defineStore('base', {
       simpleWords: [
         'a', 'an',
         'i', 'my', 'you', 'your', 'me', 'it',
-        'am', 'is', 'do', 'are', 'did', 'were',
-        'what', 'who', 'where', 'how', 'no', 'yes',
-        'not', 'can', 'could',
-        'the', 'to', 'of', 'for', 'and', 'that', 'this', 'be'
+        'what', 'who', 'where', 'how', 'when', 'which',
+        'be', 'am', 'is', 'do', 'are', 'did', 'were', 'was', 'can', 'could', 'will', 'would',
+        'the', 'that', 'this', 'to', 'of', 'for', 'and', 'at', 'not', 'no', 'yes',
       ],
       load: false
     }
   },
   getters: {
-    collect() {
-      return this.myDictList[0] ?? {}
+    collect(): Dict {
+      return this.myDictList[0]
     },
     simple(): Dict {
       return this.myDictList[1]
     },
-    wrong() {
+    wrong(): Dict {
       return this.myDictList[2]
     },
     skipWordNames() {

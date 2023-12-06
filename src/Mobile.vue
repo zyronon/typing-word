@@ -449,7 +449,7 @@ html, body {
 .mobile {
   width: 100vw;
   height: 100vh;
-  background: $dark-main-bg;
+  background: var(--color-background);
   overflow: hidden;
 
   canvas {
