@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import {Icon} from "@iconify/vue";
+import Tooltip from "@/components/Tooltip.vue";
 
 defineEmits(['click'])
+defineProps<{
+  title?: string
+}>()
 </script>
 
 <template>
   <div class="close"
        @click="$emit('click')"
   >
-    <Icon icon="ic:round-close"
-          width="20"
-    />
+    <Tooltip :title="title">
+      <Icon icon="carbon:close-outline"
+      />
+    </Tooltip>
   </div>
 </template>
 
@@ -20,5 +25,6 @@ defineEmits(['click'])
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 18rem;
 }
 </style>

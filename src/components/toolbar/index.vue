@@ -18,6 +18,7 @@ import {$ref} from "vue/macros";
 import {DictType, ShortcutKey} from "@/types.ts";
 import ChapterName from "@/components/toolbar/ChapterName.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
+import BaseIcon from "@/components/BaseIcon.vue";
 
 const {toggleTheme} = useTheme()
 const store = useBaseStore()
@@ -113,7 +114,10 @@ watch(() => store.load, n => {
             </IconWrapper>
           </Tooltip>
 
-
+          <BaseIcon
+              @click="showFeedbackModal = true"
+              title="反馈"
+              icon="ph:bug-beetle"/>
 
 
 
@@ -149,6 +153,8 @@ watch(() => store.load, n => {
             color="#999"/>
     </Tooltip>
   </header>
+  <FeedbackModal v-if="showFeedbackModal" @close="showFeedbackModal = false"/>
+
 </template>
 
 <style lang="scss">
@@ -203,6 +209,7 @@ header {
   gap: 10rem;
   border: 1px solid var(--color-item-border);
   transition: all var(--anim-time);
+  box-shadow: var(--shadow);
 
   .content {
     min-height: var(--toolbar-height);

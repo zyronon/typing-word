@@ -18,10 +18,7 @@ const settingStore = useSettingStore()
 
 <template>
   <div class="right-bar">
-    <BaseIcon
-        @click="showFeedbackModal = true"
-        title="反馈"
-        icon="ph:bug-beetle"/>
+
 
     <Tooltip
         :title="`切换主题(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
@@ -39,7 +36,6 @@ const settingStore = useSettingStore()
           icon="mdi:github"/>
     </a>
   </div>
-  <FeedbackModal v-if="showFeedbackModal" @close="showFeedbackModal = false"/>
 </template>
 
 <style scoped lang="scss">

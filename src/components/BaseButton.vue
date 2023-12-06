@@ -85,7 +85,10 @@ defineEmits(['click'])
   &.large {
     height: 50rem;
     font-size: 18rem;
-    padding: 0 18rem;
+    padding: 0 22rem;
+    & > span {
+      font-size: 18rem;
+    }
   }
 
 

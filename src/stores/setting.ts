@@ -1,5 +1,5 @@
 import {defineStore} from "pinia"
-import {cloneDeep} from "lodash-es";
+import {cloneDeep, merge} from "lodash-es";
 import {DefaultShortcutKeyMap, SaveConfig} from "@/types.ts";
 
 export interface SettingState {
@@ -36,7 +36,9 @@ export interface SettingState {
     theme: string,
     collapse: boolean,
     chapterWordNumber: number,
-    shortcutKeyMap: Record<string, string>
+    shortcutKeyMap: Record<string, string>,
+    first: boolean
+    load: boolean
 }
 
 export const DefaultChapterWordNumber = 30
@@ -78,14 +80,18 @@ export const useSettingStore = defineStore('setting', {
             theme: 'auto',
             collapse: false,
             chapterWordNumber: DefaultChapterWordNumber,
-            shortcutKeyMap: cloneDeep(DefaultShortcutKeyMap)
+            shortcutKeyMap: cloneDeep(DefaultShortcutKeyMap),
+            first: true,
+            load: false
         }
     },
     actions: {
         setState(obj: any) {
-            for (const [key, value] of Object.entries(obj)) {
-                this[key] = value
-            }
+            // for (const [key, value] of Object.entries(obj)) {
+            //     this[key] = value
+            // }
+            //这样不会丢失watch的值的引用
+            merge(this, obj)
         },
         init() {
             return new Promise(resolve => {
@@ -99,6 +105,7 @@ export const useSettingStore = defineStore('setting', {
                         if (!obj.version) {
                             setDefaultConfig()
                         } else {
+                            obj.val.load = false
                             if (obj.version !== SaveConfig.version) {
                                 for (const [key, value] of Object.entries(this.shortcutKeyMap)) {
                                     if (obj.val.shortcutKeyMap[key]) this.shortcutKeyMap[key] = obj.val.shortcutKeyMap[key]
@@ -120,6 +127,7 @@ export const useSettingStore = defineStore('setting', {
                         setDefaultConfig()
                     }
                 }
+                this.load = true
                 resolve(true)
             })
         }
