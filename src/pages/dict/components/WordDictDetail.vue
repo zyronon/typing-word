@@ -567,7 +567,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
           </div>
           <template v-if="!isPinDict">
             <BaseIcon icon="tabler:edit" @click='editDict'/>
-            <BaseIcon icon="ph:star" @click='no'/>
+<!--            <BaseIcon icon="ph:star" @click='no'/>-->
             <BaseButton size="small" v-if="runtimeStore.editDict.isCustom" @click="resetDict">恢复默认</BaseButton>
           </template>
           <div class="import hvr-grow">
