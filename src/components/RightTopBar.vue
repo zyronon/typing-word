@@ -18,8 +18,6 @@ const settingStore = useSettingStore()
 
 <template>
   <div class="right-bar">
-
-
     <Tooltip
         :title="`切换主题(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
     >
@@ -42,7 +40,7 @@ const settingStore = useSettingStore()
 
 .right-bar {
   position: fixed;
-  right: 30rem;
+  right: var(--space);
   top: var(--space);
   z-index: 1;
   display: flex;

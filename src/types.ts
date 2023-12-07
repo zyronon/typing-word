@@ -1,7 +1,5 @@
 import bookFlag from "@/assets/img/flags/book.png";
 import enFlag from "@/assets/img/flags/en.png";
-import jpFlag from "@/assets/img/flags/ja.png";
-import deFlag from "./assets/img/flags/de.png";
 import codeFlag from "@/assets/img/flags/code.png";
 import myFlag from "@/assets/img/flags/my.png";
 import {DefaultChapterWordNumber} from "@/stores/setting.ts";
@@ -142,15 +140,6 @@ export const ShortcutKeyMap = {
   Ignore: 'Tab',
   Remove: '`',
   Collect: 'Enter',
-}
-
-export const SaveDict = {
-  key: 'typing-word-dict',
-  version: 3
-}
-export const SaveConfig = {
-  key: 'typing-word-config',
-  version: 8
 }
 
 export enum ShortcutKey {

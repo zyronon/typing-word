@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import {saveAs} from "file-saver";
 import {onMounted, onUnmounted} from "vue";
-import {Article, DefaultArticle, DictType, Sort} from "@/types.ts";
+import {Article, DefaultArticle} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {cloneDeep} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
