@@ -146,9 +146,8 @@ html, body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  color: rgb(187, 187, 187);
-  //color: var(--color-font-1);
-  //font-family: var(--font-family);
+  color: var(--color-font-1);
+  font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
