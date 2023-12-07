@@ -34,6 +34,8 @@ watch(() => settingStore.load, (n) => {
   }
 })
 
+const isMac = /macintosh|mac os x/i.test(navigator.userAgent);
+
 </script>
 
 <template>
@@ -63,7 +65,7 @@ watch(() => settingStore.load, (n) => {
                 点亮它!
               </div>
             </div>
-            <div class="collect-keyboard">或使用收藏快捷键<span class="active">Ctrl + D</span></div>
+            <div class="collect-keyboard">或使用收藏快捷键<span class="active">{{isMac?'Command':'Ctrl'}} + D</span></div>
           </div>
           <BaseButton v-else size="large" @click="toggleNotice">我想收藏</BaseButton>
         </transition>
