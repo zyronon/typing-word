@@ -15,7 +15,7 @@ const emit = defineEmits<{
 }>()
 
 let length = $computed(() => {
-  let isWord = props.dict.type === DictType.word
+  let isWord = [DictType.word,DictType.collect,DictType.simple,DictType.wrong].includes(props.dict.type)
   let len: any = ''
   if (props.dict.length) {
     len = props.dict.length

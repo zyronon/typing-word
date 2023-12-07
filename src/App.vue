@@ -2,8 +2,7 @@
 
 import {onMounted, watch} from "vue";
 import {BaseState, useBaseStore} from "@/stores/base.ts";
-import {Dict, DictType, SaveConfig, SaveDict} from "@/types.ts"
-import Practice from "@/pages/practice/index.vue"
+import {Dict, DictType} from "@/types.ts"
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {cloneDeep} from "lodash-es";
@@ -12,8 +11,9 @@ import useTheme from "@/hooks/theme.ts";
 import * as localforage from "localforage";
 import SettingDialog from "@/components/dialog/SettingDialog.vue";
 import ArticleContentDialog from "@/components/dialog/ArticleContentDialog.vue";
-import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import CollectNotice from "@/components/CollectNotice.vue";
+import {SAVE_SETTING_KEY, SAVE_DICT_KEY} from "@/utils/const.ts";
+import {shakeCommonDict} from "@/utils";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -21,26 +21,11 @@ const settingStore = useSettingStore()
 const {setTheme} = useTheme()
 
 watch(store.$state, (n: BaseState) => {
-  let data: BaseState = cloneDeep(n)
-  data.myDictList.map((v: Dict) => {
-    if (v.isCustom) {
-      if (v.type === DictType.article) {
-        v.articles.map(s => {
-          delete s.sections
-        })
-      }
-    } else {
-      if (v.type === DictType.word) v.originWords = []
-      if (v.type === DictType.article) v.articles = []
-      v.words = []
-      v.chapterWords = []
-    }
-  })
-  localforage.setItem(SaveDict.key, JSON.stringify({val: data, version: SaveDict.version}))
+  localforage.setItem(SAVE_DICT_KEY.key, JSON.stringify({val: shakeCommonDict(n), version: SAVE_DICT_KEY.version}))
 })
 
 watch(settingStore.$state, (n) => {
-  localStorage.setItem(SaveConfig.key, JSON.stringify({val: n, version: SaveConfig.version}))
+  localStorage.setItem(SAVE_SETTING_KEY.key, JSON.stringify({val: n, version: SAVE_SETTING_KEY.version}))
 })
 
 //检测几个特定词典
@@ -94,7 +79,7 @@ onMounted(() => {
   <router-view/>
   <CollectNotice/>
   <ArticleContentDialog/>
-  <SettingDialog v-if="runtimeStore.showSettingModal" @close="runtimeStore.showSettingModal = false"/>
+  <SettingDialog/>
 </template>
 
 <style scoped lang="scss">

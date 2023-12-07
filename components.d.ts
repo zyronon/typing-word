@@ -55,6 +55,7 @@ declare module 'vue' {
     Ring: typeof import('./src/components/Ring.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Setting: typeof import('./src/components/Setting.vue')['default']
     SettingDialog: typeof import('./src/components/dialog/SettingDialog.vue')['default']
     Slide: typeof import('./src/components/Slide.vue')['default']
     Toolbar: typeof import('./src/components/toolbar/index.vue')['default']

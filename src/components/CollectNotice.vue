@@ -14,12 +14,10 @@ let timer = -1
 
 function toggleNotice() {
   showNotice = true
+  settingStore.first = false
   timer = setInterval(() => {
     num--
-    if (num <= 0) {
-      show = settingStore.first = false
-      clearInterval(timer)
-    }
+    if (num <= 0) close()
   }, 1000)
 }
 
@@ -65,7 +63,8 @@ const isMac = /macintosh|mac os x/i.test(navigator.userAgent);
                 点亮它!
               </div>
             </div>
-            <div class="collect-keyboard">或使用收藏快捷键<span class="active">{{isMac?'Command':'Ctrl'}} + D</span></div>
+            <div class="collect-keyboard">或使用收藏快捷键<span
+                class="active">{{ isMac ? 'Command' : 'Ctrl' }} + D</span></div>
           </div>
           <BaseButton v-else size="large" @click="toggleNotice">我想收藏</BaseButton>
         </transition>

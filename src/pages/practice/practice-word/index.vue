@@ -2,9 +2,9 @@
 
 import TypingWord from "@/pages/practice/practice-word/TypingWord.vue";
 import {$ref} from "vue/macros";
-import {chunk, cloneDeep} from "lodash-es";
+import {cloneDeep} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
-import {onMounted, onUnmounted, watch} from "vue";
+import {onMounted, onUnmounted} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {ShortcutKey, Word} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";

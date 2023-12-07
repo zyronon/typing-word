@@ -209,7 +209,7 @@ const showCollectToggleButton = $computed(() => {
             <WordList
                 class="word-list"
                 :list="store.wrong.words">
-              <template v-slot="{item,index}">
+              <template v-slot:suffix="{item,index}">
                 <BaseIcon
                     class="del"
                     @click="delWrongWord(item)"
