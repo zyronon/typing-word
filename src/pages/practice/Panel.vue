@@ -272,6 +272,7 @@ $header-height: 50rem;
   transition: all .3s;
   z-index: 1;
   border: 1px solid var(--color-item-border);
+  box-shadow: var(--shadow);
 
 
   & > header {

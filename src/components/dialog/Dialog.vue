@@ -257,7 +257,7 @@ $header-height: 60rem;
   .window {
     //width: 75vw;
     //height: 70vh;
-    box-shadow: var(--color-main-bg) 0 0 6rem 0;
+    box-shadow: var(--shadow);
     border-radius: $radius;
     animation: bounce-in $time ease-out;
 

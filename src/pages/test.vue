@@ -1,6 +1,8 @@
 <script setup lang="ts">
 
 import {splitEnArticle} from "@/hooks/article.ts";
+import BaseButton from "@/components/BaseButton.vue";
+import {useSettingStore} from "@/stores/setting.ts";
 
 let data = {
   "title": "A cold welcome",
@@ -25,14 +27,21 @@ let data = {
 //   "id": "TdAAqD"
 // }
 splitEnArticle(data.text)
+const settingStore = useSettingStore()
 </script>
 
 <template>
-  <div>
+  <div class="page">
     test
+    <BaseButton @click="settingStore.load = !settingStore.load">test</BaseButton>
   </div>
 </template>
 
 <style scoped lang="scss">
-
+.page {
+  position: relative;
+  z-index: 1;
+  font-size: 14rem;
+  color: black;
+}
 </style>

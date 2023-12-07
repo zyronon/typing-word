@@ -36,6 +36,9 @@
   --toolbar-height: 54rem;
   --panel-width: 400rem;
   --space: 20rem;
+  --radius: 8rem;
+  --shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  --shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;;
   --panel-margin-left: calc(50% - var(--practice-wrapper-translateX) / 2 + var(--toolbar-width) / 2 + 24rem);
   --article-panel-margin-left: calc(50% - var(--practice-wrapper-translateX) / 2 + var(--article-width) / 2 + 24rem);
   --anim-time: 0.5s;
@@ -156,7 +159,7 @@ html, body {
 }
 
 a {
-  $main: rgb(64,158,255);
+  $main: rgb(64, 158, 255);
   color: $main;
   text-decoration: none;
 }

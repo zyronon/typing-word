@@ -104,6 +104,7 @@ onUnmounted(() => {
     padding: 3rem var(--space) 6rem var(--space);
     z-index: 2;
     border: 1px solid var(--color-item-border);
+    box-shadow: var(--shadow);
 
     .stat {
       margin-top: 8rem;
