@@ -89,20 +89,17 @@ const showCollectToggleButton = $computed(() => {
   <Transition name="fade">
     <div class="panel anim" v-show="settingStore.showPanel">
       <header>
-        <Transition name="fade">
-          <Tooltip
-              v-if="!settingStore.showToolbar"
-              :title="`关闭(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
-          >
-            <Close @click="settingStore.showPanel = false"/>
-          </Tooltip>
-        </Transition>
         <div class="tabs">
           <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前</div>
           <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.collect.name }}</div>
           <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.simple.name }}</div>
           <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.wrong.name }}</div>
         </div>
+        <Tooltip
+            :title="`关闭(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
+        >
+          <Close @click="settingStore.showPanel = false"/>
+        </Tooltip>
       </header>
       <Slide :slide-count="4" :step="tabIndex">
         <div class="slide-item">
@@ -234,32 +231,6 @@ $header-height: 50rem;
 .slide-item {
   width: var(--panel-width);
   height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  > header {
-    padding: 0 var(--space);
-    height: $header-height;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 10rem;
-    font-size: 16rem;
-    color: black;
-  }
-
-  .content {
-    flex: 1;
-    overflow: auto;
-    padding-bottom: var(--space);
-  }
-
-  footer {
-    padding-right: var(--space);
-    margin-bottom: 10rem;
-    align-items: center;
-  }
 }
 
 .panel {
@@ -281,6 +252,7 @@ $header-height: 50rem;
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 10rem 15rem;
     border-bottom: 1px solid #e1e1e1;
     gap: 15rem;
@@ -290,18 +262,17 @@ $header-height: 50rem;
     }
 
     .tabs {
-      justify-content: flex-end;
-      width: 100%;
       display: flex;
       align-items: center;
       gap: 15rem;
       font-size: 14rem;
-      color: gray;
 
       .tab {
         cursor: pointer;
         word-break: keep-all;
         font-size: 16rem;
+        transition: all .3s;
+        color: gray;
 
         &.active {
           color: var(--color-main-active);
@@ -311,5 +282,4 @@ $header-height: 50rem;
     }
   }
 }
-
 </style>
