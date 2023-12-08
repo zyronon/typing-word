@@ -14,6 +14,7 @@ import ArticleContentDialog from "@/components/dialog/ArticleContentDialog.vue";
 import CollectNotice from "@/components/CollectNotice.vue";
 import {SAVE_SETTING_KEY, SAVE_DICT_KEY} from "@/utils/const.ts";
 import {shakeCommonDict} from "@/utils";
+import router from "@/router.ts";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -69,6 +70,12 @@ async function init() {
 
 onMounted(() => {
   init()
+
+  if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+    // 当前设备是移动设备
+    console.log('当前设备是移动设备')
+    router.replace('/mobile')
+  }
 })
 
 
