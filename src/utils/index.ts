@@ -32,6 +32,7 @@ export function checkAndUpgradeSaveDict(val: string) {
             if (!data.version) {
                 return {}
             }
+            state.load = false
             let version = Number(data.version)
             // console.log('state', state)
             let defaultBaseState = DefaultBaseState()
@@ -74,8 +75,8 @@ export function checkAndUpgradeSaveSetting(val: string) {
             if (!data.version) {
                 return {}
             }
+            state.load = false
             let version = Number(data.version)
-
             let defaultSettingState = DefaultSettingState()
             if (version === SAVE_SETTING_KEY.version) {
                 //防止人为删除数据，导致数据不完整报错
