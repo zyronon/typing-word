@@ -106,41 +106,26 @@ watch(() => store.load, n => {
 
           <!--                    <Add/>-->
 
-          <Tooltip title="添加">
-            <IconWrapper>
-              <Icon icon="ic:outline-cloud-upload"
-                    @click="emitter.emit(EventKey.openDictModal,'my')"
-              />
-            </IconWrapper>
-          </Tooltip>
+          <BaseIcon
+              @click="emitter.emit(EventKey.openDictModal,'my')"
+              title="添加"
+              icon="ic:outline-cloud-upload"/>
 
           <BaseIcon
               @click="showFeedbackModal = true"
               title="反馈"
               icon="ph:bug-beetle"/>
-
-
-
         </div>
 
         <div class="with-bg anim">
-          <Tooltip
+          <BaseIcon
+              @click="runtimeStore.showSettingModal = true"
               :title="`设置(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
-          >
-            <IconWrapper>
-              <Icon icon="uil:setting" @click="runtimeStore.showSettingModal = true"/>
-            </IconWrapper>
-          </Tooltip>
-
-          <!--          <div class="base-button" @click="emitter.emit(EventKey.openStatModal)">ok</div>-->
-
-          <Tooltip
+              icon="uil:setting"/>
+          <BaseIcon
+              @click="settingStore.showPanel = !settingStore.showPanel"
               :title="`单词本(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
-          >
-            <IconWrapper>
-              <Icon icon="tdesign:menu-unfold" class="menu" @click="settingStore.showPanel = !settingStore.showPanel"/>
-            </IconWrapper>
-          </Tooltip>
+              icon="tdesign:menu-unfold"/>
         </div>
       </div>
     </div>

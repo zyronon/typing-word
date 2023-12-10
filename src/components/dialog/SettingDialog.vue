@@ -15,7 +15,7 @@ import Setting from "@/components/Setting.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 
 const runtimeStore = useRuntimeStore()
-let disabledDialogEscKey = $ref(false)
+let disabledDialogEscKey = $ref(true)
 </script>
 
 <template>

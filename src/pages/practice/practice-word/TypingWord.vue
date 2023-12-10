@@ -315,13 +315,10 @@ onUnmounted(() => {
                       </div>
                     </MiniDialog>
                   </div>
-                  <Tooltip
-                      :title="`下一章(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
-                      v-if="store.currentDict.chapterIndex < store.currentDict.chapterWords.length - 1">
-                    <IconWrapper>
-                      <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
-                    </IconWrapper>
-                  </Tooltip>
+                  <BaseIcon icon="bi:arrow-right"
+                            @click="emitter.emit(EventKey.next)"
+                            :title="`下一章(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
+                            v-if="store.currentDict.chapterIndex < store.currentDict.chapterWords.length - 1"/>
                 </div>
                 <div class="right">
                   {{ data.words.length }}个单词

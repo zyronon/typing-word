@@ -59,7 +59,7 @@ watch(store.wrong.originWords, (n) => {
 })
 
 async function init() {
-  console.time()
+  // console.time()
   store.init().then(() => {
     store.load = true
     // console.timeEnd()
@@ -74,11 +74,9 @@ onMounted(() => {
   if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
     // 当前设备是移动设备
     console.log('当前设备是移动设备')
-    router.replace('/mobile')
+    // router.replace('/mobile')
   }
 })
-
-
 </script>
 
 <template>

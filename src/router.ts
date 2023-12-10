@@ -5,16 +5,16 @@ import Mobile from '@/pages/mobile/index.vue'
 import Test from "@/pages/test.vue";
 
 const routes: any[] = [
-  {path: '/practice', component: Practice},
-  {path: '/dict', name: 'dict', component: Dict},
-  {path: '/mobile', name: 'dict', component: Mobile},
-  {path: '/test', name: 'test', component: Test},
-  {path: '/', redirect: '/practice'},
+    {path: '/practice', component: Practice},
+    {path: '/dict', component: Dict},
+    {path: '/mobile', component: Mobile},
+    {path: '/test', component: Test},
+    {path: '/', redirect: '/practice'},
 ]
 
 const router = VueRouter.createRouter({
-  history: VueRouter.createWebHashHistory(),
-  routes,
+    history: VueRouter.createWebHashHistory(),
+    routes,
 })
 
 export default router
