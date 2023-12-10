@@ -214,10 +214,10 @@ defineExpose({del, showWord, hideWord, play})
   align-items: center;
   justify-content: center;
   word-break: break-word;
+  position: relative;
 
   .phonetic, .translate {
     font-size: 20rem;
-    margin-left: -30rem;
     transition: all .3s;
   }
 
@@ -251,6 +251,7 @@ defineExpose({del, showWord, hideWord, play})
   }
 
   .word-wrapper {
+    margin-left: 30rem;
     display: flex;
     align-items: center;
     gap: 10rem;

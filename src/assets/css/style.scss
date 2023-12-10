@@ -4,7 +4,6 @@
 @import "anim";
 @import 'element-plus/theme-chalk/dark/css-vars';
 
-
 :root {
   --color-background: #E6E8EB;
   --color-main-bg: #E6E8EB;
@@ -138,7 +137,6 @@ html.dark {
   transition: background var(--anim-time), color var(--anim-time), border var(--anim-time);
 }
 
-
 html, body {
   font-size: 1px;
   padding: 0;
@@ -150,6 +148,14 @@ html, body {
   font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.page{
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  font-size: 14rem;
 }
 
 #app {

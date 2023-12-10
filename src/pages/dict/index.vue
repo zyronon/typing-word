@@ -15,7 +15,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="page" class="anim">
+  <div class="anim page">
     <header class="anim">
       <Logo/>
       <div class="nav-list">
@@ -36,13 +36,7 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-#page {
-  position: relative;
-  z-index: 9;
-  background: var(--color-main-bg);
-  height: 100%;
-  width: 100%;
-  font-size: 14rem;
+.page {
 
   header {
     background: var(--color-second-bg);

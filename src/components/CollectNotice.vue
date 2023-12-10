@@ -5,12 +5,16 @@ import Close from "@/components/icon/Close.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {watch} from "vue";
 import {useSettingStore} from "@/stores/setting.ts";
+import {$ref} from "vue/macros";
+import {isMobile} from "@/utils";
 
 let settingStore = useSettingStore()
 let showNotice = $ref(false)
 let show = $ref(false)
 let num = $ref(5)
 let timer = -1
+let mobile = $ref(isMobile())
+const isMac = /macintosh|mac os x/i.test(navigator.userAgent);
 
 function toggleNotice() {
   showNotice = true
@@ -32,17 +36,18 @@ watch(() => settingStore.load, (n) => {
   }
 })
 
-const isMac = /macintosh|mac os x/i.test(navigator.userAgent);
 
 </script>
 
 <template>
   <transition name="right">
-    <div class="CollectNotice" v-if="show">
+    <div class="CollectNotice"
+         :class="{mobile}"
+         v-if="show">
       <div class="notice">
         坚持练习，提高外语能力。将
         <span class="active">「Typing Word」</span>
-        保存到收藏夹，永不迷失！
+        保存为书签，永不迷失！
       </div>
       <div class="wrapper">
         <transition name="fade">
@@ -63,7 +68,7 @@ const isMac = /macintosh|mac os x/i.test(navigator.userAgent);
                 点亮它!
               </div>
             </div>
-            <div class="collect-keyboard">或使用收藏快捷键<span
+            <div class="collect-keyboard" v-if="!mobile">或使用收藏快捷键<span
                 class="active">{{ isMac ? 'Command' : 'Ctrl' }} + D</span></div>
           </div>
           <BaseButton v-else size="large" @click="toggleNotice">我想收藏</BaseButton>
@@ -108,6 +113,12 @@ const isMac = /macintosh|mac os x/i.test(navigator.userAgent);
   line-height: 1.5;
   border: 1px solid var(--color-item-border);
   box-shadow: var(--shadow);
+  box-sizing: border-box;
+
+  &.mobile{
+    width: 95%;
+    padding: 10rem;
+  }
 
   .notice {
     margin-top: 30rem;

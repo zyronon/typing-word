@@ -8,7 +8,7 @@ import {ShortcutKey, Sort, Word} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {syncMyDictList, useWordOptions} from "@/hooks/dict.ts";
-import {onMounted, onUnmounted, watch} from "vue";
+import {nextTick, onMounted, onUnmounted, watch} from "vue";
 import BaseButton from "@/components/BaseButton.vue";
 import Options from "@/pages/practice/Options.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
@@ -16,6 +16,9 @@ import MobilePanel from "@/pages/mobile/components/MobilePanel.vue";
 import MiniDialog from "@/components/dialog/MiniDialog.vue";
 import WordList from "@/components/list/WordList.vue";
 import Empty from "@/components/Empty.vue";
+import {Icon} from "@iconify/vue";
+import router from "@/router.ts";
+import Typing from "@/pages/practice/practice-word/Typing.vue";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -71,7 +74,9 @@ watch(() => store.load, n => {
   getCurrentPractice()
 })
 
+let bodyHeight = $ref('100vh')
 onMounted(() => {
+  bodyHeight = document.body.clientHeight + 'px'
   getCurrentPractice()
 })
 
@@ -86,45 +91,80 @@ const {
 } = useWordOptions()
 
 let showSortOption = $ref(false)
+let showTranslate = $ref(false)
+
+let keyboardKeys = [
+  ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+  ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+  ['z', 'x', 'c', 'v', 'b', 'n', 'm']
+]
+
+let inputVal = $ref('')
+let inputRef = $ref<HTMLInputElement>()
+
+
+function change(e) {
+  console.log('e', e)
+  e.key = e.data
+  emitter.emit(EventKey.onTyping, e)
+  inputRef.value = ''
+}
+
+function know() {
+  settingStore.translate = false
+  setTimeout(() => {
+    wordData.index++
+  }, 300)
+}
+
+function unknow() {
+  settingStore.translate = true
+  inputRef.focus()
+}
 </script>
 
 <template>
-  <div id="mobile">
+  <div class="practice-center" :style="{height:bodyHeight}">
     <div class="slide">
       <div class="slide-list" :class="{showPanel:settingStore.showPanel}">
         <div class="practice" @click.stop="settingStore.showPanel = false">
           <div class="tool-bar">
-            <BaseIcon
-                v-if="!isWordCollect(word)"
-                class="collect"
-                @click="toggleWordCollect(word)"
-                icon="ph:star"/>
-            <BaseIcon
-                v-else
-                class="fill"
-                @click="toggleWordCollect(word)"
-                icon="ph:star-fill"/>
-
-            <BaseIcon
-                @click="settingStore.showPanel = !settingStore.showPanel"
-                icon="tdesign:menu-unfold"/>
-          </div>
-          <div class="word-content">
-            <div class="translate">
-              <div class="translate-item" v-for="(v,i) in word.trans">
-                <span>{{ v }}</span>
-              </div>
+            <div class="left">
+              <Icon icon="octicon:arrow-left-24" width="22"
+                    @click="router.back()"
+              />
             </div>
-            <div class="word">
-              {{ word.name }}
+            <div class="right">
+              <BaseIcon
+                  v-if="!isWordCollect(word)"
+                  class="collect"
+                  @click="toggleWordCollect(word)"
+                  icon="ph:star"/>
+              <BaseIcon
+                  v-else
+                  class="fill"
+                  @click="toggleWordCollect(word)"
+                  icon="ph:star-fill"/>
+              <BaseIcon
+                  @click="settingStore.showPanel = !settingStore.showPanel"
+                  icon="tdesign:menu-unfold"/>
             </div>
-            <div class="phonetic" v-if="settingStore.wordSoundType === 'us' && word.usphone">[{{ word.usphone }}]</div>
-            <div class="phonetic" v-if="settingStore.wordSoundType === 'uk' && word.ukphone">[{{ word.ukphone }}]</div>
           </div>
+          <input ref="inputRef"
+                 style="position:fixed;top:200vh;"
+                 @input="change"
+                 type="text">
+          <Typing
+              style="width: 90%;"
+              v-loading="!store.load"
+              ref="typingRef"
+              :word="word"
+              @next="next"
+          />
           <div class="options">
             <div class="wrapper">
-              <BaseButton>不认识</BaseButton>
-              <BaseButton @click="wordData.index++">认识</BaseButton>
+              <BaseButton @click="unknow">不认识</BaseButton>
+              <BaseButton @click="know">认识</BaseButton>
             </div>
           </div>
         </div>
@@ -216,13 +256,15 @@ let showSortOption = $ref(false)
 </template>
 
 <style scoped lang="scss">
-#mobile {
-  position: relative;
+.practice-center {
+  position: fixed;
   z-index: 1;
   font-size: 14rem;
   color: black;
   width: 100%;
-  height: 100%;
+  left: 0;
+  top: 0;
+  height: 100vh;
 
   $list-width: 75vw;
 
@@ -236,7 +278,8 @@ let showSortOption = $ref(false)
       display: flex;
       transition: all .5s;
     }
-    .showPanel{
+
+    .showPanel {
       transform: translateX(-$list-width);
     }
   }
@@ -246,46 +289,22 @@ let showSortOption = $ref(false)
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 10rem;
 
     .tool-bar {
+      width: 100%;
       height: 50rem;
       display: flex;
       padding: 0 10rem;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: space-between;
       gap: 10rem;
     }
 
-    .word-content {
-      width: 100%;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      .translate {
-        width: 80%;
-        font-size: 18rem;
-
-        .translate-item {
-          display: flex;
-          align-items: center;
-          gap: 10rem;
-        }
-      }
-
-      .word {
-        font-size: 26rem;
-      }
-
-      .phonetic {
-        font-size: 16rem;
-      }
-    }
-
     .options {
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
