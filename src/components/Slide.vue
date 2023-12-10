@@ -37,7 +37,7 @@ const style = $computed(() => {
     width: 100%;
     height: 100%;
     display: flex;
-    transition: all .5s;
+    transition: all .3s;
   }
 
   :deep(.page) {
