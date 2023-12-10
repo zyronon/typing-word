@@ -6,42 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Typing Word</title>
     <script>
-      +(function () {
-        function rem() {
-          let html = document.documentElement;
-          let max = parseInt('2048rem');
-          let min = parseInt('2048rem');
-          let width;
-          if (window.innerWidth < min) {
-            width = min;
-          } else {
-            width = window.innerWidth;
-          }
-          // console.log('width', width)
-          html.style.fontSize = width / max + 'px';
-        }
+        +(function () {
+            function rem() {
+                let html = document.documentElement;
+                let max = parseInt('2048rem');
+                let min = parseInt('2048rem');
+                let width;
+                if (window.innerWidth < min) {
+                    width = min;
+                } else {
+                    width = window.innerWidth;
+                }
+                // console.log('width', width)
+                html.style.fontSize = width / max + 'px';
+            }
 
-        rem();
-        window.addEventListener('resize', rem);
-      })();
+            rem();
+            window.addEventListener('resize', rem);
+        })();
     </script>
     <script>
 
     </script>
     <script>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        if (location.href.includes('netlify.app')) {
-          hm.src = "https://hm.baidu.com/hm.js?d77525f1ad23698a2f34f54ff69c7750";
-        } else if (location.href.includes('github.io')) {
-          hm.src = "https://hm.baidu.com/hm.js?d77525f1ad23698a2f34f54ff69c7750";
-        } else {
-          hm.src = "https://hm.baidu.com/hm.js?c558fd8cc39d4cc233a9db44ff5b6e3f";
+        if (location.hostname !== 'localhost') {
+            var _hmt = _hmt || [];
+            (function () {
+                var hm = document.createElement("script");
+                if (location.href.includes('netlify.app')) {
+                    hm.src = "https://hm.baidu.com/hm.js?d77525f1ad23698a2f34f54ff69c7750";
+                } else if (location.href.includes('github.io')) {
+                    hm.src = "https://hm.baidu.com/hm.js?d77525f1ad23698a2f34f54ff69c7750";
+                } else {
+                    hm.src = "https://hm.baidu.com/hm.js?c558fd8cc39d4cc233a9db44ff5b6e3f";
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
         }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
     </script>
 </head>
 <body>
