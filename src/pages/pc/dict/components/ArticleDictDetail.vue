@@ -11,7 +11,7 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import EditBatchArticleModal from "@/components/article/EditBatchArticleModal.vue";
 import {no} from "@/utils";
 import {Icon} from "@iconify/vue";
-import EditDict from "@/pages/dict/components/EditDict.vue";
+import EditDict from "@/pages/pc/dict/components/EditDict.vue";
 import {nanoid} from "nanoid";
 import {useBaseStore} from "@/stores/base.ts";
 import {useSettingStore} from "@/stores/setting.ts";

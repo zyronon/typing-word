@@ -1,22 +1,36 @@
 <script setup>
 import {Icon} from "@iconify/vue";
+import SlideHorizontal from "@/components/slide/SlideHorizontal.vue";
+import SlideItem from "@/components/slide/SlideItem.vue";
+import Home from "@/pages/mobile/Home.vue";
 
+let state = $ref({
+  baseIndex: 0
+})
 </script>
 <template>
   <div class="page mobile">
     <div class="content">
-      <router-view/>
+      <SlideHorizontal
+          :anim="false"
+          v-model:index="state.baseIndex">
+        <SlideItem>
+          <Home/>
+        </SlideItem>
+        <SlideItem>2</SlideItem>
+        <SlideItem>3</SlideItem>
+      </SlideHorizontal>
     </div>
     <div class="tabs">
-      <div class="tab">
+      <div class="tab" @click="state.baseIndex = 0">
         <Icon width="30" icon="icon-park:word"/>
         <span>单词</span>
       </div>
-      <div class="tab">
+      <div class="tab" @click="state.baseIndex = 1">
         <Icon width="30" icon="icon-park:word"/>
         <span>词典</span>
       </div>
-      <div class="tab">
+      <div class="tab" @click="state.baseIndex = 2">
         <Icon width="30" icon="icon-park:word"/>
         <span>我的</span>
       </div>

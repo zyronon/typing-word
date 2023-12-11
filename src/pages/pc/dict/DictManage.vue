@@ -8,10 +8,10 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import Slide from "@/components/Slide.vue";
-import ArticleDictDetail from "@/pages/dict/components/ArticleDictDetail.vue";
-import WordDictDetail from "@/pages/dict/components/WordDictDetail.vue";
+import ArticleDictDetail from "@/pages/pc/dict/components/ArticleDictDetail.vue";
+import WordDictDetail from "@/pages/pc/dict/components/WordDictDetail.vue";
 import DictListPanel from "@/components/DictListPanel.vue";
-import EditDict from "@/pages/dict/components/EditDict.vue";
+import EditDict from "@/pages/pc/dict/components/EditDict.vue";
 import {useRoute} from "vue-router";
 
 const route = useRoute()

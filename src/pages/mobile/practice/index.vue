@@ -1,24 +1,17 @@
 <script setup lang="ts">
 
-import Toolbar from "@/components/toolbar/index.vue"
 import {onMounted, onUnmounted, watch} from "vue";
 import {usePracticeStore} from "@/stores/practice.ts";
-import Footer from "@/pages/practice/Footer.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {$ref} from "vue/macros";
-import Statistics from "@/pages/practice/Statistics.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
-import PracticeArticle from "@/pages/practice/practice-article/index.vue";
-import PracticeWord from "@/pages/practice/practice-word/index.vue";
+import PracticeWord from "@/pages/mobile/practice/practice-word/index.vue";
 import {ShortcutKey} from "@/types.ts";
-import DictModal from "@/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
-import RightTopBar from "@/components/RightTopBar.vue";
-import Logo from "@/components/Logo.vue";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
@@ -137,36 +130,21 @@ onUnmounted(() => {
   emitter.off(ShortcutKey.TogglePanel, togglePanel)
 })
 
-useStartKeyboardEventListener()
+// useStartKeyboardEventListener()
 
 </script>
 <template>
   <div class="practice-wrapper">
-    <Logo/>
-    <Toolbar/>
-    <!--    <BaseButton @click="test">test</BaseButton>-->
-    <PracticeArticle ref="practiceRef" v-if="store.isArticle"/>
-    <PracticeWord ref="practiceRef" v-else/>
-    <Footer/>
+    <PracticeWord ref="practiceRef"/>
   </div>
-  <RightTopBar/>
-  <DictModal/>
-  <Statistics/>
 </template>
 
 <style scoped lang="scss">
 .practice-wrapper {
-  font-size: 13rem;
+  font-size: 14rem;
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  //padding-right: var(--practice-wrapper-padding-right);
-  transform: translateX(var(--practice-wrapper-translateX));
-
-
 }
 
 </style>

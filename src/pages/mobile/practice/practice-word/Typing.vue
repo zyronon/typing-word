@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<IProps>(), {
 })
 
 const emit = defineEmits<{
-  next: [],
+  complete: [],
   wrong: []
 }>()
 
@@ -110,13 +110,13 @@ async function onTyping(e: KeyboardEvent) {
     playCorrect()
     if (settingStore.repeatCount == 100) {
       if (settingStore.repeatCustomCount <= wordRepeatCount + 1) {
-        setTimeout(() => emit('next'), settingStore.waitTimeForChangeWord)
+        setTimeout(() => emit('complete'), settingStore.waitTimeForChangeWord)
       } else {
         repeat()
       }
     } else {
       if (settingStore.repeatCount <= wordRepeatCount + 1) {
-        setTimeout(() => emit('next'), settingStore.waitTimeForChangeWord)
+        setTimeout(() => emit('complete'), settingStore.waitTimeForChangeWord)
       } else {
         repeat()
       }

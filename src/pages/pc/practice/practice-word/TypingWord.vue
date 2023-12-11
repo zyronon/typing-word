@@ -2,7 +2,7 @@
 import {onMounted, onUnmounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
-import {DefaultDisplayStatistics, DictType, ShortcutKey, Sort, Word} from "../../../types.ts";
+import {DefaultDisplayStatistics, DictType, ShortcutKey, Sort, Word} from "../../../../types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep, reverse, shuffle} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
@@ -10,9 +10,9 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {useOnKeyboardEventListener, useWindowClick} from "@/hooks/event.ts";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";
-import Options from "@/pages/practice/Options.vue";
-import Typing from "@/pages/practice/practice-word/Typing.vue";
-import Panel from "@/pages/practice/Panel.vue";
+import Options from "@/pages/pc/practice/Options.vue";
+import Typing from "@/pages/pc/practice/practice-word/Typing.vue";
+import Panel from "@/pages/pc/practice/Panel.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {syncMyDictList, useWordOptions} from "@/hooks/dict.ts";
@@ -268,7 +268,7 @@ onUnmounted(() => {
         ref="typingRef"
         :word="word"
         @wrong="wordWrong"
-        @next="next"
+        @complete="next"
     />
     <div class="options-wrapper">
       <Options

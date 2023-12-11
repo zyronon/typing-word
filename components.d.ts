@@ -58,6 +58,8 @@ declare module 'vue' {
     Setting: typeof import('./src/components/Setting.vue')['default']
     SettingDialog: typeof import('./src/components/dialog/SettingDialog.vue')['default']
     Slide: typeof import('./src/components/Slide.vue')['default']
+    SlideHorizontal: typeof import('./src/components/slide/SlideHorizontal.vue')['default']
+    SlideItem: typeof import('./src/components/slide/SlideItem.vue')['default']
     Toolbar: typeof import('./src/components/toolbar/index.vue')['default']
     Tooltip: typeof import('./src/components/Tooltip.vue')['default']
     TranslateSetting: typeof import('./src/components/toolbar/TranslateSetting.vue')['default']

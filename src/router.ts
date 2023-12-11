@@ -1,28 +1,21 @@
 import * as VueRouter from 'vue-router'
-import Practice from "@/pages/practice/index.vue";
-import Dict from '@/pages/dict/index.vue'
+import {RouteRecordRaw} from 'vue-router'
+import Practice from "@/pages/pc/practice/index.vue";
+import Dict from '@/pages/pc/dict/index.vue'
 import Mobile from '@/pages/mobile/index.vue'
-import MobileHome from '@/pages/mobile/home.vue'
-import MobilePractice from '@/pages/mobile/practice.vue'
+import MobilePractice from '@/pages/mobile/practice/index.vue'
 import Test from "@/pages/test.vue";
-import {RouteRecordRaw} from "vue-router";
 
 const routes: RouteRecordRaw[] = [
-  {path: '/practice', component: Practice},
-  {path: '/dict', component: Dict},
+  {path: '/pc/practice', component: Practice},
+  {path: '/pc/dict', component: Dict},
   {
     path: '/mobile', component: Mobile,
-    redirect:'/mobile/home',
-    children: [
-      {
-        path: 'home',
-        component: MobileHome,
-      },
-    ]
+    // redirect:'/mobile/home',
   },
   {path: '/mobile-practice', component: MobilePractice,},
   {path: '/test', component: Test},
-  {path: '/', redirect: '/practice'},
+  {path: '/', redirect: '/pc/practice'},
 ]
 
 const router = VueRouter.createRouter({

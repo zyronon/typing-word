@@ -169,7 +169,7 @@ function changeSort(v: Sort, notice: boolean = true) {
 function option(type: string) {
   show = false
   setTimeout(() => {
-    router.push({path: '/dict', query: {type: type}})
+    router.push({path: '/pc/dict', query: {type: type}})
   }, 500)
 }
 

@@ -262,3 +262,7 @@ export interface WordItem {
   index: number
 }
 
+export const SlideType = {
+  HORIZONTAL: 0,
+  VERTICAL: 1,
+}

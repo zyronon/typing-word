@@ -9,7 +9,7 @@ import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} fro
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import Options from "@/pages/practice/Options.vue";
+import Options from "@/pages/pc/practice/Options.vue";
 import {Icon} from "@iconify/vue";
 import IconWrapper from "@/components/IconWrapper.vue";
 import Tooltip from "@/components/Tooltip.vue";

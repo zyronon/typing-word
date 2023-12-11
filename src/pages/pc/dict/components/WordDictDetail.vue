@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import BaseIcon from "@/components/BaseIcon.vue";
-import ChapterWordList from "@/pages/dict/components/ChapterWordList.vue";
+import ChapterWordList from "@/pages/pc/dict/components/ChapterWordList.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {$computed, $ref} from "vue/macros";
 import {assign, chunk, cloneDeep, reverse, shuffle} from "lodash-es";
@@ -18,7 +18,7 @@ import * as XLSX from "xlsx";
 import WordListDialog from "@/components/dialog/WordListDialog.vue";
 import {no} from "@/utils";
 import {Icon} from "@iconify/vue";
-import EditDict from "@/pages/dict/components/EditDict.vue";
+import EditDict from "@/pages/pc/dict/components/EditDict.vue";
 import {syncMyDictList} from "@/hooks/dict.ts";
 import MiniDialog from "@/components/dialog/MiniDialog.vue";
 import {useWindowClick} from "@/hooks/event.ts";

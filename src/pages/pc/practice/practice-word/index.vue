@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import TypingWord from "@/pages/practice/practice-word/TypingWord.vue";
+import TypingWord from "@/pages/pc/practice/practice-word/TypingWord.vue";
 import {$ref} from "vue/macros";
 import {cloneDeep} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
@@ -81,5 +81,6 @@ defineExpose({getCurrentPractice})
 .practice {
   //height: 100%;
   flex: 1;
+  display: flex;
 }
 </style>

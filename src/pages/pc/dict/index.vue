@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import DictManage from "@/pages/dict/DictManage.vue";
+import DictManage from "@/pages/pc/dict/DictManage.vue";
 import {onMounted} from "vue";
 import {useRoute} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
@@ -20,10 +20,10 @@ onMounted(() => {
       <Logo/>
       <div class="nav-list">
         <nav>
-          <router-link to="/practice">练习</router-link>
+          <router-link to="/pc/practice">练习</router-link>
         </nav>
         <nav class="active">
-          <router-link to="/dict">词典</router-link>
+          <router-link to="/pc/dict">词典</router-link>
         </nav>
         <nav @click.stop="runtimeStore.showSettingModal = true"><a href="javascript:void(0)">设置</a></nav>
       </div>
