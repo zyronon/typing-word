@@ -1,4 +1,5 @@
 import {DictResource, DictType} from "@/types.ts"
+import {newDicts} from "@/newDicts.ts";
 
 // 中国考试
 const chinaExam: DictResource[] = [
@@ -2360,9 +2361,10 @@ const enArticle: DictResource[] = [
 ]
 
 export const dictionaryResources: DictResource[] = [
-  ...chinaExam,
-  ...internationalExam,
-  ...childrenEnglish,
+  // ...chinaExam,
+  // ...internationalExam,
+  // ...childrenEnglish,
+  ...newDicts,
   ...programming,
   ...japaneseExam,
   ...germanExam,
