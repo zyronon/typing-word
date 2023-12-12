@@ -8,7 +8,7 @@ import {cloneDeep, reverse, shuffle} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
 import {useSettingStore} from "@/stores/setting.ts";
 import {useOnKeyboardEventListener, useWindowClick} from "@/hooks/event.ts";
-import Typing from "@/pages/pc/practice/practice-word/Typing.vue";
+import Typing from "@/pages/mobile/practice/practice-word/Typing.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
@@ -244,6 +244,7 @@ watch(() => index, n => {
 
 let inputRef = $ref<HTMLInputElement>()
 
+
 function change(e) {
   console.log('e', e)
   e.key = e.data
@@ -251,11 +252,10 @@ function change(e) {
   inputRef.value = ''
 }
 
-function know(isTyping: boolean = false) {
-  inputRef.blur()
+function know() {
   settingStore.translate = false
   setTimeout(() => {
-    next(isTyping)
+    data.index++
   }, 300)
 }
 
@@ -272,7 +272,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="practice-center" :style="{height:bodyHeight}">
+  <div class="practice-word" :style="{height:bodyHeight}">
     <SlideHorizontal v-model:index="index">
       <SlideItem>
         <div class="practice-body" @click.stop="index = 0">
@@ -307,7 +307,7 @@ onMounted(() => {
               v-loading="!store.load"
               ref="typingRef"
               :word="word"
-              @complete="know(true)"
+              @next="next"
           />
           <div class="options">
             <div class="wrapper">
@@ -404,19 +404,20 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-.practice-center {
+@import "@/assets/css/variable";
+
+.practice-word {
   position: fixed;
-  z-index: 1;
-  font-size: 14rem;
-  color: black;
-  width: 100%;
-  left: 0;
   top: 0;
+  left: 0;
   height: 100vh;
+  min-height: 100vh;
+  width: 100vw;
+  font-size: 14rem;
 
   .practice-body {
-    width: 100vw;
-    height: 100%;
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -461,4 +462,6 @@ onMounted(() => {
   }
 
 }
+
+
 </style>
