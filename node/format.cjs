@@ -13,10 +13,17 @@ dirs.forEach(dictName => {
 
 // formatDict(read, fileName)
 
+
 function formatDict(path, name) {
   try {
     let newObj = []
-    const str = fs.readFileSync(path + name, "utf8");
+    let str = fs.readFileSync(path + name, "utf8");
+    let replace = [
+      ['é', 'e'], ['ê', 'e'], ['è', 'e'], ['ë', 'e'], ['à', 'a'], ['â', 'a'], ['ç', 'c'], ['î', 'i'], ['ï', 'i'], ['ô', 'o'], ['ù', 'u'], ['û', 'u'], ['ü', 'u'], ['ÿ', 'y']
+    ]
+    replace.map(v => {
+      str = str.replaceAll(v[0], v[1])
+    })
     let list = str.split('\n')
     list.map(v => {
       if (!v) return
@@ -32,7 +39,7 @@ function formatDict(path, name) {
         relWords: [],
         phrases: [],
         synos: [],
-        remMethod: ''
+        memory: ''
       }
       if (item.content.word.content.trans) {
         data.trans = item.content.word.content.trans.map(s => {
