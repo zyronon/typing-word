@@ -2,7 +2,7 @@
 import {onMounted, onUnmounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
-import {DefaultDisplayStatistics, DictType, ShortcutKey, Sort, Word} from "../../../../types.ts";
+import {DefaultDisplayStatistics, DictType, ShortcutKey, Sort, Word} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep, reverse, shuffle} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
