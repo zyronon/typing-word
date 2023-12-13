@@ -854,7 +854,7 @@ const childrenEnglish: DictResource[] = [
 ]
 
 export const newDicts = [
-  ...internationalExam,
   ...chinaExam,
+  ...internationalExam,
   ...childrenEnglish,
 ]
