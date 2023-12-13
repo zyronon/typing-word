@@ -4,7 +4,7 @@ import Practice from "@/pages/pc/practice/index.vue";
 import Dict from '@/pages/pc/dict/index.vue'
 import Mobile from '@/pages/mobile/index.vue'
 import MobilePractice from '@/pages/mobile/practice/index.vue'
-import Test from "@/pages/test.vue";
+import Test from "@/pages/test/test.vue";
 
 const routes: RouteRecordRaw[] = [
   {path: '/pc/practice', component: Practice},

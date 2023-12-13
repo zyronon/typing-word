@@ -3,6 +3,8 @@
 import {splitEnArticle} from "@/hooks/article.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {useSettingStore} from "@/stores/setting.ts";
+import localforage from "localforage";
+import {SAVE_DICT_KEY} from "@/utils/const.ts";
 
 let data = {
   "title": "A cold welcome",
@@ -28,12 +30,15 @@ let data = {
 // }
 splitEnArticle(data.text)
 const settingStore = useSettingStore()
+async function test(){
+  let configStr: string = await localforage.getItem(SAVE_DICT_KEY.key)
+  console.log(configStr)
+}
 </script>
 
 <template>
   <div class="page">
-    test
-    <BaseButton @click="settingStore.load = !settingStore.load">test</BaseButton>
+    <BaseButton @click="test">test</BaseButton>
   </div>
 </template>
 
