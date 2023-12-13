@@ -1,506 +1,1010 @@
 [
   {
-    "name": "excitable portable preventable",
-    "trans": ["-able  able to be"]
+    "word": "excitable portable preventable",
+    "trans": [
+      {
+        "en": "-able  able to be"
+      }
+    ]
+  },
+  {
+    "word": "cardiac hemophiliac maniac",
+    "trans": [
+      {
+        "en": "-ac   pertaining to"
+      }
+    ]
+  },
+  {
+    "word": "perspicacity sagacity velocity",
+    "trans": [
+      {
+        "en": "-acity (-ocity)  quality of"
+      }
+    ]
+  },
+  {
+    "word": "blockade cavalcade promenade",
+    "trans": [
+      {
+        "en": "-ade    act, action or process, product"
+      }
+    ]
+  },
+  {
+    "word": "passage pilgrimage voyage",
+    "trans": [
+      {
+        "en": "-age   action or process"
+      }
+    ]
+  },
+  {
+    "word": "workaholic shopaholic alcoholic",
+    "trans": [
+      {
+        "en": "-aholic (-oholic)  one with an obsession for"
+      }
+    ]
+  },
+  {
+    "word": "bacterial theatrical natural",
+    "trans": [
+      {
+        "en": "-al  relating to"
+      }
+    ]
+  },
+  {
+    "word": "neuralgia nostalgia",
+    "trans": [
+      {
+        "en": "-algia  pain"
+      }
+    ]
+  },
+  {
+    "word": "Italian urban African",
+    "trans": [
+      {
+        "en": "-an (-ian)  relating to, belonging to"
+      }
+    ]
+  },
+  {
+    "word": "brilliance defiance annoyance",
+    "trans": [
+      {
+        "en": "-ance  state or quality of"
+      }
+    ]
+  },
+  {
+    "word": "applicant immigrant servant",
+    "trans": [
+      {
+        "en": "-ant  a person who"
+      }
+    ]
+  },
+  {
+    "word": "brilliant defiant vigilant",
+    "trans": [
+      {
+        "en": "-ant  inclined to, tending to"
+      }
+    ]
+  },
+  {
+    "word": "lunar molecular solar",
+    "trans": [
+      {
+        "en": "-ar  of or relating to, being"
+      }
+    ]
   },
   {
-    "name": "cardiac hemophiliac maniac",
-    "trans": ["-ac   pertaining to"]
+    "word": "beggar burglar liar",
+    "trans": [
+      {
+        "en": "-ar  a person who"
+      }
+    ]
   },
   {
-    "name": "perspicacity sagacity velocity",
-    "trans": ["-acity (-ocity)  quality of"]
+    "word": "coward sluggard wizard",
+    "trans": [
+      {
+        "en": "-ard  a person who does an action"
+      }
+    ]
   },
   {
-    "name": "blockade cavalcade promenade",
-    "trans": ["-ade    act, action or process, product"]
+    "word": "disciplinarian vegetarian librarian",
+    "trans": [
+      {
+        "en": "-arian  a person who"
+      }
+    ]
   },
   {
-    "name": "passage pilgrimage voyage",
-    "trans": ["-age   action or process"]
+    "word": "terrarium aquarium solarium",
+    "trans": [
+      {
+        "en": "-arium (orium)  a place for"
+      }
+    ]
   },
   {
-    "name": "workaholic shopaholic alcoholic",
-    "trans": ["-aholic (-oholic)  one with an obsession for"]
+    "word": "literary military budgetary",
+    "trans": [
+      {
+        "en": "-ary  of or relating to"
+      }
+    ]
   },
   {
-    "name": "bacterial theatrical natural",
-    "trans": ["-al  relating to"]
+    "word": "affectionate desolate obstinate",
+    "trans": [
+      {
+        "en": "-ate  state or quality of (adj.)"
+      }
+    ]
   },
   {
-    "name": "neuralgia nostalgia",
-    "trans": ["-algia  pain"]
+    "word": "activate evaporate medicate",
+    "trans": [
+      {
+        "en": "-ate  makes the word a verb (different pronunciation)"
+      }
+    ]
   },
   {
-    "name": "Italian urban African",
-    "trans": ["-an (-ian)  relating to, belonging to"]
+    "word": "creation narration emancipation",
+    "trans": [
+      {
+        "en": "-ation  action or process"
+      }
+    ]
   },
   {
-    "name": "brilliance defiance annoyance",
-    "trans": ["-ance  state or quality of"]
+    "word": "creative preservative talkative",
+    "trans": [
+      {
+        "en": "-ative  tending to (adj.)"
+      }
+    ]
   },
   {
-    "name": "applicant immigrant servant",
-    "trans": ["-ant  a person who"]
+    "word": "homicide suicide genocide",
+    "trans": [
+      {
+        "en": "-cide  act of killing"
+      }
+    ]
   },
   {
-    "name": "brilliant defiant vigilant",
-    "trans": ["-ant  inclined to, tending to"]
+    "word": "bureaucracy aristocracy theocracy",
+    "trans": [
+      {
+        "en": "-cracy  rule, government, power"
+      }
+    ]
   },
   {
-    "name": "lunar molecular solar",
-    "trans": ["-ar  of or relating to, being"]
+    "word": "aristocrat bureaucrat technocrat",
+    "trans": [
+      {
+        "en": "-crat  someone who has power"
+      }
+    ]
   },
   {
-    "name": "beggar burglar liar",
-    "trans": ["-ar  a person who"]
+    "word": "molecule ridicule",
+    "trans": [
+      {
+        "en": "-cule  diminutive (making something small)"
+      }
+    ]
   },
   {
-    "name": "coward sluggard wizard",
-    "trans": ["-ard  a person who does an action"]
+    "word": "efficiency privacy belligerency",
+    "trans": [
+      {
+        "en": "-cy  state, condition or quality"
+      }
+    ]
   },
   {
-    "name": "disciplinarian vegetarian librarian",
-    "trans": ["-arian  a person who"]
+    "word": "bicycle recycle tricycle",
+    "trans": [
+      {
+        "en": "-cycle  circle, wheel"
+      }
+    ]
   },
   {
-    "name": "terrarium aquarium solarium",
-    "trans": ["-arium (orium)  a place for"]
+    "word": "boredom freedom wisdom",
+    "trans": [
+      {
+        "en": "-dom  condition of, state, realm"
+      }
+    ]
   },
   {
-    "name": "literary military budgetary",
-    "trans": ["-ary  of or relating to"]
+    "word": "orthodox paradox",
+    "trans": [
+      {
+        "en": "-dox   belief, praise"
+      }
+    ]
   },
   {
-    "name": "affectionate desolate obstinate",
-    "trans": ["-ate  state or quality of (adj.)"]
+    "word": "appendectomy hysterectomy",
+    "trans": [
+      {
+        "en": "-ectomy  surgical removal of"
+      }
+    ]
   },
   {
-    "name": "activate evaporate medicate",
-    "trans": ["-ate  makes the word a verb (different pronunciation)"]
+    "word": "called hammered laughed",
+    "trans": [
+      {
+        "en": "-ed  past tense"
+      }
+    ]
   },
   {
-    "name": "creation narration emancipation",
-    "trans": ["-ation  action or process"]
+    "word": "nominee employee devotee",
+    "trans": [
+      {
+        "en": "-ee  receiver, performer"
+      }
+    ]
   },
   {
-    "name": "creative preservative talkative",
-    "trans": ["-ative  tending to (adj.)"]
+    "word": "engineer volunteer",
+    "trans": [
+      {
+        "en": "-eer  associated with/engaged in"
+      }
+    ]
   },
   {
-    "name": "homicide suicide genocide",
-    "trans": ["-cide  act of killing"]
+    "word": "anemia hypoglycemia leukemia",
+    "trans": [
+      {
+        "en": "-emia  blood condition"
+      }
+    ]
   },
   {
-    "name": "bureaucracy aristocracy theocracy",
-    "trans": ["-cracy  rule, government, power"]
+    "word": "awaken fasten strengthen",
+    "trans": [
+      {
+        "en": "-en  makes the word a verb"
+      }
+    ]
   },
   {
-    "name": "aristocrat bureaucrat technocrat",
-    "trans": ["-crat  someone who has power"]
+    "word": "absence dependence negligence",
+    "trans": [
+      {
+        "en": "-ence  state or condition, action"
+      }
+    ]
   },
   {
-    "name": "molecule ridicule",
-    "trans": ["-cule  diminutive (making something small)"]
+    "word": "clemency dependency efficiency",
+    "trans": [
+      {
+        "en": "-ency  condition or quality"
+      }
+    ]
   },
   {
-    "name": "efficiency privacy belligerency",
-    "trans": ["-cy  state, condition or quality"]
+    "word": "competent correspondent absorbent",
+    "trans": [
+      {
+        "en": "-ent  inclined to performing/causing, or one who performs/causes"
+      }
+    ]
   },
   {
-    "name": "bicycle recycle tricycle",
-    "trans": ["-cycle  circle, wheel"]
+    "word": "bigger faster happier",
+    "trans": [
+      {
+        "en": "-er  more"
+      }
+    ]
   },
   {
-    "name": "boredom freedom wisdom",
-    "trans": ["-dom  condition of, state, realm"]
+    "word": "flutter ponder stutter",
+    "trans": [
+      {
+        "en": "-er  action or process"
+      }
+    ]
   },
   {
-    "name": "orthodox paradox",
-    "trans": ["-dox   belief, praise"]
+    "word": "announcer barber teacher",
+    "trans": [
+      {
+        "en": "-er  a person who does an action"
+      }
+    ]
   },
   {
-    "name": "appendectomy hysterectomy",
-    "trans": ["-ectomy  surgical removal of"]
+    "word": "eastern northern western",
+    "trans": [
+      {
+        "en": "-ern  state or quality of"
+      }
+    ]
   },
   {
-    "name": "called hammered laughed",
-    "trans": ["-ed  past tense"]
+    "word": "adolescence convalescence",
+    "trans": [
+      {
+        "en": "-escence  state or process"
+      }
+    ]
   },
   {
-    "name": "nominee employee devotee",
-    "trans": ["-ee  receiver, performer"]
+    "word": "Chinese Congolese Vietnamese",
+    "trans": [
+      {
+        "en": "-ese  relating to a place"
+      }
+    ]
   },
   {
-    "name": "engineer volunteer",
-    "trans": ["-eer  associated with/engaged in"]
+    "word": "Kafkaesque grotesque burlesque",
+    "trans": [
+      {
+        "en": "-esque  in the style of"
+      }
+    ]
   },
   {
-    "name": "anemia hypoglycemia leukemia",
-    "trans": ["-emia  blood condition"]
+    "word": "actress heiress lioness",
+    "trans": [
+      {
+        "en": "-ess  female"
+      }
+    ]
   },
   {
-    "name": "awaken fasten strengthen",
-    "trans": ["-en  makes the word a verb"]
+    "word": "funniest hottest silliest",
+    "trans": [
+      {
+        "en": "-est  most"
+      }
+    ]
   },
   {
-    "name": "absence dependence negligence",
-    "trans": ["-ence  state or condition, action"]
+    "word": "athletic energetic poetic",
+    "trans": [
+      {
+        "en": "-etic  relating to (makes the word an adj.)"
+      }
+    ]
   },
   {
-    "name": "clemency dependency efficiency",
-    "trans": ["-ency  condition or quality"]
+    "word": "cigarette diskette kitchenette",
+    "trans": [
+      {
+        "en": "-ette  diminutive (makes something smaller)"
+      }
+    ]
   },
   {
-    "name": "competent correspondent absorbent",
-    "trans": ["-ent  inclined to performing/causing, or one who performs/causes"]
+    "word": "helpful thankful cheerful",
+    "trans": [
+      {
+        "en": "-ful  full of"
+      }
+    ]
   },
   {
-    "name": "bigger faster happier",
-    "trans": ["-er  more"]
+    "word": "amplify falsify terrify",
+    "trans": [
+      {
+        "en": "-fy  make, cause (makes the word a verb)"
+      }
+    ]
   },
   {
-    "name": "flutter ponder stutter",
-    "trans": ["-er  action or process"]
+    "word": "monogam polygamy",
+    "trans": [
+      {
+        "en": "-gam/gamy  marriage, union"
+      }
+    ]
   },
   {
-    "name": "announcer barber teacher",
-    "trans": ["-er  a person who does an action"]
+    "word": "hexagon polygonic pentagon",
+    "trans": [
+      {
+        "en": "-gon/gonic  angle"
+      }
+    ]
   },
   {
-    "name": "eastern northern western",
-    "trans": ["-ern  state or quality of"]
+    "word": "childhood neighborhood motherhood",
+    "trans": [
+      {
+        "en": "-hood  state, condition, or quality"
+      }
+    ]
   },
   {
-    "name": "adolescence convalescence",
-    "trans": ["-escence  state or process"]
+    "word": "celestial editorial martial",
+    "trans": [
+      {
+        "en": "-ial  relating to"
+      }
+    ]
   },
   {
-    "name": "Chinese Congolese Vietnamese",
-    "trans": ["-ese  relating to a place"]
+    "word": "Martian utopian pediatrician",
+    "trans": [
+      {
+        "en": "-ian  relating to"
+      }
+    ]
   },
   {
-    "name": "Kafkaesque grotesque burlesque",
-    "trans": ["-esque  in the style of"]
+    "word": "elephantiasis psoriasis",
+    "trans": [
+      {
+        "en": "-iasis  diseased condition"
+      }
+    ]
   },
   {
-    "name": "actress heiress lioness",
-    "trans": ["-ess  female"]
+    "word": "pediatric psychiatric",
+    "trans": [
+      {
+        "en": "-iatric  healing practice"
+      }
+    ]
   },
   {
-    "name": "funniest hottest silliest",
-    "trans": ["-est  most"]
+    "word": "audible plausible legible",
+    "trans": [
+      {
+        "en": "-ible  able to be"
+      }
+    ]
   },
   {
-    "name": "athletic energetic poetic",
-    "trans": ["-etic  relating to (makes the word an adj.)"]
+    "word": "analytic/al comic/al organic",
+    "trans": [
+      {
+        "en": "-ic/ical  relating to, characterized by"
+      }
+    ]
   },
   {
-    "name": "cigarette diskette kitchenette",
-    "trans": ["-ette  diminutive (makes something smaller)"]
+    "word": "agile docile volatile",
+    "trans": [
+      {
+        "en": "-ile  relating to, capable of"
+      }
+    ]
   },
   {
-    "name": "helpful thankful cheerful",
-    "trans": ["-ful  full of"]
+    "word": "sloppily steadily zanily",
+    "trans": [
+      {
+        "en": "-ily  in what manner"
+      }
+    ]
   },
   {
-    "name": "amplify falsify terrify",
-    "trans": ["-fy  make, cause (makes the word a verb)"]
+    "word": "canine feminine masculine",
+    "trans": [
+      {
+        "en": "-ine  relating to"
+      }
+    ]
   },
   {
-    "name": "monogam polygamy",
-    "trans": ["-gam/gamy  marriage, union"]
+    "word": "bedding frosting roofing",
+    "trans": [
+      {
+        "en": "-ing  materials"
+      }
+    ]
   },
   {
-    "name": "hexagon polygonic pentagon",
-    "trans": ["-gon/gonic  angle"]
+    "word": "dancing seeing writing",
+    "trans": [
+      {
+        "en": "-ing  action or process"
+      }
+    ]
   },
   {
-    "name": "childhood neighborhood motherhood",
-    "trans": ["-hood  state, condition, or quality"]
+    "word": "celebration completion navigation",
+    "trans": [
+      {
+        "en": "-ion  action or process"
+      }
+    ]
   },
   {
-    "name": "celestial editorial martial",
-    "trans": ["-ial  relating to"]
+    "word": "ambitious cautious gracious",
+    "trans": [
+      {
+        "en": "-ious  having the qualities of, full of"
+      }
+    ]
   },
   {
-    "name": "Martian utopian pediatrician",
-    "trans": ["-ian  relating to"]
+    "word": "apish brutish childish",
+    "trans": [
+      {
+        "en": "-ish  relating to, characteristic"
+      }
+    ]
   },
   {
-    "name": "elephantiasis psoriasis",
-    "trans": ["-iasis  diseased condition"]
+    "word": "altruism despotism heroism",
+    "trans": [
+      {
+        "en": "-ism  state or quality"
+      }
+    ]
   },
   {
-    "name": "pediatric psychiatric",
-    "trans": ["-iatric  healing practice"]
+    "word": "artist linguist pianist",
+    "trans": [
+      {
+        "en": "-ist  a person, one who does an action"
+      }
+    ]
   },
   {
-    "name": "audible plausible legible",
-    "trans": ["-ible  able to be"]
+    "word": "suburbanite luddite dynamite",
+    "trans": [
+      {
+        "en": "-ite  resident of, follower, product of"
+      }
+    ]
   },
   {
-    "name": "analytic/al comic/al organic",
-    "trans": ["-ic/ical  relating to, characterized by"]
+    "word": "appendicitis tonsillitis frontrunneritis",
+    "trans": [
+      {
+        "en": "-itis  inflammation, preoccupation"
+      }
+    ]
   },
   {
-    "name": "agile docile volatile",
-    "trans": ["-ile  relating to, capable of"]
+    "word": "abnormality civility necessity",
+    "trans": [
+      {
+        "en": "-ity  state, condition, or quality"
+      }
+    ]
   },
   {
-    "name": "sloppily steadily zanily",
-    "trans": ["-ily  in what manner"]
+    "word": "attractive expensive repulsive",
+    "trans": [
+      {
+        "en": "-ive  inclined to; quality of; that which"
+      }
+    ]
   },
   {
-    "name": "canine feminine masculine",
-    "trans": ["-ine  relating to"]
+    "word": "colonization fertilization modernization",
+    "trans": [
+      {
+        "en": "-ization  act or process of making"
+      }
+    ]
   },
   {
-    "name": "bedding frosting roofing",
-    "trans": ["-ing  materials"]
+    "word": "antagonize authorize popularize",
+    "trans": [
+      {
+        "en": "-ize  cause, treat, become"
+      }
+    ]
   },
   {
-    "name": "dancing seeing writing",
-    "trans": ["-ing  action or process"]
+    "word": "fearless helpless homeless",
+    "trans": [
+      {
+        "en": "-less  without"
+      }
+    ]
   },
   {
-    "name": "celebration completion navigation",
-    "trans": ["-ion  action or process"]
+    "word": "booklet droplet inlet",
+    "trans": [
+      {
+        "en": "-let  version of"
+      }
+    ]
   },
   {
-    "name": "ambitious cautious gracious",
-    "trans": ["-ious  having the qualities of, full of"]
+    "word": "childlike homelike lifelike",
+    "trans": [
+      {
+        "en": "-like  resembling, characteristic"
+      }
+    ]
   },
   {
-    "name": "apish brutish childish",
-    "trans": ["-ish  relating to, characteristic"]
+    "word": "duckling underling",
+    "trans": [
+      {
+        "en": "-ling  younger or inferior"
+      }
+    ]
   },
   {
-    "name": "altruism despotism heroism",
-    "trans": ["-ism  state or quality"]
+    "word": "astrologer cardiologist chronologer",
+    "trans": [
+      {
+        "en": "-loger/logist  one who does"
+      }
+    ]
   },
   {
-    "name": "artist linguist pianist",
-    "trans": ["-ist  a person, one who does an action"]
+    "word": "dialog monolog",
+    "trans": [
+      {
+        "en": "-log  speech"
+      }
+    ]
   },
   {
-    "name": "suburbanite luddite dynamite",
-    "trans": ["-ite  resident of, follower, product of"]
+    "word": "badly courageously happily",
+    "trans": [
+      {
+        "en": "-ly  in what manner"
+      }
+    ]
   },
   {
-    "name": "appendicitis tonsillitis frontrunneritis",
-    "trans": ["-itis  inflammation, preoccupation"]
+    "word": "movement placement shipment",
+    "trans": [
+      {
+        "en": "-ment  action, result"
+      }
+    ]
   },
   {
-    "name": "abnormality civility necessity",
-    "trans": ["-ity  state, condition, or quality"]
+    "word": "kindness shyness weakness",
+    "trans": [
+      {
+        "en": "-ness  state or quality (makes a noun)"
+      }
+    ]
   },
   {
-    "name": "attractive expensive repulsive",
-    "trans": ["-ive  inclined to; quality of; that which"]
+    "word": "humanoid tabloid hemorrhoid",
+    "trans": [
+      {
+        "en": "-oid  resembling"
+      }
+    ]
   },
   {
-    "name": "colonization fertilization modernization",
-    "trans": ["-ization  act or process of making"]
+    "word": "anthropology archaeology biology",
+    "trans": [
+      {
+        "en": "-ology  study of, science of"
+      }
+    ]
   },
   {
-    "name": "antagonize authorize popularize",
-    "trans": ["-ize  cause, treat, become"]
+    "word": "carcinoma osteoma hematoma",
+    "trans": [
+      {
+        "en": "-oma  tumor, swelling"
+      }
+    ]
   },
   {
-    "name": "fearless helpless homeless",
-    "trans": ["-less  without"]
+    "word": "synonym antonym homonym",
+    "trans": [
+      {
+        "en": "-onym  name, word"
+      }
+    ]
   },
   {
-    "name": "booklet droplet inlet",
-    "trans": ["-let  version of"]
+    "word": "myopia nyctalopia hyperopia",
+    "trans": [
+      {
+        "en": "-opia  eye defect"
+      }
+    ]
   },
   {
-    "name": "childlike homelike lifelike",
-    "trans": ["-like  resembling, characteristic"]
+    "word": "biopsy autopsy necropsy",
+    "trans": [
+      {
+        "en": "-opsy  examination"
+      }
+    ]
   },
   {
-    "name": "duckling underling",
-    "trans": ["-ling  younger or inferior"]
+    "word": "inventor legislator translator",
+    "trans": [
+      {
+        "en": "-or  a person who"
+      }
+    ]
   },
   {
-    "name": "astrologer cardiologist chronologer",
-    "trans": ["-loger/logist  one who does"]
+    "word": "armory dormitory laboratory",
+    "trans": [
+      {
+        "en": "-ory  relating to"
+      }
+    ]
   },
   {
-    "name": "dialog monolog",
-    "trans": ["-log  speech"]
+    "word": "diagnosis prognosis neurosis psychosis",
+    "trans": [
+      {
+        "en": "-osis  process, diseased condition"
+      }
+    ]
   },
   {
-    "name": "badly courageously happily",
-    "trans": ["-ly  in what manner"]
+    "word": "colostomy lobotomy craniotomy",
+    "trans": [
+      {
+        "en": "-ostomy/otomy  surgical"
+      }
+    ]
   },
   {
-    "name": "movement placement shipment",
-    "trans": ["-ment  action, result"]
+    "word": "hazardous humorous wondrous",
+    "trans": [
+      {
+        "en": "-ous  full of"
+      }
+    ]
   },
   {
-    "name": "kindness shyness weakness",
-    "trans": ["-ness  state or quality (makes a noun)"]
+    "word": "homeopath naturopath psychopath",
+    "trans": [
+      {
+        "en": "-path  one who engages in"
+      }
+    ]
   },
   {
-    "name": "humanoid tabloid hemorrhoid",
-    "trans": ["-oid  resembling"]
+    "word": "sympathy apathy neuropathy",
+    "trans": [
+      {
+        "en": "-pathy  feeling, diseased"
+      }
+    ]
   },
   {
-    "name": "anthropology archaeology biology",
-    "trans": ["-ology  study of, science of"]
+    "word": "bibliophile audiophile pyrophile",
+    "trans": [
+      {
+        "en": "-phile  one who loves"
+      }
+    ]
   },
   {
-    "name": "carcinoma osteoma hematoma",
-    "trans": ["-oma  tumor, swelling"]
+    "word": "acrophobia claustrophobia xenophobia",
+    "trans": [
+      {
+        "en": "-phobia  abnormal fear of"
+      }
+    ]
   },
   {
-    "name": "synonym antonym homonym",
-    "trans": ["-onym  name, word"]
+    "word": "homophone telephone microphone",
+    "trans": [
+      {
+        "en": "-phone  sound"
+      }
+    ]
   },
   {
-    "name": "myopia nyctalopia hyperopia",
-    "trans": ["-opia  eye defect"]
+    "word": "zoophyte cryptophyte epiphyte",
+    "trans": [
+      {
+        "en": "-phyte  plant, to grow"
+      }
+    ]
   },
   {
-    "name": "biopsy autopsy necropsy",
-    "trans": ["-opsy  examination"]
+    "word": "paraplegia quadriplegia hemiplegia",
+    "trans": [
+      {
+        "en": "-plegia  paralysis"
+      }
+    ]
   },
   {
-    "name": "inventor legislator translator",
-    "trans": ["-or  a person who"]
+    "word": "paraplegic technoplegic quadriplegic",
+    "trans": [
+      {
+        "en": "-plegic  one who is paralyzed"
+      }
+    ]
   },
   {
-    "name": "armory dormitory laboratory",
-    "trans": ["-ory  relating to"]
+    "word": "apnea hyperpnea orthopnea",
+    "trans": [
+      {
+        "en": "-pnea  air, spirit"
+      }
+    ]
   },
   {
-    "name": "diagnosis prognosis neurosis psychosis",
-    "trans": ["-osis  process, diseased condition"]
+    "word": "arthroscopy gastroscopy microscope",
+    "trans": [
+      {
+        "en": "-scopy/scope  visual exam"
+      }
+    ]
   },
   {
-    "name": "colostomy lobotomy craniotomy",
-    "trans": ["-ostomy/otomy  surgical"]
+    "word": "transcript describe manuscript",
+    "trans": [
+      {
+        "en": "-scribe/script  to write"
+      }
+    ]
   },
   {
-    "name": "hazardous humorous wondrous",
-    "trans": ["-ous  full of"]
+    "word": "dissect insect bisect",
+    "trans": [
+      {
+        "en": "-sect  to cut"
+      }
+    ]
   },
   {
-    "name": "homeopath naturopath psychopath",
-    "trans": ["-path  one who engages in"]
+    "word": "authorship citizenship friendship",
+    "trans": [
+      {
+        "en": "-ship  state or condition of, skill of"
+      }
+    ]
   },
   {
-    "name": "sympathy apathy neuropathy",
-    "trans": ["-pathy  feeling, diseased"]
+    "word": "confusion depression tension",
+    "trans": [
+      {
+        "en": "-sion  state or quality"
+      }
+    ]
   },
   {
-    "name": "bibliophile audiophile pyrophile",
-    "trans": ["-phile  one who loves"]
+    "word": "cumbersome quarrelsome foursome",
+    "trans": [
+      {
+        "en": "-some  characterized by, group of"
+      }
+    ]
   },
   {
-    "name": "acrophobia claustrophobia xenophobia",
-    "trans": ["-phobia  abnormal fear of"]
+    "word": "philosophy theosophy anthroposophic",
+    "trans": [
+      {
+        "en": "-sophy/sophic  wisdom, knowledge"
+      }
+    ]
   },
   {
-    "name": "homophone telephone microphone",
-    "trans": ["-phone  sound"]
-  },
-  {
-    "name": "zoophyte cryptophyte epiphyte",
-    "trans": ["-phyte  plant, to grow"]
-  },
-  {
-    "name": "paraplegia quadriplegia hemiplegia",
-    "trans": ["-plegia  paralysis"]
-  },
-  {
-    "name": "paraplegic technoplegic quadriplegic",
-    "trans": ["-plegic  one who is paralyzed"]
-  },
-  {
-    "name": "apnea hyperpnea orthopnea",
-    "trans": ["-pnea  air, spirit"]
-  },
-  {
-    "name": "arthroscopy gastroscopy microscope",
-    "trans": ["-scopy/scope  visual exam"]
-  },
-  {
-    "name": "transcript describe manuscript",
-    "trans": ["-scribe/script  to write"]
-  },
-  {
-    "name": "dissect insect bisect",
-    "trans": ["-sect  to cut"]
-  },
-  {
-    "name": "authorship citizenship friendship",
-    "trans": ["-ship  state or condition of, skill of"]
-  },
-  {
-    "name": "confusion depression tension",
-    "trans": ["-sion  state or quality"]
-  },
-  {
-    "name": "cumbersome quarrelsome foursome",
-    "trans": ["-some  characterized by, group of"]
-  },
-  {
-    "name": "philosophy theosophy anthroposophic",
-    "trans": ["-sophy/sophic  wisdom, knowledge"]
-  },
-  {
-    "name": "depth length strength",
-    "trans": ["-th  state or quality"]
-  },
-  {
-    "name": "attention caution fascination",
-    "trans": ["-tion  state or quality"]
-  },
-  {
-    "name": "hysterectomy epitome tonsillotome",
-    "trans": ["-tome/tomy  to cut"]
-  },
-  {
-    "name": "atrophy hypertrophy dystrophy",
-    "trans": ["-trophy  nourishment, growth"]
-  },
-  {
-    "name": "fortitude gratitude magnitude",
-    "trans": ["-tude  state, condition or quality"]
-  },
-  {
-    "name": "ability honesty loyalty",
-    "trans": ["-ty  state, condition or quality"]
-  },
-  {
-    "name": "cellular circular muscular",
-    "trans": ["-ular  relating to or resembling"]
-  },
-  {
-    "name": "arduous tumultuous virtuous",
-    "trans": ["-uous  state or quality of"]
-  },
-  {
-    "name": "closure erasure failure",
-    "trans": ["-ure  action, condition"]
-  },
-  {
-    "name": "backward eastward homeward",
-    "trans": ["-ward  specifies direction"]
-  },
-  {
-    "name": "hardware software kitchenware",
-    "trans": ["-ware  things of the same type or material"]
-  },
-  {
-    "name": "clockwise lengthwise otherwise",
-    "trans": ["-wise  in what manner or direction"]
-  },
-  {
-    "name": "brainy fruity gooey",
-    "trans": ["-y  made up of, characterized"]
+    "word": "depth length strength",
+    "trans": [
+      {
+        "en": "-th  state or quality"
+      }
+    ]
+  },
+  {
+    "word": "attention caution fascination",
+    "trans": [
+      {
+        "en": "-tion  state or quality"
+      }
+    ]
+  },
+  {
+    "word": "hysterectomy epitome tonsillotome",
+    "trans": [
+      {
+        "en": "-tome/tomy  to cut"
+      }
+    ]
+  },
+  {
+    "word": "atrophy hypertrophy dystrophy",
+    "trans": [
+      {
+        "en": "-trophy  nourishment, growth"
+      }
+    ]
+  },
+  {
+    "word": "fortitude gratitude magnitude",
+    "trans": [
+      {
+        "en": "-tude  state, condition or quality"
+      }
+    ]
+  },
+  {
+    "word": "ability honesty loyalty",
+    "trans": [
+      {
+        "en": "-ty  state, condition or quality"
+      }
+    ]
+  },
+  {
+    "word": "cellular circular muscular",
+    "trans": [
+      {
+        "en": "-ular  relating to or resembling"
+      }
+    ]
+  },
+  {
+    "word": "arduous tumultuous virtuous",
+    "trans": [
+      {
+        "en": "-uous  state or quality of"
+      }
+    ]
+  },
+  {
+    "word": "closure erasure failure",
+    "trans": [
+      {
+        "en": "-ure  action, condition"
+      }
+    ]
+  },
+  {
+    "word": "backward eastward homeward",
+    "trans": [
+      {
+        "en": "-ward  specifies direction"
+      }
+    ]
+  },
+  {
+    "word": "hardware software kitchenware",
+    "trans": [
+      {
+        "en": "-ware  things of the same type or material"
+      }
+    ]
+  },
+  {
+    "word": "clockwise lengthwise otherwise",
+    "trans": [
+      {
+        "en": "-wise  in what manner or direction"
+      }
+    ]
+  },
+  {
+    "word": "brainy fruity gooey",
+    "trans": [
+      {
+        "en": "-y  made up of, characterized"
+      }
+    ]
   }
 ]

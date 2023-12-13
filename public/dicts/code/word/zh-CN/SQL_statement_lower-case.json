@@ -1,74 +1,98 @@
 [
   {
-    "name": "alter table",
+    "word": "alter table",
     "trans": [
-      "alter table 用来更新现存表的模式。可以用 create table 来创建一个新表。"
+      {
+        "cn": "alter table 用来更新现存表的模式。可以用 create table 来创建一个新表。"
+      }
     ]
   },
   {
-    "name": "commit",
+    "word": "commit",
     "trans": [
-      "commit 用来将事务写入数据库。"
+      {
+        "cn": "commit 用来将事务写入数据库。"
+      }
     ]
   },
   {
-    "name": "create index",
+    "word": "create index",
     "trans": [
-      "create index 用来为一列或多列创建索引。"
+      {
+        "cn": "create index 用来为一列或多列创建索引。"
+      }
     ]
   },
   {
-    "name": "create table",
+    "word": "create table",
     "trans": [
-      "create table 用来创建新的数据库表。可以用 alter table 来更新一个现存表的模式。"
+      {
+        "cn": "create table 用来创建新的数据库表。可以用 alter table 来更新一个现存表的模式。"
+      }
     ]
   },
   {
-    "name": "create view",
+    "word": "create view",
     "trans": [
-      "create view 用来创建一个或多个表的视图。"
+      {
+        "cn": "create view 用来创建一个或多个表的视图。"
+      }
     ]
   },
   {
-    "name": "delete",
+    "word": "delete",
     "trans": [
-      "delete 用来从表中删除一行或多行。"
+      {
+        "cn": "delete 用来从表中删除一行或多行。"
+      }
     ]
   },
   {
-    "name": "drop",
+    "word": "drop",
     "trans": [
-      "drop 用来永久性地删除数据库对象（表、视图和索引等）"
+      {
+        "cn": "drop 用来永久性地删除数据库对象（表、视图和索引等）"
+      }
     ]
   },
   {
-    "name": "insert",
+    "word": "insert",
     "trans": [
-      "insert 用来对表添加一个新行。"
+      {
+        "cn": "insert 用来对表添加一个新行。"
+      }
     ]
   },
   {
-    "name": "insert select",
+    "word": "insert select",
     "trans": [
-      "insert select 用来将 select 的结果插入到表中。"
+      {
+        "cn": "insert select 用来将 select 的结果插入到表中。"
+      }
     ]
   },
   {
-    "name": "rollback",
+    "word": "rollback",
     "trans": [
-      "rollback 用来撤销事务块。"
+      {
+        "cn": "rollback 用来撤销事务块。"
+      }
     ]
   },
   {
-    "name": "select",
+    "word": "select",
     "trans": [
-      "select 用来从一个或多个表（或视图）中检索数据。"
+      {
+        "cn": "select 用来从一个或多个表（或视图）中检索数据。"
+      }
     ]
   },
   {
-    "name": "update",
+    "word": "update",
     "trans": [
-      "update 用来对表中的一行或多行进行更新。"
+      {
+        "cn": "update 用来对表中的一行或多行进行更新。"
+      }
     ]
   }
 ]

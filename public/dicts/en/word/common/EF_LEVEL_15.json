@@ -1,1010 +1,1010 @@
 [
   {
-    "name": "headline",
+    "word": "headline",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "body",
+    "word": "body",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "paragraph",
+    "word": "paragraph",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "national",
+    "word": "national",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "international",
+    "word": "international",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "economy",
+    "word": "economy",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "affair",
+    "word": "affair",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "mindless",
+    "word": "mindless",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "entertainment",
+    "word": "entertainment",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "reasonable",
+    "word": "reasonable",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "health",
+    "word": "health",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "science",
+    "word": "science",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "turn",
+    "word": "turn",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "live",
+    "word": "live",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "studio",
+    "word": "studio",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "moderate",
+    "word": "moderate",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "demand",
+    "word": "demand",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "precedent",
+    "word": "precedent",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "jubilation",
+    "word": "jubilation",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "challenger",
+    "word": "challenger",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "outcome",
+    "word": "outcome",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "introduction",
+    "word": "introduction",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "report",
+    "word": "report",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "radical",
+    "word": "radical",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "climax",
+    "word": "climax",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "resolution",
+    "word": "resolution",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "reiterate",
+    "word": "reiterate",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "assert",
+    "word": "assert",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "sarcasm",
+    "word": "sarcasm",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "recall",
+    "word": "recall",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "mention",
+    "word": "mention",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "connect",
+    "word": "connect",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "criticize",
+    "word": "criticize",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "yell",
+    "word": "yell",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "pat",
+    "word": "pat",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "shake",
+    "word": "shake",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "kiss",
+    "word": "kiss",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "hug",
+    "word": "hug",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "bow",
+    "word": "bow",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "clasp",
+    "word": "clasp",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "regard",
+    "word": "regard",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "consider",
+    "word": "consider",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "rude",
+    "word": "rude",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "impolite",
+    "word": "impolite",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "soften",
+    "word": "soften",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "quite",
+    "word": "quite",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "depersonalize",
+    "word": "depersonalize",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "ramble",
+    "word": "ramble",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "elicit",
+    "word": "elicit",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "nod",
+    "word": "nod",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "gesture",
+    "word": "gesture",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "reserved",
+    "word": "reserved",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "handshake",
+    "word": "handshake",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "generalize",
+    "word": "generalize",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "cue",
+    "word": "cue",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "accordingly",
+    "word": "accordingly",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "domain",
+    "word": "domain",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "mindset",
+    "word": "mindset",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "strategic",
+    "word": "strategic",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "orientation",
+    "word": "orientation",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "expertise",
+    "word": "expertise",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "leadership",
+    "word": "leadership",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "quality",
+    "word": "quality",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "comfortable",
+    "word": "comfortable",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "partial",
+    "word": "partial",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "uncertain",
+    "word": "uncertain",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "strike",
+    "word": "strike",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "figure",
+    "word": "figure",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "review",
+    "word": "review",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "market",
+    "word": "market",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "adjust",
+    "word": "adjust",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "curious",
+    "word": "curious",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "study",
+    "word": "study",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "research",
+    "word": "research",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "keen",
+    "word": "keen",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "chance",
+    "word": "chance",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "willing",
+    "word": "willing",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "fit",
+    "word": "fit",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "urgent",
+    "word": "urgent",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "priority",
+    "word": "priority",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "top",
+    "word": "top",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "manage",
+    "word": "manage",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "correctly",
+    "word": "correctly",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "consider",
+    "word": "consider",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "user",
+    "word": "user",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "public",
+    "word": "public",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "transport",
+    "word": "transport",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "skyscraper",
+    "word": "skyscraper",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "quality",
+    "word": "quality",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "cost",
+    "word": "cost",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "architecture",
+    "word": "architecture",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "local",
+    "word": "local",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "amenity",
+    "word": "amenity",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "system",
+    "word": "system",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "doubt",
+    "word": "doubt",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "easily",
+    "word": "easily",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "suburb",
+    "word": "suburb",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "district",
+    "word": "district",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "similarity",
+    "word": "similarity",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "despite",
+    "word": "despite",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "aspect",
+    "word": "aspect",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "bug",
+    "word": "bug",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "extraordinary",
+    "word": "extraordinary",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "side",
+    "word": "side",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "diverse",
+    "word": "diverse",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "scene",
+    "word": "scene",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "location",
+    "word": "location",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "population",
+    "word": "population",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "metropolis",
+    "word": "metropolis",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "neighborhood",
+    "word": "neighborhood",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "village",
+    "word": "village",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "angle",
+    "word": "angle",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "straight",
+    "word": "straight",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "sympathize",
+    "word": "sympathize",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "position",
+    "word": "position",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "contradict",
+    "word": "contradict",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "apology",
+    "word": "apology",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "mean",
+    "word": "mean",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "responsibility",
+    "word": "responsibility",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "guilt",
+    "word": "guilt",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "ethic",
+    "word": "ethic",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "experience",
+    "word": "experience",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "backtrack",
+    "word": "backtrack",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "heated",
+    "word": "heated",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "clarify",
+    "word": "clarify",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "identify",
+    "word": "identify",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "principle",
+    "word": "principle",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "outcome",
+    "word": "outcome",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "resolution",
+    "word": "resolution",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "dilemma",
+    "word": "dilemma",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "raise",
+    "word": "raise",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "misconstrue",
+    "word": "misconstrue",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "direction",
+    "word": "direction",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "course",
+    "word": "course",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "compromise",
+    "word": "compromise",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "downside",
+    "word": "downside",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "doable",
+    "word": "doable",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "upside",
+    "word": "upside",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "lay-off",
+    "word": "lay-off",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "shake",
+    "word": "shake",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "drown",
+    "word": "drown",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "unpredictable",
+    "word": "unpredictable",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "overtime",
+    "word": "overtime",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "manage",
+    "word": "manage",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "organized",
+    "word": "organized",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "meet",
+    "word": "meet",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "successful",
+    "word": "successful",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "overwhelm",
+    "word": "overwhelm",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "pressure",
+    "word": "pressure",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "focus",
+    "word": "focus",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "target",
+    "word": "target",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "honest",
+    "word": "honest",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "clear",
+    "word": "clear",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "deadline",
+    "word": "deadline",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "limitation",
+    "word": "limitation",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "struggle",
+    "word": "struggle",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "open",
+    "word": "open",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "admit",
+    "word": "admit",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "allow",
+    "word": "allow",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "actually",
+    "word": "actually",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "equity",
+    "word": "equity",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "investment",
+    "word": "investment",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "contingency",
+    "word": "contingency",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "mortgage",
+    "word": "mortgage",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "rating",
+    "word": "rating",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "tax-free",
+    "word": "tax-free",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "financial",
+    "word": "financial",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   },
   {
-    "name": "account",
+    "word": "account",
     "trans": [],
-    "usphone": "",
-    "ukphone": ""
+    "phonetic0": "",
+    "phonetic1": ""
   }
 ]
