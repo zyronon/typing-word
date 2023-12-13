@@ -1,5 +1,5 @@
 import {DictResource, DictType} from "@/types.ts"
-import {newDicts} from "@/newDicts.ts";
+import {newDicts} from "@/assets/newDicts.ts";
 
 // 中国考试
 const chinaExam: DictResource[] = [

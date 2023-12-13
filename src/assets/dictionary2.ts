@@ -1,7 +1,5 @@
 import {DictResource, DictType} from "@/types.ts"
 
-
-
 // 中国考试
 const chinaExam: DictResource[] = [
   {
