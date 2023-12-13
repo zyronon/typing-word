@@ -159,7 +159,7 @@ function handleChangeCurrentChapter(val: {
     v.checked = false
     //TODO 可能会存在卡的问题
     if (!v.trans.length && runtimeStore.translateWordList.length) {
-      let res = runtimeStore.translateWordList.find(a => a.name === v.name)
+      let res = runtimeStore.translateWordList.find(a => a.word === v.word)
       if (res) v = Object.assign(v, res)
     }
   })
@@ -178,7 +178,7 @@ function checkRepeatWord(
   let repeatWords = []
   let noRepeatWords = []
   words.map((v: any) => {
-    let rIndex = targetList.findIndex(s => s.name === v.name)
+    let rIndex = targetList.findIndex(s => s.word === v.word)
     if (rIndex > -1) {
       v.index = rIndex
       repeatWords.push(v)
@@ -189,7 +189,7 @@ function checkRepeatWord(
   concatNoRepeat(noRepeatWords)
   if (repeatWords.length) {
     MessageBox.confirm(
-        '单词"' + repeatWords.map(v => v.name).join(', ') + '" 已存在，继续将会覆盖原有单词，是否继续？',
+        '单词"' + repeatWords.map(v => v.word).join(', ') + '" 已存在，继续将会覆盖原有单词，是否继续？',
         '检测到重复单词',
         () => concatRepeat(repeatWords),
         null,
@@ -206,7 +206,7 @@ function toResidueWordList() {
   checkRepeatWord(list, residueWordList,
       noRepeatWords => {
         if (wordFormData.type === FormMode.Edit && wordFormData.where === 'chapter') {
-          if (noRepeatWords.find(v => v.name === wordForm.name)) {
+          if (noRepeatWords.find(v => v.word === wordForm.word)) {
             wordFormData.where = 'residue'
           }
         }
@@ -220,7 +220,7 @@ function toResidueWordList() {
       },
       repeatWords => {
         if (wordFormData.type === FormMode.Edit && wordFormData.where === 'chapter') {
-          if (repeatWords.find(v => v.name === wordForm.name)) {
+          if (repeatWords.find(v => v.word === wordForm.word)) {
             wordFormData.where = 'residue'
           }
         }
@@ -244,7 +244,7 @@ function toChapterWordList() {
   checkRepeatWord(list, chapterWordList,
       noRepeatWords => {
         if (wordFormData.type === FormMode.Edit && wordFormData.where !== 'chapter') {
-          if (noRepeatWords.find(v => v.name === wordForm.name)) {
+          if (noRepeatWords.find(v => v.word === wordForm.word)) {
             wordFormData.where = 'chapter'
           }
         }
@@ -258,7 +258,7 @@ function toChapterWordList() {
       },
       repeatWords => {
         if (wordFormData.type === FormMode.Edit && wordFormData.where !== 'chapter') {
-          if (repeatWords.find(v => v.name === wordForm.name)) {
+          if (repeatWords.find(v => v.word === wordForm.word)) {
             wordFormData.where = 'chapter'
           }
         }
@@ -330,7 +330,7 @@ async function onSubmitWord() {
       if (wordFormData.type === FormMode.Add) {
         data.id = nanoid(6)
         data.checked = false
-        let r = list.find(v => v.name === wordForm.name)
+        let r = list.find(v => v.word === wordForm.word)
         if (r) return ElMessage.warning('已有相同名称单词！')
         else list.push(data)
         runtimeStore.editDict.originWords.push(data)
@@ -367,7 +367,7 @@ function delWord(val: {
     runtimeStore.editDict.words.splice(rIndex2, 1)
   }
 
-  if (wordFormData.type === FormMode.Edit && wordForm.name === val.item.name) {
+  if (wordFormData.type === FormMode.Edit && wordForm.word === val.item.word) {
     closeWordForm()
   }
   syncEditDict2MyDictList()
@@ -377,7 +377,7 @@ function editWord(word: Word, index: number, where: string) {
   wordFormData.type = FormMode.Edit
   wordFormData.id = word.id
   wordFormData.where = where
-  wordForm.name = word.name
+  wordForm.word = word.word
   wordForm.ukphone = word.ukphone
   wordForm.usphone = word.usphone
   wordForm.trans = word.trans.join('\n')
@@ -472,7 +472,7 @@ function exportData(type: string) {
   let wb = XLSX.utils.book_new()
   let sheetData = list.map(v => {
     return {
-      单词: v.name,
+      单词: v.word,
       '音标①': v.usphone,
       '音标②': v.ukphone,
       '释义(一行一个释义)': v.trans.join('\n')
@@ -501,7 +501,7 @@ function importData(e: any) {
           let word: Word = {
             id: nanoid(6),
             checked: false,
-            name: String(v['单词']),
+            word: String(v['单词']),
             usphone: String(v['音标①'] ?? ''),
             ukphone: String(v['音标②'] ?? ''),
             trans: String(v['释义(一行一个释义)'] ?? '').split('\n')
@@ -563,7 +563,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
       <div class="left">
         <div class="top">
           <div class="title">
-            {{ runtimeStore.editDict.name }}
+            {{ runtimeStore.editDict.word }}
           </div>
           <template v-if="!isPinDict">
             <BaseIcon icon="tabler:edit" @click='editDict'/>
@@ -695,8 +695,8 @@ defineExpose({getDictDetail, add: addWord, editDict})
               :rules="wordRules"
               :model="wordForm"
               label-width="100rem">
-            <el-form-item label="单词" prop="name">
-              <el-input v-model="wordForm.name"/>
+            <el-form-item label="单词" prop="word">
+              <el-input v-model="wordForm.word"/>
             </el-form-item>
             <el-form-item label="翻译">
               <el-input v-model="wordForm.trans"

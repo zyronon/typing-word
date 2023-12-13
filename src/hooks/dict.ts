@@ -11,15 +11,15 @@ export function useWordOptions() {
   const store = useBaseStore()
 
   function isWordCollect(val: Word) {
-    return !!store.collect.originWords.find(v => v.name.toLowerCase() === val.name.toLowerCase())
+    return !!store.collect.originWords.find(v => v.word.toLowerCase() === val.word.toLowerCase())
   }
 
   function toggleWordCollect(val: Word) {
-    let rIndex = store.collect.originWords.findIndex(v => v.name.toLowerCase() === val.name.toLowerCase())
+    let rIndex = store.collect.originWords.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
     if (rIndex > -1) {
       store.collect.originWords.splice(rIndex, 1)
     } else {
-      let rIndex = store.simple.originWords.findIndex(v => v.name.toLowerCase() === val.name.toLowerCase())
+      let rIndex = store.simple.originWords.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
       if (rIndex > -1) {
         store.simple.originWords.splice(rIndex, 1)
       }
@@ -30,15 +30,15 @@ export function useWordOptions() {
   }
 
   function isWordSimple(val: Word) {
-    return !!store.simple.originWords.find(v => v.name.toLowerCase() === val.name.toLowerCase())
+    return !!store.simple.originWords.find(v => v.word.toLowerCase() === val.word.toLowerCase())
   }
 
   function toggleWordSimple(val: Word) {
-    let rIndex = store.simple.originWords.findIndex(v => v.name.toLowerCase() === val.name.toLowerCase())
+    let rIndex = store.simple.originWords.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
     if (rIndex > -1) {
       store.simple.originWords.splice(rIndex, 1)
     } else {
-      let rIndex = store.collect.originWords.findIndex(v => v.name.toLowerCase() === val.name.toLowerCase())
+      let rIndex = store.collect.originWords.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
       if (rIndex > -1) {
         store.collect.originWords.splice(rIndex, 1)
       }
@@ -49,7 +49,7 @@ export function useWordOptions() {
   }
 
   function delWrongWord(val: Word) {
-    let rIndex = store.wrong.originWords.findIndex(v => v.name.toLowerCase() === val.name.toLowerCase())
+    let rIndex = store.wrong.originWords.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
     if (rIndex > -1) {
       store.wrong.originWords.splice(rIndex, 1)
     }
@@ -57,7 +57,7 @@ export function useWordOptions() {
   }
 
   function delSimpleWord(val: Word) {
-    let rIndex = store.simple.originWords.findIndex(v => v.name.toLowerCase() === val.name.toLowerCase())
+    let rIndex = store.simple.originWords.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
     if (rIndex > -1) {
       store.simple.originWords.splice(rIndex, 1)
     }
@@ -117,7 +117,7 @@ export async function checkDictHasTranslate(dict: Dict) {
         dict.words = cloneDeep(v)
         dict.chapterWords = chunk(dict.words, dict.chapterWordNumber)
         dict.chapterWords[dict.chapterIndex].map((w: Word) => {
-          let res = list.find(a => a.name === w.name)
+          let res = list.find(a => a.word === w.word)
           if (res) w = Object.assign(w, res)
         })
       } else {

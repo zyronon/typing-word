@@ -1,8 +1,7 @@
 <script setup lang="ts">
-
-import {splitEnArticle} from "@/hooks/article.ts";
+import origin from './data.json'
 import BaseButton from "@/components/BaseButton.vue";
-import {useSettingStore} from "@/stores/setting.ts";
+import {checkAndUpgradeSaveDict, shakeCommonDict} from "@/utils";
 import localforage from "localforage";
 import {SAVE_DICT_KEY} from "@/utils/const.ts";
 
@@ -28,17 +27,37 @@ let data = {
 //   "newWords": [],
 //   "id": "TdAAqD"
 // }
-splitEnArticle(data.text)
-const settingStore = useSettingStore()
-async function test(){
+
+async function look() {
   let configStr: string = await localforage.getItem(SAVE_DICT_KEY.key)
-  console.log(configStr)
+  let obj = JSON.parse(configStr)
+  console.log('local', obj)
+
+}
+
+function set() {
+  localforage.setItem(SAVE_DICT_KEY.key, JSON.stringify({val: shakeCommonDict(origin.val as any), version: 3}))
+}
+
+async function check() {
+  // let configStr: string = await localforage.getItem(SAVE_DICT_KEY.key)
+  // console.log('local', configStr)
+  // console.log('or',origin)
+  let configStr: string = await localforage.getItem(SAVE_DICT_KEY.key)
+  let data = checkAndUpgradeSaveDict(configStr)
+  console.log('data',data)
+  // this.setState(data)
 }
 </script>
 
 <template>
   <div class="page">
-    <BaseButton @click="test">test</BaseButton>
+    <div class="data">
+      <p>数据升级检测</p>
+      <BaseButton @click="look">获取保存到localforage的数据</BaseButton>
+      <BaseButton @click="set">设置data.json的数据到localforage</BaseButton>
+      <BaseButton @click="check">检测升级逻辑</BaseButton>
+    </div>
   </div>
 </template>
 
@@ -48,5 +67,12 @@ async function test(){
   z-index: 1;
   font-size: 14rem;
   color: black;
+
+  .data{
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+    width: 300rem;
+  }
 }
 </style>

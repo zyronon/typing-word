@@ -84,8 +84,8 @@ watch(() => settingStore.dictation, () => {
 
 function nextSentence() {
   // wordData.words = [
-  //   {"name": "pharmacy", "trans": ["药房；配药学，药剂学；制药业；一批备用药品"], "usphone": "'fɑrməsi", "ukphone": "'fɑːməsɪ"},
-  //   // {"name": "foregone", "trans": ["过去的；先前的；预知的；预先决定的", "发生在…之前（forego的过去分词）"], "usphone": "'fɔrɡɔn", "ukphone": "fɔː'gɒn"}, {"name": "president", "trans": ["总统；董事长；校长；主席"], "usphone": "'prɛzɪdənt", "ukphone": "'prezɪd(ə)nt"}, {"name": "plastic", "trans": ["塑料的；（外科）造型的；可塑的", "塑料制品；整形；可塑体"], "usphone": "'plæstɪk", "ukphone": "'plæstɪk"}, {"name": "provisionally", "trans": ["临时地，暂时地"], "usphone": "", "ukphone": ""}, {"name": "incentive", "trans": ["动机；刺激", "激励的；刺激的"], "usphone": "ɪn'sɛntɪv", "ukphone": "ɪn'sentɪv"}, {"name": "calculate", "trans": ["计算；以为；作打算"], "usphone": "'kælkjulet", "ukphone": "'kælkjʊleɪt"}
+  //   {"word": "pharmacy", "trans": ["药房；配药学，药剂学；制药业；一批备用药品"], "usphone": "'fɑrməsi", "ukphone": "'fɑːməsɪ"},
+  //   // {"word": "foregone", "trans": ["过去的；先前的；预知的；预先决定的", "发生在…之前（forego的过去分词）"], "usphone": "'fɔrɡɔn", "ukphone": "fɔː'gɒn"}, {"word": "president", "trans": ["总统；董事长；校长；主席"], "usphone": "'prɛzɪdənt", "ukphone": "'prezɪd(ə)nt"}, {"word": "plastic", "trans": ["塑料的；（外科）造型的；可塑的", "塑料制品；整形；可塑体"], "usphone": "'plæstɪk", "ukphone": "'plæstɪk"}, {"word": "provisionally", "trans": ["临时地，暂时地"], "usphone": "", "ukphone": ""}, {"word": "incentive", "trans": ["动机；刺激", "激励的；刺激的"], "usphone": "ɪn'sɛntɪv", "ukphone": "ɪn'sentɪv"}, {"word": "calculate", "trans": ["计算；以为；作打算"], "usphone": "'kælkjulet", "ukphone": "'kælkjʊleɪt"}
   // ]
   // return
 
@@ -97,7 +97,7 @@ function nextSentence() {
   input = wrong = ''
 
   //todo 计得把略过的单词加上统计里面去
-  // if (!store.skipWordNamesWithSimpleWords.includes(currentWord.name.toLowerCase()) && !currentWord.isSymbol) {
+  // if (!store.skipWordNamesWithSimpleWords.includes(currentWord.word.toLowerCase()) && !currentWord.isSymbol) {
   //   practiceStore.inputNumber++
   // }
 
@@ -168,7 +168,7 @@ function onTyping(e: KeyboardEvent) {
   } else {
     let letter = e.key
 
-    let key = currentWord.name[stringIndex]
+    let key = currentWord.word[stringIndex]
     // console.log('key', key,)
 
     let isRight = false
@@ -183,7 +183,7 @@ function onTyping(e: KeyboardEvent) {
       // console.log('匹配上了')
       stringIndex++
       //如果当前词没有index，说明这个词完了，下一个是空格
-      if (!currentWord.name[stringIndex]) {
+      if (!currentWord.word[stringIndex]) {
         input = wrong = ''
         if (!currentWord.isSymbol) {
           playCorrect()
@@ -260,11 +260,11 @@ function del() {
 }
 
 function playWord(word: ArticleWord) {
-  playWordAudio(word.name)
+  playWordAudio(word.word)
 }
 
 function currentWordInput(word: ArticleWord, i: number, i2: number,) {
-  let str = word.name.slice(input.length + wrong.length, input.length + wrong.length + 1)
+  let str = word.word.slice(input.length + wrong.length, input.length + wrong.length + 1)
   if (word.isSymbol) {
     return str
   }
@@ -279,7 +279,7 @@ function currentWordInput(word: ArticleWord, i: number, i2: number,) {
 }
 
 function currentWordEnd(word: ArticleWord, i: number, i2: number,) {
-  let str = word.name.slice(input.length + wrong.length + (wrong ? 0 : 1))
+  let str = word.word.slice(input.length + wrong.length + (wrong ? 0 : 1))
   if (hoverIndex.sectionIndex === i && hoverIndex.sentenceIndex === i2) {
     return str
   }
@@ -291,7 +291,7 @@ function currentWordEnd(word: ArticleWord, i: number, i2: number,) {
 }
 
 function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
-  let str = word.name
+  let str = word.word
   if (word.isSymbol) {
     return str
   }
@@ -393,7 +393,7 @@ defineExpose({showSentence, play, del,hideSentence,nextSentence})
                         ?'wrote' :
                         (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>indexW)
                         ?'wrote':
-                         (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>=indexW && stringIndex>=word.name.length)
+                         (sectionIndex>=indexI &&sentenceIndex>=indexJ && wordIndex>=indexW && stringIndex>=word.word.length)
                         ?'wrote':
                         ''),
                         (`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace && wrong )?'word-wrong':'',

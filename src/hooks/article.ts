@@ -74,7 +74,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
 
         let word3: ArticleWord = {
           ...DefaultArticleWord,
-          name: pre,
+          word: pre,
           nextSpace: false,
           isSymbol: true,
           symbolPosition: ''
@@ -194,7 +194,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
       })
 
       //去除空格占位符
-      sentence.words = sentence.words.filter(v => v.name !== 'placeholder')
+      sentence.words = sentence.words.filter(v => v.word !== 'placeholder')
     })
   })
 
@@ -202,7 +202,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
   sections.map((sectionItem, a) => {
     sectionItem.map((sentenceItem, b) => {
       sentenceItem.text = sentenceItem.words.reduce((previousValue: string, currentValue) => {
-        previousValue += currentValue.name + (currentValue.nextSpace ? ' ' : '')
+        previousValue += currentValue.word + (currentValue.nextSpace ? ' ' : '')
         return previousValue
       }, '')
     })

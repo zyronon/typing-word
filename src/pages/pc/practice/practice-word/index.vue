@@ -27,7 +27,7 @@ function getCurrentPractice() {
 
     store.chapter.map((w: Word) => {
       if (!w.trans.length) {
-        let res = runtimeStore.translateWordList.find(a => a.name === w.name)
+        let res = runtimeStore.translateWordList.find(a => a.word === w.word)
         if (res) w = Object.assign(w, res)
       }
     })

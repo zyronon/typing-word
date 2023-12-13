@@ -28,7 +28,7 @@ onMounted(() => {
           if (!w.trans.length) {
             requestIdleCallback(() => {
               if (list.length) {
-                let res = runtimeStore.translateWordList.find(a => a.name === w.name)
+                let res = runtimeStore.translateWordList.find(a => a.word === w.word)
                 if (res) w = Object.assign(w, res)
                 count++
                 if (count === list.length) {

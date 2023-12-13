@@ -177,7 +177,7 @@ function edit(val: Article = articleData.article) {
   // wordData.words = [
   //   {
   //     ...cloneDeep(DefaultWord),
-  //     name: 'test'
+  //     word: 'test'
   //   }
   // ]
   // wordData.index = 0
@@ -187,12 +187,12 @@ function edit(val: Article = articleData.article) {
 }
 
 function wrong(word: Word) {
-  let lowerName = word.name.toLowerCase();
-  if (!store.wrong.originWords.find((v: Word) => v.name.toLowerCase() === lowerName)) {
+  let lowerName = word.word.toLowerCase();
+  if (!store.wrong.originWords.find((v: Word) => v.word.toLowerCase() === lowerName)) {
     store.wrong.originWords.push(word)
   }
   if (!store.skipWordNamesWithSimpleWords.includes(lowerName)) {
-    if (!practiceStore.wrongWords.find((v) => v.name.toLowerCase() === lowerName)) {
+    if (!practiceStore.wrongWords.find((v) => v.word.toLowerCase() === lowerName)) {
       practiceStore.wrongWords.push(word)
       practiceStore.wrongWordNumber++
     }
@@ -223,7 +223,7 @@ function over() {
 }
 
 function nextWord(word: ArticleWord) {
-  if (!store.skipWordNamesWithSimpleWords.includes(word.name.toLowerCase()) && !word.isSymbol) {
+  if (!store.skipWordNamesWithSimpleWords.includes(word.word.toLowerCase()) && !word.isSymbol) {
     practiceStore.inputWordNumber++
   }
 }

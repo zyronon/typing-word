@@ -22,7 +22,7 @@ en2zh_CN.map(v => {
     if (rIndex === -1) {
       // let data = {
       //   id: allNew.length,
-      //   word: v.name,
+      //   word: v.word,
       //   phonetic0: v.usphone,
       //   phonetic1: v.ukphone,
       //   trans: []
@@ -46,7 +46,7 @@ en2zh_CN.map(v => {
       // }
 
       // allNew.push()
-      // minNew.push(v.name)
+      // minNew.push(v.word)
 
       if (!v.name.includes(' ')){
         notContain.push(v.name)

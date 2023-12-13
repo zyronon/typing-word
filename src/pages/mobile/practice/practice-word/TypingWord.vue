@@ -141,17 +141,17 @@ function next(isTyping: boolean = true) {
     isTyping && practiceStore.inputWordNumber++
     console.log('这个词完了')
     if ([DictType.word].includes(store.currentDict.type)
-        && store.skipWordNames.includes(word.name.toLowerCase())) {
+        && store.skipWordNames.includes(word.word.toLowerCase())) {
       next()
     }
   }
 }
 
 function wordWrong() {
-  if (!store.wrong.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
+  if (!store.wrong.originWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
     store.wrong.originWords.push(word)
   }
-  if (!data.wrongWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
+  if (!data.wrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
     data.wrongWords.push(word)
     practiceStore.wrongWordNumber++
   }

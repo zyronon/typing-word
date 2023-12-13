@@ -11,7 +11,6 @@ import {onMounted, reactive} from "vue";
 import {cloneDeep} from "lodash-es";
 import {Icon} from '@iconify/vue';
 import {$computed, $ref} from "vue/macros";
-import BaseIcon from "@/components/BaseIcon.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 
 const store = useBaseStore()
@@ -85,7 +84,7 @@ const isEnd = $computed(() => {
         <div class="result">
           <div class="wrong-words-wrapper">
             <div class="wrong-words">
-              <div class="word" v-for="i in currentStat.wrongWords">{{ i.name }}</div>
+              <div class="word" v-for="i in currentStat.wrongWords">{{ i.word }}</div>
               <!--                          <div class="word" v-for="i in 100">{{ i }}</div>-->
             </div>
           </div>

@@ -41,7 +41,7 @@ const volumeIconRef: any = $ref()
 const volumeTranslateIconRef: any = $ref()
 
 let displayWord = $computed(() => {
-  return props.word.name.slice(input.length + wrong.length)
+  return props.word.word.slice(input.length + wrong.length)
 })
 
 watch(() => props.word, () => {
@@ -85,11 +85,11 @@ async function onTyping(e: KeyboardEvent) {
   let isTypingRight = false
   let isWordRight = false
   if (settingStore.ignoreCase) {
-    isTypingRight = letter.toLowerCase() === props.word.name[input.length].toLowerCase()
-    isWordRight = (input + letter).toLowerCase() === props.word.name.toLowerCase()
+    isTypingRight = letter.toLowerCase() === props.word.word[input.length].toLowerCase()
+    isWordRight = (input + letter).toLowerCase() === props.word.word.toLowerCase()
   } else {
-    isTypingRight = letter === props.word.name[input.length]
-    isWordRight = (input + letter) === props.word.name
+    isTypingRight = letter === props.word.word[input.length]
+    isWordRight = (input + letter) === props.word.word
   }
   if (isTypingRight) {
     input += letter
@@ -195,7 +195,7 @@ defineExpose({del, showWord, hideWord, play})
       <Tooltip
           :title="`发音(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.PlayWordPronunciation]})`"
       >
-        <VolumeIcon ref="volumeIconRef" :simple="true" :cb="() => playWordAudio(word.name)"/>
+        <VolumeIcon ref="volumeIconRef" :simple="true" :cb="() => playWordAudio(word.word)"/>
       </Tooltip>
     </div>
     <div class="phonetic" v-if="settingStore.wordSoundType === 'us' && word.usphone">[{{ word.usphone}}]</div>

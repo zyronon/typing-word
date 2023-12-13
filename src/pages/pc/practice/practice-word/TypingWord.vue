@@ -83,7 +83,7 @@ watch(data, () => {
 const word = $computed(() => {
   return data.words[data.index] ?? {
     trans: [],
-    name: '',
+    word: '',
     usphone: '',
     ukphone: '',
   }
@@ -141,17 +141,17 @@ function next(isTyping: boolean = true) {
     isTyping && practiceStore.inputWordNumber++
     console.log('这个词完了')
     if ([DictType.word].includes(store.currentDict.type)
-        && store.skipWordNames.includes(word.name.toLowerCase())) {
+        && store.skipWordNames.includes(word.word.toLowerCase())) {
       next()
     }
   }
 }
 
 function wordWrong() {
-  if (!store.wrong.originWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
+  if (!store.wrong.originWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
     store.wrong.originWords.push(word)
   }
-  if (!data.wrongWords.find((v: Word) => v.name.toLowerCase() === word.name.toLowerCase())) {
+  if (!data.wrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
     data.wrongWords.push(word)
     practiceStore.wrongWordNumber++
   }
@@ -249,7 +249,7 @@ onUnmounted(() => {
         <Tooltip
             :title="`上一个(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Previous]})`"
         >
-          <div class="word">{{ prevWord.name }}</div>
+          <div class="word">{{ prevWord.word }}</div>
         </Tooltip>
       </div>
       <div class="next"
@@ -258,7 +258,7 @@ onUnmounted(() => {
         <Tooltip
             :title="`下一个(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
         >
-          <div class="word" :class="settingStore.dictation && 'text-shadow'">{{ nextWord.name }}</div>
+          <div class="word" :class="settingStore.dictation && 'text-shadow'">{{ nextWord.word }}</div>
         </Tooltip>
         <Icon class="arrow" icon="bi:arrow-right" width="22"/>
       </div>

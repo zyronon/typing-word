@@ -48,7 +48,7 @@ defineExpose({scrollToBottom, scrollToItem})
     </template>
     <template v-slot="{ item, index }">
       <div class="item-title">
-        <span class="word" :class="!showWord && 'text-shadow'">{{ item.name }}</span>
+        <span class="word" :class="!showWord && 'text-shadow'">{{ item.word }}</span>
         <span class="phonetic">{{ item.usphone }}</span>
         <VolumeIcon class="volume" @click="playWordAudio(item.name)"></VolumeIcon>
       </div>

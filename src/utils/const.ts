@@ -10,7 +10,7 @@ export const APP_NAME = 'Typing Word'
 
 export const SAVE_DICT_KEY = {
     key: 'typing-word-dict',
-    version: 3
+    version: 4
 }
 export const SAVE_SETTING_KEY = {
     key: 'typing-word-setting',
