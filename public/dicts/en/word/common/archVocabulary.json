@@ -1,3781 +1,6949 @@
 [
   {
     "word": "Environmental Design",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "环境设计"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Architecture",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "建筑学"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Urban and Regional Planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "城市和区域规划 ，社区和区域规划，城市规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Community and Regional Planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "城市和区域规划 ，社区和区域规划，城市规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "city planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "城市和区域规划 ，社区和区域规划，城市规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Landscape architecture",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "风景园林"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Urban Design",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "城市设计"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "related consultant and engineer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "相关顾问和工程师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Architecture Aesthetics",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "建筑美学"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Sustainable Architecture and passive solar design",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "可持续建筑与被动式太阳能设计"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "undergraduate student",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "本科生"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "freshman",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.（中学或大学的）一年级学生，新手"
+      }
+    ],
+    "phonetic0": "ˈfreʃmən",
+    "phonetic1": "ˈfrɛʃmən"
   },
   {
     "word": "sophomore",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.（中等、专科学校或大学的）二年级学生"
+      }
+    ],
+    "phonetic0": "ˈsɒfəmɔ:(r)",
+    "phonetic1": "ˈsɑ:fəmɔ:(r)"
   },
   {
     "word": "junior",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.较年幼的，较年小的，三年级的，低年级的，资历较浅的，后进的"
+      },
+      {
+        "cn": "n.年少者，青少年，晚辈，三年级生，职位较低者"
+      }
+    ],
+    "phonetic0": "ˈdʒu:niə(r)",
+    "phonetic1": "ˈdʒunjɚ"
   },
   {
     "word": "senior",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.（级别、地位等）较高的，资深的，年长的，<美>最高年级的"
+      },
+      {
+        "cn": "n.上级，<美>毕业班学生，较年长者，地位较高的，资历较深的"
+      }
+    ],
+    "phonetic0": "ˈsi:niə(r)",
+    "phonetic1": "ˈsinjɚ"
   },
   {
     "word": "School",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "学院"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Department",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "系"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Post-graduate student",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "研究生"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "professor/associate professor",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "教授/副教授"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "lecturer/senior lecturer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "讲师 ，高级讲师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "assistant professor",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "助理教授"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "graduate school admission",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "研究生录取"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "master's and doctoral degrees",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "硕士和博士学位"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "undergraduate (bachelor's) degree",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "本科学位"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "grade point average(GPA)",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "平均绩点"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Graphic Design",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "平面设计"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Industrial Design",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "工业设计"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Interior Design",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "室内设计"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Architecture",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "建筑学"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Landscape Architecture",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "风景园林"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Urban Design",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "城市设计"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "term",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.学期，条款，术语，期限"
+      },
+      {
+        "cn": "vt.把…称为，把…叫做"
+      }
+    ],
+    "phonetic0": "tɜ:m",
+    "phonetic1": "tɜ:rm"
   },
   {
     "word": "freeway",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.高速公路，快车道"
+      }
+    ],
+    "phonetic0": "ˈfri:weɪ",
+    "phonetic1": "ˈfriˌwe"
   },
   {
     "word": "consultants",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "顾问 ，咨询人员"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "profession",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.职业，专业，同行，宣称，信念，信仰"
+      }
+    ],
+    "phonetic0": "prəˈfeʃn",
+    "phonetic1": "prəˈfɛʃən"
   },
   {
     "word": "health, safety and welfare",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "幸福 ，福利"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "license",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.许可证，执照，特许"
+      },
+      {
+        "cn": "vt.同意，发许可证"
+      }
+    ],
+    "phonetic0": "ˈlaɪsns",
+    "phonetic1": "ˈlaɪsəns"
   },
   {
     "word": "developers",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "开发商"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "studio",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.工作室，画室，影演播室，电影制片厂"
+      }
+    ],
+    "phonetic0": "ˈstju:diəʊ",
+    "phonetic1": "ˈstu:dioʊ"
   },
   {
     "word": "Structural Engineer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "结构工程师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Lighting Designer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "灯光设计师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Mechanical Engineer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "机械工程师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Architect",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "建筑师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Drafting Technician",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "绘图技术员"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Interior Designer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "室内设计师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Fire Protection Consultant",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "消防顾问"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "Electrical Engineer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "电气工程师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "inclusive design",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "包容性设计"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "universal design",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "通用设计"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "interact with the public",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "参与公众互动"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "participatory planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "参与式规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "residential density",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "居住密度"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "set-back of structures from the property line",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "(用地红线) 建筑退线"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "land-use planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "土地利用规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "environmental planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "环境规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "transportation planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "交通规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "comprehensive planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "总体规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "regional planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "区域规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "city planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "城市和区域规划 ，社区和区域规划，城市规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "historic preservation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "保护规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "neighborhood planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "小区规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "infrastructure",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.基础设施，基础建设"
+      }
+    ],
+    "phonetic0": "ˈɪnfrəstrʌktʃə(r)",
+    "phonetic1": "ˈɪnfrəˌstrʌktʃɚ"
   },
   {
     "word": "transportation hub",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "交通枢纽"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "resilient",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.能复原的，弹回的，有弹性的，能立刻恢复精神的，社会渣滓"
+      }
+    ],
+    "phonetic0": "rɪˈzɪliənt",
+    "phonetic1": "rɪˈzɪljənt"
   },
   {
     "word": "urban comprehensive planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "城市总体规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "urban detailed planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "城市详细规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "constructive-detailed plan",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "修建性详细规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "regulatory detailed planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "控制性详细规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "utility",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.功用，效用，有用的物体或器械，公用事业公司，公用事业"
+      },
+      {
+        "cn": "adj.有多种用途的，各种工作都会做的，能在数个位置作替补的，为获得经济价值而饲养"
+      }
+    ],
+    "phonetic0": "ju:ˈtɪləti",
+    "phonetic1": "juˈtɪləti"
   },
   {
     "word": "sidewalk",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.人行道"
+      }
+    ],
+    "phonetic0": "ˈsaɪdwɔ:k",
+    "phonetic1": "ˈsaɪdˌwɔk"
   },
   {
     "word": "zoning",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.（城市规划中分成工厂区、住宅区等的）分区制，成区，分带"
+      }
+    ],
+    "phonetic0": "ˈzəʊnɪŋ",
+    "phonetic1": "ˈzonɪŋ"
   },
   {
     "word": "amenity",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "便利设施"
+      }
+    ],
+    "phonetic0": "ə'menəti",
+    "phonetic1": "ə'mɛnəti"
   },
   {
     "word": "pedestrian",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.步行者，行人"
+      },
+      {
+        "cn": "adj.徒步的，平淡无奇的，一般的"
+      }
+    ],
+    "phonetic0": "pəˈdestriən",
+    "phonetic1": "pəˈdɛstriən"
   },
   {
     "word": "transit system",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "交通运输线"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "highway",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.公路，公用通道，干线，途径，方法"
+      }
+    ],
+    "phonetic0": "ˈhaɪweɪ",
+    "phonetic1": "ˈhaɪˌwe"
   },
   {
     "word": "bike lane",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "自行车道"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "freeway",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.高速公路，快车道"
+      }
+    ],
+    "phonetic0": "ˈfri:weɪ",
+    "phonetic1": "ˈfriˌwe"
   },
   {
     "word": "express highway",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "高速公路"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "intersection",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.横断，横切，交叉，相交，交叉点，交叉线，数交集"
+      }
+    ],
+    "phonetic0": "ˌɪntəˈsekʃn",
+    "phonetic1": "ˌɪntərˈsekʃn"
   },
   {
     "word": "interstate highway",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "州际公路"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "housing complex",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "综合住宅区/楼"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "participatory planning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "参与式规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "human scale",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "人类尺度"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "context",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.上下文，背景，环境，语境"
+      }
+    ],
+    "phonetic0": "ˈkɒntekst",
+    "phonetic1": "ˈkɑ:ntekst"
   },
   {
     "word": "structure integrity",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "结构完整性"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "accessible",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.易接近的，可理解的，易相处的，易感的"
+      }
+    ],
+    "phonetic0": "əkˈsesəbl",
+    "phonetic1": "ækˈsɛsəbəl"
   },
   {
     "word": "evacuation",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.撤空，撤离，撤退，疏散"
+      }
+    ],
+    "phonetic0": "ɪˌvækjʊ'eɪʃn",
+    "phonetic1": "ɪˌvækjuˈeʃən"
   },
   {
     "word": "egress",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "安全出口"
+      }
+    ],
+    "phonetic0": "'iːgres",
+    "phonetic1": "'iɡrɛs"
   },
   {
     "word": "residential architecture",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "住宅建筑"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "commercial architecture",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "商业建筑"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "institutional architecture",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "公共设施类建筑"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "industrial architecture",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "工业建筑"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "single family home",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "独栋别墅"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "client",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.顾客，当事人，诉讼委托人，计算机客户端"
+      }
+    ],
+    "phonetic0": "ˈklaɪənt",
+    "phonetic1": "ˈklaɪənt"
   },
   {
     "word": "townhouse",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.连栋房屋，城市住房"
+      }
+    ],
+    "phonetic0": "'taʊnhaʊz",
+    "phonetic1": "'taʊnhaʊz"
   },
   {
     "word": "downtown",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.市中心区，（市中）商业区"
+      },
+      {
+        "cn": "adj.商业区的，闹市区的"
+      },
+      {
+        "cn": "adv.在商业（闹市）区，到闹市区"
+      }
+    ],
+    "phonetic0": "ˌdaʊnˈtaʊn",
+    "phonetic1": "ˈdaʊnˌtaʊn"
   },
   {
     "word": "suburban",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.城郊的，在郊区的，城郊住宅区的，土气的，见闻不广的"
+      },
+      {
+        "cn": "n.郊区居民"
+      }
+    ],
+    "phonetic0": "səˈbɜ:bən",
+    "phonetic1": "səˈbɜ:rbən"
   },
   {
     "word": "historic renovation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "历史建筑翻新"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "re-use/conversion",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "转换"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "recycling",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.再循环"
+      },
+      {
+        "cn": "v.回收利用( recycle的现在分词 )，再利用，再次应用，重新使用（概念、方法、玩笑等）"
+      }
+    ],
+    "phonetic0": "ˌri:'saɪklɪŋ",
+    "phonetic1": "ˌri:'saɪklɪŋ"
   },
   {
     "word": "historic preservation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "保护规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "restoration",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.（规章制度等的）恢复，复原，（遗失等物的）归还原主，整修"
+      }
+    ],
+    "phonetic0": "ˌrestəˈreɪʃn",
+    "phonetic1": "ˌrɛstəˈreʃən"
   },
   {
     "word": "adaptive reuse",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "适应性再利用"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "multi-family residential building",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "多户住宅"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "condominium",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.公寓，一套公寓住房，公寓的单元"
+      }
+    ],
+    "phonetic0": "ˌkɒndəˈmɪniəm",
+    "phonetic1": "ˌkɑ:ndəˈmɪniəm"
   },
   {
     "word": "apartment",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.寓所，住房，房间，公寓楼，（有特殊用途或专属某人的）豪华寓所"
+      }
+    ],
+    "phonetic0": "əˈpɑ:tmənt",
+    "phonetic1": "əˈpɑ:rtmənt"
   },
   {
     "word": "low-income housing",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "低收入保障房"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "high-rise residential tower",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "高层住宅"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "retail store",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "零售商店"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "skyscraper",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.摩天大楼，超高层大楼，特别高的东西"
+      }
+    ],
+    "phonetic0": "ˈskaɪskreɪpə(r)",
+    "phonetic1": "ˈskaɪˌskrepɚ"
   },
   {
     "word": "high-rise",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.（建筑物）有多层的，高楼的，超高层的"
+      },
+      {
+        "cn": "n.高楼，大厦，多层建筑物"
+      }
+    ],
+    "phonetic0": "haɪ",
+    "phonetic1": "ˈhaɪˈraɪz"
   },
   {
     "word": "historic restoration",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "古建修复"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "concert hall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "音乐厅"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "form, space, and order",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "形式 ，空间和秩序"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "architectural component",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "建筑构件"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "roof",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.屋顶，房屋，最高部，顶部，最高限度，口腔顶部"
+      },
+      {
+        "cn": "vt.给…盖顶，覆盖，保护，庇护"
+      }
+    ],
+    "phonetic0": "ru:f",
+    "phonetic1": "ruf,rʊf"
   },
   {
     "word": "ceiling",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.天花板，最高限度，云幕高度，隔板，舱室垫板"
+      }
+    ],
+    "phonetic0": "ˈsi:lɪŋ",
+    "phonetic1": "ˈsilɪŋ"
   },
   {
     "word": "wall",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.墙，屏障，隔阂，壁垒"
+      },
+      {
+        "cn": "vt.& vi.筑墙围住，用墙隔开，围以墙"
+      },
+      {
+        "cn": "adj.墙壁的"
+      }
+    ],
+    "phonetic0": "wɔ:l",
+    "phonetic1": "wɔl"
   },
   {
     "word": "window",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.窗，窗户，窗口，〈美俚〉眼镜"
+      }
+    ],
+    "phonetic0": "ˈwɪndəʊ",
+    "phonetic1": "ˈwɪndoʊ"
   },
   {
     "word": "floor",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.地面，地板，楼层，底部，议员席"
+      },
+      {
+        "cn": "vt.铺地板，击败，打倒"
+      }
+    ],
+    "phonetic0": "flɔ:(r)",
+    "phonetic1": "flor"
   },
   {
     "word": "mechanical system",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "机械系统"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "structure",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.结构，构造，建筑物，体系"
+      },
+      {
+        "cn": "vt.构成，排列，安排"
+      }
+    ],
+    "phonetic0": "ˈstrʌktʃə(r)",
+    "phonetic1": "ˈstrʌktʃɚ"
   },
   {
     "word": "foundation",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.地基，基础，基金（会），粉底"
+      }
+    ],
+    "phonetic0": "faʊnˈdeɪʃn",
+    "phonetic1": "faʊnˈdeʃən"
   },
   {
     "word": "site",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.地点，位置，场所，计算机网站，遗址，地皮"
+      },
+      {
+        "cn": "vt.使坐落在，安放，设置，给…造址，为…提供场所"
+      }
+    ],
+    "phonetic0": "saɪt",
+    "phonetic1": "saɪt"
   },
   {
     "word": "flat roof",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "平屋顶"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "gable wall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "山墙"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "pitched roof",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "坡屋面"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "ridge",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.背脊，峰，隆起线，山脊，山脉，海脊，高压脊，皱摺，田埂"
+      },
+      {
+        "cn": "vt.使成脊状，使隆起"
+      },
+      {
+        "cn": "vi.使成脊状"
+      }
+    ],
+    "phonetic0": "rɪdʒ",
+    "phonetic1": "rɪdʒ"
   },
   {
     "word": "hip",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.臀部，建筑学屋脊，臀围（尺寸），臀部…的"
+      },
+      {
+        "cn": "adj.（衣服、音乐等方面）时髦的，赶时髦的"
+      },
+      {
+        "cn": "vt.使…的髋关节脱臼，损伤…的髋部，建筑学给（房屋）建屋脊，使知晓，使了解，告诉，使消息灵通"
+      }
+    ],
+    "phonetic0": "hɪp",
+    "phonetic1": "hɪp"
   },
   {
     "word": "valley",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.山谷，溪谷，峡谷，谷地，深谷，流域，建筑屋顶排水沟，屋面斜沟"
+      }
+    ],
+    "phonetic0": "ˈvæli",
+    "phonetic1": "ˈvæli"
   },
   {
     "word": "dormer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "老虎窗"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "truss",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "桁架"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "bearing wall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "承重墙"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "pilaster",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "壁柱"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "interior wall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "内墙"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "exterior wall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "外墙"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "party wall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "共用墙"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "shell",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.（贝、卵、坚果等的）壳，外壳，炮弹，（人的）表面性格"
+      },
+      {
+        "cn": "vt.去壳，脱落，炮击"
+      },
+      {
+        "cn": "vi.剥皮，炮轰"
+      }
+    ],
+    "phonetic0": "ʃel",
+    "phonetic1": "ʃɛl"
   },
   {
     "word": "envelope",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.信封，封皮，壳层，外壳，包裹物，生物学膜，包袋"
+      }
+    ],
+    "phonetic0": "ˈenvələʊp",
+    "phonetic1": "ˈenvəloʊp"
   },
   {
     "word": "stud",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.种马，大头钉，（衣袖等的）饰钮，建壁骨"
+      },
+      {
+        "cn": "vt.用饰钮装饰，散布，用壁骨支撑"
+      }
+    ],
+    "phonetic0": "stʌd",
+    "phonetic1": "stʌd"
   },
   {
     "word": "curtain wall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "幕墙"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "panel",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.镶板，面，（门、墙等上面的）嵌板，控制板"
+      },
+      {
+        "cn": "vt.选定（陪审团），把…分格，在…上置鞍垫，把…镶入框架内"
+      }
+    ],
+    "phonetic0": "ˈpænl",
+    "phonetic1": "ˈpænəl"
   },
   {
     "word": "mullion",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "横柜 ，竖柜"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "facade",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.建筑物的正面，外表，虚伪，假象"
+      }
+    ],
+    "phonetic0": "fəˈsɑ:d",
+    "phonetic1": "fəˈsɑːd"
   },
   {
     "word": "fenestration",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "开洞"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "mortar",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.迫击炮，砂浆，房产，研钵"
+      },
+      {
+        "cn": "vt.& vi.用迫击炮攻击（或袭击），用灰泥涂抹结合"
+      }
+    ],
+    "phonetic0": "ˈmɔ:tə(r)",
+    "phonetic1": "ˈmɔ:rtə(r)"
   },
   {
     "word": "gypsum/plaster",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "石膏"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "gravel",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.沙砾，碎石，砾石，医结石"
+      },
+      {
+        "cn": "vt.以砾石铺路，使困惑，使（船）搁浅在沙滩上"
+      }
+    ],
+    "phonetic0": "ˈgrævl",
+    "phonetic1": "ˈɡrævəl"
   },
   {
     "word": "adobe",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.风干土坯，风干砖坯，（制风干砖用的）灰质粘土，泥砖砌成的房屋"
+      },
+      {
+        "cn": "adj.用土坯建造的"
+      }
+    ],
+    "phonetic0": "əˈdəʊbi",
+    "phonetic1": "əˈdoʊbi"
   },
   {
     "word": "structural clay tile",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "空心黏土砖"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "cement",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.水泥，胶合剂，胶接剂，粘固粉"
+      },
+      {
+        "cn": "vt.粘牢，巩固，（用水泥、胶等）粘结，在…上抹水泥"
+      }
+    ],
+    "phonetic0": "sɪˈment",
+    "phonetic1": "sɪˈmɛnt"
   },
   {
     "word": "aggregate",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.合计，聚集体，骨料，集料（可成混凝土或修路等用的）"
+      },
+      {
+        "cn": "adj.总数的，总计的，聚合的，地聚成岩的"
+      },
+      {
+        "cn": "vt.使聚集，使积聚，总计达"
+      }
+    ],
+    "phonetic0": "ˈægrɪgət",
+    "phonetic1": "ˈæɡrɪɡɪt"
   },
   {
     "word": "rammed earth",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "夯土"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "terra cotta",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "陶"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "concrete",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.具体的，有形的，实在的，实际的，固结成的，混凝土制的，图案诗歌的"
+      },
+      {
+        "cn": "n.混凝土，具体物，（图案式）有形诗，〔建〕钢筋混凝土"
+      },
+      {
+        "cn": "vt.使凝固，用混凝土修筑，萃取"
+      },
+      {
+        "cn": "vi.凝固，固结，变坚固，使用混凝土"
+      }
+    ],
+    "phonetic0": "ˈkɒŋkri:t",
+    "phonetic1": "ˈkɑ:ŋkri:t"
   },
   {
     "word": "right of way",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "先行权/路权"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "publicly-accessible open space",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "公共开发空间"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "civic building",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "民用房屋"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "urban sprawl",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "城市蔓延"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "smart growth",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "精明增长"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "compact city",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "紧凑城市"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "public space",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "公共空间"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "livability",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "宜居性"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "sense of community",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "社区感"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "urbanity",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "城市性"
+      }
+    ],
+    "phonetic0": "ɜː'bænɪtɪ",
+    "phonetic1": "ɝ'bænəti"
   },
   {
     "word": "sense of place",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "场所感"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "typology",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.<正>类型学，象征主义，象征论"
+      }
+    ],
+    "phonetic0": "taɪˈpɒlədʒi",
+    "phonetic1": "taɪˈpɑ:lədʒi"
   },
   {
     "word": "private space",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "私人空间"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "back yard",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "后院"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "alley",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.胡同，小巷，小径，球道"
+      }
+    ],
+    "phonetic0": "ˈæli",
+    "phonetic1": "ˈæli"
   },
   {
     "word": "entrance",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.入口，进口，进入，进入方法，进入方式，入场权"
+      },
+      {
+        "cn": "vt.使出神，使入迷，使喜悦，使狂喜"
+      }
+    ],
+    "phonetic0": "ˈentrəns",
+    "phonetic1": "ˈentrəns"
   },
   {
     "word": "front yard",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "前院"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "sidewalk",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.人行道"
+      }
+    ],
+    "phonetic0": "ˈsaɪdwɔ:k",
+    "phonetic1": "ˈsaɪdˌwɔk"
   },
   {
     "word": "parking lot",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "停车场"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "plaza/square",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "广场"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "pocket park",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "街心花园"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "street",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.大街，街道"
+      }
+    ],
+    "phonetic0": "stri:t",
+    "phonetic1": "strit"
   },
   {
     "word": "park",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.公园，停车场"
+      },
+      {
+        "cn": "vi.泊车，停车"
+      },
+      {
+        "cn": "vt.将…放置在某处，停车"
+      }
+    ],
+    "phonetic0": "pɑ:k",
+    "phonetic1": "pɑ:rk"
   },
   {
     "word": "neighborhood",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.地区，某地区的人，与某处邻近的地区，临近街坊"
+      }
+    ],
+    "phonetic0": "'neɪbəhʊd",
+    "phonetic1": "ˈnebɚˌhʊd"
   },
   {
     "word": "CBD(Central Business District)",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "中央商务中心"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "automobile",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.<美>汽车"
+      },
+      {
+        "cn": "v.开汽车，坐汽车"
+      }
+    ],
+    "phonetic0": "ˈɔ:təməbi:l",
+    "phonetic1": "-ˈmoˌbil"
   },
   {
     "word": "suburban",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.城郊的，在郊区的，城郊住宅区的，土气的，见闻不广的"
+      },
+      {
+        "cn": "n.郊区居民"
+      }
+    ],
+    "phonetic0": "səˈbɜ:bən",
+    "phonetic1": "səˈbɜ:rbən"
   },
   {
     "word": "storage",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.贮存，贮藏，储藏处，仓库，贮存器，蓄电（瓶）"
+      }
+    ],
+    "phonetic0": "ˈstɔ:rɪdʒ",
+    "phonetic1": "ˈstor-"
   },
   {
     "word": "walkable city/community",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "步行城市/社区"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "residential density",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "居住密度"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "street frontage",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "临街门面"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "placemaking",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "场所营造"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "floor area ratio",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "容积率"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "urban renewal",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "城市更新"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "modernist",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.现代主义者，现代派，现代主义艺术家"
+      }
+    ],
+    "phonetic0": "'mɒdənɪst",
+    "phonetic1": "'mɒdənɪst"
   },
   {
     "word": "architectural language",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "建筑语言"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "modernism",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.宗现代主义，现代想法，现代用法，现代风尚，现代标准"
+      }
+    ],
+    "phonetic0": "ˈmɒdənɪzəm",
+    "phonetic1": "ˈmɑ:dərnɪzəm"
   },
   {
     "word": "physically",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adv.体格上，身体上，物理上，<非正>完全地"
+      }
+    ],
+    "phonetic0": "ˈfɪzɪkli",
+    "phonetic1": "ˈfɪzɪkəlɪ"
   },
   {
     "word": "psychologically",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adv.心理上地，心理学地"
+      }
+    ],
+    "phonetic0": "ˌsaɪkə'lɒdʒɪklɪ",
+    "phonetic1": "saɪkəˈˈlɑ:dʒɪklɪ"
   },
   {
     "word": "shopping mall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "大商场"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "pedestrian zones/auto-free zones/car-free zones",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "步行区"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "morphology",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.形态学（尤指动植物形态学或词语形态学）"
+      }
+    ],
+    "phonetic0": "mɔ:ˈfɒlədʒi",
+    "phonetic1": "mɔ:rˈfɑ:lədʒi"
   },
   {
     "word": "accessibility",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.易接近，可到达，学习资料利用率，可诣达性，可达性"
+      }
+    ],
+    "phonetic0": "əkˌsesə'bɪlətɪ",
+    "phonetic1": "əkˌsesə'bɪlətɪ"
   },
   {
     "word": "mixed use",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "混合使用"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "city block",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "城市街区"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "intimate space",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "私密空间"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "sustainability",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.持续性，能维持性，永续性"
+      }
+    ],
+    "phonetic0": "sə,stenə'bɪlɪti",
+    "phonetic1": "sə,stenə'bɪlɪti"
   },
   {
     "word": "socialize",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "vi.（与…）交往，联谊，参与社交"
+      },
+      {
+        "cn": "vt.使社会化，使适合于过社会生活，使参加集体学习"
+      }
+    ],
+    "phonetic0": "ˈsəʊʃəlaɪz",
+    "phonetic1": "ˈsoʊʃəlaɪz"
   },
   {
     "word": "active participant",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "积极参与者"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "agricultural land",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "农业用地"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "habitable",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.适于居住的"
+      }
+    ],
+    "phonetic0": "ˈhæbɪtəbl",
+    "phonetic1": "ˈhæbɪtəbəl"
   },
   {
     "word": "natural light",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "自然光"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "mixed use",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "混合使用"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "citizen",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.公民，国民，市民，平民"
+      }
+    ],
+    "phonetic0": "ˈsɪtɪzn",
+    "phonetic1": "ˈsɪtɪzən"
   },
   {
     "word": "single family home",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "独栋别墅"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "pedestrian",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.步行者，行人"
+      },
+      {
+        "cn": "adj.徒步的，平淡无奇的，一般的"
+      }
+    ],
+    "phonetic0": "pəˈdestriən",
+    "phonetic1": "pəˈdɛstriən"
   },
   {
     "word": "transit system",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "交通运输线"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "privacy",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.隐私，秘密，隐居，私事，不受公众干扰的状态"
+      }
+    ],
+    "phonetic0": "ˈprɪvəsi",
+    "phonetic1": "ˈpraɪvəsi"
   },
   {
     "word": "civil engineer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "土木工程师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "structural engineer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "结构工程师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "mechanical engineer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "机械工程师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "electrical engineer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "电子工程师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "environmental engineer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "环境工程师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "geotechnical engineer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "岩石工程师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "acoustical engineer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "声学工程师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "civil engineering",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "土木工程"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "infrastructure",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.基础设施，基础建设"
+      }
+    ],
+    "phonetic0": "ˈɪnfrəstrʌktʃə(r)",
+    "phonetic1": "ˈɪnfrəˌstrʌktʃɚ"
   },
   {
     "word": "sewer",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.阴沟，污水管，下水道，裁缝师"
+      },
+      {
+        "cn": "v.从…排污水"
+      }
+    ],
+    "phonetic0": "ˈsu:ə(r)",
+    "phonetic1": "ˈsuɚ"
   },
   {
     "word": "power",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.机动力，功率，力量，政权，权力，强国，大国"
+      },
+      {
+        "cn": "vt.运转，用发动机发动，使…有力量"
+      },
+      {
+        "cn": "vi.靠动力行进，快速行进"
+      },
+      {
+        "cn": "adj.权力的，机械能的，电动的，用电力（或动力）发动的"
+      }
+    ],
+    "phonetic0": "ˈpaʊə(r)",
+    "phonetic1": "ˈpaʊɚ"
   },
   {
     "word": "drainage",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.排水，放水，排水系统，排走物，废水，排水区域"
+      }
+    ],
+    "phonetic0": "ˈdreɪnɪdʒ",
+    "phonetic1": "ˈdrenɪdʒ"
   },
   {
     "word": "surveying",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "测绘"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "foundation",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.地基，基础，基金（会），粉底"
+      }
+    ],
+    "phonetic0": "faʊnˈdeɪʃn",
+    "phonetic1": "faʊnˈdeʃən"
   },
   {
     "word": "shallow/deep/pile foundation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "浅/深/桩基础"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "column",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.纵队，列，圆柱，专栏"
+      }
+    ],
+    "phonetic0": "ˈkɒləm",
+    "phonetic1": "ˈkɑ:ləm"
   },
   {
     "word": "beam",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.梁，栋梁，束，光线，（电波的）波束"
+      },
+      {
+        "cn": "vi.发出光与热，面露喜色"
+      },
+      {
+        "cn": "vt.播送，以梁支撑，用…照射，流露"
+      },
+      {
+        "cn": "vt.& vi.笑容满面，眉开眼笑，发射电波，播送，放出束状的光（或热）"
+      }
+    ],
+    "phonetic0": "bi:m",
+    "phonetic1": "bim"
   },
   {
     "word": "concrete",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.具体的，有形的，实在的，实际的，固结成的，混凝土制的，图案诗歌的"
+      },
+      {
+        "cn": "n.混凝土，具体物，（图案式）有形诗，〔建〕钢筋混凝土"
+      },
+      {
+        "cn": "vt.使凝固，用混凝土修筑，萃取"
+      },
+      {
+        "cn": "vi.凝固，固结，变坚固，使用混凝土"
+      }
+    ],
+    "phonetic0": "ˈkɒŋkri:t",
+    "phonetic1": "ˈkɑ:ŋkri:t"
   },
   {
     "word": "steel",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.钢，钢铁，钢制品，兵器，钢铁工业"
+      },
+      {
+        "cn": "vt.包上或镀上钢，使坚定"
+      },
+      {
+        "cn": "adj.钢制的，钢铁业的，坚强的，色彩青灰色的"
+      }
+    ],
+    "phonetic0": "sti:l",
+    "phonetic1": "stil"
   },
   {
     "word": "wood",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.木材，树林，木制品"
+      },
+      {
+        "cn": "vi.收集木材"
+      },
+      {
+        "cn": "vt.在…植树造林，给…添加木柴"
+      },
+      {
+        "cn": "adj.木制的，失去理智的"
+      }
+    ],
+    "phonetic0": "wʊd",
+    "phonetic1": "wʊd"
   },
   {
     "word": "cantilever/overhang",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "悬挑"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "dead load",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "恒载 ；静负荷"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "live load",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "活载荷 ；活负载；动荷"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "environmental load",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "环境负载"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "compression",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.压缩，压紧，浓缩，紧缩，加压，压抑，（表现的）简练，应压试验"
+      }
+    ],
+    "phonetic0": "kəm'preʃn",
+    "phonetic1": "kəmˈprɛʃən"
   },
   {
     "word": "tension",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.紧张，不安，紧张气氛，物张力，拉力，矛盾"
+      },
+      {
+        "cn": "vt.紧张，使紧张"
+      }
+    ],
+    "phonetic0": "ˈtenʃn",
+    "phonetic1": "ˈtɛnʃən"
   },
   {
     "word": "bending",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "弯"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "torsion",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "扭"
+      }
+    ],
+    "phonetic0": "'tɔːʃ(ə)n",
+    "phonetic1": "'tɔrʃən"
   },
   {
     "word": "shear",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "vt.剪羊毛，切断，剪切，剥夺"
+      },
+      {
+        "cn": "vi.剪切，修剪，穿越，力切变"
+      },
+      {
+        "cn": "n.大剪刀，剪下的东西，剪切，力切力"
+      }
+    ],
+    "phonetic0": "ʃɪə(r)",
+    "phonetic1": "ʃɪr"
   },
   {
     "word": "trabeated structure",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "梁柱结构"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "post",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.邮件，邮政，柱，桩，杆，岗位"
+      },
+      {
+        "cn": "vt.张贴，宣布，设岗，邮寄"
+      },
+      {
+        "cn": "vi.快速行进"
+      },
+      {
+        "cn": "adj.有关赛跑（或赛马，赛狗）起点标志的"
+      },
+      {
+        "cn": "adv.〈外〉在后，用急件驿马，赶紧地，火速地"
+      }
+    ],
+    "phonetic0": "pəʊst",
+    "phonetic1": "poʊst"
   },
   {
     "word": "lintel",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "梁"
+      }
+    ],
+    "phonetic0": "'lɪnt(ə)l",
+    "phonetic1": "'lɪntl"
   },
   {
     "word": "trabeated system",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "横梁系统"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "vertical",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.垂直的，竖立的，解头顶的，顶点的，植纵长的，直上的"
+      },
+      {
+        "cn": "n.垂直线，垂直面，建竖杆，垂直位置"
+      }
+    ],
+    "phonetic0": "ˈvɜ:tɪkl",
+    "phonetic1": "ˈvɜ:rtɪkl"
   },
   {
     "word": "horizontal",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.水平的，卧式的，地平线的，植（枝条）平层的，同一行业的，同阶层的"
+      },
+      {
+        "cn": "n.水平线，水平面，水平位置，水平的物体"
+      }
+    ],
+    "phonetic0": "ˌhɒrɪˈzɒntl",
+    "phonetic1": "ˌhɔ:rəˈzɑ:ntl"
   },
   {
     "word": "beam",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.梁，栋梁，束，光线，（电波的）波束"
+      },
+      {
+        "cn": "vi.发出光与热，面露喜色"
+      },
+      {
+        "cn": "vt.播送，以梁支撑，用…照射，流露"
+      },
+      {
+        "cn": "vt.& vi.笑容满面，眉开眼笑，发射电波，播送，放出束状的光（或热）"
+      }
+    ],
+    "phonetic0": "bi:m",
+    "phonetic1": "bim"
   },
   {
     "word": "columns,pillars,or posts",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "柱"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "capitals",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "柱头"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "load",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.负荷，负担，装载，工作量"
+      },
+      {
+        "cn": "vt.使担负，装填，把…装入或装上，装满，堆积"
+      },
+      {
+        "cn": "vi.加载，装载，装货"
+      }
+    ],
+    "phonetic0": "ləʊd",
+    "phonetic1": "loʊd"
   },
   {
     "word": "truss",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "桁架"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "timber framing",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "木屋架"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "arcuated structure",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "拱式结构"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "tensile structure",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "张拉结构"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "arch",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.弓形，拱门，拱形物，足弓，齿弓"
+      },
+      {
+        "cn": "vt.（使）弯成拱形，用拱连接，向后弯"
+      },
+      {
+        "cn": "vi.拱起，成为弓形"
+      },
+      {
+        "cn": "adj.主要的，首要的，调皮的，淘气的"
+      }
+    ],
+    "phonetic0": "ɑ:tʃ",
+    "phonetic1": "ɑ:rtʃ"
   },
   {
     "word": "vault",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.拱顶，穹窿，地下室，撑物跳，墓穴"
+      },
+      {
+        "cn": "vt.进行撑竿跳，做成圆拱形，成穹状，（以手撑物或撑竿）跳过"
+      },
+      {
+        "cn": "vi.跳跃，成穹状弯曲"
+      }
+    ],
+    "phonetic0": "vɔ:lt",
+    "phonetic1": "vɔlt"
   },
   {
     "word": "barrel vault",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "筒形拱"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "dome",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.圆屋顶，像圆屋顶一样的东西，圆顶体育场"
+      },
+      {
+        "cn": "vt.加圆屋顶于…上"
+      },
+      {
+        "cn": "vi.成圆顶状"
+      }
+    ],
+    "phonetic0": "dəʊm",
+    "phonetic1": "doʊm"
   },
   {
     "word": "spring line",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "拱脚线"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "key stone",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "拱顶石"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "geothermal",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.地热的，地温的，地热（或地温）产生的"
+      }
+    ],
+    "phonetic0": "ˌdʒi:əʊˈθɜ:ml",
+    "phonetic1": "ˌdʒi:oʊˈθɜ:rml"
   },
   {
     "word": "plumbing",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.水管装置，水暖工的工作，管道工程"
+      },
+      {
+        "cn": "v.用铅锤测量（plumb的现在分词），探究"
+      }
+    ],
+    "phonetic0": "ˈplʌmɪŋ",
+    "phonetic1": "ˈplʌmɪŋ"
   },
   {
     "word": "potable water",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "饮用水"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "sewage",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.（下水道里的）污物，下水道，污水"
+      }
+    ],
+    "phonetic0": "ˈsu:ɪdʒ",
+    "phonetic1": "ˈsuɪdʒ"
   },
   {
     "word": "water treatment",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "水处理"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "heating,ventilating,air conditioning(HVAC)",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "采暖 ，通风，空调"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "temperature",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.温度，体温，气温，<口>发烧，高烧"
+      }
+    ],
+    "phonetic0": "ˈtemprətʃə(r)",
+    "phonetic1": "ˈtɛmpərəˌtʃʊr,-tʃɚ,ˈtɛmprə-"
   },
   {
     "word": "humidity",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.（空气中的）湿度，潮湿，高温潮湿，湿热，物湿度"
+      }
+    ],
+    "phonetic0": "hju:ˈmɪdəti",
+    "phonetic1": "hjuˈmɪdɪti"
   },
   {
     "word": "exhaust pollutant",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "排出污染物"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "passive system",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "被动系统"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "ventilate",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "使通风，使空气流通；公开讨论（问题，意见等）"
+      }
+    ],
+    "phonetic0": "ˈventɪleɪt",
+    "phonetic1": "ˈventɪleɪt"
   },
   {
     "word": "interior",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.内部，内地，内政，内心"
+      },
+      {
+        "cn": "adj.内部的，内地的，国内的，内面的"
+      }
+    ],
+    "phonetic0": "ɪnˈtɪəriə(r)",
+    "phonetic1": "ɪnˈtɪriə(r)"
   },
   {
     "word": "exterior",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.外部，外面，表面，外形，外观，外貌，影视外景，戏，影视户外布景"
+      },
+      {
+        "cn": "adj.外面的，外部的，外表上的，表面的"
+      }
+    ],
+    "phonetic0": "ɪkˈstɪəriə(r)",
+    "phonetic1": "ɪkˈstɪriə(r)"
   },
   {
     "word": "active system",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "主动式系统"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "interior wall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "内墙"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "exterior wall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "外墙"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "natural ventilation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "自然通风"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "natural lighting",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "自然照明"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "sun shading device",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "遮阳装置"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "green roof/rain garden",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "绿色屋面/雨水花园"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "sun room/greenhouse",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "阳光房/温室"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "building orientation/air sealing",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "建筑朝向/气密性"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "solar panel",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "太阳能板"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "wind turbine",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "风力涡轮机"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "south facade",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "南立面"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "structure engineer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "结构工程师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "mechanical engineer",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "机械工程师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "elevator",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.电梯，升降机（美），谷仓"
+      }
+    ],
+    "phonetic0": "ˈelɪveɪtə(r)",
+    "phonetic1": "ˈɛləˌvetɚ"
   },
   {
     "word": "pagoda",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "宝塔"
+      }
+    ],
+    "phonetic0": "pə'gəʊdə",
+    "phonetic1": "pə'ɡodə"
   },
   {
     "word": "escalator",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.自动扶梯"
+      }
+    ],
+    "phonetic0": "ˈeskəleɪtə(r)",
+    "phonetic1": "ˈɛskəˌletɚ"
   },
   {
     "word": "horticultural",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.园艺的"
+      }
+    ],
+    "phonetic0": "ˌhɔ:tɪ'kʌltʃərəl",
+    "phonetic1": "ˌhɔ:tɪ'kʌltʃərəl"
   },
   {
     "word": "orchard",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.（通常指围起来的）果园，果园里的全部果树，<俚>棒球场"
+      }
+    ],
+    "phonetic0": "ˈɔ:tʃəd",
+    "phonetic1": "ˈɔ:rtʃərd"
   },
   {
     "word": "lodge",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "vi.存放，暂住，埋入，（权利、权威等）归属"
+      },
+      {
+        "cn": "vt.提出（报告、要求、申诉等），容纳，寄存，把（权利、权威等）授予"
+      },
+      {
+        "cn": "n.<古>小屋，草屋，（北美印第安人的）帐篷，（森林、猎场等的）看守小屋，（学校、工厂等的）传达室"
+      }
+    ],
+    "phonetic0": "lɒdʒ",
+    "phonetic1": "lɑ:dʒ"
   },
   {
     "word": "term",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.学期，条款，术语，期限"
+      },
+      {
+        "cn": "vt.把…称为，把…叫做"
+      }
+    ],
+    "phonetic0": "tɜ:m",
+    "phonetic1": "tɜ:rm"
   },
   {
     "word": "client",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.顾客，当事人，诉讼委托人，计算机客户端"
+      }
+    ],
+    "phonetic0": "ˈklaɪənt",
+    "phonetic1": "ˈklaɪənt"
   },
   {
     "word": "healing landscape",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "康复性景观"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "restorative landscape",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "恢复性景观"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "sewage",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.（下水道里的）污物，下水道，污水"
+      }
+    ],
+    "phonetic0": "ˈsu:ɪdʒ",
+    "phonetic1": "ˈsuɪdʒ"
   },
   {
     "word": "cloister",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "修道院回廊"
+      }
+    ],
+    "phonetic0": "'klɒɪstə",
+    "phonetic1": "'klɔɪstɚ"
   },
   {
     "word": "front yard",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "前院"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "back yard",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "后院"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "allee",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "林荫小径"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "alley",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.胡同，小巷，小径，球道"
+      }
+    ],
+    "phonetic0": "ˈæli",
+    "phonetic1": "ˈæli"
   },
   {
     "word": "orchard",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.（通常指围起来的）果园，果园里的全部果树，<俚>棒球场"
+      }
+    ],
+    "phonetic0": "ˈɔ:tʃəd",
+    "phonetic1": "ˈɔ:rtʃərd"
   },
   {
     "word": "bosque",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "树丛"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "trail",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "vt.跟踪，追踪，拖曳：让…拖或飘扬在后面，拖沓而行，跟在…后面"
+      },
+      {
+        "cn": "vi.（在比赛等中）输，（尤指跟在他人后面）疲惫地走，（在比赛或其他竞赛中）落后，蔓生"
+      },
+      {
+        "cn": "n.足迹，臭迹，小径，一缕"
+      }
+    ],
+    "phonetic0": "treɪl",
+    "phonetic1": "trel"
   },
   {
     "word": "waterfront park",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "滨水公园"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "residence hall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "学生宿舍"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "courtyard",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.庭院，院子，天井"
+      }
+    ],
+    "phonetic0": "ˈkɔ:tjɑ:d",
+    "phonetic1": "ˈkɔ:rtjɑ:rd"
   },
   {
     "word": "runoff",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.决胜投票，附加赛，径流"
+      }
+    ],
+    "phonetic0": "'rʌnˌɔ:f",
+    "phonetic1": "-ˌɑf"
   },
   {
     "word": "marsh",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.沼泽，湿地"
+      }
+    ],
+    "phonetic0": "mɑ:ʃ",
+    "phonetic1": "mɑ:rʃ"
   },
   {
     "word": "memorial",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.纪念碑，纪念物，纪念仪式"
+      },
+      {
+        "cn": "adj.纪念的，悼念的"
+      }
+    ],
+    "phonetic0": "məˈmɔ:riəl",
+    "phonetic1": "-ˈmor-"
   },
   {
     "word": "axis",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.轴，轴线，政轴心，轴心国，植茎轴"
+      }
+    ],
+    "phonetic0": "ˈæksɪs",
+    "phonetic1": "ˈæksɪs"
   },
   {
     "word": "renovate",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "vt.翻新，修复，整修，革新，更新，恢复（精神）"
+      },
+      {
+        "cn": "adj.恢复的，革新的，翻新的"
+      }
+    ],
+    "phonetic0": "ˈrenəveɪt",
+    "phonetic1": "ˈrɛnəˌvet"
   },
   {
     "word": "urban revitalization",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "城市更新"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "drainage",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.排水，放水，排水系统，排走物，废水，排水区域"
+      }
+    ],
+    "phonetic0": "ˈdreɪnɪdʒ",
+    "phonetic1": "ˈdrenɪdʒ"
   },
   {
     "word": "native material",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "本地材料"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "acre",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.英亩"
+      }
+    ],
+    "phonetic0": "'eɪkə",
+    "phonetic1": "'ekɚ"
   },
   {
     "word": "restored",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "v.归还( restore的过去式和过去分词 )，交还，使恢复，修复"
+      }
+    ],
+    "phonetic0": "rɪ'stɔ:d",
+    "phonetic1": "rɪ'stɔ:d"
   },
   {
     "word": "transportation corridor",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "交通走廊"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "linear",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.直线的，线形的，长度的，<数>一次的，线性的，通过单独的若干阶段来发展"
+      }
+    ],
+    "phonetic0": "ˈlɪniə(r)",
+    "phonetic1": "ˈlɪniər"
   },
   {
     "word": "master plan",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "总平面"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "site inventory and analysis",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "场地清点分析"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "drainage",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.排水，放水，排水系统，排走物，废水，排水区域"
+      }
+    ],
+    "phonetic0": "ˈdreɪnɪdʒ",
+    "phonetic1": "ˈdrenɪdʒ"
   },
   {
     "word": "existing vegetation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "现有植被"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "bubble diagram",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "泡泡图"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "topography",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.地形学，地形测量学，地貌"
+      }
+    ],
+    "phonetic0": "təˈpɒgrəfi",
+    "phonetic1": "təˈpɑ:grəfi"
   },
   {
     "word": "blend with",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "混合 ，融为一体"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "integrate",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "vt.使一体化，使整合，使完整，使结合成为整体"
+      },
+      {
+        "cn": "vi.成为一体，结合在一起，合并，数学作积分运算"
+      },
+      {
+        "cn": "adj.整体的，完整的，完全的，综合的"
+      }
+    ],
+    "phonetic0": "ˈɪntɪgreɪt",
+    "phonetic1": "ˈɪntɪˌɡret"
   },
   {
     "word": "layout",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.布局，安排，设计，布置图，规划图"
+      }
+    ],
+    "phonetic0": "ˈleɪaʊt",
+    "phonetic1": "ˈleˌaʊt"
   },
   {
     "word": "enclose",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "vt.（用墙、篱笆等）把…围起来，把…装入信封，附入"
+      }
+    ],
+    "phonetic0": "ɪnˈkləʊz",
+    "phonetic1": "ɪnˈkloʊz"
   },
   {
     "word": "shelter",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.居所，避难所，（无家可归者或受虐待者的）收容所，遮蔽"
+      },
+      {
+        "cn": "vt.掩蔽，庇护，保护"
+      },
+      {
+        "cn": "vi.躲避，避难"
+      }
+    ],
+    "phonetic0": "ˈʃeltə(r)",
+    "phonetic1": "ˈʃɛltɚ"
   },
   {
     "word": "circulation",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.流通，传播，血液循环，发行量，（某段时间的）社交活动"
+      }
+    ],
+    "phonetic0": "ˌsɜ:kjəˈleɪʃn",
+    "phonetic1": "ˌsɜ:rkjəˈleɪʃn"
   },
   {
     "word": "step",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.步，脚步，步骤，手段，步调，级别"
+      },
+      {
+        "cn": "vt.& vi.举步，行走，踩，踏上，跨入，轻快地走"
+      },
+      {
+        "cn": "vi.踏，踩，走"
+      },
+      {
+        "cn": "vt.跳舞，迈步，使成阶梯状"
+      }
+    ],
+    "phonetic0": "step",
+    "phonetic1": "stɛp"
   },
   {
     "word": "shrub/bush",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "灌木"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "groundcover plant",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "地被植物"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "arbor",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.凉亭，树木，（机器的）心轴，（钓鱼用的）浮子"
+      }
+    ],
+    "phonetic0": "'ɑ:bə",
+    "phonetic1": "'ɑ:bə"
   },
   {
     "word": "retaining wall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "挡土墙"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "canopy",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.天篷，华盖，建 顶篷，顶盖，苍穹，树荫"
+      },
+      {
+        "cn": "v.用华盖遮蔽"
+      }
+    ],
+    "phonetic0": "ˈkænəpi",
+    "phonetic1": "ˈkænəpi"
   },
   {
     "word": "shade structure",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "遮阳构筑物"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "coarse, medium and fine",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "粗糙的 ，中等的，好的"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "belvedere",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "观景台"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "contour",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.外形，轮廓，（地图上表示相同海拔各点的）等高线，概要，电路"
+      },
+      {
+        "cn": "vt.画轮廓（等高线）"
+      },
+      {
+        "cn": "adj.显示轮廓的"
+      }
+    ],
+    "phonetic0": "ˈkɒntʊə(r)",
+    "phonetic1": "ˈkɑ:ntʊr"
   },
   {
     "word": "boulevard",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.大马路，林荫大道"
+      }
+    ],
+    "phonetic0": "ˈbu:ləvɑ:d",
+    "phonetic1": "ˈbʊləvɑ:rd"
   },
   {
     "word": "artificial lighting",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "人造灯光"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "land form",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "地形地貌"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "concrete",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.具体的，有形的，实在的，实际的，固结成的，混凝土制的，图案诗歌的"
+      },
+      {
+        "cn": "n.混凝土，具体物，（图案式）有形诗，〔建〕钢筋混凝土"
+      },
+      {
+        "cn": "vt.使凝固，用混凝土修筑，萃取"
+      },
+      {
+        "cn": "vi.凝固，固结，变坚固，使用混凝土"
+      }
+    ],
+    "phonetic0": "ˈkɒŋkri:t",
+    "phonetic1": "ˈkɑ:ŋkri:t"
   },
   {
     "word": "deflection",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "偏斜"
+      }
+    ],
+    "phonetic0": "dɪ'flekʃ(ə)n",
+    "phonetic1": "dɪ'flɛkʃən"
   },
   {
     "word": "water infiltration",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "渗水试验"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "construction managers",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "项目经理"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "estimator",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "估算师"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "comitas (utilitas)",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "实用"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "firmitas",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "坚固"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "venustas",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "美观"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "commodity",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.商品，日用品，有价值的物品，有利，有益"
+      }
+    ],
+    "phonetic0": "kəˈmɒdəti",
+    "phonetic1": "kəˈmɑ:dəti"
   },
   {
     "word": "firmness",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "坚固"
+      }
+    ],
+    "phonetic0": "'fɜ:mnɪs",
+    "phonetic1": "'fɝmnɪs"
   },
   {
     "word": "delight",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.快乐，高兴，使人高兴的东西或人"
+      },
+      {
+        "cn": "vt.使高兴，使欣喜"
+      },
+      {
+        "cn": "vi.感到高兴快乐"
+      }
+    ],
+    "phonetic0": "dɪˈlaɪt",
+    "phonetic1": "dɪˈlaɪt"
   },
   {
     "word": "problem identification",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "问题识别"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "programming",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.规划，设计，编程"
+      },
+      {
+        "cn": "v.训练( programme的现在分词 )，培养，预调"
+      }
+    ],
+    "phonetic0": "ˈprəʊgræmɪŋ",
+    "phonetic1": "ˈproʊgræmɪŋ"
   },
   {
     "word": "research",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.研究，追究，探讨，探测，调查，探索"
+      },
+      {
+        "cn": "vi.做研究，探究，（从市场调研中）得出所预测的结果"
+      },
+      {
+        "cn": "vt.从事…的研究，为…而做研究"
+      }
+    ],
+    "phonetic0": "rɪˈsɜ:tʃ",
+    "phonetic1": "rɪˈsɜ:rtʃ"
   },
   {
     "word": "concept generation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "概念生成"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "schematic design",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "方案设计"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "design development",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "设计深化"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "bidding/negotiation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "投标/谈判"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "construction documents",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "施工图"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "construction",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.建筑物，建造，解释，建造物"
+      }
+    ],
+    "phonetic0": "kənˈstrʌkʃn",
+    "phonetic1": "kənˈstrʌkʃən"
   },
   {
     "word": "project evaluation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "项目评估"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "post occupation evaluation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "使用后评价"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "building performance",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "性能"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "interaction",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.一起活动，合作，互相影响，互动"
+      }
+    ],
+    "phonetic0": "ˌɪntər'ækʃn",
+    "phonetic1": "ˌɪntɚˈækʃən"
   },
   {
     "word": "axonometric drawing",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "轴测图"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "isometric",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "正等测"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "site plan",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "总平面"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "elevation",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.高处，高地，高度，海拔，（枪炮的）仰角，射角，升级，上进，向上，高尚，建正视图，立视图"
+      }
+    ],
+    "phonetic0": "ˌelɪˈveɪʃn",
+    "phonetic1": "ˌɛləˈveʃən"
   },
   {
     "word": "floor plan",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "平面图"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "section",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.部分，节，部件，部门"
+      },
+      {
+        "cn": "vi.切开，切断，做（动物或植物组织）切片，把（精神病患者）正式送入精神病院"
+      },
+      {
+        "cn": "vt.把…切成片（或段），作…的切片，把…作成截面，制作…的剖面图"
+      }
+    ],
+    "phonetic0": "ˈsekʃn",
+    "phonetic1": "ˈsɛkʃən"
   },
   {
     "word": "analysis drawing",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "分析图"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "perspective drawing",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "透视图"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "two-point perspective",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "两点透视"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "length, breadth, width",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "广度 ，宽度，宽度"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "position",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.位置，方位，地位，职位，态度，状态"
+      },
+      {
+        "cn": "vt.安置，把…放在适当位置，给…定位，驻扎军队"
+      }
+    ],
+    "phonetic0": "pəˈzɪʃn",
+    "phonetic1": "pəˈzɪʃən"
   },
   {
     "word": "motion",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.运动，手势，动机，意向，请求"
+      },
+      {
+        "cn": "vt.打手势，向某人点头或摇头示意，打手势要求指示"
+      },
+      {
+        "cn": "vi.运动，打手势"
+      }
+    ],
+    "phonetic0": "ˈməʊʃn",
+    "phonetic1": "ˈmoʊʃn"
   },
   {
     "word": "width",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.宽度，广度"
+      }
+    ],
+    "phonetic0": "wɪdθ",
+    "phonetic1": "wɪtθ"
   },
   {
     "word": "three dimensional",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "三维的"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "length, width, depth and height",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "长度 、宽度、深度、高度"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "non-dimensional element (point)",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "无维度元素 (点)"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "two dimensional element(line and plane)",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "二维元素 (直线和平面)"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "three dimensional element (volume and space)",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "三维元素 (体积和空间)"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "four dimension (time and motion)",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "四维 (时间和运动)"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "visual focus",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "视觉焦点"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "intersection",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.横断，横切，交叉，相交，交叉点，交叉线，数交集"
+      }
+    ],
+    "phonetic0": "ˌɪntəˈsekʃn",
+    "phonetic1": "ˌɪntərˈsekʃn"
   },
   {
     "word": "static",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.静止的，不变的，静电的，物静力的"
+      },
+      {
+        "cn": "n.静电，物静电（干扰），静力学，争吵"
+      }
+    ],
+    "phonetic0": "ˈstætɪk",
+    "phonetic1": "ˈstætɪk"
   },
   {
     "word": "tension",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.紧张，不安，紧张气氛，物张力，拉力，矛盾"
+      },
+      {
+        "cn": "vt.紧张，使紧张"
+      }
+    ],
+    "phonetic0": "ˈtenʃn",
+    "phonetic1": "ˈtɛnʃən"
   },
   {
     "word": "array",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.队列，阵列，数组，一大批，衣服"
+      },
+      {
+        "cn": "vt.排列，部署兵力，打扮，装饰"
+      }
+    ],
+    "phonetic0": "əˈreɪ",
+    "phonetic1": "ə'reɪ"
   },
   {
     "word": "straight",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.直的，连续的，直率的，整齐的"
+      },
+      {
+        "cn": "adv.直地，直接地，坦率地，立即"
+      },
+      {
+        "cn": "n.直线，直线部分"
+      }
+    ],
+    "phonetic0": "streɪt",
+    "phonetic1": "stret"
   },
   {
     "word": "curved",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.弧形的，曲线的"
+      },
+      {
+        "cn": "v.（使）弯成弧形( curve的过去式和过去分词)"
+      }
+    ],
+    "phonetic0": "kɜ:vd",
+    "phonetic1": "kɜ:rvd"
   },
   {
     "word": "bent",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.弯曲的，决心的，<英>腐败的，同性恋"
+      },
+      {
+        "cn": "n.爱好，癖好，建排架，剪股颖属草，植梗草，荒草地"
+      },
+      {
+        "cn": "v.（使）弯曲，屈身(bend的过去式和过去分词)"
+      }
+    ],
+    "phonetic0": "bent",
+    "phonetic1": "bɛnt"
   },
   {
     "word": "irregular",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.不规则的，不对称的，无规律的，不合规范的，不合法的，不规则变化的"
+      },
+      {
+        "cn": "n.非正规军军人，不规则物，不合规格的产品"
+      }
+    ],
+    "phonetic0": "ɪˈregjələ(r)",
+    "phonetic1": "ɪˈrɛɡjəlɚ"
   },
   {
     "word": "horizontally",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adv.水平地，横地"
+      }
+    ],
+    "phonetic0": "ˌhɒrɪ'zɒntəlɪ",
+    "phonetic1": "ˌhɑrɪˈzɑntəlɪ"
   },
   {
     "word": "vertically",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adv.垂直地，直立地，陡峭地，在顶点"
+      }
+    ],
+    "phonetic0": "'vɜ:tɪklɪ",
+    "phonetic1": "ˈvə:tɪkl:ɪ"
   },
   {
     "word": "perpendicular",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.垂直的，成直角的，直立的，险陡的，建垂直式的，〈谑〉直站着的"
+      },
+      {
+        "cn": "n.垂直线，垂直面，直立，直立姿势，廉直，垂直测器，锤规，建垂直式建筑，绝壁"
+      }
+    ],
+    "phonetic0": "ˌpɜ:pənˈdɪkjələ(r)",
+    "phonetic1": "ˌpɜ:rpənˈdɪkjələ(r)"
   },
   {
     "word": "triangle",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.三角形，三人一组，三角铁，三角板"
+      }
+    ],
+    "phonetic0": "ˈtraɪæŋgl",
+    "phonetic1": "ˈtraɪˌæŋɡəl"
   },
   {
     "word": "square",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.正方形，广场，平方，方格"
+      },
+      {
+        "cn": "adj.成直角的，平方的，（尤指在生意上）公平的，正方形的"
+      },
+      {
+        "cn": "adv.四四方方地，成直角地，正直地，坚定地"
+      },
+      {
+        "cn": "vt.使成正方形，使成直角，检测…的角度，调整，改正"
+      },
+      {
+        "cn": "vi.一致，成方形"
+      }
+    ],
+    "phonetic0": "skweə(r)",
+    "phonetic1": "skwer"
   },
   {
     "word": "circle",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.圆，圆状物，一圈，圈子"
+      },
+      {
+        "cn": "vt.圈出，包围，绕…运转"
+      },
+      {
+        "cn": "vi.环绕，盘旋"
+      }
+    ],
+    "phonetic0": "ˈsɜ:kl",
+    "phonetic1": "ˈsɜ:rkl"
   },
   {
     "word": "cube",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.立方形，立方体，立方，三次幂，小房间"
+      },
+      {
+        "cn": "vt.求…的立方，把（食物）切成小方块，测定…的体积"
+      }
+    ],
+    "phonetic0": "kju:b",
+    "phonetic1": "kjub"
   },
   {
     "word": "cylinder",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.圆筒，圆柱，汽缸，（尤指用作容器的）圆筒状物"
+      }
+    ],
+    "phonetic0": "ˈsɪlɪndə(r)",
+    "phonetic1": "ˈsɪləndɚ"
   },
   {
     "word": "sphere",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.球（体），（兴趣或活动的）范围，势力范围，天体，如行星或恒星"
+      },
+      {
+        "cn": "vt.形成球体，包围，围绕，置于球面内部"
+      }
+    ],
+    "phonetic0": "sfɪə(r)",
+    "phonetic1": "sfɪr"
   },
   {
     "word": "hemisphere",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.半球，地球的半球，解大脑半球"
+      }
+    ],
+    "phonetic0": "ˈhemɪsfɪə(r)",
+    "phonetic1": "ˈhemɪsfɪr"
   },
   {
     "word": "cone",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.圆锥体，球果，圆锥形东西"
+      },
+      {
+        "cn": "vt.使成锥形"
+      }
+    ],
+    "phonetic0": "kəʊn",
+    "phonetic1": "koʊn"
   },
   {
     "word": "pyramid",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.金字塔，角锥状物"
+      },
+      {
+        "cn": "vt.使…成塔尖形，使…节节建立，使…上涨"
+      },
+      {
+        "cn": "vi.成金字塔状，渐增，连续投机"
+      }
+    ],
+    "phonetic0": "ˈpɪrəmɪd",
+    "phonetic1": "ˈpɪrəmɪd"
   },
   {
     "word": "texture",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.质地，结构，本质"
+      },
+      {
+        "cn": "v.使具有某种结构"
+      }
+    ],
+    "phonetic0": "ˈtekstʃə(r)",
+    "phonetic1": "ˈtɛkstʃɚ"
   },
   {
     "word": "orientation",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.方向，定位，取向，排列方向，任职培训，（外交等的）方针态度的确定，环境判定"
+      }
+    ],
+    "phonetic0": "ˌɔ:riənˈteɪʃn",
+    "phonetic1": "ˌor-"
   },
   {
     "word": "The Forbidden City",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "故宫"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "axis",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.轴，轴线，政轴心，轴心国，植茎轴"
+      }
+    ],
+    "phonetic0": "ˈæksɪs",
+    "phonetic1": "ˈæksɪs"
   },
   {
     "word": "overcast sky",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "阴天"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "built environment",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "建成环境"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "perspective",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.透镜，望远镜，观点，看法，远景，景色，洞察力"
+      },
+      {
+        "cn": "adj.（按照）透视画法的，透视的"
+      }
+    ],
+    "phonetic0": "pəˈspektɪv",
+    "phonetic1": "pərˈspektɪv"
   },
   {
     "word": "additive principle",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "附加原则"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "subtractive principle",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "减法原则"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "transformation principle",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "变形原则"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "balance",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.平衡，天平，平衡力，（酿酒配料的）均衡"
+      },
+      {
+        "cn": "vt.& vi.（使）平衡，（使）均衡，（使）相抵，权衡"
+      },
+      {
+        "cn": "vt.结平（账目），使（在某物上）保持平衡，使（各部分）协调，用天平称"
+      },
+      {
+        "cn": "vi.微微摇摆，倾斜后又复平衡，动摇，被补偿"
+      }
+    ],
+    "phonetic0": "ˈbæləns",
+    "phonetic1": "ˈbæləns"
   },
   {
     "word": "symmetry",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.对称，对称美，整齐，匀称"
+      }
+    ],
+    "phonetic0": "ˈsɪmətri",
+    "phonetic1": "ˈsɪmɪtri"
   },
   {
     "word": "architectural composition",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "建筑构图"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "asymmetry",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.不对称"
+      },
+      {
+        "cn": "adj.不对称的，不对等的"
+      }
+    ],
+    "phonetic0": "ˌeɪ'sɪmətrɪ",
+    "phonetic1": "eˈsɪmɪtri"
   },
   {
     "word": "hierarchy",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.计分层，层次，等级制度，统治集团，天使的级别或等级"
+      }
+    ],
+    "phonetic0": "ˈhaɪərɑ:ki",
+    "phonetic1": "ˈhaɪərɑ:rki"
   },
   {
     "word": "repetition",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.重复，反复，背诵，复制品，副本，乐复唱，复奏，重奏"
+      }
+    ],
+    "phonetic0": "ˌrepəˈtɪʃn",
+    "phonetic1": "ˌrɛpɪˈtɪʃən"
   },
   {
     "word": "rhythm",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.诗节奏，韵律，医节律，规律，乐节拍，艺调和"
+      }
+    ],
+    "phonetic0": "ˈrɪðəm",
+    "phonetic1": "ˈrɪðəm"
   },
   {
     "word": "bay",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.湾，海湾，犬吠声，月桂树，吊窗，凸窗"
+      },
+      {
+        "cn": "vi.（尤指猎犬等）吠，叫，咆哮，筑堤遏（水），穷追，使陷入绝境，阻止（敌人）不使前进"
+      },
+      {
+        "cn": "adj.赤褐色的，栗色的"
+      },
+      {
+        "cn": "vt.向…吠叫"
+      }
+    ],
+    "phonetic0": "beɪ",
+    "phonetic1": "be"
   },
   {
     "word": "layering",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.压条法，成层，分层"
+      }
+    ],
+    "phonetic0": "'leɪərɪŋ",
+    "phonetic1": "ˈleərɪŋ"
   },
   {
     "word": "reinforce",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "vt.加固，强化，增援"
+      },
+      {
+        "cn": "vi.求援，得到增援，给予更多的支持"
+      },
+      {
+        "cn": "n.加强，加固物，加固材料"
+      }
+    ],
+    "phonetic0": "ˌri:ɪnˈfɔ:s",
+    "phonetic1": "ˌri:ɪnˈfɔ:rs"
   },
   {
     "word": "hallway",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.走廊，过道，门厅，玄关"
+      }
+    ],
+    "phonetic0": "ˈhɔ:lweɪ",
+    "phonetic1": "ˈhɔlˌwe"
   },
   {
     "word": "form",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.形状，形式，外形，方式，表格"
+      },
+      {
+        "cn": "vt.形成，构成，组织，塑造"
+      },
+      {
+        "cn": "vi.形成，产生，排队，整队"
+      }
+    ],
+    "phonetic0": "fɔ:m",
+    "phonetic1": "fɔ:rm"
   },
   {
     "word": "orientation",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.方向，定位，取向，排列方向，任职培训，（外交等的）方针态度的确定，环境判定"
+      }
+    ],
+    "phonetic0": "ˌɔ:riənˈteɪʃn",
+    "phonetic1": "ˌor-"
   },
   {
     "word": "circulation",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.流通，传播，血液循环，发行量，（某段时间的）社交活动"
+      }
+    ],
+    "phonetic0": "ˌsɜ:kjəˈleɪʃn",
+    "phonetic1": "ˌsɜ:rkjəˈleɪʃn"
   },
   {
     "word": "linear",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.直线的，线形的，长度的，<数>一次的，线性的，通过单独的若干阶段来发展"
+      }
+    ],
+    "phonetic0": "ˈlɪniə(r)",
+    "phonetic1": "ˈlɪniər"
   },
   {
     "word": "topography",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.地形学，地形测量学，地貌"
+      }
+    ],
+    "phonetic0": "təˈpɒgrəfi",
+    "phonetic1": "təˈpɑ:grəfi"
   },
   {
     "word": "slope",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.斜坡，斜面，倾斜，斜率"
+      },
+      {
+        "cn": "vi.倾斜，有斜度，悄悄地走，潜行"
+      },
+      {
+        "cn": "vt.使倾斜"
+      }
+    ],
+    "phonetic0": "sləʊp",
+    "phonetic1": "sloʊp"
   },
   {
     "word": "demolition = demolishment",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "拆除"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "proportion",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.比，比率，数学比例（法），面积，相称，平衡"
+      },
+      {
+        "cn": "vt.使成比例，使相称，使均衡"
+      }
+    ],
+    "phonetic0": "prəˈpɔ:ʃn",
+    "phonetic1": "prəˈpɔ:rʃn"
   },
   {
     "word": "deconstruction",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.解构，拆析（文学评论用语，指找出文本中自身逻辑矛盾或自我拆解因素，从而摧毁文本在人们心目中的传统建构）"
+      }
+    ],
+    "phonetic0": "ˌdi:kənˈstrʌkʃn",
+    "phonetic1": "ˌdikənˈstrʌkʃən"
   },
   {
     "word": "postmodern",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.后现代主义的，后现代派的"
+      }
+    ],
+    "phonetic0": "ˌpəʊstˈmɒdn",
+    "phonetic1": "ˌpoʊstˈmɑ:dərn"
   },
   {
     "word": "appearance",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.外貌，外观，出现，露面，哲现象"
+      }
+    ],
+    "phonetic0": "əˈpɪərəns",
+    "phonetic1": "əˈpɪrəns"
   },
   {
     "word": "proportioning",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "使匀称"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "The Golden Section",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "黄金分割"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "regulating line",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "控制线"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "lintel",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "梁"
+      }
+    ],
+    "phonetic0": "'lɪnt(ə)l",
+    "phonetic1": "'lɪntl"
   },
   {
     "word": "beam",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.梁，栋梁，束，光线，（电波的）波束"
+      },
+      {
+        "cn": "vi.发出光与热，面露喜色"
+      },
+      {
+        "cn": "vt.播送，以梁支撑，用…照射，流露"
+      },
+      {
+        "cn": "vt.& vi.笑容满面，眉开眼笑，发射电波，播送，放出束状的光（或热）"
+      }
+    ],
+    "phonetic0": "bi:m",
+    "phonetic1": "bim"
   },
   {
     "word": "vernacular design",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "乡土设计"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "vernacular",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.白话，行话，本国语，动植物的俗名"
+      },
+      {
+        "cn": "adj.本国语的，白话的，方言的，本国的"
+      }
+    ],
+    "phonetic0": "vəˈnækjələ(r)",
+    "phonetic1": "vərˈnækjələ(r)"
   },
   {
     "word": "granite",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.花岗岩，花岗石，坚毅，坚韧不拔"
+      }
+    ],
+    "phonetic0": "ˈgrænɪt",
+    "phonetic1": "ˈɡrænɪt"
   },
   {
     "word": "limestone",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.石灰岩，石灰石"
+      }
+    ],
+    "phonetic0": "ˈlaɪmstəʊn",
+    "phonetic1": "ˈlaɪmstoʊn"
   },
   {
     "word": "mortar",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.迫击炮，砂浆，房产，研钵"
+      },
+      {
+        "cn": "vt.& vi.用迫击炮攻击（或袭击），用灰泥涂抹结合"
+      }
+    ],
+    "phonetic0": "ˈmɔ:tə(r)",
+    "phonetic1": "ˈmɔ:rtə(r)"
   },
   {
     "word": "arch",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.弓形，拱门，拱形物，足弓，齿弓"
+      },
+      {
+        "cn": "vt.（使）弯成拱形，用拱连接，向后弯"
+      },
+      {
+        "cn": "vi.拱起，成为弓形"
+      },
+      {
+        "cn": "adj.主要的，首要的，调皮的，淘气的"
+      }
+    ],
+    "phonetic0": "ɑ:tʃ",
+    "phonetic1": "ɑ:rtʃ"
   },
   {
     "word": "vault",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.拱顶，穹窿，地下室，撑物跳，墓穴"
+      },
+      {
+        "cn": "vt.进行撑竿跳，做成圆拱形，成穹状，（以手撑物或撑竿）跳过"
+      },
+      {
+        "cn": "vi.跳跃，成穹状弯曲"
+      }
+    ],
+    "phonetic0": "vɔ:lt",
+    "phonetic1": "vɔlt"
   },
   {
     "word": "barrel vault",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "筒形拱"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "dome",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.圆屋顶，像圆屋顶一样的东西，圆顶体育场"
+      },
+      {
+        "cn": "vt.加圆屋顶于…上"
+      },
+      {
+        "cn": "vi.成圆顶状"
+      }
+    ],
+    "phonetic0": "dəʊm",
+    "phonetic1": "doʊm"
   },
   {
     "word": "spring line",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "拱脚线"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "secular",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.现世的，俗界的，长期的，长久的，不朽的，一世纪一次的"
+      },
+      {
+        "cn": "n.牧师，宗俗僧，俗人，〈美〉（黑人中间流行的）俗歌"
+      }
+    ],
+    "phonetic0": "ˈsekjələ(r)",
+    "phonetic1": "ˈsɛkjəlɚ"
   },
   {
     "word": "castle",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.城堡，堡垒，象棋中的车"
+      },
+      {
+        "cn": "vt.把…置于城堡中，（下国际象棋时）用车护（王）"
+      }
+    ],
+    "phonetic0": "ˈkɑ:sl",
+    "phonetic1": "ˈkæsl"
   },
   {
     "word": "cable",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.缆绳，绳索，电学电缆，（系船用的）缆绳，（船只、桥梁等上的）巨缆"
+      },
+      {
+        "cn": "vt.发电报至，电传，固定系牢"
+      },
+      {
+        "cn": "vi.拍发电报"
+      }
+    ],
+    "phonetic0": "ˈkeɪbl",
+    "phonetic1": "ˈkebəl"
   },
   {
     "word": "cathedral",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.总教堂，大教堂"
+      },
+      {
+        "cn": "adj.权威的，教堂的"
+      }
+    ],
+    "phonetic0": "kəˈθi:drəl",
+    "phonetic1": "kəˈθidrəl"
   },
   {
     "word": "Renaissance",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "文艺复兴"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "baroque",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.巴罗克式的，巴罗克风格的，过分装饰的，奇形怪状的"
+      },
+      {
+        "cn": "n.巴罗克风格，新奇作品，怪异型"
+      }
+    ],
+    "phonetic0": "bəˈrəʊk",
+    "phonetic1": "bəˈrok"
   },
   {
     "word": "Neo-Classicism",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "新古典主义"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "prefabricated",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "预制的"
+      }
+    ],
+    "phonetic0": "ˌpriː'fæbrɪkeɪtɪd",
+    "phonetic1": ",pri'fæbrɪketɪd"
   },
   {
     "word": "parameter",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.数参数，<物><数>参量，限制因素，决定因素"
+      }
+    ],
+    "phonetic0": "pəˈræmɪtə(r)",
+    "phonetic1": "pəˈræmɪtɚ"
   },
   {
     "word": "axis",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.轴，轴线，政轴心，轴心国，植茎轴"
+      }
+    ],
+    "phonetic0": "ˈæksɪs",
+    "phonetic1": "ˈæksɪs"
   },
   {
     "word": "courtyard",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.庭院，院子，天井"
+      }
+    ],
+    "phonetic0": "ˈkɔ:tjɑ:d",
+    "phonetic1": "ˈkɔ:rtjɑ:rd"
   },
   {
     "word": "hierarchy",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.计分层，层次，等级制度，统治集团，天使的级别或等级"
+      }
+    ],
+    "phonetic0": "ˈhaɪərɑ:ki",
+    "phonetic1": "ˈhaɪərɑ:rki"
   },
   {
     "word": "site selection",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "选址"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "pavilion",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.亭，阁楼，（公共活动或展览用的）临时建筑物，大型文体馆，看台"
+      },
+      {
+        "cn": "vt.搭帐篷，笼罩，置…于亭中"
+      }
+    ],
+    "phonetic0": "pəˈvɪliən",
+    "phonetic1": "pəˈvɪljən"
   },
   {
     "word": "pagoda",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "宝塔"
+      }
+    ],
+    "phonetic0": "pə'gəʊdə",
+    "phonetic1": "pə'ɡodə"
   },
   {
     "word": "scale",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.规模，比例（尺），鱼鳞，级别"
+      },
+      {
+        "cn": "vt.测量，攀登，刮去…的鳞片"
+      },
+      {
+        "cn": "vi.衡量，攀登，（鳞屑）脱落，生水垢"
+      }
+    ],
+    "phonetic0": "skeɪl",
+    "phonetic1": "skel"
   },
   {
     "word": "The Forbidden City",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "故宫"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "720,000 square meters 720000",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "平方米"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "secular",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.现世的，俗界的，长期的，长久的，不朽的，一世纪一次的"
+      },
+      {
+        "cn": "n.牧师，宗俗僧，俗人，〈美〉（黑人中间流行的）俗歌"
+      }
+    ],
+    "phonetic0": "ˈsekjələ(r)",
+    "phonetic1": "ˈsɛkjəlɚ"
   },
   {
     "word": "pavilion",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.亭，阁楼，（公共活动或展览用的）临时建筑物，大型文体馆，看台"
+      },
+      {
+        "cn": "vt.搭帐篷，笼罩，置…于亭中"
+      }
+    ],
+    "phonetic0": "pəˈvɪliən",
+    "phonetic1": "pəˈvɪljən"
   },
   {
     "word": "square",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.正方形，广场，平方，方格"
+      },
+      {
+        "cn": "adj.成直角的，平方的，（尤指在生意上）公平的，正方形的"
+      },
+      {
+        "cn": "adv.四四方方地，成直角地，正直地，坚定地"
+      },
+      {
+        "cn": "vt.使成正方形，使成直角，检测…的角度，调整，改正"
+      },
+      {
+        "cn": "vi.一致，成方形"
+      }
+    ],
+    "phonetic0": "skweə(r)",
+    "phonetic1": "skwer"
   },
   {
     "word": "triangle",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.三角形，三人一组，三角铁，三角板"
+      }
+    ],
+    "phonetic0": "ˈtraɪæŋgl",
+    "phonetic1": "ˈtraɪˌæŋɡəl"
   },
   {
     "word": "column",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.纵队，列，圆柱，专栏"
+      }
+    ],
+    "phonetic0": "ˈkɒləm",
+    "phonetic1": "ˈkɑ:ləm"
   },
   {
     "word": "waterfront",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.海滨，江边，装在火炉前部的热水缸"
+      }
+    ],
+    "phonetic0": "ˈwɔ:təfrʌnt",
+    "phonetic1": "ˈwɔ:tərfrʌnt"
   },
   {
     "word": "kiosk",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.亭子，凉亭，（车站、广场等处的）书报摊，，公共电话亭，小摊棚，售货亭"
+      }
+    ],
+    "phonetic0": "ˈki:ɒsk",
+    "phonetic1": "ˈki:ɑ:sk"
   },
   {
     "word": "dormer window",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "老虎窗"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "elevated",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.升高的，高层的，高尚的"
+      },
+      {
+        "cn": "n.<美><口>高架铁路"
+      },
+      {
+        "cn": "v.举起( elevate的过去式和过去分词 )，提高，提升，鼓舞"
+      }
+    ],
+    "phonetic0": "ˈelɪveɪtɪd",
+    "phonetic1": "ˈɛləˌvetɪd"
   },
   {
     "word": "belvedere",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "观景台"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "ruin",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "vt.破坏，毁灭，使破产，使没落，使堕落，变成废墟"
+      },
+      {
+        "cn": "n.毁灭，灭亡，废墟，遗迹，灭亡的原因，祸根，损失"
+      },
+      {
+        "cn": "vi.被毁灭，破产，堕落"
+      }
+    ],
+    "phonetic0": "ˈru:ɪn",
+    "phonetic1": "ˈruɪn"
   },
   {
     "word": "main ridge",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "正脊"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "bell and drum tower",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "钟鼓楼"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "overhanging eave",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "挑檐"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "handrail",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "扶手/栏杆"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "railing",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.栏杆，由横木做成的篱笆"
+      },
+      {
+        "cn": "v.“rail”的现在分词"
+      }
+    ],
+    "phonetic0": "ˈreɪlɪŋ",
+    "phonetic1": "ˈrelɪŋ"
   },
   {
     "word": "Confucius Temple",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "孔庙"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "pagoda",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "宝塔"
+      }
+    ],
+    "phonetic0": "pə'gəʊdə",
+    "phonetic1": "pə'ɡodə"
   },
   {
     "word": "metaphor",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.隐喻，暗喻，象征"
+      }
+    ],
+    "phonetic0": "ˈmetəfə(r)",
+    "phonetic1": "-fɚ"
   },
   {
     "word": "cottage",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.小屋，村舍，（农舍式的）小别墅，（郊外的）新式住宅，（大院内的）单幢住宅，乡下房子，小房子"
+      }
+    ],
+    "phonetic0": "ˈkɒtɪdʒ",
+    "phonetic1": "ˈkɑ:tɪdʒ"
   },
   {
     "word": "intimacy",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.亲密，亲近，亲昵的言行，性行为"
+      }
+    ],
+    "phonetic0": "ˈɪntɪməsi",
+    "phonetic1": "ˈɪntəməsi"
   },
   {
     "word": "permeable",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "有渗透性的"
+      }
+    ],
+    "phonetic0": "'pɜːmɪəb(ə)l",
+    "phonetic1": "'pɝmɪəbl"
   },
   {
     "word": "explicit",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.明确的，清楚的，直言的，详述的，不隐瞒的"
+      }
+    ],
+    "phonetic0": "ɪkˈsplɪsɪt",
+    "phonetic1": "ɪkˈsplɪsɪt"
   },
   {
     "word": "realm",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.领域，范围，王国，（学术的）部门，界，（动植物分布的）圈，带"
+      }
+    ],
+    "phonetic0": "relm",
+    "phonetic1": "rɛlm"
   },
   {
     "word": "adjacent",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.邻近的，毗邻的，（时间上）紧接着的，相邻"
+      }
+    ],
+    "phonetic0": "əˈdʒeɪsnt",
+    "phonetic1": "əˈdʒesənt"
   },
   {
     "word": "sidewalk",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.人行道"
+      }
+    ],
+    "phonetic0": "ˈsaɪdwɔ:k",
+    "phonetic1": "ˈsaɪdˌwɔk"
   },
   {
     "word": "awning",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.布做的凉篷，遮篷，雨篷，（甲板等上的）天篷"
+      }
+    ],
+    "phonetic0": "ˈɔ:nɪŋ",
+    "phonetic1": "ˈɔːnɪŋ"
   },
   {
     "word": "trellis",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "植物棚架"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "canopy/arbor",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "树冠"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "client",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.顾客，当事人，诉讼委托人，计算机客户端"
+      }
+    ],
+    "phonetic0": "ˈklaɪənt",
+    "phonetic1": "ˈklaɪənt"
   },
   {
     "word": "mortar",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.迫击炮，砂浆，房产，研钵"
+      },
+      {
+        "cn": "vt.& vi.用迫击炮攻击（或袭击），用灰泥涂抹结合"
+      }
+    ],
+    "phonetic0": "ˈmɔ:tə(r)",
+    "phonetic1": "ˈmɔ:rtə(r)"
   },
   {
     "word": "potted plant",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "盆栽"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "transit stop",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "公共交通停车点"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "pedestrian",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.步行者，行人"
+      },
+      {
+        "cn": "adj.徒步的，平淡无奇的，一般的"
+      }
+    ],
+    "phonetic0": "pəˈdestriən",
+    "phonetic1": "pəˈdɛstriən"
   },
   {
     "word": "kiosk",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.亭子，凉亭，（车站、广场等处的）书报摊，，公共电话亭，小摊棚，售货亭"
+      }
+    ],
+    "phonetic0": "ˈki:ɒsk",
+    "phonetic1": "ˈki:ɑ:sk"
   },
   {
     "word": "linger",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "vi.逗留，徘徊，缓慢消失"
+      }
+    ],
+    "phonetic0": "ˈlɪŋgə(r)",
+    "phonetic1": "ˈlɪŋɡɚ"
   },
   {
     "word": "permeable",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "有渗透性的"
+      }
+    ],
+    "phonetic0": "'pɜːmɪəb(ə)l",
+    "phonetic1": "'pɝmɪəbl"
   },
   {
     "word": "retrofit",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.式样翻新，花样翻新"
+      },
+      {
+        "cn": "vt.给机器设备装配（新部件），翻新，改型"
+      }
+    ],
+    "phonetic0": "ˈretrəʊfɪt",
+    "phonetic1": "ˈretroʊfɪt"
   },
   {
     "word": "townhouse",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.连栋房屋，城市住房"
+      }
+    ],
+    "phonetic0": "'taʊnhaʊz",
+    "phonetic1": "'taʊnhaʊz"
   },
   {
     "word": "context",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.上下文，背景，环境，语境"
+      }
+    ],
+    "phonetic0": "ˈkɒntekst",
+    "phonetic1": "ˈkɑ:ntekst"
   },
   {
     "word": "permeable",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "有渗透性的"
+      }
+    ],
+    "phonetic0": "'pɜːmɪəb(ə)l",
+    "phonetic1": "'pɝmɪəbl"
   },
   {
     "word": "pedestrian-oriented",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "以行人为导向"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "blind",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.失明的，盲目的，轻率的，供盲人用的，隐蔽的"
+      },
+      {
+        "cn": "vt.弄瞎，使失明，蒙蔽，欺瞒，使变暗，使昏聩"
+      },
+      {
+        "cn": "n.掩饰，借口，百叶窗"
+      },
+      {
+        "cn": "adv.盲目地，看不见地"
+      }
+    ],
+    "phonetic0": "blaɪnd",
+    "phonetic1": "blaɪnd"
   },
   {
     "word": "visibility",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.能见度，可见性，可见距离，清晰度"
+      }
+    ],
+    "phonetic0": "ˌvɪzəˈbɪləti",
+    "phonetic1": "ˌvɪzəˈbɪlɪti"
   },
   {
     "word": "mixed-use building",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "多功能住宅"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "urban arterial",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "城市主干道"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "auto-oriented",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "汽车导向的"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "contextualizm",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "文脉主义"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "traffic calming",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "交通稳静化"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "geometry",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.几何学，几何形状，几何图形，几何学著作"
+      }
+    ],
+    "phonetic0": "dʒiˈɒmətri",
+    "phonetic1": "dʒiˈɑ:mətri"
   },
   {
     "word": "dimension",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.尺寸，复面积，范围，物量纲，数次元，度，维"
+      },
+      {
+        "cn": "adj.（石料，木材）切成特定尺寸的"
+      },
+      {
+        "cn": "vt.把…刨成（或削成）所需尺寸，标出尺寸"
+      }
+    ],
+    "phonetic0": "daɪˈmenʃn",
+    "phonetic1": "daɪ-"
   },
   {
     "word": "pedestrian",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.步行者，行人"
+      },
+      {
+        "cn": "adj.徒步的，平淡无奇的，一般的"
+      }
+    ],
+    "phonetic0": "pəˈdestriən",
+    "phonetic1": "pəˈdɛstriən"
   },
   {
     "word": "curd",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.凝乳"
+      }
+    ],
+    "phonetic0": "kɜ:d",
+    "phonetic1": "kɜ:rd"
   },
   {
     "word": "street grid",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "街道方格网"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "block",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.块，街区，<英>大楼，大厦，障碍物，阻碍"
+      },
+      {
+        "cn": "vt.阻止，阻塞，限制"
+      }
+    ],
+    "phonetic0": "blɒk",
+    "phonetic1": "blɑ:k"
   },
   {
     "word": "short block",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "小街区"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "superblock",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "超级街区"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "cul-de-sacs",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "尽端路"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "turning radius",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "转弯半径"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "feet",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "英尺"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "intersection",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.横断，横切，交叉，相交，交叉点，交叉线，数交集"
+      }
+    ],
+    "phonetic0": "ˌɪntəˈsekʃn",
+    "phonetic1": "ˌɪntərˈsekʃn"
   },
   {
     "word": "roundabout",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "环岛"
+      }
+    ],
+    "phonetic0": "'raʊndəbaʊt",
+    "phonetic1": "'raʊndəbaʊt"
   },
   {
     "word": "crosswalk",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "人行横道"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "inch",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.英寸（相当于 2。54 厘米，一英尺有12英寸），少量，少许，身高"
+      },
+      {
+        "cn": "vt.使缓慢地移动"
+      },
+      {
+        "cn": "vi.缓慢移动，渐进"
+      }
+    ],
+    "phonetic0": "ɪntʃ",
+    "phonetic1": "ɪntʃ"
   },
   {
     "word": "pavement",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.人行道，硬路面，铺过的路面，动铺石状构造密生的齿列等"
+      }
+    ],
+    "phonetic0": "ˈpeɪvmənt",
+    "phonetic1": "ˈpevmənt"
   },
   {
     "word": "speed hump",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "减速丘"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "transportation corridor",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "交通走廊"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "on-street parking",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "沿街停车"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "vehicle",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.车辆，交通工具，传播媒介，媒介物，药赋形剂"
+      }
+    ],
+    "phonetic0": "ˈvi:əkl",
+    "phonetic1": "ˈvi:hɪkl"
   },
   {
     "word": "buffer",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.缓冲器，起缓冲作用的人（或物），化缓冲液，缓冲剂，计缓冲区"
+      },
+      {
+        "cn": "vt.缓冲，化把缓冲液加入（溶液）"
+      }
+    ],
+    "phonetic0": "ˈbʌfə(r)",
+    "phonetic1": "ˈbʌfɚ"
   },
   {
     "word": "loading",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.装货，装载量，（保险金的）附加费，填充物"
+      },
+      {
+        "cn": "v.把…装上车船( load的现在分词 )，装…"
+      }
+    ],
+    "phonetic0": "ˈləʊdɪŋ",
+    "phonetic1": "ˈloʊdɪŋ"
   },
   {
     "word": "steep",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.陡峭的，险峻的，过分的，夸张的，极高的，急剧升降的"
+      },
+      {
+        "cn": "vt.浸泡，使渗透或沉溺，使浸透"
+      },
+      {
+        "cn": "vi.在液体中浸泡"
+      },
+      {
+        "cn": "n.泡的行为或过程，被浸泡的状态，浸泡液"
+      }
+    ],
+    "phonetic0": "sti:p",
+    "phonetic1": "stip"
   },
   {
     "word": "topography",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.地形学，地形测量学，地貌"
+      }
+    ],
+    "phonetic0": "təˈpɒgrəfi",
+    "phonetic1": "təˈpɑ:grəfi"
   },
   {
     "word": "mass transit",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "公共交通"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "universal design",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "通用设计"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "ramp",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.土堤斜坡，斜道，敲诈，（装车或上下飞机的）活动梯"
+      },
+      {
+        "cn": "vt.& vi.敲诈"
+      },
+      {
+        "cn": "vi.蔓延"
+      }
+    ],
+    "phonetic0": "ræmp",
+    "phonetic1": "ræmp"
   },
   {
     "word": "universal access",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "无障碍设计"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "porch",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.门廊，游廊，走廊"
+      }
+    ],
+    "phonetic0": "pɔ:tʃ",
+    "phonetic1": "pɔ:rtʃ"
   },
   {
     "word": "street vendor",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "街头小贩"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "node",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.节点，（计算机网络的）节点，医结节，植物的节"
+      }
+    ],
+    "phonetic0": "nəʊd",
+    "phonetic1": "noʊd"
   },
   {
     "word": "stairwell",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.楼梯井"
+      }
+    ],
+    "phonetic0": "ˈsteəwel",
+    "phonetic1": "ˈsterwel"
   },
   {
     "word": "code",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.行为准则，代码，密码，法典，信号"
+      },
+      {
+        "cn": "vt.将…译成电码，编码，加密"
+      },
+      {
+        "cn": "vi.为…编码，指定遗传密码"
+      }
+    ],
+    "phonetic0": "kəʊd",
+    "phonetic1": "koʊd"
   },
   {
     "word": "adjacent",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.邻近的，毗邻的，（时间上）紧接着的，相邻"
+      }
+    ],
+    "phonetic0": "əˈdʒeɪsnt",
+    "phonetic1": "əˈdʒesənt"
   },
   {
     "word": "elevator core",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "电梯核心"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "energy efficient building",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "节能建筑"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "green building",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "绿色建筑"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "sustainable building",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "可持续建筑"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "net-zero building",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "净零建筑"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "passive house/building",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "被动房屋/建筑物"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "demolition",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.毁坏，破坏，拆毁，(pl.)炸药"
+      }
+    ],
+    "phonetic0": "ˌdemə'lɪʃn",
+    "phonetic1": "ˌdimə-"
   },
   {
     "word": "walkable community",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "步行社区"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "recreation",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.消遣（方式），娱乐（方式），重建，重现"
+      }
+    ],
+    "phonetic0": "ˌrekriˈeɪʃn",
+    "phonetic1": "ˌrɛkriˈeʃən"
   },
   {
     "word": "daylight",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.日光，白昼，清早，黎明，公开，发表，<俚>眼睛，视力"
+      }
+    ],
+    "phonetic0": "ˈdeɪlaɪt",
+    "phonetic1": "ˈdeˌlaɪt"
   },
   {
     "word": "artificial lighting",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "人造灯光"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "natural ventilation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "自然通风"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "grey water",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "灰水 (生活用水中污染较轻可再次利 用的水)"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "potable water",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "饮用水"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "recycling",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.再循环"
+      },
+      {
+        "cn": "v.回收利用( recycle的现在分词 )，再利用，再次应用，重新使用（概念、方法、玩笑等）"
+      }
+    ],
+    "phonetic0": "ˌri:'saɪklɪŋ",
+    "phonetic1": "ˌri:'saɪklɪŋ"
   },
   {
     "word": "historic preservation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "保护规划"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "restoration",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.（规章制度等的）恢复，复原，（遗失等物的）归还原主，整修"
+      }
+    ],
+    "phonetic0": "ˌrestəˈreɪʃn",
+    "phonetic1": "ˌrɛstəˈreʃən"
   },
   {
     "word": "adaptive reuse",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "适应性再利用"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "intimate",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.亲密的，亲近的，私人的，个人的，内部的，直接的"
+      },
+      {
+        "cn": "n.至交，密友"
+      },
+      {
+        "cn": "v.暗示，提示，宣布，通知"
+      }
+    ],
+    "phonetic0": "ˈɪntɪmət",
+    "phonetic1": "ˈɪntəmɪt"
   },
   {
     "word": "human scale",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "人类尺度"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "interstate",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.<美>洲际的"
+      },
+      {
+        "cn": "n.洲际公路"
+      }
+    ],
+    "phonetic0": "ˈɪntəsteɪt",
+    "phonetic1": "ˈɪntərsteɪt"
   },
   {
     "word": "convention center",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "会展中心"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "air well",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "通风井"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "mechanical ventilation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "机械通风"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "right-of-way",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "路权"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "backfill",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "回填"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "insulation",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.隔离，孤立，绝缘，绝缘或隔热的材料，隔声"
+      }
+    ],
+    "phonetic0": "ˌɪnsjuˈleɪʃn",
+    "phonetic1": "ˌɪnsəˈleɪʃn"
   },
   {
     "word": "R-value",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "热阻"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "air tightness",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "密封性"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "passive heating, passive cooling, passive lighting",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "被动加热 、被动冷却、被动照明"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "regionalism",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "地区主义"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "mild",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.温柔的，温暖的，轻微的，（味道）不浓的"
+      },
+      {
+        "cn": "n.淡味麦芽啤酒"
+      }
+    ],
+    "phonetic0": "maɪld",
+    "phonetic1": "maɪld"
   },
   {
     "word": "massive",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.大的，重的，大块的，大量的，魁伟的，结实的，大规模的"
+      }
+    ],
+    "phonetic0": "ˈmæsɪv",
+    "phonetic1": "ˈmæsɪv"
   },
   {
     "word": "time-lag effect",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "时滞效应"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "solar radiation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "太阳辐射"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "diffuse",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.四散的，散开的，冗长的，累赘的"
+      },
+      {
+        "cn": "vi.传播，四散"
+      },
+      {
+        "cn": "vt.漫射，发散，弥漫，舒缓"
+      }
+    ],
+    "phonetic0": "dɪˈfju:s",
+    "phonetic1": "dɪˈfjuz"
   },
   {
     "word": "flat",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.平的，单调的，不景气的，干脆的"
+      },
+      {
+        "cn": "adv.（尤指贴着另一表面）平直地，断然地，水平地，直接地，完全地"
+      },
+      {
+        "cn": "n.平地，公寓，平面"
+      },
+      {
+        "cn": "vt.使变平，音乐使（音调）下降，尤指降半音"
+      },
+      {
+        "cn": "vi.逐渐变平，音乐以降调唱（或奏）"
+      }
+    ],
+    "phonetic0": "flæt",
+    "phonetic1": "flæt"
   },
   {
     "word": "clustered",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "组团的"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "humid",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "adj.潮湿的，湿气重的，湿润的，温湿"
+      }
+    ],
+    "phonetic0": "ˈhju:mɪd",
+    "phonetic1": "ˈhjumɪd"
   },
   {
     "word": "evaporative cooling",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "蒸发冷却"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "direct solar radiation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "直接太阳辐射"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "ventilation",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.空气流通，通风设备，通风方法，公开讨论"
+      }
+    ],
+    "phonetic0": "ˌventɪ'leɪʃn",
+    "phonetic1": "ˌvɛntlˈeʃən"
   },
   {
     "word": "winds scoop",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "招风斗"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "overhang",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "vt.伸突出，伸出，逼近，威胁，用悬挂物装饰"
+      },
+      {
+        "cn": "vi.悬垂，逼近"
+      },
+      {
+        "cn": "n.突出物，延伸量，伸出量，航突出船首（或船尾），（无法兑换黄金的）美元过剩额"
+      }
+    ],
+    "phonetic0": "ˌəʊvəˈhæŋ",
+    "phonetic1": "ˌoʊvərˈhæŋ"
   },
   {
     "word": "shutter",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.遮光器，百叶窗，快门"
+      },
+      {
+        "cn": "vt.使…停止运行，关闭，装上百叶窗或以百叶窗关闭："
+      }
+    ],
+    "phonetic0": "ˈʃʌtə(r)",
+    "phonetic1": "ˈʃʌtɚ"
   },
   {
     "word": "ceiling",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.天花板，最高限度，云幕高度，隔板，舱室垫板"
+      }
+    ],
+    "phonetic0": "ˈsi:lɪŋ",
+    "phonetic1": "ˈsilɪŋ"
   },
   {
     "word": "clerestory window",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "高侧窗"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "gabled roof",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "人字形坡屋顶"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "bay window",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "飘窗"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "surface-area-to-volume ratio",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "体形系数"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "thermal resistance",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "热阻"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "greenhouse effect",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "温室效应"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "villa",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.别墅，公馆，<英>（城郊）住宅"
+      }
+    ],
+    "phonetic0": "ˈvɪlə",
+    "phonetic1": "ˈvɪlə"
   },
   {
     "word": "conservatory",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.（培植植物的）温室，暖房，音乐学校"
+      },
+      {
+        "cn": "adj.有保存力的，保管人的"
+      }
+    ],
+    "phonetic0": "kənˈsɜ:vətri",
+    "phonetic1": "kənˈsɜ:rvətɔ:ri"
   },
   {
     "word": "glazing",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "玻璃"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "thermal mass",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "蓄热体"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "floor slab",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "楼板"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "cavity wall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "空心墙"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "cross-ventilation",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "穿堂风"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "active solar",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "主动式太阳能"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "phase change material",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "相变材料"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "latent heat",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "潜热"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "convection",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.传送，对流，运流"
+      }
+    ],
+    "phonetic0": "kənˈvekʃn",
+    "phonetic1": "kənˈvɛkʃən"
   },
   {
     "word": "clerestory window",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "高侧窗"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "trombe wall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "龙骨墙 ，特隆布墙"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "coating",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.涂层，覆盖层，（食品上的）面衣，糖衣，涂料，外衣布料上衣料，细呢，花呢"
+      },
+      {
+        "cn": "v.给…穿上外衣，覆盖，“coat”的现在分词"
+      }
+    ],
+    "phonetic0": "ˈkəʊtɪŋ",
+    "phonetic1": "ˈkoʊtɪŋ"
   },
   {
     "word": "parapet wall",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "矮墙 ，女儿墙"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   },
   {
     "word": "awning",
-    "trans": [],
-    "phonetic0": "",
-    "phonetic1": ""
+    "trans": [
+      {
+        "cn": "n.布做的凉篷，遮篷，雨篷，（甲板等上的）天篷"
+      }
+    ],
+    "phonetic0": "ˈɔ:nɪŋ",
+    "phonetic1": "ˈɔːnɪŋ"
   },
   {
     "word": "operable window",
-    "trans": [],
+    "trans": [
+      {
+        "cn": "可操作窗口"
+      }
+    ],
     "phonetic0": "",
     "phonetic1": ""
   }

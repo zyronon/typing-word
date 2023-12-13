@@ -96,52 +96,6 @@ export function useArticleOptions() {
   }
 }
 
-export async function checkDictHasTranslate(dict: Dict) {
-  let dictResourceUrl = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
-  if ([
-    DictType.word,
-  ].includes(dict.type)) {
-    if (!dict.originWords.length) {
-      let r = await fetch(dictResourceUrl)
-      // let r = await fetch(`.${dict.url}`)
-      let v = await r.json()
-      if (dict.translateLanguage === 'common') {
-        const runtimeStore = useRuntimeStore()
-        let r2 = await fetch('./translate/en2zh_CN-min.json')
-        // fetch('http://sc.ttentau.top/en2zh_CN-min.json').then(r2 => {
-        let list: Word[] = await r2.json()
-
-        runtimeStore.translateWordList = list
-
-        dict.originWords = cloneDeep(v)
-        dict.words = cloneDeep(v)
-        dict.chapterWords = chunk(dict.words, dict.chapterWordNumber)
-        dict.chapterWords[dict.chapterIndex].map((w: Word) => {
-          let res = list.find(a => a.word === w.word)
-          if (res) w = Object.assign(w, res)
-        })
-      } else {
-        dict.originWords = cloneDeep(v)
-        dict.words = cloneDeep(v)
-        dict.chapterWords = chunk(dict.words, dict.chapterWordNumber)
-      }
-    }
-  }
-
-  if ([
-    DictType.article,
-  ].includes(dict.type)) {
-    if (!dict.articles.length) {
-      let r = await fetch(dictResourceUrl)
-      let s: any[] = await r.json()
-      dict.articles = cloneDeep(s.map(v => {
-        v.id = nanoid(6)
-        return v
-      }))
-    }
-  }
-}
-
 //同步到我的词典列表
 export function syncMyDictList(dict: Dict, isCustom = true) {
   const store = useBaseStore()
@@ -158,44 +112,5 @@ export function syncMyDictList(dict: Dict, isCustom = true) {
     store.myDictList[rIndex] = cloneDeep(dict)
   } else {
     store.myDictList.push(cloneDeep(dict))
-  }
-}
-
-export function useTranslateWordList() {
-  let progress = $ref(0)
-
-  function translate(list: Word) {
-    requestIdleCallback(() => {
-      let count = 0
-      for (let index = 0; index < list.length; index++) {
-        let w = list[index]
-        if (!w.trans.length) {
-          requestIdleCallback(() => {
-            if (list.length) {
-              let res = runtimeStore.translateWordList.find(a => a.name === w.name)
-              if (res) w = Object.assign(w, res)
-              count++
-              if (count === list.length) {
-                progress = 100
-              } else {
-                if (count % 30 === 0) progress = (count / list.length) * 100
-              }
-            }
-          })
-        } else {
-          count++
-          if (count === list.length) {
-            progress = 100
-          } else {
-            if (count % 30 === 0) progress = (count / list.length) * 100
-          }
-        }
-      }
-    })
-  }
-
-  return {
-    progress,
-    translate
   }
 }

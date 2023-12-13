@@ -45,13 +45,6 @@ function getCurrentPractice() {
     data.words = store.chapter
     data.index = 0
 
-    store.chapter.map((w: Word) => {
-      if (!w.trans.length) {
-        let res = runtimeStore.translateWordList.find(a => a.word === w.word)
-        if (res) w = Object.assign(w, res)
-      }
-    })
-
     data.words = cloneDeep(store.chapter)
     emitter.emit(EventKey.resetWord)
   }

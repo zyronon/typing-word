@@ -220,14 +220,6 @@ export const useBaseStore = defineStore('base', {
                 v.map(s => {
                   s.id = nanoid(6)
                 })
-                if (this.currentDict.translateLanguage === 'common') {
-                  let r2 = await fetch('./translate/en2zh_CN-min.json')
-                  // fetch('http://sc.ttentau.top/en2zh_CN-min.json').then(r2 => {
-                  let list: Word[] = await r2.json()
-                  if (list && list.length) {
-                    runtimeStore.translateWordList = list
-                  }
-                }
                 this.currentDict.originWords = cloneDeep(v)
                 this.currentDict.words = cloneDeep(v)
                 this.currentDict.chapterWords = chunk(this.currentDict.words, this.currentDict.chapterWordNumber)
@@ -245,18 +237,6 @@ export const useBaseStore = defineStore('base', {
               }
             }
           }
-        }
-
-        //TODO 先这样，默认加载
-        if (!runtimeStore.translateWordList.length) {
-          setTimeout(async () => {
-            let r2 = await fetch('./translate/en2zh_CN-min.json')
-            // fetch('http://sc.ttentau.top/en2zh_CN-min.json').then(r2 => {
-            let list: Word[] = await r2.json()
-            if (list && list.length) {
-              runtimeStore.translateWordList = list
-            }
-          })
         }
         emitter.emit(EventKey.changeDict)
         resolve(true)
