@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import {useBaseStore} from "@/stores/base.ts"
-import {onMounted, watch} from "vue"
+import {onMounted} from "vue"
 import {DefaultDict, Dict, DictResource, DictType, Sort, Word} from "@/types.ts"
 import {chunk, cloneDeep, reverse, shuffle} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
 import BaseButton from "@/components/BaseButton.vue";
 import {Icon} from '@iconify/vue';
-import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
 import WordListDialog from "@/components/dialog/WordListDialog.vue";
 import {isArticle} from "@/hooks/article.ts";
@@ -24,6 +23,7 @@ import {useRouter} from "vue-router";
 import ArticleList from "@/components/list/ArticleList.vue";
 import BaseList from "@/components/list/BaseList.vue";
 import {MessageBox} from "@/utils/MessageBox.tsx";
+import {ArchiveReader, libarchiveWasm} from 'libarchive-wasm';
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -70,6 +70,27 @@ async function selectDict(val: { dict: DictResource | Dict, index: number }) {
       if (runtimeStore.editDict.type === DictType.word) {
         if (!runtimeStore.editDict.originWords.length) {
           let r = await fetch(url)
+          console.log('r', r)
+          // r.arrayBuffer()
+
+          console.time()
+          const data = await r.arrayBuffer();
+          const mod = await libarchiveWasm();
+          const reader = new ArchiveReader(mod, new Int8Array(data));
+          for (const entry of reader.entries()) {
+            const result = {
+              pathname: entry.getPathname(),
+              size: entry.getSize(),
+            };
+            if (result.pathname.endsWith('.json')) {
+              result.data = new TextDecoder().decode(entry.readData());
+            }
+            console.timeEnd()
+            console.log(result);
+          }
+          reader.free();
+
+          return
           let v = await r.json()
           v.map(s => {
             s.id = nanoid(6)

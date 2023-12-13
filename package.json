@@ -26,6 +26,7 @@
     "file-saver": "^2.0.5",
     "git-last-commit": "^1.0.1",
     "hover.css": "^2.3.2",
+    "libarchive-wasm": "^1.1.0",
     "localforage": "^1.10.0",
     "lodash-es": "^4.17.21",
     "mitt": "^3.0.1",

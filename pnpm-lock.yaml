@@ -32,6 +32,9 @@ dependencies:
   hover.css:
     specifier: ^2.3.2
     version: 2.3.2
+  libarchive-wasm:
+    specifier: ^1.1.0
+    version: 1.1.0
   localforage:
     specifier: ^1.10.0
     version: 1.10.0
@@ -3272,6 +3275,10 @@ packages:
     dependencies:
       flush-write-stream: 1.1.1
     dev: true
+
+  /libarchive-wasm@1.1.0:
+    resolution: {integrity: sha512-b1R4KK5Goybf2+kiVoM1NZnZ/3h7BxBvSCPF4scroJmIVqfD00hSFRNFt9oUcJcKjMu1vnWRnizXc2efpVY8yQ==}
+    dev: false
 
   /lie@3.1.1:
     resolution: {integrity: sha512-RiNhHysUjhrDQntfYSfY4MU24coXXdEOgw9WGcKHNeEwffDYbF//u87M1EWaMGzuFoSbqW0C9C6lEEhDOAswfw==}

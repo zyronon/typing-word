@@ -6,7 +6,7 @@ const internationalExam: DictResource[] = [
     id: 'BEC_2',
     name: '商务英语词汇',
     description: '商务英语词汇',
-    url: 'BEC_2.json',
+    url: 'BEC_2.min.7z',
     length: 2753,
     category: '国际考试',
     tags: ['所有', 'BEC'],
