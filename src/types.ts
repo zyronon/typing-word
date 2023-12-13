@@ -6,8 +6,8 @@ import {DefaultChapterWordNumber} from "@/stores/setting.ts";
 
 export type Word = {
   "word": string,
-  "usphone": string,
-  "ukphone": string,
+  "phonetic0": string,
+  "phonetic1": string,
   "trans": string[]
   checked?: boolean,
   id?: any,
@@ -15,8 +15,8 @@ export type Word = {
 
 export const DefaultWord: Word = {
   word: '',
-  usphone: '',
-  ukphone: '',
+  phonetic0: '',
+  phonetic1: '',
   trans: []
 }
 
@@ -49,8 +49,8 @@ export enum DictType {
 
 export const DefaultArticleWord: ArticleWord = {
   word: '',
-  usphone: '',
-  ukphone: '',
+  phonetic0: '',
+  phonetic1: '',
   trans: [],
   nextSpace: true,
   isSymbol: false,

@@ -300,9 +300,9 @@ enum FormMode {
 }
 
 const DefaultFormWord = {
-  name: '',
-  usphone: '',
-  ukphone: '',
+  word: '',
+  phonetic0: '',
+  phonetic1: '',
   trans: '',
 }
 let wordForm = $ref(cloneDeep(DefaultFormWord))
@@ -314,6 +314,7 @@ const wordRules = reactive<FormRules>({
   ],
 })
 
+//TODO trans结构变了，
 async function onSubmitWord() {
   await wordFormRef.validate((valid, fields) => {
     if (valid) {
@@ -378,8 +379,8 @@ function editWord(word: Word, index: number, where: string) {
   wordFormData.id = word.id
   wordFormData.where = where
   wordForm.word = word.word
-  wordForm.ukphone = word.ukphone
-  wordForm.usphone = word.usphone
+  wordForm.phonetic1 = word.phonetic1
+  wordForm.phonetic0 = word.phonetic0
   wordForm.trans = word.trans.join('\n')
 }
 
@@ -502,8 +503,8 @@ function importData(e: any) {
             id: nanoid(6),
             checked: false,
             word: String(v['单词']),
-            usphone: String(v['音标①'] ?? ''),
-            ukphone: String(v['音标②'] ?? ''),
+            phonetic0: String(v['音标①'] ?? ''),
+            phonetic1: String(v['音标②'] ?? ''),
             trans: String(v['释义(一行一个释义)'] ?? '').split('\n')
           }
           return word
@@ -563,7 +564,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
       <div class="left">
         <div class="top">
           <div class="title">
-            {{ runtimeStore.editDict.word }}
+            {{ runtimeStore.editDict.name }}
           </div>
           <template v-if="!isPinDict">
             <BaseIcon icon="tabler:edit" @click='editDict'/>
@@ -705,10 +706,10 @@ defineExpose({getDictDetail, add: addWord, editDict})
                         type="textarea"/>
             </el-form-item>
             <el-form-item label="音标/发音①">
-              <el-input v-model="wordForm.usphone"/>
+              <el-input v-model="wordForm.phonetic0"/>
             </el-form-item>
             <el-form-item label="音标/发音②">
-              <el-input v-model="wordForm.ukphone"/>
+              <el-input v-model="wordForm.phonetic1"/>
             </el-form-item>
             <div class="flex-center">
               <el-button @click="closeWordForm">关闭</el-button>

@@ -198,8 +198,8 @@ defineExpose({del, showWord, hideWord, play})
         <VolumeIcon ref="volumeIconRef" :simple="true" :cb="() => playWordAudio(word.word)"/>
       </Tooltip>
     </div>
-    <div class="phonetic" v-if="settingStore.wordSoundType === 'us' && word.usphone">[{{ word.usphone}}]</div>
-    <div class="phonetic" v-if="settingStore.wordSoundType === 'uk' && word.ukphone">[{{ word.ukphone }}]</div>
+    <div class="phonetic" v-if="settingStore.wordSoundType === 'us' && word.phonetic0">[{{ word.phonetic0 }}]</div>
+    <div class="phonetic" v-if="settingStore.wordSoundType === 'uk' && word.phonetic1">[{{ word.phonetic1 }}]</div>
   </div>
 </template>
 

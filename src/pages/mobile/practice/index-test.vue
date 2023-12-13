@@ -35,8 +35,8 @@ const word: Word = $computed(() => {
   return data.words[data.index] ?? {
     trans: [],
     word: '',
-    usphone: '',
-    ukphone: '',
+    phonetic0: '',
+    phonetic1: '',
   }
 })
 
