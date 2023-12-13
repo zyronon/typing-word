@@ -4,11 +4,16 @@ import codeFlag from "@/assets/img/flags/code.png";
 import myFlag from "@/assets/img/flags/my.png";
 import {DefaultChapterWordNumber} from "@/stores/setting.ts";
 
+export type WordTrans = {
+  pos: string,
+  cn: string,
+  en: string
+}
 export type Word = {
   "word": string,
   "phonetic0": string,
   "phonetic1": string,
-  "trans": string[]
+  "trans": WordTrans[]
   checked?: boolean,
   id?: any,
 }

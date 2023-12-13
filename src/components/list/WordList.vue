@@ -53,7 +53,7 @@ defineExpose({scrollToBottom, scrollToItem})
         <VolumeIcon class="volume" @click="playWordAudio(item.name)"></VolumeIcon>
       </div>
       <div class="item-sub-title" v-if="item.trans.length && showTranslate">
-        <div v-for="tran in item.trans">{{ tran }}</div>
+        <div v-for="v in item.trans">{{ (v.pos ? v.pos + '.' : '') + v.cn }}</div>
       </div>
     </template>
     <template v-slot:suffix="{ item, index }">
