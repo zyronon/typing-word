@@ -1,18 +1,25 @@
 let path = require("path");
 let fs = require("fs");
 
-let fileName = '2024HongBao_T1.json'
-let read = '../public/dicts/code/word/zh-CN/'
+let fileName = '../public/translate/en2zh_CN.json'
+let read = '../public/dicts/en/word/common/'
 let save = "./format2/";
 
 //判断是不是目录
-const dirs = fs.readdirSync(read)
-dirs.forEach(dictName => {
-  formatDict(read, dictName)
-})
+// const dirs = fs.readdirSync(read)
+// dirs.forEach(dictName => {
+//   formatDict(read, dictName)
+// })
 
 // formatDict(read, fileName)
 
+let str = fs.readFileSync(fileName, "utf8");
+let list = JSON.parse(str)
+let newList = list.map(a => {
+  return a.word
+})
+
+fs.writeFileSync('../public/translate/en2zh_CN.words.json', JSON.stringify(newList, null, 2));
 
 function formatDict(path, name) {
   try {
