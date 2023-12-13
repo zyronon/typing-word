@@ -8,7 +8,7 @@ import {cloneDeep, reverse, shuffle} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
 import {useSettingStore} from "@/stores/setting.ts";
 import {useOnKeyboardEventListener, useWindowClick} from "@/hooks/event.ts";
-import Typing from "@/pages/mobile/practice/practice-word/Typing.vue";
+import Typing from "@/pages/pc/practice/practice-word/Typing.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
@@ -244,7 +244,6 @@ watch(() => index, n => {
 
 let inputRef = $ref<HTMLInputElement>()
 
-
 function change(e) {
   console.log('e', e)
   e.key = e.data
@@ -252,10 +251,11 @@ function change(e) {
   inputRef.value = ''
 }
 
-function know() {
+function know(isTyping: boolean = false) {
+  inputRef.blur()
   settingStore.translate = false
   setTimeout(() => {
-    data.index++
+    next(isTyping)
   }, 300)
 }
 
@@ -263,10 +263,16 @@ function unknow() {
   settingStore.translate = true
   inputRef.focus()
 }
+
+let bodyHeight = $ref('100vh')
+onMounted(() => {
+  bodyHeight = document.body.clientHeight + 'px'
+})
+
 </script>
 
 <template>
-  <div class="practice-word">
+  <div class="practice-center" :style="{height:bodyHeight}">
     <SlideHorizontal v-model:index="index">
       <SlideItem>
         <div class="practice-body" @click.stop="index = 0">
@@ -293,7 +299,7 @@ function unknow() {
             </div>
           </div>
           <input ref="inputRef"
-                 style="position:fixed;top:200vh;"
+                 style="position:fixed;top:-200vh;"
                  @input="change"
                  type="text">
           <Typing
@@ -301,7 +307,7 @@ function unknow() {
               v-loading="!store.load"
               ref="typingRef"
               :word="word"
-              @next="next"
+              @complete="know(true)"
           />
           <div class="options">
             <div class="wrapper">
@@ -394,28 +400,22 @@ function unknow() {
         </MobilePanel>
       </SlideItem>
     </SlideHorizontal>
-
   </div>
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/variable";
-
-.practice-word {
-  width: 100%;
-  height: 100%;
-  flex: 1;
-  display: flex;
-  //display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+.practice-center {
+  position: fixed;
+  z-index: 1;
   font-size: 14rem;
-  color: gray;
-  gap: 6rem;
+  color: black;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 100vh;
 
   .practice-body {
-    width: 100%;
+    width: 100vw;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -461,6 +461,4 @@ function unknow() {
   }
 
 }
-
-
 </style>

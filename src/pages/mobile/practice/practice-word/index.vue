@@ -81,6 +81,5 @@ defineExpose({getCurrentPractice})
 .practice {
   flex: 1;
   display: flex;
-  width: 100%;
 }
 </style>
