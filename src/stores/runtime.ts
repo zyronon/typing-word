@@ -1,5 +1,6 @@
 import {defineStore} from "pinia"
-import {DefaultDict, Dict, DictType, Sort, Word} from "@/types.ts";
+import {DefaultDict, Dict} from "@/types.ts";
+import {cloneDeep} from "lodash-es";
 
 export interface RuntimeState {
   disableEventListener: boolean,
@@ -14,7 +15,7 @@ export const useRuntimeStore = defineStore('runtime', {
     return {
       disableEventListener: false,
       modalList: [],
-      editDict: {...DefaultDict},
+      editDict: cloneDeep(DefaultDict),
       showDictModal: false,
       showSettingModal: false,
     }

@@ -24,6 +24,7 @@ import ArticleList from "@/components/list/ArticleList.vue";
 import BaseList from "@/components/list/BaseList.vue";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {ArchiveReader, libarchiveWasm} from 'libarchive-wasm';
+import {getDictFile} from "@/utils";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -69,29 +70,7 @@ async function selectDict(val: { dict: DictResource | Dict, index: number }) {
       let url = `./dicts/${runtimeStore.editDict.language}/${runtimeStore.editDict.type}/${runtimeStore.editDict.translateLanguage}/${runtimeStore.editDict.url}`;
       if (runtimeStore.editDict.type === DictType.word) {
         if (!runtimeStore.editDict.originWords.length) {
-          let r = await fetch(url)
-          console.log('r', r)
-          // r.arrayBuffer()
-
-          console.time()
-          const data = await r.arrayBuffer();
-          const mod = await libarchiveWasm();
-          const reader = new ArchiveReader(mod, new Int8Array(data));
-          for (const entry of reader.entries()) {
-            const result = {
-              pathname: entry.getPathname(),
-              size: entry.getSize(),
-            };
-            if (result.pathname.endsWith('.json')) {
-              result.data = new TextDecoder().decode(entry.readData());
-            }
-            console.timeEnd()
-            console.log(result);
-          }
-          reader.free();
-
-          return
-          let v = await r.json()
+          let v = await getDictFile(url)
           v.map(s => {
             s.id = nanoid(6)
           })
@@ -125,9 +104,13 @@ function close() {
   show = false
 }
 
+//TODO 切大词典太卡了
 function changeDict() {
   close()
   store.changeDict(runtimeStore.editDict)
+  setTimeout(() => {
+    runtimeStore.editDict = cloneDeep(DefaultDict)
+  })
   ElMessage.success('切换成功')
 }
 

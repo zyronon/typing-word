@@ -3,6 +3,7 @@ import {BaseState, DefaultBaseState} from "@/stores/base.ts";
 import {DefaultSettingState, SettingState} from "@/stores/setting.ts";
 import {cloneDeep} from "lodash-es";
 import {Dict, DictType} from "@/types.ts";
+import {ArchiveReader, libarchiveWasm} from "libarchive-wasm";
 
 export function getRandom(a: number, b: number): number {
   return Math.random() * (b - a) + a;
@@ -161,4 +162,27 @@ export function shakeCommonDict(n: BaseState): BaseState {
 
 export function isMobile(): boolean {
   return /Mobi|Android|iPhone/i.test(navigator.userAgent)
+}
+
+export function getDictFile(url: string) {
+  return new Promise<any[]>(async resolve => {
+    let r = await fetch(url)
+    if (url.includes('.7z')) {
+      console.time()
+      const data = await r.arrayBuffer();
+      const mod = await libarchiveWasm();
+      const reader = new ArchiveReader(mod, new Int8Array(data));
+      for (const entry of reader.entries()) {
+        if (entry.getPathname().endsWith('.json')) {
+          let data = new TextDecoder().decode(entry.readData());
+          resolve(JSON.parse(data))
+        }
+        console.timeEnd()
+      }
+      reader.free();
+    } else {
+      let v = await r.json()
+      resolve(v)
+    }
+  })
 }
