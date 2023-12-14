@@ -62,6 +62,7 @@ async function onSubmit() {
 
       if (props.isAdd) {
         data.id = 'custom-dict-' + Date.now()
+        //TODO 允许同名？
         if (store.myDictList.find(v => v.name === data.name)) {
           return ElMessage.warning('已有相同名称词典！')
         } else {

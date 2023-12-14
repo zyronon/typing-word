@@ -283,7 +283,6 @@ function syncEditDict2MyDictList() {
 let wordFormData = $ref({
   where: '',
   type: '',
-  name: '',
   id: '',
   index: 0
 })

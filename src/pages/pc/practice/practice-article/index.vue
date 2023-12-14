@@ -82,7 +82,7 @@ function setArticle(val: Article) {
   articleData.article.sections.map((v, i) => {
     v.map((w, j) => {
       w.words.map(s => {
-        if (!store.skipWordNamesWithSimpleWords.includes(s.name.toLowerCase()) && !s.isSymbol) {
+        if (!store.skipWordNamesWithSimpleWords.includes(s.word.toLowerCase()) && !s.isSymbol) {
           practiceStore.total++
         }
       })

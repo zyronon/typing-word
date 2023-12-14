@@ -82,8 +82,7 @@ async function selectDict(val: { dict: DictResource | Dict, index: number }) {
       }
       if (runtimeStore.editDict.type === DictType.article) {
         if (!runtimeStore.editDict.articles.length) {
-          let r = await fetch(url)
-          let v = await r.json()
+          let v = await getDictFile(url)
           v.map(s => {
             s.id = nanoid(6)
           })

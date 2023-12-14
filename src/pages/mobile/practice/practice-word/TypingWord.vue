@@ -8,7 +8,7 @@ import {cloneDeep, reverse, shuffle} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
 import {useSettingStore} from "@/stores/setting.ts";
 import {useOnKeyboardEventListener, useWindowClick} from "@/hooks/event.ts";
-import Typing from "@/pages/pc/practice/practice-word/Typing.vue";
+import Typing from "@/pages/mobile/practice/practice-word/Typing.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
@@ -21,6 +21,8 @@ import SlideItem from "@/components/slide/SlideItem.vue";
 import MobilePanel from "@/pages/mobile/components/MobilePanel.vue";
 import router from "@/router.ts";
 import {Icon} from "@iconify/vue";
+import IconWrapper from "@/components/IconWrapper.vue";
+import useTheme from "@/hooks/theme.ts";
 
 interface IProps {
   words: Word[],
@@ -42,6 +44,7 @@ const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
 const practiceStore = usePracticeStore()
 const settingStore = useSettingStore()
+const {toggleTheme} = useTheme()
 
 const {
   isWordCollect,
@@ -80,21 +83,13 @@ watch(data, () => {
   practiceStore.index = data.index
 })
 
-const word = $computed(() => {
+const word: Word = $computed(() => {
   return data.words[data.index] ?? {
     trans: [],
-    name: '',
-    usphone: '',
-    ukphone: '',
+    word: '',
+    phonetic0: '',
+    phonetic1: '',
   }
-})
-
-const prevWord: Word = $computed(() => {
-  return data.words?.[data.index - 1] ?? undefined
-})
-
-const nextWord: Word = $computed(() => {
-  return data.words?.[data.index + 1] ?? undefined
 })
 
 function next(isTyping: boolean = true) {
@@ -251,12 +246,17 @@ function change(e) {
   inputRef.value = ''
 }
 
-function know(isTyping: boolean = false) {
-  inputRef.blur()
+function nextWord() {
   settingStore.translate = false
+  settingStore.detail = false
   setTimeout(() => {
-    next(isTyping)
+    next(true)
   }, 300)
+}
+
+function complete() {
+  inputRef.blur()
+  settingStore.detail = true
 }
 
 function unknow() {
@@ -283,6 +283,12 @@ onMounted(() => {
               />
             </div>
             <div class="right">
+              <IconWrapper>
+                <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
+                      @click="toggleTheme"/>
+                <Icon icon="tabler:sun" v-else @click="toggleTheme"/>
+              </IconWrapper>
+
               <BaseIcon
                   v-if="!isWordCollect(word)"
                   class="collect"
@@ -303,16 +309,18 @@ onMounted(() => {
                  @input="change"
                  type="text">
           <Typing
-              style="width: 90%;"
               v-loading="!store.load"
               ref="typingRef"
               :word="word"
-              @complete="know(true)"
+              @complete="complete"
           />
           <div class="options">
             <div class="wrapper">
-              <BaseButton @click="unknow">不认识</BaseButton>
-              <BaseButton @click="know">认识</BaseButton>
+              <BaseButton size="large" v-if="settingStore.detail" @click="nextWord">下一个</BaseButton>
+              <template v-else>
+                <BaseButton size="large" @click="unknow">不认识</BaseButton>
+                <BaseButton size="large" @click="nextWord">认识</BaseButton>
+              </template>
             </div>
           </div>
         </div>
@@ -419,10 +427,9 @@ onMounted(() => {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 10rem;
-    padding: 10rem;
+    padding: 0 10rem;
     box-sizing: border-box;
 
     .tool-bar {
@@ -437,7 +444,7 @@ onMounted(() => {
 
     :deep(.word) {
       letter-spacing: 0;
-      font-size: 40rem !important;
+      font-size: 36rem !important;
     }
 
     .options {
@@ -450,12 +457,11 @@ onMounted(() => {
       .wrapper {
         width: 80%;
         display: flex;
-        flex-direction: column;
-        gap: 10rem;
+        gap: 20rem;
       }
 
-      .base-button {
-        width: 100%;
+      :deep(.base-button) {
+        flex: 1;
       }
     }
   }

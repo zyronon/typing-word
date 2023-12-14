@@ -10,12 +10,17 @@ export type WordTrans = {
   en: string
 }
 export type Word = {
+  id?: any,
   "word": string,
   "phonetic0": string,
   "phonetic1": string,
   "trans": WordTrans[]
   checked?: boolean,
-  id?: any,
+  sentences?: { v: string, tran: string }[],
+  relWords?: { w: string, tran: string }[],
+  phrases?: { v: string, tran: string } [],
+  synos?: { w: string, tran: string } [],
+  memory?: any,
 }
 
 export const DefaultWord: Word = {

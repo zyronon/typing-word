@@ -6,7 +6,7 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import * as localforage from "localforage";
 import {nanoid} from "nanoid";
 import {SAVE_DICT_KEY, SAVE_SETTING_KEY} from "@/utils/const.ts";
-import {checkAndUpgradeSaveDict} from "@/utils";
+import {checkAndUpgradeSaveDict, getDictFile} from "@/utils";
 
 export interface BaseState {
   myDictList: Dict[],
@@ -120,10 +120,10 @@ export const useBaseStore = defineStore('base', {
       return this.myDictList[2]
     },
     skipWordNames() {
-      return this.simple.originWords.map(v => v.name.toLowerCase())
+      return this.simple.originWords.map(v => v.word.toLowerCase())
     },
     skipWordNamesWithSimpleWords() {
-      return this.simple.originWords.map(v => v.name.toLowerCase()).concat(this.simpleWords)
+      return this.simple.originWords.map(v => v.word.toLowerCase()).concat(this.simpleWords)
     },
     isArticle(state: BaseState): boolean {
       //如果是收藏时，特殊判断
@@ -215,8 +215,8 @@ export const useBaseStore = defineStore('base', {
             let dictResourceUrl = `./dicts/${this.currentDict.language}/${this.currentDict.type}/${this.currentDict.translateLanguage}/${this.currentDict.url}`;
             if ([DictType.word].includes(this.currentDict.type)) {
               if (!this.currentDict.originWords.length) {
-                let r = await fetch(dictResourceUrl)
-                let v = await r.json()
+                let v = await getDictFile(dictResourceUrl)
+                v = v.slice(0,50)
                 v.map(s => {
                   s.id = nanoid(6)
                 })
@@ -228,8 +228,7 @@ export const useBaseStore = defineStore('base', {
 
             if ([DictType.article].includes(this.currentDict.type)) {
               if (!this.currentDict.articles.length) {
-                let r = await fetch(dictResourceUrl)
-                let s: any[] = await r.json()
+                let s = await getDictFile(dictResourceUrl)
                 this.currentDict.articles = cloneDeep(s.map(v => {
                   v.id = nanoid(6)
                   return v

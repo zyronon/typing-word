@@ -8,7 +8,7 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio, useTTsPlayAudio} from "@/hooks/sound.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {cloneDeep} from "lodash-es";
-import {onUnmounted, watch, onMounted} from "vue";
+import {onUnmounted, watch, onMounted, nextTick} from "vue";
 import Tooltip from "@/components/Tooltip.vue";
 
 interface IProps {
@@ -44,14 +44,6 @@ let displayWord = $computed(() => {
   return props.word.word.slice(input.length + wrong.length)
 })
 
-watch(() => props.word, () => {
-  wrong = input = ''
-  wordRepeatCount = 0
-  inputLock = false
-  if (settingStore.wordSound) {
-    volumeIconRef?.play(400, true)
-  }
-})
 
 onMounted(() => {
   emitter.on(EventKey.resetWord, () => {
@@ -151,32 +143,57 @@ function play() {
 }
 
 defineExpose({del, showWord, hideWord, play})
+
+let transHeight = $ref(150)
+let transWrapperRef = $ref<HTMLDivElement>()
+let showEnd = $ref(true)
+
+const transStyle = $computed(() => {
+  return {
+    'justify-content': showEnd ? 'flex-end' : 'unset',
+    height: transHeight + 'px',
+    opacity: settingStore.translate ? 1 : 0
+  }
+})
+
+watch(() => props.word, () => {
+  wrong = input = ''
+  wordRepeatCount = 0
+  inputLock = false
+  if (settingStore.wordSound) {
+    volumeIconRef?.play(400, true)
+  }
+  transHeight = 150
+  nextTick(() => {
+    console.log('transWrapperRef.scrollHeight', transWrapperRef.scrollHeight)
+    let scrollHeight = transWrapperRef.scrollHeight
+    if (scrollHeight <= 240) {
+      showEnd = true
+      if (scrollHeight > transHeight) {
+        transHeight = scrollHeight
+      }
+    } else {
+      showEnd = scrollHeight <= transHeight
+    }
+  })
+})
+
 </script>
 
 <template>
   <div class="typing-word">
     <div class="translate"
-         :style="{
-      fontSize: settingStore.fontSize.wordTranslateFontSize +'rem',
-      opacity: settingStore.translate ? 1 : 0
-    }"
+         :style="transStyle"
     >
-      <div class="translate-item" v-for="(v,i) in word.trans">
-        <span>{{ (v.pos ? v.pos + '.' : '') + v.cn }}</span>
-        <!--        <div class="volumeIcon">-->
-        <!--          <Tooltip-->
-        <!--              v-if="i === word.trans.length - 1"-->
-        <!--              :title="`发音(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.PlayTranslatePronunciation]})`"-->
-        <!--          >-->
-        <!--            <VolumeIcon-->
-        <!--                ref="volumeTranslateIconRef"-->
-        <!--                :simple="true"-->
-        <!--                :cb="()=>ttsPlayAudio(word.trans.join(';'))"/>-->
-        <!--          </Tooltip>-->
-        <!--        </div>-->
+      <div class="wrapper" ref="transWrapperRef">
+        <div class="translate-item" v-for="(v,i) in word.trans">
+          <span>{{ (v.pos ? v.pos + '.' : '') + v.cn }}</span>
+        </div>
       </div>
     </div>
-    <div class="word-wrapper">
+    <div class="word-wrapper"
+         :style="{marginTop: transHeight + 6 + 'px'}"
+    >
       <div class="word"
            :class="wrong && 'is-wrong'"
            :style="{fontSize: settingStore.fontSize.wordForeignFontSize +'rem'}"
@@ -200,6 +217,24 @@ defineExpose({del, showWord, hideWord, play})
     </div>
     <div class="phonetic" v-if="settingStore.wordSoundType === 'us' && word.phonetic0">[{{ word.phonetic0 }}]</div>
     <div class="phonetic" v-if="settingStore.wordSoundType === 'uk' && word.phonetic1">[{{ word.phonetic1 }}]</div>
+    <transition name="fade">
+      <div class="other" v-if="settingStore.detail">
+        <div class="sentences" v-if="word.sentences.length">
+          <div class="title">例句</div>
+          <div class="sentence" v-for="item in word.sentences">
+            <div class="tran">{{ item.tran }}</div>
+            <div class="v">{{ item.v }}</div>
+          </div>
+        </div>
+        <div class="sentences" v-if="word.phrases.length">
+          <div class="title">短语</div>
+          <div class="sentence" v-for="item in word.phrases">
+            <div class="tran">{{ item.tran }}</div>
+            <div class="v">{{ item.v }}</div>
+          </div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -207,30 +242,71 @@ defineExpose({del, showWord, hideWord, play})
 @import "@/assets/css/variable";
 
 .typing-word {
-  width: 100%;
+  width: 95%;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   word-break: break-word;
   position: relative;
   color: var(--color-font-2);
+  overflow: auto;
+  padding-bottom: 20rem;
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
+
+  .other {
+    margin-top: 10rem;
+    width: 100%;
+    font-size: 18rem;
+
+    .sentences {
+      margin-bottom: 20rem;
+
+      .title {
+      }
+
+      .sentence {
+        margin-bottom: 8rem;
+
+        .tran {
+          color: white;
+          font-size: 18rem;
+          margin-bottom: 2rem;
+        }
+
+        .v {
+          color: var(--color-font-1);
+          font-size: 14rem;
+        }
+      }
+    }
+  }
 
   .phonetic, .translate {
-    font-size: 20rem;
-    transition: all .3s;
+    transition: opacity .3s;
   }
 
   .phonetic {
+    font-size: 14rem;
     margin-top: 5rem;
     font-family: var(--word-font-family);
   }
 
   .translate {
+    font-size: 18rem;
+    width: 100%;
     position: absolute;
-    transform: translateY(-50%);
-    margin-bottom: 90rem;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
+
+    .wrapper {
+    }
 
     &:hover {
       .volumeIcon {
@@ -251,6 +327,7 @@ defineExpose({del, showWord, hideWord, play})
   }
 
   .word-wrapper {
+    margin-top: 150px;
     margin-left: 30rem;
     display: flex;
     align-items: center;
