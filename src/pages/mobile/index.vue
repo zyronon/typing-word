@@ -3,6 +3,7 @@ import {Icon} from "@iconify/vue";
 import SlideHorizontal from "@/components/slide/SlideHorizontal.vue";
 import SlideItem from "@/components/slide/SlideItem.vue";
 import Home from "@/pages/mobile/Home.vue";
+import DictManage from "@/pages/mobile/DictManage.vue";
 
 let state = $ref({
   baseIndex: 0
@@ -17,7 +18,9 @@ let state = $ref({
         <SlideItem>
           <Home/>
         </SlideItem>
-        <SlideItem>2</SlideItem>
+        <SlideItem>
+          <DictManage/>
+        </SlideItem>
         <SlideItem>3</SlideItem>
       </SlideHorizontal>
     </div>
