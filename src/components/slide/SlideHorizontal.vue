@@ -27,7 +27,7 @@ const props = defineProps({
     type: Boolean,
     default: true
   },
-  anim: {
+  slide: {
     type: Boolean,
     default: true
   }
@@ -65,17 +65,17 @@ onMounted(() => {
 })
 
 function touchStart(e) {
-  if (!props.anim) return
+  if (!props.slide) return
   slideTouchStart(e, wrapperEl.value, state)
 }
 
 function touchMove(e) {
-  if (!props.anim) return
+  if (!props.slide) return
   slideTouchMove(e, wrapperEl.value, state, judgeValue, canNext, null, SlideType.HORIZONTAL)
 }
 
 function touchEnd(e) {
-  if (!props.anim) return
+  if (!props.slide) return
   slideTouchEnd(e, state, canNext, () => {
 
   })

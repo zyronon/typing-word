@@ -4,6 +4,7 @@ import SlideHorizontal from "@/components/slide/SlideHorizontal.vue";
 import SlideItem from "@/components/slide/SlideItem.vue";
 import Home from "@/pages/mobile/Home.vue";
 import DictManage from "@/pages/mobile/DictManage.vue";
+import Setting from "@/pages/mobile/Setting.vue";
 
 let state = $ref({
   baseIndex: 0
@@ -13,7 +14,7 @@ let state = $ref({
   <div class="page mobile">
     <div class="content">
       <SlideHorizontal
-          :anim="false"
+          :slide="false"
           v-model:index="state.baseIndex">
         <SlideItem>
           <Home/>
@@ -21,7 +22,9 @@ let state = $ref({
         <SlideItem>
           <DictManage/>
         </SlideItem>
-        <SlideItem>3</SlideItem>
+        <SlideItem>
+          <Setting/>
+        </SlideItem>
       </SlideHorizontal>
     </div>
     <div class="tabs">

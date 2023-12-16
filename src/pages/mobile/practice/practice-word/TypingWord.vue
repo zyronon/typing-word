@@ -283,12 +283,6 @@ onMounted(() => {
               />
             </div>
             <div class="right">
-              <IconWrapper>
-                <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
-                      @click="toggleTheme"/>
-                <Icon icon="tabler:sun" v-else @click="toggleTheme"/>
-              </IconWrapper>
-
               <BaseIcon
                   v-if="!isWordCollect(word)"
                   class="collect"
@@ -439,7 +433,11 @@ onMounted(() => {
       padding: 0 10rem;
       align-items: center;
       justify-content: space-between;
-      gap: 10rem;
+
+      .right {
+        display: flex;
+        gap: 10rem;
+      }
     }
 
     :deep(.word) {

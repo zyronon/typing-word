@@ -5,8 +5,6 @@ import {$computed, $ref} from "vue/macros";
 import {dictionaryResources} from "@/assets/dictionary.ts";
 import {groupBy} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
-import {useSettingStore} from "@/stores/setting.ts";
-import {useRuntimeStore} from "@/stores/runtime.ts";
 import DictList from "@/components/list/DictList.vue";
 import DictGroup from "@/components/list/DictGroup.vue";
 
@@ -15,8 +13,6 @@ const emit = defineEmits<{
   selectDict: [val: { dict: any, index: number }]
 }>()
 const store = useBaseStore()
-const settingStore = useSettingStore()
-const runtimeStore = useRuntimeStore()
 
 let currentLanguage = $ref('my')
 let currentTranslateLanguage = $ref('common')
@@ -143,7 +139,7 @@ const groupedByCategoryAndTag = $computed(() => {
         gap: 6rem;
 
         &.active {
-          $main: rgb(64,158,255);
+          $main: rgb(64, 158, 255);
           border-bottom: 2px solid $main;
         }
 
