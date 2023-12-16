@@ -415,6 +415,7 @@ onMounted(() => {
   left: 0;
   top: 0;
   height: 100vh;
+  display: flex;
 
   .practice-body {
     width: 100vw;

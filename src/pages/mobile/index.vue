@@ -7,14 +7,13 @@ import DictManage from "@/pages/mobile/DictManage.vue";
 import Setting from "@/pages/mobile/Setting.vue";
 
 let state = $ref({
-  baseIndex: 0
+  baseIndex: 1
 })
 </script>
 <template>
   <div class="page mobile">
     <div class="content">
       <SlideHorizontal
-          :slide="false"
           v-model:index="state.baseIndex">
         <SlideItem>
           <Home/>
@@ -51,6 +50,7 @@ let state = $ref({
 
   .content {
     flex: 1;
+    display: flex;
     overflow: hidden;
   }
 

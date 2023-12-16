@@ -7,6 +7,8 @@ import {$computed, $ref} from "vue/macros";
 import {groupBy} from "lodash-es";
 import {dictionaryResources} from "@/assets/dictionary.ts";
 import {DictResource, languageCategoryOptions} from "@/types.ts";
+import {onMounted} from "vue";
+import DictGroup from "@/components/list/DictGroup.vue";
 
 let index = $ref(0)
 
@@ -60,8 +62,43 @@ const groupedByCategoryAndTag = $computed(() => {
   return data
 })
 
-const articles = $computed(() => {
+let articleData = $ref({
+  translateLanguageList: [],
+  currentTranslateLanguage: '',
+  dictList: []
+})
 
+let wordData = $ref({
+  translateLanguageList: [],
+  currentTranslateLanguage: '',
+  dictList: []
+})
+
+function getData(type: string) {
+  let articleList = dictionaryResources.filter(v => v.type === type)
+  let data = groupBy(articleList, 'translateLanguage')
+  let translateLanguageList = Object.keys(data)
+  let currentTranslateLanguage = translateLanguageList[0]
+
+  const currentTranslateLanguageDictList = data[currentTranslateLanguage]
+  const groupByCategory = groupBy(currentTranslateLanguageDictList, 'category')
+
+  let dictList = []
+  for (const [key, value] of Object.entries(groupByCategory)) {
+    dictList.push([key, groupByDictTags(value)])
+  }
+  return {
+    translateLanguageList,
+    currentTranslateLanguage,
+    dictList,
+  }
+}
+
+onMounted(() => {
+  let temp = getData('article')
+  articleData = temp
+  let temp1 = getData('word')
+  wordData = temp1
 })
 </script>
 
@@ -78,10 +115,40 @@ const articles = $computed(() => {
     </div>
     <SlideHorizontal v-model:index="index">
       <SlideItem>
-        1
+        <div class="translate">
+          <span>翻译：</span>
+          <el-radio-group v-model="articleData.currentTranslateLanguage">
+            <el-radio-button border v-for="i in articleData.translateLanguageList" :label="i">{{
+                $t(i)
+              }}
+            </el-radio-button>
+          </el-radio-group>
+        </div>
+        <DictGroup
+            v-for="item in articleData.dictList"
+            :select-id="store.currentDict.id"
+            :groupByTag="item[1]"
+            :category="item[0]"
+        />
       </SlideItem>
-      <SlideItem>
-        2
+      <SlideItem style="display: flex;">
+        <div class="scroll">
+          <div class="translate">
+            <span>翻译：</span>
+            <el-radio-group v-model="wordData.currentTranslateLanguage">
+              <el-radio-button border v-for="i in wordData.translateLanguageList" :label="i">{{
+                  $t(i)
+                }}
+              </el-radio-button>
+            </el-radio-group>
+          </div>
+          <DictGroup
+              v-for="item in wordData.dictList"
+              :select-id="store.currentDict.id"
+              :groupByTag="item[1]"
+              :category="item[0]"
+          />
+        </div>
       </SlideItem>
       <SlideItem>3</SlideItem>
       <SlideItem>4</SlideItem>

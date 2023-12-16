@@ -149,12 +149,14 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.page{
+.page {
   position: relative;
   z-index: 1;
   height: 100%;
   width: 100%;
   font-size: 14rem;
+  display: flex;
+  flex-direction: column;
 }
 
 #app {
@@ -289,11 +291,12 @@ footer {
     }
   }
 
-  .scroll {
-    padding: 0 var(--space);
-    flex: 1;
-    overflow: auto;
-  }
+}
+
+.scroll {
+  padding: 0 var(--space);
+  flex: 1;
+  overflow: auto;
 }
 
 .virtual-list {
@@ -441,7 +444,7 @@ footer {
 
 
 .slide {
-  height: 100%;
+  flex: 1;
   width: 100%;
   transition: height .3s;
   position: relative;
