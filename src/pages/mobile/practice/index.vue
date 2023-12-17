@@ -134,17 +134,11 @@ onUnmounted(() => {
 
 </script>
 <template>
-  <div class="practice-wrapper">
+  <div class="mobile-page">
     <PracticeWord ref="practiceRef"/>
   </div>
 </template>
 
 <style scoped lang="scss">
-.practice-wrapper {
-  font-size: 14rem;
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
 
 </style>

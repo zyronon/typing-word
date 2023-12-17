@@ -18,7 +18,7 @@ export function slideInit(el, state, type) {
   if (type === SlideType.HORIZONTAL) dx1 = t
   else dx2 = t
 
-  console.log('start', dx1)
+  // console.log('start', dx1)
   Utils.$setCss(el, 'transform', `translate3d(${dx1}px, ${dx2}px, 0)`)
 }
 

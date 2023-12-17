@@ -3,23 +3,23 @@ import {Icon} from "@iconify/vue";
 import SlideHorizontal from "@/components/slide/SlideHorizontal.vue";
 import SlideItem from "@/components/slide/SlideItem.vue";
 import Home from "@/pages/mobile/Home.vue";
-import DictManage from "@/pages/mobile/DictManage.vue";
+import DictListManage from "@/pages/mobile/DictListManage.vue";
 import Setting from "@/pages/mobile/Setting.vue";
 
-let state = $ref({
-  baseIndex: 1
-})
+
+let index = $ref(1)
 </script>
 <template>
-  <div class="page mobile">
+  <div class="mobile-page mobile">
     <div class="content">
       <SlideHorizontal
-          v-model:index="state.baseIndex">
+          :changeActiveIndexUseAnim="false"
+          v-model:index="index">
         <SlideItem>
           <Home/>
         </SlideItem>
         <SlideItem>
-          <DictManage/>
+          <DictListManage/>
         </SlideItem>
         <SlideItem>
           <Setting/>
@@ -27,15 +27,15 @@ let state = $ref({
       </SlideHorizontal>
     </div>
     <div class="tabs">
-      <div class="tab" @click="state.baseIndex = 0">
+      <div class="tab" @click="index = 0">
         <Icon width="30" icon="icon-park:word"/>
         <span>单词</span>
       </div>
-      <div class="tab" @click="state.baseIndex = 1">
+      <div class="tab" @click="index = 1">
         <Icon width="30" icon="icon-park:word"/>
         <span>词典</span>
       </div>
-      <div class="tab" @click="state.baseIndex = 2">
+      <div class="tab" @click="index = 2">
         <Icon width="30" icon="icon-park:word"/>
         <span>我的</span>
       </div>
@@ -45,8 +45,6 @@ let state = $ref({
 
 <style scoped lang="scss">
 .mobile {
-  display: flex;
-  flex-direction: column;
 
   .content {
     flex: 1;

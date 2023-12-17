@@ -14,7 +14,9 @@ import ArticleContentDialog from "@/components/dialog/ArticleContentDialog.vue";
 import CollectNotice from "@/components/CollectNotice.vue";
 import {SAVE_SETTING_KEY, SAVE_DICT_KEY} from "@/utils/const.ts";
 import {isMobile, shakeCommonDict} from "@/utils";
-import router from "@/router.ts";
+import router, {routes} from "@/router.ts";
+import {$ref} from "vue/macros";
+import {useRoute} from "vue-router";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -77,18 +79,44 @@ onMounted(() => {
     // router.replace('/mobile')
   }
 })
+let transitionName = $ref('go')
+const route = useRoute()
+watch(() => route.path, (to, from) => {
+  // console.log('watch', to, from)
+  // //footer下面的5个按钮，对跳不要用动画
+  let noAnimation = [
+    '/pc/practice',
+    '/pc/dict',
+    '/mobile',
+    '/'
+  ]
+  if (noAnimation.indexOf(from) !== -1 && noAnimation.indexOf(to) !== -1) {
+    return transitionName = ''
+  }
+
+  const toDepth = routes.findIndex(v => v.path === to)
+  const fromDepth = routes.findIndex(v => v.path === from)
+  transitionName = toDepth > fromDepth ? 'go' : 'back'
+  // console.log('transitionName', transitionName, toDepth, fromDepth)
+})
 </script>
 
 <template>
   <Backgorund/>
-  <router-view/>
+  <router-view v-slot="{ Component }">
+    <transition :name="transitionName">
+      <keep-alive :exclude="runtimeStore.excludeRoutes">
+        <component :is="Component"/>
+      </keep-alive>
+    </transition>
+  </router-view>
   <CollectNotice/>
   <ArticleContentDialog/>
   <SettingDialog/>
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/variable";
+@import "@/assets/css/style";
 
 .main-page {
   position: relative;

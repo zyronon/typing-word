@@ -8,7 +8,7 @@ import {Icon} from "@iconify/vue";
 const store = useBaseStore()
 
 function goPractice() {
-  router.push('/mobile-practice')
+  router.push('/mobile/practice')
 }
 </script>
 
@@ -16,7 +16,7 @@ function goPractice() {
   <div class="page home">
     <div class="current-dict">
       <div class="top">
-        <div class="left">
+        <div class="left" @click="router.push('/mobile/dict-detail')">
           <div class="name">{{ store.currentDict.name }}</div>
           <Icon class="arrow" icon="mingcute:right-line" width="20"/>
         </div>

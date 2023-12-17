@@ -9,8 +9,9 @@ import {dictionaryResources} from "@/assets/dictionary.ts";
 import {DictResource, languageCategoryOptions} from "@/types.ts";
 import {onMounted} from "vue";
 import DictGroup from "@/components/list/DictGroup.vue";
+import router from "@/router.ts";
 
-let index = $ref(0)
+let index = $ref(1)
 
 const store = useBaseStore()
 
@@ -100,6 +101,11 @@ onMounted(() => {
   let temp1 = getData('word')
   wordData = temp1
 })
+
+function selectDict(val) {
+  console.log('val', val)
+  router.push('/mobile/set-dict-plan')
+}
 </script>
 
 <template>
@@ -113,7 +119,8 @@ onMounted(() => {
         <span>{{ item.name }}</span>
       </div>
     </div>
-    <SlideHorizontal v-model:index="index">
+    <SlideHorizontal
+        v-model:index="index">
       <SlideItem>
         <div class="translate">
           <span>翻译：</span>
@@ -143,6 +150,7 @@ onMounted(() => {
             </el-radio-group>
           </div>
           <DictGroup
+              @select-dict="selectDict"
               v-for="item in wordData.dictList"
               :select-id="store.currentDict.id"
               :groupByTag="item[1]"

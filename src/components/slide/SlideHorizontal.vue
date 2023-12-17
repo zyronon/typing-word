@@ -44,16 +44,16 @@ const state = reactive({
   start: {x: 0, y: 0, time: 0},
   move: {x: 0, y: 0},
   wrapper: {width: 0, height: 0, childrenLength: 0},
-  slideItemsWidths:[]
+  slideItemsWidths: []
 })
 
-watch(
-    () => props.index,
-    (newVal) => {
+watch(() => props.index, (newVal) => {
       if (state.localIndex !== newVal) {
         state.localIndex = newVal
         if (props.changeActiveIndexUseAnim) {
           GM.$setCss(wrapperEl.value, 'transition-duration', `300ms`)
+        } else {
+          GM.$setCss(wrapperEl.value, 'transition-duration', `0ms`)
         }
         GM.$setCss(wrapperEl.value, 'transform', `translate3d(${getSlideDistance(state, SlideType.HORIZONTAL)}px, 0, 0)`)
       }
@@ -84,9 +84,9 @@ function touchEnd(e) {
 
 
 function canNext(isNext) {
-  if (isNext){
+  if (isNext) {
     return state.localIndex !== state.wrapper.childrenLength - 1
-  }else {
+  } else {
     return state.localIndex !== 0
   }
 }

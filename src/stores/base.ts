@@ -135,7 +135,7 @@ export const useBaseStore = defineStore('base', {
       ].includes(this.currentDict.type)
     },
     currentDict(): Dict {
-      return this.myDictList[this.current.index]
+      return this.myDictList[this.current.index]??{}
     },
     chapter(state: BaseState): Word[] {
       return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []

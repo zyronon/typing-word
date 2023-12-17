@@ -34,6 +34,7 @@
     "pinia": "^2.1.6",
     "sentence-splitter": "^4.2.1",
     "tesseract.js": "^4.1.1",
+    "vant": "^4.8.1",
     "vue": "^3.3.4",
     "vue-activity-calendar": "^1.2.2",
     "vue-i18n": "9",
