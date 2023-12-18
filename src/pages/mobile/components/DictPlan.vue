@@ -5,8 +5,10 @@ import {Picker, showToast} from "vant";
 import 'vant/lib/index.css'
 import {onMounted} from "vue";
 import BaseButton from "@/components/BaseButton.vue";
+import {useRuntimeStore} from "@/stores/runtime.ts";
 
 const store = useBaseStore()
+const runtimeStore = useRuntimeStore()
 
 let columns = $ref([])
 let columns2 = $ref([])
@@ -36,15 +38,15 @@ onMounted(() => {
   <div class="plan">
     <div class="content">
       <div class="dict">
-        <div class="name">{{ store.currentDict.name }}</div>
-        <div class="chapter">每日{{ store.currentDict.chapterWordNumber }}词 剩余100天</div>
+        <div class="name">{{ runtimeStore.editDict.name }}</div>
+        <div class="chapter">每日{{ runtimeStore.editDict.chapterWordNumber }}词 剩余100天</div>
         <el-progress
             :show-text="false"
             :percentage="90"
         />
         <div class="progress">
           <span>已学单词</span>
-          <span>0/{{ store.currentDict.length }}</span>
+          <span>0/{{ runtimeStore.editDict.length }}</span>
         </div>
       </div>
       <div class="notice">

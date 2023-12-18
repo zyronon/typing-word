@@ -6,7 +6,7 @@ import {useBaseStore} from "@/stores/base.ts";
 import {$computed, $ref} from "vue/macros";
 import {groupBy} from "lodash-es";
 import {dictionaryResources} from "@/assets/dictionary.ts";
-import {DictResource, languageCategoryOptions} from "@/types.ts";
+import {Dict, DictResource, languageCategoryOptions} from "@/types.ts";
 import {onMounted} from "vue";
 import DictGroup from "@/components/list/DictGroup.vue";
 import router from "@/router.ts";
@@ -102,9 +102,11 @@ onMounted(() => {
   wordData = temp1
 })
 
-function selectDict(val) {
+function selectDict(val: { dict: DictResource | Dict, index: number }) {
   console.log('val', val)
-  router.push('/mobile/set-dict-plan')
+  router.push({
+    path: '/mobile/set-dict-plan', query: {id: val.dict.id}
+  })
 }
 </script>
 

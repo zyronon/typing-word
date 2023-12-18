@@ -16,7 +16,11 @@ export const routes: RouteRecordRaw[] = [
   {path: '/mobile', component: Mobile,},
   {path: '/mobile/practice', component: MobilePractice},
   {path: '/mobile/dict-detail', component: DictDetail},
-  {path: '/mobile/set-dict-plan', component: SetDictPlan},
+  {
+    path: '/mobile/set-dict-plan',
+    name: 'set-dict-plan',
+    component: SetDictPlan
+  },
   {path: '/test', component: Test},
   {path: '/', redirect: '/pc/practice'},
 ]
