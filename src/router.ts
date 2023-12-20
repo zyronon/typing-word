@@ -60,19 +60,20 @@ router.beforeEach((to, from) => {
 
   if (toDepth > fromDepth) {
     if (to.matched && to.matched.length) {
-      let toComponentName = to.matched[0].components.default.name
+      let def = to.matched[0].components.default
+      let toComponentName = def.name ?? def.__name
       runtimeStore.updateExcludeRoutes({type: 'remove', value: toComponentName})
-      // console.log('to', toComponentName)
+      // console.log('删除', toComponentName)
       // console.log('前进')
       // console.log('删除', toComponentName)
     }
-
   } else {
     if (from.matched && from.matched.length) {
-      let fromComponentName = from.matched[0].components.default.name
+      let def = from.matched[0].components.default
+      let fromComponentName = def.name ?? def.__name
       runtimeStore.updateExcludeRoutes({type: 'add', value: fromComponentName})
-      // console.log('后退')
       // console.log('添加', fromComponentName)
+      // console.log('后退')
     }
   }
   // ...

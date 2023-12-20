@@ -13,6 +13,11 @@ import {ShortcutKey} from "@/types.ts";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
 
+
+defineOptions({
+  name: 'PracticeWord'
+})
+
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
 const settingStore = useSettingStore()

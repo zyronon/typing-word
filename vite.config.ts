@@ -7,8 +7,9 @@ import {ElementPlusResolver} from "unplugin-vue-components/resolvers";
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import {getLastCommit} from "git-last-commit";
+import DefineOptions from 'unplugin-vue-define-options/vite' // 引入插件
 
-function pathResolve(dir:string) {
+function pathResolve(dir: string) {
   return resolve(__dirname, ".", dir)
 }
 
@@ -31,6 +32,8 @@ export default defineConfig(async () => {
       Components({
         resolvers: [ElementPlusResolver()],
       }),
+      //用于给setup组件定义名字的，keep-alive需要name才能正常工作
+      DefineOptions(),
       vueJsx(),
       lifecycle === 'report' ?
         visualizer({

@@ -103,7 +103,7 @@ onMounted(() => {
 })
 
 function selectDict(val: { dict: DictResource | Dict, index: number }) {
-  console.log('val', val)
+  // console.log('val', val)
   router.push({
     path: '/mobile/set-dict-plan', query: {id: val.dict.id}
   })

@@ -24,6 +24,7 @@ export const useRuntimeStore = defineStore('runtime', {
   },
   actions: {
     updateExcludeRoutes(val: any) {
+      // console.log('val', val)
       if (val.type === 'add') {
         if (!this.excludeRoutes.find(v => v === val.value)) {
           this.excludeRoutes.push(val.value)

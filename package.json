@@ -63,7 +63,8 @@
     "unplugin-vue-components": "^0.25.2",
     "vite": "^4.4.5",
     "vue-tsc": "^1.8.5",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "unplugin-vue-define-options": "^1.4.1"
   },
   "config": {
     "commitizen": {

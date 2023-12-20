@@ -5,9 +5,17 @@ import SlideItem from "@/components/slide/SlideItem.vue";
 import Home from "@/pages/mobile/Home.vue";
 import DictListManage from "@/pages/mobile/DictListManage.vue";
 import Setting from "@/pages/mobile/Setting.vue";
+import {onMounted} from "vue";
 
+defineOptions({
+  name: 'Practice'
+})
 
 let index = $ref(1)
+
+onMounted(() => {
+  console.log('onMounted')
+})
 </script>
 <template>
   <div class="mobile-page mobile">

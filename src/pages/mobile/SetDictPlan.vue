@@ -11,16 +11,16 @@ import {dictionaryResources} from "@/assets/dictionary.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
+import {$ref} from "vue/macros";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
 const settingStore = useSettingStore()
+const route = useRoute()
+let load = $ref(false)
 
 onMounted(() => {
-  const route = useRoute()
-
-  console.log('route', route.query.id)
-
+  // console.log('route', route.query.id)
   let item = dictionaryResources.find(v => v.id === route.query.id)
   let find: Dict = store.myDictList.find((v: Dict) => v.id === item.id)
   if (find) {
@@ -34,13 +34,14 @@ onMounted(() => {
     //设置默认章节单词数
     runtimeStore.editDict.chapterWordNumber = settingStore.chapterWordNumber
   }
+  load = true
 })
 </script>
 
 <template>
   <div class="mobile-page">
     <NavBar title="设置任务量"/>
-    <DictPlan/>
+    <DictPlan v-if="load"/>
   </div>
 </template>
 
