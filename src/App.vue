@@ -2,7 +2,6 @@
 
 import {onMounted, watch} from "vue";
 import {BaseState, useBaseStore} from "@/stores/base.ts";
-import {Dict, DictType} from "@/types.ts"
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {cloneDeep} from "lodash-es";
@@ -12,9 +11,9 @@ import * as localforage from "localforage";
 import SettingDialog from "@/components/dialog/SettingDialog.vue";
 import ArticleContentDialog from "@/components/dialog/ArticleContentDialog.vue";
 import CollectNotice from "@/components/CollectNotice.vue";
-import {SAVE_SETTING_KEY, SAVE_DICT_KEY} from "@/utils/const.ts";
+import {SAVE_DICT_KEY, SAVE_SETTING_KEY} from "@/utils/const.ts";
 import {isMobile, shakeCommonDict} from "@/utils";
-import router, {routes} from "@/router.ts";
+import {routes} from "@/router.ts";
 import {$ref} from "vue/macros";
 import {useRoute} from "vue-router";
 

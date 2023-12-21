@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
-import {DefaultDict, Dict, DictType, DisplayStatistics, Word} from "../types.ts"
-import {chunk, cloneDeep, merge} from "lodash-es";
+import {DefaultDict, Dict, DictType, DisplayStatistics, Sort, Word} from "../types.ts"
+import {chunk, cloneDeep, merge, reverse, shuffle} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import * as localforage from "localforage";
@@ -135,7 +135,7 @@ export const useBaseStore = defineStore('base', {
       ].includes(this.currentDict.type)
     },
     currentDict(): Dict {
-      return this.myDictList[this.current.index]??{}
+      return this.myDictList[this.current.index] ?? {}
     },
     chapter(state: BaseState): Word[] {
       return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []
@@ -216,7 +216,7 @@ export const useBaseStore = defineStore('base', {
             if ([DictType.word].includes(this.currentDict.type)) {
               if (!this.currentDict.originWords.length) {
                 let v = await getDictFile(dictResourceUrl)
-                v = v.slice(0,50)
+                v = v.slice(0, 50)
                 v.map(s => {
                   s.id = nanoid(6)
                 })
@@ -262,12 +262,46 @@ export const useBaseStore = defineStore('base', {
         dict.chapterWordNumber = dict.words.length
         dict.chapterWords = [dict.words]
       } else {
+        //TODO　需要和其他需要下载的地方统一
+        let url = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
         if (dict.type === DictType.article) {
+          if (!dict.articles.length) {
+            let r = await fetch(url)
+            let v = await r.json()
+            v.map(s => {
+              s.id = nanoid(6)
+            })
+            dict.articles = cloneDeep(v)
+          } else {
+            dict.length = dict.articles.length
+          }
           if (chapterIndex > dict.articles.length) {
             dict.chapterIndex = 0
             dict.wordIndex = 0
           }
         } else {
+          //如果不是自定义词典，并且有url地址才去下载
+          if (!dict.isCustom && dict.url) {
+            if (!dict.originWords.length) {
+              let v = await getDictFile(url)
+              v.map(s => {
+                s.id = nanoid(6)
+              })
+              dict.originWords = cloneDeep(v)
+              if (dict.sort === Sort.normal) {
+                dict.words = cloneDeep(dict.originWords)
+              } else if (dict.sort === Sort.random) {
+                dict.words = shuffle(dict.originWords)
+              } else {
+                dict.words = reverse(dict.originWords)
+              }
+              dict.words.map(v => v.checked = false)
+              dict.chapterWords = chunk(dict.words, dict.chapterWordNumber)
+              dict.length = dict.words.length
+            } else {
+              dict.length = dict.words.length
+            }
+          }
           if (chapterIndex > dict.chapterWords.length) {
             dict.chapterIndex = 0
             dict.wordIndex = 0

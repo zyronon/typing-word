@@ -4,7 +4,7 @@ import SlideHorizontal from "@/components/slide/SlideHorizontal.vue";
 import SlideItem from "@/components/slide/SlideItem.vue";
 import Home from "@/pages/mobile/Home.vue";
 import DictListManage from "@/pages/mobile/DictListManage.vue";
-import Setting from "@/pages/mobile/Setting.vue";
+import My from "@/pages/mobile/My.vue";
 import {onMounted} from "vue";
 
 defineOptions({
@@ -30,7 +30,7 @@ onMounted(() => {
           <DictListManage/>
         </SlideItem>
         <SlideItem>
-          <Setting/>
+          <My/>
         </SlideItem>
       </SlideHorizontal>
     </div>

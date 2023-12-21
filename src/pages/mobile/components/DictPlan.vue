@@ -7,6 +7,7 @@ import {onMounted} from "vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
+import router from "@/router.ts";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -16,50 +17,70 @@ let columns = $ref([])
 let columns2 = $ref([])
 let chapterWordNumber = $ref([runtimeStore.editDict.chapterWordNumber])
 let length = $ref(runtimeStore.editDict.length)
-let days = $ref([Math.ceil(length / chapterWordNumber)])
+let completeDay = $ref([Math.ceil(length / chapterWordNumber[0])])
 
 const onChange = ({selectedValues}) => {
   chapterWordNumber = selectedValues
-  days = [Math.ceil(length / chapterWordNumber[0])]
-  console.log('days', days, chapterWordNumber)
+  completeDay = [Math.ceil(length / chapterWordNumber[0])]
 };
 
 const onChange2 = ({selectedValues}) => {
-  days = selectedValues
-  chapterWordNumber = [Math.ceil(length / days[0])]
-  console.log('days', days, chapterWordNumber)
-
+  completeDay = selectedValues
+  for (let i = 0; i < columns.length; i++) {
+    let v = columns[i]
+    let s = Math.ceil(length / v.value)
+    if (s === completeDay[0]) {
+      chapterWordNumber = [v.value]
+      break
+    }
+  }
 };
 
-
 onMounted(() => {
-  console.log('runtimeStore.editDict.length',runtimeStore.editDict.length)
   let list = []
+  if (length < 50) {
+    list = Array.from({length: Math.floor(length / 5)}).map((v, i) => (i + 1) * 5)
+  }
   if (length > 50) {
     list = Array.from({length: 10}).map((v, i) => (i + 1) * 5)
   }
   if (length > 100) {
     list = list.concat(Array.from({length: 5}).map((v, i) => 50 + (i + 1) * 10))
+  } else {
+    list = list.concat(Array.from({length: Math.floor((length - 50) / 10)}).map((v, i) => 50 + (i + 1) * 10))
   }
   if (length > 200) {
     list = list.concat(Array.from({length: 4}).map((v, i) => 100 + (i + 1) * 25))
+  } else {
+    list = list.concat(Array.from({length: Math.floor((length - 100) / 25)}).map((v, i) => 100 + (i + 1) * 25))
   }
   if (length > 500) {
     list = list.concat(Array.from({length: 6}).map((v, i) => 200 + (i + 1) * 50))
+  } else {
+    list = list.concat(Array.from({length: Math.floor((length - 200) / 50)}).map((v, i) => 200 + (i + 1) * 50))
   }
-  let d = Math.floor((length - 500) / 100)
-  console.log('d', d)
-  if (d) {
-    list = list.concat(Array.from({length: d}).map((v, i) => 500 + (i + 1) * 100))
+  if (length > 1000) {
+    list = list.concat(Array.from({length: 5}).map((v, i) => 500 + (i + 1) * 100))
+  } else {
+    list = list.concat(Array.from({length: Math.floor((length - 500) / 100)}).map((v, i) => 500 + (i + 1) * 100))
+  }
+  if (length > 3000) {
+    list = list.concat(Array.from({length: 8}).map((v, i) => 1000 + (i + 1) * 250))
+  } else {
+    list = list.concat(Array.from({length: Math.floor((length - 1000) / 250)}).map((v, i) => 1000 + (i + 1) * 250))
+  }
+  if (length > 10000) {
+    list = list.concat(Array.from({length: 14}).map((v, i) => 3000 + (i + 1) * 500))
+  } else {
+    list = list.concat(Array.from({length: Math.floor((length - 3000) / 500)}).map((v, i) => 3000 + (i + 1) * 500))
+  }
+  let d = Math.floor((length - 10000) / 1000)
+  if (d > 0) {
+    list = list.concat(Array.from({length: d}).map((v, i) => 10000 + (i + 1) * 1000))
   }
 
   list.push(length)
-  // if (runtimeStore.editDict.length < 50) {
-  // } else if (runtimeStore.editDict.length < 100) {
-  //   list = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 125, 150, 175, 200]
-  // }
 
-  console.log('list', length, list)
   columns = list.map(value => {
     return {
       text: value,
@@ -67,15 +88,20 @@ onMounted(() => {
     }
   })
 
-  columns2 = columns.map(v => {
-    let value = Math.ceil(length / v.value)
-    // console.log('v', v.value, value)
+  let days = Array.from(new Set(list.map(v => Math.ceil(length / v))))
+  columns2 = days.map(value => {
     return {
       text: value,
       value
     }
   })
 })
+
+function confirm() {
+  runtimeStore.editDict.chapterWordNumber = chapterWordNumber[0]
+  store.changeDict(runtimeStore.editDict)
+  router.back()
+}
 
 </script>
 
@@ -84,7 +110,7 @@ onMounted(() => {
     <div class="content">
       <div class="dict">
         <div class="name">{{ runtimeStore.editDict.name }}</div>
-        <div class="chapter">每日{{ chapterWordNumber[0] }}词 剩余{{ days[0] }}天</div>
+        <div class="chapter">每日{{ chapterWordNumber[0] }}词 剩余{{ completeDay[0] }}天</div>
         <el-progress
             :show-text="false"
             :percentage="90"
@@ -113,14 +139,14 @@ onMounted(() => {
           />
           <Picker
               :show-toolbar="false"
-              :model-value="days"
+              :model-value="completeDay"
               :columns="columns2"
               @change="onChange2"
           />
         </div>
       </div>
     </div>
-    <BaseButton size="large">确认</BaseButton>
+    <BaseButton size="large" @click="confirm">确认</BaseButton>
   </div>
 </template>
 

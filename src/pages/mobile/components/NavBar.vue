@@ -18,12 +18,16 @@ defineProps<{
 
 <style scoped lang="scss">
 .nav-bar {
+  box-sizing: border-box;
+  width: 100%;
   height: 60rem;
   padding: 0 var(--space);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  font-size: 20rem;
+  //font-weight: bold;
 
   :deep(.back-icon) {
     left: var(--space);

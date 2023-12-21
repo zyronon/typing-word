@@ -8,6 +8,8 @@ import Test from "@/pages/test/test.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import DictDetail from "@/pages/mobile/DictDetail.vue";
 import SetDictPlan from "@/pages/mobile/SetDictPlan.vue";
+import Setting from "@/pages/mobile/Setting.vue";
+import DataManage from "@/pages/mobile/DataManage.vue";
 
 export const routes: RouteRecordRaw[] = [
   {path: '/pc/practice', component: Practice},
@@ -16,11 +18,9 @@ export const routes: RouteRecordRaw[] = [
   {path: '/mobile', component: Mobile,},
   {path: '/mobile/practice', component: MobilePractice},
   {path: '/mobile/dict-detail', component: DictDetail},
-  {
-    path: '/mobile/set-dict-plan',
-    name: 'set-dict-plan',
-    component: SetDictPlan
-  },
+  {path: '/mobile/set-dict-plan', name: 'set-dict-plan', component: SetDictPlan},
+  {path: '/mobile/setting', component: Setting},
+  {path: '/mobile/data-manage', component: DataManage},
   {path: '/test', component: Test},
   {path: '/', redirect: '/pc/practice'},
 ]
