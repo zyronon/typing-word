@@ -88,7 +88,7 @@ onMounted(() => {
     }
   })
 
-  let days = Array.from(new Set(list.map(v => Math.ceil(length / v))))
+  let days = Array.from(new Set(list.map(v => Math.ceil(length / v)))).sort((a, b) => a - b)
   columns2 = days.map(value => {
     return {
       text: value,

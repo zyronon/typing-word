@@ -2,7 +2,7 @@
 import {onMounted, onUnmounted, watch} from "vue"
 import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
-import {DefaultDisplayStatistics, DictType, ShortcutKey, Sort, Word} from "@/types.ts";
+import {DefaultDisplayStatistics, DefaultWord, DictType, ShortcutKey, Sort, Word} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep, reverse, shuffle} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
@@ -84,12 +84,7 @@ watch(data, () => {
 })
 
 const word: Word = $computed(() => {
-  return data.words[data.index] ?? {
-    trans: [],
-    word: '',
-    phonetic0: '',
-    phonetic1: '',
-  }
+  return data.words[data.index] ?? DefaultWord
 })
 
 function next(isTyping: boolean = true) {

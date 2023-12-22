@@ -27,7 +27,7 @@ export const DefaultWord: Word = {
   word: '',
   phonetic0: '',
   phonetic1: '',
-  trans: []
+  trans: [],
 }
 
 export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='

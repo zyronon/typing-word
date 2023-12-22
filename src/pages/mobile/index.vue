@@ -1,7 +1,5 @@
 <script setup>
 import {Icon} from "@iconify/vue";
-import SlideHorizontal from "@/components/slide/SlideHorizontal.vue";
-import SlideItem from "@/components/slide/SlideItem.vue";
 import Home from "@/pages/mobile/Home.vue";
 import DictListManage from "@/pages/mobile/DictListManage.vue";
 import My from "@/pages/mobile/My.vue";
@@ -11,7 +9,7 @@ defineOptions({
   name: 'Practice'
 })
 
-let index = $ref(1)
+let index = $ref(2)
 
 onMounted(() => {
   console.log('onMounted')
@@ -20,19 +18,9 @@ onMounted(() => {
 <template>
   <div class="mobile-page mobile">
     <div class="content">
-      <SlideHorizontal
-          :changeActiveIndexUseAnim="false"
-          v-model:index="index">
-        <SlideItem>
-          <Home/>
-        </SlideItem>
-        <SlideItem>
-          <DictListManage/>
-        </SlideItem>
-        <SlideItem>
-          <My/>
-        </SlideItem>
-      </SlideHorizontal>
+      <Home v-if="index === 0 "/>
+      <DictListManage v-if="index === 1"/>
+      <My v-if="index === 2"/>
     </div>
     <div class="tabs">
       <div class="tab" @click="index = 0">
@@ -75,5 +63,6 @@ onMounted(() => {
       font-size: 14rem;
     }
   }
+
 }
 </style>

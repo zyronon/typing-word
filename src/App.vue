@@ -16,7 +16,9 @@ import {isMobile, shakeCommonDict} from "@/utils";
 import {routes} from "@/router.ts";
 import {$ref} from "vue/macros";
 import {useRoute} from "vue-router";
+import * as eruda from "eruda";
 
+eruda.init()
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
 const settingStore = useSettingStore()

@@ -37,6 +37,20 @@ const settingStore = useSettingStore()
         </div>
         <Icon class="arrow" icon="mingcute:right-line" width="20"/>
       </div>
+      <div class="item" @click="router.push('/mobile/data-manage')">
+        <div class="left">
+          <Icon icon="uil:setting" width="22"/>
+          <span>反馈问题</span>
+        </div>
+        <Icon class="arrow" icon="mingcute:right-line" width="20"/>
+      </div>
+      <div class="item">
+        <div class="left">
+          <Icon icon="mdi:about-circle-outline" width="22"/>
+          <span>关于我们</span>
+        </div>
+        <Icon class="arrow" icon="mingcute:right-line" width="20"/>
+      </div>
     </div>
   </div>
 </template>

@@ -23,6 +23,7 @@
     "compromise": "^14.10.0",
     "copy-to-clipboard": "^3.3.3",
     "element-plus": "^2.3.9",
+    "eruda": "^3.0.1",
     "file-saver": "^2.0.5",
     "git-last-commit": "^1.0.1",
     "hover.css": "^2.3.2",
@@ -61,10 +62,10 @@
     "typescript": "^5.2.0",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.2",
+    "unplugin-vue-define-options": "^1.4.1",
     "vite": "^4.4.5",
     "vue-tsc": "^1.8.5",
-    "xlsx": "^0.18.5",
-    "unplugin-vue-define-options": "^1.4.1"
+    "xlsx": "^0.18.5"
   },
   "config": {
     "commitizen": {

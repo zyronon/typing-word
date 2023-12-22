@@ -219,14 +219,14 @@ watch(() => props.word, () => {
     <div class="phonetic" v-if="settingStore.wordSoundType === 'uk' && word.phonetic1">[{{ word.phonetic1 }}]</div>
     <transition name="fade">
       <div class="other" v-if="settingStore.detail">
-        <div class="sentences" v-if="word.sentences.length">
+        <div class="sentences" v-if="word.sentences && word.sentences.length">
           <div class="title">例句</div>
           <div class="sentence" v-for="item in word.sentences">
             <div class="tran">{{ item.tran }}</div>
             <div class="v">{{ item.v }}</div>
           </div>
         </div>
-        <div class="sentences" v-if="word.phrases.length">
+        <div class="sentences" v-if="word.phrases && word.phrases.length">
           <div class="title">短语</div>
           <div class="sentence" v-for="item in word.phrases">
             <div class="tran">{{ item.tran }}</div>
