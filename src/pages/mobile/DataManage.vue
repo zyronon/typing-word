@@ -61,39 +61,40 @@ function importData(e) {
 <template>
   <div class="mobile-page">
     <NavBar title="数据管理"/>
-    <div class="row">
-      <div class="main-title">数据导出</div>
-    </div>
-    <div class="row">
-      <label class="sub-title">
-        目前用户的所有数据(自定义设置、自定义词典、练习进度等)
-        <b>仅保存在本地</b>
-        。如果您需要在不同的设备、浏览器或者其他非官方部署上使用 {{ APP_NAME }}， 您需要手动进行数据同步和保存。
-      </label>
-    </div>
-    <div class="row">
-      <BaseButton @click="exportData">数据导出</BaseButton>
-    </div>
-    <div class="row">
-      <div class="main-title">数据导入</div>
-    </div>
-    <div class="row">
-      <label class="sub-title">
-        请注意，导入数据将
-        <b style="color: red"> 完全覆盖 </b>
-        当前数据。请谨慎操作。
-      </label>
-    </div>
-    <div class="row">
-      <div class="import hvr-grow">
-        <BaseButton>数据导入</BaseButton>
-        <input type="file"
-               accept="application/json"
-               @change="importData">
+    <div class="page-content">
+      <div class="row">
+        <div class="main-title">数据导出</div>
+      </div>
+      <div class="row">
+        <label class="sub-title">
+          目前用户的所有数据(自定义设置、自定义词典、练习进度等)
+          <b>仅保存在本地</b>
+          。如果您需要在不同的设备、浏览器或者其他非官方部署上使用 {{ APP_NAME }}， 您需要手动进行数据同步和保存。
+        </label>
+      </div>
+      <div class="row">
+        <BaseButton @click="exportData">数据导出</BaseButton>
+      </div>
+      <div class="row">
+        <div class="main-title">数据导入</div>
+      </div>
+      <div class="row">
+        <label class="sub-title">
+          请注意，导入数据将
+          <b style="color: red"> 完全覆盖 </b>
+          当前数据。请谨慎操作。
+        </label>
+      </div>
+      <div class="row">
+        <div class="import hvr-grow">
+          <BaseButton>数据导入</BaseButton>
+          <input type="file"
+                 accept="application/json"
+                 @change="importData">
+        </div>
       </div>
     </div>
   </div>
-
 </template>
 
 <style scoped lang="scss">

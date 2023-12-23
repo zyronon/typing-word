@@ -171,6 +171,10 @@ html, body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+
+  & > .page-content {
+    padding: 10rem;
+  }
 }
 
 #app {

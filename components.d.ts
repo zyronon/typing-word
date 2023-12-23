@@ -18,7 +18,6 @@ declare module 'vue' {
     ChapterName: typeof import('./src/components/toolbar/ChapterName.vue')['default']
     Close: typeof import('./src/components/icon/Close.vue')['default']
     CollectNotice: typeof import('./src/components/CollectNotice.vue')['default']
-    Delete: typeof import('./src/components/icon/Delete.vue')['default']
     DeleteIcon: typeof import('./src/components/icon/DeleteIcon.vue')['default']
     Dialog: typeof import('./src/components/dialog/Dialog.vue')['default']
     DictDiglog: typeof import('./src/components/dialog/DictDiglog.vue')['default']
