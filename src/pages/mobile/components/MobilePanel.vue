@@ -21,6 +21,8 @@ import {cloneDeep} from "lodash-es";
 import WordList from "@/components/list/WordList.vue";
 import ArticleList from "@/components/list/ArticleList.vue";
 import Slide from "@/components/Slide.vue";
+import SlideHorizontal from "@/components/slide/SlideHorizontal.vue";
+import SlideItem from "@/components/slide/SlideItem.vue";
 
 const router = useRouter()
 const store = useBaseStore()
@@ -95,11 +97,11 @@ const showCollectToggleButton = $computed(() => {
         <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.wrong.name }}</div>
       </div>
     </header>
-    <Slide :slide-count="4" :step="tabIndex">
-      <div class="slide-item">
+    <SlideHorizontal v-model:index="tabIndex">
+      <SlideItem>
         <slot :active="tabIndex === 0 && settingStore.showPanel"></slot>
-      </div>
-      <div class="slide-item">
+      </SlideItem>
+      <SlideItem>
         <div class="panel-page-item">
           <div class="list-header">
             <div class="left">
@@ -128,8 +130,8 @@ const showCollectToggleButton = $computed(() => {
             </template>
           </WordList>
         </div>
-      </div>
-      <div class="slide-item">
+      </SlideItem>
+      <SlideItem>
         <div class="panel-page-item">
           <div class="list-header">
             <div class="left">
@@ -159,8 +161,8 @@ const showCollectToggleButton = $computed(() => {
           </WordList>
           <Empty v-else/>
         </div>
-      </div>
-      <div class="slide-item">
+      </SlideItem>
+      <SlideItem>
         <div class="panel-page-item" v-if="store.wrong.words.length">
           <div class="list-header">
             <div class="dict-name">总词数：{{ store.wrong.words.length }}</div>
@@ -187,19 +189,14 @@ const showCollectToggleButton = $computed(() => {
           </WordList>
         </div>
         <Empty v-else/>
-      </div>
-    </Slide>
+      </SlideItem>
+    </SlideHorizontal>
   </div>
 </template>
 <style scoped lang="scss">
 @import "@/assets/css/variable";
 
 $header-height: 50rem;
-.slide-item {
-  width: 25%;
-  height: 100%;
-}
-
 .panel {
   border-radius: 8rem;
   width: 100%;

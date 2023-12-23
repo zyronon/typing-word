@@ -61,7 +61,7 @@ function $no() {
           </div>
         </div>
         <div class="description">
-          <span>您已使用164天，加油！</span>
+          <span>您已坚持了164天，加油！</span>
         </div>
         <div class="my-buttons">
           <div class="button" @click="router.push('/mobile/setting')">
