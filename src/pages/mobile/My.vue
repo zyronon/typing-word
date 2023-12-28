@@ -68,7 +68,7 @@ function $no() {
             <span>设置</span>
           </div>
           <div class="button" @click="router.push('/mobile/data-manage')">
-            <span>数据管理</span>
+            <span>数据同步</span>
             <div class="not-read"></div>
           </div>
         </div>
