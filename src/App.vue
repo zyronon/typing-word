@@ -13,7 +13,7 @@ import ArticleContentDialog from "@/components/dialog/ArticleContentDialog.vue";
 import CollectNotice from "@/components/CollectNotice.vue";
 import {SAVE_DICT_KEY, SAVE_SETTING_KEY} from "@/utils/const.ts";
 import {isMobile, shakeCommonDict} from "@/utils";
-import {routes} from "@/router.ts";
+import router, {routes} from "@/router.ts";
 import {$ref} from "vue/macros";
 import {useRoute} from "vue-router";
 import * as eruda from "eruda";
@@ -77,7 +77,7 @@ onMounted(() => {
   if (isMobile()) {
     // 当前设备是移动设备
     console.log('当前设备是移动设备')
-    // router.replace('/mobile')
+    router.replace('/mobile')
   }
 })
 let transitionName = $ref('go')

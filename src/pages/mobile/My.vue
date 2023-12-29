@@ -63,54 +63,53 @@ function $no() {
         <div class="description">
           <span>您已坚持了164天，加油！</span>
         </div>
-        <div class="my-buttons">
-          <div class="button" @click="router.push('/mobile/setting')">
-            <span>设置</span>
+        <div class="grid">
+          <div class="item" @click="router.push('/mobile/data-manage')">
+            <Icon icon="uil:setting" width="22"/>
+            <span>收藏</span>
           </div>
-          <div class="button" @click="router.push('/mobile/data-manage')">
-            <span>数据同步</span>
-            <div class="not-read"></div>
+          <div class="item" @click="router.push('/mobile/data-manage')">
+            <Icon icon="uil:setting" width="22"/>
+            <span>错词本</span>
+          </div>
+          <div class="item" @click="router.push('/mobile/data-manage')">
+            <Icon icon="uil:setting" width="22"/>
+            <span>简单词</span>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="nav">
-      <div class="tabs">
-        <div class="tab" :class="index === 0 && 'active'" @click="index = 0">当前</div>
-        <div class="tab" :class="index === 1 && 'active'" @click="index = 1">收藏</div>
-        <div class="tab" :class="index === 2 && 'active'" @click="index = 2">错词本</div>
-        <div class="tab" :class="index === 3 && 'active'" @click="index = 3">简单词</div>
-      </div>
-      <div class="indicator" :style="{left:index * 25 + '%'}"></div>
-    </div>
-    <SlideHorizontal
-        v-model:index="index">
-      <SlideItem>
-      </SlideItem>
-      <SlideItem>
-        <div class="panel-page-item">
-          <div class="list-header">
+        <div class="list">
+          <div class="item" @click="router.push('/mobile/setting')">
             <div class="left">
-              <div class="dict-name">总词数：{{ store.collect.words.length }}</div>
-              <BaseIcon icon="fluent:add-12-regular" title="添加" @click="addCollect"/>
+              <Icon icon="uil:setting" width="22"/>
+              <span>设置</span>
             </div>
+            <Icon class="arrow" icon="mingcute:right-line" width="20"/>
           </div>
-          <WordList
-              v-if="store.collect.words.length"
-              class="word-list"
-              :list="store.collect.words">
-            <template v-slot:suffix="{item,index}">
-              <BaseIcon
-                  class="del"
-                  title="移除"
-                  icon="solar:trash-bin-minimalistic-linear"/>
-            </template>
-          </WordList>
+
+          <div class="item" @click="router.push('/mobile/data-manage')">
+            <div class="left">
+              <Icon icon="uil:setting" width="22"/>
+              <span>数据同步</span>
+            </div>
+            <Icon class="arrow" icon="mingcute:right-line" width="20"/>
+          </div>
+          <div class="item" @click="router.push('/mobile/data-manage')">
+            <div class="left">
+              <Icon icon="uil:setting" width="22"/>
+              <span>反馈问题</span>
+            </div>
+            <Icon class="arrow" icon="mingcute:right-line" width="20"/>
+          </div>
+          <div class="item">
+            <div class="left">
+              <Icon icon="mdi:about-circle-outline" width="22"/>
+              <span>关于我们</span>
+            </div>
+            <Icon class="arrow" icon="mingcute:right-line" width="20"/>
+          </div>
         </div>
-      </SlideItem>
-      <SlideItem>4</SlideItem>
-      <SlideItem>4</SlideItem>
-    </SlideHorizontal>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -148,7 +147,7 @@ $second-btn-color: rgb(58, 58, 70);
     header {
       color: white;
       height: 200rem;
-      background-image: url('../../assets/img/a.jpg');
+      background-image: url('../../assets/img/b.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -160,16 +159,17 @@ $second-btn-color: rgb(58, 58, 70);
     $msg-subpage-card-bg: rgb(28, 30, 43); //二级页面，卡片背景
 
     .detail {
-      transform: translateY(-10rem);
+      transform: translateY(-50rem);
       background: $main-bg;
-      padding: 20rem;
-      padding-bottom: 0;
-      border-radius: 10rem 10rem 0 0;
+      //padding: 20rem;
+      padding-top: 30rem;
+      border-radius: 20rem 20rem 0 0;
       display: flex;
       flex-direction: column;
       gap: 20rem;
 
       .heat {
+        padding:0 20rem;
         color: white;
         display: flex;
         align-items: center;
@@ -189,26 +189,50 @@ $second-btn-color: rgb(58, 58, 70);
       }
 
       .description {
+        padding:0 20rem;
         font-size: 16rem;
         color: white;
       }
 
-      .my-buttons {
+      .grid {
         display: flex;
-        gap: 20rem;
         justify-content: space-between;
+        border-bottom: 1px solid gray;
+        padding: 20rem;
 
-        .button {
+        .item {
+          height: 60rem;
+          gap: 10rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          color: white;
+        }
+      }
+
+      .list {
+        padding: 20rem;
+        padding-top: 0;
+
+        .item {
+          margin-bottom: 10rem;
           position: relative;
           flex: 1;
           font-size: 16rem;
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: space-between;
           border-radius: 6rem;
-          background: $second-btn-color;
-          height: 40rem;
+          //background: $second-btn-color;
+          height: 50rem;
           color: white;
+
+          .left {
+            display: flex;
+            align-items: center;
+            gap: 10rem;
+          }
         }
       }
     }
