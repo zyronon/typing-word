@@ -121,7 +121,7 @@ function $no() {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: black;
+  color: var(--color-font-2);
   background: var(--color-second-bg);
 
   .float {
@@ -147,7 +147,7 @@ function $no() {
     header {
       color: white;
       height: 200rem;
-      background-image: url('../../assets/img/b.png');
+      background-image: url('../../assets/img/a.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;

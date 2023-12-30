@@ -41,7 +41,6 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .mobile {
-
   .content {
     flex: 1;
     display: flex;
@@ -49,7 +48,7 @@ onMounted(() => {
   }
 
   .tabs {
-    border-top: 1px solid gray;
+    border-top: 1px solid var(--color-item-bg);
     height: 60rem;
     display: flex;
     align-items: center;
