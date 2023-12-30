@@ -9,7 +9,7 @@ defineOptions({
   name: 'Practice'
 })
 
-let index = $ref(2)
+let index = $ref(0)
 
 onMounted(() => {
   console.log('onMounted')

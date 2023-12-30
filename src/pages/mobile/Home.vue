@@ -4,6 +4,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import router from "@/router.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {Icon} from "@iconify/vue";
+import {APP_NAME} from "../../utils/const.ts";
 
 const store = useBaseStore()
 
@@ -14,6 +15,15 @@ function goPractice() {
 
 <template>
   <div class="page home">
+    <div class="header">
+      <div class="welcome">
+        我在{{ APP_NAME }}学习
+      </div>
+      <div class="day">
+        <div class="num">151</div>
+        天
+      </div>
+    </div>
     <div class="current-dict">
       <div class="top">
         <div class="left" @click="router.push('/mobile/dict-detail')">
@@ -26,7 +36,6 @@ function goPractice() {
           :percentage="90"
       />
     </div>
-
     <div class="btn">
       <BaseButton size="large" @click="goPractice">开始背单词吧！</BaseButton>
     </div>
@@ -39,12 +48,27 @@ function goPractice() {
   color: var(--color-font-2);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  //align-items: center;
+  //justify-content: center;
+
+  .header {
+    margin-top: 30rem;
+    padding: 20rem;
+
+    .day {
+      margin-top: 20rem;
+      display: flex;
+      align-items: flex-end;
+
+      .num {
+        font-size: 60rem;
+        transform: translateY(10rem);
+      }
+    }
+  }
 
   .current-dict {
-    width: 80%;
-    box-sizing: border-box;
+    margin: 20rem;
     padding: 20rem;
     background: var(--color-third-bg);
     border-radius: 8rem;
@@ -70,8 +94,7 @@ function goPractice() {
   }
 
   .btn {
-    margin-top: 30rem;
-    width: 80%;
+    margin: 20rem;
   }
 }
 </style>
