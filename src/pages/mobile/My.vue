@@ -29,7 +29,7 @@ function $no() {
 </script>
 
 <template>
-  <div class="page setting">
+  <div class="page my">
     <div ref="float" class="float">
       <div class="right">
         <IconWrapper>
@@ -65,47 +65,46 @@ function $no() {
         </div>
         <div class="grid">
           <div class="item" @click="router.push('/mobile/data-manage')">
-            <Icon icon="uil:setting" width="22"/>
+            <img src="@/assets/img/collect.png" alt="">
             <span>收藏</span>
           </div>
           <div class="item" @click="router.push('/mobile/data-manage')">
-            <Icon icon="uil:setting" width="22"/>
+            <img src="@/assets/img/book2.png" alt="">
             <span>错词本</span>
           </div>
           <div class="item" @click="router.push('/mobile/data-manage')">
-            <Icon icon="uil:setting" width="22"/>
+            <img src="@/assets/img/complete.png" alt="">
             <span>简单词</span>
           </div>
         </div>
-        <div class="list">
+        <div class="setting-list">
           <div class="item" @click="router.push('/mobile/setting')">
-            <div class="left">
-              <Icon icon="uil:setting" width="22"/>
+            <Icon icon="uil:setting" width="22"/>
+            <div class="right">
               <span>设置</span>
+              <Icon class="arrow" icon="mingcute:right-line" width="20"/>
             </div>
-            <Icon class="arrow" icon="mingcute:right-line" width="20"/>
           </div>
-
           <div class="item" @click="router.push('/mobile/data-manage')">
-            <div class="left">
-              <Icon icon="uil:setting" width="22"/>
+            <Icon icon="mdi:database-cog-outline" width="22"/>
+            <div class="right">
               <span>数据同步</span>
+              <Icon class="arrow" icon="mingcute:right-line" width="20"/>
             </div>
-            <Icon class="arrow" icon="mingcute:right-line" width="20"/>
-          </div>
-          <div class="item" @click="router.push('/mobile/data-manage')">
-            <div class="left">
-              <Icon icon="uil:setting" width="22"/>
-              <span>反馈问题</span>
-            </div>
-            <Icon class="arrow" icon="mingcute:right-line" width="20"/>
           </div>
           <div class="item">
-            <div class="left">
-              <Icon icon="mdi:about-circle-outline" width="22"/>
-              <span>关于我们</span>
+            <Icon icon="pepicons-pencil:letter-open" width="22"/>
+            <div class="right">
+              <span>反馈问题</span>
+              <Icon class="arrow" icon="mingcute:right-line" width="20"/>
             </div>
-            <Icon class="arrow" icon="mingcute:right-line" width="20"/>
+          </div>
+          <div class="item">
+            <Icon icon="mdi:about-circle-outline" width="22"/>
+            <div class="right" style="border-bottom: none">
+              <span>关于我们</span>
+              <Icon class="arrow" icon="mingcute:right-line" width="20"/>
+            </div>
           </div>
         </div>
       </div>
@@ -114,15 +113,16 @@ function $no() {
 </template>
 
 <style scoped lang="scss">
-$main-bg: rgb(21, 23, 36);
-$second-btn-color: rgb(58, 58, 70);
+@import "common.scss";
 
-.setting {
+
+.my {
   font-size: 18rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: $main-bg;
+  color: black;
+  background: var(--color-second-bg);
 
   .float {
     position: fixed;
@@ -154,30 +154,24 @@ $second-btn-color: rgb(58, 58, 70);
       box-sizing: border-box;
     }
 
-    //消息页面
-    $msg-bg: rgb(22, 22, 22);
-    $msg-subpage-card-bg: rgb(28, 30, 43); //二级页面，卡片背景
-
     .detail {
       transform: translateY(-50rem);
-      background: $main-bg;
       //padding: 20rem;
+      background: var(--color-second-bg);
       padding-top: 30rem;
       border-radius: 20rem 20rem 0 0;
       display: flex;
       flex-direction: column;
       gap: 20rem;
+      padding: 20rem;
 
       .heat {
-        padding:0 20rem;
-        color: white;
         display: flex;
         align-items: center;
         font-size: 16rem;
         gap: 30rem;
 
         .num {
-          color: white;
           font-weight: bold;
         }
 
@@ -189,16 +183,15 @@ $second-btn-color: rgb(58, 58, 70);
       }
 
       .description {
-        padding:0 20rem;
         font-size: 16rem;
-        color: white;
       }
 
       .grid {
         display: flex;
         justify-content: space-between;
-        border-bottom: 1px solid gray;
         padding: 20rem;
+        background: var(--color-header-bg);
+        border-radius: 8rem;
 
         .item {
           height: 60rem;
@@ -207,75 +200,13 @@ $second-btn-color: rgb(58, 58, 70);
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          color: white;
-        }
-      }
 
-      .list {
-        padding: 20rem;
-        padding-top: 0;
-
-        .item {
-          margin-bottom: 10rem;
-          position: relative;
-          flex: 1;
-          font-size: 16rem;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          border-radius: 6rem;
-          //background: $second-btn-color;
-          height: 50rem;
-          color: white;
-
-          .left {
-            display: flex;
-            align-items: center;
-            gap: 10rem;
+          img {
+            width: 40rem;
           }
         }
       }
-    }
-  }
 
-  .nav {
-    font-size: 16rem;
-    width: 100%;
-    height: 50rem;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    background: $main-bg;
-
-    .tabs {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-
-      .tab {
-        height: 45rem;
-        width: 45%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: gray;
-        transition: color .3s;
-
-        &.active {
-          font-weight: bold;
-          color: white;
-        }
-      }
-    }
-
-    .indicator {
-      height: 2px;
-      background: gold;
-      width: 25%;
-      position: relative;
-      transition: all .3s;
-      //left: 50%;
     }
   }
 }

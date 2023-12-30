@@ -24,15 +24,15 @@ onMounted(() => {
     </div>
     <div class="tabs">
       <div class="tab" @click="index = 0">
-        <Icon width="30" icon="icon-park:word"/>
+        <Icon width="30" icon="ph:exam"/>
         <span>单词</span>
       </div>
       <div class="tab" @click="index = 1">
-        <Icon width="30" icon="icon-park:word"/>
+        <Icon width="30" icon="iconoir:book"/>
         <span>词典</span>
       </div>
       <div class="tab" @click="index = 2">
-        <Icon width="30" icon="icon-park:word"/>
+        <Icon width="30" icon="iconoir:user"/>
         <span>我的</span>
       </div>
     </div>

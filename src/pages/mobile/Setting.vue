@@ -1,84 +1,63 @@
 <script setup lang="ts">
 
 import {Icon} from "@iconify/vue";
-import IconWrapper from "@/components/IconWrapper.vue";
 import useTheme from "@/hooks/theme.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import NavBar from "@/pages/mobile/components/NavBar.vue";
-import router from "@/router.ts";
+import {ref} from "vue";
 
 const {toggleTheme} = useTheme()
 const settingStore = useSettingStore()
+// @ts-ignore
+const gitLastCommitHash = ref(LATEST_COMMIT_HASH);
 
 </script>
 
 <template>
   <div class="mobile-page setting">
     <NavBar title="设置"/>
-    <div class="setting-list">
-      <div class="item">
-        <div class="left">
-          <Icon icon="uil:setting" width="22"/>
-          <span>音效设置</span>
+    <div class="content">
+      <div class="setting-list">
+        <div class="item">
+          <Icon icon="bx:headphone" width="22"/>
+          <div class="right">
+            <span>音效设置</span>
+            <Icon class="arrow" icon="mingcute:right-line" width="20"/>
+          </div>
         </div>
-        <Icon class="arrow" icon="mingcute:right-line" width="20"/>
+        <div class="item">
+          <Icon icon="icon-park-outline:setting-config" width="22"/>
+          <div class="right" style="border-bottom: none">
+            <span>其他设置</span>
+            <Icon class="arrow" icon="mingcute:right-line" width="20"/>
+          </div>
+        </div>
       </div>
-      <div class="item">
-        <div class="left">
-          <Icon icon="uil:setting" width="22"/>
-          <span>其他设置</span>
-        </div>
-        <Icon class="arrow" icon="mingcute:right-line" width="20"/>
-      </div>
-      <div class="item" @click="router.push('/mobile/data-manage')">
-        <div class="left">
-          <Icon icon="uil:setting" width="22"/>
-          <span>数据管理</span>
-        </div>
-        <Icon class="arrow" icon="mingcute:right-line" width="20"/>
-      </div>
-      <div class="item" @click="router.push('/mobile/data-manage')">
-        <div class="left">
-          <Icon icon="uil:setting" width="22"/>
-          <span>反馈问题</span>
-        </div>
-        <Icon class="arrow" icon="mingcute:right-line" width="20"/>
-      </div>
-      <div class="item">
-        <div class="left">
-          <Icon icon="mdi:about-circle-outline" width="22"/>
-          <span>关于我们</span>
-        </div>
-        <Icon class="arrow" icon="mingcute:right-line" width="20"/>
+      <div class="git-log">
+        Build {{ gitLastCommitHash }}
       </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+@import "common";
+
 .setting {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  background: var(--color-second-bg);
 
-  .setting-list {
-    background: var(--color-third-bg);
-    border-radius: 8rem;
-    width: 90%;
-
-    .item {
-      height: 60rem;
-      padding: 0 20rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      .left {
-        display: flex;
-        align-items: center;
-        gap: 10rem;
-      }
-    }
+  .content {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rem;
+    box-sizing: border-box;
   }
+
 }
 </style>
