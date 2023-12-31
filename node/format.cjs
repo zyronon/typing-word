@@ -93,8 +93,8 @@ function formatDict(path, name) {
       newObj.push(data)
     })
 
-    // fs.writeFileSync(save + name, JSON.stringify(newObj, null, 2));
-    fs.writeFileSync(save + name.replace('.json', '.min.json'), JSON.stringify(newObj));
+    fs.writeFileSync(save + name, JSON.stringify(newObj, null, 2));
+    // fs.writeFileSync(save + name.replace('.json', '.min.json'), JSON.stringify(newObj));
     console.log(name, newObj.length)
   } catch (e) {
     console.log('err', name, e)

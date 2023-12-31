@@ -135,7 +135,7 @@ onUnmounted(() => {
   emitter.off(ShortcutKey.TogglePanel, togglePanel)
 })
 
-// useStartKeyboardEventListener()
+useStartKeyboardEventListener()
 
 </script>
 <template>
