@@ -8,7 +8,7 @@ import {groupBy} from "lodash-es";
 import {dictionaryResources} from "@/assets/dictionary.ts";
 import {Dict, DictResource, languageCategoryOptions} from "@/types.ts";
 import {onMounted} from "vue";
-import DictGroup from "@/components/list/DictGroup.vue";
+import DictGroup from "./components/DictGroup.vue";
 import router from "@/router.ts";
 
 let index = $ref(1)
