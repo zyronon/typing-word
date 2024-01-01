@@ -347,8 +347,7 @@ function importData(e) {
           <label class="sub-title">切换下一个单词时间</label>
           <div class="wrapper">
             <el-input-number v-model="settingStore.waitTimeForChangeWord"
-                             :min="6"
-                             :max="100"
+                             :min="0"
                              type="number"
             />
             <span>毫秒</span>

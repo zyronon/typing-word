@@ -67,7 +67,7 @@ watch(() => store.load, n => {
         <Tooltip
             :title="`词典详情(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.OpenDictDetail]})`">
           <div class="info hvr-grow" @click="emitter.emit(EventKey.openDictModal,'detail')">
-            {{ store.currentDict.name }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
+            {{ store.currentDict.name }}
           </div>
         </Tooltip>
         <ChapterName v-if="store.currentDict.type === DictType.word"/>
