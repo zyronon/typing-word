@@ -175,6 +175,7 @@ html, body {
   & > .page-content {
     padding: 10rem;
     box-sizing: border-box;
+    overflow: auto;
   }
 }
 

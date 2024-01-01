@@ -2,14 +2,14 @@
 import {Icon} from "@iconify/vue";
 import Home from "@/pages/mobile/Home.vue";
 import DictListManage from "@/pages/mobile/DictListManage.vue";
-import My from "@/pages/mobile/My.vue";
+import My from "@/pages/mobile/my/My.vue";
 import {onMounted} from "vue";
 
 defineOptions({
   name: 'Practice'
 })
 
-let index = $ref(0)
+let index = $ref(2)
 
 onMounted(() => {
   console.log('onMounted')

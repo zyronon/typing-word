@@ -23,10 +23,11 @@ import ArticleList from "@/components/list/ArticleList.vue";
 import Slide from "@/components/Slide.vue";
 import SlideHorizontal from "@/components/slide/SlideHorizontal.vue";
 import SlideItem from "@/components/slide/SlideItem.vue";
+import CollectList from "@/pages/mobile/components/CollectList.vue";
+import WrongList from "@/pages/mobile/components/WrongList.vue";
+import SimpleList from "@/pages/mobile/components/SimpleList.vue";
 
-const router = useRouter()
 const store = useBaseStore()
-const runtimeStore = useRuntimeStore()
 const settingStore = useSettingStore()
 let tabIndex = $ref(0)
 provide('tabIndex', computed(() => tabIndex))
@@ -36,12 +37,6 @@ watch(() => settingStore.showPanel, n => {
     tabIndex = 0
   }
 })
-
-let practiceType = $ref(DictType.word)
-
-function changeIndex(dict: Dict) {
-  store.changeDict(dict, practiceType)
-}
 
 onMounted(() => {
   emitter.on(EventKey.changeDict, () => {
@@ -53,38 +48,6 @@ onUnmounted(() => {
   emitter.off(EventKey.changeDict)
 })
 
-const {
-  delWrongWord,
-  delSimpleWord,
-  toggleWordCollect,
-} = useWordOptions()
-
-const {
-  toggleArticleCollect
-} = useArticleOptions()
-
-function addCollect() {
-  runtimeStore.editDict = cloneDeep(store.collect)
-  router.push({path: '/dict', query: {type: 'addWordOrArticle'}})
-}
-
-function addSimple() {
-  runtimeStore.editDict = cloneDeep(store.simple)
-  router.push({path: '/dict', query: {type: 'addWordOrArticle'}})
-}
-
-const showCollectToggleButton = $computed(() => {
-  if (store.currentDict.type === DictType.collect) {
-    if (store.current.practiceType !== practiceType) {
-      return (practiceType === DictType.word && store.collect.words.length) ||
-          (practiceType === DictType.article && store.collect.articles.length)
-    }
-  } else {
-    return (practiceType === DictType.word && store.collect.words.length) ||
-        (practiceType === DictType.article && store.collect.articles.length)
-  }
-  return false
-})
 
 </script>
 <template>
@@ -93,8 +56,8 @@ const showCollectToggleButton = $computed(() => {
       <div class="tabs">
         <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前</div>
         <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.collect.name }}</div>
-        <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.simple.name }}</div>
-        <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.wrong.name }}</div>
+        <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.wrong.name }}</div>
+        <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.simple.name }}</div>
       </div>
     </header>
     <SlideHorizontal v-model:index="tabIndex">
@@ -102,93 +65,13 @@ const showCollectToggleButton = $computed(() => {
         <slot :active="tabIndex === 0 && settingStore.showPanel"></slot>
       </SlideItem>
       <SlideItem>
-        <div class="panel-page-item">
-          <div class="list-header">
-            <div class="left">
-              <div class="dict-name">总词数：{{ store.collect.words.length }}</div>
-              <BaseIcon icon="fluent:add-12-regular" title="添加" @click="addCollect"/>
-            </div>
-            <template v-if="showCollectToggleButton">
-              <PopConfirm
-                  :title="`确认切换？`"
-                  @confirm="changeIndex( store.collect)"
-              >
-                <BaseButton size="small">切换</BaseButton>
-              </PopConfirm>
-            </template>
-          </div>
-          <WordList
-              v-if="store.collect.words.length"
-              class="word-list"
-              :list="store.collect.words">
-            <template v-slot:suffix="{item,index}">
-              <BaseIcon
-                  class="del"
-                  @click="toggleWordCollect(item)"
-                  title="移除"
-                  icon="solar:trash-bin-minimalistic-linear"/>
-            </template>
-          </WordList>
-        </div>
+        <CollectList/>
       </SlideItem>
       <SlideItem>
-        <div class="panel-page-item">
-          <div class="list-header">
-            <div class="left">
-              <div class="dict-name">总词数：{{ store.simple.words.length }}</div>
-              <BaseIcon icon="fluent:add-12-regular" title="添加" @click="addSimple"/>
-            </div>
-            <template v-if="store.currentDict.type !== DictType.simple && store.simple.words.length">
-              <PopConfirm
-                  :title="`确认切换？`"
-                  @confirm="changeIndex( store.simple)"
-              >
-                <BaseButton size="small">切换</BaseButton>
-              </PopConfirm>
-            </template>
-          </div>
-          <WordList
-              v-if="store.simple.words.length"
-              class="word-list"
-              :list="store.simple.words">
-            <template v-slot:suffix="{item,index}">
-              <BaseIcon
-                  class="del"
-                  @click="delSimpleWord(item)"
-                  title="移除"
-                  icon="solar:trash-bin-minimalistic-linear"/>
-            </template>
-          </WordList>
-          <Empty v-else/>
-        </div>
+        <WrongList/>
       </SlideItem>
       <SlideItem>
-        <div class="panel-page-item" v-if="store.wrong.words.length">
-          <div class="list-header">
-            <div class="dict-name">总词数：{{ store.wrong.words.length }}</div>
-            <template
-                v-if="store.currentDict.type !== DictType.wrong && store.wrong.words.length">
-              <PopConfirm
-                  :title="`确认切换？`"
-                  @confirm="changeIndex( store.wrong)"
-              >
-                <BaseButton size="small">切换</BaseButton>
-              </PopConfirm>
-            </template>
-          </div>
-          <WordList
-              class="word-list"
-              :list="store.wrong.words">
-            <template v-slot:suffix="{item,index}">
-              <BaseIcon
-                  class="del"
-                  @click="delWrongWord(item)"
-                  title="移除"
-                  icon="solar:trash-bin-minimalistic-linear"/>
-            </template>
-          </WordList>
-        </div>
-        <Empty v-else/>
+        <SimpleList/>
       </SlideItem>
     </SlideHorizontal>
   </div>

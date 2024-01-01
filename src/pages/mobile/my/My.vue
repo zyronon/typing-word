@@ -47,15 +47,15 @@ function $no() {
       <header ref="header"></header>
       <div class="detail">
         <div class="heat">
-          <div class="text" @click="isShowStarCount = true">
+          <div class="text" @click="router.push('/mobile/collect')">
             <span>收藏</span>
             <span class="num">123</span>
           </div>
-          <div class="text" @click="$nav('/people/follow-and-fans',{type:0})">
+          <div class="text" @click="router.push('/mobile/wrong')">
             <span>错误</span>
             <span class="num">123</span>
           </div>
-          <div class="text" @click="$nav('/people/follow-and-fans',{type:1})">
+          <div class="text" @click="router.push('/mobile/simple')">
             <span>已掌握</span>
             <span class="num">123</span>
           </div>
@@ -64,16 +64,16 @@ function $no() {
           <span>您已坚持了164天，加油！</span>
         </div>
         <div class="grid">
-          <div class="item" @click="router.push('/mobile/data-manage')">
-            <img src="@/assets/img/collect.png" alt="">
+          <div class="item" @click="router.push('/mobile/collect')">
+            <img src="../../../assets/img/collect.png" alt="">
             <span>收藏</span>
           </div>
-          <div class="item" @click="router.push('/mobile/data-manage')">
-            <img src="@/assets/img/book2.png" alt="">
+          <div class="item" @click="router.push('/mobile/wrong')">
+            <img src="../../../assets/img/book2.png" alt="">
             <span>错词本</span>
           </div>
-          <div class="item" @click="router.push('/mobile/data-manage')">
-            <img src="@/assets/img/complete.png" alt="">
+          <div class="item" @click="router.push('/mobile/simple')">
+            <img src="../../../assets/img/complete.png" alt="">
             <span>简单词</span>
           </div>
         </div>
@@ -92,14 +92,14 @@ function $no() {
               <Icon class="arrow" icon="mingcute:right-line" width="20"/>
             </div>
           </div>
-          <div class="item">
+          <div class="item" @click="router.push('/mobile/feedback')">
             <Icon icon="pepicons-pencil:letter-open" width="22"/>
             <div class="right">
               <span>反馈问题</span>
               <Icon class="arrow" icon="mingcute:right-line" width="20"/>
             </div>
           </div>
-          <div class="item">
+          <div class="item" @click="router.push('/mobile/about')">
             <Icon icon="mdi:about-circle-outline" width="22"/>
             <div class="right" style="border-bottom: none">
               <span>关于我们</span>
@@ -113,7 +113,7 @@ function $no() {
 </template>
 
 <style scoped lang="scss">
-@import "common.scss";
+@import "../common";
 
 
 .my {
@@ -147,7 +147,7 @@ function $no() {
     header {
       color: white;
       height: 200rem;
-      background-image: url('../../assets/img/a.png');
+      background-image: url('../../../assets/img/a.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;

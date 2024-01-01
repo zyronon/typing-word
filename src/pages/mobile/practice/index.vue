@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {onMounted, onUnmounted, watch} from "vue";
+import {onDeactivated, onMounted, onUnmounted, watch} from "vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {$ref} from "vue/macros";

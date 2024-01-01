@@ -8,8 +8,15 @@ import Test from "@/pages/test/test.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import DictDetail from "@/pages/mobile/DictDetail.vue";
 import SetDictPlan from "@/pages/mobile/SetDictPlan.vue";
-import Setting from "@/pages/mobile/Setting.vue";
-import DataManage from "@/pages/mobile/DataManage.vue";
+import Setting from "@/pages/mobile/my/setting/Setting.vue";
+import DataManage from "@/pages/mobile/my/DataManage.vue";
+import CollectPage from "@/pages/mobile/my/CollectPage.vue";
+import WrongPage from "@/pages/mobile/my/WrongPage.vue";
+import SimplePage from "@/pages/mobile/my/SimplePage.vue";
+import About from "@/pages/mobile/my/About.vue";
+import Feedback from "@/pages/mobile/my/Feedback.vue";
+import MusicSetting from "@/pages/mobile/my/setting/MusicSetting.vue";
+import OtherSetting from "@/pages/mobile/my/setting/OtherSetting.vue";
 
 export const routes: RouteRecordRaw[] = [
   {path: '/pc/practice', component: Practice},
@@ -20,7 +27,14 @@ export const routes: RouteRecordRaw[] = [
   {path: '/mobile/dict-detail', component: DictDetail},
   {path: '/mobile/set-dict-plan', name: 'set-dict-plan', component: SetDictPlan},
   {path: '/mobile/setting', component: Setting},
+  {path: '/mobile/music-setting', component: MusicSetting},
+  {path: '/mobile/other-setting', component: OtherSetting},
   {path: '/mobile/data-manage', component: DataManage},
+  {path: '/mobile/collect', component: CollectPage},
+  {path: '/mobile/wrong', component: WrongPage},
+  {path: '/mobile/simple', component: SimplePage},
+  {path: '/mobile/about', component: About},
+  {path: '/mobile/feedback', component: Feedback},
   {path: '/test', component: Test},
   {path: '/', redirect: '/pc/practice'},
 ]
