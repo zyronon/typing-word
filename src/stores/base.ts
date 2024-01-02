@@ -216,7 +216,7 @@ export const useBaseStore = defineStore('base', {
             if ([DictType.word].includes(this.currentDict.type)) {
               if (!this.currentDict.originWords.length) {
                 let v = await getDictFile(dictResourceUrl)
-                v = v.slice(0, 50)
+                // v = v.slice(0, 50)
                 v.map(s => {
                   s.id = nanoid(6)
                 })

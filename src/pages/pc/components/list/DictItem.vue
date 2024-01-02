@@ -3,19 +3,22 @@
 import {Dict, DictType} from "@/types.ts";
 import {Icon} from "@iconify/vue";
 import {$computed} from "vue/macros";
+import DeleteIcon from "@/components/icon/DeleteIcon.vue";
+import BaseIcon from "@/components/BaseIcon.vue";
 
 const props = defineProps<{
   dict?: Dict,
   active?: boolean
+  showDel?: boolean
 }>()
 
 const emit = defineEmits<{
-  selectDict: [val: { dict: Dict, index: number }]
   add: []
+  del: []
 }>()
 
 let length = $computed(() => {
-  let isWord = [DictType.word,DictType.collect,DictType.simple,DictType.wrong].includes(props.dict.type)
+  let isWord = [DictType.word, DictType.collect, DictType.simple, DictType.wrong].includes(props.dict.type)
   let len: any = ''
   if (props.dict.length) {
     len = props.dict.length
@@ -45,6 +48,9 @@ let length = $computed(() => {
         <div class="num">{{ length }}</div>
       </div>
       <div class="pin" v-if="dict.type === DictType.article">文章</div>
+      <div class="del" v-if="dict.showDel && !active" >
+        <BaseIcon icon="solar:trash-bin-minimalistic-linear" @click="emit('del')"/>
+      </div>
     </template>
     <div v-else class="add" @click.stop="emit('add')">
       <Icon icon="fluent:add-20-filled" width="38" color="#929596"/>
@@ -101,12 +107,24 @@ let length = $computed(() => {
     bottom: 15rem;
   }
 
+  .del {
+    position: absolute;
+    top: 10rem;
+    right: 10rem;
+    opacity: 0;
+    transition: opacity .3s;
+  }
+
   &.active {
     background: var(--color-item-active);
   }
 
   &:hover {
     background: var(--color-item-active);
+
+    .del {
+      opacity: 1;
+    }
   }
 
   .add {

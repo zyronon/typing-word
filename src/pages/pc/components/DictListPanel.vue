@@ -39,7 +39,12 @@ const groupByTranslateLanguage = $computed(() => {
     data = groupBy(articleList, 'translateLanguage')
   } else if (currentLanguage === 'my') {
     data = {
-      common: store.myDictList.concat([{id: '',} as any])
+      common: store.myDictList.map((v, i) => {
+        if (i >= 3) {
+          // v.showDel = true
+        }
+        return v
+      }).concat([{id: '',} as any])
     }
   } else {
     data = groupBy(groupByLanguage[currentLanguage], 'translateLanguage')
@@ -62,6 +67,10 @@ const groupedByCategoryAndTag = $computed(() => {
   return data
 })
 
+function del(e) {
+  store.myDictList.splice(e.index, 1)
+}
+
 </script>
 
 <template>
@@ -83,6 +92,7 @@ const groupedByCategoryAndTag = $computed(() => {
           <DictList
               @add="emit('add')"
               @selectDict="e => emit('selectDict',e)"
+              @del="del"
               :select-id="store.currentDict.id"
               :list="groupByTranslateLanguage['common']"/>
         </template>

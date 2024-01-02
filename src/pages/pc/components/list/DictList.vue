@@ -10,6 +10,7 @@ defineProps<{
 
 const emit = defineEmits<{
   selectDict: [val: { dict: any, index: number }]
+  del: [val: { dict: any, index: number }]
   detail: [],
   add: []
 }>()
@@ -22,6 +23,7 @@ const emit = defineEmits<{
               :active="selectId === dict.id"
               @click="emit('selectDict',{dict,index})"
               @add="emit('add')"
+              @del="emit('del',{dict,index})"
               :dict="dict"/>
   </div>
 </template>
