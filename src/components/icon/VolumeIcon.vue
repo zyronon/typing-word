@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import {Icon} from "@iconify/vue";
 import {$ref} from "vue/macros";
-import IconWrapper from "@/components/IconWrapper.vue";
-import Tooltip from "@/components/Tooltip.vue";
+import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
+import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import {ShortcutKey} from "@/types.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 

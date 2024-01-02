@@ -9,17 +9,17 @@ import {usePracticeStore} from "@/stores/practice.ts"
 import {useSettingStore} from "@/stores/setting.ts";
 import {useOnKeyboardEventListener, useWindowClick} from "@/hooks/event.ts";
 import {Icon} from "@iconify/vue";
-import Tooltip from "@/components/Tooltip.vue";
+import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import Options from "@/pages/pc/practice/Options.vue";
 import Typing from "@/pages/pc/practice/practice-word/Typing.vue";
 import Panel from "@/pages/pc/practice/Panel.vue";
-import IconWrapper from "@/components/IconWrapper.vue";
+import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {syncMyDictList, useWordOptions} from "@/hooks/dict.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
-import WordList from "@/components/list/WordList.vue";
+import WordList from "@/pages/pc/components/list/WordList.vue";
 import Empty from "@/components/Empty.vue";
-import MiniDialog from "@/components/dialog/MiniDialog.vue";
+import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import BaseButton from "@/components/BaseButton.vue";
 
 interface IProps {

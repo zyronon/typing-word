@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Dialog from "@/components/dialog/Dialog.vue";
+import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {useBaseStore} from "@/stores/base.ts";
-import Ring from "@/components/Ring.vue";
-import Tooltip from "@/components/Tooltip.vue";
-import Fireworks from "@/components/Fireworks.vue";
+import Ring from "@/pages/pc/components/Ring.vue";
+import Tooltip from "@/pages/pc/components/Tooltip.vue";
+import Fireworks from "@/pages/pc/components/Fireworks.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {DefaultDisplayStatistics, DisplayStatistics, ShortcutKey} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";

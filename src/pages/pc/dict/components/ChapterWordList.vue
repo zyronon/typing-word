@@ -5,12 +5,12 @@ import BaseIcon from "@/components/BaseIcon.vue";
 import Empty from "@/components/Empty.vue";
 import {$computed, $ref} from "vue/macros";
 import {nextTick, watch} from "vue";
-import MiniDialog from "@/components/dialog/MiniDialog.vue";
+import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {useWindowClick} from "@/hooks/event.ts";
 import {cloneDeep, reverse, shuffle} from "lodash-es";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
-import WordList from '@/components/list/WordList.vue'
+import WordList from '@/pages/pc/components/list/WordList.vue'
 
 const props = defineProps<{
   title: string,

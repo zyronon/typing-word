@@ -7,10 +7,10 @@ import "vue-activity-calendar/style.css";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import Slide from "@/components/Slide.vue";
+import Slide from "@/pages/pc/components/Slide.vue";
 import ArticleDictDetail from "@/pages/pc/dict/components/ArticleDictDetail.vue";
 import WordDictDetail from "@/pages/pc/dict/components/WordDictDetail.vue";
-import DictListPanel from "@/components/DictListPanel.vue";
+import DictListPanel from "@/pages/pc/components/DictListPanel.vue";
 import EditDict from "@/pages/pc/dict/components/EditDict.vue";
 import {useRoute} from "vue-router";
 

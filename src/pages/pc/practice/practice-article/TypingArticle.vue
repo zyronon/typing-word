@@ -11,8 +11,8 @@ import {cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import Options from "@/pages/pc/practice/Options.vue";
 import {Icon} from "@iconify/vue";
-import IconWrapper from "@/components/IconWrapper.vue";
-import Tooltip from "@/components/Tooltip.vue";
+import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
+import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useArticleOptions} from "@/hooks/dict.ts";
 

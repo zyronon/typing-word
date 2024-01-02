@@ -4,8 +4,8 @@ import DictManage from "@/pages/pc/dict/DictManage.vue";
 import {onMounted} from "vue";
 import {useRoute} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import RightTopBar from "@/components/RightTopBar.vue";
-import Logo from "@/components/Logo.vue";
+import RightTopBar from "@/pages/pc/components/RightTopBar.vue";
+import Logo from "@/pages/pc/components/Logo.vue";
 
 const router = useRoute()
 const runtimeStore = useRuntimeStore()

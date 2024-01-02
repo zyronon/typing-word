@@ -12,16 +12,16 @@ import Typing from "@/pages/mobile/practice/practice-word/Typing.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
-import WordList from "@/components/list/WordList.vue";
+import WordList from "@/pages/pc/components/list/WordList.vue";
 import Empty from "@/components/Empty.vue";
-import MiniDialog from "@/components/dialog/MiniDialog.vue";
+import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import SlideHorizontal from "@/components/slide/SlideHorizontal.vue";
 import SlideItem from "@/components/slide/SlideItem.vue";
 import MobilePanel from "@/pages/mobile/components/MobilePanel.vue";
 import router from "@/router.ts";
 import {Icon} from "@iconify/vue";
-import IconWrapper from "@/components/IconWrapper.vue";
+import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import useTheme from "@/hooks/theme.ts";
 
 interface IProps {

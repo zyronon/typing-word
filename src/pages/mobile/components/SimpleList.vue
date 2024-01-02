@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
 import BaseIcon from "@/components/BaseIcon.vue";
-import WordList from "@/components/list/WordList.vue";
+import WordList from "@/pages/pc/components/list/WordList.vue";
 import BaseButton from "@/components/BaseButton.vue";
-import PopConfirm from "@/components/PopConfirm.vue";
+import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
 import {$ref} from "vue/macros";
 import {Dict, DictType} from "@/types.ts";
 import {useBaseStore} from "@/stores/base.ts";

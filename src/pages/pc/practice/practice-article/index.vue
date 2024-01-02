@@ -18,17 +18,17 @@ import {onMounted, onUnmounted, watch} from "vue";
 import {renewSectionTexts, renewSectionTranslates} from "@/hooks/translate.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {useBaseStore} from "@/stores/base.ts";
-import EditSingleArticleModal from "@/components/article/EditSingleArticleModal.vue";
+import EditSingleArticleModal from "@/pages/pc/components/article/EditSingleArticleModal.vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import IconWrapper from "@/components/IconWrapper.vue";
+import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import {Icon} from "@iconify/vue";
-import Tooltip from "@/components/Tooltip.vue";
+import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {syncMyDictList, useArticleOptions} from "@/hooks/dict.ts";
-import ArticleList from "@/components/list/ArticleList.vue";
+import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 
 const store = useBaseStore()

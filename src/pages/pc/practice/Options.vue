@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
-import Tooltip from "@/components/Tooltip.vue";
-import IconWrapper from "@/components/IconWrapper.vue";
+import Tooltip from "@/pages/pc/components/Tooltip.vue";
+import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import {Icon} from "@iconify/vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useWordOptions} from "@/hooks/dict.ts";

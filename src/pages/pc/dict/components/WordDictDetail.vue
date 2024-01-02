@@ -12,17 +12,17 @@ import {reactive, watch} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {useSettingStore} from "@/stores/setting.ts";
-import Dialog from "@/components/dialog/Dialog.vue";
+import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import * as XLSX from "xlsx";
-import WordListDialog from "@/components/dialog/WordListDialog.vue";
+import WordListDialog from "@/pages/pc/components/dialog/WordListDialog.vue";
 import {no} from "@/utils";
 import {Icon} from "@iconify/vue";
 import EditDict from "@/pages/pc/dict/components/EditDict.vue";
 import {syncMyDictList} from "@/hooks/dict.ts";
-import MiniDialog from "@/components/dialog/MiniDialog.vue";
+import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import {useWindowClick} from "@/hooks/event.ts";
-import BaseList from "@/components/list/BaseList.vue";
+import BaseList from "@/pages/pc/components/list/BaseList.vue";
 
 const emit = defineEmits<{
   back: []

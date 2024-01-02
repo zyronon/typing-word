@@ -9,7 +9,7 @@ import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio, use
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {cloneDeep} from "lodash-es";
 import {onUnmounted, watch, onMounted} from "vue";
-import Tooltip from "@/components/Tooltip.vue";
+import Tooltip from "@/pages/pc/components/Tooltip.vue";
 
 interface IProps {
   word: Word,

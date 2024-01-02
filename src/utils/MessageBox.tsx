@@ -1,5 +1,5 @@
 import {createVNode, render} from 'vue'
-import Dialog, {ModalProps} from "@/components/dialog/Dialog.vue";
+import Dialog, {ModalProps} from "@/pages/pc/components/dialog/Dialog.vue";
 
 export class MessageBox {
   static confirm(

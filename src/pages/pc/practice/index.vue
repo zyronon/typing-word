@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Toolbar from "@/components/toolbar/index.vue"
+import Toolbar from "@/pages/pc/components/toolbar/index.vue"
 import {onMounted, onUnmounted, watch} from "vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 import Footer from "@/pages/pc/practice/Footer.vue";
@@ -14,11 +14,11 @@ import {MessageBox} from "@/utils/MessageBox.tsx";
 import PracticeArticle from "@/pages/pc/practice/practice-article/index.vue";
 import PracticeWord from "@/pages/pc/practice/practice-word/index.vue";
 import {ShortcutKey} from "@/types.ts";
-import DictModal from "@/components/dialog/DictDiglog.vue";
+import DictModal from "@/pages/pc/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
-import RightTopBar from "@/components/RightTopBar.vue";
-import Logo from "@/components/Logo.vue";
+import RightTopBar from "@/pages/pc/components/RightTopBar.vue";
+import Logo from "@/pages/pc/components/Logo.vue";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
