@@ -48,7 +48,7 @@ let displayWord = $computed(() => {
 watch(() => props.word, () => {
   wrong = input = ''
   wordRepeatCount = 0
-  inputLock = false
+  waitNext = inputLock = false
   if (settingStore.wordSound) {
     volumeIconRef?.play(400, true)
   }
