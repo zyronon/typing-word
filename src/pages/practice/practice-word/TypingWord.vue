@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import {onMounted, onUnmounted, watch} from "vue"
-import {$computed, $ref} from "vue/macros"
-import {useBaseStore} from "@/stores/base.ts"
-import {DefaultDisplayStatistics, DictType, ShortcutKey, Sort, Word} from "../../../types.ts";
-import {emitter, EventKey} from "@/utils/eventBus.ts"
-import {cloneDeep, reverse, shuffle} from "lodash-es"
-import {usePracticeStore} from "@/stores/practice.ts"
-import {useSettingStore} from "@/stores/setting.ts";
-import {useOnKeyboardEventListener, useWindowClick} from "@/hooks/event.ts";
-import {Icon} from "@iconify/vue";
+import { onMounted, onUnmounted, watch } from "vue"
+import { $computed, $ref } from "vue/macros"
+import { useBaseStore } from "@/stores/base.ts"
+import { DefaultDisplayStatistics, DictType, ShortcutKey, Sort, Word } from "../../../types.ts";
+import { emitter, EventKey } from "@/utils/eventBus.ts"
+import { cloneDeep, reverse, shuffle } from "lodash-es"
+import { usePracticeStore } from "@/stores/practice.ts"
+import { useSettingStore } from "@/stores/setting.ts";
+import { useOnKeyboardEventListener, useWindowClick } from "@/hooks/event.ts";
+import { Icon } from "@iconify/vue";
 import Tooltip from "@/components/Tooltip.vue";
 import Options from "@/pages/practice/Options.vue";
 import Typing from "@/pages/practice/practice-word/Typing.vue";
 import Panel from "@/pages/practice/Panel.vue";
 import IconWrapper from "@/components/IconWrapper.vue";
-import {useRuntimeStore} from "@/stores/runtime.ts";
-import {syncMyDictList, useWordOptions} from "@/hooks/dict.ts";
+import { useRuntimeStore } from "@/stores/runtime.ts";
+import { syncMyDictList, useWordOptions } from "@/hooks/dict.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import WordList from "@/components/list/WordList.vue";
 import Empty from "@/components/Empty.vue";
@@ -99,7 +99,6 @@ const nextWord: Word = $computed(() => {
 
 function next(isTyping: boolean = true) {
   if (data.index === data.words.length - 1) {
-
     //复制当前错词，因为第一遍错词是最多的，后续的练习都是从错词中练习
     if (stat.total === -1) {
       let now = Date.now()
@@ -140,8 +139,7 @@ function next(isTyping: boolean = true) {
     data.index++
     isTyping && practiceStore.inputWordNumber++
     console.log('这个词完了')
-    if ([DictType.word].includes(store.currentDict.type)
-        && store.skipWordNames.includes(word.name.toLowerCase())) {
+    if (store.skipWordNames.includes(word.name.toLowerCase())) {
       next()
     }
   }

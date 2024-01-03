@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import {DefaultWord, ShortcutKey, Word} from "@/types.ts";
+import { DefaultWord, ShortcutKey, Word } from "@/types.ts";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
-import {$computed, $ref} from "vue/macros";
-import {useBaseStore} from "@/stores/base.ts";
-import {usePracticeStore} from "@/stores/practice.ts";
-import {useSettingStore} from "@/stores/setting.ts";
-import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio, useTTsPlayAudio} from "@/hooks/sound.ts";
-import {emitter, EventKey} from "@/utils/eventBus.ts";
-import {cloneDeep} from "lodash-es";
-import {onUnmounted, watch, onMounted} from "vue";
+import { $computed, $ref } from "vue/macros";
+import { useBaseStore } from "@/stores/base.ts";
+import { usePracticeStore } from "@/stores/practice.ts";
+import { useSettingStore } from "@/stores/setting.ts";
+import { usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio, useTTsPlayAudio } from "@/hooks/sound.ts";
+import { emitter, EventKey } from "@/utils/eventBus.ts";
+import { cloneDeep } from "lodash-es";
+import { onUnmounted, watch, onMounted } from "vue";
 import Tooltip from "@/components/Tooltip.vue";
 
 interface IProps {
@@ -27,6 +27,7 @@ const emit = defineEmits<{
 let input = $ref('')
 let wrong = $ref('')
 let showFullWord = $ref(false)
+let waitNext = $ref(false)
 //输入锁定，因为跳转到下一个单词有延时，如果重复在延时期间内重复输入，导致会跳转N次
 let inputLock = false
 let wordRepeatCount = 0
@@ -79,6 +80,13 @@ function repeat() {
 }
 
 async function onTyping(e: KeyboardEvent) {
+  if (waitNext) {
+    if (e.code === 'Space') {
+      emit('next')
+      waitNext = false
+    }
+    return
+  }
   if (inputLock) return
   inputLock = true
   let letter = e.key
@@ -110,13 +118,23 @@ async function onTyping(e: KeyboardEvent) {
     playCorrect()
     if (settingStore.repeatCount == 100) {
       if (settingStore.repeatCustomCount <= wordRepeatCount + 1) {
-        setTimeout(() => emit('next'), settingStore.waitTimeForChangeWord)
+        if (settingStore.autoNext) {
+          setTimeout(() => emit('next'), settingStore.waitTimeForChangeWord)
+        } else {
+          waitNext = true
+          inputLock = false
+        }
       } else {
         repeat()
       }
     } else {
       if (settingStore.repeatCount <= wordRepeatCount + 1) {
-        setTimeout(() => emit('next'), settingStore.waitTimeForChangeWord)
+        if (settingStore.autoNext) {
+          setTimeout(() => emit('next'), settingStore.waitTimeForChangeWord)
+        } else {
+          waitNext = true
+          inputLock = false
+        }
       } else {
         repeat()
       }
@@ -139,6 +157,8 @@ function del() {
 function showWord() {
   if (settingStore.allowWordTip) {
     showFullWord = true
+    //如果默写情况下，看了提示也视为输入错误
+    emit('wrong')
   }
 }
 
@@ -163,17 +183,17 @@ defineExpose({del, showWord, hideWord, play})
     >
       <div class="translate-item" v-for="(v,i) in word.trans">
         <span>{{ v }}</span>
-<!--        <div class="volumeIcon">-->
-<!--          <Tooltip-->
-<!--              v-if="i === word.trans.length - 1"-->
-<!--              :title="`发音(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.PlayTranslatePronunciation]})`"-->
-<!--          >-->
-<!--            <VolumeIcon-->
-<!--                ref="volumeTranslateIconRef"-->
-<!--                :simple="true"-->
-<!--                :cb="()=>ttsPlayAudio(word.trans.join(';'))"/>-->
-<!--          </Tooltip>-->
-<!--        </div>-->
+        <!--        <div class="volumeIcon">-->
+        <!--          <Tooltip-->
+        <!--              v-if="i === word.trans.length - 1"-->
+        <!--              :title="`发音(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.PlayTranslatePronunciation]})`"-->
+        <!--          >-->
+        <!--            <VolumeIcon-->
+        <!--                ref="volumeTranslateIconRef"-->
+        <!--                :simple="true"-->
+        <!--                :cb="()=>ttsPlayAudio(word.trans.join(';'))"/>-->
+        <!--          </Tooltip>-->
+        <!--        </div>-->
       </div>
     </div>
     <div class="word-wrapper">
@@ -185,10 +205,10 @@ defineExpose({del, showWord, hideWord, play})
         <span class="wrong" v-if="wrong">{{ wrong }}</span>
         <template v-if="settingStore.dictation">
           <span class="letter" v-if="!showFullWord"
-                @mouseenter="settingStore.allowWordTip && (showFullWord = true)">{{
-              displayWord.split('').map(() => '_').join('')
+                @mouseenter="showWord">{{
+              displayWord.split('').map(() => settingStore.dictationShowWordLength ? '_' : '&nbsp;').join('')
             }}</span>
-          <span class="letter" v-else @mouseleave="showFullWord = false">{{ displayWord }}</span>
+          <span class="letter" v-else @mouseleave="hideWord">{{ displayWord }}</span>
         </template>
         <span class="letter" v-else>{{ displayWord }}</span>
       </div>
@@ -198,7 +218,7 @@ defineExpose({del, showWord, hideWord, play})
         <VolumeIcon ref="volumeIconRef" :simple="true" :cb="() => playWordAudio(word.name)"/>
       </Tooltip>
     </div>
-    <div class="phonetic" v-if="settingStore.wordSoundType === 'us' && word.usphone">[{{ word.usphone}}]</div>
+    <div class="phonetic" v-if="settingStore.wordSoundType === 'us' && word.usphone">[{{ word.usphone }}]</div>
     <div class="phonetic" v-if="settingStore.wordSoundType === 'uk' && word.ukphone">[{{ word.ukphone }}]</div>
   </div>
 </template>

@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import {Icon} from '@iconify/vue';
-import {ref, watch} from "vue";
-import {useSettingStore} from "@/stores/setting.ts";
-import {getAudioFileUrl, useChangeAllSound, usePlayAudio, useWatchAllSound} from "@/hooks/sound.ts";
-import {getShortcutKey, useDisableEventListener, useEventListener} from "@/hooks/event.ts";
-import {$computed, $ref} from "vue/macros";
-import {cloneDeep} from "lodash-es";
-import {DefaultShortcutKeyMap, Dict, DictType, ShortcutKey} from "@/types.ts";
+import { Icon } from '@iconify/vue';
+import { ref, watch } from "vue";
+import { useSettingStore } from "@/stores/setting.ts";
+import { getAudioFileUrl, useChangeAllSound, usePlayAudio, useWatchAllSound } from "@/hooks/sound.ts";
+import { getShortcutKey, useDisableEventListener, useEventListener } from "@/hooks/event.ts";
+import { $computed, $ref } from "vue/macros";
+import { cloneDeep } from "lodash-es";
+import { DefaultShortcutKeyMap, Dict, DictType, ShortcutKey } from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
-import {APP_NAME, EXPORT_DATA_KEY, SAVE_DICT_KEY, SAVE_SETTING_KEY, SoundFileOptions} from "@/utils/const.ts";
+import { APP_NAME, EXPORT_DATA_KEY, SAVE_DICT_KEY, SAVE_SETTING_KEY, SoundFileOptions } from "@/utils/const.ts";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
-import {BaseState, useBaseStore} from "@/stores/base.ts";
+import { BaseState, useBaseStore } from "@/stores/base.ts";
 import * as copy from "copy-to-clipboard";
-import {saveAs} from "file-saver";
-import {checkAndUpgradeSaveDict, checkAndUpgradeSaveSetting, shakeCommonDict} from "@/utils";
-import {dayjs} from "element-plus";
+import { saveAs } from "file-saver";
+import { checkAndUpgradeSaveDict, checkAndUpgradeSaveSetting, shakeCommonDict } from "@/utils";
+import { dayjs } from "element-plus";
 
 
 const emit = defineEmits<{
@@ -344,7 +344,20 @@ function importData(e) {
           <label class="item-title">其他设置</label>
         </div>
         <div class="row">
-          <label class="sub-title">切换下一个单词时间</label>
+          <label class="sub-title">是否自动切换到下一个单词</label>
+          <div class="wrapper">
+            <el-switch v-model="settingStore.autoNext"
+                       inline-prompt
+                       active-text="开"
+                       inactive-text="关"
+            />
+          </div>
+        </div>
+        <div class="desc">
+          关闭后，当完成单词输入时，需要再次按下空格键切换下一个
+        </div>
+        <div class="row">
+          <label class="sub-title">自动切换下一个单词延迟</label>
           <div class="wrapper">
             <el-input-number v-model="settingStore.waitTimeForChangeWord"
                              :min="0"
@@ -352,6 +365,20 @@ function importData(e) {
             />
             <span>毫秒</span>
           </div>
+        </div>
+
+        <div class="row">
+          <label class="sub-title">默写时是否显示单词长度</label>
+          <div class="wrapper">
+            <el-switch v-model="settingStore.dictationShowWordLength"
+                       inline-prompt
+                       active-text="开"
+                       inactive-text="关"
+            />
+          </div>
+        </div>
+        <div class="desc">
+          默写时用下划线 _ 来显示每个字符。关闭后，用空格代替，用户将无法判断单词长度
         </div>
       </div>
       <div class="body" v-if="tabIndex === 2">

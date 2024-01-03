@@ -84,7 +84,7 @@ onMounted(() => {
     }
   }
 
-  drawMoon()
+  // drawMoon()
 })
 
 </script>
