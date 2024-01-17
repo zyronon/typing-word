@@ -91,11 +91,14 @@ export function usePlayWordAudio() {
   const audio = $ref(new Audio())
 
   function playAudio(word: string) {
+    let url = ''
     if (settingStore.wordSoundType === 'uk') {
-      audio.src = `${PronunciationApi}${word}&type=1`
+      url = `${PronunciationApi}${word}&type=1`
     } else if (settingStore.wordSoundType === 'us') {
-      audio.src = `${PronunciationApi}${word}&type=2`
+      url = `${PronunciationApi}${word}&type=2`
     }
+    url += '&le=jap'
+    audio.src = url
     audio.volume = settingStore.wordSoundVolume / 100
     audio.playbackRate = settingStore.wordSoundSpeed
     audio.play()
