@@ -5,6 +5,7 @@ import beep from "@/assets/sound/beep.wav";
 import correct from "@/assets/sound/correct.wav";
 import {$ref} from "vue/macros";
 import {SoundFileOptions} from "@/utils/const.ts";
+import {useBaseStore} from "@/stores/base.ts";
 
 export function useSound(audioSrcList?: string[], audioFileLength?: number) {
   let audioList: HTMLAudioElement[] = $ref([])
@@ -88,6 +89,7 @@ export function usePlayCorrect() {
 
 export function usePlayWordAudio() {
   const settingStore = useSettingStore()
+  const store = useBaseStore()
   const audio = $ref(new Audio())
 
   function playAudio(word: string) {
@@ -97,7 +99,12 @@ export function usePlayWordAudio() {
     } else if (settingStore.wordSoundType === 'us') {
       url = `${PronunciationApi}${word}&type=2`
     }
-    url += '&le=jap'
+    if (store.currentDict.language === 'ja') {
+      url += '&le=jap'
+    }
+    if (store.currentDict.language === 'de') {
+      url += '&le=de'
+    }
     audio.src = url
     audio.volume = settingStore.wordSoundVolume / 100
     audio.playbackRate = settingStore.wordSoundSpeed
