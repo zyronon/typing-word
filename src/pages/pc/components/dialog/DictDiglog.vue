@@ -23,7 +23,6 @@ import {useRouter} from "vue-router";
 import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
 import BaseList from "@/pages/pc/components/list/BaseList.vue";
 import {MessageBox} from "@/utils/MessageBox.tsx";
-import {ArchiveReader, libarchiveWasm} from 'libarchive-wasm';
 import {getDictFile} from "@/utils";
 
 const store = useBaseStore()
