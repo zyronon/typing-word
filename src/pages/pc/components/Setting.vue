@@ -15,6 +15,7 @@ import * as copy from "copy-to-clipboard";
 import {saveAs} from "file-saver";
 import {checkAndUpgradeSaveDict, checkAndUpgradeSaveSetting, shakeCommonDict} from "@/utils";
 import {dayjs} from "element-plus";
+import {GITHUB} from "@/config/ENV.ts";
 
 
 const emit = defineEmits<{
@@ -140,6 +141,14 @@ function importData(e) {
         <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">
           <Icon icon="mdi:database-cog-outline" width="20" color="#0C8CE9"/>
           <span>数据管理</span>
+        </div>
+        <div class="tab" :class="tabIndex === 4 && 'active'" @click="tabIndex = 4">
+          <Icon icon="mingcute:service-fill" width="20" color="#0C8CE9"/>
+          <span>反馈</span>
+        </div>
+        <div class="tab" :class="tabIndex === 5 && 'active'" @click="tabIndex = 5">
+          <Icon icon="mdi:about-circle-outline" width="20" color="#0C8CE9"/>
+          <span>关于</span>
         </div>
       </div>
       <div class="git-log">
@@ -415,6 +424,39 @@ function importData(e) {
           </div>
         </div>
       </div>
+      <div v-if="tabIndex === 4" class="feedback-modal">
+        <div>
+          给我发Email：<a href="mailto:zyronon@163.com">zyronon@163.com</a>
+        </div>
+        <p>or</p>
+        <div class="github">
+        <span>在<a :href="GITHUB" target="_blank">Github</a>上给我提一个
+        <a :href="`${GITHUB}/issues`" target="_blank">Issue</a>
+        </span>
+          <div class="options">
+            <BaseButton>
+              <a :href="`${GITHUB}/issues/new?assignees=&labels=&projects=&template=%E5%8D%95%E8%AF%8D%E9%94%99%E8%AF%AF---word-error.md&title=%E5%8D%95%E8%AF%8D%E9%94%99%E8%AF%AF+%7C+Word+error`"
+                 target="_blank">词典错误？</a>
+            </BaseButton>
+            <BaseButton>
+              <a :href="`${GITHUB}/issues/new?assignees=&labels=&projects=&template=问题报告---bug-report-.md&title=问题报告+%7C+Bug+report+`"
+                 target="_blank">反馈BUG？</a>
+            </BaseButton>
+            <BaseButton>
+              <a :href="`${GITHUB}/issues/new?assignees=&labels=&projects=&template=功能请求---feature-request.md&title=功能请求+%7C+Feature+request`"
+                 target="_blank">功能请求？</a>
+            </BaseButton>
+          </div>
+        </div>
+      </div>
+      <div v-if="tabIndex === 5">
+        <p>Typing Word</p>
+        本项目完全开源！好用请大家多多点Star！
+        <div></div>
+        GitHub地址：https://github.com/zyronon/typing-word
+        <div></div>
+        反馈: https://github.com/zyronon/typing-word/issues
+      </div>
     </div>
   </div>
 </template>
@@ -571,6 +613,32 @@ function importData(e) {
     height: 100%;
     width: 100%;
     opacity: 0;
+  }
+}
+
+.feedback-modal {
+  //height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space);
+  //justify-content: center;
+  color: var(--color-font-1);
+
+  p {
+    font-size: 30rem;
+  }
+
+  .github {
+    display: flex;
+    align-items: center;
+    gap: var(--space);
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10rem;
+    }
   }
 }
 

@@ -2,7 +2,6 @@
 import Tooltip from "@/pages/pc/components/Tooltip.vue"
 import useTheme from "@/hooks/theme.ts"
 import {useBaseStore} from "@/stores/base.ts"
-import FeedbackModal from "@/pages/pc/components/toolbar/FeedbackModal.vue"
 
 import {Icon} from '@iconify/vue';
 
@@ -26,7 +25,6 @@ const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 const practiceStore = usePracticeStore()
 
-const showFeedbackModal = $ref(false)
 const headerRef = $ref<HTMLDivElement>(null)
 const moreOptionsRef = $ref<HTMLDivElement>(null)
 
@@ -111,10 +109,16 @@ watch(() => store.load, n => {
               title="添加"
               icon="ic:outline-cloud-upload"/>
 
-          <BaseIcon
-              @click="showFeedbackModal = true"
-              title="反馈"
-              icon="ph:bug-beetle"/>
+
+          <Tooltip
+              :title="`切换主题(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
+          >
+            <IconWrapper>
+              <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
+                    @click="toggleTheme"/>
+              <Icon icon="tabler:sun" v-else @click="toggleTheme"/>
+            </IconWrapper>
+          </Tooltip>
         </div>
 
         <div class="with-bg anim">
@@ -138,7 +142,6 @@ watch(() => store.load, n => {
             color="#999"/>
     </Tooltip>
   </header>
-  <FeedbackModal v-if="showFeedbackModal" @close="showFeedbackModal = false"/>
 
 </template>
 
