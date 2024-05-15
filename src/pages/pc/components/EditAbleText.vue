@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import BaseButton from "@/components/BaseButton.vue";
-import {$ref} from "vue/macros";
+
 import {watchEffect} from "vue";
 
 interface IProps {

@@ -3,7 +3,6 @@
 import BaseIcon from "@/components/BaseIcon.vue";
 import ChapterWordList from "@/pages/pc/dict/components/ChapterWordList.vue";
 import BaseButton from "@/components/BaseButton.vue";
-import {$computed, $ref} from "vue/macros";
 import {assign, chunk, cloneDeep, reverse, shuffle} from "lodash-es";
 import {DefaultDict, Dict, DictResource, DictType, Sort, Word} from "@/types.ts";
 import {nanoid} from "nanoid";

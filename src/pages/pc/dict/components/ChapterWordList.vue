@@ -3,7 +3,6 @@
 import {Sort, Word} from "@/types.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Empty from "@/components/Empty.vue";
-import {$computed, $ref} from "vue/macros";
 import {nextTick, watch} from "vue";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import BaseButton from "@/components/BaseButton.vue";

@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import {$computed, $ref} from "vue/macros";
 import {watch} from "vue";
 import {DictResource} from "@/types.ts";
-import DictItem from "@/pages/pc/components/list/DictItem.vue";
 import DictList from "@/pages/pc/components/list/DictList.vue";
 
 const props = defineProps<{

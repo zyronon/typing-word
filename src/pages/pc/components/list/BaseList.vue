@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {useSettingStore} from "@/stores/setting.ts";
 import {nextTick, watch} from 'vue'
-import {$computed} from "vue/macros";
 
 const props = withDefaults(defineProps<{
   list?: any[],

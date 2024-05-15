@@ -1,13 +1,13 @@
 import {defineConfig} from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from "@vitejs/plugin-vue-jsx";
+import Vue from '@vitejs/plugin-vue'
+import VueJsx from '@vitejs/plugin-vue-jsx'
 import {resolve} from 'path'
 import {visualizer} from "rollup-plugin-visualizer";
 import {ElementPlusResolver} from "unplugin-vue-components/resolvers";
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import {getLastCommit} from "git-last-commit";
-import DefineOptions from 'unplugin-vue-define-options/vite' // 引入插件
+import VueMacros from 'unplugin-vue-macros/vite'
 
 function pathResolve(dir: string) {
   return resolve(__dirname, ".", dir)
@@ -23,8 +23,15 @@ export default defineConfig(async () => {
   })
   return {
     plugins: [
-      vue({
-        reactivityTransform: true
+      VueMacros({
+        plugins: {
+          vue: Vue(),
+          vueJsx: VueJsx() // if needed
+        }
+        // betterDefine: true,
+        // reactivityTransform: {
+        //   exclude: [/node_modules/, /jQuery\.js/]
+        // }
       }),
       AutoImport({
         resolvers: [ElementPlusResolver()],
@@ -33,8 +40,7 @@ export default defineConfig(async () => {
         resolvers: [ElementPlusResolver()],
       }),
       //用于给setup组件定义名字的，keep-alive需要name才能正常工作
-      DefineOptions(),
-      vueJsx(),
+      // DefineOptions(),
       lifecycle === 'report' ?
         visualizer({
           gzipSize: true,

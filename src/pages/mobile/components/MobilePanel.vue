@@ -1,26 +1,9 @@
 <script setup lang="ts">
 import {useBaseStore} from "@/stores/base.ts"
 
-import {$computed, $ref} from "vue/macros"
 import {computed, onMounted, onUnmounted, provide, watch} from "vue"
-import {Dict, DictType, ShortcutKey} from "@/types.ts"
-import PopConfirm from "@/pages/pc/components/PopConfirm.vue"
-import BaseButton from "@/components/BaseButton.vue";
 import {useSettingStore} from "@/stores/setting.ts";
-import Close from "@/components/icon/Close.vue";
-import Empty from "@/components/Empty.vue";
-import {useArticleOptions, useWordOptions} from "@/hooks/dict.ts";
-import {Icon} from "@iconify/vue";
-import Tooltip from "@/pages/pc/components/Tooltip.vue";
-import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
-import BaseIcon from "@/components/BaseIcon.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import {useRouter} from "vue-router";
-import {useRuntimeStore} from "@/stores/runtime.ts";
-import {cloneDeep} from "lodash-es";
-import WordList from "@/pages/pc/components/list/WordList.vue";
-import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
-import Slide from "@/pages/pc/components/Slide.vue";
 import SlideHorizontal from "@/components/slide/SlideHorizontal.vue";
 import SlideItem from "@/components/slide/SlideItem.vue";
 import CollectList from "@/pages/mobile/components/CollectList.vue";

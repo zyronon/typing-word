@@ -3,7 +3,6 @@
 import SlideHorizontal from "@/components/slide/SlideHorizontal.vue";
 import SlideItem from "@/components/slide/SlideItem.vue";
 import {useBaseStore} from "@/stores/base.ts";
-import {$computed, $ref} from "vue/macros";
 import {groupBy} from "lodash-es";
 import {dictionaryResources} from "@/assets/dictionary.ts";
 import {Dict, DictResource, languageCategoryOptions} from "@/types.ts";

@@ -2,7 +2,6 @@
 
 import {Dict, DictType} from "@/types.ts";
 import {Icon} from "@iconify/vue";
-import {$computed} from "vue/macros";
 
 const props = defineProps<{
   dict?: Dict,

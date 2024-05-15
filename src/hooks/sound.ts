@@ -3,7 +3,7 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {PronunciationApi} from "@/types.ts";
 import beep from "@/assets/sound/beep.wav";
 import correct from "@/assets/sound/correct.wav";
-import {$ref} from "vue/macros";
+
 import {SoundFileOptions} from "@/utils/const.ts";
 import {useBaseStore} from "@/stores/base.ts";
 

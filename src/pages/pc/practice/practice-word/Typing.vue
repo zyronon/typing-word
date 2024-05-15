@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import {DefaultWord, ShortcutKey, Word} from "@/types.ts";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
-import {$computed, $ref} from "vue/macros";
-import {useBaseStore} from "@/stores/base.ts";
-import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio, useTTsPlayAudio} from "@/hooks/sound.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {cloneDeep} from "lodash-es";
-import {onUnmounted, watch, onMounted} from "vue";
+import {onMounted, onUnmounted, watch} from "vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
 
 interface IProps {

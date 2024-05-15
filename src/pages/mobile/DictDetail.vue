@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SlideHorizontal from "@/components/slide/SlideHorizontal.vue";
 import SlideItem from "@/components/slide/SlideItem.vue";
-import {$ref} from "vue/macros";
+
 import {useBaseStore} from "@/stores/base.ts";
 import {showConfirmDialog, showToast} from "vant";
 import 'vant/lib/index.css'

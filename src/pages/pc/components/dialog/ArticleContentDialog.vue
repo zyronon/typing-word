@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
-import {$ref} from "vue/macros";
+
 import {onMounted, onUnmounted, watch} from "vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";

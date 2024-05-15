@@ -1,8 +1,6 @@
 <script setup lang="ts">
 
-import {$computed, $ref} from "vue/macros"
 import {onMounted, onUnmounted} from "vue"
-import {useBaseStore} from "@/stores/base.ts"
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 

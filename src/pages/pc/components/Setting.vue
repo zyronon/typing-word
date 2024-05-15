@@ -4,7 +4,6 @@ import {ref, watch} from "vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {getAudioFileUrl, useChangeAllSound, usePlayAudio, useWatchAllSound} from "@/hooks/sound.ts";
 import {getShortcutKey, useDisableEventListener, useEventListener} from "@/hooks/event.ts";
-import {$computed, $ref} from "vue/macros";
 import {cloneDeep} from "lodash-es";
 import {DefaultShortcutKeyMap, Dict, DictType, ShortcutKey} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";

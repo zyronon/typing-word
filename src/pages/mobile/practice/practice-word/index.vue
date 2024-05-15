@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import TypingWord from "@/pages/mobile/practice/practice-word/TypingWord.vue";
-import {$ref} from "vue/macros";
+
 import {cloneDeep} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
 import {onMounted, onUnmounted} from "vue";

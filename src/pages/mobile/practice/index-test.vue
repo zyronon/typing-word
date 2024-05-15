@@ -3,14 +3,12 @@
 import {useBaseStore} from "@/stores/base.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
-import {$computed, $ref} from "vue/macros";
-import {DefaultDisplayStatistics, DictType, ShortcutKey, Sort, Word} from "@/types.ts";
+import {DefaultDisplayStatistics, DictType, Sort, Word} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {syncMyDictList, useWordOptions} from "@/hooks/dict.ts";
-import {nextTick, onMounted, onUnmounted, watch} from "vue";
+import {onMounted, onUnmounted, watch} from "vue";
 import BaseButton from "@/components/BaseButton.vue";
-import Options from "@/pages/pc/practice/Options.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import MobilePanel from "@/pages/mobile/components/MobilePanel.vue";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";

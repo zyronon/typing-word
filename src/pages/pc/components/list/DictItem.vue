@@ -2,8 +2,6 @@
 
 import {Dict, DictType} from "@/types.ts";
 import {Icon} from "@iconify/vue";
-import {$computed} from "vue/macros";
-import DeleteIcon from "@/components/icon/DeleteIcon.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 
 const props = defineProps<{

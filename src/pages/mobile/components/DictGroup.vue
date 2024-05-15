@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {$computed, $ref} from "vue/macros";
 import {watch} from "vue";
 import {DictResource} from "@/types.ts";
 import DictList from "./DictList.vue";

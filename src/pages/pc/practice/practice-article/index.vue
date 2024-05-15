@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {$computed, $ref} from "vue/macros";
 import TypingArticle from "./TypingArticle.vue";
 import {
   Article,

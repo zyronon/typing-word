@@ -12,7 +12,7 @@ import {
   renewSectionTranslates
 } from "@/hooks/translate.ts";
 import * as copy from "copy-to-clipboard";
-import {$ref} from "vue/macros";
+
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {getSplitTranslateText} from "@/hooks/article.ts";
 import {cloneDeep} from "lodash-es";

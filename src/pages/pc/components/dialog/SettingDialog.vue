@@ -1,16 +1,5 @@
 <script setup lang="ts">
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue"
-import {Icon} from '@iconify/vue';
-import {ref} from "vue";
-import {useSettingStore} from "@/stores/setting.ts";
-import {getAudioFileUrl, useChangeAllSound, usePlayAudio, useWatchAllSound} from "@/hooks/sound.ts";
-import {getShortcutKey, useDisableEventListener, useEventListener} from "@/hooks/event.ts";
-import {$computed, $ref} from "vue/macros";
-import {cloneDeep} from "lodash-es";
-import {DefaultShortcutKeyMap, ShortcutKey} from "@/types.ts";
-import BaseButton from "@/components/BaseButton.vue";
-import {SoundFileOptions} from "@/utils/const.ts";
-import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import Setting from "@/pages/pc/components/Setting.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 

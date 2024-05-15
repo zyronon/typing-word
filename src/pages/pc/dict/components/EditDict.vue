@@ -2,7 +2,7 @@
 
 import {DefaultDict, Dict, DictType} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
-import {$ref} from "vue/macros";
+
 import {FormInstance, FormRules} from "element-plus";
 import {onMounted, reactive, watch} from "vue";
 import {dictionaryResources} from "@/assets/dictionary.ts";

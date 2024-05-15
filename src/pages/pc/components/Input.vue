@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {$ref} from "vue/macros";
+
 import {Icon} from "@iconify/vue";
 import Close from "@/components/icon/Close.vue";
 import {useDisableEventListener, useWindowClick} from "@/hooks/event.ts";

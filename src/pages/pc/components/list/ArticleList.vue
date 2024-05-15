@@ -1,7 +1,6 @@
 <script setup lang="ts">
 
 import Input from "@/pages/pc/components/Input.vue";
-import {$computed, $ref} from "vue/macros";
 import {Article} from "@/types.ts";
 import BaseList from "@/pages/pc/components/list/BaseList.vue";
 

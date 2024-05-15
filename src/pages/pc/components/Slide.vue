@@ -1,6 +1,5 @@
 <script setup lang="ts">
 
-import {$computed} from "vue/macros";
 
 const props = defineProps<{
   width?: string,

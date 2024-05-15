@@ -1,7 +1,6 @@
 <script setup lang="ts">
 
 import {DictResource, languageCategoryOptions} from "@/types.ts";
-import {$computed, $ref} from "vue/macros";
 import {dictionaryResources} from "@/assets/dictionary.ts";
 import {groupBy} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";

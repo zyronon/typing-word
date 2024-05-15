@@ -2,7 +2,7 @@
 import {useBaseStore} from "@/stores/base.ts"
 import {nextTick, onMounted, watch} from "vue"
 import {Dict, DictResource, DictType} from "@/types.ts"
-import {$ref} from "vue/macros";
+
 import "vue-activity-calendar/style.css";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";

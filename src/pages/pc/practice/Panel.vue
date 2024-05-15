@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {useBaseStore} from "@/stores/base.ts"
 
-import {$computed, $ref} from "vue/macros"
 import {computed, onMounted, onUnmounted, provide, watch} from "vue"
 import {Dict, DictType, ShortcutKey} from "@/types.ts"
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue"

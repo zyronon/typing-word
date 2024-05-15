@@ -2,7 +2,6 @@
 
 import BaseIcon from "@/components/BaseIcon.vue";
 import Input from "@/pages/pc/components/Input.vue";
-import {$computed, $ref} from "vue/macros";
 import {cloneDeep, throttle} from "lodash-es";
 import {Article} from "@/types.ts";
 

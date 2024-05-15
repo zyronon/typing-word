@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {$ref} from "vue/macros";
+
 import {useBaseStore} from "@/stores/base.ts";
 import {Picker, showToast} from "vant";
 import 'vant/lib/index.css'

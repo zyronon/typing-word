@@ -1,3 +1,6 @@
+/// <reference types="vite/client" />
+/// <reference types="unplugin-vue-macros/macros-global" />
+
 import {ElMessageBox} from "element-plus";
 
 

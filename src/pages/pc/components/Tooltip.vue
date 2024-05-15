@@ -1,4 +1,4 @@
-<script lang="jsx">
+<script lang="tsx">
 import {nextTick, Teleport, Transition} from "vue";
 
 export default {
@@ -45,25 +45,12 @@ export default {
     },
   },
   render() {
-    let Vnode = this.$slots.default()[0]
-    return <>
-      {
-          this.show && this.title && (
-              <Teleport to="body">
-                <Transition name="fade">
-                  <div ref="tip" className="tip">
-                    {this.title}
-                  </div>
-                </Transition>
-              </Teleport>
-          )
-      }
-      <Vnode
-          onClick={() => this.show = false}
-          onmouseenter={(e) => this.showPop(e)}
-          onmouseleave={() => this.show = false}
-      />
-    </>
+    return (
+        <div>
+          123
+
+        </div>
+    )
   }
 }
 </script>

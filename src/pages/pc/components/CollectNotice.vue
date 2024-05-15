@@ -5,7 +5,7 @@ import Close from "@/components/icon/Close.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {watch} from "vue";
 import {useSettingStore} from "@/stores/setting.ts";
-import {$ref} from "vue/macros";
+
 import {isMobile} from "@/utils";
 
 let settingStore = useSettingStore()

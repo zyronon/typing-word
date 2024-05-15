@@ -14,7 +14,7 @@ import CollectNotice from "@/pages/pc/components/CollectNotice.vue";
 import {SAVE_DICT_KEY, SAVE_SETTING_KEY} from "@/utils/const.ts";
 import {isMobile, shakeCommonDict} from "@/utils";
 import router, {routes} from "@/router.ts";
-import {$ref} from "vue/macros";
+
 import {useRoute} from "vue-router";
 import * as eruda from "eruda";
 

@@ -3,7 +3,7 @@
 import {onDeactivated, onMounted, onUnmounted, watch} from "vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useBaseStore} from "@/stores/base.ts";
-import {$ref} from "vue/macros";
+
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";

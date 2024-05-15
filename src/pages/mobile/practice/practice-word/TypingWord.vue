@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted, watch} from "vue"
-import {$computed, $ref} from "vue/macros"
 import {useBaseStore} from "@/stores/base.ts"
 import {DefaultDisplayStatistics, DefaultWord, DictType, ShortcutKey, Sort, Word} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
@@ -21,7 +20,6 @@ import SlideItem from "@/components/slide/SlideItem.vue";
 import MobilePanel from "@/pages/mobile/components/MobilePanel.vue";
 import router from "@/router.ts";
 import {Icon} from "@iconify/vue";
-import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import useTheme from "@/hooks/theme.ts";
 
 interface IProps {

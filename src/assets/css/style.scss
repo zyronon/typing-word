@@ -3,10 +3,14 @@
 @import "variable.scss";
 @import "anim";
 @import 'element-plus/theme-chalk/dark/css-vars';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --color-background: #E6E8EB;
-  --color-main-bg: #E6E8EB;
+  //--color-main-bg: #E6E8EB;
+  --color-main-bg: rgb(238,240,244);
   --color-second-bg: rgb(240, 242, 244);
   --color-third-bg: rgb(213, 215, 217);
 
@@ -232,7 +236,7 @@ a {
 
 /* 火狐美化滚动条 */
 * {
-  scrollbar-color: var(--color-scrollbar) #f3f4f9;
+    scrollbar-color: var(--color-scrollbar) #f3f4f9;
   /* 滑块颜色  滚动条背景颜色 */
   scrollbar-width: thin;
   /* 滚动条宽度有三种：thin、auto、none */

@@ -13,7 +13,7 @@ import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {$ref} from "vue/macros";
+
 import {DictType, ShortcutKey} from "@/types.ts";
 import ChapterName from "@/pages/pc/components/toolbar/ChapterName.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
@@ -122,10 +122,6 @@ watch(() => store.load, n => {
         </div>
 
         <div class="with-bg anim">
-          <BaseIcon
-              @click="runtimeStore.showSettingModal = true"
-              :title="`设置(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
-              icon="uil:setting"/>
           <BaseIcon
               @click="settingStore.showPanel = !settingStore.showPanel"
               :title="`单词本(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"

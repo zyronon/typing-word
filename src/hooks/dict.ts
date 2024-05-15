@@ -4,7 +4,7 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {chunk, cloneDeep} from "lodash-es";
 import {isArticle} from "@/hooks/article.ts";
 import {nanoid} from "nanoid";
-import {$ref} from "vue/macros";
+
 
 
 export function useWordOptions() {

@@ -4,7 +4,6 @@ import BaseIcon from "@/components/BaseIcon.vue";
 import WordList from "@/pages/pc/components/list/WordList.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
-import {$computed, $ref} from "vue/macros";
 import {Dict, DictType} from "@/types.ts";
 import {useRouter} from "vue-router";
 import {useBaseStore} from "@/stores/base.ts";

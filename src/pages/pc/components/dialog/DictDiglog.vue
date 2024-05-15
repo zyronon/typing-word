@@ -3,7 +3,6 @@ import {useBaseStore} from "@/stores/base.ts"
 import {onMounted} from "vue"
 import {DefaultDict, Dict, DictResource, DictType, Sort, Word} from "@/types.ts"
 import {chunk, cloneDeep, reverse, shuffle} from "lodash-es";
-import {$computed, $ref} from "vue/macros";
 import BaseButton from "@/components/BaseButton.vue";
 import {Icon} from '@iconify/vue';
 import "vue-activity-calendar/style.css";
