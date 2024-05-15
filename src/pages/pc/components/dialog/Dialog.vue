@@ -189,7 +189,7 @@ async function cancel() {
 @import "@/assets/css/variable";
 
 $modal-mask-bg: rgba(#000, .45);
-$radius: 12rem;
+$radius: 8rem;
 $time: 0.3s;
 $header-height: 60rem;
 

@@ -449,13 +449,17 @@ function importData(e) {
           </div>
         </div>
       </div>
-      <div v-if="tabIndex === 5">
-        <p>Typing Word</p>
-        本项目完全开源！好用请大家多多点Star！
-        <div></div>
-        GitHub地址：https://github.com/zyronon/typing-word
-        <div></div>
-        反馈: https://github.com/zyronon/typing-word/issues
+      <div v-if="tabIndex === 5" class="about">
+        <h1>Typing Word</h1>
+        <p>
+          本项目完全开源！好用请大家多多点Star！
+        </p>
+        <p>
+          GitHub地址：<a href="https://github.com/zyronon/typing-word">https://github.com/zyronon/typing-word</a>
+        </p>
+        <p>
+          反馈：<a href="https://github.com/zyronon/typing-word/issues">https://github.com/zyronon/typing-word/issues</a>
+        </p>
       </div>
     </div>
   </div>
@@ -640,6 +644,10 @@ function importData(e) {
       gap: 10rem;
     }
   }
+}
+
+.about {
+  text-align: center;
 }
 
 </style>

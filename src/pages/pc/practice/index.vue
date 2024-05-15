@@ -17,7 +17,6 @@ import {ShortcutKey} from "@/types.ts";
 import DictModal from "@/pages/pc/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
-import RightTopBar from "@/pages/pc/components/RightTopBar.vue";
 import Logo from "@/pages/pc/components/Logo.vue";
 
 const practiceStore = usePracticeStore()
@@ -142,14 +141,15 @@ useStartKeyboardEventListener()
 </script>
 <template>
   <div class="practice-wrapper">
-    <Logo/>
+    <div class="left">
+      <Logo/>
+    </div>
     <Toolbar/>
     <!--    <BaseButton @click="test">test</BaseButton>-->
     <PracticeArticle ref="practiceRef" v-if="store.isArticle"/>
     <PracticeWord ref="practiceRef" v-else/>
     <Footer/>
   </div>
-  <RightTopBar/>
   <DictModal/>
   <Statistics/>
 </template>
@@ -165,8 +165,10 @@ useStartKeyboardEventListener()
   align-items: center;
   //padding-right: var(--practice-wrapper-padding-right);
   transform: translateX(var(--practice-wrapper-translateX));
+}
 
-
+.left{
+  background: white;
 }
 
 </style>
