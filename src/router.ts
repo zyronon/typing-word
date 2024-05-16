@@ -17,8 +17,16 @@ import About from "@/pages/mobile/my/About.vue";
 import Feedback from "@/pages/mobile/my/Feedback.vue";
 import MusicSetting from "@/pages/mobile/my/setting/MusicSetting.vue";
 import OtherSetting from "@/pages/mobile/my/setting/OtherSetting.vue";
+import WordHome from "@/pages/pc/word/WordHome.vue";
+import PC from "@/pages/pc/index.vue";
 
 export const routes: RouteRecordRaw[] = [
+  {
+    path: '/', component: PC,
+    children: [
+      {path: '/word', component: WordHome},
+    ]
+  },
   {path: '/pc/practice', component: Practice},
   {path: '/pc/dict', component: Dict},
 

@@ -4,7 +4,6 @@ import DictManage from "@/pages/pc/dict/DictManage.vue";
 import {onMounted} from "vue";
 import {useRoute} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import RightTopBar from "@/pages/pc/components/RightTopBar.vue";
 import Logo from "@/pages/pc/components/Logo.vue";
 
 const router = useRoute()
@@ -27,7 +26,6 @@ onMounted(() => {
         </nav>
         <nav @click.stop="runtimeStore.showSettingModal = true"><a href="javascript:void(0)">设置</a></nav>
       </div>
-      <RightTopBar/>
     </header>
     <div class="content">
       <DictManage/>

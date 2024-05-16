@@ -1,8 +1,13 @@
 //@import '/node_modules/element-plus/dist/index.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "/node_modules/hover.css";
 @import "variable.scss";
 @import "anim";
 @import 'element-plus/theme-chalk/dark/css-vars';
+
 
 :root {
   --color-background: #E6E8EB;

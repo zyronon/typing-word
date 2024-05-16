@@ -1,18 +1,13 @@
 <script setup lang="ts">
 import {computed, nextTick, onMounted, onUnmounted, watch} from "vue"
-import {$computed, $ref} from "vue/macros";
-import {Article, ArticleWord, DefaultArticle, ShortcutKey, ShortcutKeyMap, Word} from "@/types.ts";
+import {$ref} from "vue/macros";
+import {Article, ArticleWord, DefaultArticle, ShortcutKey, Word} from "@/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
-import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import Options from "@/pages/pc/practice/Options.vue";
-import {Icon} from "@iconify/vue";
-import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
-import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useArticleOptions} from "@/hooks/dict.ts";
 

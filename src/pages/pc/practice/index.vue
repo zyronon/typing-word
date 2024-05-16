@@ -5,7 +5,7 @@ import {onMounted, onUnmounted, watch} from "vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 import Footer from "@/pages/pc/practice/Footer.vue";
 import {useBaseStore} from "@/stores/base.ts";
-import {$ref} from "vue/macros";
+
 import Statistics from "@/pages/pc/practice/Statistics.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -18,6 +18,7 @@ import DictModal from "@/pages/pc/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
 import Logo from "@/pages/pc/components/Logo.vue";
+import {Icon} from "@iconify/vue";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
@@ -141,9 +142,6 @@ useStartKeyboardEventListener()
 </script>
 <template>
   <div class="practice-wrapper">
-    <div class="left">
-      <Logo/>
-    </div>
     <Toolbar/>
     <!--    <BaseButton @click="test">test</BaseButton>-->
     <PracticeArticle ref="practiceRef" v-if="store.isArticle"/>
@@ -167,8 +165,5 @@ useStartKeyboardEventListener()
   transform: translateX(var(--practice-wrapper-translateX));
 }
 
-.left{
-  background: white;
-}
 
 </style>

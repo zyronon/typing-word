@@ -17,7 +17,7 @@ function goHome(){
 
 <style scoped lang="scss">
 .logo {
-  position: fixed;
+  //position: fixed;
   left: var(--space);
   top: var(--space);
   z-index: 1;
