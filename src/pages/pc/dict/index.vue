@@ -38,7 +38,7 @@ onMounted(() => {
 
   header {
     background: var(--color-second-bg);
-    height: 60rem;
+    height: 4rem;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -47,12 +47,12 @@ onMounted(() => {
 
     .nav-list {
       display: flex;
-      gap: 10rem;
+      gap: .6rem;
 
       nav {
-        padding: 7rem 20rem;
+        padding: .4rem 1.2rem;
         cursor: pointer;
-        font-size: 16rem;
+        font-size: 1rem;
         transition: all .3s;
 
         &:hover {

@@ -379,9 +379,9 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-size: 14rem;
+  font-size: 1rem;
   color: gray;
-  gap: 6rem;
+  gap: .4rem;
   position: relative;
   width: var(--toolbar-width);
 
@@ -396,14 +396,14 @@ onUnmounted(() => {
       align-items: center;
 
       .arrow {
-        min-width: 22rem;
-        min-height: 22rem;
+        min-width: 1.6rem;
+        min-height: 1.6rem;
       }
     }
 
     .word {
-      font-size: 24rem;
-      margin-bottom: 4rem;
+      font-size: 1.8rem;
+      margin-bottom: .2rem;
       font-family: var(--word-font-family);
     }
 
@@ -411,31 +411,31 @@ onUnmounted(() => {
       cursor: pointer;
       display: flex;
       float: left;
-      gap: 10rem;
+      gap: .8rem;
     }
 
     .next {
       cursor: pointer;
       display: flex;
       justify-content: flex-end;
-      gap: 10rem;
+      gap: .8rem;
       float: right;
     }
   }
 
   .options-wrapper {
     position: absolute;
-    margin-top: 120rem;
+    margin-top: 8rem;
   }
 }
 
 .word-panel-wrapper {
   position: fixed;
   left: 0;
-  top: 10rem;
+  top: .8rem;
   z-index: 1;
   margin-left: var(--panel-margin-left);
-  height: calc(100% - 20rem);
+  height: calc(100% - 1.5rem);
 }
 
 </style>

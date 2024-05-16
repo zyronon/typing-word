@@ -7,11 +7,13 @@ import {usePracticeStore} from "@/stores/practice.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
+import {useRouter} from "vue-router";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
+const router = useRouter()
 </script>
 
 <template>
@@ -19,7 +21,7 @@ const runtimeStore = useRuntimeStore()
     <div class="aside">
       <div class="top">
         <Logo/>
-        <div class="row">
+        <div class="row" @click="router.push('/word')">
           <Icon icon="material-symbols-light:dictionary-outline-sharp"/>
           <!--          <Icon icon="streamline:dictionary-language-book"/>-->
           <span>单词</span>
@@ -76,6 +78,7 @@ const runtimeStore = useRuntimeStore()
   justify-content: space-between;
 
   .row {
+    @apply cursor-pointer;
     padding: 0.5rem;
     display: flex;
     align-items: center;

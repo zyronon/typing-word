@@ -180,7 +180,7 @@ onMounted(() => {
   justify-content: center;
 
   .wrapper {
-    width: 500rem;
+    width: 80rem;
   }
 
   .el-select {

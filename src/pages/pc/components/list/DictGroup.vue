@@ -49,8 +49,8 @@ watch(() => props.groupByTag, () => {
   //border-bottom: 1px dashed gray;
 
   .category {
-    font-size: 24rem;
-    padding-bottom: 10rem;
+    font-size: 1.2rem;
+    padding-bottom: 1rem;
     border-bottom: 1px dashed gray;
   }
 }
@@ -58,13 +58,13 @@ watch(() => props.groupByTag, () => {
 .tags {
   display: flex;
   flex-wrap: wrap;
-  margin: 10rem 0;
+  margin: 1rem 0;
 
   .tag {
     color: var(--color-font-1);
     cursor: pointer;
-    padding: 5rem 10rem;
-    border-radius: 20rem;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
 
     &.active {
       color: var(--color-font-active-1);

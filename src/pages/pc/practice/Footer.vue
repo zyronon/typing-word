@@ -81,17 +81,17 @@ onUnmounted(() => {
 
 .footer {
   width: var(--toolbar-width);
-  margin-bottom: 10rem;
+  margin-bottom: .8rem;
   transition: all var(--anim-time);
   position: relative;
-  margin-top: 15rem;
+  margin-top: 1rem;
 
   &.hide {
-    margin-bottom: -90rem;
-    margin-top: 50rem;
+    margin-bottom: -7rem;
+    margin-top: 3rem;
 
     .progress {
-      bottom: calc(100% + 25rem);
+      bottom: calc(100% + 1.8rem);
     }
   }
 
@@ -99,15 +99,15 @@ onUnmounted(() => {
     position: relative;
     width: 100%;
     box-sizing: border-box;
-    border-radius: 10rem;
+    border-radius: .6rem;
     background: var(--color-second-bg);
-    padding: 3rem var(--space) 6rem var(--space);
+    padding: .2rem var(--space) .4rem var(--space);
     z-index: 2;
     border: 1px solid var(--color-item-border);
     box-shadow: var(--shadow);
 
     .stat {
-      margin-top: 8rem;
+      margin-top: .5rem;
       display: flex;
       justify-content: space-around;
 
@@ -115,8 +115,8 @@ onUnmounted(() => {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 5rem;
-        width: 80rem;
+        gap: .3rem;
+        width: 5rem;
         color: gray;
 
         .line {
@@ -131,7 +131,7 @@ onUnmounted(() => {
   .progress {
     width: 100%;
     transition: all .3s;
-    padding: 0 10rem;
+    padding: 0 .6rem;
     box-sizing: border-box;
     position: absolute;
     bottom: 0;

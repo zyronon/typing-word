@@ -4,8 +4,10 @@ import DictListPanel from "@/pages/pc/components/DictListPanel.vue";
 import {Icon} from '@iconify/vue'
 import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
+import {useRouter} from "vue-router";
 
 const base = useBaseStore()
+const router = useRouter()
 
 function clickEvent(e) {
   console.log('e', e)
@@ -13,14 +15,15 @@ function clickEvent(e) {
 </script>
 
 <template>
-  <div class="word flex justify-center h-full">
+  <div class="word flex justify-center overflow-auto	">
     <div class="w-3/5">
       <div class="card flex justify-between items-center">
         <div class="bg-slate-200 p-5 rounded-md cursor-pointer flex items-center">
           <span>{{ base.currentDict.name }}</span>
-          <Icon icon="mingcute:right-line" class="text-2xl ml-2"/>
+          <Icon icon="gg:arrows-exchange" class="text-2xl ml-2"/>
         </div>
-        <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white">
+        <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
+             @click="router.push('/practice')">
           开始学习
         </div>
       </div>

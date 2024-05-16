@@ -43,7 +43,7 @@ function toggle() {
         autosize
         autofocus
         type="textarea"
-        :input-style="`color: var(--color-font-1);font-size: 16rem;`"
+        :input-style="`color: var(--color-font-1);font-size: 1rem;`"
     />
     <div class="options">
       <BaseButton @click="toggle">取消</BaseButton>
@@ -53,7 +53,7 @@ function toggle() {
   <div
       v-else
       class="text"
-      :style="`font-size: 16rem;`"
+      :style="`font-size: 1rem;`"
       @click="toggle">
     {{ value }}
   </div>
@@ -61,12 +61,12 @@ function toggle() {
 
 <style scoped lang="scss">
 .edit-text {
-  margin-top: 10rem;
+  margin-top: .6rem;
   color: var(--color-font-1);
 
   .options {
-    margin-top: 10rem;
-    gap: 10rem;
+    margin-top: .6rem;
+    gap: .6rem;
     display: flex;
     justify-content: flex-end;
   }
@@ -74,6 +74,6 @@ function toggle() {
 
 .text {
   color: var(--color-font-1);
-  min-height: 18rem;
+  min-height: 1.1rem;
 }
 </style>

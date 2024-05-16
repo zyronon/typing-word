@@ -780,8 +780,8 @@ defineExpose({getDictDetail, add: addWord, editDict})
     align-items: center;
     color: var(--color-font-1);
     padding: 0 var(--space);
-    gap: 20rem;
-    margin-bottom: 20rem;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
 
     .back {
       height: 100%;
@@ -792,15 +792,15 @@ defineExpose({getDictDetail, add: addWord, editDict})
 
     .left {
       display: flex;
-      gap: 10rem;
+      gap: .6rem;
       flex-direction: column;
       color: var(--color-font-2);
 
       .top {
         color: var(--color-font-1);
         display: flex;
-        gap: 10rem;
-        font-size: 20rem;
+        gap: .6rem;
+        font-size: 1.2rem;
         align-items: center;
       }
 
@@ -843,14 +843,14 @@ defineExpose({getDictDetail, add: addWord, editDict})
     }
 
     .select {
-      height: 45rem;
+      height: 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
 
       .left {
         display: flex;
-        gap: 5rem;
+        gap: .3rem;
         align-items: center;
       }
     }
@@ -865,7 +865,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
   .column {
     flex: 1;
     background: white;
-    border-radius: 10rem;
+    border-radius: .6rem;
     background: var(--color-second-bg);
     color: var(--color-font-1);
     padding-bottom: var(--space);
@@ -874,7 +874,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
   }
 
   .left-column {
-    max-width: 250rem;
+    max-width: 16rem;
     width: 16vw;
     @extend .column;
   }
@@ -883,7 +883,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10rem;
+    gap: .6rem;
   }
 
   .right-column {
@@ -899,39 +899,39 @@ defineExpose({getDictDetail, add: addWord, editDict})
 }
 
 .allocation-chapter {
-  width: 500rem;
+  width: 30rem;
   padding: var(--space);
   padding-top: 0;
   color: var(--color-font-1);
 
   .desc {
-    margin-top: 10rem;
-    margin-bottom: 35rem;
+    margin-top: .6rem;
+    margin-bottom: 2rem;
     text-align: center;
   }
 
   .row {
     display: flex;
     align-items: center;
-    gap: 20rem;
-    margin-bottom: 15rem;
+    gap: 1.2rem;
+    margin-bottom: 1rem;
     word-break: keep-all;
 
     .label {
-      width: 90rem;
+      width: 5.6rem;
     }
 
     .text {
-      font-size: 12rem;
+      font-size: .7rem;
     }
   }
 
   .notice {
     display: flex;
     justify-content: space-between;
-    transform: translate3d(0, -15rem, 0);
-    padding-left: 110rem;
-    font-size: 13rem;
+    transform: translate3d(0, -1rem, 0);
+    padding-left: 7rem;
+    font-size: .8rem;
   }
 }
 

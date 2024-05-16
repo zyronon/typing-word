@@ -23,11 +23,12 @@ import PC from "@/pages/pc/index.vue";
 export const routes: RouteRecordRaw[] = [
   {
     path: '/', component: PC,
+    redirect: '/word',
     children: [
-      {path: '/word', component: WordHome},
+      {path: 'word', component: WordHome},
+      {path: 'practice', component: Practice},
     ]
   },
-  {path: '/pc/practice', component: Practice},
   {path: '/pc/dict', component: Dict},
 
   {path: '/mobile', component: Mobile,},
@@ -44,7 +45,7 @@ export const routes: RouteRecordRaw[] = [
   {path: '/mobile/about', component: About},
   {path: '/mobile/feedback', component: Feedback},
   {path: '/test', component: Test},
-  {path: '/', redirect: '/pc/practice'},
+  // {path: '/', redirect: '/pc/practice'},
 ]
 
 const router = VueRouter.createRouter({

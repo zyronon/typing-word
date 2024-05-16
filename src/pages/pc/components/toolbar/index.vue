@@ -31,7 +31,7 @@ const moreOptionsRef = $ref<HTMLDivElement>(null)
 watch([() => settingStore.showToolbar, () => headerRef], n => {
   if (n[1]) {
     if (n[0]) {
-      n[1].style.marginTop = '10rem'
+      n[1].style.marginTop = '.8rem'
     } else {
       let rect = n[1].getBoundingClientRect()
       n[1].style.marginTop = `-${rect.height}px`
@@ -68,6 +68,7 @@ watch(() => store.load, n => {
             {{ store.currentDict.name }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
           </div>
         </Tooltip>
+        <Icon icon="gg:arrows-exchange" />
         <ChapterName v-if="store.currentDict.type === DictType.word"/>
         <div class="info-text" v-if="practiceStore.repeatNumber">
           复习错词
@@ -147,14 +148,14 @@ watch(() => store.load, n => {
 
 <style lang="scss">
 .info {
-  border-radius: 6rem;
+  border-radius: .5rem;
   color: var(--color-font-1);
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   transition: all .3s;
-  padding: 6rem 8rem;
+  padding: .5rem .6rem;
 
   &:hover {
     background: var(--color-main-active);
@@ -186,15 +187,15 @@ watch(() => store.load, n => {
 
 header {
   width: var(--toolbar-width);
-  margin-top: 10rem;
+  margin-top: 1rem;
   background: var(--color-second-bg);
-  border-radius: 8rem;
-  margin-bottom: 30rem;
+  border-radius: .8rem;
+  margin-bottom: 3rem;
   position: relative;
   z-index: 2;
-  padding: 4rem var(--space);
+  padding: .4rem var(--space);
   box-sizing: border-box;
-  gap: 10rem;
+  gap: 1rem;
   border: 1px solid var(--color-item-border);
   transition: all var(--anim-time);
   box-shadow: var(--shadow);
@@ -208,12 +209,12 @@ header {
     .dict-name {
       display: flex;
       max-width: 45%;
-      font-size: 17rem;
+      font-size: 1rem;
       position: relative;
     }
 
     .hide {
-      transform: translateX(calc(100% - 36rem));
+      transform: translateX(calc(100% - 2rem));
     }
 
     .options {
@@ -221,12 +222,9 @@ header {
       align-items: center;
       overflow: hidden;
 
-      .icon-wrapper {
-        margin-left: 10rem;
-      }
 
       :deep(.icon-wrapper) {
-        margin-left: 10rem;
+        margin-left: .2rem;
       }
 
       .more {
@@ -251,7 +249,7 @@ header {
     cursor: pointer;
     transition: all .5s;
     transform: translate3d(-50%, 100%, 0) rotate(180deg);
-    padding: 5rem;
+    padding: .5rem;
 
     &.down {
       transform: translate3d(-50%, 100%, 0) rotate(0);

@@ -189,9 +189,9 @@ async function cancel() {
 @import "@/assets/css/variable";
 
 $modal-mask-bg: rgba(#000, .45);
-$radius: 8rem;
+$radius: .5rem;
 $time: 0.3s;
-$header-height: 60rem;
+$header-height: 4rem;
 
 @keyframes bounce-in {
   0% {
@@ -288,8 +288,8 @@ $header-height: 60rem;
 
     .close {
       position: absolute;
-      right: 20rem;
-      top: 20rem;
+      right: 1.2rem;
+      top: 1.2rem;
       z-index: 999;
     }
 
@@ -297,14 +297,14 @@ $header-height: 60rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24rem 24rem 16rem;
+      padding: 1.3rem 1.3rem 1rem;
       border-radius: $radius $radius 0 0;
 
       .title {
         color: var(--color-font-1);
         font-weight: bold;
-        font-size: 24rem;
-        line-height: 33rem;
+        font-size: 1.3rem;
+        line-height: 1.8rem;
       }
     }
 
@@ -312,21 +312,21 @@ $header-height: 60rem;
       box-sizing: border-box;
       color: rgba(255, 255, 255, 0.8);
       font-weight: 400;
-      font-size: 18rem;
-      line-height: 27rem;
+      font-size: 1.1rem;
+      line-height: 1.7rem;
       width: 100%;
       flex: 1;
       overflow: hidden;
       display: flex;
 
       &.padding {
-        padding: 4rem 24rem 24rem;
+        padding: .2rem 1.6rem 1.6rem;
       }
 
       .content {
-        width: 350rem;
+        width: 25rem;
         color: var(--color-font-1);
-        padding: 4rem 24rem 24rem;
+        padding: .2rem 1.6rem 1.6rem;
       }
     }
 
@@ -334,11 +334,11 @@ $header-height: 60rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16rem 24rem;
+      padding: 1rem 1.6rem;
       color: #fff;
-      font-size: 18rem;
+      font-size: 1.1rem;
       background: rgba(0, 0, 0, .2);
-      border-radius: 0 0 24rem 24rem;
+      border-radius: 0 0 1.6rem 1.6rem;
 
       .left {
         display: flex;
@@ -347,7 +347,7 @@ $header-height: 60rem;
 
         .text {
           color: white;
-          font-size: 16rem;
+          font-size: 1rem;
           cursor: pointer;
         }
 

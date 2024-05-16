@@ -52,8 +52,8 @@ defineEmits(['click'])
 
 .base-button {
   cursor: pointer;
-  border-radius: 6rem;
-  padding: 0 15rem;
+  border-radius: .4rem;
+  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,7 +61,7 @@ defineEmits(['click'])
   //background: #999;
   //background: rgb(60, 63, 65);
   //background: var(--color-second-bg);
-  height: 36rem;
+  height: 2.5rem;
   line-height: 1;
   position: relative;
 
@@ -76,25 +76,25 @@ defineEmits(['click'])
   }
 
   &.small {
-    height: 30rem;
+    height: 2.4rem;
 
     & > span {
-      font-size: 13rem;
+      font-size: .8rem;
     }
   }
 
   &.large {
-    height: 50rem;
-    font-size: 18rem;
-    padding: 0 22rem;
+    height: 3rem;
+    font-size: 1.1rem;
+    padding: 0 1.4rem;
     & > span {
-      font-size: 18rem;
+      font-size: 1.1rem;
     }
   }
 
 
   & > span {
-    font-size: 16rem;
+    font-size: 1rem;
     color: white;
 
     :deep(a) {
@@ -126,11 +126,11 @@ defineEmits(['click'])
 }
 
 .key-notice {
-  margin-left: 10rem;
+  margin-left: .6rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12rem;
+  font-size: .8rem;
   color: white;
   //gap: 2rem;
 

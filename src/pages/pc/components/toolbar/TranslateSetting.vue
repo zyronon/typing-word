@@ -114,9 +114,9 @@ function save() {
 }
 
 .footer {
-  margin-top: 10rem;
+  margin-top: .6rem;
   display: flex;
   justify-content: flex-end;
-  gap: 10rem;
+  gap: .6rem;
 }
 </style>

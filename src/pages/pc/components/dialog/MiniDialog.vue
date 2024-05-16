@@ -19,7 +19,7 @@ withDefaults(defineProps<IProps>(), {
   </Transition>
 </template>
 
-<style lang="scss">
+<style  lang="scss">
 @import "@/assets/css/style";
 
 .mini-row-title {

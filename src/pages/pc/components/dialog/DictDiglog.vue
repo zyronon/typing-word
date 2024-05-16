@@ -245,7 +245,7 @@ function handleChangeArticleChapterIndex(val: any) {
                 />
                 <div class="name">{{ runtimeStore.editDict.name }}</div>
                 <div class="desc">{{ runtimeStore.editDict.description }}</div>
-                <div class="text flex align-center gap10">
+                <div class="text flex align-center">
                   <div v-if="dictIsArticle">总文章：{{ runtimeStore.editDict.articles.length }}篇
                   </div>
                   <div v-else>总词汇：
@@ -423,7 +423,7 @@ function handleChangeArticleChapterIndex(val: any) {
 <style scoped lang="scss">
 @import "@/assets/css/style";
 
-$header-height: 60rem;
+$header-height: 4rem;
 
 #DictDialog {
   //position: fixed;
@@ -432,7 +432,7 @@ $header-height: 60rem;
   //transform: translate(-50%, -50%);
   background: var(--color-second-bg);
   z-index: 99999;
-  width: 1030rem;
+  width: 60rem;
   height: 75vh;
 }
 
@@ -456,7 +456,7 @@ $header-height: 60rem;
 
     .left {
       display: flex;
-      gap: 10rem;
+      gap: .6rem;
       align-items: center;
     }
   }
@@ -483,21 +483,20 @@ $header-height: 60rem;
 
       .left-column {
         flex: 5;
-        gap: 10rem;
+        gap: .6rem;
         position: relative;
-        font-size: 14rem;
+        font-size: .9rem;
         padding-right: var(--space);
         @extend .column;
 
-
         .name {
-          font-size: 24rem;
+          font-size: 1.6rem;
           width: 95%;
         }
 
         .desc {
-          font-size: 16rem;
-          margin-bottom: 20rem;
+          font-size: 1rem;
+          margin-bottom: 1.2rem;
         }
 
         .count {
@@ -522,12 +521,12 @@ $header-height: 60rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 34rem;
+            height: 2rem;
             word-break: keep-all;
-            gap: 10rem;
+            gap: .6rem;
 
             .el-radio {
-              margin-right: 10rem;
+              margin-right: .6rem;
             }
           }
 
@@ -540,9 +539,9 @@ $header-height: 60rem;
           .notice {
             display: flex;
             justify-content: space-between;
-            transform: translate3d(0, -5rem, 0);
-            padding-left: 100rem;
-            font-size: 13rem;
+            transform: translate3d(0, -.3rem, 0);
+            padding-left: 6rem;
+            font-size: .8rem;
           }
         }
       }

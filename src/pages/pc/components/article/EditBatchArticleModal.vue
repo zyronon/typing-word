@@ -148,7 +148,7 @@ useWindowClick(() => showExport = false)
       :header="false"
   >
     <div class="add-article">
-      <div class="slide">
+      <div class="aslide">
         <header>
           <div class="dict-name">{{ runtimeStore.editDict.name }}</div>
         </header>
@@ -224,18 +224,18 @@ useWindowClick(() => showExport = false)
 
   .close {
     position: absolute;
-    right: 20rem;
-    top: 20rem;
+    right: 1.2rem;
+    top: 1.2rem;
   }
 
-  .slide {
+  .aslide {
     width: 14vw;
     height: 100%;
-    padding: 0 10rem;
+    padding: 0 .6rem;
     display: flex;
     flex-direction: column;
 
-    $height: 60rem;
+    $height: 4rem;
 
     header {
       height: $height;
@@ -245,25 +245,25 @@ useWindowClick(() => showExport = false)
       //opacity: 0;
 
       .dict-name {
-        font-size: 30rem;
+        font-size: 2rem;
         color: var(--color-font-1);
       }
     }
 
     .name {
-      font-size: 18rem;
+      font-size: 1.1rem;
     }
 
     .translate-name {
-      font-size: 16rem;
+      font-size: 1rem;
     }
 
     .add {
-      width: 260rem;
+      width: 16rem;
       box-sizing: border-box;
-      border-radius: 8rem;
-      margin-bottom: 10rem;
-      padding: 10rem;
+      border-radius: .5rem;
+      margin-bottom: .6rem;
+      padding: .6rem;
       display: flex;
       justify-content: space-between;
       transition: all .3s;
@@ -274,7 +274,7 @@ useWindowClick(() => showExport = false)
     .footer {
       height: $height;
       display: flex;
-      gap: 10rem;
+      gap: .6rem;
       align-items: center;
       justify-content: flex-end;
 

@@ -154,7 +154,7 @@ useStartKeyboardEventListener()
 
 <style scoped lang="scss">
 .practice-wrapper {
-  font-size: 13rem;
+  font-size: 0.9rem;
   width: 100%;
   height: 100%;
   display: flex;

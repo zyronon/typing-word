@@ -145,7 +145,7 @@ onMounted(() => {
 @import "@/assets/css/variable";
 
 #DictDialog {
-  font-size: 14rem;
+  font-size: .9rem;
   position: absolute;
   left: 50%;
   top: 50%;

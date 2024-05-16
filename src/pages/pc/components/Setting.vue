@@ -481,20 +481,20 @@ function importData(e) {
     align-items: center;
 
     .tabs {
-      padding: 10rem 20rem;
+      padding: .6rem 1.6rem;
       display: flex;
       flex-direction: column;
       //align-items: center;
       //justify-content: center;
-      gap: 10rem;
+      gap: .6rem;
 
       .tab {
         cursor: pointer;
-        padding: 10rem 15rem;
-        border-radius: 8rem;
+        padding: .6rem .9rem;
+        border-radius: .5rem;
         display: flex;
         align-items: center;
-        gap: 10rem;
+        gap: .6rem;
 
         &.active {
           background: var(--color-item-bg);
@@ -503,9 +503,9 @@ function importData(e) {
     }
 
     .git-log {
-      font-size: 10rem;
+      font-size: .6rem;
       color: gray;
-      margin-bottom: 5rem;
+      margin-bottom: .3rem;
     }
   }
 
@@ -514,17 +514,17 @@ function importData(e) {
     flex: 1;
     height: 100%;
     overflow: auto;
-    padding: 10rem var(--space);
+    padding: 0 var(--space);
 
     .row {
-      min-height: 40rem;
+      height: 2.6rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: calc(var(--space) * 5);
 
       .wrapper {
-        height: 30rem;
+        height: 2rem;
         flex: 1;
         display: flex;
         justify-content: flex-end;
@@ -533,7 +533,7 @@ function importData(e) {
         span {
           text-align: right;
           //width: 30rem;
-          font-size: 12rem;
+          font-size: .7rem;
           color: gray;
         }
 
@@ -541,31 +541,34 @@ function importData(e) {
           align-items: center;
 
           input {
-            width: 150rem;
+            width: 9rem;
             box-sizing: border-box;
-            margin-right: 10rem;
-            height: 28rem;
+            margin-right: .6rem;
+            height: 1.8rem;
             outline: none;
-            font-size: 16rem;
+            font-size: 1rem;
             border: 1px solid gray;
-            border-radius: 3rem;
-            padding: 0 5rem;
+            border-radius: .2rem;
+            padding: 0 .3rem;
             background: var(--color-second-bg);
             color: var(--color-font-1);
           }
         }
+
+
       }
 
       .main-title {
-        font-size: 22rem;
+        font-size: 1.1rem;
+        font-weight: bold;
       }
 
       .item-title {
-        font-size: 16rem;
+        font-size: 1rem;
       }
 
       .sub-title {
-        font-size: 14rem;
+        font-size: .9rem;
       }
     }
 
@@ -578,17 +581,17 @@ function importData(e) {
 
     .scroll {
       flex: 1;
-      padding-right: 10rem;
+      padding-right: .6rem;
       overflow: auto;
     }
 
     .footer {
-      margin-bottom: 20rem;
+      margin-bottom: 1.3rem;
     }
 
     .desc {
-      margin-bottom: 10rem;
-      font-size: 12rem;
+      margin-bottom: .6rem;
+      font-size: .8rem;
     }
 
     .line {
@@ -630,7 +633,7 @@ function importData(e) {
   color: var(--color-font-1);
 
   p {
-    font-size: 30rem;
+    font-size: 2.4rem;
   }
 
   .github {
@@ -641,7 +644,7 @@ function importData(e) {
     .options {
       display: flex;
       flex-direction: column;
-      gap: 10rem;
+      gap: .6rem;
     }
   }
 }

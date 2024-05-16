@@ -66,9 +66,9 @@ const settingStore = useSettingStore()
 
 <style scoped lang="scss">
 .options {
-  margin-top: 10rem;
+  margin-top: 1.2rem;
   display: flex;
-  gap: 15rem;
-  font-size: 18rem;
+  gap: 1rem;
+  font-size: 1.1rem;
 }
 </style>

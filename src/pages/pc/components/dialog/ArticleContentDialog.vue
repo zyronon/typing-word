@@ -70,25 +70,25 @@ onUnmounted(() => {
   .article-content {
     flex: 1;
     overflow: hidden;
-    font-size: 20rem;
+    font-size: 1.2rem;
     display: flex;
     flex-direction: column;
 
     .title {
       text-align: center;
       margin-bottom: var(--space);
-      font-size: 24rem;
+      font-size: 1.4rem;
     }
 
     .text {
       text-indent: 1.5em;
-      line-height: 35rem;
+      line-height: 2rem;
       overflow: auto;
-      padding-right: 10rem;
-      padding-bottom: 50rem;
+      padding-right: .6rem;
+      padding-bottom: 3rem;
 
       .sentence {
-        margin-bottom: 30rem;
+        margin-bottom: 3rem;
       }
     }
   }

@@ -409,8 +409,8 @@ defineExpose({getDictDetail, add, editDict})
     align-items: center;
     color: var(--color-font-1);
     padding: 0 var(--space);
-    gap: 20rem;
-    margin-bottom: 20rem;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
 
     .back {
       height: 100%;
@@ -421,15 +421,15 @@ defineExpose({getDictDetail, add, editDict})
 
     .left {
       display: flex;
-      gap: 10rem;
+      gap: .6rem;
       flex-direction: column;
       color: var(--color-font-2);
 
       .top {
         color: var(--color-font-1);
         display: flex;
-        gap: 10rem;
-        font-size: 20rem;
+        gap: .6rem;
+        font-size: 1.2rem;
         align-items: center;
       }
 
@@ -449,7 +449,7 @@ defineExpose({getDictDetail, add, editDict})
 
   .box {
     background: white;
-    border-radius: 10rem;
+    border-radius: .6rem;
     background: var(--color-second-bg);
     color: var(--color-font-1);
     padding-bottom: var(--space);
@@ -465,7 +465,7 @@ defineExpose({getDictDetail, add, editDict})
   }
 
   .chapter-list {
-    width: 400rem;
+    width: 25rem;
     height: 100%;
     @extend .box;
 
@@ -480,19 +480,19 @@ defineExpose({getDictDetail, add, editDict})
           position: absolute;
           right: 0;
           display: flex;
-          gap: 10rem;
+          gap: .6rem;
         }
       }
 
       .select {
-        height: 45rem;
+        height: 3rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         .left {
           display: flex;
-          gap: 5rem;
+          gap: .3rem;
           align-items: center;
         }
       }
@@ -511,7 +511,7 @@ defineExpose({getDictDetail, add, editDict})
     flex: 1;
     padding: var(--space);
     overflow: hidden;
-    font-size: 20rem;
+    font-size: 1.2rem;
 
     .title {
       display: flex;
@@ -519,18 +519,18 @@ defineExpose({getDictDetail, add, editDict})
       align-items: center;
       position: relative;
       margin-bottom: var(--space);
-      font-size: 24rem;
+      font-size: 1.4rem;
     }
 
     .text {
       text-indent: 1.5em;
-      line-height: 35rem;
+      line-height: 2.6rem;
       overflow: auto;
-      padding-right: 10rem;
-      padding-bottom: 50rem;
+      padding-right: .6rem;
+      padding-bottom: 3rem;
 
       .sentence {
-        margin-bottom: 30rem;
+        margin-bottom: 2.4rem;
       }
     }
   }
