@@ -32,7 +32,7 @@ const emit = defineEmits<{
 .dict-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 15rem;
+  gap: 1rem;
 }
 
 </style>

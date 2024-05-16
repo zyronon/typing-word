@@ -120,10 +120,10 @@ function del(e) {
 @import "@/assets/css/style";
 
 .dict-list-panel {
-  width: 50%;
+  width: 100%;
   height: 100%;
-  $header-height: 60rem;
-  padding: var(--space);
+  $header-height: 5rem;
+  //padding: var(--space);
   padding-top: 0;
   box-sizing: border-box;
 
@@ -135,18 +135,18 @@ function del(e) {
 
     .tabs {
       display: flex;
-      gap: 20rem;
+      gap: 2rem;
 
       .tab {
         color: var(--color-font-1);
         cursor: pointer;
-        padding: 10rem;
-        padding-bottom: 5rem;
+        padding: 1rem;
+        padding-bottom: 0.5rem;
         transition: all .5s;
         border-bottom: 2px solid transparent;
         display: flex;
         align-items: center;
-        gap: 6rem;
+        gap: 0.6rem;
 
         &.active {
           $main: rgb(64, 158, 255);
@@ -154,7 +154,7 @@ function del(e) {
         }
 
         img {
-          height: 30rem;
+          height: 2rem;
         }
       }
     }
@@ -168,16 +168,16 @@ function del(e) {
       flex: 1;
       overflow: auto;
       height: 100%;
-      padding-right: 10rem;
+      padding-right: 1rem;
 
       .translate {
         display: flex;
         align-items: center;
         color: var(--color-font-1);
-        margin-bottom: 30rem;
+        margin-bottom: 2rem;
 
         & > span {
-          font-size: 22rem;
+          font-size: 1.6rem;
         }
       }
     }

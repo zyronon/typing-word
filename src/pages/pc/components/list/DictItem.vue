@@ -63,22 +63,22 @@ let length = $computed(() => {
 .dict-item {
   cursor: pointer;
   box-sizing: border-box;
-  padding: 10rem;
-  width: 125rem;
-  height: 165rem;
-  border-radius: 10rem;
+  padding: 1rem;
+  width: 12rem;
+  height: 16rem;
+  border-radius: 1rem;
   position: relative;
   background: var(--color-third-bg);
   border: 1px solid var(--color-item-border);
   color: var(--color-font-1);
-  font-size: 14rem;
+  font-size: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
 
   .name {
-    font-size: 16rem;
+    font-size: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box; //作为弹性伸缩盒子模型显示。
@@ -103,14 +103,14 @@ let length = $computed(() => {
 
   .go {
     position: absolute;
-    right: 10rem;
-    bottom: 15rem;
+    right: 1rem;
+    bottom: 1rem;
   }
 
   .del {
     position: absolute;
-    top: 10rem;
-    right: 10rem;
+    top: 1rem;
+    right: 1rem;
     opacity: 0;
     transition: opacity .3s;
   }
@@ -139,17 +139,17 @@ let length = $computed(() => {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 55rem;
-    width: 55rem;
+    height: 4rem;
+    width: 4rem;
     color: white;
     //background-color: skyblue;
     background-color: var(--color-main-active);
     clip-path: polygon(0 10%, 0% 100%, 100% 100%);
-    font-size: 12rem;
+    font-size: 0.8rem;
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    padding: 4rem;
+    padding: 0.2rem;
     box-sizing: border-box;
   }
 }

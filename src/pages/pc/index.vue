@@ -60,7 +60,6 @@ const runtimeStore = useRuntimeStore()
   width: 100vw;
   height: 100vh;
   display: flex;
-  font-size: 14rem;
 }
 
 .aside {
@@ -69,23 +68,23 @@ const runtimeStore = useRuntimeStore()
   top: 0;
   left: 0;
   height: 100vh;
-  width: 200rem;
-  padding: 20rem 10rem;
+  width: 12rem;
+  padding: 1rem 1rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   .row {
-    padding: 10rem;
+    padding: 0.5rem;
     display: flex;
     align-items: center;
-    gap: 10rem;
-    font-size: 16rem;
+    gap: 0.5rem;
+    font-size: 1rem;
     //font-weight: bold;
 
     svg {
-      font-size: 36rem;
+      font-size: 2rem;
     }
   }
 }
