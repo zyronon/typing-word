@@ -17,16 +17,60 @@ function clickEvent(e) {
 <template>
   <div class="word flex justify-center overflow-auto	">
     <div class="w-3/5">
-      <div class="card flex justify-between items-center">
-        <div class="bg-slate-200 p-5 rounded-md cursor-pointer flex items-center">
-          <span>{{ base.currentDict.name }}</span>
-          <Icon icon="gg:arrows-exchange" class="text-2xl ml-2"/>
+
+      <div class="card">
+        <div class="title">
+          当前学习
         </div>
-        <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
-             @click="router.push('/practice')">
-          开始学习
+        <div class="mt-4 flex justify-between items-center">
+          <div class="bg-slate-200 p-5 rounded-md cursor-pointer flex items-center">
+            <span>{{ base.currentDict.name }}</span>
+            <Icon icon="gg:arrows-exchange" class="text-2xl ml-2"/>
+          </div>
+          <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
+               @click="router.push('/practice')">
+            开始学习
+          </div>
         </div>
       </div>
+      <div class="card">
+        <div class="title">
+          其他学习词典
+        </div>
+        <div class="flex flex-wrap">
+          <div class="flex w-1/2 justify-between items-center">
+            <div class="bg-slate-200 p-5 rounded-md cursor-pointer flex items-center">
+              <span>{{ base.currentDict.name }}</span>
+              <Icon icon="gg:arrows-exchange" class="text-2xl ml-2"/>
+            </div>
+            <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
+                 @click="router.push('/practice')">
+              开始学习
+            </div>
+          </div>
+          <div class="flex w-1/2 justify-between items-center">
+            <div class="bg-slate-200 p-5 rounded-md cursor-pointer flex items-center">
+              <span>{{ base.currentDict.name }}</span>
+              <Icon icon="gg:arrows-exchange" class="text-2xl ml-2"/>
+            </div>
+            <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
+                 @click="router.push('/practice')">
+              开始学习
+            </div>
+          </div>
+          <div class="flex w-1/2 justify-between items-center">
+            <div class="bg-slate-200 p-5 rounded-md cursor-pointer flex items-center">
+              <span>{{ base.currentDict.name }}</span>
+              <Icon icon="gg:arrows-exchange" class="text-2xl ml-2"/>
+            </div>
+            <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
+                 @click="router.push('/practice')">
+              开始学习
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="card">
         <div class="title">
           学习记录

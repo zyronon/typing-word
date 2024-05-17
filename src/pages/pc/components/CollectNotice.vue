@@ -100,15 +100,15 @@ watch(() => settingStore.load, (n) => {
   right: var(--space);
   top: var(--space);
   z-index: 2;
-  font-size: 20rem;
+  font-size: 1.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: var(--color-second-bg);
-  padding: 30rem;
-  border-radius: 12rem;
-  width: 500rem;
-  gap: 40rem;
+  padding: 1.8rem;
+  border-radius: 0.7rem;
+  width: 30rem;
+  gap: 2.4rem;
   color: var(--color-font-1);
   line-height: 1.5;
   border: 1px solid var(--color-item-border);
@@ -117,11 +117,11 @@ watch(() => settingStore.load, (n) => {
 
   &.mobile{
     width: 95%;
-    padding: 10rem;
+    padding: 0.6rem;
   }
 
   .notice {
-    margin-top: 30rem;
+    margin-top: 2.4rem;
   }
 
   .active {
@@ -136,23 +136,23 @@ watch(() => settingStore.load, (n) => {
 
       .href-wrapper {
         display: flex;
-        font-size: 16rem;
+        font-size: 1rem;
         align-items: center;
-        gap: 10rem;
+        gap: 0.6rem;
 
         .round {
           color: var(--color-font-1);
-          border-radius: 50rem;
-          padding: 10rem 10rem;
-          padding-left: 20rem;
-          gap: 30rem;
+          border-radius: 3rem;
+          padding: 0.6rem 0.6rem;
+          padding-left: 1.2rem;
+          gap: 2rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
           background: var(--color-main-bg);
 
           .href {
-            font-size: 14rem;
+            font-size: 0.9rem;
           }
         }
 
@@ -167,11 +167,11 @@ watch(() => settingStore.load, (n) => {
       }
 
       .collect-keyboard {
-        margin-top: 20rem;
-        font-size: 16rem;
+        margin-top: 1.2rem;
+        font-size: 1rem;
 
         span {
-          margin-left: 10rem;
+          margin-left: 0.6rem;
         }
       }
     }
@@ -181,12 +181,12 @@ watch(() => settingStore.load, (n) => {
     right: var(--space);
     top: var(--space);
     position: absolute;
-    font-size: 14rem;
+    font-size: 0.9rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     color: var(--color-font-1);
-    gap: 10rem;
+    gap: 0.6rem;
   }
 }
 
