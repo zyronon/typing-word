@@ -29,8 +29,8 @@ function clickJumpSpecifiedChapter(index: number) {
 const listRef: HTMLElement = $ref(null as any)
 
 watch(() => show, n => {
-  if (n){
-    nextTick(()=>{
+  if (n) {
+    nextTick(() => {
       listRef?.children[store.currentDict.chapterIndex]?.scrollIntoView({block: 'center'})
     })
   }
@@ -49,7 +49,7 @@ watch(() => show, n => {
         v-model="show"
         @mouseenter="toggle(true)"
         @mouseleave="toggle(false)"
-        style="width: 230rem;"
+        style="width: 16rem;"
     >
       <div class="chapter-list" ref="listRef">
         <div class="chapter-list-item"
@@ -70,24 +70,24 @@ watch(() => show, n => {
 }
 
 .chapter-list {
-  max-height: 250rem;
+  max-height: 16rem;
   overflow: auto;
-  padding-right: 5rem;
+  padding-right: .3rem;
 
   .chapter-list-item {
-    margin-bottom: 7rem;
-    height: 36rem;
+    margin-bottom: .4rem;
+    height: 2.2rem;
     display: flex;
     align-items: center;
-    gap: 10rem;
+    gap: .6rem;
     width: 100%;
     box-sizing: border-box;
     background: var(--color-item-bg);
     color: var(--color-font-1);
-    font-size: 18rem;
-    border-radius: 8rem;
+    font-size: 1.1rem;
+    border-radius: .5rem;
     transition: all .3s;
-    padding: 10rem;
+    padding: .6rem;
     border: 1px solid var(--color-item-border);
 
     &:hover {

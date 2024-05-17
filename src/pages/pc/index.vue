@@ -48,7 +48,7 @@ const router = useRouter()
         </div>
       </div>
     </div>
-    <div class="content">
+    <div class="content overflow-auto">
       <router-view></router-view>
     </div>
   </div>

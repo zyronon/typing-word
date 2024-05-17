@@ -15,59 +15,90 @@ function clickEvent(e) {
 </script>
 
 <template>
-  <div class="word flex justify-center overflow-auto	">
-    <div class="w-3/5">
-
-      <div class="card">
-        <div class="title">
-          当前学习
-        </div>
-        <div class="mt-4 flex justify-between items-center">
-          <div class="bg-slate-200 p-5 rounded-md cursor-pointer flex items-center">
-            <span>{{ base.currentDict.name }}</span>
-            <Icon icon="gg:arrows-exchange" class="text-2xl ml-2"/>
+  <div class="word flex justify-center ">
+    <div class="w-5/10 pt-5">
+      <div class="flex gap-6">
+        <div class="card w-1/2 flex flex-col">
+          <div class="title">
+            我的词典
           </div>
-          <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
-               @click="router.push('/practice')">
-            开始学习
+          <div class="grid flex-1 flex gap-5 mt-4">
+            <div class="p-4 flex-1 rounded-md bg-slate-200 relative" v-for="i in 3">
+              <span>收藏</span>
+              <div class="absolute bottom-4 right-4">333个词</div>
+            </div>
+          </div>
+        </div>
+        <div class="w-1/2">
+          <div class="card ">
+            <div class="flex justify-between items-center">
+              <div class="bg-slate-200 p-3 rounded-md cursor-pointer flex items-center">
+                <span class="text-lg font-bold">{{ base.currentDict.name }}</span>
+                <Icon icon="gg:arrows-exchange" class="text-2xl ml-2"/>
+                <Icon icon="uil:setting" class="text-2xl ml-2"/>
+              </div>
+              <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
+                   @click="router.push('/practice')">
+                开始学习
+              </div>
+            </div>
+            <div class="mt-5 text-sm">已学习5555个单词的1%</div>
+            <el-progress class="mt-1" percentage="80" :show-text="false"></el-progress>
+          </div>
+          <div class="card flex gap-3">
+            <div class="bg-slate-200 w-10 h-10 flex center text-2xl rounded">
+              0
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between">
+                <div class="title">
+                  每日目标
+                </div>
+                <div style="color:#ac6ed1;" class="cursor-pointer">
+                  更改目标
+                </div>
+              </div>
+              <div class="mt-2 text-xs">学习 50 个单词</div>
+              <el-progress class="flex-1 mt-1" percentage="80" :show-text="false"></el-progress>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="card  ">
+        <div class="flex justify-between ">
+          <div class="title">
+            所有词典
+          </div>
+          <Icon icon="lucide:search" class="text-2xl" />
+        </div>
+
+        <div class="bg-white ">
+          <DictListPanel
+          />
+        </div>
+
+      </div>
+
       <div class="card">
         <div class="title">
           其他学习词典
         </div>
-        <div class="flex flex-wrap">
-          <div class="flex w-1/2 justify-between items-center">
-            <div class="bg-slate-200 p-5 rounded-md cursor-pointer flex items-center">
+        <div class="grid grid-cols-2 gap-6 mt-5 ">
+          <div class=" p-4 rounded-md justify-between items-center bg-slate-200 " v-for="i in 3">
+            <div class="flex justify-between w-full">
               <span>{{ base.currentDict.name }}</span>
-              <Icon icon="gg:arrows-exchange" class="text-2xl ml-2"/>
+              <div class="text-2xl ml-2 flex gap-4">
+                <Icon icon="hugeicons:delete-02"/>
+                <Icon icon="nonicons:go-16"/>
+              </div>
             </div>
-            <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
-                 @click="router.push('/practice')">
-              开始学习
-            </div>
+            <div class="mt-5 text-sm">已学习5555个单词的1%</div>
+            <el-progress class="mt-1" percentage="80" color="white" :show-text="false"></el-progress>
           </div>
-          <div class="flex w-1/2 justify-between items-center">
-            <div class="bg-slate-200 p-5 rounded-md cursor-pointer flex items-center">
-              <span>{{ base.currentDict.name }}</span>
-              <Icon icon="gg:arrows-exchange" class="text-2xl ml-2"/>
-            </div>
-            <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
-                 @click="router.push('/practice')">
-              开始学习
-            </div>
-          </div>
-          <div class="flex w-1/2 justify-between items-center">
-            <div class="bg-slate-200 p-5 rounded-md cursor-pointer flex items-center">
-              <span>{{ base.currentDict.name }}</span>
-              <Icon icon="gg:arrows-exchange" class="text-2xl ml-2"/>
-            </div>
-            <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
-                 @click="router.push('/practice')">
-              开始学习
-            </div>
-          </div>
+        </div>
+        <div class="flex justify-center mt-2 text-2xl">
+          <Icon icon="mingcute:down-line"/>
         </div>
       </div>
 
@@ -90,15 +121,13 @@ function clickEvent(e) {
         </div>
       </div>
 
-      <DictListPanel
-      />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .card {
-  @apply rounded-xl bg-white p-5 mt-10 ;
+  @apply rounded-xl bg-white p-4 mt-5;
 }
 
 .center {
@@ -106,6 +135,6 @@ function clickEvent(e) {
 }
 
 .title {
-  @apply text-xl font-bold;
+  @apply text-lg font-medium;
 }
 </style>

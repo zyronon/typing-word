@@ -97,8 +97,8 @@ function del(e) {
               :list="groupByTranslateLanguage['common']"/>
         </template>
         <template v-else>
-          <div class="translate">
-            <span>翻译：</span>
+          <div class="translate ">
+            <span>释义：</span>
             <el-radio-group v-model="currentTranslateLanguage">
               <el-radio-button border v-for="i in translateLanguageList" :label="i">{{ $t(i) }}</el-radio-button>
             </el-radio-group>
@@ -174,10 +174,10 @@ function del(e) {
         display: flex;
         align-items: center;
         color: var(--color-font-1);
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
 
         & > span {
-          font-size: 1.6rem;
+          font-size: 1.2rem;
         }
       }
     }
