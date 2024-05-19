@@ -359,7 +359,7 @@ defineExpose({getCurrentPractice})
                     {{ store.currentDict.name }}
                   </div>
                   <Tooltip
-                      :title="`下一章(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
+                      :title="`下一章(${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
                       v-if="store.currentDict.chapterIndex < articleData.articles .length - 1">
                     <IconWrapper>
                       <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>

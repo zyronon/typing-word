@@ -343,7 +343,7 @@ defineExpose({showSentence, play, del,hideSentence,nextSentence})
       <div class="options-wrapper">
         <div class="flex gap10">
           <BaseIcon
-              :title="`编辑(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.EditArticle]})`"
+              :title="`编辑(${settingStore.shortcutKeyMap[ShortcutKey.EditArticle]})`"
               icon="tabler:edit"
               @click="emit('edit',props.article)"
           />
@@ -351,16 +351,16 @@ defineExpose({showSentence, play, del,hideSentence,nextSentence})
               v-if="!isArticleCollect(props.article)"
               class="collect"
               @click="toggleArticleCollect(props.article)"
-              :title="`收藏(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
+              :title="`收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
               icon="ph:star"/>
           <BaseIcon
               v-else
               class="fill"
               @click="toggleArticleCollect(props.article)"
-              :title="`取消收藏(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
+              :title="`取消收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
               icon="ph:star-fill"/>
           <BaseIcon
-              :title="`跳过(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
+              :title="`跳过(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
               icon="icon-park-outline:go-ahead"
               @click="emit('over')"/>
         </div>

@@ -18,7 +18,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="dict-list">
+  <div class="dict-list1 grid grid-cols-4 gap-4">
     <DictItem v-for="(dict,index) in list"
               :active="selectId === dict.id"
               @click="emit('selectDict',{dict,index})"

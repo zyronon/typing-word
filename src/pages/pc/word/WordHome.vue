@@ -5,6 +5,7 @@ import {Icon} from '@iconify/vue'
 import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
 import {useRouter} from "vue-router";
+import BaseIcon from "@/components/BaseIcon.vue";
 
 const base = useBaseStore()
 const router = useRouter()
@@ -65,24 +66,12 @@ function clickEvent(e) {
         </div>
       </div>
 
-      <div class="card  ">
-        <div class="flex justify-between ">
-          <div class="title">
-            所有词典
-          </div>
-          <Icon icon="lucide:search" class="text-2xl" />
-        </div>
-
-        <div class="bg-white ">
-          <DictListPanel
-          />
-        </div>
-
-      </div>
-
       <div class="card">
-        <div class="title">
-          其他学习词典
+        <div class="flex justify-between">
+          <div class="title">
+            其他学习词典
+          </div>
+          <BaseIcon icon="ic:round-add" @click="router.push('/dict')"/>
         </div>
         <div class="grid grid-cols-2 gap-6 mt-5 ">
           <div class=" p-4 rounded-md justify-between items-center bg-slate-200 " v-for="i in 3">

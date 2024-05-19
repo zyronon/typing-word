@@ -7,7 +7,7 @@
 :root {
   --color-background: #E6E8EB;
   //--color-main-bg: #E6E8EB;
-  --color-main-bg: rgb(238,240,244);
+  --color-main-bg: rgb(238, 240, 244);
   --color-second-bg: rgb(240, 242, 244);
   --color-third-bg: rgb(213, 215, 217);
 
@@ -35,7 +35,7 @@
   --toolbar-width: 45rem;
   --toolbar-height: 3.2rem;
   --panel-width: 24rem;
-  --space: 1.6rem;
+  --space: 1.2rem;
   --radius: .5rem;
   --shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
   --panel-margin-left: calc(50% - var(--practice-wrapper-translateX) / 2 + var(--toolbar-width) / 2 + 2rem);
@@ -46,6 +46,8 @@
   --color-input-icon: #d3d4d7;
 
   --color-textarea-bg: white;
+
+  --aside-width: 12rem;
 
   --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   --word-font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
@@ -482,4 +484,8 @@ footer {
     display: flex;
     position: relative;
   }
+}
+
+.container2 {
+  @apply w-5/10 pt-5;
 }

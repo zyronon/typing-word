@@ -28,13 +28,16 @@ watch(() => props.groupByTag, () => {
 
 <template>
   <div class="dict-group">
-    <div class="category">{{ category }}</div>
-    <div class="tags">
-      <div class="tag" :class="i === currentTag &&'active'"
-           @click="currentTag = i"
-           v-for="i in Object.keys(groupByTag)">{{ i }}
+    <div class="flex items-center border">
+      <div class="category">{{ category }}：</div>
+      <div class="tags">
+        <div class="tag" :class="i === currentTag &&'active'"
+             @click="currentTag = i"
+             v-for="i in Object.keys(groupByTag)">{{ i }}
+        </div>
       </div>
     </div>
+
     <DictList
         @selectDict="e => emit('selectDict',e)"
         :list="list"
@@ -50,8 +53,10 @@ watch(() => props.groupByTag, () => {
 
   .category {
     font-size: 1.2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px dashed gray;
+    //padding-bottom: 1rem;
+  }
+  .border{
+    border-top: 1px dashed gray;
   }
 }
 

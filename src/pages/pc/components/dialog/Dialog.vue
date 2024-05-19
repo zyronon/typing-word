@@ -198,9 +198,6 @@ $header-height: 4rem;
     opacity: 0;
     transform: scale(0);
   }
-  50% {
-    transform: scale(1.15);
-  }
   100% {
     opacity: 1;
     transform: scale(1);

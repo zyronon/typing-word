@@ -21,7 +21,7 @@ defineEmits(['click'])
 </script>
 
 <template>
-  <Tooltip :disabled="!keyboard" :title="`快捷键: ${keyboard}`">
+  <Tooltip :disabled="!keyboard" :title="`${keyboard}`">
     <div class="base-button"
          v-bind="$attrs"
          @click="e => (!disabled && !loading) && $emit('click',e)"

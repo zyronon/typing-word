@@ -210,7 +210,7 @@ watch(() => props.word, () => {
         <span class="letter" v-else>{{ displayWord }}</span>
       </div>
       <Tooltip
-          :title="`发音(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.PlayWordPronunciation]})`"
+          :title="`发音(${settingStore.shortcutKeyMap[ShortcutKey.PlayWordPronunciation]})`"
       >
         <VolumeIcon ref="volumeIconRef" :simple="true" :cb="() => playWordAudio(word.word)"/>
       </Tooltip>

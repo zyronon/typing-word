@@ -166,7 +166,7 @@ defineExpose({del, showWord, hideWord, play})
         <!--        <div class="volumeIcon">-->
         <!--          <Tooltip-->
         <!--              v-if="i === word.trans.length - 1"-->
-        <!--              :title="`发音(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.PlayTranslatePronunciation]})`"-->
+        <!--              :title="`发音(${settingStore.shortcutKeyMap[ShortcutKey.PlayTranslatePronunciation]})`"-->
         <!--          >-->
         <!--            <VolumeIcon-->
         <!--                ref="volumeTranslateIconRef"-->
@@ -193,7 +193,7 @@ defineExpose({del, showWord, hideWord, play})
         <span class="letter" v-else>{{ displayWord }}</span>
       </div>
       <Tooltip
-          :title="`发音(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.PlayWordPronunciation]})`"
+          :title="`发音(${settingStore.shortcutKeyMap[ShortcutKey.PlayWordPronunciation]})`"
       >
         <VolumeIcon ref="volumeIconRef" :simple="true" :cb="() => playWordAudio(word.word)"/>
       </Tooltip>

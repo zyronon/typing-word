@@ -19,6 +19,7 @@ import MusicSetting from "@/pages/mobile/my/setting/MusicSetting.vue";
 import OtherSetting from "@/pages/mobile/my/setting/OtherSetting.vue";
 import WordHome from "@/pages/pc/word/WordHome.vue";
 import PC from "@/pages/pc/index.vue";
+import Dict2 from '@/pages/pc/dict2/index.vue'
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -26,6 +27,7 @@ export const routes: RouteRecordRaw[] = [
     redirect: '/word',
     children: [
       {path: 'word', component: WordHome},
+      {path: 'dict', component: Dict2},
       {path: 'practice', component: Practice},
     ]
   },

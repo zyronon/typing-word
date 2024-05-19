@@ -90,13 +90,13 @@ const showCollectToggleButton = $computed(() => {
     <div class="panel anim" v-show="settingStore.showPanel">
       <header>
         <div class="tabs">
-          <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前</div>
+          <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前学习</div>
           <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.collect.name }}</div>
           <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.simple.name }}</div>
           <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.wrong.name }}</div>
         </div>
         <Tooltip
-            :title="`关闭(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
+            :title="`关闭(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
         >
           <Close @click="settingStore.showPanel = false"/>
         </Tooltip>

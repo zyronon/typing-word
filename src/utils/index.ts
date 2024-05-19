@@ -4,6 +4,7 @@ import {DefaultSettingState, SettingState} from "@/stores/setting.ts";
 import {cloneDeep} from "lodash-es";
 import {Dict, DictType} from "@/types.ts";
 import {ArchiveReader, libarchiveWasm} from "libarchive-wasm";
+import {useRouter} from "vue-router";
 
 export function getRandom(a: number, b: number): number {
   return Math.random() * (b - a) + a;
@@ -185,4 +186,14 @@ export function getDictFile(url: string) {
       resolve(v)
     }
   })
+}
+
+export function useNav() {
+  const router = useRouter()
+
+  function nav(val) {
+    router.push(val)
+  }
+
+  return {nav, back: router.back}
 }

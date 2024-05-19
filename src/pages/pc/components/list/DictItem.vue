@@ -3,7 +3,6 @@
 import {Dict, DictType} from "@/types.ts";
 import {Icon} from "@iconify/vue";
 import {$computed} from "vue/macros";
-import DeleteIcon from "@/components/icon/DeleteIcon.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 
 const props = defineProps<{
@@ -63,11 +62,11 @@ let length = $computed(() => {
 .dict-item {
   cursor: pointer;
   box-sizing: border-box;
-  width: 9rem;
-  height: 12rem;
+  //width: 9rem;
+  //height: 12rem;
   position: relative;
-  background: var(--color-third-bg);
-  //background: white;
+  //background: var(--color-third-bg);
+  background: white;
   border: 1px solid var(--color-item-border);
   color: var(--color-font-1);
   font-size: 1rem;
@@ -95,6 +94,7 @@ let length = $computed(() => {
   }
 
   .num {
+    margin-top: 2rem;
     text-align: right;
     color: var(--color-font-2);
     //font-weight: bold;

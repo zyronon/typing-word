@@ -42,7 +42,7 @@ function save() {
 <template>
   <div class="setting" @click.stop="null">
     <Tooltip
-        :title="`开关释义显示(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleShowTranslate]})`"
+        :title="`开关释义显示(${settingStore.shortcutKeyMap[ShortcutKey.ToggleShowTranslate]})`"
     >
       <IconWrapper>
         <Icon v-if="settingStore.translate" icon="mdi:translate"

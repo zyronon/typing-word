@@ -41,7 +41,7 @@ const router = useRouter()
       </div>
       <div class="bottom">
         <div class="row"
-             :title="`设置(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
+             :title="`设置(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
              @click="runtimeStore.showSettingModal = true">
           <Icon icon="uil:setting"/>
           <span>试卷</span>
@@ -66,11 +66,12 @@ const router = useRouter()
 
 .aside {
   background: white;
-  //position: fixed;
+  position: fixed;
+  z-index: 999;
   top: 0;
   left: 0;
   height: 100vh;
-  width: 12rem;
+  width: var(--aside-width);
   padding: 1rem 1rem;
   box-sizing: border-box;
   display: flex;

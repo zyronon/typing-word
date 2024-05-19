@@ -14,10 +14,10 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {$ref} from "vue/macros";
-import {DictType, ShortcutKey} from "@/types.ts";
-import ChapterName from "@/pages/pc/components/toolbar/ChapterName.vue";
+import {ShortcutKey} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
+import {useNav} from "@/utils";
 
 const {toggleTheme} = useTheme()
 const store = useBaseStore()
@@ -56,6 +56,7 @@ watch(() => store.load, n => {
   }
 })
 
+const {nav} = useNav()
 </script>
 
 <template>
@@ -63,13 +64,14 @@ watch(() => store.load, n => {
     <div class="content">
       <div class="dict-name">
         <Tooltip
-            :title="`词典详情(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.OpenDictDetail]})`">
-          <div class="info hvr-grow" @click="emitter.emit(EventKey.openDictModal,'detail')">
+            :title="`词典详情(${settingStore.shortcutKeyMap[ShortcutKey.OpenDictDetail]})`">
+          <div class="info" @click="emitter.emit(EventKey.openDictModal,'detail')">
             {{ store.currentDict.name }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
           </div>
         </Tooltip>
-        <Icon icon="gg:arrows-exchange" />
-        <ChapterName v-if="store.currentDict.type === DictType.word"/>
+        <BaseIcon title="切换词典"
+                  @click="nav('/dict')"
+                  icon="gg:arrows-exchange"/>
         <div class="info-text" v-if="practiceStore.repeatNumber">
           复习错词
         </div>
@@ -85,7 +87,7 @@ watch(() => store.load, n => {
           </Tooltip>
 
           <Tooltip
-              :title="`开关默写模式(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
+              :title="`开关默写模式(${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
           >
             <IconWrapper>
               <Icon icon="majesticons:eye-off-line"
@@ -103,16 +105,8 @@ watch(() => store.load, n => {
 
           <RepeatSetting/>
 
-          <!--                    <Add/>-->
-
-          <BaseIcon
-              @click="emitter.emit(EventKey.openDictModal,'my')"
-              title="添加"
-              icon="ic:outline-cloud-upload"/>
-
-
           <Tooltip
-              :title="`切换主题(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
+              :title="`切换主题(${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
           >
             <IconWrapper>
               <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
@@ -120,16 +114,9 @@ watch(() => store.load, n => {
               <Icon icon="tabler:sun" v-else @click="toggleTheme"/>
             </IconWrapper>
           </Tooltip>
-        </div>
-
-        <div class="with-bg anim">
-          <BaseIcon
-              @click="runtimeStore.showSettingModal = true"
-              :title="`设置(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
-              icon="uil:setting"/>
           <BaseIcon
               @click="settingStore.showPanel = !settingStore.showPanel"
-              :title="`单词本(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
+              :title="`单词本(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
               icon="tdesign:menu-unfold"/>
         </div>
       </div>
@@ -211,6 +198,7 @@ header {
       max-width: 45%;
       font-size: 1rem;
       position: relative;
+      gap: .5rem;
     }
 
     .hide {
@@ -231,13 +219,6 @@ header {
         display: flex;
         align-items: center;
         transition: all .3s;
-      }
-
-      .with-bg {
-        display: flex;
-        align-items: center;
-        position: relative;
-        background: var(--color-second-bg);
       }
     }
   }
