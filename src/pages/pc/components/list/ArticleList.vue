@@ -77,7 +77,7 @@ defineExpose({scrollToBottom, scrollToItem})
 .list {
   display: flex;
   flex-direction: column;
-  gap: 15rem;
+  gap: 1rem;
   flex: 1;
   overflow: hidden;
 
@@ -88,7 +88,7 @@ defineExpose({scrollToBottom, scrollToItem})
   }
 
   .translate {
-    font-size: 16rem;
+    font-size: 1rem;
   }
 }
 </style>

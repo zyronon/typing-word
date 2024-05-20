@@ -89,13 +89,13 @@ const showCollectToggleButton = $computed(() => {
     <div class="panel anim" v-show="settingStore.showPanel">
       <header>
         <div class="tabs">
-          <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前</div>
+          <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前学习</div>
           <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.collect.name }}</div>
           <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.simple.name }}</div>
           <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.wrong.name }}</div>
         </div>
         <Tooltip
-            :title="`关闭(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
+            :title="`关闭(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
         >
           <Close @click="settingStore.showPanel = false"/>
         </Tooltip>
@@ -226,14 +226,14 @@ const showCollectToggleButton = $computed(() => {
 <style scoped lang="scss">
 @import "@/assets/css/variable";
 
-$header-height: 50rem;
+$header-height: 3rem;
 .slide-item {
   width: var(--panel-width);
   height: 100%;
 }
 
 .panel {
-  border-radius: 8rem;
+  border-radius: .5rem;
   width: var(--panel-width);
   background: var(--color-second-bg);
   height: 100%;
@@ -246,15 +246,15 @@ $header-height: 50rem;
 
 
   & > header {
-    min-height: 50rem;
+    min-height: 3rem;
     box-sizing: border-box;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10rem 15rem;
+    padding: .6rem .9rem;
     border-bottom: 1px solid #e1e1e1;
-    gap: 15rem;
+    gap: 1rem;
 
     .close {
       cursor: pointer;
@@ -263,13 +263,13 @@ $header-height: 50rem;
     .tabs {
       display: flex;
       align-items: center;
-      gap: 15rem;
-      font-size: 14rem;
+      gap: .9rem;
+      font-size: .8rem;
 
       .tab {
         cursor: pointer;
         word-break: keep-all;
-        font-size: 16rem;
+        font-size: 1rem;
         transition: all .3s;
         color: gray;
 

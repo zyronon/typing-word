@@ -59,10 +59,10 @@ export default {
 
 .tip {
   position: fixed;
-  font-size: 14rem;
+  font-size: 0.8rem;
   z-index: 9999;
-  border-radius: 4rem;
-  padding: 10rem;
+  border-radius: .2rem;
+  padding: .8rem;
   color: var(--color-font-1);
   background: var(--color-tooltip-bg);
   //box-shadow: 1px 1px 6px #bbbbbb;

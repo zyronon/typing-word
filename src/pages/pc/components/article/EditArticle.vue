@@ -389,7 +389,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
   display: flex;
   gap: var(--space);
   padding: var(--space);
-  padding-top: 10rem;
+  padding-top: .6rem;
 }
 
 .row {
@@ -411,7 +411,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
   }
 
   .title {
-    font-size: 22rem;
+    font-size: 1.4rem;
     text-align: center;
   }
 
@@ -420,11 +420,11 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
     //margin-bottom: 10rem;
 
     .label {
-      height: 45rem;
+      height: 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 16rem;
+      font-size: 1rem;
     }
   }
 
@@ -441,31 +441,31 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
   }
 
   .article-translate {
-    margin-top: 10rem;
-    margin-bottom: 20rem;
+    margin-top: .6rem;
+    margin-bottom: 1.2rem;
     flex: 1;
     overflow: auto;
-    border-radius: 8rem;
+    border-radius: .5rem;
 
     .section {
       background: var(--color-textarea-bg);
-      margin-bottom: 20rem;
+      margin-bottom: 1.2rem;
       padding: var(--space);
-      border-radius: 8rem;
+      border-radius: .5rem;
 
       &:last-child {
         margin-bottom: 0;
       }
 
       .sentence {
-        margin-bottom: 20rem;
+        margin-bottom: 1.2rem;
 
         &:last-child {
           margin-bottom: 0;
         }
 
         .text {
-          font-size: 18rem;
+          font-size: 1.1rem;
         }
       }
     }
@@ -484,14 +484,14 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
     .warning {
       display: flex;
       align-items: center;
-      font-size: 20rem;
+      font-size: 1.2rem;
       color: red;
     }
 
     .success {
       display: flex;
       align-items: center;
-      font-size: 20rem;
+      font-size: 1.2rem;
       color: #67C23A;
     }
 

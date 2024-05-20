@@ -31,30 +31,30 @@ const settingStore = useSettingStore()
         v-if="!isSimple"
         class="collect"
         @click="$emit('toggleSimple')"
-        :title="`标记为简单词(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
+        :title="`标记为简单词(${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
         icon="material-symbols:check-circle-outline-rounded"/>
     <BaseIcon
         v-else
         class="fill"
         @click="$emit('toggleSimple')"
-        :title="`取消标记简单词(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
+        :title="`取消标记简单词(${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
         icon="material-symbols:check-circle-rounded"/>
 
     <BaseIcon
         v-if="!isCollect"
         class="collect"
         @click="$emit('toggleCollect')"
-        :title="`收藏(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
+        :title="`收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
         icon="ph:star"/>
     <BaseIcon
         v-else
         class="fill"
         @click="$emit('toggleCollect')"
-        :title="`取消收藏(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
+        :title="`取消收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
         icon="ph:star-fill"/>
 
     <Tooltip
-        :title="`跳过(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
+        :title="`跳过(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
     >
       <IconWrapper>
         <Icon icon="icon-park-outline:go-ahead" class="menu"
@@ -66,9 +66,9 @@ const settingStore = useSettingStore()
 
 <style scoped lang="scss">
 .options {
-  margin-top: 10rem;
+  margin-top: 1.2rem;
   display: flex;
-  gap: 15rem;
-  font-size: 18rem;
+  gap: 1rem;
+  font-size: 1.1rem;
 }
 </style>

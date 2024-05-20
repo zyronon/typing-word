@@ -246,7 +246,7 @@ onUnmounted(() => {
            v-if="prevWord">
         <Icon class="arrow" icon="bi:arrow-left" width="22"/>
         <Tooltip
-            :title="`上一个(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Previous]})`"
+            :title="`上一个(${settingStore.shortcutKeyMap[ShortcutKey.Previous]})`"
         >
           <div class="word">{{ prevWord.word }}</div>
         </Tooltip>
@@ -255,7 +255,7 @@ onUnmounted(() => {
            @click="next(false)"
            v-if="nextWord">
         <Tooltip
-            :title="`下一个(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
+            :title="`下一个(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
         >
           <div class="word" :class="settingStore.dictation && 'text-shadow'">{{ nextWord.word }}</div>
         </Tooltip>
@@ -287,40 +287,26 @@ onUnmounted(() => {
                  v-loading="!store.load"
             >
               <div class="list-header">
-                <div class="left">
-                  <div class="title">
-                    {{ store.chapterName }}
-                  </div>
-                  <BaseIcon title="切换词典"
-                            @click="emitter.emit(EventKey.openDictModal,'list')"
-                            icon="carbon:change-catalog"/>
-                  <div style="position:relative;"
-                       @click.stop="null">
-                    <BaseIcon
-                        title="改变顺序"
-                        icon="icon-park-outline:sort-two"
-                        @click="showSortOption = !showSortOption"
-                    />
-                    <MiniDialog
-                        v-model="showSortOption"
-                        style="width: 130rem;"
-                    >
-                      <div class="mini-row-title">
-                        列表循环设置
-                      </div>
-                      <div class="mini-row">
-                        <BaseButton size="small" @click="sort(Sort.reverse)">翻转</BaseButton>
-                        <BaseButton size="small" @click="sort(Sort.random)">随机</BaseButton>
-                      </div>
-                    </MiniDialog>
-                  </div>
-                  <BaseIcon icon="bi:arrow-right"
-                            @click="emitter.emit(EventKey.next)"
-                            :title="`下一章(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
-                            v-if="store.currentDict.chapterIndex < store.currentDict.chapterWords.length - 1"/>
-                </div>
-                <div class="right">
-                  {{ data.words.length }}个单词
+                <div>{{ data.words.length }}个单词</div>
+                <div style="position:relative;"
+                     @click.stop="null">
+                  <BaseIcon
+                      title="改变顺序"
+                      icon="icon-park-outline:sort-two"
+                      @click="showSortOption = !showSortOption"
+                  />
+                  <MiniDialog
+                      v-model="showSortOption"
+                      style="width: 9rem;"
+                  >
+                    <div class="mini-row-title">
+                      列表循环设置
+                    </div>
+                    <div class="mini-row">
+                      <BaseButton size="small" @click="sort(Sort.reverse)">翻转</BaseButton>
+                      <BaseButton size="small" @click="sort(Sort.random)">随机</BaseButton>
+                    </div>
+                  </MiniDialog>
                 </div>
               </div>
               <WordList
@@ -378,9 +364,9 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-size: 14rem;
+  font-size: 1rem;
   color: gray;
-  gap: 6rem;
+  gap: .4rem;
   position: relative;
   width: var(--toolbar-width);
 
@@ -395,14 +381,13 @@ onUnmounted(() => {
       align-items: center;
 
       .arrow {
-        min-width: 22rem;
-        min-height: 22rem;
+        font-size: .5rem;
       }
     }
 
     .word {
-      font-size: 24rem;
-      margin-bottom: 4rem;
+      font-size: 1.2rem;
+      margin-bottom: .2rem;
       font-family: var(--word-font-family);
     }
 
@@ -410,31 +395,31 @@ onUnmounted(() => {
       cursor: pointer;
       display: flex;
       float: left;
-      gap: 10rem;
+      gap: .8rem;
     }
 
     .next {
       cursor: pointer;
       display: flex;
       justify-content: flex-end;
-      gap: 10rem;
+      gap: .8rem;
       float: right;
     }
   }
 
   .options-wrapper {
     position: absolute;
-    margin-top: 120rem;
+    margin-top: 8rem;
   }
 }
 
 .word-panel-wrapper {
   position: fixed;
   left: 0;
-  top: 10rem;
+  top: .8rem;
   z-index: 1;
   margin-left: var(--panel-margin-left);
-  height: calc(100% - 20rem);
+  height: calc(100% - 1.5rem);
 }
 
 </style>

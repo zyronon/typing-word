@@ -19,15 +19,22 @@ import MusicSetting from "@/pages/mobile/my/setting/MusicSetting.vue";
 import OtherSetting from "@/pages/mobile/my/setting/OtherSetting.vue";
 import WordHome from "@/pages/pc/word/WordHome.vue";
 import PC from "@/pages/pc/index.vue";
+import Dict2 from '@/pages/pc/dict2/index.vue'
+import ArticleIndex from "@/pages/pc/article/ArticleIndex.vue";
+import HomeIndex from "@/pages/pc/home/HomeIndex.vue";
 
 export const routes: RouteRecordRaw[] = [
   {
     path: '/', component: PC,
+    redirect: '/word',
     children: [
-      {path: '/word', component: WordHome},
+      {path: 'home', component: HomeIndex},
+      {path: 'word', component: WordHome},
+      {path: 'dict', component: Dict2},
+      {path: 'practice', component: Practice},
+      {path: 'article', component: ArticleIndex},
     ]
   },
-  {path: '/pc/practice', component: Practice},
   {path: '/pc/dict', component: Dict},
 
   {path: '/mobile', component: Mobile,},
@@ -44,7 +51,7 @@ export const routes: RouteRecordRaw[] = [
   {path: '/mobile/about', component: About},
   {path: '/mobile/feedback', component: Feedback},
   {path: '/test', component: Test},
-  {path: '/', redirect: '/pc/practice'},
+  // {path: '/', redirect: '/pc/practice'},
 ]
 
 const router = VueRouter.createRouter({

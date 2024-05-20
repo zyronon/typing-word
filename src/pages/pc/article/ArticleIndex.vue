@@ -46,23 +46,6 @@ function clickEvent(e) {
             <div class="mt-5 text-sm">已学习5555个单词的1%</div>
             <el-progress class="mt-1" percentage="80" :show-text="false"></el-progress>
           </div>
-          <div class="card flex gap-3">
-            <div class="bg-slate-200 w-10 h-10 flex center text-2xl rounded">
-              0
-            </div>
-            <div class="flex-1">
-              <div class="flex justify-between">
-                <div class="title">
-                  每日目标
-                </div>
-                <div style="color:#ac6ed1;" class="cursor-pointer">
-                  更改目标
-                </div>
-              </div>
-              <div class="mt-2 text-xs">学习 50 个单词</div>
-              <el-progress class="flex-1 mt-1" percentage="80" :show-text="false"></el-progress>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -90,26 +73,6 @@ function clickEvent(e) {
           <Icon icon="mingcute:down-line"/>
         </div>
       </div>
-
-      <div class="card">
-        <div class="title">
-          学习记录
-        </div>
-        <div class="center">
-          <ActivityCalendar
-              :data="[{ date: '2023-05-22', count: 5 }]"
-              :width="40"
-              :height="7"
-              :cellLength="16"
-              :cellInterval="8"
-              :fontSize="12"
-              :showLevelFlag="false"
-              :showWeekDayFlag="false"
-              :clickEvent="clickEvent"
-          />
-        </div>
-      </div>
-
     </div>
   </div>
 </template>

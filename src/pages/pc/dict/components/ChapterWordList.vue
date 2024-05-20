@@ -183,19 +183,19 @@ useWindowClick(() => show = false)
       position: absolute;
       right: 0;
       display: flex;
-      gap: 10rem;
+      gap: .6rem;
     }
   }
 
   .select {
-    height: 45rem;
+    height: 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     .left {
       display: flex;
-      gap: 5rem;
+      gap: .3rem;
       align-items: center;
     }
   }
@@ -210,7 +210,7 @@ useWindowClick(() => show = false)
 .column {
   flex: 1;
   background: white;
-  border-radius: 10rem;
+  border-radius: .6rem;
   background: var(--color-second-bg);
   color: var(--color-font-1);
   padding-bottom: var(--space);

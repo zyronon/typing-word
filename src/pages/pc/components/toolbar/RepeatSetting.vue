@@ -46,7 +46,7 @@ onMounted(() => {
         v-model="show"
         @mouseenter="toggle(true)"
         @mouseleave="toggle(false)"
-        style="width: 230rem;"
+        style="width: 15rem;"
     >
       <div class="mini-row-title">
         单词循环设置

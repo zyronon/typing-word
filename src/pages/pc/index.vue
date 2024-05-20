@@ -7,11 +7,13 @@ import {usePracticeStore} from "@/stores/practice.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
+import {useRouter} from "vue-router";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
+const router = useRouter()
 </script>
 
 <template>
@@ -19,12 +21,17 @@ const runtimeStore = useRuntimeStore()
     <div class="aside">
       <div class="top">
         <Logo/>
-        <div class="row">
+        <div class="row" @click="router.push('/home')">
+          <Icon icon="material-symbols-light:dictionary-outline-sharp"/>
+          <!--          <Icon icon="streamline:dictionary-language-book"/>-->
+          <span>主页</span>
+        </div>
+        <div class="row" @click="router.push('/word')">
           <Icon icon="material-symbols-light:dictionary-outline-sharp"/>
           <!--          <Icon icon="streamline:dictionary-language-book"/>-->
           <span>单词</span>
         </div>
-        <div class="row">
+        <div class="row" @click="router.push('/article')">
           <Icon icon="ph:article-ny-times"/>
           <span>文章</span>
         </div>
@@ -39,14 +46,14 @@ const runtimeStore = useRuntimeStore()
       </div>
       <div class="bottom">
         <div class="row"
-             :title="`设置(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
+             :title="`设置(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
              @click="runtimeStore.showSettingModal = true">
           <Icon icon="uil:setting"/>
           <span>试卷</span>
         </div>
       </div>
     </div>
-    <div class="content">
+    <div class="content overflow-auto">
       <router-view></router-view>
     </div>
   </div>
@@ -60,32 +67,33 @@ const runtimeStore = useRuntimeStore()
   width: 100vw;
   height: 100vh;
   display: flex;
-  font-size: 14rem;
 }
 
 .aside {
   background: white;
-  //position: fixed;
+  position: fixed;
+  z-index: 999;
   top: 0;
   left: 0;
   height: 100vh;
-  width: 200rem;
-  padding: 20rem 10rem;
+  width: var(--aside-width);
+  padding: 1rem 1rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   .row {
-    padding: 10rem;
+    @apply cursor-pointer;
+    padding: 0.5rem;
     display: flex;
     align-items: center;
-    gap: 10rem;
-    font-size: 16rem;
+    gap: 0.5rem;
+    font-size: 1rem;
     //font-weight: bold;
 
     svg {
-      font-size: 36rem;
+      font-size: 2rem;
     }
   }
 }

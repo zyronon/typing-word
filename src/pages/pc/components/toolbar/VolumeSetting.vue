@@ -58,7 +58,7 @@ function toggle2() {
       </IconWrapper>
     </Tooltip>
     <MiniDialog
-        width="250rem"
+        width="12rem"
         v-model="show">
       <div class="mini-row-title">
         音效设置
@@ -75,7 +75,7 @@ function toggle2() {
         </div>
       </div>
       <div class="mini-row">
-        <label class="item-title">单词/句子自动发音</label>
+        <label class="item-title">自动发音</label>
         <div class="wrapper">
           <el-switch v-model="settingStore.wordSound"
                      inline-prompt
@@ -85,7 +85,7 @@ function toggle2() {
         </div>
       </div>
       <div class="mini-row">
-        <label class="item-title">单词/句子发音口音</label>
+        <label class="item-title">口音</label>
         <div class="wrapper">
           <el-select v-model="settingStore.wordSoundType"
                      placeholder="请选择"

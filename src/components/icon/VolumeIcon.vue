@@ -75,7 +75,7 @@ defineExpose({play})
   display: flex;
   align-items: center;
   justify-content: center;
-  $w: 22rem;
+  $w: 1.6rem;
 
   :deep(svg) {
     width: $w;

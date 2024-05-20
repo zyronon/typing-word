@@ -1,11 +1,21 @@
 <script setup lang="ts">
 
-import {DictResource, languageCategoryOptions} from "@/types.ts";
+import {DictResource,} from "@/types.ts";
+import {$computed, $ref} from "vue/macros";
 import {dictionaryResources} from "@/assets/dictionary.ts";
 import {groupBy} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
 import DictList from "@/pages/pc/components/list/DictList.vue";
 import DictGroup from "@/pages/pc/components/list/DictGroup.vue";
+import bookFlag from "@/assets/img/flags/book.png";
+import enFlag from "@/assets/img/flags/en.png";
+import jaFlag from "@/assets/img/flags/ja.png";
+import deFlag from "@/assets/img/flags/de.png";
+import codeFlag from "@/assets/img/flags/code.png";
+import myFlag from "@/assets/img/flags/my.png";
+import {Icon} from "@iconify/vue";
+import BaseIcon from "@/components/BaseIcon.vue";
+import {useRouter} from "vue-router";
 
 const emit = defineEmits<{
   add: [],
@@ -13,7 +23,7 @@ const emit = defineEmits<{
 }>()
 const store = useBaseStore()
 
-let currentLanguage = $ref('my')
+let currentLanguage = $ref('en')
 let currentTranslateLanguage = $ref('common')
 let groupByLanguage = groupBy(dictionaryResources, 'language')
 let translateLanguageList = $ref([])
@@ -32,22 +42,7 @@ function groupByDictTags(dictList: DictResource[]) {
 }
 
 const groupByTranslateLanguage = $computed(() => {
-  let data: any
-  if (currentLanguage === 'article') {
-    let articleList = dictionaryResources.filter(v => v.type === 'article')
-    data = groupBy(articleList, 'translateLanguage')
-  } else if (currentLanguage === 'my') {
-    data = {
-      common: store.myDictList.map((v, i) => {
-        if (i >= 3) {
-          // v.showDel = true
-        }
-        return v
-      }).concat([{id: '',} as any])
-    }
-  } else {
-    data = groupBy(groupByLanguage[currentLanguage], 'translateLanguage')
-  }
+  let data = groupBy(groupByLanguage[currentLanguage], 'translateLanguage')
   // console.log('groupByTranslateLanguage', data)
   translateLanguageList = Object.keys(data)
   currentTranslateLanguage = translateLanguageList[0]
@@ -70,46 +65,50 @@ function del(e) {
   store.myDictList.splice(e.index, 1)
 }
 
+const languageCategoryOptions = [
+  {id: 'en', name: '英语', flag: enFlag},
+  {id: 'ja', name: '日语', flag: jaFlag},
+  {id: 'de', name: '德语', flag: deFlag},
+  {id: 'code', name: 'Code', flag: codeFlag},
+]
+
+const router = useRouter()
 </script>
 
 <template>
   <div class="dict-list-panel">
-    <header>
-      <div class="tabs">
-        <div class="tab"
-             :class="currentLanguage === item.id && 'active'"
-             @click="currentLanguage = item.id"
-             v-for="item in languageCategoryOptions">
-          <img :src='item.flag' alt=""/>
-          <span>{{ item.name }}</span>
+    <header class="flex justify-center pb-3">
+      <div class="container2 flex justify-between items-center">
+        <div class="flex items-center gap-5">
+          <BaseIcon icon="ion:chevron-back" @click="router.back"/>
+          <div class="tabs">
+            <div class="tab"
+                 :class="currentLanguage === item.id && 'active'"
+                 @click="currentLanguage = item.id"
+                 v-for="item in languageCategoryOptions">
+              <img :src='item.flag' alt=""/>
+              <span>{{ item.name }}</span>
+            </div>
+          </div>
         </div>
+        <BaseIcon icon="lucide:search"/>
       </div>
     </header>
     <div class="page-content">
       <div class="dict-list-wrapper">
-        <template v-if="currentLanguage === 'my'">
-          <DictList
-              @add="emit('add')"
-              @selectDict="e => emit('selectDict',e)"
-              @del="del"
-              :select-id="store.currentDict.id"
-              :list="groupByTranslateLanguage['common']"/>
-        </template>
-        <template v-else>
-          <div class="translate ">
-            <span>释义：</span>
-            <el-radio-group v-model="currentTranslateLanguage">
-              <el-radio-button border v-for="i in translateLanguageList" :label="i">{{ $t(i) }}</el-radio-button>
-            </el-radio-group>
-          </div>
-          <DictGroup
-              v-for="item in groupedByCategoryAndTag"
-              :select-id="store.currentDict.id"
-              @selectDict="e => emit('selectDict',e)"
-              :groupByTag="item[1]"
-              :category="item[0]"
-          />
-        </template>
+        <div class="translate ">
+          <span>释义：</span>
+          <el-radio-group v-model="currentTranslateLanguage">
+            <el-radio-button border v-for="i in translateLanguageList" :label="i">{{ $t(i) }}</el-radio-button>
+          </el-radio-group>
+        </div>
+        <DictGroup
+            v-for="item in groupedByCategoryAndTag"
+            :select-id="store.currentDict.id"
+            @selectDict="e => emit('selectDict',e)"
+            :groupByTag="item[1]"
+            :category="item[0]"
+        />
       </div>
     </div>
   </div>
@@ -121,26 +120,27 @@ function del(e) {
 .dict-list-panel {
   width: 100%;
   height: 100%;
-  $header-height: 5rem;
+  $header-height: 4rem;
   //padding: var(--space);
   padding-top: 0;
   box-sizing: border-box;
 
   header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: $header-height;
+    position: fixed;
+    top: 0;
+    left: var(--aside-width);
+    width: calc(100vw - var(--aside-width));
+    z-index: 9;
+    background: var(--color-main-bg);
 
     .tabs {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
 
       .tab {
         color: var(--color-font-1);
         cursor: pointer;
-        padding: 1rem;
-        padding-bottom: 0.5rem;
+        padding: .3rem;
         transition: all .5s;
         border-bottom: 2px solid transparent;
         display: flex;
@@ -160,14 +160,13 @@ function del(e) {
   }
 
   .page-content {
+    padding-top: 4rem;
     display: flex;
-    height: calc(100% - $header-height);
 
     .dict-list-wrapper {
       flex: 1;
       overflow: auto;
       height: 100%;
-      padding-right: 1rem;
 
       .translate {
         display: flex;

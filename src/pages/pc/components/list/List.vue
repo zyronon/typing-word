@@ -161,10 +161,10 @@ defineExpose({scrollBottom})
   transition: all .3s;
   flex: 1;
   overflow: overlay;
-  padding-right: 5rem;
+  padding-right: .3rem;
 
   .search {
-    margin: 10rem 0;
+    margin: .6rem 0;
   }
 
   .list {
@@ -172,9 +172,9 @@ defineExpose({scrollBottom})
       box-sizing: border-box;
       background: var(--color-item-bg);
       color: var(--color-font-1);
-      border-radius: 8rem;
-      margin-bottom: 10rem;
-      padding: 10rem;
+      border-radius: .5rem;
+      margin-bottom: .6rem;
+      padding: .6rem;
       display: flex;
       justify-content: space-between;
       transition: all .3s;

@@ -44,9 +44,9 @@ useDisableEventListener(() => focus)
 
 .base-input {
   border: 1px solid var(--color-second-bg);
-  border-radius: 6rem;
+  border-radius: .4rem;
   overflow: hidden;
-  padding: 3rem 5rem;
+  padding: .2rem .3rem;
   transition: all .3s;
   display: flex;
   align-items: center;
@@ -68,9 +68,9 @@ useDisableEventListener(() => focus)
 
   input {
     font-family: var(--font-family);
-    font-size: 18rem;
+    font-size: 1.1rem;
     outline: none;
-    min-height: 20rem;
+    min-height: 1.2rem;
     flex: 1;
     box-sizing: border-box;
     outline: none;

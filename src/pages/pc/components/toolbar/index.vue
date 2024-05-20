@@ -13,11 +13,11 @@ import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-
-import {DictType, ShortcutKey} from "@/types.ts";
-import ChapterName from "@/pages/pc/components/toolbar/ChapterName.vue";
+import {$ref} from "vue/macros";
+import {ShortcutKey} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
+import {useNav} from "@/utils";
 
 const {toggleTheme} = useTheme()
 const store = useBaseStore()
@@ -31,7 +31,7 @@ const moreOptionsRef = $ref<HTMLDivElement>(null)
 watch([() => settingStore.showToolbar, () => headerRef], n => {
   if (n[1]) {
     if (n[0]) {
-      n[1].style.marginTop = '10rem'
+      n[1].style.marginTop = '.8rem'
     } else {
       let rect = n[1].getBoundingClientRect()
       n[1].style.marginTop = `-${rect.height}px`
@@ -56,6 +56,7 @@ watch(() => store.load, n => {
   }
 })
 
+const {nav} = useNav()
 </script>
 
 <template>
@@ -63,12 +64,14 @@ watch(() => store.load, n => {
     <div class="content">
       <div class="dict-name">
         <Tooltip
-            :title="`词典详情(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.OpenDictDetail]})`">
-          <div class="info hvr-grow" @click="emitter.emit(EventKey.openDictModal,'detail')">
+            :title="`词典详情(${settingStore.shortcutKeyMap[ShortcutKey.OpenDictDetail]})`">
+          <div class="info" @click="emitter.emit(EventKey.openDictModal,'detail')">
             {{ store.currentDict.name }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
           </div>
         </Tooltip>
-        <ChapterName v-if="store.currentDict.type === DictType.word"/>
+        <BaseIcon title="切换词典"
+                  @click="nav('/dict')"
+                  icon="gg:arrows-exchange"/>
         <div class="info-text" v-if="practiceStore.repeatNumber">
           复习错词
         </div>
@@ -84,7 +87,7 @@ watch(() => store.load, n => {
           </Tooltip>
 
           <Tooltip
-              :title="`开关默写模式(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
+              :title="`开关默写模式(${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
           >
             <IconWrapper>
               <Icon icon="majesticons:eye-off-line"
@@ -102,16 +105,8 @@ watch(() => store.load, n => {
 
           <RepeatSetting/>
 
-          <!--                    <Add/>-->
-
-          <BaseIcon
-              @click="emitter.emit(EventKey.openDictModal,'my')"
-              title="添加"
-              icon="ic:outline-cloud-upload"/>
-
-
           <Tooltip
-              :title="`切换主题(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
+              :title="`切换主题(${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
           >
             <IconWrapper>
               <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
@@ -119,12 +114,9 @@ watch(() => store.load, n => {
               <Icon icon="tabler:sun" v-else @click="toggleTheme"/>
             </IconWrapper>
           </Tooltip>
-        </div>
-
-        <div class="with-bg anim">
           <BaseIcon
               @click="settingStore.showPanel = !settingStore.showPanel"
-              :title="`单词本(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
+              :title="`单词本(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
               icon="tdesign:menu-unfold"/>
         </div>
       </div>
@@ -143,14 +135,14 @@ watch(() => store.load, n => {
 
 <style lang="scss">
 .info {
-  border-radius: 6rem;
+  border-radius: .5rem;
   color: var(--color-font-1);
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   transition: all .3s;
-  padding: 6rem 8rem;
+  padding: .5rem .6rem;
 
   &:hover {
     background: var(--color-main-active);
@@ -182,15 +174,15 @@ watch(() => store.load, n => {
 
 header {
   width: var(--toolbar-width);
-  margin-top: 10rem;
+  margin-top: 1rem;
   background: var(--color-second-bg);
-  border-radius: 8rem;
-  margin-bottom: 30rem;
+  border-radius: .8rem;
+  margin-bottom: 3rem;
   position: relative;
   z-index: 2;
-  padding: 4rem var(--space);
+  padding: .4rem var(--space);
   box-sizing: border-box;
-  gap: 10rem;
+  gap: 1rem;
   border: 1px solid var(--color-item-border);
   transition: all var(--anim-time);
   box-shadow: var(--shadow);
@@ -204,12 +196,13 @@ header {
     .dict-name {
       display: flex;
       max-width: 45%;
-      font-size: 17rem;
+      font-size: 1rem;
       position: relative;
+      gap: .5rem;
     }
 
     .hide {
-      transform: translateX(calc(100% - 36rem));
+      transform: translateX(calc(100% - 2rem));
     }
 
     .options {
@@ -217,25 +210,15 @@ header {
       align-items: center;
       overflow: hidden;
 
-      .icon-wrapper {
-        margin-left: 10rem;
-      }
 
       :deep(.icon-wrapper) {
-        margin-left: 10rem;
+        margin-left: .2rem;
       }
 
       .more {
         display: flex;
         align-items: center;
         transition: all .3s;
-      }
-
-      .with-bg {
-        display: flex;
-        align-items: center;
-        position: relative;
-        background: var(--color-second-bg);
       }
     }
   }
@@ -247,7 +230,7 @@ header {
     cursor: pointer;
     transition: all .5s;
     transform: translate3d(-50%, 100%, 0) rotate(180deg);
-    padding: 5rem;
+    padding: .5rem;
 
     &.down {
       transform: translate3d(-50%, 100%, 0) rotate(0);

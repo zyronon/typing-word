@@ -19,19 +19,19 @@ withDefaults(defineProps<IProps>(), {
   </Transition>
 </template>
 
-<style lang="scss">
+<style  lang="scss">
 @import "@/assets/css/style";
 
 .mini-row-title {
-  min-height: 35rem;
+  min-height: 2rem;
   text-align: center;
-  font-size: 16rem;
+  font-size: 1rem;
   font-weight: bold;
   color: var(--color-font-1);
 }
 
 .mini-row {
-  min-height: 35rem;
+  min-height: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,12 +43,12 @@ withDefaults(defineProps<IProps>(), {
 .mini-modal {
   position: absolute;
   z-index: 9;
-  width: 180rem;
+  width: 12rem;
   background: var(--color-second-bg);
-  border-radius: 8rem;
+  border-radius: .5rem;
   box-shadow: 0 0 8px 2px var(--color-item-border);
-  padding: 10rem var(--space);
-  top: 40rem;
+  padding: .6rem var(--space);
+  top: 2.4rem;
   left: 50%;
   transform: translate3d(-50%, 0, 0);
   //margin-top: 10rem;

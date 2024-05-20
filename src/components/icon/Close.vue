@@ -25,6 +25,6 @@ defineProps<{
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18rem;
+  font-size: 1.1rem;
 }
 </style>

@@ -154,7 +154,7 @@ defineExpose({del, showWord, hideWord, play})
   <div class="typing-word">
     <div class="translate"
          :style="{
-      fontSize: settingStore.fontSize.wordTranslateFontSize +'rem',
+      fontSize: settingStore.fontSize.wordTranslateFontSize +'px',
       opacity: settingStore.translate ? 1 : 0
     }"
     >
@@ -163,7 +163,7 @@ defineExpose({del, showWord, hideWord, play})
         <!--        <div class="volumeIcon">-->
         <!--          <Tooltip-->
         <!--              v-if="i === word.trans.length - 1"-->
-        <!--              :title="`发音(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.PlayTranslatePronunciation]})`"-->
+        <!--              :title="`发音(${settingStore.shortcutKeyMap[ShortcutKey.PlayTranslatePronunciation]})`"-->
         <!--          >-->
         <!--            <VolumeIcon-->
         <!--                ref="volumeTranslateIconRef"-->
@@ -176,7 +176,7 @@ defineExpose({del, showWord, hideWord, play})
     <div class="word-wrapper">
       <div class="word"
            :class="wrong && 'is-wrong'"
-           :style="{fontSize: settingStore.fontSize.wordForeignFontSize +'rem'}"
+           :style="{fontSize: settingStore.fontSize.wordForeignFontSize +'px'}"
       >
         <span class="input" v-if="input">{{ input }}</span>
         <span class="wrong" v-if="wrong">{{ wrong }}</span>
@@ -190,7 +190,7 @@ defineExpose({del, showWord, hideWord, play})
         <span class="letter" v-else>{{ displayWord }}</span>
       </div>
       <Tooltip
-          :title="`发音(快捷键：${settingStore.shortcutKeyMap[ShortcutKey.PlayWordPronunciation]})`"
+          :title="`发音(${settingStore.shortcutKeyMap[ShortcutKey.PlayWordPronunciation]})`"
       >
         <VolumeIcon ref="volumeIconRef" :simple="true" :cb="() => playWordAudio(word.word)"/>
       </Tooltip>
@@ -215,19 +215,19 @@ defineExpose({del, showWord, hideWord, play})
   color: var(--color-font-2);
 
   .phonetic, .translate {
-    font-size: 20rem;
+    font-size: 1.6rem;
     transition: all .3s;
   }
 
   .phonetic {
-    margin-top: 5rem;
+    margin-top: .3rem;
     font-family: var(--word-font-family);
   }
 
   .translate {
     position: absolute;
     transform: translateY(-50%);
-    margin-bottom: 90rem;
+    margin-bottom: 7rem;
 
     &:hover {
       .volumeIcon {
@@ -238,7 +238,7 @@ defineExpose({del, showWord, hideWord, play})
     .translate-item {
       display: flex;
       align-items: center;
-      gap: 10rem;
+      gap: .8rem;
     }
 
     .volumeIcon {
@@ -248,17 +248,17 @@ defineExpose({del, showWord, hideWord, play})
   }
 
   .word-wrapper {
-    margin-left: 30rem;
+    margin-left: 2rem;
     display: flex;
     align-items: center;
-    gap: 10rem;
+    gap: .8rem;
     color: var(--color-font-1);
 
     .word {
-      font-size: 48rem;
+      font-size: 3rem;
       line-height: 1;
       font-family: var(--word-font-family);
-      letter-spacing: 5rem;
+      letter-spacing: .3rem;
 
       .input {
         color: rgb(22, 163, 74);
