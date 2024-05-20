@@ -12,13 +12,10 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import PracticeArticle from "@/pages/pc/practice/practice-article/index.vue";
-import PracticeWord from "@/pages/pc/practice/practice-word/index.vue";
 import {ShortcutKey} from "@/types.ts";
 import DictModal from "@/pages/pc/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
-import Logo from "@/pages/pc/components/Logo.vue";
-import {Icon} from "@iconify/vue";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
@@ -143,7 +140,7 @@ useStartKeyboardEventListener()
 <template>
   <div class="practice-wrapper">
     <Toolbar/>
-    <PracticeWord ref="practiceRef"/>
+    <PracticeArticle ref="practiceRef"/>
     <Footer/>
   </div>
   <DictModal/>

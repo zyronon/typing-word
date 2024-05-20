@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import {useBaseStore} from "@/stores/base.ts"
 import {onMounted} from "vue"
-import {DefaultDict, Dict, DictResource, DictType} from "@/types.ts"
-import {chunk, cloneDeep} from "lodash-es";
+import {chunk} from "lodash-es";
 import {$computed, $ref} from "vue/macros";
 import BaseButton from "@/components/BaseButton.vue";
 import {Icon} from '@iconify/vue';
@@ -14,11 +13,7 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
-import EditBatchArticleModal from "@/pages/pc/components/article/EditBatchArticleModal.vue";
-import {nanoid} from "nanoid";
 import {useRouter} from "vue-router";
-import {MessageBox} from "@/utils/MessageBox.tsx";
-import {getDictFile} from "@/utils";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -30,67 +25,8 @@ let chapterWordNumber = $ref(0)
 let toggleLoading = $ref(false)
 
 
-async function selectDict(val: { dict: DictResource | Dict, index: number }) {
-  let item = val.dict
-  // console.log('item', item)
-  let find: Dict = store.myDictList.find((v: Dict) => v.id === item.id)
-  if (find) {
-    runtimeStore.editDict = cloneDeep(find)
-  } else {
-    runtimeStore.editDict = cloneDeep({
-      ...cloneDeep(DefaultDict),
-      ...item,
-    })
-    runtimeStore.editDict.id = nanoid(6)
-    //设置默认章节单词数
-    runtimeStore.editDict.chapterWordNumber = settingStore.chapterWordNumber
-  }
-
-  if ([DictType.collect, DictType.simple, DictType.wrong].includes(runtimeStore.editDict.type)) {
-  } else {
-    //如果不是自定义词典，并且有url地址才去下载
-    if (!runtimeStore.editDict.isCustom && runtimeStore.editDict.url) {
-      let url = `./dicts/${runtimeStore.editDict.language}/${runtimeStore.editDict.type}/${runtimeStore.editDict.translateLanguage}/${runtimeStore.editDict.url}`;
-      if (runtimeStore.editDict.type === DictType.word) {
-        if (!runtimeStore.editDict.originWords.length) {
-          let v = await getDictFile(url)
-          v.map(s => {
-            s.id = nanoid(6)
-          })
-          runtimeStore.editDict.originWords = cloneDeep(v)
-        } else {
-          runtimeStore.editDict.length = runtimeStore.editDict.words.length
-        }
-      }
-      if (runtimeStore.editDict.type === DictType.article) {
-        if (!runtimeStore.editDict.articles.length) {
-          let v = await getDictFile(url)
-          v.map(s => {
-            s.id = nanoid(6)
-          })
-          runtimeStore.editDict.articles = cloneDeep(v)
-        } else {
-          runtimeStore.editDict.length = runtimeStore.editDict.articles.length
-        }
-      }
-    }
-  }
-  chapterWordNumber = runtimeStore.editDict.chapterWordNumber
-}
-
-
 function close() {
   show = false
-}
-
-//TODO 切大词典太卡了
-function changeDict() {
-  close()
-  store.changeDict(runtimeStore.editDict)
-  setTimeout(() => {
-    runtimeStore.editDict = cloneDeep(DefaultDict)
-  })
-  ElMessage.success('切换成功')
 }
 
 const dictIsArticle = $computed(() => {
@@ -117,7 +53,6 @@ function resetChapterList(v: number) {
   }
 }
 
-
 function option(type: string) {
   show = false
   setTimeout(() => {
@@ -126,10 +61,7 @@ function option(type: string) {
 }
 
 onMounted(() => {
-  emitter.on(EventKey.openDictModal, (type: 'detail' | 'list' | 'my') => {
-    if (type === "detail") {
-      selectDict({dict: store.currentDict, index: 0})
-    }
+  emitter.on(EventKey.openDictModal, (typ) => {
     show = true
   })
 })
@@ -145,7 +77,7 @@ onMounted(() => {
     <div id="DictDialog">
       <header>
         <div class="text-2xl">
-          {{ runtimeStore.editDict.name }}
+          {{ store.currentDict.name }}
         </div>
         <Icon @click="close"
               class="hvr-grow pointer"
@@ -153,13 +85,13 @@ onMounted(() => {
               icon="ion:close-outline"/>
       </header>
       <div class="detail">
-        <div class="desc">{{ runtimeStore.editDict.description }}</div>
+        <div class="desc">{{ store.currentDict.description }}</div>
         <div class="text flex align-center">
-          <div v-if="dictIsArticle">总文章：{{ runtimeStore.editDict.articles.length }}篇
+          <div v-if="dictIsArticle">总文章：{{ store.currentDict.articles.length }}篇
           </div>
           <div v-else>总词汇：
             <span class="count" @click="showAllWordModal">{{
-                runtimeStore.editDict.originWords.length
+                store.currentDict.originWords.length
               }}词</span>
           </div>
           <BaseIcon icon="mi:add"
@@ -181,7 +113,7 @@ onMounted(() => {
               class="my-slider"
               :min="10"
               :step="10"
-              :max="runtimeStore.editDict.words.length < 10 ? 10 : 500"
+              :max="store.currentDict.words.length < 10 ? 10 : 500"
               size="small"
               v-model="chapterWordNumber"
               @change="resetChapterList"
@@ -189,17 +121,15 @@ onMounted(() => {
         </div>
         <div class="notice">
           <span class="text">最小:10</span>
-          <span class="text">最大:{{ runtimeStore.editDict.words.length < 10 ? 10 : 500 }}</span>
+          <span class="text">最大:{{ store.currentDict.words.length < 10 ? 10 : 500 }}</span>
         </div>
       </div>
       <div class="footer">
         <BaseButton @click="close">关闭</BaseButton>
-        <BaseButton :loading="toggleLoading" @click="changeDict">切换</BaseButton>
       </div>
     </div>
   </Dialog>
   <WordListDialog/>
-  <EditBatchArticleModal/>
 </template>
 
 <style scoped lang="scss">

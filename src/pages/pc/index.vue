@@ -21,12 +21,17 @@ const router = useRouter()
     <div class="aside">
       <div class="top">
         <Logo/>
+        <div class="row" @click="router.push('/home')">
+          <Icon icon="material-symbols-light:dictionary-outline-sharp"/>
+          <!--          <Icon icon="streamline:dictionary-language-book"/>-->
+          <span>主页</span>
+        </div>
         <div class="row" @click="router.push('/word')">
           <Icon icon="material-symbols-light:dictionary-outline-sharp"/>
           <!--          <Icon icon="streamline:dictionary-language-book"/>-->
           <span>单词</span>
         </div>
-        <div class="row">
+        <div class="row" @click="router.push('/article')">
           <Icon icon="ph:article-ny-times"/>
           <span>文章</span>
         </div>

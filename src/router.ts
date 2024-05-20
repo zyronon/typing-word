@@ -20,15 +20,19 @@ import OtherSetting from "@/pages/mobile/my/setting/OtherSetting.vue";
 import WordHome from "@/pages/pc/word/WordHome.vue";
 import PC from "@/pages/pc/index.vue";
 import Dict2 from '@/pages/pc/dict2/index.vue'
+import ArticleIndex from "@/pages/pc/article/ArticleIndex.vue";
+import HomeIndex from "@/pages/pc/home/HomeIndex.vue";
 
 export const routes: RouteRecordRaw[] = [
   {
     path: '/', component: PC,
     redirect: '/word',
     children: [
+      {path: 'home', component: HomeIndex},
       {path: 'word', component: WordHome},
       {path: 'dict', component: Dict2},
       {path: 'practice', component: Practice},
+      {path: 'article', component: ArticleIndex},
     ]
   },
   {path: '/pc/dict', component: Dict},
