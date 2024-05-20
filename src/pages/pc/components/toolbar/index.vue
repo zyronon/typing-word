@@ -13,7 +13,6 @@ import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {$ref} from "vue/macros";
 import {ShortcutKey} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import BaseIcon from "@/components/BaseIcon.vue";

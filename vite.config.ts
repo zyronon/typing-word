@@ -9,6 +9,7 @@ import Components from 'unplugin-vue-components/vite'
 import {getLastCommit} from "git-last-commit";
 import DefineOptions from 'unplugin-vue-define-options/vite' // 引入插件
 import UnoCSS from 'unocss/vite'
+import ReactivityTransform from '@vue-macros/reactivity-transform/vite'
 
 function pathResolve(dir: string) {
   return resolve(__dirname, ".", dir)
@@ -24,11 +25,10 @@ export default defineConfig(async () => {
   })
   return {
     plugins: [
-      Vue({
-        reactivityTransform: true
-      }),
+      Vue(),
       VueJsx(),
       UnoCSS(),
+      ReactivityTransform(),
       AutoImport({
         resolvers: [ElementPlusResolver()],
       }),

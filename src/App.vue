@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import {onMounted, watch} from "vue";
 import {BaseState, useBaseStore} from "@/stores/base.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
@@ -16,9 +15,6 @@ import {isMobile, shakeCommonDict} from "@/utils";
 import router, {routes} from "@/router.ts";
 
 import {useRoute} from "vue-router";
-import * as eruda from "eruda";
-
-eruda.init()
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
 const settingStore = useSettingStore()

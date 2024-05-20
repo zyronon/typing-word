@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {computed, nextTick, onMounted, onUnmounted, watch} from "vue"
-import {$ref} from "vue/macros";
 import {Article, ArticleWord, DefaultArticle, ShortcutKey, Word} from "@/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";

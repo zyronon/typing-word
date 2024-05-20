@@ -2,7 +2,6 @@
 import {useBaseStore} from "@/stores/base.ts"
 import {onMounted} from "vue"
 import {chunk} from "lodash-es";
-import {$computed, $ref} from "vue/macros";
 import BaseButton from "@/components/BaseButton.vue";
 import {Icon} from '@iconify/vue';
 import "vue-activity-calendar/style.css";

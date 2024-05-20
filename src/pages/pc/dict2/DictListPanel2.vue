@@ -1,19 +1,14 @@
 <script setup lang="ts">
 
 import {DictResource,} from "@/types.ts";
-import {$computed, $ref} from "vue/macros";
 import {dictionaryResources} from "@/assets/dictionary.ts";
 import {groupBy} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
-import DictList from "@/pages/pc/components/list/DictList.vue";
 import DictGroup from "@/pages/pc/components/list/DictGroup.vue";
-import bookFlag from "@/assets/img/flags/book.png";
 import enFlag from "@/assets/img/flags/en.png";
 import jaFlag from "@/assets/img/flags/ja.png";
 import deFlag from "@/assets/img/flags/de.png";
 import codeFlag from "@/assets/img/flags/code.png";
-import myFlag from "@/assets/img/flags/my.png";
-import {Icon} from "@iconify/vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useRouter} from "vue-router";
 

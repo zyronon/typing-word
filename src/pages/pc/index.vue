@@ -22,8 +22,7 @@ const router = useRouter()
       <div class="top">
         <Logo/>
         <div class="row" @click="router.push('/home')">
-          <Icon icon="material-symbols-light:dictionary-outline-sharp"/>
-          <!--          <Icon icon="streamline:dictionary-language-book"/>-->
+          <Icon icon="iconoir:home" />
           <span>主页</span>
         </div>
         <div class="row" @click="router.push('/word')">

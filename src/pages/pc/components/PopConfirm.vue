@@ -53,7 +53,31 @@ export default {
       this.$emit('confirm')
     }
   },
-
+  render() {
+    let Vnode = this.$slots.default()[0]
+    return (
+        <div class="pop-confirm">
+          <Teleport to="body">
+            <Transition>
+              {
+                  this.show && (
+                      <div ref="tip" className="pop-confirm-content">
+                        <div className="text">
+                          {this.title}
+                        </div>
+                        <div className="options">
+                          <div onClick={() => this.show = false}>取消</div>
+                          <div className="main" onClick={() => this.confirm()}>确认</div>
+                        </div>
+                      </div>
+                  )
+              }
+            </Transition>
+          </Teleport>
+          <Vnode onClick={(e) => this.showPop(e)}/>
+        </div>
+    )
+  }
 }
 </script>
 <style lang="scss" scoped>
