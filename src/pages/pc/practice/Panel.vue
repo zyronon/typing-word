@@ -86,7 +86,7 @@ const showCollectToggleButton = $computed(() => {
 </script>
 <template>
   <Transition name="fade">
-    <div class="panel anim" v-show="settingStore.showPanel">
+    <div class="panel anim" v-show="settingStore.showPanel || 1">
       <header>
         <div class="tabs">
           <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前学习</div>

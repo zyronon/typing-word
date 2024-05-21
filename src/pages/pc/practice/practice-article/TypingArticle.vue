@@ -473,7 +473,7 @@ $article-width: 1000px;
   header {
     word-wrap: break-word;
     position: relative;
-    padding: .9rem 0;
+    padding-top: 1rem;
 
     .title {
       text-align: center;
@@ -490,14 +490,11 @@ $article-width: 1000px;
     }
 
     .options-wrapper {
-      //position: absolute;
-      right: 1.2rem;
-      top: 0;
       display: flex;
-      margin-top: 1rem;
-      justify-content: center;
+      justify-content: flex-end;
       gap: .6rem;
       font-size: 1.1rem;
+      margin-bottom: .3rem;
     }
   }
 
@@ -514,11 +511,10 @@ $article-width: 1000px;
     word-break: keep-all;
     word-wrap: break-word;
     white-space: pre-wrap;
-    padding-top: 1.2rem;
 
     .section {
       font-family: var(--word-font-family);
-      margin-bottom: var(--space);
+      margin-bottom: 3rem;
 
       .sentence {
         transition: all .3s;

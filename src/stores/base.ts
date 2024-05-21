@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {DefaultDict, Dict, DictType, DisplayStatistics, Sort, Word} from "../types.ts"
+import {Article, DefaultDict, Dict, DictType, DisplayStatistics, Sort, Word} from "../types.ts"
 import {chunk, cloneDeep, merge, reverse, shuffle} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {useRuntimeStore} from "@/stores/runtime.ts";
@@ -17,9 +17,60 @@ export interface BaseState {
   },
   simpleWords: string[],
   load: boolean
+
+  collectWord?: Word[],
+  collectArticle?: Article[],
+  simple?: Word[],
+  wrong?: Word[],
+  articleDictList?: Dict[]
+  wordDictList?: Dict[],
+  currentLearn?: {
+    wordIndex: number,
+    articleIndex: number,
+  }
 }
 
 export const DefaultBaseState = (): BaseState => ({
+  collectWord: [],
+  collectArticle: [],
+  simple: [],
+  wrong: [],
+  articleDictList: [
+    {
+      ...cloneDeep(DefaultDict),
+      id: 'article_nce2',
+      name: "新概念英语2-课文",
+      description: '新概念英语2-课文',
+      category: '英语学习',
+      tags: ['新概念英语'],
+      url: 'NCE_2.json',
+      translateLanguage: 'common',
+      language: 'en',
+      type: DictType.article,
+      resourceId: 'article_nce2',
+      length: 96
+    },
+  ],
+  wordDictList: [
+    {
+      ...cloneDeep(DefaultDict),
+      id: 'cet4',
+      name: 'CET-4',
+      description: '大学英语四级词库',
+      category: '中国考试',
+      tags: ['大学英语'],
+      url: 'CET4_T.json',
+      length: 2607,
+      translateLanguage: 'common',
+      language: 'en',
+      type: DictType.word
+    },
+  ],
+  currentLearn: {
+    wordIndex: 0,
+    articleIndex: 0
+  },
+
   myDictList: [
     {
       ...cloneDeep(DefaultDict),
@@ -237,6 +288,21 @@ export const useBaseStore = defineStore('base', {
             }
           }
         }
+
+        let currentDict = this.wordDictList[this.currentLearn.wordIndex]
+        let dictResourceUrl = `./dicts/${currentDict.language}/${currentDict.type}/${currentDict.translateLanguage}/${currentDict.url}`;
+        if (!currentDict.originWords.length) {
+          let v = await getDictFile(dictResourceUrl)
+          // v = v.slice(0, 50)
+          v.map(s => {
+            s.id = nanoid(6)
+          })
+          currentDict.originWords = cloneDeep(v)
+          currentDict.words = cloneDeep(v)
+          currentDict.chapterWords = chunk(currentDict.words, currentDict.chapterWordNumber)
+        }
+
+        console.log('this.wordDictList',this.wordDictList)
         emitter.emit(EventKey.changeDict)
         resolve(true)
       })
