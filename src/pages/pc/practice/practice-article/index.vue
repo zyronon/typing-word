@@ -66,6 +66,8 @@ function init() {
   if (!store.currentDict.articles.length) return
   articleData.articles = cloneDeep(store.currentDict.articles)
   getCurrentPractice()
+  console.log('inin', articleData.article)
+
 }
 
 function setArticle(val: Article) {
@@ -95,7 +97,7 @@ function getCurrentPractice() {
   tabIndex = 0
   articleData.article = cloneDeep(DefaultArticle)
 
-  let currentArticle = articleData.articles [store.currentDict.chapterIndex]
+  let currentArticle = articleData.articles[store.currentDict.chapterIndex]
   let tempArticle = {...DefaultArticle, ...currentArticle}
   // console.log('article', tempArticle)
   if (tempArticle.sections.length) {

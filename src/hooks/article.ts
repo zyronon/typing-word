@@ -117,7 +117,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
             sentence.words[sentence.words.length - 1].nextSpace = false
             let word2 = cloneDeep({
               ...DefaultArticleWord,
-              name: post,
+              word: post,
               isSymbol: true,
               nextSpace
             });
@@ -146,7 +146,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
               sentence.words[sentence.words.length - 1].nextSpace = true
               let word3 = cloneDeep({
                 ...DefaultArticleWord,
-                name: 'placeholder',
+                word: 'placeholder',
                 isSymbol: true,
                 nextSpace: false,
               });
@@ -164,7 +164,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
               sentence.words[sentence.words.length - 1].nextSpace = false
               let word3 = cloneDeep({
                 ...DefaultArticleWord,
-                name: post,
+                word: post,
                 isSymbol: true,
                 nextSpace: false,
               });
@@ -182,7 +182,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
             checkQuote(pre, index)
           }
 
-          let word = cloneDeep({...DefaultArticleWord, name: v.text, nextSpace: true});
+          let word = cloneDeep({...DefaultArticleWord, word: v.text, nextSpace: true});
           sentence.words.push(word)
 
           let post: string = v.post

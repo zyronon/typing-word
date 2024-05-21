@@ -59,20 +59,20 @@ export const DefaultBaseState = (): BaseState => ({
       language: 'en',
       type: DictType.word
     },
-    // {
-    //   ...cloneDeep(DefaultDict),
-    //   id: 'article_nce2',
-    //   name: "新概念英语2-课文",
-    //   description: '新概念英语2-课文',
-    //   category: '英语学习',
-    //   tags: ['新概念英语'],
-    //   url: 'NCE_2.json',
-    //   translateLanguage: 'common',
-    //   language: 'en',
-    //   type: DictType.article,
-    //   resourceId: 'article_nce2',
-    //   length: 96
-    // },
+    {
+      ...cloneDeep(DefaultDict),
+      id: 'article_nce2',
+      name: "新概念英语2-课文",
+      description: '新概念英语2-课文',
+      category: '英语学习',
+      tags: ['新概念英语'],
+      url: 'NCE_2.json',
+      translateLanguage: 'common',
+      language: 'en',
+      type: DictType.article,
+      resourceId: 'article_nce2',
+      length: 96
+    },
     // {
     //   ...cloneDeep(DefaultDict),
     //   id: 'nce-new-2',
@@ -90,10 +90,10 @@ export const DefaultBaseState = (): BaseState => ({
   ],
   collectDictIds: [],
   current: {
-    index: 3,
+    index: 4,
     // dictType: DictType.article,
     // index: 0,
-    practiceType: DictType.word,
+    practiceType: DictType.article,
   },
   simpleWords: [
     'a', 'an',
@@ -169,7 +169,7 @@ export const useBaseStore = defineStore('base', {
           } else {
             let configStr: string = await localforage.getItem(SAVE_DICT_KEY.key)
             let data = checkAndUpgradeSaveDict(configStr)
-            this.setState(data)
+            // this.setState(data)
           }
           localforage.setItem(SAVE_DICT_KEY.key, JSON.stringify({val: this.$state, version: SAVE_DICT_KEY.version}))
         } catch (e) {

@@ -9,6 +9,11 @@ import {cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useArticleOptions} from "@/hooks/dict.ts";
+import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
+import Tooltip from "@/pages/pc/components/Tooltip.vue";
+import {Icon} from "@iconify/vue";
+import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue";
+import VolumeSetting from "@/pages/pc/components/toolbar/VolumeSetting.vue";
 
 interface IProps {
   article: Article,
@@ -340,12 +345,30 @@ defineExpose({showSentence, play, del,hideSentence,nextSentence})
       <div class="title word">{{ props.article.title }}</div>
       <div class="titleTranslate" v-if="settingStore.translate">{{ props.article.titleTranslate }}</div>
       <div class="options-wrapper">
-        <div class="flex gap10">
+        <div class="flex gap-1">
+          <Tooltip
+              :title="`开关默写模式(${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
+          >
+            <IconWrapper>
+              <Icon icon="majesticons:eye-off-line"
+                    v-if="settingStore.dictation"
+                    @click="settingStore.dictation = false"/>
+              <Icon icon="mdi:eye-outline"
+                    v-else
+                    @click="settingStore.dictation = true"/>
+            </IconWrapper>
+          </Tooltip>
+
+          <TranslateSetting/>
+
+          <VolumeSetting/>
+
           <BaseIcon
               :title="`编辑(${settingStore.shortcutKeyMap[ShortcutKey.EditArticle]})`"
               icon="tabler:edit"
               @click="emit('edit',props.article)"
           />
+
           <BaseIcon
               v-if="!isArticleCollect(props.article)"
               class="collect"
@@ -359,7 +382,7 @@ defineExpose({showSentence, play, del,hideSentence,nextSentence})
               :title="`取消收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
               icon="ph:star-fill"/>
           <BaseIcon
-              :title="`跳过(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
+              :title="`下一句(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
               icon="icon-park-outline:go-ahead"
               @click="emit('over')"/>
         </div>
@@ -450,28 +473,31 @@ $article-width: 1000px;
   header {
     word-wrap: break-word;
     position: relative;
-    padding: 15rem 0;
+    padding: .9rem 0;
 
     .title {
       text-align: center;
+      font-weight: bold;
       color: rgba(gray, .8);
-      font-size: 36rem;
+      font-size: 2.2rem;
       font-family: var(--word-font-family);
     }
 
     .titleTranslate {
       @extend .title;
-      font-size: 20rem;
+      font-size: 1.2rem;
       font-family: unset;
     }
 
     .options-wrapper {
-      position: absolute;
-      right: 20rem;
+      //position: absolute;
+      right: 1.2rem;
       top: 0;
       display: flex;
-      gap: 10rem;
-      font-size: 18rem;
+      margin-top: 1rem;
+      justify-content: center;
+      gap: .6rem;
+      font-size: 1.1rem;
     }
   }
 
@@ -482,13 +508,13 @@ $article-width: 1000px;
 
   article {
     //height: 100%;
-    font-size: 24rem;
+    font-size: 1.6rem;
     line-height: 2.5;
     color: gray;
     word-break: keep-all;
     word-wrap: break-word;
     white-space: pre-wrap;
-    padding-top: 20rem;
+    padding-top: 1.2rem;
 
     .section {
       font-family: var(--word-font-family);
@@ -498,11 +524,11 @@ $article-width: 1000px;
         transition: all .3s;
 
         &:first-child {
-          padding-left: 50rem;
+          padding-left: .2rem;
         }
 
         &.dictation {
-          letter-spacing: 3rem;
+          letter-spacing: .2rem;
         }
       }
 
@@ -519,10 +545,10 @@ $article-width: 1000px;
     left: 0;
     height: 100%;
     width: 100%;
-    font-size: 18rem;
+    font-size: 1.1rem;
     color: gray;
     line-height: 3.5;
-    letter-spacing: 3rem;
+    letter-spacing: .2rem;
     //display: none;
 
     .row {
@@ -545,20 +571,20 @@ $article-width: 1000px;
     &::after {
       content: ' ';
       position: absolute;
-      width: 1.5rem;
-      height: 4rem;
+      width: .1rem;
+      height: .25rem;
       background: gray;
-      bottom: 2rem;
-      right: 2.5rem;
+      bottom: .12rem;
+      right: .25rem;
     }
 
     &::before {
       content: ' ';
       position: absolute;
-      width: 1.5rem;
-      height: 4rem;
+      width: .1rem;
+      height: .26rem;
       background: gray;
-      bottom: 2rem;
+      bottom: .12rem;
       left: 0;
     }
   }
@@ -591,10 +617,10 @@ $article-width: 1000px;
 
 @keyframes underline {
   0%, 100% {
-    border-left: 1.3rem solid black;
+    border-left: .1rem solid black;
   }
   50% {
-    border-left: 1.3rem solid transparent;
+    border-left: .1rem solid transparent;
   }
 }
 

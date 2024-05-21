@@ -1,5 +1,4 @@
 <script lang="jsx">
-import {nextTick, Teleport, Transition} from "vue";
 
 export default {
   name: "Tooltip",
@@ -29,7 +28,7 @@ export default {
       e.stopPropagation()
       let rect = e.target.getBoundingClientRect()
       this.show = true
-      nextTick(() => {
+      this.$nextTick(() => {
         let tip = this.$refs?.tip?.getBoundingClientRect()
         if (!tip) return
         if (rect.top < 50) {

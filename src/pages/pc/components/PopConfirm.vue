@@ -1,5 +1,5 @@
 <script lang="jsx">
-import {nextTick, Teleport, Transition} from "vue";
+import {nextTick} from "vue";
 
 export default {
   name: "PopConfirm",

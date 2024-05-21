@@ -2321,7 +2321,7 @@ const germanExam: DictResource[] = [
 ]
 
 // 英语文章
-const enArticle: DictResource[] = [
+export const enArticle: DictResource[] = [
   {
     id: 'article_nce2',
     name: "新概念英语2-课文",
