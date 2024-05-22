@@ -6,62 +6,55 @@ import {isArticle} from "@/hooks/article.ts";
 import {nanoid} from "nanoid";
 
 
-
 export function useWordOptions() {
   const store = useBaseStore()
 
   function isWordCollect(val: Word) {
-    return !!store.collect.originWords.find(v => v.word.toLowerCase() === val.word.toLowerCase())
+    return !!store.collectWord.find(v => v.word.toLowerCase() === val.word.toLowerCase())
   }
 
   function toggleWordCollect(val: Word) {
-    let rIndex = store.collect.originWords.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+    let rIndex = store.collectWord.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
     if (rIndex > -1) {
-      store.collect.originWords.splice(rIndex, 1)
+      store.collectWord.splice(rIndex, 1)
     } else {
-      let rIndex = store.simple.originWords.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+      let rIndex = store.simple2.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
       if (rIndex > -1) {
-        store.simple.originWords.splice(rIndex, 1)
+        store.simple2.splice(rIndex, 1)
       }
-      store.collect.originWords.push(val)
+      store.collectWord.push(val)
     }
-
-    store.collect.length = store.collect.originWords.length
   }
 
   function isWordSimple(val: Word) {
-    return !!store.simple.originWords.find(v => v.word.toLowerCase() === val.word.toLowerCase())
+    return !!store.simple2.find(v => v.word.toLowerCase() === val.word.toLowerCase())
   }
 
   function toggleWordSimple(val: Word) {
-    let rIndex = store.simple.originWords.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+    let rIndex = store.simple2.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
     if (rIndex > -1) {
-      store.simple.originWords.splice(rIndex, 1)
+      store.simple2.splice(rIndex, 1)
     } else {
-      let rIndex = store.collect.originWords.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+      let rIndex = store.collectWord.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
       if (rIndex > -1) {
-        store.collect.originWords.splice(rIndex, 1)
+        store.collectWord.splice(rIndex, 1)
       }
-      store.simple.originWords.push(val)
+      store.simple2.push(val)
     }
-
-    store.simple.length = store.simple.originWords.length
   }
 
   function delWrongWord(val: Word) {
-    let rIndex = store.wrong.originWords.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+    let rIndex = store.wrong2.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
     if (rIndex > -1) {
-      store.wrong.originWords.splice(rIndex, 1)
+      store.wrong2.splice(rIndex, 1)
     }
-    store.wrong.length = store.wrong.originWords.length
   }
 
   function delSimpleWord(val: Word) {
-    let rIndex = store.simple.originWords.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+    let rIndex = store.simple2.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
     if (rIndex > -1) {
-      store.simple.originWords.splice(rIndex, 1)
+      store.simple2.splice(rIndex, 1)
     }
-    store.simple.length = store.simple.originWords.length
   }
 
   return {

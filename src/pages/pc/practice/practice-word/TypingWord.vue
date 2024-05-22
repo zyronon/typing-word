@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted, watch} from "vue"
 import {useBaseStore} from "@/stores/base.ts"
-import {DefaultDisplayStatistics, DictType, ShortcutKey, Sort, Word} from "../../../../types.ts";
+import {DefaultDisplayStatistics, DictType, ShortcutKey, Sort, Word} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep, reverse, shuffle} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
@@ -12,9 +12,8 @@ import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import Options from "@/pages/pc/practice/Options.vue";
 import Typing from "@/pages/pc/practice/practice-word/Typing.vue";
 import Panel from "@/pages/pc/practice/Panel.vue";
-import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {syncMyDictList, useWordOptions} from "@/hooks/dict.ts";
+import {useWordOptions} from "@/hooks/dict.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import WordList from "@/pages/pc/components/list/WordList.vue";
 import Empty from "@/components/Empty.vue";
@@ -147,8 +146,8 @@ function next(isTyping: boolean = true) {
 }
 
 function wordWrong() {
-  if (!store.wrong.originWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
-    store.wrong.originWords.push(word)
+  if (!store.wrong2.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
+    store.wrong2.push(word)
   }
   if (!data.wrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
     data.wrongWords.push(word)

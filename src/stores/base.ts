@@ -18,14 +18,18 @@ export interface BaseState {
   simpleWords: string[],
   load: boolean
 
-  collectWord?: Word[],
   collectArticle?: Article[],
-  simple?: Word[],
-  wrong?: Word[],
+  collectWord?: Word[],
+  simple2?: Word[],
+  wrong2?: Word[],
   articleDictList?: Dict[]
   wordDictList?: Dict[],
-  currentLearn?: {
-    wordIndex: number,
+  currentStudy?: {
+    word: {
+      dictIndex: number,
+      perDayStudyNumber: number,
+      lastWordIndex: number,
+    },
     articleIndex: number,
   }
 }
@@ -33,8 +37,8 @@ export interface BaseState {
 export const DefaultBaseState = (): BaseState => ({
   collectWord: [],
   collectArticle: [],
-  simple: [],
-  wrong: [],
+  simple2: [],
+  wrong2: [],
   articleDictList: [
     {
       ...cloneDeep(DefaultDict),
@@ -66,9 +70,13 @@ export const DefaultBaseState = (): BaseState => ({
       type: DictType.word
     },
   ],
-  currentLearn: {
-    wordIndex: 0,
-    articleIndex: 0
+  currentStudy: {
+    word: {
+      dictIndex: 0,
+      perDayStudyNumber: 30,
+      lastWordIndex: 0,
+    },
+    articleIndex: 0,
   },
 
   myDictList: [
@@ -143,7 +151,7 @@ export const DefaultBaseState = (): BaseState => ({
   current: {
     index: 4,
     // dictType: DictType.article,
-    // index: 0,
+    // dictIndex: 0,
     practiceType: DictType.article,
   },
   simpleWords: [
@@ -187,6 +195,9 @@ export const useBaseStore = defineStore('base', {
     },
     currentDict(): Dict {
       return this.myDictList[this.current.index] ?? {}
+    },
+    currentWordDict(): Dict {
+      return this.wordDictList[this.currentStudy.word.dictIndex] ?? {}
     },
     chapter(state: BaseState): Word[] {
       return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []
@@ -289,7 +300,7 @@ export const useBaseStore = defineStore('base', {
           }
         }
 
-        let currentDict = this.wordDictList[this.currentLearn.wordIndex]
+        let currentDict = this.wordDictList[this.currentStudy.word.dictIndex]
         let dictResourceUrl = `./dicts/${currentDict.language}/${currentDict.type}/${currentDict.translateLanguage}/${currentDict.url}`;
         if (!currentDict.originWords.length) {
           let v = await getDictFile(dictResourceUrl)
@@ -302,7 +313,7 @@ export const useBaseStore = defineStore('base', {
           currentDict.chapterWords = chunk(currentDict.words, currentDict.chapterWordNumber)
         }
 
-        console.log('this.wordDictList',this.wordDictList)
+        console.log('this.wordDictList', this.wordDictList)
         emitter.emit(EventKey.changeDict)
         resolve(true)
       })

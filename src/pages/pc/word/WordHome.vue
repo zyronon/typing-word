@@ -24,9 +24,17 @@ function clickEvent(e) {
             我的词典
           </div>
           <div class="grid flex-1 flex gap-5 mt-4">
-            <div class="p-4 flex-1 rounded-md bg-slate-200 relative" v-for="i in 3">
+            <div class="p-4 flex-1 rounded-md bg-slate-200 relative">
               <span>收藏</span>
-              <div class="absolute bottom-4 right-4">333个词</div>
+              <div class="absolute bottom-4 right-4">{{ base.collectWord.length}}个词</div>
+            </div>
+            <div class="p-4 flex-1 rounded-md bg-slate-200 relative">
+              <span>生词本</span>
+              <div class="absolute bottom-4 right-4">{{ base.wrong2.length}}个词</div>
+            </div>
+            <div class="p-4 flex-1 rounded-md bg-slate-200 relative">
+              <span>简单词</span>
+              <div class="absolute bottom-4 right-4">{{ base.simple2.length}}个词</div>
             </div>
           </div>
         </div>
@@ -34,7 +42,7 @@ function clickEvent(e) {
           <div class="card ">
             <div class="flex justify-between items-center">
               <div class="bg-slate-200 p-3 rounded-md cursor-pointer flex items-center">
-                <span class="text-lg font-bold">{{ base.currentDict.name }}</span>
+                <span class="text-lg font-bold">{{ base.currentWordDict.name }}</span>
                 <Icon icon="gg:arrows-exchange" class="text-2xl ml-2"/>
                 <Icon icon="uil:setting" class="text-2xl ml-2"/>
               </div>
@@ -59,7 +67,7 @@ function clickEvent(e) {
                   更改目标
                 </div>
               </div>
-              <div class="mt-2 text-xs">学习 50 个单词</div>
+              <div class="mt-2 text-xs">学习 {{ base.currentStudy.word.perDayStudyNumber }} 个单词</div>
               <el-progress class="flex-1 mt-1" :percentage="80" :show-text="false"></el-progress>
             </div>
           </div>

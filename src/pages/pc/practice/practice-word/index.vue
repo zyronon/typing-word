@@ -21,38 +21,27 @@ let wordData = $ref({
 })
 
 function getCurrentPractice() {
-  if (store.chapter.length) {
+  if (store.currentWordDict.words?.length) {
     wordData.index = 0
-    wordData.words = cloneDeep(store.chapter)
+    wordData.words = cloneDeep(store.currentWordDict.words.slice(store.currentStudy.word.lastWordIndex, store.currentStudy.word.lastWordIndex + store.currentStudy.word.perDayStudyNumber))
     emitter.emit(EventKey.resetWord)
   }
 }
 
+//TODO wait
 function sort(list: Word[]) {
   store.currentDict.chapterWords[store.currentDict.chapterIndex] = wordData.words = list
   wordData.index = 0
   syncMyDictList(store.currentDict)
 }
 
-function next() {
-  if (store.currentDict.chapterIndex >= store.currentDict.chapterWords.length - 1) {
-    store.currentDict.chapterIndex = 0
-  } else store.currentDict.chapterIndex++
-
-  getCurrentPractice()
-}
-
 onMounted(() => {
   getCurrentPractice()
   emitter.on(EventKey.changeDict, getCurrentPractice)
-  emitter.on(EventKey.next, next)
-  emitter.on(ShortcutKey.NextChapter, next)
 })
 
 onUnmounted(() => {
   emitter.off(EventKey.changeDict, getCurrentPractice)
-  emitter.off(EventKey.next, next)
-  emitter.off(ShortcutKey.NextChapter, next)
 })
 
 defineExpose({getCurrentPractice})
