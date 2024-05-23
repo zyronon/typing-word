@@ -119,7 +119,7 @@ function del(e) {
 @import "@/assets/css/style";
 
 .dict-list-panel {
-  width: 100%;
+  width: 50%;
   height: 100%;
   $header-height: 5rem;
   //padding: var(--space);

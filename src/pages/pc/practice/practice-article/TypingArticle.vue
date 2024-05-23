@@ -385,6 +385,11 @@ defineExpose({showSentence, play, del,hideSentence,nextSentence})
               :title="`下一句(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
               icon="icon-park-outline:go-ahead"
               @click="emit('over')"/>
+
+          <BaseIcon
+              @click="settingStore.showPanel = !settingStore.showPanel"
+              :title="`单词本(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
+              icon="tdesign:menu-unfold"/>
         </div>
       </div>
     </header>

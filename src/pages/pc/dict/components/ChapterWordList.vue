@@ -124,7 +124,7 @@ useWindowClick(() => show = false)
               v-if="showAdd"
               @click="emit('add')"
               icon="fluent:add-20-filled"
-              title="新增单词到本章节"/>
+              title="添加单词"/>
         </div>
       </div>
       <div class="select"

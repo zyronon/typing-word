@@ -23,6 +23,7 @@ import Dict2 from '@/pages/pc/dict2/index.vue'
 import ArticleIndex from "@/pages/pc/article/ArticleIndex.vue";
 import HomeIndex from "@/pages/pc/home/HomeIndex.vue";
 import LearnArticle from "@/pages/pc/article/LearnArticle.vue";
+import EditWordDict from "@/pages/pc/word/EditWordDict.vue";
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -31,6 +32,7 @@ export const routes: RouteRecordRaw[] = [
     children: [
       {path: 'home', component: HomeIndex},
       {path: 'word', component: WordHome},
+      {path: 'edit-word-dict', component: EditWordDict},
       {path: 'dict', component: Dict2},
       {path: 'practice', component: Practice},
       {path: 'article', component: ArticleIndex},

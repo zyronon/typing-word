@@ -120,7 +120,7 @@ onMounted(() => {
           ref="dictFormRef"
           :rules="dictRules"
           :model="dictForm"
-          label-width="120rem">
+          label-width="8rem">
         <el-form-item label="名称" prop="name">
           <el-input v-model="dictForm.name"/>
         </el-form-item>

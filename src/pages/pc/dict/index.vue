@@ -16,7 +16,6 @@ onMounted(() => {
 <template>
   <div class="anim page">
     <header class="anim">
-      <Logo/>
       <div class="nav-list">
         <nav>
           <router-link to="/pc/practice">练习</router-link>

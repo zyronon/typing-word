@@ -445,10 +445,10 @@ defineExpose({getCurrentPractice})
 .panel-wrapper {
   position: fixed;
   left: 0;
-  top: 10rem;
+  top: .6rem;
   z-index: 1;
   margin-left: var(--article-panel-margin-left);
-  height: calc(100% - 20rem);
+  height: calc(100% - 1.2rem);
 }
 
 </style>
