@@ -1,8 +1,12 @@
 <script lang="jsx">
-import {nextTick} from "vue";
+import {Teleport, Transition} from 'vue'
 
 export default {
   name: "PopConfirm",
+  components: {
+    Teleport,
+    Transition
+  },
   props: {
     title: {
       type: String,
@@ -36,7 +40,7 @@ export default {
       e?.stopPropagation()
       let rect = e.target.getBoundingClientRect()
       this.show = true
-      nextTick(() => {
+      this.$nextTick(() => {
         let tip = this.$refs?.tip?.getBoundingClientRect()
         console.log('rect', rect, tip)
         if (!tip) return

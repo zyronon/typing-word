@@ -131,9 +131,9 @@ const showCollectToggleButton = $computed(() => {
             </div>
             <template v-if="practiceType === DictType.word">
               <WordList
-                  v-if="store.collect.words.length"
+                  v-if="store.collectWord.length"
                   class="word-list"
-                  :list="store.collect.words">
+                  :list="store.collectWord">
                 <template v-slot:suffix="{item,index}">
                   <BaseIcon
                       class="del"
@@ -146,8 +146,8 @@ const showCollectToggleButton = $computed(() => {
             </template>
             <template v-else>
               <ArticleList
-                  v-if="store.collect.articles.length"
-                  :list="store.collect.articles">
+                  v-if="store.collectArticle.length"
+                  :list="store.collectArticle">
                 <template v-slot:suffix="{item,index}">
                   <BaseIcon
                       class="del"
@@ -164,10 +164,10 @@ const showCollectToggleButton = $computed(() => {
           <div class="panel-page-item">
             <div class="list-header">
               <div class="left">
-                <div class="dict-name">总词数：{{ store.simple.words.length }}</div>
+                <div class="dict-name">总词数：{{ store.simple2.length }}</div>
                 <BaseIcon icon="fluent:add-12-regular" title="添加" @click="addSimple"/>
               </div>
-              <template v-if="store.currentDict.type !== DictType.simple && store.simple.words.length">
+              <template v-if="store.currentDict.type !== DictType.simple && store.simple2.length">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="changeIndex( store.simple)"
@@ -177,9 +177,9 @@ const showCollectToggleButton = $computed(() => {
               </template>
             </div>
             <WordList
-                v-if="store.simple.words.length"
+                v-if="store.simple2.length"
                 class="word-list"
-                :list="store.simple.words">
+                :list="store.simple2">
               <template v-slot:suffix="{item,index}">
                 <BaseIcon
                     class="del"
@@ -192,11 +192,11 @@ const showCollectToggleButton = $computed(() => {
           </div>
         </div>
         <div class="slide-item">
-          <div class="panel-page-item" v-if="store.wrong.words.length">
+          <div class="panel-page-item" v-if="store.wrong2.length">
             <div class="list-header">
-              <div class="dict-name">总词数：{{ store.wrong.words.length }}</div>
+              <div class="dict-name">总词数：{{ store.wrong2.length }}</div>
               <template
-                  v-if="store.currentDict.type !== DictType.wrong && store.wrong.words.length">
+                  v-if="store.currentDict.type !== DictType.wrong && store.wrong2.length">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="changeIndex( store.wrong)"
@@ -207,7 +207,7 @@ const showCollectToggleButton = $computed(() => {
             </div>
             <WordList
                 class="word-list"
-                :list="store.wrong.words">
+                :list="store.wrong2">
               <template v-slot:suffix="{item,index}">
                 <BaseIcon
                     class="del"

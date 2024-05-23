@@ -1,7 +1,12 @@
 <script lang="jsx">
+import {Teleport, Transition} from 'vue'
 
 export default {
   name: "Tooltip",
+  components: {
+    Teleport,
+    Transition
+  },
   props: {
     title: {
       type: String,

@@ -28,9 +28,12 @@ export interface BaseState {
     word: {
       dictIndex: number,
       perDayStudyNumber: number,
-      lastWordIndex: number,
+      lastLearnIndex: number,
     },
-    articleIndex: number,
+    article: {
+      dictIndex: number,
+      lastLearnIndex: number,
+    }
   }
 }
 
@@ -74,9 +77,12 @@ export const DefaultBaseState = (): BaseState => ({
     word: {
       dictIndex: 0,
       perDayStudyNumber: 30,
-      lastWordIndex: 0,
+      lastLearnIndex: 0,
     },
-    articleIndex: 0,
+    article: {
+      dictIndex: 0,
+      lastLearnIndex: 0,
+    },
   },
 
   myDictList: [
@@ -199,6 +205,9 @@ export const useBaseStore = defineStore('base', {
     currentWordDict(): Dict {
       return this.wordDictList[this.currentStudy.word.dictIndex] ?? {}
     },
+    currentArticleDict(): Dict {
+      return this.articleDictList[this.currentStudy.article.dictIndex] ?? {}
+    },
     chapter(state: BaseState): Word[] {
       return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []
     },
@@ -239,32 +248,6 @@ export const useBaseStore = defineStore('base', {
         }
         const runtimeStore = useRuntimeStore()
 
-        if (location.href.includes('?mode=article')) {
-          console.log('文章')
-          //TODO
-          let dict = {
-            ...cloneDeep(DefaultDict),
-            id: 'article_nce2',
-            name: "新概念英语2-课文",
-            description: '新概念英语2-课文',
-            category: '英语学习',
-            tags: ['新概念英语'],
-            url: 'NCE_2.json',
-            translateLanguage: 'common',
-            language: 'en',
-            type: DictType.article,
-            resourceId: 'article_nce2',
-            length: 96
-          }
-          let rIndex = this.myDictList.findIndex((v: Dict) => v.id === dict.id)
-          if (rIndex > -1) {
-            this.myDictList[rIndex] = dict
-            this.current.index = rIndex
-          } else {
-            this.myDictList.push(cloneDeep(dict))
-            this.current.index = this.myDictList.length - 1
-          }
-        }
 
         if (this.current.index < 3) {
           //前三本词典的isCustom为true。数据全都保存了，不需要处理了
@@ -313,7 +296,17 @@ export const useBaseStore = defineStore('base', {
           currentDict.chapterWords = chunk(currentDict.words, currentDict.chapterWordNumber)
         }
 
-        console.log('this.wordDictList', this.wordDictList)
+        currentDict = this.articleDictList[this.currentStudy.article.dictIndex]
+        dictResourceUrl = `./dicts/${currentDict.language}/${currentDict.type}/${currentDict.translateLanguage}/${currentDict.url}`;
+        if (!currentDict.articles.length) {
+          let s = await getDictFile(dictResourceUrl)
+          currentDict.articles = cloneDeep(s.map(v => {
+            v.id = nanoid(6)
+            return v
+          }))
+        }
+
+        console.log('this.wordDictList', this.articleDictList)
         emitter.emit(EventKey.changeDict)
         resolve(true)
       })

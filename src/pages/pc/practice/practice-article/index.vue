@@ -54,17 +54,17 @@ let articleIsActive = $computed(() => tabIndex === 0)
 
 function next() {
   if (!articleIsActive) return
-  if (store.currentDict.chapterIndex >= articleData.articles.length - 1) {
-    store.currentDict.chapterIndex = 0
-  } else store.currentDict.chapterIndex++
+  if (store.currentArticleDict.chapterIndex >= articleData.articles.length - 1) {
+    store.currentArticleDict.chapterIndex = 0
+  } else store.currentArticleDict.chapterIndex++
 
   emitter.emit(EventKey.resetWord)
   getCurrentPractice()
 }
 
 function init() {
-  if (!store.currentDict.articles.length) return
-  articleData.articles = cloneDeep(store.currentDict.articles)
+  if (!store.currentArticleDict.articles.length) return
+  articleData.articles = cloneDeep(store.currentArticleDict.articles)
   getCurrentPractice()
   console.log('inin', articleData.article)
 
@@ -72,7 +72,7 @@ function init() {
 
 function setArticle(val: Article) {
   let tempVal = cloneDeep(val)
-  articleData.articles[store.currentDict.chapterIndex] = tempVal
+  articleData.articles[store.currentArticleDict.chapterIndex] = tempVal
   articleData.article = tempVal
   practiceStore.inputWordNumber = 0
   practiceStore.wrongWordNumber = 0
@@ -92,12 +92,12 @@ function setArticle(val: Article) {
 }
 
 function getCurrentPractice() {
-  // console.log('store.currentDict',store.currentDict)
+  // console.log('store.currentArticleDict',store.currentArticleDict)
   // return
   tabIndex = 0
   articleData.article = cloneDeep(DefaultArticle)
 
-  let currentArticle = articleData.articles[store.currentDict.chapterIndex]
+  let currentArticle = articleData.articles[store.currentArticleDict.chapterIndex]
   let tempArticle = {...DefaultArticle, ...currentArticle}
   // console.log('article', tempArticle)
   if (tempArticle.sections.length) {
@@ -165,9 +165,9 @@ function getCurrentPractice() {
 function saveArticle(val: Article) {
   console.log('saveArticle', val)
   showEditArticle = false
-  let rIndex = store.currentDict.articles.findIndex(v => v.id === val.id)
+  let rIndex = store.currentArticleDict.articles.findIndex(v => v.id === val.id)
   if (rIndex > -1) {
-    store.currentDict.articles[rIndex] = cloneDeep(val)
+    store.currentArticleDict.articles[rIndex] = cloneDeep(val)
   }
   setArticle(val)
 }
@@ -232,7 +232,7 @@ function nextWord(word: ArticleWord) {
 function handleChangeChapterIndex(val: ArticleItem) {
   let rIndex = articleData.articles.findIndex(v => v.id === val.item.id)
   if (rIndex > -1) {
-    store.currentDict.chapterIndex = rIndex
+    store.currentArticleDict.chapterIndex = rIndex
     getCurrentPractice()
   }
 }
@@ -357,11 +357,11 @@ defineExpose({getCurrentPractice})
                             @click="emitter.emit(EventKey.openDictModal,'list')"
                             icon="carbon:change-catalog"/>
                   <div class="title">
-                    {{ store.currentDict.name }}
+                    {{ store.currentArticleDict.name }}
                   </div>
                   <Tooltip
                       :title="`下一章(${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
-                      v-if="store.currentDict.chapterIndex < articleData.articles .length - 1">
+                      v-if="store.currentArticleDict.chapterIndex < articleData.articles .length - 1">
                     <IconWrapper>
                       <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
                     </IconWrapper>

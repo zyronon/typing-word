@@ -23,7 +23,7 @@ let wordData = $ref({
 function getCurrentPractice() {
   if (store.currentWordDict.words?.length) {
     wordData.index = 0
-    wordData.words = cloneDeep(store.currentWordDict.words.slice(store.currentStudy.word.lastWordIndex, store.currentStudy.word.lastWordIndex + store.currentStudy.word.perDayStudyNumber))
+    wordData.words = cloneDeep(store.currentWordDict.words.slice(store.currentStudy.word.lastLearnIndex, store.currentStudy.word.lastLearnIndex + store.currentStudy.word.perDayStudyNumber))
     emitter.emit(EventKey.resetWord)
   }
 }
