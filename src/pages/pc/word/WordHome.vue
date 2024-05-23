@@ -25,15 +25,15 @@ function clickEvent(e) {
           我的词典
         </div>
         <div class="grid flex-1 flex gap-5 mt-4">
-          <div class="my-dict" @click="nav('edit-word-dict')">
+          <div class="my-dict" @click="nav('edit-word-dict',{type:0})">
             <span>收藏</span>
             <div class="absolute bottom-4 right-4">{{ base.collectWord.length }}个词</div>
           </div>
-          <div class="my-dict">
+          <div class="my-dict" @click="nav('edit-word-dict',{type:1})">
             <span>生词本</span>
             <div class="absolute bottom-4 right-4">{{ base.wrong2.length }}个词</div>
           </div>
-          <div class="my-dict">
+          <div class="my-dict" @click="nav('edit-word-dict',{type:2})">
             <span>简单词</span>
             <div class="absolute bottom-4 right-4">{{ base.simple2.length }}个词</div>
           </div>

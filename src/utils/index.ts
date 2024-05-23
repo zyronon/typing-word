@@ -191,8 +191,11 @@ export function getDictFile(url: string) {
 export function useNav() {
   const router = useRouter()
 
-  function nav(val) {
-    router.push(val)
+  function nav(path, query = {}, data?: any) {
+    // if (data) {
+    //   store.routeData = cloneDeep(data)
+    // }
+    router.push({path, query})
   }
 
   return {nav, back: router.back}
