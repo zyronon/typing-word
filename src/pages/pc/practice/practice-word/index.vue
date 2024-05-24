@@ -12,8 +12,6 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {syncMyDictList} from "@/hooks/dict.ts";
 
 const store = useBaseStore()
-const runtimeStore = useRuntimeStore()
-const settingStore = useSettingStore()
 
 let wordData = $ref({
   words: [],
@@ -21,9 +19,9 @@ let wordData = $ref({
 })
 
 function getCurrentPractice() {
-  if (store.currentWordDict.words?.length) {
+  if (store.currentStudyWordDict.words?.length) {
     wordData.index = 0
-    wordData.words = cloneDeep(store.currentWordDict.words.slice(store.currentStudy.word.lastLearnIndex, store.currentStudy.word.lastLearnIndex + store.currentStudy.word.perDayStudyNumber))
+    wordData.words = cloneDeep(store.currentStudyWordDict.words.slice(store.currentStudy.word.lastLearnIndex, store.currentStudy.word.lastLearnIndex + store.currentStudy.word.perDayStudyNumber))
     emitter.emit(EventKey.resetWord)
   }
 }

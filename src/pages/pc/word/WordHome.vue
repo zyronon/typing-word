@@ -43,12 +43,12 @@ function clickEvent(e) {
         <div class="card ">
           <div class="flex justify-between items-center">
             <div class="bg-slate-200 p-3 rounded-md cursor-pointer flex items-center">
-              <span class="text-lg font-bold">{{ base.currentWordDict.name }}</span>
+              <span class="text-lg font-bold">{{ base.currentStudyWordDict.name }}</span>
               <Icon icon="gg:arrows-exchange" class="text-2xl ml-2"/>
               <Icon icon="uil:setting" class="text-2xl ml-2"/>
             </div>
             <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
-                 @click="router.push('/practice')">
+                 @click="router.push('study-word')">
               开始学习
             </div>
           </div>

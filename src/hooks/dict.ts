@@ -71,15 +71,15 @@ export function useArticleOptions() {
   const store = useBaseStore()
 
   function isArticleCollect(val: Article) {
-    return !!store.collect.articles.find(v => v.title.toLowerCase() === val.title.toLowerCase())
+    return !!store.collectArticle.find(v => v.title.toLowerCase() === val.title.toLowerCase())
   }
 
   function toggleArticleCollect(val: Article) {
-    let rIndex = store.collect.articles.findIndex(v => v.title.toLowerCase() === val.title.toLowerCase())
+    let rIndex = store.collectArticle.findIndex(v => v.title.toLowerCase() === val.title.toLowerCase())
     if (rIndex > -1) {
-      store.collect.articles.splice(rIndex, 1)
+      store.collectArticle.splice(rIndex, 1)
     } else {
-      store.collect.articles.push(val)
+      store.collectArticle.push(val)
     }
   }
 

@@ -13,12 +13,15 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import PracticeArticle from "@/pages/pc/practice/practice-article/index.vue";
 import PracticeWord from "@/pages/pc/practice/practice-word/index.vue";
-import {ShortcutKey} from "@/types.ts";
+import {ShortcutKey, Word} from "@/types.ts";
 import DictModal from "@/pages/pc/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
 import Logo from "@/pages/pc/components/Logo.vue";
 import {Icon} from "@iconify/vue";
+import TypingWord from "@/pages/pc/practice/practice-word/TypingWord.vue";
+import {cloneDeep} from "lodash-es";
+import {syncMyDictList} from "@/hooks/dict.ts";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
@@ -60,7 +63,7 @@ function write() {
 function repeat() {
   // console.log('repeat')
   emitter.emit(EventKey.resetWord)
-  practiceRef.getCurrentPractice()
+  getCurrentPractice()
 }
 
 function prev() {
@@ -137,13 +140,49 @@ onUnmounted(() => {
   emitter.off(ShortcutKey.TogglePanel, togglePanel)
 })
 
+
+let wordData = $ref({
+  words: [],
+  index: -1
+})
+
+function getCurrentPractice() {
+  if (store.currentStudyWordDict.words?.length) {
+    wordData.index = 0
+    wordData.words = cloneDeep(store.currentStudyWordDict.words.slice(store.currentStudy.word.lastLearnIndex, store.currentStudy.word.lastLearnIndex + store.currentStudy.word.perDayStudyNumber))
+    emitter.emit(EventKey.resetWord)
+  }
+}
+
+//TODO wait
+function sort(list: Word[]) {
+  store.currentDict.chapterWords[store.currentDict.chapterIndex] = wordData.words = list
+  wordData.index = 0
+  syncMyDictList(store.currentDict)
+}
+
+onMounted(() => {
+  getCurrentPractice()
+  emitter.on(EventKey.changeDict, getCurrentPractice)
+})
+
+onUnmounted(() => {
+  emitter.off(EventKey.changeDict, getCurrentPractice)
+})
+
+
 useStartKeyboardEventListener()
 
 </script>
 <template>
   <div class="practice-wrapper">
     <Toolbar/>
-    <PracticeWord ref="practiceRef"/>
+    <div class="flex flex-1">
+      <TypingWord
+          @sort="sort"
+          v-model:words="wordData.words"
+          :index="wordData.index"/>
+    </div>
     <Footer/>
   </div>
   <DictModal/>

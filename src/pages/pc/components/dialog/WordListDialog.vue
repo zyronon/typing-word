@@ -53,7 +53,7 @@ onUnmounted(() => {
 .all-word {
   padding-bottom: var(--space);
   padding-top: 0;
-  width: 400rem;
+  width: 30rem;
   height: 75vh;
   display: flex;
 }

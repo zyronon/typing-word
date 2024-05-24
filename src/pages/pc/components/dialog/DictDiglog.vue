@@ -15,22 +15,14 @@ import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {useRouter} from "vue-router";
 
 const store = useBaseStore()
-const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
-let router = useRouter()
 
 let show = $ref(false)
 let chapterWordNumber = $ref(0)
-let toggleLoading = $ref(false)
-
 
 function close() {
   show = false
 }
-
-const dictIsArticle = $computed(() => {
-  return isArticle(runtimeStore.editDict.type)
-})
 
 function showAllWordModal() {
   emitter.emit(EventKey.openWordListModal, {
@@ -52,13 +44,6 @@ function resetChapterList(v: number) {
   }
 }
 
-function option(type: string) {
-  show = false
-  setTimeout(() => {
-    router.push({path: '/pc/dict', query: {type: type}})
-  }, 500)
-}
-
 onMounted(() => {
   emitter.on(EventKey.openDictModal, (typ) => {
     show = true
@@ -76,7 +61,7 @@ onMounted(() => {
     <div id="DictDialog">
       <header>
         <div class="text-2xl">
-          {{ store.currentDict.name }}
+          {{ store.currentStudyWordDict.name }}
         </div>
         <Icon @click="close"
               class="hvr-grow pointer"
@@ -84,18 +69,12 @@ onMounted(() => {
               icon="ion:close-outline"/>
       </header>
       <div class="detail">
-        <div class="desc">{{ store.currentDict.description }}</div>
-        <div class="text flex align-center">
-          <div v-if="dictIsArticle">总文章：{{ store.currentDict.articles.length }}篇
-          </div>
-          <div v-else>总词汇：
-            <span class="count" @click="showAllWordModal">{{
-                store.currentDict.originWords.length
-              }}词</span>
-          </div>
-          <BaseIcon icon="mi:add"
-                    @click='option("addWordOrArticle")'
-                    :title="`添加${dictIsArticle?'文章':'单词'}`"
+        <div class="desc">{{ store.currentStudyWordDict.description }}</div>
+        <div class="text flex align-center gap-2">
+          <div>总词汇： {{ store.currentStudyWordDict.originWords.length }}词</div>
+          <BaseIcon icon="circum:view-list"
+                    @click='showAllWordModal'
+                    title="单词列表"
           />
         </div>
         <div class="text">开始日期：-</div>
@@ -189,10 +168,6 @@ $header-height: 4rem;
       margin-bottom: 1.2rem;
     }
 
-    .count {
-      cursor: pointer;
-      border-bottom: 2px solid var(--color-item-active);
-    }
 
     :deep(.edit-icon) {
       position: absolute;

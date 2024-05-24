@@ -1,6 +1,5 @@
 import * as VueRouter from 'vue-router'
 import {RouteRecordRaw} from 'vue-router'
-import Practice from "@/pages/pc/practice/index.vue";
 import Dict from '@/pages/pc/dict/index.vue'
 import Mobile from '@/pages/mobile/index.vue'
 import MobilePractice from '@/pages/mobile/practice/index.vue'
@@ -24,6 +23,7 @@ import ArticleIndex from "@/pages/pc/article/ArticleIndex.vue";
 import HomeIndex from "@/pages/pc/home/HomeIndex.vue";
 import LearnArticle from "@/pages/pc/article/LearnArticle.vue";
 import EditWordDict from "@/pages/pc/word/EditWordDict.vue";
+import StudyWord from "@/pages/pc/word/StudyWord.vue";
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -32,9 +32,9 @@ export const routes: RouteRecordRaw[] = [
     children: [
       {path: 'home', component: HomeIndex},
       {path: 'word', component: WordHome},
+      {path: 'study-word', component: StudyWord},
       {path: 'edit-word-dict', component: EditWordDict},
       {path: 'dict', component: Dict2},
-      {path: 'practice', component: Practice},
       {path: 'article', component: ArticleIndex},
       {path: 'learn-article', component: LearnArticle},
     ]

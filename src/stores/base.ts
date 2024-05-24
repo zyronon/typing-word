@@ -260,7 +260,7 @@ export const useBaseStore = defineStore('base', {
     currentDict(): Dict {
       return this.myDictList[this.current.index] ?? {}
     },
-    currentWordDict(): Dict {
+    currentStudyWordDict(): Dict {
       return this.wordDictList[this.currentStudy.word.dictIndex] ?? {}
     },
     currentArticleDict(): Dict {

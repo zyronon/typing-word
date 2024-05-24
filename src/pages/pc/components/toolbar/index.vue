@@ -65,7 +65,7 @@ const {nav} = useNav()
         <Tooltip
             :title="`词典详情(${settingStore.shortcutKeyMap[ShortcutKey.OpenDictDetail]})`">
           <div class="info" @click="emitter.emit(EventKey.openDictModal,'detail')">
-            {{ store.currentDict.name }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
+            {{ store.currentStudyWordDict.name }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
           </div>
         </Tooltip>
         <BaseIcon title="切换词典"
