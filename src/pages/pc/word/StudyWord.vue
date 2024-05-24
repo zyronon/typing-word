@@ -28,7 +28,6 @@ const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 const {toggleTheme} = useTheme()
-const practiceRef: any = $ref()
 
 watch(practiceStore, () => {
   if (practiceStore.inputWordNumber < 1) {

@@ -32,18 +32,6 @@ function showAllWordModal() {
   })
 }
 
-function resetChapterList(v: number) {
-  const temp = () => {
-    runtimeStore.editDict.chapterWordNumber = v
-    runtimeStore.editDict.chapterWords = chunk(runtimeStore.editDict.words, runtimeStore.editDict.chapterWordNumber)
-  }
-  if (runtimeStore.editDict.isCustom) {
-
-  } else {
-    temp()
-  }
-}
-
 onMounted(() => {
   emitter.on(EventKey.openDictModal, (typ) => {
     show = true
@@ -91,15 +79,14 @@ onMounted(() => {
               class="my-slider"
               :min="10"
               :step="10"
-              :max="store.currentDict.words.length < 10 ? 10 : 500"
+              :max="store.currentStudyWordDict.words.length < 10 ? 10 : 500"
               size="small"
               v-model="chapterWordNumber"
-              @change="resetChapterList"
           />
         </div>
         <div class="notice">
           <span class="text">最小:10</span>
-          <span class="text">最大:{{ store.currentDict.words.length < 10 ? 10 : 500 }}</span>
+          <span class="text">最大:{{ store.currentStudyWordDict.words.length < 10 ? 10 : 500 }}</span>
         </div>
       </div>
       <div class="footer">
