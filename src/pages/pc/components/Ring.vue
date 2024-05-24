@@ -2,19 +2,19 @@
   <div class="ring">
     <svg height="100%" width="100%">
       <circle class="circle-full"
-              cx="40rem"
-              cy="40rem"
-              r="35rem"
+              cx="2.5rem"
+              cy="2.5rem"
+              r="2.2rem"
               fill="none"
-              stroke-width="6rem"
+              stroke-width=".3rem"
               stroke-linecap="round"></circle>
       <circle v-if="props.percentage" ref="circleEl"
               class="circle-detail"
-              cx="40rem"
-              cy="40rem"
-              r="35rem"
+              cx="2.5rem"
+              cy="2.5rem"
+              r="2.2rem"
               fill="none"
-              stroke-width="6rem"
+              stroke-width=".3rem"
               stroke-linecap="round"
               stroke-dasharray="0,10000"></circle>
     </svg>
@@ -39,18 +39,18 @@ onMounted(() => {
   if (props.percentage) {
     let circleLength = Math.floor(2 * Math.PI * 40);
     let val = Number(props.percentage.toFixed(0));
-    circleEl.setAttribute("stroke-dasharray", "" + circleLength * val / 100 + "rem,10000");
+    circleEl.setAttribute("stroke-dasharray", "" + circleLength * val / 100 + "px,10000");
   }
 })
 </script>
 <style scoped lang="scss">
 @import "@/assets/css/variable";
 
-$w: 80rem;
+$w: 5rem;
 $w2: calc($w / 2);
 
 .ring {
-  font-size: 16rem;
+  font-size: 1rem;
   width: $w;
   height: $w;
   display: flex;
@@ -58,7 +58,7 @@ $w2: calc($w / 2);
   justify-content: center;
   flex-direction: column;
   position: relative;
-  margin-bottom: 6rem;
+  margin-bottom: .38rem;
 
   svg {
     position: absolute;
@@ -80,7 +80,7 @@ $w2: calc($w / 2);
   }
 
   .desc {
-    font-size: 12rem;
+    font-size: .8rem;
     opacity: .6;
   }
 }

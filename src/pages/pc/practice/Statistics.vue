@@ -126,37 +126,37 @@ const isEnd = $computed(() => {
 <style scoped lang="scss">
 @import "@/assets/css/style";
 
-$card-radius: 8rem;
+$card-radius: .5rem;
 $dark-second-bg: rgb(60, 63, 65);
 $item-hover: rgb(75, 75, 75);
 
 .statistics {
-  width: 800rem;
+  width: 60rem;
   padding: var(--space);
   background: $dark-second-bg;
   border-radius: $card-radius;
 
-  $header-height: 40rem;
-  $footer-height: 60rem;
+  $header-height: 2.5rem;
+  $footer-height: 4rem;
 
   header {
     display: flex;
     align-items: center;
     justify-content: center;
     height: $header-height;
-    font-size: 24rem;
-    margin-bottom: 15rem;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
   }
 
   .content {
     display: flex;
     gap: var(--space);
-    margin-bottom: 15rem;
+    margin-bottom: 1rem;
 
     .result {
       box-sizing: border-box;
       overflow: hidden;
-      height: 340rem;
+      height: 30rem;
       display: flex;
       flex-direction: column;
       border-radius: $card-radius;
@@ -172,15 +172,15 @@ $item-hover: rgb(75, 75, 75);
       .wrong-words {
         box-sizing: border-box;
         display: flex;
-        margin-right: 5rem;
+        margin-right: .3rem;
         flex-wrap: wrap;
-        gap: 10rem;
+        gap: .6rem;
         align-items: flex-start;
 
         .word {
           display: inline-block;
-          border-radius: 6rem;
-          padding: 5rem 15rem;
+          border-radius: .4rem;
+          padding: .3rem 1rem;
           background: $dark-second-bg;
         }
       }
@@ -188,9 +188,9 @@ $item-hover: rgb(75, 75, 75);
       .notice {
         $main: rgb(64,158,255);
         background: $main;
-        height: 40rem;
+        height: 2.5rem;
         display: flex;
-        gap: 10rem;
+        gap: .6rem;
         align-items: center;
         padding-left: var(--space);
       }
@@ -208,7 +208,7 @@ $item-hover: rgb(75, 75, 75);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20rem;
+    gap: 1.2rem;
   }
 }
 

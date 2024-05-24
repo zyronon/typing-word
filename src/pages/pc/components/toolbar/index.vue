@@ -176,7 +176,7 @@ header {
   margin-top: 1rem;
   background: var(--color-second-bg);
   border-radius: .8rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   position: relative;
   z-index: 2;
   padding: .4rem var(--space);

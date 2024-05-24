@@ -14,7 +14,6 @@ import {useNav} from "@/utils";
 import {FormInstance, FormRules} from "element-plus";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import BaseButton from "@/components/BaseButton.vue";
-import {$computed, $ref} from "vue/macros";
 
 const runtimeStore = useRuntimeStore()
 const store = useBaseStore()
