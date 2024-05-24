@@ -30,7 +30,7 @@ function clickEvent(e) {
             <div class="absolute bottom-4 right-4">{{ base.collectWord.length }}个词</div>
           </div>
           <div class="my-dict" @click="nav('edit-word-dict',{type:1})">
-            <span>生词本</span>
+            <span>错词本</span>
             <div class="absolute bottom-4 right-4">{{ base.wrong2.length }}个词</div>
           </div>
           <div class="my-dict" @click="nav('edit-word-dict',{type:2})">

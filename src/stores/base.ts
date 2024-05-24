@@ -38,7 +38,65 @@ export interface BaseState {
 }
 
 export const DefaultBaseState = (): BaseState => ({
-  collectWord: [],
+  collectWord: [
+    {
+      "word": "pharmacy",
+      "trans": [
+        {
+          "cn": "n.药房，配药学，药学，制药业，一批备用药品"
+        }
+      ],
+      "phonetic0": "ˈfɑ:məsi",
+      "phonetic1": "ˈfɑ:rməsi"
+    },
+    {
+      "word": "foregone",
+      "trans": [
+        {
+          "cn": "过去的；先前的；预知的；预先决定的"
+        },
+        {
+          "cn": "发生在…之前（forego的过去分词）"
+        }
+      ],
+      "phonetic0": "fɔː'gɒn",
+      "phonetic1": "'fɔrɡɔn"
+    },
+
+    {
+      "word": "calculate",
+      "trans": [
+        {
+          "cn": "vt.& vi.计算，估计，打算，计划，旨在"
+        },
+        {
+          "cn": "vt.预测，推测"
+        }
+      ],
+      "phonetic0": "ˈkælkjuleɪt",
+      "phonetic1": "ˈkælkjəˌlet"
+    },
+    {
+      "word": "compete",
+      "trans": [
+        {
+          "cn": "vi.竞赛，竞争，比得上，参加比赛（或竞赛）"
+        }
+      ],
+      "phonetic0": "kəmˈpi:t",
+      "phonetic1": "kəmˈpit"
+    },
+    {
+      "word": "furnish",
+      "trans": [
+        {
+          "cn": "vt.陈设，布置，提供，供应，装修（房屋）"
+        }
+      ],
+      "phonetic0": "ˈfɜ:nɪʃ",
+      "phonetic1": "ˈfɜ:rnɪʃ"
+    },
+  ],
   collectArticle: [],
   simple2: [],
   wrong2: [],

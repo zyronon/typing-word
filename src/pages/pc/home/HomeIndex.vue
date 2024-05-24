@@ -44,7 +44,7 @@ function clickEvent(e) {
               </div>
             </div>
             <div class="mt-5 text-sm">已学习5555个单词的1%</div>
-            <el-progress class="mt-1" percentage="80" :show-text="false"></el-progress>
+            <el-progress class="mt-1" :percentage="80" :show-text="false"></el-progress>
           </div>
           <div class="card flex gap-3">
             <div class="bg-slate-200 w-10 h-10 flex center text-2xl rounded">
@@ -60,7 +60,7 @@ function clickEvent(e) {
                 </div>
               </div>
               <div class="mt-2 text-xs">学习 50 个单词</div>
-              <el-progress class="flex-1 mt-1" percentage="80" :show-text="false"></el-progress>
+              <el-progress class="flex-1 mt-1" :percentage="80" :show-text="false"></el-progress>
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@ function clickEvent(e) {
               </div>
             </div>
             <div class="mt-5 text-sm">已学习5555个单词的1%</div>
-            <el-progress class="mt-1" percentage="80" color="white" :show-text="false"></el-progress>
+            <el-progress class="mt-1" :percentage="80" color="white" :show-text="false"></el-progress>
           </div>
         </div>
         <div class="flex justify-center mt-2 text-2xl">
