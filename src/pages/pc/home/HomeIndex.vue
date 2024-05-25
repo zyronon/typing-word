@@ -119,9 +119,6 @@ function clickEvent(e) {
   @apply rounded-xl bg-white p-4 mt-5;
 }
 
-.center {
-  @apply flex justify-center items-center;
-}
 
 .title {
   @apply text-lg font-medium;

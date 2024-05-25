@@ -36,6 +36,7 @@ export interface SettingState {
     wordTranslateFontSize: number,
   },
   showPanel: boolean,
+  showSide: boolean,
   theme: string,
   collapse: boolean,
   chapterWordNumber: number,
@@ -48,6 +49,7 @@ export const DefaultSettingState = (): SettingState => ({
   showToolbar: true,
   show: false,
   showPanel: true,
+  showSide: true,
 
   allSound: true,
   wordSound: true,

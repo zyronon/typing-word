@@ -8,21 +8,27 @@ import {useBaseStore} from "@/stores/base.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useRouter} from "vue-router";
+import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
+import Tooltip from "@/pages/pc/components/Tooltip.vue";
+import useTheme from "@/hooks/theme.ts";
+import BaseIcon from "@/components/BaseIcon.vue";
 
 const practiceStore = usePracticeStore()
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 const router = useRouter()
+const {toggleTheme} = useTheme()
+
 </script>
 
 <template>
   <div class="layout">
-    <div class="aside">
+    <div class="aside" :class="{'hide':settingStore.showSide}">
       <div class="top">
         <Logo/>
         <div class="row" @click="router.push('/home')">
-          <Icon icon="iconoir:home" />
+          <Icon icon="iconoir:home"/>
           <span>主页</span>
         </div>
         <div class="row" @click="router.push('/word')">
@@ -43,16 +49,32 @@ const router = useRouter()
           <span>社区</span>
         </div>
       </div>
-      <div class="bottom">
-        <div class="row"
-             :title="`设置(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
-             @click="runtimeStore.showSettingModal = true">
-          <Icon icon="uil:setting"/>
-          <span>试卷</span>
-        </div>
+      <div class="bottom flex justify-evenly ">
+        <BaseIcon
+            :title="`收起(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
+            @click="settingStore.showSide = !settingStore.showSide"
+            icon="formkit:left"/>
+        <Tooltip
+            :title="`切换主题(${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
+        >
+          <IconWrapper>
+            <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
+                  @click="toggleTheme"/>
+            <Icon icon="tabler:sun" v-else @click="toggleTheme"/>
+          </IconWrapper>
+        </Tooltip>
+        <BaseIcon
+            :title="`设置(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
+            @click="runtimeStore.showSettingModal = true"
+            icon="uil:setting"/>
       </div>
     </div>
-    <div class="content overflow-auto">
+    <BaseIcon
+        class="fixed top-5 left-6 z-9"
+        :title="`收起(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
+        @click="settingStore.showSide = !settingStore.showSide"
+        icon="formkit:right"/>
+    <div class="flex-1 z-1">
       <router-view></router-view>
     </div>
   </div>
@@ -60,11 +82,8 @@ const router = useRouter()
 
 <style scoped lang="scss">
 .layout {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
 }
 
@@ -81,6 +100,8 @@ const router = useRouter()
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: rgb(0 0 0 / 3%) 0px 0px 12px 0px;
+  transition: all .3s;
 
   .row {
     @apply cursor-pointer;
@@ -94,6 +115,10 @@ const router = useRouter()
     svg {
       font-size: 2rem;
     }
+  }
+
+  &.hide {
+    transform: translateX(-12rem);
   }
 }
 

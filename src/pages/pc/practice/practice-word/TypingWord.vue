@@ -256,7 +256,7 @@ onUnmounted(() => {
         <Tooltip
             :title="`下一个(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
         >
-          <div class="word" :class="settingStore.dictation && 'text-shadow'">{{ nextWord.word }}</div>
+          <div class="word" :class="settingStore.dictation && 'word-shadow'">{{ nextWord.word }}</div>
         </Tooltip>
         <Icon class="arrow" icon="bi:arrow-right" width="22"/>
       </div>

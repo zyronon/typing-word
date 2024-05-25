@@ -54,69 +54,62 @@ const isEnd = $computed(() => {
   <Dialog
       :header="false"
       v-model="statModalIsOpen">
-    <div class="statistics">
+    <div class="statistics relative flex flex-col gap-6">
       <header>
-        <div class="title">{{ store.currentDict.name }}</div>
+        <div class="text-2xl">{{ store.currentStudyWordDict.name }}</div>
       </header>
-      <div class="content">
-        <div class="rings">
-          <Ring
-              :value="currentStat.correctRate + '%'"
-              desc="正确率"
-              :percentage="currentStat.correctRate"/>
-          <Ring
-              :value="currentStat.wrongWordNumber"
-              desc="错误数"
-              :percentage="0"
-          />
-          <Ring
-              :value="currentStat.inputWordNumber"
-              desc="输入数"
-              :percentage="0"
-          />
-          <Ring
-              :value="currentStat.total"
-              desc="单词总数"
-              :percentage="0"
-              style="margin-bottom: 0;"/>
+      <div class="flex justify-center gap-10">
+        <div class="text-xl text-center flex flex-col justify-around">
+          <div class="font-bold">非常棒!</div>
+          <div>坚持了 <span class="color-green font-bold text-2xl">10</span> 分钟</div>
         </div>
-        <div class="result">
-          <div class="wrong-words-wrapper">
-            <div class="wrong-words">
-              <div class="word" v-for="i in currentStat.wrongWords">{{ i.word }}</div>
-              <!--                          <div class="word" v-for="i in 100">{{ i }}</div>-->
-            </div>
-          </div>
-          <div class="notice" v-if="!currentStat.wrongWords.length">
-            <!--          <div class="notice">-->
-            <Icon class="hvr-grow pointer" icon="flat-color-icons:like" width="20" color="#929596"/>
-            表现不错，全对了！
+        <Ring
+            :value="currentStat.wrongWordNumber"
+            desc="New"
+            :percentage="10"
+        />
+      </div>
+      <div class="flex justify-center gap-10">
+        <div class="flex justify-center items-center py-3 px-10 rounded-md color-red-500 flex-col"
+             style="background: rgb(254,236,236)">
+          <div class="text-3xl">3</div>
+          <div class="center gap-2">
+            <Icon icon="iconamoon:close" class="text-2xl"/>
+            错词
           </div>
         </div>
-        <div class="shares">
-          <Tooltip title="分享给朋友">
-            <Icon class="hvr-grow pointer" icon="ph:share-light" width="20" color="#929596"/>
-          </Tooltip>
-          <Tooltip title="请我喝杯咖啡">
-            <Icon class="hvr-grow pointer" icon="twemoji:teacup-without-handle" width="20" color="#929596"/>
-          </Tooltip>
+        <div class="flex justify-center items-center py-3 px-10 rounded-md color-green-600 flex-col"
+             style="background: rgb(231,248,241)">
+          <div class="text-3xl">3</div>
+          <div class="center gap-2">
+            <Icon icon="tabler:check" class="text-2xl"/>
+            正确
+          </div>
         </div>
+      </div>
+      <div class="absolute right-5 top-20 flex flex-col gap-4">
+        <Tooltip title="分享给朋友">
+          <Icon class="hvr-grow pointer" icon="ph:share-light" width="20" color="#929596"/>
+        </Tooltip>
+        <Tooltip title="请我喝杯咖啡">
+          <Icon class="hvr-grow pointer" icon="twemoji:teacup-without-handle" width="20" color="#929596"/>
+        </Tooltip>
       </div>
       <div class="footer">
         <BaseButton
             :keyboard="settingStore.shortcutKeyMap[ShortcutKey.DictationChapter]"
             @click="options('write')">
-          默写本章
+          默写
         </BaseButton>
         <BaseButton
             :keyboard="settingStore.shortcutKeyMap[ShortcutKey.RepeatChapter]"
             @click="options('repeat')">
-          重复本章
+          重学
         </BaseButton>
         <BaseButton
             :keyboard="settingStore.shortcutKeyMap[ShortcutKey.NextChapter]"
             @click="options('next')">
-          {{ isEnd ? '重新练习' : '下一章' }}
+          {{ isEnd ? '重新练习' : '继续' }}
         </BaseButton>
       </div>
     </div>
@@ -131,7 +124,6 @@ $dark-second-bg: rgb(60, 63, 65);
 $item-hover: rgb(75, 75, 75);
 
 .statistics {
-  width: 60rem;
   padding: var(--space);
   background: $dark-second-bg;
   border-radius: $card-radius;
@@ -152,49 +144,6 @@ $item-hover: rgb(75, 75, 75);
     display: flex;
     gap: var(--space);
     margin-bottom: 1rem;
-
-    .result {
-      box-sizing: border-box;
-      overflow: hidden;
-      height: 30rem;
-      display: flex;
-      flex-direction: column;
-      border-radius: $card-radius;
-      background: $item-hover;
-      flex: 1;
-
-      .wrong-words-wrapper {
-        flex: 1;
-        overflow: auto;
-        padding: var(--space);
-      }
-
-      .wrong-words {
-        box-sizing: border-box;
-        display: flex;
-        margin-right: .3rem;
-        flex-wrap: wrap;
-        gap: .6rem;
-        align-items: flex-start;
-
-        .word {
-          display: inline-block;
-          border-radius: .4rem;
-          padding: .3rem 1rem;
-          background: $dark-second-bg;
-        }
-      }
-
-      .notice {
-        $main: rgb(64,158,255);
-        background: $main;
-        height: 2.5rem;
-        display: flex;
-        gap: .6rem;
-        align-items: center;
-        padding-left: var(--space);
-      }
-    }
 
     .shares {
       display: flex;

@@ -85,7 +85,7 @@ onUnmounted(() => {
   margin-top: 1rem;
 
   &.hide {
-    margin-bottom: -7rem;
+    margin-bottom: -6rem;
     margin-top: 3rem;
 
     .progress {

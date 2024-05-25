@@ -192,13 +192,14 @@ useStartKeyboardEventListener()
 .practice-wrapper {
   font-size: 0.9rem;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   //padding-right: var(--practice-wrapper-padding-right);
-  transform: translateX(var(--practice-wrapper-translateX));
+  //transform: translateX(var(--practice-wrapper-translateX));
 }
 
 

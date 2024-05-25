@@ -18,7 +18,6 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useNav} from "@/utils";
 
-const {toggleTheme} = useTheme()
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
@@ -65,17 +64,13 @@ const {nav} = useNav()
         <Tooltip
             :title="`词典详情(${settingStore.shortcutKeyMap[ShortcutKey.OpenDictDetail]})`">
           <div class="info" @click="emitter.emit(EventKey.openDictModal,'detail')">
-            {{ store.currentStudyWordDict.name }} {{ practiceStore.repeatNumber ? '  复习错词' : '' }}
+            {{ store.currentStudyWordDict.name }}
           </div>
         </Tooltip>
         <BaseIcon title="切换词典"
                   @click="nav('/dict')"
                   icon="gg:arrows-exchange"/>
-        <div class="info-text" v-if="practiceStore.repeatNumber">
-          复习错词
-        </div>
       </div>
-
       <div class="options" ref="moreOptionsRef">
         <div class="more" :class="settingStore.collapse && 'hide'">
           <Tooltip title="收起图标">
@@ -104,15 +99,6 @@ const {nav} = useNav()
 
           <RepeatSetting/>
 
-          <Tooltip
-              :title="`切换主题(${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
-          >
-            <IconWrapper>
-              <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
-                    @click="toggleTheme"/>
-              <Icon icon="tabler:sun" v-else @click="toggleTheme"/>
-            </IconWrapper>
-          </Tooltip>
           <BaseIcon
               @click="settingStore.showPanel = !settingStore.showPanel"
               :title="`单词本(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
@@ -148,35 +134,15 @@ const {nav} = useNav()
     color: white;
   }
 }
-
-.info-text {
-  @extend .info;
-  cursor: unset;
-
-  &:hover {
-    background: unset;
-  }
-}
 </style>
 <style scoped lang="scss">
 @import "@/assets/css/style";
-
-.test-enter-active,
-.test-leave-active {
-  transition: all 0.3s;
-}
-
-.test-enter-from,
-.test-leave-to {
-  width: 0;
-}
-
 header {
   width: var(--toolbar-width);
   margin-top: 1rem;
   background: var(--color-second-bg);
   border-radius: .8rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.8rem;
   position: relative;
   z-index: 2;
   padding: .4rem var(--space);
@@ -197,7 +163,8 @@ header {
       max-width: 45%;
       font-size: 1rem;
       position: relative;
-      gap: .5rem;
+      align-items: center;
+      gap: .3rem;
     }
 
     .hide {
