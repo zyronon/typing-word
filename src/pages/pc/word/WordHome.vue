@@ -7,6 +7,7 @@ import {useRouter} from "vue-router";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
+import {watch} from "vue";
 
 const base = useBaseStore()
 const router = useRouter()
@@ -15,6 +16,11 @@ const {nav} = useNav()
 function clickEvent(e) {
   console.log('e', e)
 }
+
+watch(() => base.currentStudyWordProgress, n => {
+  console.log('n', n)
+}, {immediate: true})
+
 </script>
 
 <template>
@@ -44,16 +50,22 @@ function clickEvent(e) {
           <div class="flex justify-between items-center">
             <div class="bg-slate-200 p-3 rounded-md cursor-pointer flex items-center">
               <span class="text-lg font-bold">{{ base.currentStudyWordDict.name }}</span>
-              <Icon icon="gg:arrows-exchange" class="text-2xl ml-2"/>
-              <Icon icon="uil:setting" class="text-2xl ml-2"/>
+              <BaseIcon
+                  title="切换词典"
+                  icon="gg:arrows-exchange"
+                  class="ml-2"
+                  @click="router.push('/dict')"/>
             </div>
             <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
                  @click="router.push('study-word')">
               开始学习
             </div>
           </div>
-          <div class="mt-5 text-sm">已学习5555个单词的1%</div>
-          <el-progress class="mt-1" :percentage="80" :show-text="false"></el-progress>
+          <div class="mt-5 text-sm">已学习{{
+              base.currentStudyWordDict.words.length
+            }}个单词的{{ base.currentStudyWordProgress }}%
+          </div>
+          <el-progress class="mt-1" :percentage="base.currentStudyWordProgress" :show-text="false"></el-progress>
         </div>
         <div class="card flex gap-3">
           <div class="bg-slate-200 w-10 h-10 flex center text-2xl rounded">
@@ -80,7 +92,9 @@ function clickEvent(e) {
         <div class="title">
           其他学习词典
         </div>
-        <BaseIcon icon="ic:round-add" @click="router.push('/dict')"/>
+        <BaseIcon icon="ic:round-add"
+                  title="切换词典"
+                  @click="router.push('/dict')"/>
       </div>
       <div class="grid grid-cols-2 gap-6 mt-5 ">
         <div class=" p-4 rounded-md justify-between items-center bg-slate-200 " v-for="i in 3">

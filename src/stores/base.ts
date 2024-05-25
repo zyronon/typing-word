@@ -135,7 +135,7 @@ export const DefaultBaseState = (): BaseState => ({
     word: {
       dictIndex: 0,
       perDayStudyNumber: 30,
-      lastLearnIndex: 0,
+      lastLearnIndex: 10,
     },
     article: {
       dictIndex: 0,
@@ -262,6 +262,10 @@ export const useBaseStore = defineStore('base', {
     },
     currentStudyWordDict(): Dict {
       return this.wordDictList[this.currentStudy.word.dictIndex] ?? {}
+    },
+    currentStudyWordProgress(): number {
+      if (!this.currentStudyWordDict.words?.length) return 0
+      return Number(((this.currentStudy.word.lastLearnIndex / this.currentStudyWordDict.words?.length) * 100).toFixed())
     },
     currentArticleDict(): Dict {
       return this.articleDictList[this.currentStudy.article.dictIndex] ?? {}
@@ -447,6 +451,111 @@ export const useBaseStore = defineStore('base', {
       }
 
       emitter.emit(EventKey.changeDict)
-    }
+    },
+    async changeWordDict(dict: Dict) {
+      if ([DictType.collect,
+        DictType.simple,
+        DictType.wrong].includes(dict.type)) {
+      } else {
+        //TODO　需要和其他需要下载的地方统一
+        let url = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
+        //如果不是自定义词典，并且有url地址才去下载
+        if (!dict.isCustom && dict.url) {
+          if (!dict.originWords.length) {
+            let v = await getDictFile(url)
+            v.map(s => {
+              s.id = nanoid(6)
+            })
+            dict.originWords = cloneDeep(v)
+            if (dict.sort === Sort.normal) {
+              dict.words = cloneDeep(dict.originWords)
+            } else if (dict.sort === Sort.random) {
+              dict.words = shuffle(dict.originWords)
+            } else {
+              dict.words = reverse(dict.originWords)
+            }
+          }
+        }
+      }
+      console.log('changeDict', cloneDeep(dict),)
+
+      // await checkDictHasTranslate(dict)
+      let rIndex = this.wordDictList.findIndex((v: Dict) => v.id === dict.id)
+      if (rIndex > -1) {
+        this.wordDictList[rIndex] = dict
+        this.currentStudy.word.dictIndex = rIndex
+      } else {
+        this.wordDictList.push(cloneDeep(dict))
+        this.currentStudy.word.dictIndex =  this.wordDictList.length - 1
+      }
+      this.currentStudy.word.lastLearnIndex = 0
+      emitter.emit(EventKey.changeDict)
+    },
+    async changeArticleDict(dict: Dict) {
+      //TODO 保存统计
+      // this.saveStatistics()
+      console.log('changeDict', cloneDeep(dict),)
+      if ([DictType.collect,
+        DictType.simple,
+        DictType.wrong].includes(dict.type)) {
+      } else {
+        //TODO　需要和其他需要下载的地方统一
+        let url = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
+        if (dict.type === DictType.article) {
+          if (!dict.articles.length) {
+            let r = await fetch(url)
+            let v = await r.json()
+            v.map(s => {
+              s.id = nanoid(6)
+            })
+            dict.articles = cloneDeep(v)
+          } else {
+            dict.length = dict.articles.length
+          }
+          if (chapterIndex > dict.articles.length) {
+            dict.chapterIndex = 0
+            dict.wordIndex = 0
+          }
+        } else {
+          //如果不是自定义词典，并且有url地址才去下载
+          if (!dict.isCustom && dict.url) {
+            if (!dict.originWords.length) {
+              let v = await getDictFile(url)
+              v.map(s => {
+                s.id = nanoid(6)
+              })
+              dict.originWords = cloneDeep(v)
+              if (dict.sort === Sort.normal) {
+                dict.words = cloneDeep(dict.originWords)
+              } else if (dict.sort === Sort.random) {
+                dict.words = shuffle(dict.originWords)
+              } else {
+                dict.words = reverse(dict.originWords)
+              }
+              dict.words.map(v => v.checked = false)
+              dict.chapterWords = chunk(dict.words, dict.chapterWordNumber)
+              dict.length = dict.words.length
+            } else {
+              dict.length = dict.words.length
+            }
+          }
+          if (chapterIndex > dict.chapterWords.length) {
+            dict.chapterIndex = 0
+            dict.wordIndex = 0
+          }
+        }
+      }
+      // await checkDictHasTranslate(dict)
+      let rIndex = this.myDictList.findIndex((v: Dict) => v.id === dict.id)
+      if (rIndex > -1) {
+        this.myDictList[rIndex] = dict
+        this.current.index = rIndex
+      } else {
+        this.myDictList.push(cloneDeep(dict))
+        this.current.index = this.myDictList.length - 1
+      }
+
+      emitter.emit(EventKey.changeDict)
+    },
   },
 })

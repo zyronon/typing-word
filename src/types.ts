@@ -238,6 +238,35 @@ export const DefaultDict: Dict = {
   language: 'en',
 }
 
+export function getDefaultDict(val = {}): Dict {
+  return {
+    id: '',
+    name: '',
+    description: '',
+    sort: Sort.normal,
+    originWords: [],//原始单词
+    words: [],
+    chapterWordNumber: DefaultChapterWordNumber,//章节单词数量
+    chapterWords: [],
+    residueWords: [],//未分配单词
+    chapterIndex: 0,//章节下标
+    wordIndex: 0,//单词下标
+    articles: [],
+    statistics: [],
+    isCustom: false,
+    length: 0,
+    /*资源属性*/
+    resourceId: '',
+    url: '',
+    category: '',
+    tags: [],
+    translateLanguage: 'common',
+    type: DictType.word,
+    language: 'en',
+    ...val
+  }
+}
+
 export interface Dict {
   id: string,
   name: string,

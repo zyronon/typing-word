@@ -35,7 +35,7 @@
     "sentence-splitter": "^4.2.1",
     "tesseract.js": "^4.1.1",
     "vant": "^4.8.1",
-    "vue": "^3.3.4",
+    "vue": "^3.4.27",
     "vue-activity-calendar": "^1.2.2",
     "vue-i18n": "9",
     "vue-router": "4",
@@ -64,7 +64,7 @@
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.2",
     "unplugin-vue-define-options": "^1.4.1",
-    "vite": "^4.4.5",
+    "vite": "^5.2.11",
     "vue-tsc": "^1.8.5",
     "xlsx": "^0.18.5"
   },

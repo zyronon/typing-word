@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {DictResource,} from "@/types.ts";
+import {DictResource, getDefaultDict, Sort,} from "@/types.ts";
 import {dictionaryResources} from "@/assets/dictionary.ts";
 import {groupBy} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
@@ -11,6 +11,7 @@ import deFlag from "@/assets/img/flags/de.png";
 import codeFlag from "@/assets/img/flags/code.png";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useRouter} from "vue-router";
+import {useNav} from "@/utils";
 
 const emit = defineEmits<{
   add: [],
@@ -67,7 +68,14 @@ const languageCategoryOptions = [
   {id: 'code', name: 'Code', flag: codeFlag},
 ]
 
-const router = useRouter()
+const {nav, back} = useNav()
+
+function change(e) {
+  console.log('e', e.dict)
+  e.dict.sort = Sort.normal
+  store.changeWordDict(getDefaultDict(e.dict))
+  ElMessage.success('切换成功')
+}
 </script>
 
 <template>
@@ -75,7 +83,7 @@ const router = useRouter()
     <header class="flex justify-center pb-3">
       <div class="container2 flex justify-between items-center">
         <div class="flex items-center gap-5">
-          <BaseIcon icon="ion:chevron-back" @click="router.back"/>
+          <BaseIcon icon="ion:chevron-back" title="返回" @click="back"/>
           <div class="tabs">
             <div class="tab"
                  :class="currentLanguage === item.id && 'active'"
@@ -100,7 +108,7 @@ const router = useRouter()
         <DictGroup
             v-for="item in groupedByCategoryAndTag"
             :select-id="store.currentDict.id"
-            @selectDict="e => emit('selectDict',e)"
+            @selectDict="change"
             :groupByTag="item[1]"
             :category="item[0]"
         />
@@ -123,8 +131,10 @@ const router = useRouter()
   header {
     position: fixed;
     top: 0;
-    left: var(--aside-width);
-    width: calc(100vw - var(--aside-width));
+    //left: var(--aside-width);
+    //width: calc(100vw - var(--aside-width));
+    left: 0;
+    width: 100vw;
     z-index: 9;
     background: var(--color-main-bg);
 
