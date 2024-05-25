@@ -14,7 +14,6 @@ export const EventKey = {
   keyup: 'keyup',
   onTyping: 'onTyping',
   repeat: 'repeat',
-  //TODO 废弃
   next: 'next',
   write: 'write',
   editDict: 'editDict',

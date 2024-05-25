@@ -39,17 +39,9 @@ watch(practiceStore, () => {
   practiceStore.correctRate = 100 - Math.trunc(((practiceStore.wrongWordNumber) / (practiceStore.inputWordNumber)) * 100)
 })
 
-
-function test() {
-  MessageBox.confirm(
-      '2您选择了“本地翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
-      '1提示',
-      () => {
-        console.log('ok')
-      },
-      () => {
-        console.log('cencal')
-      })
+function next() {
+  store.currentStudy.word.lastLearnIndex = store.currentStudy.word.lastLearnIndex + store.currentStudy.word.perDayStudyNumber
+  repeat()
 }
 
 function write() {
@@ -108,6 +100,7 @@ function jumpSpecifiedChapter(val: number) {
 onMounted(() => {
   emitter.on(EventKey.write, write)
   emitter.on(EventKey.repeat, repeat)
+  emitter.on(EventKey.next, next)
   emitter.on(EventKey.jumpSpecifiedChapter, jumpSpecifiedChapter)
 
   emitter.on(ShortcutKey.PreviousChapter, prev)
@@ -125,6 +118,7 @@ onMounted(() => {
 onUnmounted(() => {
   emitter.off(EventKey.write, write)
   emitter.off(EventKey.repeat, repeat)
+  emitter.off(EventKey.next, next)
   emitter.off(EventKey.jumpSpecifiedChapter, jumpSpecifiedChapter)
 
   emitter.off(ShortcutKey.PreviousChapter, prev)
@@ -138,7 +132,6 @@ onUnmounted(() => {
   emitter.off(ShortcutKey.ToggleConciseMode, toggleConciseMode)
   emitter.off(ShortcutKey.TogglePanel, togglePanel)
 })
-
 
 let wordData = $ref({
   words: [],

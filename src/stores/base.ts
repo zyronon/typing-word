@@ -267,6 +267,9 @@ export const useBaseStore = defineStore('base', {
       if (!this.currentStudyWordDict.words?.length) return 0
       return Number(((this.currentStudy.word.lastLearnIndex / this.currentStudyWordDict.words?.length) * 100).toFixed())
     },
+    otherWordDictList(): Dict[] {
+      return this.wordDictList.filter(v => this.currentStudyWordDict.id !== v.id)
+    },
     currentArticleDict(): Dict {
       return this.articleDictList[this.currentStudy.article.dictIndex] ?? {}
     },
@@ -479,6 +482,11 @@ export const useBaseStore = defineStore('base', {
       }
       console.log('changeDict', cloneDeep(dict),)
 
+      this.wordDictList.map(v => {
+        v.words = []
+        v.originWords = []
+      })
+
       // await checkDictHasTranslate(dict)
       let rIndex = this.wordDictList.findIndex((v: Dict) => v.id === dict.id)
       if (rIndex > -1) {
@@ -486,7 +494,7 @@ export const useBaseStore = defineStore('base', {
         this.currentStudy.word.dictIndex = rIndex
       } else {
         this.wordDictList.push(cloneDeep(dict))
-        this.currentStudy.word.dictIndex =  this.wordDictList.length - 1
+        this.currentStudy.word.dictIndex = this.wordDictList.length - 1
       }
       this.currentStudy.word.lastLearnIndex = 0
       emitter.emit(EventKey.changeDict)
@@ -557,5 +565,16 @@ export const useBaseStore = defineStore('base', {
 
       emitter.emit(EventKey.changeDict)
     },
+    delWordDict(dict: Dict) {
+      let oldId = this.currentStudyWordDict.id;
+      let rIndex = this.wordDictList.findIndex((v: Dict) => v.id === dict.id)
+      if (rIndex > -1) {
+        this.wordDictList.splice(rIndex, 1)
+      }
+      rIndex = this.wordDictList.findIndex((v: Dict) => v.id === oldId)
+      if (rIndex > -1) {
+        this.currentStudy.word.dictIndex = rIndex
+      }
+    }
   },
 })

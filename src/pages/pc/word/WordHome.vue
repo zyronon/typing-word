@@ -8,6 +8,7 @@ import BaseIcon from "@/components/BaseIcon.vue";
 import {useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {watch} from "vue";
+import {getDefaultDict} from "@/types.ts";
 
 const base = useBaseStore()
 const router = useRouter()
@@ -17,10 +18,11 @@ function clickEvent(e) {
   console.log('e', e)
 }
 
-watch(() => base.currentStudyWordProgress, n => {
-  console.log('n', n)
-}, {immediate: true})
-
+let showMore = $ref(false)
+const otherWordDictList = $computed(() => {
+  if (showMore) return base.otherWordDictList
+  else return base.otherWordDictList.slice(0, 4)
+})
 </script>
 
 <template>
@@ -87,7 +89,7 @@ watch(() => base.currentStudyWordProgress, n => {
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" v-if="otherWordDictList.length">
       <div class="flex justify-between">
         <div class="title">
           其他学习词典
@@ -97,20 +99,21 @@ watch(() => base.currentStudyWordProgress, n => {
                   @click="router.push('/dict')"/>
       </div>
       <div class="grid grid-cols-2 gap-6 mt-5 ">
-        <div class=" p-4 rounded-md justify-between items-center bg-slate-200 " v-for="i in 3">
+        <div class=" p-4 rounded-md justify-between items-center bg-slate-200 " v-for="i in otherWordDictList">
           <div class="flex justify-between w-full">
-            <span>{{ base.currentDict.name }}</span>
+            <span>{{ i.name }}</span>
             <div class="text-2xl ml-2 flex gap-4">
-              <Icon icon="hugeicons:delete-02"/>
-              <Icon icon="nonicons:go-16"/>
+              <BaseIcon title="删除" icon="hugeicons:delete-02" @click="base.delWordDict(i)"/>
+              <BaseIcon title="学习" icon="nonicons:go-16" @click="base.changeWordDict(getDefaultDict(i))"/>
             </div>
           </div>
           <div class="mt-5 text-sm">已学习5555个单词的1%</div>
           <el-progress class="mt-1" :percentage="80" color="white" :show-text="false"></el-progress>
         </div>
       </div>
-      <div class="flex justify-center mt-2 text-2xl">
-        <Icon icon="mingcute:down-line"/>
+      <div class="flex justify-center mt-2 text-2xl" v-if="base.otherWordDictList.length > 4">
+        <BaseIcon @click="showMore = !showMore" v-if="showMore" icon="mingcute:up-line"/>
+        <BaseIcon @click="showMore = !showMore" v-else icon="mingcute:down-line"/>
       </div>
     </div>
 

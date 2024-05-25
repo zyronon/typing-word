@@ -20,6 +20,7 @@ const runtimeStore = useRuntimeStore()
 const router = useRouter()
 const {toggleTheme} = useTheme()
 
+let show = $ref(false)
 </script>
 
 <template>
@@ -69,11 +70,43 @@ const {toggleTheme} = useTheme()
             icon="uil:setting"/>
       </div>
     </div>
-    <BaseIcon
-        class="fixed top-5 left-6 z-9"
-        :title="`收起(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
-        @click="settingStore.showSide = !settingStore.showSide"
-        icon="formkit:right"/>
+    <div class="fixed top-8 left-8 z-9">
+      <BaseIcon
+          :title="`收起(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
+          @click="show = !show"
+          icon="hugeicons:menu-square"/>
+      <div class="menus flex flex-col" v-if="show">
+        <BaseIcon
+            title="单词"
+            @click="router.push('/word')"
+            icon="material-symbols-light:dictionary-outline-sharp"/>
+        <BaseIcon
+            title="文章"
+            @click="router.push('/article')"
+            icon="ph:article-ny-times"/>
+        <BaseIcon
+            title="试卷"
+            icon="healthicons:i-exam-multiple-choice-outline"/>
+        <BaseIcon
+            :title="`展开(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
+            @click="settingStore.showSide = !settingStore.showSide"
+            icon="formkit:right"/>
+        <Tooltip
+            :title="`切换主题(${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
+        >
+          <IconWrapper>
+            <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
+                  @click="toggleTheme"/>
+            <Icon icon="tabler:sun" v-else @click="toggleTheme"/>
+          </IconWrapper>
+        </Tooltip>
+        <BaseIcon
+            :title="`设置(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
+            @click="runtimeStore.showSettingModal = true"
+            icon="uil:setting"/>
+      </div>
+    </div>
+
     <div class="flex-1 z-1">
       <router-view></router-view>
     </div>
@@ -104,16 +137,16 @@ const {toggleTheme} = useTheme()
   transition: all .3s;
 
   .row {
-    @apply cursor-pointer;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1rem;
-    //font-weight: bold;
+    @apply cursor-pointer rounded-md  text p-2 my-2 flex items-center gap-2;
+    transition: all .5s;
+
+    &:hover {
+      background: var(--color-primary);
+      color: white;
+    }
 
     svg {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
   }
 

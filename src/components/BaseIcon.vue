@@ -14,8 +14,8 @@ defineEmits(['click'])
 
 <template>
   <Tooltip :title="title">
-    <IconWrapper v-bind="$attrs">
-      <Icon @click.stop="$emit('click')" :icon="icon"/>
+    <IconWrapper v-bind="$attrs" @click.stop="$emit('click')">
+      <Icon  :icon="icon"/>
     </IconWrapper>
   </Tooltip>
 </template>
