@@ -37,22 +37,6 @@ watch([() => settingStore.showToolbar, () => headerRef], n => {
   }
 })
 
-function toggle() {
-  if (settingStore.collapse) {
-    setTimeout(() => {
-      moreOptionsRef.style.overflow = 'unset'
-    }, 300)
-  } else {
-    moreOptionsRef.style.overflow = 'hidden'
-  }
-  settingStore.collapse = !settingStore.collapse
-}
-
-watch(() => store.load, n => {
-  if (!settingStore.collapse) {
-    moreOptionsRef.style.overflow = 'unset'
-  }
-})
 
 const {nav} = useNav()
 </script>
@@ -71,39 +55,30 @@ const {nav} = useNav()
                   @click="nav('/dict')"
                   icon="gg:arrows-exchange"/>
       </div>
-      <div class="options" ref="moreOptionsRef">
-        <div class="more" :class="settingStore.collapse && 'hide'">
-          <Tooltip title="收起图标">
-            <IconWrapper>
-              <Icon :icon="`system-uicons:window-collapse-${settingStore.collapse?'left':'right'}`"
-                    @click="toggle"/>
-            </IconWrapper>
-          </Tooltip>
+      <div class="options" >
+        <Tooltip
+            :title="`开关默写模式(${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
+        >
+          <IconWrapper>
+            <Icon icon="majesticons:eye-off-line"
+                  v-if="settingStore.dictation"
+                  @click="settingStore.dictation = false"/>
+            <Icon icon="mdi:eye-outline"
+                  v-else
+                  @click="settingStore.dictation = true"/>
+          </IconWrapper>
+        </Tooltip>
 
-          <Tooltip
-              :title="`开关默写模式(${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
-          >
-            <IconWrapper>
-              <Icon icon="majesticons:eye-off-line"
-                    v-if="settingStore.dictation"
-                    @click="settingStore.dictation = false"/>
-              <Icon icon="mdi:eye-outline"
-                    v-else
-                    @click="settingStore.dictation = true"/>
-            </IconWrapper>
-          </Tooltip>
+        <TranslateSetting/>
 
-          <TranslateSetting/>
+        <VolumeSetting/>
 
-          <VolumeSetting/>
+        <RepeatSetting/>
 
-          <RepeatSetting/>
-
-          <BaseIcon
-              @click="settingStore.showPanel = !settingStore.showPanel"
-              :title="`单词本(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
-              icon="tdesign:menu-unfold"/>
-        </div>
+        <BaseIcon
+            @click="settingStore.showPanel = !settingStore.showPanel"
+            :title="`单词本(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
+            icon="tdesign:menu-unfold"/>
       </div>
     </div>
     <Tooltip :title="settingStore.showToolbar?'收起':'展开'">
@@ -137,6 +112,7 @@ const {nav} = useNav()
 </style>
 <style scoped lang="scss">
 @import "@/assets/css/style";
+
 header {
   width: var(--toolbar-width);
   margin-top: 1rem;
@@ -167,25 +143,11 @@ header {
       gap: .3rem;
     }
 
-    .hide {
-      transform: translateX(calc(100% - 2rem));
-    }
-
     .options {
       display: flex;
       align-items: center;
       overflow: hidden;
-
-
-      :deep(.icon-wrapper) {
-        margin-left: .2rem;
-      }
-
-      .more {
-        display: flex;
-        align-items: center;
-        transition: all .3s;
-      }
+      gap:.2rem;
     }
   }
 

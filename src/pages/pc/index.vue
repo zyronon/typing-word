@@ -72,7 +72,7 @@ let show = $ref(false)
     </div>
     <div class="fixed top-8 left-8 z-9">
       <BaseIcon
-          :title="`收起(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
+          title="菜单"
           @click="show = !show"
           icon="hugeicons:menu-square"/>
       <div class="menus flex flex-col" v-if="show">
@@ -88,7 +88,7 @@ let show = $ref(false)
             title="试卷"
             icon="healthicons:i-exam-multiple-choice-outline"/>
         <BaseIcon
-            :title="`展开(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
+            title="展开"
             @click="settingStore.showSide = !settingStore.showSide"
             icon="formkit:right"/>
         <Tooltip
