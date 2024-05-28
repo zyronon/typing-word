@@ -139,9 +139,14 @@ let wordData = $ref({
 })
 
 function getCurrentPractice() {
-  if (store.currentStudyWordDict.words?.length) {
+  let c = store.currentStudy.word
+  let wordDict = store.currentStudyWordDict;
+  if (wordDict.words?.length) {
     wordData.index = 0
-    wordData.words = cloneDeep(store.currentStudyWordDict.words.slice(store.currentStudy.word.lastLearnIndex, store.currentStudy.word.lastLearnIndex + store.currentStudy.word.perDayStudyNumber))
+    wordData.statistics.map(v=>{
+
+    })
+    wordData.words = cloneDeep(wordDict.words.slice(c.lastLearnIndex, c.lastLearnIndex + c.perDayStudyNumber))
     emitter.emit(EventKey.resetWord)
   }
 }

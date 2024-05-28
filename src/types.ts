@@ -32,6 +32,11 @@ export const DefaultWord: Word = {
   trans: [],
 }
 
+export type StudyWord = {
+  type: 'new' | 'repeat' | 'wrong'
+  word: Word
+}
+
 export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 
 export type TranslateLanguageType = 'en' | 'zh-CN' | 'ja' | 'de' | 'common' | ''
@@ -117,6 +122,8 @@ export const DefaultArticle: Article = {
 }
 
 export interface Statistics {
+  startIndex:number,
+  endIndex:number,
   startDate: number,//开始日期
   endDate: number//结束日期
   spend: number,//花费时间
@@ -131,6 +138,8 @@ export interface DisplayStatistics extends Statistics {
 }
 
 export const DefaultDisplayStatistics: DisplayStatistics = {
+  startIndex: -1,
+  endIndex: -1,
   startDate: Date.now(),
   endDate: -1,
   spend: -1,
