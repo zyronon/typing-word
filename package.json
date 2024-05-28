@@ -5,15 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "test": "vite",
     "build": "vite build",
     "build-tsc": "vue-tsc && vite build",
     "report": "vite build",
     "preview": "vite preview",
     "commit": "git-cz",
     "prepare": "husky install",
-    "start": "vite",
-    "test": "",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
     "i18n:write": "gulp i18nwrite"
   },
   "dependencies": {
@@ -54,7 +52,6 @@
     "esm": "^3.2.25",
     "gulp": "^4.0.2",
     "husky": "^8.0.3",
-    "push-dir": "^0.4.1",
     "rollup-plugin-visualizer": "^5.9.2",
     "sass": "^1.64.2",
     "tslib": "^2.6.2",
@@ -65,7 +62,7 @@
     "unplugin-vue-components": "^0.25.2",
     "unplugin-vue-define-options": "^1.4.1",
     "vite": "^5.2.11",
-    "vue-tsc": "^1.8.5",
+    "vue-tsc": "^2.0.19",
     "xlsx": "^0.18.5"
   },
   "config": {

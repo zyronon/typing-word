@@ -13,7 +13,7 @@ import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import useTheme from "@/hooks/theme.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 
-const practiceStore = usePracticeStore()
+const statisticsStore = usePracticeStore()
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()

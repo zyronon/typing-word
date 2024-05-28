@@ -63,7 +63,7 @@ function nextChapter() {
 }
 
 let stat = cloneDeep(DefaultDisplayStatistics)
-const practiceStore = usePracticeStore()
+const statisticsStore = usePracticeStore()
 
 function next(isTyping: boolean = true) {
   if (data.index === data.words.length - 1) {
@@ -72,12 +72,12 @@ function next(isTyping: boolean = true) {
     if (stat.total === -1) {
       let now = Date.now()
       stat = {
-        startDate: practiceStore.startDate,
+        startDate: statisticsStore.startDate,
         endDate: now,
-        spend: now - practiceStore.startDate,
+        spend: now - statisticsStore.startDate,
         total: props.words.length,
         correctRate: -1,
-        inputWordNumber: practiceStore.inputWordNumber,
+        inputWordNumber: statisticsStore.inputWordNumber,
         wrongWordNumber: data.wrongWords.length,
         wrongWords: data.wrongWords,
       }
@@ -88,15 +88,14 @@ function next(isTyping: boolean = true) {
       console.log('当前背完了，但还有错词')
       data.words = cloneDeep(data.wrongWords)
 
-      practiceStore.total = data.words.length
-      practiceStore.index = data.index = 0
-      practiceStore.inputWordNumber = 0
-      practiceStore.wrongWordNumber = 0
-      practiceStore.repeatNumber++
+      statisticsStore.total = data.words.length
+      statisticsStore.index = data.index = 0
+      statisticsStore.inputWordNumber = 0
+      statisticsStore.wrongWordNumber = 0
       data.wrongWords = []
     } else {
       console.log('这章节完了')
-      isTyping && practiceStore.inputWordNumber++
+      isTyping && statisticsStore.inputWordNumber++
 
       let now = Date.now()
       stat.endDate = now

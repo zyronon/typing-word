@@ -18,21 +18,21 @@ defineOptions({
   name: 'PracticeWord'
 })
 
-const practiceStore = usePracticeStore()
+const statisticsStore = usePracticeStore()
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 const {toggleTheme} = useTheme()
 const practiceRef: any = $ref()
 
-watch(practiceStore, () => {
-  if (practiceStore.inputWordNumber < 1) {
-    return practiceStore.correctRate = -1
+watch(statisticsStore, () => {
+  if (statisticsStore.inputWordNumber < 1) {
+    return statisticsStore.correctRate = -1
   }
-  if (practiceStore.wrongWordNumber > practiceStore.inputWordNumber) {
-    return practiceStore.correctRate = 0
+  if (statisticsStore.wrongWordNumber > statisticsStore.inputWordNumber) {
+    return statisticsStore.correctRate = 0
   }
-  practiceStore.correctRate = 100 - Math.trunc(((practiceStore.wrongWordNumber) / (practiceStore.inputWordNumber)) * 100)
+  statisticsStore.correctRate = 100 - Math.trunc(((statisticsStore.wrongWordNumber) / (statisticsStore.inputWordNumber)) * 100)
 })
 
 

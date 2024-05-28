@@ -4,7 +4,7 @@ import {onMounted, onUnmounted} from "vue"
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 
-const practiceStore = usePracticeStore()
+const statisticsStore = usePracticeStore()
 const settingStore = useSettingStore()
 
 function format(val: number, suffix: string = '', check: number = -1) {
@@ -12,16 +12,16 @@ function format(val: number, suffix: string = '', check: number = -1) {
 }
 
 const progress = $computed(() => {
-  if (!practiceStore.total) return 0
-  if (practiceStore.index > practiceStore.total) return 100
-  return ((practiceStore.index / practiceStore.total) * 100)
+  if (!statisticsStore.total) return 0
+  if (statisticsStore.index > statisticsStore.total) return 100
+  return ((statisticsStore.index / statisticsStore.total) * 100)
 })
 
 let speedMinute = $ref(0)
 let timer = $ref(0)
 onMounted(() => {
   timer = setInterval(() => {
-    speedMinute = Math.floor((Date.now() - practiceStore.startDate) / 1000 / 60)
+    speedMinute = Math.floor((Date.now() - statisticsStore.startDate) / 1000 / 60)
   }, 1000)
 })
 
@@ -45,22 +45,22 @@ onUnmounted(() => {
           <div class="name">时间</div>
         </div>
         <div class="row">
-          <div class="num">{{ practiceStore.total }}</div>
+          <div class="num">{{ statisticsStore.total }}</div>
           <div class="line"></div>
           <div class="name">单词总数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(practiceStore.inputWordNumber, '', 0) }}</div>
+          <div class="num">{{ format(statisticsStore.inputWordNumber, '', 0) }}</div>
           <div class="line"></div>
           <div class="name">输入数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(practiceStore.wrongWordNumber, '', 0) }}</div>
+          <div class="num">{{ format(statisticsStore.wrongWordNumber, '', 0) }}</div>
           <div class="line"></div>
           <div class="name">错误数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(practiceStore.correctRate, '%') }}</div>
+          <div class="num">{{ format(statisticsStore.correctRate, '%') }}</div>
           <div class="line"></div>
           <div class="name">正确率</div>
         </div>

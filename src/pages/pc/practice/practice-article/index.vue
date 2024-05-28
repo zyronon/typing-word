@@ -31,7 +31,7 @@ import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 
 const store = useBaseStore()
-const practiceStore = usePracticeStore()
+const statisticsStore = usePracticeStore()
 const runtimeStore = useRuntimeStore()
 
 let tabIndex = $ref(0)
@@ -74,17 +74,15 @@ function setArticle(val: Article) {
   let tempVal = cloneDeep(val)
   articleData.articles[store.currentArticleDict.chapterIndex] = tempVal
   articleData.article = tempVal
-  practiceStore.inputWordNumber = 0
-  practiceStore.wrongWordNumber = 0
-  practiceStore.repeatNumber = 0
-  practiceStore.total = 0
-  practiceStore.wrongWords = []
-  practiceStore.startDate = Date.now()
+  statisticsStore.inputWordNumber = 0
+  statisticsStore.wrongWordNumber = 0
+  statisticsStore.total = 0
+  statisticsStore.startDate = Date.now()
   articleData.article.sections.map((v, i) => {
     v.map((w, j) => {
       w.words.map(s => {
         if (!store.skipWordNamesWithSimpleWords.includes(s.word.toLowerCase()) && !s.isSymbol) {
-          practiceStore.total++
+          statisticsStore.total++
         }
       })
     })
@@ -193,39 +191,33 @@ function wrong(word: Word) {
     store.wrong.originWords.push(word)
   }
   if (!store.skipWordNamesWithSimpleWords.includes(lowerName)) {
-    if (!practiceStore.wrongWords.find((v) => v.word.toLowerCase() === lowerName)) {
-      practiceStore.wrongWords.push(word)
-      practiceStore.wrongWordNumber++
-    }
   }
 }
 
 function over() {
-  if (practiceStore.wrongWordNumber === 0) {
+  if (statisticsStore.wrongWordNumber === 0) {
     // if (false) {
     console.log('这章节完了')
     let now = Date.now()
     let stat: DisplayStatistics = {
-      startDate: practiceStore.startDate,
+      startDate: statisticsStore.startDate,
       endDate: now,
-      spend: now - practiceStore.startDate,
-      total: practiceStore.total,
+      spend: now - statisticsStore.startDate,
+      total: statisticsStore.total,
       correctRate: -1,
-      wrongWordNumber: practiceStore.wrongWordNumber,
-      wrongWords: practiceStore.wrongWords,
+      wrongWordNumber: statisticsStore.wrongWordNumber,
     }
     stat.correctRate = 100 - Math.trunc(((stat.wrongWordNumber) / (stat.total)) * 100)
     emitter.emit(EventKey.openStatModal, stat)
   } else {
     tabIndex = 1
-    wordData.words = practiceStore.wrongWords
     wordData.index = 0
   }
 }
 
 function nextWord(word: ArticleWord) {
   if (!store.skipWordNamesWithSimpleWords.includes(word.word.toLowerCase()) && !word.isSymbol) {
-    practiceStore.inputWordNumber++
+    statisticsStore.inputWordNumber++
   }
 }
 

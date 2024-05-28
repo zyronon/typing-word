@@ -11,24 +11,21 @@ import {onMounted, reactive} from "vue";
 import {cloneDeep} from "lodash-es";
 import {Icon} from '@iconify/vue';
 import {useSettingStore} from "@/stores/setting.ts";
+import {usePracticeStore} from "@/stores/practice.ts";
+import {dayjs} from "element-plus";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
-let statModalIsOpen = $ref(false)
-let currentStat = reactive<DisplayStatistics>(cloneDeep(DefaultDisplayStatistics))
+const statStore = usePracticeStore()
+let open = $ref(false)
 
 onMounted(() => {
-  emitter.on(EventKey.openStatModal, (stat: DisplayStatistics) => {
-    if (stat) {
-      currentStat = {...DefaultDisplayStatistics, ...stat}
-      store.saveStatistics(stat)
-      console.log('stat', stat)
-    }
-    statModalIsOpen = true
+  emitter.on(EventKey.openStatModal, () => {
+    open = true
   })
 
   const close = () => {
-    statModalIsOpen = false
+    open = false
   }
 
   emitter.on(ShortcutKey.NextChapter, close)
@@ -38,7 +35,7 @@ onMounted(() => {
 
 
 function options(emitType: 'write' | 'repeat' | 'next') {
-  statModalIsOpen = false
+  open = false
   emitter.emit(EventKey[emitType])
 }
 
@@ -53,7 +50,7 @@ const isEnd = $computed(() => {
 <template>
   <Dialog
       :header="false"
-      v-model="statModalIsOpen">
+      v-model="open">
     <div class="statistics relative flex flex-col gap-6">
       <header>
         <div class="text-2xl">{{ store.currentStudyWordDict.name }}</div>
@@ -61,18 +58,20 @@ const isEnd = $computed(() => {
       <div class="flex justify-center gap-10">
         <div class="text-xl text-center flex flex-col justify-around">
           <div class="font-bold">非常棒!</div>
-          <div>坚持了 <span class="color-green font-bold text-2xl">10</span> 分钟</div>
+          <div>坚持了 <span class="color-green font-bold text-2xl">{{ dayjs().diff(statStore.startDate, 'm') }}</span>
+            分钟
+          </div>
         </div>
         <Ring
-            :value="currentStat.wrongWordNumber"
+            :value="statStore.newWordNumber"
             desc="New"
-            :percentage="10"
+            :percentage="35"
         />
       </div>
       <div class="flex justify-center gap-10">
         <div class="flex justify-center items-center py-3 px-10 rounded-md color-red-500 flex-col"
              style="background: rgb(254,236,236)">
-          <div class="text-3xl">3</div>
+          <div class="text-3xl">{{ statStore.inputWordNumber }}</div>
           <div class="center gap-2">
             <Icon icon="iconamoon:close" class="text-2xl"/>
             错词
@@ -80,7 +79,7 @@ const isEnd = $computed(() => {
         </div>
         <div class="flex justify-center items-center py-3 px-10 rounded-md color-green-600 flex-col"
              style="background: rgb(231,248,241)">
-          <div class="text-3xl">3</div>
+          <div class="text-3xl">{{ statStore.total - statStore.inputWordNumber }}</div>
           <div class="center gap-2">
             <Icon icon="tabler:check" class="text-2xl"/>
             正确
@@ -97,11 +96,6 @@ const isEnd = $computed(() => {
       </div>
       <div class="footer">
         <BaseButton
-            :keyboard="settingStore.shortcutKeyMap[ShortcutKey.DictationChapter]"
-            @click="options('write')">
-          默写
-        </BaseButton>
-        <BaseButton
             :keyboard="settingStore.shortcutKeyMap[ShortcutKey.RepeatChapter]"
             @click="options('repeat')">
           重学
@@ -109,12 +103,17 @@ const isEnd = $computed(() => {
         <BaseButton
             :keyboard="settingStore.shortcutKeyMap[ShortcutKey.NextChapter]"
             @click="options('next')">
-          {{ isEnd ? '重新练习' : '继续' }}
+          {{ isEnd ? '重新练习' : '再来一组' }}
+        </BaseButton>
+        <BaseButton
+            type="primary"
+            @click="options('next')">
+          分享
         </BaseButton>
       </div>
     </div>
   </Dialog>
-  <Fireworks v-if="statModalIsOpen"/>
+  <Fireworks v-if="open"/>
 </template>
 <style scoped lang="scss">
 @import "@/assets/css/style";

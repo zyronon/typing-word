@@ -21,7 +21,7 @@ import {useNav} from "@/utils";
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
-const practiceStore = usePracticeStore()
+const statisticsStore = usePracticeStore()
 
 const headerRef = $ref<HTMLDivElement>(null)
 const moreOptionsRef = $ref<HTMLDivElement>(null)
@@ -79,6 +79,9 @@ const {nav} = useNav()
             @click="settingStore.showPanel = !settingStore.showPanel"
             :title="`单词本(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
             icon="tdesign:menu-unfold"/>
+      </div>
+      <div class="absolute left-1/2" style="transform: translateX(-50%)">
+        {{ statisticsStore.step ? '复习' : '学习新词'}}
       </div>
     </div>
     <Tooltip :title="settingStore.showToolbar?'收起':'展开'">
@@ -146,7 +149,6 @@ header {
     .options {
       display: flex;
       align-items: center;
-      overflow: hidden;
       gap:.2rem;
     }
   }

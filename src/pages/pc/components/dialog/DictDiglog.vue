@@ -26,9 +26,9 @@ function close() {
 
 function showAllWordModal() {
   emitter.emit(EventKey.openWordListModal, {
-    title: runtimeStore.editDict.name,
-    translateLanguage: runtimeStore.editDict.translateLanguage,
-    list: runtimeStore.editDict.words
+    title: store.currentStudyWordDict.name,
+    translateLanguage: store.currentStudyWordDict.translateLanguage,
+    list: store.currentStudyWordDict.words
   })
 }
 

@@ -32,6 +32,17 @@ export const DefaultWord: Word = {
   trans: [],
 }
 
+export function getDefaultWord(val?: any) {
+  return {
+    id:'',
+    word: '',
+    phonetic0: '',
+    phonetic1: '',
+    trans: [],
+    ...val
+  }
+}
+
 export type StudyWord = {
   type: 'new' | 'repeat' | 'wrong'
   word: Word
@@ -122,8 +133,8 @@ export const DefaultArticle: Article = {
 }
 
 export interface Statistics {
-  startIndex:number,
-  endIndex:number,
+  startIndex: number,
+  endIndex: number,
   startDate: number,//开始日期
   endDate: number//结束日期
   spend: number,//花费时间
@@ -173,6 +184,7 @@ export enum ShortcutKey {
   NextChapter = 'NextChapter',
   PreviousChapter = 'PreviousChapter',
   RepeatChapter = 'RepeatChapter',
+  //todo 废弃
   DictationChapter = 'DictationChapter',
   PlayWordPronunciation = 'PlayWordPronunciation',
   // PlayTranslatePronunciation = 'PlayTranslatePronunciation',

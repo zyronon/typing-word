@@ -65,7 +65,7 @@ const playKeyboardAudio = usePlayKeyboardAudio()
 const playWordAudio = usePlayWordAudio()
 
 const store = useBaseStore()
-const practiceStore = usePracticeStore()
+const statisticsStore = usePracticeStore()
 const settingStore = useSettingStore()
 
 watch(() => props.article, () => {
@@ -97,7 +97,7 @@ function nextSentence() {
 
   //todo 计得把略过的单词加上统计里面去
   // if (!store.skipWordNamesWithSimpleWords.includes(currentWord.word.toLowerCase()) && !currentWord.isSymbol) {
-  //   practiceStore.inputNumber++
+  //   statisticsStore.inputNumber++
   // }
 
   sentenceIndex++

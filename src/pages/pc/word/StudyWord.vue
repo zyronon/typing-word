@@ -10,33 +10,28 @@ import Statistics from "@/pages/pc/practice/Statistics.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {MessageBox} from "@/utils/MessageBox.tsx";
-import PracticeArticle from "@/pages/pc/practice/practice-article/index.vue";
-import PracticeWord from "@/pages/pc/practice/practice-word/index.vue";
 import {ShortcutKey, Word} from "@/types.ts";
 import DictModal from "@/pages/pc/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
-import Logo from "@/pages/pc/components/Logo.vue";
-import {Icon} from "@iconify/vue";
 import TypingWord from "@/pages/pc/practice/practice-word/TypingWord.vue";
-import {cloneDeep} from "lodash-es";
 import {syncMyDictList} from "@/hooks/dict.ts";
+import {cloneDeep, shuffle} from "lodash-es";
 
-const practiceStore = usePracticeStore()
+const statisticsStore = usePracticeStore()
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 const {toggleTheme} = useTheme()
 
-watch(practiceStore, () => {
-  if (practiceStore.inputWordNumber < 1) {
-    return practiceStore.correctRate = -1
+watch(statisticsStore, () => {
+  if (statisticsStore.inputWordNumber < 1) {
+    return statisticsStore.correctRate = -1
   }
-  if (practiceStore.wrongWordNumber > practiceStore.inputWordNumber) {
-    return practiceStore.correctRate = 0
+  if (statisticsStore.wrongWordNumber > statisticsStore.inputWordNumber) {
+    return statisticsStore.correctRate = 0
   }
-  practiceStore.correctRate = 100 - Math.trunc(((practiceStore.wrongWordNumber) / (practiceStore.inputWordNumber)) * 100)
+  statisticsStore.correctRate = 100 - Math.trunc(((statisticsStore.wrongWordNumber) / (statisticsStore.inputWordNumber)) * 100)
 })
 
 function next() {
@@ -133,9 +128,22 @@ onUnmounted(() => {
   emitter.off(ShortcutKey.TogglePanel, togglePanel)
 })
 
+onMounted(() => {
+  getCurrentPractice()
+  emitter.on(EventKey.changeDict, getCurrentPractice)
+})
+
+onUnmounted(() => {
+  emitter.off(EventKey.changeDict, getCurrentPractice)
+})
+
 let wordData = $ref({
   words: [],
   index: -1
+})
+let data = $ref({
+  new: [],
+  review: []
 })
 
 function getCurrentPractice() {
@@ -143,10 +151,16 @@ function getCurrentPractice() {
   let wordDict = store.currentStudyWordDict;
   if (wordDict.words?.length) {
     wordData.index = 0
-    wordData.statistics.map(v=>{
+    wordData.words = []
+    statisticsStore.step = 0
+    for (let i = c.lastLearnIndex; i < wordDict.words.length; i++) {
+      if (data.new.length >= c.perDayStudyNumber) break
+      let item = wordDict.words[i]
+      if (!store.skipWordNames.includes(item.word.toLowerCase())) {
+        data.new.push(item)
+      }
+    }
 
-    })
-    wordData.words = cloneDeep(wordDict.words.slice(c.lastLearnIndex, c.lastLearnIndex + c.perDayStudyNumber))
     emitter.emit(EventKey.resetWord)
   }
 }
@@ -158,15 +172,9 @@ function sort(list: Word[]) {
   syncMyDictList(store.currentDict)
 }
 
-onMounted(() => {
-  getCurrentPractice()
-  emitter.on(EventKey.changeDict, getCurrentPractice)
-})
+function complete() {
 
-onUnmounted(() => {
-  emitter.off(EventKey.changeDict, getCurrentPractice)
-})
-
+}
 
 useStartKeyboardEventListener()
 
@@ -177,8 +185,8 @@ useStartKeyboardEventListener()
     <div class="flex flex-1">
       <TypingWord
           @sort="sort"
-          v-model:words="wordData.words"
-          :index="wordData.index"/>
+          @complete="complete"
+          :data="data"/>
     </div>
     <Footer/>
   </div>

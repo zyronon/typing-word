@@ -200,3 +200,38 @@ export function useNav() {
 
   return {nav, back: router.back}
 }
+
+export function _dateFormat(val, type?): string {
+  if (!val) return
+  if (String(val).length === 10) {
+    val = val * 1000
+  }
+  const d = new Date(Number(val))
+  const year = d.getFullYear()
+  const m = d.getMonth() + 1
+  const mStr = m < 10 ? '0' + m : m
+  const day = d.getDate()
+  const dayStr = day < 10 ? '0' + day : day
+  const h = d.getHours()
+  const hStr = h < 10 ? '0' + h : h
+  const min = d.getMinutes()
+  const minStr = min < 10 ? '0' + min : min
+  const sec = d.getSeconds()
+  const secStr = sec < 10 ? '0' + sec : sec
+  switch (type) {
+    case 'Y':
+      return year + ''
+    case 'M':
+      return `${year}-${mStr}`
+    case 'M_D':
+      return `${mStr}-${dayStr}`
+    case 'M_CN':
+      return `${year}年${mStr}月`
+    case 'D':
+      return `${year}-${mStr}-${dayStr}`
+    case 'm':
+      return `${year}-${mStr}-${dayStr} ${hStr}:${minStr}`
+    default:
+      return `${year}-${mStr}-${dayStr} ${hStr}:${minStr}:${secStr}`
+  }
+}

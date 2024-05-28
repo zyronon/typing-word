@@ -40,7 +40,7 @@ const emit = defineEmits<{
 const typingRef: any = $ref()
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
-const practiceStore = usePracticeStore()
+const statisticsStore = usePracticeStore()
 const settingStore = useSettingStore()
 const {toggleTheme} = useTheme()
 
@@ -66,19 +66,17 @@ watch(() => props.words, () => {
   data.index = props.index
   data.wrongWords = []
 
-  practiceStore.wrongWords = []
-  practiceStore.repeatNumber = 0
-  practiceStore.startDate = Date.now()
-  practiceStore.correctRate = -1
-  practiceStore.inputWordNumber = 0
-  practiceStore.wrongWordNumber = 0
+  statisticsStore.startDate = Date.now()
+  statisticsStore.correctRate = -1
+  statisticsStore.inputWordNumber = 0
+  statisticsStore.wrongWordNumber = 0
   stat = cloneDeep(DefaultDisplayStatistics)
 
 }, {immediate: true})
 
 watch(data, () => {
-  practiceStore.total = data.words.length
-  practiceStore.index = data.index
+  statisticsStore.total = data.words.length
+  statisticsStore.index = data.index
 })
 
 const word: Word = $computed(() => {
@@ -92,12 +90,12 @@ function next(isTyping: boolean = true) {
     if (stat.total === -1) {
       let now = Date.now()
       stat = {
-        startDate: practiceStore.startDate,
+        startDate: statisticsStore.startDate,
         endDate: now,
-        spend: now - practiceStore.startDate,
+        spend: now - statisticsStore.startDate,
         total: props.words.length,
         correctRate: -1,
-        inputWordNumber: practiceStore.inputWordNumber,
+        inputWordNumber: statisticsStore.inputWordNumber,
         wrongWordNumber: data.wrongWords.length,
         wrongWords: data.wrongWords,
       }
@@ -108,15 +106,14 @@ function next(isTyping: boolean = true) {
       console.log('当前背完了，但还有错词')
       data.words = cloneDeep(data.wrongWords)
 
-      practiceStore.total = data.words.length
-      practiceStore.index = data.index = 0
-      practiceStore.inputWordNumber = 0
-      practiceStore.wrongWordNumber = 0
-      practiceStore.repeatNumber++
+      statisticsStore.total = data.words.length
+      statisticsStore.index = data.index = 0
+      statisticsStore.inputWordNumber = 0
+      statisticsStore.wrongWordNumber = 0
       data.wrongWords = []
     } else {
       console.log('这章节完了')
-      isTyping && practiceStore.inputWordNumber++
+      isTyping && statisticsStore.inputWordNumber++
 
       let now = Date.now()
       stat.endDate = now
@@ -126,7 +123,7 @@ function next(isTyping: boolean = true) {
     }
   } else {
     data.index++
-    isTyping && practiceStore.inputWordNumber++
+    isTyping && statisticsStore.inputWordNumber++
     console.log('这个词完了')
     if ([DictType.word].includes(store.currentDict.type)
         && store.skipWordNames.includes(word.word.toLowerCase())) {
@@ -141,7 +138,7 @@ function wordWrong() {
   }
   if (!data.wrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
     data.wrongWords.push(word)
-    practiceStore.wrongWordNumber++
+    statisticsStore.wrongWordNumber++
   }
 }
 

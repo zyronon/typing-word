@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted, watch} from "vue"
 import {useBaseStore} from "@/stores/base.ts"
-import {DefaultDisplayStatistics, DictType, ShortcutKey, Sort, Word} from "@/types.ts";
+import {DefaultDisplayStatistics, DictType, getDefaultWord, ShortcutKey, Sort, Word} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep, reverse, shuffle} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
@@ -21,24 +21,29 @@ import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import BaseButton from "@/components/BaseButton.vue";
 
 interface IProps {
-  words: Word[],
-  index: number,
+  data: {
+    new: any[],
+    review: any[],
+  }
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  words: [],
-  index: -1
+  data: {
+    new: [],
+    review: [],
+  }
 })
 
 const emit = defineEmits<{
   'update:words': [val: Word[]],
-  sort: [val: Word[]]
+  sort: [val: Word[]],
+  complete: [val: any]
 }>()
 
 const typingRef: any = $ref()
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
-const practiceStore = usePracticeStore()
+const statisticsStore = usePracticeStore()
 const settingStore = useSettingStore()
 
 const {
@@ -48,100 +53,73 @@ const {
   toggleWordSimple
 } = useWordOptions()
 
-let data = $ref({
-  index: props.index,
-  words: props.words,
+let allWrongWords = []
+let current = $ref({
+  index: 0,
+  words: [],
   wrongWords: [],
 })
 
-let stat = cloneDeep(DefaultDisplayStatistics)
 let showSortOption = $ref(false)
 useWindowClick(() => showSortOption = false)
 
-watch(() => props.words, () => {
-  data.words = props.words
-  data.index = props.index
-  data.wrongWords = []
+watch(() => props.data, () => {
+  current.words = props.data.new
+  current.index = 0
+  current.wrongWords = []
+  allWrongWords = []
 
-  practiceStore.wrongWords = []
-  practiceStore.repeatNumber = 0
-  practiceStore.startDate = Date.now()
-  practiceStore.correctRate = -1
-  practiceStore.inputWordNumber = 0
-  practiceStore.wrongWordNumber = 0
-  stat = cloneDeep(DefaultDisplayStatistics)
-
-}, {immediate: true})
-
-watch(data, () => {
-  practiceStore.total = data.words.length
-  practiceStore.index = data.index
-})
+  statisticsStore.step = 0
+  statisticsStore.startDate = Date.now()
+  statisticsStore.correctRate = -1
+  statisticsStore.inputWordNumber = 0
+  statisticsStore.wrongWordNumber = 0
+  statisticsStore.total = props.data.review.concat(props.data.new).length
+  statisticsStore.newWordNumber = props.data.new.length
+  statisticsStore.index = 0
+}, {immediate: true, deep: true})
 
 const word = $computed(() => {
-  return data.words[data.index] ?? {
-    trans: [],
-    word: '',
-    usphone: '',
-    ukphone: '',
-  }
+  return current.words[current.index] ?? getDefaultWord()
 })
 
 const prevWord: Word = $computed(() => {
-  return data.words?.[data.index - 1] ?? undefined
+  return current.words?.[current.index - 1] ?? undefined
 })
 
 const nextWord: Word = $computed(() => {
-  return data.words?.[data.index + 1] ?? undefined
+  return current.words?.[current.index + 1] ?? undefined
 })
 
 function next(isTyping: boolean = true) {
-  if (data.index === data.words.length - 1) {
-
-    //复制当前错词，因为第一遍错词是最多的，后续的练习都是从错词中练习
-    if (stat.total === -1) {
-      let now = Date.now()
-      stat = {
-        startDate: practiceStore.startDate,
-        endDate: now,
-        spend: now - practiceStore.startDate,
-        total: props.words.length,
-        correctRate: -1,
-        inputWordNumber: practiceStore.inputWordNumber,
-        wrongWordNumber: data.wrongWords.length,
-        wrongWords: data.wrongWords,
-      }
-      stat.correctRate = 100 - Math.trunc(((stat.wrongWordNumber) / (stat.total)) * 100)
-    }
-
-    if (data.wrongWords.length) {
+  if (current.index === current.words.length - 1) {
+    if (current.wrongWords.length) {
       console.log('当前背完了，但还有错词')
-      data.words = cloneDeep(data.wrongWords)
-
-      practiceStore.total = data.words.length
-      practiceStore.index = data.index = 0
-      practiceStore.inputWordNumber = 0
-      practiceStore.wrongWordNumber = 0
-      practiceStore.repeatNumber++
-      data.wrongWords = []
+      current.words = cloneDeep(current.wrongWords)
+      current.wrongWords = []
     } else {
-      console.log('这章节完了')
-      isTyping && practiceStore.inputWordNumber++
-
-      let now = Date.now()
-      stat.endDate = now
-      stat.spend = now - stat.startDate
-
-      emitter.emit(EventKey.openStatModal, stat)
+      console.log('这章节完了', statisticsStore.total)
+      isTyping && statisticsStore.inputWordNumber++
+      statisticsStore.speed = Date.now() - statisticsStore.startDate
+      if (statisticsStore.step) {
+        emitter.emit(EventKey.openStatModal, {})
+        // emit('complete', {})
+      } else {
+        if (props.data.review.length) {
+          settingStore.dictation = true
+          statisticsStore.step++
+          current.words = shuffle(props.data.review.concat(props.data.new))
+          current.index = 0
+        } else {
+          emitter.emit(EventKey.openStatModal, {})
+          // emit('complete', {})
+        }
+      }
     }
   } else {
-    data.index++
-    isTyping && practiceStore.inputWordNumber++
+    current.index++
+    isTyping && statisticsStore.inputWordNumber++
     console.log('这个词完了')
-    if ([DictType.word].includes(store.currentDict.type)
-        && store.skipWordNames.includes(word.word.toLowerCase())) {
-      next()
-    }
   }
 }
 
@@ -149,9 +127,12 @@ function wordWrong() {
   if (!store.wrong2.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
     store.wrong2.push(word)
   }
-  if (!data.wrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
-    data.wrongWords.push(word)
-    practiceStore.wrongWordNumber++
+  if (!current.wrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
+    current.wrongWords.push(word)
+  }
+  if (!allWrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
+    allWrongWords.push(word)
+    statisticsStore.wrongWordNumber++
   }
 }
 
@@ -172,10 +153,10 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
 
 //TODO 略过忽略的单词上
 function prev() {
-  if (data.index === 0) {
+  if (current.index === 0) {
     ElMessage.warning('已经是第一个了~')
   } else {
-    data.index--
+    current.index--
   }
 }
 
@@ -209,11 +190,11 @@ function play() {
 function sort(type: Sort) {
   if (type === Sort.reverse) {
     ElMessage.success('已翻转排序')
-    emit('sort', reverse(cloneDeep(data.words)))
+    emit('sort', reverse(cloneDeep(current.words)))
   }
   if (type === Sort.random) {
     ElMessage.success('已随机排序')
-    emit('sort', shuffle(data.words))
+    emit('sort', shuffle(current.words))
   }
 }
 
@@ -286,7 +267,7 @@ onUnmounted(() => {
                  v-loading="!store.load"
             >
               <div class="list-header">
-                <div>{{ data.words.length }}个单词</div>
+                <div>{{ current.words.length }}个单词</div>
                 <div style="position:relative;"
                      @click.stop="null">
                   <BaseIcon
@@ -309,14 +290,14 @@ onUnmounted(() => {
                 </div>
               </div>
               <WordList
-                  v-if="data.words.length"
+                  v-if="current.words.length"
                   :is-active="active"
                   :static="false"
                   :show-word="!settingStore.dictation"
                   :show-translate="settingStore.translate"
-                  :list="data.words"
-                  :activeIndex="data.index"
-                  @click="(val:any) => data.index = val.index"
+                  :list="current.words"
+                  :activeIndex="current.index"
+                  @click="(val:any) => current.index = val.index"
               >
                 <template v-slot:suffix="{item,index}">
                   <BaseIcon

@@ -134,8 +134,8 @@ export const DefaultBaseState = (): BaseState => ({
   currentStudy: {
     word: {
       dictIndex: 0,
-      perDayStudyNumber: 30,
-      lastLearnIndex: 10,
+      perDayStudyNumber: 3,
+      lastLearnIndex: 0,
     },
     article: {
       dictIndex: 0,
