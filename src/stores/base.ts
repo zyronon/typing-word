@@ -22,6 +22,7 @@ export interface BaseState {
   collectWord?: Word[],
   simple2?: Word[],
   wrong2?: Word[],
+  master?: Word[],
   articleDictList?: Dict[]
   wordDictList?: Dict[],
   currentStudy?: {
@@ -100,6 +101,7 @@ export const DefaultBaseState = (): BaseState => ({
   collectArticle: [],
   simple2: [],
   wrong2: [],
+  master: [],
   articleDictList: [
     {
       ...cloneDeep(DefaultDict),
@@ -375,12 +377,6 @@ export const useBaseStore = defineStore('base', {
         emitter.emit(EventKey.changeDict)
         resolve(true)
       })
-    },
-    saveStatistics(statistics: DisplayStatistics) {
-      if (statistics.spend > 1000 * 10) {
-        delete statistics.wrongWords
-        this.currentDict.statistics.push(statistics)
-      }
     },
     async changeDict(dict: Dict, practiceType?: DictType, chapterIndex?: number, wordIndex?: number) {
       //TODO 保存统计

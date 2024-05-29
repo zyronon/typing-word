@@ -80,9 +80,7 @@ const {nav} = useNav()
             :title="`单词本(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
             icon="tdesign:menu-unfold"/>
       </div>
-      <div class="absolute left-1/2" style="transform: translateX(-50%)">
-        {{ statisticsStore.step ? '复习' : '学习新词'}}
-      </div>
+
     </div>
     <Tooltip :title="settingStore.showToolbar?'收起':'展开'">
       <Icon icon="icon-park-outline:down"

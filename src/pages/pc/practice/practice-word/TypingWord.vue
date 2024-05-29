@@ -94,11 +94,12 @@ const nextWord: Word = $computed(() => {
 function next(isTyping: boolean = true) {
   if (current.index === current.words.length - 1) {
     if (current.wrongWords.length) {
-      console.log('当前背完了，但还有错词')
+      console.log('学完了，但还有错词')
       current.words = cloneDeep(current.wrongWords)
+      current.index = 0
       current.wrongWords = []
     } else {
-      console.log('这章节完了', statisticsStore.total)
+      console.log('学完了，没错词', statisticsStore.total)
       isTyping && statisticsStore.inputWordNumber++
       statisticsStore.speed = Date.now() - statisticsStore.startDate
       if (statisticsStore.step) {
@@ -267,7 +268,9 @@ onUnmounted(() => {
                  v-loading="!store.load"
             >
               <div class="list-header">
-                <div>{{ current.words.length }}个单词</div>
+                <div>
+                  {{ statisticsStore.step ? '复习' : '学习'}}
+                  {{ current.words.length }}个单词</div>
                 <div style="position:relative;"
                      @click.stop="null">
                   <BaseIcon

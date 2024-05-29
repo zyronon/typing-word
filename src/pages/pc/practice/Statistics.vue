@@ -24,6 +24,11 @@ onMounted(() => {
     open = true
   })
 
+  let data = cloneDeep(statStore)
+  delete data.step
+  delete data.correctRate
+  store.currentStudyWordDict.statistics.push(data as any)
+
   const close = () => {
     open = false
   }
