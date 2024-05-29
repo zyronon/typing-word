@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "test": "vite",
+    "test": "",
     "build": "vite build",
     "build-tsc": "vue-tsc && vite build",
     "report": "vite build",
