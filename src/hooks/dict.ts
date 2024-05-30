@@ -107,3 +107,26 @@ export function syncMyDictList(dict: Dict, isCustom = true) {
     store.myDictList.push(cloneDeep(dict))
   }
 }
+
+export function getCurrentStudyWord() {
+  const store = useBaseStore()
+  let data = {new: [], review: []}
+  let c = store.currentStudy.word
+  let dict = store.currentStudyWordDict;
+  if (dict.words?.length) {
+    for (let i = c.lastLearnIndex; i < dict.words.length; i++) {
+      if (data.new.length >= c.perDayStudyNumber) break
+      let item = dict.words[i]
+      if (!store.skipWordNames.includes(item.word.toLowerCase())) {
+        data.new.push(item)
+      }
+    }
+    if (dict.statistics.length) {
+      let stat = dict.statistics.reverse()
+      stat.slice(0, 1).map(({startIndex, endIndex}) => {
+        let list = dict.words.splice(startIndex, endIndex)
+      })
+    }
+  }
+  return data
+}

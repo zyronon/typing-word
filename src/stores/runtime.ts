@@ -9,11 +9,13 @@ export interface RuntimeState {
   showDictModal: boolean
   showSettingModal: boolean
   excludeRoutes: any[]
+  routeData: any,
 }
 
 export const useRuntimeStore = defineStore('runtime', {
   state: (): RuntimeState => {
     return {
+      routeData: null,
       disableEventListener: false,
       modalList: [],
       editDict: cloneDeep(DefaultDict),

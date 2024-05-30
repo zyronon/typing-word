@@ -106,15 +106,10 @@ function next(isTyping: boolean = true) {
         emitter.emit(EventKey.openStatModal, {})
         // emit('complete', {})
       } else {
-        if (props.data.review.length) {
-          settingStore.dictation = true
-          statisticsStore.step++
-          current.words = shuffle(props.data.review.concat(props.data.new))
-          current.index = 0
-        } else {
-          emitter.emit(EventKey.openStatModal, {})
-          // emit('complete', {})
-        }
+        settingStore.dictation = true
+        statisticsStore.step++
+        current.words = shuffle(props.data.review.concat(props.data.new))
+        current.index = 0
       }
     }
   } else {

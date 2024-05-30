@@ -5,6 +5,7 @@ import {cloneDeep} from "lodash-es";
 import {Dict, DictType} from "@/types.ts";
 import {ArchiveReader, libarchiveWasm} from "libarchive-wasm";
 import {useRouter} from "vue-router";
+import {useRuntimeStore} from "@/stores/runtime.ts";
 
 export function getRandom(a: number, b: number): number {
   return Math.random() * (b - a) + a;
@@ -190,11 +191,12 @@ export function getDictFile(url: string) {
 
 export function useNav() {
   const router = useRouter()
+  const runtimeStore = useRuntimeStore()
 
   function nav(path, query = {}, data?: any) {
-    // if (data) {
-    //   store.routeData = cloneDeep(data)
-    // }
+    if (data) {
+      runtimeStore.routeData = cloneDeep(data)
+    }
     router.push({path, query})
   }
 

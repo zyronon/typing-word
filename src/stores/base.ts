@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {Article, DefaultDict, Dict, DictType, DisplayStatistics, Sort, Word} from "../types.ts"
+import {Article, DefaultDict, Dict, DictType, DisplayStatistics, getDefaultDict, Sort, Word} from "../types.ts"
 import {chunk, cloneDeep, merge, reverse, shuffle} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {useRuntimeStore} from "@/stores/runtime.ts";
@@ -136,7 +136,7 @@ export const DefaultBaseState = (): BaseState => ({
   currentStudy: {
     word: {
       dictIndex: 0,
-      perDayStudyNumber: 3,
+      perDayStudyNumber: 5,
       lastLearnIndex: 0,
     },
     article: {
@@ -263,7 +263,7 @@ export const useBaseStore = defineStore('base', {
       return this.myDictList[this.current.index] ?? {}
     },
     currentStudyWordDict(): Dict {
-      return this.wordDictList[this.currentStudy.word.dictIndex] ?? {}
+      return this.wordDictList[this.currentStudy.word.dictIndex] ?? getDefaultDict()
     },
     currentStudyWordProgress(): number {
       if (!this.currentStudyWordDict.words?.length) return 0

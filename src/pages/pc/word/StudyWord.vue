@@ -15,7 +15,7 @@ import DictModal from "@/pages/pc/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
 import TypingWord from "@/pages/pc/practice/practice-word/TypingWord.vue";
-import {syncMyDictList} from "@/hooks/dict.ts";
+import {getCurrentStudyWord, syncMyDictList} from "@/hooks/dict.ts";
 import {cloneDeep, shuffle} from "lodash-es";
 
 const statisticsStore = usePracticeStore()
@@ -36,33 +36,20 @@ watch(statisticsStore, () => {
 
 function next() {
   store.currentStudy.word.lastLearnIndex = store.currentStudy.word.lastLearnIndex + store.currentStudy.word.perDayStudyNumber
-  repeat()
-}
-
-function write() {
-  // console.log('write')
-  settingStore.dictation = true
-  repeat()
+  emitter.emit(EventKey.resetWord)
+  getCurrentPractice()
 }
 
 //TODO 需要判断是否已忽略
 function repeat() {
   // console.log('repeat')
+  settingStore.dictation = false
   emitter.emit(EventKey.resetWord)
-  getCurrentPractice()
+  data = cloneDeep(data)
 }
 
-function prev() {
-  // console.log('next')
-  if (store.currentDict.chapterIndex === 0) {
-    ElMessage.warning('已经在第一章了~')
-  } else {
-    store.currentDict.chapterIndex--
-    repeat()
-  }
-}
 
-function toggleShowTranslate() {
+function toggleTranslate() {
   settingStore.translate = !settingStore.translate
 }
 
@@ -87,21 +74,12 @@ function togglePanel() {
   settingStore.showPanel = !settingStore.showPanel
 }
 
-function jumpSpecifiedChapter(val: number) {
-  store.currentDict.chapterIndex = val
-  repeat()
-}
-
 onMounted(() => {
-  emitter.on(EventKey.write, write)
   emitter.on(EventKey.repeat, repeat)
   emitter.on(EventKey.next, next)
-  emitter.on(EventKey.jumpSpecifiedChapter, jumpSpecifiedChapter)
 
-  emitter.on(ShortcutKey.PreviousChapter, prev)
   emitter.on(ShortcutKey.RepeatChapter, repeat)
-  emitter.on(ShortcutKey.DictationChapter, write)
-  emitter.on(ShortcutKey.ToggleShowTranslate, toggleShowTranslate)
+  emitter.on(ShortcutKey.ToggleShowTranslate, toggleTranslate)
   emitter.on(ShortcutKey.ToggleDictation, toggleDictation)
   emitter.on(ShortcutKey.OpenSetting, openSetting)
   emitter.on(ShortcutKey.OpenDictDetail, openDictDetail)
@@ -111,15 +89,11 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  emitter.off(EventKey.write, write)
   emitter.off(EventKey.repeat, repeat)
   emitter.off(EventKey.next, next)
-  emitter.off(EventKey.jumpSpecifiedChapter, jumpSpecifiedChapter)
 
-  emitter.off(ShortcutKey.PreviousChapter, prev)
   emitter.off(ShortcutKey.RepeatChapter, repeat)
-  emitter.off(ShortcutKey.DictationChapter, write)
-  emitter.off(ShortcutKey.ToggleShowTranslate, toggleShowTranslate)
+  emitter.off(ShortcutKey.ToggleShowTranslate, toggleTranslate)
   emitter.off(ShortcutKey.ToggleDictation, toggleDictation)
   emitter.off(ShortcutKey.OpenSetting, openSetting)
   emitter.off(ShortcutKey.OpenDictDetail, openDictDetail)
@@ -129,7 +103,8 @@ onUnmounted(() => {
 })
 
 onMounted(() => {
-  getCurrentPractice()
+  settingStore.dictation = false
+  data = runtimeStore.routeData
   emitter.on(EventKey.changeDict, getCurrentPractice)
 })
 
@@ -137,42 +112,18 @@ onUnmounted(() => {
   emitter.off(EventKey.changeDict, getCurrentPractice)
 })
 
-let wordData = $ref({
-  words: [],
-  index: -1
-})
 let data = $ref({
   new: [],
   review: []
 })
 
 function getCurrentPractice() {
-  let c = store.currentStudy.word
-  let wordDict = store.currentStudyWordDict;
-  if (wordDict.words?.length) {
-    wordData.index = 0
-    wordData.words = []
-    statisticsStore.step = 0
-    for (let i = c.lastLearnIndex; i < wordDict.words.length; i++) {
-      if (data.new.length >= c.perDayStudyNumber) break
-      let item = wordDict.words[i]
-      if (!store.skipWordNames.includes(item.word.toLowerCase())) {
-        data.new.push(item)
-      }
-    }
-
-    emitter.emit(EventKey.resetWord)
-  }
-}
-
-//TODO wait
-function sort(list: Word[]) {
-  store.currentDict.chapterWords[store.currentDict.chapterIndex] = wordData.words = list
-  wordData.index = 0
-  syncMyDictList(store.currentDict)
+  settingStore.dictation = false
+  data = getCurrentStudyWord()
 }
 
 function complete() {
+  // store.currentStudyWordDict.statistics.push()
 
 }
 
@@ -184,7 +135,6 @@ useStartKeyboardEventListener()
     <Toolbar/>
     <div class="flex flex-1">
       <TypingWord
-          @sort="sort"
           @complete="complete"
           :data="data"/>
     </div>

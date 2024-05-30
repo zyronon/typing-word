@@ -7,10 +7,11 @@ import {useRouter} from "vue-router";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import {watch} from "vue";
 import {getDefaultDict} from "@/types.ts";
+import {onMounted} from "vue";
+import {getCurrentStudyWord} from "@/hooks/dict.ts";
 
-const base = useBaseStore()
+const store = useBaseStore()
 const router = useRouter()
 const {nav} = useNav()
 
@@ -20,71 +21,82 @@ function clickEvent(e) {
 
 let showMore = $ref(false)
 const otherWordDictList = $computed(() => {
-  if (showMore) return base.otherWordDictList
-  else return base.otherWordDictList.slice(0, 4)
+  if (showMore) return store.otherWordDictList
+  else return store.otherWordDictList.slice(0, 4)
 })
+
+
+let currentStudy = $ref({
+  new: [],
+  review: []
+})
+
+onMounted(() => {
+  currentStudy = getCurrentStudyWord()
+})
+
 </script>
 
 <template>
   <BasePage>
     <div class="card flex gap-10 items-center">
-     <div class="flex-1">
-       <div class="flex gap-5">
-         <div class="bg-slate-200 px-3 h-14 rounded-md flex items-center">
-           <span class="text-xl font-bold">{{ base.currentStudyWordDict.name }}</span>
-           <BaseIcon
-               title="切换词典"
-               icon="gg:arrows-exchange"
-               class="ml-4"
-               @click="router.push('/dict')"/>
-         </div>
-         <div class="flex-1">
-           <div class="flex gap-3">
-             <div class="bg-slate-200 w-10 h-10 flex center text-2xl rounded">
-               0
-             </div>
-             <div class="flex-1">
-               <div class="flex justify-between">
-                 <div class="title">
-                   每日目标
-                 </div>
-                 <div style="color:#ac6ed1;" class="cursor-pointer">
-                   更改目标
-                 </div>
-               </div>
-               <div class="text-xs">学习 {{ base.currentStudy.word.perDayStudyNumber }} 个单词</div>
-             </div>
-           </div>
-           <div class="mt-2">
-             <div>预计完成日期：2024-04-01</div>
-           </div>
-         </div>
-       </div>
-       <div class="mt-4">
-         <div class="text-sm flex justify-between">
-           已学习{{ base.currentStudyWordProgress }}%
-           <span>{{ base.currentStudy.word.lastLearnIndex }} /{{ base.currentStudyWordDict.words.length }}词</span>
-         </div>
-         <el-progress class="mt-1" :percentage="base.currentStudyWordProgress" :show-text="false"></el-progress>
-       </div>
-     </div>
+      <div class="flex-1">
+        <div class="flex gap-5">
+          <div class="bg-slate-200 px-3 h-14 rounded-md flex items-center">
+            <span class="text-xl font-bold">{{ store.currentStudyWordDict.name }}</span>
+            <BaseIcon
+                title="切换词典"
+                icon="gg:arrows-exchange"
+                class="ml-4"
+                @click="router.push('/dict')"/>
+          </div>
+          <div class="flex-1 flex flex-col justify-end items-end">
+            <div class="flex gap-3">
+              <div class="">
+                <div class="title">
+                  每日目标
+                </div>
+                <div class="flex">
+                  <div style="color:#ac6ed1;" class="cursor-pointer" v-if="false">
+                    更改目标
+                  </div>
+                  <div class="text-xs">学习 {{ store.currentStudy.word.perDayStudyNumber }} 个单词</div>
+                </div>
+              </div>
+              <div class="bg-slate-200 w-10 h-10 flex center text-2xl rounded">
+                {{ store.currentStudy.word.perDayStudyNumber }}
+              </div>
+            </div>
+            <div class="mt-2">
+              <div>预计完成日期：2024-04-01</div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-2">
+          <div class="text-sm flex justify-between">
+            已学习{{ store.currentStudyWordProgress }}%
+            <span>{{ store.currentStudy.word.lastLearnIndex }} /{{ store.currentStudyWordDict.words.length }}词</span>
+          </div>
+          <el-progress class="mt-1" :percentage="store.currentStudyWordProgress" :show-text="false"></el-progress>
+        </div>
+      </div>
 
       <div class="w-3/10 flex flex-col gap-4">
         <div class="center text-xl">今日任务</div>
         <div class="flex">
           <div class="flex-1 flex flex-col items-center">
-            <div class="text-4xl font-bold">10</div>
+            <div class="text-4xl font-bold">{{ currentStudy.new.length }}</div>
             <div class="text">新词数</div>
           </div>
           <div class="flex-1 flex flex-col items-center">
-            <div class="text-4xl font-bold">10</div>
+            <div class="text-4xl font-bold">{{ currentStudy.review.length }}</div>
             <div class="text">复习数</div>
           </div>
         </div>
       </div>
       <div class="">
         <div class="rounded-xl bg-slate-800 flex items-center gap-2 py-3 px-5 text-white cursor-pointer"
-             @click="router.push('study-word')">
+             @click="nav('study-word',{},currentStudy)">
           <span>开始学习</span>
           <Icon icon="icons8:right-round" class="text-2xl"/>
         </div>
@@ -98,19 +110,19 @@ const otherWordDictList = $computed(() => {
       <div class="grid grid-cols-6 gap-4  mt-4">
         <div class="my-dict" @click="nav('edit-word-dict',{type:0})">
           <span>收藏</span>
-          <div class="absolute bottom-4 right-4">{{ base.collectWord.length }}个词</div>
+          <div class="absolute bottom-4 right-4">{{ store.collectWord.length }}个词</div>
         </div>
         <div class="my-dict" @click="nav('edit-word-dict',{type:1})">
           <span>错词本</span>
-          <div class="absolute bottom-4 right-4">{{ base.wrong2.length }}个词</div>
+          <div class="absolute bottom-4 right-4">{{ store.wrong2.length }}个词</div>
         </div>
         <div class="my-dict" @click="nav('edit-word-dict',{type:2})">
           <span>简单词</span>
-          <div class="absolute bottom-4 right-4">{{ base.simple2.length }}个词</div>
+          <div class="absolute bottom-4 right-4">{{ store.simple2.length }}个词</div>
         </div>
-        <div class="my-dict" @click="nav('edit-word-dict',{type:3})"  >
+        <div class="my-dict" @click="nav('edit-word-dict',{type:3})">
           <span>已掌握</span>
-          <div class="absolute bottom-4 right-4">{{ base.master.length }}个词</div>
+          <div class="absolute bottom-4 right-4">{{ store.master.length }}个词</div>
         </div>
       </div>
     </div>
@@ -129,15 +141,15 @@ const otherWordDictList = $computed(() => {
           <div class="flex justify-between w-full">
             <span>{{ i.name }}</span>
             <div class="text-2xl ml-2 flex gap-4">
-              <BaseIcon title="删除" icon="hugeicons:delete-02" @click="base.delWordDict(i)"/>
-              <BaseIcon title="学习" icon="nonicons:go-16" @click="base.changeWordDict(getDefaultDict(i))"/>
+              <BaseIcon title="删除" icon="hugeicons:delete-02" @click="store.delWordDict(i)"/>
+              <BaseIcon title="学习" icon="nonicons:go-16" @click="store.changeWordDict(getDefaultDict(i))"/>
             </div>
           </div>
           <div class="mt-5 text-sm">已学习5555个单词的1%</div>
           <el-progress class="mt-1" :percentage="80" color="white" :show-text="false"></el-progress>
         </div>
       </div>
-      <div class="flex justify-center mt-2 text-2xl" v-if="base.otherWordDictList.length > 4">
+      <div class="flex justify-center mt-2 text-2xl" v-if="store.otherWordDictList.length > 4">
         <BaseIcon @click="showMore = !showMore" v-if="showMore" icon="mingcute:up-line"/>
         <BaseIcon @click="showMore = !showMore" v-else icon="mingcute:down-line"/>
       </div>
