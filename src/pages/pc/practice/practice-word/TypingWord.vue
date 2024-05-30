@@ -24,6 +24,7 @@ interface IProps {
   data: {
     new: any[],
     review: any[],
+    write: any[],
   }
 }
 
@@ -31,6 +32,7 @@ const props = withDefaults(defineProps<IProps>(), {
   data: {
     new: [],
     review: [],
+    write: [],
   }
 })
 
@@ -43,7 +45,7 @@ const emit = defineEmits<{
 const typingRef: any = $ref()
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
-const statisticsStore = usePracticeStore()
+const statStore = usePracticeStore()
 const settingStore = useSettingStore()
 
 const {
@@ -69,14 +71,14 @@ watch(() => props.data, () => {
   current.wrongWords = []
   allWrongWords = []
 
-  statisticsStore.step = 0
-  statisticsStore.startDate = Date.now()
-  statisticsStore.correctRate = -1
-  statisticsStore.inputWordNumber = 0
-  statisticsStore.wrongWordNumber = 0
-  statisticsStore.total = props.data.review.concat(props.data.new).length
-  statisticsStore.newWordNumber = props.data.new.length
-  statisticsStore.index = 0
+  statStore.step = 0
+  statStore.startDate = Date.now()
+  statStore.correctRate = -1
+  statStore.inputWordNumber = 0
+  statStore.wrongWordNumber = 0
+  statStore.total = props.data.review.concat(props.data.new).length
+  statStore.newWordNumber = props.data.new.length
+  statStore.index = 0
 }, {immediate: true, deep: true})
 
 const word = $computed(() => {
@@ -99,23 +101,37 @@ function next(isTyping: boolean = true) {
       current.index = 0
       current.wrongWords = []
     } else {
-      console.log('学完了，没错词', statisticsStore.total)
-      isTyping && statisticsStore.inputWordNumber++
-      statisticsStore.speed = Date.now() - statisticsStore.startDate
-      if (statisticsStore.step) {
+      console.log('学完了，没错词', statStore.total, statStore.step,current.index,current.words)
+      isTyping && statStore.inputWordNumber++
+      statStore.speed = Date.now() - statStore.startDate
+
+      if (statStore.step === 2) {
         emitter.emit(EventKey.openStatModal, {})
         // emit('complete', {})
-      } else {
+      }
+
+      if (statStore.step === 1) {
         settingStore.dictation = true
-        statisticsStore.step++
-        current.words = shuffle(props.data.review.concat(props.data.new))
+        current.words = props.data.write.concat(props.data.new).concat(props.data.review)
+        statStore.step++
         current.index = 0
+      }
+
+      if (statStore.step === 0) {
+        statStore.step++
+        if (props.data.review.length) {
+          current.words = props.data.review
+          settingStore.dictation = false
+          current.index = 0
+        } else {
+          next()
+        }
       }
     }
   } else {
     current.index++
-    isTyping && statisticsStore.inputWordNumber++
-    console.log('这个词完了')
+    isTyping && statStore.inputWordNumber++
+    // console.log('这个词完了')
   }
 }
 
@@ -128,7 +144,7 @@ function wordWrong() {
   }
   if (!allWrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
     allWrongWords.push(word)
-    statisticsStore.wrongWordNumber++
+    statStore.wrongWordNumber++
   }
 }
 
@@ -264,8 +280,10 @@ onUnmounted(() => {
             >
               <div class="list-header">
                 <div>
-                  {{ statisticsStore.step ? '复习' : '学习'}}
-                  {{ current.words.length }}个单词</div>
+                  {{ statStore.step }}
+                  {{ statStore.step ? '复习' : '学习' }}
+                  {{ current.words.length }}个单词
+                </div>
                 <div style="position:relative;"
                      @click.stop="null">
                   <BaseIcon

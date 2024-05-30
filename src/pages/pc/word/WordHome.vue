@@ -10,8 +10,11 @@ import BasePage from "@/pages/pc/components/BasePage.vue";
 import {getDefaultDict} from "@/types.ts";
 import {onMounted} from "vue";
 import {getCurrentStudyWord} from "@/hooks/dict.ts";
+import {c} from "vite/dist/node/types.d-aGj9QkWt";
+import {usePracticeStore} from "@/stores/practice.ts";
 
 const store = useBaseStore()
+const statStore = usePracticeStore()
 const router = useRouter()
 const {nav} = useNav()
 
@@ -28,12 +31,17 @@ const otherWordDictList = $computed(() => {
 
 let currentStudy = $ref({
   new: [],
-  review: []
+  review: [],
+  write: []
 })
 
 onMounted(() => {
   currentStudy = getCurrentStudyWord()
 })
+
+function study(){
+  nav('study-word',{},currentStudy)
+}
 
 </script>
 
@@ -92,11 +100,17 @@ onMounted(() => {
             <div class="text-4xl font-bold">{{ currentStudy.review.length }}</div>
             <div class="text">复习数</div>
           </div>
+          <div class="flex-1 flex flex-col items-center">
+            <div class="text-4xl font-bold">{{
+                currentStudy.new.length + currentStudy.review.length + currentStudy.write.length
+              }}</div>
+            <div class="text">默写数</div>
+          </div>
         </div>
       </div>
       <div class="">
         <div class="rounded-xl bg-slate-800 flex items-center gap-2 py-3 px-5 text-white cursor-pointer"
-             @click="nav('study-word',{},currentStudy)">
+             @click="study">
           <span>开始学习</span>
           <Icon icon="icons8:right-round" class="text-2xl"/>
         </div>
@@ -178,7 +192,8 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .card {
-  @apply rounded-xl bg-white p-4 mt-5;
+  @apply rounded-xl p-4 mt-5;
+  background: var(--color-second-bg);
 }
 
 .center {

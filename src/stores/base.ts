@@ -130,13 +130,14 @@ export const DefaultBaseState = (): BaseState => ({
       length: 2607,
       translateLanguage: 'common',
       language: 'en',
-      type: DictType.word
+      type: DictType.word,
+      statistics: []
     },
   ],
   currentStudy: {
     word: {
       dictIndex: 0,
-      perDayStudyNumber: 5,
+      perDayStudyNumber: 20,
       lastLearnIndex: 0,
     },
     article: {
@@ -265,6 +266,9 @@ export const useBaseStore = defineStore('base', {
     currentStudyWordDict(): Dict {
       return this.wordDictList[this.currentStudy.word.dictIndex] ?? getDefaultDict()
     },
+    sword() {
+      return this.currentStudy.word
+    },
     currentStudyWordProgress(): number {
       if (!this.currentStudyWordDict.words?.length) return 0
       return Number(((this.currentStudy.word.lastLearnIndex / this.currentStudyWordDict.words?.length) * 100).toFixed())
@@ -313,54 +317,25 @@ export const useBaseStore = defineStore('base', {
         } catch (e) {
           console.error('读取本地dict数据失败', e)
         }
-        const runtimeStore = useRuntimeStore()
 
+        //自定义的词典，文章只删除了sections，单词并未做删除，所以这里不需要处理
+        if (this.currentDict.isCustom) {
 
-        if (this.current.index < 3) {
-          //前三本词典的isCustom为true。数据全都保存了，不需要处理了
         } else {
-          //自定义的词典，文章只删除了sections，单词并未做删除，所以这里不需要处理
-          if (this.currentDict.isCustom) {
 
-          } else {
-            //处理非自定义的情况。
-            let dictResourceUrl = `./dicts/${this.currentDict.language}/${this.currentDict.type}/${this.currentDict.translateLanguage}/${this.currentDict.url}`;
-            if ([DictType.word].includes(this.currentDict.type)) {
-              if (!this.currentDict.originWords.length) {
-                let v = await getDictFile(dictResourceUrl)
-                // v = v.slice(0, 50)
-                v.map(s => {
-                  s.id = nanoid(6)
-                })
-                this.currentDict.originWords = cloneDeep(v)
-                this.currentDict.words = cloneDeep(v)
-                this.currentDict.chapterWords = chunk(this.currentDict.words, this.currentDict.chapterWordNumber)
-              }
-            }
-
-            if ([DictType.article].includes(this.currentDict.type)) {
-              if (!this.currentDict.articles.length) {
-                let s = await getDictFile(dictResourceUrl)
-                this.currentDict.articles = cloneDeep(s.map(v => {
-                  v.id = nanoid(6)
-                  return v
-                }))
-              }
-            }
-          }
         }
 
         let currentDict = this.wordDictList[this.currentStudy.word.dictIndex]
         let dictResourceUrl = `./dicts/${currentDict.language}/${currentDict.type}/${currentDict.translateLanguage}/${currentDict.url}`;
-        if (!currentDict.originWords.length) {
+        if (!currentDict.words.length) {
           let v = await getDictFile(dictResourceUrl)
           // v = v.slice(0, 50)
           v.map(s => {
             s.id = nanoid(6)
           })
-          currentDict.originWords = cloneDeep(v)
-          currentDict.words = cloneDeep(v)
-          currentDict.chapterWords = chunk(currentDict.words, currentDict.chapterWordNumber)
+          // currentDict.originWords = cloneDeep(v)
+          // currentDict.words = cloneDeep(v)
+          currentDict.words = Object.freeze(v)
         }
 
         currentDict = this.articleDictList[this.currentStudy.article.dictIndex]
@@ -373,7 +348,7 @@ export const useBaseStore = defineStore('base', {
           }))
         }
 
-        console.log('this.wordDictList', this.articleDictList)
+        console.log('this.wordDictList', this.wordDictList[0].words[0])
         emitter.emit(EventKey.changeDict)
         resolve(true)
       })

@@ -18,24 +18,23 @@ import TypingWord from "@/pages/pc/practice/practice-word/TypingWord.vue";
 import {getCurrentStudyWord, syncMyDictList} from "@/hooks/dict.ts";
 import {cloneDeep, shuffle} from "lodash-es";
 
-const statisticsStore = usePracticeStore()
+const statStore = usePracticeStore()
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 const {toggleTheme} = useTheme()
 
-watch(statisticsStore, () => {
-  if (statisticsStore.inputWordNumber < 1) {
-    return statisticsStore.correctRate = -1
+watch(statStore, () => {
+  if (statStore.inputWordNumber < 1) {
+    return statStore.correctRate = -1
   }
-  if (statisticsStore.wrongWordNumber > statisticsStore.inputWordNumber) {
-    return statisticsStore.correctRate = 0
+  if (statStore.wrongWordNumber > statStore.inputWordNumber) {
+    return statStore.correctRate = 0
   }
-  statisticsStore.correctRate = 100 - Math.trunc(((statisticsStore.wrongWordNumber) / (statisticsStore.inputWordNumber)) * 100)
+  statStore.correctRate = 100 - Math.trunc(((statStore.wrongWordNumber) / (statStore.inputWordNumber)) * 100)
 })
 
 function next() {
-  store.currentStudy.word.lastLearnIndex = store.currentStudy.word.lastLearnIndex + store.currentStudy.word.perDayStudyNumber
   emitter.emit(EventKey.resetWord)
   getCurrentPractice()
 }
@@ -104,7 +103,9 @@ onUnmounted(() => {
 
 onMounted(() => {
   settingStore.dictation = false
-  data = runtimeStore.routeData
+  if (runtimeStore.routeData) {
+    data = runtimeStore.routeData
+  }
   emitter.on(EventKey.changeDict, getCurrentPractice)
 })
 

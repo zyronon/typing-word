@@ -121,7 +121,7 @@ let show = $ref(false)
 }
 
 .aside {
-  background: white;
+  background: var(--color-second-bg);
   position: fixed;
   z-index: 999;
   top: 0;

@@ -63,7 +63,7 @@ export function useStartKeyboardEventListener() {
       for (let i = 0; i < list.length; i++) {
         let [k, v] = list[i]
         if (v === shortcutKey) {
-          console.log('快捷键', k)
+          // console.log('快捷键', k)
           shortcutEvent = k
           break
         }

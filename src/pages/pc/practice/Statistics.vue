@@ -21,13 +21,19 @@ let open = $ref(false)
 
 onMounted(() => {
   emitter.on(EventKey.openStatModal, () => {
+    let data = {
+      startIndex: store.sword.lastLearnIndex,
+      endIndex: store.sword.lastLearnIndex + store.sword.perDayStudyNumber,
+      speed: statStore.speed,
+      startDate: statStore.startDate,
+    }
+    store.sword.lastLearnIndex = data.endIndex
+    store.currentStudyWordDict.statistics.push(data as any)
+    store.currentStudyWordDict.statistics.sort((a, b) => a.startDate - b.startDate)
+
+    console.log('staa', JSON.parse(JSON.stringify(store.currentStudyWordDict.statistics)))
     open = true
   })
-
-  let data = cloneDeep(statStore)
-  delete data.step
-  delete data.correctRate
-  store.currentStudyWordDict.statistics.push(data as any)
 
   const close = () => {
     open = false
