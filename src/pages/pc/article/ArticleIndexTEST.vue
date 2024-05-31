@@ -6,7 +6,7 @@ import {usePracticeStore} from "@/stores/practice.ts";
 import Footer from "@/pages/pc/practice/Footer.vue";
 import {useBaseStore} from "@/stores/base.ts";
 
-import Statistics from "@/pages/pc/practice/Statistics.vue";
+import Statistics from "@/pages/pc/word/Statistics.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";

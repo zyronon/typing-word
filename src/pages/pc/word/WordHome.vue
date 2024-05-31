@@ -8,7 +8,7 @@ import BaseIcon from "@/components/BaseIcon.vue";
 import {useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {getDefaultDict} from "@/types.ts";
-import {onMounted} from "vue";
+import {onMounted, watch} from "vue";
 import {getCurrentStudyWord} from "@/hooks/dict.ts";
 import {c} from "vite/dist/node/types.d-aGj9QkWt";
 import {usePracticeStore} from "@/stores/practice.ts";
@@ -34,13 +34,20 @@ let currentStudy = $ref({
   review: [],
   write: []
 })
-
-onMounted(() => {
-  currentStudy = getCurrentStudyWord()
+watch(() => store.load, n => {
+  if (n) {
+    currentStudy = getCurrentStudyWord()
+  }
 })
 
-function study(){
-  nav('study-word',{},currentStudy)
+onMounted(() => {
+  if (!currentStudy.new.length) {
+    currentStudy = getCurrentStudyWord()
+  }
+})
+
+function study() {
+  nav('study-word', {}, currentStudy)
 }
 
 </script>
@@ -103,7 +110,8 @@ function study(){
           <div class="flex-1 flex flex-col items-center">
             <div class="text-4xl font-bold">{{
                 currentStudy.new.length + currentStudy.review.length + currentStudy.write.length
-              }}</div>
+              }}
+            </div>
             <div class="text">默写数</div>
           </div>
         </div>

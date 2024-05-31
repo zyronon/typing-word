@@ -62,9 +62,6 @@ let current = $ref({
   wrongWords: [],
 })
 
-let showSortOption = $ref(false)
-useWindowClick(() => showSortOption = false)
-
 watch(() => props.data, () => {
   current.words = props.data.new
   current.index = 0
@@ -76,7 +73,7 @@ watch(() => props.data, () => {
   statStore.correctRate = -1
   statStore.inputWordNumber = 0
   statStore.wrongWordNumber = 0
-  statStore.total = props.data.review.concat(props.data.new).length
+  statStore.total = props.data.review.concat(props.data.new).concat(props.data.write).length
   statStore.newWordNumber = props.data.new.length
   statStore.index = 0
 }, {immediate: true, deep: true})
@@ -97,11 +94,11 @@ function next(isTyping: boolean = true) {
   if (current.index === current.words.length - 1) {
     if (current.wrongWords.length) {
       console.log('学完了，但还有错词')
-      current.words = cloneDeep(current.wrongWords)
+      current.words = shuffle(current.wrongWords)
       current.index = 0
       current.wrongWords = []
     } else {
-      console.log('学完了，没错词', statStore.total, statStore.step,current.index,current.words)
+      console.log('学完了，没错词', statStore.total, statStore.step, current.index, current.words)
       isTyping && statStore.inputWordNumber++
       statStore.speed = Date.now() - statStore.startDate
 
@@ -199,17 +196,6 @@ function play() {
   typingRef.play()
 }
 
-function sort(type: Sort) {
-  if (type === Sort.reverse) {
-    ElMessage.success('已翻转排序')
-    emit('sort', reverse(cloneDeep(current.words)))
-  }
-  if (type === Sort.random) {
-    ElMessage.success('已随机排序')
-    emit('sort', shuffle(current.words))
-  }
-}
-
 onMounted(() => {
   emitter.on(ShortcutKey.ShowWord, show)
   emitter.on(ShortcutKey.Previous, prev)
@@ -228,6 +214,21 @@ onUnmounted(() => {
   emitter.off(ShortcutKey.PlayWordPronunciation, play)
 })
 
+const status = $computed(() => {
+  let str = '正在'
+  switch (statStore.step) {
+    case 0:
+      str += `学习新单词`
+      break
+    case 1:
+      str += '复习上次学习'
+      break
+    case 2:
+      str += '默写所有单词'
+      break
+  }
+  return str
+})
 </script>
 
 <template>
@@ -279,30 +280,12 @@ onUnmounted(() => {
                  v-loading="!store.load"
             >
               <div class="list-header">
-                <div>
-                  {{ statStore.step }}
-                  {{ statStore.step ? '复习' : '学习' }}
-                  {{ current.words.length }}个单词
+                <div class="flex items-center gap-1">
+                  <Icon icon="material-symbols:hourglass-empty-rounded" />
+                  <span class="text-sm"> {{ status }}</span>
                 </div>
-                <div style="position:relative;"
-                     @click.stop="null">
-                  <BaseIcon
-                      title="改变顺序"
-                      icon="icon-park-outline:sort-two"
-                      @click="showSortOption = !showSortOption"
-                  />
-                  <MiniDialog
-                      v-model="showSortOption"
-                      style="width: 9rem;"
-                  >
-                    <div class="mini-row-title">
-                      列表循环设置
-                    </div>
-                    <div class="mini-row">
-                      <BaseButton size="small" @click="sort(Sort.reverse)">翻转</BaseButton>
-                      <BaseButton size="small" @click="sort(Sort.random)">随机</BaseButton>
-                    </div>
-                  </MiniDialog>
+                <div class="flex items-center gap-2">
+                  <span> {{ current.index}} / {{ current.words.length }}</span>
                 </div>
               </div>
               <WordList

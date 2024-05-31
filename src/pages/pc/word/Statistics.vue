@@ -76,13 +76,13 @@ const isEnd = $computed(() => {
         <Ring
             :value="statStore.newWordNumber"
             desc="New"
-            :percentage="35"
+            :percentage="40"
         />
       </div>
       <div class="flex justify-center gap-10">
         <div class="flex justify-center items-center py-3 px-10 rounded-md color-red-500 flex-col"
              style="background: rgb(254,236,236)">
-          <div class="text-3xl">{{ statStore.inputWordNumber }}</div>
+          <div class="text-3xl">{{ statStore.wrongWordNumber }}</div>
           <div class="center gap-2">
             <Icon icon="iconamoon:close" class="text-2xl"/>
             错词
@@ -90,7 +90,7 @@ const isEnd = $computed(() => {
         </div>
         <div class="flex justify-center items-center py-3 px-10 rounded-md color-green-600 flex-col"
              style="background: rgb(231,248,241)">
-          <div class="text-3xl">{{ statStore.total - statStore.inputWordNumber }}</div>
+          <div class="text-3xl">{{ statStore.total - statStore.wrongWordNumber }}</div>
           <div class="center gap-2">
             <Icon icon="tabler:check" class="text-2xl"/>
             正确
@@ -127,7 +127,7 @@ const isEnd = $computed(() => {
   <Fireworks v-if="open"/>
 </template>
 <style scoped lang="scss">
-@import "@/assets/css/style";
+@import "@/assets/css/variable";
 
 $card-radius: .5rem;
 $dark-second-bg: rgb(60, 63, 65);
