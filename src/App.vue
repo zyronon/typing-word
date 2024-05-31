@@ -15,6 +15,7 @@ import {isMobile, shakeCommonDict} from "@/utils";
 import router, {routes} from "@/router.ts";
 
 import {useRoute} from "vue-router";
+
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
 const settingStore = useSettingStore()
@@ -26,35 +27,6 @@ watch(store.$state, (n: BaseState) => {
 
 watch(settingStore.$state, (n) => {
   localStorage.setItem(SAVE_SETTING_KEY.key, JSON.stringify({val: n, version: SAVE_SETTING_KEY.version}))
-})
-
-//检测几个特定词典
-watch(store.collect.originWords, (n) => {
-  if (n.length === 0) {
-    store.collect.words = []
-    store.collect.chapterWords = []
-  } else {
-    store.collect.words = cloneDeep(n)
-    store.collect.chapterWords = [store.collect.words]
-  }
-})
-watch(store.simple.originWords, (n) => {
-  if (n.length === 0) {
-    store.simple.words = []
-    store.simple.chapterWords = []
-  } else {
-    store.simple.words = cloneDeep(n)
-    store.simple.chapterWords = [store.simple.words]
-  }
-})
-watch(store.wrong.originWords, (n) => {
-  if (n.length === 0) {
-    store.wrong.words = []
-    store.wrong.chapterWords = []
-  } else {
-    store.wrong.words = cloneDeep(n)
-    store.wrong.chapterWords = [store.wrong.words]
-  }
 })
 
 async function init() {

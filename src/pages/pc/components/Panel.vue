@@ -20,8 +20,14 @@ import {cloneDeep} from "lodash-es";
 import WordList from "@/pages/pc/components/list/WordList.vue";
 import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
 import Slide from "@/pages/pc/components/Slide.vue";
+import {useNav} from "@/utils";
 
-const router = useRouter()
+const props = withDefaults(defineProps<{
+  type: DictType
+}>(), {
+  type: DictType.word
+})
+
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
 const settingStore = useSettingStore()
@@ -60,33 +66,21 @@ const {
   toggleArticleCollect
 } = useArticleOptions()
 
-function addCollect() {
-  runtimeStore.editDict = cloneDeep(store.collect)
-  router.push({path: '/dict', query: {type: 'addWordOrArticle'}})
-}
-
-function addSimple() {
-  runtimeStore.editDict = cloneDeep(store.simple)
-  router.push({path: '/dict', query: {type: 'addWordOrArticle'}})
-}
+const {nav} = useNav()
 
 const showCollectToggleButton = $computed(() => {
-  if (store.currentDict.type === DictType.collect) {
-    if (store.current.practiceType !== practiceType) {
-      return (practiceType === DictType.word && store.collect.words.length) ||
-          (practiceType === DictType.article && store.collect.articles.length)
-    }
-  } else {
-    return (practiceType === DictType.word && store.collect.words.length) ||
-        (practiceType === DictType.article && store.collect.articles.length)
-  }
-  return false
+  if (props.type === DictType.word) return !store.collectWord.length
+  return !store.collectArticle.length
 })
+
+function changeCollect(){
+
+}
 
 </script>
 <template>
   <Transition name="fade">
-    <div class="panel anim" v-show="settingStore.showPanel ">
+    <div class="panel anim" v-show="settingStore.showPanel">
       <header>
         <div class="tabs">
           <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前</div>
@@ -108,17 +102,13 @@ const showCollectToggleButton = $computed(() => {
           <div class="panel-page-item">
             <div class="list-header">
               <div class="left">
-                <el-radio-group v-model="practiceType">
-                  <el-radio-button border :value="DictType.word">单词</el-radio-button>
-                  <el-radio-button border :value="DictType.article">文章</el-radio-button>
-                </el-radio-group>
-                <div class="dict-name" v-if="practiceType === DictType.word && store.collect.words.length">
-                  {{ store.collect.words.length }}个单词
+                <div class="dict-name" v-if="props.type === DictType.word && store.collectWord.length">
+                  {{ store.collectWord.length }}个单词
                 </div>
-                <div class="dict-name" v-if="practiceType === DictType.article && store.collect.articles.length">
-                  {{ store.collect.articles.length }}篇文章
+                <div class="dict-name" v-if="props.type === DictType.article">
+                  {{ store.collectArticle.length }}篇文章
                 </div>
-                <BaseIcon icon="fluent:add-12-regular" title="添加" @click="addCollect"/>
+                <BaseIcon icon="fluent:add-12-regular" title="添加" @click="nav('edit-word-dict',{type:0})"/>
               </div>
               <template v-if="showCollectToggleButton">
                 <PopConfirm
@@ -129,7 +119,7 @@ const showCollectToggleButton = $computed(() => {
                 </PopConfirm>
               </template>
             </div>
-            <template v-if="practiceType === DictType.word">
+            <template v-if="props.type === DictType.word">
               <WordList
                   v-if="store.collectWord.length"
                   class="word-list"
@@ -165,9 +155,9 @@ const showCollectToggleButton = $computed(() => {
             <div class="list-header">
               <div class="left">
                 <div class="dict-name">总词数：{{ store.simple2.length }}</div>
-                <BaseIcon icon="fluent:add-12-regular" title="添加" @click="addSimple"/>
+                <BaseIcon icon="fluent:add-12-regular" title="添加" @click="nav('edit-word-dict',{type:2})"/>
               </div>
-              <template v-if="store.currentDict.type !== DictType.simple && store.simple2.length">
+              <template v-if="store.simple2.length">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="changeIndex( store.simple)"
@@ -196,7 +186,7 @@ const showCollectToggleButton = $computed(() => {
             <div class="list-header">
               <div class="dict-name">总词数：{{ store.wrong2.length }}</div>
               <template
-                  v-if="store.currentDict.type !== DictType.wrong && store.wrong2.length">
+                  v-if="store.wrong2.length">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="changeIndex( store.wrong)"
@@ -243,7 +233,6 @@ $header-height: 3rem;
   z-index: 1;
   border: 1px solid var(--color-item-border);
   box-shadow: var(--shadow);
-
 
   & > header {
     min-height: 3rem;

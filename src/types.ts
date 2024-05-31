@@ -34,7 +34,7 @@ export const DefaultWord: Word = {
 
 export function getDefaultWord(val?: any) {
   return {
-    id:'',
+    id: '',
     word: '',
     phonetic0: '',
     phonetic1: '',
@@ -71,6 +71,9 @@ export enum DictType {
   collect = 'collect',
   simple = 'simple',
   wrong = 'wrong',
+  master = 'master',
+  collectWord = 'collect-word',
+  collectArticle = 'collect-article',
   word = 'word',
   article = 'article',
 }

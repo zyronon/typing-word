@@ -1,9 +1,7 @@
-import {Article, Dict, DictType, Word} from "@/types.ts";
+import {Article, Dict, Word} from "@/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
-import {useRuntimeStore} from "@/stores/runtime.ts";
-import {chunk, cloneDeep, shuffle} from "lodash-es";
+import {cloneDeep, shuffle} from "lodash-es";
 import {isArticle} from "@/hooks/article.ts";
-import {nanoid} from "nanoid";
 
 
 export function useWordOptions() {

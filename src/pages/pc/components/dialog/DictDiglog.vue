@@ -1,18 +1,14 @@
 <script setup lang="ts">
 import {useBaseStore} from "@/stores/base.ts"
 import {onMounted} from "vue"
-import {chunk} from "lodash-es";
 import BaseButton from "@/components/BaseButton.vue";
 import {Icon} from '@iconify/vue';
 import "vue-activity-calendar/style.css";
 import WordListDialog from "@/pages/pc/components/dialog/WordListDialog.vue";
-import {isArticle} from "@/hooks/article.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {useSettingStore} from "@/stores/setting.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
-import {useRouter} from "vue-router";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()

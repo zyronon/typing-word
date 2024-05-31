@@ -24,6 +24,8 @@ export interface BaseState {
   wrong2?: Word[],
   master?: Word[],
   articleDictList?: Dict[]
+
+  commonDictList: any[],
   wordDictList?: Dict[],
   currentStudy?: {
     word: {
@@ -102,6 +104,14 @@ export const DefaultBaseState = (): BaseState => ({
   simple2: [],
   wrong2: [],
   master: [],
+  commonDictList: [
+    {type: DictType.collectWord, words: [], statistics: []},
+    {type: DictType.collectArticle, articles: [], statistics: []},
+    {type: DictType.simple, words: [], statistics: []},
+    {type: DictType.wrong, words: [], statistics: []},
+    {type: DictType.master, words: [], statistics: []},
+  ],
+
   articleDictList: [
     {
       ...cloneDeep(DefaultDict),
@@ -239,14 +249,24 @@ export const useBaseStore = defineStore('base', {
     collect(): Dict {
       return this.myDictList[0]
     },
+
+    collectWord(): Dict {
+      return this.commonDictList[0]
+    },
+    collectArticle(): Dict {
+      return this.commonDictList[1]
+    },
     simple(): Dict {
-      return this.myDictList[1]
+      return this.commonDictList[2]
     },
     wrong(): Dict {
-      return this.myDictList[2]
+      return this.commonDictList[3]
+    },
+    master(): Dict {
+      return this.commonDictList[4]
     },
     skipWordNames() {
-      return this.simple.originWords.map(v => v.word.toLowerCase())
+      return this.simple.words.map(v => v.word.toLowerCase())
     },
     skipWordNamesWithSimpleWords() {
       return this.simple.originWords.map(v => v.word.toLowerCase()).concat(this.simpleWords)
