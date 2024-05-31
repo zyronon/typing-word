@@ -8,50 +8,50 @@ export function useWordOptions() {
   const store = useBaseStore()
 
   function isWordCollect(val: Word) {
-    return !!store.collectWord.find(v => v.word.toLowerCase() === val.word.toLowerCase())
+    return !!store.collectWord.words.find(v => v.word.toLowerCase() === val.word.toLowerCase())
   }
 
   function toggleWordCollect(val: Word) {
-    let rIndex = store.collectWord.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+    let rIndex = store.collectWord.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
     if (rIndex > -1) {
-      store.collectWord.splice(rIndex, 1)
+      store.collectWord.words.splice(rIndex, 1)
     } else {
-      let rIndex = store.simple2.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+      let rIndex = store.simple.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
       if (rIndex > -1) {
-        store.simple2.splice(rIndex, 1)
+        store.simple.words.splice(rIndex, 1)
       }
-      store.collectWord.push(val)
+      store.collectWord.words.push(val)
     }
   }
 
   function isWordSimple(val: Word) {
-    return !!store.simple2.find(v => v.word.toLowerCase() === val.word.toLowerCase())
+    return !!store.simple.words.find(v => v.word.toLowerCase() === val.word.toLowerCase())
   }
 
   function toggleWordSimple(val: Word) {
-    let rIndex = store.simple2.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+    let rIndex = store.simple.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
     if (rIndex > -1) {
-      store.simple2.splice(rIndex, 1)
+      store.simple.words.splice(rIndex, 1)
     } else {
-      let rIndex = store.collectWord.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+      let rIndex = store.collectWord.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
       if (rIndex > -1) {
-        store.collectWord.splice(rIndex, 1)
+        store.collectWord.words.splice(rIndex, 1)
       }
-      store.simple2.push(val)
+      store.simple.words.push(val)
     }
   }
 
   function delWrongWord(val: Word) {
-    let rIndex = store.wrong2.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+    let rIndex = store.wrong.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
     if (rIndex > -1) {
-      store.wrong2.splice(rIndex, 1)
+      store.wrong.words.splice(rIndex, 1)
     }
   }
 
   function delSimpleWord(val: Word) {
-    let rIndex = store.simple2.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+    let rIndex = store.simple.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
     if (rIndex > -1) {
-      store.simple2.splice(rIndex, 1)
+      store.simple.words.splice(rIndex, 1)
     }
   }
 
@@ -69,15 +69,15 @@ export function useArticleOptions() {
   const store = useBaseStore()
 
   function isArticleCollect(val: Article) {
-    return !!store.collectArticle.find(v => v.title.toLowerCase() === val.title.toLowerCase())
+    return !!store.collectArticle.articles.find(v => v.title.toLowerCase() === val.title.toLowerCase())
   }
 
   function toggleArticleCollect(val: Article) {
-    let rIndex = store.collectArticle.findIndex(v => v.title.toLowerCase() === val.title.toLowerCase())
+    let rIndex = store.collectArticle.articles.findIndex(v => v.title.toLowerCase() === val.title.toLowerCase())
     if (rIndex > -1) {
-      store.collectArticle.splice(rIndex, 1)
+      store.collectArticle.articles.splice(rIndex, 1)
     } else {
-      store.collectArticle.push(val)
+      store.collectArticle.articles.push(val)
     }
   }
 
@@ -110,13 +110,12 @@ export function getCurrentStudyWord() {
   console.time()
   const store = useBaseStore()
   let data = {new: [], review: [], write: []}
-  let c = store.currentStudy.word
   let dict = store.currentStudyWordDict;
   if (dict.words?.length) {
-    for (let i = c.lastLearnIndex; i < dict.words.length; i++) {
-      if (data.new.length >= c.perDayStudyNumber) break
+    for (let i = dict.lastLearnIndex; i < dict.words.length; i++) {
+      if (data.new.length >= dict.perDayStudyNumber) break
       let item = dict.words[i]
-      if (!store.simple2.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
+      if (!store.simple.words.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
         data.new.push(item)
       }
     }
@@ -126,12 +125,12 @@ export function getCurrentStudyWord() {
       return dict.words.slice(startIndex, endIndex)
     }
 
-    let s = c.lastLearnIndex - c.perDayStudyNumber
-    let e = c.lastLearnIndex
+    let s = dict.lastLearnIndex - dict.perDayStudyNumber
+    let e = dict.lastLearnIndex
     //取上一次学习的单词用于复习
     let list = getList(s, e)
     list.map(item => {
-      if (!store.master.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
+      if (!store.master.words.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
         data.review.push(item)
       }
     })
@@ -140,17 +139,17 @@ export function getCurrentStudyWord() {
     //取前天至再往前数3天的单词，用于默写，
     Array.from({length: 4}).map((_, j) => {
       e = s
-      s -= c.perDayStudyNumber
+      s -= dict.perDayStudyNumber
       list = getList(s, e)
       let d = []
       for (let i = 0; i < list.length; i++) {
         if (j === 3) {
-          if (d.length >= c.perDayStudyNumber - data.write.length) break
+          if (d.length >= dict.perDayStudyNumber - data.write.length) break
         } else {
-          if (d.length >= Math.floor(c.perDayStudyNumber / 4)) break
+          if (d.length >= Math.floor(dict.perDayStudyNumber / 4)) break
         }
         let item = list[i]
-        if (!store.master.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
+        if (!store.master.words.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
           d.push(item)
         }
       }

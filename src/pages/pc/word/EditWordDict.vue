@@ -36,12 +36,7 @@ let list = $computed({
 onMounted(() => {
   switch (Number(route.query.type)) {
     case 0:
-      runtimeStore.editDict = cloneDeep({
-        ...cloneDeep(DefaultDict),
-        id: nanoid(),
-        name: '收藏',
-        words: store.collectWord
-      })
+      runtimeStore.editDict = cloneDeep(store.collectWord)
       break
     case 1:
       runtimeStore.editDict = cloneDeep({

@@ -90,27 +90,27 @@ $bg-color: rgb(226, 226, 226);
 .pop-confirm-content {
   position: fixed;
   background: var(--color-tooltip-bg);
-  padding: 15rem;
-  border-radius: 4rem;
-  transform: translate(-50%, calc(-100% - 10rem));
+  padding: 1rem;
+  border-radius: .24rem;
+  transform: translate(-50%, calc(-100% - .6rem));
   box-shadow: 0 0 6px 1px var(--color-tooltip-shadow);
   z-index: 999;
 
   .text {
     color: var(--color-font-1);
     text-align: start;
-    font-size: 14rem;
-    width: 150rem;
-    min-width: 150rem;
+    font-size: .9rem;
+    width: 9rem;
+    min-width: 9rem;
   }
 
   .options {
-    margin-top: 15rem;
+    margin-top: .9rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 12rem;
-    font-size: 12rem;
+    gap: .7rem;
+    font-size: .7rem;
 
     div {
       cursor: pointer;
@@ -119,8 +119,8 @@ $bg-color: rgb(226, 226, 226);
     .main {
       color: gray;
       background: $bg-color;
-      padding: 3rem 10rem;
-      border-radius: 4rem;
+      padding: .2rem .6rem;
+      border-radius: .24rem;
     }
   }
 }

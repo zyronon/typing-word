@@ -241,13 +241,7 @@ export const DefaultDict: Dict = {
   name: '',
   description: '',
   sort: Sort.normal,
-  originWords: [],//原始单词
   words: [],
-  chapterWordNumber: DefaultChapterWordNumber,//章节单词数量
-  chapterWords: [],
-  residueWords: [],//未分配单词
-  chapterIndex: 0,//章节下标
-  wordIndex: 0,//单词下标
   articles: [],
   statistics: [],
   isCustom: false,
@@ -266,15 +260,11 @@ export function getDefaultDict(val = {}): Dict {
   return {
     id: '',
     name: '',
+    lastLearnIndex: 0,
+    perDayStudyNumber: 20,
     description: '',
     sort: Sort.normal,
-    originWords: [],//原始单词
     words: [],
-    chapterWordNumber: DefaultChapterWordNumber,//章节单词数量
-    chapterWords: [],
-    residueWords: [],//未分配单词
-    chapterIndex: 0,//章节下标
-    wordIndex: 0,//单词下标
     articles: [],
     statistics: [],
     isCustom: false,
@@ -294,15 +284,12 @@ export function getDefaultDict(val = {}): Dict {
 export interface Dict {
   id: string,
   name: string,
+  lastLearnIndex: number,
+  perDayStudyNumber: number,
   description: string,
   sort: Sort,
   originWords: Word[],//原始单词
   words: Word[],
-  chapterWordNumber: number,//章节单词数量
-  chapterWords: Word[][],
-  residueWords: Word[],
-  chapterIndex: number,//章节下标
-  wordIndex: number,//单词下标
   articles: Article[],
   statistics: Statistics[],
   isCustom: boolean,

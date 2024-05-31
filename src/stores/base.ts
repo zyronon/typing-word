@@ -41,75 +41,87 @@ export interface BaseState {
 }
 
 export const DefaultBaseState = (): BaseState => ({
-  collectWord: [
-    {
-      "word": "pharmacy",
-      "trans": [
-        {
-          "cn": "n.药房，配药学，药学，制药业，一批备用药品"
-        }
-      ],
-      "phonetic0": "ˈfɑ:məsi",
-      "phonetic1": "ˈfɑ:rməsi"
-    },
-    {
-      "word": "foregone",
-      "trans": [
-        {
-          "cn": "过去的；先前的；预知的；预先决定的"
-        },
-        {
-          "cn": "发生在…之前（forego的过去分词）"
-        }
-      ],
-      "phonetic0": "fɔː'gɒn",
-      "phonetic1": "'fɔrɡɔn"
-    },
-
-    {
-      "word": "calculate",
-      "trans": [
-        {
-          "cn": "vt.& vi.计算，估计，打算，计划，旨在"
-        },
-        {
-          "cn": "vt.预测，推测"
-        }
-      ],
-      "phonetic0": "ˈkælkjuleɪt",
-      "phonetic1": "ˈkælkjəˌlet"
-    },
-    {
-      "word": "compete",
-      "trans": [
-        {
-          "cn": "vi.竞赛，竞争，比得上，参加比赛（或竞赛）"
-        }
-      ],
-      "phonetic0": "kəmˈpi:t",
-      "phonetic1": "kəmˈpit"
-    },
-    {
-      "word": "furnish",
-      "trans": [
-        {
-          "cn": "vt.陈设，布置，提供，供应，装修（房屋）"
-        }
-      ],
-      "phonetic0": "ˈfɜ:nɪʃ",
-      "phonetic1": "ˈfɜ:rnɪʃ"
-    },
-  ],
+  collectWord: [],
   collectArticle: [],
   simple2: [],
   wrong2: [],
   master: [],
   commonDictList: [
-    {type: DictType.collectWord, words: [], statistics: []},
-    {type: DictType.collectArticle, articles: [], statistics: []},
-    {type: DictType.simple, words: [], statistics: []},
-    {type: DictType.wrong, words: [], statistics: []},
-    {type: DictType.master, words: [], statistics: []},
+    {
+      ...getDefaultDict(),
+      index: 1,
+      name: '收藏', type: DictType.collectWord, words: [
+        {
+          "word": "pharmacy",
+          "trans": [
+            {
+              "cn": "n.药房，配药学，药学，制药业，一批备用药品"
+            }
+          ],
+          "phonetic0": "ˈfɑ:məsi",
+          "phonetic1": "ˈfɑ:rməsi"
+        },
+        {
+          "word": "foregone",
+          "trans": [
+            {
+              "cn": "过去的；先前的；预知的；预先决定的"
+            },
+            {
+              "cn": "发生在…之前（forego的过去分词）"
+            }
+          ],
+          "phonetic0": "fɔː'gɒn",
+          "phonetic1": "'fɔrɡɔn"
+        },
+
+        {
+          "word": "calculate",
+          "trans": [
+            {
+              "cn": "vt.& vi.计算，估计，打算，计划，旨在"
+            },
+            {
+              "cn": "vt.预测，推测"
+            }
+          ],
+          "phonetic0": "ˈkælkjuleɪt",
+          "phonetic1": "ˈkælkjəˌlet"
+        },
+        {
+          "word": "compete",
+          "trans": [
+            {
+              "cn": "vi.竞赛，竞争，比得上，参加比赛（或竞赛）"
+            }
+          ],
+          "phonetic0": "kəmˈpi:t",
+          "phonetic1": "kəmˈpit"
+        },
+        {
+          "word": "furnish",
+          "trans": [
+            {
+              "cn": "vt.陈设，布置，提供，供应，装修（房屋）"
+            }
+          ],
+          "phonetic0": "ˈfɜ:nɪʃ",
+          "phonetic1": "ˈfɜ:rnɪʃ"
+        },
+      ], statistics: []
+    },
+    {
+      ...getDefaultDict(),
+      index: 2, name: '收藏', type: DictType.collectArticle, articles: [], statistics: []},
+    {
+      ...getDefaultDict(),
+      index: 3, name: '简单词', type: DictType.simple, words: [], statistics: []},
+    {
+      ...getDefaultDict(),
+      index: 4, name: '错词', type: DictType.wrong, words: [], statistics: []},
+    {
+      ...getDefaultDict(),
+      index: 5, name: '已掌握', type: DictType.master, words: [], statistics: []},
   ],
 
   articleDictList: [
@@ -130,7 +142,7 @@ export const DefaultBaseState = (): BaseState => ({
   ],
   wordDictList: [
     {
-      ...cloneDeep(DefaultDict),
+      ...getDefaultDict(),
       id: 'cet4',
       name: 'CET-4',
       description: '大学英语四级词库',
@@ -146,9 +158,7 @@ export const DefaultBaseState = (): BaseState => ({
   ],
   currentStudy: {
     word: {
-      dictIndex: 0,
-      perDayStudyNumber: 20,
-      lastLearnIndex: 100,
+      dictIndex: -1,
     },
     article: {
       dictIndex: 0,
@@ -249,7 +259,6 @@ export const useBaseStore = defineStore('base', {
     collect(): Dict {
       return this.myDictList[0]
     },
-
     collectWord(): Dict {
       return this.commonDictList[0]
     },
@@ -284,14 +293,17 @@ export const useBaseStore = defineStore('base', {
       return this.myDictList[this.current.index] ?? {}
     },
     currentStudyWordDict(): Dict {
-      return this.wordDictList[this.currentStudy.word.dictIndex] ?? getDefaultDict()
+      if (this.sword.dictIndex >= 0) {
+        return this.wordDictList[this.currentStudy.word.dictIndex] ?? getDefaultDict()
+      }
+      return this.commonDictList[Math.abs(this.currentStudy.word.dictIndex) - 1] ?? getDefaultDict()
     },
     sword() {
       return this.currentStudy.word
     },
     currentStudyWordProgress(): number {
       if (!this.currentStudyWordDict.words?.length) return 0
-      return Number(((this.currentStudy.word.lastLearnIndex / this.currentStudyWordDict.words?.length) * 100).toFixed())
+      return Number(((this.currentStudyWordDict.lastLearnIndex / this.currentStudyWordDict.words?.length) * 100).toFixed())
     },
     otherWordDictList(): Dict[] {
       return this.wordDictList.filter(v => this.currentStudyWordDict.id !== v.id)
@@ -345,30 +357,32 @@ export const useBaseStore = defineStore('base', {
 
         }
 
-        let currentDict = this.wordDictList[this.currentStudy.word.dictIndex]
-        let dictResourceUrl = `./dicts/${currentDict.language}/${currentDict.type}/${currentDict.translateLanguage}/${currentDict.url}`;
-        if (!currentDict.words.length) {
-          let v = await getDictFile(dictResourceUrl)
-          // v = v.slice(0, 50)
-          v.map(s => {
-            s.id = nanoid(6)
-          })
-          // currentDict.originWords = cloneDeep(v)
-          // currentDict.words = cloneDeep(v)
-          currentDict.words = Object.freeze(v)
-        }
+        if (this.currentStudy.word.dictIndex>=0){
+          let current = this.currentStudyWordDict
+          let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
+          if (!current.words.length) {
+            let v = await getDictFile(dictResourceUrl)
+            // v = v.slice(0, 50)
+            v.map(s => {
+              s.id = nanoid(6)
+            })
+            // current.originWords = cloneDeep(v)
+            // current.words = cloneDeep(v)
+            current.words = Object.freeze(v)
+          }
 
-        currentDict = this.articleDictList[this.currentStudy.article.dictIndex]
-        dictResourceUrl = `./dicts/${currentDict.language}/${currentDict.type}/${currentDict.translateLanguage}/${currentDict.url}`;
-        if (!currentDict.articles.length) {
-          let s = await getDictFile(dictResourceUrl)
-          currentDict.articles = cloneDeep(s.map(v => {
-            v.id = nanoid(6)
-            return v
-          }))
-        }
+          current = this.articleDictList[this.currentStudy.article.dictIndex]
+          dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
+          if (!current.articles.length) {
+            let s = await getDictFile(dictResourceUrl)
+            current.articles = cloneDeep(s.map(v => {
+              v.id = nanoid(6)
+              return v
+            }))
+          }
 
-        console.log('this.wordDictList', this.wordDictList[0].words[0])
+          console.log('this.wordDictList', this.wordDictList[0].words[0])
+        }
         emitter.emit(EventKey.changeDict)
         resolve(true)
       })

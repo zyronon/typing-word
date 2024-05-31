@@ -23,7 +23,7 @@ import Slide from "@/pages/pc/components/Slide.vue";
 import {useNav} from "@/utils";
 
 const props = withDefaults(defineProps<{
-  type: DictType
+  type?: DictType
 }>(), {
   type: DictType.word
 })
@@ -69,12 +69,16 @@ const {
 const {nav} = useNav()
 
 const showCollectToggleButton = $computed(() => {
-  if (props.type === DictType.word) return !store.collectWord.length
-  return !store.collectArticle.length
+  if (props.type === DictType.word) return store.collectWord.words.length
+  return store.collectArticle.articles.length
 })
 
-function changeCollect(){
+function changeCollect() {
+  if (props.type === DictType.word) {
+    store.currentStudy.word.dictIndex = -store.collectWord.index
+  } else {
 
+  }
 }
 
 </script>
@@ -84,9 +88,10 @@ function changeCollect(){
       <header>
         <div class="tabs">
           <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前</div>
-          <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.collect.name }}</div>
+          <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">收藏</div>
           <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.simple.name }}</div>
           <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.wrong.name }}</div>
+          <div class="tab" :class="tabIndex === 4 && 'active'" @click="tabIndex = 4">{{ store.master.name }}</div>
         </div>
         <Tooltip
             :title="`关闭(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
@@ -102,18 +107,18 @@ function changeCollect(){
           <div class="panel-page-item">
             <div class="list-header">
               <div class="left">
-                <div class="dict-name" v-if="props.type === DictType.word && store.collectWord.length">
-                  {{ store.collectWord.length }}个单词
+                <div class="dict-name" v-if="props.type === DictType.word && store.collectWord.words.length">
+                  {{ store.collectWord.words.length }}个单词
                 </div>
-                <div class="dict-name" v-if="props.type === DictType.article">
-                  {{ store.collectArticle.length }}篇文章
+                <div class="dict-name" v-if="props.type === DictType.article && store.collectArticle.articles.length">
+                  {{ store.collectArticle.articles.length }}篇文章
                 </div>
                 <BaseIcon icon="fluent:add-12-regular" title="添加" @click="nav('edit-word-dict',{type:0})"/>
               </div>
               <template v-if="showCollectToggleButton">
                 <PopConfirm
                     :title="`确认切换？`"
-                    @confirm="changeIndex( store.collect)"
+                    @confirm="changeCollect"
                 >
                   <BaseButton size="small">切换</BaseButton>
                 </PopConfirm>
@@ -121,9 +126,9 @@ function changeCollect(){
             </div>
             <template v-if="props.type === DictType.word">
               <WordList
-                  v-if="store.collectWord.length"
+                  v-if="store.collectWord.words.length"
                   class="word-list"
-                  :list="store.collectWord">
+                  :list="store.collectWord.words">
                 <template v-slot:suffix="{item,index}">
                   <BaseIcon
                       class="del"
@@ -136,8 +141,8 @@ function changeCollect(){
             </template>
             <template v-else>
               <ArticleList
-                  v-if="store.collectArticle.length"
-                  :list="store.collectArticle">
+                  v-if="store.collectArticle.articles.length"
+                  :list="store.collectArticle.articles">
                 <template v-slot:suffix="{item,index}">
                   <BaseIcon
                       class="del"
@@ -154,10 +159,10 @@ function changeCollect(){
           <div class="panel-page-item">
             <div class="list-header">
               <div class="left">
-                <div class="dict-name">总词数：{{ store.simple2.length }}</div>
+                <div class="dict-name">总词数：{{ store.simple.words.length }}</div>
                 <BaseIcon icon="fluent:add-12-regular" title="添加" @click="nav('edit-word-dict',{type:2})"/>
               </div>
-              <template v-if="store.simple2.length">
+              <template v-if="store.simple.words.length">
                 <PopConfirm
                     :title="`确认切换？`"
                     @confirm="changeIndex( store.simple)"
@@ -167,9 +172,9 @@ function changeCollect(){
               </template>
             </div>
             <WordList
-                v-if="store.simple2.length"
+                v-if="store.simple.words.length"
                 class="word-list"
-                :list="store.simple2">
+                :list="store.simple.words">
               <template v-slot:suffix="{item,index}">
                 <BaseIcon
                     class="del"
@@ -182,22 +187,19 @@ function changeCollect(){
           </div>
         </div>
         <div class="slide-item">
-          <div class="panel-page-item" v-if="store.wrong2.length">
+          <div class="panel-page-item" v-if="store.wrong.words.length">
             <div class="list-header">
-              <div class="dict-name">总词数：{{ store.wrong2.length }}</div>
-              <template
-                  v-if="store.wrong2.length">
-                <PopConfirm
-                    :title="`确认切换？`"
-                    @confirm="changeIndex( store.wrong)"
-                >
-                  <BaseButton size="small">切换</BaseButton>
-                </PopConfirm>
-              </template>
+              <div class="dict-name">总词数：{{ store.wrong.words.length }}</div>
+              <PopConfirm
+                  :title="`确认切换？`"
+                  @confirm="changeIndex( store.wrong)"
+              >
+                <BaseButton size="small">切换</BaseButton>
+              </PopConfirm>
             </div>
             <WordList
                 class="word-list"
-                :list="store.wrong2">
+                :list="store.wrong.words">
               <template v-slot:suffix="{item,index}">
                 <BaseIcon
                     class="del"

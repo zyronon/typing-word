@@ -74,11 +74,11 @@ function study() {
                   <div style="color:#ac6ed1;" class="cursor-pointer" v-if="false">
                     更改目标
                   </div>
-                  <div class="text-xs">学习 {{ store.currentStudy.word.perDayStudyNumber }} 个单词</div>
+                  <div class="text-xs">学习 {{ store.currentStudyWordDict.perDayStudyNumber }} 个单词</div>
                 </div>
               </div>
               <div class="bg-slate-200 w-10 h-10 flex center text-2xl rounded">
-                {{ store.currentStudy.word.perDayStudyNumber }}
+                {{ store.currentStudyWordDict.perDayStudyNumber }}
               </div>
             </div>
             <div class="mt-2">
@@ -89,7 +89,7 @@ function study() {
         <div class="mt-2">
           <div class="text-sm flex justify-between">
             已学习{{ store.currentStudyWordProgress }}%
-            <span>{{ store.currentStudy.word.lastLearnIndex }} /{{ store.currentStudyWordDict.words.length }}词</span>
+            <span>{{ store.currentStudyWordDict.lastLearnIndex }} /{{ store.currentStudyWordDict.words.length }}词</span>
           </div>
           <el-progress class="mt-1" :percentage="store.currentStudyWordProgress" :show-text="false"></el-progress>
         </div>
@@ -131,19 +131,19 @@ function study() {
       <div class="grid grid-cols-6 gap-4  mt-4">
         <div class="my-dict" @click="nav('edit-word-dict',{type:0})">
           <span>收藏</span>
-          <div class="absolute bottom-4 right-4">{{ store.collectWord.length }}个词</div>
+          <div class="absolute bottom-4 right-4">{{ store.collectWord.words.length }}个词</div>
         </div>
         <div class="my-dict" @click="nav('edit-word-dict',{type:1})">
           <span>错词本</span>
-          <div class="absolute bottom-4 right-4">{{ store.wrong2.length }}个词</div>
+          <div class="absolute bottom-4 right-4">{{ store.wrong.words.length }}个词</div>
         </div>
         <div class="my-dict" @click="nav('edit-word-dict',{type:2})">
           <span>简单词</span>
-          <div class="absolute bottom-4 right-4">{{ store.simple2.length }}个词</div>
+          <div class="absolute bottom-4 right-4">{{ store.simple.words.length }}个词</div>
         </div>
         <div class="my-dict" @click="nav('edit-word-dict',{type:3})">
           <span>已掌握</span>
-          <div class="absolute bottom-4 right-4">{{ store.master.length }}个词</div>
+          <div class="absolute bottom-4 right-4">{{ store.master.words.length }}个词</div>
         </div>
       </div>
     </div>
