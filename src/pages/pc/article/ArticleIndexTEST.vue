@@ -3,7 +3,7 @@
 import Toolbar from "@/pages/pc/components/toolbar/index.vue"
 import {onMounted, onUnmounted, watch} from "vue";
 import {usePracticeStore} from "@/stores/practice.ts";
-import Footer from "@/pages/pc/practice/Footer.vue";
+import Footer from "@/pages/pc/word/Footer.vue";
 import {useBaseStore} from "@/stores/base.ts";
 
 import Statistics from "@/pages/pc/word/Statistics.vue";

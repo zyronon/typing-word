@@ -54,7 +54,7 @@ function save() {
       </IconWrapper>
     </Tooltip>
     <MiniDialog v-model="show"
-               style="width: 230rem;"
+                style="width: 230rem;"
     >
       <div class="mini-row">
         <label class="item-title">显示翻译</label>
@@ -69,8 +69,8 @@ function save() {
       <div class="mini-row">
         <label class="item-title">翻译类型</label>
         <el-radio-group v-model="translateType" size="small">
-          <el-radio-button :label="1">本地翻译</el-radio-button>
-          <el-radio-button :label="0">网络翻译</el-radio-button>
+          <el-radio-button :value="1">本地翻译</el-radio-button>
+          <el-radio-button :value="0">网络翻译</el-radio-button>
         </el-radio-group>
       </div>
       <div class="mini-row" v-if="translateType">

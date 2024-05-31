@@ -268,9 +268,9 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
               v-model="editArticle.useTranslateType"
               @change="renewSections"
           >
-            <el-radio-button :label="TranslateType.custom">本地翻译</el-radio-button>
-            <el-radio-button :label="TranslateType.network">网络翻译</el-radio-button>
-            <el-radio-button :label="TranslateType.none">不需要翻译</el-radio-button>
+            <el-radio-button :value="TranslateType.custom">本地翻译</el-radio-button>
+            <el-radio-button :value="TranslateType.network">网络翻译</el-radio-button>
+            <el-radio-button :value="TranslateType.none">不需要翻译</el-radio-button>
           </el-radio-group>
         </div>
         <textarea

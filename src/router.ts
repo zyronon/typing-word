@@ -1,6 +1,5 @@
 import * as VueRouter from 'vue-router'
 import {RouteRecordRaw} from 'vue-router'
-import Dict from '@/pages/pc/dict/index.vue'
 import Mobile from '@/pages/mobile/index.vue'
 import MobilePractice from '@/pages/mobile/practice/index.vue'
 import Test from "@/pages/test/test.vue";
@@ -39,7 +38,6 @@ export const routes: RouteRecordRaw[] = [
       {path: 'learn-article', component: LearnArticle},
     ]
   },
-  {path: '/pc/dict', component: Dict},
 
   {path: '/mobile', component: Mobile,},
   {path: '/mobile/practice', component: MobilePractice},

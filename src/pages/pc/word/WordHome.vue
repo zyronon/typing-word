@@ -10,7 +10,6 @@ import BasePage from "@/pages/pc/components/BasePage.vue";
 import {getDefaultDict} from "@/types.ts";
 import {onMounted, watch} from "vue";
 import {getCurrentStudyWord} from "@/hooks/dict.ts";
-import {c} from "vite/dist/node/types.d-aGj9QkWt";
 import {usePracticeStore} from "@/stores/practice.ts";
 
 const store = useBaseStore()

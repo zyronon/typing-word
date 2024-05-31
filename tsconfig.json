@@ -29,7 +29,7 @@
     "types": [
       "vite/client",
       "element-plus/global",
-      "unplugin-vue-macros/macros-global"
+      "unplugin-vue-macros/macros-global",
     ],
     "baseUrl": "src",
     //This is because TypeScript does not resolve webpack aliases automatically.

@@ -109,8 +109,8 @@ const showCollectToggleButton = $computed(() => {
             <div class="list-header">
               <div class="left">
                 <el-radio-group v-model="practiceType">
-                  <el-radio-button border :label="DictType.word">单词</el-radio-button>
-                  <el-radio-button border :label="DictType.article">文章</el-radio-button>
+                  <el-radio-button border :value="DictType.word">单词</el-radio-button>
+                  <el-radio-button border :value="DictType.article">文章</el-radio-button>
                 </el-radio-group>
                 <div class="dict-name" v-if="practiceType === DictType.word && store.collect.words.length">
                   {{ store.collect.words.length }}个单词

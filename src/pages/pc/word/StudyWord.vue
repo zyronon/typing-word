@@ -3,7 +3,7 @@
 import Toolbar from "@/pages/pc/components/toolbar/index.vue"
 import {onMounted, onUnmounted, watch} from "vue";
 import {usePracticeStore} from "@/stores/practice.ts";
-import Footer from "@/pages/pc/practice/Footer.vue";
+import Footer from "@/pages/pc/word/Footer.vue";
 import {useBaseStore} from "@/stores/base.ts";
 
 import Statistics from "@/pages/pc/word/Statistics.vue";
@@ -14,7 +14,7 @@ import {ShortcutKey, Word} from "@/types.ts";
 import DictModal from "@/pages/pc/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
-import TypingWord from "@/pages/pc/practice/practice-word/TypingWord.vue";
+import TypingWord from "@/pages/pc/components/practice-word/TypingWord.vue";
 import {getCurrentStudyWord, syncMyDictList} from "@/hooks/dict.ts";
 import {cloneDeep, shuffle} from "lodash-es";
 

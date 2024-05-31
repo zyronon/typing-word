@@ -16,7 +16,7 @@ import WordList from "@/pages/pc/components/list/WordList.vue";
 import Empty from "@/components/Empty.vue";
 import {Icon} from "@iconify/vue";
 import router from "@/router.ts";
-import Typing from "@/pages/pc/practice/practice-word/Typing.vue";
+import Typing from "@/pages/pc/components/practice-word/Typing.vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 
 const store = useBaseStore()

@@ -52,11 +52,11 @@ onMounted(() => {
         单词循环设置
       </div>
       <el-radio-group v-model="settingStore.repeatCount">
-        <el-radio :label="1" size="default">1</el-radio>
-        <el-radio :label="2" size="default">2</el-radio>
-        <el-radio :label="3" size="default">3</el-radio>
-        <el-radio :label="5" size="default">5</el-radio>
-        <el-radio :label="100" size="default">自定义</el-radio>
+        <el-radio :value="1" size="default">1</el-radio>
+        <el-radio :value="2" size="default">2</el-radio>
+        <el-radio :value="3" size="default">3</el-radio>
+        <el-radio :value="5" size="default">5</el-radio>
+        <el-radio :value="100" size="default">自定义</el-radio>
       </el-radio-group>
       <div class="mini-row" v-if="settingStore.repeatCount === 100">
         <label class="item-title">自定义循环次数</label>

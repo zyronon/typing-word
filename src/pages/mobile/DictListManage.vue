@@ -126,7 +126,7 @@ function selectDict(val: { dict: DictResource | Dict, index: number }) {
         <div class="translate">
           <span>翻译：</span>
           <el-radio-group v-model="articleData.currentTranslateLanguage">
-            <el-radio-button border v-for="i in articleData.translateLanguageList" :label="i">{{
+            <el-radio-button border v-for="i in articleData.translateLanguageList" :value="i">{{
                 $t(i)
               }}
             </el-radio-button>
@@ -144,7 +144,7 @@ function selectDict(val: { dict: DictResource | Dict, index: number }) {
           <div class="translate">
             <span>翻译：</span>
             <el-radio-group v-model="wordData.currentTranslateLanguage">
-              <el-radio-button border v-for="i in wordData.translateLanguageList" :label="i">{{
+              <el-radio-button border v-for="i in wordData.translateLanguageList" :value="i">{{
                   $t(i)
                 }}
               </el-radio-button>

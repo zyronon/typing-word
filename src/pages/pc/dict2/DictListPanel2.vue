@@ -102,7 +102,7 @@ function change(e) {
         <div class="translate ">
           <span>释义：</span>
           <el-radio-group v-model="currentTranslateLanguage">
-            <el-radio-button border v-for="i in translateLanguageList" :label="i">{{ $t(i) }}</el-radio-button>
+            <el-radio-button border v-for="i in translateLanguageList" :value="i">{{ $t(i) }}</el-radio-button>
           </el-radio-group>
         </div>
         <DictGroup
