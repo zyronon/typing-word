@@ -109,7 +109,7 @@ function next(isTyping: boolean = true) {
 
       if (statStore.step === 1) {
         settingStore.dictation = true
-        current.words = props.data.write.concat(props.data.new).concat(props.data.review)
+        current.words = shuffle(props.data.write.concat(props.data.new).concat(props.data.review))
         statStore.step++
         current.index = 0
       }
@@ -117,7 +117,7 @@ function next(isTyping: boolean = true) {
       if (statStore.step === 0) {
         statStore.step++
         if (props.data.review.length) {
-          current.words = props.data.review
+          current.words = shuffle(props.data.review)
           settingStore.dictation = false
           current.index = 0
         } else {
@@ -281,11 +281,11 @@ const status = $computed(() => {
             >
               <div class="list-header">
                 <div class="flex items-center gap-1">
-                  <Icon icon="material-symbols:hourglass-empty-rounded" />
+                  <Icon icon="material-symbols:hourglass-empty-rounded"/>
                   <span class="text-sm"> {{ status }}</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span> {{ current.index}} / {{ current.words.length }}</span>
+                  <span> {{ current.index }} / {{ current.words.length }}</span>
                 </div>
               </div>
               <WordList

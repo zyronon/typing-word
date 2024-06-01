@@ -143,6 +143,19 @@ export const DefaultBaseState = (): BaseState => ({
   wordDictList: [
     {
       ...getDefaultDict(),
+      id: 'nce-new-2',
+      name: '新概念英语(新版)-2',
+      description: '新概念英语新版第二册',
+      category: '青少年英语',
+      tags: ['新概念英语'],
+      url: 'nce-new-2.json',
+      length: 862,
+      translateLanguage: 'common',
+      language: 'en',
+      type: DictType.word
+    },
+    {
+      ...getDefaultDict(),
       id: 'cet4',
       name: 'CET-4',
       description: '大学英语四级词库',
@@ -158,7 +171,7 @@ export const DefaultBaseState = (): BaseState => ({
   ],
   currentStudy: {
     word: {
-      dictIndex: -1,
+      dictIndex: 0,
     },
     article: {
       dictIndex: 0,

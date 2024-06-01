@@ -134,7 +134,6 @@ export function getCurrentStudyWord() {
         data.review.push(item)
       }
     })
-    data.review = shuffle(data.review)
 
     //取前天至再往前数3天的单词，用于默写，
     Array.from({length: 4}).map((_, j) => {
@@ -155,8 +154,6 @@ export function getCurrentStudyWord() {
       }
       data.write = data.write.concat(d)
     })
-
-    data.write = shuffle(data.write)
   }
 
   console.timeEnd()
