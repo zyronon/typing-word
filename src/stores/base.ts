@@ -112,16 +112,20 @@ export const DefaultBaseState = (): BaseState => ({
     },
     {
       ...getDefaultDict(),
-      index: 2, name: '收藏', type: DictType.collectArticle, articles: [], statistics: []},
+      index: 2, name: '收藏', type: DictType.collectArticle, articles: [], statistics: []
+    },
     {
       ...getDefaultDict(),
-      index: 3, name: '简单词', type: DictType.simple, words: [], statistics: []},
+      index: 3, name: '简单词', type: DictType.simple, words: [], statistics: []
+    },
     {
       ...getDefaultDict(),
-      index: 4, name: '错词', type: DictType.wrong, words: [], statistics: []},
+      index: 4, name: '错词', type: DictType.wrong, words: [], statistics: []
+    },
     {
       ...getDefaultDict(),
-      index: 5, name: '已掌握', type: DictType.master, words: [], statistics: []},
+      index: 5, name: '已掌握', type: DictType.master, words: [], statistics: []
+    },
   ],
 
   articleDictList: [
@@ -370,7 +374,7 @@ export const useBaseStore = defineStore('base', {
 
         }
 
-        if (this.currentStudy.word.dictIndex>=0){
+        if (this.currentStudy.word.dictIndex >= 0) {
           let current = this.currentStudyWordDict
           let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
           if (!current.words.length) {
@@ -404,16 +408,10 @@ export const useBaseStore = defineStore('base', {
       //TODO 保存统计
       // this.saveStatistics()
       console.log('changeDict', cloneDeep(dict), chapterIndex, wordIndex)
-      if (chapterIndex === undefined) chapterIndex = dict.chapterIndex
-      if (wordIndex === undefined) wordIndex = dict.wordIndex
       if (practiceType === undefined) this.current.practiceType = practiceType
       if ([DictType.collect,
         DictType.simple,
         DictType.wrong].includes(dict.type)) {
-        dict.chapterIndex = 0
-        dict.wordIndex = wordIndex
-        dict.chapterWordNumber = dict.words.length
-        dict.chapterWords = [dict.words]
       } else {
         //TODO　需要和其他需要下载的地方统一
         let url = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
@@ -429,8 +427,6 @@ export const useBaseStore = defineStore('base', {
             dict.length = dict.articles.length
           }
           if (chapterIndex > dict.articles.length) {
-            dict.chapterIndex = 0
-            dict.wordIndex = 0
           }
         } else {
           //如果不是自定义词典，并且有url地址才去下载
@@ -449,15 +445,10 @@ export const useBaseStore = defineStore('base', {
                 dict.words = reverse(dict.originWords)
               }
               dict.words.map(v => v.checked = false)
-              dict.chapterWords = chunk(dict.words, dict.chapterWordNumber)
               dict.length = dict.words.length
             } else {
               dict.length = dict.words.length
             }
-          }
-          if (chapterIndex > dict.chapterWords.length) {
-            dict.chapterIndex = 0
-            dict.wordIndex = 0
           }
         }
       }
@@ -482,18 +473,17 @@ export const useBaseStore = defineStore('base', {
         let url = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
         //如果不是自定义词典，并且有url地址才去下载
         if (!dict.isCustom && dict.url) {
-          if (!dict.originWords.length) {
+          if (!dict.words.length) {
             let v = await getDictFile(url)
             v.map(s => {
               s.id = nanoid(6)
             })
-            dict.originWords = cloneDeep(v)
             if (dict.sort === Sort.normal) {
-              dict.words = cloneDeep(dict.originWords)
+              dict.words = cloneDeep(v)
             } else if (dict.sort === Sort.random) {
-              dict.words = shuffle(dict.originWords)
+              dict.words = shuffle(v)
             } else {
-              dict.words = reverse(dict.originWords)
+              dict.words = reverse(v)
             }
           }
         }
@@ -502,19 +492,18 @@ export const useBaseStore = defineStore('base', {
 
       this.wordDictList.map(v => {
         v.words = []
-        v.originWords = []
       })
 
       // await checkDictHasTranslate(dict)
       let rIndex = this.wordDictList.findIndex((v: Dict) => v.id === dict.id)
       if (rIndex > -1) {
-        this.wordDictList[rIndex] = dict
+        this.wordDictList[rIndex] = Object.assign(dict, this.wordDictList[rIndex])
         this.currentStudy.word.dictIndex = rIndex
       } else {
-        this.wordDictList.push(cloneDeep(dict))
+        this.wordDictList.push(getDefaultDict(dict))
         this.currentStudy.word.dictIndex = this.wordDictList.length - 1
       }
-      this.currentStudy.word.lastLearnIndex = 0
+
       emitter.emit(EventKey.changeDict)
     },
     async changeArticleDict(dict: Dict) {
@@ -538,10 +527,6 @@ export const useBaseStore = defineStore('base', {
           } else {
             dict.length = dict.articles.length
           }
-          if (chapterIndex > dict.articles.length) {
-            dict.chapterIndex = 0
-            dict.wordIndex = 0
-          }
         } else {
           //如果不是自定义词典，并且有url地址才去下载
           if (!dict.isCustom && dict.url) {
@@ -559,15 +544,10 @@ export const useBaseStore = defineStore('base', {
                 dict.words = reverse(dict.originWords)
               }
               dict.words.map(v => v.checked = false)
-              dict.chapterWords = chunk(dict.words, dict.chapterWordNumber)
               dict.length = dict.words.length
             } else {
               dict.length = dict.words.length
             }
-          }
-          if (chapterIndex > dict.chapterWords.length) {
-            dict.chapterIndex = 0
-            dict.wordIndex = 0
           }
         }
       }
