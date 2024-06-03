@@ -6,7 +6,7 @@ import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import Fireworks from "@/pages/pc/components/Fireworks.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {ShortcutKey} from "@/types.ts";
-import {emitter, EventKey} from "@/utils/eventBus.ts";
+import {emitter, EventKey, useEvent} from "@/utils/eventBus.ts";
 import {onMounted} from "vue";
 import {Icon} from '@iconify/vue';
 import {useSettingStore} from "@/stores/setting.ts";
@@ -18,31 +18,30 @@ const settingStore = useSettingStore()
 const statStore = usePracticeStore()
 let open = $ref(false)
 
-onMounted(() => {
-  emitter.on(EventKey.openStatModal, () => {
-    let data = {
-      startIndex: store.currentStudyWordDict.lastLearnIndex,
-      endIndex: store.currentStudyWordDict.lastLearnIndex + store.currentStudyWordDict.perDayStudyNumber,
-      speed: statStore.speed,
-      startDate: statStore.startDate,
-    }
-    store.currentStudyWordDict.lastLearnIndex = data.endIndex
-    store.currentStudyWordDict.statistics.push(data as any)
-    store.currentStudyWordDict.statistics.sort((a, b) => a.startDate - b.startDate)
+useEvent(EventKey.openStatModal, () => {
+  console.log('on')
 
-    console.log('staa', JSON.parse(JSON.stringify(store.currentStudyWordDict.statistics)))
-    open = true
-  })
-
-  const close = () => {
-    open = false
+  let data = {
+    startIndex: store.currentStudyWordDict.lastLearnIndex,
+    endIndex: store.currentStudyWordDict.lastLearnIndex + store.currentStudyWordDict.perDayStudyNumber,
+    speed: statStore.speed,
+    startDate: statStore.startDate,
   }
+  store.currentStudyWordDict.lastLearnIndex = data.endIndex
+  store.currentStudyWordDict.statistics.push(data as any)
+  store.currentStudyWordDict.statistics.sort((a, b) => a.startDate - b.startDate)
 
-  emitter.on(ShortcutKey.NextChapter, close)
-  emitter.on(ShortcutKey.RepeatChapter, close)
-  emitter.on(ShortcutKey.DictationChapter, close)
+  console.log('staa', JSON.parse(JSON.stringify(store.currentStudyWordDict.statistics)))
+  open = true
 })
 
+const close = () => {
+  open = false
+}
+
+useEvent(ShortcutKey.NextChapter, close)
+useEvent(ShortcutKey.RepeatChapter, close)
+useEvent(ShortcutKey.DictationChapter, close)
 
 function options(emitType: 'write' | 'repeat' | 'next') {
   open = false
@@ -50,9 +49,7 @@ function options(emitType: 'write' | 'repeat' | 'next') {
 }
 
 const isEnd = $computed(() => {
-  return store.isArticle ?
-      store.currentDict.chapterIndex === store.currentDict.articles.length - 1 :
-      store.currentDict.chapterIndex === store.currentDict.chapterWords.length - 1
+  return false
 })
 
 </script>

@@ -48,7 +48,7 @@ watch(() => props.word, () => {
   if (settingStore.wordSound) {
     volumeIconRef?.play(400, true)
   }
-})
+}, {deep: true})
 
 onMounted(() => {
   emitter.on(EventKey.resetWord, () => {

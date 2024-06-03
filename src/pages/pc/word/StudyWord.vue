@@ -7,7 +7,7 @@ import Footer from "@/pages/pc/word/Footer.vue";
 import {useBaseStore} from "@/stores/base.ts";
 
 import Statistics from "@/pages/pc/word/Statistics.vue";
-import {emitter, EventKey} from "@/utils/eventBus.ts";
+import {emitter, EventKey, useEvent} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {ShortcutKey, Word} from "@/types.ts";
@@ -74,44 +74,25 @@ function togglePanel() {
 }
 
 onMounted(() => {
-  emitter.on(EventKey.repeat, repeat)
-  emitter.on(EventKey.next, next)
-
-  emitter.on(ShortcutKey.RepeatChapter, repeat)
-  emitter.on(ShortcutKey.ToggleShowTranslate, toggleTranslate)
-  emitter.on(ShortcutKey.ToggleDictation, toggleDictation)
-  emitter.on(ShortcutKey.OpenSetting, openSetting)
-  emitter.on(ShortcutKey.OpenDictDetail, openDictDetail)
-  emitter.on(ShortcutKey.ToggleTheme, toggleTheme)
-  emitter.on(ShortcutKey.ToggleConciseMode, toggleConciseMode)
-  emitter.on(ShortcutKey.TogglePanel, togglePanel)
-})
-
-onUnmounted(() => {
-  emitter.off(EventKey.repeat, repeat)
-  emitter.off(EventKey.next, next)
-
-  emitter.off(ShortcutKey.RepeatChapter, repeat)
-  emitter.off(ShortcutKey.ToggleShowTranslate, toggleTranslate)
-  emitter.off(ShortcutKey.ToggleDictation, toggleDictation)
-  emitter.off(ShortcutKey.OpenSetting, openSetting)
-  emitter.off(ShortcutKey.OpenDictDetail, openDictDetail)
-  emitter.off(ShortcutKey.ToggleTheme, toggleTheme)
-  emitter.off(ShortcutKey.ToggleConciseMode, toggleConciseMode)
-  emitter.off(ShortcutKey.TogglePanel, togglePanel)
-})
-
-onMounted(() => {
   settingStore.dictation = false
   if (runtimeStore.routeData) {
     data = runtimeStore.routeData
   }
-  emitter.on(EventKey.changeDict, getCurrentPractice)
 })
 
-onUnmounted(() => {
-  emitter.off(EventKey.changeDict, getCurrentPractice)
-})
+useEvent(EventKey.changeDict, getCurrentPractice)
+
+useEvent(EventKey.repeat, repeat)
+useEvent(EventKey.next, next)
+
+useEvent(ShortcutKey.RepeatChapter, repeat)
+useEvent(ShortcutKey.ToggleShowTranslate, toggleTranslate)
+useEvent(ShortcutKey.ToggleDictation, toggleDictation)
+useEvent(ShortcutKey.OpenSetting, openSetting)
+useEvent(ShortcutKey.OpenDictDetail, openDictDetail)
+useEvent(ShortcutKey.ToggleTheme, toggleTheme)
+useEvent(ShortcutKey.ToggleConciseMode, toggleConciseMode)
+useEvent(ShortcutKey.TogglePanel, togglePanel)
 
 let data = $ref({
   new: [],
@@ -125,7 +106,6 @@ function getCurrentPractice() {
 
 function complete() {
   // store.currentStudyWordDict.statistics.push()
-
 }
 
 useStartKeyboardEventListener()

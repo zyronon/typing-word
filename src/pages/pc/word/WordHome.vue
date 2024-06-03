@@ -5,6 +5,7 @@ import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
 import {useRouter} from "vue-router";
 import BaseIcon from "@/components/BaseIcon.vue";
+import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {getDefaultDict} from "@/types.ts";
@@ -49,6 +50,8 @@ function study() {
   nav('study-word', {}, currentStudy)
 }
 
+let show = $ref(false)
+let tempPerDayStudyNumber = $ref(0)
 </script>
 
 <template>
@@ -57,7 +60,7 @@ function study() {
       <div class="flex-1">
         <div class="flex gap-5">
           <div class="bg-slate-200 px-3 h-14 rounded-md flex items-center">
-            <span class="text-xl font-bold">{{ store.currentStudyWordDict.name }}</span>
+            <span class="text-xl font-bold">{{ store.sdict.name }}</span>
             <BaseIcon
                 title="切换词典"
                 icon="gg:arrows-exchange"
@@ -74,11 +77,13 @@ function study() {
                   <div style="color:#ac6ed1;" class="cursor-pointer" v-if="false">
                     更改目标
                   </div>
-                  <div class="text-xs">学习 {{ store.currentStudyWordDict.perDayStudyNumber }} 个单词</div>
+                  <div class="text-xs">学习 {{ store.sdict.perDayStudyNumber }} 个单词</div>
                 </div>
               </div>
-              <div class="bg-slate-200 w-10 h-10 flex center text-2xl rounded">
-                {{ store.currentStudyWordDict.perDayStudyNumber }}
+              <div
+                  @click="show = true;tempPerDayStudyNumber = store.sdict.perDayStudyNumber"
+                  class="bg-slate-200 w-10 h-10 flex center text-2xl rounded cursor-pointer">
+                {{ store.sdict.perDayStudyNumber }}
               </div>
             </div>
             <div class="mt-2">
@@ -89,7 +94,9 @@ function study() {
         <div class="mt-2">
           <div class="text-sm flex justify-between">
             已学习{{ store.currentStudyWordProgress }}%
-            <span>{{ store.currentStudyWordDict.lastLearnIndex }} /{{ store.currentStudyWordDict.words.length }}词</span>
+            <span>{{ store.currentStudyWordDict.lastLearnIndex }} /{{
+                store.currentStudyWordDict.words.length
+              }}词</span>
           </div>
           <el-progress class="mt-1" :percentage="store.currentStudyWordProgress" :show-text="false"></el-progress>
         </div>
@@ -194,6 +201,41 @@ function study() {
         />
       </div>
     </div>
+
+    <Dialog v-model="show"
+            title="每日目标"
+            :footer="true"
+            @ok="store.sdict.perDayStudyNumber = tempPerDayStudyNumber"
+    >
+      <div class="target-modal">
+        <div class="center text-2xl gap-2">
+          <span class="text-3xl" style="color:rgb(176,116,211)">{{
+              tempPerDayStudyNumber
+            }}</span>个单词
+        </div>
+        <div class="center text-sm" :style="{opacity:tempPerDayStudyNumber === 20?1:0}">
+          推荐
+        </div>
+        <el-slider :min="10"
+                   :step="10"
+                   show-stops :marks="{10: '10',200: '200'}"
+                   size="small"
+                   class="my-6"
+                   :max="200"
+                   v-model="tempPerDayStudyNumber"
+        />
+        <div class="flex gap-2 mb-2 mt-10 items-center">
+          <div>预计</div>
+          <span class="text-2xl"
+                style="color:rgb(176,116,211)">{{
+              Math.ceil(store.sdict.words.length / tempPerDayStudyNumber)
+            }}</span>天完成学习
+        </div>
+        <div>
+          要达到最佳效果，就坚持每天学习。每天学20个单词是最理想的，但就算再忙的时候每天学10个也有助你养成良好的学习习惯。
+        </div>
+      </div>
+    </Dialog>
   </BasePage>
 </template>
 
@@ -213,5 +255,13 @@ function study() {
 
 .my-dict {
   @apply p-4 rounded-md bg-slate-200 relative cursor-pointer h-40;
+}
+
+.target-modal {
+  width: 30rem;
+  padding: var(--space);
+  padding-top: 0;
+  color: var(--color-font-1);
+
 }
 </style>

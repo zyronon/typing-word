@@ -1,4 +1,5 @@
 import mitt from 'mitt'
+import {onMounted, onUnmounted} from "vue";
 
 export const emitter = mitt()
 export const EventKey = {
@@ -19,4 +20,14 @@ export const EventKey = {
   editDict: 'editDict',
   openMyDictDialog: 'openMyDictDialog',
   jumpSpecifiedChapter: 'jumpSpecifiedChapter',
+}
+
+export function useEvent(key: string, func: () => void) {
+  onMounted(() => {
+    emitter.on(key, func)
+  })
+
+  onUnmounted(() => {
+    emitter.off(key, func)
+  })
 }

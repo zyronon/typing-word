@@ -315,6 +315,9 @@ export const useBaseStore = defineStore('base', {
       }
       return this.commonDictList[Math.abs(this.currentStudy.word.dictIndex) - 1] ?? getDefaultDict()
     },
+    sdict(): Dict {
+      return this.currentStudyWordDict
+    },
     sword() {
       return this.currentStudy.word
     },

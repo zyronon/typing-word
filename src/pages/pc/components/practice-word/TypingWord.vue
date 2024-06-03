@@ -94,15 +94,16 @@ function next(isTyping: boolean = true) {
   if (current.index === current.words.length - 1) {
     if (current.wrongWords.length) {
       console.log('学完了，但还有错词')
-      current.words = shuffle(current.wrongWords)
+      current.words = shuffle(cloneDeep(current.wrongWords))
       current.index = 0
       current.wrongWords = []
     } else {
-      console.log('学完了，没错词', statStore.total, statStore.step, current.index, current.words)
+      console.log('学完了，没错词', statStore.total, statStore.step, current.index)
       isTyping && statStore.inputWordNumber++
       statStore.speed = Date.now() - statStore.startDate
 
       if (statStore.step === 2) {
+        console.log('emit')
         emitter.emit(EventKey.openStatModal, {})
         // emit('complete', {})
       }

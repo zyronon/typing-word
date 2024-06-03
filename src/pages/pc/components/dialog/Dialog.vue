@@ -331,11 +331,10 @@ $header-height: 4rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1rem 1.6rem;
+      padding: .5rem 1.6rem;
       color: #fff;
       font-size: 1.1rem;
       background: rgba(0, 0, 0, .2);
-      border-radius: 0 0 1.6rem 1.6rem;
 
       .left {
         display: flex;
