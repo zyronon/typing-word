@@ -14,7 +14,7 @@ import {ShortcutKey, Word} from "@/types.ts";
 import DictModal from "@/pages/pc/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
-import TypingWord from "@/pages/pc/components/practice-word/TypingWord.vue";
+import TypingWord from "@/pages/pc/components/TypingWord.vue";
 import {getCurrentStudyWord, syncMyDictList} from "@/hooks/dict.ts";
 import {cloneDeep, shuffle} from "lodash-es";
 

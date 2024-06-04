@@ -10,7 +10,7 @@ import {useOnKeyboardEventListener, useWindowClick} from "@/hooks/event.ts";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import Options from "@/pages/pc/word/Options.vue";
-import Typing from "@/pages/pc/components/practice-word/Typing.vue";
+import Typing from "@/pages/pc/components/Typing.vue";
 import Panel from "@/pages/pc/components/Panel.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
@@ -134,8 +134,8 @@ function next(isTyping: boolean = true) {
 }
 
 function wordWrong() {
-  if (!store.wrong2.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
-    store.wrong2.push(word)
+  if (!store.wrong.words.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
+    store.wrong.words.push(word)
   }
   if (!current.wrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
     current.wrongWords.push(word)

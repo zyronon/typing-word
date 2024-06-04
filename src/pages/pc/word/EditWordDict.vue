@@ -39,18 +39,13 @@ onMounted(() => {
       runtimeStore.editDict = cloneDeep(store.collectWord)
       break
     case 1:
-      runtimeStore.editDict = cloneDeep({
-        ...cloneDeep(DefaultDict),
-        id: nanoid(),
-        name: '错词本', words: store.wrong2
-      })
+      runtimeStore.editDict = cloneDeep(store.wrong)
       break
     case 2:
-      runtimeStore.editDict = cloneDeep({
-        ...cloneDeep(DefaultDict),
-        id: nanoid(),
-        name: '简单词', words: store.simple2
-      })
+      runtimeStore.editDict = cloneDeep(store.simple)
+      break
+    case 3:
+      runtimeStore.editDict = cloneDeep(store.master)
       break
     default:
       break

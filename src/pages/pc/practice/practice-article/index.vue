@@ -11,7 +11,7 @@ import {
   Word
 } from "@/types.ts";
 import {cloneDeep} from "lodash-es";
-import TypingWord from "@/pages/pc/components/practice-word/TypingWord.vue";
+import TypingWord from "@/pages/pc/components/TypingWord.vue";
 import Panel from "../../components/Panel.vue";
 import {onMounted, onUnmounted, watch} from "vue";
 import {renewSectionTexts, renewSectionTranslates} from "@/hooks/translate.ts";

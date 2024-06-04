@@ -18,11 +18,6 @@ export interface BaseState {
   simpleWords: string[],
   load: boolean
 
-  collectArticle?: Article[],
-  collectWord?: Word[],
-  simple2?: Word[],
-  wrong2?: Word[],
-  master?: Word[],
   articleDictList?: Dict[]
 
   commonDictList: any[],
@@ -41,11 +36,6 @@ export interface BaseState {
 }
 
 export const DefaultBaseState = (): BaseState => ({
-  collectWord: [],
-  collectArticle: [],
-  simple2: [],
-  wrong2: [],
-  master: [],
   commonDictList: [
     {
       ...getDefaultDict(),

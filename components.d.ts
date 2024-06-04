@@ -13,7 +13,6 @@ declare module 'vue' {
     Close: typeof import('./src/components/icon/Close.vue')['default']
     DeleteIcon: typeof import('./src/components/icon/DeleteIcon.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
-    ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElInput: typeof import('element-plus/es')['ElInput']
