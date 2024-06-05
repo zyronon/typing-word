@@ -31,3 +31,13 @@ export function useEvent(key: string, func: () => void) {
     emitter.off(key, func)
   })
 }
+
+export function useEvents(arrs: any[],) {
+  onMounted(() => {
+    arrs.map((arr) => emitter.on(arr[0], arr[1]))
+  })
+
+  onUnmounted(() => {
+    arrs.map((arr) => emitter.off(arr[0], arr[1]))
+  })
+}

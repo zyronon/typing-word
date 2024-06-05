@@ -3,7 +3,7 @@ import {useBaseStore} from "@/stores/base.ts"
 
 import {computed, onMounted, onUnmounted, provide, watch} from "vue"
 import {useSettingStore} from "@/stores/setting.ts";
-import {emitter, EventKey} from "@/utils/eventBus.ts";
+import {emitter, EventKey, useEvent} from "@/utils/eventBus.ts";
 import SlideHorizontal from "@/components/slide/SlideHorizontal.vue";
 import SlideItem from "@/components/slide/SlideItem.vue";
 import CollectList from "@/pages/mobile/components/CollectList.vue";
@@ -21,14 +21,8 @@ watch(() => settingStore.showPanel, n => {
   }
 })
 
-onMounted(() => {
-  emitter.on(EventKey.changeDict, () => {
-    tabIndex = 0
-  })
-})
-
-onUnmounted(() => {
-  emitter.off(EventKey.changeDict)
+useEvent(EventKey.changeDict, () => {
+  tabIndex = 0
 })
 
 

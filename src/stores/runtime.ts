@@ -1,6 +1,5 @@
 import {defineStore} from "pinia"
-import {DefaultDict, Dict} from "@/types.ts";
-import {cloneDeep} from "lodash-es";
+import {Dict, getDefaultDict} from "@/types.ts";
 
 export interface RuntimeState {
   disableEventListener: boolean,
@@ -18,7 +17,7 @@ export const useRuntimeStore = defineStore('runtime', {
       routeData: null,
       disableEventListener: false,
       modalList: [],
-      editDict: cloneDeep(DefaultDict),
+      editDict: getDefaultDict(),
       showDictModal: false,
       showSettingModal: false,
       excludeRoutes: [],

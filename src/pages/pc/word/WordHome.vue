@@ -6,12 +6,13 @@ import "vue-activity-calendar/style.css";
 import {useRouter} from "vue-router";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
-import {useNav} from "@/utils";
+import {_getAccomplishDate, _getAccomplishDays, useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {getDefaultDict} from "@/types.ts";
 import {onMounted, watch} from "vue";
 import {getCurrentStudyWord} from "@/hooks/dict.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
+import {EventKey, useEvent} from "@/utils/eventBus.ts";
 
 const store = useBaseStore()
 const statStore = usePracticeStore()
@@ -34,16 +35,15 @@ let currentStudy = $ref({
   review: [],
   write: []
 })
-watch(() => store.load, n => {
-  if (n) {
-    currentStudy = getCurrentStudyWord()
-  }
-})
 
 onMounted(() => {
   if (!currentStudy.new.length) {
     currentStudy = getCurrentStudyWord()
   }
+})
+
+useEvent(EventKey.changeDict, () => {
+  currentStudy = getCurrentStudyWord()
 })
 
 function study() {
@@ -52,6 +52,11 @@ function study() {
 
 let show = $ref(false)
 let tempPerDayStudyNumber = $ref(0)
+
+function changePerDayStudyNumber() {
+  store.sdict.perDayStudyNumber = tempPerDayStudyNumber
+  currentStudy = getCurrentStudyWord()
+}
 </script>
 
 <template>
@@ -68,35 +73,27 @@ let tempPerDayStudyNumber = $ref(0)
                 @click="router.push('/dict')"/>
           </div>
           <div class="flex-1 flex flex-col justify-end items-end">
-            <div class="flex gap-3">
-              <div class="">
-                <div class="title">
-                  每日目标
-                </div>
-                <div class="flex">
-                  <div style="color:#ac6ed1;" class="cursor-pointer" v-if="false">
-                    更改目标
-                  </div>
-                  <div class="text-xs">学习 {{ store.sdict.perDayStudyNumber }} 个单词</div>
-                </div>
-              </div>
+            <div class="flex gap-3 items-center">
+              每日目标
               <div
+                  style="color:#ac6ed1;"
                   @click="show = true;tempPerDayStudyNumber = store.sdict.perDayStudyNumber"
-                  class="bg-slate-200 w-10 h-10 flex center text-2xl rounded cursor-pointer">
+                  class="bg-slate-200 px-2 h-10 flex center text-2xl rounded cursor-pointer">
                 {{ store.sdict.perDayStudyNumber }}
               </div>
+              个单词
             </div>
-            <div class="mt-2">
-              <div>预计完成日期：2024-04-01</div>
+            <div class="mt-2 text-sm">
+              预计完成日期：{{ _getAccomplishDate(store.sdict.words.length, store.sdict.perDayStudyNumber) }}
             </div>
           </div>
         </div>
         <div class="mt-2">
           <div class="text-sm flex justify-between">
             已学习{{ store.currentStudyWordProgress }}%
-            <span>{{ store.currentStudyWordDict.lastLearnIndex }} /{{
+            <span>{{ store.currentStudyWordDict.lastLearnIndex }} / {{
                 store.currentStudyWordDict.words.length
-              }}词</span>
+              }}</span>
           </div>
           <el-progress class="mt-1" :percentage="store.currentStudyWordProgress" :show-text="false"></el-progress>
         </div>
@@ -205,7 +202,7 @@ let tempPerDayStudyNumber = $ref(0)
     <Dialog v-model="show"
             title="每日目标"
             :footer="true"
-            @ok="store.sdict.perDayStudyNumber = tempPerDayStudyNumber"
+            @ok="changePerDayStudyNumber"
     >
       <div class="target-modal">
         <div class="center text-2xl gap-2">
@@ -228,7 +225,7 @@ let tempPerDayStudyNumber = $ref(0)
           <div>预计</div>
           <span class="text-2xl"
                 style="color:rgb(176,116,211)">{{
-              Math.ceil(store.sdict.words.length / tempPerDayStudyNumber)
+              _getAccomplishDays(store.sdict.words.length, tempPerDayStudyNumber)
             }}</span>天完成学习
         </div>
         <div>

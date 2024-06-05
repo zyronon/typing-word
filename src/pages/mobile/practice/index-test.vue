@@ -39,26 +39,15 @@ const word: Word = $computed(() => {
 })
 
 function getCurrentPractice() {
-  if (store.chapter.length) {
-    data.words = store.chapter
-    data.index = 0
 
-    data.words = cloneDeep(store.chapter)
-    emitter.emit(EventKey.resetWord)
-  }
 }
 
 function sort(list: Word[]) {
-  store.currentDict.chapterWords[store.currentDict.chapterIndex] = data.words = list
   data.index = 0
   syncMyDictList(store.currentDict)
 }
 
 function nextChapter() {
-  if (store.currentDict.chapterIndex >= store.currentDict.chapterWords.length - 1) {
-    store.currentDict.chapterIndex = 0
-  } else store.currentDict.chapterIndex++
-
   getCurrentPractice()
 }
 
@@ -222,7 +211,6 @@ function unknow() {
                 <div class="list-header">
                   <div class="left">
                     <div class="title">
-                      {{ store.chapterName }}
                     </div>
                     <BaseIcon title="切换词典"
                               @click="emitter.emit(EventKey.openDictModal,'list')"
@@ -249,7 +237,7 @@ function unknow() {
                     </div>
                     <BaseIcon icon="bi:arrow-right"
                               @click="next"
-                              v-if="store.currentDict.chapterIndex < store.currentDict.chapterWords.length - 1"/>
+                    />
                   </div>
                   <div class="right">
                     {{ data.words.length }}个单词

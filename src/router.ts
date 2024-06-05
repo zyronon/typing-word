@@ -69,7 +69,7 @@ const router = VueRouter.createRouter({
   },
 })
 
-router.beforeEach((to, from) => {
+router.beforeEach((to: any, from: any) => {
   // console.log('beforeEach-to',to.path)
   // console.log('beforeEach-from',from.path)
   const runtimeStore = useRuntimeStore()

@@ -6,6 +6,8 @@ import {Dict, DictType} from "@/types.ts";
 import {ArchiveReader, libarchiveWasm} from "libarchive-wasm";
 import {useRouter} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
+import {nanoid} from "nanoid";
+import dayjs from 'dayjs'
 
 export function getRandom(a: number, b: number): number {
   return Math.random() * (b - a) + a;
@@ -45,41 +47,8 @@ export function checkAndUpgradeSaveDict(val: any) {
         }
         return defaultBaseState
       } else {
-        if (version <= 3) {
-          // if (false) {
-          let temp = (list: any[]): any[] => {
-            return list.map(a => {
-              return {
-                word: a.name,
-                trans: a.trans.map(b => {
-                  return {
-                    cn: b,
-                  }
-                }),
-                phonetic0: a.usphone,
-                phonetic1: a.ukphone,
-              }
-            })
-          }
-          state.myDictList.map(v => {
-            if ([DictType.collect, DictType.simple, DictType.wrong].includes(v.type)) {
-              v.originWords = temp(v.originWords)
-              if (v.words) v.words = temp(v.words)
-              v.chapterWords.map((s, i) => {
-                v.chapterWords[i] = temp(s)
-              })
-            } else {
-              if (v.isCustom) {
-                if (v.type === DictType.word) {
-                  v.originWords = temp(v.originWords)
-                  if (v.words) v.words = temp(v.words)
-                  v.chapterWords.map((s, i) => {
-                    v.chapterWords[i] = temp(s)
-                  })
-                }
-              }
-            }
-          })
+        if (version <= 4) {
+          state = defaultBaseState
         }
         //防止人为删除数据，导致数据不完整报错
         for (const [key, value] of Object.entries(defaultBaseState)) {
@@ -236,4 +205,33 @@ export function _dateFormat(val, type?): string {
     default:
       return `${year}-${mStr}-${dayStr} ${hStr}:${minStr}:${secStr}`
   }
+}
+
+export async function _checkDictWords(dict: Dict) {
+  if ([DictType.collect,
+    DictType.simple,
+    DictType.wrong].includes(dict.type)) {
+  } else {
+//TODO　需要和其他需要下载的地方统一
+    let url = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
+    //如果不是自定义词典，并且有url地址才去下载
+    if (!dict.isCustom && dict.url) {
+      if (!dict.words.length) {
+        let v = await getDictFile(url)
+        v.map(s => {
+          s.id = nanoid(6)
+        })
+        dict.words = Object.freeze(v)
+      }
+    }
+  }
+}
+
+export function _getAccomplishDays(total: number, dayNumber: number) {
+  return Math.ceil(total / dayNumber)
+}
+
+export function _getAccomplishDate(total: number, dayNumber: number) {
+  let d = _getAccomplishDays(total, dayNumber)
+  return dayjs().add(d, 'day').format('YYYY-MM-DD')
 }

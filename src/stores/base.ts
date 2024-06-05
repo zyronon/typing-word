@@ -1,16 +1,14 @@
 import {defineStore} from 'pinia'
-import {Article, DefaultDict, Dict, DictType, DisplayStatistics, getDefaultDict, Sort, Word} from "../types.ts"
-import {chunk, cloneDeep, merge, reverse, shuffle} from "lodash-es";
+import {Dict, DictType, getDefaultDict, Sort, Word} from "../types.ts"
+import {cloneDeep, merge, reverse, shuffle} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
-import {useRuntimeStore} from "@/stores/runtime.ts";
 import * as localforage from "localforage";
 import {nanoid} from "nanoid";
-import {SAVE_DICT_KEY, SAVE_SETTING_KEY} from "@/utils/const.ts";
-import {checkAndUpgradeSaveDict, getDictFile} from "@/utils";
+import {SAVE_DICT_KEY} from "@/utils/const.ts";
+import {_checkDictWords, checkAndUpgradeSaveDict, getDictFile} from "@/utils";
 
 export interface BaseState {
   myDictList: Dict[],
-  collectDictIds: string[],
   current: {
     index: number,
     practiceType: DictType,//练习类型，目前仅词典为collect时判断是练单词还是文章使用
@@ -25,8 +23,6 @@ export interface BaseState {
   currentStudy?: {
     word: {
       dictIndex: number,
-      perDayStudyNumber: number,
-      lastLearnIndex: number,
     },
     article: {
       dictIndex: number,
@@ -37,6 +33,7 @@ export interface BaseState {
 
 export const DefaultBaseState = (): BaseState => ({
   commonDictList: [
+    getDefaultDict(),
     {
       ...getDefaultDict(),
       index: 1,
@@ -120,7 +117,7 @@ export const DefaultBaseState = (): BaseState => ({
 
   articleDictList: [
     {
-      ...cloneDeep(DefaultDict),
+      ...getDefaultDict(),
       id: 'article_nce2',
       name: "新概念英语2-课文",
       description: '新概念英语2-课文',
@@ -175,7 +172,7 @@ export const DefaultBaseState = (): BaseState => ({
 
   myDictList: [
     {
-      ...cloneDeep(DefaultDict),
+      ...getDefaultDict(),
       id: 'collect',
       name: '收藏',
       type: DictType.collect,
@@ -184,7 +181,7 @@ export const DefaultBaseState = (): BaseState => ({
       isCustom: true,
     },
     {
-      ...cloneDeep(DefaultDict),
+      ...getDefaultDict(),
       id: 'skip',
       name: '简单词',
       type: DictType.simple,
@@ -192,7 +189,7 @@ export const DefaultBaseState = (): BaseState => ({
       isCustom: true,
     },
     {
-      ...cloneDeep(DefaultDict),
+      ...getDefaultDict(),
       id: 'wrong',
       name: '错词本',
       type: DictType.wrong,
@@ -200,7 +197,7 @@ export const DefaultBaseState = (): BaseState => ({
       isCustom: true,
     },
     {
-      ...cloneDeep(DefaultDict),
+      ...getDefaultDict(),
       id: 'cet4',
       name: 'CET-4',
       description: '大学英语四级词库',
@@ -213,7 +210,7 @@ export const DefaultBaseState = (): BaseState => ({
       type: DictType.word
     },
     {
-      ...cloneDeep(DefaultDict),
+      ...getDefaultDict(),
       id: 'article_nce2',
       name: "新概念英语2-课文",
       description: '新概念英语2-课文',
@@ -226,26 +223,9 @@ export const DefaultBaseState = (): BaseState => ({
       resourceId: 'article_nce2',
       length: 96
     },
-    // {
-    //   ...cloneDeep(DefaultDict),
-    //   id: 'nce-new-2',
-    //   name: '新概念英语(新版)-2',
-    //   description: '新概念英语新版第二册',
-    //   category: '青少年英语',
-    //   tags: ['新概念英语'],
-    //   url: 'nce-new-2.json',
-    //   translateLanguage: 'common',
-    //   language: 'en',
-    //   type: DictType.word,
-    //   resourceId: 'nce-new-2',
-    //   length: 862
-    // },
   ],
-  collectDictIds: [],
   current: {
     index: 4,
-    // dictType: DictType.article,
-    // dictIndex: 0,
     practiceType: DictType.article,
   },
   simpleWords: [
@@ -324,21 +304,6 @@ export const useBaseStore = defineStore('base', {
     chapter(state: BaseState): Word[] {
       return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []
     },
-    chapterName(state: BaseState) {
-      let title = ''
-      switch (this.currentDict.type) {
-        case DictType.collect:
-          if (state.current.practiceType === DictType.article) {
-            return `第${this.currentDict.chapterIndex + 1}章`
-          }
-        case DictType.wrong:
-        case DictType.simple:
-          return this.currentDict.name
-        case DictType.word:
-          return `第${this.currentDict.chapterIndex + 1}章`
-      }
-      return title
-    }
   },
   actions: {
     setState(obj: any) {
@@ -353,7 +318,7 @@ export const useBaseStore = defineStore('base', {
           } else {
             let configStr: string = await localforage.getItem(SAVE_DICT_KEY.key)
             let data = checkAndUpgradeSaveDict(configStr)
-            // this.setState(data)
+            this.setState(data)
           }
           localforage.setItem(SAVE_DICT_KEY.key, JSON.stringify({val: this.$state, version: SAVE_DICT_KEY.version}))
         } catch (e) {
@@ -368,21 +333,9 @@ export const useBaseStore = defineStore('base', {
         }
 
         if (this.currentStudy.word.dictIndex >= 0) {
-          let current = this.currentStudyWordDict
+          await _checkDictWords(this.currentStudyWordDict)
+          let current = this.articleDictList[this.currentStudy.article.dictIndex]
           let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
-          if (!current.words.length) {
-            let v = await getDictFile(dictResourceUrl)
-            // v = v.slice(0, 50)
-            v.map(s => {
-              s.id = nanoid(6)
-            })
-            // current.originWords = cloneDeep(v)
-            // current.words = cloneDeep(v)
-            current.words = Object.freeze(v)
-          }
-
-          current = this.articleDictList[this.currentStudy.article.dictIndex]
-          dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
           if (!current.articles.length) {
             let s = await getDictFile(dictResourceUrl)
             current.articles = cloneDeep(s.map(v => {
@@ -398,96 +351,10 @@ export const useBaseStore = defineStore('base', {
       })
     },
     async changeDict(dict: Dict, practiceType?: DictType, chapterIndex?: number, wordIndex?: number) {
-      //TODO 保存统计
-      // this.saveStatistics()
-      console.log('changeDict', cloneDeep(dict), chapterIndex, wordIndex)
-      if (practiceType === undefined) this.current.practiceType = practiceType
-      if ([DictType.collect,
-        DictType.simple,
-        DictType.wrong].includes(dict.type)) {
-      } else {
-        //TODO　需要和其他需要下载的地方统一
-        let url = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
-        if (dict.type === DictType.article) {
-          if (!dict.articles.length) {
-            let r = await fetch(url)
-            let v = await r.json()
-            v.map(s => {
-              s.id = nanoid(6)
-            })
-            dict.articles = cloneDeep(v)
-          } else {
-            dict.length = dict.articles.length
-          }
-          if (chapterIndex > dict.articles.length) {
-          }
-        } else {
-          //如果不是自定义词典，并且有url地址才去下载
-          if (!dict.isCustom && dict.url) {
-            if (!dict.originWords.length) {
-              let v = await getDictFile(url)
-              v.map(s => {
-                s.id = nanoid(6)
-              })
-              dict.originWords = cloneDeep(v)
-              if (dict.sort === Sort.normal) {
-                dict.words = cloneDeep(dict.originWords)
-              } else if (dict.sort === Sort.random) {
-                dict.words = shuffle(dict.originWords)
-              } else {
-                dict.words = reverse(dict.originWords)
-              }
-              dict.words.map(v => v.checked = false)
-              dict.length = dict.words.length
-            } else {
-              dict.length = dict.words.length
-            }
-          }
-        }
-      }
-      // await checkDictHasTranslate(dict)
-      let rIndex = this.myDictList.findIndex((v: Dict) => v.id === dict.id)
-      if (rIndex > -1) {
-        this.myDictList[rIndex] = dict
-        this.current.index = rIndex
-      } else {
-        this.myDictList.push(cloneDeep(dict))
-        this.current.index = this.myDictList.length - 1
-      }
-
-      emitter.emit(EventKey.changeDict)
     },
     async changeWordDict(dict: Dict) {
-      if ([DictType.collect,
-        DictType.simple,
-        DictType.wrong].includes(dict.type)) {
-      } else {
-        //TODO　需要和其他需要下载的地方统一
-        let url = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
-        //如果不是自定义词典，并且有url地址才去下载
-        if (!dict.isCustom && dict.url) {
-          if (!dict.words.length) {
-            let v = await getDictFile(url)
-            v.map(s => {
-              s.id = nanoid(6)
-            })
-            if (dict.sort === Sort.normal) {
-              dict.words = cloneDeep(v)
-            } else if (dict.sort === Sort.random) {
-              dict.words = shuffle(v)
-            } else {
-              dict.words = reverse(v)
-            }
-          }
-        }
-      }
-      console.log('changeDict', cloneDeep(dict),)
-
-      this.wordDictList.map(v => {
-        v.words = []
-      })
-
-      // await checkDictHasTranslate(dict)
+      this.wordDictList.map((v) => v.words = [])
+      // await checkDictHasTranslate(newDict)
       let rIndex = this.wordDictList.findIndex((v: Dict) => v.id === dict.id)
       if (rIndex > -1) {
         this.wordDictList[rIndex] = Object.assign(dict, this.wordDictList[rIndex])
@@ -496,7 +363,9 @@ export const useBaseStore = defineStore('base', {
         this.wordDictList.push(getDefaultDict(dict))
         this.currentStudy.word.dictIndex = this.wordDictList.length - 1
       }
+      await _checkDictWords(this.currentStudyWordDict)
 
+      console.log(' store.currentStudyWordDict', this.currentStudyWordDict)
       emitter.emit(EventKey.changeDict)
     },
     async changeArticleDict(dict: Dict) {
@@ -566,6 +435,7 @@ export const useBaseStore = defineStore('base', {
       if (rIndex > -1) {
         this.currentStudy.word.dictIndex = rIndex
       }
-    }
+    },
+
   },
 })

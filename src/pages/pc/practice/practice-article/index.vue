@@ -19,7 +19,7 @@ import {MessageBox} from "@/utils/MessageBox.tsx";
 import {useBaseStore} from "@/stores/base.ts";
 import EditSingleArticleModal from "@/pages/pc/components/article/EditSingleArticleModal.vue";
 import {usePracticeStore} from "@/stores/practice.ts";
-import {emitter, EventKey} from "@/utils/eventBus.ts";
+import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts";
 import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
@@ -284,27 +284,19 @@ function shortcutKeyEdit() {
 
 onMounted(() => {
   init()
-  emitter.on(EventKey.changeDict, init)
-  emitter.on(EventKey.next, next)
-
-  emitter.on(ShortcutKey.NextChapter, next)
-  emitter.on(ShortcutKey.PlayWordPronunciation, play)
-  emitter.on(ShortcutKey.ShowWord, show)
-  emitter.on(ShortcutKey.Next, skip)
-  emitter.on(ShortcutKey.ToggleCollect, collect)
-  emitter.on(ShortcutKey.EditArticle, shortcutKeyEdit)
 })
 
-onUnmounted(() => {
-  emitter.off(EventKey.changeDict, init)
-  emitter.off(EventKey.next, next)
-  emitter.off(ShortcutKey.NextChapter, next)
-  emitter.off(ShortcutKey.PlayWordPronunciation, play)
-  emitter.off(ShortcutKey.ShowWord, show)
-  emitter.off(ShortcutKey.Next, skip)
-  emitter.off(ShortcutKey.ToggleCollect, collect)
-  emitter.off(ShortcutKey.EditArticle, shortcutKeyEdit)
-})
+useEvents([
+  [EventKey.changeDict, init],
+  [EventKey.next, next],
+
+  [ShortcutKey.NextChapter, next],
+  [ShortcutKey.PlayWordPronunciation, play],
+  [ShortcutKey.ShowWord, show],
+  [ShortcutKey.Next, skip],
+  [ShortcutKey.ToggleCollect, collect],
+  [ShortcutKey.EditArticle, shortcutKeyEdit],
+])
 
 defineExpose({getCurrentPractice})
 

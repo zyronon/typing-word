@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {DefaultDict, Dict, DictType} from "@/types.ts";
+import {Dict, DictType, getDefaultDict} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 
 import {FormInstance, FormRules} from "element-plus";
@@ -54,7 +54,7 @@ async function onSubmit() {
   await dictFormRef.validate((valid, fields) => {
     if (valid) {
       let data: Dict = cloneDeep({
-        ...DefaultDict,
+        ...getDefaultDict(),
         ...dictForm,
       })
       //任意修改，都将其变为自定义词典
@@ -100,7 +100,7 @@ onMounted(() => {
   })
 
   if (props.isAdd) {
-    dictForm = cloneDeep(DefaultDict)
+    dictForm = getDefaultDict()
   } else {
     dictForm = cloneDeep(runtimeStore.editDict)
   }

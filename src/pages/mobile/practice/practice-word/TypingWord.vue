@@ -318,7 +318,6 @@ onMounted(() => {
               <div class="list-header">
                 <div class="left">
                   <div class="title">
-                    {{ store.chapterName }}
                   </div>
                   <BaseIcon title="切换词典"
                             @click="emitter.emit(EventKey.openDictModal,'list')"

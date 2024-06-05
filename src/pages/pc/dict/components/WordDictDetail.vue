@@ -3,7 +3,7 @@
 import BaseIcon from "@/components/BaseIcon.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {assign, chunk, cloneDeep, reverse, shuffle} from "lodash-es";
-import {DefaultDict, Dict, DictResource, DictType, Sort, Word} from "@/types.ts";
+import {Dict, DictResource, DictType, getDefaultDict, Sort, Word} from "@/types.ts";
 import {nanoid} from "nanoid";
 import {FormInstance, FormRules} from "element-plus";
 import {reactive} from "vue";
@@ -78,7 +78,7 @@ async function getDictDetail(val: {
     runtimeStore.editDict = cloneDeep(find)
   } else {
     runtimeStore.editDict = cloneDeep({
-      ...cloneDeep(DefaultDict),
+      ...getDefaultDict(),
       ...item,
     })
     runtimeStore.editDict.id = nanoid(6)

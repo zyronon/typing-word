@@ -6,10 +6,9 @@ import {useRoute} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {assign, cloneDeep, reverse, shuffle} from "lodash-es";
-import {DefaultDict, Sort, Word} from "@/types.ts";
+import {Sort, Word} from "@/types.ts";
 import {nanoid} from "nanoid";
 import BaseIcon from "@/components/BaseIcon.vue";
-import {Icon} from "@iconify/vue";
 import {useNav} from "@/utils";
 import {FormInstance, FormRules} from "element-plus";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
@@ -174,13 +173,11 @@ function sort(type: Sort) {
 
 <template>
   <BasePage>
-    <header class="flex gap-4">
-      <div class="back" @click.stop="back">
-        <Icon icon="octicon:arrow-left-24" width="20"/>
-      </div>
+    <header class="flex gap-4 items-center">
+      <BaseIcon  @click="back" icon="octicon:arrow-left-24" width="20"/>
       <div class="left">
         <div class="top">
-          <div class="title">
+          <div class="text-xl">
             {{ runtimeStore.editDict.name }}
           </div>
         </div>

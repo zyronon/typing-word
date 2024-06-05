@@ -13,7 +13,7 @@ import {Icon} from "@iconify/vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
-import {emitter, EventKey} from "@/utils/eventBus.ts";
+import {emitter, EventKey, useEvent} from "@/utils/eventBus.ts";
 import {useRouter} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {cloneDeep} from "lodash-es";
@@ -46,14 +46,8 @@ function changeIndex(dict: Dict) {
   store.changeDict(dict, practiceType)
 }
 
-onMounted(() => {
-  emitter.on(EventKey.changeDict, () => {
-    tabIndex = 0
-  })
-})
-
-onUnmounted(() => {
-  emitter.off(EventKey.changeDict)
+useEvent(EventKey.changeDict, () => {
+  tabIndex = 0
 })
 
 const {

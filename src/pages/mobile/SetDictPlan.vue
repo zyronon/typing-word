@@ -4,7 +4,7 @@ import DictPlan from "@/pages/mobile/components/DictPlan.vue";
 import NavBar from "@/pages/mobile/components/NavBar.vue";
 import {onMounted} from "vue";
 import {useRoute} from "vue-router";
-import {DefaultDict, Dict} from "@/types.ts";
+import {Dict, getDefaultDict} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import {nanoid} from "nanoid";
 import {dictionaryResources} from "@/assets/dictionary.ts";
@@ -27,7 +27,7 @@ onMounted(() => {
     runtimeStore.editDict = cloneDeep(find)
   } else {
     runtimeStore.editDict = cloneDeep({
-      ...cloneDeep(DefaultDict),
+      ...getDefaultDict(),
       ...item,
     })
     runtimeStore.editDict.id = nanoid(6)

@@ -5,7 +5,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import Empty from "@/components/Empty.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {cloneDeep} from "lodash-es";
-import {Article, DefaultArticle, DefaultDict, Dict, DictResource, DictType, Sort, TranslateType} from "@/types.ts";
+import {Article, DefaultArticle, Dict, DictResource, DictType, getDefaultDict, Sort, TranslateType} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import EditBatchArticleModal from "@/pages/pc/components/article/EditBatchArticleModal.vue";
 import {Icon} from "@iconify/vue";
@@ -58,7 +58,7 @@ async function getDictDetail(val: {
     runtimeStore.editDict = cloneDeep(find)
   } else {
     runtimeStore.editDict = cloneDeep({
-      ...cloneDeep(DefaultDict),
+      ...getDefaultDict(),
       ...item,
     })
     runtimeStore.editDict.id = nanoid(6)

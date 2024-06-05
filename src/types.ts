@@ -236,26 +236,6 @@ export const languageCategoryOptions = [
   {id: 'my', name: '我的', flag: myFlag},
 ]
 
-export const DefaultDict: Dict = {
-  id: '',
-  name: '',
-  description: '',
-  sort: Sort.normal,
-  words: [],
-  articles: [],
-  statistics: [],
-  isCustom: false,
-  length: 0,
-  /*资源属性*/
-  resourceId: '',
-  url: '',
-  category: '',
-  tags: [],
-  translateLanguage: 'common',
-  type: DictType.word,
-  language: 'en',
-}
-
 export function getDefaultDict(val = {}): Dict {
   return {
     id: '',
@@ -288,7 +268,6 @@ export interface Dict {
   perDayStudyNumber: number,
   description: string,
   sort: Sort,
-  originWords: Word[],//原始单词
   words: Word[],
   articles: Article[],
   statistics: Statistics[],
