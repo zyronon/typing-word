@@ -1,7 +1,7 @@
-<script setup lang="tsx">
+<script setup lang="ts">
 
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import {onMounted, reactive} from "vue";
+import {nextTick, onMounted, reactive} from "vue";
 import {useRoute} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useBaseStore} from "@/stores/base.ts";
@@ -9,10 +9,13 @@ import {assign, cloneDeep, reverse, shuffle} from "lodash-es";
 import {Sort, Word} from "@/types.ts";
 import {nanoid} from "nanoid";
 import BaseIcon from "@/components/BaseIcon.vue";
-import {_checkDictWords, useNav} from "@/utils";
-import {FormInstance, FormRules, TableV2FixedDir} from "element-plus";
+import {useNav} from "@/utils";
+import {FormInstance, FormRules} from "element-plus";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import BaseButton from "@/components/BaseButton.vue";
+import WordList from "@/pages/pc/components/list/WordList.vue";
+import Empty from "@/components/Empty.vue";
+import {useWindowClick} from "@/hooks/event.ts";
 
 const runtimeStore = useRuntimeStore()
 const store = useBaseStore()
@@ -34,10 +37,6 @@ let list = $computed({
 
 onMounted(() => {
   switch (Number(route.query.type)) {
-    case -1:
-      runtimeStore.editDict = cloneDeep(runtimeStore.routeData)
-      _checkDictWords(runtimeStore.editDict)
-      break
     case 0:
       runtimeStore.editDict = cloneDeep(store.collectWord)
       break
@@ -55,6 +54,7 @@ onMounted(() => {
   }
 })
 const {back} = useNav()
+
 
 let wordFormData = $ref({
   where: '',
@@ -171,31 +171,50 @@ function sort(type: Sort) {
   }
 }
 
-const columns = [
-  {dataKey: 'word', title: '单词', width: 120},
-  {
-    key: 'date',
-    title: 'Date',
-    dataKey: 'date',
-    width: 150,
-    fixed: TableV2FixedDir.LEFT,
-    cellRenderer: ({rowData}) => (
-        <div>
-          <el-button size="small" onClick={editWord(rowData)}>
-            Edit
-          </el-button>
-          <el-button
-              size="small"
-              type="danger"
-              onClick={delWord({item: rowData})}
-          >
-            Delete
-          </el-button>
-        </div>
-    ),
-  },
-]
 
+let checkedAll = $ref(false)
+let isIndeterminate = $ref(false)
+
+
+function handleCheckedAll() {
+  list.map(v => v.checked = checkedAll)
+}
+
+let checkedTotal = $computed(() => {
+  return list.filter(v => v.checked).length
+})
+
+function handleCheckedChange({item: source}: any) {
+  source.checked = !source.checked
+  checkStatus()
+}
+
+function checkStatus() {
+  checkedAll = list.every(v => v.checked)
+  if (checkedAll) {
+    isIndeterminate = false
+  } else {
+    isIndeterminate = list.some(v => v.checked)
+  }
+}
+
+function del(val: { item: Word, index: number }) {
+  list.splice(val.index, 1)
+}
+
+let listRef: any = $ref()
+
+function scrollToBottom() {
+  listRef.scrollToBottom()
+}
+
+function scrollToItem(index: number) {
+  nextTick(() => listRef.scrollToItem(index))
+}
+
+defineExpose({scrollToBottom, scrollToItem})
+
+useWindowClick(() => show = false)
 
 </script>
 
@@ -244,14 +263,79 @@ const columns = [
             </div>
           </MiniDialog>
         </div>
-        <el-table-v2
-            :columns="columns"
-            :data="list"
-            :width="500"
-            :height="400"
-            @selection-change="handleSelectionChange"
-        >
-        </el-table-v2>
+        <div class="column">
+          <div class="header">
+            <div class="common-title">
+              <div class="options">
+                <div class="setting"
+                     v-if="list.length"
+                     @click.stop="null">
+                  <BaseIcon
+                      title="改变顺序"
+                      icon="icon-park-outline:sort-two"
+                      @click="show = !show"
+                  />
+                  <MiniDialog
+                      v-model="show"
+                      style="width: 130rem;"
+                  >
+                    <div class="mini-row-title">
+                      列表循环设置
+                    </div>
+                    <div class="mini-row">
+                      <BaseButton size="small" @click="sort(Sort.reverse)">翻转</BaseButton>
+                      <BaseButton size="small" @click="sort(Sort.random)">随机</BaseButton>
+                    </div>
+                  </MiniDialog>
+                </div>
+                <BaseIcon
+                    @click="addWord"
+                    icon="fluent:add-20-filled"
+                    title="添加单词"/>
+              </div>
+            </div>
+            <div class="select"
+                 v-if="list.length "
+            >
+              <div class="left">
+                <el-checkbox
+                    v-model="checkedAll"
+                    :indeterminate="isIndeterminate"
+                    @change="handleCheckedAll"
+                    size="large"/>
+                <span>全选</span>
+              </div>
+              <div class="right">{{ checkedTotal }}/{{ list.length }}</div>
+            </div>
+          </div>
+          <div class="wrapper">
+            <WordList
+                ref="listRef"
+                :list="list"
+                v-if="list.length"
+                @click="handleCheckedChange"
+            >
+              <template v-slot:prefix="{item}">
+                <el-checkbox v-model="item.checked"
+                             @change="handleCheckedChange({item})"
+                             size="large"/>
+              </template>
+              <template v-slot:suffix="{item,index}">
+                <BaseIcon
+                    class="del"
+                    @click="editWord(item)"
+                    title="编辑"
+                    icon="tabler:edit"/>
+                <BaseIcon
+                    class="del"
+                    @click="del({item,index})"
+                    title="删除"
+                    icon="solar:trash-bin-minimalistic-linear"/>
+              </template>
+            </WordList>
+            <Empty v-else/>
+          </div>
+        </div>
       </div>
       <div class="add w-1/2" v-if="wordFormData.type">
         <div class="common-title">

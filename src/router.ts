@@ -52,7 +52,7 @@ export const routes: RouteRecordRaw[] = [
   // {path: '/mobile/simple', component: SimplePage},
   // {path: '/mobile/about', component: About},
   // {path: '/mobile/feedback', component: Feedback},
-  // {path: '/test', component: Test},
+  {path: '/test', component: Test},
   // {path: '/', redirect: '/pc/practice'},
 ]
 

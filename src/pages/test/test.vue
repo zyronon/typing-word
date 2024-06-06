@@ -48,6 +48,37 @@ async function check() {
   console.log('data',data)
   // this.setState(data)
 }
+
+
+const generateColumns = (length = 10, prefix = 'column-', props?: any) =>
+    Array.from({ length }).map((_, columnIndex) => ({
+      ...props,
+      key: `${prefix}${columnIndex}`,
+      dataKey: `${prefix}${columnIndex}`,
+      title: `Column ${columnIndex}`,
+      width: 150,
+    }))
+
+const generateData = (
+    columns: ReturnType<typeof generateColumns>,
+    length = 200,
+    prefix = 'row-'
+) =>
+    Array.from({ length }).map((_, rowIndex) => {
+      return columns.reduce(
+          (rowData, column, columnIndex) => {
+            rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
+            return rowData
+          },
+          {
+            id: `${prefix}${rowIndex}`,
+            parentId: null,
+          }
+      )
+    })
+
+const columns = generateColumns(10)
+const data1 = generateData(columns, 1000)
 </script>
 
 <template>
@@ -58,6 +89,13 @@ async function check() {
       <BaseButton @click="set">设置data.json的数据到localforage</BaseButton>
       <BaseButton @click="check">检测升级逻辑</BaseButton>
     </div>
+    <el-table-v2
+        :columns="columns"
+        :data="data1"
+        :width="700"
+        :height="400"
+        fixed
+    />
   </div>
 </template>
 
@@ -65,14 +103,14 @@ async function check() {
 .page {
   position: relative;
   z-index: 1;
-  font-size: 14rem;
+  font-size: 1rem;
   color: black;
 
   .data{
     display: flex;
     flex-direction: column;
-    gap: 10rem;
-    width: 300rem;
+    gap: 1rem;
+    width: 30rem;
   }
 }
 </style>
