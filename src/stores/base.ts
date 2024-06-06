@@ -5,7 +5,7 @@ import {emitter, EventKey} from "@/utils/eventBus.ts"
 import * as localforage from "localforage";
 import {nanoid} from "nanoid";
 import {SAVE_DICT_KEY} from "@/utils/const.ts";
-import {_checkDictWords, checkAndUpgradeSaveDict, getDictFile} from "@/utils";
+import {_checkDictWords, _getStudyProgress, checkAndUpgradeSaveDict, getDictFile} from "@/utils";
 
 export interface BaseState {
   myDictList: Dict[],
@@ -291,12 +291,12 @@ export const useBaseStore = defineStore('base', {
     sword() {
       return this.currentStudy.word
     },
-    currentStudyWordProgress(): number {
-      if (!this.currentStudyWordDict.words?.length) return 0
-      return Number(((this.currentStudyWordDict.lastLearnIndex / this.currentStudyWordDict.words?.length) * 100).toFixed())
+    currentStudyProgress(): number {
+      if (!this.sdict.words?.length) return 0
+      return _getStudyProgress(this.sdict.lastLearnIndex, this.sdict.words?.length)
     },
     otherWordDictList(): Dict[] {
-      return this.wordDictList.filter(v => this.currentStudyWordDict.id !== v.id)
+      return this.wordDictList.filter(v => this.sdict.id !== v.id)
     },
     currentArticleDict(): Dict {
       return this.articleDictList[this.currentStudy.article.dictIndex] ?? {}

@@ -22,7 +22,7 @@ export const EventKey = {
   jumpSpecifiedChapter: 'jumpSpecifiedChapter',
 }
 
-export function useEvent(key: string, func: () => void) {
+export function useEvent(key: string, func: any) {
   onMounted(() => {
     emitter.on(key, func)
   })

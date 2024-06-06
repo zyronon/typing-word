@@ -227,11 +227,18 @@ export async function _checkDictWords(dict: Dict) {
   }
 }
 
+//获取完成天数
 export function _getAccomplishDays(total: number, dayNumber: number) {
   return Math.ceil(total / dayNumber)
 }
 
+//获取完成日期
 export function _getAccomplishDate(total: number, dayNumber: number) {
   let d = _getAccomplishDays(total, dayNumber)
   return dayjs().add(d, 'day').format('YYYY-MM-DD')
+}
+
+//获取学习进度
+export function _getStudyProgress(index: number, total: number) {
+  return Number(((index / total) * 100).toFixed())
 }

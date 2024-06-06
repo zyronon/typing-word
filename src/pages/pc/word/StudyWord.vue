@@ -96,7 +96,8 @@ useEvent(ShortcutKey.TogglePanel, togglePanel)
 
 let data = $ref({
   new: [],
-  review: []
+  review: [],
+  write: []
 })
 
 function getCurrentPractice() {
