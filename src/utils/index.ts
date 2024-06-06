@@ -188,6 +188,7 @@ export async function _checkDictWords(dict: Dict) {
           s.id = nanoid(6)
         })
         dict.words = Object.freeze(v)
+        // dict.words = v
       }
     }
   }

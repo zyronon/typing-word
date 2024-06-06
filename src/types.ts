@@ -280,11 +280,6 @@ export interface ArticleItem {
   index: number
 }
 
-export interface WordItem {
-  item: Article,
-  index: number
-}
-
 export const SlideType = {
   HORIZONTAL: 0,
   VERTICAL: 1,

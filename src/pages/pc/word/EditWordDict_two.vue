@@ -9,7 +9,7 @@ import {assign, cloneDeep, reverse, shuffle} from "lodash-es";
 import {Sort, Word} from "@/types.ts";
 import {nanoid} from "nanoid";
 import BaseIcon from "@/components/BaseIcon.vue";
-import {useNav} from "@/utils";
+import {_checkDictWords, useNav} from "@/utils";
 import {FormInstance, FormRules} from "element-plus";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import BaseButton from "@/components/BaseButton.vue";
@@ -37,6 +37,10 @@ let list = $computed({
 
 onMounted(() => {
   switch (Number(route.query.type)) {
+    case -1:
+      runtimeStore.editDict = cloneDeep(runtimeStore.routeData)
+      _checkDictWords(runtimeStore.editDict)
+      break
     case 0:
       runtimeStore.editDict = cloneDeep(store.collectWord)
       break
@@ -263,78 +267,46 @@ useWindowClick(() => show = false)
             </div>
           </MiniDialog>
         </div>
-        <div class="column">
-          <div class="header">
-            <div class="common-title">
-              <div class="options">
-                <div class="setting"
-                     v-if="list.length"
-                     @click.stop="null">
-                  <BaseIcon
-                      title="改变顺序"
-                      icon="icon-park-outline:sort-two"
-                      @click="show = !show"
-                  />
-                  <MiniDialog
-                      v-model="show"
-                      style="width: 130rem;"
-                  >
-                    <div class="mini-row-title">
-                      列表循环设置
-                    </div>
-                    <div class="mini-row">
-                      <BaseButton size="small" @click="sort(Sort.reverse)">翻转</BaseButton>
-                      <BaseButton size="small" @click="sort(Sort.random)">随机</BaseButton>
-                    </div>
-                  </MiniDialog>
-                </div>
-                <BaseIcon
-                    @click="addWord"
-                    icon="fluent:add-20-filled"
-                    title="添加单词"/>
-              </div>
-            </div>
-            <div class="select"
-                 v-if="list.length "
-            >
-              <div class="left">
-                <el-checkbox
-                    v-model="checkedAll"
-                    :indeterminate="isIndeterminate"
-                    @change="handleCheckedAll"
-                    size="large"/>
-                <span>全选</span>
-              </div>
-              <div class="right">{{ checkedTotal }}/{{ list.length }}</div>
-            </div>
+        <div class="flex justify-between"
+             v-if="list.length "
+        >
+          <div class="left">
+            <el-checkbox
+                v-model="checkedAll"
+                :indeterminate="isIndeterminate"
+                @change="handleCheckedAll"
+                size="large"/>
+            <span>全选</span>
           </div>
-          <div class="wrapper">
-            <WordList
-                ref="listRef"
-                :list="list"
-                v-if="list.length"
-                @click="handleCheckedChange"
-            >
-              <template v-slot:prefix="{item}">
-                <el-checkbox v-model="item.checked"
-                             @change="handleCheckedChange({item})"
-                             size="large"/>
-              </template>
-              <template v-slot:suffix="{item,index}">
-                <BaseIcon
-                    class="del"
-                    @click="editWord(item)"
-                    title="编辑"
-                    icon="tabler:edit"/>
-                <BaseIcon
-                    class="del"
-                    @click="del({item,index})"
-                    title="删除"
-                    icon="solar:trash-bin-minimalistic-linear"/>
-              </template>
-            </WordList>
-            <Empty v-else/>
-          </div>
+          <div class="right">{{ checkedTotal }}/{{ list.length }}</div>
+        </div>
+
+        <div class="wrapper h-100 overflow-auto">
+          <WordList
+              ref="listRef"
+              :list="list"
+              v-if="list.length"
+              @click="handleCheckedChange"
+          >
+            <template v-slot:prefix="{item}">
+              <el-checkbox v-model="item.checked"
+                           @change="handleCheckedChange({item})"
+                           size="large"/>
+            </template>
+            <template v-slot:suffix="{item,index}">
+              <BaseIcon
+                  class="del"
+                  @click="editWord(item)"
+                  title="编辑"
+                  icon="tabler:edit"/>
+              <BaseIcon
+                  class="del"
+                  @click="del({item,index})"
+                  title="删除"
+                  icon="solar:trash-bin-minimalistic-linear"/>
+            </template>
+          </WordList>
+          <Empty v-else/>
         </div>
       </div>
       <div class="add w-1/2" v-if="wordFormData.type">
