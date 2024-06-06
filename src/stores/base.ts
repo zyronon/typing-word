@@ -247,19 +247,19 @@ export const useBaseStore = defineStore('base', {
       return this.myDictList[0]
     },
     collectWord(): Dict {
-      return this.commonDictList[0]
-    },
-    collectArticle(): Dict {
       return this.commonDictList[1]
     },
-    simple(): Dict {
+    collectArticle(): Dict {
       return this.commonDictList[2]
     },
-    wrong(): Dict {
+    simple(): Dict {
       return this.commonDictList[3]
     },
-    master(): Dict {
+    wrong(): Dict {
       return this.commonDictList[4]
+    },
+    master(): Dict {
+      return this.commonDictList[5]
     },
     skipWordNames() {
       return this.simple.words.map(v => v.word.toLowerCase())
@@ -344,7 +344,7 @@ export const useBaseStore = defineStore('base', {
             }))
           }
 
-          console.log('this.wordDictList', this.wordDictList[0].words[0])
+          // console.log('this.wordDictList', this.wordDictList[0].words[0])
         }
         emitter.emit(EventKey.changeDict)
         resolve(true)

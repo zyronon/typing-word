@@ -55,7 +55,7 @@ onUnmounted(() => {
           <div class="name">输入数</div>
         </div>
         <div class="row">
-          <div class="num">{{ format(statisticsStore.wrongWordNumber, '', 0) }}</div>
+          <div class="num">{{ format(statisticsStore.wrong, '', 0) }}</div>
           <div class="line"></div>
           <div class="name">错误数</div>
         </div>

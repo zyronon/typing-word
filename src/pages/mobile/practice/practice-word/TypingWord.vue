@@ -69,7 +69,7 @@ watch(() => props.words, () => {
   statisticsStore.startDate = Date.now()
   statisticsStore.correctRate = -1
   statisticsStore.inputWordNumber = 0
-  statisticsStore.wrongWordNumber = 0
+  statisticsStore.wrong = 0
   stat = cloneDeep(DefaultDisplayStatistics)
 
 }, {immediate: true})
@@ -96,10 +96,10 @@ function next(isTyping: boolean = true) {
         total: props.words.length,
         correctRate: -1,
         inputWordNumber: statisticsStore.inputWordNumber,
-        wrongWordNumber: data.wrongWords.length,
+        wrong: data.wrongWords.length,
         wrongWords: data.wrongWords,
       }
-      stat.correctRate = 100 - Math.trunc(((stat.wrongWordNumber) / (stat.total)) * 100)
+      stat.correctRate = 100 - Math.trunc(((stat.wrong) / (stat.total)) * 100)
     }
 
     if (data.wrongWords.length) {
@@ -109,7 +109,7 @@ function next(isTyping: boolean = true) {
       statisticsStore.total = data.words.length
       statisticsStore.index = data.index = 0
       statisticsStore.inputWordNumber = 0
-      statisticsStore.wrongWordNumber = 0
+      statisticsStore.wrong = 0
       data.wrongWords = []
     } else {
       console.log('这章节完了')
@@ -138,7 +138,7 @@ function wordWrong() {
   }
   if (!data.wrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
     data.wrongWords.push(word)
-    statisticsStore.wrongWordNumber++
+    statisticsStore.wrong++
   }
 }
 

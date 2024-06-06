@@ -2,7 +2,7 @@
 import {onMounted, onUnmounted, watch} from "vue"
 import {useBaseStore} from "@/stores/base.ts"
 import {DefaultDisplayStatistics, DictType, getDefaultWord, ShortcutKey, Sort, Word} from "@/types.ts";
-import {emitter, EventKey} from "@/utils/eventBus.ts"
+import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts"
 import {cloneDeep, reverse, shuffle} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
 import {useSettingStore} from "@/stores/setting.ts";
@@ -72,7 +72,7 @@ watch(() => props.data, () => {
   statStore.startDate = Date.now()
   statStore.correctRate = -1
   statStore.inputWordNumber = 0
-  statStore.wrongWordNumber = 0
+  statStore.wrong = 0
   statStore.total = props.data.review.concat(props.data.new).concat(props.data.write).length
   statStore.newWordNumber = props.data.new.length
   statStore.index = 0
@@ -142,7 +142,7 @@ function wordWrong() {
   }
   if (!allWrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
     allWrongWords.push(word)
-    statStore.wrongWordNumber++
+    statStore.wrong++
   }
 }
 
@@ -197,23 +197,14 @@ function play() {
   typingRef.play()
 }
 
-onMounted(() => {
-  emitter.on(ShortcutKey.ShowWord, show)
-  emitter.on(ShortcutKey.Previous, prev)
-  emitter.on(ShortcutKey.Next, skip)
-  emitter.on(ShortcutKey.ToggleCollect, collect)
-  emitter.on(ShortcutKey.ToggleSimple, toggleWordSimpleWrapper)
-  emitter.on(ShortcutKey.PlayWordPronunciation, play)
-})
-
-onUnmounted(() => {
-  emitter.off(ShortcutKey.ShowWord, show)
-  emitter.off(ShortcutKey.Previous, prev)
-  emitter.off(ShortcutKey.Next, skip)
-  emitter.off(ShortcutKey.ToggleCollect, collect)
-  emitter.off(ShortcutKey.ToggleSimple, toggleWordSimpleWrapper)
-  emitter.off(ShortcutKey.PlayWordPronunciation, play)
-})
+useEvents([
+  [ShortcutKey.ShowWord, show],
+  [ShortcutKey.Previous, prev],
+  [ShortcutKey.Next, skip],
+  [ShortcutKey.ToggleCollect, collect],
+  [ShortcutKey.ToggleSimple, toggleWordSimpleWrapper],
+  [ShortcutKey.PlayWordPronunciation, play],
+])
 
 const status = $computed(() => {
   let str = '正在'

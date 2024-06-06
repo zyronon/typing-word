@@ -1,22 +1,22 @@
 <script setup lang="ts">
 
 import Toolbar from "@/pages/pc/components/toolbar/index.vue"
-import {onMounted, onUnmounted, watch} from "vue";
+import {onMounted, watch} from "vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 import Footer from "@/pages/pc/word/Footer.vue";
 import {useBaseStore} from "@/stores/base.ts";
 
 import Statistics from "@/pages/pc/word/Statistics.vue";
-import {emitter, EventKey, useEvent} from "@/utils/eventBus.ts";
+import {emitter, EventKey, useEvent, useEvents} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {ShortcutKey, Word} from "@/types.ts";
+import {ShortcutKey} from "@/types.ts";
 import DictModal from "@/pages/pc/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
 import TypingWord from "@/pages/pc/components/TypingWord.vue";
-import {getCurrentStudyWord, syncMyDictList} from "@/hooks/dict.ts";
-import {cloneDeep, shuffle} from "lodash-es";
+import {getCurrentStudyWord} from "@/hooks/dict.ts";
+import {cloneDeep} from "lodash-es";
 
 const statStore = usePracticeStore()
 const store = useBaseStore()
@@ -28,10 +28,10 @@ watch(statStore, () => {
   if (statStore.inputWordNumber < 1) {
     return statStore.correctRate = -1
   }
-  if (statStore.wrongWordNumber > statStore.inputWordNumber) {
+  if (statStore.wrong > statStore.inputWordNumber) {
     return statStore.correctRate = 0
   }
-  statStore.correctRate = 100 - Math.trunc(((statStore.wrongWordNumber) / (statStore.inputWordNumber)) * 100)
+  statStore.correctRate = 100 - Math.trunc(((statStore.wrong) / (statStore.inputWordNumber)) * 100)
 })
 
 function next() {
@@ -80,19 +80,21 @@ onMounted(() => {
   }
 })
 
-useEvent(EventKey.changeDict, getCurrentPractice)
+useEvents([
+  [EventKey.changeDict, getCurrentPractice],
+  [EventKey.repeat, repeat],
+  [EventKey.next, next],
 
-useEvent(EventKey.repeat, repeat)
-useEvent(EventKey.next, next)
+  [ShortcutKey.RepeatChapter, repeat],
+  [ShortcutKey.ToggleShowTranslate, toggleTranslate],
+  [ShortcutKey.ToggleDictation, toggleDictation],
+  [ShortcutKey.OpenSetting, openSetting],
+  [ShortcutKey.OpenDictDetail, openDictDetail],
+  [ShortcutKey.ToggleTheme, toggleTheme],
+  [ShortcutKey.ToggleConciseMode, toggleConciseMode],
+  [ShortcutKey.TogglePanel, togglePanel],
+])
 
-useEvent(ShortcutKey.RepeatChapter, repeat)
-useEvent(ShortcutKey.ToggleShowTranslate, toggleTranslate)
-useEvent(ShortcutKey.ToggleDictation, toggleDictation)
-useEvent(ShortcutKey.OpenSetting, openSetting)
-useEvent(ShortcutKey.OpenDictDetail, openDictDetail)
-useEvent(ShortcutKey.ToggleTheme, toggleTheme)
-useEvent(ShortcutKey.ToggleConciseMode, toggleConciseMode)
-useEvent(ShortcutKey.TogglePanel, togglePanel)
 
 let data = $ref({
   new: [],

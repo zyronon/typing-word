@@ -6,10 +6,10 @@ import "vue-activity-calendar/style.css";
 import {useRouter} from "vue-router";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
-import {_getAccomplishDate, _getAccomplishDays, _getStudyProgress, useNav} from "@/utils";
+import {_getAccomplishDate, _getAccomplishDays, useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {getDefaultDict} from "@/types.ts";
-import {onMounted, watch} from "vue";
+import {onMounted} from "vue";
 import {getCurrentStudyWord} from "@/hooks/dict.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {EventKey, useEvent} from "@/utils/eventBus.ts";
@@ -168,6 +168,7 @@ function changePerDayStudyNumber() {
             <div class="text-2xl ml-2 flex gap-4">
               <BaseIcon title="删除" icon="hugeicons:delete-02" @click="store.delWordDict(i)"/>
               <BaseIcon title="学习" icon="nonicons:go-16" @click="store.changeWordDict(getDefaultDict(i))"/>
+              <BaseIcon title="修改" icon="nonicons:go-16" @click="nav('edit-word-dict',{type:-1},i)"/>
             </div>
           </div>
           <div class="mt-5 text-sm">已学习5555个单词的1%</div>

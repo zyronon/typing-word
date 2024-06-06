@@ -6,7 +6,7 @@ import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import Fireworks from "@/pages/pc/components/Fireworks.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {ShortcutKey} from "@/types.ts";
-import {emitter, EventKey, useEvent} from "@/utils/eventBus.ts";
+import {emitter, EventKey, useEvent, useEvents} from "@/utils/eventBus.ts";
 import {onMounted} from "vue";
 import {Icon} from '@iconify/vue';
 import {useSettingStore} from "@/stores/setting.ts";
@@ -22,16 +22,16 @@ useEvent(EventKey.openStatModal, () => {
   console.log('on')
 
   let data = {
-    startIndex: store.currentStudyWordDict.lastLearnIndex,
-    endIndex: store.currentStudyWordDict.lastLearnIndex + store.currentStudyWordDict.perDayStudyNumber,
     speed: statStore.speed,
     startDate: statStore.startDate,
+    total: statStore.total,
+    wrong: statStore.wrong,
   }
-  store.currentStudyWordDict.lastLearnIndex = data.endIndex
-  store.currentStudyWordDict.statistics.push(data as any)
-  store.currentStudyWordDict.statistics.sort((a, b) => a.startDate - b.startDate)
+  store.sdict.lastLearnIndex = store.sdict.lastLearnIndex + store.sdict.perDayStudyNumber
+  store.sdict.statistics.push(data as any)
+  store.sdict.statistics.sort((a, b) => a.startDate - b.startDate)
 
-  console.log('staa', JSON.parse(JSON.stringify(store.currentStudyWordDict.statistics)))
+  console.log('staa', JSON.parse(JSON.stringify(store.sdict.statistics)))
   open = true
 })
 
@@ -39,9 +39,11 @@ const close = () => {
   open = false
 }
 
-useEvent(ShortcutKey.NextChapter, close)
-useEvent(ShortcutKey.RepeatChapter, close)
-useEvent(ShortcutKey.DictationChapter, close)
+useEvents([
+  [ShortcutKey.NextChapter, close],
+  [ShortcutKey.RepeatChapter, close],
+  [ShortcutKey.DictationChapter, close],
+])
 
 function options(emitType: 'write' | 'repeat' | 'next') {
   open = false
@@ -60,7 +62,7 @@ const isEnd = $computed(() => {
       v-model="open">
     <div class="statistics relative flex flex-col gap-6">
       <header>
-        <div class="text-2xl">{{ store.currentStudyWordDict.name }}</div>
+        <div class="text-2xl">{{ store.sdict.name }}</div>
       </header>
       <div class="flex justify-center gap-10">
         <div class="text-xl text-center flex flex-col justify-around">
@@ -78,7 +80,7 @@ const isEnd = $computed(() => {
       <div class="flex justify-center gap-10">
         <div class="flex justify-center items-center py-3 px-10 rounded-md color-red-500 flex-col"
              style="background: rgb(254,236,236)">
-          <div class="text-3xl">{{ statStore.wrongWordNumber }}</div>
+          <div class="text-3xl">{{ statStore.wrong }}</div>
           <div class="center gap-2">
             <Icon icon="iconamoon:close" class="text-2xl"/>
             错词
@@ -86,7 +88,7 @@ const isEnd = $computed(() => {
         </div>
         <div class="flex justify-center items-center py-3 px-10 rounded-md color-green-600 flex-col"
              style="background: rgb(231,248,241)">
-          <div class="text-3xl">{{ statStore.total - statStore.wrongWordNumber }}</div>
+          <div class="text-3xl">{{ statStore.total - statStore.wrong }}</div>
           <div class="center gap-2">
             <Icon icon="tabler:check" class="text-2xl"/>
             正确

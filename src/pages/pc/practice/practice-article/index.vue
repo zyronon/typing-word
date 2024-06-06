@@ -75,7 +75,7 @@ function setArticle(val: Article) {
   articleData.articles[store.currentArticleDict.chapterIndex] = tempVal
   articleData.article = tempVal
   statisticsStore.inputWordNumber = 0
-  statisticsStore.wrongWordNumber = 0
+  statisticsStore.wrong = 0
   statisticsStore.total = 0
   statisticsStore.startDate = Date.now()
   articleData.article.sections.map((v, i) => {
@@ -195,7 +195,7 @@ function wrong(word: Word) {
 }
 
 function over() {
-  if (statisticsStore.wrongWordNumber === 0) {
+  if (statisticsStore.wrong === 0) {
     // if (false) {
     console.log('这章节完了')
     let now = Date.now()
@@ -205,9 +205,9 @@ function over() {
       spend: now - statisticsStore.startDate,
       total: statisticsStore.total,
       correctRate: -1,
-      wrongWordNumber: statisticsStore.wrongWordNumber,
+      wrong: statisticsStore.wrong,
     }
-    stat.correctRate = 100 - Math.trunc(((stat.wrongWordNumber) / (stat.total)) * 100)
+    stat.correctRate = 100 - Math.trunc(((stat.wrong) / (stat.total)) * 100)
     emitter.emit(EventKey.openStatModal, stat)
   } else {
     tabIndex = 1

@@ -156,7 +156,7 @@ export function getCurrentStudyWord() {
     })
   }
 
-  console.timeEnd()
-  console.log('data', data)
+  // console.timeEnd()
+  // console.log('data', data)
   return data
 }

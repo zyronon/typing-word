@@ -5,6 +5,8 @@ import WordListDialog from "@/pages/pc/components/dialog/WordListDialog.vue";
 import {emitter, EventKey, useEvent} from "@/utils/eventBus.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
+import {_dateFormat} from "@/utils";
+import {sumBy} from "lodash-es";
 
 const store = useBaseStore()
 
@@ -23,7 +25,17 @@ useEvent(EventKey.openDictModal, () => {
 })
 
 const startDate = $computed(() => {
+  if (store.sdict.statistics.length) {
+    return _dateFormat(store.sdict.statistics[0].startDate, 'YYYY-MM-DD')
+  } else {
+    return '-'
+  }
+})
 
+const speedTime = $computed(() => {
+  let d = Math.ceil(sumBy(store.sdict.statistics, 'speed') / 1000 / 60)
+  if (d < 60) return d + '分钟'
+  else return (d / 60).toFixed(1) + '小时'
 })
 
 </script>
@@ -43,9 +55,9 @@ const startDate = $computed(() => {
                     title="单词列表"
           />
         </div>
-        <div class="text">开始日期：-</div>
-        <div class="text">花费时间：-</div>
-        <div class="text">累积错误：-</div>
+        <div class="text">开始日期：{{ startDate }}</div>
+        <div class="text">花费时长：{{ speedTime }}</div>
+        <div class="text">累积错误：{{ sumBy(store.sdict.statistics, 'wrong') }}</div>
         <div class="mt-2">
           <div class="text-sm flex justify-between">
             已学习{{ store.currentStudyProgress }}%
@@ -64,7 +76,7 @@ const startDate = $computed(() => {
 <style scoped lang="scss">
 
 #DictDialog {
-  width: 26rem;
+  width: 20rem;
 
   .detail {
     color: var(--color-font-1);

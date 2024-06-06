@@ -29,10 +29,10 @@ watch(statisticsStore, () => {
   if (statisticsStore.inputWordNumber < 1) {
     return statisticsStore.correctRate = -1
   }
-  if (statisticsStore.wrongWordNumber > statisticsStore.inputWordNumber) {
+  if (statisticsStore.wrong > statisticsStore.inputWordNumber) {
     return statisticsStore.correctRate = 0
   }
-  statisticsStore.correctRate = 100 - Math.trunc(((statisticsStore.wrongWordNumber) / (statisticsStore.inputWordNumber)) * 100)
+  statisticsStore.correctRate = 100 - Math.trunc(((statisticsStore.wrong) / (statisticsStore.inputWordNumber)) * 100)
 })
 
 

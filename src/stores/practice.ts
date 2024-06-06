@@ -8,7 +8,7 @@ export interface PracticeState {
   index: number,//当前输入的第几个，用于和total计算进度
   newWordNumber: number,
   inputWordNumber: number,//当前总输入了多少个单词（不包含跳过）
-  wrongWordNumber: number,
+  wrong: number,
   correctRate: number,
   startIndex:number,
   endIndex:number,
@@ -27,7 +27,7 @@ export const usePracticeStore = defineStore('practice', {
       endIndex: 0,
       newWordNumber: 0,
       inputWordNumber: 0,
-      wrongWordNumber: 0,
+      wrong: 0,
     }
   },
 })

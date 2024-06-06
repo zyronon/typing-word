@@ -114,19 +114,11 @@ export function checkAndUpgradeSaveSetting(val: any) {
 //筛选未自定义的词典，未自定义的词典不需要保存单词，用的时候再下载
 export function shakeCommonDict(n: BaseState): BaseState {
   let data: BaseState = cloneDeep(n)
-  data.myDictList.map((v: Dict) => {
-    if (v.isCustom) {
-      if (v.type === DictType.article) {
-        v.articles.map(s => {
-          delete s.sections
-        })
-      }
-    } else {
-      if (v.type === DictType.word) v.originWords = []
-      if (v.type === DictType.article) v.articles = []
-      v.words = []
-      v.chapterWords = []
-    }
+  data.wordDictList.map((v: Dict) => {
+    if (!v.isCustom) v.words = []
+  })
+  data.articleDictList.map((v: Dict) => {
+    if (!v.isCustom) v.articles = []
   })
   return data
 }
@@ -172,39 +164,13 @@ export function useNav() {
   return {nav, back: router.back}
 }
 
-export function _dateFormat(val, type?): string {
+export function _dateFormat(val: any, format?: string): string {
   if (!val) return
   if (String(val).length === 10) {
     val = val * 1000
   }
   const d = new Date(Number(val))
-  const year = d.getFullYear()
-  const m = d.getMonth() + 1
-  const mStr = m < 10 ? '0' + m : m
-  const day = d.getDate()
-  const dayStr = day < 10 ? '0' + day : day
-  const h = d.getHours()
-  const hStr = h < 10 ? '0' + h : h
-  const min = d.getMinutes()
-  const minStr = min < 10 ? '0' + min : min
-  const sec = d.getSeconds()
-  const secStr = sec < 10 ? '0' + sec : sec
-  switch (type) {
-    case 'Y':
-      return year + ''
-    case 'M':
-      return `${year}-${mStr}`
-    case 'M_D':
-      return `${mStr}-${dayStr}`
-    case 'M_CN':
-      return `${year}年${mStr}月`
-    case 'D':
-      return `${year}-${mStr}-${dayStr}`
-    case 'm':
-      return `${year}-${mStr}-${dayStr} ${hStr}:${minStr}`
-    default:
-      return `${year}-${mStr}-${dayStr} ${hStr}:${minStr}:${secStr}`
-  }
+  return dayjs(d).format(format)
 }
 
 export async function _checkDictWords(dict: Dict) {

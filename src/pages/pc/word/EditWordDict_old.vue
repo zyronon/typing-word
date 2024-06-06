@@ -1,4 +1,4 @@
-<script setup lang="tsx">
+<script setup lang="ts">
 
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {onMounted, reactive} from "vue";
@@ -9,8 +9,8 @@ import {assign, cloneDeep, reverse, shuffle} from "lodash-es";
 import {Sort, Word} from "@/types.ts";
 import {nanoid} from "nanoid";
 import BaseIcon from "@/components/BaseIcon.vue";
-import {_checkDictWords, useNav} from "@/utils";
-import {FormInstance, FormRules, TableV2FixedDir} from "element-plus";
+import {useNav} from "@/utils";
+import {FormInstance, FormRules} from "element-plus";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import BaseButton from "@/components/BaseButton.vue";
 
@@ -34,10 +34,6 @@ let list = $computed({
 
 onMounted(() => {
   switch (Number(route.query.type)) {
-    case -1:
-      runtimeStore.editDict = cloneDeep(runtimeStore.routeData)
-      _checkDictWords(runtimeStore.editDict)
-      break
     case 0:
       runtimeStore.editDict = cloneDeep(store.collectWord)
       break
@@ -55,6 +51,7 @@ onMounted(() => {
   }
 })
 const {back} = useNav()
+
 
 let wordFormData = $ref({
   where: '',
@@ -171,38 +168,13 @@ function sort(type: Sort) {
   }
 }
 
-const columns = [
-  {dataKey: 'word', title: '单词', width: 120},
-  {
-    key: 'date',
-    title: 'Date',
-    dataKey: 'date',
-    width: 150,
-    fixed: TableV2FixedDir.LEFT,
-    cellRenderer: ({rowData}) => (
-        <div>
-          <el-button size="small" onClick={editWord(rowData)}>
-            Edit
-          </el-button>
-          <el-button
-              size="small"
-              type="danger"
-              onClick={delWord({item: rowData})}
-          >
-            Delete
-          </el-button>
-        </div>
-    ),
-  },
-]
-
 
 </script>
 
 <template>
   <BasePage>
     <header class="flex gap-4 items-center">
-      <BaseIcon @click="back" icon="octicon:arrow-left-24" width="20"/>
+      <BaseIcon  @click="back" icon="octicon:arrow-left-24" width="20"/>
       <div class="left">
         <div class="top">
           <div class="text-xl">
@@ -244,14 +216,31 @@ const columns = [
             </div>
           </MiniDialog>
         </div>
-        <el-table-v2
-            :columns="columns"
-            :data="list"
-            :width="500"
-            :height="400"
-            @selection-change="handleSelectionChange"
-        >
-        </el-table-v2>
+        <el-table :data="list"
+                  @selection-change="handleSelectionChange"
+                  max-height="80vh">
+          <el-table-column type="selection" width="55"/>
+          <el-table-column prop="word" label="单词" width="120"/>
+          <el-table-column prop="trans" label="翻译" width="180">
+            <template #default="scope">
+              {{ scope.row.trans.map(v => v.cn) }}
+            </template>
+          </el-table-column>
+          <el-table-column label="操作">
+            <template #default="scope">
+              <el-button size="small" @click="editWord( scope.row)">
+                Edit
+              </el-button>
+              <el-button
+                  size="small"
+                  type="danger"
+                  @click="delWord({item: scope.row})"
+              >
+                Delete
+              </el-button>
+            </template>
+          </el-table-column>
+        </el-table>
       </div>
       <div class="add w-1/2" v-if="wordFormData.type">
         <div class="common-title">
