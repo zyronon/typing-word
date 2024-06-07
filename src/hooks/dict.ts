@@ -107,7 +107,7 @@ export function syncMyDictList(dict: Dict, isCustom = true) {
 }
 
 export function getCurrentStudyWord() {
-  console.time()
+  // console.time()
   const store = useBaseStore()
   let data = {new: [], review: [], write: []}
   let dict = store.currentStudyWordDict;

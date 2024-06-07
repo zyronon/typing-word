@@ -187,8 +187,8 @@ export async function _checkDictWords(dict: Dict) {
         v.map(s => {
           s.id = nanoid(6)
         })
-        dict.words = Object.freeze(v)
-        // dict.words = v
+        // dict.words = Object.freeze(v)
+        dict.words = v
       }
     }
   }
