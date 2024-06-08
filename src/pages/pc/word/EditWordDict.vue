@@ -5,16 +5,12 @@ import {onMounted, reactive} from "vue";
 import {useRoute} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useBaseStore} from "@/stores/base.ts";
-import {assign, cloneDeep, reverse, shuffle} from "lodash-es";
-import {Sort, Word} from "@/types.ts";
+import {assign, cloneDeep} from "lodash-es";
+import {Word} from "@/types.ts";
 import {nanoid} from "nanoid";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {_checkDictWords, useNav} from "@/utils";
 import {FormInstance, FormRules} from "element-plus";
-import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
-import BaseButton from "@/components/BaseButton.vue";
-import VolumeIcon from "@/components/icon/VolumeIcon.vue";
-import BaseList from "@/pages/pc/components/list/BaseList.vue";
 import BaseTable from "@/pages/pc/components/BaseTable.vue";
 
 const runtimeStore = useRuntimeStore()
