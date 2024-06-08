@@ -39,6 +39,7 @@ export const DefaultBaseState = (): BaseState => ({
       index: 1,
       name: '收藏', type: DictType.collectWord, words: [
         {
+          "id": "pharmacy",
           "word": "pharmacy",
           "trans": [
             {
@@ -49,6 +50,7 @@ export const DefaultBaseState = (): BaseState => ({
           "phonetic1": "ˈfɑ:rməsi"
         },
         {
+          "id": "foregone",
           "word": "foregone",
           "trans": [
             {

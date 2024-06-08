@@ -1,7 +1,7 @@
-<script setup lang="ts">
+<script setup lang="tsx">
 
 import {useSettingStore} from "@/stores/setting.ts";
-import {nextTick} from "vue";
+import {nextTick, useSlots} from "vue";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {Sort} from "@/types.ts";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
@@ -69,7 +69,7 @@ let currentList = $computed({
 })
 
 let selectIds = $ref([])
-let selectAll = $computed(()=>{
+let selectAll = $computed(() => {
   return !!selectIds.length
 })
 
@@ -104,104 +104,124 @@ function sort(type: Sort) {
     list.value = shuffle(cloneDeep(list.value))
   }
 }
+
+const s = useSlots()
+console.log('s', s)
+defineRender(
+    () => {
+      const d = (item) => <el-checkbox
+          modelValue={selectIds.includes(item.id)}
+          onChange={() => toggleSelect(item)}
+          size="large"/>
+
+      return (
+          <div class="flex flex-col gap-3">
+            <div class="">
+              {
+                showSearchInput ? (
+                    <div
+                        class="flex gap-2"
+                    >
+                      <Input
+                          modelValue={searchKey}
+                          onUpdate:model-value={e => searchKey = e}
+                          class="flex-1"/>
+                      <BaseButton onClick={() => showSearchInput = false}>取消</BaseButton>
+                    </div>
+                ) : (
+                    <div class="flex justify-between " v-else>
+                      <el-checkbox
+                          onClick={() => toggleSelectAll()}
+                          modelValue={selectAll}
+                          size="large"/>
+
+                      <div class="flex gap-2 relative">
+                        {
+                          selectIds.length ? <BaseIcon
+                              onClick={emit('del')}
+                              class="del"
+                              title="删除"
+                              icon="solar:trash-bin-minimalistic-linear"/> : null
+                        }
+                        <BaseIcon
+                            onClick={emit('add')}
+                            icon="fluent:add-20-filled"
+                            title="添加单词"/>
+                        <BaseIcon
+                            title="改变顺序"
+                            icon="icon-park-outline:sort-two"
+                            onClick={() => showSortDialog = !showSortDialog}
+                        />
+                        <BaseIcon
+                            onClick={() => showSearchInput = !showSearchInput}
+                            title="搜索"
+                            icon="fluent:search-24-regular"/>
+                        <MiniDialog
+                            modelValue={showSortDialog}
+                            onUpdate:model-value={e => showSortDialog = e}
+                            style="width: 8rem;"
+                        >
+                          <div class="mini-row-title">
+                            列表顺序设置
+                          </div>
+                          <div class="mini-row">
+                            <BaseButton size="small" onClick={() => sort(Sort.reverse)}>翻转
+                            </BaseButton>
+                            <BaseButton size="small" onClick={() => sort(Sort.random)}>随机</BaseButton>
+                          </div>
+                        </MiniDialog>
+                      </div>
+                    </div>
+                )
+              }
+            </div>
+            <div class="flex-1 overflow-auto"
+                 ref="listRef">
+              {
+                currentList.map((item, index) => {
+                  return (
+                      <div class="list-item-wrapper"
+                           key={item.id}
+                      >
+                        <div class="common-list-item"
+                        >
+                          <div class="left">
+                            {s.default({checkbox: d, item})}
+                            <div class="title-wrapper">
+                              <div class="item-title">
+                                <span class="word">{item.word}</span>
+                                <span class="phonetic">{item.phonetic0}</span>
+                                <VolumeIcon class="volume"></VolumeIcon>
+                              </div>
+                              <div class="item-sub-title">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="right">
+                            <slot name="suffix"
+                                  item={item} index={index}>
+                            </slot>
+                          </div>
+                        </div>
+                      </div>
+                  )
+                })
+              }
+            </div>
+            <div class="flex justify-end">
+              <el-pagination background
+                             currentPage={pageNo}
+                             onUpdate:current-page={(e) => pageNo = e}
+                             pageSize={pageSize}
+                             onUpdate:page-size={(e) => pageSize = e}
+                             layout="prev, pager, next"
+                             total={list.value.length}/>
+            </div>
+          </div>
+      )
+    }
+)
 </script>
-
-<template>
-  <div class="flex flex-col gap-3">
-    <div class="">
-      <div
-          v-if="showSearchInput"
-          class="flex gap-2"
-      >
-        <Input v-model="searchKey"
-               class="flex-1"/>
-        <BaseButton @click="showSearchInput = false">取消</BaseButton>
-      </div>
-      <div class="flex justify-between " v-else>
-        <el-checkbox
-            @click="toggleSelectAll"
-            :model-value="selectAll"
-            size="large"/>
-        <div class="flex gap-2 relative">
-          <BaseIcon
-              v-if="selectIds.length"
-              @click="emit('del')"
-              class="del"
-              title="删除"
-              icon="solar:trash-bin-minimalistic-linear"/>
-          <BaseIcon
-              @click="emit('add')"
-              icon="fluent:add-20-filled"
-              title="添加单词"/>
-          <BaseIcon
-              title="改变顺序"
-              icon="icon-park-outline:sort-two"
-              @click="showSortDialog = !showSortDialog"
-          />
-          <BaseIcon
-              @click="showSearchInput = !showSearchInput"
-              title="搜索"
-              icon="fluent:search-24-regular"/>
-          <MiniDialog
-              v-model="showSortDialog"
-              style="width: 8rem;"
-          >
-            <div class="mini-row-title">
-              列表顺序设置
-            </div>
-            <div class="mini-row">
-              <BaseButton size="small" @click="sort(Sort.reverse)">翻转</BaseButton>
-              <BaseButton size="small" @click="sort(Sort.random)">随机</BaseButton>
-            </div>
-          </MiniDialog>
-        </div>
-      </div>
-    </div>
-    <div
-        class="flex-1 overflow-auto"
-        ref="listRef">
-      <div class="list-item-wrapper"
-           v-for="(item,index) in currentList"
-           :key="item.id"
-      >
-        <div class="common-list-item"
-             :class="{
-            active:itemIsActive(item,index),
-            border:showBorder
-          }"
-             @click="emit('click',{item,index})"
-        >
-          <div class="left">
-            <el-checkbox
-                :model-value="selectIds.includes(item.id)"
-                @change="toggleSelect(item)"
-                size="large"/>
-            <div class="title-wrapper">
-              <div class="item-title">
-                <span class="word">{{ item.word }}</span>
-                <span class="phonetic">{{ item.phonetic0 }}</span>
-                <VolumeIcon class="volume"></VolumeIcon>
-              </div>
-              <div class="item-sub-title">
-                <div v-for="v in item.trans">{{ (v.pos ? v.pos + '.' : '') + (v.cn || v.en) }}</div>
-              </div>
-            </div>
-          </div>
-          <div class="right">
-            <slot name="suffix" :item="item" :index="index"></slot>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flex justify-end">
-      <el-pagination background
-                     v-model:current-page="pageNo"
-                     v-model:page-size="pageSize"
-                     layout="prev, pager, next" :total="list.length"/>
-    </div>
-  </div>
-</template>
-
 <style scoped lang="scss">
 
 </style>

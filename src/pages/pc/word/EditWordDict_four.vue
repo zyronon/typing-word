@@ -1,4 +1,4 @@
-<script setup lang="tsx">
+<script setup lang="ts">
 
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {onMounted, reactive} from "vue";
@@ -6,9 +6,11 @@ import {useRoute} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {assign, cloneDeep} from "lodash-es";
+import {Word} from "@/types.ts";
 import {nanoid} from "nanoid";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {_checkDictWords, useNav} from "@/utils";
+import {FormInstance, FormRules} from "element-plus";
 import BaseTable from "@/pages/pc/components/BaseTable.vue";
 
 const runtimeStore = useRuntimeStore()
@@ -27,11 +29,9 @@ let list = $computed({
 onMounted(() => {
   switch (Number(route.query.type)) {
     case -1:
-      if (runtimeStore.routeData) {
-        runtimeStore.editDict = cloneDeep(runtimeStore.routeData)
-        _checkDictWords(runtimeStore.editDict)
-      }
-      // break
+      runtimeStore.editDict = cloneDeep(runtimeStore.routeData)
+      _checkDictWords(runtimeStore.editDict)
+      break
     case 0:
       runtimeStore.editDict = cloneDeep(store.collectWord)
       break
@@ -148,92 +148,81 @@ function closeWordForm() {
   wordForm = cloneDeep(DefaultFormWord)
 }
 
-defineRender(() => {
-  let d = (i) => {
-    console.log('i', i)
-    return <div>
-      {i.checkbox(i.item)}
-    </div>
-  }
-  return (
-      <BasePage>
-        <header class="flex gap-4 mb-2 items-center">
-          <BaseIcon onClick={back} icon="octicon:arrow-left-24" width="20"/>
-          <div class="left">
-            <div class="top">
-              <div class="text-xl">
-                {runtimeStore.editDict.name}
-              </div>
-            </div>
-            {
-              runtimeStore.editDict.description ?
-                  <div class="desc">{runtimeStore.editDict.description}</div> : null
-            }
-          </div>
-        </header>
-        <div class="flex h-120">
-          <div class="w-1/2">
-            <BaseTable
-                class="h-full"
-                list={list}
-            >
-              {d}
-            </BaseTable>
-          </div>
-          {
-            wordFormData.type ? (
-                <div class="add w-1/2">
-                  <div class="common-title">
-                    {wordFormData.type === FormMode.Add ? '添加' : '修改'}单词
-                  </div>
-                  <el-form
-                      class="form"
-                      ref="wordFormRef"
-                      rules={wordRules}
-                      model={wordForm}
-                      label-width="6rem">
-                    <el-form-item label="单词" prop="word">
-                      <el-input
-                          modelValue={wordForm.word}
-                          onUpdate:model-value={e => wordForm.word = e}
-                      />
-                    </el-form-item>
-                    <el-form-item label="翻译">
-                      <el-input
-                          modelValue={wordForm.trans}
-                          onUpdate:model-value={e => wordForm.trans = e}
-                          placeholder="多个翻译请换行"
-                          autosize={{minRows: 2, maxRows: 6}}
-                          type="textarea"/>
-                    </el-form-item>
-                    <el-form-item label="音标/发音①">
-                      <el-input
-                          modelValue={wordForm.phonetic0}
-                          onUpdate:model-value={e => wordForm.phonetic0 = e}
-                      />
-                    </el-form-item>
-                    <el-form-item label="音标/发音②">
-                      <el-input
-                          modelValue={wordForm.phonetic1}
-                          onUpdate:model-value={e => wordForm.phonetic1 = e}/>
-                    </el-form-item>
-                    <div class="flex-center">
-                      <el-button
-                          onClick={closeWordForm}>关闭
-                      </el-button>
-                      <el-button type="primary"
-                                 onClick={onSubmitWord}>保存
-                      </el-button>
-                    </div>
-                  </el-form>
-                </div>
-            ) : null
-          }
-        </div>
-      </BasePage>
-  )
-})
+
 </script>
+
+<template>
+  <BasePage>
+    <header class="flex gap-4 mb-2 items-center">
+      <BaseIcon @click="back" icon="octicon:arrow-left-24" width="20"/>
+      <div class="left">
+        <div class="top">
+          <div class="text-xl">
+            {{ runtimeStore.editDict.name }}
+          </div>
+        </div>
+        <div class="desc" v-if="runtimeStore.editDict.description">{{ runtimeStore.editDict.description }}</div>
+      </div>
+    </header>
+    <div class="flex h-140">
+      <div class="w-1/2">
+        <BaseTable
+            class="h-full"
+            ref="listRef"
+            v-model:list="list">
+          <template v-slot="{item}">
+            <span>123</span>
+            <span>{{item}}</span>
+          </template>
+          <template v-slot:suffix="{ item, index }">
+            <span>1</span>
+            <BaseIcon
+                class="del"
+                @click="editWord(item)"
+                title="编辑"
+                icon="tabler:edit"/>
+            <BaseIcon
+                class="del"
+                @click="del({item,index})"
+                title="删除"
+                icon="solar:trash-bin-minimalistic-linear"/>
+          </template>
+        </BaseTable>
+      </div>
+      <div class="add w-1/2" v-if="wordFormData.type">
+        <div class="common-title">
+          {{ wordFormData.type === FormMode.Add ? '添加' : '修改' }}单词
+        </div>
+        <el-form
+            class="form"
+            ref="wordFormRef"
+            :rules="wordRules"
+            :model="wordForm"
+            label-width="6rem">
+          <el-form-item label="单词" prop="word">
+            <el-input v-model="wordForm.word"/>
+          </el-form-item>
+          <el-form-item label="翻译">
+            <el-input v-model="wordForm.trans"
+                      placeholder="多个翻译请换行"
+                      :autosize="{ minRows: 2, maxRows: 6 }"
+                      type="textarea"/>
+          </el-form-item>
+          <el-form-item label="音标/发音①">
+            <el-input v-model="wordForm.phonetic0"/>
+          </el-form-item>
+          <el-form-item label="音标/发音②">
+            <el-input v-model="wordForm.phonetic1"/>
+          </el-form-item>
+          <div class="flex-center">
+            <el-button @click="closeWordForm">关闭</el-button>
+            <el-button type="primary" @click="onSubmitWord">保存</el-button>
+          </div>
+        </el-form>
+      </div>
+    </div>
+  </BasePage>
+</template>
 
 <style scoped lang="scss">
 
