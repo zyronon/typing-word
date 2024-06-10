@@ -4,7 +4,6 @@ import jaFlag from "@/assets/img/flags/ja.png";
 import deFlag from "@/assets/img/flags/de.png";
 import codeFlag from "@/assets/img/flags/code.png";
 import myFlag from "@/assets/img/flags/my.png";
-import {DefaultChapterWordNumber} from "@/stores/setting.ts";
 
 export type WordTrans = {
   pos: string,

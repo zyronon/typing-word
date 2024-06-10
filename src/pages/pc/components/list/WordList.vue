@@ -1,6 +1,5 @@
 <script setup lang="ts">
 
-
 import {Word} from "@/types.ts";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import BaseList from "@/pages/pc/components/list/BaseList.vue";

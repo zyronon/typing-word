@@ -17,11 +17,17 @@ const props = withDefaults(defineProps<{
   activeId?: string,
   isActive?: boolean
   showBorder?: boolean
+  del?: Function
+  batchDel?: Function
+  add?: Function
 }>(), {
   activeIndex: -1,
   activeId: '',
   isActive: false,
   showBorder: false,
+  del: () => void 0,
+  add: () => void 0,
+  batchDel: () => void 0
 })
 
 const emit = defineEmits<{
@@ -105,8 +111,13 @@ function sort(type: Sort) {
   }
 }
 
+function handleBatchDel() {
+  props.batchDel(selectIds)
+  selectIds = []
+}
+
 const s = useSlots()
-console.log('s', s)
+
 defineRender(
     () => {
       const d = (item) => <el-checkbox
@@ -138,13 +149,13 @@ defineRender(
                       <div class="flex gap-2 relative">
                         {
                           selectIds.length ? <BaseIcon
-                              onClick={emit('del')}
+                              onClick={handleBatchDel}
                               class="del"
                               title="删除"
                               icon="solar:trash-bin-minimalistic-linear"/> : null
                         }
                         <BaseIcon
-                            onClick={emit('add')}
+                            onClick={props.add}
                             icon="fluent:add-20-filled"
                             title="添加单词"/>
                         <BaseIcon
@@ -183,26 +194,7 @@ defineRender(
                       <div class="list-item-wrapper"
                            key={item.id}
                       >
-                        <div class="common-list-item"
-                        >
-                          <div class="left">
-                            {s.default({checkbox: d, item})}
-                            <div class="title-wrapper">
-                              <div class="item-title">
-                                <span class="word">{item.word}</span>
-                                <span class="phonetic">{item.phonetic0}</span>
-                                <VolumeIcon class="volume"></VolumeIcon>
-                              </div>
-                              <div class="item-sub-title">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="right">
-                            <slot name="suffix"
-                                  item={item} index={index}>
-                            </slot>
-                          </div>
-                        </div>
+                        {s.default({checkbox: d, item})}
                       </div>
                   )
                 })

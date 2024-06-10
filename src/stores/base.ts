@@ -65,6 +65,7 @@ export const DefaultBaseState = (): BaseState => ({
         },
 
         {
+          "id": "calculate",
           "word": "calculate",
           "trans": [
             {
@@ -78,6 +79,7 @@ export const DefaultBaseState = (): BaseState => ({
           "phonetic1": "ˈkælkjəˌlet"
         },
         {
+          "id": "compete",
           "word": "compete",
           "trans": [
             {
@@ -88,6 +90,7 @@ export const DefaultBaseState = (): BaseState => ({
           "phonetic1": "kəmˈpit"
         },
         {
+          "id": "furnish",
           "word": "furnish",
           "trans": [
             {

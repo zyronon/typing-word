@@ -10,6 +10,9 @@ import {nanoid} from "nanoid";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {_checkDictWords, useNav} from "@/utils";
 import BaseTable from "@/pages/pc/components/BaseTable.vue";
+import WordItem from "@/pages/pc/components/WordItem.vue";
+import type {Word} from "@/types.ts";
+import type {FormInstance, FormRules} from "element-plus";
 
 const runtimeStore = useRuntimeStore()
 const store = useBaseStore()
@@ -31,7 +34,7 @@ onMounted(() => {
         runtimeStore.editDict = cloneDeep(runtimeStore.routeData)
         _checkDictWords(runtimeStore.editDict)
       }
-      // break
+      break
     case 0:
       runtimeStore.editDict = cloneDeep(store.collectWord)
       break
@@ -111,21 +114,18 @@ async function onSubmitWord() {
   })
 }
 
-function delWord(val: {
-  item: Word
-}) {
-  let rIndex2 = list.findIndex(v => v.id === val.item.id)
+function delWord(id: string) {
+  let rIndex2 = list.findIndex(v => v.id === id)
   if (rIndex2 > -1) {
     list.splice(rIndex2, 1)
   }
-  if (wordFormData.type === FormMode.Edit && wordForm.word === val.item.word) {
-    closeWordForm()
-  }
+  // if (wordFormData.type === FormMode.Edit && wordForm.word === val.item.word) {
+  //   closeWordForm()
+  // }
 }
 
-function batchDelWord() {
-  console.log('multipleSelection', multipleSelection)
-  multipleSelection.map(v => delWord({item: v}))
+function batchDel(ids: string[]) {
+  ids.map(v => delWord(v))
 }
 
 function editWord(word: Word,) {
@@ -149,16 +149,10 @@ function closeWordForm() {
 }
 
 defineRender(() => {
-  let d = (i) => {
-    console.log('i', i)
-    return <div>
-      {i.checkbox(i.item)}
-    </div>
-  }
   return (
       <BasePage>
         <header class="flex gap-4 mb-2 items-center">
-          <BaseIcon onClick={back} icon="octicon:arrow-left-24" width="20"/>
+          <BaseIcon onClick={back} icon="octicon:arrow-left-24" width={20}/>
           <div class="left">
             <div class="top">
               <div class="text-xl">
@@ -176,8 +170,32 @@ defineRender(() => {
             <BaseTable
                 class="h-full"
                 list={list}
+                del={delWord}
+                batchDel={batchDel}
+                add={addWord}
             >
-              {d}
+              {
+                (val) =>
+                    <WordItem item={val.item}>
+                      {{
+                        prefix: () => val.checkbox(val.item),
+                        suffix: () => (
+                            <div class='flex flex-col'>
+                              <BaseIcon
+                                  class="del"
+                                  onClick={() => editWord(val.item)}
+                                  title="编辑"
+                                  icon="tabler:edit"/>
+                              <BaseIcon
+                                  class="del"
+                                  onClick={() => delWord(val.item.id)}
+                                  title="删除"
+                                  icon="solar:trash-bin-minimalistic-linear"/>
+                            </div>
+                        )
+                      }}
+                    </WordItem>
+              }
             </BaseTable>
           </div>
           {
