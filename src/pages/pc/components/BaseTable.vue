@@ -2,29 +2,27 @@
 
 import {useSettingStore} from "@/stores/setting.ts";
 import {nextTick, useSlots} from "vue";
-import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {Sort} from "@/types.ts";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {cloneDeep, reverse, shuffle} from "lodash-es";
 import Input from "@/pages/pc/components/Input.vue";
+import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
+import Empty from "@/components/Empty.vue";
+import {Icon} from "@iconify/vue";
 
 let list = defineModel('list')
 
 const props = withDefaults(defineProps<{
-  activeIndex?: number,
-  activeId?: string,
-  isActive?: boolean
   showBorder?: boolean
+  loading?: boolean
   del?: Function
   batchDel?: Function
   add?: Function
 }>(), {
-  activeIndex: -1,
-  activeId: '',
-  isActive: false,
   showBorder: false,
+  loading: true,
   del: () => void 0,
   add: () => void 0,
   batchDel: () => void 0
@@ -52,26 +50,16 @@ function scrollToItem(index: number) {
   })
 }
 
-function itemIsActive(item: any, index: number) {
-  return props.activeId ?
-      props.activeId === item.id
-      : props.activeIndex === index
-}
 
 defineExpose({scrollToBottom, scrollToItem})
 
 let pageNo = $ref(1)
 let pageSize = $ref(50)
-let currentList = $computed({
-  get() {
-    if (searchKey) {
-      return list.value.filter(v => v.word.includes(searchKey))
-    }
-    return list.value.slice((pageNo - 1) * pageSize, (pageNo - 1) * pageSize + pageSize)
-  },
-  set(v) {
-    list.value = v
+let currentList = $computed(() => {
+  if (searchKey) {
+    return list.value.filter(v => v.word.includes(searchKey))
   }
+  return list.value.slice((pageNo - 1) * pageSize, (pageNo - 1) * pageSize + pageSize)
 })
 
 let selectIds = $ref([])
@@ -116,6 +104,11 @@ function handleBatchDel() {
   selectIds = []
 }
 
+function handlePageNo(e) {
+  pageNo = e
+  console.log('listRef', listRef)
+}
+
 const s = useSlots()
 
 defineRender(
@@ -127,43 +120,55 @@ defineRender(
 
       return (
           <div class="flex flex-col gap-3">
-            <div class="">
+            <div>
               {
                 showSearchInput ? (
                     <div
-                        class="flex gap-2"
+                        class="flex gap-4"
                     >
                       <Input
                           modelValue={searchKey}
                           onUpdate:model-value={e => searchKey = e}
                           class="flex-1"/>
-                      <BaseButton onClick={() => showSearchInput = false}>取消</BaseButton>
+                      <BaseButton onClick={() => (showSearchInput = false, searchKey = '')}>取消</BaseButton>
                     </div>
                 ) : (
                     <div class="flex justify-between " v-else>
-                      <el-checkbox
-                          onClick={() => toggleSelectAll()}
-                          modelValue={selectAll}
-                          size="large"/>
+                      <div class="flex gap-2 items-center">
+                        <el-checkbox
+                            disabled={!currentList.length}
+                            onClick={() => toggleSelectAll()}
+                            modelValue={selectAll}
+                            size="large"/>
+                        <span>{selectIds.length} / {list.value.length}</span>
+                      </div>
+
 
                       <div class="flex gap-2 relative">
                         {
-                          selectIds.length ? <BaseIcon
-                              onClick={handleBatchDel}
-                              class="del"
-                              title="删除"
-                              icon="solar:trash-bin-minimalistic-linear"/> : null
+                          selectIds.length ?
+                              <PopConfirm title="确认删除所有选中数据？"
+                                          onConfirm={handleBatchDel}
+                              >
+                                <BaseIcon
+                                    class="del"
+                                    title="删除"
+                                    icon="solar:trash-bin-minimalistic-linear"/>
+                              </PopConfirm>
+                              : null
                         }
                         <BaseIcon
                             onClick={props.add}
                             icon="fluent:add-20-filled"
                             title="添加单词"/>
                         <BaseIcon
+                            disabled={!currentList.length}
                             title="改变顺序"
                             icon="icon-park-outline:sort-two"
                             onClick={() => showSortDialog = !showSortDialog}
                         />
                         <BaseIcon
+                            disabled={!currentList.length}
                             onClick={() => showSearchInput = !showSearchInput}
                             title="搜索"
                             icon="fluent:search-24-regular"/>
@@ -186,29 +191,41 @@ defineRender(
                 )
               }
             </div>
-            <div class="flex-1 overflow-auto"
-                 ref="listRef">
-              {
-                currentList.map((item, index) => {
-                  return (
-                      <div class="list-item-wrapper"
-                           key={item.id}
-                      >
-                        {s.default({checkbox: d, item})}
-                      </div>
-                  )
-                })
-              }
-            </div>
-            <div class="flex justify-end">
-              <el-pagination background
-                             currentPage={pageNo}
-                             onUpdate:current-page={(e) => pageNo = e}
-                             pageSize={pageSize}
-                             onUpdate:page-size={(e) => pageSize = e}
-                             layout="prev, pager, next"
-                             total={list.value.length}/>
-            </div>
+            {
+              props.loading ?
+                  <div class="h-full w-full center text-4xl">
+                    <Icon
+                        icon="eos-icons:loading"
+                        color="gray"
+                    />
+                  </div>
+                  : currentList.length ? (
+                      <>
+                        <div class="flex-1 overflow-auto"
+                             ref='listRef'>
+                          {currentList.map((item) => {
+                            return (
+                                <div class="list-item-wrapper"
+                                     key={item.id}
+                                >
+                                  {s.default({checkbox: d, item})}
+                                </div>
+                            )
+                          })}
+                        </div>
+                        <div class="flex justify-end">
+                          <el-pagination background
+                                         currentPage={pageNo}
+                                         onUpdate:current-page={handlePageNo}
+                                         pageSize={pageSize}
+                                         onUpdate:page-size={(e) => pageSize = e}
+                                         pageSizes={[20, 50, 100, 200]}
+                                         layout="sizes, prev, pager, next"
+                                         total={list.value.length}/>
+                        </div>
+                      </>
+                  ) : <Empty/>
+            }
           </div>
       )
     }

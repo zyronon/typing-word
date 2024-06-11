@@ -9,11 +9,11 @@ const props = withDefaults(defineProps<{
   item: Word,
   showTranslate?: boolean
   showWord?: boolean
-  hiddenOptionIcon?: boolean
+  border?: boolean
 }>(), {
   showTranslate: true,
   showWord: true,
-  hiddenOptionIcon: false,
+  border: true
 })
 
 const playWordAudio = usePlayWordAudio()
@@ -22,7 +22,9 @@ const playWordAudio = usePlayWordAudio()
 
 <template>
   <div class="word-item"
-       :class="{hiddenOptionIcon}"
+       :class="{
+            border,
+          }"
   >
     <div class="left">
       <slot name="prefix" :item="item"></slot>
@@ -79,8 +81,49 @@ const playWordAudio = usePlayWordAudio()
     transition: all .3s;
   }
 
-  .volume {
+  .volume, .collect, .easy {
     opacity: 0;
+  }
+
+  &:hover {
+    background: var(--color-item-hover);
+
+    .volume, .collect, .easy {
+      opacity: 1;
+    }
+  }
+
+  &.active {
+    background: var(--color-item-active);
+    $c: #E6A23C;
+
+    .phonetic, .item-sub-title {
+      color: var(--color-gray) !important;
+    }
+
+    .volume, .collect, .easy, .fill {
+      color: $c;
+    }
+  }
+
+  &.border {
+    &.active {
+      .item-title {
+        border-bottom: 2px solid gray !important;
+      }
+    }
+
+    .item-title {
+      transition: all .3s;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+
+    &:hover {
+      .item-title {
+        border-bottom: 2px solid gray !important;
+      }
+    }
   }
 
   .item-title {
@@ -105,32 +148,6 @@ const playWordAudio = usePlayWordAudio()
     color: gray;
   }
 
-  &:hover {
-    background: var(--color-item-hover);
-
-    .volume, :deep(.option-icon) {
-      opacity: 1;
-    }
-  }
-
-  &.hiddenOptionIcon {
-    :deep(.option-icon) {
-      opacity: 0;
-    }
-  }
-
-  &.active {
-    background: var(--color-item-active);
-    $c: #E6A23C;
-
-    .phonetic, .item-sub-title {
-      color: var(--color-gray) !important;
-    }
-
-    .volume, .collect, .easy, .fill {
-      color: $c;
-    }
-  }
 }
 
 </style>

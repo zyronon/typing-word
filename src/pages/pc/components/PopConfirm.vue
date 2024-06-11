@@ -42,7 +42,7 @@ export default {
       this.show = true
       this.$nextTick(() => {
         let tip = this.$refs?.tip?.getBoundingClientRect()
-        console.log('rect', rect, tip)
+        // console.log('rect', rect, tip)
         if (!tip) return
         if (rect.top < 150) {
           this.$refs.tip.style.top = rect.top + rect.height + tip.height + 30 + 'px'
@@ -65,13 +65,13 @@ export default {
             <Transition>
               {
                   this.show && (
-                      <div ref="tip" className="pop-confirm-content">
-                        <div className="text">
+                      <div ref="tip" class="pop-confirm-content">
+                        <div class="text">
                           {this.title}
                         </div>
-                        <div className="options">
+                        <div class="options">
                           <div onClick={() => this.show = false}>取消</div>
-                          <div className="main" onClick={() => this.confirm()}>确认</div>
+                          <div class="main" onClick={() => this.confirm()}>确认</div>
                         </div>
                       </div>
                   )
@@ -91,7 +91,7 @@ $bg-color: rgb(226, 226, 226);
   position: fixed;
   background: var(--color-tooltip-bg);
   padding: 1rem;
-  border-radius: .24rem;
+  border-radius: .3rem;
   transform: translate(-50%, calc(-100% - .6rem));
   box-shadow: 0 0 6px 1px var(--color-tooltip-shadow);
   z-index: 999;

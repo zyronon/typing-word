@@ -13,10 +13,12 @@ import BaseTable from "@/pages/pc/components/BaseTable.vue";
 import WordItem from "@/pages/pc/components/WordItem.vue";
 import type {Word} from "@/types.ts";
 import type {FormInstance, FormRules} from "element-plus";
+import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
 
 const runtimeStore = useRuntimeStore()
 const store = useBaseStore()
 const route = useRoute()
+let loading = $ref(false)
 
 let list = $computed({
   get() {
@@ -27,12 +29,16 @@ let list = $computed({
   }
 })
 
-onMounted(() => {
+onMounted(async () => {
   switch (Number(route.query.type)) {
     case -1:
       if (runtimeStore.routeData) {
+        loading = true
         runtimeStore.editDict = cloneDeep(runtimeStore.routeData)
-        _checkDictWords(runtimeStore.editDict)
+        await _checkDictWords(runtimeStore.editDict)
+        setTimeout(() => {
+          loading = false
+        }, 300)
       }
       break
     case 0:
@@ -148,6 +154,10 @@ function closeWordForm() {
   wordForm = cloneDeep(DefaultFormWord)
 }
 
+function s(ss) {
+  console.log('s', ss)
+}
+
 defineRender(() => {
   return (
       <BasePage>
@@ -165,32 +175,39 @@ defineRender(() => {
             }
           </div>
         </header>
-        <div class="flex h-120">
+        <div class="flex" style="height:calc(100vh - 8rem)">
           <div class="w-1/2">
             <BaseTable
                 class="h-full"
                 list={list}
+                loading={loading}
+                onUpdate:list={e => list = e}
                 del={delWord}
                 batchDel={batchDel}
                 add={addWord}
             >
               {
                 (val) =>
-                    <WordItem item={val.item}>
+                    <WordItem
+                        item={val.item}>
                       {{
                         prefix: () => val.checkbox(val.item),
                         suffix: () => (
                             <div class='flex flex-col'>
                               <BaseIcon
-                                  class="del"
+                                  class="option-icon"
                                   onClick={() => editWord(val.item)}
                                   title="编辑"
                                   icon="tabler:edit"/>
-                              <BaseIcon
-                                  class="del"
-                                  onClick={() => delWord(val.item.id)}
-                                  title="删除"
-                                  icon="solar:trash-bin-minimalistic-linear"/>
+                              <PopConfirm title="确认删除？"
+                                          onConfirm={() => delWord(val.item.id)}
+                              >
+                                <BaseIcon
+                                    class="option-icon"
+                                    title="删除"
+                                    icon="solar:trash-bin-minimalistic-linear"/>
+                              </PopConfirm>
+
                             </div>
                         )
                       }}
@@ -205,7 +222,7 @@ defineRender(() => {
                     {wordFormData.type === FormMode.Add ? '添加' : '修改'}单词
                   </div>
                   <el-form
-                      class="form"
+                      className="form"
                       ref="wordFormRef"
                       rules={wordRules}
                       model={wordForm}

@@ -49,19 +49,20 @@ export default {
     },
   },
   render() {
+    if (!this.title) return this.$slots.default()
     let Vnode = this.$slots.default()[0]
     return <>
-      {
-          this.show && this.title && (
-              <Teleport to="body">
-                <Transition name="fade">
-                  <div ref="tip" className="tip">
+      <Teleport to="body">
+        <Transition name="fade">
+          {
+              this.show && (
+                  <div ref="tip" class="tip">
                     {this.title}
                   </div>
-                </Transition>
-              </Teleport>
-          )
-      }
+              )
+          }
+        </Transition>
+      </Teleport>
       <Vnode
           onClick={() => this.show = false}
           onmouseenter={(e) => this.showPop(e)}
@@ -72,14 +73,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "@/assets/css/style";
-
 .tip {
   position: fixed;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   z-index: 9999;
-  border-radius: .2rem;
-  padding: .8rem;
+  border-radius: .3rem;
+  padding: 0.4rem .8rem;
   color: var(--color-font-1);
   background: var(--color-tooltip-bg);
   //box-shadow: 1px 1px 6px #bbbbbb;
