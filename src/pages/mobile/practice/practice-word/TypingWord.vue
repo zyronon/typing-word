@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted, watch} from "vue"
 import {useBaseStore} from "@/stores/base.ts"
-import {DefaultDisplayStatistics, DefaultWord, DictType, ShortcutKey, Sort, Word} from "@/types.ts";
+import {DefaultDisplayStatistics, DictType, getDefaultWord, ShortcutKey, Sort, Word} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import {cloneDeep, reverse, shuffle} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
@@ -80,7 +80,7 @@ watch(data, () => {
 })
 
 const word: Word = $computed(() => {
-  return data.words[data.index] ?? DefaultWord
+  return data.words[data.index] ?? getDefaultWord()
 })
 
 function next(isTyping: boolean = true) {

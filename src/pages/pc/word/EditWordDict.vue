@@ -140,7 +140,7 @@ function editWord(word: Word,) {
   wordForm.word = word.word
   wordForm.phonetic1 = word.phonetic1
   wordForm.phonetic0 = word.phonetic0
-  wordForm.trans = word.trans.join('\n')
+  wordForm.trans = word.trans.map(v => JSON.stringify(v)).join('\n')
 }
 
 function addWord() {

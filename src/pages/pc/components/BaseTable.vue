@@ -225,7 +225,7 @@ defineRender(
                                          pageSize={pageSize}
                                          onUpdate:page-size={(e) => pageSize = e}
                                          pageSizes={[20, 50, 100, 200]}
-                                         layout="sizes, prev, pager, next"
+                                         layout="prev, pager, next"
                                          total={list.value.length}/>
                         </div>
                       </>

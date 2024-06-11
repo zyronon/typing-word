@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import {DefaultWord, ShortcutKey, Word} from "@/types.ts";
+import {getDefaultWord, ShortcutKey, Word} from "@/types.ts";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio, useTTsPlayAudio} from "@/hooks/sound.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import {cloneDeep} from "lodash-es";
 import {onMounted, onUnmounted, watch} from "vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
 
@@ -13,7 +12,7 @@ interface IProps {
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  word: () => cloneDeep(DefaultWord),
+  word: () => getDefaultWord(),
 })
 
 const emit = defineEmits<{
