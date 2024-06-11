@@ -217,7 +217,7 @@ defineRender(() => {
           </div>
           {
             wordFormData.type ? (
-                <div class="add w-1/2">
+                <div class="flex-1 ml-4">
                   <div class="common-title">
                     {wordFormData.type === FormMode.Add ? '添加' : '修改'}单词
                   </div>
@@ -226,7 +226,7 @@ defineRender(() => {
                       ref="wordFormRef"
                       rules={wordRules}
                       model={wordForm}
-                      label-width="6rem">
+                      label-width="7rem">
                     <el-form-item label="单词" prop="word">
                       <el-input
                           modelValue={wordForm.word}
@@ -238,7 +238,7 @@ defineRender(() => {
                           modelValue={wordForm.trans}
                           onUpdate:model-value={e => wordForm.trans = e}
                           placeholder="多个翻译请换行"
-                          autosize={{minRows: 2, maxRows: 6}}
+                          autosize={{minRows: 6, maxRows: 10}}
                           type="textarea"/>
                     </el-form-item>
                     <el-form-item label="音标/发音①">

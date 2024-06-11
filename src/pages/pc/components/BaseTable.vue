@@ -36,11 +36,17 @@ const emit = defineEmits<{
 }>()
 
 const settingStore = useSettingStore()
-const listRef: any = $ref()
+let listRef: any = $ref()
 
 function scrollToBottom() {
   nextTick(() => {
     listRef?.scrollTo(0, listRef.scrollHeight)
+  })
+}
+
+function scrollToTop() {
+  nextTick(() => {
+    listRef?.scrollTo(0, 0)
   })
 }
 
@@ -49,7 +55,6 @@ function scrollToItem(index: number) {
     listRef?.children[index]?.scrollIntoView({block: 'center', behavior: 'smooth'})
   })
 }
-
 
 defineExpose({scrollToBottom, scrollToItem})
 
@@ -106,7 +111,7 @@ function handleBatchDel() {
 
 function handlePageNo(e) {
   pageNo = e
-  console.log('listRef', listRef)
+  scrollToTop()
 }
 
 const s = useSlots()
@@ -202,7 +207,7 @@ defineRender(
                   : currentList.length ? (
                       <>
                         <div class="flex-1 overflow-auto"
-                             ref='listRef'>
+                             ref={e => listRef = e}>
                           {currentList.map((item) => {
                             return (
                                 <div class="list-item-wrapper"
