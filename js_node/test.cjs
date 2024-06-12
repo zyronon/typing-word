@@ -24,7 +24,7 @@ async function test() {
     console.log('进度', i)
     await sleep(100)
     axios({
-      url: 'http://localhost/index.php/v1/support/test',
+      url: 'http://localhost/index.php/v1/support/addWord',
       method: 'post',
       data: v
     }).then(r => {
