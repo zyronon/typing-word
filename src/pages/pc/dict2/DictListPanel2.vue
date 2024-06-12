@@ -75,6 +75,7 @@ function change(e) {
   e.dict.sort = Sort.normal
   store.changeWordDict(getDefaultDict(e.dict))
   ElMessage.success('切换成功')
+  back()
 }
 </script>
 
