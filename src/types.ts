@@ -16,28 +16,26 @@ export type Word = {
   "phonetic0": string,
   "phonetic1": string,
   "trans": WordTrans[]
-  checked?: boolean,
   sentences?: { v: string, tran: string }[],
   relWords?: { w: string, tran: string }[],
   phrases?: { v: string, tran: string } [],
   synos?: { w: string, tran: string } [],
-  memory?: any,
+  memory?: string,
 }
 
-export const DefaultWord: Word = {
-  word: '',
-  phonetic0: '',
-  phonetic1: '',
-  trans: [],
-}
 
-export function getDefaultWord(val?: any) {
+export function getDefaultWord(val?: any): Word {
   return {
     id: '',
     word: '',
     phonetic0: '',
     phonetic1: '',
     trans: [],
+    sentences: [],
+    relWords: [],
+    phrases: [],
+    synos: [],
+    memory: '',
     ...val
   }
 }

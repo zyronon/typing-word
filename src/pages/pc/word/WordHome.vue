@@ -61,9 +61,9 @@ function changePerDayStudyNumber() {
 
 <template>
   <BasePage>
-    <div class="card flex gap-10 items-center">
-      <div class="flex-1">
-        <div class="flex gap-5">
+    <div class="card flex gap-10">
+      <div class="flex-1 flex flex-col gap-2">
+        <div class="flex">
           <div class="bg-slate-200 px-3 h-14 rounded-md flex items-center">
             <span class="text-xl font-bold">{{ store.sdict.name }}</span>
             <BaseIcon
@@ -72,23 +72,8 @@ function changePerDayStudyNumber() {
                 class="ml-4"
                 @click="router.push('/dict')"/>
           </div>
-          <div class="flex-1 flex flex-col justify-end items-end">
-            <div class="flex gap-3 items-center">
-              每日目标
-              <div
-                  style="color:#ac6ed1;"
-                  @click="show = true;tempPerDayStudyNumber = store.sdict.perDayStudyNumber"
-                  class="bg-slate-200 px-2 h-10 flex center text-2xl rounded cursor-pointer">
-                {{ store.sdict.perDayStudyNumber }}
-              </div>
-              个单词
-            </div>
-            <div class="mt-2 text-sm">
-              预计完成日期：{{ _getAccomplishDate(store.sdict.words.length, store.sdict.perDayStudyNumber) }}
-            </div>
-          </div>
         </div>
-        <div class="mt-2">
+        <div class="">
           <div class="text-sm flex justify-between">
             已学习{{ store.currentStudyProgress }}%
             <span>{{ store.sdict.lastLearnIndex }} / {{
@@ -97,9 +82,12 @@ function changePerDayStudyNumber() {
           </div>
           <el-progress class="mt-1" :percentage="store.currentStudyProgress" :show-text="false"></el-progress>
         </div>
+        <div class="text-sm text-align-end">
+          预计完成日期：{{ _getAccomplishDate(store.sdict.words.length, store.sdict.perDayStudyNumber) }}
+        </div>
       </div>
 
-      <div class="w-3/10 flex flex-col gap-4">
+      <div class="w-3/10 flex flex-col justify-evenly">
         <div class="center text-xl">今日任务</div>
         <div class="flex">
           <div class="flex-1 flex flex-col items-center">
@@ -119,12 +107,24 @@ function changePerDayStudyNumber() {
           </div>
         </div>
       </div>
-      <div class="">
+
+      <div class="flex flex-col items-end justify-around">
+        <div class="flex gap-1 items-center">
+          每日目标
+          <div
+              style="color:#ac6ed1;"
+              @click="show = true;tempPerDayStudyNumber = store.sdict.perDayStudyNumber"
+              class="bg-slate-200 px-2 h-10 flex center text-2xl rounded cursor-pointer">
+            {{ store.sdict.perDayStudyNumber }}
+          </div>
+          个单词
+        </div>
         <div class="rounded-xl bg-slate-800 flex items-center gap-2 py-3 px-5 text-white cursor-pointer"
              @click="study">
           <span>开始学习</span>
           <Icon icon="icons8:right-round" class="text-2xl"/>
         </div>
+
       </div>
     </div>
 
