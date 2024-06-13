@@ -794,32 +794,59 @@ async function sleep(val) {
   })
 }
 
-async function c() {
-  let dict = newDicts[0]
+async function c(dict) {
+  // dict = newDicts[0]
   let url = `../public/dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
-  let str = fs.readFileSync(url, "utf8");
-  let list = JSON.parse(str)
-  dict.words = list.map(v => v.word)
+  return new Promise((resolve, reject) => {
+    try {
+      let str = fs.readFileSync(url, "utf8");
+      let list = JSON.parse(str)
+      dict.words = list.map(v => v.word)
+      dict.tags = dict.tags.filter(v => {
+        return v !== '所有'
+      })
+      console.log('  ')
+      console.log('----------------------')
+      console.log('名字', dict.name, dict.url, dict.length, dict.tags)
+      axios({
+        url: 'http://localhost/index.php/v1/support/addDict', method: 'post', data: dict
+      }).then(r => {
+        if (r.data.success) {
+          console.log(r.data.msg, r.data.data)
+          fs.writeFileSync('./failDict.txt', JSON.stringify(r.data.data, null, 2));
+          fs.writeFileSync(`./uploadDict/${dict.url}`, JSON.stringify(dict, null, 2));
+          resolve(true)
 
-  console.log('名字', dict.name)
-  await sleep(5000)
-  axios({
-    url: 'http://localhost/index.php/v1/support/addDict', method: 'post', data: dict
-  }).then(r => {
-    if (r.data.success) {
-      console.log('成功', r.data.data)
-      fs.writeFileSync('./failDict.txt', JSON.stringify(r.data.data, null, 2));
-      fs.writeFileSync(`./uploadDict/${dict.url}`, JSON.stringify(dict, null, 2));
-      fs.unlink(url, (err) => {
-        if (err) throw err;
-        console.log(dict.name, '已删除');
-      });
-    } else {
-      console.log('失败1', r.data.msg)
+          // fs.unlink(url, (err) => {
+          //   resolve(true)
+          //   if (err) throw err;
+          //   console.log(dict.name, '已删除');
+          //   console.log('----------------------')
+          // });
+        } else {
+          resolve(true)
+
+          console.log('失败1', r.data.msg)
+        }
+      }).catch(r => {
+        resolve(true)
+        console.log('失败2', r)
+      })
+    } catch (e) {
+      resolve(true)
+      console.log('读取文件失败', dict.name, e)
     }
-  }).catch(r => {
-    console.log('失败2', r)
   })
 }
 
-c()
+async function s() {
+  for (let i = 0; i < newDicts.length; i++) {
+    let v = newDicts[i]
+    console.log('进度', (i / newDicts.length).toFixed(2))
+    await c(v)
+    // await sleep(5000)
+  }
+}
+
+c(newDicts[0])
+// s()
