@@ -1,6 +1,6 @@
 let path = require("path");
 let fs = require("fs");
-const axios = require('axios')
+let axios = require('axios')
 
 let DictType = {
   word: 'word'
@@ -850,3 +850,4 @@ async function s() {
 
 c(newDicts[0])
 // s()
+
