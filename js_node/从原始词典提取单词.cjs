@@ -1,6 +1,9 @@
 let path = require("path");
 let fs = require("fs");
 
+//词典来自：https://github.com/kajweb/dict
+//下载json词典，放到dict目录下
+
 let read = './dict/'
 let save = "./res/";
 
@@ -11,7 +14,6 @@ dirs.forEach(dictName => {
 })
 
 // formatDict(read, 'BEC_2.json')
-
 
 function formatDict(path, name) {
   try {
