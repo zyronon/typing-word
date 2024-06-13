@@ -1,0 +1,5158 @@
+[
+  {
+    "word": "good",
+    "trans": [
+      {
+        "cn": "adj.好的，优秀的，有益的，漂亮的，健全的"
+      },
+      {
+        "cn": "n.好处，利益，善良，善行，好人"
+      },
+      {
+        "cn": "adv.同well"
+      }
+    ],
+    "phonetic0": "gʊd",
+    "phonetic1": "ɡʊd"
+  },
+  {
+    "word": "morning",
+    "trans": [
+      {
+        "cn": "n.早晨，上午，黎明，早期，初期"
+      }
+    ],
+    "phonetic0": "ˈmɔ:nɪŋ",
+    "phonetic1": "ˈmɔ:rnɪŋ"
+  },
+  {
+    "word": "Good morning!",
+    "trans": [
+      {
+        "cn": "早上好！"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "hi",
+    "trans": [
+      {
+        "cn": "int.（用作问候语）嘿，喂abbr.夏威夷群岛的书面缩写，（=high intensity）高强度"
+      }
+    ],
+    "phonetic0": "haɪ",
+    "phonetic1": "haɪ"
+  },
+  {
+    "word": "hello",
+    "trans": [
+      {
+        "cn": "int.哈喽，喂，你好，您好，表示问候，打招呼"
+      },
+      {
+        "cn": "n.“喂”的招呼声或问候声"
+      },
+      {
+        "cn": "vi.喊“喂”"
+      }
+    ],
+    "phonetic0": "hə'ləʊ",
+    "phonetic1": "həˈloʊ"
+  },
+  {
+    "word": "afternoon",
+    "trans": [
+      {
+        "cn": "n.下午，后期，后部"
+      }
+    ],
+    "phonetic0": "ˌɑ:ftəˈnu:n",
+    "phonetic1": "ˌæftərˈnu:n"
+  },
+  {
+    "word": "Good afternoon!",
+    "trans": [
+      {
+        "cn": "下午好！"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "evening",
+    "trans": [
+      {
+        "cn": "n.傍晚，黄昏，晚会，晚年，衰退期，末期"
+      },
+      {
+        "cn": "adj.在晚上的，为晚上的，晚上用的"
+      },
+      {
+        "cn": "int.晚上好"
+      }
+    ],
+    "phonetic0": "ˈi:vnɪŋ",
+    "phonetic1": "ˈivnɪŋ"
+  },
+  {
+    "word": "Good evening!",
+    "trans": [
+      {
+        "cn": "晚上好！"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "how",
+    "trans": [
+      {
+        "cn": "adv.怎样，健康状况如何，到何种地步，以任何方式"
+      },
+      {
+        "cn": "n.方法，方式"
+      }
+    ],
+    "phonetic0": "haʊ",
+    "phonetic1": "haʊ"
+  },
+  {
+    "word": "are",
+    "trans": [
+      {
+        "cn": "v.(be) 是"
+      }
+    ],
+    "phonetic0": "ɑ:(r)",
+    "phonetic1": "ɑː(r)"
+  },
+  {
+    "word": "you",
+    "trans": [
+      {
+        "cn": "pron.你，你们，您们，各位，大家"
+      }
+    ],
+    "phonetic0": "ju",
+    "phonetic1": "jə"
+  },
+  {
+    "word": "How are you?",
+    "trans": [
+      {
+        "cn": "你好吗？"
+      }
+    ],
+    "phonetic0": "haʊ ɑr ju",
+    "phonetic1": "haʊ ɑr ju"
+  },
+  {
+    "word": "I",
+    "trans": [
+      {
+        "cn": "pron.我，个人，利己主义者"
+      },
+      {
+        "cn": "n.碘元素，英语字母表中第九个字母，罗马数字1"
+      }
+    ],
+    "phonetic0": "aɪ",
+    "phonetic1": "aɪ"
+  },
+  {
+    "word": "am",
+    "trans": [
+      {
+        "cn": "v. be的人称形式之一 "
+      }
+    ],
+    "phonetic0": "æm",
+    "phonetic1": "æm"
+  },
+  {
+    "word": "fine",
+    "trans": [
+      {
+        "cn": "adj.好的，上等的，纤细的，精致的，健康的，晴朗的"
+      },
+      {
+        "cn": "n.罚款，音乐终止，晴天，地租"
+      },
+      {
+        "cn": "vt.罚款，澄清"
+      },
+      {
+        "cn": "adv.很好地，巧妙地"
+      }
+    ],
+    "phonetic0": "faɪn",
+    "phonetic1": "faɪn"
+  },
+  {
+    "word": "thanks",
+    "trans": [
+      {
+        "cn": "n.感谢，谢谢，感谢，谢谢，道谢的话( thank的名词复数 )"
+      },
+      {
+        "cn": "int.感激（的），致谢（的）"
+      },
+      {
+        "cn": "v.谢谢，感谢( thank的第三人称单数 )，责怪"
+      }
+    ],
+    "phonetic0": "θæŋks",
+    "phonetic1": "θæŋks"
+  },
+  {
+    "word": "OK",
+    "trans": [
+      {
+        "cn": "adj.好的，还不错的，很好的"
+      }
+    ],
+    "phonetic0": "əʊˈkeɪ",
+    "phonetic1": "oˈke"
+  },
+  {
+    "word": "what",
+    "trans": [
+      {
+        "cn": "pron.（用以询问某人或某事物的词）什么，多少，…的事物"
+      },
+      {
+        "cn": "adj.…的（事物或人）"
+      },
+      {
+        "cn": "adv.（用于感叹句中）"
+      },
+      {
+        "cn": "int.（用以表示不相信或惊奇），（用以表示未听清楚对方说的话）"
+      }
+    ],
+    "phonetic0": "wɒt",
+    "phonetic1": "wɑ:t"
+  },
+  {
+    "word": "is",
+    "trans": [
+      {
+        "cn": "是（be的三单形式）"
+      },
+      {
+        "cn": "存在"
+      }
+    ],
+    "phonetic0": "ɪz",
+    "phonetic1": "ɪz"
+  },
+  {
+    "word": "this",
+    "trans": [
+      {
+        "cn": "pron.这，这个，这事，这人，这时，下面所说的事"
+      },
+      {
+        "cn": "adj.这，这个，刚过去的，即将到来的，今…，本…"
+      },
+      {
+        "cn": "adv.这样地，就是这样，这么地"
+      }
+    ],
+    "phonetic0": "ðɪs",
+    "phonetic1": "ðɪs"
+  },
+  {
+    "word": "in",
+    "trans": [
+      {
+        "cn": "prep.采用（某种方式），穿着，带着，（表示位置）在…里面，（表示领域，范围）在…以内，（表示品质、能力等）在…之中"
+      },
+      {
+        "cn": "adv.在家，进入，到达，流行，当选"
+      },
+      {
+        "cn": "adj.在内的，朝内的，在位的，执政的，口语流行的，时髦的，（车等）到站的"
+      },
+      {
+        "cn": "n.执政党，掌权者，知情者，<美口>入口，门路，<体>（板球或棒球）攻球的一方"
+      }
+    ],
+    "phonetic0": "ɪn",
+    "phonetic1": "ɪn"
+  },
+  {
+    "word": "English",
+    "trans": [
+      {
+        "cn": "n.英语"
+      },
+      {
+        "cn": "adj.英格兰的，英国的，英语的，英格兰人的"
+      }
+    ],
+    "phonetic0": "ˈɪŋglɪʃ",
+    "phonetic1": "ˈɪŋɡlɪʃ"
+  },
+  {
+    "word": "in English",
+    "trans": [
+      {
+        "cn": "用英语"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "map",
+    "trans": [
+      {
+        "cn": "n.地图，天体图，类似地图的事物，〈美俚〉脸，面孔，（染色体上基因排列的）遗传图"
+      },
+      {
+        "cn": "vt.绘制（一地区等的）地图，勘查，详细规划，遗传学比对"
+      }
+    ],
+    "phonetic0": "mæp",
+    "phonetic1": "mæp"
+  },
+  {
+    "word": "cup",
+    "trans": [
+      {
+        "cn": "n.杯子，一杯（的量），（胸罩的）罩杯，优胜杯"
+      },
+      {
+        "cn": "vt.使（手）窝成杯状，使（双手）成圆状托起，为…拔火罐"
+      }
+    ],
+    "phonetic0": "kʌp",
+    "phonetic1": "kʌp"
+  },
+  {
+    "word": "ruler",
+    "trans": [
+      {
+        "cn": "n.尺，直尺，统治者"
+      }
+    ],
+    "phonetic0": "ˈru:lə(r)",
+    "phonetic1": "ˈrulɚ"
+  },
+  {
+    "word": "pen",
+    "trans": [
+      {
+        "cn": "n.笔，笔尖，笔法，文笔，作家，围栏"
+      },
+      {
+        "cn": "vt.写，把…关入栏中，关押，囚禁"
+      }
+    ],
+    "phonetic0": "pen",
+    "phonetic1": "pɛn"
+  },
+  {
+    "word": "orange",
+    "trans": [
+      {
+        "cn": "n.桔子，橙子，植桔树，橙色，桔色"
+      },
+      {
+        "cn": "adj.橙色的，橘色的，桔红色的"
+      }
+    ],
+    "phonetic0": "ˈɒrɪndʒ",
+    "phonetic1": "ˈɔ:rɪndʒ"
+  },
+  {
+    "word": "jacket",
+    "trans": [
+      {
+        "cn": "n.短上衣，夹克，土豆皮，书籍的护封，文件套，公文夹"
+      },
+      {
+        "cn": "vt.给…穿夹克，给…装护套，给…包上护封，〈口〉打"
+      }
+    ],
+    "phonetic0": "ˈdʒækɪt",
+    "phonetic1": "ˈdʒækɪt"
+  },
+  {
+    "word": "key",
+    "trans": [
+      {
+        "cn": "n.钥匙，（打字机等的）键，关键，线索，秘诀，（音乐的）调"
+      },
+      {
+        "cn": "vt.键入，锁上，调节…的音调，提供线索"
+      },
+      {
+        "cn": "vi.使用钥匙"
+      },
+      {
+        "cn": "adj.关键的，主要的"
+      }
+    ],
+    "phonetic0": "ki:",
+    "phonetic1": "ki"
+  },
+  {
+    "word": "quilt",
+    "trans": [
+      {
+        "cn": "n.被子，棉被，被状物"
+      },
+      {
+        "cn": "v.缝（被），用垫料填塞后缝拢，东拼西凑地做，用摘抄等方法编辑"
+      },
+      {
+        "cn": "vt.东拼西凑地编，加软衬料后缝制"
+      },
+      {
+        "cn": "vi.缝被子"
+      }
+    ],
+    "phonetic0": "kwɪlt",
+    "phonetic1": "kwɪlt"
+  },
+  {
+    "word": "it",
+    "trans": [
+      {
+        "cn": "pron.它，他，正好是所需的，事实情况"
+      },
+      {
+        "cn": "n.<美俚>傻瓜，笨蛋，<俚>绝妙的人，理想的东西，登峰造极"
+      }
+    ],
+    "phonetic0": "ɪt",
+    "phonetic1": "ɪt"
+  },
+  {
+    "word": "a",
+    "trans": [
+      {
+        "cn": "art.一（个），每一（个），任一（个）"
+      }
+    ],
+    "phonetic0": "ə",
+    "phonetic1": "eɪ"
+  },
+  {
+    "word": "that",
+    "trans": [
+      {
+        "cn": "det.那个，那"
+      },
+      {
+        "cn": "pron.那个，那"
+      },
+      {
+        "cn": "conj.多么，如此…以至，用于某些动词、形容词和名词后，引出各种从句"
+      },
+      {
+        "cn": "adv.不那么，那样"
+      }
+    ],
+    "phonetic0": "ðæt",
+    "phonetic1": "ðət"
+  },
+  {
+    "word": "spell",
+    "trans": [
+      {
+        "cn": "vt.拼写，导致，意味着，组成（一个词）的字母是…"
+      },
+      {
+        "cn": "vi.轮替"
+      },
+      {
+        "cn": "n.符咒，咒语，魅力，一段时间，轮班"
+      }
+    ],
+    "phonetic0": "spel",
+    "phonetic1": "spɛl"
+  },
+  {
+    "word": "please",
+    "trans": [
+      {
+        "cn": "int.请"
+      },
+      {
+        "cn": "vt.& vi.使高兴，使满意，讨人喜欢，讨好"
+      }
+    ],
+    "phonetic0": "pli:z",
+    "phonetic1": "pliz"
+  },
+  {
+    "word": "color",
+    "trans": [
+      {
+        "cn": "n.<美>颜色，色彩，肤色，脸色，血色，颜料，染料，本质"
+      },
+      {
+        "cn": "v.<美>给…涂颜色，改变…的颜色，粉饰，渲染，使带上色彩，脸红"
+      }
+    ],
+    "phonetic0": "'kʌlə(r)",
+    "phonetic1": "ˈkʌlɚ"
+  },
+  {
+    "word": "red",
+    "trans": [
+      {
+        "cn": "adj.红色的，（脸）涨红的，烧红的，红头发的"
+      },
+      {
+        "cn": "n.红色，红衣服，红颜料，红葡萄酒"
+      }
+    ],
+    "phonetic0": "red",
+    "phonetic1": "rɛd"
+  },
+  {
+    "word": "yellow",
+    "trans": [
+      {
+        "cn": "adj.黄色的，黄皮肤的，黄种人的，胆怯的"
+      },
+      {
+        "cn": "vt.& vi.（使某物）变黄或发黄"
+      },
+      {
+        "cn": "n.黄色，黄种人，黄色颜料"
+      }
+    ],
+    "phonetic0": "ˈjeləʊ",
+    "phonetic1": "ˈjeloʊ"
+  },
+  {
+    "word": "green",
+    "trans": [
+      {
+        "cn": "adj.绿色的，未熟的，青春的，未成熟的，主张保护环境的"
+      },
+      {
+        "cn": "n.绿色蔬菜，绿色的衣服，植物"
+      },
+      {
+        "cn": "vi.绿化，使重视环境保护问题"
+      }
+    ],
+    "phonetic0": "gri:n",
+    "phonetic1": "ɡrin"
+  },
+  {
+    "word": "blue",
+    "trans": [
+      {
+        "cn": "n.蓝色，复数（美国海、陆、空三军穿的）蓝色制服，蓝颜料，the blue(s)用作单数或复数布鲁斯（歌曲）（一种伤感的美国黑人民歌）"
+      },
+      {
+        "cn": "adj.蓝色的，沮丧的，忧郁的，下流的"
+      },
+      {
+        "cn": "vt.把…染成蓝色，使成蓝色，给…用上蓝剂，用上蓝剂于"
+      },
+      {
+        "cn": "vi.变成蓝色，呈蓝色"
+      }
+    ],
+    "phonetic0": "blu:",
+    "phonetic1": "blu"
+  },
+  {
+    "word": "black",
+    "trans": [
+      {
+        "cn": "adj.黑（色）的，黑色人种的，黑暗的，不加牛奶的"
+      },
+      {
+        "cn": "n.黑色，黑人，黑颜料，黑暗"
+      },
+      {
+        "cn": "v.使变黑，抵制，拒绝，使变黑暗"
+      }
+    ],
+    "phonetic0": "blæk",
+    "phonetic1": "blæk"
+  },
+  {
+    "word": "white",
+    "trans": [
+      {
+        "cn": "adj.白色的，纯洁的，无色的，透明的，白衣的，白种人的"
+      },
+      {
+        "cn": "n.白色，白种人，空白，白色颜料"
+      },
+      {
+        "cn": "vt.（书写，印刷等）留出空白处，使变白色，刷白，漂白"
+      }
+    ],
+    "phonetic0": "waɪt",
+    "phonetic1": "waɪt"
+  },
+  {
+    "word": "purple",
+    "trans": [
+      {
+        "cn": "adj.紫色的，帝王的，词藻华美的"
+      },
+      {
+        "cn": "n.紫色，紫（红）衣，紫袍，帝位，皇权，皇族"
+      },
+      {
+        "cn": "vt.使成紫色"
+      },
+      {
+        "cn": "vi.变紫"
+      }
+    ],
+    "phonetic0": "ˈpɜ:pl",
+    "phonetic1": "ˈpɜ:rpl"
+  },
+  {
+    "word": "brown",
+    "trans": [
+      {
+        "cn": "adj.棕色的，褐色的，被晒黑的，未去壳的"
+      },
+      {
+        "cn": "n.褐色，棕色"
+      },
+      {
+        "cn": "v.变成棕色，成褐色，晒黑，烤得焦黄"
+      }
+    ],
+    "phonetic0": "braʊn",
+    "phonetic1": "braʊn"
+  },
+  {
+    "word": "the",
+    "trans": [
+      {
+        "cn": "art.指已提到的人（物），指说话人与听者已知的人（物），用于独一无二的事物前，与形容词最高级和序数词连用"
+      }
+    ],
+    "phonetic0": "ðə",
+    "phonetic1": "ðə"
+  },
+  {
+    "word": "now",
+    "trans": [
+      {
+        "cn": "adv.现在，其时，立刻，（改变话题或要对方做某事前，引起对方注意）喂"
+      },
+      {
+        "cn": "adj.现在的，当今的，现任的"
+      },
+      {
+        "cn": "n.现在，目前，目前"
+      },
+      {
+        "cn": "conj.由于，既然"
+      }
+    ],
+    "phonetic0": "naʊ",
+    "phonetic1": "naʊ"
+  },
+  {
+    "word": "see",
+    "trans": [
+      {
+        "cn": "vt.& vi.看见，领会，理解，查看，参观"
+      },
+      {
+        "cn": "n.主教教区，主教权限，牧座"
+      }
+    ],
+    "phonetic0": "si:",
+    "phonetic1": "si"
+  },
+  {
+    "word": "can",
+    "trans": [
+      {
+        "cn": "aux.能，能够，可以，可能"
+      },
+      {
+        "cn": "vt.将…装入密封罐中保存"
+      },
+      {
+        "cn": "n.罐头，（用金属或塑料制作的）容器，（马口铁或其他金属制作的）食品罐头"
+      }
+    ],
+    "phonetic0": "kæn",
+    "phonetic1": "kæn"
+  },
+  {
+    "word": "say",
+    "trans": [
+      {
+        "cn": "vi.说， 讲，表明，宣称，假设，约莫"
+      },
+      {
+        "cn": "vt.表明，念，说明，比方说"
+      },
+      {
+        "cn": "n.发言权，说话，要说的话，发言权"
+      }
+    ],
+    "phonetic0": "seɪ",
+    "phonetic1": "se"
+  },
+  {
+    "word": "my",
+    "trans": [
+      {
+        "cn": "adj.我的(I的所有格形式)"
+      },
+      {
+        "cn": "int.啊呀，天啊"
+      }
+    ],
+    "phonetic0": "maɪ",
+    "phonetic1": "maɪ"
+  },
+  {
+    "word": "name",
+    "trans": [
+      {
+        "cn": "n.名字，名声，有…名称的，著名的人物"
+      },
+      {
+        "cn": "vt.确定，决定，给…取名，说出…的名字"
+      },
+      {
+        "cn": "adj.著名的，据以取名"
+      }
+    ],
+    "phonetic0": "neɪm",
+    "phonetic1": "nem"
+  },
+  {
+    "word": "nice",
+    "trans": [
+      {
+        "cn": "adj.美好的，愉快的，正派的，友好的，亲切的，细致的"
+      }
+    ],
+    "phonetic0": "naɪs",
+    "phonetic1": "naɪs"
+  },
+  {
+    "word": "to",
+    "trans": [
+      {
+        "cn": "prep.向，朝着，到，关于，属于"
+      },
+      {
+        "cn": "adv.朝一个方向的，到某种状态，关闭"
+      }
+    ],
+    "phonetic0": "tə",
+    "phonetic1": "tu,tə"
+  },
+  {
+    "word": "meet",
+    "trans": [
+      {
+        "cn": "vt.& vi.相遇，相识，开会，接触（某物）"
+      },
+      {
+        "cn": "vt.满足，支付，迎接，经历（常指不愉快的事）"
+      },
+      {
+        "cn": "n.运动会，体育比赛，猎狐运动（尤其英式英语）"
+      },
+      {
+        "cn": "adj.适当的，合适的，恰当的"
+      }
+    ],
+    "phonetic0": "mi:t",
+    "phonetic1": "mit"
+  },
+  {
+    "word": "too",
+    "trans": [
+      {
+        "cn": "adv.也，太，很，非常"
+      }
+    ],
+    "phonetic0": "tu:",
+    "phonetic1": "tu:"
+  },
+  {
+    "word": "your",
+    "trans": [
+      {
+        "cn": "pron.你的，你们的，尊，玉，乃"
+      }
+    ],
+    "phonetic0": "jɔ:(r)",
+    "phonetic1": "jʊr"
+  },
+  {
+    "word": "Ms.",
+    "trans": [
+      {
+        "cn": "n. 女士(用在婚姻状况不明的女子姓名前)"
+      }
+    ],
+    "phonetic0": "miz",
+    "phonetic1": "mɪz"
+  },
+  {
+    "word": "his",
+    "trans": [
+      {
+        "cn": "pron.(he的所有格)他的，(he的物主代词)他的东西det.属于他的，用于名词前，自己的，指某人的，上帝的"
+      }
+    ],
+    "phonetic0": "hɪz",
+    "phonetic1": "hɪz"
+  },
+  {
+    "word": "and",
+    "trans": [
+      {
+        "cn": "conj.和，与，而且，于是，然后，因此"
+      }
+    ],
+    "phonetic0": "ənd",
+    "phonetic1": "ən,ænd"
+  },
+  {
+    "word": "her",
+    "trans": [
+      {
+        "cn": "pron.(she的宾格)她，(she的所有格)她的，她，指某个国家，（一艘）船"
+      }
+    ],
+    "phonetic0": "hə(r)",
+    "phonetic1": "ɚ,hɚr"
+  },
+  {
+    "word": "yes",
+    "trans": [
+      {
+        "cn": "adv.是，（表示刚想起某事）哦，（表示不相信某人所言）真的吗，（鼓励某人继续讲）往下说"
+      },
+      {
+        "cn": "n.“是”，“行”，同意，答应，肯定的回答，赞成票"
+      }
+    ],
+    "phonetic0": "jes",
+    "phonetic1": "jɛs"
+  },
+  {
+    "word": "she",
+    "trans": [
+      {
+        "cn": "pron.她，它"
+      }
+    ],
+    "phonetic0": "ʃi",
+    "phonetic1": "ʃi"
+  },
+  {
+    "word": "he",
+    "trans": [
+      {
+        "cn": "pron.他，它，一个人"
+      },
+      {
+        "cn": "n.雄性动物"
+      }
+    ],
+    "phonetic0": "hi",
+    "phonetic1": "hi"
+  },
+  {
+    "word": "no",
+    "trans": [
+      {
+        "cn": "adv.不，否，一点也没有"
+      },
+      {
+        "cn": "adj.没有的，不许的，一点儿也没有，决不是的"
+      },
+      {
+        "cn": "n.不，否定，否认，反对票，否决票abbr.数字(number)，元素锘(nobelium)的符号"
+      }
+    ],
+    "phonetic0": "nəʊ",
+    "phonetic1": "noʊ"
+  },
+  {
+    "word": "not",
+    "trans": [
+      {
+        "cn": "adv.不，用以表示否定、否认、拒绝、禁止等不是，几乎不，未必，没有用于否定后面的词或短语"
+      }
+    ],
+    "phonetic0": "nɒt",
+    "phonetic1": "nɑ:t"
+  },
+  {
+    "word": "zero",
+    "trans": [
+      {
+        "cn": "n.（数字）0，零度"
+      },
+      {
+        "cn": "adj.全无的，没有的"
+      },
+      {
+        "cn": "v. .聚焦，集中"
+      }
+    ],
+    "phonetic0": "ˈzɪərəʊ",
+    "phonetic1": "ˈzɪroʊ"
+  },
+  {
+    "word": "one",
+    "trans": [
+      {
+        "cn": "num.（数字）一，一个，（基数）一，第一"
+      },
+      {
+        "cn": "n.一个人，一点钟，一体，独一"
+      },
+      {
+        "cn": "pron.一个人，任何人，本人，人家，东西"
+      },
+      {
+        "cn": "adj.某一个的，一体的，一方的"
+      }
+    ],
+    "phonetic0": "wʌn",
+    "phonetic1": "wʌn"
+  },
+  {
+    "word": "two",
+    "trans": [
+      {
+        "cn": "n.两个，两个东西，两点钟，一对"
+      },
+      {
+        "cn": "adj.两个的，我同"
+      },
+      {
+        "cn": "num.两个，第二，二"
+      }
+    ],
+    "phonetic0": "tu:",
+    "phonetic1": "tu"
+  },
+  {
+    "word": "three",
+    "trans": [
+      {
+        "cn": "num.三，三个，第三（章，页等）"
+      },
+      {
+        "cn": "n.三岁，三个人东西，三，三个"
+      },
+      {
+        "cn": "adj.三的，三个的"
+      }
+    ],
+    "phonetic0": "θri:",
+    "phonetic1": "θri"
+  },
+  {
+    "word": "four",
+    "trans": [
+      {
+        "cn": "num.四，四个，第四"
+      },
+      {
+        "cn": "n.四的，四个一组之物"
+      }
+    ],
+    "phonetic0": "fɔ:(r)",
+    "phonetic1": "for"
+  },
+  {
+    "word": "five",
+    "trans": [
+      {
+        "cn": "num.五，五个，与某人击掌问候（或庆祝胜利），第五"
+      },
+      {
+        "cn": "n.五，五个，5美元钞票，板得五分"
+      },
+      {
+        "cn": "adj.五的，五个的"
+      }
+    ],
+    "phonetic0": "faɪv",
+    "phonetic1": "faɪv"
+  },
+  {
+    "word": "six",
+    "trans": [
+      {
+        "cn": "n.六，六个，六岁，六点"
+      },
+      {
+        "cn": "num.六，六个"
+      }
+    ],
+    "phonetic0": "sɪks",
+    "phonetic1": "sɪks"
+  },
+  {
+    "word": "seven",
+    "trans": [
+      {
+        "cn": "num.七，七个，第七"
+      },
+      {
+        "cn": "n.七，七个"
+      }
+    ],
+    "phonetic0": "ˈsevn",
+    "phonetic1": "ˈsɛvən"
+  },
+  {
+    "word": "eight",
+    "trans": [
+      {
+        "cn": "num.八，八个，第八"
+      },
+      {
+        "cn": "n.八，八人（或物）一组，八人划船队"
+      },
+      {
+        "cn": "adj.八个的"
+      }
+    ],
+    "phonetic0": "eɪt",
+    "phonetic1": "et"
+  },
+  {
+    "word": "nine",
+    "trans": [
+      {
+        "cn": "num.九，九个，第九"
+      },
+      {
+        "cn": "n.九，九个"
+      },
+      {
+        "cn": "adj.九的，九个的"
+      }
+    ],
+    "phonetic0": "naɪn",
+    "phonetic1": "naɪn"
+  },
+  {
+    "word": "telephone",
+    "trans": [
+      {
+        "cn": "n.电话，电话机，（电话机的）话筒，受话器"
+      },
+      {
+        "cn": "vt.& vi.以电话传送（消息），给（某人）打电话，用电话与（某人）交谈"
+      }
+    ],
+    "phonetic0": "ˈtelɪfəʊn",
+    "phonetic1": "ˈtelɪfoʊn"
+  },
+  {
+    "word": "number",
+    "trans": [
+      {
+        "cn": "n.数字，数量，号码，编号"
+      },
+      {
+        "cn": "v.标号，总计，把…算作"
+      }
+    ],
+    "phonetic0": "ˈnʌmbə(r)",
+    "phonetic1": "ˈnʌmbɚ"
+  },
+  {
+    "word": "phone",
+    "trans": [
+      {
+        "cn": "n.电话，听筒，（发声或使用声音的）工具，说某种语言的"
+      },
+      {
+        "cn": "vt.& vi.打电话（给某人）"
+      }
+    ],
+    "phonetic0": "fəʊn",
+    "phonetic1": "foʊn"
+  },
+  {
+    "word": "telephone number",
+    "trans": [
+      {
+        "cn": "电话号码"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "phone number",
+    "trans": [
+      {
+        "cn": " 电话号码；联络电话；联系电话"
+      }
+    ],
+    "phonetic0": "[ˈfəʊn nʌmbə(r)]",
+    "phonetic1": "[ˈfəʊn nʌmbər]"
+  },
+  {
+    "word": "first",
+    "trans": [
+      {
+        "cn": "n.第一，最初，头等，一号，，乐高音部"
+      },
+      {
+        "cn": "adv.最早，最初，首次，宁愿，优先"
+      },
+      {
+        "cn": "adj.第一流的，最初的，最早的，基本的，概要的，高音的"
+      },
+      {
+        "cn": "num.第一"
+      }
+    ],
+    "phonetic0": "fɜ:st",
+    "phonetic1": "fɜ:rst"
+  },
+  {
+    "word": "first name",
+    "trans": [
+      {
+        "cn": "名"
+      }
+    ],
+    "phonetic0": null,
+    "phonetic1": null
+  },
+  {
+    "word": "last",
+    "trans": [
+      {
+        "cn": "n.末尾，最后，上个，鞋楦（做鞋的模型）"
+      },
+      {
+        "cn": "vt.经受住，到…之后，够用，足够维持（尤指某段时间）"
+      },
+      {
+        "cn": "adj.最近的，最后的，最不可能的，惟一剩下的"
+      },
+      {
+        "cn": "vi.持续"
+      },
+      {
+        "cn": "adv.上一次，最近一次，最后"
+      }
+    ],
+    "phonetic0": "lɑ:st",
+    "phonetic1": "læst"
+  },
+  {
+    "word": "last name",
+    "trans": [
+      {
+        "cn": "姓"
+      }
+    ],
+    "phonetic0": null,
+    "phonetic1": null
+  },
+  {
+    "word": "friend",
+    "trans": [
+      {
+        "cn": "n.朋友，友人，资助者，助手，近亲"
+      },
+      {
+        "cn": "v.<诗>与…为友"
+      }
+    ],
+    "phonetic0": "frend",
+    "phonetic1": "frɛnd"
+  },
+  {
+    "word": "China",
+    "trans": [
+      {
+        "cn": "n.中国"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "middle",
+    "trans": [
+      {
+        "cn": "n.中部，中间，腰部，中央，正中"
+      },
+      {
+        "cn": "adj.中部的，中央的，正中的，中间的"
+      },
+      {
+        "cn": "vt.把…放在中间，把…对折"
+      },
+      {
+        "cn": "vi.放在中间，对折"
+      }
+    ],
+    "phonetic0": "ˈmɪdl",
+    "phonetic1": "ˈmidl"
+  },
+  {
+    "word": "school",
+    "trans": [
+      {
+        "cn": "n.学校，上学，学院，群"
+      },
+      {
+        "cn": "vt.训练，锻炼，教育，教导，约束，给…上学"
+      }
+    ],
+    "phonetic0": "sku:l",
+    "phonetic1": "skul"
+  },
+  {
+    "word": "middle school",
+    "trans": [
+      {
+        "cn": "中学；初中"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "sister",
+    "trans": [
+      {
+        "cn": "n.姐妹，（称志同道合者）姐妹，修女，护士"
+      },
+      {
+        "cn": "adj.姐妹般的，同类型的"
+      },
+      {
+        "cn": "v.如姐妹般相待"
+      }
+    ],
+    "phonetic0": "ˈsɪstə(r)",
+    "phonetic1": "ˈsɪstɚ"
+  },
+  {
+    "word": "mother",
+    "trans": [
+      {
+        "cn": "n.母亲，妈妈，女修道院院长，大娘"
+      },
+      {
+        "cn": "vt.像母亲般地照顾，养育，溺爱"
+      }
+    ],
+    "phonetic0": "ˈmʌðə(r)",
+    "phonetic1": "ˈmʌðɚ"
+  },
+  {
+    "word": "father",
+    "trans": [
+      {
+        "cn": "n.父亲，祖先，（尤指天主教和东正教的）神父，天父"
+      },
+      {
+        "cn": "vt.成为父亲，创立（新思想），创造，发明（新方法）"
+      }
+    ],
+    "phonetic0": "ˈfɑ:ðə(r)",
+    "phonetic1": "ˈfɑðɚ"
+  },
+  {
+    "word": "parent",
+    "trans": [
+      {
+        "cn": "n.父亲（或母亲），先辈，根源，起源，保护者"
+      }
+    ],
+    "phonetic0": "ˈpeərənt",
+    "phonetic1": "ˈperənt"
+  },
+  {
+    "word": "brother",
+    "trans": [
+      {
+        "cn": "n.兄弟，同事，同胞，同志"
+      },
+      {
+        "cn": "int.（表示生气或吃惊）我的老兄！"
+      }
+    ],
+    "phonetic0": "ˈbrʌðə(r)",
+    "phonetic1": "ˈbrʌðɚ"
+  },
+  {
+    "word": "grandmother",
+    "trans": [
+      {
+        "cn": "n.（外）祖母，老奶奶，女祖先"
+      },
+      {
+        "cn": "vt.当…的祖母"
+      },
+      {
+        "cn": "vi.当祖母"
+      }
+    ],
+    "phonetic0": "ˈgrænmʌðə(r)",
+    "phonetic1": "ˈɡræn-"
+  },
+  {
+    "word": "grandfather",
+    "trans": [
+      {
+        "cn": "n.（外）祖父，始祖"
+      },
+      {
+        "cn": "vt.新规定限制，不受新条例"
+      }
+    ],
+    "phonetic0": "ˈgrænfɑ:ðə(r)",
+    "phonetic1": "ˈɡræn-"
+  },
+  {
+    "word": "grandparent",
+    "trans": [
+      {
+        "cn": "n.祖父或祖母，外祖父或外祖母"
+      }
+    ],
+    "phonetic0": "ˈgrænpeərənt",
+    "phonetic1": "ˈgrænperənt"
+  },
+  {
+    "word": "family",
+    "trans": [
+      {
+        "cn": "n.家庭，家族，孩子，祖先"
+      },
+      {
+        "cn": "adj.家庭的，一家所有的，属于家庭的，适合全家人的"
+      }
+    ],
+    "phonetic0": "ˈfæməli",
+    "phonetic1": "ˈfæmli"
+  },
+  {
+    "word": "those",
+    "trans": [
+      {
+        "cn": "adj.& pron.that的复数"
+      },
+      {
+        "cn": "adj.那些的，那"
+      },
+      {
+        "cn": "n.那，那个( that的名词复数)，（指较远的人或事物）那，（指已提到过或已知的人或事物）那，（特指）那"
+      }
+    ],
+    "phonetic0": "ðəʊz",
+    "phonetic1": "ðoʊz"
+  },
+  {
+    "word": "who",
+    "trans": [
+      {
+        "cn": "pron.谁，什么人，关系代词，有先行词，孰"
+      }
+    ],
+    "phonetic0": "hu:",
+    "phonetic1": "hu"
+  },
+  {
+    "word": "oh",
+    "trans": [
+      {
+        "cn": "int.（表示恐惧、惊讶、疑虑等）噢，啊，哎呀，冠于人名前，起呼语作用"
+      }
+    ],
+    "phonetic0": "əʊ",
+    "phonetic1": "o"
+  },
+  {
+    "word": "these",
+    "trans": [
+      {
+        "cn": "adj.这些的"
+      },
+      {
+        "cn": "pron.这些"
+      }
+    ],
+    "phonetic0": "ði:z",
+    "phonetic1": "ðiz"
+  },
+  {
+    "word": "they",
+    "trans": [
+      {
+        "cn": "pron.他/她/它们，人们，大家，政府，当局，她们"
+      }
+    ],
+    "phonetic0": "ðeɪ",
+    "phonetic1": "ðe"
+  },
+  {
+    "word": "well",
+    "trans": [
+      {
+        "cn": "adv.好，很，好意地，高高兴兴地"
+      },
+      {
+        "cn": "adj.健康的，井的，良好的，恰当的"
+      },
+      {
+        "cn": "int.（用于表示惊讶，疑虑，接受等）"
+      },
+      {
+        "cn": "n.泉，源泉，水井"
+      },
+      {
+        "cn": "vi.（液体）涌出，流出，涌流，涌上"
+      },
+      {
+        "cn": "vt.涌出，喷出"
+      }
+    ],
+    "phonetic0": "wel",
+    "phonetic1": "wɛl"
+  },
+  {
+    "word": "have",
+    "trans": [
+      {
+        "cn": "aux.用以构成完成式及完成式的不定式，表示已经…"
+      },
+      {
+        "cn": "vt.有，具有，拿，取得，从事，必须，不得不"
+      },
+      {
+        "cn": "n.〈口〉有产者，有钱人，富国，〈英俚〉欺骗，诈骗"
+      }
+    ],
+    "phonetic0": "həv",
+    "phonetic1": "hæv"
+  },
+  {
+    "word": "Have a good day!",
+    "trans": [
+      {
+        "cn": "(表示祝愿)过得愉快！"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "bye",
+    "trans": [
+      {
+        "cn": "int.再见，回头见"
+      },
+      {
+        "cn": "n.次要的东西，（体育比赛中）轮空"
+      }
+    ],
+    "phonetic0": "baɪ",
+    "phonetic1": "baɪ"
+  },
+  {
+    "word": "son",
+    "trans": [
+      {
+        "cn": "n.儿子，孩子，男性后裔，圣子（耶稣基督）"
+      }
+    ],
+    "phonetic0": "sʌn",
+    "phonetic1": "sʌn"
+  },
+  {
+    "word": "cousin",
+    "trans": [
+      {
+        "cn": "n.堂表兄弟姊妹，远亲，同辈"
+      }
+    ],
+    "phonetic0": "ˈkʌzn",
+    "phonetic1": "'kʌzn"
+  },
+  {
+    "word": "grandpa",
+    "trans": [
+      {
+        "cn": "n.<非正>爷爷，外公，老太爷"
+      }
+    ],
+    "phonetic0": "ˈgrænpɑ:",
+    "phonetic1": "ˈɡræmpə"
+  },
+  {
+    "word": "mom",
+    "trans": [
+      {
+        "cn": "n.<美>妈妈"
+      }
+    ],
+    "phonetic0": "mɒm",
+    "phonetic1": "mɑ:m"
+  },
+  {
+    "word": "aunt",
+    "trans": [
+      {
+        "cn": "n.阿姨，姨母，姑妈，舅妈，婶娘"
+      }
+    ],
+    "phonetic0": "ɑ:nt",
+    "phonetic1": "ænt"
+  },
+  {
+    "word": "grandma",
+    "trans": [
+      {
+        "cn": "n.奶奶，外婆na.<口>奶奶，外婆"
+      }
+    ],
+    "phonetic0": "ˈgrænmɑ:",
+    "phonetic1": "ˈɡrændˌmɑ,"
+  },
+  {
+    "word": "dad",
+    "trans": [
+      {
+        "cn": "n.爸爸，爹爹"
+      }
+    ],
+    "phonetic0": "dæd",
+    "phonetic1": "dæd"
+  },
+  {
+    "word": "uncle",
+    "trans": [
+      {
+        "cn": "n.叔叔，伯父，舅父，姑父，姨父"
+      }
+    ],
+    "phonetic0": "ˈʌŋkl",
+    "phonetic1": "ˈʌŋkəl"
+  },
+  {
+    "word": "daughter",
+    "trans": [
+      {
+        "cn": "n.女儿，产物，后代，（某地的）妇女，生子代"
+      },
+      {
+        "cn": "adj.女儿般的，生第一代的，子代的"
+      }
+    ],
+    "phonetic0": "ˈdɔ:tə(r)",
+    "phonetic1": "ˈdɔtɚ"
+  },
+  {
+    "word": "here",
+    "trans": [
+      {
+        "cn": "adv.在这里，这时，在这一点上，（给某人东西或指出某物时说）"
+      },
+      {
+        "cn": "n.这里"
+      },
+      {
+        "cn": "int.喂，嗨"
+      }
+    ],
+    "phonetic0": "hɪə(r)",
+    "phonetic1": "hɪr"
+  },
+  {
+    "word": "photo",
+    "trans": [
+      {
+        "cn": "n.照片，相片"
+      },
+      {
+        "cn": "vt.& vi.（给…）拍照"
+      }
+    ],
+    "phonetic0": "ˈfəʊtəʊ",
+    "phonetic1": "ˈfoʊtoʊ"
+  },
+  {
+    "word": "of",
+    "trans": [
+      {
+        "cn": "prep.关于，属于…的，由…制成"
+      },
+      {
+        "cn": "aux.助动词非标准用语、方言 =have 主用于虚拟语气"
+      }
+    ],
+    "phonetic0": "əv",
+    "phonetic1": "ʌv"
+  },
+  {
+    "word": "next",
+    "trans": [
+      {
+        "cn": "adj.紧接在后的，次于的，贴近的，紧邻的"
+      },
+      {
+        "cn": "adv.接下去，然后，居后地，依次的"
+      },
+      {
+        "cn": "n.下一位，下一个"
+      },
+      {
+        "cn": "prep.靠近，居于…之后，在…的隔壁"
+      }
+    ],
+    "phonetic0": "nekst",
+    "phonetic1": "nɛkst"
+  },
+  {
+    "word": "picture",
+    "trans": [
+      {
+        "cn": "n.照片，画像，图画，图片，影片，情景"
+      },
+      {
+        "cn": "vt.构想，想象，描绘，画，描述"
+      }
+    ],
+    "phonetic0": "ˈpɪktʃə(r)",
+    "phonetic1": "ˈpɪktʃɚ"
+  },
+  {
+    "word": "girl",
+    "trans": [
+      {
+        "cn": "n.女孩，姑娘，未婚女子，女职员，女演员，（男人的）女朋友"
+      }
+    ],
+    "phonetic0": "gɜ:l",
+    "phonetic1": "gɜ:rl"
+  },
+  {
+    "word": "dog",
+    "trans": [
+      {
+        "cn": "n.狗，蹩脚货，丑女人，卑鄙小人"
+      },
+      {
+        "cn": "v.困扰，跟踪"
+      }
+    ],
+    "phonetic0": "dɒg",
+    "phonetic1": "dɔ:g"
+  },
+  {
+    "word": "pencil",
+    "trans": [
+      {
+        "cn": "n.铅笔，彩色铅笔，笔状物，画风，画法，物光线锥"
+      },
+      {
+        "cn": "vt.用铅笔写，用画笔画"
+      }
+    ],
+    "phonetic0": "ˈpensl",
+    "phonetic1": "ˈpɛnsəl"
+  },
+  {
+    "word": "book",
+    "trans": [
+      {
+        "cn": "n.书，卷，课本，账簿"
+      },
+      {
+        "cn": "vt.& vi.预订"
+      },
+      {
+        "cn": "vt.登记，（向旅馆、饭店、戏院等）预约，立案（控告某人），订立演出契约"
+      },
+      {
+        "cn": "adj.书的，账簿上的，得之（或来自）书本的，按照（或依据）书本的"
+      }
+    ],
+    "phonetic0": "bʊk",
+    "phonetic1": "bʊk"
+  },
+  {
+    "word": "eraser",
+    "trans": [
+      {
+        "cn": "n.<主美>橡皮擦，板擦"
+      }
+    ],
+    "phonetic0": "ɪˈreɪzə(r)",
+    "phonetic1": "ɪˈreɪsər"
+  },
+  {
+    "word": "box",
+    "trans": [
+      {
+        "cn": "n.盒，箱状物，包厢，哨房"
+      },
+      {
+        "cn": "vt.把…装入盒箱，匣中"
+      },
+      {
+        "cn": "vt.& vi.拳击"
+      }
+    ],
+    "phonetic0": "bɒks",
+    "phonetic1": "bɑ:ks"
+  },
+  {
+    "word": "pencil box",
+    "trans": [
+      {
+        "cn": "铅笔盒；文具盒"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": "'pɛnsl bɑks"
+  },
+  {
+    "word": "schoolbag",
+    "trans": [
+      {
+        "cn": "n. 书包"
+      }
+    ],
+    "phonetic0": "'skuːlbæɡ",
+    "phonetic1": "ˈsku:lbæg"
+  },
+  {
+    "word": "dictionary",
+    "trans": [
+      {
+        "cn": "n.词典，字典，自代码字典"
+      }
+    ],
+    "phonetic0": "ˈdɪkʃənri",
+    "phonetic1": "ˈdɪkʃəneri"
+  },
+  {
+    "word": "his.",
+    "trans": [
+      {
+        "cn": "他的"
+      }
+    ],
+    "phonetic0": "hɪz",
+    "phonetic1": "hɪz"
+  },
+  {
+    "word": "mine",
+    "trans": [
+      {
+        "cn": "pron.(I的所有格)我的（东西）"
+      },
+      {
+        "cn": "n.矿，矿井，地雷，水雷"
+      },
+      {
+        "cn": "vt.& vi.在…中开采，开采"
+      },
+      {
+        "cn": "vt.在…中下布雷，以地雷水雷炸毁"
+      }
+    ],
+    "phonetic0": "maɪn",
+    "phonetic1": "maɪn"
+  },
+  {
+    "word": "hers",
+    "trans": [
+      {
+        "cn": "pron.她的，属于她的"
+      }
+    ],
+    "phonetic0": "hɜ:z",
+    "phonetic1": "hɜ:rz"
+  },
+  {
+    "word": "excuse",
+    "trans": [
+      {
+        "cn": "vt.原谅，为…申辩，免除，宽免，给…免去"
+      },
+      {
+        "cn": "n.借口，托辞，道歉，歉意，辩解，请假条"
+      },
+      {
+        "cn": "vi.作为借口，请示宽恕，表示宽恕"
+      }
+    ],
+    "phonetic0": "ɪkˈskju:s",
+    "phonetic1": "ɪkˈskjuz"
+  },
+  {
+    "word": "me",
+    "trans": [
+      {
+        "cn": "pron.（人称代词I的宾格）我"
+      },
+      {
+        "cn": "n.自我，自我的一部分，极端自私的人，音乐固定唱法时的E音"
+      }
+    ],
+    "phonetic0": "mi",
+    "phonetic1": "mi"
+  },
+  {
+    "word": "excuse me",
+    "trans": [
+      {
+        "cn": "used when you did not hear what sb said and you want them to repeat it"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "thank",
+    "trans": [
+      {
+        "cn": "vt.谢谢，感谢，责怪，把…归于"
+      },
+      {
+        "cn": "n.感谢，谢谢，道谢的话"
+      }
+    ],
+    "phonetic0": "θæŋk",
+    "phonetic1": "θæŋk"
+  },
+  {
+    "word": "teacher",
+    "trans": [
+      {
+        "cn": "n.教师，教员，老师，先生，航教练机"
+      }
+    ],
+    "phonetic0": "ˈti:tʃə(r)",
+    "phonetic1": "ˈtitʃɚ"
+  },
+  {
+    "word": "about",
+    "trans": [
+      {
+        "cn": "prep.关于，大约，在…周围"
+      },
+      {
+        "cn": "adv.大约，在附近，在四周，几乎"
+      },
+      {
+        "cn": "adj.在附近的，四处走动的，在起作用的，在流行中的"
+      }
+    ],
+    "phonetic0": "əˈbaʊt",
+    "phonetic1": "əˈbaʊt"
+  },
+  {
+    "word": "What about...?",
+    "trans": [
+      {
+        "cn": "询问消息或提出建议...怎么样？"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "yours",
+    "trans": [
+      {
+        "cn": "pron.你（们）的东西，你的责任义务，你的家属，来信，尊函"
+      },
+      {
+        "cn": "adj.你（们）的（东西），信末署名前用语"
+      }
+    ],
+    "phonetic0": "jɔ:z",
+    "phonetic1": "jərz"
+  },
+  {
+    "word": "for",
+    "trans": [
+      {
+        "cn": "prep.为，为了，倾向于，关于，当作"
+      },
+      {
+        "cn": "conj.因为，由于"
+      }
+    ],
+    "phonetic0": "fə(r)",
+    "phonetic1": "fɔr,fə"
+  },
+  {
+    "word": "thank you for...",
+    "trans": [
+      {
+        "cn": "为......而感谢"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "help",
+    "trans": [
+      {
+        "cn": "vt.& vi.帮助，有助于， 有利于"
+      },
+      {
+        "cn": "vt.治疗，避免，招待（客人），给…盛（饭、菜）"
+      },
+      {
+        "cn": "n.帮助，助手，补救办法，有用"
+      },
+      {
+        "cn": "vi.（在餐桌旁）招待，侍应，作仆人（或店员、服务员等）"
+      },
+      {
+        "cn": "int.呼救语救命！"
+      }
+    ],
+    "phonetic0": "help",
+    "phonetic1": "hɛlp"
+  },
+  {
+    "word": "welcome",
+    "trans": [
+      {
+        "cn": "vt.欢迎，乐于接受"
+      },
+      {
+        "cn": "adj.受欢迎的，令人愉悦的，表示感谢的"
+      },
+      {
+        "cn": "n.欢迎，迎接"
+      }
+    ],
+    "phonetic0": "ˈwelkəm",
+    "phonetic1": "ˈwɛlkəm"
+  },
+  {
+    "word": "You're welcome.",
+    "trans": [
+      {
+        "cn": "别客气。"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "baseball",
+    "trans": [
+      {
+        "cn": "n.棒球，体棒球运动"
+      }
+    ],
+    "phonetic0": "ˈbeɪsbɔ:l",
+    "phonetic1": "ˈbesˌbɔl"
+  },
+  {
+    "word": "watch",
+    "trans": [
+      {
+        "cn": "vt.注视，注意，看守，监视，守候（机会等），密切注意"
+      },
+      {
+        "cn": "n.表，值夜，值班，看守，监视，值班人员"
+      },
+      {
+        "cn": "vi.观看，注视，守候，看守"
+      }
+    ],
+    "phonetic0": "wɒtʃ",
+    "phonetic1": "wɑ:tʃ"
+  },
+  {
+    "word": "computer",
+    "trans": [
+      {
+        "cn": "n.（电子）计算机，电脑"
+      }
+    ],
+    "phonetic0": "kəmˈpju:tə(r)",
+    "phonetic1": "kəmˈpjutɚ"
+  },
+  {
+    "word": "game",
+    "trans": [
+      {
+        "cn": "n.游戏，运动，比赛，竞赛，诡计，猎物"
+      },
+      {
+        "cn": "adj.受伤的，瘸的，对…有兴趣的，雄赳赳的，关于野味的"
+      },
+      {
+        "cn": "v.打赌，赌输赢，赌输"
+      }
+    ],
+    "phonetic0": "geɪm",
+    "phonetic1": "ɡem"
+  },
+  {
+    "word": "card",
+    "trans": [
+      {
+        "cn": "n.卡片，纸牌，明信片，信用卡"
+      },
+      {
+        "cn": "vt.记于卡片上"
+      }
+    ],
+    "phonetic0": "kɑ:d",
+    "phonetic1": "kɑ:rd"
+  },
+  {
+    "word": "ID card",
+    "trans": [
+      {
+        "cn": "学生卡；身份证"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "notebook",
+    "trans": [
+      {
+        "cn": "n.笔记簿，笔记本电脑，手册，笔记本"
+      }
+    ],
+    "phonetic0": "ˈnəʊtbʊk",
+    "phonetic1": "ˈnoʊtbʊk"
+  },
+  {
+    "word": "ring",
+    "trans": [
+      {
+        "cn": "n.戒指，指环，铃声，钟声，环形物，拳击场"
+      },
+      {
+        "cn": "vt.形成环状，环绕，使（例如铃）响，打电话给"
+      },
+      {
+        "cn": "vi.按铃，敲钟，回响，成环形"
+      }
+    ],
+    "phonetic0": "rɪŋ",
+    "phonetic1": "rɪŋ"
+  },
+  {
+    "word": "bag",
+    "trans": [
+      {
+        "cn": "n.袋，囊，枕套，钱包，手提皮包，财富，〈英俚〉大量，很多"
+      },
+      {
+        "cn": "vt.把。。装入袋中，猎获，捕获，得分，抢占"
+      },
+      {
+        "cn": "vi.松散地垂挂，鼓胀"
+      }
+    ],
+    "phonetic0": "bæg",
+    "phonetic1": "bæɡ"
+  },
+  {
+    "word": "in.",
+    "trans": [
+      {
+        "cn": "在...里"
+      }
+    ],
+    "phonetic0": "ɪn",
+    "phonetic1": "ɪn"
+  },
+  {
+    "word": "library",
+    "trans": [
+      {
+        "cn": "n.图书馆，藏书楼，藏书，书屋，书斋，图书出租处"
+      }
+    ],
+    "phonetic0": "ˈlaɪbrəri",
+    "phonetic1": "ˈlaɪbreri"
+  },
+  {
+    "word": "ask",
+    "trans": [
+      {
+        "cn": "vt.& vi.问，询问，需要，要求，请求，邀请"
+      },
+      {
+        "cn": "vt.邀请，请求允许，要价，询问"
+      },
+      {
+        "cn": "vi.请，邀请，询问，要求"
+      }
+    ],
+    "phonetic0": "ɑ:sk",
+    "phonetic1": "æsk"
+  },
+  {
+    "word": "ask... for...",
+    "trans": [
+      {
+        "cn": "请求；恳求(给予)"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "find",
+    "trans": [
+      {
+        "cn": "v.发现，找到，查明，发觉"
+      },
+      {
+        "cn": "n.发现物，被发现的人"
+      }
+    ],
+    "phonetic0": "faɪnd",
+    "phonetic1": "faɪnd"
+  },
+  {
+    "word": "some",
+    "trans": [
+      {
+        "cn": "adj.一些，某个，大约，相当多的"
+      },
+      {
+        "cn": "pron.一些，若干，其中的一部分，（数量不确切时用）有些人"
+      },
+      {
+        "cn": "adv.非常，相当，<美>稍微"
+      }
+    ],
+    "phonetic0": "səm",
+    "phonetic1": "sʌm"
+  },
+  {
+    "word": "classroom",
+    "trans": [
+      {
+        "cn": "n.教室，课堂，教学活动，教学方法"
+      }
+    ],
+    "phonetic0": "ˈklɑ:sru:m",
+    "phonetic1": "ˈklæsru:m"
+  },
+  {
+    "word": "e-mail",
+    "trans": [
+      {
+        "cn": "n.电子邮件"
+      },
+      {
+        "cn": "vt.给…发电子邮件"
+      }
+    ],
+    "phonetic0": "'i:meɪl",
+    "phonetic1": "'i,mel"
+  },
+  {
+    "word": "at",
+    "trans": [
+      {
+        "cn": "prep.（表示位置）在，在（某时间或时刻），以，达， 向，朝"
+      },
+      {
+        "cn": "n.阿特（老挝辅币单位，100 阿特 = 1 基普）"
+      }
+    ],
+    "phonetic0": "ət",
+    "phonetic1": "æt,ət"
+  },
+  {
+    "word": "call",
+    "trans": [
+      {
+        "cn": "v.呼唤，喊叫，召唤，叫来，召集，下令，命令，打电话给"
+      },
+      {
+        "cn": "n.喊叫，大声喊，电话联络，必要，理由，要求"
+      }
+    ],
+    "phonetic0": "kɔ:l",
+    "phonetic1": "kɔl"
+  },
+  {
+    "word": "lost",
+    "trans": [
+      {
+        "cn": "adj.失去的，迷路的，不知所措的"
+      },
+      {
+        "cn": "v.遗失，失去（ lose的过去式和过去分词），（使）失去（所需要的东西，尤指钱），（因事故、年老、死亡等）损失，浪费"
+      }
+    ],
+    "phonetic0": "lɒst",
+    "phonetic1": "lɔ:st"
+  },
+  {
+    "word": "must",
+    "trans": [
+      {
+        "cn": "aux.必须，必然要，（做出逻辑推断），（表示坚持）"
+      },
+      {
+        "cn": "n.必须做的事，必不可少的事物，葡萄汁，霉臭，麝香"
+      },
+      {
+        "cn": "vt.& vi.（表示必要或很重要）必须，（提出建议）应该，得，（表示很可能或符合逻辑）一定"
+      },
+      {
+        "cn": "adj.不可或缺的，狂暴的"
+      }
+    ],
+    "phonetic0": "məst",
+    "phonetic1": "mʌst"
+  },
+  {
+    "word": "set",
+    "trans": [
+      {
+        "cn": "vt.放置，安置，使处于某种状况，设置，摆放餐具"
+      },
+      {
+        "cn": "vi.落山，出发，凝结"
+      },
+      {
+        "cn": "n.一套，一副，集合，布景，电视机"
+      },
+      {
+        "cn": "adj.固定的，位于…的，顽固的，安排好的"
+      }
+    ],
+    "phonetic0": "set",
+    "phonetic1": "sɛt"
+  },
+  {
+    "word": "a set of",
+    "trans": [
+      {
+        "cn": "一套；一副；一组"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "where",
+    "trans": [
+      {
+        "cn": "adv.哪里，在哪里，到哪里，某种情势或位置"
+      },
+      {
+        "cn": "conj.在…的地方"
+      },
+      {
+        "cn": "n.地方，场所"
+      },
+      {
+        "cn": "pron.哪里"
+      }
+    ],
+    "phonetic0": "weə(r)",
+    "phonetic1": "wer"
+  },
+  {
+    "word": "table",
+    "trans": [
+      {
+        "cn": "n.表，目录，桌子，手术台，工作台，游戏台，平地层"
+      },
+      {
+        "cn": "vt.制表，搁置，嵌合，搁置"
+      },
+      {
+        "cn": "adj.桌子的"
+      }
+    ],
+    "phonetic0": "ˈteɪbl",
+    "phonetic1": "ˈtebəl"
+  },
+  {
+    "word": "bed",
+    "trans": [
+      {
+        "cn": "n.床，苗圃，河床，（地下由黏土、岩石等构成的）地层"
+      },
+      {
+        "cn": "vt.把…固定在，（某人）发生性关系，给人铺床"
+      },
+      {
+        "cn": "vi.上床，分层"
+      }
+    ],
+    "phonetic0": "bed",
+    "phonetic1": "bɛd"
+  },
+  {
+    "word": "bookcase",
+    "trans": [
+      {
+        "cn": "n.书橱，书架，书柜"
+      }
+    ],
+    "phonetic0": "ˈbʊkkeɪs",
+    "phonetic1": "ˈbʊkˌkes"
+  },
+  {
+    "word": "sofa",
+    "trans": [
+      {
+        "cn": "n.沙发"
+      }
+    ],
+    "phonetic0": "ˈsəʊfə",
+    "phonetic1": "ˈsoʊfə"
+  },
+  {
+    "word": "chair",
+    "trans": [
+      {
+        "cn": "n.椅子，大学教授职位，主持会议的主席（的席位或职位），讲座"
+      },
+      {
+        "cn": "vt.主持，使…入座，使就任要职"
+      }
+    ],
+    "phonetic0": "tʃeə(r)",
+    "phonetic1": "tʃer"
+  },
+  {
+    "word": "on",
+    "trans": [
+      {
+        "cn": "prep.（表示方向）向，（表示对象）对，（表示位置）在…上，（表示时间）在…之时"
+      },
+      {
+        "cn": "adv.（放，穿，连接）上，向前，（继续）下去"
+      },
+      {
+        "cn": "adj.活动着的情况，状态，使用着的，发生着的，计划中的"
+      }
+    ],
+    "phonetic0": "ɒn",
+    "phonetic1": "ɑ:n"
+  },
+  {
+    "word": "under",
+    "trans": [
+      {
+        "cn": "prep.在…下面，在表面之下，在…的假定表面或掩饰下，少于，小于，在…情况下"
+      },
+      {
+        "cn": "adv.在下面，少于，在水下，在昏迷中"
+      },
+      {
+        "cn": "adj.较低的，下面的"
+      }
+    ],
+    "phonetic0": "ˈʌndə(r)",
+    "phonetic1": "ˈʌndɚ"
+  },
+  {
+    "word": "come",
+    "trans": [
+      {
+        "cn": "vi.来，开始，出现，发生"
+      },
+      {
+        "cn": "vt.做，装扮…的样子，将满（…岁）"
+      },
+      {
+        "cn": "int.嗨！"
+      }
+    ],
+    "phonetic0": "kʌm",
+    "phonetic1": "kʌm"
+  },
+  {
+    "word": "come on",
+    "trans": [
+      {
+        "cn": "v. 突然产生, 要求, 成为...负担, 偶遇, 跟着来, 开始, 出台, 上演@快点, 赶快"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "desk",
+    "trans": [
+      {
+        "cn": "n.书桌，办公桌，服务台，部门，（美）讲道台"
+      },
+      {
+        "cn": "adj.书桌的，书桌上用的"
+      }
+    ],
+    "phonetic0": "desk",
+    "phonetic1": "dɛsk"
+  },
+  {
+    "word": "think",
+    "trans": [
+      {
+        "cn": "vt.想，思索，以为，看待"
+      },
+      {
+        "cn": "vi.思辩，考虑，构想，回忆"
+      },
+      {
+        "cn": "adj.深思的，供思考的"
+      },
+      {
+        "cn": "n.想，想法"
+      }
+    ],
+    "phonetic0": "θɪŋk",
+    "phonetic1": "θɪŋk"
+  },
+  {
+    "word": "room",
+    "trans": [
+      {
+        "cn": "n.房间，空间，余地，房间里所有的人"
+      },
+      {
+        "cn": "vt.租房，合住，为…提供住处，投宿，住宿，留…住宿"
+      }
+    ],
+    "phonetic0": "ru:m",
+    "phonetic1": "rʊm"
+  },
+  {
+    "word": "their",
+    "trans": [
+      {
+        "cn": "pron.他（她，它）们的，在提及性别不详的人时，用以代替 him 或 her"
+      }
+    ],
+    "phonetic0": "ðeə(r)",
+    "phonetic1": "ðer"
+  },
+  {
+    "word": "hat",
+    "trans": [
+      {
+        "cn": "n.帽子，（帽子所表示的）职位，职务"
+      },
+      {
+        "cn": "vt.给…戴上帽子，为…提供帽子"
+      },
+      {
+        "cn": "vi.供应帽子，制造帽子"
+      }
+    ],
+    "phonetic0": "hæt",
+    "phonetic1": "hæt"
+  },
+  {
+    "word": "head",
+    "trans": [
+      {
+        "cn": "n.上端，头脑，头部，首脑，首长"
+      },
+      {
+        "cn": "vt.用头顶，前进，作为…的首领，站在…的前头"
+      },
+      {
+        "cn": "vi.朝…行进，出发，向…方向移动，船驶往"
+      },
+      {
+        "cn": "adj.头的，在前头的，首要的，在顶端的"
+      }
+    ],
+    "phonetic0": "hed",
+    "phonetic1": "hɛd"
+  },
+  {
+    "word": "yeah",
+    "trans": [
+      {
+        "cn": "adv.( yes的俗音)，（用于表示对后说的话不相信），（用于作出回应）哦，是"
+      }
+    ],
+    "phonetic0": "jeə",
+    "phonetic1": "jɛ-"
+  },
+  {
+    "word": "know",
+    "trans": [
+      {
+        "cn": "v.知道，了解，认识，确信"
+      },
+      {
+        "cn": "n.知情"
+      }
+    ],
+    "phonetic0": "nəʊ",
+    "phonetic1": "noʊ"
+  },
+  {
+    "word": "radio",
+    "trans": [
+      {
+        "cn": "n.无线电，收音机，无线电广播台，无线电收发报机"
+      },
+      {
+        "cn": "vt.& vi.用无线电发送讯息，作无线电广播，用X射线拍照"
+      }
+    ],
+    "phonetic0": "ˈreɪdiəʊ",
+    "phonetic1": "ˈreɪdioʊ"
+  },
+  {
+    "word": "clock",
+    "trans": [
+      {
+        "cn": "n.钟，时钟，计时器，秒表，仪表"
+      },
+      {
+        "cn": "vt.记录（时间或速度），测…的速度"
+      },
+      {
+        "cn": "vi.打卡，记下时间"
+      }
+    ],
+    "phonetic0": "klɒk",
+    "phonetic1": "klɑ:k"
+  },
+  {
+    "word": "tape",
+    "trans": [
+      {
+        "cn": "n.带子，胶带，磁带，卷尺"
+      },
+      {
+        "cn": "vt.用带子捆起来，录音"
+      },
+      {
+        "cn": "vt.& vi.录音"
+      }
+    ],
+    "phonetic0": "teɪp",
+    "phonetic1": "tep"
+  },
+  {
+    "word": "player",
+    "trans": [
+      {
+        "cn": "n.演员，体运动员，音演奏者，播放机"
+      }
+    ],
+    "phonetic0": "ˈpleɪə(r)",
+    "phonetic1": "ˈpleɚ"
+  },
+  {
+    "word": "tape player",
+    "trans": [
+      {
+        "cn": "激光唱机; 光盘播放机"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "model",
+    "trans": [
+      {
+        "cn": "n.模型，模特儿，模式，典型"
+      },
+      {
+        "cn": "vt.& vi.做模特儿"
+      },
+      {
+        "cn": "vt.模仿，制作模型，塑造，将…做成模型"
+      },
+      {
+        "cn": "adj.典型的，模范的"
+      }
+    ],
+    "phonetic0": "ˈmɒdl",
+    "phonetic1": "ˈmɑ:dl"
+  },
+  {
+    "word": "plane",
+    "trans": [
+      {
+        "cn": "n.水平，平面，飞机，木工刨"
+      },
+      {
+        "cn": "adj.平的，平坦的"
+      },
+      {
+        "cn": "vt.用刨刨平，小船等擦着水面疾驶"
+      },
+      {
+        "cn": "vi.鸟滑翔"
+      }
+    ],
+    "phonetic0": "pleɪn",
+    "phonetic1": "plen"
+  },
+  {
+    "word": "model plane",
+    "trans": [
+      {
+        "cn": "飞机模型"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "tidy",
+    "trans": [
+      {
+        "cn": "adj.整洁的，整齐的，（数量）相当大的，相当好的，健康的"
+      },
+      {
+        "cn": "n.盛零碎物品的容器，椅子的背罩"
+      },
+      {
+        "cn": "vt.& vi.使整洁，弄整齐，使有条理，整理，收拾"
+      }
+    ],
+    "phonetic0": "ˈtaɪdi",
+    "phonetic1": "ˈtaɪdi"
+  },
+  {
+    "word": "but",
+    "trans": [
+      {
+        "cn": "conj.但是，而是，除了，只因为"
+      },
+      {
+        "cn": "prep.除…以外"
+      },
+      {
+        "cn": "adv.只，不过，只是，另一方面"
+      },
+      {
+        "cn": "n.借口，推辞，但是，反对"
+      },
+      {
+        "cn": "pron.关系代词，意义相当于 who…not， which…not"
+      },
+      {
+        "cn": "vt.对…说“但是”"
+      }
+    ],
+    "phonetic0": "bət",
+    "phonetic1": "bʌt,bət"
+  },
+  {
+    "word": "our",
+    "trans": [
+      {
+        "cn": "pron.我们的，we的所有格形式，<口>我们家，敝"
+      }
+    ],
+    "phonetic0": "ɑ:(r)",
+    "phonetic1": "aʊr"
+  },
+  {
+    "word": "everywhere",
+    "trans": [
+      {
+        "cn": "adv.到处，处处，无论什么地方，四下里，漫，匝地"
+      }
+    ],
+    "phonetic0": "ˈevriweə(r)",
+    "phonetic1": "ˈevriwer"
+  },
+  {
+    "word": "always",
+    "trans": [
+      {
+        "cn": "adv.总是，老是，永远，始终，常常，不断地"
+      }
+    ],
+    "phonetic0": "ˈɔ:lweɪz",
+    "phonetic1": "ˈɔlwez,-wɪz,-wiz"
+  },
+  {
+    "word": "do",
+    "trans": [
+      {
+        "cn": "aux.构成疑问句和否定句，代替动词，用于加强语气"
+      },
+      {
+        "cn": "vt.做，干，进行，从事"
+      },
+      {
+        "cn": "vi.表现，进展，引起，行过"
+      },
+      {
+        "cn": "n.社交聚会，社交活动，宴会"
+      }
+    ],
+    "phonetic0": "du",
+    "phonetic1": "du"
+  },
+  {
+    "word": "have.",
+    "trans": [
+      {
+        "cn": "与过去分词连用构成动词的完成时态"
+      }
+    ],
+    "phonetic0": "həv;hæv",
+    "phonetic1": "həv;hæv"
+  },
+  {
+    "word": "tennis",
+    "trans": [
+      {
+        "cn": "n.网球（运动）"
+      }
+    ],
+    "phonetic0": "ˈtenɪs",
+    "phonetic1": "'tenɪs"
+  },
+  {
+    "word": "ball",
+    "trans": [
+      {
+        "cn": "n.球，棒球（投手投出的）坏球，拇指球，舞会"
+      },
+      {
+        "cn": "vt.做成球状，使成团块，（指男性）和（女性）交媾（美式英语）"
+      },
+      {
+        "cn": "vi.呈球形，成团块，美国俚语、口语狂欢作乐，消遣，尽情作乐，尽情地玩"
+      }
+    ],
+    "phonetic0": "bɔ:l",
+    "phonetic1": "bɔl"
+  },
+  {
+    "word": "ping-pong",
+    "trans": [
+      {
+        "cn": "n. 乒乓球【连字符】"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": "pɪŋ-pɔɡ"
+  },
+  {
+    "word": "bat",
+    "trans": [
+      {
+        "cn": "n.蝙蝠，短棍，（棒球等的）球棒，（网球等的）球拍，白话，口语，成语，俗话，（口）打击，猛击，（海上）导弹"
+      },
+      {
+        "cn": "vt.& vi.用球板击球，用球棒击球（尤指板球或棒球运动）"
+      }
+    ],
+    "phonetic0": "bæt",
+    "phonetic1": "bæt"
+  },
+  {
+    "word": "soccer",
+    "trans": [
+      {
+        "cn": "n.<美>足球，〈口〉英式足球"
+      }
+    ],
+    "phonetic0": "ˈsɒkə(r)",
+    "phonetic1": "ˈsɑ:kə(r)"
+  },
+  {
+    "word": "soccer ball",
+    "trans": [
+      {
+        "cn": "(英式)足球"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "volleyball",
+    "trans": [
+      {
+        "cn": "n.排球（运动）"
+      }
+    ],
+    "phonetic0": "ˈvɒlibɔ:l",
+    "phonetic1": "ˈvɑ:libɔ:l"
+  },
+  {
+    "word": "basketball",
+    "trans": [
+      {
+        "cn": "n.篮球，体篮球运动"
+      }
+    ],
+    "phonetic0": "ˈbɑ:skɪtbɔ:l",
+    "phonetic1": "ˈbæskɪtbɔ:l"
+  },
+  {
+    "word": "hey",
+    "trans": [
+      {
+        "cn": "int.（用以引起注意，表示惊异或询问）嘿，喂，你好！（表示问候），咳"
+      },
+      {
+        "cn": "n.干草（等于hay）"
+      }
+    ],
+    "phonetic0": "heɪ",
+    "phonetic1": "he"
+  },
+  {
+    "word": "let",
+    "trans": [
+      {
+        "cn": "允许，任由，让，随，假设，出租"
+      }
+    ],
+    "phonetic0": "let",
+    "phonetic1": "lɛt"
+  },
+  {
+    "word": "us",
+    "trans": [
+      {
+        "cn": "pron.我们"
+      }
+    ],
+    "phonetic0": "əs",
+    "phonetic1": "ʌs"
+  },
+  {
+    "word": "let's",
+    "trans": [
+      {
+        "cn": "（ let us ） 让我们（一起）"
+      }
+    ],
+    "phonetic0": "lets",
+    "phonetic1": "lets"
+  },
+  {
+    "word": "go",
+    "trans": [
+      {
+        "cn": "vi.走，离开，去做，进行"
+      },
+      {
+        "cn": "vt.变得，发出…声音，成为，处于…状态"
+      },
+      {
+        "cn": "n.轮到的顺序，精力，干劲，尝试"
+      }
+    ],
+    "phonetic0": "gəʊ",
+    "phonetic1": "goʊ"
+  },
+  {
+    "word": "we",
+    "trans": [
+      {
+        "cn": "pron.我们，咱们，笔者，本人，朕，人们"
+      }
+    ],
+    "phonetic0": "wi",
+    "phonetic1": "wi"
+  },
+  {
+    "word": "late",
+    "trans": [
+      {
+        "cn": "adj.晚的，迟到的，时间不早的，已故的，原来的，之前的，临近终了的"
+      },
+      {
+        "cn": "adv.晚，迟，后期地，最近地"
+      }
+    ],
+    "phonetic0": "leɪt",
+    "phonetic1": "let"
+  },
+  {
+    "word": "has",
+    "trans": [
+      {
+        "cn": "(have的第三人称单数形式)有"
+      }
+    ],
+    "phonetic0": "hæz",
+    "phonetic1": "hæz"
+  },
+  {
+    "word": "get",
+    "trans": [
+      {
+        "cn": "vt.得到，抓住，说服，受到（惩罚等）"
+      },
+      {
+        "cn": "vt.& vi.到达，来"
+      },
+      {
+        "cn": "vi.成为，开始，设法对付，获得利益或财富"
+      },
+      {
+        "cn": "n.生殖，幼兽，赢利"
+      }
+    ],
+    "phonetic0": "ɡet",
+    "phonetic1": "ɡɛt"
+  },
+  {
+    "word": "great",
+    "trans": [
+      {
+        "cn": "adj.伟大的，杰出的，优异的，显著的，很多的，重大的"
+      },
+      {
+        "cn": "adv.口语很好地，令人满意地，成功地，顺利地，得意地"
+      },
+      {
+        "cn": "n.大人物们，伟大人物，重要人物，大师，名家"
+      }
+    ],
+    "phonetic0": "greɪt",
+    "phonetic1": "ɡret"
+  },
+  {
+    "word": "play",
+    "trans": [
+      {
+        "cn": "n.比赛，游戏，戏剧，赌博"
+      },
+      {
+        "cn": "vt.& vi.玩，演奏，演出，参加比赛"
+      },
+      {
+        "cn": "vt.扮演，担任，充当…的角色，演出，装扮"
+      },
+      {
+        "cn": "vi.玩耍，游戏，游戏 参加游戏，赌博，闹着玩"
+      }
+    ],
+    "phonetic0": "pleɪ",
+    "phonetic1": "pleɪ"
+  },
+  {
+    "word": "sound",
+    "trans": [
+      {
+        "cn": "n.声音，声响，音调，声调，声波，嘈杂声"
+      },
+      {
+        "cn": "vi.响，发声，听起来，好像，回响，音乐乐器等被奏响"
+      },
+      {
+        "cn": "vt.使出声，使发声，清楚地发出，宣布，发表，颂扬"
+      },
+      {
+        "cn": "adj.健全的，合理的，完好的，无损的，明智的"
+      },
+      {
+        "cn": "adv.彻底地，充分地"
+      }
+    ],
+    "phonetic0": "saʊnd",
+    "phonetic1": "saʊnd"
+  },
+  {
+    "word": "interesting",
+    "trans": [
+      {
+        "cn": "adj.令人感兴趣的，有趣的，引起兴趣的，有趣的，令人关注的"
+      }
+    ],
+    "phonetic0": "ˈɪntrəstɪŋ",
+    "phonetic1": "ˈɪntrɪstɪŋ"
+  },
+  {
+    "word": "boring",
+    "trans": [
+      {
+        "cn": "adj.无聊的，无趣的，令人厌烦的，单调的，乏味的"
+      },
+      {
+        "cn": "n.钻孔，钻屑"
+      },
+      {
+        "cn": "v.令人厌烦(bore的现在分词)"
+      }
+    ],
+    "phonetic0": "ˈbɔ:rɪŋ",
+    "phonetic1": "ˈbor-"
+  },
+  {
+    "word": "fun",
+    "trans": [
+      {
+        "cn": "n.乐趣，娱乐活动，嬉戏，嬉闹，有趣的事"
+      },
+      {
+        "cn": "adj.使人愉快的，开心的"
+      },
+      {
+        "cn": "vi.嬉闹，开玩笑"
+      }
+    ],
+    "phonetic0": "fʌn",
+    "phonetic1": "fʌn"
+  },
+  {
+    "word": "difficult",
+    "trans": [
+      {
+        "cn": "adj.困难的，难做的，难解的，不易相处的"
+      }
+    ],
+    "phonetic0": "ˈdɪfɪkəlt",
+    "phonetic1": "-kəlt"
+  },
+  {
+    "word": "relaxing",
+    "trans": [
+      {
+        "cn": "adj.令人轻松的"
+      },
+      {
+        "cn": "v.放松，休息(relax的ing形式)，缓和，松懈"
+      }
+    ],
+    "phonetic0": "rɪˈlæksɪŋ",
+    "phonetic1": "rɪ'læksɪŋ"
+  },
+  {
+    "word": "watch.",
+    "trans": [
+      {
+        "cn": "注视；观看"
+      }
+    ],
+    "phonetic0": "wɒtʃ",
+    "phonetic1": "wɑtʃ"
+  },
+  {
+    "word": "TV",
+    "trans": [
+      {
+        "cn": "abbr.television 电视机，total volume 总量，test vehicle 实验用飞行器，terminal velocity 终端速度"
+      }
+    ],
+    "phonetic0": "ˌti:",
+    "phonetic1": "ˌti:'vi:"
+  },
+  {
+    "word": "watch TV",
+    "trans": [
+      {
+        "cn": "看电视"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "same",
+    "trans": [
+      {
+        "cn": "adj.同一的，相同的，同样的"
+      },
+      {
+        "cn": "pron.同一事物，同样的人，（和…）同样的事物，（数目、颜色、大小、质量等）相同"
+      },
+      {
+        "cn": "adv.同样，类似"
+      }
+    ],
+    "phonetic0": "seɪm",
+    "phonetic1": "sem"
+  },
+  {
+    "word": "love",
+    "trans": [
+      {
+        "cn": "vt.& vi.爱，热爱，爱戴，喜欢，赞美，称赞"
+      },
+      {
+        "cn": "vt.喜爱，喜好，喜欢，爱慕"
+      },
+      {
+        "cn": "n.爱情，爱意，疼爱，热爱，爱人，所爱之物"
+      }
+    ],
+    "phonetic0": "lʌv",
+    "phonetic1": "lʌv"
+  },
+  {
+    "word": "with",
+    "trans": [
+      {
+        "cn": "prep.和，跟，随着，关于，和…一致"
+      }
+    ],
+    "phonetic0": "wɪð",
+    "phonetic1": "wɪθ"
+  },
+  {
+    "word": "sport",
+    "trans": [
+      {
+        "cn": "n.体育运动，乐趣，突变，朋友，老兄"
+      },
+      {
+        "cn": "v.得意地穿戴，夸示，故意显示，嬉戏"
+      }
+    ],
+    "phonetic0": "spɔ:t",
+    "phonetic1": "spɔ:rt"
+  },
+  {
+    "word": "them",
+    "trans": [
+      {
+        "cn": "pron.他们，她们，它们"
+      }
+    ],
+    "phonetic0": "ðəm",
+    "phonetic1": "ðəm"
+  },
+  {
+    "word": "only",
+    "trans": [
+      {
+        "cn": "adj.唯一的，仅有的，最好的，最适当的"
+      },
+      {
+        "cn": "adv.只，仅仅，结果却，不料"
+      },
+      {
+        "cn": "conj.但是，可是，要不是"
+      }
+    ],
+    "phonetic0": "ˈəʊnli",
+    "phonetic1": "ˈoʊnli"
+  },
+  {
+    "word": "like",
+    "trans": [
+      {
+        "cn": "vt.喜欢，（与 would 或 should 连用表示客气）想，想要，喜欢做"
+      },
+      {
+        "cn": "prep.（表示属性）像，（表示方式）如同，（询问意见）…怎么样，（表示列举）比如"
+      },
+      {
+        "cn": "adj.相似的，相同的"
+      },
+      {
+        "cn": "n.相类似的人事物，喜好，爱好，（尤指被视为没有某人或某物那么好的）种类，类型"
+      },
+      {
+        "cn": "conj.像…一样，如同，好像，仿佛"
+      },
+      {
+        "cn": "adv.（非正式口语，代替 as）和…一样，如，（非正式口语，思考说下句话、解释或举例时用）大概，可能"
+      }
+    ],
+    "phonetic0": "laɪk",
+    "phonetic1": "laɪk"
+  },
+  {
+    "word": "easy",
+    "trans": [
+      {
+        "cn": "adj.容易的，舒适的，宽裕的，从容的"
+      },
+      {
+        "cn": "adv.容易地，不费力地，悠闲地，缓慢地"
+      },
+      {
+        "cn": "vi.停止划桨（常用作命令）"
+      },
+      {
+        "cn": "vt.向（水手或划手）发出停划命令"
+      }
+    ],
+    "phonetic0": "ˈi:zi",
+    "phonetic1": "ˈizi"
+  },
+  {
+    "word": "after",
+    "trans": [
+      {
+        "cn": "prep.…后的，（表示时间）在…以后，（表示位置、顺序）在…后面"
+      },
+      {
+        "cn": "conj.在…以后"
+      },
+      {
+        "cn": "adv.以后，继后"
+      },
+      {
+        "cn": "adj.后来的，以后的"
+      }
+    ],
+    "phonetic0": "ˈɑ:ftə(r)",
+    "phonetic1": "ˈæftə(r)"
+  },
+  {
+    "word": "class",
+    "trans": [
+      {
+        "cn": "n.班，等级，阶级，种类"
+      },
+      {
+        "cn": "vt.把…归入某等级，把…看作（或分类、归类），把…编入某一班级"
+      },
+      {
+        "cn": "adj.很好的，优秀的，出色的"
+      },
+      {
+        "cn": "vi.属于…类（或等级），被列为某类（或某级）"
+      }
+    ],
+    "phonetic0": "klɑ:s",
+    "phonetic1": "klæs"
+  },
+  {
+    "word": "classmate",
+    "trans": [
+      {
+        "cn": "n.（同班）同学，级友"
+      }
+    ],
+    "phonetic0": "ˈklɑ:smeɪt",
+    "phonetic1": "ˈklæsmeɪt"
+  },
+  {
+    "word": "banana",
+    "trans": [
+      {
+        "cn": "n.香蕉，芭蕉属植物，喜剧演员"
+      }
+    ],
+    "phonetic0": "bəˈnɑ:nə",
+    "phonetic1": "bəˈnænə"
+  },
+  {
+    "word": "hamburger",
+    "trans": [
+      {
+        "cn": "n.汉堡包，碎牛肉，牛肉饼"
+      }
+    ],
+    "phonetic0": "ˈhæmbɜ:gə(r)",
+    "phonetic1": "ˈhæmbɜ:rgə(r)"
+  },
+  {
+    "word": "tomato",
+    "trans": [
+      {
+        "cn": "n.番茄，西红柿，俚语 美女"
+      }
+    ],
+    "phonetic0": "təˈmɑ:təʊ",
+    "phonetic1": "təˈmeɪtoʊ"
+  },
+  {
+    "word": "ice-cream",
+    "trans": [
+      {
+        "cn": "adj.冰淇淋的，乳白色的"
+      },
+      {
+        "cn": "n.冰淇淋"
+      }
+    ],
+    "phonetic0": "'aɪskri:m",
+    "phonetic1": "'aɪskri:m"
+  },
+  {
+    "word": "salad",
+    "trans": [
+      {
+        "cn": "n.色拉"
+      }
+    ],
+    "phonetic0": "ˈsæləd",
+    "phonetic1": "ˈsæləd"
+  },
+  {
+    "word": "strawberry",
+    "trans": [
+      {
+        "cn": "n.草莓，草莓色"
+      }
+    ],
+    "phonetic0": "ˈstrɔ:bəri",
+    "phonetic1": "ˈstrɔ:beri"
+  },
+  {
+    "word": "pear",
+    "trans": [
+      {
+        "cn": "n.梨（树），梨树"
+      }
+    ],
+    "phonetic0": "peə(r)",
+    "phonetic1": "per"
+  },
+  {
+    "word": "milk",
+    "trans": [
+      {
+        "cn": "n.奶，乳液，母乳"
+      },
+      {
+        "cn": "vt.挤奶，榨取"
+      }
+    ],
+    "phonetic0": "mɪlk",
+    "phonetic1": "mɪlk"
+  },
+  {
+    "word": "bread",
+    "trans": [
+      {
+        "cn": "n.面包，食物，营养，营养物，生计"
+      },
+      {
+        "cn": "vt.在…上撒面包屑"
+      }
+    ],
+    "phonetic0": "bred",
+    "phonetic1": "brɛd"
+  },
+  {
+    "word": "birthday",
+    "trans": [
+      {
+        "cn": "n.生日，诞辰，成立纪念日"
+      }
+    ],
+    "phonetic0": "ˈbɜ:θdeɪ",
+    "phonetic1": "ˈbɜ:rθdeɪ"
+  },
+  {
+    "word": "dinner",
+    "trans": [
+      {
+        "cn": "n.正餐，主餐，宴会，晚餐"
+      }
+    ],
+    "phonetic0": "ˈdɪnə(r)",
+    "phonetic1": "ˈdɪnɚ"
+  },
+  {
+    "word": "week",
+    "trans": [
+      {
+        "cn": "n.一星期，周，工作周（一个星期中的工作时间）"
+      }
+    ],
+    "phonetic0": "wi:k",
+    "phonetic1": "wik"
+  },
+  {
+    "word": "think about",
+    "trans": [
+      {
+        "cn": "考虑…; 捉摸…对…有(某种观点)回想起, 记起"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "food",
+    "trans": [
+      {
+        "cn": "n.食物，食品，粮食，养料，资料"
+      }
+    ],
+    "phonetic0": "fu:d",
+    "phonetic1": "fud"
+  },
+  {
+    "word": "sure",
+    "trans": [
+      {
+        "cn": "adj.确信的，确实的，有把握的，无疑的，一定的"
+      },
+      {
+        "cn": "adv.当然，确实地，无疑地"
+      }
+    ],
+    "phonetic0": "ʃʊə(r)",
+    "phonetic1": "ʃʊr"
+  },
+  {
+    "word": "How about...?",
+    "trans": [
+      {
+        "cn": "(提出建议)......怎么样？"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "burger",
+    "trans": [
+      {
+        "cn": "n.汉堡包，无牛肉馅的三明治"
+      }
+    ],
+    "phonetic0": "ˈbɜ:gə(r)",
+    "phonetic1": "ˈbɜ:rgə(r)"
+  },
+  {
+    "word": "vegetable",
+    "trans": [
+      {
+        "cn": "n.蔬菜，植物人"
+      },
+      {
+        "cn": "adj.蔬菜的，植物的"
+      }
+    ],
+    "phonetic0": "ˈvedʒtəbl",
+    "phonetic1": "ˈvɛdʒɪtə-"
+  },
+  {
+    "word": "fruit",
+    "trans": [
+      {
+        "cn": "n.成果，水果，果实，（大地的）产物"
+      },
+      {
+        "cn": "vi.树或花草结果"
+      },
+      {
+        "cn": "vt.使…结果实"
+      }
+    ],
+    "phonetic0": "fru:t",
+    "phonetic1": "frut"
+  },
+  {
+    "word": "right",
+    "trans": [
+      {
+        "cn": "adv.立刻，马上，向右，右边，恰当地，一直"
+      },
+      {
+        "cn": "adj.右方的，正确的，合适的，好的，正常的"
+      },
+      {
+        "cn": "n.正确，正当，右边，权利，右手"
+      },
+      {
+        "cn": "vt.纠正，扶直，使正，整理，补偿"
+      },
+      {
+        "cn": "vi.（船舶等）复正，恢复平稳"
+      }
+    ],
+    "phonetic0": "raɪt",
+    "phonetic1": "raɪt"
+  },
+  {
+    "word": "apple",
+    "trans": [
+      {
+        "cn": "n.苹果，苹果树，苹果公司"
+      }
+    ],
+    "phonetic0": "ˈæpl",
+    "phonetic1": "ˈæpəl"
+  },
+  {
+    "word": "then",
+    "trans": [
+      {
+        "cn": "adv.那时，然后，那么，话说回来"
+      },
+      {
+        "cn": "adj.当时的，那时的"
+      }
+    ],
+    "phonetic0": "ðen",
+    "phonetic1": "ðɛn"
+  },
+  {
+    "word": "egg",
+    "trans": [
+      {
+        "cn": "n.鸡蛋，蛋，卵，<俚>家伙"
+      },
+      {
+        "cn": "vt.煽动，怂恿，用蛋烹调，<俚>向人扔鸡蛋"
+      }
+    ],
+    "phonetic0": "eg",
+    "phonetic1": "ɛɡ"
+  },
+  {
+    "word": "carrot",
+    "trans": [
+      {
+        "cn": "n.胡萝卜，〈非正式〉好处，回报，不能兑现的报酬"
+      }
+    ],
+    "phonetic0": "ˈkærət",
+    "phonetic1": "ˈkærət"
+  },
+  {
+    "word": "rice",
+    "trans": [
+      {
+        "cn": "n.稻，稻米， 大米"
+      },
+      {
+        "cn": "vt.筛选"
+      }
+    ],
+    "phonetic0": "raɪs",
+    "phonetic1": "raɪs"
+  },
+  {
+    "word": "chicken",
+    "trans": [
+      {
+        "cn": "n.鸡，鸡肉，胆小鬼，懦夫"
+      },
+      {
+        "cn": "adj.胆怯的，幼小的，胆小的"
+      },
+      {
+        "cn": "vi.以畏缩的方式去做，失去勇气，在最后一刻因胆怯而退出了"
+      }
+    ],
+    "phonetic0": "ˈtʃɪkɪn",
+    "phonetic1": "ˈtʃɪkən"
+  },
+  {
+    "word": "so",
+    "trans": [
+      {
+        "cn": "adv.这样，很，（表示程度）这么，同样"
+      },
+      {
+        "cn": "conj.（表示因果关系）因此，（表示目的）为了，（引出下文），（认为某事无关紧要，尤用于反驳他人的指责时）（口语）"
+      },
+      {
+        "cn": "pron.如此，这样，大约，左右"
+      },
+      {
+        "cn": "int.表示同意、赞成等 好啦，就这样吧！停下！（停住）别动！，表示惊讶、冷淡等 哦，真的吗"
+      },
+      {
+        "cn": "adj.真的，事实如此的，如此的，整齐的"
+      }
+    ],
+    "phonetic0": "səʊ",
+    "phonetic1": "soʊ"
+  },
+  {
+    "word": "breakfast",
+    "trans": [
+      {
+        "cn": "n.早餐，早饭，早餐食物"
+      },
+      {
+        "cn": "vi.吃早餐"
+      },
+      {
+        "cn": "vt.供给…早餐"
+      }
+    ],
+    "phonetic0": "ˈbrekfəst",
+    "phonetic1": "ˈbrekfəst"
+  },
+  {
+    "word": "lunch",
+    "trans": [
+      {
+        "cn": "n.午餐"
+      },
+      {
+        "cn": "vt.& vi.吃午餐，供给午餐"
+      }
+    ],
+    "phonetic0": "lʌntʃ",
+    "phonetic1": "lʌntʃ"
+  },
+  {
+    "word": "star",
+    "trans": [
+      {
+        "cn": "n.星，星状物，星级，明星"
+      },
+      {
+        "cn": "v.主演，（在文字等旁）标星号"
+      }
+    ],
+    "phonetic0": "stɑ:(r)",
+    "phonetic1": "stɑr"
+  },
+  {
+    "word": "eat",
+    "trans": [
+      {
+        "cn": "vt.& vi.吃，喝"
+      },
+      {
+        "cn": "vi.（食物）吃起来感到，咬，（人）感到苦恼（或烦恼），侵蚀，腐蚀"
+      },
+      {
+        "cn": "vt.（如酸）腐蚀，吃完，吃得使，侵蚀成"
+      }
+    ],
+    "phonetic0": "i:t",
+    "phonetic1": "i:t"
+  },
+  {
+    "word": "well.",
+    "trans": [
+      {
+        "cn": "好；令人满意地"
+      }
+    ],
+    "phonetic0": "wel",
+    "phonetic1": "wɛl"
+  },
+  {
+    "word": "habit",
+    "trans": [
+      {
+        "cn": "n.习惯，习性，气质，宗教服装"
+      },
+      {
+        "cn": "vt.给…穿衣服，打扮"
+      }
+    ],
+    "phonetic0": "ˈhæbɪt",
+    "phonetic1": "ˈhæbɪt"
+  },
+  {
+    "word": "healthy",
+    "trans": [
+      {
+        "cn": "adj.健康的，健全的，大量的，有益于健康的"
+      }
+    ],
+    "phonetic0": "ˈhelθi",
+    "phonetic1": "ˈhɛlθi"
+  },
+  {
+    "word": "really",
+    "trans": [
+      {
+        "cn": "adv.真，真正，实在，果真，实际上，事实上"
+      }
+    ],
+    "phonetic0": "ˈri:əli",
+    "phonetic1": "ˈrili"
+  },
+  {
+    "word": "question",
+    "trans": [
+      {
+        "cn": "n.问题，疑问，怀疑，议题"
+      },
+      {
+        "cn": "vt.问（某人）问题，对（某事物）表示感到怀疑"
+      }
+    ],
+    "phonetic0": "ˈkwestʃən",
+    "phonetic1": "ˈkwɛstʃən"
+  },
+  {
+    "word": "want",
+    "trans": [
+      {
+        "cn": "v.想要，希望，打算，需要…在场"
+      },
+      {
+        "cn": "n.需要的东西，缺少，贫穷"
+      }
+    ],
+    "phonetic0": "wɒnt",
+    "phonetic1": "wɑ:nt"
+  },
+  {
+    "word": "be",
+    "trans": [
+      {
+        "cn": "v.是，有，存在，做，成为，发生"
+      },
+      {
+        "cn": "aux.用来表示某人或某物即主语本身，用来表示某人或某物属于某一群体或有某种性质"
+      }
+    ],
+    "phonetic0": "bi",
+    "phonetic1": "bi"
+  },
+  {
+    "word": "fat",
+    "trans": [
+      {
+        "cn": "adj.肥的，胖的，厚的，大量的"
+      },
+      {
+        "cn": "n.脂肪，肥肉，动植物油"
+      },
+      {
+        "cn": "vt.养肥，在…中加入脂肪"
+      },
+      {
+        "cn": "vi.长肥"
+      }
+    ],
+    "phonetic0": "fæt",
+    "phonetic1": "fæt"
+  },
+  {
+    "word": "much",
+    "trans": [
+      {
+        "cn": "adv.非常，差不多，很多地，很大程度上"
+      },
+      {
+        "cn": "adj.许多的，大量的"
+      },
+      {
+        "cn": "pron.很多，大量，很好的东西，（与不可数名词连用，尤用于否定句，或与 how 连用以询问数量，也可与 as、so 和 too 连用）许多"
+      }
+    ],
+    "phonetic0": "mʌtʃ",
+    "phonetic1": "mʌtʃ"
+  },
+  {
+    "word": "How much...?",
+    "trans": [
+      {
+        "cn": "(购物时)......多少钱？"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "sock",
+    "trans": [
+      {
+        "cn": "n.短袜，（尤指用拳头）猛击，重击"
+      },
+      {
+        "cn": "vt.重击，给…穿袜"
+      }
+    ],
+    "phonetic0": "sɒk",
+    "phonetic1": "sɑ:k"
+  },
+  {
+    "word": "T-shirt",
+    "trans": [
+      {
+        "cn": "n.T恤，短袖汗衫，样式类似T恤的外衣"
+      }
+    ],
+    "phonetic0": "'ti:,ʃɜ:t",
+    "phonetic1": "'tɪ,ʃɜ:rt"
+  },
+  {
+    "word": "shorts",
+    "trans": [
+      {
+        "cn": "n.（从事运动或天气炎热时穿的）短裤，<美>男人的短内裤，电影短片，短裤( short的名词复数 )，短路，缺乏"
+      }
+    ],
+    "phonetic0": "ʃɔ:ts",
+    "phonetic1": "ʃɔ:rts"
+  },
+  {
+    "word": "sweater",
+    "trans": [
+      {
+        "cn": "n.毛衣，运动衫，出汗（过多）的人，发汗剂，榨取别人血汗的人（或工厂、公司等）"
+      },
+      {
+        "cn": "adj.运动衫的，运动衫式的"
+      }
+    ],
+    "phonetic0": "ˈswetə(r)",
+    "phonetic1": "ˈswɛtɚ"
+  },
+  {
+    "word": "trousers",
+    "trans": [
+      {
+        "cn": "n.裤子"
+      }
+    ],
+    "phonetic0": "ˈtraʊzəz",
+    "phonetic1": "ˈtraʊzərz"
+  },
+  {
+    "word": "shoe",
+    "trans": [
+      {
+        "cn": "n.鞋，蹄铁，（汽车轮的）制动器，煞车，外胎"
+      },
+      {
+        "cn": "vt.为…钉蹄铁，给…穿上鞋，装防护物"
+      }
+    ],
+    "phonetic0": "ʃu:",
+    "phonetic1": "ʃu"
+  },
+  {
+    "word": "skirt",
+    "trans": [
+      {
+        "cn": "n.裙子，边缘，（连衣裙、外衣等的）下摆，（车辆或机器基座的）挡板"
+      },
+      {
+        "cn": "vt.& vi.位于…的边缘，沿…的边缘走，绕开，避开"
+      }
+    ],
+    "phonetic0": "skɜ:t",
+    "phonetic1": "skɜ:rt"
+  },
+  {
+    "word": "dollar",
+    "trans": [
+      {
+        "cn": "n.美元💲"
+      }
+    ],
+    "phonetic0": "'dɒlə",
+    "phonetic1": "'dɑlɚ"
+  },
+  {
+    "word": "big",
+    "trans": [
+      {
+        "cn": "adj.大的，重要的，（计划）庞大的，大方的"
+      },
+      {
+        "cn": "adv.大量地，成功地，夸大地，宽宏大量地"
+      },
+      {
+        "cn": "n.大亨，大公司"
+      }
+    ],
+    "phonetic0": "bɪg",
+    "phonetic1": "bɪɡ"
+  },
+  {
+    "word": "small",
+    "trans": [
+      {
+        "cn": "adj.小的，难为情的，低级的，卑劣的，细微的，微弱的"
+      },
+      {
+        "cn": "adv.小小地，卑鄙地"
+      },
+      {
+        "cn": "n.细小部分，腰部，琐碎东西，身份低的人，矮小的人"
+      }
+    ],
+    "phonetic0": "smɔ:l",
+    "phonetic1": "smɔl"
+  },
+  {
+    "word": "short",
+    "trans": [
+      {
+        "cn": "adj.短的，短暂的，矮的，短缺的，短期的"
+      },
+      {
+        "cn": "adv.突然，唐突地，简短地，横贯地"
+      },
+      {
+        "cn": "n.短裤，短路，缺乏"
+      },
+      {
+        "cn": "vt.故意少给…的零头，骗取"
+      },
+      {
+        "cn": "vi.短路"
+      }
+    ],
+    "phonetic0": "ʃɔ:t",
+    "phonetic1": "ʃɔ:rt"
+  },
+  {
+    "word": "long",
+    "trans": [
+      {
+        "cn": "adj.长的，长时间的，冗长的，过长的，长音的"
+      },
+      {
+        "cn": "adv.长久地，始终，遥远地"
+      },
+      {
+        "cn": "n.长时间，长时期，语长音节，（服装的）长尺寸，长裤"
+      },
+      {
+        "cn": "vi.渴望，极想"
+      }
+    ],
+    "phonetic0": "lɒŋ",
+    "phonetic1": "lɔ:ŋ"
+  },
+  {
+    "word": "woman",
+    "trans": [
+      {
+        "cn": "n.女人，妇女，成年女子，女拥人或女下属，女人本能"
+      }
+    ],
+    "phonetic0": "ˈwʊmən",
+    "phonetic1": "ˈwʊmən"
+  },
+  {
+    "word": "Can I help you?",
+    "trans": [
+      {
+        "cn": "我能帮您吗？"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "need",
+    "trans": [
+      {
+        "cn": "vt.需要，必须"
+      },
+      {
+        "cn": "aux.必须，不得不"
+      },
+      {
+        "cn": "n.需要，需要的东西，责任，贫穷"
+      },
+      {
+        "cn": "vi.（表示应该或不得不做）有必要"
+      }
+    ],
+    "phonetic0": "ni:d",
+    "phonetic1": "nid"
+  },
+  {
+    "word": "look",
+    "trans": [
+      {
+        "cn": "vt.& vi.看，瞧"
+      },
+      {
+        "cn": "vi.注意，面向，寻找，看起来好像"
+      },
+      {
+        "cn": "n.看，（尤指吸引人的）相貌，眼神，样子"
+      },
+      {
+        "cn": "int.（插话或唤起注意）喂，听我说"
+      }
+    ],
+    "phonetic0": "lʊk",
+    "phonetic1": "lʊk"
+  },
+  {
+    "word": "pair",
+    "trans": [
+      {
+        "cn": "n.一副，一对男女，套在一起的两匹马，雌雄成对的动物"
+      },
+      {
+        "cn": "vt.& vi.（使…）成对，（使…）成双"
+      },
+      {
+        "cn": "vi.交配，交尾"
+      }
+    ],
+    "phonetic0": "peə(r)",
+    "phonetic1": "per"
+  },
+  {
+    "word": "take",
+    "trans": [
+      {
+        "cn": "vt.拿，取，采取，接受（礼物等），耗费（时间等）"
+      },
+      {
+        "cn": "vi.拿，获得"
+      },
+      {
+        "cn": "n.捕获量，看法，利益，盈益，（入场券的）售得金额"
+      }
+    ],
+    "phonetic0": "teɪk",
+    "phonetic1": "tek"
+  },
+  {
+    "word": "Here you are.",
+    "trans": [
+      {
+        "cn": "给你。"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "ten",
+    "trans": [
+      {
+        "cn": "num.十，十个，第十"
+      },
+      {
+        "cn": "n.十个人，十点钟，十岁，十元纸币"
+      }
+    ],
+    "phonetic0": "ten",
+    "phonetic1": "tɛn"
+  },
+  {
+    "word": "eleven",
+    "trans": [
+      {
+        "cn": "num.十一，十一个，第十一"
+      },
+      {
+        "cn": "n.十一，十一个"
+      },
+      {
+        "cn": "adj.十一的，十一个的"
+      }
+    ],
+    "phonetic0": "ɪˈlevn",
+    "phonetic1": "ɪˈlɛvən"
+  },
+  {
+    "word": "twelve",
+    "trans": [
+      {
+        "cn": "num.十二，十二个，十二点钟，十二岁"
+      },
+      {
+        "cn": "adj.十二的，十二个的"
+      },
+      {
+        "cn": "n.十二；十二个"
+      }
+    ],
+    "phonetic0": "twelv",
+    "phonetic1": "twɛlv"
+  },
+  {
+    "word": "thirteen",
+    "trans": [
+      {
+        "cn": "n.十三，十三岁，十三个"
+      },
+      {
+        "cn": "num.十三"
+      },
+      {
+        "cn": "adj.十三的，十三个的"
+      }
+    ],
+    "phonetic0": "ˌθɜ:ˈti:n",
+    "phonetic1": "ˌθɜ:rˈti:n"
+  },
+  {
+    "word": "fifteen",
+    "trans": [
+      {
+        "cn": "n.十五，十五个人组成的橄榄球队"
+      }
+    ],
+    "phonetic0": "ˌfɪfˈti:n",
+    "phonetic1": "fɪfˈtin"
+  },
+  {
+    "word": "eighteen",
+    "trans": [
+      {
+        "cn": "num.十八，十八个"
+      },
+      {
+        "cn": "n.十八岁，十八的记号，十九世纪，是八点钟"
+      }
+    ],
+    "phonetic0": "ˌeɪˈti:n",
+    "phonetic1": "eˈtin"
+  },
+  {
+    "word": "twenty",
+    "trans": [
+      {
+        "cn": "n.二十，二十个，二十多岁，二十年代，许多，大量"
+      },
+      {
+        "cn": "num.二十"
+      },
+      {
+        "cn": "adj.二十的"
+      }
+    ],
+    "phonetic0": "ˈtwenti",
+    "phonetic1": "ˈtwʌn-"
+  },
+  {
+    "word": "thirty",
+    "trans": [
+      {
+        "cn": "n.三十，三十个，三十年代，三十的记号"
+      },
+      {
+        "cn": "adj.三十的，三十个的"
+      },
+      {
+        "cn": "num.三十，三十个"
+      }
+    ],
+    "phonetic0": "ˈθɜ:ti",
+    "phonetic1": "ˈθɜ:rti"
+  },
+  {
+    "word": "Mr.",
+    "trans": [
+      {
+        "cn": "n.先生"
+      }
+    ],
+    "phonetic0": "'mistə",
+    "phonetic1": "'mistə"
+  },
+  {
+    "word": "clothes",
+    "trans": [
+      {
+        "cn": "n.衣服，衣物，寝具"
+      },
+      {
+        "cn": "v.穿（衣）( clothe的第三人称单数)，给…提供衣服，（用语言）表达，覆盖"
+      }
+    ],
+    "phonetic0": "kləʊðz",
+    "phonetic1": "kloʊðz"
+  },
+  {
+    "word": "store",
+    "trans": [
+      {
+        "cn": "n.商店，贮存物，仓库，大量"
+      },
+      {
+        "cn": "v.贮存，（在计算机里）存储"
+      }
+    ],
+    "phonetic0": "stɔ:(r)",
+    "phonetic1": "stor"
+  },
+  {
+    "word": "buy",
+    "trans": [
+      {
+        "cn": "vt.& vi.购买，购得"
+      },
+      {
+        "cn": "n.交易，买卖，便宜货"
+      },
+      {
+        "cn": "vt.够支付，买通，收买，贿赂"
+      }
+    ],
+    "phonetic0": "baɪ",
+    "phonetic1": "baɪ"
+  },
+  {
+    "word": "sale",
+    "trans": [
+      {
+        "cn": "n.卖，出卖，销售额，销售，销路，拍卖"
+      }
+    ],
+    "phonetic0": "seɪl",
+    "phonetic1": "sel"
+  },
+  {
+    "word": "sell",
+    "trans": [
+      {
+        "cn": "vt.& vi.卖，售，使好卖，使接受，使赞成，销售"
+      },
+      {
+        "cn": "vt.经销，推销，出卖，欺骗"
+      },
+      {
+        "cn": "n.销售，欺骗，失望，推销术"
+      },
+      {
+        "cn": "vi.卖，出售，受欢迎，有销路"
+      }
+    ],
+    "phonetic0": "sel",
+    "phonetic1": "sɛl"
+  },
+  {
+    "word": "all",
+    "trans": [
+      {
+        "cn": "adj.全部的，一切的，各种的，极度的，尽量的"
+      },
+      {
+        "cn": "pron.全部，一切，每个人，每件东西，全部情况"
+      },
+      {
+        "cn": "adv.全部地，完全地，每个，非常"
+      },
+      {
+        "cn": "n.全体，常作A-整体，常与my， your， his， her等连用（某人）所有的一切"
+      }
+    ],
+    "phonetic0": "ɔ:l",
+    "phonetic1": "ɔl"
+  },
+  {
+    "word": "very",
+    "trans": [
+      {
+        "cn": "adj.很，非常，恰好是，正是，十足的，特有的"
+      },
+      {
+        "cn": "adv.很，非常，充分，完全"
+      }
+    ],
+    "phonetic0": "ˈveri",
+    "phonetic1": "ˈvɛri"
+  },
+  {
+    "word": "price",
+    "trans": [
+      {
+        "cn": "n.价格，价钱，代价，价值，赏金"
+      },
+      {
+        "cn": "vt.标价，定价，问…的价格，给…定价"
+      }
+    ],
+    "phonetic0": "praɪs",
+    "phonetic1": "praɪs"
+  },
+  {
+    "word": "boy",
+    "trans": [
+      {
+        "cn": "n.男孩，少年，儿子，小伙子，家伙，服务员"
+      }
+    ],
+    "phonetic0": "bɔɪ",
+    "phonetic1": "bɔɪ"
+  },
+  {
+    "word": "a pair of",
+    "trans": [
+      {
+        "cn": "一双"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "when",
+    "trans": [
+      {
+        "cn": "adv.什么时候，（用于时间的表达方式之后）在那时，其时，当时"
+      },
+      {
+        "cn": "conj.在…时，既然，如果"
+      },
+      {
+        "cn": "pron.什么时候，那时"
+      },
+      {
+        "cn": "n.时间，时候，日期，场合"
+      }
+    ],
+    "phonetic0": "wen",
+    "phonetic1": "wɛn"
+  },
+  {
+    "word": "month",
+    "trans": [
+      {
+        "cn": "n.月，月份，一个月的时间"
+      }
+    ],
+    "phonetic0": "mʌnθ",
+    "phonetic1": "mʌnθ"
+  },
+  {
+    "word": "January",
+    "trans": [
+      {
+        "cn": "n.一月"
+      }
+    ],
+    "phonetic0": "'dʒænjʊ(ə)rɪ",
+    "phonetic1": "'dʒænjʊ'ɛri"
+  },
+  {
+    "word": "February",
+    "trans": [
+      {
+        "cn": "n.二月"
+      }
+    ],
+    "phonetic0": "ˈfebrʊərɪ",
+    "phonetic1": "ˈfebrʊerɪ;'fɛbrʊɛrɪ"
+  },
+  {
+    "word": "March",
+    "trans": [
+      {
+        "cn": "n.三月"
+      }
+    ],
+    "phonetic0": "mɑːtʃ",
+    "phonetic1": "mɑrtʃ"
+  },
+  {
+    "word": "April",
+    "trans": [
+      {
+        "cn": "n.四月"
+      }
+    ],
+    "phonetic0": "'eɪprəl",
+    "phonetic1": "'eprəl"
+  },
+  {
+    "word": "May",
+    "trans": [
+      {
+        "cn": "n.五月"
+      }
+    ],
+    "phonetic0": "meɪ",
+    "phonetic1": "me"
+  },
+  {
+    "word": "June",
+    "trans": [
+      {
+        "cn": "n.六月"
+      }
+    ],
+    "phonetic0": "dʒu:n",
+    "phonetic1": "dʒun"
+  },
+  {
+    "word": "July",
+    "trans": [
+      {
+        "cn": "n.七月"
+      }
+    ],
+    "phonetic0": "dʒʊˈlaɪ",
+    "phonetic1": "dʒʊˈlaɪ"
+  },
+  {
+    "word": "August",
+    "trans": [
+      {
+        "cn": "n.八月"
+      }
+    ],
+    "phonetic0": "ˈɔːɡəst",
+    "phonetic1": "ɔˈgʌst"
+  },
+  {
+    "word": "September",
+    "trans": [
+      {
+        "cn": "n.九月"
+      }
+    ],
+    "phonetic0": "sep'tembə",
+    "phonetic1": "sɛp'tɛmbɚ"
+  },
+  {
+    "word": "October",
+    "trans": [
+      {
+        "cn": "n.十月"
+      }
+    ],
+    "phonetic0": "ɒk'təʊbə",
+    "phonetic1": "ɑk'tobɚ"
+  },
+  {
+    "word": "November",
+    "trans": [
+      {
+        "cn": "n.十一月"
+      }
+    ],
+    "phonetic0": "nə(ʊ)'vembə",
+    "phonetic1": "no'vɛmbɚ"
+  },
+  {
+    "word": "December",
+    "trans": [
+      {
+        "cn": "n.十二月"
+      }
+    ],
+    "phonetic0": "dɪ'sembə",
+    "phonetic1": "dɪ'sɛmbɚ"
+  },
+  {
+    "word": "happy",
+    "trans": [
+      {
+        "cn": "adj.幸福的，快乐的，巧妙的，〈口〉有点醉意的"
+      }
+    ],
+    "phonetic0": "ˈhæpi",
+    "phonetic1": "ˈhæpi"
+  },
+  {
+    "word": "Happy birthday!",
+    "trans": [
+      {
+        "cn": "生日快乐！"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "old",
+    "trans": [
+      {
+        "cn": "adj.老的，古老的，以前的，（用于指称被替代的东西）原来的"
+      },
+      {
+        "cn": "n.古时"
+      }
+    ],
+    "phonetic0": "əʊld",
+    "phonetic1": "oʊld"
+  },
+  {
+    "word": "How old...?",
+    "trans": [
+      {
+        "cn": "....多大年纪？..几岁了？"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "party",
+    "trans": [
+      {
+        "cn": "n.社交聚会，党，党派，当事人，同类，伙伴"
+      },
+      {
+        "cn": "v.为…举行社交聚会，为…请客，参加社交聚会"
+      },
+      {
+        "cn": "adj.政党的，党派的，社交的，聚会的，共有的，共同的"
+      }
+    ],
+    "phonetic0": "ˈpɑ:ti",
+    "phonetic1": "ˈpɑ:rti"
+  },
+  {
+    "word": "See you!",
+    "trans": [
+      {
+        "cn": "再见！"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "first.",
+    "trans": [
+      {
+        "cn": "第一"
+      }
+    ],
+    "phonetic0": "fɜːst",
+    "phonetic1": "fɝst"
+  },
+  {
+    "word": "second",
+    "trans": [
+      {
+        "cn": "n.秒，瞬间，次货，第二份食物"
+      },
+      {
+        "cn": "adj.第二的，次要的，居第二位的，另外的"
+      },
+      {
+        "cn": "adv.第二，其次，以第二位"
+      },
+      {
+        "cn": "vt.支持，临时调派，附议，赞成提案"
+      }
+    ],
+    "phonetic0": "ˈsekənd",
+    "phonetic1": "ˈsekənd"
+  },
+  {
+    "word": "third",
+    "trans": [
+      {
+        "cn": "n.第三，三分之一，第三档"
+      },
+      {
+        "cn": "adj.第三的，三分之一的"
+      }
+    ],
+    "phonetic0": "θɜ:d",
+    "phonetic1": "θɜ:rd"
+  },
+  {
+    "word": "fifth",
+    "trans": [
+      {
+        "cn": "num.第五"
+      },
+      {
+        "cn": "n.五分之一，第五音，五度音程，<美>五分之一加仑（瓶）"
+      }
+    ],
+    "phonetic0": "fɪfθ",
+    "phonetic1": "fɪfθ"
+  },
+  {
+    "word": "eighth",
+    "trans": [
+      {
+        "cn": "num.第八，八号，八分之一"
+      },
+      {
+        "cn": "adv.第八，八分之一，<音>八分音符"
+      },
+      {
+        "cn": "n.第八个，八分之一，（每月的）第八日"
+      }
+    ],
+    "phonetic0": "eɪtθ",
+    "phonetic1": "eθ"
+  },
+  {
+    "word": "ninth",
+    "trans": [
+      {
+        "cn": "n.第九，九分之一"
+      },
+      {
+        "cn": "adj.第九的，九分之一的"
+      }
+    ],
+    "phonetic0": "naɪnθ",
+    "phonetic1": "naɪnθ"
+  },
+  {
+    "word": "twelfth",
+    "trans": [
+      {
+        "cn": "n.第十二，十二分之一"
+      },
+      {
+        "cn": "adj.第十二的，第十二个的，十二分之一的"
+      }
+    ],
+    "phonetic0": "twelfθ",
+    "phonetic1": "twɛlfθ"
+  },
+  {
+    "word": "twentieth",
+    "trans": [
+      {
+        "cn": "n.二十分之一，（某月的）二十日"
+      },
+      {
+        "cn": "adj.第二十的，二十分之一的"
+      },
+      {
+        "cn": "num.第二十"
+      }
+    ],
+    "phonetic0": "'twentɪəθ",
+    "phonetic1": "ˈtwʌn-"
+  },
+  {
+    "word": "test",
+    "trans": [
+      {
+        "cn": "n.试验，考验，测验，化验"
+      },
+      {
+        "cn": "vt.测验，考查，考验，勘探"
+      },
+      {
+        "cn": "vi.受试验，受测验，受考验，测得结果"
+      }
+    ],
+    "phonetic0": "test",
+    "phonetic1": "test"
+  },
+  {
+    "word": "trip",
+    "trans": [
+      {
+        "cn": "n.旅游，出行，摔倒，绊倒，绊（使某人跌倒的动作），错误，过失"
+      },
+      {
+        "cn": "vi.绊倒，绊，旅行，轻快地走，跳"
+      },
+      {
+        "cn": "vt.使犯错误，松开（离合器等）以开动"
+      }
+    ],
+    "phonetic0": "trɪp",
+    "phonetic1": "trɪp"
+  },
+  {
+    "word": "art",
+    "trans": [
+      {
+        "cn": "n.艺术，艺术作品，（需要技术、工艺的）行业，文艺（包括绘画、雕塑、建筑、音乐、舞蹈、戏剧、文学等）"
+      },
+      {
+        "cn": "vi.thou art 即 you are，对一人讲话时用"
+      },
+      {
+        "cn": "adj.艺术的，（为）艺术家的，艺术品的，具有艺术性的"
+      },
+      {
+        "cn": "vt.& vi.口语（把…）装饰得古色古香，（把…）装饰得古怪而有艺术趣味，把…装饰得有艺术价值，把…加以艺术乔装，使艺术化仅用于 art up 短语中"
+      }
+    ],
+    "phonetic0": "ɑ:t",
+    "phonetic1": "ɑ:rt"
+  },
+  {
+    "word": "festival",
+    "trans": [
+      {
+        "cn": "n.节日，节期，贺宴，会演"
+      },
+      {
+        "cn": "adj.节日的，喜庆的"
+      }
+    ],
+    "phonetic0": "ˈfestɪvl",
+    "phonetic1": "ˈfɛstəvəl"
+  },
+  {
+    "word": "dear",
+    "trans": [
+      {
+        "cn": "adj.亲爱的，敬爱的，昂贵的，严厉的"
+      },
+      {
+        "cn": "n.亲爱的人，宠物"
+      },
+      {
+        "cn": "int.哎"
+      },
+      {
+        "cn": "adv.高价地，疼爱地，贵"
+      }
+    ],
+    "phonetic0": "dɪə(r)",
+    "phonetic1": "dɪr"
+  },
+  {
+    "word": "student",
+    "trans": [
+      {
+        "cn": "n.学生，大学生，研究者，学者，中学生，<美俚>初学者"
+      }
+    ],
+    "phonetic0": "ˈstju:dnt",
+    "phonetic1": "ˈstu:dnt"
+  },
+  {
+    "word": "thing",
+    "trans": [
+      {
+        "cn": "n.事件，形势，东西，事物，家伙，事业"
+      }
+    ],
+    "phonetic0": "θɪŋ",
+    "phonetic1": "θɪŋ"
+  },
+  {
+    "word": "term",
+    "trans": [
+      {
+        "cn": "n.学期，条款，术语，期限"
+      },
+      {
+        "cn": "vt.把…称为，把…叫做"
+      }
+    ],
+    "phonetic0": "tɜ:m",
+    "phonetic1": "tɜ:rm"
+  },
+  {
+    "word": "busy",
+    "trans": [
+      {
+        "cn": "adj.忙碌的，占线，繁华的，爱管闲事的"
+      },
+      {
+        "cn": "vt.忙着做某事，使奔走，使经营"
+      },
+      {
+        "cn": "n.〈英俚〉侦探，包打听"
+      }
+    ],
+    "phonetic0": "ˈbɪzi",
+    "phonetic1": "ˈbɪzi"
+  },
+  {
+    "word": "time",
+    "trans": [
+      {
+        "cn": "n.时间，时刻，时代，次"
+      },
+      {
+        "cn": "vt.为…安排时间，测定…的时间，调准（机械的）速度，拨准（钟、表）的快慢"
+      },
+      {
+        "cn": "vi.合拍，和谐，打拍子"
+      },
+      {
+        "cn": "adj.定时的，定期的，美国英语分期（付款）的"
+      },
+      {
+        "cn": "int.体育时间到，（一场或一局等的）比赛时限，暂停"
+      }
+    ],
+    "phonetic0": "taɪm",
+    "phonetic1": "taɪm"
+  },
+  {
+    "word": "Have a good time!",
+    "trans": [
+      {
+        "cn": "(表示祝愿) 过得愉快！"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "there",
+    "trans": [
+      {
+        "cn": "adv.在那里，那里，在那一点上"
+      },
+      {
+        "cn": "pron.表示某物或某人的存在或某事的发生（常用作be， seem或appear的主语）"
+      },
+      {
+        "cn": "int.（表示满足、烦恼）你瞧，好啦，得啦"
+      }
+    ],
+    "phonetic0": "ðeə(r)",
+    "phonetic1": "ðer"
+  },
+  {
+    "word": "favorite",
+    "trans": [
+      {
+        "cn": "n.特别喜欢的人（或物），喜欢的事物，最有希望获胜者（尤指马），收藏夹"
+      },
+      {
+        "cn": "adj.喜爱的，宠爱的，中意的美国英语 = favourite"
+      }
+    ],
+    "phonetic0": "'feɪvərɪt",
+    "phonetic1": "ˈfevrɪt"
+  },
+  {
+    "word": "subject",
+    "trans": [
+      {
+        "cn": "n.主题，话题，学科，科目，哲主观"
+      },
+      {
+        "cn": "adj.须服从…的，（在君主等）统治下的"
+      },
+      {
+        "cn": "v.提供，提出，使…隶属"
+      }
+    ],
+    "phonetic0": "ˈsʌbdʒɪkt",
+    "phonetic1": "ˈsʌbdʒekt"
+  },
+  {
+    "word": "science",
+    "trans": [
+      {
+        "cn": "n.科学，技术，知识，学科，理科"
+      }
+    ],
+    "phonetic0": "ˈsaɪəns",
+    "phonetic1": "ˈsaɪəns"
+  },
+  {
+    "word": "P.E.",
+    "trans": [
+      {
+        "cn": "体育(缩) =physical education"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": "piːiː"
+  },
+  {
+    "word": "music",
+    "trans": [
+      {
+        "cn": "n.音乐，乐曲，乐谱，乐队"
+      }
+    ],
+    "phonetic0": "ˈmju:zɪk",
+    "phonetic1": "ˈmjuzɪk"
+  },
+  {
+    "word": "math",
+    "trans": [
+      {
+        "cn": "n.数学（等于mathematics）"
+      }
+    ],
+    "phonetic0": "mæθ",
+    "phonetic1": "mæθ"
+  },
+  {
+    "word": "Chinese",
+    "trans": [
+      {
+        "cn": "n.中国人，华人，中文，汉语"
+      },
+      {
+        "cn": "adj.中国的，中国人的，中国话的，中文的"
+      }
+    ],
+    "phonetic0": "ˌtʃaɪˈni:z",
+    "phonetic1": "-ˈnis"
+  },
+  {
+    "word": "geography",
+    "trans": [
+      {
+        "cn": "n.地理（学），地形，地势，布局"
+      }
+    ],
+    "phonetic0": "dʒiˈɒgrəfi",
+    "phonetic1": "dʒiˈɑ:grəfi"
+  },
+  {
+    "word": "history",
+    "trans": [
+      {
+        "cn": "n.历史，历史学，发展史，履历，经历，（某地的）沿革"
+      }
+    ],
+    "phonetic0": "ˈhɪstri",
+    "phonetic1": "ˈhɪstəri"
+  },
+  {
+    "word": "why",
+    "trans": [
+      {
+        "cn": "adv.（用于问句）为什么，为何，（反问，表示不必）何必，（说明理由）为什么"
+      },
+      {
+        "cn": "int.呵唷，哎呀，嗨"
+      },
+      {
+        "cn": "n.理由，原因，说明，难解的问题"
+      }
+    ],
+    "phonetic0": "waɪ",
+    "phonetic1": "waɪ"
+  },
+  {
+    "word": "because",
+    "trans": [
+      {
+        "cn": "conj.因为"
+      }
+    ],
+    "phonetic0": "bɪˈkɒz",
+    "phonetic1": "bɪˈkɔ:z"
+  },
+  {
+    "word": "Monday",
+    "trans": [
+      {
+        "cn": "n.星期一"
+      }
+    ],
+    "phonetic0": "ˈmʌndeɪ; ˈmʌndi",
+    "phonetic1": "ˈmʌnde; ˈmʌndɪ"
+  },
+  {
+    "word": "Friday",
+    "trans": [
+      {
+        "cn": "n.星期五"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "Saturday",
+    "trans": [
+      {
+        "cn": "n.星期六"
+      }
+    ],
+    "phonetic0": "ˈsætədɪ; -deɪ",
+    "phonetic1": "sætɚdɪ; -de"
+  },
+  {
+    "word": "for sure",
+    "trans": [
+      {
+        "cn": "确实"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "free",
+    "trans": [
+      {
+        "cn": "adj.自由的，免费的，免税的，空闲的"
+      },
+      {
+        "cn": "adv.免费地，自由地，无拘束地，一帆风顺地"
+      },
+      {
+        "cn": "vt.免除，释放，使自由，解救"
+      }
+    ],
+    "phonetic0": "fri:",
+    "phonetic1": "fri"
+  },
+  {
+    "word": "cool",
+    "trans": [
+      {
+        "cn": "adj.冷静的，凉爽的，一流的，孤傲冷漠的"
+      },
+      {
+        "cn": "vt.& vi.（使）变凉，（使）冷静，使冷却，变凉，冷却，平息"
+      },
+      {
+        "cn": "n.凉气，凉快的地方，凉爽，凉爽的空气"
+      }
+    ],
+    "phonetic0": "ku:l",
+    "phonetic1": "kul"
+  },
+  {
+    "word": "Tuesday",
+    "trans": [
+      {
+        "cn": "n.星期二"
+      }
+    ],
+    "phonetic0": "'tjuːzdeɪ; -dɪ",
+    "phonetic1": "ˈtuzdɪ;-de"
+  },
+  {
+    "word": "Wednesday",
+    "trans": [
+      {
+        "cn": "n.星期三"
+      }
+    ],
+    "phonetic0": "ˈwenzdɪ",
+    "phonetic1": "ˈwɛnzdɪ"
+  },
+  {
+    "word": "Thursday",
+    "trans": [
+      {
+        "cn": "n.星期四"
+      }
+    ],
+    "phonetic0": "'θɜːzdeɪ; -dɪ",
+    "phonetic1": "ˈθɝzde; ˈθɝzdɪ"
+  },
+  {
+    "word": "Sunday",
+    "trans": [
+      {
+        "cn": "n.星期天"
+      }
+    ],
+    "phonetic0": "ˈsʌndeɪ; ˈsʌndi",
+    "phonetic1": "ˈsʌnde; ˈsʌndi"
+  },
+  {
+    "word": "A.M.",
+    "trans": [
+      {
+        "cn": "(缩)上午"
+      }
+    ],
+    "phonetic0": "eɪ.ɛm.",
+    "phonetic1": "eɪ.ɛm."
+  },
+  {
+    "word": "P.M.",
+    "trans": [
+      {
+        "cn": "(p.m.) 下午；午后"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "useful",
+    "trans": [
+      {
+        "cn": "adj.有用的，有益的，有帮助的，令人满意的"
+      }
+    ],
+    "phonetic0": "ˈju:sfl",
+    "phonetic1": "ˈjusfəl"
+  },
+  {
+    "word": "from",
+    "trans": [
+      {
+        "cn": "prep.（表示时间）从…，（表示原因）因为，（表示来源）来自…，（表示分离）与…分离隔开"
+      }
+    ],
+    "phonetic0": "frəm",
+    "phonetic1": "frʌm"
+  },
+  {
+    "word": "from... to...",
+    "trans": [
+      {
+        "cn": "从......到......"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "Mrs.",
+    "trans": [
+      {
+        "cn": "n. 夫人, 太太（称呼已婚妇女）"
+      }
+    ],
+    "phonetic0": "'misiz",
+    "phonetic1": "ˈmɪsɪz"
+  },
+  {
+    "word": "finish",
+    "trans": [
+      {
+        "cn": "vt.& vi.完成，结束，吃光，使筋疲力尽"
+      },
+      {
+        "cn": "n.结尾，结束，最后阶段，抛光"
+      }
+    ],
+    "phonetic0": "ˈfɪnɪʃ",
+    "phonetic1": "ˈfɪnɪʃ"
+  },
+  {
+    "word": "lesson",
+    "trans": [
+      {
+        "cn": "n.教训，训诫，功课，课程，一堂课，宗日课"
+      },
+      {
+        "cn": "vt.教训，训斥，教课，向…授课"
+      }
+    ],
+    "phonetic0": "ˈlesn",
+    "phonetic1": "ˈlɛsən"
+  },
+  {
+    "word": "hour",
+    "trans": [
+      {
+        "cn": "n.小时，钟头，时间，时刻，固定时间，课时"
+      }
+    ],
+    "phonetic0": "ˈaʊə(r)",
+    "phonetic1": "aʊr"
+  }
+]

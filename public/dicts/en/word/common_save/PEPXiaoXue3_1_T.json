@@ -1,0 +1,903 @@
+[
+  {
+    "word": "ruler",
+    "trans": [
+      {
+        "cn": "n.尺，直尺，统治者"
+      }
+    ],
+    "phonetic0": "ˈru:lə(r)",
+    "phonetic1": "ˈrulɚ"
+  },
+  {
+    "word": "pencil",
+    "trans": [
+      {
+        "cn": "n.铅笔，彩色铅笔，笔状物，画风，画法，物光线锥"
+      },
+      {
+        "cn": "vt.用铅笔写，用画笔画"
+      }
+    ],
+    "phonetic0": "ˈpensl",
+    "phonetic1": "ˈpɛnsəl"
+  },
+  {
+    "word": "eraser",
+    "trans": [
+      {
+        "cn": "n.<主美>橡皮擦，板擦"
+      }
+    ],
+    "phonetic0": "ɪˈreɪzə(r)",
+    "phonetic1": "ɪˈreɪsər"
+  },
+  {
+    "word": "crayon",
+    "trans": [
+      {
+        "cn": "n.彩色蜡笔或粉笔"
+      },
+      {
+        "cn": "vt.& vi.用彩色蜡笔粉笔画"
+      }
+    ],
+    "phonetic0": "ˈkreɪən",
+    "phonetic1": "'kreɪən"
+  },
+  {
+    "word": "bag",
+    "trans": [
+      {
+        "cn": "n.袋，囊，枕套，钱包，手提皮包，财富，〈英俚〉大量，很多"
+      },
+      {
+        "cn": "vt.把。。装入袋中，猎获，捕获，得分，抢占"
+      },
+      {
+        "cn": "vi.松散地垂挂，鼓胀"
+      }
+    ],
+    "phonetic0": "bæg",
+    "phonetic1": "bæɡ"
+  },
+  {
+    "word": "pen",
+    "trans": [
+      {
+        "cn": "n.笔，笔尖，笔法，文笔，作家，围栏"
+      },
+      {
+        "cn": "vt.写，把…关入栏中，关押，囚禁"
+      }
+    ],
+    "phonetic0": "pen",
+    "phonetic1": "pɛn"
+  },
+  {
+    "word": "pencil box",
+    "trans": [
+      {
+        "cn": "铅笔盒；文具盒"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": "'pɛnsl bɑks"
+  },
+  {
+    "word": "book",
+    "trans": [
+      {
+        "cn": "n.书，卷，课本，账簿"
+      },
+      {
+        "cn": "vt.& vi.预订"
+      },
+      {
+        "cn": "vt.登记，（向旅馆、饭店、戏院等）预约，立案（控告某人），订立演出契约"
+      },
+      {
+        "cn": "adj.书的，账簿上的，得之（或来自）书本的，按照（或依据）书本的"
+      }
+    ],
+    "phonetic0": "bʊk",
+    "phonetic1": "bʊk"
+  },
+  {
+    "word": "no",
+    "trans": [
+      {
+        "cn": "adv.不，否，一点也没有"
+      },
+      {
+        "cn": "adj.没有的，不许的，一点儿也没有，决不是的"
+      },
+      {
+        "cn": "n.不，否定，否认，反对票，否决票abbr.数字(number)，元素锘(nobelium)的符号"
+      }
+    ],
+    "phonetic0": "nəʊ",
+    "phonetic1": "noʊ"
+  },
+  {
+    "word": "your",
+    "trans": [
+      {
+        "cn": "pron.你的，你们的，尊，玉，乃"
+      }
+    ],
+    "phonetic0": "jɔ:(r)",
+    "phonetic1": "jʊr"
+  },
+  {
+    "word": "red",
+    "trans": [
+      {
+        "cn": "adj.红色的，（脸）涨红的，烧红的，红头发的"
+      },
+      {
+        "cn": "n.红色，红衣服，红颜料，红葡萄酒"
+      }
+    ],
+    "phonetic0": "red",
+    "phonetic1": "rɛd"
+  },
+  {
+    "word": "green",
+    "trans": [
+      {
+        "cn": "adj.绿色的，未熟的，青春的，未成熟的，主张保护环境的"
+      },
+      {
+        "cn": "n.绿色蔬菜，绿色的衣服，植物"
+      },
+      {
+        "cn": "vi.绿化，使重视环境保护问题"
+      }
+    ],
+    "phonetic0": "gri:n",
+    "phonetic1": "ɡrin"
+  },
+  {
+    "word": "yellow",
+    "trans": [
+      {
+        "cn": "adj.黄色的，黄皮肤的，黄种人的，胆怯的"
+      },
+      {
+        "cn": "vt.& vi.（使某物）变黄或发黄"
+      },
+      {
+        "cn": "n.黄色，黄种人，黄色颜料"
+      }
+    ],
+    "phonetic0": "ˈjeləʊ",
+    "phonetic1": "ˈjeloʊ"
+  },
+  {
+    "word": "blue",
+    "trans": [
+      {
+        "cn": "n.蓝色，复数（美国海、陆、空三军穿的）蓝色制服，蓝颜料，the blue(s)用作单数或复数布鲁斯（歌曲）（一种伤感的美国黑人民歌）"
+      },
+      {
+        "cn": "adj.蓝色的，沮丧的，忧郁的，下流的"
+      },
+      {
+        "cn": "vt.把…染成蓝色，使成蓝色，给…用上蓝剂，用上蓝剂于"
+      },
+      {
+        "cn": "vi.变成蓝色，呈蓝色"
+      }
+    ],
+    "phonetic0": "blu:",
+    "phonetic1": "blu"
+  },
+  {
+    "word": "black",
+    "trans": [
+      {
+        "cn": "adj.黑（色）的，黑色人种的，黑暗的，不加牛奶的"
+      },
+      {
+        "cn": "n.黑色，黑人，黑颜料，黑暗"
+      },
+      {
+        "cn": "v.使变黑，抵制，拒绝，使变黑暗"
+      }
+    ],
+    "phonetic0": "blæk",
+    "phonetic1": "blæk"
+  },
+  {
+    "word": "brown",
+    "trans": [
+      {
+        "cn": "adj.棕色的，褐色的，被晒黑的，未去壳的"
+      },
+      {
+        "cn": "n.褐色，棕色"
+      },
+      {
+        "cn": "v.变成棕色，成褐色，晒黑，烤得焦黄"
+      }
+    ],
+    "phonetic0": "braʊn",
+    "phonetic1": "braʊn"
+  },
+  {
+    "word": "white",
+    "trans": [
+      {
+        "cn": "adj.白色的，纯洁的，无色的，透明的，白衣的，白种人的"
+      },
+      {
+        "cn": "n.白色，白种人，空白，白色颜料"
+      },
+      {
+        "cn": "vt.（书写，印刷等）留出空白处，使变白色，刷白，漂白"
+      }
+    ],
+    "phonetic0": "waɪt",
+    "phonetic1": "waɪt"
+  },
+  {
+    "word": "orange",
+    "trans": [
+      {
+        "cn": "n.桔子，橙子，植桔树，橙色，桔色"
+      },
+      {
+        "cn": "adj.橙色的，橘色的，桔红色的"
+      }
+    ],
+    "phonetic0": "ˈɒrɪndʒ",
+    "phonetic1": "ˈɔ:rɪndʒ"
+  },
+  {
+    "word": "OK",
+    "trans": [
+      {
+        "cn": "adj.好的，还不错的，很好的"
+      }
+    ],
+    "phonetic0": "əʊˈkeɪ",
+    "phonetic1": "oˈke"
+  },
+  {
+    "word": "mum",
+    "trans": [
+      {
+        "cn": "n.妈妈，沉默，菊花，烈性啤酒"
+      },
+      {
+        "cn": "adj.沉默的，无言的"
+      },
+      {
+        "cn": "vi.演哑剧"
+      },
+      {
+        "cn": "vt.闭口，不讲话，演哑剧"
+      }
+    ],
+    "phonetic0": "mʌm",
+    "phonetic1": "mʌm"
+  },
+  {
+    "word": "face",
+    "trans": [
+      {
+        "cn": "n.面容，表面，脸，方面"
+      },
+      {
+        "cn": "vt.& vi.面对，面向…，正视，承认"
+      },
+      {
+        "cn": "vt.（感到不能）对付，（明知不好办而）交谈，必须对付（某情况），面临…"
+      }
+    ],
+    "phonetic0": "feɪs",
+    "phonetic1": "fes"
+  },
+  {
+    "word": "ear",
+    "trans": [
+      {
+        "cn": "n.耳朵，听觉，听力，耳状物，穗"
+      },
+      {
+        "cn": "vi.抽穗，（美俚）听见"
+      }
+    ],
+    "phonetic0": "ɪə(r)",
+    "phonetic1": "ɪr"
+  },
+  {
+    "word": "eye",
+    "trans": [
+      {
+        "cn": "n.眼睛，视力，眼状物，风纪扣扣眼"
+      },
+      {
+        "cn": "vt.定睛地看，注视，审视，细看"
+      }
+    ],
+    "phonetic0": "aɪ",
+    "phonetic1": "aɪ"
+  },
+  {
+    "word": "nose",
+    "trans": [
+      {
+        "cn": "n.鼻子，嗅觉，芳香，香气，突出的部分"
+      },
+      {
+        "cn": "vt.嗅出，闻出，用鼻子触，用鼻子品评（酒）等，探出"
+      },
+      {
+        "cn": "vi.小心探索着前进，探问"
+      }
+    ],
+    "phonetic0": "nəʊz",
+    "phonetic1": "noʊz"
+  },
+  {
+    "word": "mouth",
+    "trans": [
+      {
+        "cn": "n.口，出入口，传闻"
+      },
+      {
+        "cn": "vt.装腔作势地说，喃喃地说，心不在焉地说，言不由衷地说"
+      },
+      {
+        "cn": "vi.装腔作势说话"
+      }
+    ],
+    "phonetic0": "maʊθ",
+    "phonetic1": "maʊθ"
+  },
+  {
+    "word": "arm",
+    "trans": [
+      {
+        "cn": "n.臂，武器，复数战事，权力"
+      },
+      {
+        "cn": "vi.准备（斗争），准备行动（against）"
+      },
+      {
+        "cn": "vt.装备（防御工事），准备（攻击或迎击），配备，防护"
+      }
+    ],
+    "phonetic0": "ɑ:m",
+    "phonetic1": "ɑ:rm"
+  },
+  {
+    "word": "hand",
+    "trans": [
+      {
+        "cn": "n.手，协助，帮助，（工具等的）把，柄，掌管"
+      },
+      {
+        "cn": "vt.传递，交给，搀扶，支持"
+      }
+    ],
+    "phonetic0": "hænd",
+    "phonetic1": "hænd"
+  },
+  {
+    "word": "head",
+    "trans": [
+      {
+        "cn": "n.上端，头脑，头部，首脑，首长"
+      },
+      {
+        "cn": "vt.用头顶，前进，作为…的首领，站在…的前头"
+      },
+      {
+        "cn": "vi.朝…行进，出发，向…方向移动，船驶往"
+      },
+      {
+        "cn": "adj.头的，在前头的，首要的，在顶端的"
+      }
+    ],
+    "phonetic0": "hed",
+    "phonetic1": "hɛd"
+  },
+  {
+    "word": "body",
+    "trans": [
+      {
+        "cn": "n.身体，尸体，团体，物体"
+      },
+      {
+        "cn": "vt.赋予形体"
+      }
+    ],
+    "phonetic0": "ˈbɒdi",
+    "phonetic1": "ˈbɑ:di"
+  },
+  {
+    "word": "leg",
+    "trans": [
+      {
+        "cn": "n.腿，支柱，支架，裤腿，一段赛程"
+      },
+      {
+        "cn": "vi.<口>走，跑"
+      }
+    ],
+    "phonetic0": "leg",
+    "phonetic1": "lɛɡ"
+  },
+  {
+    "word": "foot",
+    "trans": [
+      {
+        "cn": "n.脚，底部，英尺(=12 英寸或 30。48 厘米)，脚步"
+      },
+      {
+        "cn": "vt.走，踏"
+      },
+      {
+        "cn": "vt.& vi.结算，总计，共计"
+      }
+    ],
+    "phonetic0": "fʊt",
+    "phonetic1": "fʊt"
+  },
+  {
+    "word": "school",
+    "trans": [
+      {
+        "cn": "n.学校，上学，学院，群"
+      },
+      {
+        "cn": "vt.训练，锻炼，教育，教导，约束，给…上学"
+      }
+    ],
+    "phonetic0": "sku:l",
+    "phonetic1": "skul"
+  },
+  {
+    "word": "duck",
+    "trans": [
+      {
+        "cn": "n.鸭子，野鸭，鸭肉，（表示友好的称呼）乖乖，（板球）零分"
+      },
+      {
+        "cn": "vt.& vi.躲避，回避，潜入，忽然低下头（或弯下腰），迅速行进"
+      }
+    ],
+    "phonetic0": "dʌk",
+    "phonetic1": "dʌk"
+  },
+  {
+    "word": "pig",
+    "trans": [
+      {
+        "cn": "n.猪，猪肉，令人不快（或讨厌）的人，金属块（锭）"
+      },
+      {
+        "cn": "vi.生小猪，像猪一样过活，举止像猪，贪吃"
+      },
+      {
+        "cn": "vt.吃得过量，大吃特吃，生小猪"
+      }
+    ],
+    "phonetic0": "pɪg",
+    "phonetic1": "pɪɡ"
+  },
+  {
+    "word": "cat",
+    "trans": [
+      {
+        "cn": "n.猫，猫科动物，狠毒的女人，爵士乐爱好者"
+      },
+      {
+        "cn": "vt.把（锚）吊放在锚架上，〈俚〉寻欢，宿娼"
+      }
+    ],
+    "phonetic0": "kæt",
+    "phonetic1": "kæt"
+  },
+  {
+    "word": "bear",
+    "trans": [
+      {
+        "cn": "n.熊，（在证券市场等）卖空的人，蛮横的人"
+      },
+      {
+        "cn": "vt.忍受，承担，支撑，生育"
+      },
+      {
+        "cn": "vi.生（孩子），结（果实），与…有关"
+      },
+      {
+        "cn": "adj.跌价的，股票行情下跌的，卖空者的"
+      }
+    ],
+    "phonetic0": "beə(r)",
+    "phonetic1": "ber"
+  },
+  {
+    "word": "dog",
+    "trans": [
+      {
+        "cn": "n.狗，蹩脚货，丑女人，卑鄙小人"
+      },
+      {
+        "cn": "v.困扰，跟踪"
+      }
+    ],
+    "phonetic0": "dɒg",
+    "phonetic1": "dɔ:g"
+  },
+  {
+    "word": "elephant",
+    "trans": [
+      {
+        "cn": "n.象，大象"
+      }
+    ],
+    "phonetic0": "ˈelɪfənt",
+    "phonetic1": "ˈɛləfənt"
+  },
+  {
+    "word": "monkey",
+    "trans": [
+      {
+        "cn": "n.猴，猿，淘气鬼，小淘气"
+      },
+      {
+        "cn": "vi.胡闹，捣蛋"
+      },
+      {
+        "cn": "vt.嘲弄"
+      }
+    ],
+    "phonetic0": "ˈmʌŋki",
+    "phonetic1": "ˈmʌŋki"
+  },
+  {
+    "word": "bird",
+    "trans": [
+      {
+        "cn": "n.鸟，禽，<俚>少女，姑娘，人，家伙，东西，<口>飞机，火箭，导弹"
+      },
+      {
+        "cn": "vi.观察和辨认鸟，捕鸟，打鸟"
+      }
+    ],
+    "phonetic0": "bɜ:d",
+    "phonetic1": "bɜ:rd"
+  },
+  {
+    "word": "tiger",
+    "trans": [
+      {
+        "cn": "n.老虎，各种猫科动物，凶恶的人，虎狼之徒"
+      }
+    ],
+    "phonetic0": "ˈtaɪgə(r)",
+    "phonetic1": "ˈtaɪɡɚ"
+  },
+  {
+    "word": "panda",
+    "trans": [
+      {
+        "cn": "n.熊猫，猫熊"
+      }
+    ],
+    "phonetic0": "ˈpændə",
+    "phonetic1": "ˈpændə"
+  },
+  {
+    "word": "zoo",
+    "trans": [
+      {
+        "cn": "n.动物园，<美俚>（铁路货车的最后一节）守车，<美俚>核粒子园"
+      }
+    ],
+    "phonetic0": "zu:",
+    "phonetic1": "zu"
+  },
+  {
+    "word": "funny",
+    "trans": [
+      {
+        "cn": "adj.有趣的，好笑的，滑稽的，（口）稀奇的，古怪的，奇异的，有病的，不舒服的，狡猾的，欺骗（性）的，可疑的，不光明的"
+      },
+      {
+        "cn": "n.滑稽人物，笑话，有趣的故事，滑稽连环漫画栏，（英）（比赛用）单人双桨小艇"
+      }
+    ],
+    "phonetic0": "ˈfʌni",
+    "phonetic1": "ˈfʌni"
+  },
+  {
+    "word": "bread",
+    "trans": [
+      {
+        "cn": "n.面包，食物，营养，营养物，生计"
+      },
+      {
+        "cn": "vt.在…上撒面包屑"
+      }
+    ],
+    "phonetic0": "bred",
+    "phonetic1": "brɛd"
+  },
+  {
+    "word": "juice",
+    "trans": [
+      {
+        "cn": "n.果汁，肉汁，胃液"
+      }
+    ],
+    "phonetic0": "dʒu:s",
+    "phonetic1": "dʒus"
+  },
+  {
+    "word": "egg",
+    "trans": [
+      {
+        "cn": "n.鸡蛋，蛋，卵，<俚>家伙"
+      },
+      {
+        "cn": "vt.煽动，怂恿，用蛋烹调，<俚>向人扔鸡蛋"
+      }
+    ],
+    "phonetic0": "eg",
+    "phonetic1": "ɛɡ"
+  },
+  {
+    "word": "milk",
+    "trans": [
+      {
+        "cn": "n.奶，乳液，母乳"
+      },
+      {
+        "cn": "vt.挤奶，榨取"
+      }
+    ],
+    "phonetic0": "mɪlk",
+    "phonetic1": "mɪlk"
+  },
+  {
+    "word": "water",
+    "trans": [
+      {
+        "cn": "n.水，雨水，海水，海域"
+      },
+      {
+        "cn": "v.给…浇水，供以水，加水稀释，流泪"
+      }
+    ],
+    "phonetic0": "ˈwɔ:tə(r)",
+    "phonetic1": "ˈwɑtɚ"
+  },
+  {
+    "word": "cake",
+    "trans": [
+      {
+        "cn": "n.蛋糕，糕饼，块状物，沉积物"
+      },
+      {
+        "cn": "vt.& vi.（使）结块，（使）胶，涂厚厚的一层"
+      }
+    ],
+    "phonetic0": "keɪk",
+    "phonetic1": "keɪk"
+  },
+  {
+    "word": "fish",
+    "trans": [
+      {
+        "cn": "n.鱼，鱼肉，鱼类，〈口〉（特殊的）人物，家伙，东西，建接合板，夹片，鱼尾板，航钓锚器，撑夹桅杆的加固夹箍"
+      },
+      {
+        "cn": "vt.& vi.捕鱼，钓鱼，摸出，掏出"
+      },
+      {
+        "cn": "vt.钓鱼，捕鱼，搜寻，航加夹箍夹牢，工用接合板连接加固"
+      },
+      {
+        "cn": "vi.捕鱼，钓鱼，用钩捞取"
+      }
+    ],
+    "phonetic0": "fɪʃ",
+    "phonetic1": "fɪʃ"
+  },
+  {
+    "word": "rice",
+    "trans": [
+      {
+        "cn": "n.稻，稻米， 大米"
+      },
+      {
+        "cn": "vt.筛选"
+      }
+    ],
+    "phonetic0": "raɪs",
+    "phonetic1": "raɪs"
+  },
+  {
+    "word": "one",
+    "trans": [
+      {
+        "cn": "num.（数字）一，一个，（基数）一，第一"
+      },
+      {
+        "cn": "n.一个人，一点钟，一体，独一"
+      },
+      {
+        "cn": "pron.一个人，任何人，本人，人家，东西"
+      },
+      {
+        "cn": "adj.某一个的，一体的，一方的"
+      }
+    ],
+    "phonetic0": "wʌn",
+    "phonetic1": "wʌn"
+  },
+  {
+    "word": "two",
+    "trans": [
+      {
+        "cn": "n.两个，两个东西，两点钟，一对"
+      },
+      {
+        "cn": "adj.两个的，我同"
+      },
+      {
+        "cn": "num.两个，第二，二"
+      }
+    ],
+    "phonetic0": "tu:",
+    "phonetic1": "tu"
+  },
+  {
+    "word": "three",
+    "trans": [
+      {
+        "cn": "num.三，三个，第三（章，页等）"
+      },
+      {
+        "cn": "n.三岁，三个人东西，三，三个"
+      },
+      {
+        "cn": "adj.三的，三个的"
+      }
+    ],
+    "phonetic0": "θri:",
+    "phonetic1": "θri"
+  },
+  {
+    "word": "four",
+    "trans": [
+      {
+        "cn": "num.四，四个，第四"
+      },
+      {
+        "cn": "n.四的，四个一组之物"
+      }
+    ],
+    "phonetic0": "fɔ:(r)",
+    "phonetic1": "for"
+  },
+  {
+    "word": "five",
+    "trans": [
+      {
+        "cn": "num.五，五个，与某人击掌问候（或庆祝胜利），第五"
+      },
+      {
+        "cn": "n.五，五个，5美元钞票，板得五分"
+      },
+      {
+        "cn": "adj.五的，五个的"
+      }
+    ],
+    "phonetic0": "faɪv",
+    "phonetic1": "faɪv"
+  },
+  {
+    "word": "six",
+    "trans": [
+      {
+        "cn": "n.六，六个，六岁，六点"
+      },
+      {
+        "cn": "num.六，六个"
+      }
+    ],
+    "phonetic0": "sɪks",
+    "phonetic1": "sɪks"
+  },
+  {
+    "word": "seven",
+    "trans": [
+      {
+        "cn": "num.七，七个，第七"
+      },
+      {
+        "cn": "n.七，七个"
+      }
+    ],
+    "phonetic0": "ˈsevn",
+    "phonetic1": "ˈsɛvən"
+  },
+  {
+    "word": "eight",
+    "trans": [
+      {
+        "cn": "num.八，八个，第八"
+      },
+      {
+        "cn": "n.八，八人（或物）一组，八人划船队"
+      },
+      {
+        "cn": "adj.八个的"
+      }
+    ],
+    "phonetic0": "eɪt",
+    "phonetic1": "et"
+  },
+  {
+    "word": "nine",
+    "trans": [
+      {
+        "cn": "num.九，九个，第九"
+      },
+      {
+        "cn": "n.九，九个"
+      },
+      {
+        "cn": "adj.九的，九个的"
+      }
+    ],
+    "phonetic0": "naɪn",
+    "phonetic1": "naɪn"
+  },
+  {
+    "word": "ten",
+    "trans": [
+      {
+        "cn": "num.十，十个，第十"
+      },
+      {
+        "cn": "n.十个人，十点钟，十岁，十元纸币"
+      }
+    ],
+    "phonetic0": "ten",
+    "phonetic1": "tɛn"
+  },
+  {
+    "word": "brother",
+    "trans": [
+      {
+        "cn": "n.兄弟，同事，同胞，同志"
+      },
+      {
+        "cn": "int.（表示生气或吃惊）我的老兄！"
+      }
+    ],
+    "phonetic0": "ˈbrʌðə(r)",
+    "phonetic1": "ˈbrʌðɚ"
+  },
+  {
+    "word": "plate",
+    "trans": [
+      {
+        "cn": "n.盘子，盆子，金属板，均匀厚度的片状硬物体，摄底片，感光版"
+      },
+      {
+        "cn": "vt.镀，在…上覆盖金属板，覆盖，电镀，印给…制铅板"
+      }
+    ],
+    "phonetic0": "pleɪt",
+    "phonetic1": "plet"
+  }
+]

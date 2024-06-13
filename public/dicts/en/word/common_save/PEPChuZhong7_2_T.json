@@ -1,0 +1,6479 @@
+[
+  {
+    "word": "guitar",
+    "trans": [
+      {
+        "cn": "n.吉他，六弦琴"
+      },
+      {
+        "cn": "vi.弹吉他"
+      }
+    ],
+    "phonetic0": "gɪˈtɑ:(r)",
+    "phonetic1": "ɡɪˈtɑr"
+  },
+  {
+    "word": "sing",
+    "trans": [
+      {
+        "cn": "vt.& vi.唱，歌唱，吟诵"
+      },
+      {
+        "cn": "vi.（鸟）鸣，嗡嗡叫，呜呜作响，发嗖嗖声"
+      },
+      {
+        "cn": "v.耳鸣，〈诗〉作诗，歌颂，赞美，称赞，唱着使…"
+      },
+      {
+        "cn": "n.呜呜声，嗖嗖声，〈美口〉歌唱会"
+      }
+    ],
+    "phonetic0": "sɪŋ",
+    "phonetic1": "sɪŋ"
+  },
+  {
+    "word": "swim",
+    "trans": [
+      {
+        "cn": "v.游泳，游动，旋转，眩晕"
+      },
+      {
+        "cn": "n.游泳"
+      }
+    ],
+    "phonetic0": "swɪm",
+    "phonetic1": "swɪm"
+  },
+  {
+    "word": "dance",
+    "trans": [
+      {
+        "cn": "n.跳舞，舞会，舞蹈艺术，舞曲"
+      },
+      {
+        "cn": "vi.跳舞，手舞足蹈，摇晃，跳跃"
+      },
+      {
+        "cn": "vt.使跳舞"
+      }
+    ],
+    "phonetic0": "dɑ:ns",
+    "phonetic1": "dæns"
+  },
+  {
+    "word": "draw",
+    "trans": [
+      {
+        "cn": "vt.& vi.绘画，拖，拉，招致，吸引"
+      },
+      {
+        "cn": "vt.画，拉，吸引"
+      },
+      {
+        "cn": "vi.移动，拔出剑，皱缩，汲取"
+      },
+      {
+        "cn": "n.平局，抽奖"
+      }
+    ],
+    "phonetic0": "drɔ:",
+    "phonetic1": "drɔ"
+  },
+  {
+    "word": "chess",
+    "trans": [
+      {
+        "cn": "n.棋，国际象棋"
+      }
+    ],
+    "phonetic0": "tʃes",
+    "phonetic1": "tʃɛs"
+  },
+  {
+    "word": "play  chess",
+    "trans": [
+      {
+        "cn": "下国际象棋"
+      }
+    ],
+    "phonetic0": "pleɪ tʃes",
+    "phonetic1": "ple tʃɛs"
+  },
+  {
+    "word": "speak",
+    "trans": [
+      {
+        "cn": "vt.& vi.讲，谈，演说，从某种观点来说"
+      }
+    ],
+    "phonetic0": "spi:k",
+    "phonetic1": "spik"
+  },
+  {
+    "word": "speak  English",
+    "trans": [
+      {
+        "cn": "说英语"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "join",
+    "trans": [
+      {
+        "cn": "vt.& vi.连接，联结，加入，参加"
+      },
+      {
+        "cn": "vt.结合，参与，上（火车、飞机等），上（路）"
+      },
+      {
+        "cn": "n.连接，结合，接合处，接合点"
+      }
+    ],
+    "phonetic0": "dʒɔɪn",
+    "phonetic1": "dʒɔɪn"
+  },
+  {
+    "word": "club",
+    "trans": [
+      {
+        "cn": "n.俱乐部，会所，社团，夜总会，（纸牌的）梅花"
+      },
+      {
+        "cn": "vt.联合，募集，用棍棒打，棒球击球"
+      },
+      {
+        "cn": "vi.组成俱乐部，共同出资"
+      },
+      {
+        "cn": "adj.俱乐部的"
+      }
+    ],
+    "phonetic0": "klʌb",
+    "phonetic1": "klʌb"
+  },
+  {
+    "word": "be good at...",
+    "trans": [
+      {
+        "cn": "擅长于……"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "tell",
+    "trans": [
+      {
+        "cn": "vt.告诉，说，辨别，吩咐，讲述"
+      },
+      {
+        "cn": "vt.& vi.分辨，辨别，告诉，吩咐，泄漏，保证"
+      },
+      {
+        "cn": "vi.泄密，告发，（颜色、声音等）显示，识别"
+      },
+      {
+        "cn": "n.考古学（古代村落遗址堆积而成的）台形土墩，方言讲的话，谈话，传闻"
+      }
+    ],
+    "phonetic0": "tel",
+    "phonetic1": "tɛl"
+  },
+  {
+    "word": "story",
+    "trans": [
+      {
+        "cn": "n.故事，传说，历史，沿革，内情，传记"
+      },
+      {
+        "cn": "vt.用历史故事画装饰，讲…的故事，把…作为故事讲述"
+      },
+      {
+        "cn": "vi.说谎"
+      }
+    ],
+    "phonetic0": "ˈstɔ:ri",
+    "phonetic1": "ˈstori"
+  },
+  {
+    "word": "write",
+    "trans": [
+      {
+        "cn": "vt.& vi.写，写信，写作，作曲"
+      }
+    ],
+    "phonetic0": "raɪt",
+    "phonetic1": "raɪt"
+  },
+  {
+    "word": "show",
+    "trans": [
+      {
+        "cn": "vt.& vi.给…看，表现出，显露出，上演"
+      },
+      {
+        "cn": "vt.说明，指示，表明，演示"
+      },
+      {
+        "cn": "n.展览，显示，外观，表演"
+      },
+      {
+        "cn": "vi.被人看见，显现，显而易见"
+      }
+    ],
+    "phonetic0": "ʃəʊ",
+    "phonetic1": "ʃoʊ"
+  },
+  {
+    "word": "or",
+    "trans": [
+      {
+        "cn": "conj.或，或者，还是，不然，否则，左右"
+      },
+      {
+        "cn": "prep.<古、诗>在…之前，比…更早"
+      },
+      {
+        "cn": "n.纹章黑金色、黑色"
+      }
+    ],
+    "phonetic0": "ɔ:(r)",
+    "phonetic1": "ɔr"
+  },
+  {
+    "word": "talk",
+    "trans": [
+      {
+        "cn": "v.说话，讨论，讲，说，说闲话"
+      },
+      {
+        "cn": "n.交谈，讨论，报告，空话"
+      }
+    ],
+    "phonetic0": "tɔ:k",
+    "phonetic1": "tɔk"
+  },
+  {
+    "word": "talk to ...",
+    "trans": [
+      {
+        "cn": "跟……说"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "kungfu",
+    "trans": [
+      {
+        "cn": "（中国）功夫"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "drum",
+    "trans": [
+      {
+        "cn": "n.鼓，鼓状物，鼓声，石首鱼"
+      },
+      {
+        "cn": "vt.击鼓，连打，反复讲，鼓吹"
+      },
+      {
+        "cn": "vi.击鼓，连打，拍翅"
+      }
+    ],
+    "phonetic0": "drʌm",
+    "phonetic1": "drʌm"
+  },
+  {
+    "word": "play the drums",
+    "trans": [
+      {
+        "cn": "敲鼓"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "piano",
+    "trans": [
+      {
+        "cn": "n.钢琴，<美俚>囚犯工作席，轻奏乐段"
+      }
+    ],
+    "phonetic0": "piˈænəʊ",
+    "phonetic1": "piˈænoʊ"
+  },
+  {
+    "word": "play the piano",
+    "trans": [
+      {
+        "cn": "弹钢琴"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "violin",
+    "trans": [
+      {
+        "cn": "n.小提琴，小提琴手"
+      }
+    ],
+    "phonetic0": "ˌvaɪəˈlɪn",
+    "phonetic1": "ˌvaɪəˈlɪn"
+  },
+  {
+    "word": "play the violin",
+    "trans": [
+      {
+        "cn": "拉小提琴"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "also",
+    "trans": [
+      {
+        "cn": "adv.也，同样，并且"
+      },
+      {
+        "cn": "conj.另外"
+      }
+    ],
+    "phonetic0": "ˈɔ:lsəʊ",
+    "phonetic1": "ˈɔ:lsoʊ"
+  },
+  {
+    "word": "people",
+    "trans": [
+      {
+        "cn": "n.人，人类，居民，人民，种族"
+      },
+      {
+        "cn": "vt.居住于，布满，使住满人，在…殖民，把动物放养在"
+      }
+    ],
+    "phonetic0": "ˈpi:pl",
+    "phonetic1": "ˈpipəl"
+  },
+  {
+    "word": "home",
+    "trans": [
+      {
+        "cn": "n.家，家庭，家庭生活，终点"
+      },
+      {
+        "cn": "adj.家庭的，家用的，本地的，本部的"
+      },
+      {
+        "cn": "adv.在家，在家乡，深深地，深入地"
+      },
+      {
+        "cn": "vi.回家，有家，朝向，自动导航"
+      },
+      {
+        "cn": "vt.把…送回家，送…回家，给…提供住处，使有安身之处"
+      }
+    ],
+    "phonetic0": "həʊm",
+    "phonetic1": "hoʊm"
+  },
+  {
+    "word": "be good with...",
+    "trans": [
+      {
+        "cn": "善于应付……的；对……有办法"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "make",
+    "trans": [
+      {
+        "cn": "vt.做，制造，生产，制定，使成为，使产生"
+      },
+      {
+        "cn": "vi.开始，尝试，行进，增大"
+      },
+      {
+        "cn": "n.制造，生产量，性格，形状，样式"
+      }
+    ],
+    "phonetic0": "meɪk",
+    "phonetic1": "mek"
+  },
+  {
+    "word": "make friends",
+    "trans": [
+      {
+        "cn": "结交朋友"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "today",
+    "trans": [
+      {
+        "cn": "adv.（在）今天，现在，现今，现代，当代"
+      },
+      {
+        "cn": "n.今天，今日，现代，当代，现今"
+      }
+    ],
+    "phonetic0": "təˈdeɪ",
+    "phonetic1": "təˈde"
+  },
+  {
+    "word": "help (sb) with sth",
+    "trans": [
+      {
+        "cn": "在某方面帮助（某人）"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "center",
+    "trans": [
+      {
+        "cn": "n.中心，（球队的） 中锋，中心区，中枢"
+      },
+      {
+        "cn": "adj.中央的，位于正中的，（在）中心的"
+      },
+      {
+        "cn": "vt.集中，使聚集在一点，定中心，居中"
+      },
+      {
+        "cn": "vi.居中，有中心，被置于中心"
+      }
+    ],
+    "phonetic0": "'sentə",
+    "phonetic1": "ˈsɛntɚ"
+  },
+  {
+    "word": "weekend",
+    "trans": [
+      {
+        "cn": "n.周末，星期六和星期日（或略长一点的）休息时间"
+      },
+      {
+        "cn": "vi.过周末，度周末"
+      },
+      {
+        "cn": "adj.周末的"
+      }
+    ],
+    "phonetic0": "ˌwi:kˈend",
+    "phonetic1": "ˈwi:kend"
+  },
+  {
+    "word": "on the weekend",
+    "trans": [
+      {
+        "cn": "(在)周末"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "teach",
+    "trans": [
+      {
+        "cn": "vt.教，教导，训练，教授"
+      },
+      {
+        "cn": "vi.教书"
+      }
+    ],
+    "phonetic0": "ti:tʃ",
+    "phonetic1": "titʃ"
+  },
+  {
+    "word": "musician",
+    "trans": [
+      {
+        "cn": "n.音乐家"
+      }
+    ],
+    "phonetic0": "mjuˈzɪʃn",
+    "phonetic1": "mjuˈzɪʃən"
+  },
+  {
+    "word": "up",
+    "trans": [
+      {
+        "cn": "adv.在上面，在高处，起床，起来，向上，由低到高"
+      },
+      {
+        "cn": "adj.向上的，上升的，竖立的，垂直的，举起的"
+      },
+      {
+        "cn": "vt.& vi.增加，加速，提高，举起，拿起"
+      },
+      {
+        "cn": "prep.在…的上端，向高处，沿…而去，向…上游"
+      },
+      {
+        "cn": "n.上升，升高，兴旺，繁荣，上坡，（价格等）上涨"
+      }
+    ],
+    "phonetic0": "ʌp",
+    "phonetic1": "ʌp"
+  },
+  {
+    "word": "get up",
+    "trans": [
+      {
+        "cn": "站起； 起来"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "dress",
+    "trans": [
+      {
+        "cn": "n.衣服，装饰，连衣裙，礼服"
+      },
+      {
+        "cn": "vt.& vi.给…穿衣，穿着，打扮"
+      },
+      {
+        "cn": "adj.连衣裙的，须穿礼服的，适合于正式场合的，办公时（或半正式场合）穿戴的"
+      },
+      {
+        "cn": "vt.给…穿衣，给…提供衣服，装潢，装饰或装点，排成列"
+      },
+      {
+        "cn": "vi.穿衣，排列整齐"
+      }
+    ],
+    "phonetic0": "dres",
+    "phonetic1": "drɛs"
+  },
+  {
+    "word": "get dressed",
+    "trans": [
+      {
+        "cn": "穿上衣服"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "brush",
+    "trans": [
+      {
+        "cn": "n.刷子，画笔，灌木丛，小冲突"
+      },
+      {
+        "cn": "vt.刷，掠过，擦，轻触"
+      },
+      {
+        "cn": "vi.刷，擦过"
+      }
+    ],
+    "phonetic0": "brʌʃ",
+    "phonetic1": "brʌʃ"
+  },
+  {
+    "word": "tooth",
+    "trans": [
+      {
+        "cn": "n.牙，齿，齿状部份"
+      },
+      {
+        "cn": "vt.给…装齿"
+      },
+      {
+        "cn": "vi.啮合"
+      }
+    ],
+    "phonetic0": "tu:θ",
+    "phonetic1": "tuθ"
+  },
+  {
+    "word": "shower",
+    "trans": [
+      {
+        "cn": "n.阵雨，淋浴，淋浴器，一大批"
+      },
+      {
+        "cn": "vi.下阵雨，似阵雨般降落，洒落，纷纷降落"
+      },
+      {
+        "cn": "vt.大量地给予，抛洒，使纷纷降落"
+      }
+    ],
+    "phonetic0": "ˈʃaʊə(r)",
+    "phonetic1": "ˈʃaʊɚ"
+  },
+  {
+    "word": "take a shower",
+    "trans": [
+      {
+        "cn": "洗淋浴"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "usually",
+    "trans": [
+      {
+        "cn": "adv.通常，经常，平常，惯常地，一直，向来，动不动，一般，素"
+      }
+    ],
+    "phonetic0": "ˈju:ʒuəli",
+    "phonetic1": "ˈjuːʒuəli"
+  },
+  {
+    "word": "forty",
+    "trans": [
+      {
+        "cn": "n.四十，四十几"
+      },
+      {
+        "cn": "adj.四十的"
+      }
+    ],
+    "phonetic0": "ˈfɔ:ti",
+    "phonetic1": "ˈfɔ:rti"
+  },
+  {
+    "word": "Wow",
+    "trans": [
+      {
+        "cn": "（表示惊奇或敬佩）哇；呀"
+      }
+    ],
+    "phonetic0": "waʊ",
+    "phonetic1": "wou"
+  },
+  {
+    "word": "never",
+    "trans": [
+      {
+        "cn": "adv.从不，从来没有，一点也不，决不，<口>不会…吧，没有，不曾"
+      }
+    ],
+    "phonetic0": "ˈnevə(r)",
+    "phonetic1": "ˈnɛvɚ"
+  },
+  {
+    "word": "early",
+    "trans": [
+      {
+        "cn": "adj.早的，早期的，早日的，（果实等）早熟的"
+      },
+      {
+        "cn": "adv.早，在初期，先前，提早"
+      }
+    ],
+    "phonetic0": "ˈɜ:li",
+    "phonetic1": "ˈɜ:rli"
+  },
+  {
+    "word": "fifty",
+    "trans": [
+      {
+        "cn": "n.五十个人，五十岁，五十年代，编号为五十的东西"
+      },
+      {
+        "cn": "num.五十，五十个"
+      },
+      {
+        "cn": "adj.五十的，五十个的，许多的"
+      }
+    ],
+    "phonetic0": "ˈfɪfti",
+    "phonetic1": "ˈfɪfti"
+  },
+  {
+    "word": "job",
+    "trans": [
+      {
+        "cn": "n.（一件）工作，职责，职业，（作为一个单元处理的）作业"
+      },
+      {
+        "cn": "vt.承包，代客买卖"
+      },
+      {
+        "cn": "vi.做零工，作包工，打杂"
+      }
+    ],
+    "phonetic0": "dʒɒb",
+    "phonetic1": "dʒɑ:b"
+  },
+  {
+    "word": "work",
+    "trans": [
+      {
+        "cn": "vt.& vi.使工作，使运作，操作，使产生效果"
+      },
+      {
+        "cn": "n.工作，操作，著作，工厂，行为，事业"
+      },
+      {
+        "cn": "vt.使工作，操作，经营，使缓慢前进"
+      }
+    ],
+    "phonetic0": "wɜ:k",
+    "phonetic1": "wɜ:rk"
+  },
+  {
+    "word": "station",
+    "trans": [
+      {
+        "cn": "n.车站，所，局，身份，电视台"
+      },
+      {
+        "cn": "vt.配置，安置，驻扎"
+      }
+    ],
+    "phonetic0": "ˈsteɪʃn",
+    "phonetic1": "ˈsteʃən"
+  },
+  {
+    "word": "radio station",
+    "trans": [
+      {
+        "cn": "广播电台"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "o'clock",
+    "trans": [
+      {
+        "cn": "n.钟点"
+      }
+    ],
+    "phonetic0": "ə'klɒk",
+    "phonetic1": "ə'klɑk"
+  },
+  {
+    "word": "night",
+    "trans": [
+      {
+        "cn": "n.夜，晚上，（举行盛事的）夜晚"
+      }
+    ],
+    "phonetic0": "naɪt",
+    "phonetic1": "naɪt"
+  },
+  {
+    "word": "funny",
+    "trans": [
+      {
+        "cn": "adj.有趣的，好笑的，滑稽的，（口）稀奇的，古怪的，奇异的，有病的，不舒服的，狡猾的，欺骗（性）的，可疑的，不光明的"
+      },
+      {
+        "cn": "n.滑稽人物，笑话，有趣的故事，滑稽连环漫画栏，（英）（比赛用）单人双桨小艇"
+      }
+    ],
+    "phonetic0": "ˈfʌni",
+    "phonetic1": "ˈfʌni"
+  },
+  {
+    "word": "exercise",
+    "trans": [
+      {
+        "cn": "n.练习，运动，训练，运用，典礼"
+      },
+      {
+        "cn": "vi.锻炼，训练，练习"
+      },
+      {
+        "cn": "vt.锻炼（身体某部位），使焦虑，使忧虑，实行，发挥（作用），运用"
+      }
+    ],
+    "phonetic0": "ˈeksəsaɪz",
+    "phonetic1": "ˈeksərsaɪz"
+  },
+  {
+    "word": "on weekends",
+    "trans": [
+      {
+        "cn": "(在)周末"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "best",
+    "trans": [
+      {
+        "cn": "adj.最好的( good和well的最高级)，最愉快的，最幸福的，最合适的"
+      },
+      {
+        "cn": "adv.最好地，最出色地，最高标准地"
+      },
+      {
+        "cn": "n.佼佼者，（个人的）最高水平，最重要的优越性，最好的东西，最合乎要求的事物"
+      },
+      {
+        "cn": "vt.口打败，胜过"
+      }
+    ],
+    "phonetic0": "best",
+    "phonetic1": "bɛst"
+  },
+  {
+    "word": "half",
+    "trans": [
+      {
+        "cn": "adj.一半的，半个的"
+      },
+      {
+        "cn": "n.半，一半，（啤酒等饮料的）半品脱，（比赛、音乐会等的）半场"
+      },
+      {
+        "cn": "adv.一半，部份地"
+      }
+    ],
+    "phonetic0": "hɑ:f",
+    "phonetic1": "hæf"
+  },
+  {
+    "word": "past",
+    "trans": [
+      {
+        "cn": "adj.过去的，以前的，结束的，前任的"
+      },
+      {
+        "cn": "n.过去，过往，往事，语过去时"
+      },
+      {
+        "cn": "prep.超过，超出，远于，越过"
+      },
+      {
+        "cn": "adv.经过，超过"
+      }
+    ],
+    "phonetic0": "pɑ:st",
+    "phonetic1": "pæst"
+  },
+  {
+    "word": "quarter",
+    "trans": [
+      {
+        "cn": "n.四分之一，一刻钟，地区，（美式足球的）一节"
+      },
+      {
+        "cn": "vt.把…四等分，供…住宿，使（士兵）驻扎"
+      }
+    ],
+    "phonetic0": "ˈkwɔ:tə(r)",
+    "phonetic1": "ˈkwɔ:rtə(r)"
+  },
+  {
+    "word": "homework",
+    "trans": [
+      {
+        "cn": "n.家庭作业，功课"
+      }
+    ],
+    "phonetic0": "ˈhəʊmwɜ:k",
+    "phonetic1": "ˈhoʊmwɜ:rk"
+  },
+  {
+    "word": "do (one's) homework",
+    "trans": [
+      {
+        "cn": "做作业"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "run",
+    "trans": [
+      {
+        "cn": "vt.& vi.跑，移动，（使）流动"
+      },
+      {
+        "cn": "n.奔跑，行程，放映期，一系列"
+      },
+      {
+        "cn": "vi.（工作等）进行，延续，逃跑，行驶"
+      },
+      {
+        "cn": "vt.使奔跑，使…快速移动，运行，经营，划"
+      },
+      {
+        "cn": "adj.融化的，浇铸的，跑的筋疲力尽的"
+      }
+    ],
+    "phonetic0": "rʌn",
+    "phonetic1": "rʌn"
+  },
+  {
+    "word": "clean",
+    "trans": [
+      {
+        "cn": "adj.清洁的，整齐的，新的，正派的"
+      },
+      {
+        "cn": "vt.& vi.（使）清洁，变干净，除去…的灰尘，使…干净"
+      },
+      {
+        "cn": "vi.清扫"
+      },
+      {
+        "cn": "adv.完全地，彻底地"
+      },
+      {
+        "cn": "n.打扫"
+      }
+    ],
+    "phonetic0": "kli:n",
+    "phonetic1": "klin"
+  },
+  {
+    "word": "walk",
+    "trans": [
+      {
+        "cn": "vt.& vi.走，步行，散步"
+      },
+      {
+        "cn": "n.步行，步态，人行道，步行的路径"
+      },
+      {
+        "cn": "vi.行走，陪伴…走，徒步旅行，不翼而飞"
+      },
+      {
+        "cn": "vt.牵着（动物）走，遛，赶着…走"
+      }
+    ],
+    "phonetic0": "wɔ:k",
+    "phonetic1": "wɔk"
+  },
+  {
+    "word": "take a walk",
+    "trans": [
+      {
+        "cn": "散步；走一走"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "quickly",
+    "trans": [
+      {
+        "cn": "adv.迅速地，立即，马上"
+      }
+    ],
+    "phonetic0": "ˈkwɪkli",
+    "phonetic1": "ˈkwɪklɪ"
+  },
+  {
+    "word": "either",
+    "trans": [
+      {
+        "cn": "pron.（两者之中）任何一个"
+      },
+      {
+        "cn": "adj.（两者中）任一的，非此即彼的，两者择一的"
+      },
+      {
+        "cn": "adv.（否定句中）也，用于否定句或否定词组后也（不…），亦，而且，口语 用于否定句或否定词组后以加强语气根本，当然"
+      },
+      {
+        "cn": "conj.通常用于“either…or…”结构中或者，要么在“either…or…”结构中，动词的人称和数一般与离得最近的主动响应，但有时用第三人称单数，在口语中也有把两个主语合在一起用作复数的"
+      }
+    ],
+    "phonetic0": "ˈaɪðə(r)",
+    "phonetic1": "ˈaɪðɚ"
+  },
+  {
+    "word": "Either...or ......",
+    "trans": [
+      {
+        "cn": "要么……要么……；或者……或者……"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "lot",
+    "trans": [
+      {
+        "cn": "n.份额，许多，命运，阄"
+      },
+      {
+        "cn": "adv.（与形容词和副词连用）很，非常，（与动词连用）非常"
+      },
+      {
+        "cn": "pron.大量，许多"
+      },
+      {
+        "cn": "vt.分组，把…划分（常与out连用），把（土地）划分成块"
+      },
+      {
+        "cn": "vi.抽签，拈阄"
+      }
+    ],
+    "phonetic0": "lɒt",
+    "phonetic1": "lɑ:t"
+  },
+  {
+    "word": "lots of",
+    "trans": [
+      {
+        "cn": "大量；许多"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "sometimes",
+    "trans": [
+      {
+        "cn": "adv.有时，间或，时而"
+      }
+    ],
+    "phonetic0": "ˈsʌmtaɪmz",
+    "phonetic1": "ˈsʌmˌtaɪmz"
+  },
+  {
+    "word": "taste",
+    "trans": [
+      {
+        "cn": "n.体验，滋味，味觉，风味"
+      },
+      {
+        "cn": "vt.& vi.尝，品尝"
+      },
+      {
+        "cn": "vt.吃，喝，浅尝"
+      },
+      {
+        "cn": "vi.尝味，略进（饮食），（少量地）吃，有某种味道"
+      }
+    ],
+    "phonetic0": "teɪst",
+    "phonetic1": "test"
+  },
+  {
+    "word": "Life",
+    "trans": [
+      {
+        "cn": "生命；生活"
+      }
+    ],
+    "phonetic0": "laɪf",
+    "phonetic1": "laɪf"
+  },
+  {
+    "word": "train",
+    "trans": [
+      {
+        "cn": "n.火车，行列，一系列相关的事情， 拖裾"
+      },
+      {
+        "cn": "v.训练，教育，培养，修整"
+      }
+    ],
+    "phonetic0": "treɪn",
+    "phonetic1": "tren"
+  },
+  {
+    "word": "bus",
+    "trans": [
+      {
+        "cn": "n.公共汽车，巴士，客机，（口）汽车，机器脚踏车，飞机，计（电脑的）总线，电信息转移通路，悔流条，母线"
+      },
+      {
+        "cn": "vt.用公共汽车运送"
+      },
+      {
+        "cn": "vi.乘公共汽车，打杂工"
+      }
+    ],
+    "phonetic0": "bʌs",
+    "phonetic1": "bʌs"
+  },
+  {
+    "word": "subway",
+    "trans": [
+      {
+        "cn": "n.地铁，地下通道"
+      }
+    ],
+    "phonetic0": "ˈsʌbweɪ",
+    "phonetic1": "ˈsʌbˌwe"
+  },
+  {
+    "word": "take the subway",
+    "trans": [
+      {
+        "cn": "乘地铁"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "ride",
+    "trans": [
+      {
+        "cn": "vt.& vi.乘，骑，驾"
+      },
+      {
+        "cn": "n.（乘坐汽车等的）旅行，乘骑，（乘车或骑车的）短途旅程，供乘骑的游乐设施"
+      },
+      {
+        "cn": "vt.（骑马、自行车等）穿越，搭乘，飘浮"
+      }
+    ],
+    "phonetic0": "raɪd",
+    "phonetic1": "raɪd"
+  },
+  {
+    "word": "bike",
+    "trans": [
+      {
+        "cn": "n.自行车，摩托车，电动自行车"
+      },
+      {
+        "cn": "vi.骑自行车na.“motorbicycle”的变体"
+      }
+    ],
+    "phonetic0": "baɪk",
+    "phonetic1": "baɪk"
+  },
+  {
+    "word": "ride a bike",
+    "trans": [
+      {
+        "cn": "骑自行车"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "sixty",
+    "trans": [
+      {
+        "cn": "num.六十"
+      }
+    ],
+    "phonetic0": "ˈsɪksti",
+    "phonetic1": "ˈsɪksti"
+  },
+  {
+    "word": "seventy",
+    "trans": [
+      {
+        "cn": "n.七十，从七十到七十九的数目、年数或温度"
+      }
+    ],
+    "phonetic0": "ˈsevnti",
+    "phonetic1": "ˈsɛvənti"
+  },
+  {
+    "word": "eighty",
+    "trans": [
+      {
+        "cn": "num.八十"
+      },
+      {
+        "cn": "n.八十，八十年代，八十岁"
+      },
+      {
+        "cn": "adj.八十的，八十个的，八十岁的"
+      }
+    ],
+    "phonetic0": "ˈeɪti",
+    "phonetic1": "ˈeti"
+  },
+  {
+    "word": "ninety",
+    "trans": [
+      {
+        "cn": "num.九十"
+      },
+      {
+        "cn": "n.九十，九十年代，九十岁"
+      },
+      {
+        "cn": "adj.九十的，九十岁的"
+      }
+    ],
+    "phonetic0": "ˈnaɪnti",
+    "phonetic1": "ˈnaɪnti"
+  },
+  {
+    "word": "hundred",
+    "trans": [
+      {
+        "cn": "num.一百，许多，100 到 999 间的数目，某个世纪的年代"
+      },
+      {
+        "cn": "n.一百，许多"
+      },
+      {
+        "cn": "adj.一百的，许多的"
+      }
+    ],
+    "phonetic0": "ˈhʌndrəd",
+    "phonetic1": "ˈhʌndrɪd"
+  },
+  {
+    "word": "minute",
+    "trans": [
+      {
+        "cn": "n.分，分钟，瞬间，片刻，备忘录，会议记录"
+      },
+      {
+        "cn": "vt.把…记录在案，为…测定时间"
+      }
+    ],
+    "phonetic0": "'mɪnɪt",
+    "phonetic1": "ˈmɪnɪt"
+  },
+  {
+    "word": "far",
+    "trans": [
+      {
+        "cn": "adv.久远地，（问到或谈及距离时说）有多远，到很远距离，到很大程度"
+      },
+      {
+        "cn": "adj.远的，遥远的，（某方向的）最远的，远端的"
+      },
+      {
+        "cn": "n.远方"
+      }
+    ],
+    "phonetic0": "fɑ:(r)",
+    "phonetic1": "fɑr"
+  },
+  {
+    "word": "kilometer",
+    "trans": [
+      {
+        "cn": "n.千米"
+      }
+    ],
+    "phonetic0": "'kɪlə,mitɚ",
+    "phonetic1": "ˈkɪləˌmitɚ; kəˈlɑmətɚ"
+  },
+  {
+    "word": "new",
+    "trans": [
+      {
+        "cn": "adj.新的，崭新的，新鲜的，新到的，现代的，初次（听到）的"
+      },
+      {
+        "cn": "adv.新近，最近"
+      }
+    ],
+    "phonetic0": "nju:",
+    "phonetic1": "nu:"
+  },
+  {
+    "word": "every",
+    "trans": [
+      {
+        "cn": "det.每个，每，所有可能的，充足的"
+      }
+    ],
+    "phonetic0": "ˈevri",
+    "phonetic1": "ˈɛvri"
+  },
+  {
+    "word": "every day",
+    "trans": [
+      {
+        "cn": "每天"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "by",
+    "trans": [
+      {
+        "cn": "prep.在…旁边，表示方式，由于，经过"
+      },
+      {
+        "cn": "adv.经过，表示保留或保存时用，短暂拜访"
+      }
+    ],
+    "phonetic0": "baɪ",
+    "phonetic1": "baɪ"
+  },
+  {
+    "word": "by bike",
+    "trans": [
+      {
+        "cn": "骑自行车"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "drive",
+    "trans": [
+      {
+        "cn": "v.驾驶，开车，驱动，迫使"
+      },
+      {
+        "cn": "n.驱车旅行，驱动力，车道，驱动器"
+      }
+    ],
+    "phonetic0": "draɪv",
+    "phonetic1": "draɪv"
+  },
+  {
+    "word": "car",
+    "trans": [
+      {
+        "cn": "n.汽车，车厢，轿车"
+      }
+    ],
+    "phonetic0": "kɑ:(r)",
+    "phonetic1": "kɑr"
+  },
+  {
+    "word": "live",
+    "trans": [
+      {
+        "cn": "vi.生存，居住，生活，过活，在生活中得到享受"
+      },
+      {
+        "cn": "vt.经历，度过"
+      }
+    ],
+    "phonetic0": "lɪv",
+    "phonetic1": "lɪv"
+  },
+  {
+    "word": "stop",
+    "trans": [
+      {
+        "cn": "vi.停止，中断，逗留，（使）停止工作"
+      },
+      {
+        "cn": "vt.塞住，堵塞，阻挠，止付"
+      },
+      {
+        "cn": "n.停止，（管风琴的）音栓，停车站，（管风琴的）音管"
+      }
+    ],
+    "phonetic0": "stɒp",
+    "phonetic1": "stɑ:p"
+  },
+  {
+    "word": "think of",
+    "trans": [
+      {
+        "cn": "vt. 想到(考虑, 想象, 设想, 打算, 出主意)"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "cross",
+    "trans": [
+      {
+        "cn": "n.十字架，十字形饰物，杂交品种，痛苦"
+      },
+      {
+        "cn": "vi.交错而行，横渡，越境"
+      },
+      {
+        "cn": "vt.杂交，横跨，穿越，划掉，使相交"
+      },
+      {
+        "cn": "adj.坏脾气的， 易怒的，相反的，反向的"
+      }
+    ],
+    "phonetic0": "krɒs",
+    "phonetic1": "krɔ:s"
+  },
+  {
+    "word": "river",
+    "trans": [
+      {
+        "cn": "n.河，江，溪，巨流"
+      }
+    ],
+    "phonetic0": "ˈrɪvə(r)",
+    "phonetic1": "ˈrɪvɚ"
+  },
+  {
+    "word": "many",
+    "trans": [
+      {
+        "cn": "adj.许多，多的"
+      },
+      {
+        "cn": "pron.（与复数动词连用）大多数人"
+      }
+    ],
+    "phonetic0": "ˈmeni",
+    "phonetic1": "ˈmɛni"
+  },
+  {
+    "word": "village",
+    "trans": [
+      {
+        "cn": "n.村民，乡村，村庄，群落"
+      }
+    ],
+    "phonetic0": "ˈvɪlɪdʒ",
+    "phonetic1": "ˈvɪlɪdʒ"
+  },
+  {
+    "word": "between",
+    "trans": [
+      {
+        "cn": "prep.在…之间，私下，暗中，在…中任择其一，来往于…之间"
+      },
+      {
+        "cn": "adv.当中，中间"
+      }
+    ],
+    "phonetic0": "bɪˈtwi:n",
+    "phonetic1": "bɪˈtwin"
+  },
+  {
+    "word": "between... and...",
+    "trans": [
+      {
+        "cn": "在……和……之间"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "bridge",
+    "trans": [
+      {
+        "cn": "n.桥，桥牌，鼻梁，起联系作用的东西"
+      },
+      {
+        "cn": "vt.在…建桥，架桥于…之上，通过桥横跨"
+      }
+    ],
+    "phonetic0": "brɪdʒ",
+    "phonetic1": "brɪdʒ"
+  },
+  {
+    "word": "boat",
+    "trans": [
+      {
+        "cn": "n.小船，小艇，轮船"
+      },
+      {
+        "cn": "vi.乘船，划船"
+      },
+      {
+        "cn": "vt.用船运输，用船装运"
+      }
+    ],
+    "phonetic0": "bəʊt",
+    "phonetic1": "boʊt"
+  },
+  {
+    "word": "ropeway",
+    "trans": [
+      {
+        "cn": "索道"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "year",
+    "trans": [
+      {
+        "cn": "n.年，年纪，一年的期间，某年级的学生"
+      }
+    ],
+    "phonetic0": "jɪə(r)",
+    "phonetic1": "jɪr"
+  },
+  {
+    "word": "afraid",
+    "trans": [
+      {
+        "cn": "adj.害怕的，担心的，恐怕，畏惧，害怕"
+      }
+    ],
+    "phonetic0": "əˈfreɪd",
+    "phonetic1": "əˈfred"
+  },
+  {
+    "word": "like",
+    "trans": [
+      {
+        "cn": "vt.喜欢，（与 would 或 should 连用表示客气）想，想要，喜欢做"
+      },
+      {
+        "cn": "prep.（表示属性）像，（表示方式）如同，（询问意见）…怎么样，（表示列举）比如"
+      },
+      {
+        "cn": "adj.相似的，相同的"
+      },
+      {
+        "cn": "n.相类似的人事物，喜好，爱好，（尤指被视为没有某人或某物那么好的）种类，类型"
+      },
+      {
+        "cn": "conj.像…一样，如同，好像，仿佛"
+      },
+      {
+        "cn": "adv.（非正式口语，代替 as）和…一样，如，（非正式口语，思考说下句话、解释或举例时用）大概，可能"
+      }
+    ],
+    "phonetic0": "laɪk",
+    "phonetic1": "laɪk"
+  },
+  {
+    "word": "leave",
+    "trans": [
+      {
+        "cn": "vt.离开，遗弃，忘了带，交托"
+      },
+      {
+        "cn": "vt.& vi.离去，出发，舍弃"
+      },
+      {
+        "cn": "n.准假，假期，辞别，许可"
+      }
+    ],
+    "phonetic0": "li:v",
+    "phonetic1": "liv"
+  },
+  {
+    "word": "dream",
+    "trans": [
+      {
+        "cn": "vi.梦想，做梦，梦见，想到"
+      },
+      {
+        "cn": "vt.& vi.做梦，向往"
+      },
+      {
+        "cn": "vt.梦想，做梦，想到"
+      },
+      {
+        "cn": "n.梦想，愿望，梦"
+      },
+      {
+        "cn": "adj.梦的，理想的，不切实际的"
+      }
+    ],
+    "phonetic0": "dri:m",
+    "phonetic1": "drim"
+  },
+  {
+    "word": "true",
+    "trans": [
+      {
+        "cn": "n. 真实；准确"
+      },
+      {
+        "cn": "adj. 真实的；正确的"
+      },
+      {
+        "cn": "vt. 装准"
+      },
+      {
+        "cn": "adv. 真实地；准确地"
+      }
+    ],
+    "phonetic0": "tru",
+    "phonetic1": "truː"
+  },
+  {
+    "word": "come true",
+    "trans": [
+      {
+        "cn": "实现；成为现实"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "rule",
+    "trans": [
+      {
+        "cn": "n.规则，规定，统治，支配，章程"
+      },
+      {
+        "cn": "vt.& vi.控制，支配，判定，裁定，裁决，价格稳定"
+      },
+      {
+        "cn": "vt.统治，规定，管理，裁决"
+      },
+      {
+        "cn": "vi.统治，管辖，裁定"
+      }
+    ],
+    "phonetic0": "ru:l",
+    "phonetic1": "ruːl"
+  },
+  {
+    "word": "arrive",
+    "trans": [
+      {
+        "cn": "vi.到达，来，发生"
+      }
+    ],
+    "phonetic0": "əˈraɪv",
+    "phonetic1": "əˈraɪv"
+  },
+  {
+    "word": "(be) on time",
+    "trans": [
+      {
+        "cn": "准时"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "hallway",
+    "trans": [
+      {
+        "cn": "n.走廊，过道，门厅，玄关"
+      }
+    ],
+    "phonetic0": "ˈhɔ:lweɪ",
+    "phonetic1": "ˈhɔlˌwe"
+  },
+  {
+    "word": "hall",
+    "trans": [
+      {
+        "cn": "n.过道，走廊，大厅，前厅，娱乐中心，会所"
+      }
+    ],
+    "phonetic0": "hɔ:l",
+    "phonetic1": "hɔl"
+  },
+  {
+    "word": "dining hall",
+    "trans": [
+      {
+        "cn": "na. 大餐厅   食堂；饭厅；饭堂"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "listen",
+    "trans": [
+      {
+        "cn": "vi.倾听，留心听，听信，（让对方注意）听着"
+      },
+      {
+        "cn": "n.听，倾听"
+      }
+    ],
+    "phonetic0": "ˈlɪsn",
+    "phonetic1": "ˈlɪsən"
+  },
+  {
+    "word": "listen to...",
+    "trans": [
+      {
+        "cn": "听……"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "fight",
+    "trans": [
+      {
+        "cn": "vt.& vi.战斗，斗争，打架，吵架"
+      },
+      {
+        "cn": "n.打架，吵架，战斗，斗志"
+      }
+    ],
+    "phonetic0": "faɪt",
+    "phonetic1": "faɪt"
+  },
+  {
+    "word": "sorry",
+    "trans": [
+      {
+        "cn": "adj.对不起的，无价值的，低等的，遗憾的，感到伤心的"
+      }
+    ],
+    "phonetic0": "ˈsɒri",
+    "phonetic1": "ˈsɑ:ri"
+  },
+  {
+    "word": "outside",
+    "trans": [
+      {
+        "cn": "adv.在外面，向外面，在户外，露天"
+      },
+      {
+        "cn": "n.外面，（弯曲路面或轨道的）外道，（靠近路中央的）外侧，（建筑物等的）周围"
+      },
+      {
+        "cn": "adj.外部的，集团外的，（选择余地、可能性等）非常小，可能性最大的"
+      },
+      {
+        "cn": "prep.（表示位置）在向…的外面，（表示范围）超出…的范围，（表示排斥）除了（某人）"
+      }
+    ],
+    "phonetic0": "ˌaʊtˈsaɪd",
+    "phonetic1": "ˈaʊtˌsaɪd"
+  },
+  {
+    "word": "wear",
+    "trans": [
+      {
+        "cn": "vt.穿着，戴着，面露，留着（胡须等），磨损"
+      },
+      {
+        "cn": "vi.耐用，保持不变，磨损，耗损，逐渐或枯燥地通过"
+      },
+      {
+        "cn": "n.穿着，穿戴物，衣物，磨损，穿旧，耐用性"
+      }
+    ],
+    "phonetic0": "weə(r)",
+    "phonetic1": "wer"
+  },
+  {
+    "word": "important",
+    "trans": [
+      {
+        "cn": "adj.重要的，权威的，有势力的，有地位的"
+      }
+    ],
+    "phonetic0": "ɪmˈpɔ:tnt",
+    "phonetic1": "ɪmˈpɔ:rtnt"
+  },
+  {
+    "word": "bring",
+    "trans": [
+      {
+        "cn": "vt.带来，引来，促使，引起，提供，导致"
+      }
+    ],
+    "phonetic0": "brɪŋ",
+    "phonetic1": "brɪŋ"
+  },
+  {
+    "word": "uniform",
+    "trans": [
+      {
+        "cn": "n.制服，军服，通讯中用以代表字母 u 的词"
+      },
+      {
+        "cn": "adj.（形状，性质等）一样的，规格一致的，始终如一的"
+      },
+      {
+        "cn": "v.使规格一律，使均一，使穿制服"
+      }
+    ],
+    "phonetic0": "ˈju:nɪfɔ:m",
+    "phonetic1": "ˈju:nɪfɔ:rm"
+  },
+  {
+    "word": "quiet",
+    "trans": [
+      {
+        "cn": "adj.清静的，僻静的，不起眼的，不激动的"
+      },
+      {
+        "cn": "vt.& vi.安静下来，使…安静，平静"
+      },
+      {
+        "cn": "vt.减轻（病痛、疑虑、恐惧等），法律确定（产权等）"
+      },
+      {
+        "cn": "prep.克制的，稳重的，不张扬的"
+      },
+      {
+        "cn": "n.宁静，寂静"
+      },
+      {
+        "cn": "adv.安静地，平静地"
+      }
+    ],
+    "phonetic0": "ˈkwaɪət",
+    "phonetic1": "ˈkwaɪɪt"
+  },
+  {
+    "word": "out",
+    "trans": [
+      {
+        "cn": "adv.出局，在外，在外部，完全，彻底，出版"
+      },
+      {
+        "cn": "prep.（表示来源）从，（从…里）出来，（表示不在原状态）脱离，离去"
+      },
+      {
+        "cn": "vt.使熄灭，揭露，驱逐"
+      },
+      {
+        "cn": "adj.外面的，出局的，下台的，外围的"
+      },
+      {
+        "cn": "n.不流行，出局"
+      }
+    ],
+    "phonetic0": "aʊt",
+    "phonetic1": "aʊt"
+  },
+  {
+    "word": "go out",
+    "trans": [
+      {
+        "cn": "外出"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "practice",
+    "trans": [
+      {
+        "cn": "n.练习，实践，（医生或律师的）业务，惯例"
+      },
+      {
+        "cn": "vi.实行，惯常地进行，练习，实习"
+      },
+      {
+        "cn": "vt.实行，实践，执业，练习，惯常地进行"
+      }
+    ],
+    "phonetic0": "ˈpræktɪs",
+    "phonetic1": "ˈpræktɪs"
+  },
+  {
+    "word": "dish",
+    "trans": [
+      {
+        "cn": "n.盘，餐具，一盘食物，外貌有吸引力的人"
+      },
+      {
+        "cn": "vt.盛于碟盘中，分发，使某人的希望破灭，说（某人）的闲话"
+      },
+      {
+        "cn": "vi.成碟状"
+      }
+    ],
+    "phonetic0": "dɪʃ",
+    "phonetic1": "dɪʃ"
+  },
+  {
+    "word": "do the dishes",
+    "trans": [
+      {
+        "cn": "清洗餐具"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "before",
+    "trans": [
+      {
+        "cn": "prep.在…之前，先于，优于，当着…的面，与其…"
+      },
+      {
+        "cn": "conj.在…之前，在…以前，比…早些，与其…"
+      },
+      {
+        "cn": "adv.先前，从前，在前，在前方"
+      }
+    ],
+    "phonetic0": "bɪˈfɔ:(r)",
+    "phonetic1": "bɪˈfɔr,-ˈfor"
+  },
+  {
+    "word": "make (one's) bed",
+    "trans": [
+      {
+        "cn": "铺床"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "dirty",
+    "trans": [
+      {
+        "cn": "adj.恶劣的，肮脏的，卑劣的，下流的"
+      },
+      {
+        "cn": "vt.弄脏，污染，使名声受玷污"
+      },
+      {
+        "cn": "vi.变脏，污染"
+      }
+    ],
+    "phonetic0": "ˈdɜ:ti",
+    "phonetic1": "ˈdɜ:rti"
+  },
+  {
+    "word": "kitchen",
+    "trans": [
+      {
+        "cn": "n.厨房，厨师"
+      }
+    ],
+    "phonetic0": "ˈkɪtʃɪn",
+    "phonetic1": "ˈkɪtʃən"
+  },
+  {
+    "word": "more",
+    "trans": [
+      {
+        "cn": "adv.更，更多，达到或处于更大的范围或程度，此外，更加"
+      },
+      {
+        "cn": "adj.更多的，(many)的比较级，附加的，额外的"
+      },
+      {
+        "cn": "pron.更多的或附加的人或事物"
+      },
+      {
+        "cn": "n.更多，附加，添加"
+      }
+    ],
+    "phonetic0": "mɔ:(r)",
+    "phonetic1": "mor"
+  },
+  {
+    "word": "noisy",
+    "trans": [
+      {
+        "cn": "adj.嘈杂的，喧闹的，充满噪音的，吵吵闹闹的"
+      },
+      {
+        "cn": "n.响声，嘈杂声"
+      }
+    ],
+    "phonetic0": "ˈnɔɪzi",
+    "phonetic1": "ˈnɔɪzi"
+  },
+  {
+    "word": "relax",
+    "trans": [
+      {
+        "cn": "vt.& vi.（使）轻松，（使）松弛，放宽，（使）放松"
+      },
+      {
+        "cn": "vt.缓和，减轻，（使大便等）通畅"
+      },
+      {
+        "cn": "vi.变得轻松，变得随和，变得和蔼，通便"
+      }
+    ],
+    "phonetic0": "rɪˈlæks",
+    "phonetic1": "rɪˈlæks"
+  },
+  {
+    "word": "read",
+    "trans": [
+      {
+        "cn": "vt.& vi.阅读，朗读，显示，研究，看得懂"
+      },
+      {
+        "cn": "vt.显示，阅读，读懂，理解"
+      },
+      {
+        "cn": "n.阅读，读物，读书，里德（人名）"
+      },
+      {
+        "cn": "adj.被朗读的，博识的，博览的，有学问的"
+      }
+    ],
+    "phonetic0": "ri:d",
+    "phonetic1": "ri:d"
+  },
+  {
+    "word": "terrible",
+    "trans": [
+      {
+        "cn": "adj.可怕的，危害极大的，<非正>很糟的，劣质的"
+      },
+      {
+        "cn": "adv.口〉非常，很，极"
+      },
+      {
+        "cn": "n.可怕的人"
+      }
+    ],
+    "phonetic0": "ˈterəbl",
+    "phonetic1": "ˈtɛrəbəl"
+  },
+  {
+    "word": "feel",
+    "trans": [
+      {
+        "cn": "vt.感觉，认为，触摸，试探"
+      },
+      {
+        "cn": "vt.& vi.感觉，觉得，认为，以为，触摸"
+      },
+      {
+        "cn": "n.感觉，触摸，感受，触觉"
+      },
+      {
+        "cn": "vi.觉得，摸索"
+      }
+    ],
+    "phonetic0": "fi:l",
+    "phonetic1": "fil"
+  },
+  {
+    "word": "strict",
+    "trans": [
+      {
+        "cn": "adj.精确的，绝对的，严格的，严谨的，植笔直的"
+      }
+    ],
+    "phonetic0": "strɪkt",
+    "phonetic1": "strɪkt"
+  },
+  {
+    "word": "be strict (with sb)",
+    "trans": [
+      {
+        "cn": "（对某人）要求严格"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "remember",
+    "trans": [
+      {
+        "cn": "vt.& vi.记得，牢记"
+      },
+      {
+        "cn": "vt.记着，纪念，回想起，送钱礼物给…"
+      }
+    ],
+    "phonetic0": "rɪˈmembə(r)",
+    "phonetic1": "rɪˈmɛmbɚ"
+  },
+  {
+    "word": "follow",
+    "trans": [
+      {
+        "cn": "vt.& vi.跟随，接着"
+      },
+      {
+        "cn": "vt.继承，（按时间、顺序等）接着，从事，采用"
+      },
+      {
+        "cn": "vi.理解，发生兴趣，由此产生，跟着人（或物）去（或来）"
+      },
+      {
+        "cn": "n.追随，跟随，台球推球，跟球打法（使竿击的球在击中目的球后继续滚动的打法）"
+      }
+    ],
+    "phonetic0": "ˈfɒləʊ",
+    "phonetic1": "ˈfɑ:loʊ"
+  },
+  {
+    "word": "follow the rules",
+    "trans": [
+      {
+        "cn": "遵守规则"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "luck",
+    "trans": [
+      {
+        "cn": "n.运气，好运，机遇，命运"
+      },
+      {
+        "cn": "vi.交好运，走运，侥幸成功"
+      }
+    ],
+    "phonetic0": "lʌk",
+    "phonetic1": "lʌk"
+  },
+  {
+    "word": "keep",
+    "trans": [
+      {
+        "cn": "vt.保持，保留，遵守，阻止"
+      },
+      {
+        "cn": "vi.（食品）保持新，保持健康"
+      },
+      {
+        "cn": "n.保持，保养，供养，抚养，生活，生计，饲料；牧草"
+      }
+    ],
+    "phonetic0": "ki:p",
+    "phonetic1": "kip"
+  },
+  {
+    "word": "hair",
+    "trans": [
+      {
+        "cn": "n.头发，毛发，（动、植物的）毛，一丝丝，些微，毛发织物"
+      }
+    ],
+    "phonetic0": "heə(r)",
+    "phonetic1": "her"
+  },
+  {
+    "word": "learn",
+    "trans": [
+      {
+        "cn": "vt.& vi.学习，学会，习得，得知，记住"
+      },
+      {
+        "cn": "vt.记住，学习，得知，认识到"
+      },
+      {
+        "cn": "vi.学习，获知"
+      }
+    ],
+    "phonetic0": "lɜ:n",
+    "phonetic1": "lɜ:rn"
+  },
+  {
+    "word": "panda",
+    "trans": [
+      {
+        "cn": "n.熊猫，猫熊"
+      }
+    ],
+    "phonetic0": "ˈpændə",
+    "phonetic1": "ˈpændə"
+  },
+  {
+    "word": "zoo",
+    "trans": [
+      {
+        "cn": "n.动物园，<美俚>（铁路货车的最后一节）守车，<美俚>核粒子园"
+      }
+    ],
+    "phonetic0": "zu:",
+    "phonetic1": "zu"
+  },
+  {
+    "word": "tiger",
+    "trans": [
+      {
+        "cn": "n.老虎，各种猫科动物，凶恶的人，虎狼之徒"
+      }
+    ],
+    "phonetic0": "ˈtaɪgə(r)",
+    "phonetic1": "ˈtaɪɡɚ"
+  },
+  {
+    "word": "elephant",
+    "trans": [
+      {
+        "cn": "n.象，大象"
+      }
+    ],
+    "phonetic0": "ˈelɪfənt",
+    "phonetic1": "ˈɛləfənt"
+  },
+  {
+    "word": "koala",
+    "trans": [
+      {
+        "cn": "考拉"
+      }
+    ],
+    "phonetic0": "kəʊˈɑːlə",
+    "phonetic1": "koʊˈɑlə"
+  },
+  {
+    "word": "lion",
+    "trans": [
+      {
+        "cn": "n.狮子，名人，天文学、占星术狮子（星）座，勇士，名流"
+      }
+    ],
+    "phonetic0": "ˈlaɪən",
+    "phonetic1": "ˈlaɪən"
+  },
+  {
+    "word": "giraffe",
+    "trans": [
+      {
+        "cn": "n.长颈鹿"
+      }
+    ],
+    "phonetic0": "dʒəˈrɑ:f",
+    "phonetic1": "dʒəˈræf"
+  },
+  {
+    "word": "animal",
+    "trans": [
+      {
+        "cn": "n.动物，兽，牲畜，<俚>家畜，牲口，<俚>畜生（一般的人），兽性"
+      },
+      {
+        "cn": "adj.动物的，肉体的，肉欲的"
+      }
+    ],
+    "phonetic0": "ˈænɪml",
+    "phonetic1": "ˈænəməl"
+  },
+  {
+    "word": "cute",
+    "trans": [
+      {
+        "cn": "adj.漂亮的，娇小可爱的，机灵的，精明的，矫揉造作的"
+      }
+    ],
+    "phonetic0": "kju:t",
+    "phonetic1": "kjut"
+  },
+  {
+    "word": "lazy",
+    "trans": [
+      {
+        "cn": "adj.懒惰的，没精打采的，慢吞吞的"
+      }
+    ],
+    "phonetic0": "ˈleɪzi",
+    "phonetic1": "ˈlezi"
+  },
+  {
+    "word": "smart",
+    "trans": [
+      {
+        "cn": "adj.聪明的，敏捷的，漂亮的，整齐的"
+      },
+      {
+        "cn": "vi.疼痛，感到刺痛，难过"
+      },
+      {
+        "cn": "n.创伤，刺痛，疼痛，痛苦"
+      },
+      {
+        "cn": "vt.引起…的疼痛（或痛苦、苦恼等）"
+      },
+      {
+        "cn": "adv.聪明伶俐地，轻快地，漂亮地"
+      }
+    ],
+    "phonetic0": "smɑ:t",
+    "phonetic1": "smɑ:rt"
+  },
+  {
+    "word": "beautiful",
+    "trans": [
+      {
+        "cn": "adj.美丽的，美好的，极好的"
+      }
+    ],
+    "phonetic0": "ˈbju:tɪfl",
+    "phonetic1": "ˈbjutəfəl"
+  },
+  {
+    "word": "scary",
+    "trans": [
+      {
+        "cn": "adj.使人惊慌的，胆小的，容易受惊的，可怕的，吓人的"
+      }
+    ],
+    "phonetic0": "ˈskeəri",
+    "phonetic1": "ˈskeri"
+  },
+  {
+    "word": "kind",
+    "trans": [
+      {
+        "cn": "n.〈古〉方式，方法，本质，天性，同类，某类"
+      },
+      {
+        "cn": "adj.仁慈的，体贴的，友善的，好心的，温和，宽宏大量的"
+      }
+    ],
+    "phonetic0": "kaɪnd",
+    "phonetic1": "kaɪnd"
+  },
+  {
+    "word": "kind of",
+    "trans": [
+      {
+        "cn": "稍微；有点儿"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "Australia",
+    "trans": [
+      {
+        "cn": "* n. 澳洲；澳大利亚"
+      }
+    ],
+    "phonetic0": "ɒ'streɪlɪə",
+    "phonetic1": "ɔˈstreɪljə"
+  },
+  {
+    "word": "south",
+    "trans": [
+      {
+        "cn": "n.南方，南部，美国南方各州，（南半球的）发展中国家"
+      },
+      {
+        "cn": "adj.南的，（风）来自南方的，南风的，南方吹来的"
+      },
+      {
+        "cn": "adv.向南方，在南方"
+      }
+    ],
+    "phonetic0": "saʊθ",
+    "phonetic1": "saʊθ"
+  },
+  {
+    "word": "Africa",
+    "trans": [
+      {
+        "cn": "n.非洲"
+      }
+    ],
+    "phonetic0": "'æfrɪkə",
+    "phonetic1": "ˈæfrɪkə"
+  },
+  {
+    "word": "South  Africa",
+    "trans": [
+      {
+        "cn": "南非"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "pet",
+    "trans": [
+      {
+        "cn": "n.宠物，宠儿，受宠的人，生气"
+      },
+      {
+        "cn": "adj.宠爱的，溺爱的，表示亲昵的"
+      },
+      {
+        "cn": "vt.宠爱，爱抚，亲抚"
+      },
+      {
+        "cn": "vi.<非正>亲吻，爱抚"
+      }
+    ],
+    "phonetic0": "pet",
+    "phonetic1": "pɛt"
+  },
+  {
+    "word": "leg",
+    "trans": [
+      {
+        "cn": "n.腿，支柱，支架，裤腿，一段赛程"
+      },
+      {
+        "cn": "vi.<口>走，跑"
+      }
+    ],
+    "phonetic0": "leg",
+    "phonetic1": "lɛɡ"
+  },
+  {
+    "word": "cat",
+    "trans": [
+      {
+        "cn": "n.猫，猫科动物，狠毒的女人，爵士乐爱好者"
+      },
+      {
+        "cn": "vt.把（锚）吊放在锚架上，〈俚〉寻欢，宿娼"
+      }
+    ],
+    "phonetic0": "kæt",
+    "phonetic1": "kæt"
+  },
+  {
+    "word": "sleep",
+    "trans": [
+      {
+        "cn": "v.睡，睡觉；供……住宿；（尤指入夜后某地或建筑物）沉寂，静寂；<文>安息，安眠；发生性关系"
+      },
+      {
+        "cn": "n.睡眠，睡觉；（一段） 睡眠时间；眵，眼屎；<文>死，长眠"
+      }
+    ],
+    "phonetic0": "sli:p",
+    "phonetic1": "slip"
+  },
+  {
+    "word": "friendly",
+    "trans": [
+      {
+        "cn": "adj.友好的，亲密的，有帮助的，互助的"
+      },
+      {
+        "cn": "adv.友好地，朋友般地"
+      }
+    ],
+    "phonetic0": "ˈfrendli",
+    "phonetic1": "ˈfrɛndli"
+  },
+  {
+    "word": "shy",
+    "trans": [
+      {
+        "cn": "adj.害羞的，怕羞的，害怕（做），<美>缺乏的"
+      },
+      {
+        "cn": "vi.惊退，畏缩，避开（某人），（用石子，球等）乱投"
+      },
+      {
+        "cn": "n.投掷，（马）惊退，惊逸，投扔，乱丢"
+      }
+    ],
+    "phonetic0": "ʃaɪ",
+    "phonetic1": "ʃaɪ"
+  },
+  {
+    "word": "save",
+    "trans": [
+      {
+        "cn": "vt.节省，保存，储蓄，解救"
+      },
+      {
+        "cn": "vi.节省，挽救，救球"
+      },
+      {
+        "cn": "prep.& conj.除…之外"
+      },
+      {
+        "cn": "n.救援，救援"
+      }
+    ],
+    "phonetic0": "seɪv",
+    "phonetic1": "sev"
+  },
+  {
+    "word": "symbol",
+    "trans": [
+      {
+        "cn": "n.象征，标志，符号，记号"
+      },
+      {
+        "cn": "vt.用符号代表"
+      }
+    ],
+    "phonetic0": "ˈsɪmbl",
+    "phonetic1": "ˈsɪmbəl"
+  },
+  {
+    "word": "flag",
+    "trans": [
+      {
+        "cn": "n.旗，旗帜，信号旗，菖蒲"
+      },
+      {
+        "cn": "vt.标示"
+      },
+      {
+        "cn": "vi.疲乏，变弱，热情衰减"
+      }
+    ],
+    "phonetic0": "flæg",
+    "phonetic1": "flæɡ"
+  },
+  {
+    "word": "forget",
+    "trans": [
+      {
+        "cn": "vt.忘记，忘却，忽略，疏忽，遗落，忘掉"
+      },
+      {
+        "cn": "vi.忘记，忽视"
+      }
+    ],
+    "phonetic0": "fəˈget",
+    "phonetic1": "fərˈget"
+  },
+  {
+    "word": "get lost",
+    "trans": [
+      {
+        "cn": "迷路"
+      }
+    ],
+    "phonetic0": "ɡɛt lɒst",
+    "phonetic1": "ɡɛt lɔst"
+  },
+  {
+    "word": "place",
+    "trans": [
+      {
+        "cn": "n.位，地方，职位，座位"
+      },
+      {
+        "cn": "vt.放置，获名次，投资，评价"
+      },
+      {
+        "cn": "vi.得名次，名列前茅，美国英语赛马得第二名，准确把…推到预定地点"
+      }
+    ],
+    "phonetic0": "pleɪs",
+    "phonetic1": "ples"
+  },
+  {
+    "word": "water",
+    "trans": [
+      {
+        "cn": "n.水，雨水，海水，海域"
+      },
+      {
+        "cn": "v.给…浇水，供以水，加水稀释，流泪"
+      }
+    ],
+    "phonetic0": "ˈwɔ:tə(r)",
+    "phonetic1": "ˈwɑtɚ"
+  },
+  {
+    "word": "danger",
+    "trans": [
+      {
+        "cn": "n.危险，危险物，威胁"
+      }
+    ],
+    "phonetic0": "ˈdeɪndʒə(r)",
+    "phonetic1": "ˈdendʒɚ"
+  },
+  {
+    "word": "be in (great) danger",
+    "trans": [
+      {
+        "cn": "处于（极大）危险之中"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "cut",
+    "trans": [
+      {
+        "cn": "vt.& vi.将（某物）切开（或分割）"
+      },
+      {
+        "cn": "vt.削减，剪切，切成，删剪"
+      },
+      {
+        "cn": "vi.电影，（为决定谁先出牌等）切牌，可被切割，可用于切割"
+      },
+      {
+        "cn": "n.切口，削减，剪裁，切片"
+      }
+    ],
+    "phonetic0": "kʌt",
+    "phonetic1": "kʌt"
+  },
+  {
+    "word": "down",
+    "trans": [
+      {
+        "cn": "adv.（坐、倒、躺）下，向下，（表示范围或顺序的限度）下至"
+      },
+      {
+        "cn": "prep.（从高处）向下，（表示位置）在…的下方，（表示方向）沿着…向下，（表示时间）自…以来"
+      },
+      {
+        "cn": "adj.向下的，沮丧的，计算机或计算机系统停机，（以…）落后于对手的"
+      },
+      {
+        "cn": "n.（鸟的）绒羽，绒毛，软毛，汗毛"
+      },
+      {
+        "cn": "vt.放下，（尤指大口或快速地）喝下，使摔倒，击落（敌机等）"
+      },
+      {
+        "cn": "vi.常用于祈使句中下去，下来，卧倒，下降"
+      }
+    ],
+    "phonetic0": "daʊn",
+    "phonetic1": "daʊn"
+  },
+  {
+    "word": "cut down",
+    "trans": [
+      {
+        "cn": "砍倒"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "tree",
+    "trans": [
+      {
+        "cn": "n.树，木料，树状图，宗谱"
+      },
+      {
+        "cn": "vt.把…赶上树，使处于困境，把鞋型插入（鞋内）"
+      }
+    ],
+    "phonetic0": "tri:",
+    "phonetic1": "tri"
+  },
+  {
+    "word": "kill",
+    "trans": [
+      {
+        "cn": "vt.& vi.杀死…"
+      },
+      {
+        "cn": "vt.使停止结束，失败，破坏，减弱，抵消，使痛苦，使受折磨，使笑得前仰后合，使笑死了"
+      },
+      {
+        "cn": "n.杀死，猎，被捕杀的动物，猎物"
+      },
+      {
+        "cn": "adj.致命的"
+      }
+    ],
+    "phonetic0": "kɪl",
+    "phonetic1": "kɪl"
+  },
+  {
+    "word": "ivory",
+    "trans": [
+      {
+        "cn": "n.象牙，象牙制品，象牙色，象牙质"
+      },
+      {
+        "cn": "adj.象牙制的，象牙色的"
+      }
+    ],
+    "phonetic0": "ˈaɪvəri",
+    "phonetic1": "ˈaɪvri"
+  },
+  {
+    "word": "over",
+    "trans": [
+      {
+        "cn": "prep.（表示方向）越过，（部份或全部覆盖）在…上面，由于，（表示论及）关于"
+      },
+      {
+        "cn": "adv.结束，再，（倒）下，从一边至另一边"
+      },
+      {
+        "cn": "adj.过去的，外面的，在上的，上级的"
+      },
+      {
+        "cn": "n.额外，剩余，剩余（或多余）的量，剩余物"
+      },
+      {
+        "cn": "int.电信学报文完，请回复！"
+      },
+      {
+        "cn": "vt.走过，跳过，美国方言从…恢复过来"
+      }
+    ],
+    "phonetic0": "ˈəʊvə(r)",
+    "phonetic1": "ˈoʊvə(r)"
+  },
+  {
+    "word": "(be) made of",
+    "trans": [
+      {
+        "cn": "由……制成的"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "Julie",
+    "trans": [
+      {
+        "cn": "朱莉（女名）"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "Becky",
+    "trans": [
+      {
+        "cn": "贝姬（女名）"
+      }
+    ],
+    "phonetic0": "'beki",
+    "phonetic1": "'beki"
+  },
+  {
+    "word": "Thailand",
+    "trans": [
+      {
+        "cn": "n. 泰国（东南亚国家名）"
+      }
+    ],
+    "phonetic0": "ˈtaɪlænd",
+    "phonetic1": "ˈtaɪlænd"
+  },
+  {
+    "word": "Thai",
+    "trans": [
+      {
+        "cn": "n.泰国人，泰国语"
+      }
+    ],
+    "phonetic0": "taɪ",
+    "phonetic1": "taɪ"
+  },
+  {
+    "word": "newspaper",
+    "trans": [
+      {
+        "cn": "n.报纸，报，旧报纸，新闻纸"
+      }
+    ],
+    "phonetic0": "ˈnju:zpeɪpə(r)",
+    "phonetic1": "ˈnu:zpeɪpə(r)"
+  },
+  {
+    "word": "read a newspaper",
+    "trans": [
+      {
+        "cn": "看报纸"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "use",
+    "trans": [
+      {
+        "cn": "n.使用，使用权，功能"
+      }
+    ],
+    "phonetic0": "ju:s",
+    "phonetic1": "ju:s"
+  },
+  {
+    "word": "Soup",
+    "trans": [
+      {
+        "cn": "汤"
+      }
+    ],
+    "phonetic0": "suːp",
+    "phonetic1": "sup"
+  },
+  {
+    "word": "make soup",
+    "trans": [
+      {
+        "cn": "做汤"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "wash",
+    "trans": [
+      {
+        "cn": "vt.洗，清洗，浸湿，冲刷，冲击，洗去罪名"
+      },
+      {
+        "cn": "vi.耐洗，被洗掉（通常与 out 和 away 连用），（波涛等）拍打"
+      },
+      {
+        "cn": "n.（尤指船过后划出的）水流，要洗的衣物的数量，薄涂层（尤指涂料）"
+      },
+      {
+        "cn": "vt.弄湿，使受洗礼，（光）布满，（猫等）舔净（自身）"
+      },
+      {
+        "cn": "adj.可洗的，耐洗的，（证券交易）虚假的"
+      }
+    ],
+    "phonetic0": "wɒʃ",
+    "phonetic1": "wɑ:ʃ"
+  },
+  {
+    "word": "movie",
+    "trans": [
+      {
+        "cn": "n.电影，电影院，电影业"
+      }
+    ],
+    "phonetic0": "ˈmu:vi",
+    "phonetic1": "ˈmuvi"
+  },
+  {
+    "word": "go to movies",
+    "trans": [
+      {
+        "cn": "看电影"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "just",
+    "trans": [
+      {
+        "cn": "adv.刚才，仅仅，只是，正好，刚要"
+      },
+      {
+        "cn": "adj.公正的，合理的，恰当的，合法的，正确的"
+      }
+    ],
+    "phonetic0": "dʒʌst",
+    "phonetic1": "dʒʌst"
+  },
+  {
+    "word": "eat out",
+    "trans": [
+      {
+        "cn": "在饭馆等处吃饭（不在家中吃）"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "house",
+    "trans": [
+      {
+        "cn": "n.房屋，全家人，（从事某种生意的）公司，（英国）下议院"
+      },
+      {
+        "cn": "v.给…提供住房，收藏，安置"
+      }
+    ],
+    "phonetic0": "haʊs",
+    "phonetic1": "haʊs"
+  },
+  {
+    "word": "drink",
+    "trans": [
+      {
+        "cn": "vt.& vi.喝（酒），饮，喝酒，（尤指）酗酒"
+      },
+      {
+        "cn": "vt.吸收，吸入"
+      },
+      {
+        "cn": "n.酒，饮料，酒宴，一杯或一份酒"
+      }
+    ],
+    "phonetic0": "drɪŋk",
+    "phonetic1": "drɪŋk"
+  },
+  {
+    "word": "tea",
+    "trans": [
+      {
+        "cn": "n.茶水，茶，茶树，午后小吃"
+      },
+      {
+        "cn": "vt.给…沏茶"
+      },
+      {
+        "cn": "vi.喝茶"
+      }
+    ],
+    "phonetic0": "ti:",
+    "phonetic1": "ti"
+  },
+  {
+    "word": "drink  tea",
+    "trans": [
+      {
+        "cn": "喝茶"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "tomorrow",
+    "trans": [
+      {
+        "cn": "adv.在明天，在明日"
+      },
+      {
+        "cn": "n.明天，最近，不远的将来"
+      }
+    ],
+    "phonetic0": "təˈmɒrəʊ",
+    "phonetic1": "təˈmɑ:roʊ"
+  },
+  {
+    "word": "pool",
+    "trans": [
+      {
+        "cn": "n.水池，石油层，（液体等的）一滩，共同储金"
+      },
+      {
+        "cn": "vi.使形成池塘或水洼，淤积，合伙经营，采（煤等）"
+      }
+    ],
+    "phonetic0": "pu:l",
+    "phonetic1": "pul"
+  },
+  {
+    "word": "shop",
+    "trans": [
+      {
+        "cn": "n.商店，工厂，办事处，购物"
+      },
+      {
+        "cn": "vt.& vi.（到…）去买东西购物，逛商店"
+      },
+      {
+        "cn": "vt.购物，买东西"
+      }
+    ],
+    "phonetic0": "ʃɒp",
+    "phonetic1": "ʃɑ:p"
+  },
+  {
+    "word": "supermarket",
+    "trans": [
+      {
+        "cn": "n.超级市场，自动售货商店"
+      }
+    ],
+    "phonetic0": "ˈsu:pəmɑ:kɪt",
+    "phonetic1": "ˈsu:pərmɑ:rkət"
+  },
+  {
+    "word": "man",
+    "trans": [
+      {
+        "cn": "n.男人，人类，男子汉，雇工"
+      },
+      {
+        "cn": "vt.使振作，操纵，给…配置人员，在…就位"
+      },
+      {
+        "cn": "int.（表示惊讶、气愤等）嘿，天哪"
+      }
+    ],
+    "phonetic0": "mæn",
+    "phonetic1": "mæn"
+  },
+  {
+    "word": "race",
+    "trans": [
+      {
+        "cn": "n.赛跑，竞争，人种，民族"
+      },
+      {
+        "cn": "v.参加比赛，使比赛，快速移动，剧烈跳动"
+      }
+    ],
+    "phonetic0": "reɪs",
+    "phonetic1": "res"
+  },
+  {
+    "word": "host",
+    "trans": [
+      {
+        "cn": "n.计算机主机，主人，东道主，节目主持人，酒店业主"
+      },
+      {
+        "cn": "vt.当主人，主办宴会，主持节目，款待，做东"
+      },
+      {
+        "cn": "vi.做主人，做东道主"
+      }
+    ],
+    "phonetic0": "həʊst",
+    "phonetic1": "hoʊst"
+  },
+  {
+    "word": "study",
+    "trans": [
+      {
+        "cn": "n.学习，研究，课题，书房，结论"
+      },
+      {
+        "cn": "vi.考虑，沉思，默想，努力"
+      },
+      {
+        "cn": "vt.想出，详细地检查，背诵（台词等），为…费心思"
+      }
+    ],
+    "phonetic0": "ˈstʌdi",
+    "phonetic1": "ˈstʌdi"
+  },
+  {
+    "word": "state",
+    "trans": [
+      {
+        "cn": "n.国家，州，状况，情况，资格"
+      },
+      {
+        "cn": "vt.规定，陈述，声明"
+      },
+      {
+        "cn": "adj.国家的，国务的，公务的，正式的"
+      }
+    ],
+    "phonetic0": "steɪt",
+    "phonetic1": "stet"
+  },
+  {
+    "word": "the United States",
+    "trans": [
+      {
+        "cn": "美国；美利坚合众国"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "American",
+    "trans": [
+      {
+        "cn": "n.美国人，美洲人，美国英语"
+      },
+      {
+        "cn": "adj.美国的，美洲的，地道美国式的"
+      }
+    ],
+    "phonetic0": "əˈmerɪkən",
+    "phonetic1": "əˈmɛrɪkən"
+  },
+  {
+    "word": "dragon",
+    "trans": [
+      {
+        "cn": "n.龙，龙船，D-天文学天龙（星座），口语、贬义脾气暴躁的人"
+      }
+    ],
+    "phonetic0": "ˈdrægən",
+    "phonetic1": "ˈdræɡən"
+  },
+  {
+    "word": "Dragon Boat Festival",
+    "trans": [
+      {
+        "cn": "端午节"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "any",
+    "trans": [
+      {
+        "cn": "adj.任何的，一点，一些，普通的，任何，随便哪一个"
+      },
+      {
+        "cn": "pron.任何，无论哪个，若干"
+      },
+      {
+        "cn": "adv.稍微，少许，什么，一些，一点"
+      }
+    ],
+    "phonetic0": "ˈeni",
+    "phonetic1": "ˈɛni"
+  },
+  {
+    "word": "other",
+    "trans": [
+      {
+        "cn": "adj.别的，其他的，（两个中的）另一个，其余的"
+      },
+      {
+        "cn": "pron.其他的，（指两个人或事物中的第二个）那个，（指一组中其余的人或事物）其余的，（指与说话人所在位置等相反的方向或地点）另一边"
+      },
+      {
+        "cn": "n.the other对立面；对立的事物"
+      }
+    ],
+    "phonetic0": "ˈʌðə(r)",
+    "phonetic1": "ˈʌðər"
+  },
+  {
+    "word": "young",
+    "trans": [
+      {
+        "cn": "adj.年幼的，有朝气的，年轻人的，青年的"
+      },
+      {
+        "cn": "n.年轻人，幼小的动物，崽"
+      }
+    ],
+    "phonetic0": "jʌŋ",
+    "phonetic1": "jʌŋ"
+  },
+  {
+    "word": "children",
+    "trans": [
+      {
+        "cn": "n. 孩子们（child的复数）"
+      }
+    ],
+    "phonetic0": "[ˈtʃɪldrən]",
+    "phonetic1": "[ˈtʃɪldrən]"
+  },
+  {
+    "word": "miss",
+    "trans": [
+      {
+        "cn": "n.（用于姓名或姓之前，对未婚女子的称呼）小姐，女士，失误"
+      },
+      {
+        "cn": "v.漏掉，错过（机会），思念，没遇到"
+      }
+    ],
+    "phonetic0": "mɪs",
+    "phonetic1": "mɪs"
+  },
+  {
+    "word": "wish",
+    "trans": [
+      {
+        "cn": "v.希望，想要，祝愿"
+      },
+      {
+        "cn": "n.愿望，希望，希望的事 ，祝福"
+      }
+    ],
+    "phonetic0": "wɪʃ",
+    "phonetic1": "wɪʃ"
+  },
+  {
+    "word": "delicious",
+    "trans": [
+      {
+        "cn": "adj.美味的，可口的，有趣的，，喷香"
+      }
+    ],
+    "phonetic0": "dɪˈlɪʃəs",
+    "phonetic1": "dɪˈlɪʃəs"
+  },
+  {
+    "word": "still",
+    "trans": [
+      {
+        "cn": "adv.仍，仍然，更，还要，静静地，〈诗〉常，不断地"
+      },
+      {
+        "cn": "adj.不动的，静止的，不狂暴的，温柔的，没有活力的，死气沉沉的"
+      },
+      {
+        "cn": "n.平静，寂静，剧照，静止摄影，蒸馏器"
+      },
+      {
+        "cn": "vt.& vi.（使某物）平静下来，安静，〈古〉烧（酒），蒸馏"
+      },
+      {
+        "cn": "conj.但是，然而"
+      }
+    ],
+    "phonetic0": "stɪl",
+    "phonetic1": "stɪl"
+  },
+  {
+    "word": "living room",
+    "trans": [
+      {
+        "cn": "n. 客厅；起居室"
+      }
+    ],
+    "phonetic0": "['lɪvɪŋ ru:m]",
+    "phonetic1": "[ˈlɪvɪŋ ruːm]"
+  },
+  {
+    "word": "rain",
+    "trans": [
+      {
+        "cn": "n.雨，（热带地区的）雨季，雨天，雨点般降落的东西，<俚>电子流"
+      },
+      {
+        "cn": "vt.& vi.（雨）降下，（使）降落，大量地给，（使）大量落下"
+      }
+    ],
+    "phonetic0": "reɪn",
+    "phonetic1": "ren"
+  },
+  {
+    "word": "windy",
+    "trans": [
+      {
+        "cn": "adj.有风的，腹胀的，吹牛的，空谈的"
+      }
+    ],
+    "phonetic0": "ˈwɪndi",
+    "phonetic1": "ˈwɪndi"
+  },
+  {
+    "word": "cloudy",
+    "trans": [
+      {
+        "cn": "adj.多云的，阴天的，朦胧的，愁容满面的"
+      }
+    ],
+    "phonetic0": "ˈklaʊdi",
+    "phonetic1": "ˈklaʊdi"
+  },
+  {
+    "word": "sunny",
+    "trans": [
+      {
+        "cn": "adj.和煦的：照到阳光的，快活的，性情开朗亲切的"
+      }
+    ],
+    "phonetic0": "ˈsʌni",
+    "phonetic1": "ˈsʌni"
+  },
+  {
+    "word": "snow",
+    "trans": [
+      {
+        "cn": "n.雪，雪花，积雪，雪季"
+      },
+      {
+        "cn": "vt.使纷纷落下，使变白，下雪，被雪覆盖，被雪阻挡"
+      },
+      {
+        "cn": "vi.降雪"
+      }
+    ],
+    "phonetic0": "snəʊ",
+    "phonetic1": "snoʊ"
+  },
+  {
+    "word": "weather",
+    "trans": [
+      {
+        "cn": "n.天气， 气象，暴风雨"
+      },
+      {
+        "cn": "vt.& vi.晒干， 风化"
+      },
+      {
+        "cn": "vt.平安渡过， 挨过，地使风化"
+      }
+    ],
+    "phonetic0": "ˈweðə(r)",
+    "phonetic1": "ˈwɛðɚ"
+  },
+  {
+    "word": "cook",
+    "trans": [
+      {
+        "cn": "vt.& vi.烹调，编造，篡改，密谋"
+      },
+      {
+        "cn": "vt.烹调，煮"
+      },
+      {
+        "cn": "vi.烹调，做菜"
+      },
+      {
+        "cn": "n.厨师，厨子"
+      }
+    ],
+    "phonetic0": "kʊk",
+    "phonetic1": "kʊk"
+  },
+  {
+    "word": "bad",
+    "trans": [
+      {
+        "cn": "adj.坏的，不好的，严重的，不舒服的，低劣的，有害的"
+      },
+      {
+        "cn": "n.坏人，坏事"
+      },
+      {
+        "cn": "adv.不好地，非常地"
+      }
+    ],
+    "phonetic0": "bæd",
+    "phonetic1": "bæd"
+  },
+  {
+    "word": "park",
+    "trans": [
+      {
+        "cn": "n.公园，停车场"
+      },
+      {
+        "cn": "vi.泊车，停车"
+      },
+      {
+        "cn": "vt.将…放置在某处，停车"
+      }
+    ],
+    "phonetic0": "pɑ:k",
+    "phonetic1": "pɑ:rk"
+  },
+  {
+    "word": "message",
+    "trans": [
+      {
+        "cn": "n.信息，消息，要旨，教训"
+      },
+      {
+        "cn": "v.给…发消息，给…留言"
+      }
+    ],
+    "phonetic0": "ˈmesɪdʒ",
+    "phonetic1": "ˈmɛsɪdʒ"
+  },
+  {
+    "word": "take a message",
+    "trans": [
+      {
+        "cn": "捎个口信；传话"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "him",
+    "trans": [
+      {
+        "cn": "pron.(he的宾格)他"
+      }
+    ],
+    "phonetic0": "hɪm",
+    "phonetic1": "hɪm"
+  },
+  {
+    "word": "could",
+    "trans": [
+      {
+        "cn": "aux.“can”的过去式，能够，打算，用于假设语气的条件句，用于虚拟语气的结论句"
+      }
+    ],
+    "phonetic0": "kəd",
+    "phonetic1": "kʊd"
+  },
+  {
+    "word": "back",
+    "trans": [
+      {
+        "cn": "n.背，背部，背面，反面，后面，后部，（椅子等的）靠背"
+      },
+      {
+        "cn": "vt.使后退，支持，加背书于，下赌注于"
+      },
+      {
+        "cn": "vi.后退，倒退"
+      },
+      {
+        "cn": "adj.背部的，后面的，以前的，拖欠的"
+      },
+      {
+        "cn": "adv.以前，向后地"
+      }
+    ],
+    "phonetic0": "bæk",
+    "phonetic1": "bæk"
+  },
+  {
+    "word": "call(sb)back",
+    "trans": [
+      {
+        "cn": "回电话"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "problem",
+    "trans": [
+      {
+        "cn": "n.问题，疑难问题，习题，引起麻烦的人"
+      },
+      {
+        "cn": "adj.成问题的，难处理的，关于社会问题的"
+      }
+    ],
+    "phonetic0": "ˈprɒbləm",
+    "phonetic1": "ˈprɑ:bləm"
+  },
+  {
+    "word": "again",
+    "trans": [
+      {
+        "cn": "adv.再一次，再说，此外，不过"
+      }
+    ],
+    "phonetic0": "əˈgen",
+    "phonetic1": "əˈɡɛn"
+  },
+  {
+    "word": "dry",
+    "trans": [
+      {
+        "cn": "adj.干的干燥的，干旱的，干旱的，口渴的，干咳的，无趣味的，枯燥的"
+      },
+      {
+        "cn": "vt.从…去掉水分，使…变干，脱水保存（如肉或其它食物）"
+      },
+      {
+        "cn": "vi.变干"
+      },
+      {
+        "cn": "n.干涸，复数 drys 非正式用语主张禁酒的人"
+      }
+    ],
+    "phonetic0": "draɪ",
+    "phonetic1": "draɪ"
+  },
+  {
+    "word": "cold",
+    "trans": [
+      {
+        "cn": "adj.寒冷的，冷淡的，无情的，失去知觉的，艺有冷感的，冷色的"
+      },
+      {
+        "cn": "n.寒冷，感冒，伤风"
+      },
+      {
+        "cn": "adv.完全地"
+      }
+    ],
+    "phonetic0": "kəʊld",
+    "phonetic1": "koʊld"
+  },
+  {
+    "word": "hot",
+    "trans": [
+      {
+        "cn": "adj.热的，辣的，激动的，热门的"
+      },
+      {
+        "cn": "vt.使兴奋，使激动"
+      },
+      {
+        "cn": "adv.热的，紧迫的"
+      },
+      {
+        "cn": "vi.变热"
+      }
+    ],
+    "phonetic0": "hɒt",
+    "phonetic1": "hɑ:t"
+  },
+  {
+    "word": "warm",
+    "trans": [
+      {
+        "cn": "adj.暖和的，温暖的，保暖的，热情的，暖调的"
+      },
+      {
+        "cn": "vt.& vi.（使）变暖，被加热，暖和起来"
+      },
+      {
+        "cn": "vt.加热，使热情，使兴奋"
+      },
+      {
+        "cn": "n.暖和的地方"
+      },
+      {
+        "cn": "vi.加温，感兴趣，变得友善或友好"
+      }
+    ],
+    "phonetic0": "wɔ:m",
+    "phonetic1": "wɔ:rm"
+  },
+  {
+    "word": "visit",
+    "trans": [
+      {
+        "cn": "vt.& vi.访问，探望，参观，游览"
+      },
+      {
+        "cn": "vi.作客"
+      },
+      {
+        "cn": "n.访问，参观，逗留"
+      },
+      {
+        "cn": "vt.拜访，参观"
+      }
+    ],
+    "phonetic0": "ˈvɪzɪt",
+    "phonetic1": "ˈvɪzɪt"
+  },
+  {
+    "word": "Canada",
+    "trans": [
+      {
+        "cn": "* n. 加拿大"
+      }
+    ],
+    "phonetic0": "'kænədə",
+    "phonetic1": "ˈkænədə"
+  },
+  {
+    "word": "summer",
+    "trans": [
+      {
+        "cn": "n.夏，夏天，全盛时期，黄金时代，壮年时期，建大梁，檀条，楣，柱顶石，岁数"
+      },
+      {
+        "cn": "adj.夏季的"
+      },
+      {
+        "cn": "v.度过夏季，避暑，使度过夏季，夏季放牧（家畜）"
+      }
+    ],
+    "phonetic0": "ˈsʌmə(r)",
+    "phonetic1": "ˈsʌmɚ"
+  },
+  {
+    "word": "sit",
+    "trans": [
+      {
+        "cn": "vt.& vi.（使）坐"
+      },
+      {
+        "cn": "vi.坐落，处在，（在…中）任职，（议会、委员会、法庭等）开会"
+      },
+      {
+        "cn": "vt.使就座"
+      }
+    ],
+    "phonetic0": "sɪt",
+    "phonetic1": "sit"
+  },
+  {
+    "word": "juice",
+    "trans": [
+      {
+        "cn": "n.果汁，肉汁，胃液"
+      }
+    ],
+    "phonetic0": "dʒu:s",
+    "phonetic1": "dʒus"
+  },
+  {
+    "word": "soon",
+    "trans": [
+      {
+        "cn": "adv.立刻，马上，一会儿，不久，快，宁愿"
+      }
+    ],
+    "phonetic0": "su:n",
+    "phonetic1": "sun"
+  },
+  {
+    "word": "vacation",
+    "trans": [
+      {
+        "cn": "n.假期，休假，古 空出，撤出，辞去"
+      },
+      {
+        "cn": "vi.度假"
+      }
+    ],
+    "phonetic0": "vəˈkeɪʃn",
+    "phonetic1": "və-"
+  },
+  {
+    "word": "on(a)vacation",
+    "trans": [
+      {
+        "cn": "度假"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "hard",
+    "trans": [
+      {
+        "cn": "adj.困难的，硬的，有力的，努力的"
+      },
+      {
+        "cn": "adv.努力地，猛力地，严重地，沉重地"
+      },
+      {
+        "cn": "n.英〉硬海滩，登陆处"
+      }
+    ],
+    "phonetic0": "hɑ:d",
+    "phonetic1": "hɑ:rd"
+  },
+  {
+    "word": "Europe",
+    "trans": [
+      {
+        "cn": "n.欧洲"
+      }
+    ],
+    "phonetic0": "'jʊrəp",
+    "phonetic1": "'jʊrəp"
+  },
+  {
+    "word": "mountain",
+    "trans": [
+      {
+        "cn": "n.山，山岳，山脉，一大堆，大量"
+      }
+    ],
+    "phonetic0": "ˈmaʊntən",
+    "phonetic1": "ˈmaʊntn"
+  },
+  {
+    "word": "country",
+    "trans": [
+      {
+        "cn": "n.国家，国民，乡下，地区"
+      }
+    ],
+    "phonetic0": "ˈkʌntri",
+    "phonetic1": "ˈkʌntri"
+  },
+  {
+    "word": "skate",
+    "trans": [
+      {
+        "cn": "vt.& vi.溜冰，滑冰"
+      },
+      {
+        "cn": "n.溜冰鞋"
+      }
+    ],
+    "phonetic0": "skeɪt",
+    "phonetic1": "sket"
+  },
+  {
+    "word": "snowy",
+    "trans": [
+      {
+        "cn": "adj.下雪的，被雪覆盖的，雪白的，洁白无瑕的，多雪的"
+      }
+    ],
+    "phonetic0": "ˈsnəʊi",
+    "phonetic1": "ˈsnoʊi"
+  },
+  {
+    "word": "winter",
+    "trans": [
+      {
+        "cn": "n.冬，冬天，年岁，萧条期，衰落期"
+      },
+      {
+        "cn": "v.过冬，冬季饲养（家畜），使受冻，使萎缩"
+      },
+      {
+        "cn": "adj.冬天的，冬季的，越冬的，冬播的"
+      }
+    ],
+    "phonetic0": "ˈwɪntə(r)",
+    "phonetic1": "ˈwɪntɚ"
+  },
+  {
+    "word": "Russian",
+    "trans": [
+      {
+        "cn": "adj.俄国的，俄罗斯的，俄语的"
+      },
+      {
+        "cn": "n.俄国人，俄罗斯人，俄语"
+      }
+    ],
+    "phonetic0": "ˈrʌʃn",
+    "phonetic1": "ˈrʌʃən"
+  },
+  {
+    "word": "snowman",
+    "trans": [
+      {
+        "cn": "n.雪人"
+      }
+    ],
+    "phonetic0": "ˈsnəʊmæn",
+    "phonetic1": "ˈsnoʊmæn"
+  },
+  {
+    "word": "rainy",
+    "trans": [
+      {
+        "cn": "adj.下雨的，多雨的"
+      }
+    ],
+    "phonetic0": "ˈreɪni",
+    "phonetic1": "ˈreni"
+  },
+  {
+    "word": "Moscow",
+    "trans": [
+      {
+        "cn": "n. 莫斯科"
+      }
+    ],
+    "phonetic0": "'mɔskəʊ",
+    "phonetic1": "ˈmɔskəʊ"
+  },
+  {
+    "word": "Toronto",
+    "trans": [
+      {
+        "cn": "多伦多"
+      }
+    ],
+    "phonetic0": "təˈrɒntəʊ",
+    "phonetic1": "təˈrɑntoʊ"
+  },
+  {
+    "word": "Boston",
+    "trans": [
+      {
+        "cn": "波士顿"
+      }
+    ],
+    "phonetic0": "ˈbɒstᵊn",
+    "phonetic1": "ˈbɑstən"
+  },
+  {
+    "word": "post",
+    "trans": [
+      {
+        "cn": "n.邮件，邮政，柱，桩，杆，岗位"
+      },
+      {
+        "cn": "vt.张贴，宣布，设岗，邮寄"
+      },
+      {
+        "cn": "vi.快速行进"
+      },
+      {
+        "cn": "adj.有关赛跑（或赛马，赛狗）起点标志的"
+      },
+      {
+        "cn": "adv.〈外〉在后，用急件驿马，赶紧地，火速地"
+      }
+    ],
+    "phonetic0": "pəʊst",
+    "phonetic1": "poʊst"
+  },
+  {
+    "word": "office",
+    "trans": [
+      {
+        "cn": "n.办公室，办公楼，问询处，重要官职"
+      }
+    ],
+    "phonetic0": "ˈɒfɪs",
+    "phonetic1": "ˈɔ:fɪs"
+  },
+  {
+    "word": "post office",
+    "trans": [
+      {
+        "cn": "n. 邮局；邮政部门；邮政系统；邮差敲门游戏（儿童用假托的信件换取亲吻）"
+      }
+    ],
+    "phonetic0": "[ˈpəust ɔfis]",
+    "phonetic1": "[ˈpost ɔfɪs]"
+  },
+  {
+    "word": "police",
+    "trans": [
+      {
+        "cn": "n.警察部门，警方，警察，治安"
+      },
+      {
+        "cn": "vt.（警察、军队等）巡查，维护治安，（委员会等）监督，管制"
+      },
+      {
+        "cn": "adj.警察的，有关警察的"
+      }
+    ],
+    "phonetic0": "pəˈli:s",
+    "phonetic1": "pəˈlis"
+  },
+  {
+    "word": "police station",
+    "trans": [
+      {
+        "cn": "派出所,警察局"
+      }
+    ],
+    "phonetic0": "pə'liːs 'steɪʃən",
+    "phonetic1": "pə'lis 'steʃən"
+  },
+  {
+    "word": "hotel",
+    "trans": [
+      {
+        "cn": "n.旅馆，宾馆，酒店，饭店"
+      },
+      {
+        "cn": "vt.使…在饭店下榻"
+      },
+      {
+        "cn": "vi.进行旅馆式办公"
+      }
+    ],
+    "phonetic0": "həʊˈtel",
+    "phonetic1": "hoʊˈtel"
+  },
+  {
+    "word": "restaurant",
+    "trans": [
+      {
+        "cn": "n.饭店，餐馆，饭馆，菜馆"
+      }
+    ],
+    "phonetic0": "ˈrestrɒnt",
+    "phonetic1": "ˈrestrɑ:nt"
+  },
+  {
+    "word": "bank",
+    "trans": [
+      {
+        "cn": "n.银行，（条形的）堆，（河的）岸，库存"
+      },
+      {
+        "cn": "vt.& vi.堆积，筑（堤），将（钱）存入银行"
+      },
+      {
+        "cn": "vi.（转弯时）倾斜飞行，（在某银行）开账户，存款"
+      },
+      {
+        "cn": "vt.（用煤等）封炉火"
+      }
+    ],
+    "phonetic0": "bæŋk",
+    "phonetic1": "bæŋk"
+  },
+  {
+    "word": "hospital",
+    "trans": [
+      {
+        "cn": "n.医院，收容所，养老院，〈古〉旅客招待所"
+      }
+    ],
+    "phonetic0": "ˈhɒspɪtl",
+    "phonetic1": "ˈhɑ:spɪtl"
+  },
+  {
+    "word": "street",
+    "trans": [
+      {
+        "cn": "n.大街，街道"
+      }
+    ],
+    "phonetic0": "stri:t",
+    "phonetic1": "strit"
+  },
+  {
+    "word": "pay",
+    "trans": [
+      {
+        "cn": "vt.& vi.付款，偿还，补偿，（对…）有利"
+      },
+      {
+        "cn": "vt.给予，支付"
+      },
+      {
+        "cn": "n.工资，薪水，报答"
+      },
+      {
+        "cn": "adj.收费的，需付费的"
+      }
+    ],
+    "phonetic0": "peɪ",
+    "phonetic1": "pe"
+  },
+  {
+    "word": "pay phone",
+    "trans": [
+      {
+        "cn": "付费电话"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "near",
+    "trans": [
+      {
+        "cn": "adv.（空间）在近处，在附近，（时间）临近，（程度）几乎"
+      },
+      {
+        "cn": "prep.（表示程度）接近，（表示位置）靠近，（表示时间）将近，接近于（某种状态）"
+      },
+      {
+        "cn": "adj.近的，亲密的，近似，（亲属关系）近亲"
+      }
+    ],
+    "phonetic0": "nɪə(r)",
+    "phonetic1": "nɪr"
+  },
+  {
+    "word": "across",
+    "trans": [
+      {
+        "cn": "prep.穿过，横穿，横过，与…交叉，在…对面"
+      },
+      {
+        "cn": "adv.横过，越过，在对面，交叉，斜对面"
+      }
+    ],
+    "phonetic0": "əˈkrɒs",
+    "phonetic1": "əˈkrɔ:s"
+  },
+  {
+    "word": "across from",
+    "trans": [
+      {
+        "cn": "和......相对"
+      }
+    ],
+    "phonetic0": "əˈkrɒs frɒm",
+    "phonetic1": "əˈkrɔs frʌm"
+  },
+  {
+    "word": "front",
+    "trans": [
+      {
+        "cn": "n.前面，正面，身体前部，前线"
+      },
+      {
+        "cn": "adj.前面的，正面的，舌前的"
+      },
+      {
+        "cn": "v.面向，在…前面，用…作正面，领导"
+      }
+    ],
+    "phonetic0": "frʌnt",
+    "phonetic1": "frʌnt"
+  },
+  {
+    "word": "in front of",
+    "trans": [
+      {
+        "cn": "in a position that is further forward than sb/sth but not very far away"
+      }
+    ],
+    "phonetic0": "ɪn frʌnt əv",
+    "phonetic1": "ɪn frʌnt ʌv"
+  },
+  {
+    "word": "behind",
+    "trans": [
+      {
+        "cn": "prep.（表示位置）在…的后面，支持，（表示顺序）在身后，（表示比较）落后于"
+      },
+      {
+        "cn": "adv.在后面，向后，在后面较远处，（落）在后面"
+      },
+      {
+        "cn": "n.〈口〉屁股"
+      }
+    ],
+    "phonetic0": "bɪˈhaɪnd",
+    "phonetic1": "bɪˈhaɪnd"
+  },
+  {
+    "word": "town",
+    "trans": [
+      {
+        "cn": "n.城镇，市镇，小村庄，城镇居民，商业中心"
+      }
+    ],
+    "phonetic0": "taʊn",
+    "phonetic1": "taʊn"
+  },
+  {
+    "word": "around",
+    "trans": [
+      {
+        "cn": "adv.大约，旋转，到处，四处，在周围"
+      },
+      {
+        "cn": "prep.围绕，在附近，前后，左右，在…周围"
+      }
+    ],
+    "phonetic0": "əˈraʊnd",
+    "phonetic1": "əˈraʊnd"
+  },
+  {
+    "word": "north",
+    "trans": [
+      {
+        "cn": "n.北方，北部，（美国南北战争时与南方作战的）北部各州，北方发达国家（尤指欧洲和北美各国）"
+      },
+      {
+        "cn": "adj.北方的，北部的，朝北的，（风，光线）来自北方的"
+      },
+      {
+        "cn": "adv.在北方，自北地，向北方"
+      }
+    ],
+    "phonetic0": "nɔ:θ",
+    "phonetic1": "nɔ:rθ"
+  },
+  {
+    "word": "along",
+    "trans": [
+      {
+        "cn": "adv.一起，向前，进展，到某处"
+      },
+      {
+        "cn": "prep.沿着，顺着，靠着…边"
+      }
+    ],
+    "phonetic0": "əˈlɒŋ",
+    "phonetic1": "əˈlɔ:ŋ"
+  },
+  {
+    "word": "go along",
+    "trans": [
+      {
+        "cn": "沿着（这条街）走"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "turn",
+    "trans": [
+      {
+        "cn": "vt.& vi.使转动，旋转，使改变方向，使不适"
+      },
+      {
+        "cn": "vt.使变酸，使变换，使变为"
+      },
+      {
+        "cn": "n.翻转，（路线或方向的）改变，机会"
+      }
+    ],
+    "phonetic0": "tɜ:n",
+    "phonetic1": "tɚn"
+  },
+  {
+    "word": "right",
+    "trans": [
+      {
+        "cn": "adv.立刻，马上，向右，右边，恰当地，一直"
+      },
+      {
+        "cn": "adj.右方的，正确的，合适的，好的，正常的"
+      },
+      {
+        "cn": "n.正确，正当，右边，权利，右手"
+      },
+      {
+        "cn": "vt.纠正，扶直，使正，整理，补偿"
+      },
+      {
+        "cn": "vi.（船舶等）复正，恢复平稳"
+      }
+    ],
+    "phonetic0": "raɪt",
+    "phonetic1": "raɪt"
+  },
+  {
+    "word": "left",
+    "trans": [
+      {
+        "cn": "adj.左边的，左侧的，左派的"
+      },
+      {
+        "cn": "n.左，左面，军左翼，左派，激进分子"
+      },
+      {
+        "cn": "adv.向左，在左边"
+      },
+      {
+        "cn": "v.离开( leave的过去式和过去分词)"
+      }
+    ],
+    "phonetic0": "left",
+    "phonetic1": "lɛft"
+  },
+  {
+    "word": "turn right/left",
+    "trans": [
+      {
+        "cn": "向右、左转"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "crossing",
+    "trans": [
+      {
+        "cn": "n.人行横道，十字路口，交叉，相交，横越，渡口"
+      },
+      {
+        "cn": "v.交叉(cross的现在分词)"
+      }
+    ],
+    "phonetic0": "ˈkrɒsɪŋ",
+    "phonetic1": "ˈkrɔ:sɪŋ"
+  },
+  {
+    "word": "neighborhood",
+    "trans": [
+      {
+        "cn": "n.地区，某地区的人，与某处邻近的地区，临近街坊"
+      }
+    ],
+    "phonetic0": "'neɪbəhʊd",
+    "phonetic1": "ˈnebɚˌhʊd"
+  },
+  {
+    "word": "spend",
+    "trans": [
+      {
+        "cn": "vt.& vi.用钱，花钱"
+      },
+      {
+        "cn": "vt.花费，消耗，花（时间），度过"
+      },
+      {
+        "cn": "n.（为某目的或某段时间内的）花销，花费，开销"
+      }
+    ],
+    "phonetic0": "spend",
+    "phonetic1": "spɛnd"
+  },
+  {
+    "word": "spend time",
+    "trans": [
+      {
+        "cn": "花时间"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "climb",
+    "trans": [
+      {
+        "cn": "v.攀登，爬，登山，上升"
+      },
+      {
+        "cn": "n.攀登，山，岩，增值，晋升"
+      }
+    ],
+    "phonetic0": "klaɪm",
+    "phonetic1": "klaɪm"
+  },
+  {
+    "word": "road",
+    "trans": [
+      {
+        "cn": "n.路，通路，途径，方法"
+      },
+      {
+        "cn": "vt.在…设置路障，（狗）沿臭迹追逐（猎物），（狗）闻着臭迹追"
+      }
+    ],
+    "phonetic0": "rəʊd",
+    "phonetic1": "roʊd"
+  },
+  {
+    "word": "often",
+    "trans": [
+      {
+        "cn": "adv.常常，经常，时常，再三"
+      }
+    ],
+    "phonetic0": "ˈɒfn",
+    "phonetic1": "ˈɔ:fn"
+  },
+  {
+    "word": "air",
+    "trans": [
+      {
+        "cn": "n.天空，气氛，空运，（简单易记的）曲调"
+      },
+      {
+        "cn": "vt.& vi.晾晒，烘干，播送，广播"
+      },
+      {
+        "cn": "vt.使房间通风， 透气"
+      }
+    ],
+    "phonetic0": "eə(r)",
+    "phonetic1": "er"
+  },
+  {
+    "word": "sunshine",
+    "trans": [
+      {
+        "cn": "n.阳光，日光，晴朗，晴天，太阳晒着的地方，欢乐"
+      }
+    ],
+    "phonetic0": "ˈsʌnʃaɪn",
+    "phonetic1": "ˈsʌnˌʃaɪn"
+  },
+  {
+    "word": "free",
+    "trans": [
+      {
+        "cn": "adj.自由的，免费的，免税的，空闲的"
+      },
+      {
+        "cn": "adv.免费地，自由地，无拘束地，一帆风顺地"
+      },
+      {
+        "cn": "vt.免除，释放，使自由，解救"
+      }
+    ],
+    "phonetic0": "fri:",
+    "phonetic1": "fri"
+  },
+  {
+    "word": "enjoy",
+    "trans": [
+      {
+        "cn": "vt.享有，享受，欣赏，喜欢，使过得快活"
+      },
+      {
+        "cn": "vi.使过得快活"
+      }
+    ],
+    "phonetic0": "ɪnˈdʒɔɪ",
+    "phonetic1": "ɛnˈdʒɔɪ"
+  },
+  {
+    "word": "enjoy reading",
+    "trans": [
+      {
+        "cn": "喜欢阅读"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "easily",
+    "trans": [
+      {
+        "cn": "adv.容易地，很可能，迅速地，频繁地"
+      }
+    ],
+    "phonetic0": "ˈi:zəli",
+    "phonetic1": "ˈizəli"
+  },
+  {
+    "word": "money",
+    "trans": [
+      {
+        "cn": "n.钱，财富，薪水，款项"
+      }
+    ],
+    "phonetic0": "ˈmʌni",
+    "phonetic1": "ˈmʌni"
+  },
+  {
+    "word": "curly",
+    "trans": [
+      {
+        "cn": "adj.有卷发的，长卷毛的，（木材）有皱状纹理的，蜷缩的，（植物）有卷叶病的"
+      }
+    ],
+    "phonetic0": "ˈkɜ:li",
+    "phonetic1": "ˈkɜ:rli"
+  },
+  {
+    "word": "straight",
+    "trans": [
+      {
+        "cn": "adj.直的，连续的，直率的，整齐的"
+      },
+      {
+        "cn": "adv.直地，直接地，坦率地，立即"
+      },
+      {
+        "cn": "n.直线，直线部分"
+      }
+    ],
+    "phonetic0": "streɪt",
+    "phonetic1": "stret"
+  },
+  {
+    "word": "tall",
+    "trans": [
+      {
+        "cn": "adj.身材高的，高大的，（数量）大的，（俚）过分的，夸张的"
+      },
+      {
+        "cn": "adv.夸大地，趾高气扬地"
+      }
+    ],
+    "phonetic0": "tɔ:l",
+    "phonetic1": "tɔl"
+  },
+  {
+    "word": "medium",
+    "trans": [
+      {
+        "cn": "adj.中等的，中级的，普通的，平均的，半生熟的"
+      },
+      {
+        "cn": "n.媒介物，媒质，中间，中庸，生培养基，培养液，颜料溶解液，数中数，平均，逻中名辞，手段，方法，中间物"
+      }
+    ],
+    "phonetic0": "ˈmi:diəm",
+    "phonetic1": "ˈmidiəm"
+  },
+  {
+    "word": "height",
+    "trans": [
+      {
+        "cn": "n.高度，海拔，高地，身高，绝顶，顶点"
+      }
+    ],
+    "phonetic0": "haɪt",
+    "phonetic1": "haɪt"
+  },
+  {
+    "word": "of medium height",
+    "trans": [
+      {
+        "cn": "中等身高"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "thin",
+    "trans": [
+      {
+        "cn": "adj.薄的，瘦的，稀少的，细的"
+      },
+      {
+        "cn": "vt.使瘦，使淡，使稀疏"
+      },
+      {
+        "cn": "vi.变薄，变瘦，变淡"
+      },
+      {
+        "cn": "adv.稀疏地，微弱地"
+      }
+    ],
+    "phonetic0": "θɪn",
+    "phonetic1": "θɪn"
+  },
+  {
+    "word": "heavy",
+    "trans": [
+      {
+        "cn": "adj.重的，沉重的，大量的，浓密的，激烈的，重型的"
+      },
+      {
+        "cn": "n.重物，庄重的角色"
+      },
+      {
+        "cn": "adv.密集地，大量地，笨重地"
+      }
+    ],
+    "phonetic0": "ˈhevi",
+    "phonetic1": "ˈhɛvi"
+  },
+  {
+    "word": "build",
+    "trans": [
+      {
+        "cn": "vt.建造，构筑，建立，开发，为…建立基础"
+      },
+      {
+        "cn": "vi.建造，营造，扩大，扩展，发展，达到"
+      },
+      {
+        "cn": "n.体格，构造，〈俚〉优美的体型，肉体美"
+      }
+    ],
+    "phonetic0": "bɪld",
+    "phonetic1": "bɪld"
+  },
+  {
+    "word": "of medium build",
+    "trans": [
+      {
+        "cn": "中等身材"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "tonight",
+    "trans": [
+      {
+        "cn": "n.今晚，今夜"
+      },
+      {
+        "cn": "adv.在今晚"
+      }
+    ],
+    "phonetic0": "təˈnaɪt",
+    "phonetic1": "təˈnaɪt"
+  },
+  {
+    "word": "little",
+    "trans": [
+      {
+        "cn": "adj.小的，琐碎的，娇小的，幼小的"
+      },
+      {
+        "cn": "adv.不多，略微，少许，一点，短时间地"
+      },
+      {
+        "cn": "n.（表示否定）微少，没有多少，短时间det.（数量上）微少的，少到几乎没有的，（a little）少量的，一些"
+      }
+    ],
+    "phonetic0": "ˈlɪtl",
+    "phonetic1": "ˈlɪtl"
+  },
+  {
+    "word": "a little",
+    "trans": [
+      {
+        "cn": "n. 一点"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "cinema",
+    "trans": [
+      {
+        "cn": "n.电影院，电影艺术，电影业，电影"
+      }
+    ],
+    "phonetic0": "ˈsɪnəmə",
+    "phonetic1": "ˈsɪnəmə"
+  },
+  {
+    "word": "glasses",
+    "trans": [
+      {
+        "cn": "n. [轻] 眼镜；玻璃（glass的复数形式）；双筒望远镜"
+      },
+      {
+        "cn": "v. 把…装入玻璃容器内；给…装上玻璃（glass的第三人称单数形式）"
+      }
+    ],
+    "phonetic0": "[ˈɡlɑːsɪz]",
+    "phonetic1": "[ˈɡlæsɪz]"
+  },
+  {
+    "word": "later",
+    "trans": [
+      {
+        "cn": "adv.较晚地，以后，过后，后来，随后"
+      },
+      {
+        "cn": "adj.后来的，以后的，接近末期的，晚年的"
+      }
+    ],
+    "phonetic0": "ˈleɪtə(r)",
+    "phonetic1": "ˈletɚ"
+  },
+  {
+    "word": "handsome",
+    "trans": [
+      {
+        "cn": "adj.英俊的，健美的，美观的，大方的，数量大的 "
+      }
+    ],
+    "phonetic0": "ˈhænsəm",
+    "phonetic1": "ˈhænsəm"
+  },
+  {
+    "word": "actor",
+    "trans": [
+      {
+        "cn": "n.演员（尤指男演员），行动者，参与者"
+      }
+    ],
+    "phonetic0": "ˈæktə(r)",
+    "phonetic1": "ˈæktɚ"
+  },
+  {
+    "word": "actress",
+    "trans": [
+      {
+        "cn": "n.女演员，女表演者"
+      }
+    ],
+    "phonetic0": "ˈæktrəs",
+    "phonetic1": "ˈæktrɪs"
+  },
+  {
+    "word": "person",
+    "trans": [
+      {
+        "cn": "n.人，（语法）人称，身体，容貌"
+      }
+    ],
+    "phonetic0": "ˈpɜ:sn",
+    "phonetic1": "ˈpɜ:rsn"
+  },
+  {
+    "word": "nose",
+    "trans": [
+      {
+        "cn": "n.鼻子，嗅觉，芳香，香气，突出的部分"
+      },
+      {
+        "cn": "vt.嗅出，闻出，用鼻子触，用鼻子品评（酒）等，探出"
+      },
+      {
+        "cn": "vi.小心探索着前进，探问"
+      }
+    ],
+    "phonetic0": "nəʊz",
+    "phonetic1": "noʊz"
+  },
+  {
+    "word": "blonde",
+    "trans": [
+      {
+        "cn": "n.白肤金发碧眼女人"
+      },
+      {
+        "cn": "adj.（头发）亚麻色的，金色的，白皙的，白肤金发碧眼的"
+      }
+    ],
+    "phonetic0": "blɒnd",
+    "phonetic1": "blɑ:nd"
+  },
+  {
+    "word": "mouth",
+    "trans": [
+      {
+        "cn": "n.口，出入口，传闻"
+      },
+      {
+        "cn": "vt.装腔作势地说，喃喃地说，心不在焉地说，言不由衷地说"
+      },
+      {
+        "cn": "vi.装腔作势说话"
+      }
+    ],
+    "phonetic0": "maʊθ",
+    "phonetic1": "maʊθ"
+  },
+  {
+    "word": "round",
+    "trans": [
+      {
+        "cn": "adj.圆形的，弧形的，丰满的，肥胖的，整数的"
+      },
+      {
+        "cn": "adv.到处，在周围，迂回地，朝反方向"
+      },
+      {
+        "cn": "prep.大约，绕过，环绕，（表示位置）在…四周，附近"
+      },
+      {
+        "cn": "n.圆，圆形，循环，圆形物，球状物，（会议的）一回合"
+      },
+      {
+        "cn": "vt.& vi.使成圆形，绕行，拐过，绕过，把…四舍五入"
+      }
+    ],
+    "phonetic0": "raʊnd",
+    "phonetic1": "raʊnd"
+  },
+  {
+    "word": "face",
+    "trans": [
+      {
+        "cn": "n.面容，表面，脸，方面"
+      },
+      {
+        "cn": "vt.& vi.面对，面向…，正视，承认"
+      },
+      {
+        "cn": "vt.（感到不能）对付，（明知不好办而）交谈，必须对付（某情况），面临…"
+      }
+    ],
+    "phonetic0": "feɪs",
+    "phonetic1": "fes"
+  },
+  {
+    "word": "eye",
+    "trans": [
+      {
+        "cn": "n.眼睛，视力，眼状物，风纪扣扣眼"
+      },
+      {
+        "cn": "vt.定睛地看，注视，审视，细看"
+      }
+    ],
+    "phonetic0": "aɪ",
+    "phonetic1": "aɪ"
+  },
+  {
+    "word": "singer",
+    "trans": [
+      {
+        "cn": "n.歌手，歌唱家，诗人，鸣禽"
+      }
+    ],
+    "phonetic0": "ˈsɪŋə(r)",
+    "phonetic1": "ˈsɪŋɚ"
+  },
+  {
+    "word": "artist",
+    "trans": [
+      {
+        "cn": "n.艺术家，画家，能手，骗子"
+      }
+    ],
+    "phonetic0": "ˈɑ:tɪst",
+    "phonetic1": "ˈɑ:rtɪst"
+  },
+  {
+    "word": "crime",
+    "trans": [
+      {
+        "cn": "n.罪行，犯罪，罪恶"
+      },
+      {
+        "cn": "v.指控犯罪，判定犯罪，处罚军事犯"
+      }
+    ],
+    "phonetic0": "kraɪm",
+    "phonetic1": "kraɪm"
+  },
+  {
+    "word": "criminal",
+    "trans": [
+      {
+        "cn": "n.罪犯，犯人"
+      },
+      {
+        "cn": "adj.刑事的，犯罪的，可耻的"
+      }
+    ],
+    "phonetic0": "ˈkrɪmɪnl",
+    "phonetic1": "ˈkrɪmənəl"
+  },
+  {
+    "word": "put",
+    "trans": [
+      {
+        "cn": "vt.放，表达，给予（重视、信任、价值等），使处于（某种状态）"
+      },
+      {
+        "cn": "vt.& vi.使感觉到，使受到…的影响"
+      },
+      {
+        "cn": "vi.说，猛推，将…送往，使与…连接"
+      },
+      {
+        "cn": "n.方笨蛋，怪人，对策"
+      },
+      {
+        "cn": "adj.固定的，不动的"
+      }
+    ],
+    "phonetic0": "pʊt",
+    "phonetic1": "pʊt"
+  },
+  {
+    "word": "each",
+    "trans": [
+      {
+        "cn": "adj.每，各自的"
+      },
+      {
+        "cn": "pron.每个，各自"
+      }
+    ],
+    "phonetic0": "i:tʃ",
+    "phonetic1": "itʃ"
+  },
+  {
+    "word": "way",
+    "trans": [
+      {
+        "cn": "n.道路，方法，方向，某方面"
+      },
+      {
+        "cn": "adv.远远地，大大地"
+      }
+    ],
+    "phonetic0": "weɪ",
+    "phonetic1": "we"
+  },
+  {
+    "word": "describe",
+    "trans": [
+      {
+        "cn": "vt.描写，形容，叙述，描绘，作图，（行星等）周转"
+      }
+    ],
+    "phonetic0": "dɪˈskraɪb",
+    "phonetic1": "dɪˈskraɪb"
+  },
+  {
+    "word": "differently",
+    "trans": [
+      {
+        "cn": "adv.不同地，相异地"
+      }
+    ],
+    "phonetic0": "'dɪfrəntlɪ",
+    "phonetic1": "ˈdɪfərəntlɪ"
+  },
+  {
+    "word": "another",
+    "trans": [
+      {
+        "cn": "adj.又一个，再一个，另一的，其他一种"
+      },
+      {
+        "cn": "pron.另一个，别个，再一个"
+      }
+    ],
+    "phonetic0": "əˈnʌðə(r)",
+    "phonetic1": "əˈnʌðɚ"
+  },
+  {
+    "word": "end",
+    "trans": [
+      {
+        "cn": "n.<正>结果，端，终止，最后部分"
+      },
+      {
+        "cn": "vt.& vi.结束，终止"
+      }
+    ],
+    "phonetic0": "end",
+    "phonetic1": "ɛnd"
+  },
+  {
+    "word": "in the end",
+    "trans": [
+      {
+        "cn": "最后；终于"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "real",
+    "trans": [
+      {
+        "cn": "adj.真的，真实的，现实的，事实上的，真诚的"
+      },
+      {
+        "cn": "adv.真正，实在，确实地"
+      },
+      {
+        "cn": "n.实在，现实，实数"
+      }
+    ],
+    "phonetic0": "ˈri:əl",
+    "phonetic1": "ril"
+  },
+  {
+    "word": "jeans",
+    "trans": [
+      {
+        "cn": "n.牛仔裤，瘦腿紧身裤"
+      }
+    ],
+    "phonetic0": "dʒi:nz",
+    "phonetic1": "dʒi:nz"
+  },
+  {
+    "word": "noodle",
+    "trans": [
+      {
+        "cn": "n.面条，傻子， 笨蛋"
+      },
+      {
+        "cn": "vi.（乐师）弹拨乐器，（即兴）演奏，口语长时间地思考，反复酝酿"
+      }
+    ],
+    "phonetic0": "ˈnu:dl",
+    "phonetic1": "ˈnudl"
+  },
+  {
+    "word": "mutton",
+    "trans": [
+      {
+        "cn": "羊肉"
+      }
+    ],
+    "phonetic0": "'mʌt(ə)n",
+    "phonetic1": "'mʌtn"
+  },
+  {
+    "word": "beef",
+    "trans": [
+      {
+        "cn": "n.牛肉，菜牛（饲养以供肉食的牛），体力，怨言，牢骚"
+      },
+      {
+        "cn": "vi.抱怨，大发牢骚"
+      }
+    ],
+    "phonetic0": "bi:f",
+    "phonetic1": "bif"
+  },
+  {
+    "word": "cabbage",
+    "trans": [
+      {
+        "cn": "n.甘蓝（洋白菜、卷心菜），<非正式、侮辱>植物人，常用于英式英语，<俚>钱，尤指纸币，常用于美式俚语，<俚>脑袋"
+      }
+    ],
+    "phonetic0": "ˈkæbɪdʒ",
+    "phonetic1": "ˈkæbɪdʒ"
+  },
+  {
+    "word": "potato",
+    "trans": [
+      {
+        "cn": "n.马铃薯， 土豆，洋芋，土豆块茎"
+      }
+    ],
+    "phonetic0": "pəˈteɪtəʊ",
+    "phonetic1": "pəˈteɪtoʊ"
+  },
+  {
+    "word": "special",
+    "trans": [
+      {
+        "cn": "adj.特殊的，专门的，专用的，重要的"
+      },
+      {
+        "cn": "n.专车，特价，特刊，特约稿"
+      }
+    ],
+    "phonetic0": "ˈspeʃl",
+    "phonetic1": "ˈspɛʃəl"
+  },
+  {
+    "word": "would",
+    "trans": [
+      {
+        "cn": "aux.将，将要，愿意，会，打算，大概"
+      },
+      {
+        "cn": "v.(will 的过去式，用于转述)将"
+      }
+    ],
+    "phonetic0": "wʊd",
+    "phonetic1": "wʊd"
+  },
+  {
+    "word": "would like",
+    "trans": [
+      {
+        "cn": "愿意；喜欢"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "yet",
+    "trans": [
+      {
+        "cn": "adv.但是，还，已经，又，再"
+      },
+      {
+        "cn": "conj.然而，但是"
+      }
+    ],
+    "phonetic0": "jet",
+    "phonetic1": "jɛt"
+  },
+  {
+    "word": "large",
+    "trans": [
+      {
+        "cn": "adv.大大地，夸大地，详细地，顺风地"
+      },
+      {
+        "cn": "adj.大的，大规模的，大型号的，广泛的"
+      },
+      {
+        "cn": "v.玩个痛快，（尤指跳舞和饮酒）作乐"
+      }
+    ],
+    "phonetic0": "lɑ:dʒ",
+    "phonetic1": "lɑ:rdʒ"
+  },
+  {
+    "word": "order",
+    "trans": [
+      {
+        "cn": "n.命令，秩序，规则，制度，次序"
+      },
+      {
+        "cn": "vt.命令，订购，整理"
+      },
+      {
+        "cn": "vi.下订单"
+      }
+    ],
+    "phonetic0": "ˈɔ:də(r)",
+    "phonetic1": "ˈɔ:rdə(r)"
+  },
+  {
+    "word": "take one's order",
+    "trans": [
+      {
+        "cn": "点菜"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "size",
+    "trans": [
+      {
+        "cn": "n.大小，尺寸，规模，胶料，浆糊，巨大，大量"
+      },
+      {
+        "cn": "vt.按大小排列，改变…的大小，上胶料，上浆，上涂料"
+      },
+      {
+        "cn": "adj.一定尺寸的"
+      }
+    ],
+    "phonetic0": "saɪz",
+    "phonetic1": "saɪz"
+  },
+  {
+    "word": "bowl",
+    "trans": [
+      {
+        "cn": "n.碗，一碗东西，碗状物，体木球"
+      },
+      {
+        "cn": "vi.参加保龄球赛，体投球，体玩滚木球，稳而快地行驶"
+      },
+      {
+        "cn": "vt.投掷或滚动（球），滚球得分，表演保龄球，打倒，撞击"
+      }
+    ],
+    "phonetic0": "bəʊl",
+    "phonetic1": "boʊl"
+  },
+  {
+    "word": "one(large)bowl of",
+    "trans": [
+      {
+        "cn": "一（大）碗"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "tofu",
+    "trans": [
+      {
+        "cn": "n.<日>豆腐"
+      }
+    ],
+    "phonetic0": "ˈtəʊfu:",
+    "phonetic1": "ˈtoʊfu:"
+  },
+  {
+    "word": "meat",
+    "trans": [
+      {
+        "cn": "n.肉，食物，实质"
+      },
+      {
+        "cn": "adj.重要的，基本的"
+      }
+    ],
+    "phonetic0": "mi:t",
+    "phonetic1": "mit"
+  },
+  {
+    "word": "dumpling",
+    "trans": [
+      {
+        "cn": "n. 饺子"
+      }
+    ],
+    "phonetic0": "'dʌmplɪŋ",
+    "phonetic1": "ˈdʌmplɪŋ"
+  },
+  {
+    "word": "porridge",
+    "trans": [
+      {
+        "cn": "n.粥，麦片粥，稀饭，肉汤"
+      }
+    ],
+    "phonetic0": "ˈpɒrɪdʒ",
+    "phonetic1": "ˈpɔ:rɪdʒ"
+  },
+  {
+    "word": "onion",
+    "trans": [
+      {
+        "cn": "n.洋葱（头）"
+      }
+    ],
+    "phonetic0": "ˈʌnjən",
+    "phonetic1": "ˈʌnjən"
+  },
+  {
+    "word": "fish",
+    "trans": [
+      {
+        "cn": "n.鱼，鱼肉，鱼类，〈口〉（特殊的）人物，家伙，东西，建接合板，夹片，鱼尾板，航钓锚器，撑夹桅杆的加固夹箍"
+      },
+      {
+        "cn": "vt.& vi.捕鱼，钓鱼，摸出，掏出"
+      },
+      {
+        "cn": "vt.钓鱼，捕鱼，搜寻，航加夹箍夹牢，工用接合板连接加固"
+      },
+      {
+        "cn": "vi.捕鱼，钓鱼，用钩捞取"
+      }
+    ],
+    "phonetic0": "fɪʃ",
+    "phonetic1": "fɪʃ"
+  },
+  {
+    "word": "pancake",
+    "trans": [
+      {
+        "cn": "n.烙饼，薄煎饼，粉饼，航平降，平坠"
+      },
+      {
+        "cn": "vt.使平坠著陆，使平展"
+      },
+      {
+        "cn": "vi.平坠着陆，平展"
+      }
+    ],
+    "phonetic0": "ˈpænkeɪk",
+    "phonetic1": "ˈpænˌkek"
+  },
+  {
+    "word": "world",
+    "trans": [
+      {
+        "cn": "n.世界，地球，领域，尘世"
+      }
+    ],
+    "phonetic0": "wɜ:ld",
+    "phonetic1": "wɜ:rld"
+  },
+  {
+    "word": "around the world",
+    "trans": [
+      {
+        "cn": "世界各地"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "answer",
+    "trans": [
+      {
+        "cn": "vt.& vi.答复， 解答， 答辩，适应"
+      },
+      {
+        "cn": "n.回答，答案，反应，足以媲美的人"
+      }
+    ],
+    "phonetic0": "ˈɑ:nsə(r)",
+    "phonetic1": "ˈænsə(r)"
+  },
+  {
+    "word": "different",
+    "trans": [
+      {
+        "cn": "adj.不同的，各式各样的，个别的，不平常"
+      }
+    ],
+    "phonetic0": "ˈdɪfrənt",
+    "phonetic1": "ˈdɪfrənt"
+  },
+  {
+    "word": "cake",
+    "trans": [
+      {
+        "cn": "n.蛋糕，糕饼，块状物，沉积物"
+      },
+      {
+        "cn": "vt.& vi.（使）结块，（使）胶，涂厚厚的一层"
+      }
+    ],
+    "phonetic0": "keɪk",
+    "phonetic1": "keɪk"
+  },
+  {
+    "word": "candle",
+    "trans": [
+      {
+        "cn": "n.蜡烛，烛光，蜡烛状物"
+      },
+      {
+        "cn": "vt.对光检查"
+      }
+    ],
+    "phonetic0": "ˈkændl",
+    "phonetic1": "ˈkændl"
+  },
+  {
+    "word": "age",
+    "trans": [
+      {
+        "cn": "n.年龄，时代，老年，年龄段"
+      },
+      {
+        "cn": "vt.& vi.（使）长大，使显老，使变老，使苍老"
+      },
+      {
+        "cn": "vi.化学老化，陈化，熟化，（吸毒者随年龄增长而主动）戒毒，戒除毒品"
+      },
+      {
+        "cn": "vt.化学使老化，使陈化，使熟化，估计，推测（马的年龄）"
+      }
+    ],
+    "phonetic0": "eɪdʒ",
+    "phonetic1": "edʒ"
+  },
+  {
+    "word": "make a wish",
+    "trans": [
+      {
+        "cn": "许愿"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "blow",
+    "trans": [
+      {
+        "cn": "n.殴打，打击，吹风，一阵风，意外的灾害，吹奏（声）"
+      },
+      {
+        "cn": "vt.& vi.（风）吹，（轮胎等）爆炸"
+      },
+      {
+        "cn": "vt.吹，吹气，使爆炸，奏出，演奏，使气喘"
+      },
+      {
+        "cn": "vi.吹刮，吹动，随风飘动，鸣叫，喘气"
+      }
+    ],
+    "phonetic0": "bləʊ",
+    "phonetic1": "bloʊ"
+  },
+  {
+    "word": "blow out",
+    "trans": [
+      {
+        "cn": "吹灭(突然爆裂, 吹胀, 突然冒出, 烧断)"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "if",
+    "trans": [
+      {
+        "cn": "conj.如果，倘若，即使，〈口〉是否，假设"
+      },
+      {
+        "cn": "n.条件，设想"
+      }
+    ],
+    "phonetic0": "ɪf",
+    "phonetic1": "ɪf"
+  },
+  {
+    "word": "will",
+    "trans": [
+      {
+        "cn": "n.愿意，意志（力），法遗嘱"
+      },
+      {
+        "cn": "vt.决心要，将（财产等）遗赠某人，用意志力驱使（某事发生）"
+      },
+      {
+        "cn": "vi.愿意， 希望， 想要"
+      },
+      {
+        "cn": "aux.将，将会，会，要"
+      }
+    ],
+    "phonetic0": "wɪl",
+    "phonetic1": "wɪl"
+  },
+  {
+    "word": "the UK",
+    "trans": [
+      {
+        "cn": "英国"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "candy",
+    "trans": [
+      {
+        "cn": "n.糖果，冰糖，〈美俚〉古柯碱，可卡因，巧克力"
+      },
+      {
+        "cn": "vt.（用糖煮过以）保存，使结晶为砂糖"
+      },
+      {
+        "cn": "adj.〈美俚〉（服饰）花哨的，甜言蜜语的"
+      }
+    ],
+    "phonetic0": "ˈkændi",
+    "phonetic1": "ˈkændi"
+  },
+  {
+    "word": "lucky",
+    "trans": [
+      {
+        "cn": "adj.运气好的，侥幸的，兆头好的，吉祥的，〈俚〉难得，很恰当的"
+      }
+    ],
+    "phonetic0": "ˈlʌki",
+    "phonetic1": "ˈlʌki"
+  },
+  {
+    "word": "popular",
+    "trans": [
+      {
+        "cn": "adj.流行的，大众化的，民众的，大众的，公众的，通俗的，普通的，平易的，〈美俚〉自以为了不得的，骄傲的"
+      }
+    ],
+    "phonetic0": "ˈpɒpjələ(r)",
+    "phonetic1": "ˈpɑ:pjələ(r)"
+  },
+  {
+    "word": "get popular",
+    "trans": [
+      {
+        "cn": "受欢迎；流行"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "cut up",
+    "trans": [
+      {
+        "cn": "切碎，谴责，扮小丑"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "idea",
+    "trans": [
+      {
+        "cn": "n.主意，想法，哲理念，观念，乐乐句，模糊想法"
+      }
+    ],
+    "phonetic0": "aɪˈdɪə",
+    "phonetic1": "aɪˈdi:ə"
+  },
+  {
+    "word": "bring good luck to...",
+    "trans": [
+      {
+        "cn": "给……带来好运"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "milk",
+    "trans": [
+      {
+        "cn": "n.奶，乳液，母乳"
+      },
+      {
+        "cn": "vt.挤奶，榨取"
+      }
+    ],
+    "phonetic0": "mɪlk",
+    "phonetic1": "mɪlk"
+  },
+  {
+    "word": "cow",
+    "trans": [
+      {
+        "cn": "n.奶牛，乳牛，母兽，雌（象，鲸等），<侮辱>对女性的蔑称"
+      },
+      {
+        "cn": "vt.恐吓，吓唬，威胁"
+      }
+    ],
+    "phonetic0": "kaʊ",
+    "phonetic1": "kaʊ"
+  },
+  {
+    "word": "milk a cow",
+    "trans": [
+      {
+        "cn": "给奶牛挤奶"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "horse",
+    "trans": [
+      {
+        "cn": "n.马，骑马的军人，骑兵，有脚的架，跳马，鞍马"
+      },
+      {
+        "cn": "vt.为…备马，猛推或用力向上举"
+      },
+      {
+        "cn": "vi.欲交配，，用于母马"
+      },
+      {
+        "cn": "adj.马的，骑在马背上的，马拉的，使用马力的，较大的，较粗硬的"
+      }
+    ],
+    "phonetic0": "hɔ:s",
+    "phonetic1": "hɔ:rs"
+  },
+  {
+    "word": "ride a horse",
+    "trans": [
+      {
+        "cn": "骑马"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "feed",
+    "trans": [
+      {
+        "cn": "vt.喂养，满足（欲望等），向…提供，供…作食物"
+      },
+      {
+        "cn": "vi.吃，以…为食，流入，注入，进入（如油流入机器），电子学馈入"
+      },
+      {
+        "cn": "n.饲料（尤指粗饲料），施肥，喂送，草料，（尤指向地方性电视台）馈送电视节目"
+      }
+    ],
+    "phonetic0": "fi:d",
+    "phonetic1": "fid"
+  },
+  {
+    "word": "feed chickens",
+    "trans": [
+      {
+        "cn": "喂鸡"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "farmer",
+    "trans": [
+      {
+        "cn": "n.农场主，农民，承包人"
+      }
+    ],
+    "phonetic0": "ˈfɑ:mə(r)",
+    "phonetic1": "ˈfɑ:rmə(r)"
+  },
+  {
+    "word": "quite",
+    "trans": [
+      {
+        "cn": "adv.相当，很，非常，确实如此"
+      }
+    ],
+    "phonetic0": "kwaɪt",
+    "phonetic1": "kwaɪt"
+  },
+  {
+    "word": "quite a lot(of...)",
+    "trans": [
+      {
+        "cn": "许多"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "anything",
+    "trans": [
+      {
+        "cn": "pron.任何东西，（用于否定句、疑问句中以及 if 或 whether 和 prevent、ban、avoid 等动词后，代替 something）任何东西，重要东西，重要事物"
+      }
+    ],
+    "phonetic0": "ˈeniθɪŋ",
+    "phonetic1": "ˈɛniˌθɪŋ"
+  },
+  {
+    "word": "grow",
+    "trans": [
+      {
+        "cn": "vt.种植，扩大，扩展，增加"
+      },
+      {
+        "cn": "vi.生长，渐渐变得，逐渐开始"
+      },
+      {
+        "cn": "vt.& vi.（使）留长，蓄长"
+      }
+    ],
+    "phonetic0": "grəʊ",
+    "phonetic1": "groʊ"
+  },
+  {
+    "word": "farm",
+    "trans": [
+      {
+        "cn": "n.农场，农庄，农家，畜牧场，农田"
+      },
+      {
+        "cn": "vt.耕种，养殖，承包，包出，佃出（土地）"
+      },
+      {
+        "cn": "vi.经营农场"
+      }
+    ],
+    "phonetic0": "fɑ:m",
+    "phonetic1": "fɑ:rm"
+  },
+  {
+    "word": "pick",
+    "trans": [
+      {
+        "cn": "vt.& vi.挑选，挑拣，挖，采，摘，剔，扒，挑剔"
+      },
+      {
+        "cn": "n.选择，收获，精华"
+      }
+    ],
+    "phonetic0": "pɪk",
+    "phonetic1": "pɪk"
+  },
+  {
+    "word": "excellent",
+    "trans": [
+      {
+        "cn": "adj.卓越的，杰出的，优秀的，太好了"
+      }
+    ],
+    "phonetic0": "ˈeksələnt",
+    "phonetic1": "ˈɛksələnt"
+  },
+  {
+    "word": "countryside",
+    "trans": [
+      {
+        "cn": "n.乡村，郊野，乡下的全体居民"
+      }
+    ],
+    "phonetic0": "ˈkʌntrisaɪd",
+    "phonetic1": "ˈkʌntriˌsaɪd"
+  },
+  {
+    "word": "in the countryside",
+    "trans": [
+      {
+        "cn": "在乡下；在农村"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "yesterday",
+    "trans": [
+      {
+        "cn": "n.昨天，往昔，<正式>过去"
+      },
+      {
+        "cn": "adv.在昨天，在昨日，近来"
+      }
+    ],
+    "phonetic0": "ˈjestədeɪ",
+    "phonetic1": "ˈjestərdeɪ"
+  },
+  {
+    "word": "flower",
+    "trans": [
+      {
+        "cn": "n.花，精华，开花植物"
+      },
+      {
+        "cn": "vi.开花，繁荣，成熟"
+      },
+      {
+        "cn": "vt.使开花，用花装饰"
+      }
+    ],
+    "phonetic0": "ˈflaʊə(r)",
+    "phonetic1": "ˈflaʊɚ"
+  },
+  {
+    "word": "worry",
+    "trans": [
+      {
+        "cn": "n.烦恼，忧虑，担心，撕咬"
+      },
+      {
+        "cn": "vi.担心，焦虑，为…发愁，撕咬"
+      },
+      {
+        "cn": "vt.使烦恼，烦扰，撕咬"
+      }
+    ],
+    "phonetic0": "ˈwʌri",
+    "phonetic1": "ˈwɜ:ri"
+  },
+  {
+    "word": "luckily",
+    "trans": [
+      {
+        "cn": "adv.幸运地，侥幸，幸而，幸亏"
+      }
+    ],
+    "phonetic0": "'lʌkɪlɪ",
+    "phonetic1": "ˈlʌkɪli"
+  },
+  {
+    "word": "sun",
+    "trans": [
+      {
+        "cn": "n.太阳，阳光，恒星，中心人物"
+      },
+      {
+        "cn": "v.晒太阳"
+      }
+    ],
+    "phonetic0": "sʌn",
+    "phonetic1": "sʌn"
+  },
+  {
+    "word": "museum",
+    "trans": [
+      {
+        "cn": "n.博物馆"
+      }
+    ],
+    "phonetic0": "mjuˈzi:əm",
+    "phonetic1": "mjuˈziəm"
+  },
+  {
+    "word": "fire",
+    "trans": [
+      {
+        "cn": "n.火，燃烧物，火灾，射击，发射，热情"
+      },
+      {
+        "cn": "vt.& vi.开火，射击，燃烧，引爆炸药，充满热情"
+      },
+      {
+        "cn": "vt.<口>解雇，射（箭），激励，射出（子弹）"
+      }
+    ],
+    "phonetic0": "ˈfaɪə(r)",
+    "phonetic1": "faɪr"
+  },
+  {
+    "word": "fire station",
+    "trans": [
+      {
+        "cn": "消防站"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "painting",
+    "trans": [
+      {
+        "cn": "n.绘画，油画，上色，着色，颜料，油漆"
+      },
+      {
+        "cn": "v.绘画（ paint的现在分词），涂色于"
+      }
+    ],
+    "phonetic0": "ˈpeɪntɪŋ",
+    "phonetic1": "ˈpentɪŋ"
+  },
+  {
+    "word": "exciting",
+    "trans": [
+      {
+        "cn": "adj.使人兴奋的，令人激动的"
+      },
+      {
+        "cn": "v.刺激（excite的现在分词）"
+      }
+    ],
+    "phonetic0": "ɪkˈsaɪtɪŋ",
+    "phonetic1": "ɪkˈsaɪtɪŋ"
+  },
+  {
+    "word": "lovely",
+    "trans": [
+      {
+        "cn": "adj.可爱的，令人愉快的，亲切友好的，慷慨大方的"
+      },
+      {
+        "cn": "n.美女，美人，佳人，漂亮的东西"
+      }
+    ],
+    "phonetic0": "ˈlʌvli",
+    "phonetic1": "ˈlʌvli"
+  },
+  {
+    "word": "expensive",
+    "trans": [
+      {
+        "cn": "adj.昂贵的，花钱多的，豪华的"
+      }
+    ],
+    "phonetic0": "ɪkˈspensɪv",
+    "phonetic1": "ɪkˈspɛnsɪv"
+  },
+  {
+    "word": "cheap",
+    "trans": [
+      {
+        "cn": "adj.便宜的，廉价的，劣质的，低劣的，小气的，可鄙的"
+      },
+      {
+        "cn": "adv.便宜地，卑鄙地"
+      }
+    ],
+    "phonetic0": "tʃi:p",
+    "phonetic1": "tʃip"
+  },
+  {
+    "word": "slow",
+    "trans": [
+      {
+        "cn": "adj.慢的，迟钝的，温和的，慢于…的"
+      },
+      {
+        "cn": "adv.慢慢地，缓慢地"
+      },
+      {
+        "cn": "vt.& vi.（使）缓行，（使）减速"
+      },
+      {
+        "cn": "vi.变慢，变萧条"
+      },
+      {
+        "cn": "vt.放慢，阻碍"
+      }
+    ],
+    "phonetic0": "sləʊ",
+    "phonetic1": "sloʊ"
+  },
+  {
+    "word": "fast",
+    "trans": [
+      {
+        "cn": "adj.快的，走得快，感光快的，紧的"
+      },
+      {
+        "cn": "adv.（比准确的时间或宣布的时间）快，迅速地，紧紧地，彻底地"
+      },
+      {
+        "cn": "vi.禁食，（尤指）斋戒"
+      },
+      {
+        "cn": "n.禁食期，斋戒期，断食，节食"
+      }
+    ],
+    "phonetic0": "fɑ:st",
+    "phonetic1": "fæst"
+  },
+  {
+    "word": "robot",
+    "trans": [
+      {
+        "cn": "n.机器人，遥控装置，自动机，机械呆板的人"
+      }
+    ],
+    "phonetic0": "ˈrəʊbɒt",
+    "phonetic1": "ˈroʊbɑ:t"
+  },
+  {
+    "word": "guide",
+    "trans": [
+      {
+        "cn": "vt.引路，指导，操纵，影响"
+      },
+      {
+        "cn": "n.指导者，向导，导游，有指导意义的事物"
+      }
+    ],
+    "phonetic0": "gaɪd",
+    "phonetic1": "ɡaɪd"
+  },
+  {
+    "word": "gift",
+    "trans": [
+      {
+        "cn": "n.赠品，礼物，天赋，赠送，天资"
+      },
+      {
+        "cn": "vt.赋予，向…赠送，天赋权力（或才能等），授予"
+      }
+    ],
+    "phonetic0": "gɪft",
+    "phonetic1": "ɡɪft"
+  },
+  {
+    "word": "all in all",
+    "trans": [
+      {
+        "cn": "总的来说"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "everything",
+    "trans": [
+      {
+        "cn": "pron.每件事物，最重要的东西，（有关的）一切，万事"
+      }
+    ],
+    "phonetic0": "ˈevriθɪŋ",
+    "phonetic1": "ˈɛvriˌθɪŋ"
+  },
+  {
+    "word": "interested",
+    "trans": [
+      {
+        "cn": "adj.感兴趣的，拥有权益的，有成见的"
+      },
+      {
+        "cn": "v.使…感兴趣(interest的过去分词)"
+      }
+    ],
+    "phonetic0": "ˈɪntrəstɪd",
+    "phonetic1": "-təˌrɛstɪd"
+  },
+  {
+    "word": "be interested in",
+    "trans": [
+      {
+        "cn": "对…感兴趣"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "dark",
+    "trans": [
+      {
+        "cn": "adj.黑暗的，乌黑的，忧郁的，神秘的"
+      },
+      {
+        "cn": "n.黑暗，暗色，暗处"
+      }
+    ],
+    "phonetic0": "dɑ:k",
+    "phonetic1": "dɑ:rk"
+  },
+  {
+    "word": "hear",
+    "trans": [
+      {
+        "cn": "vt.& vi.听到，听见"
+      },
+      {
+        "cn": "vt.听说，得知，听取，审理"
+      },
+      {
+        "cn": "vi.听，听见"
+      }
+    ],
+    "phonetic0": "hɪə(r)",
+    "phonetic1": "hɪr"
+  },
+  {
+    "word": "camp",
+    "trans": [
+      {
+        "cn": "n.营地，工地宿舍，阵营（指观点相同且与持不同观点者对立的集团），兵营，（度假者、旅游者，尤指青少年的）野营地"
+      },
+      {
+        "cn": "vt.& vi.宿营，露营"
+      },
+      {
+        "cn": "adj.夸张的，（男子）女人腔的，陈腐可笑的，（男人或其举止）故意带女子气的"
+      },
+      {
+        "cn": "vi.（尤指在假日）野营，借住，行动矫揉造作，搞同性恋"
+      },
+      {
+        "cn": "vt.使扎营（住宿），使宿于营中，为…提供住处，临时安顿"
+      }
+    ],
+    "phonetic0": "kæmp",
+    "phonetic1": "kæmp"
+  },
+  {
+    "word": "lake",
+    "trans": [
+      {
+        "cn": "n.湖，深红色颜料，胭脂红，化色淀"
+      },
+      {
+        "cn": "vt.& vi.血球溶解，使（血液）发生血球溶解"
+      }
+    ],
+    "phonetic0": "leɪk",
+    "phonetic1": "lek"
+  },
+  {
+    "word": "beach",
+    "trans": [
+      {
+        "cn": "n.海滩，海滨，岸上的沙子和卵石"
+      },
+      {
+        "cn": "vt.将…拖上岸，将滑艇拖到小屋前面的岸边"
+      }
+    ],
+    "phonetic0": "bi:tʃ",
+    "phonetic1": "bitʃ"
+  },
+  {
+    "word": "badminton",
+    "trans": [
+      {
+        "cn": "羽毛球"
+      }
+    ],
+    "phonetic0": "'bædmɪnt(ə)n",
+    "phonetic1": "'bædmɪntən"
+  },
+  {
+    "word": "sheep",
+    "trans": [
+      {
+        "cn": "n.羊，绵羊，胆小鬼，易受人摆布的人，缺乏主见或轻易盲从的人"
+      }
+    ],
+    "phonetic0": "ʃi:p",
+    "phonetic1": "ʃip"
+  },
+  {
+    "word": "as",
+    "trans": [
+      {
+        "cn": "adv.同样地，一样地，例如"
+      },
+      {
+        "cn": "prep.作为，以…的身份，如同"
+      },
+      {
+        "cn": "conj.像，像…一样，由于，同时，当…时，尽管"
+      },
+      {
+        "cn": "n.阿斯（古罗马重量单位，约373克）"
+      }
+    ],
+    "phonetic0": "əz",
+    "phonetic1": "æz,əz"
+  },
+  {
+    "word": "natural",
+    "trans": [
+      {
+        "cn": "adj.自然的，物质的，天生的，不做作的"
+      },
+      {
+        "cn": "n.自然的事情，（生来的）白痴，乐（风琴等的）白键"
+      }
+    ],
+    "phonetic0": "ˈnætʃrəl",
+    "phonetic1": "ˈnætʃrəl"
+  },
+  {
+    "word": "butterfly",
+    "trans": [
+      {
+        "cn": "n.蝴蝶，蝶泳，轻浮的人，游手好闲的人"
+      },
+      {
+        "cn": "v.切开摊平"
+      }
+    ],
+    "phonetic0": "ˈbʌtəflaɪ",
+    "phonetic1": "ˈbʌtərflaɪ"
+  },
+  {
+    "word": "visitor",
+    "trans": [
+      {
+        "cn": "n.访问者，参观者，游客，候鸟"
+      }
+    ],
+    "phonetic0": "ˈvɪzɪtə(r)",
+    "phonetic1": "ˈvɪzɪtɚ"
+  },
+  {
+    "word": "tired",
+    "trans": [
+      {
+        "cn": "adj.疲倦的，困倦的，对…不耐烦的，陈旧的"
+      },
+      {
+        "cn": "v.（使）疲劳（ tire的过去式和过去分词），对（做）某事感到厌倦"
+      }
+    ],
+    "phonetic0": "ˈtaɪəd",
+    "phonetic1": "ˈtaɪərd"
+  },
+  {
+    "word": "stay",
+    "trans": [
+      {
+        "cn": "vt.& vi.停留，停止，坚持，抑制"
+      },
+      {
+        "cn": "vi.继续处于某种状态"
+      },
+      {
+        "cn": "n.逗留，延期，倚靠，忍耐"
+      }
+    ],
+    "phonetic0": "steɪ",
+    "phonetic1": "ste"
+  },
+  {
+    "word": "stay up late",
+    "trans": [
+      {
+        "cn": "熬夜；睡得很晚"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "away",
+    "trans": [
+      {
+        "cn": "adv.离开，远离，在远处，消失"
+      },
+      {
+        "cn": "adj.不在的，遥远的，客场比赛"
+      }
+    ],
+    "phonetic0": "əˈweɪ",
+    "phonetic1": "əˈwe"
+  },
+  {
+    "word": "run away",
+    "trans": [
+      {
+        "cn": "vt. 潜逃(失去控制)"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "mouse",
+    "trans": [
+      {
+        "cn": "n.老鼠，鼠标，羞怯胆小的人，非正式用语 眼部青肿"
+      },
+      {
+        "cn": "vi.捕鼠，窥探，偷偷地寻找"
+      }
+    ],
+    "phonetic0": "maʊs",
+    "phonetic1": "maʊs"
+  },
+  {
+    "word": "baby",
+    "trans": [
+      {
+        "cn": "n.婴儿，婴孩，幼崽，宝贝儿"
+      },
+      {
+        "cn": "vt.把…当作婴孩看待，娇养，纵容"
+      },
+      {
+        "cn": "adj.小孩似的，孩子的，小型的"
+      }
+    ],
+    "phonetic0": "ˈbeɪbi",
+    "phonetic1": "ˈbeɪbi"
+  },
+  {
+    "word": "shout",
+    "trans": [
+      {
+        "cn": "vt.& vi.呼喊，叫喊，高声说或发出喊叫声"
+      },
+      {
+        "cn": "n.大叫，大叫着说，呐喊"
+      }
+    ],
+    "phonetic0": "ʃaʊt",
+    "phonetic1": "ʃaʊt"
+  },
+  {
+    "word": "shout at...",
+    "trans": [
+      {
+        "cn": "冲……大声叫嚷"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "woof",
+    "trans": [
+      {
+        "cn": "（狗叫声）汪汪"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "language",
+    "trans": [
+      {
+        "cn": "n.语言，语言文字，表达能力，言语，语风，文风，文体，专门用语，术语"
+      }
+    ],
+    "phonetic0": "ˈlæŋgwɪdʒ",
+    "phonetic1": "ˈlæŋɡwɪdʒ"
+  },
+  {
+    "word": "fly",
+    "trans": [
+      {
+        "cn": "vi.飞，飞行，（旗）飘荡，过得快"
+      },
+      {
+        "cn": "vt.& vi.乘（…的）飞机，驾驶（飞机等）"
+      },
+      {
+        "cn": "vt.驾驶，空运，使飞翔，操作"
+      },
+      {
+        "cn": "n.苍蝇，（作钓饵的）苍蝇，（裤子的）前裆开口，门帘"
+      }
+    ],
+    "phonetic0": "flaɪ",
+    "phonetic1": "flai"
+  },
+  {
+    "word": "kite",
+    "trans": [
+      {
+        "cn": "n.风筝，鸢（猛禽），空头支票，光棍"
+      },
+      {
+        "cn": "vt.涂改（支票），使上涨，上升"
+      },
+      {
+        "cn": "vi.使用空头支票，轻快地移动"
+      }
+    ],
+    "phonetic0": "kaɪt",
+    "phonetic1": "kaɪt"
+  },
+  {
+    "word": "fly a kite",
+    "trans": [
+      {
+        "cn": "放风筝"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "high",
+    "trans": [
+      {
+        "cn": "adj.高的，高尚的，崇高的，高音调的，高级的，高等的"
+      },
+      {
+        "cn": "adv.（程度等）高地，高价地，奢侈地"
+      },
+      {
+        "cn": "n.高处，高位，气象学高气压，高压地带，高水平"
+      }
+    ],
+    "phonetic0": "haɪ",
+    "phonetic1": "haɪ"
+  },
+  {
+    "word": "high school",
+    "trans": [
+      {
+        "cn": "中学"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "ago",
+    "trans": [
+      {
+        "cn": "adv.以前，过去的，之前"
+      }
+    ],
+    "phonetic0": "əˈgəʊ",
+    "phonetic1": "əˈgoʊ"
+  },
+  {
+    "word": "India",
+    "trans": [
+      {
+        "cn": "印度"
+      }
+    ],
+    "phonetic0": "'ɪndɪə",
+    "phonetic1": "'ɪndɪə"
+  },
+  {
+    "word": "tent",
+    "trans": [
+      {
+        "cn": "n.帐篷，帐篷状物，塞子"
+      },
+      {
+        "cn": "vi.住帐蓬"
+      },
+      {
+        "cn": "vt.用帐蓬遮盖，向…供应帐逢，将塞条嵌进（伤口），观察，看护，照料"
+      }
+    ],
+    "phonetic0": "tent",
+    "phonetic1": "tɛnt"
+  },
+  {
+    "word": "put up",
+    "trans": [
+      {
+        "cn": "竖起，建造"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "moon",
+    "trans": [
+      {
+        "cn": "n.月亮，月球，卫星，月状物，新月状物"
+      },
+      {
+        "cn": "vi.闲逛，出神，俚语 露出屁股以戏弄"
+      },
+      {
+        "cn": "vt.虚度"
+      }
+    ],
+    "phonetic0": "mu:n",
+    "phonetic1": "mun"
+  },
+  {
+    "word": "surprise",
+    "trans": [
+      {
+        "cn": "vt.使惊奇，突袭，意外发现"
+      },
+      {
+        "cn": "n.惊喜，惊奇，意外的事"
+      }
+    ],
+    "phonetic0": "səˈpraɪz",
+    "phonetic1": "sərˈpraɪz"
+  },
+  {
+    "word": "get a surprise",
+    "trans": [
+      {
+        "cn": "吃惊"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "snake",
+    "trans": [
+      {
+        "cn": "n.蛇，奸险的人，卑劣的人，蛇形浮动汇率制"
+      },
+      {
+        "cn": "vt.沿…曲折前进（或延伸），<美>/<口>拖，拉（木材等）"
+      },
+      {
+        "cn": "vi.曲折前进（或延伸），蛇行，悄悄地爬行"
+      }
+    ],
+    "phonetic0": "sneɪk",
+    "phonetic1": "snek"
+  },
+  {
+    "word": "scared",
+    "trans": [
+      {
+        "cn": "adj.恐惧的，惊恐的，担心的"
+      },
+      {
+        "cn": "v.使害怕（scare的过去分词）"
+      }
+    ],
+    "phonetic0": "skeəd",
+    "phonetic1": "skerd"
+  },
+  {
+    "word": "move",
+    "trans": [
+      {
+        "cn": "vt.& vi.移动，搬动"
+      },
+      {
+        "cn": "vi.搬家，行动，进展，（机器等）开动"
+      },
+      {
+        "cn": "vt.提议，使感动，摇动，变化"
+      },
+      {
+        "cn": "n.改变，迁移"
+      }
+    ],
+    "phonetic0": "mu:v",
+    "phonetic1": "muv"
+  },
+  {
+    "word": "shout to...",
+    "trans": [
+      {
+        "cn": "对……大声喊叫"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "start",
+    "trans": [
+      {
+        "cn": "n.开始，动身，开动，起点"
+      },
+      {
+        "cn": "vt.& vi.出发，启程"
+      },
+      {
+        "cn": "vt.起动，提出（问题），开办，使开始"
+      },
+      {
+        "cn": "vi.起始，突然出现，突然跳起，突然涌出"
+      }
+    ],
+    "phonetic0": "stɑ:t",
+    "phonetic1": "stɑ:rt"
+  },
+  {
+    "word": "jump",
+    "trans": [
+      {
+        "cn": "vt.跳，跳过，快速移动，（因吃惊、害怕或激动而）猛地一动"
+      },
+      {
+        "cn": "vi.暴涨，跳跃，猛增"
+      },
+      {
+        "cn": "n.猛长，暴涨，（需要跳越的）障碍，跳伞"
+      }
+    ],
+    "phonetic0": "dʒʌmp",
+    "phonetic1": "dʒʌmp"
+  },
+  {
+    "word": "up and down",
+    "trans": [
+      {
+        "cn": "起伏，上下波动"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "wake",
+    "trans": [
+      {
+        "cn": "vi.醒，醒来，苏醒，复活，警觉，弄醒，叫醒"
+      },
+      {
+        "cn": "vt.激发，唤醒，使意识到，使警觉，为…守夜"
+      },
+      {
+        "cn": "n.守灵，守夜，（船航过时的）尾波，年度假期"
+      }
+    ],
+    "phonetic0": "weɪk",
+    "phonetic1": "wek"
+  },
+  {
+    "word": "into",
+    "trans": [
+      {
+        "cn": "prep.（表示方向）进入…中，（表示所属）输入，（表示状态）进入…状态，（表示时间）持续到"
+      }
+    ],
+    "phonetic0": "ˈɪntə",
+    "phonetic1": "ˈɪntu"
+  },
+  {
+    "word": "forest",
+    "trans": [
+      {
+        "cn": "n.森林，丛林，（森林似的）一丛，一片"
+      },
+      {
+        "cn": "vt.在…造林，使长满树林，使成为森林"
+      }
+    ],
+    "phonetic0": "ˈfɒrɪst",
+    "phonetic1": "ˈfɔ:rɪst"
+  },
+  {
+    "word": "ear",
+    "trans": [
+      {
+        "cn": "n.耳朵，听觉，听力，耳状物，穗"
+      },
+      {
+        "cn": "vi.抽穗，（美俚）听见"
+      }
+    ],
+    "phonetic0": "ɪə(r)",
+    "phonetic1": "ɪr"
+  }
+]

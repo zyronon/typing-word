@@ -1,0 +1,2121 @@
+[
+  {
+    "word": "benchmark",
+    "trans": [
+      {
+        "cn": "n.基准，参照，标准检查程序，水准标"
+      },
+      {
+        "cn": "vt.检测（用基准问题测试）"
+      }
+    ],
+    "phonetic0": "ˈbentʃmɑ:k",
+    "phonetic1": "ˈbentʃmɑ:rk"
+  },
+  {
+    "word": "assess",
+    "trans": [
+      {
+        "cn": "vt.评定，估价，对（财产、收入等）进行估价（作为征税根据），确定（损害赔偿金、税款、罚款等）的金额"
+      }
+    ],
+    "phonetic0": "əˈses",
+    "phonetic1": "əˈsɛs"
+  },
+  {
+    "word": "surpass",
+    "trans": [
+      {
+        "cn": "vt.超过，优于，胜过，非…所能办到"
+      }
+    ],
+    "phonetic0": "səˈpɑ:s",
+    "phonetic1": "sərˈpæs"
+  },
+  {
+    "word": "target",
+    "trans": [
+      {
+        "cn": "n.（服务的）对象，目标，（射击的）靶子，目的"
+      },
+      {
+        "cn": "vt.瞄准，把…作为攻击目标"
+      }
+    ],
+    "phonetic0": "ˈtɑ:gɪt",
+    "phonetic1": "ˈtɑ:rgɪt"
+  },
+  {
+    "word": "incentivize",
+    "trans": [
+      {
+        "cn": "刺激, 激励"
+      }
+    ],
+    "phonetic0": "ɪnˈsentɪvaɪz",
+    "phonetic1": "ɪnˈsentɪvaɪz"
+  },
+  {
+    "word": "pinpoint",
+    "trans": [
+      {
+        "cn": "vt.确定，准确地指出，精准定位"
+      },
+      {
+        "cn": "n.针尖，尖头，精确位置，极小之物"
+      },
+      {
+        "cn": "adj.精确的，精准的，详尽的"
+      }
+    ],
+    "phonetic0": "ˈpɪnpɔɪnt",
+    "phonetic1": "ˈpɪnˌpɔɪnt"
+  },
+  {
+    "word": "define",
+    "trans": [
+      {
+        "cn": "vt.规定，使明确，精确地解释，画出…的线条"
+      },
+      {
+        "cn": "vi.（给词、短语等）下定义，构成释义"
+      }
+    ],
+    "phonetic0": "dɪˈfaɪn",
+    "phonetic1": "dɪˈfaɪn"
+  },
+  {
+    "word": "trait",
+    "trans": [
+      {
+        "cn": "n.特点，特性，少许"
+      }
+    ],
+    "phonetic0": "treɪt",
+    "phonetic1": "tret"
+  },
+  {
+    "word": "proactive",
+    "trans": [
+      {
+        "cn": "adj.前摄的，积极主动的，主动出击的，先发制人的"
+      }
+    ],
+    "phonetic0": "ˌprəʊˈæktɪv",
+    "phonetic1": "ˌproʊˈæktɪv"
+  },
+  {
+    "word": "adversity",
+    "trans": [
+      {
+        "cn": "n.逆境，不幸，灾难"
+      }
+    ],
+    "phonetic0": "ədˈvɜ:səti",
+    "phonetic1": "ədˈvɜ:rsəti"
+  },
+  {
+    "word": "persistent",
+    "trans": [
+      {
+        "cn": "adj.持续的，坚持不懈的，持久的，坚持不渝"
+      }
+    ],
+    "phonetic0": "pəˈsɪstənt",
+    "phonetic1": "pərˈsɪstənt"
+  },
+  {
+    "word": "voucher",
+    "trans": [
+      {
+        "cn": "n.证件，凭证，收据，证人"
+      }
+    ],
+    "phonetic0": "ˈvaʊtʃə(r)",
+    "phonetic1": "ˈvaʊtʃɚ"
+  },
+  {
+    "word": "entrepreneur",
+    "trans": [
+      {
+        "cn": "n.<法>企业家，主办人，承包人"
+      }
+    ],
+    "phonetic0": "ˌɒntrəprəˈnɜ:(r)",
+    "phonetic1": "ˌɑ:ntrəprəˈnɜ:(r)"
+  },
+  {
+    "word": "failure",
+    "trans": [
+      {
+        "cn": "n.失败，不及格，缺乏，不足，破产，倒闭，失败的事，失败者"
+      }
+    ],
+    "phonetic0": "ˈfeɪljə(r)",
+    "phonetic1": "'feɪljər"
+  },
+  {
+    "word": "success",
+    "trans": [
+      {
+        "cn": "n.成功，成就，好成绩，好结果，成功的人（或物）"
+      }
+    ],
+    "phonetic0": "səkˈses",
+    "phonetic1": "səkˈsɛs"
+  },
+  {
+    "word": "high-tech",
+    "trans": [
+      {
+        "cn": "n.高科技"
+      }
+    ],
+    "phonetic0": "haɪ",
+    "phonetic1": "tek"
+  },
+  {
+    "word": "start-up",
+    "trans": [
+      {
+        "cn": "n.启动"
+      },
+      {
+        "cn": "adj.（新企业或工程）开办阶段的"
+      }
+    ],
+    "phonetic0": "stɑ:t",
+    "phonetic1": "ˈstɑrtˌʌp"
+  },
+  {
+    "word": "widespread",
+    "trans": [
+      {
+        "cn": "adj.分布广的，普遍的，广泛应用，普及的"
+      }
+    ],
+    "phonetic0": "ˈwaɪdspred",
+    "phonetic1": "ˈwaɪdˈsprɛd"
+  },
+  {
+    "word": "dot-com",
+    "trans": [
+      {
+        "cn": "n.网络公司"
+      }
+    ],
+    "phonetic0": "ˌdɒtˈkɒm",
+    "phonetic1": "ˌdɑːtˈkɑːm"
+  },
+  {
+    "word": "reward",
+    "trans": [
+      {
+        "cn": "n.报酬，报答，赏金，酬金"
+      },
+      {
+        "cn": "vt.酬谢，奖赏，报答，惩罚"
+      }
+    ],
+    "phonetic0": "rɪˈwɔ:d",
+    "phonetic1": "rɪˈwɔ:rd"
+  },
+  {
+    "word": "reach",
+    "trans": [
+      {
+        "cn": "v.到达，走到，够…，抓…，完成"
+      },
+      {
+        "cn": "n.手脚能够到的范围，范围，区域，影响的范围，管辖的范围"
+      }
+    ],
+    "phonetic0": "ri:tʃ",
+    "phonetic1": "ritʃ"
+  },
+  {
+    "word": "substantial",
+    "trans": [
+      {
+        "cn": "adj.大量的，结实的，牢固的，重大的"
+      },
+      {
+        "cn": "n.本质，重要材料"
+      }
+    ],
+    "phonetic0": "səbˈstænʃl",
+    "phonetic1": "səbˈstænʃəl"
+  },
+  {
+    "word": "quality",
+    "trans": [
+      {
+        "cn": "n.质量，品质，美质，优点，才能，能力，技能，素养，品种"
+      },
+      {
+        "cn": "adj.优质的，高质量的，上流社会的"
+      }
+    ],
+    "phonetic0": "ˈkwɒləti",
+    "phonetic1": "ˈkwɑ:ləti"
+  },
+  {
+    "word": "manner",
+    "trans": [
+      {
+        "cn": "n.方式，方法，做法，态度，样子，举止，礼貌，规矩，风俗，习惯，惯例，生活方式"
+      }
+    ],
+    "phonetic0": "ˈmænə(r)",
+    "phonetic1": "ˈmænɚ"
+  },
+  {
+    "word": "resilient",
+    "trans": [
+      {
+        "cn": "adj.能复原的，弹回的，有弹性的，能立刻恢复精神的，社会渣滓"
+      }
+    ],
+    "phonetic0": "rɪˈzɪliənt",
+    "phonetic1": "rɪˈzɪljənt"
+  },
+  {
+    "word": "pragmatic",
+    "trans": [
+      {
+        "cn": "adj.实际的，实用主义的，好管闲事的，国事的"
+      },
+      {
+        "cn": "n.爱管闲事的人，专断的人，国事诏书，实务家"
+      }
+    ],
+    "phonetic0": "prægˈmætɪk",
+    "phonetic1": "præɡˈmætɪk"
+  },
+  {
+    "word": "sculpture",
+    "trans": [
+      {
+        "cn": "n.雕刻（术），塑像，雕刻品，刻纹"
+      },
+      {
+        "cn": "vt.雕塑，以雕刻装饰，侵蚀"
+      },
+      {
+        "cn": "vi.雕刻"
+      }
+    ],
+    "phonetic0": "ˈskʌlptʃə(r)",
+    "phonetic1": "ˈskʌlptʃɚ"
+  },
+  {
+    "word": "architecture",
+    "trans": [
+      {
+        "cn": "n.建筑学，建筑风格，体系结构，（总体、层次）结构"
+      }
+    ],
+    "phonetic0": "ˈɑ:kɪtektʃə(r)",
+    "phonetic1": "ˈɑ:rkɪtektʃə(r)"
+  },
+  {
+    "word": "perspective",
+    "trans": [
+      {
+        "cn": "n.透镜，望远镜，观点，看法，远景，景色，洞察力"
+      },
+      {
+        "cn": "adj.（按照）透视画法的，透视的"
+      }
+    ],
+    "phonetic0": "pəˈspektɪv",
+    "phonetic1": "pərˈspektɪv"
+  },
+  {
+    "word": "evoke",
+    "trans": [
+      {
+        "cn": "vt.产生，引起，唤起"
+      }
+    ],
+    "phonetic0": "ɪˈvəʊk",
+    "phonetic1": "ɪˈvoʊk"
+  },
+  {
+    "word": "craft",
+    "trans": [
+      {
+        "cn": "n.手艺，诡计，飞行器，船"
+      },
+      {
+        "cn": "vt.手工制作，精巧地制作"
+      }
+    ],
+    "phonetic0": "krɑ:ft",
+    "phonetic1": "kræft"
+  },
+  {
+    "word": "graphic",
+    "trans": [
+      {
+        "cn": "adj.图解的，用图表示的，用文字表示的，形象的，生动的"
+      }
+    ],
+    "phonetic0": "ˈgræfɪk",
+    "phonetic1": "ˈɡræfɪk"
+  },
+  {
+    "word": "design",
+    "trans": [
+      {
+        "cn": "vt.& vi.设计，绘制"
+      },
+      {
+        "cn": "vt.设计，计划，企图，决意（做）"
+      },
+      {
+        "cn": "n.设计，图案，结构，计划"
+      },
+      {
+        "cn": "vi.设计略图，（为工艺品、装潢项目等）设计，当设计师，构思"
+      }
+    ],
+    "phonetic0": "dɪˈzaɪn",
+    "phonetic1": "dɪˈzaɪn"
+  },
+  {
+    "word": "ceramic",
+    "trans": [
+      {
+        "cn": "adj.陶器的，与陶器有关的，陶瓷的，陶制的，制陶的"
+      },
+      {
+        "cn": "n.陶瓷制品，陶瓷器，制陶艺术，陶瓷装潢艺术"
+      }
+    ],
+    "phonetic0": "səˈræmɪk",
+    "phonetic1": "səˈræmɪk"
+  },
+  {
+    "word": "architecture",
+    "trans": [
+      {
+        "cn": "n.建筑学，建筑风格，体系结构，（总体、层次）结构"
+      }
+    ],
+    "phonetic0": "ˈɑ:kɪtektʃə(r)",
+    "phonetic1": "ˈɑ:rkɪtektʃə(r)"
+  },
+  {
+    "word": "photograph",
+    "trans": [
+      {
+        "cn": "n.照片，相片"
+      },
+      {
+        "cn": "vt.& vi.为…拍照，拍照，摄影，成为拍照对象，在照片上显得"
+      }
+    ],
+    "phonetic0": "ˈfəʊtəgrɑ:f",
+    "phonetic1": "ˈfoʊtəgræf"
+  },
+  {
+    "word": "industrial",
+    "trans": [
+      {
+        "cn": "adj.工业的，产业的，从事工业的，供工业用的，来自勤劳的"
+      },
+      {
+        "cn": "n.工业股票，工业工人"
+      }
+    ],
+    "phonetic0": "ɪnˈdʌstriəl",
+    "phonetic1": "ɪnˈdʌstriəl"
+  },
+  {
+    "word": "painting",
+    "trans": [
+      {
+        "cn": "n.绘画，油画，上色，着色，颜料，油漆"
+      },
+      {
+        "cn": "v.绘画（ paint的现在分词），涂色于"
+      }
+    ],
+    "phonetic0": "ˈpeɪntɪŋ",
+    "phonetic1": "ˈpentɪŋ"
+  },
+  {
+    "word": "drawing",
+    "trans": [
+      {
+        "cn": "n.绘画，制图，图画，图样"
+      },
+      {
+        "cn": "v.绘画(draw的现在分词)，拖，拉，拔出"
+      }
+    ],
+    "phonetic0": "ˈdrɔ:ɪŋ",
+    "phonetic1": "ˈdrɔɪŋ"
+  },
+  {
+    "word": "pottery",
+    "trans": [
+      {
+        "cn": "n.陶器，陶器厂作坊，<集合词>陶器类，陶器制造（术）"
+      }
+    ],
+    "phonetic0": "ˈpɒtəri",
+    "phonetic1": "ˈpɑ:təri"
+  },
+  {
+    "word": "contrast",
+    "trans": [
+      {
+        "cn": "n.对比，对照，差异，对照物，对立面，摄反差"
+      }
+    ],
+    "phonetic0": "ˈkɒntrɑ:st",
+    "phonetic1": "ˈkɑ:ntræst"
+  },
+  {
+    "word": "convey",
+    "trans": [
+      {
+        "cn": "vt.传达，传递，运送，输送，法让与，转让（财产等），表达"
+      }
+    ],
+    "phonetic0": "kənˈveɪ",
+    "phonetic1": "kənˈve"
+  },
+  {
+    "word": "theme",
+    "trans": [
+      {
+        "cn": "n.乐主题，主旋律，题目，话题，（学生的）作文"
+      },
+      {
+        "cn": "adj.以奇想主题布置的"
+      }
+    ],
+    "phonetic0": "θi:m",
+    "phonetic1": "θim"
+  },
+  {
+    "word": "inference",
+    "trans": [
+      {
+        "cn": "n.推理，推断，推论"
+      }
+    ],
+    "phonetic0": "ˈɪnfərəns",
+    "phonetic1": "ˈɪnfərəns"
+  },
+  {
+    "word": "fascinate",
+    "trans": [
+      {
+        "cn": "vt.使着迷，使神魂颠倒，蛊惑"
+      },
+      {
+        "cn": "vi.入迷"
+      }
+    ],
+    "phonetic0": "ˈfæsɪneɪt",
+    "phonetic1": "ˈfæsəˌnet"
+  },
+  {
+    "word": "character",
+    "trans": [
+      {
+        "cn": "n.性格，特点，字母，角色"
+      },
+      {
+        "cn": "vt.刻，印，使具有特征"
+      }
+    ],
+    "phonetic0": "ˈkærəktə(r)",
+    "phonetic1": "ˈkærəktɚ"
+  },
+  {
+    "word": "thin",
+    "trans": [
+      {
+        "cn": "adj.薄的，瘦的，稀少的，细的"
+      },
+      {
+        "cn": "vt.使瘦，使淡，使稀疏"
+      },
+      {
+        "cn": "vi.变薄，变瘦，变淡"
+      },
+      {
+        "cn": "adv.稀疏地，微弱地"
+      }
+    ],
+    "phonetic0": "θɪn",
+    "phonetic1": "θɪn"
+  },
+  {
+    "word": "wiry",
+    "trans": [
+      {
+        "cn": "adj.金属丝的，金属线制的，铁丝似的，瘦长结实的"
+      }
+    ],
+    "phonetic0": "ˈwaɪəri",
+    "phonetic1": "ˈwaɪri"
+  },
+  {
+    "word": "dark",
+    "trans": [
+      {
+        "cn": "adj.黑暗的，乌黑的，忧郁的，神秘的"
+      },
+      {
+        "cn": "n.黑暗，暗色，暗处"
+      }
+    ],
+    "phonetic0": "dɑ:k",
+    "phonetic1": "dɑ:rk"
+  },
+  {
+    "word": "foggy",
+    "trans": [
+      {
+        "cn": "adj.有雾的，雾气朦胧的，模糊的，混乱的"
+      }
+    ],
+    "phonetic0": "ˈfɒgi",
+    "phonetic1": "ˈfɔ:gi"
+  },
+  {
+    "word": "dim",
+    "trans": [
+      {
+        "cn": "adj.暗淡的，昏暗的，不光明的，看不清的，（性质和特征上）不显著的"
+      },
+      {
+        "cn": "vt.& vi.（使）变暗淡，（使）变模糊，（使）减弱，变淡漠"
+      },
+      {
+        "cn": "n.笨蛋，傻子"
+      }
+    ],
+    "phonetic0": "dɪm",
+    "phonetic1": "dɪm"
+  },
+  {
+    "word": "glow",
+    "trans": [
+      {
+        "cn": "vi.发光，灼热，脸红，洋溢，喜形于色"
+      },
+      {
+        "cn": "n.白热，炽热，色彩鲜艳，尤指红光，激情，热烈"
+      }
+    ],
+    "phonetic0": "gləʊ",
+    "phonetic1": "gloʊ"
+  },
+  {
+    "word": "stimulate",
+    "trans": [
+      {
+        "cn": "vt.刺激，激励，鼓舞，使兴奋"
+      },
+      {
+        "cn": "vi.起兴奋作用，起促进作用，起刺激作用"
+      }
+    ],
+    "phonetic0": "ˈstɪmjuleɪt",
+    "phonetic1": "ˈstɪmjəˌlet"
+  },
+  {
+    "word": "innovation",
+    "trans": [
+      {
+        "cn": "n.改革，创新，新观念，新发明，新设施"
+      }
+    ],
+    "phonetic0": "ˌɪnəˈveɪʃn",
+    "phonetic1": "ˌɪnəˈveʃən"
+  },
+  {
+    "word": "curiosity",
+    "trans": [
+      {
+        "cn": "n.好奇心，爱打听的癖性，奇人，奇物，古玩，奇特性"
+      }
+    ],
+    "phonetic0": "ˌkjʊəriˈɒsəti",
+    "phonetic1": "ˌkjʊriˈɑ:səti"
+  },
+  {
+    "word": "visualize",
+    "trans": [
+      {
+        "cn": "vt.形成思维图像，设想，使可见"
+      },
+      {
+        "cn": "vi.形成思维图像"
+      }
+    ],
+    "phonetic0": "ˈvɪʒuəlaɪz",
+    "phonetic1": "ˈvɪʒuəˌlaɪz"
+  },
+  {
+    "word": "moral",
+    "trans": [
+      {
+        "cn": "adj.道德的，道义上的，精神上的，无疑的，当然的，教导道德的"
+      },
+      {
+        "cn": "n.寓意，教训，（尤指男女间的）品行，格言，〈古〉相对者"
+      }
+    ],
+    "phonetic0": "ˈmɒrəl",
+    "phonetic1": "ˈmɔ:rəl"
+  },
+  {
+    "word": "gang",
+    "trans": [
+      {
+        "cn": "n.帮派，团体，盗贼等的)一帮，（工具，机械等的）一套，〈美俚〉棒球队"
+      },
+      {
+        "cn": "vt.使结成一帮，成群地袭击"
+      },
+      {
+        "cn": "vi.结伙行动"
+      }
+    ],
+    "phonetic0": "gæŋ",
+    "phonetic1": "ɡæŋ"
+  },
+  {
+    "word": "dilapidated",
+    "trans": [
+      {
+        "cn": "adj.残破的，失修的，荒废的，衰败的，破旧，颓"
+      }
+    ],
+    "phonetic0": "dɪˈlæpɪdeɪtɪd",
+    "phonetic1": "dɪˈlæpɪˌdetɪd"
+  },
+  {
+    "word": "combat",
+    "trans": [
+      {
+        "cn": "n.格斗，搏斗，战斗，〈美〉竞赛，比赛，论战"
+      },
+      {
+        "cn": "vt.与…战斗，与…斗争，防止，减轻"
+      }
+    ],
+    "phonetic0": "ˈkɒmbæt",
+    "phonetic1": "ˈkɑ:mbæt"
+  },
+  {
+    "word": "revitalize",
+    "trans": [
+      {
+        "cn": "vt.使恢复元气，使新生，使复兴"
+      }
+    ],
+    "phonetic0": "ˌri:ˈvaɪtəlaɪz",
+    "phonetic1": "riˈvaɪtl:ˌaɪz"
+  },
+  {
+    "word": "graffiti",
+    "trans": [
+      {
+        "cn": "n.在墙上的乱涂乱写(graffito的复数形式)"
+      }
+    ],
+    "phonetic0": "grəˈfi:ti",
+    "phonetic1": "ɡrəˈfiti"
+  },
+  {
+    "word": "sponsor",
+    "trans": [
+      {
+        "cn": "n.发起者，主办者，担保者，倡议者，提案人，后援组织"
+      },
+      {
+        "cn": "vt.赞助"
+      }
+    ],
+    "phonetic0": "ˈspɒnsə(r)",
+    "phonetic1": "ˈspɑ:nsə(r)"
+  },
+  {
+    "word": "vandalism",
+    "trans": [
+      {
+        "cn": "n.故意破坏，捣毁"
+      }
+    ],
+    "phonetic0": "ˈvændəlɪzəm",
+    "phonetic1": "'vændəlɪzəm"
+  },
+  {
+    "word": "attack",
+    "trans": [
+      {
+        "cn": "vt.& vi.攻击，进攻，抨击"
+      },
+      {
+        "cn": "n.攻击，抨击，（队员等的）进攻，（疾病）侵袭"
+      },
+      {
+        "cn": "vt.抨击，非难，侵袭，损害"
+      }
+    ],
+    "phonetic0": "əˈtæk",
+    "phonetic1": "əˈtæk"
+  },
+  {
+    "word": "violent",
+    "trans": [
+      {
+        "cn": "adj.暴力引起的，剧烈的，（风，爆炸等）猛烈的，狂暴的，感情强烈的，颜色强烈的"
+      }
+    ],
+    "phonetic0": "ˈvaɪələnt",
+    "phonetic1": "ˈvaɪələnt"
+  },
+  {
+    "word": "neglected",
+    "trans": [
+      {
+        "cn": "adj.被忽视的"
+      },
+      {
+        "cn": "v.疏忽( neglect的过去式和过去分词 )，忽略，遗漏，疏于照顾"
+      }
+    ],
+    "phonetic0": "nɪˈglektɪd",
+    "phonetic1": "nɪ'ɡlɛktɪd"
+  },
+  {
+    "word": "disadvantaged",
+    "trans": [
+      {
+        "cn": "adj.贫穷的，处于不利地位的，社会地位低下的"
+      },
+      {
+        "cn": "n.不利条件"
+      },
+      {
+        "cn": "vt.使处于不利地位(disadvantage的过去式和过去分词)"
+      }
+    ],
+    "phonetic0": "ˌdɪsədˈvɑ:ntɪdʒd",
+    "phonetic1": "ˌdɪsədˈvæntɪdʒd"
+  },
+  {
+    "word": "insufficient",
+    "trans": [
+      {
+        "cn": "adj.不足的，不够的，绌，亏短，支绌"
+      }
+    ],
+    "phonetic0": "ˌɪnsəˈfɪʃnt",
+    "phonetic1": "ˌɪnsəˈfɪʃənt"
+  },
+  {
+    "word": "illiterate",
+    "trans": [
+      {
+        "cn": "adj.目不识丁的，文盲的"
+      },
+      {
+        "cn": "n.目不识丁者，文盲，无知"
+      }
+    ],
+    "phonetic0": "ɪˈlɪtərət",
+    "phonetic1": "ɪˈlɪtərɪt"
+  },
+  {
+    "word": "improbable",
+    "trans": [
+      {
+        "cn": "adj.不大可能是真实的，不大可能的，未必确实的，未必会发生的，非概然"
+      }
+    ],
+    "phonetic0": "ɪmˈprɒbəbl",
+    "phonetic1": "ɪmˈprɑ:bəbl"
+  },
+  {
+    "word": "irregular",
+    "trans": [
+      {
+        "cn": "adj.不规则的，不对称的，无规律的，不合规范的，不合法的，不规则变化的"
+      },
+      {
+        "cn": "n.非正规军军人，不规则物，不合规格的产品"
+      }
+    ],
+    "phonetic0": "ɪˈregjələ(r)",
+    "phonetic1": "ɪˈrɛɡjəlɚ"
+  },
+  {
+    "word": "undernourished",
+    "trans": [
+      {
+        "cn": "营养不良的"
+      }
+    ],
+    "phonetic0": "ˌʌndəˈnʌrɪʃt",
+    "phonetic1": "ˌʌndərˈnɜːrɪʃt"
+  },
+  {
+    "word": "overpopulated",
+    "trans": [
+      {
+        "cn": "人口过多的"
+      }
+    ],
+    "phonetic0": "ˌəʊvəˈpɒpjuleɪtɪd",
+    "phonetic1": "ˌoʊvərˈpɑːpjuleɪtɪd"
+  },
+  {
+    "word": "philanthropy",
+    "trans": [
+      {
+        "cn": "n.博爱，慈善活动，慈善事业"
+      }
+    ],
+    "phonetic0": "fɪˈlænθrəpi",
+    "phonetic1": "fɪˈlænθrəpi"
+  },
+  {
+    "word": "donor",
+    "trans": [
+      {
+        "cn": "n.捐赠者，医供血者，输血者，医供血者，输血者，物施主"
+      }
+    ],
+    "phonetic0": "ˈdəʊnə(r)",
+    "phonetic1": "ˈdoʊnə(r)"
+  },
+  {
+    "word": "expertise",
+    "trans": [
+      {
+        "cn": "n.专门知识或技能，专家的意见，专家评价，鉴定"
+      }
+    ],
+    "phonetic0": "ˌekspɜ:ˈti:z",
+    "phonetic1": "ˌekspɜ:rˈti:z"
+  },
+  {
+    "word": "pledge",
+    "trans": [
+      {
+        "cn": "n.保证，誓言，法抵押权，公约，（表示友谊的）干杯"
+      },
+      {
+        "cn": "vt.& vi.使发誓，保证，典当，抵押"
+      },
+      {
+        "cn": "vt.许诺，用…担保，以誓言约束，向…祝酒"
+      },
+      {
+        "cn": "vi.作出庄重有约束力的誓言，祝愿，祝酒"
+      }
+    ],
+    "phonetic0": "pledʒ",
+    "phonetic1": "plɛdʒ"
+  },
+  {
+    "word": "conform",
+    "trans": [
+      {
+        "cn": "vi.符合，遵照，适应环境"
+      },
+      {
+        "cn": "vt.使遵守，使一致，使顺从"
+      },
+      {
+        "cn": "adj.一致的，顺从的"
+      }
+    ],
+    "phonetic0": "kənˈfɔ:m",
+    "phonetic1": "kənˈfɔ:rm"
+  },
+  {
+    "word": "manipulate",
+    "trans": [
+      {
+        "cn": "vt.操作，处理，巧妙地控制，操纵，医 推拿，调整"
+      }
+    ],
+    "phonetic0": "məˈnɪpjuleɪt",
+    "phonetic1": "məˈnɪpjəˌlet"
+  },
+  {
+    "word": "turnover",
+    "trans": [
+      {
+        "cn": "n.翻滚，翻倒，弄翻，逆转，转向，半圆形的小馅饼，营业额，成交量，证券交易额，体育运动 易手，失球"
+      },
+      {
+        "cn": "adj.可翻下的，或折转的"
+      }
+    ],
+    "phonetic0": "ˈtɜ:nəʊvə(r)",
+    "phonetic1": "ˈtɜ:rnoʊvə(r)"
+  },
+  {
+    "word": "perception",
+    "trans": [
+      {
+        "cn": "n.知觉，觉察（力），观念，（农作物的）收获"
+      }
+    ],
+    "phonetic0": "pəˈsepʃn",
+    "phonetic1": "pərˈsepʃn"
+  },
+  {
+    "word": "publicity",
+    "trans": [
+      {
+        "cn": "n.公众信息，宣传效用，宣传，公诸于众的状况"
+      }
+    ],
+    "phonetic0": "pʌbˈlɪsəti",
+    "phonetic1": "pʌˈblɪsɪti"
+  },
+  {
+    "word": "conflict",
+    "trans": [
+      {
+        "cn": "n.冲突，战斗，相互干扰，矛盾"
+      },
+      {
+        "cn": "vi.抵触，争斗，战斗，冲突"
+      }
+    ],
+    "phonetic0": "ˈkɒnflɪkt",
+    "phonetic1": "ˈkɑ:nflɪkt"
+  },
+  {
+    "word": "climate",
+    "trans": [
+      {
+        "cn": "n.气候，氛围，状况，局势"
+      }
+    ],
+    "phonetic0": "ˈklaɪmət",
+    "phonetic1": "ˈklaɪmɪt"
+  },
+  {
+    "word": "population",
+    "trans": [
+      {
+        "cn": "n.人口，全体居民，特定生物种群，物布居"
+      }
+    ],
+    "phonetic0": "ˌpɒpjuˈleɪʃn",
+    "phonetic1": "ˌpɑ:pjuˈleɪʃn"
+  },
+  {
+    "word": "natural",
+    "trans": [
+      {
+        "cn": "adj.自然的，物质的，天生的，不做作的"
+      },
+      {
+        "cn": "n.自然的事情，（生来的）白痴，乐（风琴等的）白键"
+      }
+    ],
+    "phonetic0": "ˈnætʃrəl",
+    "phonetic1": "ˈnætʃrəl"
+  },
+  {
+    "word": "explosion",
+    "trans": [
+      {
+        "cn": "n.爆炸，炸裂，爆发，扩张，激增，（感情，尤指愤怒的）突然爆发"
+      }
+    ],
+    "phonetic0": "ɪkˈspləʊʒn",
+    "phonetic1": "ɪkˈsploʊʒn"
+  },
+  {
+    "word": "wildlife",
+    "trans": [
+      {
+        "cn": "n.野生的鸟兽等"
+      },
+      {
+        "cn": "adj.野生生物的"
+      }
+    ],
+    "phonetic0": "ˈwaɪldlaɪf",
+    "phonetic1": "ˈwaɪldˌlaɪf"
+  },
+  {
+    "word": "propose",
+    "trans": [
+      {
+        "cn": "vt.提议，建议，打算，计划，推荐，提名，求婚"
+      },
+      {
+        "cn": "vi.做出计划，打算，求婚"
+      }
+    ],
+    "phonetic0": "prəˈpəʊz",
+    "phonetic1": "prəˈpoʊz"
+  },
+  {
+    "word": "conservation",
+    "trans": [
+      {
+        "cn": "n.保存，保护，避免浪费，对自然环境的保护"
+      }
+    ],
+    "phonetic0": "ˌkɒnsəˈveɪʃn",
+    "phonetic1": "ˌkɑ:nsərˈveɪʃn"
+  },
+  {
+    "word": "species",
+    "trans": [
+      {
+        "cn": "n.物种，种类，类型，逻辑 个体"
+      }
+    ],
+    "phonetic0": "ˈspi:ʃi:z",
+    "phonetic1": "-siz"
+  },
+  {
+    "word": "extinct",
+    "trans": [
+      {
+        "cn": "adj.灭绝的，绝种的，消逝的，破灭的"
+      }
+    ],
+    "phonetic0": "ɪkˈstɪŋkt",
+    "phonetic1": "ɪkˈstɪŋkt"
+  },
+  {
+    "word": "biodiversity",
+    "trans": [
+      {
+        "cn": "n.生物多类状态，生物多样性"
+      }
+    ],
+    "phonetic0": "ˌbaɪəʊdaɪˈvɜ:səti",
+    "phonetic1": "ˌbaɪoʊdaɪˈvɜ:rsəti"
+  },
+  {
+    "word": "conflict",
+    "trans": [
+      {
+        "cn": "n.冲突，战斗，相互干扰，矛盾"
+      },
+      {
+        "cn": "vi.抵触，争斗，战斗，冲突"
+      }
+    ],
+    "phonetic0": "ˈkɒnflɪkt",
+    "phonetic1": "ˈkɑ:nflɪkt"
+  },
+  {
+    "word": "habitat",
+    "trans": [
+      {
+        "cn": "n.（动物的）栖息地，住处，产地，经常发现某种事物的地方"
+      }
+    ],
+    "phonetic0": "ˈhæbɪtæt",
+    "phonetic1": "ˈhæbɪˌtæt"
+  },
+  {
+    "word": "viable",
+    "trans": [
+      {
+        "cn": "adj.切实可行的，能养活的，能自行生产发育的，有望实现的"
+      }
+    ],
+    "phonetic0": "ˈvaɪəbl",
+    "phonetic1": "ˈvaɪəbəl"
+  },
+  {
+    "word": "urge",
+    "trans": [
+      {
+        "cn": "vt.催促，推进，驱策，力劝，规劝，极力主张"
+      },
+      {
+        "cn": "n.刺激，冲动，推动力"
+      },
+      {
+        "cn": "vi.催促，强烈要求，竭力主张"
+      }
+    ],
+    "phonetic0": "ɜ:dʒ",
+    "phonetic1": "ɜ:rdʒ"
+  },
+  {
+    "word": "petroleum",
+    "trans": [
+      {
+        "cn": "n.石油"
+      }
+    ],
+    "phonetic0": "pəˈtrəʊliəm",
+    "phonetic1": "pəˈtroʊliəm"
+  },
+  {
+    "word": "biodegradable",
+    "trans": [
+      {
+        "cn": "生物降解的"
+      }
+    ],
+    "phonetic0": "ˌbaɪəʊdɪˈɡreɪdəbl",
+    "phonetic1": "ˌbaɪoʊdɪˈɡreɪdəbl"
+  },
+  {
+    "word": "soil",
+    "trans": [
+      {
+        "cn": "n.泥土，土地，国土，滋生地，温床，粪尿，肥料"
+      },
+      {
+        "cn": "vt.弄脏，污辱，给…上粪（施肥），被弄脏，变脏，用青草饲料喂养（牲口）"
+      },
+      {
+        "cn": "vi.变脏、受污染或玷污的，变脏"
+      }
+    ],
+    "phonetic0": "sɔɪl",
+    "phonetic1": "sɔɪl"
+  },
+  {
+    "word": "green",
+    "trans": [
+      {
+        "cn": "adj.绿色的，未熟的，青春的，未成熟的，主张保护环境的"
+      },
+      {
+        "cn": "n.绿色蔬菜，绿色的衣服，植物"
+      },
+      {
+        "cn": "vi.绿化，使重视环境保护问题"
+      }
+    ],
+    "phonetic0": "gri:n",
+    "phonetic1": "ɡrin"
+  },
+  {
+    "word": "recycle",
+    "trans": [
+      {
+        "cn": "vt.回收利用，使再循环"
+      },
+      {
+        "cn": "vi.重复利用"
+      }
+    ],
+    "phonetic0": "ˌri:ˈsaɪkl",
+    "phonetic1": "riˈsaɪkəl"
+  },
+  {
+    "word": "reuse",
+    "trans": [
+      {
+        "cn": "vt.再用，重新使用"
+      }
+    ],
+    "phonetic0": "ˌri:ˈju:z",
+    "phonetic1": "riˈjuz"
+  },
+  {
+    "word": "resource",
+    "trans": [
+      {
+        "cn": "n.资源，物力，财力，办法，智谋"
+      }
+    ],
+    "phonetic0": "rɪˈsɔ:s",
+    "phonetic1": "ˈri:sɔ:rs"
+  },
+  {
+    "word": "packaging",
+    "trans": [
+      {
+        "cn": "n.包装，包装材料，包装风格，打包"
+      },
+      {
+        "cn": "v.包装(package的ing形式)"
+      }
+    ],
+    "phonetic0": "ˈpækɪdʒɪŋ",
+    "phonetic1": "ˈpækədʒɪŋ"
+  },
+  {
+    "word": "sustainable",
+    "trans": [
+      {
+        "cn": "adj.可持续的，可以忍受的，可支撑的"
+      }
+    ],
+    "phonetic0": "səˈsteɪnəbl",
+    "phonetic1": "səˈsteɪnəbl"
+  },
+  {
+    "word": "coal",
+    "trans": [
+      {
+        "cn": "n.煤，煤块，煤堆，木炭"
+      },
+      {
+        "cn": "vi.上煤，加煤"
+      },
+      {
+        "cn": "vt.给…加煤，把…烧成炭"
+      }
+    ],
+    "phonetic0": "kəʊl",
+    "phonetic1": "koʊl"
+  },
+  {
+    "word": "solar",
+    "trans": [
+      {
+        "cn": "adj.太阳的，日光的，利用太阳能的，根据太阳决定或测定的"
+      },
+      {
+        "cn": "n.日光浴室"
+      }
+    ],
+    "phonetic0": "ˈsəʊlə(r)",
+    "phonetic1": "ˈsoʊlə(r)"
+  },
+  {
+    "word": "waste",
+    "trans": [
+      {
+        "cn": "n.浪费，白费，挥霍钱财，废料，废品，废物，荒地，荒芜，消耗（量），损耗"
+      },
+      {
+        "cn": "vt.& vi.徒劳，（使）损耗，（使）消瘦，浪费"
+      },
+      {
+        "cn": "vt.破坏，干掉，（游戏或比赛中）大胜"
+      },
+      {
+        "cn": "adj.废弃的， 无用的， 荒芜的"
+      }
+    ],
+    "phonetic0": "weɪst",
+    "phonetic1": "west"
+  },
+  {
+    "word": "hydropower",
+    "trans": [
+      {
+        "cn": "水力发出的电力, 水电"
+      }
+    ],
+    "phonetic0": "'haɪdrə(ʊ)paʊə",
+    "phonetic1": "'haɪdro,paʊɚ"
+  },
+  {
+    "word": "wind",
+    "trans": [
+      {
+        "cn": "n.风，气流，吞下的气，管乐器"
+      },
+      {
+        "cn": "vt.蜿蜒，缠绕，上发条，使喘不过气来"
+      },
+      {
+        "cn": "adj.管乐的"
+      }
+    ],
+    "phonetic0": "wɪnd",
+    "phonetic1": "wɪnd"
+  },
+  {
+    "word": "gas",
+    "trans": [
+      {
+        "cn": "n.气体，矿业 瓦斯，汽油，毒气"
+      },
+      {
+        "cn": "vt.加油，毒（死）"
+      },
+      {
+        "cn": "vi.加油，放出气体，空谈"
+      },
+      {
+        "cn": "int.该死！（令人气愤的人应即被送毒气室处死）"
+      }
+    ],
+    "phonetic0": "gæs",
+    "phonetic1": "ɡæs"
+  },
+  {
+    "word": "endangered",
+    "trans": [
+      {
+        "cn": "adj.快要绝种的"
+      },
+      {
+        "cn": "v.危及，使遭受危险( endanger的过去式和过去分词 )"
+      }
+    ],
+    "phonetic0": "ɪn'deɪndʒəd",
+    "phonetic1": "ɪnˈdendʒɚd"
+  },
+  {
+    "word": "surprised",
+    "trans": [
+      {
+        "cn": "adj.惊奇的，惊讶的，觉得奇怪的，感觉意外的"
+      }
+    ],
+    "phonetic0": "səˈpraɪzd",
+    "phonetic1": "sərˈpraɪzd"
+  },
+  {
+    "word": "expect",
+    "trans": [
+      {
+        "cn": "vt.期望，预料，要求，认为（某事）会发生"
+      },
+      {
+        "cn": "vi.预期，期待，怀胎，怀孕"
+      }
+    ],
+    "phonetic0": "ɪkˈspekt",
+    "phonetic1": "ɪkˈspɛkt"
+  },
+  {
+    "word": "income",
+    "trans": [
+      {
+        "cn": "n.收入，进款，进来的动作，进入"
+      }
+    ],
+    "phonetic0": "ˈɪnkʌm",
+    "phonetic1": "ˈɪnˌkʌm"
+  },
+  {
+    "word": "wage",
+    "trans": [
+      {
+        "cn": "n.工资，报应"
+      },
+      {
+        "cn": "vt.& vi.实行，进行，作（战等），〈方〉雇佣，〈古〉打赌，抵押，担保"
+      }
+    ],
+    "phonetic0": "weɪdʒ",
+    "phonetic1": "wedʒ"
+  },
+  {
+    "word": "tax",
+    "trans": [
+      {
+        "cn": "vt.使负重担，消耗精力，向…征税，责备，谴责"
+      },
+      {
+        "cn": "n.税，税额，负担"
+      }
+    ],
+    "phonetic0": "tæks",
+    "phonetic1": "tæks"
+  },
+  {
+    "word": "rate",
+    "trans": [
+      {
+        "cn": "n.速度，比率，等级，（利息等的）费率"
+      },
+      {
+        "cn": "vt.估价，值得，责骂，定级"
+      },
+      {
+        "cn": "vt.& vi.认为，把…算作"
+      },
+      {
+        "cn": "vi.被评价，被认为，被列入，申斥"
+      }
+    ],
+    "phonetic0": "reɪt",
+    "phonetic1": "ret"
+  },
+  {
+    "word": "interest",
+    "trans": [
+      {
+        "cn": "n.兴趣，爱好，利害关系，利益，利息，趣味，感兴趣的事"
+      },
+      {
+        "cn": "vt.使产生兴趣，使参与，使加入，引起…的意愿，使产生关系"
+      }
+    ],
+    "phonetic0": "ˈɪntrəst",
+    "phonetic1": "-ˌtrɛst"
+  },
+  {
+    "word": "cut",
+    "trans": [
+      {
+        "cn": "vt.& vi.将（某物）切开（或分割）"
+      },
+      {
+        "cn": "vt.削减，剪切，切成，删剪"
+      },
+      {
+        "cn": "vi.电影，（为决定谁先出牌等）切牌，可被切割，可用于切割"
+      },
+      {
+        "cn": "n.切口，削减，剪裁，切片"
+      }
+    ],
+    "phonetic0": "kʌt",
+    "phonetic1": "kʌt"
+  },
+  {
+    "word": "profit",
+    "trans": [
+      {
+        "cn": "n.收益，得益，利润，红利，净值利润率"
+      },
+      {
+        "cn": "vt.有益于…，对…有益的，得益，创利润"
+      },
+      {
+        "cn": "vi.有益，获利"
+      }
+    ],
+    "phonetic0": "ˈprɒfɪt",
+    "phonetic1": "ˈprɑ:fɪt"
+  },
+  {
+    "word": "forecast",
+    "trans": [
+      {
+        "cn": "vt.预报，预测，预示"
+      },
+      {
+        "cn": "vi.预报，预测"
+      },
+      {
+        "cn": "n.预报，预言"
+      }
+    ],
+    "phonetic0": "ˈfɔ:kɑ:st",
+    "phonetic1": "ˈfɔ:rkæst"
+  },
+  {
+    "word": "round",
+    "trans": [
+      {
+        "cn": "adj.圆形的，弧形的，丰满的，肥胖的，整数的"
+      },
+      {
+        "cn": "adv.到处，在周围，迂回地，朝反方向"
+      },
+      {
+        "cn": "prep.大约，绕过，环绕，（表示位置）在…四周，附近"
+      },
+      {
+        "cn": "n.圆，圆形，循环，圆形物，球状物，（会议的）一回合"
+      },
+      {
+        "cn": "vt.& vi.使成圆形，绕行，拐过，绕过，把…四舍五入"
+      }
+    ],
+    "phonetic0": "raʊnd",
+    "phonetic1": "raʊnd"
+  },
+  {
+    "word": "headcount",
+    "trans": [
+      {
+        "cn": "员工总数"
+      }
+    ],
+    "phonetic0": "ˈhedkaʊnt",
+    "phonetic1": "ˈhedkaʊnt"
+  },
+  {
+    "word": "cap",
+    "trans": [
+      {
+        "cn": "n.盖，帽子，军帽，求交运算"
+      },
+      {
+        "cn": "vi.脱帽致意"
+      },
+      {
+        "cn": "vt.覆盖，给…戴帽abbr.Common Agricultural Policy （欧共体）共同农业政策"
+      }
+    ],
+    "phonetic0": "kæp",
+    "phonetic1": "kæp"
+  },
+  {
+    "word": "freeze",
+    "trans": [
+      {
+        "cn": "vt.使结冰，使冻僵，冷藏，吓呆，冻结（存款，工资等）"
+      },
+      {
+        "cn": "vi.凝固，结冰，冻伤，冻死"
+      },
+      {
+        "cn": "n.冻结，严寒时期"
+      }
+    ],
+    "phonetic0": "fri:z",
+    "phonetic1": "friz"
+  },
+  {
+    "word": "pension",
+    "trans": [
+      {
+        "cn": "n.退休金，养老金，膳宿费，生活津贴，寄宿学校"
+      },
+      {
+        "cn": "vt.发给…养老金退休金，准予退休，强迫退休（并发给退休金）"
+      }
+    ],
+    "phonetic0": "ˈpenʃn",
+    "phonetic1": "ˈpɛnʃən"
+  },
+  {
+    "word": "fund",
+    "trans": [
+      {
+        "cn": "n.基金，储备，现款，特别基金管理机构"
+      },
+      {
+        "cn": "vt.积存，为…提供资金，提供资金偿付（债款等）的本息，把（短期借款）转为有固定利息的长期借款"
+      }
+    ],
+    "phonetic0": "fʌnd",
+    "phonetic1": "fʌnd"
+  },
+  {
+    "word": "investment",
+    "trans": [
+      {
+        "cn": "n.投资，投资额，封锁，（时间、精力的）投入，值得买的东西"
+      }
+    ],
+    "phonetic0": "ɪnˈvestmənt",
+    "phonetic1": "ɪnˈvɛstmənt"
+  },
+  {
+    "word": "conservative",
+    "trans": [
+      {
+        "cn": "n.保守的人，（英国）保守党党员，保守党支持者"
+      },
+      {
+        "cn": "adj.保守的，（英国）保守党的，（式样等）不时新的"
+      }
+    ],
+    "phonetic0": "kənˈsɜ:vətɪv",
+    "phonetic1": "kənˈsɜ:rvətɪv"
+  },
+  {
+    "word": "retirement",
+    "trans": [
+      {
+        "cn": "n.退休，退职，引退，隐居，退隐处"
+      }
+    ],
+    "phonetic0": "rɪˈtaɪəmənt",
+    "phonetic1": "rɪˈtaɪərmənt"
+  },
+  {
+    "word": "stable",
+    "trans": [
+      {
+        "cn": "adj.稳定的，沉稳持重的，物理学稳定平衡的，持久的"
+      },
+      {
+        "cn": "n.厩，马厩，马棚，牛棚，畜舍，统称某人拥有（或训练的）赛马，在同一地方工作或训练的)一批人"
+      },
+      {
+        "cn": "vt.使关进畜舍（或马厩、牛棚等），使放入马厩般的室内"
+      },
+      {
+        "cn": "vi.被关在畜舍内，（人）生活在厩一般的地方"
+      }
+    ],
+    "phonetic0": "ˈsteɪbl",
+    "phonetic1": "ˈstebəl"
+  },
+  {
+    "word": "market",
+    "trans": [
+      {
+        "cn": "n.交易，市集，需求，交易情况，行情"
+      },
+      {
+        "cn": "vt.在市场上出售某物，推销"
+      },
+      {
+        "cn": "vi.<美>去市场买东西"
+      }
+    ],
+    "phonetic0": "ˈmɑ:kɪt",
+    "phonetic1": "ˈmɑ:rkɪt"
+  },
+  {
+    "word": "guarantee",
+    "trans": [
+      {
+        "cn": "n.保证，担保，保证人，保证书，抵押品"
+      },
+      {
+        "cn": "vt.保证，担保"
+      }
+    ],
+    "phonetic0": "ˌgærənˈti:",
+    "phonetic1": "ˌɡærənˈti"
+  },
+  {
+    "word": "return",
+    "trans": [
+      {
+        "cn": "v.回转，返回，复发，又来，送还，言归正传"
+      },
+      {
+        "cn": "n.归来，返乡，来回，汇成，赢利，统计表"
+      }
+    ],
+    "phonetic0": "rɪˈtɜ:n",
+    "phonetic1": "rɪˈtɜ:rn"
+  },
+  {
+    "word": "reflect",
+    "trans": [
+      {
+        "cn": "vt.& vi.反射（光、热、声或影像），考虑"
+      },
+      {
+        "cn": "vt.反射，反照，表达，显示，折转"
+      },
+      {
+        "cn": "vi.映出，反射，深思熟虑，慎重表达"
+      }
+    ],
+    "phonetic0": "rɪˈflekt",
+    "phonetic1": "rɪˈflɛkt"
+  },
+  {
+    "word": "threaten",
+    "trans": [
+      {
+        "cn": "vt.& vi.预示（某事），恐吓，危及，预示凶兆"
+      },
+      {
+        "cn": "vi.似将发生，威胁"
+      }
+    ],
+    "phonetic0": "ˈθretn",
+    "phonetic1": "ˈθrɛtn"
+  },
+  {
+    "word": "risky",
+    "trans": [
+      {
+        "cn": "adj.冒险的，危险的，大胆的，<口>近乎猥亵的"
+      }
+    ],
+    "phonetic0": "ˈrɪski",
+    "phonetic1": "ˈrɪski"
+  },
+  {
+    "word": "volatile",
+    "trans": [
+      {
+        "cn": "adj.易变的，不稳定的，（液体或油）易挥发的，爆炸性的，快活的，轻快的"
+      }
+    ],
+    "phonetic0": "ˈvɒlətaɪl",
+    "phonetic1": "ˈvɑ:lətl"
+  },
+  {
+    "word": "adjust",
+    "trans": [
+      {
+        "cn": "vt.& vi.（改变…以）适应，调整，校正，调准（望远镜等），对准，校正，校准（机械等），核算（盈亏），保评定（赔偿要求）"
+      }
+    ],
+    "phonetic0": "əˈdʒʌst",
+    "phonetic1": "əˈdʒʌst"
+  },
+  {
+    "word": "bubble",
+    "trans": [
+      {
+        "cn": "n.泡，水泡，冒泡，起泡，泡影，妄想，（欲表达的）一点感情"
+      },
+      {
+        "cn": "vt.& vi.起泡，使冒气泡"
+      },
+      {
+        "cn": "vi.使冒泡，发出冒泡的声音，洋溢着（某种感情），滔滔不绝地讲，兴奋，欢闹"
+      }
+    ],
+    "phonetic0": "ˈbʌbl",
+    "phonetic1": "ˈbʌbəl"
+  },
+  {
+    "word": "tariff",
+    "trans": [
+      {
+        "cn": "n.关税表，关税，价格表"
+      },
+      {
+        "cn": "vt.征收关税，定税率，定收费标准"
+      }
+    ],
+    "phonetic0": "ˈtærɪf",
+    "phonetic1": "ˈtærɪf"
+  },
+  {
+    "word": "trade",
+    "trans": [
+      {
+        "cn": "n.贸易，行业，<美>顾客，买卖"
+      },
+      {
+        "cn": "vt.& vi.交易，经商"
+      },
+      {
+        "cn": "vt.交换，经营…交易，做…的买卖"
+      },
+      {
+        "cn": "vi.贸易，买卖，以物易物"
+      }
+    ],
+    "phonetic0": "treɪd",
+    "phonetic1": "treid"
+  },
+  {
+    "word": "capital",
+    "trans": [
+      {
+        "cn": "n.首都，资本，资源，大写字母"
+      },
+      {
+        "cn": "adj.极好的，死刑的，资本的，首都的"
+      }
+    ],
+    "phonetic0": "ˈkæpɪtl",
+    "phonetic1": "ˈkæpɪtl"
+  },
+  {
+    "word": "cashless",
+    "trans": [
+      {
+        "cn": "没钱的,无现金的"
+      }
+    ],
+    "phonetic0": "ˈkæʃləs",
+    "phonetic1": "ˈkæʃləs"
+  },
+  {
+    "word": "privacy",
+    "trans": [
+      {
+        "cn": "n.隐私，秘密，隐居，私事，不受公众干扰的状态"
+      }
+    ],
+    "phonetic0": "ˈprɪvəsi",
+    "phonetic1": "ˈpraɪvəsi"
+  },
+  {
+    "word": "revenue",
+    "trans": [
+      {
+        "cn": "n.（国家的）岁入，税收，（土地，财产等的）收入，收益，所得，（个人的）固定收入，复数总收入，税务署，〈美俚〉税务官，税务局"
+      }
+    ],
+    "phonetic0": "ˈrevənju:",
+    "phonetic1": "ˈrevənu:"
+  },
+  {
+    "word": "advocate",
+    "trans": [
+      {
+        "cn": "vt.提倡，拥护，鼓吹，为…辩护"
+      },
+      {
+        "cn": "n.（辩护）律师，提倡者，支持者"
+      }
+    ],
+    "phonetic0": "ˈædvəkeɪt",
+    "phonetic1": "ˈædvəˌket"
+  },
+  {
+    "word": "monitor",
+    "trans": [
+      {
+        "cn": "n.显示屏，屏幕，计显示器，监测仪，监控人员，班长"
+      },
+      {
+        "cn": "vt.监控，监听，搜集，记录，测定，监督"
+      },
+      {
+        "cn": "vi.监视"
+      }
+    ],
+    "phonetic0": "ˈmɒnɪtə(r)",
+    "phonetic1": "ˈmɑ:nɪtə(r)"
+  },
+  {
+    "word": "cite",
+    "trans": [
+      {
+        "cn": "vt.引用，引证，法传讯，表扬，军事传（或通）令嘉奖"
+      },
+      {
+        "cn": "n.<口>例证，引文"
+      }
+    ],
+    "phonetic0": "saɪt",
+    "phonetic1": "saɪt"
+  },
+  {
+    "word": "injection",
+    "trans": [
+      {
+        "cn": "n.注射，注射剂，医充血，（卫星等的）入轨"
+      }
+    ],
+    "phonetic0": "ɪnˈdʒekʃn",
+    "phonetic1": "ɪnˈdʒɛkʃən"
+  },
+  {
+    "word": "recession",
+    "trans": [
+      {
+        "cn": "n.经济衰退，不景气，后退，撤退，凹处，退场"
+      }
+    ],
+    "phonetic0": "rɪˈseʃn",
+    "phonetic1": "rɪˈsɛʃən"
+  },
+  {
+    "word": "boost",
+    "trans": [
+      {
+        "cn": "vt.促进，提高，增加，吹捧，向上推起"
+      },
+      {
+        "cn": "vi.宣扬，美国俚语（尤指在商店）行窃，偷窃"
+      },
+      {
+        "cn": "n.提高，增加，帮助，吹捧，加速助推器"
+      }
+    ],
+    "phonetic0": "bu:st",
+    "phonetic1": "bust"
+  },
+  {
+    "word": "debt",
+    "trans": [
+      {
+        "cn": "n.债务，负债情况，义务，罪，过失"
+      }
+    ],
+    "phonetic0": "det",
+    "phonetic1": "dɛt"
+  },
+  {
+    "word": "resource",
+    "trans": [
+      {
+        "cn": "n.资源，物力，财力，办法，智谋"
+      }
+    ],
+    "phonetic0": "rɪˈsɔ:s",
+    "phonetic1": "ˈri:sɔ:rs"
+  },
+  {
+    "word": "import",
+    "trans": [
+      {
+        "cn": "n.进口，进口商品，输入，重要性，意义"
+      },
+      {
+        "cn": "vt.输入，进口，对…有重大关系，意味着"
+      },
+      {
+        "cn": "vi.具重要性"
+      }
+    ],
+    "phonetic0": "ˈɪmpɔ:t",
+    "phonetic1": "ˈɪmpɔ:rt"
+  },
+  {
+    "word": "export",
+    "trans": [
+      {
+        "cn": "vt.& vi.出口，输出"
+      },
+      {
+        "cn": "vt.传播，输出（思想或活动）"
+      }
+    ],
+    "phonetic0": "ˈekspɔ:t",
+    "phonetic1": "ˈekspɔ:rt"
+  },
+  {
+    "word": "protectionism",
+    "trans": [
+      {
+        "cn": "n.保护主义，贸易保护制度"
+      }
+    ],
+    "phonetic0": "prəˈtekʃənɪzəm",
+    "phonetic1": "prəˈtɛkʃəˌnɪzəm"
+  },
+  {
+    "word": "domestic",
+    "trans": [
+      {
+        "cn": "adj.家庭的，家的，国内的，驯养的，热心家务的"
+      },
+      {
+        "cn": "n.佣人，国货"
+      }
+    ],
+    "phonetic0": "dəˈmestɪk",
+    "phonetic1": "dəˈmɛstɪk"
+  },
+  {
+    "word": "global",
+    "trans": [
+      {
+        "cn": "adj.全球的，全球性的，有关全球大局的，全面的，整体的，全局的，球形的，球状的，球面的，球体的，计全程的"
+      }
+    ],
+    "phonetic0": "ˈgləʊbl",
+    "phonetic1": "ˈgloʊbl"
+  },
+  {
+    "word": "economy",
+    "trans": [
+      {
+        "cn": "n.节约，经济，理财，秩序"
+      }
+    ],
+    "phonetic0": "ɪˈkɒnəmi",
+    "phonetic1": "ɪˈkɑ:nəmi"
+  },
+  {
+    "word": "customs",
+    "trans": [
+      {
+        "cn": "海关"
+      }
+    ],
+    "phonetic0": "ˈkʌstəmz",
+    "phonetic1": "ˈkʌstəmz"
+  },
+  {
+    "word": "duty",
+    "trans": [
+      {
+        "cn": "n.职责，责任，义务，职责或工作，税收"
+      }
+    ],
+    "phonetic0": "ˈdju:ti",
+    "phonetic1": "ˈdu:ti"
+  },
+  {
+    "word": "regional",
+    "trans": [
+      {
+        "cn": "adj.地区的，区域的，特定区域的，特定地区的，方言的，区域性"
+      }
+    ],
+    "phonetic0": "ˈri:dʒənl",
+    "phonetic1": "ˈridʒənəl"
+  },
+  {
+    "word": "common",
+    "trans": [
+      {
+        "cn": "adj.普通的，通俗的，数学公共的，共有的"
+      },
+      {
+        "cn": "n.法律（对土地、水域的）共有权，公共用地，普通，平民"
+      }
+    ],
+    "phonetic0": "ˈkɒmən",
+    "phonetic1": "ˈkɑ:mən"
+  },
+  {
+    "word": "currency",
+    "trans": [
+      {
+        "cn": "n.货币，通用，流通，流传，传播，市价，行情，流通时间"
+      }
+    ],
+    "phonetic0": "ˈkʌrənsi",
+    "phonetic1": "ˈkɜ:rənsi"
+  },
+  {
+    "word": "freedom",
+    "trans": [
+      {
+        "cn": "n.自由，自主，直率，特权，特许，自由权"
+      }
+    ],
+    "phonetic0": "ˈfri:dəm",
+    "phonetic1": "ˈfridəm"
+  },
+  {
+    "word": "movement",
+    "trans": [
+      {
+        "cn": "n.运动，活动，动作，举动，乐章"
+      }
+    ],
+    "phonetic0": "ˈmu:vmənt",
+    "phonetic1": "ˈmuvmənt"
+  },
+  {
+    "word": "state",
+    "trans": [
+      {
+        "cn": "n.国家，州，状况，情况，资格"
+      },
+      {
+        "cn": "vt.规定，陈述，声明"
+      },
+      {
+        "cn": "adj.国家的，国务的，公务的，正式的"
+      }
+    ],
+    "phonetic0": "steɪt",
+    "phonetic1": "stet"
+  },
+  {
+    "word": "growth",
+    "trans": [
+      {
+        "cn": "n.生长，增长，一茬植株，肿块，肿瘤"
+      }
+    ],
+    "phonetic0": "grəʊθ",
+    "phonetic1": "groʊθ"
+  }
+]

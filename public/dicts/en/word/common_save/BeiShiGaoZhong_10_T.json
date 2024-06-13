@@ -1,0 +1,3053 @@
+[
+  {
+    "word": "weight-training",
+    "trans": [
+      {
+        "cn": "举重运动"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "body-building",
+    "trans": [
+      {
+        "cn": "健身运动"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "come down with",
+    "trans": [
+      {
+        "cn": "染上(病)"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "acupressure",
+    "trans": [
+      {
+        "cn": "指压按摩（疗法）"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": "'ækjuprɛʃɚ"
+  },
+  {
+    "word": "massage",
+    "trans": [
+      {
+        "cn": "n.按摩，推拿"
+      }
+    ],
+    "phonetic0": "ˈmæsɑ:ʒ",
+    "phonetic1": "məˈsɑ:ʒ"
+  },
+  {
+    "word": "prone",
+    "trans": [
+      {
+        "cn": "adj.易于…的，俯卧的，有…倾向的，倾斜的，坡陡的"
+      }
+    ],
+    "phonetic0": "prəʊn",
+    "phonetic1": "proʊn"
+  },
+  {
+    "word": "picky",
+    "trans": [
+      {
+        "cn": "adj.吹毛求疵的，好挑剔的，过分讲究的"
+      }
+    ],
+    "phonetic0": "ˈpɪki",
+    "phonetic1": "ˈpɪki"
+  },
+  {
+    "word": "out of breath",
+    "trans": [
+      {
+        "cn": "上气不接下气的"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "stress sb. out",
+    "trans": [
+      {
+        "cn": "使某人紧张、焦虑"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "lose one's appetite",
+    "trans": [
+      {
+        "cn": "没有食欲"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "acupuncture",
+    "trans": [
+      {
+        "cn": "n.针灸（疗法）"
+      },
+      {
+        "cn": "vt.用针灸术治疗，用针刺法麻醉，对…施行针灸治疗"
+      }
+    ],
+    "phonetic0": "ˈækjupʌŋktʃə(r)",
+    "phonetic1": "ˈækjʊˌpʌŋktʃɚ"
+  },
+  {
+    "word": "well-liked",
+    "trans": [
+      {
+        "cn": "漂亮的"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "sleepless",
+    "trans": [
+      {
+        "cn": "adj.失眠的，睡不着的，不眠的，醒着的，无休止的，警觉的"
+      }
+    ],
+    "phonetic0": "ˈsli:pləs",
+    "phonetic1": "ˈsliplɪs"
+  },
+  {
+    "word": "laid-back",
+    "trans": [
+      {
+        "cn": "adj.懒散的，悠闲的"
+      }
+    ],
+    "phonetic0": "ˌleidˈbæk",
+    "phonetic1": "ˈledˈbæk"
+  },
+  {
+    "word": "forgetfulness",
+    "trans": [
+      {
+        "cn": "健忘"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "stress-reducing",
+    "trans": [
+      {
+        "cn": "减轻压力的"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "energise",
+    "trans": [
+      {
+        "cn": "激励，激发"
+      }
+    ],
+    "phonetic0": "'enədʒaɪz",
+    "phonetic1": "'enədʒaiz"
+  },
+  {
+    "word": "disorganisation",
+    "trans": [
+      {
+        "cn": "计划不周，混乱"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "unreasonable",
+    "trans": [
+      {
+        "cn": "adj.不合理的，荒唐的，非理智的，不讲理的，（收费等）不当的，过度的"
+      }
+    ],
+    "phonetic0": "ʌnˈri:znəbl",
+    "phonetic1": "ʌnˈrizənəbəl"
+  },
+  {
+    "word": "achievable",
+    "trans": [
+      {
+        "cn": "adj.做得成的，可完成的，可有成就的"
+      }
+    ],
+    "phonetic0": "ə'tʃi:vəbl",
+    "phonetic1": "ə'tʃi:vəbl"
+  },
+  {
+    "word": "credit",
+    "trans": [
+      {
+        "cn": "n.信誉，信用，金融贷款，荣誉，学分"
+      },
+      {
+        "cn": "vt.相信，信任，归功于，会记入贷方，赞颂"
+      }
+    ],
+    "phonetic0": "ˈkredɪt",
+    "phonetic1": "ˈkrɛdɪt"
+  },
+  {
+    "word": "yoga",
+    "trans": [
+      {
+        "cn": "n.瑜伽，喻家派，瑜伽（术），瑜伽修行法"
+      }
+    ],
+    "phonetic0": "ˈjəʊgə",
+    "phonetic1": "ˈjoʊgə"
+  },
+  {
+    "word": "relieve",
+    "trans": [
+      {
+        "cn": "vt.解除，缓解，换班，（去厕所的一种委婉说法）方便"
+      }
+    ],
+    "phonetic0": "rɪˈli:v",
+    "phonetic1": "rɪˈliv"
+  },
+  {
+    "word": "muscle",
+    "trans": [
+      {
+        "cn": "n.肌肉，力量，权威，权力"
+      },
+      {
+        "cn": "vt.硬挤，使劲搬动"
+      },
+      {
+        "cn": "vi.用力挤"
+      }
+    ],
+    "phonetic0": "ˈmʌsl",
+    "phonetic1": "ˈmʌsəl"
+  },
+  {
+    "word": "unblock",
+    "trans": [
+      {
+        "cn": "除去障碍"
+      }
+    ],
+    "phonetic0": "ʌn'blɒk",
+    "phonetic1": "'ʌn'blɑk"
+  },
+  {
+    "word": "filter",
+    "trans": [
+      {
+        "cn": "n.滤波器，滤光器，滤色镜，化 过滤器"
+      },
+      {
+        "cn": "vi.过滤，透过，渗透"
+      },
+      {
+        "cn": "vt.过滤，滤除"
+      }
+    ],
+    "phonetic0": "ˈfɪltə(r)",
+    "phonetic1": "ˈfɪltɚ"
+  },
+  {
+    "word": "peacefulness",
+    "trans": [
+      {
+        "cn": "和平，平静，安宁"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "soothing",
+    "trans": [
+      {
+        "cn": "adj.慰藉的，使人宽心的，镇静的"
+      },
+      {
+        "cn": "v.安慰( soothe的现在分词 )，抚慰，使舒服，减轻痛苦"
+      }
+    ],
+    "phonetic0": "su:ðɪŋ",
+    "phonetic1": "ˈsuðɪŋ"
+  },
+  {
+    "word": "unwanted",
+    "trans": [
+      {
+        "cn": "adj.不需要的，无用的，多余的，讨厌的，有缺点的"
+      }
+    ],
+    "phonetic0": "ˌʌnˈwɒntɪd",
+    "phonetic1": "ˌʌnˈwɑ:ntɪd"
+  },
+  {
+    "word": "overflow",
+    "trans": [
+      {
+        "cn": "vt.& vi.溢出，淹没，挤满，充满，洋溢，资源过剩"
+      },
+      {
+        "cn": "n.泛滥，溢出物，溢流管，充溢，过多，超出额"
+      },
+      {
+        "cn": "vi.泛滥，溢出，充溢"
+      },
+      {
+        "cn": "adj.溢出的，满出的"
+      }
+    ],
+    "phonetic0": "ˌəʊvəˈfləʊ",
+    "phonetic1": "ˌoʊvərˈfloʊ"
+  },
+  {
+    "word": "visualise",
+    "trans": [
+      {
+        "cn": "使显现，使形象化"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "smooth",
+    "trans": [
+      {
+        "cn": "adj.光滑的，流畅的，柔软的，温和的，安详的"
+      },
+      {
+        "cn": "vt.使平滑，排除，消除，安抚，平息，使优雅"
+      },
+      {
+        "cn": "vi.变平和，变缓和"
+      },
+      {
+        "cn": "n.平地，平面"
+      }
+    ],
+    "phonetic0": "smu:ð",
+    "phonetic1": "smuð"
+  },
+  {
+    "word": "ruffle",
+    "trans": [
+      {
+        "cn": "n.褶裥，混乱，（鼓的）轻擂声，急躁，生气"
+      },
+      {
+        "cn": "vt.& vi.弄皱，激怒，连续地轻敲，扰乱"
+      }
+    ],
+    "phonetic0": "ˈrʌfl",
+    "phonetic1": "ˈrʌfəl"
+  },
+  {
+    "word": "drain",
+    "trans": [
+      {
+        "cn": "vi.排水，流干"
+      },
+      {
+        "cn": "vt.喝光，喝干，使（精力、金钱等）耗尽，使流出，排掉水"
+      },
+      {
+        "cn": "n.排水，下水道，排水系统，医引流"
+      }
+    ],
+    "phonetic0": "dreɪn",
+    "phonetic1": "dren"
+  },
+  {
+    "word": "facilitator",
+    "trans": [
+      {
+        "cn": "n.促进者，帮助者，服务商"
+      }
+    ],
+    "phonetic0": "fəˈsɪlɪteɪtə(r)",
+    "phonetic1": "fəˈsɪlɪteɪtər"
+  },
+  {
+    "word": "impractical",
+    "trans": [
+      {
+        "cn": "adj.不切实际的，无用的，不现实的，不善做实际工作的"
+      }
+    ],
+    "phonetic0": "ɪmˈpræktɪkl",
+    "phonetic1": "ɪmˈpræktɪkəl"
+  },
+  {
+    "word": "infinite",
+    "trans": [
+      {
+        "cn": "adj.无限的，无穷的，无数的，许许多多的，极大的"
+      },
+      {
+        "cn": "n.无限，无穷，数 无穷大，<宗>造物主，神，无限的事物"
+      }
+    ],
+    "phonetic0": "ˈɪnfɪnət",
+    "phonetic1": "ˈɪnfənɪt"
+  },
+  {
+    "word": "rumble",
+    "trans": [
+      {
+        "cn": "vi.隆隆作响，（车辆）辘辘行驶"
+      },
+      {
+        "cn": "vt.低沉地说，在滚筒里磨光或混合（金属零件），看穿（阴谋）"
+      },
+      {
+        "cn": "n.隆隆声，辘辘声，抱怨声，吵闹声，喧哗声，（旧式汽车车厢后的）折叠加座"
+      }
+    ],
+    "phonetic0": "ˈrʌmbl",
+    "phonetic1": "ˈrʌmbəl"
+  },
+  {
+    "word": "clutter",
+    "trans": [
+      {
+        "cn": "n.杂乱，混乱，喧嚣"
+      },
+      {
+        "cn": "vt.使凌乱，乱糟糟地堆满"
+      },
+      {
+        "cn": "vi.乱哄哄地跑，发出吵闹声"
+      }
+    ],
+    "phonetic0": "ˈklʌtə(r)",
+    "phonetic1": "ˈklʌtɚ"
+  },
+  {
+    "word": "dispose",
+    "trans": [
+      {
+        "cn": "vt.& vi.处理，处置，安排"
+      },
+      {
+        "cn": "vt.排列，布置，使倾向于，使有意于"
+      }
+    ],
+    "phonetic0": "dɪˈspəʊz",
+    "phonetic1": "dɪˈspoʊz"
+  },
+  {
+    "word": "herbal",
+    "trans": [
+      {
+        "cn": "adj.药草的，草本的"
+      },
+      {
+        "cn": "n.草药书，〈古〉草本志，植物标本"
+      }
+    ],
+    "phonetic0": "ˈhɜ:bl",
+    "phonetic1": "ˈɜ:rbl"
+  },
+  {
+    "word": "organic",
+    "trans": [
+      {
+        "cn": "adj.有机（体）的，有组织的，系统的，器官的，根本的"
+      }
+    ],
+    "phonetic0": "ɔ:ˈgænɪk",
+    "phonetic1": "ɔ:rˈgænɪk"
+  },
+  {
+    "word": "desktop",
+    "trans": [
+      {
+        "cn": "n.桌面"
+      }
+    ],
+    "phonetic0": "ˈdesktɒp",
+    "phonetic1": "ˈdesktɑ:p"
+  },
+  {
+    "word": "icepack",
+    "trans": [
+      {
+        "cn": "冰袋"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "balmy",
+    "trans": [
+      {
+        "cn": "adj.（指空气）暖和的，温暖的，芳香的，能止痛的"
+      }
+    ],
+    "phonetic0": "ˈbɑ:mi",
+    "phonetic1": "ˈbɑmi"
+  },
+  {
+    "word": "bearable",
+    "trans": [
+      {
+        "cn": "可忍受的，支持得住的"
+      }
+    ],
+    "phonetic0": "'beərəb(ə)l",
+    "phonetic1": "'bɛrəbl"
+  },
+  {
+    "word": "mauve",
+    "trans": [
+      {
+        "cn": "紫红色的"
+      }
+    ],
+    "phonetic0": "məʊv",
+    "phonetic1": "mov"
+  },
+  {
+    "word": "bathe",
+    "trans": [
+      {
+        "cn": "vt.& vi.给…洗澡，游泳，把…浸泡在液体中，（用海绵等）洗，把…弄湿，润湿"
+      },
+      {
+        "cn": "vt.冲洗，浸，用水清洗（尤指身体部位），（以光线）撒满"
+      },
+      {
+        "cn": "n.游泳，<英>（在河，海中的）游泳"
+      }
+    ],
+    "phonetic0": "beɪð",
+    "phonetic1": "beð"
+  },
+  {
+    "word": "break through",
+    "trans": [
+      {
+        "cn": "突围，突破"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "obese",
+    "trans": [
+      {
+        "cn": "adj.极为肥胖的，肥大的"
+      }
+    ],
+    "phonetic0": "əʊˈbi:s",
+    "phonetic1": "oʊˈbi:s"
+  },
+  {
+    "word": "excess",
+    "trans": [
+      {
+        "cn": "n.超过，超额量，多余量，放肆"
+      },
+      {
+        "cn": "adj.超重的，过量的，额外的"
+      }
+    ],
+    "phonetic0": "ɪkˈses",
+    "phonetic1": "ˈɛkˌsɛs"
+  },
+  {
+    "word": "naive",
+    "trans": [
+      {
+        "cn": "adj.幼稚的，天真的，单纯的"
+      }
+    ],
+    "phonetic0": "naɪˈi:v",
+    "phonetic1": "nɑˈiv"
+  },
+  {
+    "word": "exceptional",
+    "trans": [
+      {
+        "cn": "adj.优越的，杰出的，例外的，独特的"
+      },
+      {
+        "cn": "n.超常的学生"
+      }
+    ],
+    "phonetic0": "ɪkˈsepʃənl",
+    "phonetic1": "ɪkˈsɛpʃənəl"
+  },
+  {
+    "word": "poll",
+    "trans": [
+      {
+        "cn": "n.民意调查，投票选举，投票数，头部"
+      },
+      {
+        "cn": "vt.得到（一定数目的）选票，对…进行调查，修剪，修剪"
+      },
+      {
+        "cn": "vi.投票，作民意调查"
+      }
+    ],
+    "phonetic0": "pəʊl",
+    "phonetic1": "poʊl"
+  },
+  {
+    "word": "finalist",
+    "trans": [
+      {
+        "cn": "n.决赛选手，决赛队"
+      }
+    ],
+    "phonetic0": "ˈfaɪnəlɪst",
+    "phonetic1": "ˈfaɪnəlɪst"
+  },
+  {
+    "word": "endure",
+    "trans": [
+      {
+        "cn": "vt.忍耐，容忍"
+      },
+      {
+        "cn": "vi.持续，持久，忍耐"
+      }
+    ],
+    "phonetic0": "ɪnˈdjʊə(r)",
+    "phonetic1": "ɪnˈdʊr"
+  },
+  {
+    "word": "refuge",
+    "trans": [
+      {
+        "cn": "n.避难，避难所，庇护者，医救急疗法"
+      },
+      {
+        "cn": "vt.给予…庇护，接纳…避难"
+      },
+      {
+        "cn": "vi.躲避，避难"
+      }
+    ],
+    "phonetic0": "ˈrefju:dʒ",
+    "phonetic1": "ˈrɛfjudʒ"
+  },
+  {
+    "word": "overrun",
+    "trans": [
+      {
+        "cn": "vt.超过（范围），（尤指坏事或不欲之事）泛滥，蹂躏，蔓延"
+      },
+      {
+        "cn": "n.泛滥成灾，超过限度"
+      },
+      {
+        "cn": "vi.泛滥，超过限度"
+      }
+    ],
+    "phonetic0": "ˌəʊvəˈrʌn",
+    "phonetic1": "ˌoʊvəˈrʌn"
+  },
+  {
+    "word": "teenage",
+    "trans": [
+      {
+        "cn": "adj.十几岁的，青少年的"
+      },
+      {
+        "cn": "n.青少年时期"
+      }
+    ],
+    "phonetic0": "ˈti:neɪdʒ",
+    "phonetic1": "ˈtinˌedʒ"
+  },
+  {
+    "word": "gang",
+    "trans": [
+      {
+        "cn": "n.帮派，团体，盗贼等的)一帮，（工具，机械等的）一套，〈美俚〉棒球队"
+      },
+      {
+        "cn": "vt.使结成一帮，成群地袭击"
+      },
+      {
+        "cn": "vi.结伙行动"
+      }
+    ],
+    "phonetic0": "gæŋ",
+    "phonetic1": "ɡæŋ"
+  },
+  {
+    "word": "courageous",
+    "trans": [
+      {
+        "cn": "adj.勇敢的，无畏的，有胆量的，英勇的，勐"
+      }
+    ],
+    "phonetic0": "kəˈreɪdʒəs",
+    "phonetic1": "kəˈredʒəs"
+  },
+  {
+    "word": "ex-gangster",
+    "trans": [
+      {
+        "cn": "有前科的歹徒，强盗"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "dealer",
+    "trans": [
+      {
+        "cn": "n.商人，发牌人，庄家，以某种方式待人的人，经销商"
+      }
+    ],
+    "phonetic0": "ˈdi:lə(r)",
+    "phonetic1": "ˈdilɚ"
+  },
+  {
+    "word": "coexist",
+    "trans": [
+      {
+        "cn": "共存"
+      }
+    ],
+    "phonetic0": ",kəʊɪg'zɪst",
+    "phonetic1": ",koɪɡ'zɪst"
+  },
+  {
+    "word": "disarm",
+    "trans": [
+      {
+        "cn": "vi.裁军，解除武装，放下武器"
+      },
+      {
+        "cn": "vt.使缴械，使息怒，解除武装，缓和"
+      }
+    ],
+    "phonetic0": "dɪsˈɑ:m",
+    "phonetic1": "dɪsˈɑ:rm"
+  },
+  {
+    "word": "sandbank",
+    "trans": [
+      {
+        "cn": "沙洲，沙丘"
+      }
+    ],
+    "phonetic0": "'sæn(d)bæŋk",
+    "phonetic1": "'sændbæŋk"
+  },
+  {
+    "word": "incoming",
+    "trans": [
+      {
+        "cn": "adj.进来的，回来的，即将就任的，增殖的，（居民等）移来的"
+      },
+      {
+        "cn": "n.进来，到来，收入"
+      }
+    ],
+    "phonetic0": "ˈɪnkʌmɪŋ",
+    "phonetic1": "ˈɪnˌkʌmɪŋ"
+  },
+  {
+    "word": "tide",
+    "trans": [
+      {
+        "cn": "n.潮汐，潮流，趋势，时机，时期，季节"
+      },
+      {
+        "cn": "vt.顺应潮水航行，使随潮水漂行"
+      }
+    ],
+    "phonetic0": "taɪd",
+    "phonetic1": "taɪd"
+  },
+  {
+    "word": "coastguard",
+    "trans": [
+      {
+        "cn": "海岸警卫队，水上警察"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": "'kəustga:d"
+  },
+  {
+    "word": "quicksand",
+    "trans": [
+      {
+        "cn": "流沙"
+      }
+    ],
+    "phonetic0": "'kwɪksænd",
+    "phonetic1": "'kwɪksænd"
+  },
+  {
+    "word": "wade",
+    "trans": [
+      {
+        "cn": "vt.& vi.（从水、泥等）蹚，走过，跋涉"
+      },
+      {
+        "cn": "n.跋涉"
+      }
+    ],
+    "phonetic0": "weɪd",
+    "phonetic1": "wed"
+  },
+  {
+    "word": "prompt",
+    "trans": [
+      {
+        "cn": "adj.敏捷的，迅速的，立刻的，准时的"
+      },
+      {
+        "cn": "v.促使，导致，鼓励，提示"
+      },
+      {
+        "cn": "n.激励，提示符，提词，提示"
+      },
+      {
+        "cn": "adv.准时地"
+      }
+    ],
+    "phonetic0": "prɒmpt",
+    "phonetic1": "prɑ:mpt"
+  },
+  {
+    "word": "nominee",
+    "trans": [
+      {
+        "cn": "n.被提名者，候选人，被任命者，代名人"
+      }
+    ],
+    "phonetic0": "ˌnɒmɪˈni:",
+    "phonetic1": "ˌnɑ:mɪˈni:"
+  },
+  {
+    "word": "layout",
+    "trans": [
+      {
+        "cn": "n.布局，安排，设计，布置图，规划图"
+      }
+    ],
+    "phonetic0": "ˈleɪaʊt",
+    "phonetic1": "ˈleˌaʊt"
+  },
+  {
+    "word": "prose",
+    "trans": [
+      {
+        "cn": "n.散文，单调，平凡，枯燥无味的话，无聊的议论"
+      },
+      {
+        "cn": "vt.用散文写，把…改写成散文，平淡无趣地写，啰啰唆唆地讲"
+      }
+    ],
+    "phonetic0": "prəʊz",
+    "phonetic1": "proʊz"
+  },
+  {
+    "word": "illustration",
+    "trans": [
+      {
+        "cn": "n.说明，例证，图解，插图"
+      }
+    ],
+    "phonetic0": "ˌɪləˈstreɪʃn",
+    "phonetic1": "ˌɪləˈstreʃən"
+  },
+  {
+    "word": "individualised",
+    "trans": [
+      {
+        "cn": "个性化的"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "qualified",
+    "trans": [
+      {
+        "cn": "adj.有资格的，胜任的，适当的，合格的，过检定的，得到许可的，有限制的，有条件的，（俚）十足的，无比的"
+      },
+      {
+        "cn": "vt.描述，形容，使合适，授权予，有权，达标"
+      },
+      {
+        "cn": "vi.合格，成为合格，取得…的资格"
+      }
+    ],
+    "phonetic0": "ˈkwɒlɪfaɪd",
+    "phonetic1": "ˈkwɑ:lɪfaɪd"
+  },
+  {
+    "word": "ease",
+    "trans": [
+      {
+        "cn": "n.轻松，舒适，容易，安逸，不拘束，自在"
+      },
+      {
+        "cn": "vt.解除痛苦，减轻，延缓，松弛"
+      },
+      {
+        "cn": "vi.缓解，减少，轻松前进"
+      }
+    ],
+    "phonetic0": "i:z",
+    "phonetic1": "iz"
+  },
+  {
+    "word": "gently",
+    "trans": [
+      {
+        "cn": "adv.温柔地，轻轻地，有礼貌地，文雅地"
+      }
+    ],
+    "phonetic0": "ˈdʒentli",
+    "phonetic1": "ˈdʒentli"
+  },
+  {
+    "word": "dietary",
+    "trans": [
+      {
+        "cn": "adj.饮食的，规定食物的"
+      },
+      {
+        "cn": "n.规定的食物，食谱"
+      }
+    ],
+    "phonetic0": "'daɪətərɪ",
+    "phonetic1": "ˈdaɪɪˌtɛri"
+  },
+  {
+    "word": "aerobics",
+    "trans": [
+      {
+        "cn": "n.有氧健身法，有氧健身计划，耗氧健身运动"
+      }
+    ],
+    "phonetic0": "eəˈrəʊbɪks",
+    "phonetic1": "eˈroʊbɪks"
+  },
+  {
+    "word": "physiotherapy",
+    "trans": [
+      {
+        "cn": "物理疗法"
+      }
+    ],
+    "phonetic0": ",fɪzɪə(ʊ)'θerəpɪ",
+    "phonetic1": ",fɪzɪo'θɛrəpi"
+  },
+  {
+    "word": "sauna",
+    "trans": [
+      {
+        "cn": "n.桑拿浴室，桑拿房，桑拿，桑拿浴，蒸气浴"
+      }
+    ],
+    "phonetic0": "ˈsɔ:nə",
+    "phonetic1": "ˈsaʊ-"
+  },
+  {
+    "word": "refreshment",
+    "trans": [
+      {
+        "cn": "n.提神，精神恢复，提神物，点心，茶点"
+      }
+    ],
+    "phonetic0": "rɪˈfreʃmənt",
+    "phonetic1": "rɪˈfrɛʃmənt"
+  },
+  {
+    "word": "membership",
+    "trans": [
+      {
+        "cn": "n.会员资格，会员身份，会员全体"
+      }
+    ],
+    "phonetic0": "ˈmembəʃɪp",
+    "phonetic1": "ˈmembərʃɪp"
+  },
+  {
+    "word": "counsel",
+    "trans": [
+      {
+        "cn": "n.协商，讨论，建议，策略，法律顾问，辩护人"
+      },
+      {
+        "cn": "vt.劝告，建议，提供专业咨询"
+      }
+    ],
+    "phonetic0": "ˈkaʊnsl",
+    "phonetic1": "ˈkaʊnsəl"
+  },
+  {
+    "word": "clinical",
+    "trans": [
+      {
+        "cn": "adj.临床的，诊所的，冷静的，简陋的"
+      }
+    ],
+    "phonetic0": "ˈklɪnɪkl",
+    "phonetic1": "ˈklɪnɪkəl"
+  },
+  {
+    "word": "consultation",
+    "trans": [
+      {
+        "cn": "n.商议，磋商，商讨会，医会诊，请教，咨询"
+      }
+    ],
+    "phonetic0": "ˌkɒnslˈteɪʃn",
+    "phonetic1": "ˌkɑ:nslˈteɪʃn"
+  },
+  {
+    "word": "adore",
+    "trans": [
+      {
+        "cn": "vt.爱慕，崇拜，非常喜欢，敬佩"
+      },
+      {
+        "cn": "vi.崇拜，爱慕"
+      }
+    ],
+    "phonetic0": "əˈdɔ:(r)",
+    "phonetic1": "əˈdor"
+  },
+  {
+    "word": "harsh",
+    "trans": [
+      {
+        "cn": "adj.粗糙的，刺耳的，严厉的，严格的，残酷的"
+      }
+    ],
+    "phonetic0": "hɑ:ʃ",
+    "phonetic1": "hɑ:rʃ"
+  },
+  {
+    "word": "distress",
+    "trans": [
+      {
+        "cn": "n.悲痛，危难，不幸，贫困，法扣押财物"
+      },
+      {
+        "cn": "vt.使痛苦，使忧伤，法扣押（财物），使贫困"
+      }
+    ],
+    "phonetic0": "dɪˈstres",
+    "phonetic1": "dɪˈstrɛs"
+  },
+  {
+    "word": "meow",
+    "trans": [
+      {
+        "cn": "猫叫声"
+      },
+      {
+        "cn": "猫叫"
+      }
+    ],
+    "phonetic0": "mi'au",
+    "phonetic1": "mɪ'aʊ"
+  },
+  {
+    "word": "innermost",
+    "trans": [
+      {
+        "cn": "adj.最深处的，隐私的，最隐秘的"
+      }
+    ],
+    "phonetic0": "ˈɪnəməʊst",
+    "phonetic1": "ˈɪnərmoʊst"
+  },
+  {
+    "word": "chase",
+    "trans": [
+      {
+        "cn": "vt.追捕，追求，追寻，镂刻"
+      },
+      {
+        "cn": "n.追捕，打猎，猎物（指鸟兽等），槽"
+      },
+      {
+        "cn": "vi.追逐，追赶，追寻，追求（常与after连用），口语 奔跑"
+      }
+    ],
+    "phonetic0": "tʃeɪs",
+    "phonetic1": "tʃes"
+  },
+  {
+    "word": "trigger",
+    "trans": [
+      {
+        "cn": "n.（枪）扳机，起动装置，扳柄，引发其他事件的一件事，电子学触发器，触发电器"
+      },
+      {
+        "cn": "vt.引发，触发，扣…的扳机，发射或使爆炸（武器或爆炸性弹药）"
+      }
+    ],
+    "phonetic0": "ˈtrɪgə(r)",
+    "phonetic1": "ˈtrɪɡɚ"
+  },
+  {
+    "word": "exasperate",
+    "trans": [
+      {
+        "cn": "vt.使恼怒，使恶化，使加剧"
+      }
+    ],
+    "phonetic0": "ɪgˈzæspəreɪt",
+    "phonetic1": "ɪɡˈzæspəˌret"
+  },
+  {
+    "word": "derange",
+    "trans": [
+      {
+        "cn": "使错乱，扰乱"
+      }
+    ],
+    "phonetic0": "dɪ'reɪn(d)ʒ",
+    "phonetic1": "di'reindʒ"
+  },
+  {
+    "word": "prescribe",
+    "trans": [
+      {
+        "cn": "vt.指定，规定，指定，规定"
+      },
+      {
+        "cn": "vi.建立规定，法律或指示，开处方，给医嘱"
+      }
+    ],
+    "phonetic0": "prɪˈskraɪb",
+    "phonetic1": "prɪˈskraɪb"
+  },
+  {
+    "word": "sibling",
+    "trans": [
+      {
+        "cn": "n.兄弟，姐妹，生同科，同属，人氏族成员"
+      }
+    ],
+    "phonetic0": "ˈsɪblɪŋ",
+    "phonetic1": "ˈsɪblɪŋ"
+  },
+  {
+    "word": "companionship",
+    "trans": [
+      {
+        "cn": "n.伙伴关系，友情，友谊"
+      }
+    ],
+    "phonetic0": "kəmˈpæniənʃɪp",
+    "phonetic1": "kəmˈpænjənˌʃɪp"
+  },
+  {
+    "word": "psychologically",
+    "trans": [
+      {
+        "cn": "adv.心理上地，心理学地"
+      }
+    ],
+    "phonetic0": "ˌsaɪkə'lɒdʒɪklɪ",
+    "phonetic1": "saɪkəˈˈlɑ:dʒɪklɪ"
+  },
+  {
+    "word": "tertiary",
+    "trans": [
+      {
+        "cn": "adj.第三的，<医>第三期的，(T-)<地>第三纪的，<化>叔的"
+      },
+      {
+        "cn": "n.(T-)<地>第三纪，第三系，三期梅毒病害，<宗>第三级教士"
+      }
+    ],
+    "phonetic0": "ˈtɜ:ʃəri",
+    "phonetic1": "ˈtɜ:rʃieri"
+  },
+  {
+    "word": "undergraduate",
+    "trans": [
+      {
+        "cn": "n.（未获学士学位的）大学生，大学肄业生"
+      },
+      {
+        "cn": "adj.大学生的，大学的"
+      }
+    ],
+    "phonetic0": "ˌʌndəˈgrædʒuət",
+    "phonetic1": "ˌʌndərˈgrædʒuət"
+  },
+  {
+    "word": "vocational",
+    "trans": [
+      {
+        "cn": "adj.职业的，行业的，天职的，有助于职业的"
+      }
+    ],
+    "phonetic0": "vəʊˈkeɪʃənl",
+    "phonetic1": "voʊˈkeɪʃənl"
+  },
+  {
+    "word": "zoology",
+    "trans": [
+      {
+        "cn": "动物学"
+      }
+    ],
+    "phonetic0": "zuː'ɒlədʒɪ; zəʊ-",
+    "phonetic1": "zəu'ɔlədʒi, zu:-"
+  },
+  {
+    "word": "gown",
+    "trans": [
+      {
+        "cn": "n.长袍，长外衣，女长服，罩袍，大学的学生和教师"
+      },
+      {
+        "cn": "vt.& vi.穿长袍"
+      }
+    ],
+    "phonetic0": "gaʊn",
+    "phonetic1": "ɡaʊn"
+  },
+  {
+    "word": "prestigious",
+    "trans": [
+      {
+        "cn": "adj.受尊敬的，有声望的，<古>魔术的，欺骗的"
+      }
+    ],
+    "phonetic0": "preˈstɪdʒəs",
+    "phonetic1": "-ˈstɪdʒəs"
+  },
+  {
+    "word": "interconnect",
+    "trans": [
+      {
+        "cn": "使互相连接"
+      }
+    ],
+    "phonetic0": "ɪntəkə'nekt",
+    "phonetic1": ",ɪntɚkə'nɛkt"
+  },
+  {
+    "word": "postgraduate",
+    "trans": [
+      {
+        "cn": "研究生"
+      }
+    ],
+    "phonetic0": "pəʊs(t)'grædjʊət",
+    "phonetic1": "post'ɡrædjet"
+  },
+  {
+    "word": "secondary",
+    "trans": [
+      {
+        "cn": "adj.第二的，中等的，助手，副手，中等教育的，间接的"
+      },
+      {
+        "cn": "n.副手，代理人，天双星中较小较暗的一个，卫星，语次重音"
+      }
+    ],
+    "phonetic0": "ˈsekəndri",
+    "phonetic1": "ˈsekənderi"
+  },
+  {
+    "word": "fountain",
+    "trans": [
+      {
+        "cn": "n.人造喷泉，喷泉水，泉源，液体贮存器，汽水桶，冷饮柜，源头，来源"
+      }
+    ],
+    "phonetic0": "ˈfaʊntən",
+    "phonetic1": "ˈfaʊntn"
+  },
+  {
+    "word": "refresher course",
+    "trans": [
+      {
+        "cn": "进修课程"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "myth",
+    "trans": [
+      {
+        "cn": "n.神话，神怪故事，奇人，奇事，虚构的人，虚构的事"
+      },
+      {
+        "cn": "v.使神话化"
+      }
+    ],
+    "phonetic0": "mɪθ",
+    "phonetic1": "mɪθ"
+  },
+  {
+    "word": "toddler",
+    "trans": [
+      {
+        "cn": "n.蹒跚行走的人，幼童装，学步的幼儿"
+      }
+    ],
+    "phonetic0": "ˈtɒdlə(r)",
+    "phonetic1": "ˈtɑ:dlə(r)"
+  },
+  {
+    "word": "inheritance",
+    "trans": [
+      {
+        "cn": "n.继承，遗传，遗产"
+      }
+    ],
+    "phonetic0": "ɪnˈherɪtəns",
+    "phonetic1": "ɪnˈhɛrɪtəns"
+  },
+  {
+    "word": "inability",
+    "trans": [
+      {
+        "cn": "n.无能，无力，无才能，无能为力"
+      }
+    ],
+    "phonetic0": "ˌɪnəˈbɪləti",
+    "phonetic1": "ˌɪnəˈbɪlɪti"
+  },
+  {
+    "word": "dubious",
+    "trans": [
+      {
+        "cn": "adj.半信半疑的，犹豫不决的，可疑的，暧昧的，含糊的，不可靠的"
+      }
+    ],
+    "phonetic0": "ˈdju:biəs",
+    "phonetic1": "ˈdu:biəs"
+  },
+  {
+    "word": "derive",
+    "trans": [
+      {
+        "cn": "vt.& vi.得到，导出，源于，来自，（从…中）提取"
+      }
+    ],
+    "phonetic0": "dɪˈraɪv",
+    "phonetic1": "dɪˈraɪv"
+  },
+  {
+    "word": "sustain",
+    "trans": [
+      {
+        "cn": "vt.维持，支撑，支持，遭受，忍受，供养"
+      }
+    ],
+    "phonetic0": "səˈsteɪn",
+    "phonetic1": "səˈsten"
+  },
+  {
+    "word": "questionnaire",
+    "trans": [
+      {
+        "cn": "n.调查表，调查问卷"
+      }
+    ],
+    "phonetic0": "ˌkwestʃəˈneə(r)",
+    "phonetic1": "ˌkwestʃəˈner"
+  },
+  {
+    "word": "subject",
+    "trans": [
+      {
+        "cn": "n.主题，话题，学科，科目，哲主观"
+      },
+      {
+        "cn": "adj.须服从…的，（在君主等）统治下的"
+      },
+      {
+        "cn": "v.提供，提出，使…隶属"
+      }
+    ],
+    "phonetic0": "ˈsʌbdʒɪkt",
+    "phonetic1": "ˈsʌbdʒekt"
+  },
+  {
+    "word": "agility",
+    "trans": [
+      {
+        "cn": "n.敏捷，活泼，灵活，机敏"
+      }
+    ],
+    "phonetic0": "ə'dʒɪlətɪ",
+    "phonetic1": "əˈdʒɪlɪti"
+  },
+  {
+    "word": "significantly",
+    "trans": [
+      {
+        "cn": "adv.意味深长地，值得注目地"
+      }
+    ],
+    "phonetic0": "sɪgˈnɪfɪkəntli",
+    "phonetic1": "sɪɡˈnɪfəkəntlɪ"
+  },
+  {
+    "word": "nocturnal",
+    "trans": [
+      {
+        "cn": "adj.夜的，夜间的，（动物）夜间活动的，（植物）夜间开花的，乐夜曲的"
+      }
+    ],
+    "phonetic0": "nɒkˈtɜ:nl",
+    "phonetic1": "nɑ:kˈtɜ:rnl"
+  },
+  {
+    "word": "predator",
+    "trans": [
+      {
+        "cn": "n.以掠夺为生的人，捕食其他动物的动物，食肉动物"
+      }
+    ],
+    "phonetic0": "ˈpredətə(r)",
+    "phonetic1": "-ˌtɔr"
+  },
+  {
+    "word": "pushy",
+    "trans": [
+      {
+        "cn": "adj.有进取心的，固执己见的，一意孤行的"
+      }
+    ],
+    "phonetic0": "ˈpʊʃi",
+    "phonetic1": "'pʊʃɪ"
+  },
+  {
+    "word": "overstimulate",
+    "trans": [
+      {
+        "cn": "过度刺激，过度激励"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "self-esteem",
+    "trans": [
+      {
+        "cn": "n.自尊，自大，傲骨"
+      }
+    ],
+    "phonetic0": "self",
+    "phonetic1": "ˌsɛlfɪˈstim"
+  },
+  {
+    "word": "rife",
+    "trans": [
+      {
+        "cn": "adj.流行的，普遍的，盛传的，越来越普及的"
+      }
+    ],
+    "phonetic0": "raɪf",
+    "phonetic1": "raɪf"
+  },
+  {
+    "word": "expectant",
+    "trans": [
+      {
+        "cn": "adj.期待的，预期的，期望的"
+      },
+      {
+        "cn": "n.数期望值，期待着，候选人"
+      }
+    ],
+    "phonetic0": "ɪkˈspektənt",
+    "phonetic1": "ɪkˈspɛktənt"
+  },
+  {
+    "word": "self respect",
+    "trans": [
+      {
+        "cn": "自尊，自重"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "enrolment",
+    "trans": [
+      {
+        "cn": "入学，登记"
+      }
+    ],
+    "phonetic0": "ɪn'rəʊlm(ə)nt",
+    "phonetic1": "ɪn'rolmənt"
+  },
+  {
+    "word": "plethora",
+    "trans": [
+      {
+        "cn": "n.过多，过剩，医多血，多血症"
+      }
+    ],
+    "phonetic0": "ˈpleθərə",
+    "phonetic1": "ˈplɛθərə"
+  },
+  {
+    "word": "arithmetic",
+    "trans": [
+      {
+        "cn": "n.算术，计算，算法"
+      }
+    ],
+    "phonetic0": "əˈrɪθmətɪk",
+    "phonetic1": "əˈrɪθmɪtɪk"
+  },
+  {
+    "word": "psychiatric",
+    "trans": [
+      {
+        "cn": "adj.精神病学的，精神病治疗的"
+      }
+    ],
+    "phonetic0": "ˌsaɪkiˈætrɪk",
+    "phonetic1": ",saɪkɪ'ætrɪk"
+  },
+  {
+    "word": "Dutch",
+    "trans": [
+      {
+        "cn": "adj.荷兰人的，荷兰的，荷兰语的"
+      },
+      {
+        "cn": "n.荷兰，荷兰语，各付各的账，酒后之勇，电影小鬼精灵"
+      }
+    ],
+    "phonetic0": "dʌtʃ",
+    "phonetic1": "dʌtʃ"
+  },
+  {
+    "word": "beset",
+    "trans": [
+      {
+        "cn": "vt.镶，嵌，困扰，包围，航被冰块包围"
+      }
+    ],
+    "phonetic0": "bɪˈset",
+    "phonetic1": "bɪˈsɛt"
+  },
+  {
+    "word": "interact",
+    "trans": [
+      {
+        "cn": "v.相互作用，互相影响，互动"
+      }
+    ],
+    "phonetic0": "ˌɪntərˈækt",
+    "phonetic1": "ˌɪntɚˈækt"
+  },
+  {
+    "word": "peer",
+    "trans": [
+      {
+        "cn": "vi.凝视，盯着看，隐退，若隐若现，同等，比得上"
+      },
+      {
+        "cn": "n.同辈，同等的人，贵族，同伴，伙伴"
+      },
+      {
+        "cn": "adj.贵族的，（年龄、地位等）同等的，相匹敌的"
+      }
+    ],
+    "phonetic0": "pɪə(r)",
+    "phonetic1": "pɪr"
+  },
+  {
+    "word": "internalise",
+    "trans": [
+      {
+        "cn": "使……内在化"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "speculate",
+    "trans": [
+      {
+        "cn": "vt.思索，猜测，推测"
+      },
+      {
+        "cn": "vi.投机，推测，思索"
+      }
+    ],
+    "phonetic0": "ˈspekjuleɪt",
+    "phonetic1": "ˈspɛkjəˌlet"
+  },
+  {
+    "word": "psychiatrist",
+    "trans": [
+      {
+        "cn": "n.精神病专家，精神病医生，精神病医生"
+      }
+    ],
+    "phonetic0": "saɪˈkaɪətrɪst",
+    "phonetic1": "saɪ'kaɪətrɪst"
+  },
+  {
+    "word": "idiot",
+    "trans": [
+      {
+        "cn": "n.傻瓜，笨蛋，白痴"
+      }
+    ],
+    "phonetic0": "ˈɪdiət",
+    "phonetic1": "ˈɪdiət"
+  },
+  {
+    "word": "savant",
+    "trans": [
+      {
+        "cn": "博学之士"
+      }
+    ],
+    "phonetic0": "'sævənt",
+    "phonetic1": "sæ'vɑnt"
+  },
+  {
+    "word": "depict",
+    "trans": [
+      {
+        "cn": "vt.描绘，描画，描述"
+      }
+    ],
+    "phonetic0": "dɪˈpɪkt",
+    "phonetic1": "dɪˈpɪkt"
+  },
+  {
+    "word": "conscious",
+    "trans": [
+      {
+        "cn": "adj.有意识的，神志清醒的，自觉的，有意的，（痛苦，感情，冷气等）感觉得到的，同“self-conscious“"
+      }
+    ],
+    "phonetic0": "ˈkɒnʃəs",
+    "phonetic1": "ˈkɑ:nʃəs"
+  },
+  {
+    "word": "zap",
+    "trans": [
+      {
+        "cn": "vt.攻击，杀死，摧毁，遥控"
+      },
+      {
+        "cn": "vi.迅速移动"
+      },
+      {
+        "cn": "n.精力，活力，元气，攻击"
+      },
+      {
+        "cn": "int.嚓"
+      }
+    ],
+    "phonetic0": "zæp",
+    "phonetic1": "zæp"
+  },
+  {
+    "word": "zapper",
+    "trans": [
+      {
+        "cn": "遥控器；灭杀器"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "magnetic",
+    "trans": [
+      {
+        "cn": "adj.有磁性的，有吸引力的，磁性的，有吸引力的，有魅力的"
+      }
+    ],
+    "phonetic0": "mægˈnetɪk",
+    "phonetic1": "mæɡˈnɛtɪk"
+  },
+  {
+    "word": "stimulation",
+    "trans": [
+      {
+        "cn": "n.刺激，激发，启发，促进"
+      }
+    ],
+    "phonetic0": "ˌstɪmjʊ'leɪʃn",
+    "phonetic1": "ˌstɪmjʊ'leɪʃn"
+  },
+  {
+    "word": "recruit",
+    "trans": [
+      {
+        "cn": "n.新兵，（机构中的）新成员，新学生"
+      },
+      {
+        "cn": "vt.招聘，征募，吸收某人为新成员，动员…（提供帮助），雇用"
+      },
+      {
+        "cn": "vi.征募新兵，得到补充，得到补偿，恢复健康"
+      }
+    ],
+    "phonetic0": "rɪˈkru:t",
+    "phonetic1": "rɪˈkrut"
+  },
+  {
+    "word": "inactivity",
+    "trans": [
+      {
+        "cn": "n.不活动，不活跃，静止，不活泼"
+      }
+    ],
+    "phonetic0": "ˌɪnæk'tɪvətɪ",
+    "phonetic1": "ˌɪnæk'tɪvətɪ"
+  },
+  {
+    "word": "citizenship",
+    "trans": [
+      {
+        "cn": "n.公民身份，公民权"
+      }
+    ],
+    "phonetic0": "ˈsɪtɪzənʃɪp",
+    "phonetic1": "ˈsɪtɪzənˌʃɪp"
+  },
+  {
+    "word": "cookery",
+    "trans": [
+      {
+        "cn": "烹调术"
+      }
+    ],
+    "phonetic0": "'kʊk(ə)rɪ",
+    "phonetic1": "'kukəri"
+  },
+  {
+    "word": "DIY",
+    "trans": [
+      {
+        "cn": "自己动手做"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "incompetent",
+    "trans": [
+      {
+        "cn": "adj.无能力的，不胜任的，不适当的"
+      },
+      {
+        "cn": "n.无能者，不胜任者"
+      }
+    ],
+    "phonetic0": "ɪnˈkɒmpɪtənt",
+    "phonetic1": "ɪnˈkɑ:mpɪtənt"
+  },
+  {
+    "word": "assembly",
+    "trans": [
+      {
+        "cn": "n.立法机构，议会，集会，装配"
+      }
+    ],
+    "phonetic0": "əˈsembli",
+    "phonetic1": "əˈsɛmbli"
+  },
+  {
+    "word": "fundamentally",
+    "trans": [
+      {
+        "cn": "adv.基础地，根本地，从根本上"
+      }
+    ],
+    "phonetic0": "ˌfʌndəˈmentəli",
+    "phonetic1": "ˌfʌndəˈmentəli"
+  },
+  {
+    "word": "flourish",
+    "trans": [
+      {
+        "cn": "vi.挥舞，茂盛，繁荣，活跃，蓬勃"
+      },
+      {
+        "cn": "vt.挥动，挥舞"
+      },
+      {
+        "cn": "n.挥舞，挥动，花样，华丽的辞藻，夸张的行为或手势，花式吹奏"
+      }
+    ],
+    "phonetic0": "ˈflʌrɪʃ",
+    "phonetic1": "ˈflɜ:rɪʃ"
+  },
+  {
+    "word": "undue",
+    "trans": [
+      {
+        "cn": "adj.过度的，过分的，不适当的，未到期的，逾分"
+      }
+    ],
+    "phonetic0": "ˌʌnˈdju:",
+    "phonetic1": "ˌʌnˈdu:"
+  },
+  {
+    "word": "essentially",
+    "trans": [
+      {
+        "cn": "adv.本质上，根本上，本来，“essential“的派生"
+      }
+    ],
+    "phonetic0": "ɪˈsenʃəli",
+    "phonetic1": "ɪˈsenʃəli"
+  },
+  {
+    "word": "empathy",
+    "trans": [
+      {
+        "cn": "n.<心>移情作用，同感，共鸣，神入"
+      }
+    ],
+    "phonetic0": "ˈempəθi",
+    "phonetic1": "ˈɛmpəθi"
+  },
+  {
+    "word": "tolerance",
+    "trans": [
+      {
+        "cn": "n.宽容，容忍，限度，公差，耐药量，耐药性"
+      }
+    ],
+    "phonetic0": "ˈtɒlərəns",
+    "phonetic1": "ˈtɑ:lərəns"
+  },
+  {
+    "word": "viewpoint",
+    "trans": [
+      {
+        "cn": "n.观点，意见，角度，视角，<物>视点"
+      }
+    ],
+    "phonetic0": "ˈvju:pɔɪnt",
+    "phonetic1": "ˈvjuˌpɔɪnt"
+  },
+  {
+    "word": "weave",
+    "trans": [
+      {
+        "cn": "vt.& vi.编，织，迂回行进，穿行（以避开障碍）"
+      },
+      {
+        "cn": "vt.编排，（把…）编成"
+      },
+      {
+        "cn": "vi.纺织，织布"
+      },
+      {
+        "cn": "n.织物，织法，编法，编织式样"
+      }
+    ],
+    "phonetic0": "wi:v",
+    "phonetic1": "wiv"
+  },
+  {
+    "word": "overt",
+    "trans": [
+      {
+        "cn": "adj.明显的，公然的，公开的，阳"
+      }
+    ],
+    "phonetic0": "əʊˈvɜ:t",
+    "phonetic1": "oʊˈvɜ:rt"
+  },
+  {
+    "word": "interpersonal",
+    "trans": [
+      {
+        "cn": "adj.人与人之间的，人际的，人与人之间的关系的，涉及人与人之间的关系的"
+      }
+    ],
+    "phonetic0": "ˌɪntəˈpɜ:sənl",
+    "phonetic1": "ˌɪntərˈpɜ:rsənl"
+  },
+  {
+    "word": "entity",
+    "trans": [
+      {
+        "cn": "n.实体，实际存在物，本质"
+      }
+    ],
+    "phonetic0": "ˈentəti",
+    "phonetic1": "ˈɛntɪti"
+  },
+  {
+    "word": "interteam",
+    "trans": [
+      {
+        "cn": "团队间的"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "intolerance",
+    "trans": [
+      {
+        "cn": "n.不能容忍，不容异议，心胸狭窄，医不耐（性）"
+      }
+    ],
+    "phonetic0": "ɪn'tɒlərəns",
+    "phonetic1": "ɪn'tɒlərəns"
+  },
+  {
+    "word": "homophobia",
+    "trans": [
+      {
+        "cn": "n.对同性恋的憎恶（或恐惧）"
+      }
+    ],
+    "phonetic0": "ˌhɒməˈfəʊbiə",
+    "phonetic1": "ˌhoʊməˈfoʊbiə"
+  },
+  {
+    "word": "sexism",
+    "trans": [
+      {
+        "cn": "n.性别歧视，男性至上主义"
+      }
+    ],
+    "phonetic0": "ˈseksɪzəm",
+    "phonetic1": "ˈsɛkˌsɪzəm"
+  },
+  {
+    "word": "expertise",
+    "trans": [
+      {
+        "cn": "n.专门知识或技能，专家的意见，专家评价，鉴定"
+      }
+    ],
+    "phonetic0": "ˌekspɜ:ˈti:z",
+    "phonetic1": "ˌekspɜ:rˈti:z"
+  },
+  {
+    "word": "articulate",
+    "trans": [
+      {
+        "cn": "adj.发音清晰的，善于表达的，有关节的"
+      },
+      {
+        "cn": "vt.清晰地发（音），言语表达，（用关节）连接"
+      },
+      {
+        "cn": "vi.清楚地和清晰地讲，发音，解剖学 连接"
+      }
+    ],
+    "phonetic0": "ɑ:ˈtɪkjuleɪt",
+    "phonetic1": "ɑ:rˈtɪkjuleɪt"
+  },
+  {
+    "word": "tickle",
+    "trans": [
+      {
+        "cn": "vt.& vi.（使）发痒，（使）愉快，逗乐，使高兴，使满足"
+      },
+      {
+        "cn": "n.胳肢，搔痒，愉快的情绪"
+      }
+    ],
+    "phonetic0": "ˈtɪkl",
+    "phonetic1": "ˈtɪkəl"
+  },
+  {
+    "word": "intake",
+    "trans": [
+      {
+        "cn": "n.吸入，进气，（液体等）进入口，摄入，摄取，纳入（数）量"
+      }
+    ],
+    "phonetic0": "ˈɪnteɪk",
+    "phonetic1": "ˈɪnˌtek"
+  },
+  {
+    "word": "nostril",
+    "trans": [
+      {
+        "cn": "n.鼻孔，鼻孔内壁"
+      }
+    ],
+    "phonetic0": "ˈnɒstrəl",
+    "phonetic1": "ˈnɑ:strəl"
+  },
+  {
+    "word": "seal",
+    "trans": [
+      {
+        "cn": "n.密封，印章，海豹，封条"
+      },
+      {
+        "cn": "v.密封，盖章，决定，封上（信封）"
+      }
+    ],
+    "phonetic0": "si:l",
+    "phonetic1": "sil"
+  },
+  {
+    "word": "chin",
+    "trans": [
+      {
+        "cn": "n.（尤指人的）颏，下巴，聊天，引体向上动作"
+      },
+      {
+        "cn": "v.用下巴夹住，聊天，作引体向上动作"
+      }
+    ],
+    "phonetic0": "tʃɪn",
+    "phonetic1": "tʃɪn"
+  },
+  {
+    "word": "resuscitate",
+    "trans": [
+      {
+        "cn": "v.使复苏，使复兴"
+      }
+    ],
+    "phonetic0": "rɪˈsʌsɪteɪt",
+    "phonetic1": "rɪˈsʌsɪteɪt"
+  },
+  {
+    "word": "self-preservation",
+    "trans": [
+      {
+        "cn": "自卫本能"
+      }
+    ],
+    "phonetic0": "'self,prezə'veiʃən",
+    "phonetic1": "'self,prezə'veiʃən"
+  },
+  {
+    "word": "irreparable",
+    "trans": [
+      {
+        "cn": "不能挽回的"
+      }
+    ],
+    "phonetic0": "ɪ'rep(ə)rəb(ə)l",
+    "phonetic1": "ɪ'rɛpərəbl"
+  },
+  {
+    "word": "straighten",
+    "trans": [
+      {
+        "cn": "vt.& vi.变直，把…弄直，整理，整顿，使…改正，使…好转"
+      },
+      {
+        "cn": "vi.变好起来"
+      }
+    ],
+    "phonetic0": "ˈstreɪtn",
+    "phonetic1": "ˈstretn"
+  },
+  {
+    "word": "pinch",
+    "trans": [
+      {
+        "cn": "vt.捏，掐，挤痛，夹痛，使（植物）枯萎，凋谢，使紧缺，节制"
+      },
+      {
+        "cn": "vi.挤痛，压痛，吝惜，节约"
+      },
+      {
+        "cn": "n.匮乏，少量，一撮，困苦"
+      }
+    ],
+    "phonetic0": "pɪntʃ",
+    "phonetic1": "pɪntʃ"
+  },
+  {
+    "word": "exhale",
+    "trans": [
+      {
+        "cn": "vt.发散出，放出，放射，使蒸发，医渗出"
+      },
+      {
+        "cn": "vi.呼气，放出，发散"
+      }
+    ],
+    "phonetic0": "eksˈheɪl",
+    "phonetic1": "ɛksˈhel,ɛkˈhel"
+  },
+  {
+    "word": "cardiac",
+    "trans": [
+      {
+        "cn": "adj.心脏（病）的，（胃的）贲门的"
+      },
+      {
+        "cn": "n.心脏病患者，强心剂"
+      }
+    ],
+    "phonetic0": "ˈkɑ:diæk",
+    "phonetic1": "ˈkɑ:rdiæk"
+  },
+  {
+    "word": "irrelevant",
+    "trans": [
+      {
+        "cn": "adj.不相干的，不恰当，缺乏时代性的，落后于潮流的，牛头不对马嘴"
+      }
+    ],
+    "phonetic0": "ɪˈreləvənt",
+    "phonetic1": "ɪˈrɛləvənt"
+  },
+  {
+    "word": "literacy",
+    "trans": [
+      {
+        "cn": "n.识字，有文化，能读能写，精通文学"
+      }
+    ],
+    "phonetic0": "ˈlɪtərəsi",
+    "phonetic1": "ˈlɪtərəsi"
+  },
+  {
+    "word": "performance-related pay",
+    "trans": [
+      {
+        "cn": "与工作表现挂钩的工资"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "cramming",
+    "trans": [
+      {
+        "cn": "填鸭式教学"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "mockery",
+    "trans": [
+      {
+        "cn": "n.嘲笑，愚弄，笑柄，（拙劣的）模仿，徒劳"
+      }
+    ],
+    "phonetic0": "ˈmɒkəri",
+    "phonetic1": "ˈmɑ:kəri"
+  },
+  {
+    "word": "tuition",
+    "trans": [
+      {
+        "cn": "n.学费，教学，讲授"
+      }
+    ],
+    "phonetic0": "tjuˈɪʃn",
+    "phonetic1": "tuˈɪʃn"
+  },
+  {
+    "word": "chatty",
+    "trans": [
+      {
+        "cn": "饶舌的，爱讲闲话的"
+      }
+    ],
+    "phonetic0": "'tʃætɪ",
+    "phonetic1": "'tʃæti"
+  },
+  {
+    "word": "grumpy",
+    "trans": [
+      {
+        "cn": "adj.脾气坏的，性情粗暴的，脾气暴躁的，性情乖戾的"
+      }
+    ],
+    "phonetic0": "ˈgrʌmpi",
+    "phonetic1": "ˈɡrʌmpi"
+  },
+  {
+    "word": "irritable",
+    "trans": [
+      {
+        "cn": "adj.易怒的，急躁的，过敏的，应激性的，毛躁"
+      }
+    ],
+    "phonetic0": "ˈɪrɪtəbl",
+    "phonetic1": "ˈɪrɪtəbəl"
+  },
+  {
+    "word": "fussy",
+    "trans": [
+      {
+        "cn": "adj.大惊小怪的，难取悦的，易烦恼的，（衣着，字句等上）充分讲究的"
+      }
+    ],
+    "phonetic0": "ˈfʌsi",
+    "phonetic1": "ˈfʌsi"
+  },
+  {
+    "word": "sulk",
+    "trans": [
+      {
+        "cn": "vi.生气，愠怒"
+      },
+      {
+        "cn": "n.生气，愠怒，愠怒生气的人"
+      }
+    ],
+    "phonetic0": "sʌlk",
+    "phonetic1": "sʌlk"
+  },
+  {
+    "word": "breezy",
+    "trans": [
+      {
+        "cn": "adj.有微风的，微风吹过的，通风好的，活泼的，轻松愉快的"
+      }
+    ],
+    "phonetic0": "ˈbri:zi",
+    "phonetic1": "ˈbrizi"
+  },
+  {
+    "word": "loathe",
+    "trans": [
+      {
+        "cn": "vt.憎恨，厌恶（某人、某事物），口极不喜欢（某事物）"
+      }
+    ],
+    "phonetic0": "ləʊð",
+    "phonetic1": "loʊð"
+  },
+  {
+    "word": "growl",
+    "trans": [
+      {
+        "cn": "vi.（雷）作隆隆声，嘟哝，愤愤不平地抱怨"
+      },
+      {
+        "cn": "vt.低声咆哮着说，粗鲁地说出"
+      },
+      {
+        "cn": "n.低吼，狺狺声，咆哮，粗声大气"
+      }
+    ],
+    "phonetic0": "graʊl",
+    "phonetic1": "ɡraʊl"
+  },
+  {
+    "word": "tidiness",
+    "trans": [
+      {
+        "cn": "整齐，整洁"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "fanatically",
+    "trans": [
+      {
+        "cn": "（对某种事物或活动）入迷地"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "tut",
+    "trans": [
+      {
+        "cn": "啧啧（表示不赞同）"
+      }
+    ],
+    "phonetic0": "tʌt",
+    "phonetic1": "tʌt"
+  },
+  {
+    "word": "moan",
+    "trans": [
+      {
+        "cn": "vt.以呻吟声说出，悲叹，抱怨，哀悼"
+      },
+      {
+        "cn": "n.呻吟声，悲叹声，（尤指风的）呼啸声"
+      },
+      {
+        "cn": "vi.呻吟，发出呻吟般的凄切声，悲叹，抱怨"
+      }
+    ],
+    "phonetic0": "məʊn",
+    "phonetic1": "moʊn"
+  },
+  {
+    "word": "drive sb.mad",
+    "trans": [
+      {
+        "cn": "使……发疯"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "despise",
+    "trans": [
+      {
+        "cn": "vt.鄙视，看不起"
+      }
+    ],
+    "phonetic0": "dɪˈspaɪz",
+    "phonetic1": "dɪˈspaɪz"
+  },
+  {
+    "word": "intrude",
+    "trans": [
+      {
+        "cn": "vi.侵入，侵扰，打扰，闯入，打扰"
+      },
+      {
+        "cn": "vt.把观点强加于他人，地质侵入其他地层，把…硬挤"
+      }
+    ],
+    "phonetic0": "ɪnˈtru:d",
+    "phonetic1": "ɪnˈtrud"
+  },
+  {
+    "word": "extrovert",
+    "trans": [
+      {
+        "cn": "性格外向者"
+      }
+    ],
+    "phonetic0": "'ekstrəvɜːt",
+    "phonetic1": ",ɛkstrə'vɝt"
+  },
+  {
+    "word": "pry",
+    "trans": [
+      {
+        "cn": "vi.窥探，打探"
+      },
+      {
+        "cn": "vt.撬开，撬动，费力地得到"
+      },
+      {
+        "cn": "n.窥探，撬杠，爱打探的人"
+      }
+    ],
+    "phonetic0": "praɪ",
+    "phonetic1": "praɪ"
+  },
+  {
+    "word": "suspicious",
+    "trans": [
+      {
+        "cn": "adj.可疑的，猜疑的，怀疑的，多疑的，不信任的，多心"
+      }
+    ],
+    "phonetic0": "səˈspɪʃəs",
+    "phonetic1": "səˈspɪʃəs"
+  },
+  {
+    "word": "childishly",
+    "trans": [
+      {
+        "cn": "天真地，幼稚地"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "go against",
+    "trans": [
+      {
+        "cn": "反对，违反"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "shipwreck",
+    "trans": [
+      {
+        "cn": "n.灭亡，毁灭，失败，挫败，船只失事，（海滩上的）失事船残骸"
+      },
+      {
+        "cn": "vt.使失事，使毁灭，使失败"
+      }
+    ],
+    "phonetic0": "ˈʃɪprek",
+    "phonetic1": "ˈʃɪpˌrɛk"
+  },
+  {
+    "word": "cameraman",
+    "trans": [
+      {
+        "cn": "n.摄影师，摄影记者"
+      }
+    ],
+    "phonetic0": "ˈkæmrəmæn",
+    "phonetic1": "ˈkæmrə-"
+  },
+  {
+    "word": "call for",
+    "trans": [
+      {
+        "cn": "需要，要求"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "shortlist",
+    "trans": [
+      {
+        "cn": "（英）供最后挑选用的候选人名单"
+      }
+    ],
+    "phonetic0": "ˈʃɔ:tlɪst",
+    "phonetic1": "'ʃɔ:tlist"
+  },
+  {
+    "word": "bear in mind",
+    "trans": [
+      {
+        "cn": "记住"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "rating",
+    "trans": [
+      {
+        "cn": "n.等级，评估，评价，极限，收听率，收视率"
+      },
+      {
+        "cn": "v.估价( rate的现在分词)，定级"
+      }
+    ],
+    "phonetic0": "ˈreɪtɪŋ",
+    "phonetic1": "ˈretɪŋ"
+  },
+  {
+    "word": "prime",
+    "trans": [
+      {
+        "cn": "adj.最好的，首要的，最初的，基本的"
+      },
+      {
+        "cn": "n.精华，初期，全盛时期，青年"
+      },
+      {
+        "cn": "vt.使准备好，填装，事先指导"
+      },
+      {
+        "cn": "adv.极好地"
+      },
+      {
+        "cn": "vi.（为枪炮）装火药，涂底漆，修剪树枝，注水入泵引起"
+      }
+    ],
+    "phonetic0": "praɪm",
+    "phonetic1": "praɪm"
+  },
+  {
+    "word": "stiff",
+    "trans": [
+      {
+        "cn": "adj.严厉的，僵硬的，坚硬的，呆板的，拘谨的，顽固的"
+      },
+      {
+        "cn": "adv.<口>极度地，非常"
+      },
+      {
+        "cn": "n.死尸，笨蛋，傻瓜，流动工人，吝啬鬼穷光蛋"
+      },
+      {
+        "cn": "vt.诈骗，失信"
+      }
+    ],
+    "phonetic0": "stɪf",
+    "phonetic1": "stɪf"
+  },
+  {
+    "word": "irresponsible",
+    "trans": [
+      {
+        "cn": "adj.不负责任的，不可靠的，缺乏责任心，法律 无责任能力的，无需对更高一级权力负责的"
+      },
+      {
+        "cn": "n.没有责任感的人，法律 无责任能力的人，不被列入考虑的人"
+      }
+    ],
+    "phonetic0": "ˌɪrɪˈspɒnsəbl",
+    "phonetic1": "ˌɪrɪˈspɑ:nsəbl"
+  },
+  {
+    "word": "swimsuit",
+    "trans": [
+      {
+        "cn": "n.（女式）游泳衣"
+      }
+    ],
+    "phonetic0": "ˈswɪmsu:t",
+    "phonetic1": "ˈswɪmˌsut"
+  },
+  {
+    "word": "interaction",
+    "trans": [
+      {
+        "cn": "n.一起活动，合作，互相影响，互动"
+      }
+    ],
+    "phonetic0": "ˌɪntər'ækʃn",
+    "phonetic1": "ˌɪntɚˈækʃən"
+  },
+  {
+    "word": "overbearing",
+    "trans": [
+      {
+        "cn": "adj.专横的，傲慢的，难忍的"
+      },
+      {
+        "cn": "v.压服( overbear的现在分词 )"
+      }
+    ],
+    "phonetic0": "ˌəʊvəˈbeərɪŋ",
+    "phonetic1": "ˌoʊvərˈberɪŋ"
+  },
+  {
+    "word": "loner",
+    "trans": [
+      {
+        "cn": "n.喜孤独者，不合群者"
+      }
+    ],
+    "phonetic0": "ˈləʊnə(r)",
+    "phonetic1": "ˈloʊnə(r)"
+  },
+  {
+    "word": "upgrade",
+    "trans": [
+      {
+        "cn": "n.向上的斜坡"
+      },
+      {
+        "cn": "vt.提升，使（机器、计算机系统等）升级，提高（设施、服务等的）档次，提高（飞机乘客、旅馆住客等）的待遇"
+      }
+    ],
+    "phonetic0": "ˌʌpˈgreɪd",
+    "phonetic1": "ˈʌpˌɡred"
+  },
+  {
+    "word": "distracted",
+    "trans": [
+      {
+        "cn": "心烦意乱的"
+      }
+    ],
+    "phonetic0": "dɪ'stræktɪd",
+    "phonetic1": "dɪ'stræktɪd"
+  },
+  {
+    "word": "campus",
+    "trans": [
+      {
+        "cn": "n.校园，校区"
+      }
+    ],
+    "phonetic0": "ˈkæmpəs",
+    "phonetic1": "ˈkæmpəs"
+  },
+  {
+    "word": "pros and cons",
+    "trans": [
+      {
+        "cn": "赞成与反对"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "make use of",
+    "trans": [
+      {
+        "cn": "利用"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "meet up with",
+    "trans": [
+      {
+        "cn": "偶遇"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "powder",
+    "trans": [
+      {
+        "cn": "n.粉，粉末，粉状物质"
+      },
+      {
+        "cn": "vt.在…搽粉"
+      },
+      {
+        "cn": "vi.涂粉，变成粉末"
+      }
+    ],
+    "phonetic0": "ˈpaʊdə(r)",
+    "phonetic1": "ˈpaʊdɚ"
+  },
+  {
+    "word": "untidy",
+    "trans": [
+      {
+        "cn": "不整洁的，凌乱的"
+      }
+    ],
+    "phonetic0": "ʌn'taɪdɪ",
+    "phonetic1": "ʌn'taɪdi"
+  },
+  {
+    "word": "hassle",
+    "trans": [
+      {
+        "cn": "n.困难的事情，麻烦的事情，争论"
+      },
+      {
+        "cn": "vt.不断烦扰，与…争辩，使…烦恼"
+      },
+      {
+        "cn": "vi.争论，争辩"
+      }
+    ],
+    "phonetic0": "ˈhæsl",
+    "phonetic1": "ˈhæsəl"
+  },
+  {
+    "word": "unfriendly",
+    "trans": [
+      {
+        "cn": "adj.不友好的，有敌意的，冷漠的，不利的，（气候）不宜人的"
+      }
+    ],
+    "phonetic0": "ʌnˈfrendli",
+    "phonetic1": "ʌnˈfrɛndli"
+  },
+  {
+    "word": "rejection",
+    "trans": [
+      {
+        "cn": "n.拒绝，摒弃，剔除物，<医>排斥"
+      }
+    ],
+    "phonetic0": "rɪ'dʒekʃn",
+    "phonetic1": "rɪˈdʒɛkʃən"
+  },
+  {
+    "word": "reassurance",
+    "trans": [
+      {
+        "cn": "n.使安心，再保证"
+      }
+    ],
+    "phonetic0": "ˌri:əˈʃʊərəns",
+    "phonetic1": "ˌri:əˈʃʊrəns"
+  },
+  {
+    "word": "frustration",
+    "trans": [
+      {
+        "cn": "n.挫折，失败，挫败，失意"
+      }
+    ],
+    "phonetic0": "frʌˈstreɪʃn",
+    "phonetic1": "frʌˈstreʃən"
+  },
+  {
+    "word": "enormous",
+    "trans": [
+      {
+        "cn": "adj.巨大的，庞大的，极恶的，凶暴的"
+      }
+    ],
+    "phonetic0": "ɪˈnɔ:məs",
+    "phonetic1": "ɪˈnɔ:rməs"
+  },
+  {
+    "word": "unhappiness",
+    "trans": [
+      {
+        "cn": "n.不快，痛苦，不幸"
+      }
+    ],
+    "phonetic0": "ʌn'hæpɪnəs",
+    "phonetic1": "ʌnˈhæpɪnɪs"
+  },
+  {
+    "word": "overhear",
+    "trans": [
+      {
+        "cn": "vt.偶然听到，无意中听到，偷听"
+      },
+      {
+        "cn": "vi.无意中听到，偷听到"
+      }
+    ],
+    "phonetic0": "ˌəʊvəˈhɪə(r)",
+    "phonetic1": "ˌoʊvərˈhɪr"
+  },
+  {
+    "word": "rumour",
+    "trans": [
+      {
+        "cn": "n.谣言"
+      }
+    ],
+    "phonetic0": "'ruːmə",
+    "phonetic1": "'ru:mə"
+  },
+  {
+    "word": "turn against",
+    "trans": [
+      {
+        "cn": "(使)与……为敌"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "syndrome",
+    "trans": [
+      {
+        "cn": "n.综合征，综合症状，典型表现"
+      }
+    ],
+    "phonetic0": "ˈsɪndrəʊm",
+    "phonetic1": "ˈsɪndroʊm"
+  },
+  {
+    "word": "swing",
+    "trans": [
+      {
+        "cn": "vt.& vi.（使）摇摆，（使）摇荡"
+      },
+      {
+        "cn": "n.摇摆，摆动，摆程，振幅，秋千，音律"
+      },
+      {
+        "cn": "vt.使旋转，使做曲线运动，挥舞，悬吊"
+      },
+      {
+        "cn": "vi.悬摆，迅速打击，侧转，转弯，轻快摇摆地走"
+      }
+    ],
+    "phonetic0": "swɪŋ",
+    "phonetic1": "swɪŋ"
+  },
+  {
+    "word": "hormonal",
+    "trans": [
+      {
+        "cn": "adj.激素的，荷尔蒙的，生理的"
+      }
+    ],
+    "phonetic0": "hɔ:'məʊnl",
+    "phonetic1": "hɔ:'moʊnl"
+  },
+  {
+    "word": "on the heels of",
+    "trans": [
+      {
+        "cn": "紧接着"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "conception",
+    "trans": [
+      {
+        "cn": "n.受精，怀孕，胚胎，概念，设想，构想"
+      }
+    ],
+    "phonetic0": "kənˈsepʃn",
+    "phonetic1": "kənˈsɛpʃən"
+  },
+  {
+    "word": "endurance",
+    "trans": [
+      {
+        "cn": "n.耐久（力），持久（力），忍耐，忍耐力"
+      }
+    ],
+    "phonetic0": "ɪnˈdjʊərəns",
+    "phonetic1": "ɪnˈdʊrəns"
+  },
+  {
+    "word": "gender",
+    "trans": [
+      {
+        "cn": "n.<语>性某些语言的（阳性、阴性和中性，不同的性有不同的词尾等），性别，某些语言的（名词、代词和形容词）性的区分"
+      }
+    ],
+    "phonetic0": "ˈdʒendə(r)",
+    "phonetic1": "ˈdʒɛndɚ"
+  },
+  {
+    "word": "roughly",
+    "trans": [
+      {
+        "cn": "adv.粗略地，大体上，大致上，粗暴地"
+      }
+    ],
+    "phonetic0": "ˈrʌfli",
+    "phonetic1": "ˈrʌflɪ"
+  },
+  {
+    "word": "hip",
+    "trans": [
+      {
+        "cn": "n.臀部，建筑学屋脊，臀围（尺寸），臀部…的"
+      },
+      {
+        "cn": "adj.（衣服、音乐等方面）时髦的，赶时髦的"
+      },
+      {
+        "cn": "vt.使…的髋关节脱臼，损伤…的髋部，建筑学给（房屋）建屋脊，使知晓，使了解，告诉，使消息灵通"
+      }
+    ],
+    "phonetic0": "hɪp",
+    "phonetic1": "hɪp"
+  },
+  {
+    "word": "cosmetic",
+    "trans": [
+      {
+        "cn": "n.化妆品，美发油，发蜡，装饰品，美容术"
+      },
+      {
+        "cn": "adj.化妆用的，美容的，装点门面的，表面的"
+      }
+    ],
+    "phonetic0": "kɒzˈmetɪk",
+    "phonetic1": "kɑ:zˈmetɪk"
+  },
+  {
+    "word": "client",
+    "trans": [
+      {
+        "cn": "n.顾客，当事人，诉讼委托人，计算机客户端"
+      }
+    ],
+    "phonetic0": "ˈklaɪənt",
+    "phonetic1": "ˈklaɪənt"
+  },
+  {
+    "word": "youthful",
+    "trans": [
+      {
+        "cn": "adj.年轻的，有朝气的，青年的，早期的，年轻气盛的"
+      }
+    ],
+    "phonetic0": "ˈju:θfl",
+    "phonetic1": "ˈjuθfəl"
+  },
+  {
+    "word": "anthropologist",
+    "trans": [
+      {
+        "cn": "n.人类学家"
+      }
+    ],
+    "phonetic0": "ˌænθrəˈpɒlədʒɪst",
+    "phonetic1": "ˌænθrəˈpɑ:lədʒɪst"
+  },
+  {
+    "word": "outstrip",
+    "trans": [
+      {
+        "cn": "vt.超过，越过，优于，胜于，做得比…更好，跑过，逃脱"
+      }
+    ],
+    "phonetic0": "ˌaʊtˈstrɪp",
+    "phonetic1": "aʊtˈstrɪp"
+  },
+  {
+    "word": "antisocial",
+    "trans": [
+      {
+        "cn": "adj.反社会的，危害社会安宁的，违反公益的，不喜欢社交的"
+      }
+    ],
+    "phonetic0": "ˌæntiˈsəʊʃl",
+    "phonetic1": "ˌæntiˈsoʊʃl"
+  },
+  {
+    "word": "susceptible",
+    "trans": [
+      {
+        "cn": "adj.易受影响的，易受感染的，善感的，可以接受或允许的"
+      }
+    ],
+    "phonetic0": "səˈseptəbl",
+    "phonetic1": "səˈsɛptəbəl"
+  },
+  {
+    "word": "infectious",
+    "trans": [
+      {
+        "cn": "adj.传染的，有传染性的，易传染的，有感染力的"
+      }
+    ],
+    "phonetic0": "ɪnˈfekʃəs",
+    "phonetic1": "ɪnˈfɛkʃəs"
+  },
+  {
+    "word": "side effect",
+    "trans": [
+      {
+        "cn": "(药物等的)副作用"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "bowel",
+    "trans": [
+      {
+        "cn": "n.肠，内部，同情心，怜悯心"
+      }
+    ],
+    "phonetic0": "ˈbaʊəl",
+    "phonetic1": "baʊl"
+  },
+  {
+    "word": "motherhood",
+    "trans": [
+      {
+        "cn": "n.母亲身份，母性，母亲们（总称）"
+      }
+    ],
+    "phonetic0": "ˈmʌðəhʊd",
+    "phonetic1": "ˈmʌðərhʊd"
+  },
+  {
+    "word": "evolve",
+    "trans": [
+      {
+        "cn": "vt.使发展，使进化，设计，制订出，发出，散发"
+      },
+      {
+        "cn": "vi.发展，生通过进化进程发展或发生"
+      }
+    ],
+    "phonetic0": "iˈvɒlv",
+    "phonetic1": "iˈvɑ:lv"
+  },
+  {
+    "word": "rear",
+    "trans": [
+      {
+        "cn": "vt.饲养，养育，抚养，养育"
+      },
+      {
+        "cn": "vt.& vi.抬起"
+      },
+      {
+        "cn": "n.后部，背面，背后，臀部，（舰队或军队的）后方，后尾，殿后部队，〈英口〉厕所"
+      },
+      {
+        "cn": "vi.直立，高耸"
+      },
+      {
+        "cn": "adj.后面的，后部的"
+      }
+    ],
+    "phonetic0": "rɪə(r)",
+    "phonetic1": "rɪr"
+  },
+  {
+    "word": "parenthood",
+    "trans": [
+      {
+        "cn": "n.亲子关系，父母身分"
+      }
+    ],
+    "phonetic0": "ˈpeərənthʊd",
+    "phonetic1": "ˈperənthʊd"
+  }
+]

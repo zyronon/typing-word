@@ -1,0 +1,1118 @@
+[
+  {
+    "word": "classroom",
+    "trans": [
+      {
+        "cn": "n.教室，课堂，教学活动，教学方法"
+      }
+    ],
+    "phonetic0": "ˈklɑ:sru:m",
+    "phonetic1": "ˈklæsru:m"
+  },
+  {
+    "word": "window",
+    "trans": [
+      {
+        "cn": "n.窗，窗户，窗口，〈美俚〉眼镜"
+      }
+    ],
+    "phonetic0": "ˈwɪndəʊ",
+    "phonetic1": "ˈwɪndoʊ"
+  },
+  {
+    "word": "blackboard",
+    "trans": [
+      {
+        "cn": "n.黑板"
+      }
+    ],
+    "phonetic0": "ˈblækbɔ:d",
+    "phonetic1": "ˈblækbɔ:rd"
+  },
+  {
+    "word": "light",
+    "trans": [
+      {
+        "cn": "n.光，发光体，电灯，点火器"
+      },
+      {
+        "cn": "adj.轻的，明亮的，浅色的，少量的"
+      },
+      {
+        "cn": "v.点燃，照亮，用光指引"
+      },
+      {
+        "cn": "adv.轻地，轻装地"
+      }
+    ],
+    "phonetic0": "laɪt",
+    "phonetic1": "laɪt"
+  },
+  {
+    "word": "picture",
+    "trans": [
+      {
+        "cn": "n.照片，画像，图画，图片，影片，情景"
+      },
+      {
+        "cn": "vt.构想，想象，描绘，画，描述"
+      }
+    ],
+    "phonetic0": "ˈpɪktʃə(r)",
+    "phonetic1": "ˈpɪktʃɚ"
+  },
+  {
+    "word": "door",
+    "trans": [
+      {
+        "cn": "n.门，户，出入口，一家户，通道"
+      }
+    ],
+    "phonetic0": "dɔ:(r)",
+    "phonetic1": "dɔr,dor"
+  },
+  {
+    "word": "teacher's desk",
+    "trans": [
+      {
+        "cn": "讲台"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "computer",
+    "trans": [
+      {
+        "cn": "n.（电子）计算机，电脑"
+      }
+    ],
+    "phonetic0": "kəmˈpju:tə(r)",
+    "phonetic1": "kəmˈpjutɚ"
+  },
+  {
+    "word": "fan",
+    "trans": [
+      {
+        "cn": "n.扇子，风扇，迷，粉丝，扇形物，扬谷机"
+      },
+      {
+        "cn": "vt.扇动，吹拂，扬去"
+      },
+      {
+        "cn": "vi.成扇形"
+      }
+    ],
+    "phonetic0": "fæn",
+    "phonetic1": "fæn"
+  },
+  {
+    "word": "wall",
+    "trans": [
+      {
+        "cn": "n.墙，屏障，隔阂，壁垒"
+      },
+      {
+        "cn": "vt.& vi.筑墙围住，用墙隔开，围以墙"
+      },
+      {
+        "cn": "adj.墙壁的"
+      }
+    ],
+    "phonetic0": "wɔ:l",
+    "phonetic1": "wɔl"
+  },
+  {
+    "word": "floor",
+    "trans": [
+      {
+        "cn": "n.地面，地板，楼层，底部，议员席"
+      },
+      {
+        "cn": "vt.铺地板，击败，打倒"
+      }
+    ],
+    "phonetic0": "flɔ:(r)",
+    "phonetic1": "flor"
+  },
+  {
+    "word": "really",
+    "trans": [
+      {
+        "cn": "adv.真，真正，实在，果真，实际上，事实上"
+      }
+    ],
+    "phonetic0": "ˈri:əli",
+    "phonetic1": "ˈrili"
+  },
+  {
+    "word": "near",
+    "trans": [
+      {
+        "cn": "adv.（空间）在近处，在附近，（时间）临近，（程度）几乎"
+      },
+      {
+        "cn": "prep.（表示程度）接近，（表示位置）靠近，（表示时间）将近，接近于（某种状态）"
+      },
+      {
+        "cn": "adj.近的，亲密的，近似，（亲属关系）近亲"
+      }
+    ],
+    "phonetic0": "nɪə(r)",
+    "phonetic1": "nɪr"
+  },
+  {
+    "word": "TV",
+    "trans": [
+      {
+        "cn": "abbr.television 电视机，total volume 总量，test vehicle 实验用飞行器，terminal velocity 终端速度"
+      }
+    ],
+    "phonetic0": "ˌti:",
+    "phonetic1": "ˌti:'vi:"
+  },
+  {
+    "word": "clean",
+    "trans": [
+      {
+        "cn": "adj.清洁的，整齐的，新的，正派的"
+      },
+      {
+        "cn": "vt.& vi.（使）清洁，变干净，除去…的灰尘，使…干净"
+      },
+      {
+        "cn": "vi.清扫"
+      },
+      {
+        "cn": "adv.完全地，彻底地"
+      },
+      {
+        "cn": "n.打扫"
+      }
+    ],
+    "phonetic0": "kli:n",
+    "phonetic1": "klin"
+  },
+  {
+    "word": "help",
+    "trans": [
+      {
+        "cn": "vt.& vi.帮助，有助于， 有利于"
+      },
+      {
+        "cn": "vt.治疗，避免，招待（客人），给…盛（饭、菜）"
+      },
+      {
+        "cn": "n.帮助，助手，补救办法，有用"
+      },
+      {
+        "cn": "vi.（在餐桌旁）招待，侍应，作仆人（或店员、服务员等）"
+      },
+      {
+        "cn": "int.呼救语救命！"
+      }
+    ],
+    "phonetic0": "help",
+    "phonetic1": "hɛlp"
+  },
+  {
+    "word": "schoolbag",
+    "trans": [
+      {
+        "cn": "n. 书包"
+      }
+    ],
+    "phonetic0": "'skuːlbæɡ",
+    "phonetic1": "ˈsku:lbæg"
+  },
+  {
+    "word": "maths book",
+    "trans": [
+      {
+        "cn": "数学书"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "English book",
+    "trans": [
+      {
+        "cn": "英语书"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "Chinese book",
+    "trans": [
+      {
+        "cn": "语文书"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "storybook",
+    "trans": [
+      {
+        "cn": "n.故事书，小说"
+      }
+    ],
+    "phonetic0": "ˈstɔ:ribʊk",
+    "phonetic1": "ˈstor-"
+  },
+  {
+    "word": "candy",
+    "trans": [
+      {
+        "cn": "n.糖果，冰糖，〈美俚〉古柯碱，可卡因，巧克力"
+      },
+      {
+        "cn": "vt.（用糖煮过以）保存，使结晶为砂糖"
+      },
+      {
+        "cn": "adj.〈美俚〉（服饰）花哨的，甜言蜜语的"
+      }
+    ],
+    "phonetic0": "ˈkændi",
+    "phonetic1": "ˈkændi"
+  },
+  {
+    "word": "notebook",
+    "trans": [
+      {
+        "cn": "n.笔记簿，笔记本电脑，手册，笔记本"
+      }
+    ],
+    "phonetic0": "ˈnəʊtbʊk",
+    "phonetic1": "ˈnoʊtbʊk"
+  },
+  {
+    "word": "toy",
+    "trans": [
+      {
+        "cn": "n.玩具，玩物，小装饰品，无实用价值的东西"
+      },
+      {
+        "cn": "vi.玩弄，不认真地考虑"
+      },
+      {
+        "cn": "adj.玩具的，作玩具的，个头很小的，小体型品种的"
+      }
+    ],
+    "phonetic0": "tɔɪ",
+    "phonetic1": "tɔɪ"
+  },
+  {
+    "word": "key",
+    "trans": [
+      {
+        "cn": "n.钥匙，（打字机等的）键，关键，线索，秘诀，（音乐的）调"
+      },
+      {
+        "cn": "vt.键入，锁上，调节…的音调，提供线索"
+      },
+      {
+        "cn": "vi.使用钥匙"
+      },
+      {
+        "cn": "adj.关键的，主要的"
+      }
+    ],
+    "phonetic0": "ki:",
+    "phonetic1": "ki"
+  },
+  {
+    "word": "wow",
+    "trans": [
+      {
+        "cn": "int.哇！呀！"
+      },
+      {
+        "cn": "n.一鸣惊人，音符失真，声音走音，魔兽世界（游戏）"
+      },
+      {
+        "cn": "vt.<俚>使惊叹，使佩服，使热烈叫好"
+      }
+    ],
+    "phonetic0": "waʊ",
+    "phonetic1": "waʊ"
+  },
+  {
+    "word": "lost",
+    "trans": [
+      {
+        "cn": "adj.失去的，迷路的，不知所措的"
+      },
+      {
+        "cn": "v.遗失，失去（ lose的过去式和过去分词），（使）失去（所需要的东西，尤指钱），（因事故、年老、死亡等）损失，浪费"
+      }
+    ],
+    "phonetic0": "lɒst",
+    "phonetic1": "lɔ:st"
+  },
+  {
+    "word": "so much",
+    "trans": [
+      {
+        "cn": "非常地"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "cute",
+    "trans": [
+      {
+        "cn": "adj.漂亮的，娇小可爱的，机灵的，精明的，矫揉造作的"
+      }
+    ],
+    "phonetic0": "kju:t",
+    "phonetic1": "kjut"
+  },
+  {
+    "word": "strong",
+    "trans": [
+      {
+        "cn": "adj.强的，坚强的，强烈的，强壮的"
+      },
+      {
+        "cn": "adv.强劲地，猛烈地，大大地，坚强地"
+      }
+    ],
+    "phonetic0": "strɒŋ",
+    "phonetic1": "strɔ:ŋ"
+  },
+  {
+    "word": "friendly",
+    "trans": [
+      {
+        "cn": "adj.友好的，亲密的，有帮助的，互助的"
+      },
+      {
+        "cn": "adv.友好地，朋友般地"
+      }
+    ],
+    "phonetic0": "ˈfrendli",
+    "phonetic1": "ˈfrɛndli"
+  },
+  {
+    "word": "quiet",
+    "trans": [
+      {
+        "cn": "adj.清静的，僻静的，不起眼的，不激动的"
+      },
+      {
+        "cn": "vt.& vi.安静下来，使…安静，平静"
+      },
+      {
+        "cn": "vt.减轻（病痛、疑虑、恐惧等），法律确定（产权等）"
+      },
+      {
+        "cn": "prep.克制的，稳重的，不张扬的"
+      },
+      {
+        "cn": "n.宁静，寂静"
+      },
+      {
+        "cn": "adv.安静地，平静地"
+      }
+    ],
+    "phonetic0": "ˈkwaɪət",
+    "phonetic1": "ˈkwaɪɪt"
+  },
+  {
+    "word": "hair",
+    "trans": [
+      {
+        "cn": "n.头发，毛发，（动、植物的）毛，一丝丝，些微，毛发织物"
+      }
+    ],
+    "phonetic0": "heə(r)",
+    "phonetic1": "her"
+  },
+  {
+    "word": "shoe",
+    "trans": [
+      {
+        "cn": "n.鞋，蹄铁，（汽车轮的）制动器，煞车，外胎"
+      },
+      {
+        "cn": "vt.为…钉蹄铁，给…穿上鞋，装防护物"
+      }
+    ],
+    "phonetic0": "ʃu:",
+    "phonetic1": "ʃu"
+  },
+  {
+    "word": "glasses",
+    "trans": [
+      {
+        "cn": "n. [轻] 眼镜；玻璃（glass的复数形式）；双筒望远镜"
+      },
+      {
+        "cn": "v. 把…装入玻璃容器内；给…装上玻璃（glass的第三人称单数形式）"
+      }
+    ],
+    "phonetic0": "[ˈɡlɑːsɪz]",
+    "phonetic1": "[ˈɡlæsɪz]"
+  },
+  {
+    "word": "his",
+    "trans": [
+      {
+        "cn": "pron.(he的所有格)他的，(he的物主代词)他的东西det.属于他的，用于名词前，自己的，指某人的，上帝的"
+      }
+    ],
+    "phonetic0": "hɪz",
+    "phonetic1": "hɪz"
+  },
+  {
+    "word": "or",
+    "trans": [
+      {
+        "cn": "conj.或，或者，还是，不然，否则，左右"
+      },
+      {
+        "cn": "prep.<古、诗>在…之前，比…更早"
+      },
+      {
+        "cn": "n.纹章黑金色、黑色"
+      }
+    ],
+    "phonetic0": "ɔ:(r)",
+    "phonetic1": "ɔr"
+  },
+  {
+    "word": "right",
+    "trans": [
+      {
+        "cn": "adv.立刻，马上，向右，右边，恰当地，一直"
+      },
+      {
+        "cn": "adj.右方的，正确的，合适的，好的，正常的"
+      },
+      {
+        "cn": "n.正确，正当，右边，权利，右手"
+      },
+      {
+        "cn": "vt.纠正，扶直，使正，整理，补偿"
+      },
+      {
+        "cn": "vi.（船舶等）复正，恢复平稳"
+      }
+    ],
+    "phonetic0": "raɪt",
+    "phonetic1": "raɪt"
+  },
+  {
+    "word": "hat",
+    "trans": [
+      {
+        "cn": "n.帽子，（帽子所表示的）职位，职务"
+      },
+      {
+        "cn": "vt.给…戴上帽子，为…提供帽子"
+      },
+      {
+        "cn": "vi.供应帽子，制造帽子"
+      }
+    ],
+    "phonetic0": "hæt",
+    "phonetic1": "hæt"
+  },
+  {
+    "word": "her",
+    "trans": [
+      {
+        "cn": "pron.(she的宾格)她，(she的所有格)她的，她，指某个国家，（一艘）船"
+      }
+    ],
+    "phonetic0": "hə(r)",
+    "phonetic1": "ɚ,hɚr"
+  },
+  {
+    "word": "bedroom",
+    "trans": [
+      {
+        "cn": "n.卧室，寝室"
+      },
+      {
+        "cn": "adj.<美>城郊住宅区的，两性关系的，男女性爱的"
+      }
+    ],
+    "phonetic0": "ˈbedru:m",
+    "phonetic1": "-ˌrʊm"
+  },
+  {
+    "word": "living room",
+    "trans": [
+      {
+        "cn": "n. 客厅；起居室"
+      }
+    ],
+    "phonetic0": "['lɪvɪŋ ru:m]",
+    "phonetic1": "[ˈlɪvɪŋ ruːm]"
+  },
+  {
+    "word": "study",
+    "trans": [
+      {
+        "cn": "n.学习，研究，课题，书房，结论"
+      },
+      {
+        "cn": "vi.考虑，沉思，默想，努力"
+      },
+      {
+        "cn": "vt.想出，详细地检查，背诵（台词等），为…费心思"
+      }
+    ],
+    "phonetic0": "ˈstʌdi",
+    "phonetic1": "ˈstʌdi"
+  },
+  {
+    "word": "kitchen",
+    "trans": [
+      {
+        "cn": "n.厨房，厨师"
+      }
+    ],
+    "phonetic0": "ˈkɪtʃɪn",
+    "phonetic1": "ˈkɪtʃən"
+  },
+  {
+    "word": "bathroom",
+    "trans": [
+      {
+        "cn": "n.浴室，盥洗室，（带抽水马桶的）厕所，卫生间"
+      }
+    ],
+    "phonetic0": "ˈbɑ:θru:m",
+    "phonetic1": "ˈbæθru:m"
+  },
+  {
+    "word": "bed",
+    "trans": [
+      {
+        "cn": "n.床，苗圃，河床，（地下由黏土、岩石等构成的）地层"
+      },
+      {
+        "cn": "vt.把…固定在，（某人）发生性关系，给人铺床"
+      },
+      {
+        "cn": "vi.上床，分层"
+      }
+    ],
+    "phonetic0": "bed",
+    "phonetic1": "bɛd"
+  },
+  {
+    "word": "phone",
+    "trans": [
+      {
+        "cn": "n.电话，听筒，（发声或使用声音的）工具，说某种语言的"
+      },
+      {
+        "cn": "vt.& vi.打电话（给某人）"
+      }
+    ],
+    "phonetic0": "fəʊn",
+    "phonetic1": "foʊn"
+  },
+  {
+    "word": "table",
+    "trans": [
+      {
+        "cn": "n.表，目录，桌子，手术台，工作台，游戏台，平地层"
+      },
+      {
+        "cn": "vt.制表，搁置，嵌合，搁置"
+      },
+      {
+        "cn": "adj.桌子的"
+      }
+    ],
+    "phonetic0": "ˈteɪbl",
+    "phonetic1": "ˈtebəl"
+  },
+  {
+    "word": "sofa",
+    "trans": [
+      {
+        "cn": "n.沙发"
+      }
+    ],
+    "phonetic0": "ˈsəʊfə",
+    "phonetic1": "ˈsoʊfə"
+  },
+  {
+    "word": "fridge",
+    "trans": [
+      {
+        "cn": "n.电冰箱，冷冻机"
+      }
+    ],
+    "phonetic0": "frɪdʒ",
+    "phonetic1": "frɪdʒ"
+  },
+  {
+    "word": "find",
+    "trans": [
+      {
+        "cn": "v.发现，找到，查明，发觉"
+      },
+      {
+        "cn": "n.发现物，被发现的人"
+      }
+    ],
+    "phonetic0": "faɪnd",
+    "phonetic1": "faɪnd"
+  },
+  {
+    "word": "them",
+    "trans": [
+      {
+        "cn": "pron.他们，她们，它们"
+      }
+    ],
+    "phonetic0": "ðəm",
+    "phonetic1": "ðəm"
+  },
+  {
+    "word": "beef",
+    "trans": [
+      {
+        "cn": "n.牛肉，菜牛（饲养以供肉食的牛），体力，怨言，牢骚"
+      },
+      {
+        "cn": "vi.抱怨，大发牢骚"
+      }
+    ],
+    "phonetic0": "bi:f",
+    "phonetic1": "bif"
+  },
+  {
+    "word": "chicken",
+    "trans": [
+      {
+        "cn": "n.鸡，鸡肉，胆小鬼，懦夫"
+      },
+      {
+        "cn": "adj.胆怯的，幼小的，胆小的"
+      },
+      {
+        "cn": "vi.以畏缩的方式去做，失去勇气，在最后一刻因胆怯而退出了"
+      }
+    ],
+    "phonetic0": "ˈtʃɪkɪn",
+    "phonetic1": "ˈtʃɪkən"
+  },
+  {
+    "word": "noodles",
+    "trans": [
+      {
+        "cn": "面条"
+      }
+    ],
+    "phonetic0": "ˈnu:dlz",
+    "phonetic1": "ˈnudlz"
+  },
+  {
+    "word": "soup",
+    "trans": [
+      {
+        "cn": "n.汤，羹，浓雾，硝化甘油炸药，困境"
+      },
+      {
+        "cn": "vt.加大马力"
+      }
+    ],
+    "phonetic0": "su:p",
+    "phonetic1": "sup"
+  },
+  {
+    "word": "vegetable",
+    "trans": [
+      {
+        "cn": "n.蔬菜，植物人"
+      },
+      {
+        "cn": "adj.蔬菜的，植物的"
+      }
+    ],
+    "phonetic0": "ˈvedʒtəbl",
+    "phonetic1": "ˈvɛdʒɪtə-"
+  },
+  {
+    "word": "chopsticks",
+    "trans": [
+      {
+        "cn": "n.筷子，筷子( chopstick的名词复数 )"
+      }
+    ],
+    "phonetic0": "'tʃɒpstɪks",
+    "phonetic1": "'tʃɑ:pstɪks"
+  },
+  {
+    "word": "bowl",
+    "trans": [
+      {
+        "cn": "n.碗，一碗东西，碗状物，体木球"
+      },
+      {
+        "cn": "vi.参加保龄球赛，体投球，体玩滚木球，稳而快地行驶"
+      },
+      {
+        "cn": "vt.投掷或滚动（球），滚球得分，表演保龄球，打倒，撞击"
+      }
+    ],
+    "phonetic0": "bəʊl",
+    "phonetic1": "boʊl"
+  },
+  {
+    "word": "fork",
+    "trans": [
+      {
+        "cn": "n.叉（挖掘用的园艺工具），餐叉，叉状物，（自行车或摩托车的）车叉子"
+      },
+      {
+        "cn": "vi.分叉，分歧"
+      },
+      {
+        "cn": "vt.走岔路，叉，耙"
+      }
+    ],
+    "phonetic0": "fɔ:k",
+    "phonetic1": "fɔ:rk"
+  },
+  {
+    "word": "knife",
+    "trans": [
+      {
+        "cn": "n.刀，匕首，刃部，手术刀"
+      },
+      {
+        "cn": "vt.切割，刺，伤害"
+      },
+      {
+        "cn": "vi.劈开，划过"
+      }
+    ],
+    "phonetic0": "naɪf",
+    "phonetic1": "naɪf"
+  },
+  {
+    "word": "spoon",
+    "trans": [
+      {
+        "cn": "n.匙，调羹，一匙的量，匙状物，匙桨"
+      },
+      {
+        "cn": "vt.用汤匙舀取，向上击"
+      },
+      {
+        "cn": "vi.轻轻向上击，用匙状假饵钓鱼，痴爱，迷恋"
+      }
+    ],
+    "phonetic0": "spu:n",
+    "phonetic1": "spun"
+  },
+  {
+    "word": "dinner",
+    "trans": [
+      {
+        "cn": "n.正餐，主餐，宴会，晚餐"
+      }
+    ],
+    "phonetic0": "ˈdɪnə(r)",
+    "phonetic1": "ˈdɪnɚ"
+  },
+  {
+    "word": "ready",
+    "trans": [
+      {
+        "cn": "adj.准备好的，现成的，即时的，敏捷的，情愿的，即将的"
+      },
+      {
+        "cn": "vt.做好…的准备"
+      },
+      {
+        "cn": "adv.预先，已完成地"
+      },
+      {
+        "cn": "n.现款"
+      }
+    ],
+    "phonetic0": "ˈredi",
+    "phonetic1": "ˈrɛdi"
+  },
+  {
+    "word": "help yourself",
+    "trans": [
+      {
+        "cn": "为（自己）取用"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "pass",
+    "trans": [
+      {
+        "cn": "vt.& vi.走过，通过，批准，度过"
+      },
+      {
+        "cn": "vt.传球，及格，发生，不要"
+      },
+      {
+        "cn": "n.通道，通行证，关口，越过"
+      }
+    ],
+    "phonetic0": "pɑ:s",
+    "phonetic1": "pæs"
+  },
+  {
+    "word": "try",
+    "trans": [
+      {
+        "cn": "vt.& vi.试图，努力，实验，审判，考验"
+      },
+      {
+        "cn": "n.尝试，实验，橄触球，（因触球获得的）向球门踢球的权利"
+      }
+    ],
+    "phonetic0": "traɪ",
+    "phonetic1": "traɪ"
+  },
+  {
+    "word": "parents",
+    "trans": [
+      {
+        "cn": "n. 父母；双亲（parent的复数）"
+      },
+      {
+        "cn": "v. 教养；引起（parent的三单形式）"
+      }
+    ],
+    "phonetic0": "['peərənts]",
+    "phonetic1": "['perənts]"
+  },
+  {
+    "word": "cousin",
+    "trans": [
+      {
+        "cn": "n.堂表兄弟姊妹，远亲，同辈"
+      }
+    ],
+    "phonetic0": "ˈkʌzn",
+    "phonetic1": "'kʌzn"
+  },
+  {
+    "word": "uncle",
+    "trans": [
+      {
+        "cn": "n.叔叔，伯父，舅父，姑父，姨父"
+      }
+    ],
+    "phonetic0": "ˈʌŋkl",
+    "phonetic1": "ˈʌŋkəl"
+  },
+  {
+    "word": "aunt",
+    "trans": [
+      {
+        "cn": "n.阿姨，姨母，姑妈，舅妈，婶娘"
+      }
+    ],
+    "phonetic0": "ɑ:nt",
+    "phonetic1": "ænt"
+  },
+  {
+    "word": "baby brother",
+    "trans": [
+      {
+        "cn": "小弟弟"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "doctor",
+    "trans": [
+      {
+        "cn": "n.医生，大夫，博士，神学家，医疗设备"
+      },
+      {
+        "cn": "vt.& vi.医疗，行医"
+      },
+      {
+        "cn": "vt.修理，装配，假造，搀杂，修改，修饰"
+      }
+    ],
+    "phonetic0": "ˈdɒktə(r)",
+    "phonetic1": "ˈdɑ:ktə(r)"
+  },
+  {
+    "word": "cook",
+    "trans": [
+      {
+        "cn": "vt.& vi.烹调，编造，篡改，密谋"
+      },
+      {
+        "cn": "vt.烹调，煮"
+      },
+      {
+        "cn": "vi.烹调，做菜"
+      },
+      {
+        "cn": "n.厨师，厨子"
+      }
+    ],
+    "phonetic0": "kʊk",
+    "phonetic1": "kʊk"
+  },
+  {
+    "word": "driver",
+    "trans": [
+      {
+        "cn": "n.驾驶员，司机，驱动器，驱动程序，驱逐者，驱赶者，（高尔夫球）球棒"
+      }
+    ],
+    "phonetic0": "ˈdraɪvə(r)",
+    "phonetic1": "ˈdraɪvɚ"
+  },
+  {
+    "word": "farmer",
+    "trans": [
+      {
+        "cn": "n.农场主，农民，承包人"
+      }
+    ],
+    "phonetic0": "ˈfɑ:mə(r)",
+    "phonetic1": "ˈfɑ:rmə(r)"
+  },
+  {
+    "word": "nurse",
+    "trans": [
+      {
+        "cn": "n.护士，看护，奶妈，保姆，阿妈，保育员，保护人，培养者，养成所，发祥地，植保护树，虫保护虫，保育虫，动世代交替的无性期的个体"
+      },
+      {
+        "cn": "vt.& vi.护理，照料，喂，吃奶"
+      },
+      {
+        "cn": "vt.培育，怀抱，搂抱，调治"
+      }
+    ],
+    "phonetic0": "nɜ:s",
+    "phonetic1": "nɜ:rs"
+  },
+  {
+    "word": "people",
+    "trans": [
+      {
+        "cn": "n.人，人类，居民，人民，种族"
+      },
+      {
+        "cn": "vt.居住于，布满，使住满人，在…殖民，把动物放养在"
+      }
+    ],
+    "phonetic0": "ˈpi:pl",
+    "phonetic1": "ˈpipəl"
+  },
+  {
+    "word": "but",
+    "trans": [
+      {
+        "cn": "conj.但是，而是，除了，只因为"
+      },
+      {
+        "cn": "prep.除…以外"
+      },
+      {
+        "cn": "adv.只，不过，只是，另一方面"
+      },
+      {
+        "cn": "n.借口，推辞，但是，反对"
+      },
+      {
+        "cn": "pron.关系代词，意义相当于 who…not， which…not"
+      },
+      {
+        "cn": "vt.对…说“但是”"
+      }
+    ],
+    "phonetic0": "bət",
+    "phonetic1": "bʌt,bət"
+  },
+  {
+    "word": "little",
+    "trans": [
+      {
+        "cn": "adj.小的，琐碎的，娇小的，幼小的"
+      },
+      {
+        "cn": "adv.不多，略微，少许，一点，短时间地"
+      },
+      {
+        "cn": "n.（表示否定）微少，没有多少，短时间det.（数量上）微少的，少到几乎没有的，（a little）少量的，一些"
+      }
+    ],
+    "phonetic0": "ˈlɪtl",
+    "phonetic1": "ˈlɪtl"
+  },
+  {
+    "word": "puppy",
+    "trans": [
+      {
+        "cn": "n.小狗，幼犬，浅薄自负的年轻男子，狂妄自大的小伙子，呆笨的花花公子，〈美俚〉脚"
+      }
+    ],
+    "phonetic0": "ˈpʌpi",
+    "phonetic1": "ˈpʌpi"
+  },
+  {
+    "word": "football player",
+    "trans": [
+      {
+        "cn": "足球运动员"
+      }
+    ],
+    "phonetic0": "",
+    "phonetic1": ""
+  },
+  {
+    "word": "job",
+    "trans": [
+      {
+        "cn": "n.（一件）工作，职责，职业，（作为一个单元处理的）作业"
+      },
+      {
+        "cn": "vt.承包，代客买卖"
+      },
+      {
+        "cn": "vi.做零工，作包工，打杂"
+      }
+    ],
+    "phonetic0": "dʒɒb",
+    "phonetic1": "dʒɑ:b"
+  },
+  {
+    "word": "basketball",
+    "trans": [
+      {
+        "cn": "n.篮球，体篮球运动"
+      }
+    ],
+    "phonetic0": "ˈbɑ:skɪtbɔ:l",
+    "phonetic1": "ˈbæskɪtbɔ:l"
+  }
+]

@@ -788,25 +788,37 @@ const childrenEnglish = [{
 
 const newDicts = [...chinaExam, ...internationalExam, ...childrenEnglish,]
 
-function c() {
+async function sleep(val) {
+  return new Promise(resolve => {
+    setTimeout(resolve, val)
+  })
+}
+
+async function c() {
   let dict = newDicts[0]
   let url = `../public/dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
   let str = fs.readFileSync(url, "utf8");
   let list = JSON.parse(str)
-  let s = list.map(v => v.word)
-  dict.words = s
-  console.log('s', dict)
+  dict.words = list.map(v => v.word)
 
+  console.log('名字', dict.name)
+  await sleep(5000)
   axios({
-    url: 'http://localhost/index.php/v1/support/addDict',
-    method: 'post',
-    data: dict
+    url: 'http://localhost/index.php/v1/support/addDict', method: 'post', data: dict
   }).then(r => {
-    if (!r.data.success) {
-      fail(v.word)
+    if (r.data.success) {
+      console.log('成功', r.data.data)
+      fs.writeFileSync('./failDict.txt', JSON.stringify(r.data.data, null, 2));
+      fs.writeFileSync(`./uploadDict/${dict.url}`, JSON.stringify(dict, null, 2));
+      fs.unlink(url, (err) => {
+        if (err) throw err;
+        console.log(dict.name, '已删除');
+      });
+    } else {
+      console.log('失败1', r.data.msg)
     }
   }).catch(r => {
-    fail(v.word)
+    console.log('失败2', r)
   })
 }
 

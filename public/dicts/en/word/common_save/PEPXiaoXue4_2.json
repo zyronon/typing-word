@@ -1,0 +1,9828 @@
+[
+  {
+    "id": 1,
+    "word": "first floor",
+    "trans": [
+      {
+        "cn": "一楼（美）；二楼（英）",
+        "en": "the floor of a building just above the one at the bottom level"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "二楼的一套公寓",
+        "tran": "a flat on the first floor"
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 2,
+    "word": "second floor",
+    "trans": [
+      {
+        "cn": "二楼",
+        "en": "the storey of a building immediately above the first and two floors up from the ground "
+      }
+    ],
+    "sentences": [
+      {
+        "v": "我的手表从三楼掉到了楼下，却依然完整无缺。",
+        "tran": "My watch still hangs together dropping from the second floor."
+      },
+      {
+        "v": "我一路快跑冲过狂热的甲虫，经过一条长廊通向二楼，我在往西面的楼梯下去，来到一楼，我感到心情愉快，好像处在早期动作侦探时代一样。",
+        "tran": "I sprint through beetle mania into the longhallway that bisects the second floor, down the west staircase to the first floor, grateful to be in the pre-motion-detector era."
+      },
+      {
+        "v": "但是这四个孩子都挤在二楼一扇窗户的周围，这意味着他们有救。",
+        "tran": "But all four of them were huddled around a second floor window, which meant they could be saved."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 3,
+    "word": "teacher's office",
+    "trans": [
+      {
+        "cn": "教师办公室"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "我们站在老师办公室外面，期待着考试的结果。",
+        "tran": "We stood outside the teacher's office, eager to know the result of the examination."
+      },
+      {
+        "v": "事先不敲门而进入老师办公室或者其他关着门的办公室，也是不允许的。",
+        "tran": "Entering a teacher's office or any office with a closed door without knocking first is not acceptable."
+      },
+      {
+        "v": "请你把这些花带到老师的办公室去好吗？",
+        "tran": "Would you like to take these flowers to the teacher's office?"
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 4,
+    "word": "library",
+    "trans": [
+      {
+        "cn": "图书馆",
+        "en": "a room or building containing books that can be looked at or borrowed"
+      }
+    ],
+    "phonetic0": "laɪˌbrɛrɪ",
+    "phonetic1": "ˈlaɪbrərɪ",
+    "sentences": [
+      {
+        "v": "公共图书馆",
+        "tran": "a public library"
+      },
+      {
+        "v": "图书馆的书",
+        "tran": "a library book "
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "librarian",
+            "tran": " 图书馆员；图书管理员"
+          },
+          {
+            "w": "librarianship",
+            "tran": " 图书馆事业；图书馆管理员职位；图书馆管理业务"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "数字图书馆",
+        "tran": "digital library"
+      },
+      {
+        "v": "在图书馆",
+        "tran": "in the library"
+      },
+      {
+        "v": "公共图书馆；公立图书馆",
+        "tran": "public library"
+      },
+      {
+        "v": "图书馆学；图书馆科学硕士",
+        "tran": "library science"
+      },
+      {
+        "v": "图书馆服务；程序库服务",
+        "tran": "library service"
+      },
+      {
+        "v": "大学图书馆",
+        "tran": "college library"
+      },
+      {
+        "v": "学校图书馆",
+        "tran": "school library"
+      },
+      {
+        "v": "国家图书馆",
+        "tran": "national library"
+      },
+      {
+        "v": "动态链接库",
+        "tran": "dynamic link library"
+      },
+      {
+        "v": "n. 美国国会图书馆",
+        "tran": "library of congress"
+      },
+      {
+        "v": "n. 借书证；图书证",
+        "tran": "library card"
+      },
+      {
+        "v": "[计]电子图书馆",
+        "tran": "electronic library"
+      },
+      {
+        "v": "库文件；链接库档案",
+        "tran": "library file"
+      },
+      {
+        "v": "流动图书馆；图书馆车；宣传车",
+        "tran": "mobile library"
+      },
+      {
+        "v": "图像库；图片库",
+        "tran": "image library"
+      },
+      {
+        "v": "n. 专供学者与专家做深入研究的图书馆",
+        "tran": "research library"
+      },
+      {
+        "v": "基因库；基因文库",
+        "tran": "gene library"
+      },
+      {
+        "v": "参考书阅览室",
+        "tran": "reference library"
+      },
+      {
+        "v": "专门图书馆",
+        "tran": "special library"
+      },
+      {
+        "v": "图形库",
+        "tran": "graphics library"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "图书馆，[图情]藏书室；文库",
+        "ws": [
+          {
+            "w": "athenaeum"
+          },
+          {
+            "w": "bibliotheca"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 5,
+    "word": "playground",
+    "trans": [
+      {
+        "cn": "操场",
+        "en": "an area for children to play, especially at a school or in a park, that often has special equipment for climbing on, riding on etc"
+      }
+    ],
+    "phonetic0": "'ple'graʊnd",
+    "phonetic1": "'pleɪgraʊnd",
+    "sentences": [
+      {
+        "v": "在操场上叫嚷奔跑的孩子们",
+        "tran": "children shouting and running in the playground"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "player",
+            "tran": " 运动员，比赛者；游戏者，做游戏的人；演奏者，表演者；演员"
+          }
+        ]
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "运动场，操场",
+        "ws": [
+          {
+            "w": "sports ground"
+          },
+          {
+            "w": "athletic ground"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 6,
+    "word": "computer room",
+    "trans": [
+      {
+        "cn": "计算机房"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "我们还有了计算机房，我们在那里上计算机课。",
+        "tran": "Another classroom is computer room,where we have our computer lessons."
+      },
+      {
+        "v": "有物理、化学和生物实验室，还有一个语音教室和一个计算机房。",
+        "tran": "There are not only physics, chemistry and biology labs but also a language lab and a computer room."
+      },
+      {
+        "v": "我们当时在计算机房，突然之间我们听到了枪声然后老师就跑了出去，老师环顾了周围以后就把门关了起来。",
+        "tran": "We were in the computer room. Suddenly we heard bangs and then our teacher ran out, looked around and just closed the door."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 7,
+    "word": "art room",
+    "trans": [
+      {
+        "cn": "美术教室"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "迈克：这是美术教室吗?。",
+        "tran": "Mike: Is that the art room?"
+      },
+      {
+        "v": "美术教室在哪里？",
+        "tran": "Where is the art room?"
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 8,
+    "word": "music room",
+    "trans": [
+      {
+        "cn": "音乐教室"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "我们还有音乐教室和美术教室哦。",
+        "tran": "We also have music room and art rooms in the building."
+      },
+      {
+        "v": "我们玩转了各式的游戏，在音乐教室里唱起了第一首歌，还第一次感触了文学的魅力。",
+        "tran": "We played all sorts of games. In the music room we sang our first songs."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 9,
+    "word": "next to",
+    "trans": [
+      {
+        "cn": "紧邻",
+        "en": "very close to someone or something, with no other person, building place, etc in between"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "有个小女孩坐在他旁边。",
+        "tran": "There was a little girl sitting next to him."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "tran": "几乎，差不多；紧挨着；居于…之后",
+        "ws": [
+          {
+            "w": "something like"
+          },
+          {
+            "w": "just about"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 10,
+    "word": "homework",
+    "trans": [
+      {
+        "cn": "作业",
+        "en": "work that a student at school is asked to do at home"
+      }
+    ],
+    "phonetic0": "'hom'wɝk",
+    "phonetic1": "'həʊmwɜːk",
+    "sentences": [
+      {
+        "v": "家庭作业是完成第14页的练习。",
+        "tran": "For homework, finish the exercise on page 14."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "homey",
+            "tran": " 舒适的；家庭似的；自在的"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "做作业",
+        "tran": "do my homework"
+      },
+      {
+        "v": "做作业，做功课；做家庭作业",
+        "tran": "do homework"
+      },
+      {
+        "v": "做家庭作业",
+        "tran": "do your homework"
+      },
+      {
+        "v": "上交作业",
+        "tran": "hand in homework"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "家庭作业，课外作业",
+        "ws": [
+          {
+            "w": "schoolwork"
+          },
+          {
+            "w": "home study"
+          }
+        ]
+      }
+    ],
+    "memory": " home(家)+work(工作)→家庭作业"
+  },
+  {
+    "id": 11,
+    "word": "class",
+    "trans": [
+      {
+        "cn": "班级",
+        "en": "one of the different standards of seats, food etc available on a train, aircraft etc"
+      }
+    ],
+    "phonetic0": "klæs",
+    "phonetic1": "klɑːs",
+    "sentences": [],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "classified",
+            "tran": " 分类的；类别的；机密的"
+          },
+          {
+            "w": "classy",
+            "tran": " 优等的；上等的；漂亮的"
+          },
+          {
+            "w": "classless",
+            "tran": " 无阶级的；不属于任何阶级的"
+          },
+          {
+            "w": "classifiable",
+            "tran": " 可分类的"
+          },
+          {
+            "w": "classificatory",
+            "tran": " 类别的；分类上的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "classification",
+            "tran": " 分类；类别，等级"
+          },
+          {
+            "w": "classified",
+            "tran": " 分类广告"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "classified",
+            "tran": " 把…分类（classify的过去分词）"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "ws": [
+          {
+            "w": "classify",
+            "tran": " 分类；分等"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "在课堂上；上课中",
+        "tran": "in class"
+      },
+      {
+        "v": "头等，第一流；最高级",
+        "tran": "first class"
+      },
+      {
+        "v": "（飞机上的）经济舱位",
+        "tran": "economy class"
+      },
+      {
+        "v": "中产阶级",
+        "tran": "middle class"
+      },
+      {
+        "v": "下课后；课下",
+        "tran": "after class"
+      },
+      {
+        "v": "世界级，世界水平；一流的",
+        "tran": "world class"
+      },
+      {
+        "v": "英文课；英语班",
+        "tran": "english class"
+      },
+      {
+        "v": "n. 工人阶级；劳动阶级",
+        "tran": "working class"
+      },
+      {
+        "v": "[口]低劣的；劣等的；不合格的；没地位的",
+        "tran": "no class"
+      },
+      {
+        "v": "高级，优质",
+        "tran": "high class"
+      },
+      {
+        "v": "（大学考试成绩）二等；二等舱；二流；（美）二等邮件（定期期刊等）",
+        "tran": "second class"
+      },
+      {
+        "v": "社会地位；社会阶级",
+        "tran": "social class"
+      },
+      {
+        "v": "顶层级；最高级",
+        "tran": "top class"
+      },
+      {
+        "v": "统治阶级",
+        "tran": "ruling class"
+      },
+      {
+        "v": "阶级斗争",
+        "tran": "class struggle"
+      },
+      {
+        "v": "基础类别，基本类",
+        "tran": "base class"
+      },
+      {
+        "v": "商务舱",
+        "tran": "business class"
+      },
+      {
+        "v": "n. 三等；三级；三等舱",
+        "tran": "third class"
+      },
+      {
+        "v": "上等阶层，上流社会",
+        "tran": "upper class"
+      },
+      {
+        "v": "培训班；见习职类",
+        "tran": "training class"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "阶级；班级；种类",
+        "ws": [
+          {
+            "w": "category"
+          },
+          {
+            "w": "variety"
+          },
+          {
+            "w": "manner"
+          },
+          {
+            "w": "nature"
+          },
+          {
+            "w": "kind"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "分类；把…分等级",
+        "ws": [
+          {
+            "w": "grade"
+          },
+          {
+            "w": "categorize"
+          }
+        ]
+      },
+      {
+        "pos": "adj",
+        "tran": "极好的",
+        "ws": [
+          {
+            "w": "wonderful"
+          },
+          {
+            "w": "excellent"
+          },
+          {
+            "w": "famous"
+          },
+          {
+            "w": "super"
+          },
+          {
+            "w": "great"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 12,
+    "word": "forty",
+    "trans": [
+      {
+        "cn": "四十",
+        "en": "the number 40"
+      }
+    ],
+    "phonetic0": "'fɔrti",
+    "phonetic1": "'fɔːtɪ",
+    "sentences": [
+      {
+        "v": "她不可能超过四十岁。",
+        "tran": "She can't be more than forty."
+      },
+      {
+        "v": "这是四十年前的事了。",
+        "tran": "This was forty years ago."
+      },
+      {
+        "v": "四十岁以后她有点发胖了。",
+        "tran": "She was somewhat inclined to fat after forty."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "四万",
+        "tran": "forty thousand"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "四十的；四十个的",
+        "ws": [
+          {
+            "w": "twoscore"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 13,
+    "word": "way",
+    "trans": [
+      {
+        "cn": "方向",
+        "en": "a method that you use to do or achieve something"
+      }
+    ],
+    "phonetic0": "we",
+    "phonetic1": "weɪ",
+    "sentences": [
+      {
+        "v": "我们可以用几种不同的方法处理这个问题。",
+        "tran": "There are several different ways we can tackle this problem."
+      },
+      {
+        "v": "没有办法知道这种治疗方法是否有效。",
+        "tran": "There’s no way of knowing if the treatment will work."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "方式",
+        "tran": "way of"
+      },
+      {
+        "v": "这样；用这种方法",
+        "tran": "in this way"
+      },
+      {
+        "v": "最佳方法",
+        "tran": "best way"
+      },
+      {
+        "v": "顺便说说，顺便问一下；在途中",
+        "tran": "by the way"
+      },
+      {
+        "v": "adj. 在……途中",
+        "tran": "on the way"
+      },
+      {
+        "v": "入口；由此进入",
+        "tran": "way in"
+      },
+      {
+        "v": "妨碍；挡道",
+        "tran": "in the way"
+      },
+      {
+        "v": "n. 经由",
+        "tran": "by way"
+      },
+      {
+        "v": "经由；当作",
+        "tran": "by way of"
+      },
+      {
+        "v": "那样，那边",
+        "tran": "that way"
+      },
+      {
+        "v": "决不；一点也不",
+        "tran": "no way"
+      },
+      {
+        "v": "同样；同样的方法；同样的感受",
+        "tran": "same way"
+      },
+      {
+        "v": "一路上；自始至终",
+        "tran": "all the way"
+      },
+      {
+        "v": "单向的；单程的；单方面的",
+        "tran": "one way"
+      },
+      {
+        "v": "远路",
+        "tran": "long way"
+      },
+      {
+        "v": "出口；解决之道",
+        "tran": "way out"
+      },
+      {
+        "v": "生活方式；行为准则",
+        "tran": "way of life"
+      },
+      {
+        "v": "在某种程度上；有点儿；[口]十分激动",
+        "tran": "in a way"
+      },
+      {
+        "v": "妨碍；关于…方面",
+        "tran": "in the way of"
+      },
+      {
+        "v": "无论如何",
+        "tran": "any way"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "方法；[交]道路；方向；行业；习惯",
+        "ws": [
+          {
+            "w": "path"
+          },
+          {
+            "w": "method"
+          },
+          {
+            "w": "direction"
+          },
+          {
+            "w": "orientation"
+          },
+          {
+            "w": "approach"
+          },
+          {
+            "w": "aspect"
+          },
+          {
+            "w": "system"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "tran": "大大地；远远地",
+        "ws": [
+          {
+            "w": "greatly"
+          },
+          {
+            "w": "large"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 14,
+    "word": "breakfast",
+    "trans": [
+      {
+        "cn": "早餐",
+        "en": "the meal you have in the morning"
+      }
+    ],
+    "phonetic0": "'brɛkfəst",
+    "phonetic1": "'brekfəst",
+    "sentences": [
+      {
+        "v": "我们早餐吃了熏肉鸡蛋。",
+        "tran": "We had bacon and eggs for breakfast ."
+      },
+      {
+        "v": "我从来不吃早饭。",
+        "tran": "I never eat breakfast ."
+      },
+      {
+        "v": "我们吃了一顿丰盛的早餐，然后出发去远足了。",
+        "tran": "After a hearty breakfast (=  large breakfast  ) , we set out for a hike."
+      },
+      {
+        "v": "简单的早餐",
+        "tran": "a light breakfast"
+      },
+      {
+        "v": "工作早餐",
+        "tran": "a working breakfast"
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "当作早餐；对于早餐来说",
+        "tran": "for breakfast"
+      },
+      {
+        "v": "吃早餐，吃早饭",
+        "tran": "have breakfast"
+      },
+      {
+        "v": "吃早饭",
+        "tran": "eat breakfast"
+      },
+      {
+        "v": "早餐时，正在吃早饭",
+        "tran": "at breakfast"
+      },
+      {
+        "v": "欧式早餐（仅有咖啡和果酱面包）",
+        "tran": "continental breakfast"
+      },
+      {
+        "v": "欧洲的一种简易旅馆；住宿加早餐",
+        "tran": "bed and breakfast"
+      },
+      {
+        "v": "n. 英式早餐（熏肉、蛋、烤面包和果酱）",
+        "tran": "english breakfast"
+      },
+      {
+        "v": "丰盛的早餐；精选早餐套餐",
+        "tran": "big breakfast"
+      },
+      {
+        "v": "早餐室",
+        "tran": "breakfast room"
+      },
+      {
+        "v": "做早餐",
+        "tran": "make breakfast"
+      },
+      {
+        "v": "自助早餐；自助早餐吧",
+        "tran": "breakfast buffet"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "早餐；早饭",
+        "ws": [
+          {
+            "w": "brekker"
+          },
+          {
+            "w": "dejeuner"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 15,
+    "word": "English class",
+    "trans": [
+      {
+        "cn": "英语课"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "这灵感来源于在笔记本上的涂鸦乱画，就像你十几岁时在英文课上所作的那样。",
+        "tran": "It springs from the idea of a notebook full of doodles, like that of your typical teenager during English class."
+      },
+      {
+        "v": "盖茨在某个暑假承接了为所就读中学编写班级安排的程序，结果，在他所上的那个英语班里面，女生成群，而盖茨却是唯一的一个男童鞋。",
+        "tran": "One summer, Gates contracted to write a class scheduling program for his high school. He made sure to \"preload\" himself into an English class with a dozen girls and no other boys."
+      },
+      {
+        "v": "根据我自己的经历，我在高中学法语当中学到的语法知识比在英语课上学到的多的多。",
+        "tran": "In my own experience, learning French at high school taught me so much more about grammar than English class ever did."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 16,
+    "word": "lunch",
+    "trans": [
+      {
+        "cn": "午饭",
+        "en": "a meal eaten in the middle of the day"
+      }
+    ],
+    "phonetic0": "lʌntʃ",
+    "phonetic1": "lʌn(t)ʃ",
+    "sentences": [
+      {
+        "v": "午饭吃什么？",
+        "tran": "What’s for lunch?"
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "吃午饭，吃午餐",
+        "tran": "have lunch"
+      },
+      {
+        "v": "午饭后",
+        "tran": "after lunch"
+      },
+      {
+        "v": "午饭时间",
+        "tran": "lunch time"
+      },
+      {
+        "v": "午餐时；吃午餐",
+        "tran": "at lunch"
+      },
+      {
+        "v": "免费午餐",
+        "tran": "free lunch"
+      },
+      {
+        "v": "v. 吃午餐",
+        "tran": "eat lunch"
+      },
+      {
+        "v": "[美俚]疯狂的；神志不清的；过时的；懒散的",
+        "tran": "out to lunch"
+      },
+      {
+        "v": "午休时间",
+        "tran": "lunch break"
+      },
+      {
+        "v": "饭盒；便当",
+        "tran": "lunch box"
+      },
+      {
+        "v": "午餐时间",
+        "tran": "lunch hour"
+      },
+      {
+        "v": "共进午餐",
+        "tran": "do lunch"
+      },
+      {
+        "v": "便当，野餐",
+        "tran": "picnic lunch"
+      },
+      {
+        "v": "工作午餐；商业午餐",
+        "tran": "business lunch"
+      },
+      {
+        "v": "简易午餐",
+        "tran": "buffet lunch"
+      },
+      {
+        "v": "n. 工作餐，工作午餐",
+        "tran": "working lunch"
+      },
+      {
+        "v": "很随便的午饭；口味清淡的午餐",
+        "tran": "light lunch"
+      },
+      {
+        "v": "盒饭；盒装午餐",
+        "tran": "box lunch"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "午餐",
+        "ws": [
+          {
+            "w": "dejeuner"
+          },
+          {
+            "w": "Mittagessen"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 17,
+    "word": "music class",
+    "trans": [
+      {
+        "cn": "音乐课"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "这儿服刑人员和他们的导师正在一起上音乐课。",
+        "tran": "Here, prisoners and their instructor get down during a music class."
+      },
+      {
+        "v": "我和海伦一起走，罗拉带歉意的拥抱了我一下就跑去另一幢楼去上音乐课了。",
+        "tran": "I walk with Helen. Laura hugs me apologetically and runs off to her music class at the other end ofthe building."
+      },
+      {
+        "v": "没有人说，罪犯的改过自新后象音乐节奏。这儿服刑人员和他们的导师正在一起上音乐课。",
+        "tran": "Nothing says rehabilitation like rhythm. Here, prisoners and their instructor get down during a music class."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 18,
+    "word": "PE class",
+    "trans": [
+      {
+        "cn": "体育课"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "在我们体育班仅有7个女孩，因此这个班大多数是男生。",
+        "tran": "There are only 7 girls in our PE class, so the class is mostly boys."
+      },
+      {
+        "v": "在我们体育班仅有7个女孩，因此这个班大多数是男生。",
+        "tran": "eg. There are only 7 girls in our PE class , so the class is mostly boys."
+      },
+      {
+        "v": "这让好胜心极强的她感到非常沮丧，甚至害怕上体育课。",
+        "tran": "It made her, an ambitious girl, feel very depressed and fear taking PE class."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 19,
+    "word": "dinner",
+    "trans": [
+      {
+        "cn": "正餐",
+        "en": "the main meal of the day, eaten in the middle of the day or the evening"
+      }
+    ],
+    "phonetic0": "'dɪnɚ",
+    "phonetic1": "'dɪnə",
+    "sentences": [
+      {
+        "v": "你通常什么时候吃饭？",
+        "tran": "What time do you usually have dinner?"
+      },
+      {
+        "v": "我们今天晚饭吃鱼。",
+        "tran": "We’re having fish for dinner tonight."
+      },
+      {
+        "v": "晚饭吃什么？",
+        "tran": "What’s for dinner?"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "dinnertime",
+            "tran": " 晚餐开始的时间；正餐时间"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "餐后；晚餐后",
+        "tran": "after dinner"
+      },
+      {
+        "v": "吃晚饭",
+        "tran": "have dinner"
+      },
+      {
+        "v": "n. 宴会",
+        "tran": "dinner party"
+      },
+      {
+        "v": "餐桌",
+        "tran": "dinner table"
+      },
+      {
+        "v": "用餐；吃晚餐；正在用餐，正在吃饭",
+        "tran": "at dinner"
+      },
+      {
+        "v": "吃晚饭，吃晚餐",
+        "tran": "eat dinner"
+      },
+      {
+        "v": "家宴；家里聚会吃饭",
+        "tran": "family dinner"
+      },
+      {
+        "v": "感恩节晚餐",
+        "tran": "thanksgiving dinner"
+      },
+      {
+        "v": "做饭",
+        "tran": "cooking dinner"
+      },
+      {
+        "v": "周年晚宴；公司年会",
+        "tran": "annual dinner"
+      },
+      {
+        "v": "进餐，吃饭",
+        "tran": "have a dinner"
+      },
+      {
+        "v": "晚宴",
+        "tran": "gala dinner"
+      },
+      {
+        "v": "做饭；做晚饭",
+        "tran": "cook dinner"
+      },
+      {
+        "v": "n. 自助餐",
+        "tran": "buffet dinner"
+      },
+      {
+        "v": "做晚餐",
+        "tran": "make dinner"
+      },
+      {
+        "v": "留下来吃饭",
+        "tran": "stay for dinner"
+      },
+      {
+        "v": "烛光晚餐；烛光晚宴",
+        "tran": "candlelight dinner"
+      },
+      {
+        "v": "送别宴",
+        "tran": "farewell dinner"
+      },
+      {
+        "v": "n. 成套的餐具",
+        "tran": "dinner set"
+      },
+      {
+        "v": "欢迎宴会",
+        "tran": "welcome dinner"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "晚餐，晚宴；宴会；正餐",
+        "ws": [
+          {
+            "w": "supper"
+          },
+          {
+            "w": "evening meal"
+          }
+        ]
+      }
+    ],
+    "memory": " 在宴会(dinner)上进餐(dine)"
+  },
+  {
+    "id": 20,
+    "word": "get up",
+    "trans": [
+      {
+        "cn": "起床",
+        "en": "When someone who is sitting or lying down gets up, they rise to a standing position"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "我站起来，走到他那里。",
+        "tran": "I got up and walked over to where he was."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "tran": "起床，筹备；打扮",
+        "ws": [
+          {
+            "w": "dress oneself"
+          },
+          {
+            "w": "get out of bed"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 21,
+    "word": "go to school",
+    "trans": [
+      {
+        "cn": "上学"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "我在那边的朋友们会问我：“为什么你回去离家那么远的地方上学？",
+        "tran": "“Why would you ever go to school so far from home?” my friends would ask."
+      },
+      {
+        "v": "这孩子装病不去上学。",
+        "tran": "The boy refuses to go to school on [under] the pretext of illness [an ailment, sickness]."
+      },
+      {
+        "v": "每天早晨，只有一扇大门会打开，从这扇门出去父母们去上班，小孩们去上学。",
+        "tran": "In the morning, only one gate is open, through which parents head off to work and children go to school."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "v",
+        "tran": "上学",
+        "ws": [
+          {
+            "w": "come to school"
+          },
+          {
+            "w": "attend school"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 22,
+    "word": "go home",
+    "trans": [
+      {
+        "cn": "回家"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "我只好回家睡大觉了。",
+        "tran": "I've got to go home and zonk out."
+      },
+      {
+        "v": "他向她喃喃低语：让我跟你一起回家吧。",
+        "tran": "He whispers to her: Let me go home with you."
+      },
+      {
+        "v": "让他们回家去！",
+        "tran": "Let them go home!"
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "tran": "回家",
+        "ws": [
+          {
+            "w": "come home"
+          },
+          {
+            "w": "get home"
+          },
+          {
+            "w": "go back home"
+          },
+          {
+            "w": "come back home"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 23,
+    "word": "go to bed",
+    "trans": [
+      {
+        "cn": "去睡觉"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "他们洗他们的脸.他们上床睡觉！",
+        "tran": "They wash their faces.They go to bed!"
+      },
+      {
+        "v": "别拖到明天你上床睡觉穿的。 别拖延到明天你今天能做的。",
+        "tran": "Don't put off till tomorrow what...you put on to go to bed."
+      },
+      {
+        "v": "(误)他没有上床睡觉，直到半夜。",
+        "tran": "He did not go to bed until midnight."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "tran": "上床睡觉",
+        "ws": [
+          {
+            "w": "be in bed"
+          },
+          {
+            "w": "turn in"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 24,
+    "word": "over",
+    "trans": [
+      {
+        "cn": "结束"
+      }
+    ],
+    "phonetic0": "'ovɚ",
+    "phonetic1": "'əʊvə",
+    "sentences": [],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "overage",
+            "tran": " 超龄的；过老的"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "overly",
+            "tran": " 过度地；极度地"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "overage",
+            "tran": " 过于老化；商品过剩；人工时效过度"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "到处，遍及；浑身；全部结束",
+        "tran": "all over"
+      },
+      {
+        "v": "adv. 在那里",
+        "tran": "over there"
+      },
+      {
+        "v": "反复；再三",
+        "tran": "over and over"
+      },
+      {
+        "v": "复习，重温；仔细检查；转变；润色",
+        "tran": "go over"
+      },
+      {
+        "v": "做完，完成；结束",
+        "tran": "over with"
+      },
+      {
+        "v": "adv. 一再地；反复不断地",
+        "tran": "over and over again"
+      },
+      {
+        "v": "adv. 这里；在这边",
+        "tran": "over here"
+      },
+      {
+        "v": "招待某人在家吃饭 (或饮酒等)",
+        "tran": "have someone over"
+      },
+      {
+        "v": "在…对面；正对着；与…相反；与…形成对照",
+        "tran": "over against"
+      },
+      {
+        "v": "除…之外；在…之上",
+        "tran": "over and above"
+      },
+      {
+        "v": "重做；粉刷",
+        "tran": "do over"
+      },
+      {
+        "v": "[口语]巴结(或讨好)某人",
+        "tran": "be all over someone"
+      },
+      {
+        "v": "煎半熟蛋；煎两面；结束容易",
+        "tran": "over easy"
+      },
+      {
+        "v": "完结",
+        "tran": "over and done with"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adv",
+        "tran": "结束；越过；从头到尾",
+        "ws": [
+          {
+            "w": "all up"
+          }
+        ]
+      },
+      {
+        "pos": "prep",
+        "tran": "越过；在…之上；遍于…之上",
+        "ws": [
+          {
+            "w": "upon"
+          },
+          {
+            "w": "onto"
+          },
+          {
+            "w": "beyond"
+          },
+          {
+            "w": "past"
+          },
+          {
+            "w": "up"
+          }
+        ]
+      },
+      {
+        "pos": "adj",
+        "tran": "结束的；上面的",
+        "ws": [
+          {
+            "w": "ended"
+          },
+          {
+            "w": "upper"
+          },
+          {
+            "w": "closing"
+          },
+          {
+            "w": "past"
+          },
+          {
+            "w": "concluding"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "越过",
+        "ws": [
+          {
+            "w": "negotiate"
+          },
+          {
+            "w": "surmount"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 25,
+    "word": "now",
+    "trans": [
+      {
+        "cn": "现在",
+        "en": "You use now to refer to the present time, often in contrast to a time in the past or the future"
+      }
+    ],
+    "phonetic0": "naʊ",
+    "phonetic1": "naʊ",
+    "sentences": [
+      {
+        "v": "她现在是一个寡妇。",
+        "tran": "She's a widow now."
+      },
+      {
+        "v": "但是我们现在是一个更加四分五裂的社会。",
+        "tran": "But we are now a much more fragmented society."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "到目前为止",
+        "tran": "up to now"
+      },
+      {
+        "v": "刚才；眼下",
+        "tran": "just now"
+      },
+      {
+        "v": "目前，暂时",
+        "tran": "for now"
+      },
+      {
+        "v": "从现在开始",
+        "tran": "from now on"
+      },
+      {
+        "v": "到目前为止；到如今",
+        "tran": "by now"
+      },
+      {
+        "v": "至今，直到现在，迄今为止",
+        "tran": "until now"
+      },
+      {
+        "v": "即使到现在；尽管这样",
+        "tran": "even now"
+      },
+      {
+        "v": "到现在为止，迄今",
+        "tran": "till now"
+      },
+      {
+        "v": "偶尔；有时",
+        "tran": "now and then"
+      },
+      {
+        "v": "又怎么了（表示感到厌烦）；现在该怎么办",
+        "tran": "now what"
+      },
+      {
+        "v": "[表示警告或引起注意等]看，瞧",
+        "tran": "there now"
+      },
+      {
+        "v": "此时此地；立刻",
+        "tran": "here and now"
+      },
+      {
+        "v": "那么；喂",
+        "tran": "now then"
+      },
+      {
+        "v": "现在开始；立即行动",
+        "tran": "do it now"
+      },
+      {
+        "v": "不时地；常常",
+        "tran": "every now and then"
+      },
+      {
+        "v": "此刻，眼下",
+        "tran": "as of now"
+      },
+      {
+        "v": "勿失良机，机不可失；把握现在",
+        "tran": "now or never"
+      },
+      {
+        "v": "过去，以前",
+        "tran": "before now"
+      },
+      {
+        "v": "你现在哪里",
+        "tran": "where are you now"
+      },
+      {
+        "v": "立即应用；马上申请；在线申请",
+        "tran": "apply now"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adv",
+        "tran": "现在；如今；立刻",
+        "ws": [
+          {
+            "w": "soon"
+          },
+          {
+            "w": "immediately"
+          },
+          {
+            "w": "shortly"
+          }
+        ]
+      },
+      {
+        "pos": "adj",
+        "tran": "现在的",
+        "ws": [
+          {
+            "w": "current"
+          },
+          {
+            "w": "present"
+          },
+          {
+            "w": "nowaday"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "tran": "现在；目前",
+        "ws": [
+          {
+            "w": "present"
+          },
+          {
+            "w": "these days"
+          }
+        ]
+      },
+      {
+        "pos": "conj",
+        "tran": "由于；既然",
+        "ws": [
+          {
+            "w": "since"
+          },
+          {
+            "w": "when"
+          },
+          {
+            "w": "seeing"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 26,
+    "word": "o'clock",
+    "trans": [
+      {
+        "cn": "⋯⋯点钟",
+        "en": "one of the times when the clock shows the exact hour as a number from 1 to 12"
+      }
+    ],
+    "phonetic0": "ə'klɑk",
+    "phonetic1": "ə'klɒk",
+    "sentences": [
+      {
+        "v": "已经9点钟了。",
+        "tran": "It's already 9 o'clock."
+      },
+      {
+        "v": "开会时间是10点钟。",
+        "tran": "The meeting is at 10 o'clock."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "十点",
+        "tran": "ten o'clock"
+      }
+    ],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 27,
+    "word": "kid",
+    "trans": [
+      {
+        "cn": "小孩",
+        "en": "a child"
+      }
+    ],
+    "phonetic0": "kɪd",
+    "phonetic1": "kɪd",
+    "sentences": [
+      {
+        "v": "她从小就喜爱动物。",
+        "tran": "She’d always loved animals since she was a little kid."
+      },
+      {
+        "v": "他已婚，有三个孩子。",
+        "tran": "He’s married with three kids."
+      },
+      {
+        "v": "一位邻居主动来照看这些小孩。",
+        "tran": "A neighbor volunteered to keep an eye on the kids (= their children or the children they are responsible for )."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "kiddy",
+            "tran": " 小孩，小家伙；小山羊"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "说真的，不要开玩笑",
+        "tran": "no kidding"
+      },
+      {
+        "v": "不要孩子；不开玩笑",
+        "tran": "no kid"
+      },
+      {
+        "v": "（美国英语）弟弟",
+        "tran": "kid brother"
+      },
+      {
+        "v": "n. 优等生；神童",
+        "tran": "whiz kid"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "小孩；[畜牧]小山羊",
+        "ws": [
+          {
+            "w": "kiddie"
+          },
+          {
+            "w": "pickin"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "欺骗；取笑；戏弄",
+        "ws": [
+          {
+            "w": "sell"
+          },
+          {
+            "w": "guy"
+          },
+          {
+            "w": "fox"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "tran": "欺骗；取笑；戏弄",
+        "ws": [
+          {
+            "w": "pull a fast one"
+          },
+          {
+            "w": "give the shaft"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 28,
+    "word": "thirty",
+    "trans": [
+      {
+        "cn": "三十",
+        "en": "the number 30"
+      }
+    ],
+    "phonetic0": "'θɝti",
+    "phonetic1": "'θɜːtɪ",
+    "sentences": [
+      {
+        "v": "不算女生，有三十个学生出席。",
+        "tran": "There were thirty students present,reckoning without the girlstudents."
+      },
+      {
+        "v": "他的话使我回想起他三十岁时还是个光棍。",
+        "tran": "His words refreshed my memory that he remained a bachelor at the age of thirty."
+      },
+      {
+        "v": " 我儿子为她表演了用西班牙语查数，一直到三十，然后告诉她，他可以用英语一直查到一百万。",
+        "tran": "He counted to thirty for her in Spanish and then told her he could count to one million in English."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "thirtieth",
+            "tran": " 第三十个的；三十分之一的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "thirtieth",
+            "tran": " 第三十；三十分之一"
+          }
+        ]
+      },
+      {
+        "pos": "num",
+        "ws": [
+          {
+            "w": "thirtieth",
+            "tran": " 第三十；三十分之一"
+          }
+        ]
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 29,
+    "word": "hurry up",
+    "trans": [
+      {
+        "cn": "快点",
+        "en": "If you hurry something up or hurry it along, you make it happen faster or sooner than it would otherwise have done"
+      }
+    ],
+    "phonetic0": "'hɝrɪ ʌp",
+    "phonetic1": "'hʌrɪ ʌp",
+    "sentences": [
+      {
+        "v": "…如果你不是传统主义者而是想加快这一进程。",
+        "tran": "...if you're not a traditionalist and you want to hurry up the process."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "tran": "（使）赶快",
+        "ws": [
+          {
+            "w": "get a move on"
+          },
+          {
+            "w": "shake it up"
+          },
+          {
+            "w": "snap it up"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 30,
+    "word": "come on",
+    "trans": [
+      {
+        "cn": "加油"
+      }
+    ],
+    "sentences": [],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "v",
+        "tran": "快点；开始；要求；上演；跟着来；突然产生",
+        "ws": [
+          {
+            "w": "demand of"
+          },
+          {
+            "w": "Pick up the pace."
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 31,
+    "word": "just a minute",
+    "trans": [
+      {
+        "cn": "稍等一会儿"
+      }
+    ],
+    "sentences": [],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "tran": "等一下；请稍等；就来了",
+        "ws": [
+          {
+            "w": "just one moment"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 32,
+    "word": "cold",
+    "trans": [
+      {
+        "cn": "冷的",
+        "en": "something that is cold has a low temperature"
+      }
+    ],
+    "phonetic0": "kold",
+    "phonetic1": "kəʊld",
+    "sentences": [
+      {
+        "v": "她往脸上泼冷水。",
+        "tran": "She splashed her face with cold water."
+      },
+      {
+        "v": "一股冷空气",
+        "tran": "a blast of cold air"
+      },
+      {
+        "v": "我们睡在冰冷的地上。",
+        "tran": "We slept on the cold ground."
+      },
+      {
+        "v": "屋子里感觉很冷，空荡荡的。",
+        "tran": "The house felt cold and empty."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "coldhearted",
+            "tran": " 冷酷无情的；冷淡的"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "coldly",
+            "tran": " 冷淡地；不友好地"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "coldness",
+            "tran": " 寒冷；冷淡"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "被忽视，被冷落， 孤零零地未介入",
+        "tran": "in the cold"
+      },
+      {
+        "v": "感冒",
+        "tran": "catch a cold"
+      },
+      {
+        "v": "冷水；凉水；凉开水",
+        "tran": "cold water"
+      },
+      {
+        "v": "冷战",
+        "tran": "cold war"
+      },
+      {
+        "v": "冷轧；冷压延",
+        "tran": "cold rolling"
+      },
+      {
+        "v": "寒冷的天气",
+        "tran": "cold weather"
+      },
+      {
+        "v": "寒冷的冬天",
+        "tran": "cold winter"
+      },
+      {
+        "v": "感冒",
+        "tran": "catch cold"
+      },
+      {
+        "v": "冷藏；坟墓",
+        "tran": "cold storage"
+      },
+      {
+        "v": "冷空气",
+        "tran": "cold air"
+      },
+      {
+        "v": "冷轧的",
+        "tran": "cold rolled"
+      },
+      {
+        "v": "被冷落，遭排斥",
+        "tran": "out in the cold"
+      },
+      {
+        "v": "蓄意而残忍地",
+        "tran": "in cold blood"
+      },
+      {
+        "v": "冷挤制法",
+        "tran": "cold extrusion"
+      },
+      {
+        "v": "感冒",
+        "tran": "common cold"
+      },
+      {
+        "v": "冷轧机",
+        "tran": "cold rolling mill"
+      },
+      {
+        "v": "重感冒；重伤风",
+        "tran": "bad cold"
+      },
+      {
+        "v": "清凉饮料，冷饮",
+        "tran": "cold drink"
+      },
+      {
+        "v": "耐寒性；抗低温性",
+        "tran": "cold resistance"
+      },
+      {
+        "v": "感冒，受凉；患感冒",
+        "tran": "have a cold"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "寒冷的；冷淡的，不热情的；失去知觉的",
+        "ws": [
+          {
+            "w": "chilly"
+          },
+          {
+            "w": "wintery"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "tran": "寒冷；[内科]感冒",
+        "ws": [
+          {
+            "w": "algor"
+          },
+          {
+            "w": "chilliness"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "tran": "完全地",
+        "ws": [
+          {
+            "w": "totally"
+          },
+          {
+            "w": "entirely"
+          },
+          {
+            "w": "completely"
+          },
+          {
+            "w": "absolutely"
+          },
+          {
+            "w": "thoroughly"
+          },
+          {
+            "w": "strictly"
+          },
+          {
+            "w": "fully"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 33,
+    "word": "cool",
+    "trans": [
+      {
+        "cn": "凉的",
+        "en": "low in temperature, but not cold, often in a way that feels pleasant"
+      }
+    ],
+    "phonetic0": "kul",
+    "phonetic1": "kuːl",
+    "sentences": [
+      {
+        "v": "她往外游向清凉的水里。",
+        "tran": "She swam out into the cool water."
+      },
+      {
+        "v": "夜晚的空气很凉爽。",
+        "tran": "The evening air was cool."
+      },
+      {
+        "v": "在阳光下喝杯清凉饮料放松一下。",
+        "tran": "Relax in the sun with a cool drink."
+      },
+      {
+        "v": "九月较凉爽的天气",
+        "tran": "the cooler weather of September"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "coolly",
+            "tran": " 冷静地；沉着地"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "cooler",
+            "tran": " 冷却器；清凉剂"
+          },
+          {
+            "w": "coolant",
+            "tran": " 冷却剂"
+          },
+          {
+            "w": "coolness",
+            "tran": " 冷；凉爽；冷静"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "保持冷静",
+        "tran": "stay cool"
+      },
+      {
+        "v": "真酷",
+        "tran": "so cool"
+      },
+      {
+        "v": "冷却；平静下来",
+        "tran": "cool down"
+      },
+      {
+        "v": "变凉；平静下来",
+        "tran": "cool off"
+      },
+      {
+        "v": "凉爽的微风",
+        "tran": "cool breeze"
+      },
+      {
+        "v": "抑制住感情，沉着冷静",
+        "tran": "play it cool"
+      },
+      {
+        "v": "保持冷静；保持凉爽；镇定自若",
+        "tran": "keep cool"
+      },
+      {
+        "v": "冷静的头脑",
+        "tran": "cool head"
+      },
+      {
+        "v": "十分冷静",
+        "tran": "cool as a cucumber"
+      },
+      {
+        "v": "寒色",
+        "tran": "cool color"
+      },
+      {
+        "v": "n. 冒失鬼",
+        "tran": "cool hand"
+      },
+      {
+        "v": "冷色",
+        "tran": "cool colour"
+      },
+      {
+        "v": "沉不住气",
+        "tran": "blow one's cool"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "凉爽的；冷静的；出色的",
+        "ws": [
+          {
+            "w": "philosophical"
+          },
+          {
+            "w": "cracking"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "使…冷却；使…平静下来",
+        "ws": [
+          {
+            "w": "still"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "tran": "变凉；平息",
+        "ws": [
+          {
+            "w": "subside"
+          },
+          {
+            "w": "blow over"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "tran": "冷静地",
+        "ws": [
+          {
+            "w": "calmly"
+          },
+          {
+            "w": "soberly"
+          }
+        ]
+      }
+    ],
+    "memory": " 愚(fool)公移山， 坚定从容(cool)"
+  },
+  {
+    "id": 34,
+    "word": "warm",
+    "trans": [
+      {
+        "cn": "温暖的",
+        "en": "slightly hot, especially in a pleasant way"
+      }
+    ],
+    "phonetic0": "wɔrm",
+    "phonetic1": "wɔːm",
+    "sentences": [
+      {
+        "v": "那房子漂亮温暖。",
+        "tran": "The house was lovely and warm."
+      },
+      {
+        "v": "我希望天气很快就会回暖。",
+        "tran": "I hope we get some warm weather soon."
+      },
+      {
+        "v": "我把你的饭菜放进了烤箱里保温。",
+        "tran": "I’ve put your dinner in the oven to keep it warm."
+      },
+      {
+        "v": "温水",
+        "tran": "warm water"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "warming",
+            "tran": " 让人感到暖和的"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "warmly",
+            "tran": " 热情地；温暖地；亲切地"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "warmth",
+            "tran": " 温暖；热情；激动"
+          },
+          {
+            "w": "warmer",
+            "tran": " 取暖器；加热器；加热工人"
+          },
+          {
+            "w": "warming",
+            "tran": " 加温，暖和；气温升高"
+          },
+          {
+            "w": "warmness",
+            "tran": " 温暖；亲切"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "warming",
+            "tran": " 加温；兴奋；同情（warm的ing形式）"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "热烈欢迎",
+        "tran": "warm welcome"
+      },
+      {
+        "v": "温水；暖水海洋，暖水区",
+        "tran": "warm water"
+      },
+      {
+        "v": "在暖和的地方",
+        "tran": "in the warm"
+      },
+      {
+        "v": "v. 热身；变暖",
+        "tran": "warm up"
+      },
+      {
+        "v": "保暖",
+        "tran": "keep warm"
+      },
+      {
+        "v": "暖空气；热空气",
+        "tran": "warm air"
+      },
+      {
+        "v": "温暖的天气；温暖的气候",
+        "tran": "warm weather"
+      },
+      {
+        "v": "温泉；暖泉",
+        "tran": "warm spring"
+      },
+      {
+        "v": "激昂起来；变暖和",
+        "tran": "get warm"
+      },
+      {
+        "v": "热情接待",
+        "tran": "warm reception"
+      },
+      {
+        "v": "温血；恒温动物；温血动物",
+        "tran": "warm blood"
+      },
+      {
+        "v": "天气热",
+        "tran": "to be warm"
+      },
+      {
+        "v": "烘一烘，烤一烤；热一热",
+        "tran": "give a warm"
+      },
+      {
+        "v": "温暖的拥抱",
+        "tran": "warm embrace"
+      },
+      {
+        "v": "暖色；警戒色",
+        "tran": "warm color"
+      },
+      {
+        "v": "温暖的房间",
+        "tran": "warm room"
+      },
+      {
+        "v": "热奶，热牛奶",
+        "tran": "warm milk"
+      },
+      {
+        "v": "暖流",
+        "tran": "warm current"
+      },
+      {
+        "v": "暖温带",
+        "tran": "warm temperate zone"
+      },
+      {
+        "v": "[美国俚语]继续谈下去，继续讨论",
+        "tran": "keep it warm"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "温暖的；热情的",
+        "ws": [
+          {
+            "w": "intense"
+          },
+          {
+            "w": "hot"
+          },
+          {
+            "w": "tropical"
+          },
+          {
+            "w": "enthusiastic"
+          },
+          {
+            "w": "passionate"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "tran": "同情；激动；变温暖",
+        "ws": [
+          {
+            "w": "fire"
+          },
+          {
+            "w": "sympathize"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "使…兴奋；使…温暖；使…感兴趣",
+        "ws": [
+          {
+            "w": "excite"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "tran": "取暖；加热",
+        "ws": [
+          {
+            "w": "heating up"
+          },
+          {
+            "w": "calefaction"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 35,
+    "word": "hot",
+    "trans": [
+      {
+        "cn": "热的",
+        "en": "food that tastes hot has a burning taste because it contains strong spices"
+      }
+    ],
+    "phonetic0": "hɑt",
+    "phonetic1": "hɒt",
+    "sentences": [
+      {
+        "v": "一种辛辣的咖喱",
+        "tran": "a hot curry"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "hotheaded",
+            "tran": " 性急的；易激动的；热情的"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "hotly",
+            "tran": " 激烈地；热心地；暑热地"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "hotness",
+            "tran": " 热烈；热心；暑热"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "冷热水；热的和冷的",
+        "tran": "hot and cold"
+      },
+      {
+        "v": "热门话题；新锐",
+        "tran": "hot topic"
+      },
+      {
+        "v": "[生化]热点；过热点；潜在的危险地区",
+        "tran": "hot spot"
+      },
+      {
+        "v": "吹牛；大话",
+        "tran": "hot air"
+      },
+      {
+        "v": "热轧",
+        "tran": "hot rolling"
+      },
+      {
+        "v": "炎热的夏天",
+        "tran": "hot summer"
+      },
+      {
+        "v": "液态金属，铁水；高温金属",
+        "tran": "hot metal"
+      },
+      {
+        "v": "温泉",
+        "tran": "hot spring"
+      },
+      {
+        "v": "热点问题；[证券]热门股票（上市后不久价格猛涨）",
+        "tran": "hot issue"
+      },
+      {
+        "v": "热轧的",
+        "tran": "hot rolled"
+      },
+      {
+        "v": "变热；激动起来",
+        "tran": "get hot"
+      },
+      {
+        "v": "热熔胶；热熔性",
+        "tran": "hot melt"
+      },
+      {
+        "v": "这么热",
+        "tran": "so hot"
+      },
+      {
+        "v": "n. 无线热点；温点；摩擦发热点",
+        "tran": "hot point"
+      },
+      {
+        "v": "热天",
+        "tran": "hot day"
+      },
+      {
+        "v": "n. 电热板；轻便电炉；餐厅出售的热食",
+        "tran": "hot plate"
+      },
+      {
+        "v": "有麻烦；陷于困境",
+        "tran": "in hot water"
+      },
+      {
+        "v": "热浸镀",
+        "tran": "hot dip"
+      },
+      {
+        "v": "发怒的；气冲冲的",
+        "tran": "hot under the collar"
+      },
+      {
+        "v": "热狗（面包夹熏红肠）",
+        "tran": "hot dog"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "[通信]热的；辣的；热情的；激动的；紧迫的",
+        "ws": [
+          {
+            "w": "thermal"
+          },
+          {
+            "w": "intense"
+          },
+          {
+            "w": "excited"
+          },
+          {
+            "w": "warm"
+          },
+          {
+            "w": "tropical"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "增加；给…加温",
+        "ws": [
+          {
+            "w": "enhance"
+          },
+          {
+            "w": "boost"
+          },
+          {
+            "w": "jack"
+          },
+          {
+            "w": "mount"
+          },
+          {
+            "w": "gain"
+          }
+        ]
+      }
+    ],
+    "memory": " 茶壶(pot)煮热(hot)饺子， 有口倒(道)不出"
+  },
+  {
+    "id": 36,
+    "word": "sunny",
+    "trans": [
+      {
+        "cn": "阳光充足的",
+        "en": "having a lot of light from the sun"
+      }
+    ],
+    "phonetic0": "'sʌni",
+    "phonetic1": "'sʌnɪ",
+    "sentences": [
+      {
+        "v": "温暖晴朗的一天",
+        "tran": "a warm sunny day"
+      },
+      {
+        "v": "艳阳高照的上午",
+        "tran": "a sunny morning"
+      },
+      {
+        "v": "阳光充足的房间",
+        "tran": "a nice sunny room"
+      },
+      {
+        "v": "我希望明天天晴。",
+        "tran": "I hope it’s sunny tomorrow."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "sunlit",
+            "tran": " 阳光照射的；被日光照射了的"
+          },
+          {
+            "w": "sunless",
+            "tran": " 阳光照射不到的，阴暗的"
+          },
+          {
+            "w": "sunshiny",
+            "tran": " 晴朗的；阳光照耀的；向阳极好的"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "sunnily",
+            "tran": " 快活地；照着阳光"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "sun",
+            "tran": " 太阳"
+          },
+          {
+            "w": "sunshine",
+            "tran": " 阳光；愉快；晴天；快活"
+          },
+          {
+            "w": "sunray",
+            "tran": " 紫外线；太阳光线"
+          },
+          {
+            "w": "sunniness",
+            "tran": " 阳光照射，阳光充足；活泼"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "ws": [
+          {
+            "w": "sun",
+            "tran": " 晒太阳"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "ws": [
+          {
+            "w": "sun",
+            "tran": " 使晒"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "晴天",
+        "tran": "sunny day"
+      },
+      {
+        "v": "阳光灿烂的天气",
+        "tran": "sunny weather"
+      },
+      {
+        "v": "光明；向阳的一边",
+        "tran": "sunny side"
+      },
+      {
+        "v": "荷包蛋只煎一面",
+        "tran": "sunny side up"
+      },
+      {
+        "v": "阳光明媚",
+        "tran": "bright and sunny"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "阳光充足的，和煦的；快活的；性情开朗的",
+        "ws": [
+          {
+            "w": "vernal"
+          },
+          {
+            "w": "jocund"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 37,
+    "word": "windy",
+    "trans": [
+      {
+        "cn": "多风的",
+        "en": "if it is windy, there is a lot of wind"
+      }
+    ],
+    "phonetic0": "'wɪndi",
+    "phonetic1": "'wɪndɪ",
+    "sentences": [
+      {
+        "v": "风太大，不适合野餐。",
+        "tran": "It’s too windy for a picnic."
+      },
+      {
+        "v": "一个寒冷的大风天",
+        "tran": "a cold, windy day"
+      },
+      {
+        "v": "当风的山坡",
+        "tran": "a windy hillside"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "windward",
+            "tran": " 上风的"
+          },
+          {
+            "w": "winded",
+            "tran": " 喘气的；通风的；有风的"
+          },
+          {
+            "w": "windless",
+            "tran": " 无风的；平稳的"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "windward",
+            "tran": " 迎风"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "wind",
+            "tran": " 风；呼吸；气味；卷绕"
+          },
+          {
+            "w": "windward",
+            "tran": " 上风面"
+          },
+          {
+            "w": "windage",
+            "tran": " 偏差（子弹因风而生的）；[电] 游隙（炮筒内径和炮弹间的空隙）；[军] 风力影响，风力修正量"
+          },
+          {
+            "w": "windiness",
+            "tran": " 招风；多风；有风"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "winded",
+            "tran": " 缠绕；上发条；蜿蜒（wind的过去式）"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "ws": [
+          {
+            "w": "wind",
+            "tran": " 缠绕；上发条；吹响号角"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "ws": [
+          {
+            "w": "wind",
+            "tran": " 缠绕；上发条；使弯曲；吹号角；绕住或缠住某人"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "有风的日子；刮风的天气",
+        "tran": "windy day"
+      },
+      {
+        "v": "风之城（美国城市芝加哥的别称）",
+        "tran": "windy city"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "多风的，有风的；腹胀的；吹牛的",
+        "ws": [
+          {
+            "w": "blowy"
+          },
+          {
+            "w": "thrasonical"
+          }
+        ]
+      }
+    ],
+    "memory": " wind(风)+y(…的)→多风的"
+  },
+  {
+    "id": 38,
+    "word": "cloudy",
+    "trans": [
+      {
+        "cn": "多云的",
+        "en": "a cloudy sky, day etc is dark because there are a lot of clouds"
+      }
+    ],
+    "phonetic0": "'klaʊdi",
+    "phonetic1": "'klaʊdɪ",
+    "sentences": [
+      {
+        "v": "伴有些许小雨的多云的夜晚",
+        "tran": "a cloudy night with some light rain"
+      },
+      {
+        "v": "明天多云，天气凉爽。",
+        "tran": "Tomorrow, it will be cloudy and cool."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "clouded",
+            "tran": " 乌云密布的；有暗影的，阴的"
+          },
+          {
+            "w": "cloudless",
+            "tran": " 无云的；晴朗的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "cloud",
+            "tran": " 云；阴云；云状物；一大群；黑斑"
+          },
+          {
+            "w": "cloudiness",
+            "tran": " 阴沉；暗晦；朦胧"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "ws": [
+          {
+            "w": "cloud",
+            "tran": " 阴沉；乌云密布"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "ws": [
+          {
+            "w": "cloud",
+            "tran": " 使混乱；以云遮敝；使忧郁；玷污"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "阴天",
+        "tran": "cloudy day"
+      },
+      {
+        "v": "多云天空，阴天",
+        "tran": "cloudy sky"
+      },
+      {
+        "v": "局部多云；少云",
+        "tran": "partly cloudy"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "[气象]多云的；阴天的；愁容满面的",
+        "ws": [
+          {
+            "w": "nubilous"
+          },
+          {
+            "w": "somber"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 39,
+    "word": "snowy",
+    "trans": [
+      {
+        "cn": "下雪的",
+        "en": "with a lot of snow"
+      }
+    ],
+    "phonetic0": "'snoɪ",
+    "phonetic1": "'snəʊɪ",
+    "sentences": [
+      {
+        "v": "被雪覆盖的田野",
+        "tran": "the snowy fields"
+      },
+      {
+        "v": "1月里大雪纷飞的一天",
+        "tran": "one snowy January day"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "snow",
+            "tran": " 雪，积雪；下雪"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "ws": [
+          {
+            "w": "snow",
+            "tran": " 降雪"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "ws": [
+          {
+            "w": "snow",
+            "tran": " 使纷纷落下；使变白"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "n. 雪白色",
+        "tran": "snowy white"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "下雪的，多雪的；被雪覆盖的；洁白无瑕的",
+        "ws": [
+          {
+            "w": "nival"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 40,
+    "word": "rainy",
+    "trans": [
+      {
+        "cn": "阴雨的",
+        "en": "a rainy period of time is one when it rains a lot"
+      }
+    ],
+    "phonetic0": "'reni",
+    "phonetic1": "'reɪnɪ",
+    "sentences": [
+      {
+        "v": "十月里一个寒冷的雨天",
+        "tran": "a cold rainy day in October"
+      },
+      {
+        "v": "我讨厌雨天。",
+        "tran": "I hate rainy weather ."
+      },
+      {
+        "v": "雨季",
+        "tran": "the rainy season"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "rainless",
+            "tran": " 缺少雨的；无雨的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "rain",
+            "tran": " 雨；下雨；雨天；雨季"
+          },
+          {
+            "w": "raininess",
+            "tran": " 多雨；雨量强度"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "ws": [
+          {
+            "w": "rain",
+            "tran": " 下雨；降雨"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "ws": [
+          {
+            "w": "rain",
+            "tran": " 大量地给；使大量落下"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "雨天；穷困时期",
+        "tran": "rainy day"
+      },
+      {
+        "v": "雨季",
+        "tran": "rainy season"
+      },
+      {
+        "v": "雨夜",
+        "tran": "rainy night"
+      },
+      {
+        "v": "雨天气候；雨季",
+        "tran": "rainy weather"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "下雨的；多雨的",
+        "ws": [
+          {
+            "w": "pluvian"
+          },
+          {
+            "w": "drippy"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 41,
+    "word": "outside",
+    "trans": [
+      {
+        "cn": "在户外",
+        "en": "beyond the limits or range of a situation, activity etc"
+      }
+    ],
+    "phonetic0": ",aʊt'saɪd",
+    "phonetic1": "aʊt'saɪd; 'aʊtsaɪd",
+    "sentences": [
+      {
+        "v": "恐怕我没有这方面的经验。",
+        "tran": "It’s outside my experience, I’m afraid."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "outsider",
+            "tran": " 外人；无取胜希望者"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "在…的外面；超出…的范围",
+        "tran": "outside of"
+      },
+      {
+        "v": "内外；里面和外面",
+        "tran": "inside and outside"
+      },
+      {
+        "v": "在外面；外部地",
+        "tran": "on the outside"
+      },
+      {
+        "v": "外出；往外走",
+        "tran": "go outside"
+      },
+      {
+        "v": "从外侧向内侧的；从外缘向中心的",
+        "tran": "outside in"
+      },
+      {
+        "v": "最多，至多",
+        "tran": "at the outside"
+      },
+      {
+        "v": "里里外外",
+        "tran": "outside and in"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "外面的，[计]外部的；外来的",
+        "ws": [
+          {
+            "w": "outer"
+          },
+          {
+            "w": "external"
+          },
+          {
+            "w": "out"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "tran": "[计]外部；外观",
+        "ws": [
+          {
+            "w": "without"
+          },
+          {
+            "w": "surface"
+          },
+          {
+            "w": "face"
+          },
+          {
+            "w": "garment"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "tran": "在外面，向外面；在室外",
+        "ws": [
+          {
+            "w": "without"
+          },
+          {
+            "w": "ectad"
+          }
+        ]
+      },
+      {
+        "pos": "prep",
+        "tran": "在…范围之外",
+        "ws": [
+          {
+            "w": "beyond the pale"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 42,
+    "word": "be careful",
+    "trans": [
+      {
+        "cn": "小心"
+      }
+    ],
+    "sentences": [],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "tran": "小心；当心",
+        "ws": [
+          {
+            "w": "take care"
+          },
+          {
+            "w": "keep nix"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 43,
+    "word": "weather",
+    "trans": [
+      {
+        "cn": "天气",
+        "en": "the temperature and other conditions such as sun, rain, and wind"
+      }
+    ],
+    "phonetic0": "'wɛðɚ",
+    "phonetic1": "'weðə",
+    "sentences": [
+      {
+        "v": "今天天气如何？",
+        "tran": "What’s the weather like today?"
+      },
+      {
+        "v": "天气变得很冷了。",
+        "tran": "The weather turned bitterly cold."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "weathered",
+            "tran": " 风化的；倾斜的"
+          },
+          {
+            "w": "weatherproof",
+            "tran": " 防风雨的；不受天气影响的"
+          },
+          {
+            "w": "weatherly",
+            "tran": " 能抢风航行的；能驶向上风的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "weatherproof",
+            "tran": " 雨衣"
+          },
+          {
+            "w": "weatherman",
+            "tran": " 气象员；天气预报员"
+          },
+          {
+            "w": "weatherliness",
+            "tran": " 顶风能力；抗风暴能力"
+          },
+          {
+            "w": "weatherstrip",
+            "tran": " 挡风雨条"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "weathered",
+            "tran": " 暴露于空气之中；使退色（weather的过去分词）"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "ws": [
+          {
+            "w": "weatherproof",
+            "tran": " 使……能耐风雨"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "恶劣的天气",
+        "tran": "bad weather"
+      },
+      {
+        "v": "寒冷的天气",
+        "tran": "cold weather"
+      },
+      {
+        "v": "天气预测，天气预报",
+        "tran": "weather forecast"
+      },
+      {
+        "v": "好天气",
+        "tran": "good weather"
+      },
+      {
+        "v": "如果天气良好，天气许可的话",
+        "tran": "weather permitting"
+      },
+      {
+        "v": "n. 好天气；晴天",
+        "tran": "fine weather"
+      },
+      {
+        "v": "天气条件；气象情况",
+        "tran": "weather condition"
+      },
+      {
+        "v": "温暖的天气；温暖的气候",
+        "tran": "warm weather"
+      },
+      {
+        "v": "天气预报，天气报告；气象报告",
+        "tran": "weather report"
+      },
+      {
+        "v": "潮湿天气；多雨的天气",
+        "tran": "wet weather"
+      },
+      {
+        "v": "天气雷达",
+        "tran": "weather radar"
+      },
+      {
+        "v": "耐气候性；耐风化性",
+        "tran": "weather resistance"
+      },
+      {
+        "v": "恶劣天气；风雨交加的天气；剧烈天气",
+        "tran": "severe weather"
+      },
+      {
+        "v": "气象站",
+        "tran": "weather station"
+      },
+      {
+        "v": "全天候",
+        "tran": "all weather"
+      },
+      {
+        "v": "气象服务；气象观测组织",
+        "tran": "weather service"
+      },
+      {
+        "v": "暴风雨天气；暴风雪",
+        "tran": "stormy weather"
+      },
+      {
+        "v": "人不太舒服；身体不适",
+        "tran": "under the weather"
+      },
+      {
+        "v": "阳光灿烂的天气",
+        "tran": "sunny weather"
+      },
+      {
+        "v": "不论天气如何，风雨无阻",
+        "tran": "in all weathers"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "天气；[气象]气象；气候；处境",
+        "ws": [
+          {
+            "w": "climate"
+          },
+          {
+            "w": "situation"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "经受住；使风化；侵蚀；使受风吹雨打",
+        "ws": [
+          {
+            "w": "last out"
+          },
+          {
+            "w": "eat into"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "tran": "风化；受侵蚀；经受风雨",
+        "ws": [
+          {
+            "w": "bloom out"
+          },
+          {
+            "w": "effloresce"
+          }
+        ]
+      },
+      {
+        "pos": "adj",
+        "tran": "露天的；迎风的",
+        "ws": [
+          {
+            "w": "outdoor"
+          },
+          {
+            "w": "unroofed"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 44,
+    "word": "New York",
+    "trans": [
+      {
+        "cn": "纽约"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "我们在利物浦上船去纽约。",
+        "tran": "We embarked at Liverpool for New York."
+      },
+      {
+        "v": "他无意中发现了他在纽约丢失的汽车。",
+        "tran": "He hit his car that he lost in New York."
+      },
+      {
+        "v": "这条铁路连接两个城市，即纽约与芝加哥。",
+        "tran": "The railroad connects two cities, namely, New York and Chicago."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 45,
+    "word": "how about...",
+    "trans": [
+      {
+        "cn": "怎么样？"
+      }
+    ],
+    "sentences": [],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 46,
+    "word": "degree",
+    "trans": [
+      {
+        "cn": "度",
+        "en": "a unit for measuring temperature. It can be shown as a symbol after a number. For example, 70° means 70 degrees."
+      }
+    ],
+    "phonetic0": "dɪ'ɡri",
+    "phonetic1": "dɪ'griː",
+    "sentences": [
+      {
+        "v": "把烘箱预热至425度。",
+        "tran": "Preheat the oven to 425 degrees."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "…的程度；…的学位",
+        "tran": "degree of"
+      },
+      {
+        "v": "高度；高地位",
+        "tran": "high degree"
+      },
+      {
+        "v": "学士学位；大学本科学位证书",
+        "tran": "bachelor degree"
+      },
+      {
+        "v": "到某种程度",
+        "tran": "a certain degree"
+      },
+      {
+        "v": "在某种程度上",
+        "tran": "in some degree"
+      },
+      {
+        "v": "硕士学位；研究生",
+        "tran": "master degree"
+      },
+      {
+        "v": "学士学位",
+        "tran": "bachelor's degree"
+      },
+      {
+        "v": "n. 硕士学位",
+        "tran": "master's degree"
+      },
+      {
+        "v": "大学文凭；大学学位",
+        "tran": "college degree"
+      },
+      {
+        "v": "在某种程度上；有点，稍微",
+        "tran": "to some degree"
+      },
+      {
+        "v": "大学学历；本科学历",
+        "tran": "university degree"
+      },
+      {
+        "v": "在某种程度上，在一定程度上；非常",
+        "tran": "to a degree"
+      },
+      {
+        "v": "按照其本身的情况(或程度)",
+        "tran": "in one's degree"
+      },
+      {
+        "v": "自由度",
+        "tran": "degree of freedom"
+      },
+      {
+        "v": "达到何种程度，如何",
+        "tran": "to what degree"
+      },
+      {
+        "v": "自动化程度",
+        "tran": "degree of automation"
+      },
+      {
+        "v": "难度系数，难度",
+        "tran": "degree of difficulty"
+      },
+      {
+        "v": "满意度",
+        "tran": "degree of satisfaction"
+      },
+      {
+        "v": "真空度",
+        "tran": "vacuum degree"
+      },
+      {
+        "v": "精确度",
+        "tran": "degree of accuracy"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "程度，等级；度；学位；阶层",
+        "ws": [
+          {
+            "w": "extent"
+          },
+          {
+            "w": "classification"
+          },
+          {
+            "w": "measure"
+          },
+          {
+            "w": "grade"
+          },
+          {
+            "w": "plane"
+          }
+        ]
+      }
+    ],
+    "memory": " 和agree(v. 同意)一起记"
+  },
+  {
+    "id": 47,
+    "word": "world",
+    "trans": [
+      {
+        "cn": "世界",
+        "en": "the  planet  we live on, and all the people, cities, and countries on it"
+      }
+    ],
+    "phonetic0": "wɝld",
+    "phonetic1": "wɜːld",
+    "sentences": [
+      {
+        "v": "结核病在世界上某些地区仍很常见。",
+        "tran": "Tuberculosis is still common in some parts of the world ."
+      },
+      {
+        "v": "当时中国是世界上最强大的国家。",
+        "tran": "At that time China was the most powerful country in the world ."
+      },
+      {
+        "v": "泰姬陵吸引了来自世界各地的游客。",
+        "tran": "The Taj Mahal attracts visitors from around the world ."
+      },
+      {
+        "v": "世界各地的学生到牛津大学来求学。",
+        "tran": "Students from all over the world come to study at Oxford."
+      },
+      {
+        "v": "全世界的孩子都一样。",
+        "tran": "Children are the same the world over ."
+      },
+      {
+        "v": "这本书已在世界各地出版。",
+        "tran": "The book has been published throughout the world ."
+      },
+      {
+        "v": "世界上任何地方都找不出和它类似的东西。",
+        "tran": "There is nothing quite like it anywhere in the world ."
+      },
+      {
+        "v": "欧洲和世界上其他地区的关系",
+        "tran": "Europe’s relationship with the rest of the world"
+      },
+      {
+        "v": "我决定休息一年去周游世界。",
+        "tran": "I decided to take a year off to travel the world ."
+      },
+      {
+        "v": "震惊全世界的罪行",
+        "tran": "a crime that shocked the world"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "worldly",
+            "tran": " 世俗的；世间的；尘世的"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "worldly",
+            "tran": " 世俗地；世故地"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "worldliness",
+            "tran": " 俗气；世俗心；世故；物欲"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "在世界上；到底",
+        "tran": "in the world"
+      },
+      {
+        "v": "世界各地；全世界；环游世界",
+        "tran": "around the world"
+      },
+      {
+        "v": "adv. 全世界",
+        "tran": "all over the world"
+      },
+      {
+        "v": "n. 世界杯",
+        "tran": "world cup"
+      },
+      {
+        "v": "世界大战",
+        "tran": "world war"
+      },
+      {
+        "v": "[经]世界经济",
+        "tran": "world economy"
+      },
+      {
+        "v": "外部世界",
+        "tran": "outside world"
+      },
+      {
+        "v": "世界贸易",
+        "tran": "world trade"
+      },
+      {
+        "v": "新世界（指西半球或南、北美洲及其附近岛屿）",
+        "tran": "new world"
+      },
+      {
+        "v": "现实世界；真正的世界",
+        "tran": "real world"
+      },
+      {
+        "v": "全世界",
+        "tran": "throughout the world"
+      },
+      {
+        "v": "第二次世界大战",
+        "tran": "world war ii"
+      },
+      {
+        "v": "n. 世界银行",
+        "tran": "world bank"
+      },
+      {
+        "v": "（否定句内）无论如何；（肯定句内）每一方面都…",
+        "tran": "for the world"
+      },
+      {
+        "v": "世界和平",
+        "tran": "world peace"
+      },
+      {
+        "v": "世界贸易组织（产生于关贸总协定的乌拉圭谈判， 其目的是为促进多边贸易谈判和协议而成立的。）",
+        "tran": "world trade organization"
+      },
+      {
+        "v": "世界市场",
+        "tran": "world market"
+      },
+      {
+        "v": "第二世界",
+        "tran": "second world"
+      },
+      {
+        "v": "世界卫生组织",
+        "tran": "world health organization"
+      },
+      {
+        "v": "很多；极大的",
+        "tran": "a world of"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "世界；领域；宇宙；世俗；全人类；物质生活",
+        "ws": [
+          {
+            "w": "universe"
+          },
+          {
+            "w": "domain"
+          },
+          {
+            "w": "province"
+          },
+          {
+            "w": "territory"
+          },
+          {
+            "w": "kingdom"
+          }
+        ]
+      }
+    ],
+    "memory": " 世界(world)上的人说话都离不开词语(word)"
+  },
+  {
+    "id": 48,
+    "word": "London",
+    "trans": [
+      {
+        "cn": "伦敦"
+      }
+    ],
+    "phonetic0": "ˈlʌndən",
+    "phonetic1": "ˈlʌndən",
+    "sentences": [
+      {
+        "v": "我乘火车到伦敦。",
+        "tran": "I trained to London."
+      },
+      {
+        "v": "你得克服困难到达伦敦把那份情报取回来。",
+        "tran": "You have to hurdle to London and get the intelligence back."
+      },
+      {
+        "v": "为了这笔生意他曾不停地往返于伦敦和巴黎。",
+        "tran": "He hopped to and fro between London and Paris for the business."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "伦敦金融城；伦敦市",
+        "tran": "city of london"
+      },
+      {
+        "v": "伦敦经济学院",
+        "tran": "london school of economics"
+      },
+      {
+        "v": "（英国）伦敦桥",
+        "tran": "london bridge"
+      },
+      {
+        "v": "伦敦俱乐部（核燃料供应国集团）",
+        "tran": "london club"
+      },
+      {
+        "v": "东伦敦（南非一港市）",
+        "tran": "east london"
+      },
+      {
+        "v": "伦敦证券交易所",
+        "tran": "london stock exchange"
+      },
+      {
+        "v": "伦敦塔（位于英国伦敦泰晤士北岸的古堡，古代曾先后作为皇宫及监狱，现为兵械库和博物馆）",
+        "tran": "tower of london"
+      },
+      {
+        "v": "居住在伦敦",
+        "tran": "live in london"
+      },
+      {
+        "v": "（伦敦大学）帝国理工学院",
+        "tran": "imperial college london"
+      },
+      {
+        "v": "伦敦眼（英格兰建筑）",
+        "tran": "the london eye"
+      },
+      {
+        "v": "n. 伦敦机场",
+        "tran": "london airport"
+      },
+      {
+        "v": "伦敦金属交易所",
+        "tran": "london metal exchange"
+      },
+      {
+        "v": "伦敦商学院",
+        "tran": "london business school"
+      },
+      {
+        "v": "大伦敦",
+        "tran": "greater london"
+      },
+      {
+        "v": "新伦敦（美国东南港市）",
+        "tran": "new london"
+      },
+      {
+        "v": "伦敦的地铁系统",
+        "tran": "the london underground"
+      }
+    ],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 49,
+    "word": "Moscow",
+    "trans": [
+      {
+        "cn": "莫斯科"
+      }
+    ],
+    "phonetic0": "ˈmɑsˌkaʊ",
+    "phonetic1": "'mɔskəʊ",
+    "sentences": [
+      {
+        "v": "一定要去莫斯科！",
+        "tran": "Must go... to Moscow!"
+      },
+      {
+        "v": "为了这样一个有教育意义的体验，他们中的很多人都是从很远的地方赶到莫斯科来的。",
+        "tran": "Many of them are coming to Moscow from quite far away for an opportunity to have this kind of educational experience."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 50,
+    "word": "Singapore",
+    "trans": [
+      {
+        "cn": "新加坡城"
+      }
+    ],
+    "phonetic0": "ˌsɪŋgə'pɔ:",
+    "phonetic1": "ˌsɪŋgə'pɔ:",
+    "sentences": [
+      {
+        "v": "我来自新加坡。",
+        "tran": "I come from Singapore."
+      },
+      {
+        "v": "但是在新加坡就不同了。",
+        "tran": "But not in Singapore."
+      },
+      {
+        "v": "在上海逗留了几天之后，他又启程去新加坡。",
+        "tran": "After staying a few days in Shanghai, he moved on to Singapore."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "新加坡航空公司",
+        "tran": "singapore airlines"
+      },
+      {
+        "v": "新加坡共和国",
+        "tran": "republic of singapore"
+      },
+      {
+        "v": "新加坡摩天观景轮",
+        "tran": "singapore flyer"
+      }
+    ],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 51,
+    "word": "Sydney",
+    "trans": [
+      {
+        "cn": "悉尼"
+      }
+    ],
+    "phonetic0": "'sɪdnɪ",
+    "phonetic1": "ˈsɪdnɪ",
+    "sentences": [
+      {
+        "v": "我兄弟居住于悉尼。",
+        "tran": "My brother is living in Sydney."
+      },
+      {
+        "v": "它是仿效悉尼歌剧院设计的。",
+        "tran": "It is designed on the model of the Sydney Opera House."
+      },
+      {
+        "v": "我哥哥刚离开悉尼去周游世界。",
+        "tran": "My brother has just left Sydney for a tour of the world."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "悉尼歌剧院",
+        "tran": "sydney opera house"
+      },
+      {
+        "v": "悉尼大学",
+        "tran": "university of sydney"
+      },
+      {
+        "v": "悉尼先驱晨报",
+        "tran": "sydney morning herald"
+      }
+    ],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 52,
+    "word": "fly",
+    "trans": [
+      {
+        "cn": "放（风筝）",
+        "en": "to make a  kite  fly in the air"
+      }
+    ],
+    "phonetic0": "flaɪ",
+    "phonetic1": "flaɪ",
+    "sentences": [
+      {
+        "v": "公园里，人们或在遛狗，或在放风筝。",
+        "tran": "In the park people were walking their dogs or flying their kites."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "flying",
+            "tran": " 飞行的"
+          },
+          {
+            "w": "flyaway",
+            "tran": " 轻浮的；翅状的；（衣服）不合身的；尖形的"
+          },
+          {
+            "w": "flyblown",
+            "tran": " 弄脏的；有苍蝇产卵的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "flyer",
+            "tran": " 传单；飞鸟；飞行物；飞跳；孤注一掷"
+          },
+          {
+            "w": "flying",
+            "tran": " 飞行"
+          },
+          {
+            "w": "flyaway",
+            "tran": " 海市蜃楼；轻浮的人；宽大不合身的衣服；新飞机"
+          },
+          {
+            "w": "flybridge",
+            "tran": " 驾驶桥楼"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "flying",
+            "tran": " 飞（fly的ing形式）"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "粉煤灰；飞灰",
+        "tran": "fly ash"
+      },
+      {
+        "v": "在飞行中；忙忙碌碌",
+        "tran": "on the fly"
+      },
+      {
+        "v": "降落；乘飞机旅行",
+        "tran": "fly in"
+      },
+      {
+        "v": "飞走；飞行；起飞",
+        "tran": "fly away"
+      },
+      {
+        "v": "有雄心大志；情绪高涨；野心勃勃",
+        "tran": "fly high"
+      },
+      {
+        "v": "飘扬",
+        "tran": "fly over"
+      },
+      {
+        "v": "v. 突发",
+        "tran": "fly into"
+      },
+      {
+        "v": "飞出；飞速（或突然）地跑掉",
+        "tran": "fly off"
+      },
+      {
+        "v": "回扫；快速回零",
+        "tran": "fly back"
+      },
+      {
+        "v": "让它飞",
+        "tran": "let it fly"
+      },
+      {
+        "v": "在空中飞行",
+        "tran": "fly in the sky"
+      },
+      {
+        "v": "飞逝；（一架或几架飞机）在低空飞过指定地点，飞越；宇宙飞船飞近天体",
+        "tran": "fly by"
+      },
+      {
+        "v": "vt. 向……发脾气",
+        "tran": "fly on"
+      },
+      {
+        "v": "扑向；猛烈攻击",
+        "tran": "fly at"
+      },
+      {
+        "v": "v. 放风筝；开空头支票；试探舆论",
+        "tran": "fly a kite"
+      },
+      {
+        "v": "v. 冲出；突然怒骂（或动武）",
+        "tran": "fly out"
+      },
+      {
+        "v": "飞起；突然发怒；向上飞",
+        "tran": "fly up"
+      },
+      {
+        "v": "[昆]果蝇",
+        "tran": "fruit fly"
+      },
+      {
+        "v": "飞向月亮",
+        "tran": "fly to the moon"
+      },
+      {
+        "v": "放风筝",
+        "tran": "fly kites"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "vi",
+        "tran": "飞；驾驶飞机；飘扬",
+        "ws": [
+          {
+            "w": "flow"
+          },
+          {
+            "w": "stream"
+          },
+          {
+            "w": "dance"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "飞行；飞越；使飘扬",
+        "ws": [
+          {
+            "w": "overfly"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "tran": "飞行；苍蝇；两翼昆虫",
+        "ws": [
+          {
+            "w": "flight"
+          },
+          {
+            "w": "volation"
+          }
+        ]
+      },
+      {
+        "pos": "adj",
+        "tran": "敏捷的",
+        "ws": [
+          {
+            "w": "sharp"
+          },
+          {
+            "w": "keen"
+          },
+          {
+            "w": "prompt"
+          },
+          {
+            "w": "quick"
+          },
+          {
+            "w": "smart"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 53,
+    "word": "love",
+    "trans": [
+      {
+        "cn": "爱你的",
+        "en": "to have a strong feeling of  affection  for someone, combined with sexual attraction"
+      }
+    ],
+    "phonetic0": "lʌv",
+    "phonetic1": "lʌv",
+    "sentences": [
+      {
+        "v": "我爱你，特雷西。",
+        "tran": "I love you, Tracy."
+      },
+      {
+        "v": "他是她唯一爱过的男人。",
+        "tran": "He was the only man she had ever loved."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "lovely",
+            "tran": " 可爱的；令人愉快的"
+          },
+          {
+            "w": "loving",
+            "tran": " 亲爱的；钟情的；忠诚的"
+          },
+          {
+            "w": "lovable",
+            "tran": " 可爱的，讨人喜欢的"
+          },
+          {
+            "w": "loved",
+            "tran": " 恋爱的；受珍爱的"
+          },
+          {
+            "w": "loveless",
+            "tran": " 不可爱的；无爱情的"
+          },
+          {
+            "w": "loveable",
+            "tran": " 可爱的；惹人爱的（等于lovable）"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "lovingly",
+            "tran": " 亲切地；钟爱地"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "lover",
+            "tran": " 爱人，恋人；爱好者"
+          },
+          {
+            "w": "loveliness",
+            "tran": " 可爱；漂亮；魅力；美好"
+          },
+          {
+            "w": "lovingness",
+            "tran": " 钟情；爱；忠诚"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "loved",
+            "tran": " 热爱（love的过去分词）"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "相爱；恋爱中",
+        "tran": "in love"
+      },
+      {
+        "v": "论爱情",
+        "tran": "of love"
+      },
+      {
+        "v": "◎为了爱情",
+        "tran": "for love"
+      },
+      {
+        "v": "热爱；与…相爱",
+        "tran": "in love with"
+      },
+      {
+        "v": "对…的热爱",
+        "tran": "love for"
+      },
+      {
+        "v": "真爱；挚爱，真情",
+        "tran": "true love"
+      },
+      {
+        "v": "坠入爱河；爱上某人",
+        "tran": "fall in love"
+      },
+      {
+        "v": "坠入情网",
+        "tran": "falling in love"
+      },
+      {
+        "v": "爱上",
+        "tran": "fall in love with"
+      },
+      {
+        "v": "（信末用语）良好的祝颂",
+        "tran": "with love"
+      },
+      {
+        "v": "v. 做爱；示爱（献殷勤）",
+        "tran": "make love"
+      },
+      {
+        "v": "双方打成零比零",
+        "tran": "love all"
+      },
+      {
+        "v": "一见钟情",
+        "tran": "love at first sight"
+      },
+      {
+        "v": "n. 爱情故事，恋爱小说",
+        "tran": "love story"
+      },
+      {
+        "v": "n. [口]爱情生活",
+        "tran": "love life"
+      },
+      {
+        "v": "爱上…（fall in love with的过去式）",
+        "tran": "fell in love with"
+      },
+      {
+        "v": "为了…起见",
+        "tran": "for the love of"
+      },
+      {
+        "v": "（表示喜欢，愿意）很想",
+        "tran": "would love to"
+      },
+      {
+        "v": "永远爱你",
+        "tran": "love you forever"
+      },
+      {
+        "v": "你的爱人；你的至爱",
+        "tran": "the one you love"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "恋爱；亲爱的；酷爱；喜爱的事物",
+        "ws": [
+          {
+            "w": "passion"
+          },
+          {
+            "w": "amativeness"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "喜欢；热爱；爱慕",
+        "ws": [
+          {
+            "w": "worship"
+          },
+          {
+            "w": "take a fancy to"
+          }
+        ]
+      }
+    ],
+    "memory": " 爱情文艺电影Perhaps, Love 《如果·爱》"
+  },
+  {
+    "id": 54,
+    "word": "tomato",
+    "trans": [
+      {
+        "cn": "西红柿",
+        "en": "a round soft red fruit eaten raw or cooked as a vegetable"
+      }
+    ],
+    "phonetic0": "tə'meto",
+    "phonetic1": "tə'mɑːtəʊ",
+    "sentences": [
+      {
+        "v": "他用竹竿支撑起西红柿秧。",
+        "tran": "He staked his tomato vines with bamboo."
+      },
+      {
+        "v": "第二，放一些西红柿在面包上粘贴。",
+        "tran": "Secondly,put some tomato paste on the bread."
+      },
+      {
+        "v": "整条大麻哈鱼被端上了桌，并用欧芹、西红柿片和黄瓜片作为花色配菜。",
+        "tran": "The salmon was brought to the table whole, garnished with parsley and slices of tomato and cucumber."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "番茄酱，蕃茄汁；番茄沙司",
+        "tran": "tomato sauce"
+      },
+      {
+        "v": "蕃茄酱，西红柿酱；蕃茄糊",
+        "tran": "tomato paste"
+      },
+      {
+        "v": "番茄汁",
+        "tran": "tomato juice"
+      },
+      {
+        "v": "樱桃番茄",
+        "tran": "cherry tomato"
+      },
+      {
+        "v": "番茄汤",
+        "tran": "tomato soup"
+      },
+      {
+        "v": "番茄，西红柿",
+        "tran": "tomato plant"
+      },
+      {
+        "v": "n. 蕃茄酱",
+        "tran": "tomato ketchup"
+      },
+      {
+        "v": "西红柿沙拉",
+        "tran": "tomato salad"
+      },
+      {
+        "v": "蕃茄糊；蕃茄酱",
+        "tran": "tomato puree"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "[园艺]番茄，西红柿",
+        "ws": [
+          {
+            "w": "tamarillo"
+          }
+        ]
+      }
+    ],
+    "memory": " 西红柿(tomato)和土豆(potato)的味道可差远了"
+  },
+  {
+    "id": 55,
+    "word": "potato",
+    "trans": [
+      {
+        "cn": "马铃薯",
+        "en": "a round white vegetable with a brown, red, or pale yellow skin, that grows under the ground"
+      }
+    ],
+    "phonetic0": "pə'teto",
+    "phonetic1": "pə'teɪtəʊ",
+    "sentences": [
+      {
+        "v": "玛丽站在洗涤槽边削土豆皮。",
+        "tran": "Marie stood at the sink, peeling potatoes (= cutting off the skin ) ."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "甘薯",
+        "tran": "sweet potato"
+      },
+      {
+        "v": "马铃薯淀粉；生粉；太白粉（台湾叫法）",
+        "tran": "potato starch"
+      },
+      {
+        "v": "甘薯淀粉；蕃薯粉；地瓜粉",
+        "tran": "sweet potato starch"
+      },
+      {
+        "v": "成天躺著或坐在沙发上看电视的人；极为懒惰的人",
+        "tran": "couch potato"
+      },
+      {
+        "v": "[口]烫手山芋（喻指棘手的问题）；（英）烤土豆",
+        "tran": "hot potato"
+      },
+      {
+        "v": "小人物，小喽罗；小角色",
+        "tran": "small potato"
+      },
+      {
+        "v": "马铃薯泥，洋芋泥",
+        "tran": "mashed potato"
+      },
+      {
+        "v": "烤马铃薯；烘马铃薯",
+        "tran": "baked potato"
+      },
+      {
+        "v": "马铃薯沙拉；土豆沙拉；薯仔沙律",
+        "tran": "potato salad"
+      },
+      {
+        "v": "n. 炸土豆片",
+        "tran": "potato chip"
+      },
+      {
+        "v": "大土豆，大人物",
+        "tran": "big potato"
+      },
+      {
+        "v": "白马铃薯",
+        "tran": "irish potato"
+      },
+      {
+        "v": "n. 马铃薯收割机",
+        "tran": "potato harvester"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "土豆，[作物]马铃薯",
+        "ws": [
+          {
+            "w": "murphy"
+          },
+          {
+            "w": "tater"
+          }
+        ]
+      }
+    ],
+    "memory": " 那些整天坐在沙发上看电视的“电视迷”在英语中叫做couch potato"
+  },
+  {
+    "id": 56,
+    "word": "green beans",
+    "trans": [
+      {
+        "cn": "豆角"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "通过建造一个农田你在每颗植物可以省到23美元，你可以种一些高价蔬菜像西红柿，黄瓜，和四季豆。",
+        "tran": "You can save up to $23 per plant by building an edible garden with big ticket vegetables like tomatoes, cucumbers, and green beans."
+      },
+      {
+        "v": "位于伦敦金融城的“炮弹大厦”由两种瓜类巧妙建成，并饰以青豆，以突出这座玻璃建筑的著名螺旋式结构特点。",
+        "tran": "The Gherkin, found in the Square mile, is cunningly crafted out of two types of melon and embedded with green beans to highlight its renowned spiralling glass frames."
+      },
+      {
+        "v": "小屋内长满了植物，我的周围，是大片大片暖人心房的黄绿色芭蕉叶以及纤细而紧贴四周墙壁的四季豆苗。",
+        "tran": "Plants crowd my space. I am surrounded by large banana leaves -- huge splashes of heartwarming yellow-green color -- and stringy vines of green beans entwining every vertical surface."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "[作物]青豆；绿豆；四季豆",
+        "ws": [
+          {
+            "w": "mung beans"
+          },
+          {
+            "w": "lima-bean"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 57,
+    "word": "carrot",
+    "trans": [
+      {
+        "cn": "胡萝卜",
+        "en": "a long pointed orange vegetable that grows under the ground"
+      }
+    ],
+    "phonetic0": "'kærət",
+    "phonetic1": "'kærət",
+    "sentences": [
+      {
+        "v": "磨碎的胡萝卜",
+        "tran": "grated carrots"
+      },
+      {
+        "v": "胡萝卜汁",
+        "tran": "carrot juice"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "carroty",
+            "tran": " 胡萝卜色的；红发的"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "软硬兼施的；胡萝卜棍棒并用的",
+        "tran": "carrot and stick"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "[园艺]胡萝卜",
+        "ws": [
+          {
+            "w": "carota"
+          }
+        ]
+      }
+    ],
+    "memory": " 鹦鹉(parrot)爱吃胡萝卜(carrot)"
+  },
+  {
+    "id": 58,
+    "word": "horse",
+    "trans": [
+      {
+        "cn": "马",
+        "en": "a large strong animal that people ride and use for pulling heavy things"
+      }
+    ],
+    "phonetic0": "hɔrs",
+    "phonetic1": "hɔːs",
+    "sentences": [
+      {
+        "v": "一辆马车",
+        "tran": "a horse and cart"
+      },
+      {
+        "v": "李以前从未骑过马。",
+        "tran": "Lee had never ridden a horse before."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "黑马（出人意外获胜的赛马或参赛人）；（美）[政]“黑马”候选人（常因各方妥协而意外获得提名或当选）",
+        "tran": "dark horse"
+      },
+      {
+        "v": "n. 白马；怀特霍斯（加拿大育空地区首府）；白马像（新石器时代、青铜时代或铁器时代雕刻在英国伯克郡等白垩山冈上）",
+        "tran": "white horse"
+      },
+      {
+        "v": "◎(途中)换马",
+        "tran": "change horses"
+      },
+      {
+        "v": "[口语](消息等)第一手的，直接得来的",
+        "tran": "from the horse's mouth"
+      },
+      {
+        "v": "[希神]特洛伊木马；特洛伊木马（一种计算机病毒）",
+        "tran": "trojan horse"
+      },
+      {
+        "v": "n. 赛马",
+        "tran": "horse racing"
+      },
+      {
+        "v": "黑马；黑骏马",
+        "tran": "black horse"
+      },
+      {
+        "v": "骑马",
+        "tran": "ride a horse"
+      },
+      {
+        "v": "n. 傲慢的态度",
+        "tran": "high horse"
+      },
+      {
+        "v": "赛马",
+        "tran": "horse race"
+      },
+      {
+        "v": "骑马运动；骑马活动",
+        "tran": "horse riding"
+      },
+      {
+        "v": "预付的工资；旧债；无益的事",
+        "tran": "dead horse"
+      },
+      {
+        "v": "马力",
+        "tran": "horse power"
+      },
+      {
+        "v": "（练习跳跃用的）鞍马",
+        "tran": "vaulting horse"
+      },
+      {
+        "v": "野马",
+        "tran": "wild horse"
+      },
+      {
+        "v": "吃得多",
+        "tran": "eat like a horse"
+      },
+      {
+        "v": "n. 木马",
+        "tran": "wooden horse"
+      },
+      {
+        "v": "n. [体]鞍马",
+        "tran": "pommel horse"
+      },
+      {
+        "v": "[鱼]海马",
+        "tran": "sea horse"
+      },
+      {
+        "v": "七叶树；马栗树",
+        "tran": "horse chestnut"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "[畜牧]马；骑兵；脚架；海洛因",
+        "ws": [
+          {
+            "w": "prad"
+          },
+          {
+            "w": "yarraman"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "使骑马；系马于；捉弄",
+        "ws": [
+          {
+            "w": "play tricks on"
+          },
+          {
+            "w": "play tricks with"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "tran": "骑马；作弄人",
+        "ws": [
+          {
+            "w": "ride"
+          }
+        ]
+      }
+    ],
+    "memory": " 房子(house)门前拴大马(horse)"
+  },
+  {
+    "id": 59,
+    "word": "cow",
+    "trans": [
+      {
+        "cn": "牛",
+        "en": "a large female animal that is kept on farms and used to produce milk or meat"
+      }
+    ],
+    "phonetic0": "kaʊ",
+    "phonetic1": "kaʊ",
+    "sentences": [
+      {
+        "v": "我家的母牛又怀胎了。",
+        "tran": "Our cow is carrying again."
+      },
+      {
+        "v": "这头母牛预期下周生小牛。",
+        "tran": "The cow is expected to calve next week."
+      },
+      {
+        "v": "这头母牛早产了。",
+        "tran": "The cow cast a calf."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "cowy",
+            "tran": " 似牛的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "cowy",
+            "tran": " 牛膻味"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "奶牛；乳牛",
+        "tran": "milk cow"
+      },
+      {
+        "v": "n. 奶牛；乳牛",
+        "tran": "dairy cow"
+      },
+      {
+        "v": "摇钱树；巨大财源",
+        "tran": "cash cow"
+      },
+      {
+        "v": "牛皮",
+        "tran": "cow leather"
+      },
+      {
+        "v": "摇钱树，财源；乳牛",
+        "tran": "milch cow"
+      },
+      {
+        "v": "[俚]不会吧！；哎呀！；我的天啊（等于holy cats）",
+        "tran": "holy cow"
+      },
+      {
+        "v": "圣牛（印度教等的）；不可修改的文稿；不可批评的人（思想或事物）",
+        "tran": "sacred cow"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "奶牛，[畜牧]母牛；[脊椎]母兽",
+        "ws": [
+          {
+            "w": "dairy cattle"
+          },
+          {
+            "w": "crummie"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "威胁，恐吓",
+        "ws": [
+          {
+            "w": "to threaten"
+          },
+          {
+            "w": "threaten with"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 60,
+    "word": "sheep",
+    "trans": [
+      {
+        "cn": "绵羊",
+        "en": "a farm animal that is kept for its wool and its meat"
+      }
+    ],
+    "phonetic0": "ʃip",
+    "phonetic1": "ʃiːp",
+    "sentences": [
+      {
+        "v": "羊群在山坡上吃草。",
+        "tran": "Sheep were grazing on the hillside."
+      },
+      {
+        "v": "养羊的农民",
+        "tran": "a sheep farmer"
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "败家子；害群之马",
+        "tran": "black sheep"
+      },
+      {
+        "v": "迷途羔羊（误入歧途的人）",
+        "tran": "lost sheep"
+      },
+      {
+        "v": "善人与恶人 （来自《圣经》）；好人与坏人",
+        "tran": "sheep and goats"
+      },
+      {
+        "v": "一群羊",
+        "tran": "a flock of sheep"
+      },
+      {
+        "v": "绵羊毛皮",
+        "tran": "sheep skin"
+      },
+      {
+        "v": "白羊；坏人中的好人（与black sheep相对）",
+        "tran": "white sheep"
+      },
+      {
+        "v": "数羊",
+        "tran": "count sheep"
+      },
+      {
+        "v": "n. 绵羊皮，（绵）羊革",
+        "tran": "sheep leather"
+      },
+      {
+        "v": "麦兰奴种绵羊",
+        "tran": "merino sheep"
+      },
+      {
+        "v": "羊在吃草",
+        "tran": "sheep are grazing"
+      },
+      {
+        "v": "落入狼群的羊",
+        "tran": "a sheep among wolves"
+      },
+      {
+        "v": "n. 牧羊犬；护羊狗",
+        "tran": "sheep dog"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "[畜牧]羊，绵羊；胆小鬼",
+        "ws": [
+          {
+            "w": "jumbuck"
+          },
+          {
+            "w": "mutton"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 61,
+    "word": "hen",
+    "trans": [
+      {
+        "cn": "母鸡",
+        "en": "an adult female chicken"
+      }
+    ],
+    "phonetic0": "hɛn",
+    "phonetic1": "hen",
+    "sentences": [
+      {
+        "v": "小鸡聚集在母鸡翅膀下面。",
+        "tran": "The chickens gathered under the hen."
+      },
+      {
+        "v": "母鸡卧窝。",
+        "tran": "The hen sits in the hencoop [henroost]."
+      },
+      {
+        "v": "琼斯和她的同事们希望弄明白，是否一只幸福的母鸡确实产出更好的产品。",
+        "tran": "What Jones and her colleagues wanted to learn is whether a happy hen in fact produces a better product."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "母鸡；女人；[禽]雌禽",
+        "ws": [
+          {
+            "w": "female"
+          },
+          {
+            "w": "she"
+          }
+        ]
+      }
+    ],
+    "memory": " 拿钢笔(pen)， 画母鸡(hen)"
+  },
+  {
+    "id": 62,
+    "word": "these",
+    "trans": [
+      {
+        "cn": "这些",
+        "en": "You use these at the beginning of noun groups to refer to someone or something that you have already mentioned or identified"
+      }
+    ],
+    "phonetic0": "ðiz",
+    "phonetic1": "ðiːz",
+    "sentences": [
+      {
+        "v": "委员会已经成立。这些人能在10分钟内做出决定，换作我们则要花几个月。",
+        "tran": "A committee has been formed. These people can make decisions in ten minutes which would take us months."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "这些",
+        "tran": "of these"
+      },
+      {
+        "v": "这些天；目前",
+        "tran": "these days"
+      }
+    ],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 63,
+    "word": "yum",
+    "trans": [
+      {
+        "cn": "味道好"
+      }
+    ],
+    "phonetic0": "jʌm",
+    "phonetic1": "jʌm",
+    "sentences": [],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 64,
+    "word": "animal",
+    "trans": [
+      {
+        "cn": "动物",
+        "en": "a living creature such as a dog or cat, that is not an insect, plant, bird, fish, or person"
+      }
+    ],
+    "phonetic0": "'ænɪml",
+    "phonetic1": "'ænɪm(ə)l",
+    "sentences": [
+      {
+        "v": "毛茸茸的小动物",
+        "tran": "furry little animals"
+      },
+      {
+        "v": "这些化妆品没有进行过动物试验。",
+        "tran": "The cosmetics have not been tested on animals."
+      },
+      {
+        "v": "贝丝是个喜欢动物的人。",
+        "tran": "Beth is an animal lover (=  someone who likes animals  ) ."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "animallike",
+            "tran": " 动物似的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "anime",
+            "tran": " 日本动漫；芳香树脂"
+          },
+          {
+            "w": "animalcule",
+            "tran": " 微生物；微动物"
+          },
+          {
+            "w": "animalism",
+            "tran": " 兽性，动物特性"
+          },
+          {
+            "w": "animality",
+            "tran": " 兽性；人的动物本能；动物界（等于animal kingdom）；动物的生活"
+          },
+          {
+            "w": "animalization",
+            "tran": " 兽性化，动物化"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "ws": [
+          {
+            "w": "animalize",
+            "tran": " 使动物化；激起…的兽欲"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "畜牧业；畜牧学",
+        "tran": "animal husbandry"
+      },
+      {
+        "v": "动物饲料",
+        "tran": "animal feed"
+      },
+      {
+        "v": "n. 野生动物；野兽",
+        "tran": "wild animal"
+      },
+      {
+        "v": "动物实验；动物试验",
+        "tran": "animal experiment"
+      },
+      {
+        "v": "动物权利",
+        "tran": "animal rights"
+      },
+      {
+        "v": "动物世界",
+        "tran": "animal world"
+      },
+      {
+        "v": "动物保护",
+        "tran": "animal protection"
+      },
+      {
+        "v": "家畜",
+        "tran": "domestic animal"
+      },
+      {
+        "v": "动物科学；畜牧学",
+        "tran": "animal science"
+      },
+      {
+        "v": "动物脂；动物油脂",
+        "tran": "animal fat"
+      },
+      {
+        "v": "n. 动物界",
+        "tran": "animal kingdom"
+      },
+      {
+        "v": "[医]实验动物",
+        "tran": "experimental animal"
+      },
+      {
+        "v": "动物性食品；动物饲料",
+        "tran": "animal food"
+      },
+      {
+        "v": "动物蛋白",
+        "tran": "animal protein"
+      },
+      {
+        "v": "动物生命",
+        "tran": "animal life"
+      },
+      {
+        "v": "试验动物",
+        "tran": "laboratory animal"
+      },
+      {
+        "v": "动物营养学",
+        "tran": "animal nutrition"
+      },
+      {
+        "v": "动物粪便",
+        "tran": "animal waste"
+      },
+      {
+        "v": "动物育种；家畜育种",
+        "tran": "animal breeding"
+      },
+      {
+        "v": "稀有动物",
+        "tran": "rare animal"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "[动]动物",
+        "ws": [
+          {
+            "w": "creature"
+          },
+          {
+            "w": "zoon"
+          }
+        ]
+      }
+    ],
+    "memory": " anim(生命)+al(名词后缀， 表物)→动物"
+  },
+  {
+    "id": 65,
+    "word": "those",
+    "trans": [
+      {
+        "cn": "那些",
+        "en": "You use those to refer to people or things which have already been mentioned"
+      }
+    ],
+    "phonetic0": "ðoz",
+    "phonetic1": "ðəʊz",
+    "sentences": [
+      {
+        "v": "目击者说两人遇害，但那些说法都没法得到证实。",
+        "tran": "Witnesses said that two people were killed, but those accounts could not be confirmed."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "[粗俗语]那…；那个…",
+        "tran": "that there"
+      },
+      {
+        "v": "那么远；到那里为止",
+        "tran": "that far"
+      }
+    ],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 66,
+    "word": "garden",
+    "trans": [
+      {
+        "cn": "花园",
+        "en": "the area of land next to a house, where there are flowers, grass, and other plants, and often a place for people to sit"
+      }
+    ],
+    "phonetic0": "'ɡɑrdn",
+    "phonetic1": "'gɑːd(ə)n",
+    "sentences": [
+      {
+        "v": "他在外面花园里。",
+        "tran": "He’s outside in the garden."
+      },
+      {
+        "v": "格雷丝给我们送来一些她花园里的花。",
+        "tran": "Grace brought us some flowers from her garden."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "gardener",
+            "tran": " 园丁；花匠；园艺家"
+          },
+          {
+            "w": "gardening",
+            "tran": " 园艺；园林工人的工作"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "在花园里",
+        "tran": "in the garden"
+      },
+      {
+        "v": "茶叶种植场；茶室",
+        "tran": "tea garden"
+      },
+      {
+        "v": "植物园",
+        "tran": "botanical garden"
+      },
+      {
+        "v": "玫瑰园；蔷薇园",
+        "tran": "rose garden"
+      },
+      {
+        "v": "园林设计；庭园设计；园艺设计",
+        "tran": "garden design"
+      },
+      {
+        "v": "花园酒店；花园饭店",
+        "tran": "garden hotel"
+      },
+      {
+        "v": "园林；风景园",
+        "tran": "landscape garden"
+      },
+      {
+        "v": "[圣经]伊甸园；清白无罪（的状况）",
+        "tran": "garden of eden"
+      },
+      {
+        "v": "屋顶花园",
+        "tran": "roof garden"
+      },
+      {
+        "v": "花园；庭园",
+        "tran": "flower garden"
+      },
+      {
+        "v": "菜园",
+        "tran": "vegetable garden"
+      },
+      {
+        "v": "城市花园",
+        "tran": "city garden"
+      },
+      {
+        "v": "私家园林，私家花园",
+        "tran": "private garden"
+      },
+      {
+        "v": "花园家具；庭院家具",
+        "tran": "garden furniture"
+      },
+      {
+        "v": "御花园",
+        "tran": "imperial garden"
+      },
+      {
+        "v": "n. 游园会；露天招待会",
+        "tran": "garden party"
+      },
+      {
+        "v": "小花园",
+        "tran": "little garden"
+      },
+      {
+        "v": "庭园建筑；园林建筑学",
+        "tran": "garden architecture"
+      },
+      {
+        "v": "植物园",
+        "tran": "botanic garden"
+      },
+      {
+        "v": "adj. 平凡的；普通的",
+        "tran": "common or garden"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "[建]花园；菜园",
+        "ws": [
+          {
+            "w": "taman"
+          },
+          {
+            "w": "bagh"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 67,
+    "word": "farm",
+    "trans": [
+      {
+        "cn": "农场",
+        "en": "an area of land used for growing crops or keeping animals"
+      }
+    ],
+    "phonetic0": "fɑrm",
+    "phonetic1": "fɑːm",
+    "sentences": [
+      {
+        "v": "一座300公顷的农场",
+        "tran": "a 300-hectare farm"
+      },
+      {
+        "v": "农场工人",
+        "tran": "farm workers"
+      },
+      {
+        "v": "农场牲畜",
+        "tran": "farm animals"
+      },
+      {
+        "v": "乔在农场干了一辈子。",
+        "tran": "Joe had worked on the farm all his life."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "farmer",
+            "tran": " 农夫，农民"
+          },
+          {
+            "w": "farming",
+            "tran": " 农业，耕作"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "farming",
+            "tran": " 耕种；出租（farm的ing形式）"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "农产品",
+        "tran": "farm products"
+      },
+      {
+        "v": "农产品",
+        "tran": "farm produce"
+      },
+      {
+        "v": "有许多风车的农场",
+        "tran": "wind farm"
+      },
+      {
+        "v": "在农场；在农场里，在农场上",
+        "tran": "on a farm"
+      },
+      {
+        "v": "农业机械",
+        "tran": "farm machinery"
+      },
+      {
+        "v": "农活；农务",
+        "tran": "farm work"
+      },
+      {
+        "v": "油库；油罐区",
+        "tran": "tank farm"
+      },
+      {
+        "v": "养猪场",
+        "tran": "pig farm"
+      },
+      {
+        "v": "农业土地",
+        "tran": "farm land"
+      },
+      {
+        "v": "n. 乳牛场",
+        "tran": "dairy farm"
+      },
+      {
+        "v": "农场工人",
+        "tran": "farm worker"
+      },
+      {
+        "v": "n. 养鸡场",
+        "tran": "chicken farm"
+      },
+      {
+        "v": "家庭农场",
+        "tran": "family farm"
+      },
+      {
+        "v": "畜牧场；禽畜饲养场；牧场",
+        "tran": "livestock farm"
+      },
+      {
+        "v": "家畜；耕畜",
+        "tran": "farm animal"
+      },
+      {
+        "v": "养牛场，奶牛场",
+        "tran": "cattle farm"
+      },
+      {
+        "v": "n. 家禽饲养所",
+        "tran": "poultry farm"
+      },
+      {
+        "v": "农作物（farm crop的复数）",
+        "tran": "farm crops"
+      },
+      {
+        "v": "林场",
+        "tran": "tree farm"
+      },
+      {
+        "v": "养鱼场",
+        "tran": "fish farm"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "vi",
+        "tran": "种田，务农；经营农场",
+        "ws": [
+          {
+            "w": "follow the plough"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "tran": "[农经]农场；农家；[畜牧]畜牧场",
+        "ws": [
+          {
+            "w": "grange"
+          },
+          {
+            "w": "steading"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "养殖；耕种；佃出（土地）",
+        "ws": [
+          {
+            "w": "till"
+          },
+          {
+            "w": "plant crops"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 68,
+    "word": "goat",
+    "trans": [
+      {
+        "cn": "山羊",
+        "en": "an animal that has horns on top of its head and long hair under its chin, and can climb steep hills and rocks. Goats live wild in the mountains or are kept as farm animals."
+      }
+    ],
+    "phonetic0": "ɡot",
+    "phonetic1": "gəʊt",
+    "sentences": [
+      {
+        "v": "老虎向山羊扑去。",
+        "tran": "The tiger sprang on the goat."
+      },
+      {
+        "v": "他们把山羊拴在后院的木桩上。",
+        "tran": "They staked the goat in the back yard."
+      },
+      {
+        "v": "一整只被烤的山羊在火上劈啪作响。",
+        "tran": "A whole goat is sputtering over the fire."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "goateed",
+            "tran": " 蓄有山羊胡须的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "goateed",
+            "tran": " 山羊胡子（等于goatee）"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "山羊皮",
+        "tran": "goat skin"
+      },
+      {
+        "v": "老色鬼；[俚]讨厌的老家伙",
+        "tran": "old goat"
+      },
+      {
+        "v": "[动]布尔羊",
+        "tran": "boer goat"
+      },
+      {
+        "v": "山羊乳干酪",
+        "tran": "goat cheese"
+      },
+      {
+        "v": "北美野山羊；野生白山羊",
+        "tran": "mountain goat"
+      },
+      {
+        "v": "山羊肉",
+        "tran": "goat meat"
+      },
+      {
+        "v": "山羊毛；切细烟丝",
+        "tran": "goat hair"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "[脊椎][畜牧]山羊；替罪羊（美俚）；色鬼（美俚）",
+        "ws": [
+          {
+            "w": "chevres"
+          },
+          {
+            "w": "Getcolor"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 69,
+    "word": "eat",
+    "trans": [
+      {
+        "cn": "吃",
+        "en": "to put food in your mouth and chew and swallow it"
+      }
+    ],
+    "phonetic0": "it",
+    "phonetic1": "iːt",
+    "sentences": [
+      {
+        "v": "费利克斯一边吃一边兴奋地聊天。",
+        "tran": "Felix chatted cheerfully as he ate."
+      },
+      {
+        "v": "一个小女孩在吃冰激凌。",
+        "tran": "A small girl was eating an ice cream."
+      },
+      {
+        "v": "我们有很多吃的喝的。",
+        "tran": "We had plenty to eat and drink."
+      },
+      {
+        "v": "怀孕的时候吃得健康很重要。",
+        "tran": "It’s important to eat healthily when you are pregnant."
+      },
+      {
+        "v": "我做运动，饮食得当，睡眠充足。",
+        "tran": "I exercise and eat right and get plenty of sleep."
+      },
+      {
+        "v": "想吃点什么吗？",
+        "tran": "Would you like something to eat?"
+      },
+      {
+        "v": "她可以吃得很多，但体重从来不会增加。",
+        "tran": "She can eat like a horse and never put on weight."
+      },
+      {
+        "v": "我们在麦当劳停下来吃点东西。",
+        "tran": "We stopped at McDonalds to get a bite to eat."
+      },
+      {
+        "v": "良好的饮食习惯是预防感染的最佳方法。",
+        "tran": "Good eating habits are the best way of preventing infection."
+      },
+      {
+        "v": "“再来点蛋糕？” “不要了，谢谢。 我再也吃不下了。”",
+        "tran": "‘More cake?’ ‘No thanks, I couldn’t eat another thing.’"
+      },
+      {
+        "v": "我不要鸡肉，我不吃肉的。",
+        "tran": "No chicken for me. I don’t eat meat (= I never eat meat )."
+      },
+      {
+        "v": "罗布吃鱼吗？",
+        "tran": "Does Rob eat fish?"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "eating",
+            "tran": " 侵蚀的；可生食的；进餐用的"
+          },
+          {
+            "w": "eatable",
+            "tran": " 可吃的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "eating",
+            "tran": " 吃；食物"
+          },
+          {
+            "w": "eater",
+            "tran": " 食者"
+          },
+          {
+            "w": "eatable",
+            "tran": " 食物（常用复数）"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "eating",
+            "tran": " 吃（eat的ing形式）"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "健康首选；吃得营养；吃的好；胃口好",
+        "tran": "eat well"
+      },
+      {
+        "v": "在家吃饭；侵蚀",
+        "tran": "eat in"
+      },
+      {
+        "v": "困扰",
+        "tran": "eat at"
+      },
+      {
+        "v": "上馆子吃饭；锈坏；使腐烂",
+        "tran": "eat out"
+      },
+      {
+        "v": "吃早饭",
+        "tran": "eat breakfast"
+      },
+      {
+        "v": "吃肉",
+        "tran": "eat meat"
+      },
+      {
+        "v": "吃光；耗尽；击垮",
+        "tran": "eat up"
+      },
+      {
+        "v": "v. 吃一些",
+        "tran": "eat of"
+      },
+      {
+        "v": "v. 吃午餐",
+        "tran": "eat lunch"
+      },
+      {
+        "v": "吃晚饭，吃晚餐",
+        "tran": "eat dinner"
+      },
+      {
+        "v": "吃食物",
+        "tran": "eat food"
+      },
+      {
+        "v": "丢脸；被迫收回自己说的话",
+        "tran": "eat crow"
+      },
+      {
+        "v": "受到…，遭受…",
+        "tran": "eat the bread of"
+      },
+      {
+        "v": "侵蚀",
+        "tran": "eat into"
+      },
+      {
+        "v": "忍辱含垢；低头谢罪",
+        "tran": "eat humble pie"
+      },
+      {
+        "v": "即食食品；速煮食品；方便食品",
+        "tran": "ready to eat"
+      },
+      {
+        "v": "[口]含垢忍辱（等于eat boiled crow）",
+        "tran": "eat dirt"
+      },
+      {
+        "v": "吃掉；腐蚀掉",
+        "tran": "eat off"
+      },
+      {
+        "v": "侵蚀；痛快地吃，尽情地吃",
+        "tran": "eat away"
+      },
+      {
+        "v": "吃得多",
+        "tran": "eat like a horse"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "vt",
+        "tran": "吃，喝；腐蚀；烦扰",
+        "ws": [
+          {
+            "w": "drink"
+          },
+          {
+            "w": "take"
+          },
+          {
+            "w": "burden"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "tran": "进食；腐蚀，侵蚀",
+        "ws": [
+          {
+            "w": "attack"
+          },
+          {
+            "w": "to erode"
+          }
+        ]
+      }
+    ],
+    "memory": " 心急吃(eat)不了热(heat)豆腐"
+  },
+  {
+    "id": 70,
+    "word": "clothes",
+    "trans": [
+      {
+        "cn": "服装",
+        "en": "the things that people wear to cover their body or keep warm"
+      }
+    ],
+    "phonetic0": "kloz",
+    "phonetic1": "kləʊ(ð)z",
+    "sentences": [
+      {
+        "v": "他穿着什么样的衣服？",
+        "tran": "What sort of clothes was he wearing?"
+      },
+      {
+        "v": "我淋浴后穿上干净的衣服。",
+        "tran": "I showered and put on clean clothes."
+      },
+      {
+        "v": "他仍然穿着工作服。",
+        "tran": "He was still in his work clothes."
+      },
+      {
+        "v": "服装店",
+        "tran": "a clothes shop"
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "衣架",
+        "tran": "clothes rack"
+      },
+      {
+        "v": "n. 服装店",
+        "tran": "clothes shop"
+      },
+      {
+        "v": "挂衣服的架子；衣架（等于coat hanger）",
+        "tran": "clothes hanger"
+      },
+      {
+        "v": "干衣机",
+        "tran": "clothes dryer"
+      },
+      {
+        "v": "晒衣绳",
+        "tran": "clothes line"
+      },
+      {
+        "v": "n. 晒衣架，晾衣架",
+        "tran": "clothes horse"
+      },
+      {
+        "v": "n. 衣帽架",
+        "tran": "clothes tree"
+      },
+      {
+        "v": "服装与时尚",
+        "tran": "clothes and fashion"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "衣服",
+        "ws": [
+          {
+            "w": "garment"
+          },
+          {
+            "w": "array"
+          },
+          {
+            "w": "thread"
+          },
+          {
+            "w": "raiment"
+          },
+          {
+            "w": "wearing apparel"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 71,
+    "word": "pants",
+    "trans": [
+      {
+        "cn": "裤子",
+        "en": "a piece of clothing that covers you from your waist to your feet and has a separate part for each leg"
+      }
+    ],
+    "phonetic0": "pænts",
+    "phonetic1": "pæn(t)s",
+    "sentences": [
+      {
+        "v": "她穿着深蓝色长裤和白色毛衣。",
+        "tran": "She was wearing dark blue pants and a white sweater."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "休闲裤",
+        "tran": "casual pants"
+      },
+      {
+        "v": "紧身短裤；热裤",
+        "tran": "hot pants"
+      },
+      {
+        "v": "短裤",
+        "tran": "short pants"
+      },
+      {
+        "v": "掌权当家（尤指妇女）",
+        "tran": "wear the pants"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "裤子；短裤",
+        "ws": [
+          {
+            "w": "britches"
+          },
+          {
+            "w": "short trousers"
+          }
+        ]
+      }
+    ],
+    "memory": " pants(n. 裤子)"
+  },
+  {
+    "id": 72,
+    "word": "hat",
+    "trans": [
+      {
+        "cn": "帽子",
+        "en": "a piece of clothing that you wear on your head"
+      }
+    ],
+    "phonetic0": "hæt",
+    "phonetic1": "hæt",
+    "sentences": [
+      {
+        "v": "玛丽亚戴着一顶漂亮的新帽子。",
+        "tran": "Maria was wearing a beautiful new hat."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "hatless",
+            "tran": " 不戴帽子的"
+          },
+          {
+            "w": "hatted",
+            "tran": " 戴着帽子的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "hatter",
+            "tran": " 帽商；帽子制造者；孤独的人"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "hatted",
+            "tran": " 戴上帽子；供应帽子（hat的过去分词）"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "[俚语]",
+        "tran": "wear a hat"
+      },
+      {
+        "v": "老旧的；陈腐的",
+        "tran": "old hat"
+      },
+      {
+        "v": "毕恭毕敬地；温顺地；恳求地",
+        "tran": "hat in hand"
+      },
+      {
+        "v": "n. （红衣主教的）主教红帽；红衣主教",
+        "tran": "red hat"
+      },
+      {
+        "v": "◎随便地，任意地",
+        "tran": "out of a hat"
+      },
+      {
+        "v": "n. 草帽；（美）夏季剧院",
+        "tran": "straw hat"
+      },
+      {
+        "v": "好人（美国西部片中好人戴白帽子，坏人戴黑帽子）；白帽黑客（合法的黑客，工作时寻找、测试和修补威胁计算机的漏洞）；白色帽子",
+        "tran": "white hat"
+      },
+      {
+        "v": "黑帽子；黑帽式的黑客；坏人",
+        "tran": "black hat"
+      },
+      {
+        "v": "大礼帽",
+        "tran": "top hat"
+      },
+      {
+        "v": "n. 牛仔帽；宽边高呢帽",
+        "tran": "cowboy hat"
+      },
+      {
+        "v": "戴帽子的",
+        "tran": "in the hat"
+      },
+      {
+        "v": "帽子戏法（指连入三球），[板球]连中三柱（使对方三击球手退场）",
+        "tran": "hat trick"
+      },
+      {
+        "v": "让我们向…表示敬意(或钦佩等)",
+        "tran": "hats off to"
+      },
+      {
+        "v": "遮阳帽",
+        "tran": "sun hat"
+      },
+      {
+        "v": "圆顶高帽，圆顶硬礼帽",
+        "tran": "bowler hat"
+      },
+      {
+        "v": "三角帽；船位误差三角形",
+        "tran": "cocked hat"
+      },
+      {
+        "v": "帽子店",
+        "tran": "hat shop"
+      },
+      {
+        "v": "身兼两职",
+        "tran": "wear two hats"
+      },
+      {
+        "v": "募捐",
+        "tran": "pass the hat"
+      },
+      {
+        "v": "裘皮帽",
+        "tran": "fur hat"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "帽子",
+        "ws": [
+          {
+            "w": "cap"
+          },
+          {
+            "w": "chapeau"
+          },
+          {
+            "w": "titfer"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 73,
+    "word": "dress",
+    "trans": [
+      {
+        "cn": "连衣裙",
+        "en": "a piece of clothing worn by a woman or girl that covers the top of her body and part or all of her legs"
+      }
+    ],
+    "phonetic0": "drɛs",
+    "phonetic1": "dres",
+    "sentences": [
+      {
+        "v": "希拉穿了一条红色的连衣长裙。",
+        "tran": "Sheila wore a long red dress."
+      },
+      {
+        "v": "夏天穿的连衣裙",
+        "tran": "a summer dress"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "dressed",
+            "tran": " 穿好衣服的；打扮好的；去内脏及分割加工好的（特指动物，如鱼，禽类等）"
+          },
+          {
+            "w": "dressy",
+            "tran": " 讲究服装的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "dressing",
+            "tran": " 穿衣；加工；调味品；装饰；梳理"
+          },
+          {
+            "w": "dressage",
+            "tran": " 盛装舞步；花式骑术训练；驯马技术"
+          },
+          {
+            "w": "dressmaking",
+            "tran": " 女装裁缝"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "dressing",
+            "tran": " 给…穿衣；为…打扮（dress的现在分词）"
+          },
+          {
+            "w": "dressed",
+            "tran": " 装饰；给…穿衣；布置（dress的过去分词）"
+          },
+          {
+            "w": "dressmaking",
+            "tran": " 制衣（尤指制女装，dressmake的ing形式）"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "打扮；给自己穿衣服",
+        "tran": "dress oneself"
+      },
+      {
+        "v": "v. 打扮，装饰；穿上盛装",
+        "tran": "dress up"
+      },
+      {
+        "v": "（使）穿…的服装；乔装打扮",
+        "tran": "dress in"
+      },
+      {
+        "v": "结婚礼服",
+        "tran": "wedding dress"
+      },
+      {
+        "v": "为…而打扮",
+        "tran": "dress for"
+      },
+      {
+        "v": "夜礼服",
+        "tran": "evening dress"
+      },
+      {
+        "v": "着装要求",
+        "tran": "dress code"
+      },
+      {
+        "v": "服装设计",
+        "tran": "dress designing"
+      },
+      {
+        "v": "n. 化装舞会所穿着的服装",
+        "tran": "fancy dress"
+      },
+      {
+        "v": "装扮成，打扮成",
+        "tran": "dress up as"
+      },
+      {
+        "v": "n. 礼服",
+        "tran": "formal dress"
+      },
+      {
+        "v": "叱责；着朴素的服装；梳刷",
+        "tran": "dress down"
+      },
+      {
+        "v": "长衣",
+        "tran": "long dress"
+      },
+      {
+        "v": "服饰",
+        "tran": "dress and personal adornment"
+      },
+      {
+        "v": "礼服，晚礼服；挂满旗",
+        "tran": "full dress"
+      },
+      {
+        "v": "n. 孕妇装",
+        "tran": "maternity dress"
+      },
+      {
+        "v": "礼服衬衫；男式白衬衫",
+        "tran": "dress shirt"
+      },
+      {
+        "v": "酒会礼服；（正式场合穿的）短裙",
+        "tran": "cocktail dress"
+      },
+      {
+        "v": "女装人体模型；服装人体模型；服装模型（陈列服装的人体模型）",
+        "tran": "dress form"
+      },
+      {
+        "v": "便装；休闲服装",
+        "tran": "casual dress"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "vt",
+        "tran": "给…穿衣",
+        "ws": [
+          {
+            "w": "apparel"
+          },
+          {
+            "w": "clothe"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "tran": "[服装]连衣裙；女装",
+        "ws": [
+          {
+            "w": "frock"
+          },
+          {
+            "w": "suit-dress"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 74,
+    "word": "skirt",
+    "trans": [
+      {
+        "cn": "女裙",
+        "en": "a piece of outer clothing worn by women and girls, which hangs down from the waist like the bottom part of a dress"
+      }
+    ],
+    "phonetic0": "skɝt",
+    "phonetic1": "skɜːt",
+    "sentences": [
+      {
+        "v": "她穿着白衬衣和纯黑的裙子。",
+        "tran": "She wore a white blouse and a plain black skirt."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "skirting",
+            "tran": " 壁脚板；裙料"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "skirting",
+            "tran": " 避开；绕过…的边缘；沿边缘走（skirt的现在分词）"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "活塞裙",
+        "tran": "piston skirt"
+      },
+      {
+        "v": "n. 迷你裙；超短裙",
+        "tran": "mini skirt"
+      },
+      {
+        "v": "裙长",
+        "tran": "skirt length"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "裙子",
+        "ws": [
+          {
+            "w": "petticoat"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "绕过，回避；位于…边缘",
+        "ws": [
+          {
+            "w": "move round"
+          },
+          {
+            "w": "shun"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "tran": "沿边走，绕开；环绕",
+        "ws": [
+          {
+            "w": "steer clear of"
+          },
+          {
+            "w": "circle round"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 75,
+    "word": "coat",
+    "trans": [
+      {
+        "cn": "大衣",
+        "en": "a piece of clothing with long sleeves that is worn over your clothes to protect them or to keep you warm"
+      }
+    ],
+    "phonetic0": "kot",
+    "phonetic1": "kəʊt",
+    "sentences": [
+      {
+        "v": "比利！穿上外套，外面很冷！",
+        "tran": "Billy! Put your coat on , it’s cold outside!"
+      },
+      {
+        "v": "孩子们脱下外套扔在地板上。",
+        "tran": "The kids took off their coats and threw them on the floor."
+      },
+      {
+        "v": "我需要一件新的冬衣。",
+        "tran": "I need a new winter coat ."
+      },
+      {
+        "v": "实验室助手穿着白色的长外套。",
+        "tran": "The lab assistants wear long white coats."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "coated",
+            "tran": " 上涂料的，上胶的；穿外套的，覆盖着的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "coating",
+            "tran": " 涂层；包衣；衣料"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "coating",
+            "tran": " 给…穿上外衣；盖上（coat的ing形式）"
+          },
+          {
+            "w": "coated",
+            "tran": " 外面覆盖（coat的过去分词）"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "皮毛大衣",
+        "tran": "fur coat"
+      },
+      {
+        "v": "金线鱼",
+        "tran": "red coat"
+      },
+      {
+        "v": "牧师， 教士",
+        "tran": "black coat"
+      },
+      {
+        "v": "种皮",
+        "tran": "seed coat"
+      },
+      {
+        "v": "穿蓝制服的",
+        "tran": "blue coat"
+      },
+      {
+        "v": "漆皮；涂漆层",
+        "tran": "coat of paint"
+      },
+      {
+        "v": "轻薄大衣；表面涂层",
+        "tran": "top coat"
+      },
+      {
+        "v": "薄膜",
+        "tran": "thin coat"
+      },
+      {
+        "v": "衣袋",
+        "tran": "coat pocket"
+      },
+      {
+        "v": "貂皮大衣",
+        "tran": "mink coat"
+      },
+      {
+        "v": "n. 盾徽；盾形纹章",
+        "tran": "coat of arms"
+      },
+      {
+        "v": "镀锌；镀锌层",
+        "tran": "zinc coat"
+      },
+      {
+        "v": "冬衣",
+        "tran": "winter coat"
+      },
+      {
+        "v": "底漆；打底层；中间涂层",
+        "tran": "base coat"
+      },
+      {
+        "v": "粉末喷涂；粉末敷涂",
+        "tran": "powder coat"
+      },
+      {
+        "v": "风衣；粉涂",
+        "tran": "dust coat"
+      },
+      {
+        "v": "表被；表面层；表面外膜",
+        "tran": "surface coat"
+      },
+      {
+        "v": "衣架；挂衣钩",
+        "tran": "coat hanger"
+      },
+      {
+        "v": "二道墁扶，二道抹灰",
+        "tran": "brown coat"
+      },
+      {
+        "v": "胶衣，凝胶涂层；凝胶漆",
+        "tran": "gel coat"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "外套",
+        "ws": [
+          {
+            "w": "outerwear"
+          },
+          {
+            "w": "town clothes"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 76,
+    "word": "sweater",
+    "trans": [
+      {
+        "cn": "毛衣",
+        "en": "a piece of warm wool or cotton clothing with long sleeves, which covers the top half of your body"
+      }
+    ],
+    "phonetic0": "'swɛtɚ",
+    "phonetic1": "'swetə",
+    "sentences": [
+      {
+        "v": "毛衣让蛀虫咬坏了。",
+        "tran": "The sweater is moth-eaten."
+      },
+      {
+        "v": "毛衣穿了能保暖。",
+        "tran": "Wearing a sweater will keep us warm."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "sweaty",
+            "tran": " 出汗的；吃力的；使人出汗的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "sweat",
+            "tran": " 汗；水珠；焦急；苦差使"
+          },
+          {
+            "w": "sweating",
+            "tran": " 发汗（等于exudation）"
+          },
+          {
+            "w": "sweatbox",
+            "tran": " 发汗装置；狭窄囚室"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "sweating",
+            "tran": " 出汗（sweat的ing形式）"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "ws": [
+          {
+            "w": "sweat",
+            "tran": " 出汗；辛苦工作；懊恼；结水珠"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "ws": [
+          {
+            "w": "sweat",
+            "tran": " 使出汗；流出；使干苦活；剥削；藉出汗减轻；焦急地期待"
+          }
+        ]
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "毛线衣，运动衫；大量出汗的人，发汗剂",
+        "ws": [
+          {
+            "w": "jersey"
+          },
+          {
+            "w": "sports shirt"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 77,
+    "word": "sock",
+    "trans": [
+      {
+        "cn": "短袜",
+        "en": "a piece of clothing made of soft material that you wear on your foot inside your shoe"
+      }
+    ],
+    "phonetic0": "sɑk",
+    "phonetic1": "sɒk",
+    "sentences": [
+      {
+        "v": "一双短袜",
+        "tran": "a pair of socks"
+      },
+      {
+        "v": "白色的齐踝短袜",
+        "tran": "white ankle socks"
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "vt. 阻止…飞行；关闭…不许飞机起落",
+        "tran": "sock in"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "[服装]短袜；一击",
+        "ws": [
+          {
+            "w": "bobbysocks"
+          },
+          {
+            "w": "anklet"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "重击；给……穿袜",
+        "ws": [
+          {
+            "w": "pound on"
+          },
+          {
+            "w": "gang bang"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "tran": "正着地；不偏不倚地",
+        "ws": [
+          {
+            "w": "smack-dab"
+          }
+        ]
+      }
+    ],
+    "memory": "sock更广为人知的意思是“短袜”"
+  },
+  {
+    "id": 78,
+    "word": "shorts",
+    "trans": [
+      {
+        "cn": "短裤",
+        "en": "trousers reaching the top of the thigh or partway to the knee, worn by both sexes for sport, relaxing in summer, etc "
+      }
+    ],
+    "phonetic0": "ʃɔrts",
+    "phonetic1": "ʃɔːts",
+    "sentences": [
+      {
+        "v": "于是我指了指我的短裤，继续向前跑去。",
+        "tran": "I pointed to my shorts and trotted on."
+      },
+      {
+        "v": "这个店在卖最新流行的衬衫和短裤。",
+        "tran": "This shop sells the latest fashion of shirts and shorts."
+      },
+      {
+        "v": "如果你跑步的地方有很多跑步者，试试这个游戏：挑选一件特别的衣服，比如黑色运动短裤，然后在跑步的过程中找到它。",
+        "tran": "Ifyou run where there are a lot of other runners, try this game: Pick outa specific article of clothing, such as black running shorts, to lookfor during your run."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "缺乏；不足；除…以外",
+        "tran": "short of"
+      },
+      {
+        "v": "总之；简言之",
+        "tran": "in short"
+      },
+      {
+        "v": "简称；缩写",
+        "tran": "for short"
+      },
+      {
+        "v": "短时间；不足的工时",
+        "tran": "short time"
+      },
+      {
+        "v": "[经]短期",
+        "tran": "short term"
+      },
+      {
+        "v": "adj. 短周期的；短过期的",
+        "tran": "short period"
+      },
+      {
+        "v": "供不应求",
+        "tran": "short supply"
+      },
+      {
+        "v": "短路；漏电",
+        "tran": "short circuit"
+      },
+      {
+        "v": "是…的略称",
+        "tran": "short for"
+      },
+      {
+        "v": "缺乏；欠缺",
+        "tran": "short on"
+      },
+      {
+        "v": "v. 缩短；打断；缩减",
+        "tran": "cut short"
+      },
+      {
+        "v": "短讯；短报文",
+        "tran": "short message"
+      },
+      {
+        "v": "短距离；短程",
+        "tran": "short distance"
+      },
+      {
+        "v": "不符合标准",
+        "tran": "fall short"
+      },
+      {
+        "v": "短篇小说（指一万字以内的小说）",
+        "tran": "short story"
+      },
+      {
+        "v": "达不到；缺乏",
+        "tran": "fall short of"
+      },
+      {
+        "v": "短使用期限；短寿命；不耐久的",
+        "tran": "short life"
+      },
+      {
+        "v": "临时的",
+        "tran": "for a short time"
+      },
+      {
+        "v": "短头发",
+        "tran": "short hair"
+      },
+      {
+        "v": "缩短；在…方面短（缺）的",
+        "tran": "short in"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "短裤",
+        "ws": [
+          {
+            "w": "short pants"
+          },
+          {
+            "w": "short trousers"
+          },
+          {
+            "w": "pantie"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 79,
+    "word": "jacket",
+    "trans": [
+      {
+        "cn": "夹克衫",
+        "en": "a short light coat"
+      }
+    ],
+    "phonetic0": "'dʒækɪt",
+    "phonetic1": "'dʒækɪt",
+    "sentences": [
+      {
+        "v": "他拉开夹克衫的拉链。",
+        "tran": "He unzipped his jacket."
+      },
+      {
+        "v": "刺骨的冷风吹透了他的夹克衫。",
+        "tran": "The bitter wind cut through his jacket."
+      },
+      {
+        "v": "我长得穿不下我的夹克衫了，便把它给我弟弟穿。",
+        "tran": "When I grew out of my jacket,I gave it to my little brother."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "皮夹克",
+        "tran": "leather jacket"
+      },
+      {
+        "v": "水套",
+        "tran": "water jacket"
+      },
+      {
+        "v": "羽绒服；鸭绒衣；羽绒夹克",
+        "tran": "down jacket"
+      },
+      {
+        "v": "救生衣",
+        "tran": "life jacket"
+      },
+      {
+        "v": "[机]冷却套管",
+        "tran": "cooling jacket"
+      },
+      {
+        "v": "n. 黄马褂；小黄蜂",
+        "tran": "yellow jacket"
+      },
+      {
+        "v": "n. 书皮；包书纸",
+        "tran": "dust jacket"
+      },
+      {
+        "v": "加热套",
+        "tran": "heating jacket"
+      },
+      {
+        "v": "晚礼服；无尾礼服；小礼服；礼服夹克（等于tuxedo）",
+        "tran": "dinner jacket"
+      },
+      {
+        "v": "猎装；便装上衣；（男子在非正式场合穿的）粗花呢西装外套",
+        "tran": "sports jacket"
+      },
+      {
+        "v": "防水密外套；防水夹克",
+        "tran": "waterproof jacket"
+      },
+      {
+        "v": "冷却水套",
+        "tran": "cooling water jacket"
+      },
+      {
+        "v": "电缆外壳；电缆套管",
+        "tran": "cable jacket"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "夹克；[服装]短上衣",
+        "ws": [
+          {
+            "w": "jerkin"
+          },
+          {
+            "w": "lammy"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 80,
+    "word": "shirt",
+    "trans": [
+      {
+        "cn": "衬衫",
+        "en": "a piece of clothing that covers the upper part of your body and your arms, usually has a collar, and is fastened at the front by buttons"
+      }
+    ],
+    "phonetic0": "ʃɝt",
+    "phonetic1": "ʃɜːt",
+    "sentences": [
+      {
+        "v": "我上班要穿衬衫打领带。",
+        "tran": "I have to wear a shirt and tie to work."
+      },
+      {
+        "v": "格子衬衫",
+        "tran": "a check shirt"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "shirting",
+            "tran": " 衬衫衣料"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "白衬衣，白衬衫",
+        "tran": "white shirt"
+      },
+      {
+        "v": "[口]妄自尊大的人；自命不凡的人；道貌岸然的人",
+        "tran": "stuffed shirt"
+      },
+      {
+        "v": "只穿一件衬衣(或睡衣)",
+        "tran": "in one's shirt"
+      },
+      {
+        "v": "别激动；沉住气",
+        "tran": "keep your shirt on"
+      },
+      {
+        "v": "球衣；马球衫",
+        "tran": "polo shirt"
+      },
+      {
+        "v": "n. 黑衫党党员",
+        "tran": "black shirt"
+      },
+      {
+        "v": "礼服衬衫；男式白衬衫",
+        "tran": "dress shirt"
+      },
+      {
+        "v": "n. 运动衫",
+        "tran": "sports shirt"
+      },
+      {
+        "v": "法兰绒衬衫；法兰绒上衣",
+        "tran": "flannel shirt"
+      },
+      {
+        "v": "n. 运动衫",
+        "tran": "sweat shirt"
+      },
+      {
+        "v": "n. T恤；短袖圆领运动衫（等于T-shirt）",
+        "tran": "tee shirt"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "[服装]衬衫；汗衫，内衣",
+        "ws": [
+          {
+            "w": "singlet"
+          },
+          {
+            "w": "undershirt"
+          }
+        ]
+      }
+    ],
+    "memory": " 衬衫(shirt)可以搭配裙子(skirt)穿"
+  },
+  {
+    "id": 81,
+    "word": "yours",
+    "trans": [
+      {
+        "cn": "你的",
+        "en": "used when speaking or writing to one or more people to refer to something that belongs to them or is connected with them"
+      }
+    ],
+    "phonetic0": "jʊrz",
+    "phonetic1": "jɔːz; jʊəz",
+    "sentences": [
+      {
+        "v": "这是我们的房间，你们的在走廊那边。",
+        "tran": "This is our room, and yours is just across the hall."
+      },
+      {
+        "v": "许多人有财务问题，不过你的问题比大多数人的要严重。",
+        "tran": "A lot of people have money problems, but yours are more serious than most people’s."
+      },
+      {
+        "v": "一万英镑的奖金或一辆新车——随你选择。",
+        "tran": "A cash prize of £10,000 or a new car – the choice is yours.  "
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "你(们)的；属于你(们)的",
+        "tran": "of yours"
+      },
+      {
+        "v": "拿去吧",
+        "tran": "all yours"
+      }
+    ],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 82,
+    "word": "whose",
+    "trans": [
+      {
+        "cn": "谁的",
+        "en": "used to ask which person or people a particular thing belongs to"
+      }
+    ],
+    "phonetic0": "huz",
+    "phonetic1": "huːz",
+    "sentences": [
+      {
+        "v": "这是谁的？",
+        "tran": "Whose is this?"
+      },
+      {
+        "v": "那些钥匙是谁的？",
+        "tran": "Whose keys are those?"
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 83,
+    "word": "mine",
+    "trans": [
+      {
+        "cn": "我的",
+        "en": "used by the person speaking or writing to refer to something that belongs to or is connected with himself or herself"
+      }
+    ],
+    "phonetic0": "maɪn",
+    "phonetic1": "maɪn",
+    "sentences": [
+      {
+        "v": "这是格伦的主意，不是我的。",
+        "tran": "It was Glen’s idea, not mine."
+      },
+      {
+        "v": "“那是你的车吗？”“不是，我的车停在路对面。”",
+        "tran": "‘Is that your car?’ ‘No, mine is parked over the road.’"
+      },
+      {
+        "v": "你的腿很美——我的腿太细了。",
+        "tran": "You’ve got good legs – mine are too thin."
+      },
+      {
+        "v": "他英语比我好。",
+        "tran": "His English is better than mine."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "mineral",
+            "tran": " 矿物的；矿质的"
+          },
+          {
+            "w": "mineralized",
+            "tran": " 矿藏丰富的"
+          },
+          {
+            "w": "miny",
+            "tran": " 如矿坑的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "mineral",
+            "tran": " 矿物；（英）矿泉水；无机物；苏打水（常用复数表示）"
+          },
+          {
+            "w": "mining",
+            "tran": " 矿业；采矿"
+          },
+          {
+            "w": "miner",
+            "tran": " 矿工；开矿机"
+          },
+          {
+            "w": "mined",
+            "tran": " 开采"
+          },
+          {
+            "w": "minelayer",
+            "tran": " 布雷舰（或飞机）"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "mineralized",
+            "tran": " 使成矿（mineralize的过去式和过去分词）"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "ws": [
+          {
+            "w": "mineralize",
+            "tran": " 采集矿物"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "ws": [
+          {
+            "w": "mineralize",
+            "tran": " 使含无机化合物；使矿物化"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "煤矿，煤矿坑",
+        "tran": "coal mine"
+      },
+      {
+        "v": "金矿，金山",
+        "tran": "gold mine"
+      },
+      {
+        "v": "我的朋友",
+        "tran": "friend of mine"
+      },
+      {
+        "v": "铜矿",
+        "tran": "copper mine"
+      },
+      {
+        "v": "铁矿；铁矿山",
+        "tran": "iron mine"
+      },
+      {
+        "v": "矿井通风；矿山通风",
+        "tran": "mine ventilation"
+      },
+      {
+        "v": "地下矿山；地下开采矿",
+        "tran": "underground mine"
+      },
+      {
+        "v": "矿井提升机；矿井吊车",
+        "tran": "mine hoist"
+      },
+      {
+        "v": "盐矿；岩盐产地；岩盐坑",
+        "tran": "salt mine"
+      },
+      {
+        "v": "铁矿山",
+        "tran": "iron ore mine"
+      },
+      {
+        "v": "矿区；[军]雷区",
+        "tran": "mine field"
+      },
+      {
+        "v": "露天矿",
+        "tran": "open pit mine"
+      },
+      {
+        "v": "矿山开发",
+        "tran": "mine exploitation"
+      },
+      {
+        "v": "n. （美）露天矿",
+        "tran": "strip mine"
+      },
+      {
+        "v": "地雷",
+        "tran": "land mine"
+      },
+      {
+        "v": "酸性矿水排水；排泄酸性矿水",
+        "tran": "acid mine drainage"
+      },
+      {
+        "v": "矿山测量[地理]",
+        "tran": "mine survey"
+      },
+      {
+        "v": "矿山测量学；矿山勘测",
+        "tran": "mine surveying"
+      },
+      {
+        "v": "扫雷",
+        "tran": "mine clearance"
+      },
+      {
+        "v": "知识的宝库",
+        "tran": "a mine of information"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "矿，矿藏；矿山，矿井；地雷，水雷",
+        "ws": [
+          {
+            "w": "ore"
+          },
+          {
+            "w": "pit"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "开采，采掘；在…布雷",
+        "ws": [
+          {
+            "w": "exploit"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 84,
+    "word": "pack",
+    "trans": [
+      {
+        "cn": "收拾"
+      }
+    ],
+    "phonetic0": "pæk",
+    "phonetic1": "pæk",
+    "sentences": [],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "package",
+            "tran": " 一揽子的"
+          },
+          {
+            "w": "packed",
+            "tran": " （常用来构成复合词）充满…的，塞满了…的"
+          },
+          {
+            "w": "packaged",
+            "tran": " 包装过的"
+          },
+          {
+            "w": "packable",
+            "tran": " 可捆扎的；可打包的；可压紧的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "package",
+            "tran": " 包，包裹；套装软件，[计] 程序包"
+          },
+          {
+            "w": "packing",
+            "tran": " 包装；填充物"
+          },
+          {
+            "w": "packaging",
+            "tran": " 包装；包装业，包装风格"
+          },
+          {
+            "w": "packer",
+            "tran": " 包装机；包装工人；罐头食品工人，赶牲口运货的人"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "packing",
+            "tran": " 包装；装满；压紧（pack的ing形式）"
+          },
+          {
+            "w": "packaging",
+            "tran": " 包装（package的ing形式）"
+          },
+          {
+            "w": "packed",
+            "tran": " 包装（pack的过去分词）"
+          },
+          {
+            "w": "packaged",
+            "tran": " 包装；把…装袋（package的过去式和过去分词）"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "ws": [
+          {
+            "w": "package",
+            "tran": " 打包；将…包装"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "一包；（野兽等的）一群；一盒",
+        "tran": "a pack of"
+      },
+      {
+        "v": "整理；把…打包",
+        "tran": "pack up"
+      },
+      {
+        "v": "电池组",
+        "tran": "battery pack"
+      },
+      {
+        "v": "停止",
+        "tran": "pack in"
+      },
+      {
+        "v": "塞进；挤进；塞满了东西；某地方挤满了人",
+        "tran": "pack with"
+      },
+      {
+        "v": "电源组；动力单元",
+        "tran": "power pack"
+      },
+      {
+        "v": "砾石过滤层",
+        "tran": "gravel pack"
+      },
+      {
+        "v": "[俚]停止；放弃",
+        "tran": "pack it in"
+      },
+      {
+        "v": "冰袋；大片浮冰；[医]冰裹法",
+        "tran": "ice pack"
+      },
+      {
+        "v": "一盒烟",
+        "tran": "a pack of cigarettes"
+      },
+      {
+        "v": "挤进…里；塞进",
+        "tran": "pack into"
+      },
+      {
+        "v": "n. （海上相互重叠的）浮冰块，积冰",
+        "tran": "pack ice"
+      },
+      {
+        "v": "[计]服务包；[计]补丁包",
+        "tran": "service pack"
+      },
+      {
+        "v": "罩板包装（硬底上有凸起透明罩的物品包装）",
+        "tran": "blister pack"
+      },
+      {
+        "v": "不可靠的人，有敛癖的人",
+        "tran": "pack rat"
+      },
+      {
+        "v": "美容洁肤膏，面霜",
+        "tran": "face pack"
+      },
+      {
+        "v": "喷气发动机组件",
+        "tran": "jet pack"
+      },
+      {
+        "v": "热敷，热装法",
+        "tran": "hot pack"
+      },
+      {
+        "v": "背包式灭火器",
+        "tran": "back pack"
+      },
+      {
+        "v": "停止；住嘴",
+        "tran": "pack it up"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "[包装]包装；一群；背包；[临床]包裹；一副",
+        "ws": [
+          {
+            "w": "pair"
+          },
+          {
+            "w": "casing"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "tran": "[包装]包装；压紧；捆扎；挑选；塞满",
+        "ws": [
+          {
+            "w": "impact"
+          },
+          {
+            "w": "select"
+          },
+          {
+            "w": "stuff"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "tran": "挤；包装货物；[包装]被包装；群集",
+        "ws": [
+          {
+            "w": "pile"
+          },
+          {
+            "w": "crowd"
+          },
+          {
+            "w": "host"
+          }
+        ]
+      }
+    ],
+    "memory": "该词的“包裹”一义大家应该比较熟悉"
+  },
+  {
+    "id": 85,
+    "word": "wait",
+    "trans": [
+      {
+        "cn": "等待",
+        "en": "to stay somewhere or not do something until something else happens, someone arrives etc"
+      }
+    ],
+    "phonetic0": "wet",
+    "phonetic1": "weɪt",
+    "sentences": [
+      {
+        "v": "快点！大家在等着呢。",
+        "tran": "Hurry up! Everyone’s waiting."
+      },
+      {
+        "v": "你在外面等好吗？",
+        "tran": "Would you mind waiting outside?"
+      },
+      {
+        "v": "我们已经等了很长时间了。",
+        "tran": "We’ve been waiting ages."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "waiting",
+            "tran": " 等待的；服侍的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "waiting",
+            "tran": " 等待；服侍"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "waiting",
+            "tran": " 等待；伺候（wait的ing形式）；延缓"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "等候",
+        "tran": "wait for"
+      },
+      {
+        "v": "请稍候，请稍等；请您稍候；正在暖机等待结束再开始使用",
+        "tran": "please wait"
+      },
+      {
+        "v": "等待直到…",
+        "tran": "wait until"
+      },
+      {
+        "v": "迫不及待",
+        "tran": "can't wait"
+      },
+      {
+        "v": "等一会儿；稍等一下",
+        "tran": "wait a moment"
+      },
+      {
+        "v": "等着瞧",
+        "tran": "wait and see"
+      },
+      {
+        "v": "在家等待",
+        "tran": "wait in"
+      },
+      {
+        "v": "等一下；等一会",
+        "tran": "wait a minute"
+      },
+      {
+        "v": "等一会儿",
+        "tran": "wait for a while"
+      },
+      {
+        "v": "服侍；焦急地等待",
+        "tran": "wait on"
+      },
+      {
+        "v": "稍等一下",
+        "tran": "wait a second"
+      },
+      {
+        "v": "侍候；服侍",
+        "tran": "wait upon"
+      },
+      {
+        "v": "排队等候",
+        "tran": "wait in line"
+      },
+      {
+        "v": "让某人等待",
+        "tran": "keep someone waiting"
+      },
+      {
+        "v": "不睡而等候",
+        "tran": "wait up"
+      },
+      {
+        "v": "等待时间",
+        "tran": "wait time"
+      },
+      {
+        "v": "等一会儿",
+        "tran": "wait a while"
+      },
+      {
+        "v": "迫不及待",
+        "tran": "too impatient to wait"
+      },
+      {
+        "v": "等到…结束",
+        "tran": "wait out"
+      },
+      {
+        "v": "呆呆地等；空等",
+        "tran": "wait around"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "vt",
+        "tran": "等候；推迟；延缓",
+        "ws": [
+          {
+            "w": "await"
+          },
+          {
+            "w": "phase back"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "tran": "[计]等待；耽搁；伺候用餐",
+        "ws": [
+          {
+            "w": "delay"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "tran": "[计]等待；等候",
+        "ws": [
+          {
+            "w": "noop"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 86,
+    "word": "glove",
+    "trans": [
+      {
+        "cn": "手套",
+        "en": "a piece of clothing that you wear on your hand in order to protect it or keep it warm"
+      }
+    ],
+    "phonetic0": "ɡlʌv",
+    "phonetic1": "glʌv",
+    "sentences": [
+      {
+        "v": "一副手套",
+        "tran": "a pair of gloves"
+      },
+      {
+        "v": "拳击手套",
+        "tran": "boxing gloves"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "gloved",
+            "tran": " 带有手套的"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "gloved",
+            "tran": " 给…戴手套；给…当手套用（glove的过去分词）"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "外柔内刚；表面温和的东西",
+        "tran": "velvet glove"
+      },
+      {
+        "v": "合作；勾结着；亲密地",
+        "tran": "hand in glove"
+      },
+      {
+        "v": "手套箱；手套式操作箱（真空设备用）",
+        "tran": "glove box"
+      },
+      {
+        "v": "完全相合；恰好",
+        "tran": "fit like a glove"
+      },
+      {
+        "v": "数据手套",
+        "tran": "data glove"
+      },
+      {
+        "v": "(向…)应战；接受(…的)挑战[亦作 gantlet]",
+        "tran": "take up the glove"
+      },
+      {
+        "v": "不饶恕",
+        "tran": "take off the gloves"
+      },
+      {
+        "v": "棒球手套",
+        "tran": "baseball glove"
+      },
+      {
+        "v": "手套皮",
+        "tran": "glove leather"
+      },
+      {
+        "v": "皮手套",
+        "tran": "leather glove"
+      },
+      {
+        "v": "拳击手套",
+        "tran": "boxing glove"
+      },
+      {
+        "v": "n. （汽车仪表板上的）贮物箱",
+        "tran": "glove compartment"
+      },
+      {
+        "v": "[口语]从事拳击",
+        "tran": "put on the gloves"
+      },
+      {
+        "v": "认真地;毫不留情地[亦作 without gloves]",
+        "tran": "with the gloves off"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "手套",
+        "ws": [
+          {
+            "w": "mittens"
+          }
+        ]
+      }
+    ],
+    "memory": " g(音似： 歌)+love(爱情)→冬日里送手套是对爱情的歌颂→手套"
+  },
+  {
+    "id": 87,
+    "word": "scarf",
+    "trans": [
+      {
+        "cn": "围巾",
+        "en": "a piece of cloth that you wear around your neck, head, or shoulders, especially to keep warm"
+      }
+    ],
+    "phonetic0": "skɑrf",
+    "phonetic1": "skɑːf",
+    "sentences": [
+      {
+        "v": "喂， 你的围巾快掉了。",
+        "tran": "Hey, your scarf is slipping off."
+      },
+      {
+        "v": "围巾轻拂着她的脸。",
+        "tran": "The scarf flapped her face."
+      },
+      {
+        "v": "她用围巾围住脖子。",
+        "tran": "She muffled her throat with a scarf."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "[服装]围巾；嵌接，嵌接处；头巾领巾",
+        "ws": [
+          {
+            "w": "muffler"
+          },
+          {
+            "w": "neckcloth"
+          }
+        ]
+      }
+    ],
+    "memory": " 这条围巾(scarf)的手艺(craft)真棒"
+  },
+  {
+    "id": 88,
+    "word": "umbrella",
+    "trans": [
+      {
+        "cn": "伞",
+        "en": "an object that you use to protect yourself against rain or hot sun. It consists of a circular folding frame covered in cloth."
+      }
+    ],
+    "phonetic0": "ʌm'brɛlə",
+    "phonetic1": "ʌm'brelə",
+    "sentences": [
+      {
+        "v": "开始下雨了，所以特里西娅停下来撑起雨伞。",
+        "tran": "It started to rain, so Tricia stopped to put up her umbrella."
+      },
+      {
+        "v": "那天我就在海滩上度过，躺在海滩遮阳伞下面看书。",
+        "tran": "I spent the day on the beach, lying under a beach umbrella, reading."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "n. （美）遮阳伞（海滨或花园用的）",
+        "tran": "beach umbrella"
+      },
+      {
+        "v": "在……的保护下",
+        "tran": "under the umbrella of"
+      },
+      {
+        "v": "伞架",
+        "tran": "umbrella stand"
+      },
+      {
+        "v": "涵盖性术语",
+        "tran": "umbrella term"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "雨伞；保护伞；庇护；伞形结构",
+        "ws": [
+          {
+            "w": "shadow"
+          },
+          {
+            "w": "bumbershoot"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 89,
+    "word": "sunglasses",
+    "trans": [
+      {
+        "cn": "太阳镜",
+        "en": "dark glasses that you wear to protect your eyes when the sun is very bright"
+      }
+    ],
+    "phonetic0": "'sʌnɡlæsɪz",
+    "phonetic1": "'sʌnglɑːsɪz",
+    "sentences": [
+      {
+        "v": "你觉得我的新太阳镜怎么样？",
+        "tran": "What do you think of my new sunglasses?"
+      },
+      {
+        "v": "我该挑一副什么颜色的太阳镜呢？",
+        "tran": "What color should I choose for my sunglasses?"
+      },
+      {
+        "v": "我看不到她的眼睛，但是能看到她露在太阳镜上面的眉毛。",
+        "tran": "I can’t see her eyes, but I can see her eyebrows above the sunglasses."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [],
+    "memory": ""
+  },
+  {
+    "id": 90,
+    "word": "pretty",
+    "trans": [
+      {
+        "cn": "美丽的"
+      }
+    ],
+    "phonetic0": "ˈprɪtɪ",
+    "phonetic1": "'prɪtɪ",
+    "sentences": [],
+    "relWords": [
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "prettily",
+            "tran": " 漂亮地，可爱地；恰如其分地"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "prettiness",
+            "tran": " 可爱，漂亮"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "ws": [
+          {
+            "w": "prettify",
+            "tran": " 美化，粉饰；修饰"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "不久",
+        "tran": "pretty soon"
+      },
+      {
+        "v": "非常好",
+        "tran": "pretty good"
+      },
+      {
+        "v": "几乎",
+        "tran": "pretty much"
+      },
+      {
+        "v": "漂亮女孩",
+        "tran": "pretty girl"
+      },
+      {
+        "v": "漂亮脸蛋",
+        "tran": "pretty face"
+      },
+      {
+        "v": "相当肯定",
+        "tran": "pretty sure"
+      },
+      {
+        "v": "漂亮女人；漂亮的女人",
+        "tran": "pretty woman"
+      },
+      {
+        "v": "漂亮男孩；脂粉气十足的男人；矫揉造作的男子",
+        "tran": "pretty boy"
+      },
+      {
+        "v": "一大笔钱；大数目之金钱",
+        "tran": "pretty penny"
+      },
+      {
+        "v": "[美国俚语]容易的；便当的；合算的",
+        "tran": "pretty soft"
+      },
+      {
+        "v": "尴尬，糟糕；困境",
+        "tran": "pretty pass"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "漂亮的；可爱的；优美的",
+        "ws": [
+          {
+            "w": "lovely"
+          },
+          {
+            "w": "taking"
+          },
+          {
+            "w": "smart"
+          },
+          {
+            "w": "cute"
+          },
+          {
+            "w": "tony"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "tran": "相当地；颇",
+        "ws": [
+          {
+            "w": "relatively"
+          },
+          {
+            "w": "fairly"
+          },
+          {
+            "w": "comparatively"
+          },
+          {
+            "w": "reasonably"
+          },
+          {
+            "w": "considerably"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 91,
+    "word": "expensive",
+    "trans": [
+      {
+        "cn": "贵的",
+        "en": "costing a lot of money"
+      }
+    ],
+    "phonetic0": "ɪk'spɛnsɪv",
+    "phonetic1": "ɪkˈspensɪv",
+    "sentences": [
+      {
+        "v": "城里最贵的餐馆",
+        "tran": "the most expensive restaurant in town"
+      },
+      {
+        "v": "汽油越来越贵了。",
+        "tran": "Petrol is becoming more and more expensive."
+      },
+      {
+        "v": "摄影是一项很花钱的业余爱好。",
+        "tran": "Photography is an expensive hobby."
+      },
+      {
+        "v": "对于低收入家庭来说，儿童的安全设备贵得让人望而却步。",
+        "tran": "For low-income families, children’s safety equipment can be prohibitively expensive (= so expensive that most people cannot afford it )."
+      },
+      {
+        "v": "用错建筑工人有时会是代价高昂的错误。",
+        "tran": "Employing the wrong builder can be a horribly expensive mistake."
+      },
+      {
+        "v": "她丈夫喜欢的东西都很贵。",
+        "tran": "Her husband had expensive tastes (= liked expensive things )."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "expensively",
+            "tran": " 昂贵地；乱花钱地"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "expense",
+            "tran": " 损失，代价；消费；开支"
+          },
+          {
+            "w": "expensiveness",
+            "tran": " 高价，昂贵性"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "ws": [
+          {
+            "w": "expense",
+            "tran": " 被花掉"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "ws": [
+          {
+            "w": "expense",
+            "tran": " 向…收取费用"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "adj. 比较便宜的",
+        "tran": "less expensive"
+      },
+      {
+        "v": "昂贵的东西",
+        "tran": "expensive thing"
+      },
+      {
+        "v": "有点贵",
+        "tran": "a bit expensive"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "昂贵的；花钱的",
+        "ws": [
+          {
+            "w": "rich"
+          },
+          {
+            "w": "dear"
+          },
+          {
+            "w": "costly"
+          }
+        ]
+      }
+    ],
+    "memory": " ex + pens(花费) + ive → 昂贵的"
+  },
+  {
+    "id": 92,
+    "word": "cheap",
+    "trans": [
+      {
+        "cn": "便宜的",
+        "en": "not at all expensive, or lower in price than you expected"
+      }
+    ],
+    "phonetic0": "tʃip",
+    "phonetic1": "tʃiːp",
+    "sentences": [
+      {
+        "v": "便宜的火车票",
+        "tran": "cheap rail fares"
+      },
+      {
+        "v": "市场上最便宜的电视机",
+        "tran": "the cheapest TV on the market"
+      },
+      {
+        "v": "西班牙的房地产比这里便宜。",
+        "tran": "Property is cheaper in Spain than here."
+      },
+      {
+        "v": "廉价商店",
+        "tran": "a cheap shop (= one that sells goods cheaply )"
+      },
+      {
+        "v": "这种设备相对比较便宜，而且操作简单。",
+        "tran": "The equipment is relatively cheap and simple to use."
+      },
+      {
+        "v": "这件外套超便宜。",
+        "tran": "This coat was dirt cheap (= very cheap – an informal expression 非正式用语 ) ."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "cheaply",
+            "tran": " 便宜地；廉价地"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "cheapskate",
+            "tran": " 小气鬼；吝啬鬼"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "便宜地；经济地",
+        "tran": "on the cheap"
+      },
+      {
+        "v": "廉价劳动",
+        "tran": "cheap labor"
+      },
+      {
+        "v": "廉价劳动力；廉价劳工",
+        "tran": "cheap labour"
+      },
+      {
+        "v": "廉价品",
+        "tran": "cheap goods"
+      },
+      {
+        "v": "[古语]",
+        "tran": "good cheap"
+      },
+      {
+        "v": "不值钱的；价廉物劣的",
+        "tran": "cheap and nasty"
+      },
+      {
+        "v": "[口]觉得身体不舒服；感到惭愧",
+        "tran": "feel cheap"
+      },
+      {
+        "v": "低息贷款",
+        "tran": "cheap credit"
+      },
+      {
+        "v": "低利借款；来得容易的非正当收入；在钱上好商量的人",
+        "tran": "cheap money"
+      },
+      {
+        "v": "恶意中伤；卑鄙手段",
+        "tran": "cheap shot"
+      },
+      {
+        "v": "特别便宜，相当便宜",
+        "tran": "dirt cheap"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "[贸易]便宜的；小气的；不值钱的",
+        "ws": [
+          {
+            "w": "inexpensive"
+          },
+          {
+            "w": "ten-cent"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 93,
+    "word": "nice",
+    "trans": [
+      {
+        "cn": "好的",
+        "en": "pleasant, attractive, or enjoyable"
+      }
+    ],
+    "phonetic0": "naɪs",
+    "phonetic1": "naɪs",
+    "sentences": [
+      {
+        "v": "他们的房子真漂亮。",
+        "tran": "They’ve got a very nice house."
+      },
+      {
+        "v": "你们玩得开心吗？",
+        "tran": "Did you have a nice time?"
+      },
+      {
+        "v": "天气真好，为什么不去游泳呢？",
+        "tran": "It’s such a nice day (= good weather ), why not go for a swim?"
+      },
+      {
+        "v": "真是个惊喜！",
+        "tran": "What a nice surprise!"
+      },
+      {
+        "v": "圣诞节的一个好处是全家可以聚首一堂。",
+        "tran": "One of the nice things about Christmas is having all the family together."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "nicely",
+            "tran": " 漂亮地；恰好地；精细地"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "nicety",
+            "tran": " 精密；美好；细节；拘泥细节"
+          },
+          {
+            "w": "niceness",
+            "tran": " 美好的事物；讲究；精密"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "很，挺",
+        "tran": "nice and"
+      },
+      {
+        "v": "很高兴见到你",
+        "tran": "nice to meet you"
+      },
+      {
+        "v": "美好的一天",
+        "tran": "nice day"
+      },
+      {
+        "v": "很高兴认识你",
+        "tran": "nice to see you"
+      },
+      {
+        "v": "过得愉快",
+        "tran": "have a nice day"
+      },
+      {
+        "v": "多好啊；好漂亮",
+        "tran": "how nice"
+      },
+      {
+        "v": "好人",
+        "tran": "nice guy"
+      },
+      {
+        "v": "[美国口语]表示亲昵，爱抚",
+        "tran": "make nice"
+      },
+      {
+        "v": "好事",
+        "tran": "nice thing"
+      },
+      {
+        "v": "adj. （口语）好看的；漂亮的",
+        "tran": "nice looking"
+      },
+      {
+        "v": "很高兴认识你；很高兴见到你",
+        "tran": "nice meeting you"
+      },
+      {
+        "v": "周末玩得愉快",
+        "tran": "have a nice weekend"
+      },
+      {
+        "v": "祝你旅途愉快",
+        "tran": "have a nice trip"
+      },
+      {
+        "v": "玩得痛快；玩得高兴",
+        "tran": "have a nice time"
+      },
+      {
+        "v": "很高兴和你聊天",
+        "tran": "nice talking to you"
+      },
+      {
+        "v": "干得好",
+        "tran": "nice work"
+      },
+      {
+        "v": "好天气",
+        "tran": "what a nice day"
+      },
+      {
+        "v": "想得美；做的不错",
+        "tran": "nice try"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj",
+        "tran": "精密的；美好的；细微的；和蔼的",
+        "ws": [
+          {
+            "w": "precision"
+          },
+          {
+            "w": "exact"
+          },
+          {
+            "w": "narrow"
+          },
+          {
+            "w": "kind"
+          },
+          {
+            "w": "benign"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 94,
+    "word": "try on",
+    "trans": [
+      {
+        "cn": "试穿",
+        "en": "If you try on a piece of clothing, you put it on to see if it fits you or if it looks nice"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "衣服和鞋要试穿以确保它们合适。",
+        "tran": "Try on clothing and shoes to make sure they fit."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "tran": "试穿；试验",
+        "ws": [
+          {
+            "w": "try sth on"
+          },
+          {
+            "w": "try sth. on"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 95,
+    "word": "size",
+    "trans": [
+      {
+        "cn": "尺码",
+        "en": "how big or small something is"
+      }
+    ],
+    "phonetic0": "saɪz",
+    "phonetic1": "saɪz",
+    "sentences": [
+      {
+        "v": "他是个小男孩，个子和约翰差不多。",
+        "tran": "He’s a small boy, about John’s size."
+      },
+      {
+        "v": "詹森的房子和我们的差不多大。",
+        "tran": "Jensens’ house is about the same size as ours."
+      },
+      {
+        "v": "这条狗体型很大，但还没有长足。",
+        "tran": "He’s quite a big dog, but he’s still not full size yet."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "sizable",
+            "tran": " 相当大的；大小相当的"
+          },
+          {
+            "w": "sizeable",
+            "tran": " 大的，相当大的"
+          },
+          {
+            "w": "sized",
+            "tran": " 有…大小的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "sizing",
+            "tran": " 胶料；涂料；涂上胶水"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "sizing",
+            "tran": " 制定…的标准（size的ing形式）"
+          },
+          {
+            "w": "sized",
+            "tran": " 相比（size的过去分词）；按大小分类"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "粒度；颗粒大小",
+        "tran": "particle size"
+      },
+      {
+        "v": "小号，小码；小尺寸",
+        "tran": "small size"
+      },
+      {
+        "v": "晶粒大小，晶粒尺寸",
+        "tran": "grain size"
+      },
+      {
+        "v": "粒度分布；粒径分布；大小分布；径谱",
+        "tran": "size distribution"
+      },
+      {
+        "v": "大尺寸的；大号，大码",
+        "tran": "large size"
+      },
+      {
+        "v": "孔径；孔隙大小；气孔尺寸",
+        "tran": "pore size"
+      },
+      {
+        "v": "粒度分布",
+        "tran": "particle size distribution"
+      },
+      {
+        "v": "中号，中码；中号尺码",
+        "tran": "medium size"
+      },
+      {
+        "v": "样本量；样本大小",
+        "tran": "sample size"
+      },
+      {
+        "v": "v. 为试尺码",
+        "tran": "size for"
+      },
+      {
+        "v": "为了试尺码",
+        "tran": "for size"
+      },
+      {
+        "v": "尺寸效应；规模效果；晶粒尺寸效应",
+        "tran": "size effect"
+      },
+      {
+        "v": "市场规模",
+        "tran": "market size"
+      },
+      {
+        "v": "文件大小；档案大小",
+        "tran": "file size"
+      },
+      {
+        "v": "人口规模；人口数量；群体大小",
+        "tran": "population size"
+      },
+      {
+        "v": "约...一样大",
+        "tran": "about the size of"
+      },
+      {
+        "v": "产品尺寸",
+        "tran": "product size"
+      },
+      {
+        "v": "n. 字体大小",
+        "tran": "font size"
+      },
+      {
+        "v": "[化]晶粒大小，晶体粒度",
+        "tran": "crystal size"
+      },
+      {
+        "v": "大尺码，大海棠盆",
+        "tran": "big size"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "大小；尺寸",
+        "ws": [
+          {
+            "w": "measurement"
+          },
+          {
+            "w": "magnitude"
+          },
+          {
+            "w": "dimension"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 96,
+    "word": "of course",
+    "trans": [
+      {
+        "cn": "当然",
+        "en": "used to show that other people probably already know what you are saying is true, or expect to hear it"
+      }
+    ],
+    "sentences": [
+      {
+        "v": "噢，当然是她赢啦。",
+        "tran": "Well, she won, of course."
+      },
+      {
+        "v": "你当然应该保留所有信函的复印件。",
+        "tran": "You should of course keep copies of all your correspondence."
+      },
+      {
+        "v": "今后当然会有遇到困难的时候。",
+        "tran": "Of course there will be some difficult times ahead."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "tran": "一定，当然",
+        "ws": [
+          {
+            "w": "by the holy poker"
+          },
+          {
+            "w": "by all means"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 97,
+    "word": "too",
+    "trans": [
+      {
+        "cn": "太",
+        "en": "more than is acceptable or possible"
+      }
+    ],
+    "phonetic0": "tu",
+    "phonetic1": "tuː",
+    "sentences": [
+      {
+        "v": "你觉得音乐太响了吗？",
+        "tran": "Do you think the music’s too loud?"
+      },
+      {
+        "v": "你往汤里放盐太多。",
+        "tran": "You’ve put too much salt in the soup."
+      },
+      {
+        "v": "路上车辆太多。",
+        "tran": "There are too many cars on the road."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "我也是，我也一样",
+        "tran": "me too"
+      },
+      {
+        "v": "实在太…",
+        "tran": "all too"
+      },
+      {
+        "v": "太…；非常…",
+        "tran": "much too"
+      },
+      {
+        "v": "使某人承受不了",
+        "tran": "too much for sb"
+      },
+      {
+        "v": "太多；太难；非…力所能及",
+        "tran": "too much for"
+      },
+      {
+        "v": "非常；实在",
+        "tran": "only too"
+      },
+      {
+        "v": "时常，经常是",
+        "tran": "all too often"
+      },
+      {
+        "v": "一点也不",
+        "tran": "none too"
+      },
+      {
+        "v": "不太好；有点糟",
+        "tran": "not too well"
+      },
+      {
+        "v": "总是太早；过得太快",
+        "tran": "all too soon"
+      },
+      {
+        "v": "不久；趁不太晚",
+        "tran": "before too long"
+      },
+      {
+        "v": "迫不及待",
+        "tran": "too impatient to wait"
+      },
+      {
+        "v": "不至于过度；越…越好",
+        "tran": "cannot too"
+      },
+      {
+        "v": "多余的一个；多余的",
+        "tran": "one too many"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adv",
+        "tran": "太；也；很；还；非常；过度",
+        "ws": [
+          {
+            "w": "greatly"
+          },
+          {
+            "w": "quite"
+          },
+          {
+            "w": "badly"
+          },
+          {
+            "w": "extremely"
+          },
+          {
+            "w": "highly"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 98,
+    "word": "just",
+    "trans": [
+      {
+        "cn": "正好",
+        "en": "exactly"
+      }
+    ],
+    "phonetic0": "dʒʌst",
+    "phonetic1": "dʒʌst",
+    "sentences": [
+      {
+        "v": "我现在正需要喝一杯浓浓的咖啡。",
+        "tran": "A good strong cup of coffee is just what I need right now."
+      },
+      {
+        "v": "那幢房子大而宽敞，正合我们的需要。",
+        "tran": "The house was large and roomy; just right for us."
+      },
+      {
+        "v": "她看上去就像她妈妈。",
+        "tran": "She looks just like her mother."
+      },
+      {
+        "v": "你究竟想干什么？",
+        "tran": "Just what do you think you’re trying to do?"
+      },
+      {
+        "v": "洗个舒服的热水澡，那正是缓解肌肉酸痛的好方法。",
+        "tran": "A nice hot bath – just the thing(= exactly the right thing ) to relax sore muscles."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "justified",
+            "tran": " 有正当理由的；合乎情理的；事出有因的"
+          },
+          {
+            "w": "justifiable",
+            "tran": " 可辩解的，有道理的；可证明为正当的"
+          }
+        ]
+      },
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "justifiably",
+            "tran": " 无可非议地；言之有理地"
+          },
+          {
+            "w": "justly",
+            "tran": " 公正地；正当地；恰当地；正直地"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "justness",
+            "tran": " 公正；正确，精确"
+          }
+        ]
+      },
+      {
+        "pos": "v",
+        "ws": [
+          {
+            "w": "justified",
+            "tran": " 调整（justify的过去分词）；证明…正当"
+          }
+        ]
+      },
+      {
+        "pos": "vi",
+        "ws": [
+          {
+            "w": "justify",
+            "tran": " 证明合法；整理版面"
+          }
+        ]
+      },
+      {
+        "pos": "vt",
+        "ws": [
+          {
+            "w": "justify",
+            "tran": " 证明…是正当的；替…辩护"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "就像，正如",
+        "tran": "just like"
+      },
+      {
+        "v": "正象",
+        "tran": "just as"
+      },
+      {
+        "v": "正因为",
+        "tran": "just because"
+      },
+      {
+        "v": "刚才；眼下",
+        "tran": "just now"
+      },
+      {
+        "v": "几乎，差不多",
+        "tran": "just about"
+      },
+      {
+        "v": "就在...之前",
+        "tran": "just before"
+      },
+      {
+        "v": "不只是",
+        "tran": "more than just"
+      },
+      {
+        "v": "一点点；只是一点点",
+        "tran": "just a little"
+      },
+      {
+        "v": "试想；只想想看",
+        "tran": "just think"
+      },
+      {
+        "v": "正是如此",
+        "tran": "just so"
+      },
+      {
+        "v": "刚刚好，正好，恰如其分",
+        "tran": "just right"
+      },
+      {
+        "v": "就这么干吧；说做就做",
+        "tran": "just do it"
+      },
+      {
+        "v": "就在那时，正当那时；正在那时",
+        "tran": "just then"
+      },
+      {
+        "v": "及时；恰好",
+        "tran": "just in time"
+      },
+      {
+        "v": "还是；完全一样；照旧（等于all the same）",
+        "tran": "just the same"
+      },
+      {
+        "v": "老婆大人（TVB电视剧）",
+        "tran": "just love"
+      },
+      {
+        "v": "以防万一",
+        "tran": "just in case"
+      },
+      {
+        "v": "等一会儿，稍等一下",
+        "tran": "just a moment"
+      },
+      {
+        "v": "恰好现在",
+        "tran": "just yet"
+      },
+      {
+        "v": "无妨；幸好",
+        "tran": "just as well"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adv",
+        "tran": "只是，仅仅；刚才，刚刚；正好，恰好；实在；刚要",
+        "ws": [
+          {
+            "w": "merely"
+          },
+          {
+            "w": "simply"
+          },
+          {
+            "w": "only"
+          },
+          {
+            "w": "indeed"
+          },
+          {
+            "w": "but"
+          }
+        ]
+      },
+      {
+        "pos": "adj",
+        "tran": "[法]公正的，合理的；正直的，正义的；正确的；公平的；应得的",
+        "ws": [
+          {
+            "w": "judicial"
+          },
+          {
+            "w": "reasonable"
+          },
+          {
+            "w": "logical"
+          },
+          {
+            "w": "rational"
+          },
+          {
+            "w": "possible"
+          }
+        ]
+      }
+    ],
+    "memory": " 伸张正义(just)， 势在必(must)行"
+  },
+  {
+    "id": 99,
+    "word": "how much",
+    "trans": [
+      {
+        "cn": "多少钱"
+      }
+    ],
+    "phonetic0": "haʊ mʌtʃ",
+    "phonetic1": "haʊ mʌtʃ",
+    "sentences": [
+      {
+        "v": "算计算计买这么多东西要多少钱。",
+        "tran": "Work out how much all these things will cost."
+      },
+      {
+        "v": "问题不在于你读了多少书，而在于你读了哪些有价值的书。",
+        "tran": "It is not how much you read but what you read that counts."
+      }
+    ],
+    "relWords": [],
+    "phrases": [],
+    "synos": [
+      {
+        "tran": "多少，多少钱",
+        "ws": [
+          {
+            "w": "how many"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 100,
+    "word": "eighty",
+    "trans": [
+      {
+        "cn": "八十",
+        "en": "the number 80"
+      }
+    ],
+    "phonetic0": "ˈeti",
+    "phonetic1": "'eɪtɪ",
+    "sentences": [
+      {
+        "v": "我考了八十几分.",
+        "tran": "I got an eighty something."
+      },
+      {
+        "v": "祭司亚撒利雅率领耶和华勇敢的祭司八十人，跟随他进去。",
+        "tran": "Azariah the priest with eighty other courageous priests of the Lord followed him in."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "eight",
+            "tran": " 八的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "eight",
+            "tran": " 八字形"
+          }
+        ]
+      },
+      {
+        "pos": "num",
+        "ws": [
+          {
+            "w": "eight",
+            "tran": " 八；八个；第八"
+          }
+        ]
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "八十；八十岁；八十年代",
+        "ws": [
+          {
+            "w": "fourscore"
+          }
+        ]
+      },
+      {
+        "pos": "adj",
+        "tran": "八十的，八十个的；八十岁的",
+        "ws": [
+          {
+            "w": "fourscore"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 101,
+    "word": "dollar",
+    "trans": [
+      {
+        "cn": "元",
+        "en": "the standard unit of money in the US, Canada, Australia, and some other countries, divided into 100  cent s  : symbol $"
+      }
+    ],
+    "phonetic0": "'dɑlɚ",
+    "phonetic1": "'dɒlə",
+    "sentences": [
+      {
+        "v": "它要三美元。",
+        "tran": "It cost three dollars."
+      },
+      {
+        "v": "一张十元钞票",
+        "tran": "a ten-dollar bill"
+      },
+      {
+        "v": "在机场你可以使用美元或欧元。",
+        "tran": "You can pay in dollars or euros at the airport."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "美元",
+        "tran": "us dollar"
+      },
+      {
+        "v": "港元",
+        "tran": "hong kong dollar"
+      },
+      {
+        "v": "美元钞票",
+        "tran": "dollar bill"
+      },
+      {
+        "v": "澳币",
+        "tran": "australian dollar"
+      },
+      {
+        "v": "银元",
+        "tran": "silver dollar"
+      },
+      {
+        "v": "美元",
+        "tran": "american dollar"
+      },
+      {
+        "v": "金元",
+        "tran": "gold dollar"
+      },
+      {
+        "v": "美元贬值",
+        "tran": "dollar depreciation"
+      },
+      {
+        "v": "美元符；货币符号",
+        "tran": "dollar sign"
+      },
+      {
+        "v": "新西兰元",
+        "tran": "new zealand dollar"
+      },
+      {
+        "v": "美元本位制",
+        "tran": "dollar standard"
+      },
+      {
+        "v": "半元银币（美元）",
+        "tran": "half dollar"
+      },
+      {
+        "v": "美元借款",
+        "tran": "dollar loan"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "美元",
+        "ws": [
+          {
+            "w": "peso"
+          }
+        ]
+      }
+    ],
+    "memory": " 用dollar(美元)买doll(玩具)"
+  },
+  {
+    "id": 102,
+    "word": "sale",
+    "trans": [
+      {
+        "cn": "特价销售",
+        "en": "when you sell something"
+      }
+    ],
+    "phonetic0": "sel",
+    "phonetic1": "seɪl",
+    "sentences": [
+      {
+        "v": "哈维每做成一笔生意可得到50美元的佣金。",
+        "tran": "Harvey gets a $50 commission every time he makes a sale (= sells something as part of his job ) ."
+      },
+      {
+        "v": "汽车推销员常常宁愿降价也不愿失去一笔生意。",
+        "tran": "Car salesmen will often bring down the price rather than lose a sale (= fail to sell something ) ."
+      },
+      {
+        "v": "对伊朗的军火销售",
+        "tran": "arms sales to Iran"
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adj",
+        "ws": [
+          {
+            "w": "salable",
+            "tran": " 畅销的；适于销售的；价格适当的"
+          },
+          {
+            "w": "saleable",
+            "tran": " 畅销的；可供出售的"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "ws": [
+          {
+            "w": "salability",
+            "tran": " 畅销；出售"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "出售；待售",
+        "tran": "for sale"
+      },
+      {
+        "v": "廉价出售；贱价抛售",
+        "tran": "on sale"
+      },
+      {
+        "v": "售后服务",
+        "tran": "after sale service"
+      },
+      {
+        "v": "销售点",
+        "tran": "point of sale"
+      },
+      {
+        "v": "直销；直接销售；传销",
+        "tran": "direct sale"
+      },
+      {
+        "v": "内销",
+        "tran": "domestic sale"
+      },
+      {
+        "v": "零售销售",
+        "tran": "retail sale"
+      },
+      {
+        "v": "促销推销",
+        "tran": "promote the sale"
+      },
+      {
+        "v": "内销",
+        "tran": "sale in domestic market"
+      },
+      {
+        "v": "拿出销售",
+        "tran": "put up for sale"
+      },
+      {
+        "v": "买卖契约；销货合同",
+        "tran": "contract of sale"
+      },
+      {
+        "v": "销售条件",
+        "tran": "conditions of sale"
+      },
+      {
+        "v": "清货贱卖；清仓大减价",
+        "tran": "clearance sale"
+      },
+      {
+        "v": "财产的变卖；出售物业",
+        "tran": "sale of property"
+      },
+      {
+        "v": "拍卖",
+        "tran": "auction sale"
+      },
+      {
+        "v": "n. [商]卖空",
+        "tran": "short sale"
+      },
+      {
+        "v": "发售",
+        "tran": "put on sale"
+      },
+      {
+        "v": "宅前旧货出售；在私家车库进行的家中旧货出售",
+        "tran": "garage sale"
+      },
+      {
+        "v": "销售代理",
+        "tran": "sale agent"
+      },
+      {
+        "v": "热销产品",
+        "tran": "hot sale"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "n",
+        "tran": "销售；[贸易]出售；拍卖；销售额；廉价出售",
+        "ws": [
+          {
+            "w": "marketing"
+          },
+          {
+            "w": "sell"
+          },
+          {
+            "w": "auction"
+          }
+        ]
+      }
+    ],
+    "memory": " 出海航行(sail)的船票已经卖(sale)光了"
+  },
+  {
+    "id": 103,
+    "word": "more",
+    "trans": [
+      {
+        "cn": "更多的",
+        "en": "You use more to indicate that there is a greater amount of something than before or than average, or than something else. You can use \"a little,\" \"a lot,\" \"a bit,\" \"far,\" and \"much\" in front of more. "
+      }
+    ],
+    "phonetic0": "mɔr",
+    "phonetic1": "mɔː",
+    "sentences": [
+      {
+        "v": "越来越多的人在心脏病发作后存活下来。",
+        "tran": "More and more people are surviving heart attacks."
+      },
+      {
+        "v": "他用更多的时间来完善他的舞蹈动作而不是健身。",
+        "tran": "He spent more time perfecting his dance moves instead of gym work."
+      }
+    ],
+    "relWords": [
+      {
+        "pos": "adv",
+        "ws": [
+          {
+            "w": "moreover",
+            "tran": " 而且；此外"
+          }
+        ]
+      }
+    ],
+    "phrases": [
+      {
+        "v": "多于；超出；比……多",
+        "tran": "more than"
+      },
+      {
+        "v": "越来越多",
+        "tran": "more and more"
+      },
+      {
+        "v": "更多",
+        "tran": "and more"
+      },
+      {
+        "v": "更加；多得多",
+        "tran": "much more"
+      },
+      {
+        "v": "不再",
+        "tran": "no more"
+      },
+      {
+        "v": "更加重要",
+        "tran": "more important"
+      },
+      {
+        "v": "再，还",
+        "tran": "any more"
+      },
+      {
+        "v": "◎更大程度上的…",
+        "tran": "more of"
+      },
+      {
+        "v": "或更多；或…以上",
+        "tran": "or more"
+      },
+      {
+        "v": "更多地，更多的",
+        "tran": "even more"
+      },
+      {
+        "v": "不只一个",
+        "tran": "more than one"
+      },
+      {
+        "v": "更多信息；详细信息；更多资料",
+        "tran": "more information"
+      },
+      {
+        "v": "更多时间",
+        "tran": "more time"
+      },
+      {
+        "v": "或多或少",
+        "tran": "more or less"
+      },
+      {
+        "v": "◎like<sup>1</sup>的变形",
+        "tran": "more like"
+      },
+      {
+        "v": "再来一个；再多一个",
+        "tran": "one more"
+      },
+      {
+        "v": "许多，多得多的",
+        "tran": "far more"
+      },
+      {
+        "v": "更加注意",
+        "tran": "pay more attention to"
+      },
+      {
+        "v": "需要更多信息；取得进一步资讯",
+        "tran": "for more information"
+      },
+      {
+        "v": "再来一些，再多一点",
+        "tran": "some more"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adv",
+        "tran": "更多；此外；更大程度地",
+        "ws": [
+          {
+            "w": "furthermore"
+          },
+          {
+            "w": "again"
+          },
+          {
+            "w": "besides"
+          },
+          {
+            "w": "then"
+          },
+          {
+            "w": "additionally"
+          }
+        ]
+      },
+      {
+        "pos": "adj",
+        "tran": "更多的；附加的",
+        "ws": [
+          {
+            "w": "additional"
+          },
+          {
+            "w": "added"
+          },
+          {
+            "w": "attached"
+          },
+          {
+            "w": "plus"
+          },
+          {
+            "w": "second"
+          }
+        ]
+      },
+      {
+        "pos": "n",
+        "tran": "更多",
+        "ws": [
+          {
+            "w": "mehr"
+          }
+        ]
+      }
+    ],
+    "memory": ""
+  },
+  {
+    "id": 104,
+    "word": "us",
+    "trans": [
+      {
+        "cn": "我们",
+        "en": "used by the person speaking or writing to refer to himself or herself and one or more other people"
+      }
+    ],
+    "phonetic0": "əs; ʌs",
+    "phonetic1": "əs; ʌs",
+    "sentences": [
+      {
+        "v": "请帮助我们。",
+        "tran": "Please help us."
+      },
+      {
+        "v": "他安排我们大家一起喝一杯。",
+        "tran": "He arranged for us all to have a drink."
+      },
+      {
+        "v": "我们俩她都请了。",
+        "tran": "She’s invited us both."
+      },
+      {
+        "v": "我妈要来和我们同住。",
+        "tran": "My mother is coming to stay with us."
+      },
+      {
+        "v": "现在就给我们捐款吧。",
+        "tran": "Send us a donation now."
+      }
+    ],
+    "relWords": [],
+    "phrases": [
+      {
+        "v": "掉头",
+        "tran": "u turn"
+      }
+    ],
+    "synos": [],
+    "memory": ""
+  }
+]
