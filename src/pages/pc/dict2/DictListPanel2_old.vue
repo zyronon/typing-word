@@ -10,9 +10,8 @@ import jaFlag from "@/assets/img/flags/ja.png";
 import deFlag from "@/assets/img/flags/de.png";
 import codeFlag from "@/assets/img/flags/code.png";
 import BaseIcon from "@/components/BaseIcon.vue";
+import {useRouter} from "vue-router";
 import {useNav} from "@/utils";
-import {onMounted} from "vue";
-import dict from '@/assets/dict.json'
 
 const emit = defineEmits<{
   add: [],
@@ -78,17 +77,6 @@ function change(e) {
   ElMessage.success('切换成功')
   back()
 }
-
-onMounted(() => {
-  let d: any = groupBy(dict, 'langType')
-  for (let dKey in d) {
-    d[dKey] = groupBy(d[dKey], 'tranType')
-    for (const dKey2 in d[dKey]) {
-      d[dKey][dKey2] = groupBy(d[dKey][dKey2], 'category')
-    }
-  }
-  console.log('dict', d)
-})
 </script>
 
 <template>
