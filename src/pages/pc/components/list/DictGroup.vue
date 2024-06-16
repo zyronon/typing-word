@@ -1,45 +1,45 @@
 <script setup lang="ts">
-import {watch} from "vue";
 import {DictResource} from "@/types.ts";
-import DictList from "@/pages/pc/components/list/DictList.vue";
+import DictItem from "@/pages/pc/components/list/DictItem.vue";
 
 const props = defineProps<{
-  category: string,
-  groupByTag: any,
+  item: {
+    list: any[],
+    tags: string[],
+    name: string,
+  },
   selectId: string
 }>()
 const emit = defineEmits<{
   selectDict: [val: { dict: DictResource, index: number }]
   detail: [],
 }>()
-const tagList = $computed(() => Object.keys(props.groupByTag))
-let currentTag = $ref(tagList[0])
-let list = $computed(() => {
-  return props.groupByTag[currentTag]
+let currentTag = $ref(props.item.tags[0])
+let localList = $computed(() => {
+  return props.item.list.filter(v => v.tags.includes(currentTag))
 })
 
-watch(() => props.groupByTag, () => {
-  currentTag = tagList[0]
-})
 
 </script>
 
 <template>
   <div class="dict-group">
-    <div class="flex items-center border">
-      <div class="category">{{ category }}：</div>
+    <div class="flex items-start border py-4">
+      <div class="text-xl break-keep mt-1">{{ item.name }}：</div>
       <div class="tags">
         <div class="tag" :class="i === currentTag &&'active'"
              @click="currentTag = i"
-             v-for="i in Object.keys(groupByTag)">{{ i }}
+             v-for="i in item.tags">{{ i }}
         </div>
       </div>
     </div>
 
-    <DictList
-        @selectDict="e => emit('selectDict',e)"
-        :list="list"
-        :select-id="selectId"/>
+    <div class="dict-list1 grid grid-cols-4 gap-4">
+      <DictItem v-for="(dict,index) in localList"
+                :active="selectId === dict.id"
+                @click="emit('selectDict',{dict,index})"
+                :dict="dict"/>
+    </div>
   </div>
 </template>
 
@@ -47,13 +47,8 @@ watch(() => props.groupByTag, () => {
 .dict-group {
   color: var(--color-font-1);
   margin-bottom: 1.5rem;
-  //border-bottom: 1px dashed gray;
 
-  .category {
-    font-size: 1.2rem;
-    //padding-bottom: 1rem;
-  }
-  .border{
+  .border {
     border-top: 1px dashed gray;
   }
 }
@@ -61,7 +56,6 @@ watch(() => props.groupByTag, () => {
 .tags {
   display: flex;
   flex-wrap: wrap;
-  margin: 1rem 0;
 
   .tag {
     color: var(--color-font-1);

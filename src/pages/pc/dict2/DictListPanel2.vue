@@ -2,7 +2,7 @@
 
 import {DictResource, getDefaultDict, Sort,} from "@/types.ts";
 import {dictionaryResources} from "@/assets/dictionary.ts";
-import {groupBy} from "lodash-es";
+import {groupBy, uniq} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
 import DictGroup from "@/pages/pc/components/list/DictGroup.vue";
 import enFlag from "@/assets/img/flags/en.png";
@@ -54,7 +54,7 @@ const groupedByCategoryAndTag = $computed(() => {
   for (const [key, value] of Object.entries(groupByCategory)) {
     data.push([key, groupByDictTags(value)])
   }
-  // console.log('groupedByCategoryAndTag', data)
+  console.log('groupedByCategoryAndTag', data)
   return data
 })
 
@@ -79,16 +79,44 @@ function change(e) {
   back()
 }
 
+let dictData = $ref({})
+let currentTabIndex = $ref('0')
+let currentTranslateLanguage2 = $ref(1)
+const currentLangDictList = $computed(() => {
+  return dictData[currentTabIndex] ?? {}
+})
+
+const currentTranDictList = $computed(() => {
+  return currentLangDictList[currentTranslateLanguage2] ?? {}
+})
+
 onMounted(() => {
   let d: any = groupBy(dict, 'langType')
   for (let dKey in d) {
     d[dKey] = groupBy(d[dKey], 'tranType')
     for (const dKey2 in d[dKey]) {
       d[dKey][dKey2] = groupBy(d[dKey][dKey2], 'category')
+      for (const dKey3 in d[dKey][dKey2]) {
+        d[dKey][dKey2][dKey3] = {
+          tags: uniq(d[dKey][dKey2][dKey3].map(v => v.tags).flat()),
+          list: d[dKey][dKey2][dKey3],
+          name: dKey3
+        }
+      }
     }
   }
+  dictData = d
   console.log('dict', d)
 })
+
+function formatLangType(val) {
+  switch (Number(val)) {
+    case 0:
+      return '英语'
+    case 1:
+      return '汉语'
+  }
+}
 </script>
 
 <template>
@@ -99,11 +127,10 @@ onMounted(() => {
           <BaseIcon icon="ion:chevron-back" title="返回" @click="back"/>
           <div class="tabs">
             <div class="tab"
-                 :class="currentLanguage === item.id && 'active'"
-                 @click="currentLanguage = item.id"
-                 v-for="item in languageCategoryOptions">
-              <img :src='item.flag' alt=""/>
-              <span>{{ item.name }}</span>
+                 :class="currentTabIndex === item && 'active'"
+                 @click="currentTabIndex = item"
+                 v-for="item in Object.keys(dictData)">
+              <span>{{ formatLangType(item) }}</span>
             </div>
           </div>
         </div>
@@ -114,16 +141,19 @@ onMounted(() => {
       <div class="dict-list-wrapper">
         <div class="translate ">
           <span>释义：</span>
-          <el-radio-group v-model="currentTranslateLanguage">
-            <el-radio-button border v-for="i in translateLanguageList" :value="i">{{ $t(i) }}</el-radio-button>
+          <el-radio-group v-model="currentTranslateLanguage2">
+            <el-radio-button border v-for="i in Object.keys(currentLangDictList)" :value="i">{{
+                formatLangType(i)
+              }}
+            </el-radio-button>
           </el-radio-group>
         </div>
+
         <DictGroup
-            v-for="item in groupedByCategoryAndTag"
+            v-for="item in currentTranDictList"
             :select-id="store.currentDict.id"
             @selectDict="change"
-            :groupByTag="item[1]"
-            :category="item[0]"
+            :item="item"
         />
       </div>
     </div>

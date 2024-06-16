@@ -15,21 +15,6 @@ const emit = defineEmits<{
   del: []
 }>()
 
-let length = $computed(() => {
-  let isWord = [DictType.word, DictType.collect, DictType.simple, DictType.wrong].includes(props.dict.type)
-  let len: any = ''
-  if (props.dict.length) {
-    len = props.dict.length
-    len += (isWord ? '词' : '篇')
-  } else {
-    if (isWord) {
-      len = props.dict.originWords.length + '词'
-    } else {
-      len = props.dict.articles.length + '篇'
-    }
-  }
-  return len
-})
 </script>
 
 <template>
@@ -40,13 +25,12 @@ let length = $computed(() => {
     <template v-if="dict.id">
       <div class="top">
         <div class="name">{{ dict.name }}</div>
-        <div class="desc">{{ dict.description }}</div>
+        <div class="desc" :style="{opacity:dict.name !== dict.description?1:0}">{{ dict.description }}</div>
       </div>
       <div class="bottom">
-        <div class="num">{{ length }}</div>
+        <div class="num">{{ dict.length + '词' }}</div>
       </div>
-      <div class="pin" v-if="dict.type === DictType.article">文章</div>
-      <div class="del" v-if="dict.showDel && !active" >
+      <div class="del" v-if="dict.showDel && !active">
         <BaseIcon icon="solar:trash-bin-minimalistic-linear" @click="emit('del')"/>
       </div>
     </template>
