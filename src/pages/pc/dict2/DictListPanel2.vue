@@ -1,7 +1,6 @@
 <script setup lang="ts">
 
-import {DictResource, getDefaultDict, Sort,} from "@/types.ts";
-import {dictionaryResources} from "@/assets/dictionary.ts";
+import {getDefaultDict, Sort,} from "@/types.ts";
 import {groupBy, uniq} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
 import DictGroup from "@/pages/pc/components/list/DictGroup.vue";
@@ -14,53 +13,7 @@ import {useNav} from "@/utils";
 import {onMounted} from "vue";
 import dict from '@/assets/dict.json'
 
-const emit = defineEmits<{
-  add: [],
-  selectDict: [val: { dict: any, index: number }]
-}>()
 const store = useBaseStore()
-
-let currentLanguage = $ref('en')
-let currentTranslateLanguage = $ref('common')
-let groupByLanguage = groupBy(dictionaryResources, 'language')
-let translateLanguageList = $ref([])
-
-function groupByDictTags(dictList: DictResource[]) {
-  return dictList.reduce<Record<string, DictResource[]>>((result, dict) => {
-    dict.tags.forEach((tag) => {
-      if (Object.prototype.hasOwnProperty.call(result, tag)) {
-        result[tag].push(dict)
-      } else {
-        result[tag] = [dict]
-      }
-    })
-    return result
-  }, {})
-}
-
-const groupByTranslateLanguage = $computed(() => {
-  let data = groupBy(groupByLanguage[currentLanguage], 'translateLanguage')
-  // console.log('groupByTranslateLanguage', data)
-  translateLanguageList = Object.keys(data)
-  currentTranslateLanguage = translateLanguageList[0]
-  return data
-})
-
-const groupedByCategoryAndTag = $computed(() => {
-  const currentTranslateLanguageDictList = groupByTranslateLanguage[currentTranslateLanguage]
-  const groupByCategory = groupBy(currentTranslateLanguageDictList, 'category')
-
-  let data = []
-  for (const [key, value] of Object.entries(groupByCategory)) {
-    data.push([key, groupByDictTags(value)])
-  }
-  console.log('groupedByCategoryAndTag', data)
-  return data
-})
-
-function del(e) {
-  store.myDictList.splice(e.index, 1)
-}
 
 const languageCategoryOptions = [
   {id: 'en', name: '英语', flag: enFlag},
@@ -98,7 +51,7 @@ onMounted(() => {
       d[dKey][dKey2] = groupBy(d[dKey][dKey2], 'category')
       for (const dKey3 in d[dKey][dKey2]) {
         d[dKey][dKey2][dKey3] = {
-          tags: uniq(d[dKey][dKey2][dKey3].map(v => v.tags).flat()),
+          tags: uniq(d[dKey][dKey2][dKey3].sort((a, b) => a.id - b.id).map(v => v.tags).flat()),
           list: d[dKey][dKey2][dKey3],
           name: dKey3
         }
