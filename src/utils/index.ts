@@ -129,20 +129,10 @@ export function isMobile(): boolean {
 
 export function getDictFile(url: string) {
   return new Promise<any[]>(async resolve => {
-    let r = await fetch(url)
+    let r = await fetch(url).catch(r => {
+    })
     if (url.includes('.7z')) {
-      console.time()
-      const data = await r.arrayBuffer();
-      const mod = await libarchiveWasm();
-      const reader = new ArchiveReader(mod, new Int8Array(data));
-      for (const entry of reader.entries()) {
-        if (entry.getPathname().endsWith('.json')) {
-          let data = new TextDecoder().decode(entry.readData());
-          resolve(JSON.parse(data))
-        }
-        console.timeEnd()
-      }
-      reader.free();
+
     } else {
       let v = await r.json()
       resolve(v)
@@ -173,23 +163,69 @@ export function _dateFormat(val: any, format?: string): string {
   return dayjs(d).format(format)
 }
 
+export function _fetch(url: string) {
+  return new Promise<any[]>(async (resolve, reject) => {
+    await fetch(url).then(async r => {
+      let v = await r.json()
+      resolve(v)
+    }).catch(r => {
+      console.log('err', r)
+      reject(r)
+    })
+  })
+}
+
 export async function _checkDictWords(dict: Dict) {
+  console.log('_checkDictWords', dict)
   if ([DictType.collect,
     DictType.simple,
-    DictType.wrong].includes(dict.type)) {
+    DictType.wrong].includes(dict.dictType)) {
   } else {
-//TODO　需要和其他需要下载的地方统一
-    let url = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
+
+    //TODO　需要和其他需要下载的地方统一
     //如果不是自定义词典，并且有url地址才去下载
-    if (!dict.isCustom && dict.url) {
-      if (!dict.words.length) {
-        let v = await getDictFile(url)
-        v.map(s => {
-          s.id = nanoid(6)
-        })
-        // dict.words = Object.freeze(v)
-        dict.words = v
+    if (!dict.isCustom && dict.fileName) {
+      let res: any = await _fetch(`http://localhost/index.php/v1/support/getDictVersion?id=${dict.id}`)
+      let r
+      let dictLocalUrl = `./dicts/${dict.langTypeStr}/${dict.dictType}/${dict.tranTypeStr}/${dict.fileName}-${dict.version}`;
+      let dictServeUrl = `http://localhost/index.php/v1/support/getDictDetail?id=${dict.id}`;
+      if (res.success) {
+        if (res.version > dict.version) {
+          let r2: any = await _fetch(dictServeUrl)
+          if (r2.success) {
+            r = r2.data
+          } else {
+            let r3 = await fetch(dictLocalUrl)
+            try {
+              r = await r3.json()
+            } catch (e) {
+
+            }
+          }
+        } else {
+          if (!dict.words.length) {
+            let r3 = await fetch(dictLocalUrl)
+            try {
+              r = await r3.json()
+            } catch (e) {
+              let r2: any = await _fetch(dictServeUrl)
+              if (r2.success) {
+                r = r2.data
+              }
+            }
+          }
+        }
+      } else {
+        let r3 = await fetch(dictLocalUrl)
+        try {
+          r = await r3.json()
+        } catch (e) {
+        }
       }
+      console.log('v', r)
+      // // dict.words = Object.freeze(v)
+      // dict.words = v
+      dict = Object.assign(dict, r)
     }
   }
 }

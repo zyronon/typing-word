@@ -18,8 +18,6 @@ let currentTag = $ref(props.item.tags[0])
 let localList = $computed(() => {
   return props.item.list.filter(v => v.tags.includes(currentTag))
 })
-
-
 </script>
 
 <template>

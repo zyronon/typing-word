@@ -1,3167 +1,3793 @@
-[
-  {
-    "id": 98,
-    "name": "2024考研英语红宝书(上)",
-    "description": "2024考研英语红宝书必考词（上）",
-    "length": 997,
-    "version": 1,
-    "fileName": "2024HongBao_T1.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 99,
-    "name": "2024考研英语红宝书(下)",
-    "description": "2024考研英语红宝书必考词（下）",
-    "length": 854,
-    "version": 1,
-    "fileName": "2024HongBao_T2.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 209,
-    "name": "专升本词汇",
-    "description": "专升本词汇",
-    "length": 3692,
-    "version": 1,
-    "fileName": "adult-self-study-examination.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 81,
-    "name": "建筑专业英语",
-    "description": "大学建筑专业英语词汇",
-    "length": 630,
-    "version": 1,
-    "fileName": "archVocabulary.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "专业英语"
-    ]
-  },
-  {
-    "id": 119,
-    "name": "商务英语",
-    "description": "商务英语常见词",
-    "length": 2753,
-    "version": 1,
-    "fileName": "BEC_2_T.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "BEC"
-    ]
-  },
-  {
-    "id": 14,
-    "name": "商务英语词汇",
-    "description": "商务英语词汇",
-    "length": 2753,
-    "version": 1,
-    "fileName": "BEC_2.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "BEC"
-    ]
-  },
-  {
-    "id": 120,
-    "name": "BEC",
-    "description": "BEC考试常见词",
-    "length": 2825,
-    "version": 1,
-    "fileName": "BEC_3_T.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "BEC"
-    ]
-  },
-  {
-    "id": 15,
-    "name": "新东方 BEC 词汇",
-    "description": "新东方 BEC 词汇",
-    "length": 2825,
-    "version": 1,
-    "fileName": "BEC_3.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "BEC",
-      "新东方"
-    ]
-  },
-  {
-    "id": 172,
-    "name": "高中必修1",
-    "description": "北师大版高中必修1",
-    "length": 226,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_1_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "北师大"
-    ]
-  },
-  {
-    "id": 59,
-    "name": "高中必修1",
-    "description": "北师大版高中必修1",
-    "length": 226,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_1.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "北师大"
-    ]
-  },
-  {
-    "id": 181,
-    "name": "高中选修10",
-    "description": "北师大版高中选修10",
-    "length": 267,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_10_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "北师大"
-    ]
-  },
-  {
-    "id": 68,
-    "name": "高中必修10",
-    "description": "北师大版高中必修10",
-    "length": 267,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_10.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "北师大"
-    ]
-  },
-  {
-    "id": 182,
-    "name": "高中选修11",
-    "description": "北师大版高中选修11",
-    "length": 330,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_11_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "北师大"
-    ]
-  },
-  {
-    "id": 69,
-    "name": "高中必修11",
-    "description": "北师大版高中必修11",
-    "length": 330,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_11.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "北师大"
-    ]
-  },
-  {
-    "id": 173,
-    "name": "高中必修2",
-    "description": "北师大版高中必修2",
-    "length": 244,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_2_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "北师大"
-    ]
-  },
-  {
-    "id": 60,
-    "name": "高中必修2",
-    "description": "北师大版高中必修2",
-    "length": 244,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_2.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "北师大"
-    ]
-  },
-  {
-    "id": 174,
-    "name": "高中必修3",
-    "description": "北师大版高中必修3",
-    "length": 295,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_3_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "北师大"
-    ]
-  },
-  {
-    "id": 61,
-    "name": "高中必修3",
-    "description": "北师大版高中必修3",
-    "length": 295,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_3.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "北师大"
-    ]
-  },
-  {
-    "id": 175,
-    "name": "高中必修4",
-    "description": "北师大版高中必修4",
-    "length": 336,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_4_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "北师大"
-    ]
-  },
-  {
-    "id": 62,
-    "name": "高中必修4",
-    "description": "北师大版高中必修4",
-    "length": 336,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_4.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "北师大"
-    ]
-  },
-  {
-    "id": 176,
-    "name": "高中必修5",
-    "description": "北师大版高中必修5",
-    "length": 327,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_5_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "北师大"
-    ]
-  },
-  {
-    "id": 63,
-    "name": "高中必修5",
-    "description": "北师大版高中必修5",
-    "length": 327,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_5.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "北师大"
-    ]
-  },
-  {
-    "id": 177,
-    "name": "高中选修6",
-    "description": "北师大版高中选修6",
-    "length": 271,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_6_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "北师大"
-    ]
-  },
-  {
-    "id": 64,
-    "name": "高中必修6",
-    "description": "北师大版高中必修6",
-    "length": 271,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_6.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "北师大"
-    ]
-  },
-  {
-    "id": 178,
-    "name": "高中选修7",
-    "description": "北师大版高中选修7",
-    "length": 334,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_7_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "北师大"
-    ]
-  },
-  {
-    "id": 65,
-    "name": "高中必修7",
-    "description": "北师大版高中必修7",
-    "length": 334,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_7.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "北师大"
-    ]
-  },
-  {
-    "id": 179,
-    "name": "高中选修8",
-    "description": "北师大版高中选修8",
-    "length": 364,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_8_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "北师大"
-    ]
-  },
-  {
-    "id": 66,
-    "name": "高中必修8",
-    "description": "北师大版高中必修8",
-    "length": 364,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_8.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "北师大"
-    ]
-  },
-  {
-    "id": 180,
-    "name": "高中选修9",
-    "description": "北师大版高中选修9",
-    "length": 299,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_9_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "北师大"
-    ]
-  },
-  {
-    "id": 67,
-    "name": "高中必修9",
-    "description": "北师大版高中必修9",
-    "length": 299,
-    "version": 1,
-    "fileName": "BeiShiGaoZhong_9.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "北师大"
-    ]
-  },
-  {
-    "id": 1,
-    "name": "四级真题核心词",
-    "description": "四级真题核心词",
-    "length": 1162,
-    "version": 1,
-    "fileName": "CET4_1.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语",
-      "四级"
-    ]
-  },
-  {
-    "id": 5,
-    "name": "四级英语词汇",
-    "description": "四级英语词汇",
-    "length": 3739,
-    "version": 1,
-    "fileName": "CET4_2.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语",
-      "四级"
-    ]
-  },
-  {
-    "id": 9,
-    "name": "新东方四级词汇",
-    "description": "新东方四级词汇",
-    "length": 2607,
-    "version": 1,
-    "fileName": "CET4_3.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语",
-      "四级",
-      "新东方"
-    ]
-  },
-  {
-    "id": 2,
-    "name": "六级真题核心词",
-    "description": "六级真题核心词",
-    "length": 1228,
-    "version": 1,
-    "fileName": "CET6_1.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语",
-      "六级"
-    ]
-  },
-  {
-    "id": 6,
-    "name": "六级英语词汇",
-    "description": "六级英语词汇",
-    "length": 2078,
-    "version": 1,
-    "fileName": "CET6_2.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语",
-      "六级"
-    ]
-  },
-  {
-    "id": 10,
-    "name": "新东方六级词汇",
-    "description": "新东方六级词汇",
-    "length": 2345,
-    "version": 1,
-    "fileName": "CET6_3.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语",
-      "六级",
-      "新东方"
-    ]
-  },
-  {
-    "id": 25,
-    "name": "初中英语词汇",
-    "description": "初中英语词汇",
-    "length": 1420,
-    "version": 1,
-    "fileName": "ChuZhong_2.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "通用",
-      "初中"
-    ]
-  },
-  {
-    "id": 27,
-    "name": "新东方初中词汇",
-    "description": "新东方初中词汇",
-    "length": 1803,
-    "version": 1,
-    "fileName": "ChuZhong_3.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "通用",
-      "初中"
-    ]
-  },
-  {
-    "id": 88,
-    "name": "COCA20000词",
-    "description": "COCA20000词",
-    "length": 17639,
-    "version": 1,
-    "fileName": "coca20000.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 72,
-    "name": "CET-4-Sub",
-    "description": "单词的减法-四级",
-    "length": 1957,
-    "version": 1,
-    "fileName": "DanCiDeJianFa_4.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语"
-    ]
-  },
-  {
-    "id": 73,
-    "name": "CET-6-Sub",
-    "description": "单词的减法-六级",
-    "length": 1949,
-    "version": 1,
-    "fileName": "DanCiDeJianFa_6.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语"
-    ]
-  },
-  {
-    "id": 77,
-    "name": "单词的秘密-英语一",
-    "description": "单词的秘密英语（一）",
-    "length": 5657,
-    "version": 1,
-    "fileName": "DanCiDeMimi_1.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "考研"
-    ]
-  },
-  {
-    "id": 78,
-    "name": "单词的秘密-英语二",
-    "description": "单词的秘密英语（二）",
-    "length": 3827,
-    "version": 1,
-    "fileName": "DanCiDeMimi_2.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "考研"
-    ]
-  },
-  {
-    "id": 114,
-    "name": "鸭圈雅思核心词",
-    "description": "鸭圈雅思核心词",
-    "length": 2644,
-    "version": 1,
-    "fileName": "DuckCircle_IELTS.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "IELTS"
-    ]
-  },
-  {
-    "id": 183,
-    "name": "EF-LEVEL-1",
-    "description": "EF等级1",
-    "length": 297,
-    "version": 1,
-    "fileName": "EF_LEVEL_1.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 192,
-    "name": "EF-LEVEL-10",
-    "description": "EF等级10",
-    "length": 174,
-    "version": 1,
-    "fileName": "EF_LEVEL_10.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 193,
-    "name": "EF-LEVEL-11",
-    "description": "EF等级11",
-    "length": 176,
-    "version": 1,
-    "fileName": "EF_LEVEL_11.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 194,
-    "name": "EF-LEVEL-12",
-    "description": "EF等级12",
-    "length": 170,
-    "version": 1,
-    "fileName": "EF_LEVEL_12.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 195,
-    "name": "EF-LEVEL-13",
-    "description": "EF等级13",
-    "length": 172,
-    "version": 1,
-    "fileName": "EF_LEVEL_13.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 196,
-    "name": "EF-LEVEL-14",
-    "description": "EF等级14",
-    "length": 171,
-    "version": 1,
-    "fileName": "EF_LEVEL_14.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 197,
-    "name": "EF-LEVEL-15",
-    "description": "EF等级15",
-    "length": 168,
-    "version": 1,
-    "fileName": "EF_LEVEL_15.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 198,
-    "name": "EF-LEVEL-16",
-    "description": "EF等级16",
-    "length": 170,
-    "version": 1,
-    "fileName": "EF_LEVEL_16.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 184,
-    "name": "EF-LEVEL-2",
-    "description": "EF等级2",
-    "length": 353,
-    "version": 1,
-    "fileName": "EF_LEVEL_2.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 185,
-    "name": "EF-LEVEL-3",
-    "description": "EF等级3",
-    "length": 172,
-    "version": 1,
-    "fileName": "EF_LEVEL_3.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 186,
-    "name": "EF-LEVEL-4",
-    "description": "EF等级4",
-    "length": 178,
-    "version": 1,
-    "fileName": "EF_LEVEL_4.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 187,
-    "name": "EF-LEVEL-5",
-    "description": "EF等级5",
-    "length": 172,
-    "version": 1,
-    "fileName": "EF_LEVEL_5.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 188,
-    "name": "EF-LEVEL-6",
-    "description": "EF等级6",
-    "length": 172,
-    "version": 1,
-    "fileName": "EF_LEVEL_6.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 189,
-    "name": "EF-LEVEL-7",
-    "description": "EF等级7",
-    "length": 171,
-    "version": 1,
-    "fileName": "EF_LEVEL_7.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 190,
-    "name": "EF-LEVEL-8",
-    "description": "EF等级8",
-    "length": 172,
-    "version": 1,
-    "fileName": "EF_LEVEL_8.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 191,
-    "name": "EF-LEVEL-9",
-    "description": "EF等级9",
-    "length": 165,
-    "version": 1,
-    "fileName": "EF_LEVEL_9.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "EF"
-    ]
-  },
-  {
-    "id": 102,
-    "name": "英语二单词书",
-    "description": "考研英语二单词书",
-    "length": 4559,
-    "version": 1,
-    "fileName": "English_II.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 133,
-    "name": "高考 3500 词",
-    "description": "高考常见词 3500",
-    "length": 3893,
-    "version": 1,
-    "fileName": "GaoKao_3500.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "通用"
-    ]
-  },
-  {
-    "id": 134,
-    "name": "高考历年真题核心高频",
-    "description": "高考历年真题核心高频",
-    "length": 799,
-    "version": 1,
-    "fileName": "GaoKaoZhenTiHeXinGaoPin.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "通用"
-    ]
-  },
-  {
-    "id": 26,
-    "name": "高中英语词汇",
-    "description": "高中英语词汇",
-    "length": 3668,
-    "version": 1,
-    "fileName": "GaoZhong_2.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "通用",
-      "高中"
-    ]
-  },
-  {
-    "id": 28,
-    "name": "新东方高中词汇",
-    "description": "新东方高中词汇",
-    "length": 2340,
-    "version": 1,
-    "fileName": "GaoZhong_3.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "通用",
-      "高中"
-    ]
-  },
-  {
-    "id": 18,
-    "name": "GMAT 词汇",
-    "description": "GMAT 词汇",
-    "length": 3254,
-    "version": 1,
-    "fileName": "GMAT_2.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "GMAT"
-    ]
-  },
-  {
-    "id": 103,
-    "name": "GMAT",
-    "description": "GMAT 词库",
-    "length": 3047,
-    "version": 1,
-    "fileName": "GMAT_3_T.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "GMAT"
-    ]
-  },
-  {
-    "id": 23,
-    "name": "新东方 GMAT 词汇",
-    "description": "新东方 GMAT 词汇",
-    "length": 3047,
-    "version": 1,
-    "fileName": "GMAT_3.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "新东方",
-      "GMAT"
-    ]
-  },
-  {
-    "id": 16,
-    "name": "GRE 词汇",
-    "description": "GRE 词汇",
-    "length": 7199,
-    "version": 1,
-    "fileName": "GRE_2.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "GRE"
-    ]
-  },
-  {
-    "id": 104,
-    "name": "GRE",
-    "description": "GRE 词库",
-    "length": 6515,
-    "version": 1,
-    "fileName": "GRE_3_T.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "GRE"
-    ]
-  },
-  {
-    "id": 21,
-    "name": "新东方 GRE 词汇",
-    "description": "新东方 GRE 词汇",
-    "length": 6515,
-    "version": 1,
-    "fileName": "GRE_3.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "新东方",
-      "GRE"
-    ]
-  },
-  {
-    "id": 105,
-    "name": "GRE3000",
-    "description": "GRE3000 词库",
-    "length": 3041,
-    "version": 1,
-    "fileName": "GRE3000_3_T.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "GRE"
-    ]
-  },
-  {
-    "id": 24,
-    "name": "雅思词汇",
-    "description": "雅思词汇",
-    "length": 3427,
-    "version": 1,
-    "fileName": "IELTS_2.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "IELTS"
-    ]
-  },
-  {
-    "id": 109,
-    "name": "IELTS",
-    "description": "雅思词库",
-    "length": 3575,
-    "version": 1,
-    "fileName": "IELTS_3_T.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "IELTS"
-    ]
-  },
-  {
-    "id": 19,
-    "name": "新东方雅思词汇",
-    "description": "新东方雅思词汇",
-    "length": 3575,
-    "version": 1,
-    "fileName": "IELTS_3.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "IELTS",
-      "新东方"
-    ]
-  },
-  {
-    "id": 107,
-    "name": "IELTS乱序完整版",
-    "description": "IELTS乱序完整版",
-    "length": 9389,
-    "version": 1,
-    "fileName": "IELTS_disorder.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "IELTS"
-    ]
-  },
-  {
-    "id": 108,
-    "name": "IELTS顺序完整版",
-    "description": "IELTS顺序完整版",
-    "length": 9388,
-    "version": 1,
-    "fileName": "IELTS_order.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "IELTS"
-    ]
-  },
-  {
-    "id": 106,
-    "name": "雅思听力场景词汇",
-    "description": "雅思听力场景词汇",
-    "length": 1204,
-    "version": 1,
-    "fileName": "IELTS_tinglichangjing.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "IELTS"
-    ]
-  },
-  {
-    "id": 113,
-    "name": "雅思wang C11",
-    "description": "综合测试",
-    "length": 1738,
-    "version": 1,
-    "fileName": "IELTS_WANG_11.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "IELTS"
-    ]
-  },
-  {
-    "id": 110,
-    "name": "雅思wang C3",
-    "description": "雅思听力特别名词语料库",
-    "length": 1135,
-    "version": 1,
-    "fileName": "IELTS_WANG_3.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "IELTS"
-    ]
-  },
-  {
-    "id": 111,
-    "name": "雅思wang C4",
-    "description": "雅思听力形容词副词语料库",
-    "length": 346,
-    "version": 1,
-    "fileName": "IELTS_WANG_4.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "IELTS"
-    ]
-  },
-  {
-    "id": 112,
-    "name": "雅思wang C5",
-    "description": "吞音连读混合训练语料库",
-    "length": 1569,
-    "version": 1,
-    "fileName": "IELTS_WANG_5.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "IELTS"
-    ]
-  },
-  {
-    "id": 115,
-    "name": "雅思词汇真经",
-    "description": "雅思词汇真经",
-    "length": 3672,
-    "version": 1,
-    "fileName": "IELTSVocabularyBible.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "IELTS"
-    ]
-  },
-  {
-    "id": 82,
-    "name": "计算机专用英语",
-    "description": "大学计算机专业英语词汇",
-    "length": 1665,
-    "version": 1,
-    "fileName": "itVocabulary.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "专业英语"
-    ]
-  },
-  {
-    "id": 12,
-    "name": "考研必考词汇",
-    "description": "考研必考词汇",
-    "length": 1341,
-    "version": 1,
-    "fileName": "KaoYan_1.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "考研"
-    ]
-  },
-  {
-    "id": 11,
-    "name": "考研英语词汇",
-    "description": "考研英语词汇",
-    "length": 4533,
-    "version": 1,
-    "fileName": "KaoYan_2.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "考研"
-    ]
-  },
-  {
-    "id": 75,
-    "name": "考研 2024",
-    "description": "研究生英语入学考试词库 2024",
-    "length": 3731,
-    "version": 1,
-    "fileName": "KaoYan_2024.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "考研"
-    ]
-  },
-  {
-    "id": 74,
-    "name": "考研",
-    "description": "研究生英语入学考试词库",
-    "length": 3728,
-    "version": 1,
-    "fileName": "KaoYan_3_T.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "考研"
-    ]
-  },
-  {
-    "id": 13,
-    "name": "新东方考研词汇",
-    "description": "新东方考研词汇",
-    "length": 3728,
-    "version": 1,
-    "fileName": "KaoYan_3.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "考研",
-      "新东方"
-    ]
-  },
-  {
-    "id": 76,
-    "name": "考研闪过 2023",
-    "description": "高中低频词2023",
-    "length": 1771,
-    "version": 1,
-    "fileName": "KaoYanShanGuo_2023.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "考研"
-    ]
-  },
-  {
-    "id": 3,
-    "name": "专四真题高频词",
-    "description": "专四真题高频词",
-    "length": 595,
-    "version": 1,
-    "fileName": "Level4_1.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语"
-    ]
-  },
-  {
-    "id": 7,
-    "name": "专四核心词汇",
-    "description": "专四核心词汇",
-    "length": 4025,
-    "version": 1,
-    "fileName": "Level4_2.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语"
-    ]
-  },
-  {
-    "id": 79,
-    "name": "专四",
-    "description": "英语专业四级词库",
-    "length": 4025,
-    "version": 1,
-    "fileName": "Level4luan_2_T.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语"
-    ]
-  },
-  {
-    "id": 4,
-    "name": "专八真题高频词",
-    "description": "专八真题高频词",
-    "length": 684,
-    "version": 1,
-    "fileName": "Level8_1.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语"
-    ]
-  },
-  {
-    "id": 8,
-    "name": "专八核心词汇",
-    "description": "专八核心词汇",
-    "length": 12197,
-    "version": 1,
-    "fileName": "Level8_2.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语"
-    ]
-  },
-  {
-    "id": 80,
-    "name": "专八",
-    "description": "英语专业八级词库",
-    "length": 12197,
-    "version": 1,
-    "fileName": "Level8luan_2_T.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语"
-    ]
-  },
-  {
-    "id": 208,
-    "name": "生活中常用的3000单词",
-    "description": "英语口语和书面语中使用频率最高的单词",
-    "length": 3168,
-    "version": 1,
-    "fileName": "Longman_Communication_3000.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 200,
-    "name": "麦克米伦7000",
-    "description": "麦克米伦7000",
-    "length": 6268,
-    "version": 1,
-    "fileName": "Macmillan7000.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 210,
-    "name": "韦氏词根词典",
-    "description": "韦氏词根词典",
-    "length": 1191,
-    "version": 1,
-    "fileName": "Merriam_Webster_sVocabularyBuilder.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 136,
-    "name": "新概念英语(新版)-1",
-    "description": "新概念英语新版第一册",
-    "length": 908,
-    "version": 1,
-    "fileName": "nce-new-1.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "新概念英语"
-    ]
-  },
-  {
-    "id": 137,
-    "name": "新概念英语(新版)-2",
-    "description": "新概念英语新版第二册",
-    "length": 862,
-    "version": 1,
-    "fileName": "nce-new-2.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "新概念英语"
-    ]
-  },
-  {
-    "id": 138,
-    "name": "新概念英语(新版)-3",
-    "description": "新概念英语新版第三册",
-    "length": 1062,
-    "version": 1,
-    "fileName": "nce-new-3.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "新概念英语"
-    ]
-  },
-  {
-    "id": 139,
-    "name": "新概念英语(新版)-4",
-    "description": "新概念英语新版第四册",
-    "length": 793,
-    "version": 1,
-    "fileName": "nce-new-4.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "新概念英语"
-    ]
-  },
-  {
-    "id": 132,
-    "name": "牛津3000词",
-    "description": "牛津3000词",
-    "length": 1342,
-    "version": 1,
-    "fileName": "Oxford3000.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "牛津版"
-    ]
-  },
-  {
-    "id": 100,
-    "name": "牛津5000词",
-    "description": "牛津5000词",
-    "length": 5836,
-    "version": 1,
-    "fileName": "Oxford5000.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 207,
-    "name": "上海初中牛津词汇",
-    "description": "上海初中牛津词汇",
-    "length": 1270,
-    "version": 1,
-    "fileName": "OxfordVocabulary_juniorMiddleSH.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "牛津版"
-    ]
-  },
-  {
-    "id": 148,
-    "name": "七年级上",
-    "description": "人教版七年级上册",
-    "length": 392,
-    "version": 1,
-    "fileName": "PEPChuZhong7_1_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 37,
-    "name": "七年级上册",
-    "description": "人教版初中英语-七年级上册",
-    "length": 392,
-    "version": 1,
-    "fileName": "PEPChuZhong7_1.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "初中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 149,
-    "name": "七年级下",
-    "description": "人教版七年级下册",
-    "length": 492,
-    "version": 1,
-    "fileName": "PEPChuZhong7_2_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 38,
-    "name": "七年级下册",
-    "description": "人教版初中英语-七年级下册",
-    "length": 492,
-    "version": 1,
-    "fileName": "PEPChuZhong7_2.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "初中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 150,
-    "name": "八年级上",
-    "description": "人教版八年级上册",
-    "length": 419,
-    "version": 1,
-    "fileName": "PEPChuZhong8_1_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 39,
-    "name": "八年级上册",
-    "description": "人教版初中英语-八年级上册",
-    "length": 419,
-    "version": 1,
-    "fileName": "PEPChuZhong8_1.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "初中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 151,
-    "name": "八年级下",
-    "description": "人教版八年级下册",
-    "length": 466,
-    "version": 1,
-    "fileName": "PEPChuZhong8_2_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 40,
-    "name": "八年级下册",
-    "description": "人教版初中英语-八年级下册",
-    "length": 466,
-    "version": 1,
-    "fileName": "PEPChuZhong8_2.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "初中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 152,
-    "name": "九年级",
-    "description": "人教版九年级全册",
-    "length": 551,
-    "version": 1,
-    "fileName": "PEPChuZhong9_1_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 41,
-    "name": "九年级全册",
-    "description": "人教版初中英语-九年级全册",
-    "length": 551,
-    "version": 1,
-    "fileName": "PEPChuZhong9_1.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "初中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 153,
-    "name": "高中必修1",
-    "description": "人教版高中必修1",
-    "length": 311,
-    "version": 1,
-    "fileName": "PEPGaoZhong_1_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 48,
-    "name": "高中必修1",
-    "description": "人教版高中英语-必修 1",
-    "length": 311,
-    "version": 1,
-    "fileName": "PEPGaoZhong_1.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 162,
-    "name": "高中选修10",
-    "description": "人教版高中选修10",
-    "length": 361,
-    "version": 1,
-    "fileName": "PEPGaoZhong_10_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 57,
-    "name": "高中必修10",
-    "description": "人教版高中英语-必修 10",
-    "length": 361,
-    "version": 1,
-    "fileName": "PEPGaoZhong_10.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 163,
-    "name": "高中选修11",
-    "description": "人教版高中选修11",
-    "length": 309,
-    "version": 1,
-    "fileName": "PEPGaoZhong_11_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 58,
-    "name": "高中必修11",
-    "description": "人教版高中英语-必修 11",
-    "length": 309,
-    "version": 1,
-    "fileName": "PEPGaoZhong_11.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 154,
-    "name": "高中必修2",
-    "description": "人教版高中必修2",
-    "length": 319,
-    "version": 1,
-    "fileName": "PEPGaoZhong_2_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 49,
-    "name": "高中必修2",
-    "description": "人教版高中英语-必修 2",
-    "length": 319,
-    "version": 1,
-    "fileName": "PEPGaoZhong_2.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 155,
-    "name": "高中必修3",
-    "description": "人教版高中必修3",
-    "length": 366,
-    "version": 1,
-    "fileName": "PEPGaoZhong_3_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 50,
-    "name": "高中必修3",
-    "description": "人教版高中英语-必修 3",
-    "length": 366,
-    "version": 1,
-    "fileName": "PEPGaoZhong_3.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 156,
-    "name": "高中必修4",
-    "description": "人教版高中必修4",
-    "length": 307,
-    "version": 1,
-    "fileName": "PEPGaoZhong_4_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 51,
-    "name": "高中必修4",
-    "description": "人教版高中英语-必修 4",
-    "length": 307,
-    "version": 1,
-    "fileName": "PEPGaoZhong_4.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 157,
-    "name": "高中必修5",
-    "description": "人教版高中必修5",
-    "length": 357,
-    "version": 1,
-    "fileName": "PEPGaoZhong_5_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 52,
-    "name": "高中必修5",
-    "description": "人教版高中英语-必修 5",
-    "length": 357,
-    "version": 1,
-    "fileName": "PEPGaoZhong_5.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 158,
-    "name": "高中选修6",
-    "description": "人教版高中选修6",
-    "length": 391,
-    "version": 1,
-    "fileName": "PEPGaoZhong_6_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 53,
-    "name": "高中必修6",
-    "description": "人教版高中英语-必修 6",
-    "length": 391,
-    "version": 1,
-    "fileName": "PEPGaoZhong_6.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 159,
-    "name": "高中选修7",
-    "description": "人教版高中选修7",
-    "length": 384,
-    "version": 1,
-    "fileName": "PEPGaoZhong_7_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 54,
-    "name": "高中必修7",
-    "description": "人教版高中英语-必修 7",
-    "length": 384,
-    "version": 1,
-    "fileName": "PEPGaoZhong_7.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 160,
-    "name": "高中选修8",
-    "description": "人教版高中选修8",
-    "length": 420,
-    "version": 1,
-    "fileName": "PEPGaoZhong_8_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 55,
-    "name": "高中必修8",
-    "description": "人教版高中英语-必修 8",
-    "length": 420,
-    "version": 1,
-    "fileName": "PEPGaoZhong_8.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 161,
-    "name": "高中选修9",
-    "description": "人教版高中选修9",
-    "length": 352,
-    "version": 1,
-    "fileName": "PEPGaoZhong_9_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 56,
-    "name": "高中必修9",
-    "description": "人教版高中英语-必修 9",
-    "length": 352,
-    "version": 1,
-    "fileName": "PEPGaoZhong_9.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "高中",
-      "人教版"
-    ]
-  },
-  {
-    "id": 140,
-    "name": "三年级上",
-    "description": "人教版三年级上册",
-    "length": 64,
-    "version": 1,
-    "fileName": "PEPXiaoXue3_1_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 29,
-    "name": "人教版小学英语-三年级上册",
-    "description": "人教版小学英语-三年级上册",
-    "length": 64,
-    "version": 1,
-    "fileName": "PEPXiaoXue3_1.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "小学",
-      "人教版"
-    ]
-  },
-  {
-    "id": 141,
-    "name": "三年级下",
-    "description": "人教版三年级下册",
-    "length": 72,
-    "version": 1,
-    "fileName": "PEPXiaoXue3_2_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 30,
-    "name": "人教版小学英语-三年级下册",
-    "description": "人教版小学英语-三年级下册",
-    "length": 72,
-    "version": 1,
-    "fileName": "PEPXiaoXue3_2.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "小学",
-      "人教版"
-    ]
-  },
-  {
-    "id": 142,
-    "name": "四年级上",
-    "description": "人教版四年级上册",
-    "length": 84,
-    "version": 1,
-    "fileName": "PEPXiaoXue4_1_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 31,
-    "name": "人教版小学英语-四年级上册",
-    "description": "人教版小学英语-四年级上册",
-    "length": 84,
-    "version": 1,
-    "fileName": "PEPXiaoXue4_1.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "小学",
-      "人教版"
-    ]
-  },
-  {
-    "id": 143,
-    "name": "四年级下",
-    "description": "人教版四年级下册",
-    "length": 104,
-    "version": 1,
-    "fileName": "PEPXiaoXue4_2_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 32,
-    "name": "人教版小学英语-四年级下册",
-    "description": "人教版小学英语-四年级下册",
-    "length": 104,
-    "version": 1,
-    "fileName": "PEPXiaoXue4_2.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "小学",
-      "人教版"
-    ]
-  },
-  {
-    "id": 144,
-    "name": "五年级上",
-    "description": "人教版五年级上册",
-    "length": 131,
-    "version": 1,
-    "fileName": "PEPXiaoXue5_1_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 33,
-    "name": "人教版小学英语-五年级上册",
-    "description": "人教版小学英语-五年级上册",
-    "length": 131,
-    "version": 1,
-    "fileName": "PEPXiaoXue5_1.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "小学",
-      "人教版"
-    ]
-  },
-  {
-    "id": 145,
-    "name": "五年级下",
-    "description": "人教版五年级下册",
-    "length": 156,
-    "version": 1,
-    "fileName": "PEPXiaoXue5_2_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 34,
-    "name": "人教版小学英语-五年级下册",
-    "description": "人教版小学英语-五年级下册",
-    "length": 156,
-    "version": 1,
-    "fileName": "PEPXiaoXue5_2.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "小学",
-      "人教版"
-    ]
-  },
-  {
-    "id": 146,
-    "name": "六年级上",
-    "description": "人教版六年级上册",
-    "length": 130,
-    "version": 1,
-    "fileName": "PEPXiaoXue6_1_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 35,
-    "name": "人教版小学英语-六年级上册",
-    "description": "人教版小学英语-六年级上册",
-    "length": 130,
-    "version": 1,
-    "fileName": "PEPXiaoXue6_1.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "小学",
-      "人教版"
-    ]
-  },
-  {
-    "id": 147,
-    "name": "六年级下",
-    "description": "人教版六年级下册",
-    "length": 108,
-    "version": 1,
-    "fileName": "PEPXiaoXue6_2_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "人教版"
-    ]
-  },
-  {
-    "id": 36,
-    "name": "人教版小学英语-六年级下册",
-    "description": "人教版小学英语-六年级下册",
-    "length": 108,
-    "version": 1,
-    "fileName": "PEPXiaoXue6_2.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "小学",
-      "人教版"
-    ]
-  },
-  {
-    "id": 83,
-    "name": "PETS",
-    "description": "全国英语等级考试常考词汇",
-    "length": 1942,
-    "version": 1,
-    "fileName": "PETS_3.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "PET"
-    ]
-  },
-  {
-    "id": 84,
-    "name": "PETS-2023",
-    "description": "全国英语等级考试常考词汇",
-    "length": 4449,
-    "version": 1,
-    "fileName": "PETS3-2023.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "PET"
-    ]
-  },
-  {
-    "id": 128,
-    "name": "PTE 高阶词汇 xingji",
-    "description": "",
-    "length": 3169,
-    "version": 1,
-    "fileName": "PTE_Advanced_apeuni.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "PTE"
-    ]
-  },
-  {
-    "id": 127,
-    "name": "PTE 基础词汇 xingji",
-    "description": "",
-    "length": 2652,
-    "version": 1,
-    "fileName": "PTE_Basic_apeuni.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "PTE"
-    ]
-  },
-  {
-    "id": 126,
-    "name": "听力 FIB 机经词汇",
-    "description": "",
-    "length": 646,
-    "version": 1,
-    "fileName": "PTE_FIB_L.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "PTE"
-    ]
-  },
-  {
-    "id": 123,
-    "name": "阅读 FIB 基础机经词汇",
-    "description": "",
-    "length": 941,
-    "version": 1,
-    "fileName": "PTE_FIB_R_junior.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "PTE"
-    ]
-  },
-  {
-    "id": 124,
-    "name": "阅读 FIB 高阶机经词汇",
-    "description": "",
-    "length": 1272,
-    "version": 1,
-    "fileName": "PTE_FIB_R_senior.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "PTE"
-    ]
-  },
-  {
-    "id": 121,
-    "name": "PTE 基础词汇",
-    "description": "",
-    "length": 2651,
-    "version": 1,
-    "fileName": "PTE_junior.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "PTE"
-    ]
-  },
-  {
-    "id": 130,
-    "name": "PTE 听力FIB机经词汇 xingji",
-    "description": "",
-    "length": 674,
-    "version": 1,
-    "fileName": "PTE_Listening_apeuni.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "PTE"
-    ]
-  },
-  {
-    "id": 129,
-    "name": "PTE 阅读FIB机经词汇 xingji",
-    "description": "",
-    "length": 630,
-    "version": 1,
-    "fileName": "PTE_Read_apeuni.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "PTE"
-    ]
-  },
-  {
-    "id": 122,
-    "name": "PTE 高阶词汇",
-    "description": "",
-    "length": 3170,
-    "version": 1,
-    "fileName": "PTE_senior.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "PTE"
-    ]
-  },
-  {
-    "id": 125,
-    "name": "WFD 机经词汇",
-    "description": "",
-    "length": 1212,
-    "version": 1,
-    "fileName": "PTE_WFD.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "PTE"
-    ]
-  },
-  {
-    "id": 199,
-    "name": "Reading Explorer 3",
-    "description": "词汇表来自Reading Explorer 3, Third Edition",
-    "length": 239,
-    "version": 1,
-    "fileName": "ReadingExplorer3.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "青少年英语"
-    ]
-  },
-  {
-    "id": 17,
-    "name": "SAT 词汇",
-    "description": "SAT 词汇",
-    "length": 4423,
-    "version": 1,
-    "fileName": "SAT_2.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "SAT"
-    ]
-  },
-  {
-    "id": 116,
-    "name": "SAT",
-    "description": "美国 SAT 考试词库",
-    "length": 4464,
-    "version": 1,
-    "fileName": "SAT_3_T.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "SAT"
-    ]
-  },
-  {
-    "id": 22,
-    "name": "新东方 SAT 词汇",
-    "description": "新东方 SAT 词汇",
-    "length": 4464,
-    "version": 1,
-    "fileName": "SAT_3.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "新东方",
-      "SAT"
-    ]
-  },
-  {
-    "id": 117,
-    "name": "SAT en-en",
-    "description": "SAT英英",
-    "length": 2681,
-    "version": 1,
-    "fileName": "SATen.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "SAT"
-    ]
-  },
-  {
-    "id": 85,
-    "name": "自考1800高频单词",
-    "description": "自考1800高频单词",
-    "length": 1800,
-    "version": 1,
-    "fileName": "self-study_English1.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "自考英语二"
-    ]
-  },
-  {
-    "id": 86,
-    "name": "自考英语二高频悠悠单词",
-    "description": "自考英语二高频悠悠单词",
-    "length": 2181,
-    "version": 1,
-    "fileName": "self-study_English2.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "自考英语二"
-    ]
-  },
-  {
-    "id": 87,
-    "name": "自考英语二完整单词",
-    "description": "00015自考英语二完整单词书",
-    "length": 4603,
-    "version": 1,
-    "fileName": "self-study_English3.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "自考英语二"
-    ]
-  },
-  {
-    "id": 96,
-    "name": "suffix word",
-    "description": "common suffix",
-    "length": 126,
-    "version": 1,
-    "fileName": "suffix_word.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 118,
-    "name": "TOEFL",
-    "description": "托福考试常见词",
-    "length": 4264,
-    "version": 1,
-    "fileName": "TOEFL_3_T.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "TOEFL"
-    ]
-  },
-  {
-    "id": 20,
-    "name": "新东方 TOEFL 词汇",
-    "description": "新东方 TOEFL 词汇",
-    "length": 4264,
-    "version": 1,
-    "fileName": "TOEFL_3.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "TOEFL",
-      "新东方"
-    ]
-  },
-  {
-    "id": 101,
-    "name": "ZhangHongYan的TOEFL词汇书",
-    "description": "ZhangHongYan的TOEFL词汇书-词以类记",
-    "length": 4035,
-    "version": 1,
-    "fileName": "TOEFL_ZhangHongYan.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "TOEFL"
-    ]
-  },
-  {
-    "id": 131,
-    "name": "TOEIC 词汇",
-    "description": "",
-    "length": 1694,
-    "version": 1,
-    "fileName": "TOEIC.json",
-    "category": "国际考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "TOEIC"
-    ]
-  },
-  {
-    "id": 91,
-    "name": "Top 1000 Verbs",
-    "description": "with highest frequency",
-    "length": 1011,
-    "version": 1,
-    "fileName": "Top1000VerbWords.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 90,
-    "name": "Top 1500 Nouns",
-    "description": "with highest frequency",
-    "length": 1525,
-    "version": 1,
-    "fileName": "Top1500NounWords.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 89,
-    "name": "Top 2000 words",
-    "description": "with highest frequency",
-    "length": 1867,
-    "version": 1,
-    "fileName": "top2000words.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 93,
-    "name": "Top 250 adv.",
-    "description": "with highest frequency",
-    "length": 255,
-    "version": 1,
-    "fileName": "Top250AdverbWords.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 92,
-    "name": "Top 500 adj.",
-    "description": "with highest frequency",
-    "length": 527,
-    "version": 1,
-    "fileName": "Top500AdjectiveWords.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 95,
-    "name": "Top 50 prep.",
-    "description": "with highest frequency",
-    "length": 46,
-    "version": 1,
-    "fileName": "Top50Prepositions.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 94,
-    "name": "Top 60 pron.",
-    "description": "with highest frequency",
-    "length": 59,
-    "version": 1,
-    "fileName": "Top60Pronouns.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 164,
-    "name": "外研七年级上册",
-    "description": "外研版七年级上册",
-    "length": 629,
-    "version": 1,
-    "fileName": "WaiYanSheChuZhong_1_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "外研版"
-    ]
-  },
-  {
-    "id": 42,
-    "name": "七年级上册",
-    "description": "外研社版初中英语-七年级上册",
-    "length": 629,
-    "version": 1,
-    "fileName": "WaiYanSheChuZhong_1.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "初中",
-      "外研社"
-    ]
-  },
-  {
-    "id": 165,
-    "name": "外研七年级下册",
-    "description": "外研版七年级下册",
-    "length": 438,
-    "version": 1,
-    "fileName": "WaiYanSheChuZhong_2_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "外研版"
-    ]
-  },
-  {
-    "id": 43,
-    "name": "七年级下册",
-    "description": "外研社版初中英语-七年级下册",
-    "length": 438,
-    "version": 1,
-    "fileName": "WaiYanSheChuZhong_2.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "初中",
-      "外研社"
-    ]
-  },
-  {
-    "id": 166,
-    "name": "外研八年级上册",
-    "description": "外研版八年级上册",
-    "length": 320,
-    "version": 1,
-    "fileName": "WaiYanSheChuZhong_3_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "外研版"
-    ]
-  },
-  {
-    "id": 44,
-    "name": "八年级上册",
-    "description": "外研社版初中英语-八年级上册",
-    "length": 320,
-    "version": 1,
-    "fileName": "WaiYanSheChuZhong_3.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "初中",
-      "外研社"
-    ]
-  },
-  {
-    "id": 167,
-    "name": "外研八年级下册",
-    "description": "外研版八年级下册",
-    "length": 266,
-    "version": 1,
-    "fileName": "WaiYanSheChuZhong_4_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "外研版"
-    ]
-  },
-  {
-    "id": 45,
-    "name": "八年级下册",
-    "description": "外研社版初中英语-八年级下册",
-    "length": 266,
-    "version": 1,
-    "fileName": "WaiYanSheChuZhong_4.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "初中",
-      "外研社"
-    ]
-  },
-  {
-    "id": 168,
-    "name": "外研九年级上册",
-    "description": "外研版九年级上册",
-    "length": 381,
-    "version": 1,
-    "fileName": "WaiYanSheChuZhong_5_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "外研版"
-    ]
-  },
-  {
-    "id": 46,
-    "name": "九年级上册",
-    "description": "外研社版初中英语-九年级上册",
-    "length": 381,
-    "version": 1,
-    "fileName": "WaiYanSheChuZhong_5.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "初中",
-      "外研社"
-    ]
-  },
-  {
-    "id": 169,
-    "name": "外研九年级下册",
-    "description": "外研版九年级下册",
-    "length": 128,
-    "version": 1,
-    "fileName": "WaiYanSheChuZhong_6_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "外研版"
-    ]
-  },
-  {
-    "id": 47,
-    "name": "九年级下册",
-    "description": "外研社版初中英语-九年级下册",
-    "length": 128,
-    "version": 1,
-    "fileName": "WaiYanSheChuZhong_6.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "初中",
-      "外研社"
-    ]
-  },
-  {
-    "id": 170,
-    "name": "外研高中必修1",
-    "description": "外研高中必修1",
-    "length": 411,
-    "version": 1,
-    "fileName": "WaiYanSheGaoZhong_1_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "外研版"
-    ]
-  },
-  {
-    "id": 171,
-    "name": "外研高中必修2",
-    "description": "外研高中必修2",
-    "length": 272,
-    "version": 1,
-    "fileName": "WaiYanSheGaoZhong_2_T.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "外研版"
-    ]
-  },
-  {
-    "id": 97,
-    "name": "word roots1",
-    "description": "common roots",
-    "length": 369,
-    "version": 1,
-    "fileName": "word_roots1.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "其他"
-    ]
-  },
-  {
-    "id": 70,
-    "name": "四级巧记速记",
-    "description": "四级巧记速记",
-    "length": 2522,
-    "version": 1,
-    "fileName": "xinghuoqiaoji_4.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语"
-    ]
-  },
-  {
-    "id": 71,
-    "name": "六级巧记速记",
-    "description": "六级巧记速记",
-    "length": 7520,
-    "version": 1,
-    "fileName": "xinghuoqiaoji_6.json",
-    "category": "中国考试",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "大学英语"
-    ]
-  },
-  {
-    "id": 204,
-    "name": "高中必修1",
-    "description": "译林版高中必修1",
-    "length": 276,
-    "version": 1,
-    "fileName": "YiLin_1.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "译林版"
-    ]
-  },
-  {
-    "id": 205,
-    "name": "高中必修2",
-    "description": "译林版高中必修2",
-    "length": 297,
-    "version": 1,
-    "fileName": "YiLin_2.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "译林版"
-    ]
-  },
-  {
-    "id": 206,
-    "name": "高中必修3",
-    "description": "译林版高中必修3",
-    "length": 295,
-    "version": 1,
-    "fileName": "YiLin_3.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "译林版"
-    ]
-  },
-  {
-    "id": 135,
-    "name": "中考核心词",
-    "description": "中考核心词",
-    "length": 2140,
-    "version": 1,
-    "fileName": "ZhongKaoHeXin.json",
-    "category": "青少年英语",
-    "langType": 0,
-    "tranType": 1,
-    "userId": null,
-    "tags": [
-      "通用"
-    ]
-  }
-]
+{
+  "code": "000000",
+  "success": true,
+  "msg": "",
+  "data": [
+    {
+      "id": 98,
+      "name": "2024考研英语红宝书(上)",
+      "description": "2024考研英语红宝书必考词（上）",
+      "length": 997,
+      "version": 1,
+      "fileName": "2024HongBao_T1.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 99,
+      "name": "2024考研英语红宝书(下)",
+      "description": "2024考研英语红宝书必考词（下）",
+      "length": 854,
+      "version": 1,
+      "fileName": "2024HongBao_T2.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 209,
+      "name": "专升本词汇",
+      "description": "专升本词汇",
+      "length": 3692,
+      "version": 1,
+      "fileName": "adult-self-study-examination.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 81,
+      "name": "建筑专业英语",
+      "description": "大学建筑专业英语词汇",
+      "length": 630,
+      "version": 1,
+      "fileName": "archVocabulary.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "专业英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 119,
+      "name": "商务英语",
+      "description": "商务英语常见词",
+      "length": 2753,
+      "version": 1,
+      "fileName": "BEC_2_T.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "BEC"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 14,
+      "name": "商务英语词汇",
+      "description": "商务英语词汇",
+      "length": 2753,
+      "version": 1,
+      "fileName": "BEC_2.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "BEC"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 120,
+      "name": "BEC",
+      "description": "BEC考试常见词",
+      "length": 2825,
+      "version": 1,
+      "fileName": "BEC_3_T.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "BEC"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 15,
+      "name": "新东方 BEC 词汇",
+      "description": "新东方 BEC 词汇",
+      "length": 2825,
+      "version": 1,
+      "fileName": "BEC_3.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "BEC",
+        "新东方"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 172,
+      "name": "高中必修1",
+      "description": "北师大版高中必修1",
+      "length": 226,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_1_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 59,
+      "name": "高中必修1",
+      "description": "北师大版高中必修1",
+      "length": 226,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_1.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 181,
+      "name": "高中选修10",
+      "description": "北师大版高中选修10",
+      "length": 267,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_10_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 68,
+      "name": "高中必修10",
+      "description": "北师大版高中必修10",
+      "length": 267,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_10.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 182,
+      "name": "高中选修11",
+      "description": "北师大版高中选修11",
+      "length": 330,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_11_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 69,
+      "name": "高中必修11",
+      "description": "北师大版高中必修11",
+      "length": 330,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_11.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 173,
+      "name": "高中必修2",
+      "description": "北师大版高中必修2",
+      "length": 244,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_2_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 60,
+      "name": "高中必修2",
+      "description": "北师大版高中必修2",
+      "length": 244,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_2.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 174,
+      "name": "高中必修3",
+      "description": "北师大版高中必修3",
+      "length": 295,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_3_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 61,
+      "name": "高中必修3",
+      "description": "北师大版高中必修3",
+      "length": 295,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_3.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 175,
+      "name": "高中必修4",
+      "description": "北师大版高中必修4",
+      "length": 336,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_4_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 62,
+      "name": "高中必修4",
+      "description": "北师大版高中必修4",
+      "length": 336,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_4.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 176,
+      "name": "高中必修5",
+      "description": "北师大版高中必修5",
+      "length": 327,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_5_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 63,
+      "name": "高中必修5",
+      "description": "北师大版高中必修5",
+      "length": 327,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_5.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 177,
+      "name": "高中选修6",
+      "description": "北师大版高中选修6",
+      "length": 271,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_6_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 64,
+      "name": "高中必修6",
+      "description": "北师大版高中必修6",
+      "length": 271,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_6.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 178,
+      "name": "高中选修7",
+      "description": "北师大版高中选修7",
+      "length": 334,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_7_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 65,
+      "name": "高中必修7",
+      "description": "北师大版高中必修7",
+      "length": 334,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_7.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 179,
+      "name": "高中选修8",
+      "description": "北师大版高中选修8",
+      "length": 364,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_8_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 66,
+      "name": "高中必修8",
+      "description": "北师大版高中必修8",
+      "length": 364,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_8.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 180,
+      "name": "高中选修9",
+      "description": "北师大版高中选修9",
+      "length": 299,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_9_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 67,
+      "name": "高中必修9",
+      "description": "北师大版高中必修9",
+      "length": 299,
+      "version": 1,
+      "fileName": "BeiShiGaoZhong_9.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "北师大"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 1,
+      "name": "四级真题核心词",
+      "description": "四级真题核心词",
+      "length": 1162,
+      "version": 1,
+      "fileName": "CET4_1.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语",
+        "四级"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 5,
+      "name": "四级英语词汇",
+      "description": "四级英语词汇",
+      "length": 3739,
+      "version": 1,
+      "fileName": "CET4_2.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语",
+        "四级"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 9,
+      "name": "新东方四级词汇",
+      "description": "新东方四级词汇",
+      "length": 2607,
+      "version": 1,
+      "fileName": "CET4_3.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语",
+        "四级",
+        "新东方"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 2,
+      "name": "六级真题核心词",
+      "description": "六级真题核心词",
+      "length": 1228,
+      "version": 1,
+      "fileName": "CET6_1.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语",
+        "六级"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 6,
+      "name": "六级英语词汇",
+      "description": "六级英语词汇",
+      "length": 2078,
+      "version": 1,
+      "fileName": "CET6_2.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语",
+        "六级"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 10,
+      "name": "新东方六级词汇",
+      "description": "新东方六级词汇",
+      "length": 2345,
+      "version": 1,
+      "fileName": "CET6_3.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语",
+        "六级",
+        "新东方"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 25,
+      "name": "初中英语词汇",
+      "description": "初中英语词汇",
+      "length": 1420,
+      "version": 1,
+      "fileName": "ChuZhong_2.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "通用",
+        "初中"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 27,
+      "name": "新东方初中词汇",
+      "description": "新东方初中词汇",
+      "length": 1803,
+      "version": 1,
+      "fileName": "ChuZhong_3.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "通用",
+        "初中"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 88,
+      "name": "COCA20000词",
+      "description": "COCA20000词",
+      "length": 17639,
+      "version": 1,
+      "fileName": "coca20000.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 72,
+      "name": "CET-4-Sub",
+      "description": "单词的减法-四级",
+      "length": 1957,
+      "version": 1,
+      "fileName": "DanCiDeJianFa_4.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 73,
+      "name": "CET-6-Sub",
+      "description": "单词的减法-六级",
+      "length": 1949,
+      "version": 1,
+      "fileName": "DanCiDeJianFa_6.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 77,
+      "name": "单词的秘密-英语一",
+      "description": "单词的秘密英语（一）",
+      "length": 5657,
+      "version": 1,
+      "fileName": "DanCiDeMimi_1.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "考研"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 78,
+      "name": "单词的秘密-英语二",
+      "description": "单词的秘密英语（二）",
+      "length": 3827,
+      "version": 1,
+      "fileName": "DanCiDeMimi_2.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "考研"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 114,
+      "name": "鸭圈雅思核心词",
+      "description": "鸭圈雅思核心词",
+      "length": 2644,
+      "version": 1,
+      "fileName": "DuckCircle_IELTS.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "IELTS"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 183,
+      "name": "EF-LEVEL-1",
+      "description": "EF等级1",
+      "length": 297,
+      "version": 1,
+      "fileName": "EF_LEVEL_1.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 192,
+      "name": "EF-LEVEL-10",
+      "description": "EF等级10",
+      "length": 174,
+      "version": 1,
+      "fileName": "EF_LEVEL_10.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 193,
+      "name": "EF-LEVEL-11",
+      "description": "EF等级11",
+      "length": 176,
+      "version": 1,
+      "fileName": "EF_LEVEL_11.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 194,
+      "name": "EF-LEVEL-12",
+      "description": "EF等级12",
+      "length": 170,
+      "version": 1,
+      "fileName": "EF_LEVEL_12.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 195,
+      "name": "EF-LEVEL-13",
+      "description": "EF等级13",
+      "length": 172,
+      "version": 1,
+      "fileName": "EF_LEVEL_13.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 196,
+      "name": "EF-LEVEL-14",
+      "description": "EF等级14",
+      "length": 171,
+      "version": 1,
+      "fileName": "EF_LEVEL_14.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 197,
+      "name": "EF-LEVEL-15",
+      "description": "EF等级15",
+      "length": 168,
+      "version": 1,
+      "fileName": "EF_LEVEL_15.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 198,
+      "name": "EF-LEVEL-16",
+      "description": "EF等级16",
+      "length": 170,
+      "version": 1,
+      "fileName": "EF_LEVEL_16.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 184,
+      "name": "EF-LEVEL-2",
+      "description": "EF等级2",
+      "length": 353,
+      "version": 1,
+      "fileName": "EF_LEVEL_2.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 185,
+      "name": "EF-LEVEL-3",
+      "description": "EF等级3",
+      "length": 172,
+      "version": 1,
+      "fileName": "EF_LEVEL_3.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 186,
+      "name": "EF-LEVEL-4",
+      "description": "EF等级4",
+      "length": 178,
+      "version": 1,
+      "fileName": "EF_LEVEL_4.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 187,
+      "name": "EF-LEVEL-5",
+      "description": "EF等级5",
+      "length": 172,
+      "version": 1,
+      "fileName": "EF_LEVEL_5.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 188,
+      "name": "EF-LEVEL-6",
+      "description": "EF等级6",
+      "length": 172,
+      "version": 1,
+      "fileName": "EF_LEVEL_6.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 189,
+      "name": "EF-LEVEL-7",
+      "description": "EF等级7",
+      "length": 171,
+      "version": 1,
+      "fileName": "EF_LEVEL_7.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 190,
+      "name": "EF-LEVEL-8",
+      "description": "EF等级8",
+      "length": 172,
+      "version": 1,
+      "fileName": "EF_LEVEL_8.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 191,
+      "name": "EF-LEVEL-9",
+      "description": "EF等级9",
+      "length": 165,
+      "version": 1,
+      "fileName": "EF_LEVEL_9.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "EF"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 102,
+      "name": "英语二单词书",
+      "description": "考研英语二单词书",
+      "length": 4559,
+      "version": 1,
+      "fileName": "English_II.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 133,
+      "name": "高考 3500 词",
+      "description": "高考常见词 3500",
+      "length": 3893,
+      "version": 1,
+      "fileName": "GaoKao_3500.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "通用"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 134,
+      "name": "高考历年真题核心高频",
+      "description": "高考历年真题核心高频",
+      "length": 799,
+      "version": 1,
+      "fileName": "GaoKaoZhenTiHeXinGaoPin.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "通用"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 26,
+      "name": "高中英语词汇",
+      "description": "高中英语词汇",
+      "length": 3668,
+      "version": 1,
+      "fileName": "GaoZhong_2.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "通用",
+        "高中"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 28,
+      "name": "新东方高中词汇",
+      "description": "新东方高中词汇",
+      "length": 2340,
+      "version": 1,
+      "fileName": "GaoZhong_3.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "通用",
+        "高中"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 18,
+      "name": "GMAT 词汇",
+      "description": "GMAT 词汇",
+      "length": 3254,
+      "version": 1,
+      "fileName": "GMAT_2.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "GMAT"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 103,
+      "name": "GMAT",
+      "description": "GMAT 词库",
+      "length": 3047,
+      "version": 1,
+      "fileName": "GMAT_3_T.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "GMAT"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 23,
+      "name": "新东方 GMAT 词汇",
+      "description": "新东方 GMAT 词汇",
+      "length": 3047,
+      "version": 1,
+      "fileName": "GMAT_3.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "新东方",
+        "GMAT"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 16,
+      "name": "GRE 词汇",
+      "description": "GRE 词汇",
+      "length": 7199,
+      "version": 1,
+      "fileName": "GRE_2.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "GRE"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 104,
+      "name": "GRE",
+      "description": "GRE 词库",
+      "length": 6515,
+      "version": 1,
+      "fileName": "GRE_3_T.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "GRE"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 21,
+      "name": "新东方 GRE 词汇",
+      "description": "新东方 GRE 词汇",
+      "length": 6515,
+      "version": 1,
+      "fileName": "GRE_3.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "新东方",
+        "GRE"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 105,
+      "name": "GRE3000",
+      "description": "GRE3000 词库",
+      "length": 3041,
+      "version": 1,
+      "fileName": "GRE3000_3_T.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "GRE"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 24,
+      "name": "雅思词汇",
+      "description": "雅思词汇",
+      "length": 3427,
+      "version": 1,
+      "fileName": "IELTS_2.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "IELTS"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 109,
+      "name": "IELTS",
+      "description": "雅思词库",
+      "length": 3575,
+      "version": 1,
+      "fileName": "IELTS_3_T.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "IELTS"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 19,
+      "name": "新东方雅思词汇",
+      "description": "新东方雅思词汇",
+      "length": 3575,
+      "version": 1,
+      "fileName": "IELTS_3.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "IELTS",
+        "新东方"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 107,
+      "name": "IELTS乱序完整版",
+      "description": "IELTS乱序完整版",
+      "length": 9389,
+      "version": 1,
+      "fileName": "IELTS_disorder.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "IELTS"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 108,
+      "name": "IELTS顺序完整版",
+      "description": "IELTS顺序完整版",
+      "length": 9388,
+      "version": 1,
+      "fileName": "IELTS_order.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "IELTS"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 106,
+      "name": "雅思听力场景词汇",
+      "description": "雅思听力场景词汇",
+      "length": 1204,
+      "version": 1,
+      "fileName": "IELTS_tinglichangjing.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "IELTS"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 113,
+      "name": "雅思wang C11",
+      "description": "综合测试",
+      "length": 1738,
+      "version": 1,
+      "fileName": "IELTS_WANG_11.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "IELTS"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 110,
+      "name": "雅思wang C3",
+      "description": "雅思听力特别名词语料库",
+      "length": 1135,
+      "version": 1,
+      "fileName": "IELTS_WANG_3.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "IELTS"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 111,
+      "name": "雅思wang C4",
+      "description": "雅思听力形容词副词语料库",
+      "length": 346,
+      "version": 1,
+      "fileName": "IELTS_WANG_4.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "IELTS"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 112,
+      "name": "雅思wang C5",
+      "description": "吞音连读混合训练语料库",
+      "length": 1569,
+      "version": 1,
+      "fileName": "IELTS_WANG_5.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "IELTS"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 115,
+      "name": "雅思词汇真经",
+      "description": "雅思词汇真经",
+      "length": 3672,
+      "version": 1,
+      "fileName": "IELTSVocabularyBible.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "IELTS"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 82,
+      "name": "计算机专用英语",
+      "description": "大学计算机专业英语词汇",
+      "length": 1665,
+      "version": 1,
+      "fileName": "itVocabulary.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "专业英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 12,
+      "name": "考研必考词汇",
+      "description": "考研必考词汇",
+      "length": 1341,
+      "version": 1,
+      "fileName": "KaoYan_1.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "考研"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 11,
+      "name": "考研英语词汇",
+      "description": "考研英语词汇",
+      "length": 4533,
+      "version": 1,
+      "fileName": "KaoYan_2.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "考研"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 75,
+      "name": "考研 2024",
+      "description": "研究生英语入学考试词库 2024",
+      "length": 3731,
+      "version": 1,
+      "fileName": "KaoYan_2024.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "考研"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 74,
+      "name": "考研",
+      "description": "研究生英语入学考试词库",
+      "length": 3728,
+      "version": 1,
+      "fileName": "KaoYan_3_T.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "考研"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 13,
+      "name": "新东方考研词汇",
+      "description": "新东方考研词汇",
+      "length": 3728,
+      "version": 1,
+      "fileName": "KaoYan_3.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "考研",
+        "新东方"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 76,
+      "name": "考研闪过 2023",
+      "description": "高中低频词2023",
+      "length": 1771,
+      "version": 1,
+      "fileName": "KaoYanShanGuo_2023.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "考研"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 3,
+      "name": "专四真题高频词",
+      "description": "专四真题高频词",
+      "length": 595,
+      "version": 1,
+      "fileName": "Level4_1.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 7,
+      "name": "专四核心词汇",
+      "description": "专四核心词汇",
+      "length": 4025,
+      "version": 1,
+      "fileName": "Level4_2.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 79,
+      "name": "专四",
+      "description": "英语专业四级词库",
+      "length": 4025,
+      "version": 1,
+      "fileName": "Level4luan_2_T.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 4,
+      "name": "专八真题高频词",
+      "description": "专八真题高频词",
+      "length": 684,
+      "version": 1,
+      "fileName": "Level8_1.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 8,
+      "name": "专八核心词汇",
+      "description": "专八核心词汇",
+      "length": 12197,
+      "version": 1,
+      "fileName": "Level8_2.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 80,
+      "name": "专八",
+      "description": "英语专业八级词库",
+      "length": 12197,
+      "version": 1,
+      "fileName": "Level8luan_2_T.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 208,
+      "name": "生活中常用的3000单词",
+      "description": "英语口语和书面语中使用频率最高的单词",
+      "length": 3168,
+      "version": 1,
+      "fileName": "Longman_Communication_3000.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 200,
+      "name": "麦克米伦7000",
+      "description": "麦克米伦7000",
+      "length": 6268,
+      "version": 1,
+      "fileName": "Macmillan7000.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 210,
+      "name": "韦氏词根词典",
+      "description": "韦氏词根词典",
+      "length": 1191,
+      "version": 1,
+      "fileName": "Merriam_Webster_sVocabularyBuilder.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 136,
+      "name": "新概念英语(新版)-1",
+      "description": "新概念英语新版第一册",
+      "length": 908,
+      "version": 1,
+      "fileName": "nce-new-1.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "新概念英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 137,
+      "name": "新概念英语(新版)-2",
+      "description": "新概念英语新版第二册",
+      "length": 862,
+      "version": 1,
+      "fileName": "nce-new-2.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "新概念英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 138,
+      "name": "新概念英语(新版)-3",
+      "description": "新概念英语新版第三册",
+      "length": 1062,
+      "version": 1,
+      "fileName": "nce-new-3.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "新概念英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 139,
+      "name": "新概念英语(新版)-4",
+      "description": "新概念英语新版第四册",
+      "length": 793,
+      "version": 1,
+      "fileName": "nce-new-4.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "新概念英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 132,
+      "name": "牛津3000词",
+      "description": "牛津3000词",
+      "length": 1342,
+      "version": 1,
+      "fileName": "Oxford3000.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "牛津版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 100,
+      "name": "牛津5000词",
+      "description": "牛津5000词",
+      "length": 5836,
+      "version": 1,
+      "fileName": "Oxford5000.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 207,
+      "name": "上海初中牛津词汇",
+      "description": "上海初中牛津词汇",
+      "length": 1270,
+      "version": 1,
+      "fileName": "OxfordVocabulary_juniorMiddleSH.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "牛津版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 148,
+      "name": "七年级上",
+      "description": "人教版七年级上册",
+      "length": 392,
+      "version": 1,
+      "fileName": "PEPChuZhong7_1_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 37,
+      "name": "七年级上册",
+      "description": "人教版初中英语-七年级上册",
+      "length": 392,
+      "version": 1,
+      "fileName": "PEPChuZhong7_1.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "初中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 149,
+      "name": "七年级下",
+      "description": "人教版七年级下册",
+      "length": 492,
+      "version": 1,
+      "fileName": "PEPChuZhong7_2_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 38,
+      "name": "七年级下册",
+      "description": "人教版初中英语-七年级下册",
+      "length": 492,
+      "version": 1,
+      "fileName": "PEPChuZhong7_2.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "初中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 150,
+      "name": "八年级上",
+      "description": "人教版八年级上册",
+      "length": 419,
+      "version": 1,
+      "fileName": "PEPChuZhong8_1_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 39,
+      "name": "八年级上册",
+      "description": "人教版初中英语-八年级上册",
+      "length": 419,
+      "version": 1,
+      "fileName": "PEPChuZhong8_1.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "初中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 151,
+      "name": "八年级下",
+      "description": "人教版八年级下册",
+      "length": 466,
+      "version": 1,
+      "fileName": "PEPChuZhong8_2_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 40,
+      "name": "八年级下册",
+      "description": "人教版初中英语-八年级下册",
+      "length": 466,
+      "version": 1,
+      "fileName": "PEPChuZhong8_2.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "初中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 152,
+      "name": "九年级",
+      "description": "人教版九年级全册",
+      "length": 551,
+      "version": 1,
+      "fileName": "PEPChuZhong9_1_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 41,
+      "name": "九年级全册",
+      "description": "人教版初中英语-九年级全册",
+      "length": 551,
+      "version": 1,
+      "fileName": "PEPChuZhong9_1.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "初中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 153,
+      "name": "高中必修1",
+      "description": "人教版高中必修1",
+      "length": 311,
+      "version": 1,
+      "fileName": "PEPGaoZhong_1_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 48,
+      "name": "高中必修1",
+      "description": "人教版高中英语-必修 1",
+      "length": 311,
+      "version": 1,
+      "fileName": "PEPGaoZhong_1.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 162,
+      "name": "高中选修10",
+      "description": "人教版高中选修10",
+      "length": 361,
+      "version": 1,
+      "fileName": "PEPGaoZhong_10_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 57,
+      "name": "高中必修10",
+      "description": "人教版高中英语-必修 10",
+      "length": 361,
+      "version": 1,
+      "fileName": "PEPGaoZhong_10.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 163,
+      "name": "高中选修11",
+      "description": "人教版高中选修11",
+      "length": 309,
+      "version": 1,
+      "fileName": "PEPGaoZhong_11_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 58,
+      "name": "高中必修11",
+      "description": "人教版高中英语-必修 11",
+      "length": 309,
+      "version": 1,
+      "fileName": "PEPGaoZhong_11.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 154,
+      "name": "高中必修2",
+      "description": "人教版高中必修2",
+      "length": 319,
+      "version": 1,
+      "fileName": "PEPGaoZhong_2_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 49,
+      "name": "高中必修2",
+      "description": "人教版高中英语-必修 2",
+      "length": 319,
+      "version": 1,
+      "fileName": "PEPGaoZhong_2.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 155,
+      "name": "高中必修3",
+      "description": "人教版高中必修3",
+      "length": 366,
+      "version": 1,
+      "fileName": "PEPGaoZhong_3_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 50,
+      "name": "高中必修3",
+      "description": "人教版高中英语-必修 3",
+      "length": 366,
+      "version": 1,
+      "fileName": "PEPGaoZhong_3.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 156,
+      "name": "高中必修4",
+      "description": "人教版高中必修4",
+      "length": 307,
+      "version": 1,
+      "fileName": "PEPGaoZhong_4_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 51,
+      "name": "高中必修4",
+      "description": "人教版高中英语-必修 4",
+      "length": 307,
+      "version": 1,
+      "fileName": "PEPGaoZhong_4.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 157,
+      "name": "高中必修5",
+      "description": "人教版高中必修5",
+      "length": 357,
+      "version": 1,
+      "fileName": "PEPGaoZhong_5_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 52,
+      "name": "高中必修5",
+      "description": "人教版高中英语-必修 5",
+      "length": 357,
+      "version": 1,
+      "fileName": "PEPGaoZhong_5.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 158,
+      "name": "高中选修6",
+      "description": "人教版高中选修6",
+      "length": 391,
+      "version": 1,
+      "fileName": "PEPGaoZhong_6_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 53,
+      "name": "高中必修6",
+      "description": "人教版高中英语-必修 6",
+      "length": 391,
+      "version": 1,
+      "fileName": "PEPGaoZhong_6.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 159,
+      "name": "高中选修7",
+      "description": "人教版高中选修7",
+      "length": 384,
+      "version": 1,
+      "fileName": "PEPGaoZhong_7_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 54,
+      "name": "高中必修7",
+      "description": "人教版高中英语-必修 7",
+      "length": 384,
+      "version": 1,
+      "fileName": "PEPGaoZhong_7.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 160,
+      "name": "高中选修8",
+      "description": "人教版高中选修8",
+      "length": 420,
+      "version": 1,
+      "fileName": "PEPGaoZhong_8_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 55,
+      "name": "高中必修8",
+      "description": "人教版高中英语-必修 8",
+      "length": 420,
+      "version": 1,
+      "fileName": "PEPGaoZhong_8.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 161,
+      "name": "高中选修9",
+      "description": "人教版高中选修9",
+      "length": 352,
+      "version": 1,
+      "fileName": "PEPGaoZhong_9_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 56,
+      "name": "高中必修9",
+      "description": "人教版高中英语-必修 9",
+      "length": 352,
+      "version": 1,
+      "fileName": "PEPGaoZhong_9.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "高中",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 140,
+      "name": "三年级上",
+      "description": "人教版三年级上册",
+      "length": 64,
+      "version": 1,
+      "fileName": "PEPXiaoXue3_1_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 29,
+      "name": "人教版小学英语-三年级上册",
+      "description": "人教版小学英语-三年级上册",
+      "length": 64,
+      "version": 1,
+      "fileName": "PEPXiaoXue3_1.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "小学",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 141,
+      "name": "三年级下",
+      "description": "人教版三年级下册",
+      "length": 72,
+      "version": 1,
+      "fileName": "PEPXiaoXue3_2_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 30,
+      "name": "人教版小学英语-三年级下册",
+      "description": "人教版小学英语-三年级下册",
+      "length": 72,
+      "version": 1,
+      "fileName": "PEPXiaoXue3_2.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "小学",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 142,
+      "name": "四年级上",
+      "description": "人教版四年级上册",
+      "length": 84,
+      "version": 1,
+      "fileName": "PEPXiaoXue4_1_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 31,
+      "name": "人教版小学英语-四年级上册",
+      "description": "人教版小学英语-四年级上册",
+      "length": 84,
+      "version": 1,
+      "fileName": "PEPXiaoXue4_1.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "小学",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 143,
+      "name": "四年级下",
+      "description": "人教版四年级下册",
+      "length": 104,
+      "version": 1,
+      "fileName": "PEPXiaoXue4_2_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 32,
+      "name": "人教版小学英语-四年级下册",
+      "description": "人教版小学英语-四年级下册",
+      "length": 104,
+      "version": 1,
+      "fileName": "PEPXiaoXue4_2.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "小学",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 144,
+      "name": "五年级上",
+      "description": "人教版五年级上册",
+      "length": 131,
+      "version": 1,
+      "fileName": "PEPXiaoXue5_1_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 33,
+      "name": "人教版小学英语-五年级上册",
+      "description": "人教版小学英语-五年级上册",
+      "length": 131,
+      "version": 1,
+      "fileName": "PEPXiaoXue5_1.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "小学",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 145,
+      "name": "五年级下",
+      "description": "人教版五年级下册",
+      "length": 156,
+      "version": 1,
+      "fileName": "PEPXiaoXue5_2_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 34,
+      "name": "人教版小学英语-五年级下册",
+      "description": "人教版小学英语-五年级下册",
+      "length": 156,
+      "version": 1,
+      "fileName": "PEPXiaoXue5_2.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "小学",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 146,
+      "name": "六年级上",
+      "description": "人教版六年级上册",
+      "length": 130,
+      "version": 1,
+      "fileName": "PEPXiaoXue6_1_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 35,
+      "name": "人教版小学英语-六年级上册",
+      "description": "人教版小学英语-六年级上册",
+      "length": 130,
+      "version": 1,
+      "fileName": "PEPXiaoXue6_1.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "小学",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 147,
+      "name": "六年级下",
+      "description": "人教版六年级下册",
+      "length": 108,
+      "version": 1,
+      "fileName": "PEPXiaoXue6_2_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 36,
+      "name": "人教版小学英语-六年级下册",
+      "description": "人教版小学英语-六年级下册",
+      "length": 108,
+      "version": 1,
+      "fileName": "PEPXiaoXue6_2.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "小学",
+        "人教版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 83,
+      "name": "PETS",
+      "description": "全国英语等级考试常考词汇",
+      "length": 1942,
+      "version": 1,
+      "fileName": "PETS_3.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "PET"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 84,
+      "name": "PETS-2023",
+      "description": "全国英语等级考试常考词汇",
+      "length": 4449,
+      "version": 1,
+      "fileName": "PETS3-2023.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "PET"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 128,
+      "name": "PTE 高阶词汇 xingji",
+      "description": "",
+      "length": 3169,
+      "version": 1,
+      "fileName": "PTE_Advanced_apeuni.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "PTE"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 127,
+      "name": "PTE 基础词汇 xingji",
+      "description": "",
+      "length": 2652,
+      "version": 1,
+      "fileName": "PTE_Basic_apeuni.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "PTE"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 126,
+      "name": "听力 FIB 机经词汇",
+      "description": "",
+      "length": 646,
+      "version": 1,
+      "fileName": "PTE_FIB_L.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "PTE"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 123,
+      "name": "阅读 FIB 基础机经词汇",
+      "description": "",
+      "length": 941,
+      "version": 1,
+      "fileName": "PTE_FIB_R_junior.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "PTE"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 124,
+      "name": "阅读 FIB 高阶机经词汇",
+      "description": "",
+      "length": 1272,
+      "version": 1,
+      "fileName": "PTE_FIB_R_senior.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "PTE"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 121,
+      "name": "PTE 基础词汇",
+      "description": "",
+      "length": 2651,
+      "version": 1,
+      "fileName": "PTE_junior.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "PTE"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 130,
+      "name": "PTE 听力FIB机经词汇 xingji",
+      "description": "",
+      "length": 674,
+      "version": 1,
+      "fileName": "PTE_Listening_apeuni.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "PTE"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 129,
+      "name": "PTE 阅读FIB机经词汇 xingji",
+      "description": "",
+      "length": 630,
+      "version": 1,
+      "fileName": "PTE_Read_apeuni.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "PTE"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 122,
+      "name": "PTE 高阶词汇",
+      "description": "",
+      "length": 3170,
+      "version": 1,
+      "fileName": "PTE_senior.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "PTE"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 125,
+      "name": "WFD 机经词汇",
+      "description": "",
+      "length": 1212,
+      "version": 1,
+      "fileName": "PTE_WFD.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "PTE"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 199,
+      "name": "Reading Explorer 3",
+      "description": "词汇表来自Reading Explorer 3, Third Edition",
+      "length": 239,
+      "version": 1,
+      "fileName": "ReadingExplorer3.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "青少年英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 17,
+      "name": "SAT 词汇",
+      "description": "SAT 词汇",
+      "length": 4423,
+      "version": 1,
+      "fileName": "SAT_2.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "SAT"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 116,
+      "name": "SAT",
+      "description": "美国 SAT 考试词库",
+      "length": 4464,
+      "version": 1,
+      "fileName": "SAT_3_T.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "SAT"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 22,
+      "name": "新东方 SAT 词汇",
+      "description": "新东方 SAT 词汇",
+      "length": 4464,
+      "version": 1,
+      "fileName": "SAT_3.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "新东方",
+        "SAT"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 117,
+      "name": "SAT en-en",
+      "description": "SAT英英",
+      "length": 2681,
+      "version": 1,
+      "fileName": "SATen.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "SAT"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 85,
+      "name": "自考1800高频单词",
+      "description": "自考1800高频单词",
+      "length": 1800,
+      "version": 1,
+      "fileName": "self-study_English1.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "自考英语二"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 86,
+      "name": "自考英语二高频悠悠单词",
+      "description": "自考英语二高频悠悠单词",
+      "length": 2181,
+      "version": 1,
+      "fileName": "self-study_English2.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "自考英语二"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 87,
+      "name": "自考英语二完整单词",
+      "description": "00015自考英语二完整单词书",
+      "length": 4603,
+      "version": 1,
+      "fileName": "self-study_English3.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "自考英语二"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 96,
+      "name": "suffix word",
+      "description": "common suffix",
+      "length": 126,
+      "version": 1,
+      "fileName": "suffix_word.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 118,
+      "name": "TOEFL",
+      "description": "托福考试常见词",
+      "length": 4264,
+      "version": 1,
+      "fileName": "TOEFL_3_T.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "TOEFL"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 20,
+      "name": "新东方 TOEFL 词汇",
+      "description": "新东方 TOEFL 词汇",
+      "length": 4264,
+      "version": 1,
+      "fileName": "TOEFL_3.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "TOEFL",
+        "新东方"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 101,
+      "name": "ZhangHongYan的TOEFL词汇书",
+      "description": "ZhangHongYan的TOEFL词汇书-词以类记",
+      "length": 4035,
+      "version": 1,
+      "fileName": "TOEFL_ZhangHongYan.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "TOEFL"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 131,
+      "name": "TOEIC 词汇",
+      "description": "",
+      "length": 1694,
+      "version": 1,
+      "fileName": "TOEIC.json",
+      "category": "国际考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "TOEIC"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 91,
+      "name": "Top 1000 Verbs",
+      "description": "with highest frequency",
+      "length": 1011,
+      "version": 1,
+      "fileName": "Top1000VerbWords.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 90,
+      "name": "Top 1500 Nouns",
+      "description": "with highest frequency",
+      "length": 1525,
+      "version": 1,
+      "fileName": "Top1500NounWords.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 89,
+      "name": "Top 2000 words",
+      "description": "with highest frequency",
+      "length": 1867,
+      "version": 1,
+      "fileName": "top2000words.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 93,
+      "name": "Top 250 adv.",
+      "description": "with highest frequency",
+      "length": 255,
+      "version": 1,
+      "fileName": "Top250AdverbWords.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 92,
+      "name": "Top 500 adj.",
+      "description": "with highest frequency",
+      "length": 527,
+      "version": 1,
+      "fileName": "Top500AdjectiveWords.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 95,
+      "name": "Top 50 prep.",
+      "description": "with highest frequency",
+      "length": 46,
+      "version": 1,
+      "fileName": "Top50Prepositions.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 94,
+      "name": "Top 60 pron.",
+      "description": "with highest frequency",
+      "length": 59,
+      "version": 1,
+      "fileName": "Top60Pronouns.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 164,
+      "name": "外研七年级上册",
+      "description": "外研版七年级上册",
+      "length": 629,
+      "version": 1,
+      "fileName": "WaiYanSheChuZhong_1_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "外研版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 42,
+      "name": "七年级上册",
+      "description": "外研社版初中英语-七年级上册",
+      "length": 629,
+      "version": 1,
+      "fileName": "WaiYanSheChuZhong_1.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "初中",
+        "外研社"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 165,
+      "name": "外研七年级下册",
+      "description": "外研版七年级下册",
+      "length": 438,
+      "version": 1,
+      "fileName": "WaiYanSheChuZhong_2_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "外研版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 43,
+      "name": "七年级下册",
+      "description": "外研社版初中英语-七年级下册",
+      "length": 438,
+      "version": 1,
+      "fileName": "WaiYanSheChuZhong_2.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "初中",
+        "外研社"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 166,
+      "name": "外研八年级上册",
+      "description": "外研版八年级上册",
+      "length": 320,
+      "version": 1,
+      "fileName": "WaiYanSheChuZhong_3_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "外研版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 44,
+      "name": "八年级上册",
+      "description": "外研社版初中英语-八年级上册",
+      "length": 320,
+      "version": 1,
+      "fileName": "WaiYanSheChuZhong_3.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "初中",
+        "外研社"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 167,
+      "name": "外研八年级下册",
+      "description": "外研版八年级下册",
+      "length": 266,
+      "version": 1,
+      "fileName": "WaiYanSheChuZhong_4_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "外研版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 45,
+      "name": "八年级下册",
+      "description": "外研社版初中英语-八年级下册",
+      "length": 266,
+      "version": 1,
+      "fileName": "WaiYanSheChuZhong_4.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "初中",
+        "外研社"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 168,
+      "name": "外研九年级上册",
+      "description": "外研版九年级上册",
+      "length": 381,
+      "version": 1,
+      "fileName": "WaiYanSheChuZhong_5_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "外研版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 46,
+      "name": "九年级上册",
+      "description": "外研社版初中英语-九年级上册",
+      "length": 381,
+      "version": 1,
+      "fileName": "WaiYanSheChuZhong_5.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "初中",
+        "外研社"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 169,
+      "name": "外研九年级下册",
+      "description": "外研版九年级下册",
+      "length": 128,
+      "version": 1,
+      "fileName": "WaiYanSheChuZhong_6_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "外研版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 47,
+      "name": "九年级下册",
+      "description": "外研社版初中英语-九年级下册",
+      "length": 128,
+      "version": 1,
+      "fileName": "WaiYanSheChuZhong_6.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "初中",
+        "外研社"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 170,
+      "name": "外研高中必修1",
+      "description": "外研高中必修1",
+      "length": 411,
+      "version": 1,
+      "fileName": "WaiYanSheGaoZhong_1_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "外研版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 171,
+      "name": "外研高中必修2",
+      "description": "外研高中必修2",
+      "length": 272,
+      "version": 1,
+      "fileName": "WaiYanSheGaoZhong_2_T.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "外研版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 97,
+      "name": "word roots1",
+      "description": "common roots",
+      "length": 369,
+      "version": 1,
+      "fileName": "word_roots1.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "其他"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 70,
+      "name": "四级巧记速记",
+      "description": "四级巧记速记",
+      "length": 2522,
+      "version": 1,
+      "fileName": "xinghuoqiaoji_4.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 71,
+      "name": "六级巧记速记",
+      "description": "六级巧记速记",
+      "length": 7520,
+      "version": 1,
+      "fileName": "xinghuoqiaoji_6.json",
+      "category": "中国考试",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "大学英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 204,
+      "name": "高中必修1",
+      "description": "译林版高中必修1",
+      "length": 276,
+      "version": 1,
+      "fileName": "YiLin_1.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "译林版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 205,
+      "name": "高中必修2",
+      "description": "译林版高中必修2",
+      "length": 297,
+      "version": 1,
+      "fileName": "YiLin_2.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "译林版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 206,
+      "name": "高中必修3",
+      "description": "译林版高中必修3",
+      "length": 295,
+      "version": 1,
+      "fileName": "YiLin_3.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "译林版"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    },
+    {
+      "id": 135,
+      "name": "中考核心词",
+      "description": "中考核心词",
+      "length": 2140,
+      "version": 1,
+      "fileName": "ZhongKaoHeXin.json",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "通用"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": "word"
+    }
+  ]
+}

@@ -232,7 +232,6 @@ export function getDefaultDict(val = {}): Dict {
     lastLearnIndex: 0,
     perDayStudyNumber: 20,
     description: '',
-    sort: Sort.normal,
     words: [],
     articles: [],
     statistics: [],
@@ -240,12 +239,13 @@ export function getDefaultDict(val = {}): Dict {
     length: 0,
     /*资源属性*/
     resourceId: '',
-    url: '',
+    fileName: '',
     category: '',
     tags: [],
-    translateLanguage: 'common',
-    type: DictType.word,
-    language: 'en',
+    dictType: DictType.word,
+    langTypeStr: 'en',
+    tranTypeStr: 'zh',
+    version: 0,
     ...val
   }
 }
@@ -256,7 +256,6 @@ export interface Dict {
   lastLearnIndex: number,
   perDayStudyNumber: number,
   description: string,
-  sort: Sort,
   words: Word[],
   articles: Article[],
   statistics: Statistics[],
@@ -266,10 +265,11 @@ export interface Dict {
   resourceId: string,
   category: string
   tags: string[]
-  language: LanguageType
-  type: DictType
-  translateLanguage: TranslateLanguageType
-  url: string,
+  dictType: DictType
+  fileName: string,
+  langTypeStr: string,
+  tranTypeStr: string,
+  version: number,
 }
 
 export interface ArticleItem {
