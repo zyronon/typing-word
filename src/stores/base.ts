@@ -139,29 +139,22 @@ export const DefaultBaseState = (): BaseState => ({
   wordDictList: [
     {
       ...getDefaultDict(),
-      id: 'nce-new-2',
-      name: '新概念英语(新版)-2',
-      description: '新概念英语新版第二册',
-      category: '青少年英语',
-      tags: ['新概念英语'],
-      url: 'nce-new-2.json',
-      length: 862,
-      translateLanguage: 'common',
-      language: 'en',
-      type: DictType.word
-    },
-    {
-      ...getDefaultDict(),
-      id: 'cet4',
-      name: 'CET-4',
-      description: '大学英语四级词库',
-      category: '中国考试',
-      tags: ['大学英语'],
-      url: 'CET4_T.json',
-      length: 2607,
-      translateLanguage: 'common',
-      language: 'en',
-      type: DictType.word,
+      "id": 137,
+      "name": "新概念英语(新版)-2",
+      "description": "新概念英语新版第二册",
+      "length": 862,
+      "version": 1,
+      "fileName": "nce-new-2",
+      "category": "青少年英语",
+      "langType": 0,
+      "tranType": 1,
+      "userId": null,
+      "tags": [
+        "新概念英语"
+      ],
+      "langTypeStr": "en",
+      "tranTypeStr": "zh",
+      "dictType": DictType.word,
       statistics: []
     },
   ],
@@ -312,6 +305,7 @@ export const useBaseStore = defineStore('base', {
   },
   actions: {
     setState(obj: any) {
+      return
       //这样不会丢失watch的值的引用
       merge(this, obj)
     },
@@ -330,25 +324,17 @@ export const useBaseStore = defineStore('base', {
           console.error('读取本地dict数据失败', e)
         }
 
-        //自定义的词典，文章只删除了sections，单词并未做删除，所以这里不需要处理
-        if (this.currentDict.isCustom) {
-
-        } else {
-
-        }
-
         if (this.currentStudy.word.dictIndex >= 0) {
           await _checkDictWords(this.currentStudyWordDict)
-          let current = this.articleDictList[this.currentStudy.article.dictIndex]
-          let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
-          if (!current.articles.length) {
-            let s = await getDictFile(dictResourceUrl)
-            current.articles = cloneDeep(s.map(v => {
-              v.id = nanoid(6)
-              return v
-            }))
-          }
-
+          // let current = this.articleDictList[this.currentStudy.article.dictIndex]
+          // let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
+          // if (!current.articles.length) {
+          //   let s = await getDictFile(dictResourceUrl)
+          //   current.articles = cloneDeep(s.map(v => {
+          //     v.id = nanoid(6)
+          //     return v
+          //   }))
+          // }
           // console.log('this.wordDictList', this.wordDictList[0].words[0])
         }
         emitter.emit(EventKey.changeDict)

@@ -17,7 +17,7 @@
   "dependencies": {
     "@opentranslate/baidu": "^1.4.2",
     "@opentranslate/translator": "^1.4.2",
-    "axios": "^1.5.0",
+    "axios": "^1.7.2",
     "compromise": "^14.10.0",
     "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.11",

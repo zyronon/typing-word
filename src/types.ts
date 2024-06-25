@@ -251,7 +251,7 @@ export function getDefaultDict(val = {}): Dict {
 }
 
 export interface Dict {
-  id: string,
+  id: any,
   name: string,
   lastLearnIndex: number,
   perDayStudyNumber: number,

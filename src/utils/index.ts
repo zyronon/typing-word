@@ -8,6 +8,8 @@ import {useRouter} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {nanoid} from "nanoid";
 import dayjs from 'dayjs'
+import axios from "axios";
+import {env} from "@/config/ENV.ts";
 
 export function getRandom(a: number, b: number): number {
   return Math.random() * (b - a) + a;
@@ -185,49 +187,54 @@ export async function _checkDictWords(dict: Dict) {
     //TODO　需要和其他需要下载的地方统一
     //如果不是自定义词典，并且有url地址才去下载
     if (!dict.isCustom && dict.fileName) {
-      let res: any = await _fetch(`http://localhost/index.php/v1/support/getDictVersion?id=${dict.id}`)
+      // let rrr = await axios('http://localhost/static/dict/en/zh/Top50Prepositions-v1.json')
+      // console.log('r', rrr)
+      // return
+      let url = `http://localhost/index.php/v1/support/getDictFile?id=${dict.id}&v=${dict.version}`
+      let res: any = await axios(url)
+      // let res: any = await axios(`http://localhost/index.php/v1/support/getDictFile?id=2`)
+      console.log('res', res)
+      //说明重定向了
       let r
-      let dictLocalUrl = `./dicts/${dict.langTypeStr}/${dict.dictType}/${dict.tranTypeStr}/${dict.fileName}-${dict.version}`;
-      let dictServeUrl = `http://localhost/index.php/v1/support/getDictDetail?id=${dict.id}`;
-      if (res.success) {
-        if (res.version > dict.version) {
-          let r2: any = await _fetch(dictServeUrl)
-          if (r2.success) {
-            r = r2.data
-          } else {
-            let r3 = await fetch(dictLocalUrl)
-            try {
-              r = await r3.json()
-            } catch (e) {
-
-            }
-          }
-        } else {
-          if (!dict.words.length) {
-            let r3 = await fetch(dictLocalUrl)
-            try {
-              r = await r3.json()
-            } catch (e) {
-              let r2: any = await _fetch(dictServeUrl)
-              if (r2.success) {
-                r = r2.data
-              }
-            }
-          }
-        }
+      if (res.request.responseURL !== url) {
+        r = res.data
       } else {
+        let dictLocalUrl = `./dicts/${dict.langTypeStr}/${dict.dictType}/${dict.tranTypeStr}/${dict.fileName}-v${dict.version}.json`;
         let r3 = await fetch(dictLocalUrl)
         try {
           r = await r3.json()
         } catch (e) {
+
         }
+        console.log('r', r)
       }
-      console.log('v', r)
       // // dict.words = Object.freeze(v)
       // dict.words = v
       dict = Object.assign(dict, r)
     }
   }
+}
+
+export async function getWordDictList() {
+  let url = `${env.api}/v1/support/getWordDictListFile?v=${env.word_dict_list_version}`
+  let res: any = await axios(url)
+  // let res: any = await axios(`http://localhost/index.php/v1/support/getDictFile?id=2`)
+  console.log('res', res)
+  //说明重定向了
+  let r
+  if (res.request.responseURL !== url) {
+    r = res.data
+  } else {
+    let dictLocalUrl = `./word_dict_list.json`;
+    let r3 = await fetch(dictLocalUrl)
+    try {
+      let r1 = await r3.json()
+      r = r1.data
+    } catch (e) {
+
+    }
+  }
+  return r
 }
 
 //获取完成天数

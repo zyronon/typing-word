@@ -8,11 +8,10 @@ import enFlag from "@/assets/img/flags/en.png";
 import jaFlag from "@/assets/img/flags/ja.png";
 import deFlag from "@/assets/img/flags/de.png";
 import codeFlag from "@/assets/img/flags/code.png";
-import {useNav} from "@/utils";
+import {getWordDictList, useNav} from "@/utils";
 import {getDefaultDict, Sort} from "@/types.ts";
 import {onMounted} from "vue";
 import {groupBy, uniq} from "lodash-es";
-import dict from "@/assets/dict.json";
 
 const base = useBaseStore()
 const router = useRouter()
@@ -45,8 +44,9 @@ const currentTranDictList = $computed(() => {
   return currentLangDictList[currentTranslateLanguage2] ?? {}
 })
 
-onMounted(() => {
-  let d: any = groupBy(dict.data, 'langType')
+onMounted(async () => {
+  let res = await getWordDictList()
+  let d: any = groupBy(res, 'langType')
   for (let dKey in d) {
     d[dKey] = groupBy(d[dKey], 'tranType')
     for (const dKey2 in d[dKey]) {
