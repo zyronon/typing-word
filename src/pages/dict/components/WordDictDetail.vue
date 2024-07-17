@@ -275,9 +275,10 @@ function toChapterWordList() {
   )
 }
 
-//同步到我的词典列表
+//同步到我的词典列表，更新词典单词总数
 function syncEditDict2MyDictList() {
-  syncMyDictList(runtimeStore.editDict)
+  runtimeStore.editDict.length = runtimeStore.editDict.words.length;
+  syncMyDictList(runtimeStore.editDict);
 }
 
 
@@ -486,9 +487,9 @@ function exportData(type: string) {
 }
 
 function importData(e: any) {
-  let file = e.target.files[0]
-  if (!file) return
-  // no()
+  let file = e.target.files[0];
+  if (!file) return;
+
   let reader = new FileReader();
   reader.onload = function (e) {
     let data = e.target.result;
@@ -505,31 +506,35 @@ function importData(e: any) {
             usphone: String(v['音标①'] ?? ''),
             ukphone: String(v['音标②'] ?? ''),
             trans: String(v['释义(一行一个释义)'] ?? '').split('\n')
-          }
-          return word
+          };
+          return word;
         }
-      }).filter(v => v)
+      }).filter(v => v);
 
       checkRepeatWord(words, residueWordList, noRepeatWords => {
-            residueWordList = residueWordList.concat(noRepeatWords)
-            syncEditDict2MyDictList()
-            setTimeout(residueWordListRef?.scrollToBottom, 100)
+            residueWordList = residueWordList.concat(noRepeatWords);
+            // 同步到editDict中的words和originWords
+            runtimeStore.editDict.words = runtimeStore.editDict.words.concat(noRepeatWords);
+            runtimeStore.editDict.originWords = runtimeStore.editDict.originWords.concat(noRepeatWords);
+            syncEditDict2MyDictList();
+            setTimeout(residueWordListRef?.scrollToBottom, 100);
           },
           repeatWords => {
             repeatWords.map(v => {
-              residueWordList[v.index] = v
-              delete residueWordList[v.index].index
-            })
-            syncEditDict2MyDictList()
-            setTimeout(residueWordListRef?.scrollToBottom, 100)
+              residueWordList[v.index] = v;
+              delete residueWordList[v.index].index;
+            });
+            syncEditDict2MyDictList();
+            setTimeout(residueWordListRef?.scrollToBottom, 100);
           },
-          () => ElMessage.success('导入成功！'))
+          () => ElMessage.success('导入成功！'));
     } else {
-      ElMessage.warning('导入失败！原因：没有数据')
+      ElMessage.warning('导入失败！原因：没有数据');
     }
   };
   reader.readAsBinaryString(file);
 }
+
 
 function editDict() {
   isEditDict = true
