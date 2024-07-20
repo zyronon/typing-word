@@ -133,12 +133,8 @@ export function getDictFile(url: string) {
   return new Promise<any[]>(async resolve => {
     let r = await fetch(url).catch(r => {
     })
-    if (url.includes('.7z')) {
-
-    } else {
-      let v = await r.json()
-      resolve(v)
-    }
+    let v = await r.json()
+    resolve(v)
   })
 }
 
@@ -191,12 +187,17 @@ export async function _checkDictWords(dict: Dict) {
       // console.log('r', rrr)
       // return
       let url = `http://localhost/index.php/v1/support/getDictFile?id=${dict.id}&v=${dict.version}`
-      let res: any = await axios(url)
       // let res: any = await axios(`http://localhost/index.php/v1/support/getDictFile?id=2`)
+      let res: any
+      try {
+        res = await axios(url)
+      } catch (err) {
+        console.log('err', err)
+      }
       console.log('res', res)
       //说明重定向了
       let r
-      if (res.request.responseURL !== url) {
+      if (res && res.request.responseURL !== url) {
         r = res.data
       } else {
         let dictLocalUrl = `./dicts/${dict.langTypeStr}/${dict.dictType}/${dict.tranTypeStr}/${dict.fileName}-v${dict.version}.json`;
@@ -204,7 +205,6 @@ export async function _checkDictWords(dict: Dict) {
         try {
           r = await r3.json()
         } catch (e) {
-
         }
         console.log('r', r)
       }

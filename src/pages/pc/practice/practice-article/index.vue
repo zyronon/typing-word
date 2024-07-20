@@ -54,9 +54,9 @@ let articleIsActive = $computed(() => tabIndex === 0)
 
 function next() {
   if (!articleIsActive) return
-  if (store.currentArticleDict.chapterIndex >= articleData.articles.length - 1) {
-    store.currentArticleDict.chapterIndex = 0
-  } else store.currentArticleDict.chapterIndex++
+  if (store.currentArticleDict.lastLearnIndex >= articleData.articles.length - 1) {
+    store.currentArticleDict.lastLearnIndex = 0
+  } else store.currentArticleDict.lastLearnIndex++
 
   emitter.emit(EventKey.resetWord)
   getCurrentPractice()
@@ -72,7 +72,7 @@ function init() {
 
 function setArticle(val: Article) {
   let tempVal = cloneDeep(val)
-  articleData.articles[store.currentArticleDict.chapterIndex] = tempVal
+  articleData.articles[store.currentArticleDict.lastLearnIndex] = tempVal
   articleData.article = tempVal
   statisticsStore.inputWordNumber = 0
   statisticsStore.wrong = 0
@@ -95,7 +95,7 @@ function getCurrentPractice() {
   tabIndex = 0
   articleData.article = cloneDeep(DefaultArticle)
 
-  let currentArticle = articleData.articles[store.currentArticleDict.chapterIndex]
+  let currentArticle = articleData.articles[store.currentArticleDict.lastLearnIndex]
   let tempArticle = {...DefaultArticle, ...currentArticle}
   // console.log('article', tempArticle)
   if (tempArticle.sections.length) {
@@ -224,7 +224,7 @@ function nextWord(word: ArticleWord) {
 function handleChangeChapterIndex(val: ArticleItem) {
   let rIndex = articleData.articles.findIndex(v => v.id === val.item.id)
   if (rIndex > -1) {
-    store.currentArticleDict.chapterIndex = rIndex
+    store.currentArticleDict.lastLearnIndex = rIndex
     getCurrentPractice()
   }
 }
@@ -345,7 +345,7 @@ defineExpose({getCurrentPractice})
                   </div>
                   <Tooltip
                       :title="`下一章(${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
-                      v-if="store.currentArticleDict.chapterIndex < articleData.articles .length - 1">
+                      v-if="store.currentArticleDict.lastLearnIndex < articleData.articles.length - 1">
                     <IconWrapper>
                       <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
                     </IconWrapper>

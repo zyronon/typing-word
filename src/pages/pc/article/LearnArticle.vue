@@ -1,9 +1,7 @@
 <script setup lang="ts">
 
-import Toolbar from "@/pages/pc/components/toolbar/index.vue"
 import {onMounted, onUnmounted, watch} from "vue";
 import {usePracticeStore} from "@/stores/practice.ts";
-import Footer from "@/pages/pc/word/Footer.vue";
 import {useBaseStore} from "@/stores/base.ts";
 
 import Statistics from "@/pages/pc/word/Statistics.vue";
@@ -16,6 +14,7 @@ import {ShortcutKey} from "@/types.ts";
 import DictModal from "@/pages/pc/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
+import ArticleFooter from "@/pages/pc/article/ArticleFooter.vue";
 
 const statisticsStore = usePracticeStore()
 const store = useBaseStore()
@@ -140,7 +139,7 @@ useStartKeyboardEventListener()
 <template>
   <div class="practice-wrapper">
     <PracticeArticle ref="practiceRef"/>
-    <Footer/>
+    <ArticleFooter/>
   </div>
   <DictModal/>
   <Statistics/>
@@ -150,8 +149,9 @@ useStartKeyboardEventListener()
 .practice-wrapper {
   font-size: 0.9rem;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;

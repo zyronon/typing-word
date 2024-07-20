@@ -158,7 +158,7 @@ defineExpose({del, showWord, hideWord, play})
     }"
     >
       <div class="translate-item" v-for="(v,i) in word.trans">
-        <span>{{ (v.pos ? v.pos + '.' : '') + (v.cn || v.en) }}</span>
+        <span>{{ (v.pos ? v.pos + '.' : '') + (v.tran ) }}</span>
         <!--        <div class="volumeIcon">-->
         <!--          <Tooltip-->
         <!--              v-if="i === word.trans.length - 1"-->

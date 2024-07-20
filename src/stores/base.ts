@@ -26,7 +26,6 @@ export interface BaseState {
     },
     article: {
       dictIndex: number,
-      lastLearnIndex: number,
     }
   }
 }
@@ -164,7 +163,6 @@ export const DefaultBaseState = (): BaseState => ({
     },
     article: {
       dictIndex: 0,
-      lastLearnIndex: 0,
     },
   },
 
@@ -263,7 +261,7 @@ export const useBaseStore = defineStore('base', {
       return this.simple.words.map(v => v.word.toLowerCase())
     },
     skipWordNamesWithSimpleWords() {
-      return this.simple.originWords.map(v => v.word.toLowerCase()).concat(this.simpleWords)
+      return this.simple.words.map(v => v.word.toLowerCase()).concat(this.simpleWords)
     },
     isArticle(state: BaseState): boolean {
       //如果是收藏时，特殊判断
@@ -325,17 +323,21 @@ export const useBaseStore = defineStore('base', {
         }
 
         if (this.currentStudy.word.dictIndex >= 0) {
-          await _checkDictWords(this.currentStudyWordDict)
-          // let current = this.articleDictList[this.currentStudy.article.dictIndex]
-          // let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
-          // if (!current.articles.length) {
-          //   let s = await getDictFile(dictResourceUrl)
-          //   current.articles = cloneDeep(s.map(v => {
-          //     v.id = nanoid(6)
-          //     return v
-          //   }))
-          // }
+          // await _checkDictWords(this.currentStudyWordDict)
           // console.log('this.wordDictList', this.wordDictList[0].words[0])
+        }
+        if (this.currentStudy.article.dictIndex >= 0) {
+          let current = this.articleDictList[this.currentStudy.article.dictIndex]
+          let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
+          if (!current.articles.length) {
+            let s = await getDictFile(dictResourceUrl)
+            current.articles = cloneDeep(s.map(v => {
+              v.id = nanoid(6)
+              return v
+            }))
+          }
+          console.log('this.currentArticleDict', this.currentArticleDict.articles[0])
+
         }
         emitter.emit(EventKey.changeDict)
         resolve(true)

@@ -308,11 +308,6 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
   return str
 }
 
-const {
-  isArticleCollect,
-  toggleArticleCollect
-} = useArticleOptions()
-
 
 function showSentence(i1: number = sectionIndex, i2: number = sentenceIndex) {
   hoverIndex = {sectionIndex: i1, sentenceIndex: i2}
@@ -341,57 +336,9 @@ defineExpose({showSentence, play, del,hideSentence,nextSentence})
 
 <template>
   <div class="typing-article" ref="typeArticleRef">
-    <header>
+    <header class="mb-4">
       <div class="title word">{{ props.article.title }}</div>
       <div class="titleTranslate" v-if="settingStore.translate">{{ props.article.titleTranslate }}</div>
-      <div class="options-wrapper">
-        <div class="flex gap-1">
-          <Tooltip
-              :title="`开关默写模式(${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
-          >
-            <IconWrapper>
-              <Icon icon="majesticons:eye-off-line"
-                    v-if="settingStore.dictation"
-                    @click="settingStore.dictation = false"/>
-              <Icon icon="mdi:eye-outline"
-                    v-else
-                    @click="settingStore.dictation = true"/>
-            </IconWrapper>
-          </Tooltip>
-
-          <TranslateSetting/>
-
-          <VolumeSetting/>
-
-          <BaseIcon
-              :title="`编辑(${settingStore.shortcutKeyMap[ShortcutKey.EditArticle]})`"
-              icon="tabler:edit"
-              @click="emit('edit',props.article)"
-          />
-
-          <BaseIcon
-              v-if="!isArticleCollect(props.article)"
-              class="collect"
-              @click="toggleArticleCollect(props.article)"
-              :title="`收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
-              icon="ph:star"/>
-          <BaseIcon
-              v-else
-              class="fill"
-              @click="toggleArticleCollect(props.article)"
-              :title="`取消收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
-              icon="ph:star-fill"/>
-          <BaseIcon
-              :title="`下一句(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
-              icon="icon-park-outline:go-ahead"
-              @click="emit('over')"/>
-
-          <BaseIcon
-              @click="settingStore.showPanel = !settingStore.showPanel"
-              :title="`单词本(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
-              icon="tdesign:menu-unfold"/>
-        </div>
-      </div>
     </header>
     <div class="article-content" ref="articleWrapperRef">
       <article>
@@ -492,14 +439,6 @@ $article-width: 1000px;
       @extend .title;
       font-size: 1.2rem;
       font-family: unset;
-    }
-
-    .options-wrapper {
-      display: flex;
-      justify-content: flex-end;
-      gap: .6rem;
-      font-size: 1.1rem;
-      margin-bottom: .3rem;
     }
   }
 
