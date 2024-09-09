@@ -41,7 +41,7 @@ let show = $ref(false)
           <Icon icon="ph:article-ny-times"/>
           <span>文章</span>
         </div>
-        <div class="row">
+        <div class="row" @click="router.push('/article2')">
           <Icon icon="healthicons:i-exam-multiple-choice-outline"/>
           <span>试卷</span>
         </div>

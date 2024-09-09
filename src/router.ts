@@ -19,6 +19,7 @@ import WordHome from "@/pages/pc/word/WordHome.vue";
 import PC from "@/pages/pc/index.vue";
 import Dict2 from '@/pages/pc/dict2/index.vue'
 import ArticleIndex from "@/pages/pc/article/ArticleIndex.vue";
+import Article2Index from "@/pages/pc/article2/ArticleIndex.vue";
 import HomeIndex from "@/pages/pc/home/HomeIndex.vue";
 import LearnArticle from "@/pages/pc/article/LearnArticle.vue";
 import EditWordDict from "@/pages/pc/word/EditWordDict.vue";
@@ -35,6 +36,7 @@ export const routes: RouteRecordRaw[] = [
       {path: 'edit-word-dict', component: EditWordDict},
       {path: 'dict', component: Dict2},
       {path: 'article', component: ArticleIndex},
+      {path: 'article2', component: Article2Index},
       {path: 'learn-article', component: LearnArticle},
     ]
   },
