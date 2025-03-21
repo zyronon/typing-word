@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { useBaseStore } from "@/stores/base.ts";
-import { Icon } from '@iconify/vue'
+import {useBaseStore} from "@/stores/base.ts";
 import "vue-activity-calendar/style.css";
-import { useRouter } from "vue-router";
-import { enArticle } from "@/assets/dictionary.ts";
+import {useRouter} from "vue-router";
 import BasePage from "@/pages/pc/components/BasePage.vue";
 
 const base = useBaseStore()

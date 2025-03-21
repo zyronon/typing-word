@@ -1,19 +1,15 @@
 <script setup lang="ts">
 import {computed, nextTick, onMounted, onUnmounted, watch} from "vue"
-import {Article, ArticleWord, DefaultArticle, ShortcutKey, Word} from "@/types.ts";
+import {Article, ArticleWord, DefaultArticle, Word} from "@/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
 import {cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import BaseIcon from "@/components/BaseIcon.vue";
-import {useArticleOptions} from "@/hooks/dict.ts";
-import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
-import Tooltip from "@/pages/pc/components/Tooltip.vue";
-import {Icon} from "@iconify/vue";
-import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue";
-import VolumeSetting from "@/pages/pc/components/toolbar/VolumeSetting.vue";
+import jq from 'jquery'
+import {_nextTick} from "@/utils";
+
 
 interface IProps {
   article: Article,
@@ -50,11 +46,15 @@ let wordIndex = $ref(0)
 let stringIndex = $ref(0)
 let input = $ref('')
 let wrong = $ref('')
+//是否是输入空格
 let isSpace = $ref(false)
 let hoverIndex = $ref({
   sectionIndex: -1,
   sentenceIndex: -1,
 })
+let cursor = $ref({})
+let isEnd = $ref(false)
+
 const currentIndex = computed(() => {
   return `${sectionIndex}${sentenceIndex}${wordIndex}`
 })
@@ -68,20 +68,90 @@ const store = useBaseStore()
 const statisticsStore = usePracticeStore()
 const settingStore = useSettingStore()
 
+//当跳过句子时，会同时触发光标检测和布局检测，但布局检测
+let isDelayCheckCursorPosition = false
+
+window.$ = jq
+watch([() => sectionIndex, () => sentenceIndex, () => wordIndex, () => stringIndex], ([a, b, c,]) => {
+  checkCursorPosition(a, b, c)
+})
+
 watch(() => props.article, () => {
   sectionIndex = props.sectionIndex
   sentenceIndex = props.sentenceIndex
   wordIndex = props.wordIndex
   stringIndex = props.stringIndex
   typeArticleRef?.scrollTo({top: 0, behavior: "smooth"})
-  calcTranslateLocation()
+  checkTranslateLocation()
+  checkCursorPosition()
 }, {immediate: true})
 
 watch(() => settingStore.dictation, () => {
-  calcTranslateLocation()
+  if (settingStore.translate) {
+    checkTranslateLocation()
+  }
+  isDelayCheckCursorPosition = true
+  checkCursorPosition()
+})
+watch(() => settingStore.translate, () => {
+  isDelayCheckCursorPosition = true
+  checkCursorPosition()
+  checkTranslateLocation()
 })
 
+
+function checkCursorPosition(a = sectionIndex, b = sentenceIndex, c = wordIndex) {
+  console.log('checkCursorPosition', isDelayCheckCursorPosition)
+  _nextTick(() => {
+    let currentWord = jq(`.section:nth(${a}) .sentence:nth(${b}) .word:nth(${c})`)
+    // console.log(a, b, c, currentWord)
+    if (currentWord.length) {
+      let end = currentWord.find('.word-end')
+      // console.log(end)
+      if (end.length) {
+        let articleRect = articleWrapperRef.getBoundingClientRect()
+        cursor = {
+          top: end.offset().top - articleRect.top,
+          left: end.offset().left - articleRect.left,
+        }
+        // console.log(cursor)
+      }
+    }
+    isDelayCheckCursorPosition = false
+  }, isDelayCheckCursorPosition ? 300 : 0)
+}
+
+function checkTranslateLocation() {
+  console.log('checkTranslateLocation')
+  _nextTick(() => {
+    let articleRect = articleWrapperRef.getBoundingClientRect()
+    props.article.sections.map((v, i) => {
+      v.map((w, j) => {
+        let location = i + '-' + j
+        let wordClassName = `.word${location}`
+        let word = document.querySelector(wordClassName)
+        let wordRect = word.getBoundingClientRect()
+        let translateClassName = `.translate${location}`
+        let translate: HTMLDivElement = document.querySelector(translateClassName)
+
+        translate.style.opacity = '1'
+        translate.style.top = wordRect.top - articleRect.top - 22 + 'px'
+        // @ts-ignore
+        translate.firstChild.style.width = wordRect.left - articleRect.left + 'px'
+        // console.log(word, wordRect.left - articleRect.left)
+        // console.log('word-wordRect', wordRect)
+      })
+    })
+    // checkCursorPosition(sectionIndex, sentenceIndex, wordIndex)
+  }, 300)
+}
+
+
+let lockNextSentence = false
+
 function nextSentence() {
+  if (lockNextSentence) return
+  lockNextSentence = true
   // wordData.words = [
   //   {"word": "pharmacy", "trans": ["药房；配药学，药剂学；制药业；一批备用药品"], "phonetic0": "'fɑrməsi", "phonetic1": "'fɑːməsɪ"},
   //   // {"word": "foregone", "trans": ["过去的；先前的；预知的；预先决定的", "发生在…之前（forego的过去分词）"], "phonetic0": "'fɔrɡɔn", "phonetic1": "fɔː'gɒn"}, {"word": "president", "trans": ["总统；董事长；校长；主席"], "phonetic0": "'prɛzɪdənt", "phonetic1": "'prezɪd(ə)nt"}, {"word": "plastic", "trans": ["塑料的；（外科）造型的；可塑的", "塑料制品；整形；可塑体"], "phonetic0": "'plæstɪk", "phonetic1": "'plæstɪk"}, {"word": "provisionally", "trans": ["临时地，暂时地"], "phonetic0": "", "phonetic1": ""}, {"word": "incentive", "trans": ["动机；刺激", "激励的；刺激的"], "phonetic0": "ɪn'sɛntɪv", "phonetic1": "ɪn'sentɪv"}, {"word": "calculate", "trans": ["计算；以为；作打算"], "phonetic0": "'kælkjulet", "phonetic1": "'kælkjʊleɪt"}
@@ -106,14 +176,19 @@ function nextSentence() {
     sectionIndex++
     if (!props.article.sections[sectionIndex]) {
       console.log('打完了')
+      isEnd = true
       emit('over')
     }
   } else {
-    if (settingStore.dictation) {
-      calcTranslateLocation()
+    if (settingStore.dictation){
+      isDelayCheckCursorPosition = true
+    }
+    if (settingStore.dictation && settingStore.translate) {
+      checkTranslateLocation()
     }
     playWordAudio(currentSection[sentenceIndex].text)
   }
+  lockNextSentence = false
 }
 
 function onTyping(e: KeyboardEvent) {
@@ -134,20 +209,7 @@ function onTyping(e: KeyboardEvent) {
 
     if (!currentSentence.words[wordIndex]) {
       wordIndex = 0
-      sentenceIndex++
-      if (!currentSection[sentenceIndex]) {
-        sentenceIndex = 0
-        sectionIndex++
-
-        if (!props.article.sections[sectionIndex]) {
-          console.log('打完了')
-        }
-      } else {
-        if (settingStore.dictation) {
-          calcTranslateLocation()
-        }
-        playWordAudio(currentSection[sentenceIndex].text)
-      }
+      nextSentence()
     }
   }
 
@@ -194,7 +256,7 @@ function onTyping(e: KeyboardEvent) {
         }
       }
     } else {
-      emit('wrong', currentWord)
+      // emit('wrong', currentWord)
       wrong = letter
       playBeep()
       setTimeout(() => {
@@ -207,30 +269,6 @@ function onTyping(e: KeyboardEvent) {
   e.preventDefault()
 }
 
-function calcTranslateLocation() {
-  nextTick(() => {
-    setTimeout(() => {
-      let articleRect = articleWrapperRef.getBoundingClientRect()
-      props.article.sections.map((v, i) => {
-        v.map((w, j) => {
-          let location = i + '-' + j
-          let wordClassName = `.word${location}`
-          let word = document.querySelector(wordClassName)
-          let wordRect = word.getBoundingClientRect()
-          let translateClassName = `.translate${location}`
-          let translate: HTMLDivElement = document.querySelector(translateClassName)
-
-          translate.style.opacity = '1'
-          translate.style.top = wordRect.top - articleRect.top - 22 + 'px'
-          // @ts-ignore
-          translate.firstChild.style.width = wordRect.left - articleRect.left + 'px'
-          // console.log(word, wordRect.left - articleRect.left)
-          // console.log('word-wordRect', wordRect)
-        })
-      })
-    }, 300)
-  })
-}
 
 function play() {
   let currentSection = props.article.sections[sectionIndex]
@@ -262,7 +300,7 @@ function playWord(word: ArticleWord) {
   playWordAudio(word.word)
 }
 
-function currentWordInput(word: ArticleWord, i: number, i2: number,) {
+function currentWordString(word: ArticleWord, i: number, i2: number,) {
   let str = word.word.slice(input.length + wrong.length, input.length + wrong.length + 1)
   if (word.isSymbol) {
     return str
@@ -289,7 +327,7 @@ function currentWordEnd(word: ArticleWord, i: number, i2: number,) {
   return str
 }
 
-function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
+function getAllWord(word: ArticleWord, i: number, i2: number, i3: number) {
   let str = word.word
   if (word.isSymbol) {
     return str
@@ -300,14 +338,11 @@ function otherWord(word: ArticleWord, i: number, i2: number, i3: number) {
   }
 
   //剩100是因为，可能存在特殊情况，比如003,010这种，0 12 24，100
-  if (sectionIndex * 10000 + sentenceIndex * 100 + wordIndex < i * 10000 + i2 * 100 + i3
-      && settingStore.dictation
-  ) {
+  if (sectionIndex * 10000 + sentenceIndex * 100 + wordIndex < i * 10000 + i2 * 100 + i3 && settingStore.dictation) {
     return str.split('').map(v => '_').join('')
   }
   return str
 }
-
 
 function showSentence(i1: number = sectionIndex, i2: number = sentenceIndex) {
   hoverIndex = {sectionIndex: i1, sentenceIndex: i2}
@@ -330,7 +365,8 @@ onUnmounted(() => {
   emitter.off(EventKey.onTyping, onTyping)
 })
 
-defineExpose({showSentence, play, del,hideSentence,nextSentence})
+defineExpose({showSentence, play, del, hideSentence, nextSentence})
+
 
 </script>
 
@@ -341,9 +377,8 @@ defineExpose({showSentence, play, del,hideSentence,nextSentence})
       <div class="titleTranslate" v-if="settingStore.translate">{{ props.article.titleTranslate }}</div>
     </header>
     <div class="article-content" ref="articleWrapperRef">
-      <article>
-        <div class="section"
-             v-for="(section,indexI) in props.article.sections">
+      <article :class="settingStore.translate && 'tall'">
+        <div class="section" v-for="(section,indexI) in props.article.sections">
                 <span class="sentence"
                       :class="[
                           sectionIndex === indexI && sentenceIndex === indexJ && settingStore.dictation
@@ -369,24 +404,29 @@ defineExpose({showSentence, play, del,hideSentence,nextSentence})
                         indexW === 0 && `word${indexI}-${indexJ}`
                         ]"
                       @click="playWord(word)">
-                    <span v-if="`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace">
-                      <span class="input" v-if="input">{{ input }}</span>
-                      <span class="wrong" :class="wrong === ' ' && 'bg-wrong'" v-if="wrong">{{ wrong }}</span>
-                      <span class="bottom-border" v-else>{{ currentWordInput(word, indexI, indexJ) }}</span>
-                      <span>{{ currentWordEnd(word, indexI, indexJ,) }}</span>
+                    <span class="all-word" v-if="`${indexI}${indexJ}${indexW}` === currentIndex && !isSpace">
+                      <span class="word-start" v-if="input">{{ input }}</span>
+                      <span class="word-end">
+                        <span class="wrong" :class="wrong === ' ' && 'bg-wrong'" v-if="wrong">{{ wrong }}</span>
+                        <span class="input" v-else>{{ currentWordString(word, indexI, indexJ) }}</span>
+                        <span>{{ currentWordEnd(word, indexI, indexJ,) }}</span>
+                      </span>
                     </span>
-                    <span v-else>{{ otherWord(word, indexI, indexJ, indexW) }}</span>
+                    <span v-else class="all-word">{{ getAllWord(word, indexI, indexJ, indexW) }}</span>
                     <span
                         v-if="word.nextSpace"
+                        class="word-end"
                         :class="[
+                           (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && wrong) && 'bg-wrong',
+                        ]"
+                    >
+                      <span class="word-space"
+                            :class="[
                             `${indexI}${indexJ}${indexW}`,
-                            (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && wrong) && 'bg-wrong',
-                            (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && !wrong) && 'bottom-border',
-                            (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && !wrong && settingStore.dictation) && 'word-space',
-                        ]">
-                      {{
-                        (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && settingStore.dictation) ? '_' : ' '
-                      }}
+                            settingStore.dictation && 'to-bottom',
+                            (`${indexI}${indexJ}${indexW}` === currentIndex && isSpace && !wrong ) && 'wait',
+                        ]"
+                      ></span>
                     </span>
                   </span>
                 </span>
@@ -404,6 +444,7 @@ defineExpose({showSentence, play, del,hideSentence,nextSentence})
           </div>
         </template>
       </div>
+      <div class="cursor" v-if="!isEnd" :style="{top:cursor.top+'px',left:cursor.left+'px'}"></div>
     </div>
   </div>
 </template>
@@ -414,6 +455,10 @@ defineExpose({showSentence, play, del,hideSentence,nextSentence})
 .wrote {
   //color: green;
   color: rgb(22, 163, 74);
+}
+
+.word {
+  position: relative;
 }
 
 $article-width: 1000px;
@@ -448,16 +493,18 @@ $article-width: 1000px;
   }
 
   article {
-    //height: 100%;
     font-size: 1.6rem;
-    line-height: 2.5;
+    line-height: 1.3;
     color: gray;
     word-break: keep-all;
     word-wrap: break-word;
     white-space: pre-wrap;
 
+    &.tall {
+      line-height: 2.5;
+    }
+
     .section {
-      font-family: var(--word-font-family);
       margin-bottom: 3rem;
 
       .sentence {
@@ -468,6 +515,7 @@ $article-width: 1000px;
         }
 
         &.dictation {
+          font-family: var(--word-font-family);
           letter-spacing: .2rem;
         }
       }
@@ -507,34 +555,43 @@ $article-width: 1000px;
   .word-space {
     position: relative;
     color: gray;
+    display: inline-block;
+    width: 0.8rem;
+    height: 1.5rem;
+    margin: 0 1px;
+    box-sizing: border-box;
 
-    &::after {
-      content: ' ';
-      position: absolute;
-      width: .1rem;
-      height: .25rem;
-      background: gray;
-      bottom: .12rem;
-      right: .25rem;
+    &.to-bottom {
+      transform: translateY(0.3rem);
     }
 
-    &::before {
-      content: ' ';
-      position: absolute;
-      width: .1rem;
-      height: .26rem;
-      background: gray;
-      bottom: .12rem;
-      left: 0;
+    &.wait {
+      border-bottom: 2px solid gray;
+
+      &::after {
+        content: ' ';
+        position: absolute;
+        width: .1rem;
+        height: .25rem;
+        background: gray;
+        bottom: 0;
+        right: 0;
+      }
+
+      &::before {
+        content: ' ';
+        position: absolute;
+        width: .1rem;
+        height: .26rem;
+        background: gray;
+        bottom: 0;
+        left: 0;
+      }
     }
   }
 
-  .bottom-border {
-    animation: underline 1s infinite steps(1, start);
-  }
 
-  .input {
-    //font-weight: bold;
+  .word-start {
     color: var(--color-main-active);
   }
 
@@ -549,10 +606,19 @@ $article-width: 1000px;
 
   .bg-wrong {
     display: inline-block;
+    line-height: 1;
     color: gray;
     background: rgba(red, 0.6);
     animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   }
+}
+
+.cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1.8rem;
+  animation: underline 1s infinite steps(1, start);
 }
 
 @keyframes underline {

@@ -10,6 +10,7 @@ import {nanoid} from "nanoid";
 import dayjs from 'dayjs'
 import axios from "axios";
 import {env} from "@/config/ENV.ts";
+import {nextTick} from "vue";
 
 export function getRandom(a: number, b: number): number {
   return Math.random() * (b - a) + a;
@@ -251,4 +252,12 @@ export function _getAccomplishDate(total: number, dayNumber: number) {
 //获取学习进度
 export function _getStudyProgress(index: number, total: number) {
   return Number(((index / total) * 100).toFixed())
+}
+
+export function _nextTick(cb: Function, time?: number) {
+  if (time) {
+    nextTick(() => setTimeout(cb, time))
+  } else {
+    nextTick(cb)
+  }
 }
