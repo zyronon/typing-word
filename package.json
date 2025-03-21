@@ -15,6 +15,7 @@
     "i18n:write": "gulp i18nwrite"
   },
   "dependencies": {
+    "@imengyu/vue3-context-menu": "^1.4.5",
     "@opentranslate/baidu": "^1.4.2",
     "@opentranslate/translator": "^1.4.2",
     "axios": "^1.7.2",
@@ -39,6 +40,7 @@
     "vue-activity-calendar": "^1.2.2",
     "vue-i18n": "9",
     "vue-router": "4",
+    "vue-toast-notification": "3",
     "vue-virtual-scroller": "2.0.0-beta.8"
   },
   "devDependencies": {

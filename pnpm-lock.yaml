@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@imengyu/vue3-context-menu':
+        specifier: ^1.4.5
+        version: 1.4.5
       '@opentranslate/baidu':
         specifier: ^1.4.2
         version: 1.4.2
@@ -80,6 +83,9 @@ importers:
       vue-router:
         specifier: '4'
         version: 4.3.2(vue@3.4.27(typescript@5.4.5))
+      vue-toast-notification:
+        specifier: '3'
+        version: 3.1.3(vue@3.4.27(typescript@5.4.5))
       vue-virtual-scroller:
         specifier: 2.0.0-beta.8
         version: 2.0.0-beta.8(vue@3.4.27(typescript@5.4.5))
@@ -505,6 +511,9 @@ packages:
     resolution: {integrity: sha512-CQnYqLiQD5LOAaXhBrmj1mdL2/NCJvwcC4jtW2Z8ukhThiFkLDkutarTOV2trfc9EXqUqRs0KqXOL9pZ/IyysA==}
     peerDependencies:
       vue: '>=3'
+
+  '@imengyu/vue3-context-menu@1.4.5':
+    resolution: {integrity: sha512-VVsfuCYWWchVAIRQHXOUttSemEunUqZIZ4y/Y8aIWSFb/Z9w1E+RjO0dw3H8Jm+yaCbLW4/Mn9pRy3rnry71Hw==}
 
   '@intlify/core-base@9.13.1':
     resolution: {integrity: sha512-+bcQRkJO9pcX8d0gel9ZNfrzU22sZFSA0WVhfXrf5jdJOS24a+Bp8pozuS9sBI9Hk/tGz83pgKfmqcn/Ci7/8w==}
@@ -3367,6 +3376,12 @@ packages:
   vue-template-compiler@2.7.16:
     resolution: {integrity: sha512-AYbUWAJHLGGQM7+cNTELw+KsOG9nl2CnSv467WobS5Cv9uk3wFcnr1Etsz2sEIHEZvw1U+o9mRlEO6QbZvUPGQ==}
 
+  vue-toast-notification@3.1.3:
+    resolution: {integrity: sha512-XNyWqwLIGBFfX5G9sK+clq3N3IPlhDjzNdbZaXkEElcotPlWs0wWZailk1vqhdtLYT/93Y4FHAVuzyatLmPZRA==}
+    engines: {node: '>=12.15.0'}
+    peerDependencies:
+      vue: ^3.0
+
   vue-tsc@2.0.19:
     resolution: {integrity: sha512-JWay5Zt2/871iodGF72cELIbcAoPyhJxq56mPPh+M2K7IwI688FMrFKc/+DvB05wDWEuCPexQJ6L10zSwzzapg==}
     hasBin: true
@@ -3839,6 +3854,8 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
       vue: 3.4.27(typescript@5.4.5)
+
+  '@imengyu/vue3-context-menu@1.4.5': {}
 
   '@intlify/core-base@9.13.1':
     dependencies:
@@ -7113,6 +7130,10 @@ snapshots:
     dependencies:
       de-indent: 1.0.2
       he: 1.2.0
+
+  vue-toast-notification@3.1.3(vue@3.4.27(typescript@5.4.5)):
+    dependencies:
+      vue: 3.4.27(typescript@5.4.5)
 
   vue-tsc@2.0.19(typescript@5.4.5):
     dependencies:

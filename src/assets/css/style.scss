@@ -47,11 +47,14 @@
   --color-input-icon: #d3d4d7;
 
   --color-textarea-bg: white;
+  --color-article: black;
 
   --aside-width: 12rem;
 
-  --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  --word-font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  --font-family: -apple-system, sans-serif;
+  --word-font-family: ui-monospace, sans-serif;
+  --en-article-family: Georgia, sans-serif;
+  --zh-article-family: "Songti SC", "SimSun", "Noto Serif CJK SC", serif;
 }
 
 html.dark {
@@ -89,21 +92,21 @@ html.dark {
     --practice-wrapper-translateX: -12vw;
     --toolbar-width: 40vw;
     --article-width: 60vw;
-    --panel-width: 380rem;
-    --toolbar-height: 48rem;
+    --panel-width: 38rem;
+    --toolbar-height: 4.8rem;
     --panel-margin-left: calc(50vw + var(--practice-wrapper-translateX) + var(--toolbar-width) / 2 + 5vw);
     --article-panel-margin-left: calc(50% + var(--practice-wrapper-translateX) + var(--article-width) / 2 + 48rem);
   }
   .footer {
     .bottom {
-      padding: 1.5rem 5rem 5rem 5rem !important;
+      padding: 1.5rem 1rem 1rem 1rem !important;
     }
 
     .stat {
-      margin-top: 4rem !important;
+      margin-top: 0.4rem !important;
 
       .row {
-        gap: 5rem !important;
+        gap: 0.5rem !important;
       }
     }
   }
@@ -123,14 +126,14 @@ html.dark {
 
   .footer {
     .bottom {
-      padding: 1.5rem 5rem 5rem 5rem !important;
+      padding: 1.5rem 0.5rem 0.5rem 0.5rem !important;
     }
 
     .stat {
-      margin-top: 4rem !important;
+      margin-top: 0.4rem !important;
 
       .row {
-        gap: 5rem !important;
+        gap: 0.5rem !important;
       }
     }
   }
