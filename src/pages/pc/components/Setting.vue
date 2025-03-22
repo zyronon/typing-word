@@ -5,15 +5,13 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {getAudioFileUrl, useChangeAllSound, usePlayAudio, useWatchAllSound} from "@/hooks/sound.ts";
 import {getShortcutKey, useDisableEventListener, useEventListener} from "@/hooks/event.ts";
 import {cloneDeep} from "lodash-es";
-import {DefaultShortcutKeyMap, Dict, DictType, ShortcutKey} from "@/types.ts";
+import {DefaultShortcutKeyMap, ShortcutKey} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {APP_NAME, EXPORT_DATA_KEY, SAVE_DICT_KEY, SAVE_SETTING_KEY, SoundFileOptions} from "@/utils/const.ts";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
-import {BaseState, useBaseStore} from "@/stores/base.ts";
-import * as copy from "copy-to-clipboard";
+import {useBaseStore} from "@/stores/base.ts";
 import {saveAs} from "file-saver";
 import {checkAndUpgradeSaveDict, checkAndUpgradeSaveSetting, shakeCommonDict} from "@/utils";
-import {dayjs} from "element-plus";
 import {GITHUB} from "@/config/ENV.ts";
 
 

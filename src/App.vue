@@ -15,6 +15,7 @@ import {isMobile, shakeCommonDict} from "@/utils";
 import router, {routes} from "@/router.ts";
 
 import {useRoute} from "vue-router";
+import {splitEnArticle} from "@/hooks/article.ts";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()

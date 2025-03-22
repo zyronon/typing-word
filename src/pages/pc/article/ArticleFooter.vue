@@ -11,6 +11,8 @@ import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import {useArticleOptions} from "@/hooks/dict.ts";
+import audio  from '/public/sound/article/nce2-1/1.mp3'
+import {emitter} from "@/utils/eventBus.ts";
 
 const statisticsStore = usePracticeStore()
 const settingStore = useSettingStore()
@@ -55,86 +57,90 @@ onUnmounted(() => {
 <template>
   <div class="footer " :class="!settingStore.showToolbar && 'hide'">
     <div class="bottom">
-      <div class="flex gap-2">
-        <el-progress
-            class="flex-1"
-            :percentage="progress"
-            :stroke-width="8"
-            :show-text="false"/>
-      </div>
+
       <div class="flex justify-between">
-       <div class="stat">
-         <div class="row">
-           <div class="num">{{ speedMinute }}分钟</div>
-           <div class="line"></div>
-           <div class="name">时间</div>
-         </div>
-         <div class="row">
-           <div class="num">{{ statisticsStore.total }}</div>
-           <div class="line"></div>
-           <div class="name">单词总数</div>
-         </div>
-         <div class="row">
-           <div class="num">{{ format(statisticsStore.inputWordNumber, '', 0) }}</div>
-           <div class="line"></div>
-           <div class="name">输入数</div>
-         </div>
-         <div class="row">
-           <div class="num">{{ format(statisticsStore.wrong, '', 0) }}</div>
-           <div class="line"></div>
-           <div class="name">错误数</div>
-         </div>
-         <div class="row">
-           <div class="num">{{ format(statisticsStore.correctRate, '%') }}</div>
-           <div class="line"></div>
-           <div class="name">正确率</div>
-         </div>
-       </div>
-        <div class="flex gap-3 center">
-          <Tooltip
-              :title="`开关默写模式(${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
-          >
-            <IconWrapper>
-              <Icon icon="majesticons:eye-off-line"
-                    v-if="settingStore.dictation"
-                    @click="settingStore.dictation = false"/>
-              <Icon icon="mdi:eye-outline"
-                    v-else
-                    @click="settingStore.dictation = true"/>
-            </IconWrapper>
-          </Tooltip>
+        <div>
+          <el-progress
+              class="flex-1"
+              :percentage="progress"
+              :stroke-width="8"
+              :show-text="false"/>
+          <div class="stat">
+            <div class="row">
+              <div class="num">{{ speedMinute }}分钟</div>
+              <div class="line"></div>
+              <div class="name">时间</div>
+            </div>
+            <div class="row">
+              <div class="num">{{ statisticsStore.total }}</div>
+              <div class="line"></div>
+              <div class="name">单词总数</div>
+            </div>
+            <div class="row">
+              <div class="num">{{ format(statisticsStore.inputWordNumber, '', 0) }}</div>
+              <div class="line"></div>
+              <div class="name">输入数</div>
+            </div>
+            <div class="row">
+              <div class="num">{{ format(statisticsStore.wrong, '', 0) }}</div>
+              <div class="line"></div>
+              <div class="name">错误数</div>
+            </div>
+            <div class="row">
+              <div class="num">{{ format(statisticsStore.correctRate, '%') }}</div>
+              <div class="line"></div>
+              <div class="name">正确率</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <audio :src="audio" controls></audio>
+          <div class="flex gap-3 center">
+            <Tooltip
+                :title="`开关默写模式(${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
+            >
+              <IconWrapper>
+                <Icon icon="majesticons:eye-off-line"
+                      v-if="settingStore.dictation"
+                      @click="settingStore.dictation = false"/>
+                <Icon icon="mdi:eye-outline"
+                      v-else
+                      @click="settingStore.dictation = true"/>
+              </IconWrapper>
+            </Tooltip>
 
-          <TranslateSetting/>
+            <TranslateSetting/>
 
-          <VolumeSetting/>
+            <VolumeSetting/>
 
-          <BaseIcon
-              :title="`编辑(${settingStore.shortcutKeyMap[ShortcutKey.EditArticle]})`"
-              icon="tabler:edit"
-              @click="emit('edit',)"
-          />
+            <BaseIcon
+                :title="`编辑(${settingStore.shortcutKeyMap[ShortcutKey.EditArticle]})`"
+                icon="tabler:edit"
+                @click="emitter.emit(ShortcutKey.EditArticle)"
+            />
 
-          <BaseIcon
-              v-if="!isArticleCollect()"
-              class="collect"
-              @click="toggleArticleCollect()"
-              :title="`收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
-              icon="ph:star"/>
-          <BaseIcon
-              v-else
-              class="fill"
-              @click="toggleArticleCollect()"
-              :title="`取消收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
-              icon="ph:star-fill"/>
-          <BaseIcon
-              :title="`下一句(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
-              icon="icon-park-outline:go-ahead"
-              @click="emit('over')"/>
+            <BaseIcon
+                v-if="!isArticleCollect()"
+                class="collect"
+                @click="toggleArticleCollect()"
+                :title="`收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
+                icon="ph:star"/>
+            <BaseIcon
+                v-else
+                class="fill"
+                @click="toggleArticleCollect()"
+                :title="`取消收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
+                icon="ph:star-fill"/>
+            <BaseIcon
+                :title="`下一句(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
+                icon="icon-park-outline:go-ahead"
+                @click="emit('over')"/>
 
-          <BaseIcon
-              @click="settingStore.showPanel = !settingStore.showPanel"
-              :title="`面板(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
-              icon="tdesign:menu-unfold"/>
+            <BaseIcon
+                @click="settingStore.showPanel = !settingStore.showPanel"
+                :title="`面板(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
+                icon="tdesign:menu-unfold"/>
+          </div>
         </div>
       </div>
     </div>

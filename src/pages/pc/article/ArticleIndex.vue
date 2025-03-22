@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import {useBaseStore} from "@/stores/base.ts";
-import DictListPanel from "@/pages/pc/components/DictListPanel.vue";
 import {Icon} from '@iconify/vue'
-import {ActivityCalendar} from "vue-activity-calendar";
 import "vue-activity-calendar/style.css";
 import {useRouter} from "vue-router";
-import BaseIcon from "@/components/BaseIcon.vue";
-import DictList from "@/pages/pc/components/list/DictList.vue";
 import {enArticle} from "@/assets/dictionary.ts";
-import {DictType} from "@/types.ts";
 import BasePage from "@/pages/pc/components/BasePage.vue";
 
 const base = useBaseStore()

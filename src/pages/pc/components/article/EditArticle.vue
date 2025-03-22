@@ -11,13 +11,17 @@ import {
   renewSectionTexts,
   renewSectionTranslates
 } from "@/hooks/translate.ts";
-import * as copy from "copy-to-clipboard";
 
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {getSplitTranslateText} from "@/hooks/article.ts";
 import {cloneDeep} from "lodash-es";
-import {watch} from "vue";
+import {watch, ref} from "vue";
 import Empty from "@/components/Empty.vue";
+import {UploadProps, UploadUserFile} from "element-plus";
+import {_copy, _parseLRC} from "@/utils";
+import * as Comparison from "string-comparison"
+import audio from '/public/sound/article/nce2-1/1.mp3'
+import BaseIcon from "@/components/BaseIcon.vue";
 
 interface IProps {
   article?: Article,
@@ -69,6 +73,12 @@ watch(() => props.article, val => {
   renewSections()
   // console.log('ar', article)
 }, {immediate: true})
+
+watch(() => editArticle.text, (s) => {
+  if (!s.trim()) {
+    editArticle.sections = []
+  }
+})
 
 function renewSections() {
   if (editArticle.text.trim()) {
@@ -136,7 +146,6 @@ async function startNetworkTranslate() {
     return ElMessage.error('请填写正文！')
   }
   renewSectionTexts(editArticle)
-  editArticle.textNetworkTranslate = ''
   //注意！！！
   //这里需要用异步，因为watch了article.networkTranslate，改变networkTranslate了之后，会重新设置article.sections
   //导致getNetworkTranslate里面拿到的article.sections是废弃的值
@@ -145,8 +154,6 @@ async function startNetworkTranslate() {
       progress = v
     })
     failCount = 0
-
-    copy(JSON.stringify(editArticle.sections))
   })
 }
 
@@ -230,61 +237,147 @@ function save(option: 'save' | 'saveAndNext') {
 //不知道为什么直接用editArticle，取到是空的默认值
 defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
 
+const fileList = ref<UploadUserFile[]>([])
+
+const handleExceed: UploadProps['onExceed'] = (files, uploadFiles) => {
+  ElMessage.warning(
+      `The limit is 3, you selected ${files.length} files this time, add up to ${
+          files.length + uploadFiles.length
+      } totally`
+  )
+}
+
+const handleChange: UploadProps['onChange'] = (uploadFile, uploadFiles) => {
+  console.log(1)
+  fileList.value.push({
+    name: uploadFile.name,
+    url: uploadFile.url,
+  })
+}
+
+function test() {
+  let lrc = `[00:00.00]Lesson 1 A Private Conversation
+[00:04.35]First listen and then answer the question.
+[00:09.26]Why did the writer complain to the people behind him?
+[00:14.60]Last week I went to the theatre.
+[00:19.15]I had a very good seat.
+[00:22.03]The play was very interesting.
+[00:24.59]I did not enjoy it.
+[00:27.26]A young man and a young woman were sitting behind me.
+[00:31.65]They were talking loudly.
+[00:34.43]I got very angry.
+[00:36.98]I could not hear the actors.
+[00:40.36]I turned round.I looked at the man and the woman angrily.
+[00:46.59]They did not pay any attention.
+[00:50.65]In the end,I could not bear it.
+[00:54.57]I turned round again 'I can't hear a word!'I said angrily
+[01:02.98]'It's none of your business,'the young man said rudely.
+[01:08.85]'This is a private conversation!'
+`
+  let lrcList = _parseLRC(lrc)
+  console.log(lrcList)
+  editArticle.sections.map((v, i) => {
+    v.map((w, j) => {
+      console.log(w)
+      for (let k = 0; k < lrcList.length; k++) {
+        let s = lrcList[k]
+        let d = Comparison.default.cosine.similarity(w.text, s.text)
+        d = Comparison.default.levenshtein.similarity(w.text, s.text)
+        d = Comparison.default.longestCommonSubsequence.similarity(w.text, s.text)
+        // d = Comparison.default.metricLcs.similarity(w.text, s.text)
+        console.log(w.text, s.text, d)
+        if (d >= 0.8) {
+          w.audioPosition = [s.start, s.end ?? -1]
+          w.test = s.text
+          break
+        }
+      }
+    })
+  })
+  console.log(editArticle.sections.flat())
+  // console.log(cosine.similarity('Thanos', 'Rival'))
+}
+
+const a = new Audio(audio)
+
+function play(sentence: Sentence) {
+  if (sentence.audioPosition?.length) {
+    let start = sentence.audioPosition[0];
+    a.currentTime = start
+    a.play()
+    let end = sentence.audioPosition?.[1]
+    if (end && end !== -1) {
+      setTimeout(() => {
+        a.pause()
+      }, (end - start) * 1000)
+    }
+  }
+}
+
+function s() {
+
+}
+
 </script>
 
 <template>
   <div class="content">
-    <div class="row">
-      <div class="title">①原文</div>
-      <div class="item">
-        <div class="label">标题：</div>
-        <textarea
-            v-model="editArticle.title"
-            type="textarea"
-            class="base-textarea"
-            placeholder="请填写原文标题"
-        >
+    <div class="row flex flex-col gap-2">
+      <div class="title">原文</div>
+      <div class="">标题：</div>
+      <input
+          v-model="editArticle.title"
+          type="text"
+          class="base-input"
+          placeholder="请填写原文标题"
+      />
+      <div class="">正文：</div>
+      <textarea
+          v-model="editArticle.text"
+          :readonly="![100,0].includes(progress)"
+          type="textarea"
+          class="base-textarea"
+          placeholder="请复制原文"
+      >
             </textarea>
-      </div>
-      <div class="item basic">
-        <div class="label">正文：</div>
-        <textarea
-            v-model="editArticle.text"
-            @input="renewSections"
-            :readonly="![100,0].includes(progress)"
-            type="textarea"
-            class="base-textarea"
-            placeholder="请填写原文正文"
-        >
-            </textarea>
+      <div class="justify-between items-center gap-2 flex">
+        <div class="text-base mb-1 color-white/60">请复制原文，然后进行分句，一行一句，段落间空一行。修改完成后，点击 <span class="color-red font-bold">应用按钮</span> 同步到左侧结果
+        </div>
+        <el-button type="primary" @click="renewSections">应用</el-button>
       </div>
     </div>
-    <div class="row">
-      <div class="title">②译文</div>
-      <div class="item">
-        <div class="label">
-          <span>标题：</span>
-          <el-radio-group
-              v-model="editArticle.useTranslateType"
-              @change="renewSections"
-          >
-            <el-radio-button :value="TranslateType.custom">本地翻译</el-radio-button>
-            <el-radio-button :value="TranslateType.network">网络翻译</el-radio-button>
-            <el-radio-button :value="TranslateType.none">不需要翻译</el-radio-button>
-          </el-radio-group>
-        </div>
-        <textarea
-            v-model="editArticle.titleTranslate"
-            type="textarea"
-            class="base-textarea"
-            placeholder="请填写翻译标题"
-        >
-            </textarea>
+    <div class="row flex flex-col gap-2">
+      <div class="title">译文</div>
+      <div class="flex gap-2">
+        标题
       </div>
-      <div class="item basic">
-        <div class="label">
-          <span>正文：</span>
-          <div class="translate-item" v-if="editArticle.useTranslateType === TranslateType.network">
+      <input
+          v-model="editArticle.titleTranslate"
+          type="text"
+          class="base-input"
+          placeholder="请填写翻译标题"
+      />
+
+      <div class="flex">
+        <span>正文：</span>
+      </div>
+      <textarea
+          v-model="editArticle.textCustomTranslate"
+          :readonly="![100,0].includes(progress)"
+          @blur="onBlur"
+          @focus="onFocus"
+          type="textarea"
+          class="base-textarea"
+          placeholder="请填写翻译"
+          ref="textareaRef"
+      >
+            </textarea>
+      <div class="justify-between items-center gap-2 flex">
+        <div class="text-base mb-1 color-white/60">
+          请复制译文，如果没有可点击“网络翻译”按钮进行翻译，然后进行分句，一行一句，段落间空一行。修改完成后，点击 <span class="color-red font-bold">应用按钮</span> 同步到左侧结果
+        </div>
+        <div class="flex flex-col gap-2">
+          <div class="translate-item">
             <el-progress :percentage="progress"
                          :duration="30"
                          :striped="progress !== 100"
@@ -292,7 +385,6 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
                          :stroke-width="8"
                          :show-text="true"/>
             <el-select v-model="networkTranslateEngine"
-                       style="width: 80rem;"
             >
               <el-option
                   v-for="item in TranslateEngineOptions"
@@ -305,55 +397,57 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
                 size="small"
                 @click="startNetworkTranslate"
                 :loading="progress!==0 && progress !== 100"
-            >开始翻译
+            >网络翻译
             </BaseButton>
           </div>
+          <div class="flex justify-end">
+            <el-button type="primary" @click="renewSections">应用</el-button>
+          </div>
         </div>
-        <textarea
-            v-if="editArticle.useTranslateType === TranslateType.custom"
-            v-model="editArticle.textCustomTranslate"
-            @input="renewSections"
-            @blur="onBlur"
-            @focus="onFocus"
-            type="textarea"
-            class="base-textarea"
-            placeholder="请填写翻译正文"
-            ref="textareaRef"
-        >
-            </textarea>
-        <textarea
-            v-if="editArticle.useTranslateType === TranslateType.network"
-            v-model="editArticle.textNetworkTranslate"
-            :readonly="![100,0].includes(progress)"
-            @input="renewSections"
-            @blur="onBlur"
-            @focus="onFocus"
-            type="textarea"
-            class="base-textarea"
-            placeholder="等待网络翻译中..."
-            ref="textareaRef"
-        >
-            </textarea>
-        <Empty
-            text="不需要翻译~"
-            v-if="editArticle.useTranslateType === TranslateType.none"
-        />
       </div>
     </div>
     <div class="row">
-      <div class="title">③译文对照</div>
+      <div class="title">结果</div>
+      <div class="center">正文、译文与结果均可编辑，修改一处，另外两处会自动同步变动</div>
+      <div class="flex gap-2">
+        <BaseButton>导入音频</BaseButton>
+        <BaseButton @click="test">导入音频LRC</BaseButton>
+        <el-upload
+            v-model:file-list="fileList"
+            class="upload-demo"
+            :limit="1"
+            :on-change="handleChange"
+        >
+          <el-button type="primary">Click to upload</el-button>
+          <template #tip>
+            <div class="el-upload__tip">
+              jpg/png files with a size less than 500KB.
+            </div>
+          </template>
+        </el-upload>
+        <audio :src="audio" controls></audio>
+      </div>
       <template v-if="editArticle.sections.length">
         <div class="article-translate">
           <div class="section" v-for="(item,indexI) in editArticle.sections">
-            <div class="sentence" v-for="(sentence,indexJ) in item">
-              <EditAbleText
-                  :value="sentence.text"
-                  @save="(e:string) => saveSentenceText(sentence,e)"
-              />
-              <EditAbleText
-                  :value="sentence.translate"
-                  @save="(e:string) => saveSentenceTranslate(sentence,e)"
-              />
+            <div class="sentence flex justify-between" v-for="(sentence,indexJ) in item">
+              <div>
+                <EditAbleText
+                    :value="sentence.text"
+                    @save="(e:string) => saveSentenceText(sentence,e)"
+                />
+                <EditAbleText
+                    v-if="sentence.translate"
+                    :value="sentence.translate"
+                    @save="(e:string) => saveSentenceTranslate(sentence,e)"
+                />
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="text-base"> {{ sentence.audioPosition?.[0] }} - {{ sentence.audioPosition?.[1] }}</div>
+                <div>
+                  <BaseIcon icon="hugeicons:play" @click="play(sentence)"/>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -384,7 +478,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
 @import "@/assets/css/style";
 
 .content {
-  color: var(--color-font-1);
+  color: var(--color-article);
   flex: 1;
   display: flex;
   gap: var(--space);
@@ -393,7 +487,7 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
 }
 
 .row {
-  flex: 10;
+  flex: 7;
   width: 33%;
   //height: 100%;
   display: flex;
@@ -404,28 +498,21 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
     flex: 1;
     display: flex;
     flex-direction: column;
+    gap: 0.8rem;
   }
 
-  &:nth-child(1) {
-    flex: 7;
+  &:nth-child(3) {
+    flex: 10;
   }
 
   .title {
+    font-weight: bold;
     font-size: 1.4rem;
     text-align: center;
   }
 
   .item {
     width: 100%;
-    //margin-bottom: 10rem;
-
-    .label {
-      height: 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 1rem;
-    }
   }
 
   .translate-item {
@@ -458,7 +545,8 @@ defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
       }
 
       .sentence {
-        margin-bottom: 1.2rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
 
         &:last-child {
           margin-bottom: 0;

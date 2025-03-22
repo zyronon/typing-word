@@ -261,3 +261,29 @@ export function _nextTick(cb: Function, time?: number) {
     nextTick(cb)
   }
 }
+
+export function _copy(val: string) {
+  navigator.clipboard.writeText(val)
+}
+
+export function _parseLRC(lrc: string): { start: number, end: number, text: string }[] {
+  const lines = lrc.split("\n").filter(line => line.trim() !== "");
+  const regex = /\[(\d{2}):(\d{2}\.\d{2})\](.*)/;
+  let parsed: any = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    let match = lines[i].match(regex);
+    if (match) {
+      let start = parseFloat(match[1]) * 60 + parseFloat(match[2]); // 转换成秒
+      let text = match[3].trim();
+
+      // 计算结束时间（下一个时间戳）
+      let nextMatch = lines[i + 1] ? lines[i + 1].match(regex) : null;
+      let end = nextMatch ? parseFloat(nextMatch[1]) * 60 + parseFloat(nextMatch[2]) : null;
+
+      parsed.push({start, end, text});
+    }
+  }
+
+  return parsed;
+}

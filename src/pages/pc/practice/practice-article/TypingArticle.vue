@@ -95,7 +95,7 @@ watch(() => settingStore.translate, () => {
 
 
 function checkCursorPosition(a = sectionIndex, b = sentenceIndex, c = wordIndex) {
-  console.log('checkCursorPosition')
+  // console.log('checkCursorPosition')
   _nextTick(() => {
     let currentWord = jq(`.section:nth(${a}) .sentence:nth(${b}) .word:nth(${c})`)
     // console.log(a, b, c, currentWord)
@@ -115,7 +115,7 @@ function checkCursorPosition(a = sectionIndex, b = sentenceIndex, c = wordIndex)
 }
 
 function checkTranslateLocation() {
-  console.log('checkTranslateLocation')
+  // console.log('checkTranslateLocation')
   return new Promise<void>(resolve => {
     _nextTick(() => {
       let articleRect = articleWrapperRef.getBoundingClientRect()
@@ -129,7 +129,7 @@ function checkTranslateLocation() {
           let translate: HTMLDivElement = document.querySelector(translateClassName)
 
           translate.style.opacity = '1'
-          translate.style.top = wordRect.top - articleRect.top + 28 + 'px'
+          translate.style.top = wordRect.top - articleRect.top + 24 + 'px'
           // @ts-ignore
           translate.firstChild.style.width = wordRect.left - articleRect.left + 'px'
           // console.log(word, wordRect.left - articleRect.left)
@@ -469,8 +469,6 @@ defineExpose({showSentence, play, del, hideSentence, nextSentence})
   //color: rgb(22, 163, 74);
 }
 
-
-$article-width: 1000px;
 .typing-article {
   height: 100%;
   width: 100%;
@@ -538,18 +536,15 @@ $article-width: 1000px;
     }
 
     &.tall {
-      line-height: 2.5;
+      line-height: 2.2;
     }
 
     .section {
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
 
       .sentence {
         transition: all .3s;
 
-        &:first-child {
-          padding-left: 3rem;
-        }
       }
 
       .word {
@@ -580,8 +575,8 @@ $article-width: 1000px;
     left: 0;
     height: 100%;
     width: 100%;
-    font-size: 1.1rem;
-    line-height: 3.5;
+    font-size: 1.2rem;
+    line-height: 3.0;
     letter-spacing: .2rem;
     font-family: var(--zh-article-family);
     font-weight: bold;

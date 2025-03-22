@@ -21,6 +21,7 @@ import {useWindowClick} from "@/hooks/event.ts";
 import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
 import * as copy from "copy-to-clipboard";
 import {getTranslateText} from "@/hooks/article.ts";
+import {_copy} from "@/utils";
 
 const emit = defineEmits<{
   back: []
@@ -210,7 +211,7 @@ function exportData(val: {
   type: string,
   data?: Article
 }) {
-  copy(JSON.stringify(cloneDeep(runtimeStore.editDict.articles).map(v => {
+  _copy(JSON.stringify(cloneDeep(runtimeStore.editDict.articles).map(v => {
     delete v.sections
     return v
   })))

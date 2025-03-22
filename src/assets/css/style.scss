@@ -84,6 +84,7 @@ html.dark {
   --color-input-icon: #383737;
 
   --color-textarea-bg: rgb(43, 45, 48);
+  --color-article: white;
 
 }
 
@@ -114,7 +115,7 @@ html.dark {
 
 @media (max-width: 1366px) {
   :root {
-    --space: 10rem;
+    --space: 1rem;
     --practice-wrapper-translateX: -22vw;
     --article-width: 53vw;
     --panel-width: 30vw;
@@ -217,6 +218,11 @@ a {
     cursor: not-allowed;
     opacity: .7;
   }
+}
+
+.base-input {
+  @extend .base-textarea;
+  flex: none;
 }
 
 @supports selector(::-webkit-scrollbar) {

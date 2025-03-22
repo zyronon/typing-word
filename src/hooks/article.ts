@@ -1,6 +1,6 @@
 import {Article, ArticleWord, DefaultArticleWord, DictType, Sentence, TranslateType} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
-import nlp from "compromise";
+import nlp from "compromise/one";
 import {split} from "sentence-splitter";
 
 interface KeyboardMap {
@@ -30,30 +30,53 @@ export const EnKeyboardMap: KeyboardMap = {
 }
 
 export function splitEnArticle(text: string): { sections: Sentence[][], newText: string } {
-  // console.log(text)
+  console.log('splitEnArticle')
+  //将中文符号替换
+  text = text.replaceAll('’', "'")
+  text = text.replaceAll('—', "-")
+  text = text.replaceAll('”', '"')
+  text = text.replaceAll('“', '"')
+
   // console.time()
   let keyboardMap = EnKeyboardMap
-  // text = "On Jan. 20, former Sen. Barack Obama became the 44th President of the U.S. Millions attended the Inauguration. It was Sunday? I never get up early on Sundays! I sometimes stay in bed until lunchtime. Last Sunday I got up very late. I looked out of the window. It was dark outside. 'What a day!' I thought. 'It'LICENSE raining again.' Just then, the telephone rang. It was my aunt Lucy. 'I've just arrived by train,' she said. 'I'm coming to see you.'\n    'But I'm still having breakfast,' I said\n    'What are you doing?' she asked.\n    'I'm having breakfast,' I repeated.\n    'Dear me,' she said. 'Do you always get up so late? It'LICENSE one o'clock'"
-  // text = "Mr.James Scott has a garage in Silbury and now he has just bought another garage in Pinhurst. Pinhurst is only five miles from Silbury, but Mr. Scott cannot get a telephone for his new garage, so he has just bought twelve pigeons. Yesterday, a pigeon carried the first message from Pinhurst to Silbury. The bird covered the distance in three minutes. Up to now, Mr.Scott has sent a great many requests for spare parts and other urgent messages from one garage to the other. In this way, he has begun his own private 'telephone' service."
-  // text = "How does the older investor differ in his approach to investment from the younger investor?\nThere is no shortage of tipsters around offering 'get-rich-quick' opportunities. But if you are a serious private investor, leave the Las Vegas mentality to those with money to fritter. The serious investor needs a proper 'portfolio' -- a well-planned selection of investments, with a definite structure and a clear aim. But exactly how does a newcomer to the stock market go about achieving that?\nWell, if you go to five reputable stock brokers and ask them what you should do with your money, you're likely to get five different answers, -- even if you give all the relevant information about your age age, family, finances and what you want from your investments. Moral? There is no one 'right' way to structure a portfolio. However, there are undoubtedly some wrong ways, and you can be sure that none of our five advisers would have suggested sinking all (or perhaps any) of your money into Periwigs*.\nSo what should you do? We'll assume that you have sorted out the basics -- like mortgages, pensions, insurance and access to sufficient cash reserves. You should then establish your own individual aims. These are partly a matter of personal circumstances, partly a matter of psychology.\nFor instance, if you are older you have less time to recover from any major losses, and you may well wish to boost your pension income. So preserving your capital and generating extra income are your main priorities. In this case, you'd probably construct a portfolio with some shares (but not high risk ones), along with gilts, cash deposits, and perhaps convertibles or the income shares of split capital investment trusts.\nIf you are younger, and in a solid financial position, you may decide to take an aggressive approach -- but only if you're blessed with a sanguine disposition and won't suffer sleepless nights over share prices. If portfolio, alongside your more pedestrian in vestments. Once you have decided on your investment aims, you can then decide where to put your money. The golden rule here is spread your risk -- if you put all of your money into Periwigs International, you're setting yourself up as a hostage to fortune.\n*'Periwigs' is the name of a fictitious company.\nINVESTOR'S CHRONICLE, March 23 1990"
 
   let sections: Sentence[][] = []
-  text && text.trim().split('\n').map((rowSection, i) => {
+  text && text.trim().split('\n\n').filter(v => v).map((sectionText, i) => {
     let section: Sentence[] = []
     sections.push(section)
-    rowSection = rowSection.trim()
+    sectionText = sectionText.trim()
 
-    let doc = nlp.tokenize(rowSection)
-    let sentences = doc.json()
-    // console.log('--')
-    // console.log('ss', sentences)
-    sentences.map(sentenceRow => {
+    let doc = nlp(sectionText)
+    let sentenceNlpList = []
+    // console.log('ss', sentenceNlpList)
+    doc.json().map(item => {
+      //如果整句大于15个单词以上，检测是否有 逗号子句
+      if (item.terms.length > 15) {
+        //正则匹配“逗号加and|but|so|because"
+        let list = item.text.split(/,\s(?=(and|but|so|because)\b)/).filter(_ => {
+          //匹配完之后会把and|but|so|because也提出来，这里不需要重复的，直接筛选掉
+          if (_ && !['and', 'but', 'so', 'because'].includes(_)) return _
+        })
+        if (list.length === 1) {
+          sentenceNlpList.push(item)
+        } else {
+          list.map((text, i) => {
+            //分割后每句都没有逗号了，所以除了最后一句外需要加回来
+            sentenceNlpList = sentenceNlpList.concat(nlp(text + (i !== list.length - 1 ? ',' : '')).json())
+          })
+        }
+      } else {
+        sentenceNlpList.push(item)
+      }
+    })
+
+    sentenceNlpList.map(item => {
       let sentence: Sentence = {
         //他没有空格，导致修改一行一行的数据时，汇总时全没有空格了，库无法正常断句
-        text: sentenceRow.text + ' ',
+        text: item.text + ' ',
         // text: '',
         translate: '',
-        words: []
+        words: [],
       }
       section.push(sentence)
 
@@ -79,7 +102,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
           isSymbol: true,
           symbolPosition: ''
         };
-        // console.log('rrr', sentenceRow)
+        // console.log('rrr', item)
         // console.log('nearSymbolPosition', nearSymbolPosition)
         if (nearSymbolPosition === 'end' || nearSymbolPosition === null) {
           word3.symbolPosition = 'start'
@@ -174,7 +197,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
         }
       }
 
-      sentenceRow.terms.map((v, index: number) => {
+      item.terms.map((v, index: number) => {
         // console.log('v', v)
         if (v.text) {
           let pre: string = v.pre.trim()
@@ -196,6 +219,8 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
       //去除空格占位符
       sentence.words = sentence.words.filter(v => v.word !== 'placeholder')
     })
+
+    // console.log(sentenceNlpList)
   })
 
   sections = sections.filter(sectionItem => sectionItem.length)
@@ -207,11 +232,13 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
       }, '')
     })
   })
-  // console.log(sections)
-  // console.timeEnd()
 
-  // console.log('sections', sections)
+  // console.log(sections)
+
+  text= sections.map(v => v.map(s => s.text.trim()).join('\n')).join('\n\n');
+  // console.log('s',text)
   return {
+    //s.text.trim()的trim()不能去掉，因为这个方法会重复执行，要保证句子后面只有一个\n，不trim() \n就会累加
     newText: text,
     sections
   }

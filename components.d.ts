@@ -28,6 +28,7 @@ declare module 'vue' {
     ElSlider: typeof import('element-plus/es')['ElSlider']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTableV2: typeof import('element-plus/es')['ElTableV2']
+    ElUpload: typeof import('element-plus/es')['ElUpload']
     Empty: typeof import('./src/components/Empty.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

@@ -53,7 +53,6 @@ function toggle() {
   <div
       v-else
       class="text"
-      :style="`font-size: 1rem;`"
       @click="toggle">
     {{ value }}
   </div>

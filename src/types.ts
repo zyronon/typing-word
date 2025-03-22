@@ -94,7 +94,8 @@ export interface ArticleWord extends Word {
 export interface Sentence {
   text: string,
   translate: string,
-  words: ArticleWord[]
+  words: ArticleWord[],
+  audioPosition: number[]
 }
 
 export enum TranslateType {
