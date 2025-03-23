@@ -22,7 +22,7 @@
     "compromise": "^14.10.0",
     "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.11",
-    "element-plus": "^2.3.9",
+    "element-plus": "^2.9.7",
     "file-saver": "^2.0.5",
     "git-last-commit": "^1.0.1",
     "hover.css": "^2.3.2",

@@ -30,8 +30,8 @@ importers:
         specifier: ^1.11.11
         version: 1.11.11
       element-plus:
-        specifier: ^2.3.9
-        version: 2.7.3(vue@3.4.27(typescript@5.4.5))
+        specifier: ^2.9.7
+        version: 2.9.7(vue@3.4.27(typescript@5.4.5))
       file-saver:
         specifier: ^2.0.5
         version: 2.0.5
@@ -1481,6 +1481,9 @@ packages:
   dayjs@1.11.11:
     resolution: {integrity: sha512-okzr3f11N6WuqYtZSvm+F776mB41wRZMhKP+hc34YdW+KmtYYK9iqvHSwo2k9FEH3fhGXvOPV6yz2IcSrfRUDg==}
 
+  dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
+
   de-indent@1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
 
@@ -1589,8 +1592,8 @@ packages:
   electron-to-chromium@1.4.787:
     resolution: {integrity: sha512-d0EFmtLPjctczO3LogReyM2pbBiiZbnsKnGF+cdZhsYzHm/A0GV7W94kqzLD8SN4O3f3iHlgLUChqghgyznvCQ==}
 
-  element-plus@2.7.3:
-    resolution: {integrity: sha512-OaqY1kQ2xzNyRFyge3fzM7jqMwux+464RBEqd+ybRV9xPiGxtgnj/sVK4iEbnKnzQIa9XK03DOIFzoToUhu1DA==}
+  element-plus@2.9.7:
+    resolution: {integrity: sha512-6vjZh5SXBncLhUwJGTVKS5oDljfgGMh6J4zVTeAZK3YdMUN76FgpvHkwwFXocpJpMbii6rDYU3sgie64FyPerQ==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -5057,6 +5060,8 @@ snapshots:
 
   dayjs@1.11.11: {}
 
+  dayjs@1.11.13: {}
+
   de-indent@1.0.2: {}
 
   debug@2.6.9:
@@ -5142,7 +5147,7 @@ snapshots:
 
   electron-to-chromium@1.4.787: {}
 
-  element-plus@2.7.3(vue@3.4.27(typescript@5.4.5)):
+  element-plus@2.9.7(vue@3.4.27(typescript@5.4.5)):
     dependencies:
       '@ctrl/tinycolor': 3.6.1
       '@element-plus/icons-vue': 2.3.1(vue@3.4.27(typescript@5.4.5))
@@ -5152,7 +5157,7 @@ snapshots:
       '@types/lodash-es': 4.17.12
       '@vueuse/core': 9.13.0(vue@3.4.27(typescript@5.4.5))
       async-validator: 4.2.5
-      dayjs: 1.11.11
+      dayjs: 1.11.13
       escape-html: 1.0.3
       lodash: 4.17.21
       lodash-es: 4.17.21

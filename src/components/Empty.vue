@@ -27,7 +27,7 @@ defineEmits<{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-size: .7rem;
+  font-size: .9rem;
   gap: 1.3rem;
 
   span {

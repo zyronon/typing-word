@@ -22,6 +22,7 @@ import {_copy, _parseLRC} from "@/utils";
 import * as Comparison from "string-comparison"
 import audio from '/public/sound/article/nce2-1/1.mp3'
 import BaseIcon from "@/components/BaseIcon.vue";
+import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 
 interface IProps {
   article?: Article,
@@ -298,26 +299,61 @@ function test() {
   // console.log(cosine.similarity('Thanos', 'Rival'))
 }
 
-const a = new Audio(audio)
-
-function play(sentence: Sentence) {
-  if (sentence.audioPosition?.length) {
-    let start = sentence.audioPosition[0];
-    a.currentTime = start
-    a.play()
-    let end = sentence.audioPosition?.[1]
-    if (end && end !== -1) {
-      setTimeout(() => {
-        a.pause()
-      }, (end - start) * 1000)
-    }
-  }
-}
 
 function s() {
 
 }
 
+function confirm() {
+
+}
+
+let currentSentence = $ref<Sentence>({} as any)
+let showEditAudioDialog = $ref(false)
+let sentenceAudioRef = $ref<HTMLAudioElement>()
+let audioRef = $ref<HTMLAudioElement>()
+
+function handleShowEditAudioDialog(val: Sentence) {
+  showEditAudioDialog = true
+  currentSentence = val
+  if (!currentSentence.audioPosition?.length) {
+    currentSentence.audioPosition = [0, 0]
+  }
+}
+
+function recordStart() {
+  if (sentenceAudioRef.paused) {
+    sentenceAudioRef.play()
+  }
+  currentSentence.audioPosition[0] = Number(sentenceAudioRef.currentTime.toFixed(2))
+}
+
+function recordEnd() {
+  if (!sentenceAudioRef.paused) {
+    sentenceAudioRef.pause()
+  }
+  currentSentence.audioPosition[1] = Number(sentenceAudioRef.currentTime.toFixed(2))
+}
+
+let timer = -1
+
+function playSentenceAudio(sentence: Sentence, ref?: HTMLAudioElement) {
+  clearTimeout(timer)
+  if (sentence.audioPosition?.length) {
+    if (ref.played) {
+      ref.pause()
+    }
+    let start = sentence.audioPosition[0];
+    ref.currentTime = start
+    ref.play()
+    let end = sentence.audioPosition?.[1]
+    if (end && end !== -1) {
+      timer = setTimeout(() => {
+        ref.pause()
+      }, (end - start) * 1000)
+    }
+  }
+}
 </script>
 
 <template>
@@ -343,9 +379,10 @@ function s() {
       <div class="justify-between items-center gap-2 flex">
         <ol class="py-0 pl-5 my-0 text-base color-black/60">
           <li>复制原文</li>
-          <li>点击 <span class="color-red font-bold">应用按钮</span> 进行分句，并同步到左侧结果</li>
+          <li>点击 <span class="color-red font-bold">应用</span> 按钮进行分句，并同步到左侧结果</li>
           <li>手动调整分句，一行一句，段落之间空一行<span class="color-red font-bold">（可选）</span></li>
-          <li>调整完后点击 <span class="color-red font-bold">应用按钮</span> 同步到左侧结果<span class="color-red font-bold">（可选）</span>
+          <li>修改完成后点击 <span class="color-red font-bold">应用</span> 按钮同步到左侧结果<span
+              class="color-red font-bold">（可选）</span>
           </li>
         </ol>
         <el-button type="primary" @click="renewSections">应用</el-button>
@@ -380,21 +417,19 @@ function s() {
       <div class="justify-between items-center gap-2 flex">
         <ol class="py-0 pl-5 my-0 text-base color-black/60">
           <li>复制译文</li>
-          <li>如果没有译文，点击 <span class="color-red font-bold">翻译</span> 按钮<span class="color-red font-bold">（可选）</span></li>
-          <li>点击 <span class="color-red font-bold">应用按钮</span> 进行分句，并同步到左侧结果</li>
+          <li>如果没有译文，点击 <span class="color-red font-bold">翻译</span> 按钮<span
+              class="color-red font-bold">（可选）</span></li>
+          <li>点击 <span class="color-red font-bold">应用</span> 按钮进行分句，并同步到左侧结果</li>
           <li>手动调整分句，一行一句，段落之间空一行<span class="color-red font-bold">（可选）</span></li>
-          <li>调整完后点击 <span class="color-red font-bold">应用按钮</span> 同步到左侧结果<span class="color-red font-bold">（可选）</span>
+          <li>修改完成后点击 <span class="color-red font-bold">应用</span> 按钮同步到左侧结果<span
+              class="color-red font-bold">（可选）</span>
           </li>
         </ol>
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2 items-end">
           <div class="translate-item">
-            <el-progress :percentage="progress"
-                         :duration="30"
-                         :striped="progress !== 100"
-                         :striped-flow="progress !== 100"
-                         :stroke-width="8"
-                         :show-text="true"/>
+            {{ progress }}%
             <el-select v-model="networkTranslateEngine"
+                       class="w-20"
             >
               <el-option
                   v-for="item in TranslateEngineOptions"
@@ -403,25 +438,24 @@ function s() {
                   :value="item.value"
               />
             </el-select>
-            <BaseButton
-                size="small"
-                @click="startNetworkTranslate"
-                :loading="progress!==0 && progress !== 100"
-            >翻译
-            </BaseButton>
+
           </div>
-          <div class="flex justify-end">
-            <el-button type="primary" @click="renewSections">应用</el-button>
-          </div>
+          <el-button
+              type="primary"
+              @click="startNetworkTranslate"
+              :loading="progress!==0 && progress !== 100"
+          >翻译
+          </el-button>
+          <el-button type="primary" @click="renewSections">应用</el-button>
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row flex flex-col gap-2">
       <div class="title">结果</div>
       <div class="center">正文、译文与结果均可编辑，修改一处，另外两处会自动同步变动</div>
       <div class="flex gap-2">
-        <BaseButton>导入音频</BaseButton>
-        <BaseButton @click="test">导入音频LRC</BaseButton>
+        <BaseButton>添加音频</BaseButton>
+        <BaseButton @click="test">添加音频LRC</BaseButton>
         <el-upload
             v-model:file-list="fileList"
             class="upload-demo"
@@ -435,27 +469,44 @@ function s() {
             </div>
           </template>
         </el-upload>
-        <audio :src="audio" controls></audio>
+        <audio ref="audioRef" :src="audio" controls></audio>
       </div>
       <template v-if="editArticle.sections.length">
-        <div class="article-translate">
-          <div class="section" v-for="(item,indexI) in editArticle.sections">
-            <div class="sentence flex justify-between" v-for="(sentence,indexJ) in item">
-              <div>
-                <EditAbleText
-                    :value="sentence.text"
-                    @save="(e:string) => saveSentenceText(sentence,e)"
-                />
-                <EditAbleText
-                    v-if="sentence.translate"
-                    :value="sentence.translate"
-                    @save="(e:string) => saveSentenceTranslate(sentence,e)"
-                />
-              </div>
-              <div class="flex items-center gap-2">
-                <div class="text-base"> {{ sentence.audioPosition?.[0] }} - {{ sentence.audioPosition?.[1] }}</div>
-                <div>
-                  <BaseIcon icon="hugeicons:play" @click="play(sentence)"/>
+        <div class="flex-1 overflow-auto flex flex-col">
+          <div class="flex justify-between bg-black/10 py-2">
+            <div class="center flex-[7]">内容</div>
+            <div>|</div>
+            <div class="center flex-[3]">音频</div>
+          </div>
+          <div class="article-translate">
+            <div class="section " v-for="(item,indexI) in editArticle.sections">
+              <div class="section-title">第{{ indexI + 1 }}段</div>
+              <div class="sentence" v-for="(sentence,indexJ) in item">
+                <div class="flex-[7]">
+                  <EditAbleText
+                      :value="sentence.text"
+                      @save="(e:string) => saveSentenceText(sentence,e)"
+                  />
+                  <EditAbleText
+                      class="text-lg!"
+                      v-if="sentence.translate"
+                      :value="sentence.translate"
+                      @save="(e:string) => saveSentenceTranslate(sentence,e)"
+                  />
+                </div>
+                <div class="flex-[3]">
+                  <div class="flex items-center justify-end gap-2">
+                    <div class="text-base" v-if="sentence.audioPosition?.length">
+                      <span>{{ sentence.audioPosition?.[0] }}s</span>
+                      <span v-if="sentence.audioPosition?.[1] !== -1"> - {{ sentence.audioPosition?.[1] }}s</span>
+                    </div>
+                    <div>
+                      <BaseIcon :icon="sentence.audioPosition?.length ? 'basil:edit-outline' : 'basil:add-outline'"
+                                @click="handleShowEditAudioDialog(sentence)"/>
+                      <BaseIcon v-if="sentence.audioPosition?.length" icon="hugeicons:play"
+                                @click="playSentenceAudio(sentence,audioRef)"/>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -481,6 +532,47 @@ function s() {
       </template>
       <Empty v-else text="没有译文对照~"/>
     </div>
+    <Dialog title="音频"
+            v-model="showEditAudioDialog"
+            :footer="true"
+            @close="showEditAudioDialog = false"
+    >
+      <div class="p-4 pt-0 color-black w-150 flex flex-col gap-2">
+        <div>
+          句子：{{ currentSentence.text }}
+        </div>
+        <audio ref="sentenceAudioRef" :src="audio" controls class="w-full"></audio>
+        <div class="">
+          使用方法：点击上方播放按钮，音频播放到句子开始时，点击 记录开始时间 按钮，播放到句子结束时，点击 记录开始时间 按钮
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="flex flex-col gap-2">
+            <div class="flex gap-2 items-center">
+              <BaseButton @click="recordStart">记录开始时间</BaseButton>
+              <div class="flex items-center gap-1">
+                <el-input-number v-model="currentSentence.audioPosition[0]" :precision="2" :step="0.1">
+                  <template #suffix>
+                    <span>s</span>
+                  </template>
+                </el-input-number>
+              </div>
+            </div>
+            <div class="flex gap-2 items-center">
+              <BaseButton @click="recordEnd">记录结束时间</BaseButton>
+              <div class="flex items-center gap-1">
+                <el-input-number v-model="currentSentence.audioPosition[1]" :precision="2" :step="0.1">
+                  <template #suffix>
+                    <span>s</span>
+                  </template>
+                </el-input-number>
+              </div>
+            </div>
+          </div>
+          <BaseButton @click="playSentenceAudio(currentSentence,audioRef)">播放记录时间</BaseButton>
+        </div>
+      </div>
+    </Dialog>
+
   </div>
 </template>
 
@@ -504,13 +596,6 @@ function s() {
   flex-direction: column;
   //opacity: 0;
 
-  .basic {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
   &:nth-child(3) {
     flex: 10;
   }
@@ -521,10 +606,6 @@ function s() {
     text-align: center;
   }
 
-  .item {
-    width: 100%;
-  }
-
   .translate-item {
     flex: 1;
     display: flex;
@@ -533,37 +614,31 @@ function s() {
     gap: calc(var(--space) / 2);
   }
 
-  .el-progress {
-    flex: 1;
-  }
-
   .article-translate {
-    margin-top: .6rem;
-    margin-bottom: 1.2rem;
     flex: 1;
-    overflow: auto;
-    border-radius: .5rem;
+    overflow-y: overlay;
 
     .section {
       background: var(--color-textarea-bg);
       margin-bottom: 1.2rem;
-      padding: var(--space);
-      border-radius: .5rem;
+
+      .section-title {
+        padding: 0.5rem;
+        border-bottom: 1px solid var(--color-item-border);
+      }
 
       &:last-child {
         margin-bottom: 0;
       }
 
       .sentence {
-        margin-bottom: 0.5rem;
+        display: flex;
+        padding: 0.5rem 1.5rem;
         line-height: 1.2;
+        border-bottom: 1px solid var(--color-item-border);
 
         &:last-child {
-          margin-bottom: 0;
-        }
-
-        .text {
-          font-size: 1.1rem;
+          border-bottom: none;
         }
       }
     }
