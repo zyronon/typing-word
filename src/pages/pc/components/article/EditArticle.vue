@@ -341,8 +341,13 @@ function s() {
       >
             </textarea>
       <div class="justify-between items-center gap-2 flex">
-        <div class="text-base mb-1 color-white/60">请复制原文，然后进行分句，一行一句，段落间空一行。修改完成后，点击 <span class="color-red font-bold">应用按钮</span> 同步到左侧结果
-        </div>
+        <ol class="py-0 pl-5 my-0 text-base color-black/60">
+          <li>复制原文</li>
+          <li>点击 <span class="color-red font-bold">应用按钮</span> 进行分句，并同步到左侧结果</li>
+          <li>手动调整分句，一行一句，段落之间空一行<span class="color-red font-bold">（可选）</span></li>
+          <li>调整完后点击 <span class="color-red font-bold">应用按钮</span> 同步到左侧结果<span class="color-red font-bold">（可选）</span>
+          </li>
+        </ol>
         <el-button type="primary" @click="renewSections">应用</el-button>
       </div>
     </div>
@@ -373,9 +378,14 @@ function s() {
       >
             </textarea>
       <div class="justify-between items-center gap-2 flex">
-        <div class="text-base mb-1 color-white/60">
-          请复制译文，如果没有可点击“网络翻译”按钮进行翻译，然后进行分句，一行一句，段落间空一行。修改完成后，点击 <span class="color-red font-bold">应用按钮</span> 同步到左侧结果
-        </div>
+        <ol class="py-0 pl-5 my-0 text-base color-black/60">
+          <li>复制译文</li>
+          <li>如果没有译文，点击 <span class="color-red font-bold">翻译</span> 按钮<span class="color-red font-bold">（可选）</span></li>
+          <li>点击 <span class="color-red font-bold">应用按钮</span> 进行分句，并同步到左侧结果</li>
+          <li>手动调整分句，一行一句，段落之间空一行<span class="color-red font-bold">（可选）</span></li>
+          <li>调整完后点击 <span class="color-red font-bold">应用按钮</span> 同步到左侧结果<span class="color-red font-bold">（可选）</span>
+          </li>
+        </ol>
         <div class="flex flex-col gap-2">
           <div class="translate-item">
             <el-progress :percentage="progress"
@@ -397,7 +407,7 @@ function s() {
                 size="small"
                 @click="startNetworkTranslate"
                 :loading="progress!==0 && progress !== 100"
-            >网络翻译
+            >翻译
             </BaseButton>
           </div>
           <div class="flex justify-end">
