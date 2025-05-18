@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, nextTick, onMounted, onUnmounted, watch} from "vue"
-import {Article, ArticleWord, DefaultArticle, Word} from "@/types.ts";
+import {Article, ArticleWord, DefaultArticle, Sentence, Word} from "@/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -36,6 +36,7 @@ const props = withDefaults(defineProps<IProps>(), {
 const emit = defineEmits<{
   ignore: [],
   wrong: [val: Word],
+  play: [val: Sentence],
   nextWord: [val: ArticleWord],
   over: [],
   edit: [val: Article]
@@ -174,9 +175,11 @@ function nextSentence() {
       console.log('打完了')
       isEnd = true
       emit('over')
+    } else {
+      emit('play', props.article.sections[sectionIndex][0])
     }
   } else {
-    playWordAudio(currentSection[sentenceIndex].text)
+    emit('play', currentSection[sentenceIndex])
   }
   lockNextSentence = false
 }
@@ -217,6 +220,9 @@ function onTyping(e: KeyboardEvent) {
     }
     playKeyboardAudio()
   } else {
+    if (sectionIndex === 0 && sentenceIndex === 0 && wordIndex === 0 && stringIndex === 0) {
+      emit('play', currentSection[sentenceIndex])
+    }
     let letter = e.key
 
     let key = currentWord.word[stringIndex]
@@ -261,20 +267,7 @@ function onTyping(e: KeyboardEvent) {
 
 function play() {
   let currentSection = props.article.sections[sectionIndex]
-
-  return playWordAudio(currentSection[sentenceIndex].text)
-  if (isPlay) {
-    isPlay = false
-    return window.speechSynthesis.pause();
-  }
-  let msg = new SpeechSynthesisUtterance();
-  msg.text = 'article1'
-  msg.rate = 0.5;
-  msg.pitch = 1;
-  msg.lang = 'en-US';
-  // msg.lang = 'zh-HK';
-  isPlay = true
-  window.speechSynthesis.speak(msg);
+  emit('play', currentSection[sentenceIndex])
 }
 
 function del() {
@@ -283,10 +276,6 @@ function del() {
   } else {
     input = input.slice(0, -1)
   }
-}
-
-function playWord(word: ArticleWord) {
-  playWordAudio(word.word)
 }
 
 function indexWord(word: ArticleWord) {
@@ -305,7 +294,7 @@ function hideSentence() {
   hoverIndex = {sectionIndex: -1, sentenceIndex: -1}
 }
 
-function onContextMenu(e: MouseEvent, text: string, i, j) {
+function onContextMenu(e: MouseEvent, sentence: Sentence, i, j) {
   //prevent the browser's default menu
   e.preventDefault();
   //show your menu
@@ -318,19 +307,19 @@ function onContextMenu(e: MouseEvent, text: string, i, j) {
         onClick: () => {
           sectionIndex = i
           sentenceIndex = j
-          playWordAudio(text)
+          emit('play', sentence)
         }
       },
       {
         label: "播放",
         onClick: () => {
-          playWordAudio(text)
+          emit('play', sentence)
         }
       },
       {
         label: "复制",
         onClick: () => {
-          navigator.clipboard.writeText(text).then(r => {
+          navigator.clipboard.writeText(sentence.text).then(r => {
             $toast.success('已复制！', {position: 'top'});
           })
         }
@@ -338,7 +327,7 @@ function onContextMenu(e: MouseEvent, text: string, i, j) {
       {
         label: "语法分析",
         onClick: () => {
-          navigator.clipboard.writeText(text).then(r => {
+          navigator.clipboard.writeText(sentence.text).then(r => {
             $toast.success('已复制！随后将打开语法分析网站！', {
               position: 'top',
               duration: 3000,
@@ -388,7 +377,7 @@ defineExpose({showSentence, play, del, hideSentence, nextSentence})
                           hoverIndex.sectionIndex === indexI &&  hoverIndex.sentenceIndex === indexJ
                           &&'hover-show'
                       ]"
-                      @contextmenu="e=>onContextMenu(e,sentence.text,indexI,indexJ)"
+                      @contextmenu="e=>onContextMenu(e,sentence,indexI,indexJ)"
                       @mouseenter="settingStore.allowWordTip && showSentence(indexI,indexJ)"
                       @mouseleave="hideSentence"
                       v-for="(sentence,indexJ) in section">

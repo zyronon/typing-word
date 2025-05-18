@@ -5,7 +5,7 @@ import {
   ArticleItem,
   ArticleWord,
   DefaultArticle,
-  DisplayStatistics,
+  DisplayStatistics, Sentence,
   ShortcutKey,
   TranslateType,
   Word
@@ -31,6 +31,8 @@ import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import VolumeSetting from "@/pages/pc/components/toolbar/VolumeSetting.vue";
 import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue";
+import {usePlayWordAudio} from "@/hooks/sound.ts";
+import {usePlaySentenceAudio} from "@/hooks/article.ts";
 
 const store = useBaseStore()
 const statisticsStore = usePracticeStore()
@@ -332,6 +334,9 @@ onUnmounted(() => {
   timer && clearInterval(timer)
 })
 
+let audioRef = $ref<HTMLAudioElement>()
+const {playSentenceAudio} = usePlaySentenceAudio()
+
 </script>
 
 <template>
@@ -347,6 +352,7 @@ onUnmounted(() => {
                 @wrong="wrong"
                 @over="skip"
                 @nextWord="nextWord"
+                @play="e => playSentenceAudio(e,audioRef,articleData.article)"
                 :article="articleData.article"
             />
           </div>
@@ -460,8 +466,8 @@ onUnmounted(() => {
               </div>
             </div>
           </div>
-          <div>
-            <audio :src="articleData.article.audioSrc" controls></audio>
+          <div class="flex flex-col items-center justify-center gap-1">
+            <audio ref="audioRef" v-if="articleData.article.audioSrc" :src="articleData.article.audioSrc" controls></audio>
             <div class="flex gap-3 center">
               <Tooltip
                   :title="`开关默写模式(${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"

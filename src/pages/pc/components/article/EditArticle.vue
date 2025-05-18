@@ -15,10 +15,10 @@ import {
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {getSplitTranslateText} from "@/hooks/article.ts";
 import {cloneDeep, last} from "lodash-es";
-import {watch, ref} from "vue";
+import {watch, ref, nextTick} from "vue";
 import Empty from "@/components/Empty.vue";
 import {UploadProps, UploadUserFile} from "element-plus";
-import {_copy, _parseLRC} from "@/utils";
+import {_copy, _nextTick, _parseLRC} from "@/utils";
 import * as Comparison from "string-comparison"
 import audio from '/public/sound/article/nce2-1/1.mp3'
 import BaseIcon from "@/components/BaseIcon.vue";
@@ -274,6 +274,7 @@ const handleChange: UploadProps['onChange'] = (uploadFile, uploadFiles) => {
 
 let currentSentence = $ref<Sentence>({} as any)
 let editSentence = $ref<Sentence>({} as any)
+let preSentence = $ref<Sentence>({} as any)
 let showEditAudioDialog = $ref(false)
 let sentenceAudioRef = $ref<HTMLAudioElement>()
 let audioRef = $ref<HTMLAudioElement>()
@@ -282,20 +283,23 @@ function handleShowEditAudioDialog(val: Sentence, i: number, j: number) {
   showEditAudioDialog = true
   currentSentence = val
   editSentence = cloneDeep(val)
-  let pre = null
+  preSentence = null
   if (j == 0) {
     if (i != 0) {
-      pre = last(editArticle.sections[i - 1])
+      preSentence = last(editArticle.sections[i - 1])
     }
   } else {
-    pre = editArticle.sections[i][j - 1]
+    preSentence = editArticle.sections[i][j - 1]
   }
   if (!editSentence.audioPosition?.length) {
     editSentence.audioPosition = [0, 0]
-    if (pre) {
-      editSentence.audioPosition = [pre.audioPosition[1] ?? 0, 0]
+    if (preSentence) {
+      editSentence.audioPosition = [preSentence.audioPosition[1] ?? 0, 0]
     }
   }
+  _nextTick(() => {
+    sentenceAudioRef.currentTime = editSentence.audioPosition[0]
+  })
 }
 
 function recordStart() {
@@ -336,6 +340,16 @@ function saveLrcPosition() {
   // showEditAudioDialog = false
   currentSentence.audioPosition = cloneDeep(editSentence.audioPosition)
   editArticle.lrcPosition = editArticle.sections.map((v, i) => v.map((w, j) => (w.audioPosition ?? []))).flat()
+}
+
+function jumpAudio(time: number) {
+  sentenceAudioRef.currentTime = time
+}
+
+function setPreEndTimeToCurrentStartTime() {
+  if (preSentence) {
+    editSentence.audioPosition[0] = preSentence.audioPosition[1]
+  }
 }
 </script>
 
@@ -517,24 +531,44 @@ function saveLrcPosition() {
             @ok="saveLrcPosition"
     >
       <div class="p-4 pt-0 color-black w-150 flex flex-col gap-2">
-        <div>
-          句子：{{ editSentence.text }}
+        <div class="">
+          教程：点击音频播放按钮，当播放到句子开始时，点击开始时间的 <span class="color-red">记录</span>
+          按钮；当播放到句子结束时，点击结束时间的 <span class="color-red">记录</span> 按钮，最后再试听是否正确
         </div>
         <audio ref="sentenceAudioRef" :src="editArticle.audioSrc" controls class="w-full"></audio>
-        <div class="">
-          使用方法：点击上方播放按钮，当音频播放到当前句子开始时，点击开始时间的 <span class="color-red">记录</span>
-          按钮；当播放到句子结束时，点击结束时间的 <span class="color-red">记录</span> 按钮
+        <div class="flex items-center gap-2 space-between mb-2" v-if="editSentence.audioPosition?.length">
+          <div>{{ editSentence.text }}</div>
+          <div class="flex items-center gap-2 shrink-0">
+            <div>
+              <span>{{ editSentence.audioPosition?.[0] }}s</span>
+              <span v-if="editSentence.audioPosition?.[1] !== -1"> - {{ editSentence.audioPosition?.[1] }}s</span>
+              <span v-else> - 结束</span>
+            </div>
+            <BaseIcon icon="hugeicons:play"
+                      title="试听"
+                      @click="playSentenceAudio(editSentence,sentenceAudioRef)"/>
+          </div>
         </div>
         <div class="flex flex-col gap-2">
           <div class="flex gap-2 items-center">
             <div>开始时间：</div>
             <div class="flex space-between flex-1">
-              <div class="flex items-center gap-1">
+              <div class="flex items-center gap-2">
                 <el-input-number v-model="editSentence.audioPosition[0]" :precision="2" :step="0.1">
                   <template #suffix>
                     <span>s</span>
                   </template>
                 </el-input-number>
+                <BaseIcon
+                    @click="jumpAudio(editSentence.audioPosition[0])"
+                    title="跳转"
+                    icon="ic:sharp-my-location"
+                />
+                <BaseIcon
+                    @click="setPreEndTimeToCurrentStartTime"
+                    title="使用前一句的结束时间"
+                    icon="twemoji:end-arrow"
+                />
               </div>
               <BaseButton @click="recordStart">记录</BaseButton>
             </div>
@@ -542,7 +576,7 @@ function saveLrcPosition() {
           <div class="flex gap-2 items-center">
             <div>结束时间：</div>
             <div class="flex space-between flex-1">
-              <div class="flex items-center gap-1">
+              <div class="flex items-center gap-2">
                 <el-input-number v-model="editSentence.audioPosition[1]" :precision="2" :step="0.1">
                   <template #suffix>
                     <span>s</span>
@@ -554,14 +588,6 @@ function saveLrcPosition() {
               <BaseButton @click="recordEnd">记录</BaseButton>
             </div>
           </div>
-        </div>
-        <div class="flex items-center gap-2" v-if="editSentence.audioPosition?.length">
-          <div>
-            lrc：<span>{{ editSentence.audioPosition?.[0] }}s</span>
-            <span v-if="editSentence.audioPosition?.[1] !== -1"> - {{ editSentence.audioPosition?.[1] }}s</span>
-            <span v-else> - 结束</span>
-          </div>
-          <BaseButton @click="playSentenceAudio(editSentence,audioRef)">试听</BaseButton>
         </div>
       </div>
     </Dialog>

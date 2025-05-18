@@ -254,7 +254,7 @@ export function _getStudyProgress(index: number, total: number) {
   return Number(((index / total) * 100).toFixed())
 }
 
-export function _nextTick(cb: Function, time?: number) {
+export function _nextTick(cb: () => void, time?: number) {
   if (time) {
     nextTick(() => setTimeout(cb, time))
   } else {

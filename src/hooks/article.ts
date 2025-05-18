@@ -2,6 +2,7 @@ import {Article, ArticleWord, DefaultArticleWord, DictType, Sentence, TranslateT
 import {cloneDeep} from "lodash-es";
 import nlp from "compromise/one";
 import {split} from "sentence-splitter";
+import {usePlayWordAudio} from "@/hooks/sound.ts";
 
 interface KeyboardMap {
   Period: string,
@@ -242,7 +243,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
 
   // console.log(sections)
 
-  text= sections.map(v => v.map(s => s.text.trim()).join('\n')).join('\n\n');
+  text = sections.map(v => v.map(s => s.text.trim()).join('\n')).join('\n\n');
   // console.log('s',text)
   return {
     //s.text.trim()的trim()不能去掉，因为这个方法会重复执行，要保证句子后面只有一个\n，不trim() \n就会累加
@@ -320,5 +321,34 @@ export function getTranslateText(article: Article) {
       .split('\n\n').filter(v => v)
   } else {
     return []
+  }
+}
+
+export function usePlaySentenceAudio() {
+  const playWordAudio = usePlayWordAudio()
+  let timer = $ref(0)
+
+  function playSentenceAudio(sentence: Sentence, ref?: HTMLAudioElement, article?: Article) {
+    if (sentence.audioPosition?.length && article.audioSrc && ref) {
+      clearTimeout(timer)
+      if (ref.played) {
+        ref.pause()
+      }
+      let start = sentence.audioPosition[0];
+      ref.currentTime = start
+      ref.play()
+      let end = sentence.audioPosition?.[1]
+      if (end && end !== -1) {
+        timer = setTimeout(() => {
+          ref.pause()
+        }, (end - start) * 1000)
+      }
+    } else {
+      playWordAudio(sentence.text)
+    }
+  }
+
+  return {
+    playSentenceAudio
   }
 }
