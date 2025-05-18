@@ -13,6 +13,7 @@ import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
 import ContextMenu from '@imengyu/vue3-context-menu'
 import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
+import {getTranslateText} from "@/hooks/article.ts";
 
 interface IProps {
   article: Article,
@@ -458,6 +459,14 @@ defineExpose({showSentence, play, del, hideSentence, nextSentence})
       </div>
       <div class="cursor" v-if="!isEnd" :style="{top:cursor.top+'px',left:cursor.left+'px'}"></div>
     </div>
+    <div class="translate-bottom">
+      <header class="mb-4">
+        <div class="text-2xl center">{{ props.article.titleTranslate }}</div>
+      </header>
+      <template v-if="getTranslateText(article).length">
+        <div class="text-xl" v-for="t in getTranslateText(article)">{{ t }}</div>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -501,7 +510,7 @@ defineExpose({showSentence, play, del, hideSentence, nextSentence})
 
   article {
     font-size: 1.6rem;
-    line-height: 1.3;
+    line-height: 1.5;
     word-break: keep-all;
     word-wrap: break-word;
     white-space: pre-wrap;
@@ -530,7 +539,8 @@ defineExpose({showSentence, play, del, hideSentence, nextSentence})
     .hover-show {
       background: var(--color-main-active);
       color: white !important;
-      .wrote{
+
+      .wrote {
         color: white !important;
       }
     }

@@ -39,7 +39,7 @@ onUnmounted(() => {
           <div>{{ article.title }}</div>
         </div>
         <div class="text" v-if="article.text">
-          <div class="sentence" v-for="t in article.text.split('\n')">{{ t }}</div>
+          <div class="sentence" v-for="t in article.text.split('\n\n')">{{ t }}</div>
         </div>
         <Empty v-else/>
       </div>
@@ -88,7 +88,7 @@ onUnmounted(() => {
       padding-bottom: 3rem;
 
       .sentence {
-        margin-bottom: 3rem;
+        margin-bottom: 1rem;
       }
     }
   }
