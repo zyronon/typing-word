@@ -8,17 +8,21 @@
     "newWords": [],
     "textCustomTranslateIsFormat": true,
     "useTranslateType": "custom",
-    "id": "HmlGhw"
+    "id": "HmlGhw",
+    "audioSrc": "/public/sound/article/nce2-1/1.mp3",
+    "lrcPosition":  [[14.6,19.15],[19.15,22.03],[22.03,24.59],[24.59,27.26],[27.26,31.65],[31.65,34.43],[34.43,36.98],[36.98,40.36],[40.7,42.47],[40.36,46.59],[46.59,50.65],[50.65,54.57],[55.03,56.84],[57.17,63],[62.98,68.85],[68.85,-1]]
   },
   {
     "title": "Breakfast or lunch?",
     "titleTranslate": "早餐还是午餐？",
-    "text": "It was Sunday. I never get up early on Sundays. I sometimes stay in bed until lunchtime. Last Sunday I got up very late. I looked out of the window. It was dark outside. 'What a day!' I thought. 'It's raining again.' Just then, the telephone rang. It was my aunt Lucy. 'I've just arrived by train,' she said. 'I'm coming to see you.'\n    'But I'm still having breakfast,' I said.\n    'What are you doing?' she asked.\n    'I'm having breakfast,' I repeated.\n    'Dear me,' she said. 'Do you always get up so late? It's one o'clock!'",
-    "textCustomTranslate": "那是个星期天，\n而在星期天我是从来不早起的，\n有时我要一直躺到吃午饭的时候。\n上个星期天，我起得很晚。\n我望望窗外，外面一片昏暗。\n“鬼天气！”\n我想，“又下雨了。”\n正在这时，电话铃响了。\n是我姑母露西打来的。\n“我刚下火车，”她说，\n“我这就来看你。”\n\n“但我还在吃早饭，”我说。\n\n“你在干什么？”她问道。\n\n“我正在吃早饭，”我又说了一遍。\n\n“天啊，”她说，\n“你总是起得这么晚吗？",
+    "text": "It was Sunday. I never get up early on Sundays. I sometimes stay in bed until lunchtime. Last Sunday I got up very late. I looked out of the window. It was dark outside. 'What a day!' I thought. 'It's raining again.' Just then, the telephone rang. It was my aunt Lucy. 'I've just arrived by train,' she said. 'I'm coming to see you.'\n\n     'But I'm still having breakfast,' I said.\n\n     'What are you doing?' she asked.\n\n     'I'm having breakfast,' I repeated.\n\n     'Dear me,' she said. 'Do you always get up so late? It's one o'clock!'",
+    "textCustomTranslate": "那是个星期天，\n而在星期天我是从来不早起的，\n有时我要一直躺到吃午饭的时候。\n上个星期天，我起得很晚。\n我望望窗外，\n外面一片昏暗。\n“鬼天气！”我想，\n“又下雨了。”正在这时，电话铃响了。\n是我姑母露西打来的。\n“我刚下火车，”她说，\n“我这就来看你。”\n\n“但我还在吃早饭，”我说。\n\n“你在干什么？”她问道。\n\n“我正在吃早饭，”我又说了一遍。\n\n“天啊，”她说，\n“你总是起得这么晚吗？现在已经1点钟了！",
     "textNetworkTranslate": "",
     "textCustomTranslateIsFormat": true,
     "useTranslateType": "custom",
     "newWords": [],
+    "audioSrc": "/public/sound/article/nce2-1/2.mp3",
+    "lrcPosition": [],
     "id": "1ao0Qx"
   },
   {

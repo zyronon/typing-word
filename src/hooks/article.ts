@@ -50,6 +50,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
     let sentenceNlpList = []
     // console.log('ss', sentenceNlpList)
     doc.json().map(item => {
+
       //如果整句大于15个单词以上，检测是否有 逗号子句
       if (item.terms.length > 15) {
         //正则匹配“逗号加and|but|so|because"
@@ -71,13 +72,14 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
     })
 
     sentenceNlpList.map(item => {
-      let sentence: Sentence = {
+      let sentence: Sentence = cloneDeep({
         //他没有空格，导致修改一行一行的数据时，汇总时全没有空格了，库无法正常断句
         text: item.text + ' ',
         // text: '',
         translate: '',
         words: [],
-      }
+        audioPosition: [],
+      })
       section.push(sentence)
 
       const checkQuote = (pre: string, index?: number) => {
@@ -126,6 +128,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
             lastSentence.words = lastSentence.words.concat(sentence.words)
             lastSentence.words.push(word3)
             sentence.words = []
+            //这里还不能直接删除sentence，因为后面还有一个  sentence.words = sentence.words.filter(v => v.word !== 'placeholder') 的判断
             // section.pop()
           }
         }
@@ -218,6 +221,10 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
 
       //去除空格占位符
       sentence.words = sentence.words.filter(v => v.word !== 'placeholder')
+      //如果是空的，直接去掉
+      if (!sentence.words.length) {
+        section.pop()
+      }
     })
 
     // console.log(sentenceNlpList)

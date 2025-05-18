@@ -464,7 +464,7 @@ defineExpose({showSentence, play, del, hideSentence, nextSentence})
         <div class="text-2xl center">{{ props.article.titleTranslate }}</div>
       </header>
       <template v-if="getTranslateText(article).length">
-        <div class="text-xl" v-for="t in getTranslateText(article)">{{ t }}</div>
+        <div class="text-xl mb-4" v-for="t in getTranslateText(article)">{{ t }}</div>
       </template>
     </div>
   </div>
@@ -510,7 +510,7 @@ defineExpose({showSentence, play, del, hideSentence, nextSentence})
 
   article {
     font-size: 1.6rem;
-    line-height: 1.5;
+    line-height: 1.3;
     word-break: keep-all;
     word-wrap: break-word;
     white-space: pre-wrap;

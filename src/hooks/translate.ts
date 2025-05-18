@@ -197,4 +197,11 @@ export function renewSectionTexts(article: Article) {
   let {newText, sections} = splitEnArticle(article.text)
   article.text = newText
   article.sections = sections
+  if (article.lrcPosition.length) {
+    article.sections.map((v, i) => {
+      v.map((w, j) => {
+        w.audioPosition = article.lrcPosition[(i * (article.sections[i - 1]||[]).length) + j]
+      })
+    })
+  }
 }

@@ -137,27 +137,10 @@ useStartKeyboardEventListener()
 
 </script>
 <template>
-  <div class="practice-wrapper">
-    <PracticeArticle ref="practiceRef"/>
-    <ArticleFooter/>
-  </div>
+  <PracticeArticle ref="practiceRef"/>
   <DictModal/>
   <Statistics/>
 </template>
 
 <style scoped lang="scss">
-.practice-wrapper {
-  font-size: 0.9rem;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  //padding-right: var(--practice-wrapper-padding-right);
-  transform: translateX(var(--practice-wrapper-translateX));
-}
-
-
 </style>

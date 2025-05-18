@@ -118,7 +118,6 @@ export const DefaultBaseState = (): BaseState => ({
       index: 5, name: '已掌握', type: DictType.master, words: [], statistics: []
     },
   ],
-
   articleDictList: [
     {
       ...getDefaultDict(),
@@ -165,7 +164,6 @@ export const DefaultBaseState = (): BaseState => ({
       dictIndex: 0,
     },
   },
-
   myDictList: [
     {
       ...getDefaultDict(),
@@ -337,7 +335,6 @@ export const useBaseStore = defineStore('base', {
             }))
           }
           console.log('this.currentArticleDict', this.currentArticleDict.articles[0])
-
         }
         emitter.emit(EventKey.changeDict)
         resolve(true)

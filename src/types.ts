@@ -115,7 +115,9 @@ export interface Article {
   newWords: Word[],
   textAllWords: string[],
   sections: Sentence[][],
-  useTranslateType: TranslateType
+  useTranslateType: TranslateType,
+  audioSrc: string,
+  lrcPosition: number[][],
 }
 
 export const DefaultArticle: Article = {
@@ -130,7 +132,9 @@ export const DefaultArticle: Article = {
   newWords: [],
   textAllWords: [],
   sections: [],
-  useTranslateType: TranslateType.custom
+  useTranslateType: TranslateType.custom,
+  audioSrc: '',
+  lrcPosition: [],
 }
 
 export interface Statistics {

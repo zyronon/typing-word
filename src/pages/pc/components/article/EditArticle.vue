@@ -14,7 +14,7 @@ import {
 
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {getSplitTranslateText} from "@/hooks/article.ts";
-import {cloneDeep} from "lodash-es";
+import {cloneDeep, last} from "lodash-es";
 import {watch, ref} from "vue";
 import Empty from "@/components/Empty.vue";
 import {UploadProps, UploadUserFile} from "element-plus";
@@ -72,7 +72,7 @@ watch(() => props.article, val => {
     }
   }
   renewSections()
-  // console.log('ar', article)
+  console.log('ar', editArticle)
 }, {immediate: true})
 
 watch(() => editArticle.text, (s) => {
@@ -238,86 +238,63 @@ function save(option: 'save' | 'saveAndNext') {
 //不知道为什么直接用editArticle，取到是空的默认值
 defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
 
-const fileList = ref<UploadUserFile[]>([])
-
-const handleExceed: UploadProps['onExceed'] = (files, uploadFiles) => {
-  ElMessage.warning(
-      `The limit is 3, you selected ${files.length} files this time, add up to ${
-          files.length + uploadFiles.length
-      } totally`
-  )
-}
 
 const handleChange: UploadProps['onChange'] = (uploadFile, uploadFiles) => {
-  console.log(1)
-  fileList.value.push({
-    name: uploadFile.name,
-    url: uploadFile.url,
-  })
-}
-
-function test() {
-  let lrc = `[00:00.00]Lesson 1 A Private Conversation
-[00:04.35]First listen and then answer the question.
-[00:09.26]Why did the writer complain to the people behind him?
-[00:14.60]Last week I went to the theatre.
-[00:19.15]I had a very good seat.
-[00:22.03]The play was very interesting.
-[00:24.59]I did not enjoy it.
-[00:27.26]A young man and a young woman were sitting behind me.
-[00:31.65]They were talking loudly.
-[00:34.43]I got very angry.
-[00:36.98]I could not hear the actors.
-[00:40.36]I turned round.I looked at the man and the woman angrily.
-[00:46.59]They did not pay any attention.
-[00:50.65]In the end,I could not bear it.
-[00:54.57]I turned round again 'I can't hear a word!'I said angrily
-[01:02.98]'It's none of your business,'the young man said rudely.
-[01:08.85]'This is a private conversation!'
-`
-  let lrcList = _parseLRC(lrc)
-  console.log(lrcList)
-  editArticle.sections.map((v, i) => {
-    v.map((w, j) => {
-      console.log(w)
-      for (let k = 0; k < lrcList.length; k++) {
-        let s = lrcList[k]
-        let d = Comparison.default.cosine.similarity(w.text, s.text)
-        d = Comparison.default.levenshtein.similarity(w.text, s.text)
-        d = Comparison.default.longestCommonSubsequence.similarity(w.text, s.text)
-        // d = Comparison.default.metricLcs.similarity(w.text, s.text)
-        console.log(w.text, s.text, d)
-        if (d >= 0.8) {
-          w.audioPosition = [s.start, s.end ?? -1]
-          w.test = s.text
-          break
-        }
+  console.log(uploadFile)
+  let reader = new FileReader();
+  reader.readAsText(uploadFile.raw, 'UTF-8');
+  reader.onload = function (e) {
+    let lrc: string = e.target.result as string;
+    console.log(lrc)
+    if (lrc.trim()) {
+      let lrcList = _parseLRC(lrc)
+      console.log('lrcList', lrcList)
+      if (lrcList.length) {
+        editArticle.lrcPosition = editArticle.sections.map((v, i) => {
+          return v.map((w, j) => {
+            for (let k = 0; k < lrcList.length; k++) {
+              let s = lrcList[k]
+              let d = Comparison.default.cosine.similarity(w.text, s.text)
+              d = Comparison.default.levenshtein.similarity(w.text, s.text)
+              d = Comparison.default.longestCommonSubsequence.similarity(w.text, s.text)
+              // d = Comparison.default.metricLcs.similarity(w.text, s.text)
+              // console.log(w.text, s.text, d)
+              if (d >= 0.8) {
+                w.audioPosition = [s.start, s.end ?? -1]
+                break
+              }
+            }
+            return w.audioPosition ?? []
+          })
+        }).flat()
       }
-    })
-  })
-  console.log(editArticle.sections.flat())
-  // console.log(cosine.similarity('Thanos', 'Rival'))
-}
-
-
-function s() {
-
-}
-
-function confirm() {
-
+    }
+  }
 }
 
 let currentSentence = $ref<Sentence>({} as any)
+let editSentence = $ref<Sentence>({} as any)
 let showEditAudioDialog = $ref(false)
 let sentenceAudioRef = $ref<HTMLAudioElement>()
 let audioRef = $ref<HTMLAudioElement>()
 
-function handleShowEditAudioDialog(val: Sentence) {
+function handleShowEditAudioDialog(val: Sentence, i: number, j: number) {
   showEditAudioDialog = true
   currentSentence = val
-  if (!currentSentence.audioPosition?.length) {
-    currentSentence.audioPosition = [0, 0]
+  editSentence = cloneDeep(val)
+  let pre = null
+  if (j == 0) {
+    if (i != 0) {
+      pre = last(editArticle.sections[i - 1])
+    }
+  } else {
+    pre = editArticle.sections[i][j - 1]
+  }
+  if (!editSentence.audioPosition?.length) {
+    editSentence.audioPosition = [0, 0]
+    if (pre) {
+      editSentence.audioPosition = [pre.audioPosition[1] ?? 0, 0]
+    }
   }
 }
 
@@ -325,14 +302,14 @@ function recordStart() {
   if (sentenceAudioRef.paused) {
     sentenceAudioRef.play()
   }
-  currentSentence.audioPosition[0] = Number(sentenceAudioRef.currentTime.toFixed(2))
+  editSentence.audioPosition[0] = Number(sentenceAudioRef.currentTime.toFixed(2))
 }
 
 function recordEnd() {
   if (!sentenceAudioRef.paused) {
     sentenceAudioRef.pause()
   }
-  currentSentence.audioPosition[1] = Number(sentenceAudioRef.currentTime.toFixed(2))
+  editSentence.audioPosition[1] = Number(sentenceAudioRef.currentTime.toFixed(2))
 }
 
 let timer = -1
@@ -353,6 +330,12 @@ function playSentenceAudio(sentence: Sentence, ref?: HTMLAudioElement) {
       }, (end - start) * 1000)
     }
   }
+}
+
+function saveLrcPosition() {
+  // showEditAudioDialog = false
+  currentSentence.audioPosition = cloneDeep(editSentence.audioPosition)
+  editArticle.lrcPosition = editArticle.sections.map((v, i) => v.map((w, j) => (w.audioPosition ?? []))).flat()
 }
 </script>
 
@@ -455,21 +438,15 @@ function playSentenceAudio(sentence: Sentence, ref?: HTMLAudioElement) {
       <div class="center">正文、译文与结果均可编辑，修改一处，另外两处会自动同步变动</div>
       <div class="flex gap-2">
         <BaseButton>添加音频</BaseButton>
-        <BaseButton @click="test">添加音频LRC</BaseButton>
         <el-upload
-            v-model:file-list="fileList"
             class="upload-demo"
             :limit="1"
             :on-change="handleChange"
+            :auto-upload="false"
         >
-          <el-button type="primary">Click to upload</el-button>
-          <template #tip>
-            <div class="el-upload__tip">
-              jpg/png files with a size less than 500KB.
-            </div>
-          </template>
+          <el-button type="primary">添加音频LRC文件</el-button>
         </el-upload>
-        <audio ref="audioRef" :src="audio" controls></audio>
+        <audio ref="audioRef" :src="editArticle.audioSrc" controls></audio>
       </div>
       <template v-if="editArticle.sections.length">
         <div class="flex-1 overflow-auto flex flex-col">
@@ -499,10 +476,11 @@ function playSentenceAudio(sentence: Sentence, ref?: HTMLAudioElement) {
                     <div class="text-base" v-if="sentence.audioPosition?.length">
                       <span>{{ sentence.audioPosition?.[0] }}s</span>
                       <span v-if="sentence.audioPosition?.[1] !== -1"> - {{ sentence.audioPosition?.[1] }}s</span>
+                      <span v-else> - 结束</span>
                     </div>
                     <div>
                       <BaseIcon :icon="sentence.audioPosition?.length ? 'basil:edit-outline' : 'basil:add-outline'"
-                                @click="handleShowEditAudioDialog(sentence)"/>
+                                @click="handleShowEditAudioDialog(sentence,indexI,indexJ)"/>
                       <BaseIcon v-if="sentence.audioPosition?.length" icon="hugeicons:play"
                                 @click="playSentenceAudio(sentence,audioRef)"/>
                     </div>
@@ -532,43 +510,58 @@ function playSentenceAudio(sentence: Sentence, ref?: HTMLAudioElement) {
       </template>
       <Empty v-else text="没有译文对照~"/>
     </div>
-    <Dialog title="音频"
+    <Dialog title="设置音频与句子的对应位置(LRC)"
             v-model="showEditAudioDialog"
             :footer="true"
             @close="showEditAudioDialog = false"
+            @ok="saveLrcPosition"
     >
       <div class="p-4 pt-0 color-black w-150 flex flex-col gap-2">
         <div>
-          句子：{{ currentSentence.text }}
+          句子：{{ editSentence.text }}
         </div>
-        <audio ref="sentenceAudioRef" :src="audio" controls class="w-full"></audio>
+        <audio ref="sentenceAudioRef" :src="editArticle.audioSrc" controls class="w-full"></audio>
         <div class="">
-          使用方法：点击上方播放按钮，音频播放到句子开始时，点击 记录开始时间 按钮，播放到句子结束时，点击 记录开始时间 按钮
+          使用方法：点击上方播放按钮，当音频播放到当前句子开始时，点击开始时间的 <span class="color-red">记录</span>
+          按钮；当播放到句子结束时，点击结束时间的 <span class="color-red">记录</span> 按钮
         </div>
-        <div class="flex items-center gap-4">
-          <div class="flex flex-col gap-2">
-            <div class="flex gap-2 items-center">
-              <BaseButton @click="recordStart">记录开始时间</BaseButton>
+        <div class="flex flex-col gap-2">
+          <div class="flex gap-2 items-center">
+            <div>开始时间：</div>
+            <div class="flex space-between flex-1">
               <div class="flex items-center gap-1">
-                <el-input-number v-model="currentSentence.audioPosition[0]" :precision="2" :step="0.1">
+                <el-input-number v-model="editSentence.audioPosition[0]" :precision="2" :step="0.1">
                   <template #suffix>
                     <span>s</span>
                   </template>
                 </el-input-number>
               </div>
-            </div>
-            <div class="flex gap-2 items-center">
-              <BaseButton @click="recordEnd">记录结束时间</BaseButton>
-              <div class="flex items-center gap-1">
-                <el-input-number v-model="currentSentence.audioPosition[1]" :precision="2" :step="0.1">
-                  <template #suffix>
-                    <span>s</span>
-                  </template>
-                </el-input-number>
-              </div>
+              <BaseButton @click="recordStart">记录</BaseButton>
             </div>
           </div>
-          <BaseButton @click="playSentenceAudio(currentSentence,audioRef)">播放记录时间</BaseButton>
+          <div class="flex gap-2 items-center">
+            <div>结束时间：</div>
+            <div class="flex space-between flex-1">
+              <div class="flex items-center gap-1">
+                <el-input-number v-model="editSentence.audioPosition[1]" :precision="2" :step="0.1">
+                  <template #suffix>
+                    <span>s</span>
+                  </template>
+                </el-input-number>
+                <span>或</span>
+                <BaseButton size="small" @click="editSentence.audioPosition[1] = -1">结束</BaseButton>
+              </div>
+              <BaseButton @click="recordEnd">记录</BaseButton>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2" v-if="editSentence.audioPosition?.length">
+          <div>
+            lrc：<span>{{ editSentence.audioPosition?.[0] }}s</span>
+            <span v-if="editSentence.audioPosition?.[1] !== -1"> - {{ editSentence.audioPosition?.[1] }}s</span>
+            <span v-else> - 结束</span>
+          </div>
+          <BaseButton @click="playSentenceAudio(editSentence,audioRef)">试听</BaseButton>
         </div>
       </div>
     </Dialog>
