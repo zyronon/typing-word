@@ -42,7 +42,7 @@ export function getSentenceAllTranslateText(article: Article) {
     })
     str += '\n'
   })
-  return str
+  return str.trim()
 }
 
 export function getSentenceAllText(article: Article) {
@@ -100,7 +100,7 @@ export async function getNetworkTranslate(
             sentence.translate = r.trans.paragraphs[0]
             if (!allShow) {
               //一次显示所有，顺序会乱
-              article.textCustomTranslate += sentence.translate + '\n'
+              article.textTranslate += sentence.translate + '\n'
             }
           }
           return Promise.resolve(cb)
@@ -178,7 +178,7 @@ export async function getNetworkTranslate(
           retryCount++
         } while (promiseList.length)
         cbs.map(v => v())
-        article.textCustomTranslate = getSentenceAllTranslateText(article)
+        article.textTranslate = getSentenceAllTranslateText(article)
 
         if (progressCb) {
           clearInterval(timer)
@@ -188,7 +188,7 @@ export async function getNetworkTranslate(
         resolve(true)
       })
     } else {
-      article.textCustomTranslate = getSentenceAllTranslateText(article)
+      article.textTranslate = getSentenceAllTranslateText(article)
     }
   }
 }
@@ -197,10 +197,12 @@ export function renewSectionTexts(article: Article) {
   let {newText, sections} = splitEnArticle(article.text)
   article.text = newText
   article.sections = sections
+  let count = 0
   if (article.lrcPosition.length) {
     article.sections.map((v, i) => {
       v.map((w, j) => {
-        w.audioPosition = article.lrcPosition[(i * (article.sections[i - 1]||[]).length) + j]
+        w.audioPosition = article.lrcPosition[count]
+        count++
       })
     })
   }

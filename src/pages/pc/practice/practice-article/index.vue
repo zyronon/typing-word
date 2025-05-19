@@ -105,61 +105,10 @@ function getCurrentPractice() {
   if (tempArticle.sections.length) {
     setArticle(tempArticle)
   } else {
-    if (tempArticle.useTranslateType === TranslateType.none) {
-      renewSectionTexts(tempArticle)
+    renewSectionTexts(tempArticle)
+    if (tempArticle.textTranslate.trim()) {
+      renewSectionTranslates(tempArticle, tempArticle.textTranslate)
       setArticle(tempArticle)
-    } else {
-      if (tempArticle.useTranslateType === TranslateType.custom) {
-        if (tempArticle.textCustomTranslate.trim()) {
-          if (tempArticle.textCustomTranslateIsFormat) {
-            renewSectionTexts(tempArticle)
-            renewSectionTranslates(tempArticle, tempArticle.textCustomTranslate)
-            setArticle(tempArticle)
-          } else {
-            //说明有本地翻译，但是没格式化成一行一行的
-            MessageBox.confirm('检测到存在本地翻译，但未格式化，是否进行编辑?',
-                '提示',
-                () => {
-                  editArticle = tempArticle
-                  showEditArticle = true
-                },
-                () => {
-                  renewSectionTexts(tempArticle)
-                  tempArticle.useTranslateType = TranslateType.none
-                  setArticle(tempArticle)
-                }, null,
-                {
-                  confirmButtonText: '去编辑',
-                  cancelButtonText: '不需要翻译',
-                })
-          }
-        } else {
-          //没有本地翻译
-          MessageBox.confirm(
-              '没有本地翻译，是否进行编辑?',
-              '提示',
-              () => {
-                editArticle = tempArticle
-                showEditArticle = true
-              },
-
-              () => {
-                renewSectionTexts(tempArticle)
-                tempArticle.useTranslateType = TranslateType.none
-                setArticle(tempArticle)
-              }, null,
-              {
-                confirmButtonText: '去编辑',
-                cancelButtonText: '不需要翻译',
-              })
-        }
-      }
-
-      if (tempArticle.useTranslateType === TranslateType.network) {
-        renewSectionTexts(tempArticle)
-        renewSectionTranslates(tempArticle, tempArticle.textNetworkTranslate)
-        setArticle(tempArticle)
-      }
     }
   }
 }
@@ -467,8 +416,18 @@ const {playSentenceAudio} = usePlaySentenceAudio()
             </div>
           </div>
           <div class="flex flex-col items-center justify-center gap-1">
-            <audio ref="audioRef" v-if="articleData.article.audioSrc" :src="articleData.article.audioSrc" controls></audio>
+            <audio ref="audioRef" v-if="articleData.article.audioSrc" :src="articleData.article.audioSrc"
+                   controls></audio>
             <div class="flex gap-3 center">
+              <BaseIcon
+                  :title="`下一句(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
+                  icon="icon-park-outline:go-ahead"
+                  @click="emit('over')"/>
+              <BaseIcon
+                  :title="`重听(${settingStore.shortcutKeyMap[ShortcutKey.PlayWordPronunciation]})`"
+                  icon="fluent:replay-16-filled"
+                  @click="play"/>
+
               <Tooltip
                   :title="`开关默写模式(${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
               >
@@ -492,22 +451,7 @@ const {playSentenceAudio} = usePlaySentenceAudio()
                   @click="emitter.emit(ShortcutKey.EditArticle)"
               />
 
-              <BaseIcon
-                  v-if="!isArticleCollect()"
-                  class="collect"
-                  @click="toggleArticleCollect()"
-                  :title="`收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
-                  icon="ph:star"/>
-              <BaseIcon
-                  v-else
-                  class="fill"
-                  @click="toggleArticleCollect()"
-                  :title="`取消收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
-                  icon="ph:star-fill"/>
-              <BaseIcon
-                  :title="`下一句(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
-                  icon="icon-park-outline:go-ahead"
-                  @click="emit('over')"/>
+
 
               <BaseIcon
                   @click="settingStore.showPanel = !settingStore.showPanel"

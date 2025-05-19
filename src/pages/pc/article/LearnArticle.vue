@@ -14,7 +14,6 @@ import {ShortcutKey} from "@/types.ts";
 import DictModal from "@/pages/pc/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
-import ArticleFooter from "@/pages/pc/article/ArticleFooter.vue";
 
 const statisticsStore = usePracticeStore()
 const store = useBaseStore()

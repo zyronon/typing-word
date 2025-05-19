@@ -59,16 +59,13 @@ function checkDataChange() {
       editArticle.title = editArticle.title.trim()
       editArticle.titleTranslate = editArticle.titleTranslate.trim()
       editArticle.text = editArticle.text.trim()
-      editArticle.textCustomTranslate = editArticle.textCustomTranslate.trim()
-      editArticle.textNetworkTranslate = editArticle.textNetworkTranslate.trim()
+      editArticle.textTranslate = editArticle.textTranslate.trim()
 
       if (
           editArticle.title !== article.title ||
           editArticle.titleTranslate !== article.titleTranslate ||
           editArticle.text !== article.text ||
-          editArticle.textCustomTranslate !== article.textCustomTranslate ||
-          editArticle.textNetworkTranslate !== article.textNetworkTranslate ||
-          editArticle.useTranslateType !== article.useTranslateType
+          editArticle.textTranslate !== article.textTranslate
       ) {
         return MessageBox.confirm(
             '检测到数据有变动，是否保存？',

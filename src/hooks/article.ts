@@ -79,7 +79,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
         // text: '',
         translate: '',
         words: [],
-        audioPosition: [],
+        audioPosition: [0, 0],
       })
       section.push(sentence)
 
@@ -215,7 +215,7 @@ export function splitEnArticle(text: string): { sections: Sentence[][], newText:
           let post: string = v.post
           //判断是不是等于空，因为正常的词后面都会有个空格。这种不需要处理。
           if (post && post !== ' ') {
-            checkSymbol(post)
+            checkSymbol(post.trim())
           }
         }
       })
@@ -258,33 +258,34 @@ export function splitCNArticle(text: string): Sentence[][] {
   //去除头和尾部的空格
   text = text.trim()
   let sections: Sentence[][] = []
-  text && text.split('\n').map((rowSection, i) => {
+  text && text.split('\n\n').map((rowSection, i) => {
     let section: Sentence[] = []
     sections.push(section)
-    rowSection = rowSection.trim()
-    let sentences = split(rowSection)
-    sentences.map(sentenceRow => {
-      let row = sentenceRow.raw
-      let sentence: Sentence = {
-        text: row,
-        // text: '',
-        translate: '',
-        words: []
-      }
-      section.push(sentence)
-      // console.log('LICENSE', )
-      if (row) {
-        //这个库总是会把反引号给断句到下一行
-        if (row[0] === "”") {
-          sentence.text = row.substr(1)
-          let lastSentence = section[section.length - 2]
-          lastSentence.text += "”"
-          if (!sentence.text) {
-            section.pop()
+    let list = rowSection.trim().split('\n')
+    list.map(sentenceText => {
+      let sentences = split(sentenceText)
+      sentences.map(sentenceRow => {
+        let row = sentenceRow.raw
+        let sentence: Sentence = {
+          text: row,
+          translate: '',
+          words: [],
+          audioPosition: [0, 0],
+        }
+        section.push(sentence)
+        if (row) {
+          //这个库总是会把反引号给断句到下一行
+          if (row[0] === "”") {
+            sentence.text = row.substr(1)
+            let lastSentence = section[section.length - 2]
+            lastSentence.text += "”"
+            if (!sentence.text) {
+              section.pop()
+            }
           }
         }
-      }
-      // console.log('sentence', sentenceRow)
+        // console.log('sentence', sentenceRow)
+      })
     })
   })
   // console.log('sections', sections)
@@ -297,12 +298,12 @@ export function getSplitTranslateText(article: string) {
   if (sections.length) {
     sections.map((sectionItem) => {
       sectionItem.map((sentenceItem) => {
-        str += sentenceItem.text + '\n'
+        str += sentenceItem.text + (sentenceItem.text.endsWith("\n") ? '' : '\n')
       })
-      str += '\n'
+      str += str.endsWith("\n\n") ? '' : '\n'
     })
   }
-  return str
+  return str.trim()
 }
 
 export function isArticle(type: DictType): boolean {
@@ -312,16 +313,8 @@ export function isArticle(type: DictType): boolean {
 }
 
 export function getTranslateText(article: Article) {
-  if (article.useTranslateType === TranslateType.custom) {
-
-    return article.textCustomTranslate
-      .split('\n\n').filter(v => v)
-  } else if (article.useTranslateType === TranslateType.network) {
-    return article.textNetworkTranslate
-      .split('\n\n').filter(v => v)
-  } else {
-    return []
-  }
+  return article.textTranslate
+    .split('\n\n').filter(v => v)
 }
 
 export function usePlaySentenceAudio() {

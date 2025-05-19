@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {Article, DefaultArticle, Sentence, TranslateEngine, TranslateType} from "@/types.ts";
+import {Article, DefaultArticle, Sentence, TranslateEngine} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import EditAbleText from "@/pages/pc/components/EditAbleText.vue";
 import {Icon} from "@iconify/vue";
@@ -13,12 +13,12 @@ import {
 } from "@/hooks/translate.ts";
 
 import {MessageBox} from "@/utils/MessageBox.tsx";
-import {getSplitTranslateText} from "@/hooks/article.ts";
+import {getSplitTranslateText, usePlaySentenceAudio} from "@/hooks/article.ts";
 import {cloneDeep, last} from "lodash-es";
-import {watch, ref, nextTick} from "vue";
+import {watch} from "vue";
 import Empty from "@/components/Empty.vue";
-import {UploadProps, UploadUserFile} from "element-plus";
-import {_copy, _nextTick, _parseLRC} from "@/utils";
+import {UploadProps} from "element-plus";
+import {_nextTick, _parseLRC} from "@/utils";
 import * as Comparison from "string-comparison"
 import audio from '/public/sound/article/nce2-1/1.mp3'
 import BaseIcon from "@/components/BaseIcon.vue";
@@ -54,23 +54,15 @@ watch(() => props.article, val => {
   editArticle = cloneDeep(val)
   progress = 0
   failCount = 0
-  if (editArticle.text.trim()) {
-    if (editArticle.useTranslateType === TranslateType.custom) {
-      if (editArticle.textCustomTranslate.trim()) {
-        if (!editArticle.textCustomTranslateIsFormat) {
-          let r = getSplitTranslateText(editArticle.textCustomTranslate)
-          if (r) {
-            editArticle.textCustomTranslate = r
-            ElMessage({
-              message: '检测到本地翻译未格式化，已自动格式化',
-              type: 'success',
-              duration: 3000
-            })
-          }
-        }
-      }
-    }
-  }
+  // let r = getSplitTranslateText(editArticle.textTranslate)
+  // if (r) {
+  //   editArticle.textTranslate = r
+  //   ElMessage({
+  //     message: '检测到本地翻译未格式化，已自动格式化',
+  //     type: 'success',
+  //     duration: 3000
+  //   })
+  // }
   renewSections()
   console.log('ar', editArticle)
 }, {immediate: true})
@@ -84,12 +76,7 @@ watch(() => editArticle.text, (s) => {
 function renewSections() {
   if (editArticle.text.trim()) {
     renewSectionTexts(editArticle)
-    if (editArticle.useTranslateType === TranslateType.custom) {
-      failCount = renewSectionTranslates(editArticle, editArticle.textCustomTranslate)
-    }
-    if (editArticle.useTranslateType === TranslateType.network) {
-      failCount = renewSectionTranslates(editArticle, editArticle.textNetworkTranslate)
-    }
+    failCount = renewSectionTranslates(editArticle, editArticle.textTranslate)
   } else {
     editArticle.sections = []
   }
@@ -98,11 +85,13 @@ function renewSections() {
 function appendTranslate(str: string) {
   let selectionStart = textareaRef.selectionStart;
   let selectionEnd = textareaRef.selectionEnd;
-  if (editArticle.useTranslateType === TranslateType.custom) {
-    editArticle.textCustomTranslate = editArticle.textCustomTranslate.slice(0, selectionStart) + str + editArticle.textCustomTranslate.slice(selectionEnd)
-  }
-  if (editArticle.useTranslateType === TranslateType.network) {
-    editArticle.textNetworkTranslate = editArticle.textNetworkTranslate.slice(0, selectionStart) + str + editArticle.textNetworkTranslate.slice(selectionEnd)
+  editArticle.textTranslate = editArticle.textTranslate.slice(0, selectionStart) + str + editArticle.textTranslate.slice(selectionEnd)
+}
+
+function splitTranslateText() {
+  if (editArticle.textTranslate.trim()){
+    editArticle.textTranslate = getSplitTranslateText(editArticle.textTranslate.trim())
+    renewSections()
   }
 }
 
@@ -139,6 +128,7 @@ function onFocus() {
   document.addEventListener('paste', onPaste);
 }
 
+//TODO
 async function startNetworkTranslate() {
   if (!editArticle.title.trim()) {
     return ElMessage.error('请填写标题！')
@@ -160,12 +150,7 @@ async function startNetworkTranslate() {
 
 function saveSentenceTranslate(sentence: Sentence, val: string) {
   sentence.translate = val
-  if (editArticle.useTranslateType === TranslateType.custom) {
-    editArticle.textCustomTranslate = getSentenceAllTranslateText(editArticle)
-  }
-  if (editArticle.useTranslateType === TranslateType.network) {
-    editArticle.textNetworkTranslate = getSentenceAllTranslateText(editArticle)
-  }
+  editArticle.textTranslate = getSentenceAllTranslateText(editArticle)
   renewSections()
 }
 
@@ -184,8 +169,7 @@ function save(option: 'save' | 'saveAndNext') {
     editArticle.title = editArticle.title.trim()
     editArticle.titleTranslate = editArticle.titleTranslate.trim()
     editArticle.text = editArticle.text.trim()
-    editArticle.textCustomTranslate = editArticle.textCustomTranslate.trim()
-    editArticle.textNetworkTranslate = editArticle.textNetworkTranslate.trim()
+    editArticle.textTranslate = editArticle.textTranslate.trim()
 
     if (!editArticle.title) {
       ElMessage.error('请填写标题！')
@@ -197,38 +181,8 @@ function save(option: 'save' | 'saveAndNext') {
     }
 
     const saveTemp = () => {
-      editArticle.textCustomTranslateIsFormat = true
       emit(option as any, editArticle)
-
       return resolve(true)
-    }
-
-    if (editArticle.useTranslateType === TranslateType.network) {
-      if (!editArticle.textNetworkTranslate) {
-        return MessageBox.confirm(
-            '您选择了“网络翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
-            '提示',
-            () => {
-              editArticle.useTranslateType = TranslateType.none
-              saveTemp()
-            },
-            () => void 0,
-        )
-      }
-    }
-
-    if (editArticle.useTranslateType === TranslateType.custom) {
-      if (!editArticle.textCustomTranslate) {
-        return MessageBox.confirm(
-            '您选择了“本地翻译”，但译文内容却为空白，是否修改为“不需要翻译”并保存?',
-            '提示',
-            () => {
-              editArticle.useTranslateType = TranslateType.none
-              saveTemp()
-            },
-            () => void 0,
-        )
-      }
     }
 
     saveTemp()
@@ -237,7 +191,6 @@ function save(option: 'save' | 'saveAndNext') {
 
 //不知道为什么直接用editArticle，取到是空的默认值
 defineExpose({save, getEditArticle: () => cloneDeep(editArticle)})
-
 
 const handleChange: UploadProps['onChange'] = (uploadFile, uploadFiles) => {
   console.log(uploadFile)
@@ -284,6 +237,7 @@ function handleShowEditAudioDialog(val: Sentence, i: number, j: number) {
   currentSentence = val
   editSentence = cloneDeep(val)
   preSentence = null
+  audioRef.pause()
   if (j == 0) {
     if (i != 0) {
       preSentence = last(editArticle.sections[i - 1])
@@ -316,25 +270,7 @@ function recordEnd() {
   editSentence.audioPosition[1] = Number(sentenceAudioRef.currentTime.toFixed(2))
 }
 
-let timer = -1
-
-function playSentenceAudio(sentence: Sentence, ref?: HTMLAudioElement) {
-  clearTimeout(timer)
-  if (sentence.audioPosition?.length) {
-    if (ref.played) {
-      ref.pause()
-    }
-    let start = sentence.audioPosition[0];
-    ref.currentTime = start
-    ref.play()
-    let end = sentence.audioPosition?.[1]
-    if (end && end !== -1) {
-      timer = setTimeout(() => {
-        ref.pause()
-      }, (end - start) * 1000)
-    }
-  }
-}
+const {playSentenceAudio} = usePlaySentenceAudio()
 
 function saveLrcPosition() {
   // showEditAudioDialog = false
@@ -351,6 +287,23 @@ function setPreEndTimeToCurrentStartTime() {
     editSentence.audioPosition[0] = preSentence.audioPosition[1]
   }
 }
+
+function setStartTime(val: Sentence, i: number, j: number) {
+  let preSentence = null
+  if (j == 0) {
+    if (i != 0) {
+      preSentence = last(editArticle.sections[i - 1])
+    }
+  } else {
+    preSentence = editArticle.sections[i][j - 1]
+  }
+  if (preSentence) {
+    val.audioPosition[0] = preSentence.audioPosition[1]
+  } else {
+    val.audioPosition[0] = Number(Number(audioRef.currentTime).toFixed(2))
+  }
+}
+
 </script>
 
 <template>
@@ -376,10 +329,9 @@ function setPreEndTimeToCurrentStartTime() {
       <div class="justify-between items-center gap-2 flex">
         <ol class="py-0 pl-5 my-0 text-base color-black/60">
           <li>复制原文</li>
-          <li>点击 <span class="color-red font-bold">应用</span> 按钮进行分句，并同步到左侧结果</li>
-          <li>手动调整分句，一行一句，段落之间空一行<span class="color-red font-bold">（可选）</span></li>
-          <li>修改完成后点击 <span class="color-red font-bold">应用</span> 按钮同步到左侧结果<span
-              class="color-red font-bold">（可选）</span>
+          <li>点击 <span class="color-red font-bold">分句</span> 按钮进行自动分句</li>
+          <li><span class="color-red font-bold">或</span> 手动调整分句，一行一句，段落之间空一行</li>
+          <li>修改完成后点击 <span class="color-red font-bold">应用</span> 按钮同步到左侧结果栏
           </li>
         </ol>
         <el-button type="primary" @click="renewSections">应用</el-button>
@@ -401,7 +353,7 @@ function setPreEndTimeToCurrentStartTime() {
         <span>正文：</span>
       </div>
       <textarea
-          v-model="editArticle.textCustomTranslate"
+          v-model="editArticle.textTranslate"
           :readonly="![100,0].includes(progress)"
           @blur="onBlur"
           @focus="onFocus"
@@ -413,13 +365,10 @@ function setPreEndTimeToCurrentStartTime() {
             </textarea>
       <div class="justify-between items-center gap-2 flex">
         <ol class="py-0 pl-5 my-0 text-base color-black/60">
-          <li>复制译文</li>
-          <li>如果没有译文，点击 <span class="color-red font-bold">翻译</span> 按钮<span
-              class="color-red font-bold">（可选）</span></li>
-          <li>点击 <span class="color-red font-bold">应用</span> 按钮进行分句，并同步到左侧结果</li>
-          <li>手动调整分句，一行一句，段落之间空一行<span class="color-red font-bold">（可选）</span></li>
-          <li>修改完成后点击 <span class="color-red font-bold">应用</span> 按钮同步到左侧结果<span
-              class="color-red font-bold">（可选）</span>
+          <li>复制译文，如果没有请点击 <span class="color-red font-bold">翻译</span> 按钮</li>
+          <li>点击 <span class="color-red font-bold">分句</span> 按钮进行自动分句</li>
+          <li><span class="color-red font-bold">或</span> 手动调整分句，一行一句，段落之间空一行</li>
+          <li>修改完成后点击 <span class="color-red font-bold">应用</span> 按钮同步到左侧结果栏
           </li>
         </ol>
         <div class="flex flex-col gap-2 items-end">
@@ -443,7 +392,11 @@ function setPreEndTimeToCurrentStartTime() {
               :loading="progress!==0 && progress !== 100"
           >翻译
           </el-button>
-          <el-button type="primary" @click="renewSections">应用</el-button>
+          <div>
+            <el-button type="primary" @click="splitTranslateText">分句</el-button>
+            <el-button type="primary" @click="renewSections">应用</el-button>
+          </div>
+
         </div>
       </div>
     </div>
@@ -485,19 +438,32 @@ function setPreEndTimeToCurrentStartTime() {
                       @save="(e:string) => saveSentenceTranslate(sentence,e)"
                   />
                 </div>
-                <div class="flex-[3]">
-                  <div class="flex items-center justify-end gap-2">
-                    <div class="text-base" v-if="sentence.audioPosition?.length">
-                      <span>{{ sentence.audioPosition?.[0] }}s</span>
-                      <span v-if="sentence.audioPosition?.[1] !== -1"> - {{ sentence.audioPosition?.[1] }}s</span>
-                      <span v-else> - 结束</span>
+                <div class="flex-[2] flex justify-end gap-1 items-center">
+                  <div class="flex justify-end gap-2">
+                    <div class="flex flex-col items-center justify-center">
+                      <div>{{ sentence.audioPosition?.[0] ?? 0 }}s</div>
+                      <BaseIcon
+                          @click="setStartTime(sentence,indexI,indexJ)"
+                          :icon="indexI === 0 && indexJ === 0 ?'ic:sharp-my-location':'twemoji:end-arrow'"
+                          :title="indexI === 0 && indexJ === 0 ?'设置开始时间':'使用前一句的结束时间'"
+                      />
                     </div>
-                    <div>
-                      <BaseIcon :icon="sentence.audioPosition?.length ? 'basil:edit-outline' : 'basil:add-outline'"
-                                @click="handleShowEditAudioDialog(sentence,indexI,indexJ)"/>
-                      <BaseIcon v-if="sentence.audioPosition?.length" icon="hugeicons:play"
-                                @click="playSentenceAudio(sentence,audioRef)"/>
+                    <div>-</div>
+                    <div class="flex flex-col items-center justify-center">
+                      <div v-if="sentence.audioPosition?.[1] !== -1">{{ sentence.audioPosition?.[1] ?? 0 }}s</div>
+                      <div v-else> 结束</div>
+                      <BaseIcon
+                          @click="sentence.audioPosition[1] = Number(Number(audioRef.currentTime).toFixed(2))"
+                          title="设置结束时间"
+                          icon="ic:sharp-my-location"
+                      />
                     </div>
+                  </div>
+                  <div class="flex flex-col">
+                    <BaseIcon :icon="sentence.audioPosition?.length ? 'basil:edit-outline' : 'basil:add-outline'"
+                              @click="handleShowEditAudioDialog(sentence,indexI,indexJ)"/>
+                    <BaseIcon v-if="sentence.audioPosition?.length" icon="hugeicons:play"
+                              @click="playSentenceAudio(sentence,audioRef,editArticle)"/>
                   </div>
                 </div>
               </div>
@@ -507,7 +473,7 @@ function setPreEndTimeToCurrentStartTime() {
         <div class="options" v-if="editArticle.text.trim()">
           <div class="status">
             <span>状态：</span>
-            <div class="warning" v-if="failCount && editArticle.useTranslateType !== TranslateType.none">
+            <div class="warning" v-if="failCount">
               <Icon icon="typcn:warning-outline"/>
               共有{{ failCount }}句没有翻译！
             </div>
@@ -546,7 +512,7 @@ function setPreEndTimeToCurrentStartTime() {
             </div>
             <BaseIcon icon="hugeicons:play"
                       title="试听"
-                      @click="playSentenceAudio(editSentence,sentenceAudioRef)"/>
+                      @click="playSentenceAudio(editSentence,sentenceAudioRef,editArticle)"/>
           </div>
         </div>
         <div class="flex flex-col gap-2">
@@ -591,7 +557,6 @@ function setPreEndTimeToCurrentStartTime() {
         </div>
       </div>
     </Dialog>
-
   </div>
 </template>
 

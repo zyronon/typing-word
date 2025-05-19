@@ -1,25 +1,40 @@
 <script setup lang="ts">
+import {nextTick, onMounted, watch} from "vue";
+
 interface IProps {
   modelValue?: boolean,
   width?: string
 }
 
-withDefaults(defineProps<IProps>(), {
+let props = withDefaults(defineProps<IProps>(), {
   modelValue: true,
   width: '180rem'
 })
+let modalRef = $ref(null)
+let style = $ref({top: '2.4rem', bottom: 'unset'})
 
+watch(() => props.modelValue, (n) => {
+  if (n)
+    nextTick(() => {
+      if (modalRef) {
+        const modal = modalRef as HTMLElement
+        if (modal.getBoundingClientRect().bottom > window.innerHeight) {
+          style = {top: 'unset', 'bottom': '2.5rem'}
+        }
+      }
+    })
+})
 </script>
 
 <template>
   <Transition name="fade">
-    <div v-if="modelValue" class="mini-modal" :style="{width}">
+    <div v-if="modelValue" ref="modalRef" class="mini-modal" :style="{width, ...style}">
       <slot></slot>
     </div>
   </Transition>
 </template>
 
-<style  lang="scss">
+<style lang="scss">
 @import "@/assets/css/style";
 
 .mini-row-title {
@@ -48,7 +63,7 @@ withDefaults(defineProps<IProps>(), {
   border-radius: .5rem;
   box-shadow: 0 0 8px 2px var(--color-item-border);
   padding: .6rem var(--space);
-  top: 2.4rem;
+  //top: 2.4rem;
   left: 50%;
   transform: translate3d(-50%, 0, 0);
   //margin-top: 10rem;

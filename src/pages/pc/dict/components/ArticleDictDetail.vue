@@ -152,14 +152,12 @@ function importData(e: any) {
         if (v['原文标题'] && v['原文正文']) {
           let article: Article = {
             ...DefaultArticle,
-            textCustomTranslateIsFormat: false,
-            useTranslateType: TranslateType.custom,
             id: nanoid(6),
             checked: false,
             title: String(v['原文标题']),
             text: String(v['原文正文']),
             titleTranslate: String(v['译文标题']),
-            textCustomTranslate: String(v['译文正文']),
+            textTranslate: String(v['译文正文']),
           }
           return article
         }
@@ -235,7 +233,7 @@ function exportData(val: {
       原文标题: v.title,
       原文正文: v.text,
       译文标题: v.titleTranslate,
-      译文正文: v.textCustomTranslate,
+      译文正文: v.textTranslate,
     }
   })
   wb.Sheets['Sheet1'] = XLSX.utils.json_to_sheet(sheetData)

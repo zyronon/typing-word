@@ -14,6 +14,7 @@ import ContextMenu from '@imengyu/vue3-context-menu'
 import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import {getTranslateText} from "@/hooks/article.ts";
+import BaseButton from "@/components/BaseButton.vue";
 
 interface IProps {
   article: Article,
@@ -448,12 +449,17 @@ defineExpose({showSentence, play, del, hideSentence, nextSentence})
       </div>
       <div class="cursor" v-if="!isEnd" :style="{top:cursor.top+'px',left:cursor.left+'px'}"></div>
     </div>
-    <div class="translate-bottom">
+    <div class="options flex justify-center" v-if="isEnd">
+      <BaseButton
+          v-if="store.currentArticleDict.lastLearnIndex < store.currentArticleDict.articles.length - 1"
+          @click="emitter.emit(EventKey.next)">下一章</BaseButton>
+    </div>
+    <div class="translate-bottom" v-if="settingStore.translate">
       <header class="mb-4">
         <div class="text-2xl center">{{ props.article.titleTranslate }}</div>
       </header>
       <template v-if="getTranslateText(article).length">
-        <div class="text-xl mb-4" v-for="t in getTranslateText(article)">{{ t }}</div>
+        <div class="text-xl mb-4 indent-8" v-for="t in getTranslateText(article)">{{ t }}</div>
       </template>
     </div>
   </div>
