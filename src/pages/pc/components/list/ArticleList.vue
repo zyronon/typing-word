@@ -59,7 +59,7 @@ defineExpose({scrollToBottom, scrollToItem})
         <slot name="prefix" :item="item" :index="index"></slot>
       </template>
       <template v-slot="{ item, index }">
-        <div class="item-title" @click.stop="emit('title',{item,index})">
+        <div class="item-title"  >
           <div class="name"> {{ `${searchKey ? '' : (index + 1) + '. '}${item.title}` }}</div>
         </div>
         <div class="item-sub-title" v-if="item.titleTranslate && showTranslate">

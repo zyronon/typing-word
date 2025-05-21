@@ -143,6 +143,12 @@ html.dark {
 .anim {
   transition: background var(--anim-time), color var(--anim-time), border var(--anim-time);
 }
+.en-article-family {
+  font-family: var(--en-article-family);
+}
+.font-family {
+  font-family: var(--font-family);
+}
 
 html, body {
   //font-size: 1px;
@@ -412,25 +418,6 @@ footer {
     }
   }
 
-  &.border {
-    &.active {
-      .item-title {
-        border-bottom: 2px solid gray !important;
-      }
-    }
-
-    .item-title {
-      transition: all .3s;
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-    }
-
-    &:hover {
-      .item-title {
-        border-bottom: 2px solid gray !important;
-      }
-    }
-  }
 
   .item-title {
     display: flex;

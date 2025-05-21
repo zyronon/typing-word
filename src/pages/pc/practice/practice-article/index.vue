@@ -115,6 +115,7 @@ function getCurrentPractice() {
 
 function saveArticle(val: Article) {
   console.log('saveArticle', val, JSON.stringify(val.lrcPosition))
+  console.log('saveArticle', val.textTranslate)
   showEditArticle = false
   let rIndex = store.currentArticleDict.articles.findIndex(v => v.id === val.id)
   if (rIndex > -1) {
@@ -347,9 +348,7 @@ const {playSentenceAudio} = usePlaySentenceAudio()
                 <ArticleList
                     :isActive="active"
                     :static="false"
-                    :show-border="true"
                     :show-translate="settingStore.translate"
-                    @title="e => emitter.emit(EventKey.openArticleContentModal,e.item)"
                     @click="handleChangeChapterIndex"
                     :active-id="articleData.article.id"
                     :list="articleData.articles ">

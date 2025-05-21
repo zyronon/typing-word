@@ -7,14 +7,12 @@ const props = withDefaults(defineProps<{
   activeIndex?: number,
   activeId?: string,
   isActive?: boolean
-  showBorder?: boolean
   static?: boolean
 }>(), {
   list: [],
   activeIndex: -1,
   activeId: '',
   isActive: false,
-  showBorder: false,
   static: true
 })
 
@@ -124,7 +122,6 @@ defineExpose({scrollToBottom, scrollToItem})
           <div class="common-list-item"
                :class="{
             active:itemIsActive(item,index),
-            border:showBorder
           }"
                @click="emit('click',{item,index})"
           >
@@ -154,7 +151,6 @@ defineExpose({scrollToBottom, scrollToItem})
       <div class="common-list-item"
            :class="{
             active:itemIsActive(item,index),
-            border:showBorder
           }"
            @click="emit('click',{item,index})"
       >

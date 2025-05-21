@@ -7,7 +7,6 @@ export const EventKey = {
   changeDict: 'changeDict',
   openStatModal: 'openStatModal',
   openWordListModal: 'openWordListModal',
-  openArticleContentModal: 'openArticleContentModal',
   openDictModal: 'openDictModal',
   openArticleListModal: 'openArticleListModal',
   closeOther: 'closeOther',

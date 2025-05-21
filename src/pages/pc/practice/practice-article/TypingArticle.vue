@@ -15,6 +15,7 @@ import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import {getTranslateText} from "@/hooks/article.ts";
 import BaseButton from "@/components/BaseButton.vue";
+import QuestionForm from "@/pages/pc/components/QuestionForm.vue";
 
 interface IProps {
   article: Article,
@@ -348,7 +349,6 @@ onMounted(() => {
     wrong = input = ''
   })
   emitter.on(EventKey.onTyping, onTyping)
-
 })
 
 onUnmounted(() => {
@@ -358,15 +358,106 @@ onUnmounted(() => {
 
 defineExpose({showSentence, play, del, hideSentence, nextSentence})
 
-
+let list = $ref([
+  {
+    stem: "The writer thought_____?",
+    options: [
+      "he had lost his money",
+      "someone had stolen his money",
+      "the manager had the money",
+      "the girl had stolen the money"
+    ],
+    correctAnswer: ["b"],
+    explanation: "根据课文第2～3行'I left the money in my room,'I said, and it's not there now',只有(b)someone had stolen his  money 符合作者的推测。其他3个选择都不正确。"
+  },
+  {
+    stem: "What had really happened?",
+    options: [
+      "The writer had lost the money.",
+      "The girl had stolen the money.",
+      "The manager had taken the money.",
+      "Someone had stolen the money."
+    ],
+    correctAnswer: ["a"],
+    explanation: "根据课文的情节，只有(a)The writer had lost the money是正确的，符合课文的原义。(b)The girl had stolen themoney不符合课文的情况，因为是这个女孩捡到了钱，而不是她偷了钱；(c)The manager had taken the money 更与事实不符；(d)Someone had stolen the money与实际情况不符。"
+  },
+  {
+    stem: "The money____ in his room.",
+    options: ["was", "were", "are", "has"],
+    correctAnswer: ["a"],
+    explanation: "(b)were不符合语法，因为The money是单数不可数名词，故不能用were作谓语动词；(c)are 也不合乎语法，因为它也不能作money的谓语动词；(d)has不符合题义，若选(d)此句意思讲不通；只有(a)was合乎语法。"
+  },
+  {
+    stem: "He could do nothing. He couldn't do____.",
+    options: ["something", "nothing", "anything", "everything"],
+    correctAnswer: ["c"],
+    explanation: "只有(c)anything可以用在否定句中。(a)something不能用于否定句；(b)nothing若用在否定句中，双重否定会变成肯定意义的句子，不合题义；(d)everything 一般不用于这种否定句中。"
+  },
+  {
+    stem: "A knock at the door____ him.",
+    options: ["interrupted", "was interrupted", "interrupting", "was interrupting"],
+    correctAnswer: ["a"],
+    explanation: "只有(a)interrupted最合乎语法。(b)was interrupted是被动语态，这个句子不应该是被动语态。(c)interrupting是现在分词，不能作谓语。(d)was interrupting是过去进行时，interrupt(打断)是表示一个瞬间动作，即敲门声是一下子打断了他的话，而不是正在打断。故应该用一般过去时，不应该用过去进行时。"
+  },
+  {
+    stem: "Where did she find the money? ____ the room.",
+    options: ["Outside", "Out of", "Out", "Without"],
+    correctAnswer: ["a"],
+    explanation: "(a)Outside(prep.在……外)最符合逻辑，因为只有(a)能回答地点where。(b)Out of(prep.从……里面……)强调从里面向外，不合乎题义；(c)out不是介词，因此不能同 the room 构成表示地点的短语；(d)without(prep.没有)不表示地点，更不符合题义。"
+  },
+  {
+    stem: "____ room was it? — This gentleman's.",
+    options: ["To whom", "Who", "Whose", "Of whom"],
+    correctAnswer: ["c"],
+    explanation: "这是一个对定语(所有格)提问的疑问句。(a)To whom是对宾语提问；(b)Who是对主语提问；(d)Of whom 也是对宾语提问；只有(c)Whose(谁的)是对定语提问，所以应该选(c)。"
+  },
+  {
+    stem: "The writer had lost his money. He felt upset. He must have been____.",
+    options: ["sick", "ill", "worried", "tired"],
+    correctAnswer: ["c"],
+    explanation: "只有(c)worried(着急，忧虑)同前一句中的upset(不安)意思相近。(a)sick(有病的，恶心的)、(b)ill(有病的)与(d)tired(疲劳的，厌倦的)这3个选择都不合乎题义。"
+  },
+  {
+    stem: "The manager was sympathetic. ____.",
+    options: [
+      "Everyone liked him",
+      "He liked everyone",
+      "He was sorry for the writer",
+      "He liked the writer"
+    ],
+    correctAnswer: ["c"],
+    explanation: "只有(c)He was sorry for the writer(他为作者感到难过或惋惜)才能解释前面的句子The manager was sympathetic(表示同情的)。而其他3个选择(a)Everyone liked him(每个人都喜欢他)、(b)He liked everyone(他喜欢每个人)与(d)He liked the writer(他喜欢作者)都与前句意思不符。"
+  },
+  {
+    stem: "He lost his money. His money was____.",
+    options: ["losing", "missing", "going away", "disappearing"],
+    correctAnswer: ["b"],
+    explanation: "(a)losing(丢失)不正确。若选(a)主语应该是人，而不应该是money;(c)going away(走开，离开)词义不对；(d)disappearing(消失，失踪)词义不够恰当；只有(b)missing(丢掉的，失去的)词义最准确，而且可以作表语。"
+  },
+  {
+    stem: "You can't post this letter without____.",
+    options: ["an envelope", "a packet", "some string", "a pen"],
+    correctAnswer: ["a"],
+    explanation: "只有选(a)an envelope(信封)最合乎逻辑和事实。(b)apacket(一包)、(c)some string(一些细绳)和(d)a pen(一枝钢笔)这3个选择都不符合实际情况。"
+  },
+  {
+    stem: "The girl returned the money. She was very____.",
+    options: ["honourable", "honest", "honoured", "trusting"],
+    correctAnswer: ["b"],
+    explanation: "只有选(b)honest(诚实的)最合乎逻辑。(a)honourable(光荣的，体面的)、(c)honoured(感到荣幸的，受到尊敬的)与(d)trusting(信任的)这3个词都不如honest合乎逻辑。"
+  }
+])
+let show = $ref(false)
 </script>
 
 <template>
   <div class="typing-article" ref="typeArticleRef">
+
     <header class="mb-4">
       <div class="title word">{{ props.article.title }}</div>
       <div class="titleTranslate" v-if="settingStore.translate">{{ props.article.titleTranslate }}</div>
     </header>
+
     <div class="article-content" ref="articleWrapperRef">
       <article :class="[
           settingStore.translate && 'tall',
@@ -449,12 +540,15 @@ defineExpose({showSentence, play, del, hideSentence, nextSentence})
       </div>
       <div class="cursor" v-if="!isEnd" :style="{top:cursor.top+'px',left:cursor.left+'px'}"></div>
     </div>
+
     <div class="options flex justify-center" v-if="isEnd">
       <BaseButton
           v-if="store.currentArticleDict.lastLearnIndex < store.currentArticleDict.articles.length - 1"
-          @click="emitter.emit(EventKey.next)">下一章</BaseButton>
+          @click="emitter.emit(EventKey.next)">下一章
+      </BaseButton>
     </div>
-    <div class="translate-bottom" v-if="settingStore.translate">
+
+    <div class="translate-bottom mb-10" v-if="settingStore.translate">
       <header class="mb-4">
         <div class="text-2xl center">{{ props.article.titleTranslate }}</div>
       </header>
@@ -462,6 +556,18 @@ defineExpose({showSentence, play, del, hideSentence, nextSentence})
         <div class="text-xl mb-4 indent-8" v-for="t in getTranslateText(article)">{{ t }}</div>
       </template>
     </div>
+
+    <div class="flex-center">
+      <BaseButton @click="show =! show">显示题目</BaseButton>
+    </div>
+    <div class="toggle" v-if="show">
+      <QuestionForm :questions="list"
+                    :duration="300"
+                    :immediateFeedback="false"
+                    :randomize="true"
+      />
+    </div>
+
   </div>
 </template>
 
@@ -478,6 +584,7 @@ defineExpose({showSentence, play, del, hideSentence, nextSentence})
   width: 100%;
   overflow: auto;
   color: var(--color-article);
+  font-size: 1.6rem;
 
   header {
     word-wrap: break-word;
@@ -504,7 +611,6 @@ defineExpose({showSentence, play, del, hideSentence, nextSentence})
   }
 
   article {
-    font-size: 1.6rem;
     line-height: 1.3;
     word-break: keep-all;
     word-wrap: break-word;

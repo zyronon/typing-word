@@ -362,7 +362,6 @@ defineExpose({getDictDetail, add, editDict})
           <BaseIcon
               style="position:absolute;right: 0;"
               title="大屏显示"
-              @click="emitter.emit(EventKey.openArticleContentModal,article)"
               icon="iconoir:expand"/>
         </div>
         <div class="text" v-if="article.text">
@@ -376,7 +375,6 @@ defineExpose({getDictDetail, add, editDict})
           <BaseIcon
               style="position:absolute;right: 0;"
               title="大屏显示"
-              @click="emitter.emit(EventKey.openArticleContentModal,article)"
               icon="iconoir:expand"/>
         </div>
         <div class="text" v-if="getTranslateText(article).length">

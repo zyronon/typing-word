@@ -132,7 +132,7 @@ export const DefaultBaseState = (): BaseState => ({
       type: DictType.article,
       resourceId: 'article_nce2',
       length: 96,
-      lastLearnIndex:10
+      lastLearnIndex:23
     },
   ],
   wordDictList: [
