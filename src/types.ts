@@ -115,6 +115,12 @@ export interface Article {
   sections: Sentence[][],
   audioSrc: string,
   lrcPosition: number[][],
+  questions: {
+    stem: string,
+    options: string[],
+    correctAnswer: string[],
+    explanation: string
+  }[]
 }
 
 export const DefaultArticle: Article = {
@@ -129,6 +135,7 @@ export const DefaultArticle: Article = {
   sections: [],
   audioSrc: '',
   lrcPosition: [],
+  questions: [],
 }
 
 export interface Statistics {

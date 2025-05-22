@@ -252,34 +252,431 @@
     "newWords": [],
     "textAllWords": [],
     "audioSrc": "/public/sound/article/nce2-1/24－It could be worse.mp3",
-    "lrcPosition":   [[15.33,20.13],[20.13,26.39],[26.39,33.33],[33.33,38.93],[38.93,44.08],[44.08,52.53],[52.53,56.98],[56.98,59.97],[59.97,65.16],[65.16,72.48]]
+    "lrcPosition":   [[15.33,20.13],[20.13,26.39],[26.39,33.33],[33.33,38.93],[38.93,44.08],[44.08,52.53],[52.53,56.98],[56.98,59.97],[59.97,65.16],[65.16,72.48]],
+    "questions": [
+      {
+        "stem": "The writer thought_____?",
+        "options": [
+          "he had lost his money",
+          "someone had stolen his money",
+          "the manager had the money",
+          "the girl had stolen the money"
+        ],
+        "correctAnswer": [
+          "b"
+        ],
+        "explanation": "根据课文第2～3行'I left the money in my room,'I said, and it's not there now',只有(b)someone had stolen his  money 符合作者的推测。其他3个选择都不正确。"
+      },
+      {
+        "stem": "What had really happened?",
+        "options": [
+          "The writer had lost the money.",
+          "The girl had stolen the money.",
+          "The manager had taken the money.",
+          "Someone had stolen the money."
+        ],
+        "correctAnswer": [
+          "a"
+        ],
+        "explanation": "根据课文的情节，只有(a)The writer had lost the money是正确的，符合课文的原义。(b)The girl had stolen themoney不符合课文的情况，因为是这个女孩捡到了钱，而不是她偷了钱；(c)The manager had taken the money 更与事实不符；(d)Someone had stolen the money与实际情况不符。"
+      },
+      {
+        "stem": "The money____ in his room.",
+        "options": [
+          "was",
+          "were",
+          "are",
+          "has"
+        ],
+        "correctAnswer": [
+          "a"
+        ],
+        "explanation": "(b)were不符合语法，因为The money是单数不可数名词，故不能用were作谓语动词；(c)are 也不合乎语法，因为它也不能作money的谓语动词；(d)has不符合题义，若选(d)此句意思讲不通；只有(a)was合乎语法。"
+      },
+      {
+        "stem": "He could do nothing. He couldn't do____.",
+        "options": [
+          "something",
+          "nothing",
+          "anything",
+          "everything"
+        ],
+        "correctAnswer": [
+          "c"
+        ],
+        "explanation": "只有(c)anything可以用在否定句中。(a)something不能用于否定句；(b)nothing若用在否定句中，双重否定会变成肯定意义的句子，不合题义；(d)everything 一般不用于这种否定句中。"
+      },
+      {
+        "stem": "A knock at the door____ him.",
+        "options": [
+          "interrupted",
+          "was interrupted",
+          "interrupting",
+          "was interrupting"
+        ],
+        "correctAnswer": [
+          "a"
+        ],
+        "explanation": "只有(a)interrupted最合乎语法。(b)was interrupted是被动语态，这个句子不应该是被动语态。(c)interrupting是现在分词，不能作谓语。(d)was interrupting是过去进行时，interrupt(打断)是表示一个瞬间动作，即敲门声是一下子打断了他的话，而不是正在打断。故应该用一般过去时，不应该用过去进行时。"
+      },
+      {
+        "stem": "Where did she find the money? ____ the room.",
+        "options": [
+          "Outside",
+          "Out of",
+          "Out",
+          "Without"
+        ],
+        "correctAnswer": [
+          "a"
+        ],
+        "explanation": "(a)Outside(prep.在……外)最符合逻辑，因为只有(a)能回答地点where。(b)Out of(prep.从……里面……)强调从里面向外，不合乎题义；(c)out不是介词，因此不能同 the room 构成表示地点的短语；(d)without(prep.没有)不表示地点，更不符合题义。"
+      },
+      {
+        "stem": "____ room was it? — This gentleman's.",
+        "options": [
+          "To whom",
+          "Who",
+          "Whose",
+          "Of whom"
+        ],
+        "correctAnswer": [
+          "c"
+        ],
+        "explanation": "这是一个对定语(所有格)提问的疑问句。(a)To whom是对宾语提问；(b)Who是对主语提问；(d)Of whom 也是对宾语提问；只有(c)Whose(谁的)是对定语提问，所以应该选(c)。"
+      },
+      {
+        "stem": "The writer had lost his money. He felt upset. He must have been____.",
+        "options": [
+          "sick",
+          "ill",
+          "worried",
+          "tired"
+        ],
+        "correctAnswer": [
+          "c"
+        ],
+        "explanation": "只有(c)worried(着急，忧虑)同前一句中的upset(不安)意思相近。(a)sick(有病的，恶心的)、(b)ill(有病的)与(d)tired(疲劳的，厌倦的)这3个选择都不合乎题义。"
+      },
+      {
+        "stem": "The manager was sympathetic. ____.",
+        "options": [
+          "Everyone liked him",
+          "He liked everyone",
+          "He was sorry for the writer",
+          "He liked the writer"
+        ],
+        "correctAnswer": [
+          "c"
+        ],
+        "explanation": "只有(c)He was sorry for the writer(他为作者感到难过或惋惜)才能解释前面的句子The manager was sympathetic(表示同情的)。而其他3个选择(a)Everyone liked him(每个人都喜欢他)、(b)He liked everyone(他喜欢每个人)与(d)He liked the writer(他喜欢作者)都与前句意思不符。"
+      },
+      {
+        "stem": "He lost his money. His money was____.",
+        "options": [
+          "losing",
+          "missing",
+          "going away",
+          "disappearing"
+        ],
+        "correctAnswer": [
+          "b"
+        ],
+        "explanation": "(a)losing(丢失)不正确。若选(a)主语应该是人，而不应该是money;(c)going away(走开，离开)词义不对；(d)disappearing(消失，失踪)词义不够恰当；只有(b)missing(丢掉的，失去的)词义最准确，而且可以作表语。"
+      },
+      {
+        "stem": "You can't post this letter without____.",
+        "options": [
+          "an envelope",
+          "a packet",
+          "some string",
+          "a pen"
+        ],
+        "correctAnswer": [
+          "a"
+        ],
+        "explanation": "只有选(a)an envelope(信封)最合乎逻辑和事实。(b)apacket(一包)、(c)some string(一些细绳)和(d)a pen(一枝钢笔)这3个选择都不符合实际情况。"
+      },
+      {
+        "stem": "The girl returned the money. She was very____.",
+        "options": [
+          "honourable",
+          "honest",
+          "honoured",
+          "trusting"
+        ],
+        "correctAnswer": [
+          "b"
+        ],
+        "explanation": "只有选(b)honest(诚实的)最合乎逻辑。(a)honourable(光荣的，体面的)、(c)honoured(感到荣幸的，受到尊敬的)与(d)trusting(信任的)这3个词都不如honest合乎逻辑。"
+      }
+    ]
   },
-
-
   {
     "id": "6zEtRS",
     "title": "Do the English speak English?",
     "titleTranslate": "英国人讲的是英语吗？",
-    "text": "I arrived in London at last. The railway station was big, black and dark. I did not know the way to my hotel, so I asked a porter. I not only spoke English very carefully, but very clearly as well. The porter, however, could not understand me. I repeated my question several times and at last he understood. he answered me, but he spoke neither slowly nor clearly. I am a foreigner, I said. Then he spoke slowly, but I could not understand him. My teacher never spoke English like that! The porter and I looked at each other and smiled. Then he said something and I understood it. Youll soon learn English! he said. I wonder. In England, each person speaks a different language. The English understand each other, but I dont understand them! Do they speak English?",
-    "textTranslate": "我终于到了伦敦。\n火车站很大，又黑又暗。\n我不知道去饭店的路该怎么走，于是向一个搬运工打听。\n我的英语讲得不但非常认真，而且咬字也非常清楚。\n然而搬运工却不明白我的话。\n我把问话重复了很多遍。他终于听懂了。\n他回答了，但他讲得既不慢也不清楚。\n“我是个外国人，”我说。\n于是他说得慢了，可我还是听不懂。\n我的老师从来不那样讲英语！\n我和搬运工相视一笑。\n接着，他说了点什么，这回我听懂了。\n“您会很快学会英语的！”\n他说。\n我感到奇怪。\n在英国，人们各自说着一种不同的语言。\n英国人之间相互听得懂，可我却不懂他们的话！\n他们说的是英语吗？",
-
+    "text": "I arrived in London at last. The railway station was big, black and dark. I did not know the way to my hotel, so I asked a porter. I not only spoke English very carefully, but very clearly as well. The porter, however, could not understand me. I repeated my question several times and at last he understood. he answered me, but he spoke neither slowly nor clearly. 'I am a foreigner,' I said. Then he spoke slowly, but I could not understand him. My teacher never spoke English like that! The porter and I looked at each other and smiled. Then he said something and I understood it. 'You'll soon learn English!' he said. I wonder. In England, each person speaks a different language. The English understand each other, but I don't understand them! Do they speak English?",
+    "textTranslate": "我终于到了伦敦。\n火车站很大，又黑又暗。\n我不知道去饭店的路该怎么走，于是向一个搬运工打听。\n我的英语讲得不但非常认真，而且咬字也非常清楚。\n然而搬运工却不明白我的话。\n我把问话重复了很多遍。他终于听懂了。\n他回答了，但他讲得既不慢也不清楚。\n“我是个外国人，”我说。\n于是他说得慢了，可我还是听不懂。\n我的老师从来不那样讲英语！\n我和搬运工相视一笑。\n接着，他说了点什么，这回我听懂了。\n“您会很快学会英语的！”他说。\n我感到奇怪。\n在英国，人们各自说着一种不同的语言。\n英国人之间相互听得懂，可我却不懂他们的话！\n他们说的是英语吗？",
     "newWords": [],
     "textAllWords": [],
-    "audioSrc": "/public/sound/article/nce2-1/12－Goodbye and Good Luck.mp3",
-    "lrcPosition":  []
+    "audioSrc": "/public/sound/article/nce2-1/25－Do the English Speak English.mp3",
+    "lrcPosition": [[17.71,21.05],[21.05,26.35],[26.35,32.6],[32.6,40.16],[40.16,44.44],[44.44,51.37],[51.37,57.42],[57.42,60.76],[61.12,67.15],[67.15,71.68],[71.68,75.91],[75.91,80.14],[80.14,84.32],[84.32,86.53],[86.53,91.5],[91.3,97.61],[98.01,100.72]],
+    "questions":[
+      {
+        "stem": "Why couldn't the writer understand the porter?",
+        "options": [
+          "The writer didn't know any English.",
+          "The porter didn't speak English.",
+          "The writer couldn't understand the porter's English.",
+          "The writer was a foreigner."
+        ],
+        "correctAnswer": ["c"],
+        "explanation": "(a)The writer didn't know any English 与课文实际内容不符；(b)The porter didn't speak English 也与实际情况不符；(d)The writer was a foreigner 虽然是课内涉及的内容，但不是作者不能听懂搬运工人讲话的真正原因，因为作者也懂英语；只有 (c)The writer couldn't understand the porter's English 最符合课文的实际情况，是正确答案。"
+      },
+      {
+        "stem": "The writer__.",
+        "options": [
+          "didn't think the porter was English",
+          "expected everyone in England to speak like his teacher",
+          "doesn't think the English speak English",
+          "thinks that the English speak many different languages"
+        ],
+        "correctAnswer": ["b"],
+        "explanation": "根据课文第7～8行 My teacher never spoke English like that! 只有 (b)expected everyone in England to speak like his teacher 最能道出作者的真实想法。(a)与事实不符；(c)并不是作者的真实想法；(d)虽然作者这么说，但不一定是他真实的想法。"
+      },
+      {
+        "stem": "English____not a difficult language.",
+        "options": ["are", "is", "was", "has"],
+        "correctAnswer": ["b"],
+        "explanation": "只有选 (b)is 最合乎语法。English 作“英语”讲时是单数名词，不能跟复数的 are；(c)was 不合时态；(d)has 不能作系动词。"
+      },
+      {
+        "stem": "_____did you repeat your question?",
+        "options": ["How many times", "How many", "How much", "How"],
+        "correctAnswer": ["a"],
+        "explanation": "这个疑问句是针对“次数”提问的，回答是 several times，只有 (a)How many times 是问次数的；其余选项都不是对次数提问的。"
+      },
+      {
+        "stem": "He didn't speak slowly and he didn't speak clearly__.",
+        "options": ["neither", "either", "too", "nor"],
+        "correctAnswer": ["b"],
+        "explanation": "这是一个否定句，只有 (b)either 最符合语法，表示“也不”；(a)neither 通常不与否定连用；(c)too 用于肯定句；(d)nor 需与 neither 连用。"
+      },
+      {
+        "stem": "The porter and I looked at each other.____both smiled.",
+        "options": ["I", "He", "We", "They"],
+        "correctAnswer": ["c"],
+        "explanation": "both 表示“两个人”，选 (c)We 表示“我们”最合逻辑。其它选项要么是单数，要么人称不一致。"
+      },
+      {
+        "stem": "He said something and I understood it. He said something__ I understood.",
+        "options": ["who", "whose", "whom", "which"],
+        "correctAnswer": ["d"],
+        "explanation": "本句需要关系代词作宾语。(a)who 作主语；(b)whose 作定语；(c)whom 指人而非物；(d)which 可作宾语指物，正确。"
+      },
+      {
+        "stem": "I repeated my question several times. I repeated it_____times.",
+        "options": ["much", "a number of", "only a few", "three"],
+        "correctAnswer": ["b"],
+        "explanation": "需要与 several 意思相近，只有 (b)a number of 最合适；其它选项不是语义不符就是太具体。"
+      },
+      {
+        "stem": "At last he understood. He understood___.",
+        "options": ["in the end", "at least", "lastly", "at the finish"],
+        "correctAnswer": ["a"],
+        "explanation": "(a)in the end 与 at last 意思相同，是正确答案；(b)(c)(d) 都不合适或搭配错误。"
+      },
+      {
+        "stem": "I come from abroad. I am__.",
+        "options": ["a foreigner", "strange", "overseas", "abroad"],
+        "correctAnswer": ["a"],
+        "explanation": "只有 (a)a foreigner 最贴切，(b)词义不符；(c)词性不当；(d)是副词，不能作表语。"
+      },
+      {
+        "stem": "My teacher_____me English.",
+        "options": ["learnt", "trained", "instructed", "taught"],
+        "correctAnswer": ["d"],
+        "explanation": "只有 (d)taught 最合适，符合 teach sb. sth. 搭配，且时态正确。"
+      },
+      {
+        "stem": "\"You'll soon learn English,\" he said. I wonder. I___.",
+        "options": ["am not sure", "am sure", "wander", "know"],
+        "correctAnswer": ["a"],
+        "explanation": "wonder 表示怀疑，不确定，最匹配 (a)am not sure。其余选项意思不符或拼写错误。"
+      }
+    ]
   },
   {
     "id": "5n2yfU",
     "title": "The best art critics",
     "titleTranslate": "最佳艺术评论家",
-    "text": "I am an art student and I paint a lot of pictures. Many people pretend that they understand modern art. They always tell you what a picture is about. Of course, many pictures are not about anything. They are just pretty patterns. We like them in the same way that we like pretty curtain material. I think that young children often appreciate modern pictures better than anyone else. They notice more. My sister is only seven, but she always tells me whether my pictures are good or not. She came into my room yesterday.\n\nWhat are you doing? she asked.\n\nIm hanging this picture on the wall, I answered. Its a new one. Do you like it?\nShe looked at it critically for a moment. Its all right, she said, but isnt it upside down?\nI looked at it again. She was right! It was!",
-    "textTranslate": "我是个学艺术的学生，画了很多画。\r\n有很多人装成很懂现代艺术的样子，\r\n总是告诉你一幅画的“意思”是什么。\r\n当然，有很多画是什么“意思”也没有的。\r\n它们就是些好看的图案，\r\n我们喜爱它们就像我们喜欢漂亮的窗帘布一样。\r\n我觉得小孩子们往往比任何人都更能欣赏现代绘画，\r\n他们观察到的东西更多。\r\n我的妹妹只有7岁，但她总能说出我的画是好还是坏。\r\n昨天她到我房里来了。\r\n\r\n“你在干什么呢?”\r\n她问。\r\n\r\n“我正把这幅画挂到墙上去。”我回答说，\r\n“这是幅新画，\r\n你喜欢吗?”\r\n\r\n她用挑剔的目光看了一会儿。\r\n“还可以吧。”她说，“不过，是不是挂倒了?”\r\n\r\n我再次看了看画。\r\n她说对了!\r\n是挂倒了!",
-
+    "text": "I am an art student and I paint a lot of pictures. Many people pretend that they understand modern art. They always tell you what a picture is 'about'. Of course, many pictures are not 'about' anything. They are just pretty patterns. We like them in the same way that we like pretty curtain material. I think that young children often appreciate modern pictures better than anyone else. They notice more. My sister is only seven, but she always tells me whether my pictures are good or not. She came into my room yesterday.\n\n'What are you doing?' she asked.\n\n'I'm hanging this picture on the wall,' I answered. 'It's a new one. Do you like it?'\n\nShe looked at it critically for a moment. 'It's all right,' she said, 'but isn't it upside down?'\n\nI looked at it again. She was right! It was!",
+    "textTranslate": "我是个学艺术的学生，画了很多画。\n有很多人装成很懂现代艺术的样子，\n总是告诉你一幅画的“意思”是什么。\n当然，有很多画是什么“意思”也没有的。\n它们就是些好看的图案，\n我们喜爱它们就像我们喜欢漂亮的窗帘布一样。\n我觉得小孩子们往往比任何人都更能欣赏现代绘画，\n他们观察到的东西更多。\n我的妹妹只有7岁，\n但她总能说出我的画是好还是坏。\n昨天她到我房里来了。\n\n“你在干什么呢?”她问。\n\n“我正把这幅画挂到墙上去。”\n我回答说，“这是幅新画，你喜欢吗?”\n\n她用挑剔的目光看了一会儿。\n“还可以吧。”她说，“不过，是不是挂倒了?”\n\n我再次看了看画。\n她说对了!\n是挂倒了!",
     "newWords": [],
     "textAllWords": [],
-    "audioSrc": "/public/sound/article/nce2-1/12－Goodbye and Good Luck.mp3",
-    "lrcPosition":  []
+    "audioSrc": "/public/sound/article/nce2-1/26－The Best Art Critics.mp3",
+    "lrcPosition":   [[15.97,21.45],[21.45,26.32],[26.32,30.55],[30.55,35.3],[35.3,38.11],[38.11,44.18],[44.18,52.01],[52.01,54.27],[54.27,57.08],[57.08,62.67],[62.67,65.94],[65.94,69.06],[69.06,73.82],[73.82,77.31],[77.48,81.07],[81.07,86.93],[86.93,88.97],[88.97,90.38],[90.38,92.03]],
+    "questions":  [
+      {
+        "stem": "The writer thinks__.",
+        "options": [
+          "you can't always *explain* modern pictures",
+          "you can always 'explain' modern pictures",
+          "modern pictures are always about something",
+          "we can use modern pictures as curtain material"
+        ],
+        "correctAnswer": [
+          "a"
+        ],
+        "explanation": "根据课文第3行 Of course, many pictures are not about anything，只有 (a) 最能表达作者暗示的意思。其他选项都不符合作者的观点。"
+      },
+      {
+        "stem": "The writer's sister___.",
+        "options": [
+          "paints pictures",
+          "didn't like her brother's picture",
+          "didn't see her brother's picture",
+          "noticed that her brother had made a mistake"
+        ],
+        "correctAnswer": [
+          "d"
+        ],
+        "explanation": "根据课文最后两行 'It's all right,' she said, 'but isn't it upside down?' She was right! It was! 可知只有 (d) 符合实际内容。"
+      },
+      {
+        "stem": "Many people pretend that they____modern art.",
+        "options": [
+          "understood",
+          "are understanding",
+          "understand",
+          "understands"
+        ],
+        "correctAnswer": [
+          "c"
+        ],
+        "explanation": "本句是陈述事实，用一般现在时。understand 是状态动词，不能用进行时；主语是 they，动词要用 understand 而不是 understands。"
+      },
+      {
+        "stem": "What is it about? Tell me____.",
+        "options": [
+          "what is it about",
+          "what it is about",
+          "what about it is",
+          "what about is it"
+        ],
+        "correctAnswer": [
+          "b"
+        ],
+        "explanation": "间接引语要用陈述语序，只有 (b) 正确；其他选项语序或结构错误。"
+      },
+      {
+        "stem": "She tells me_____my pictures are good or not.",
+        "options": [
+          "weather",
+          "that",
+          "if",
+          "unless"
+        ],
+        "correctAnswer": [
+          "c"
+        ],
+        "explanation": "间接疑问句需用 if 或 whether 引导；只有 (c) if 正确，其它词不能引导疑问句。"
+      },
+      {
+        "stem": "Do you like my picture? It's__.",
+        "options": [
+          "a new",
+          "one new",
+          "new one",
+          "a new one"
+        ],
+        "correctAnswer": [
+          "d"
+        ],
+        "explanation": "a new one 是标准表达，表示‘一个新的（作品）’；其他选项语法错误。"
+      },
+      {
+        "stem": "I looked at it again. She_____right! It was!",
+        "options": [
+          "had",
+          "has",
+          "is",
+          "was"
+        ],
+        "correctAnswer": [
+          "d"
+        ],
+        "explanation": "系动词用 was，表明过去的情况；与前一句时态一致。"
+      },
+      {
+        "stem": "We like them_____we like pretty curtain material.",
+        "options": [
+          "just as",
+          "the same",
+          "just the same",
+          "so"
+        ],
+        "correctAnswer": [
+          "a"
+        ],
+        "explanation": "just as 表示‘正如……一样’，语法和语义都正确；其他选项不合适。"
+      },
+      {
+        "stem": "This curtain material is very good___.",
+        "options": [
+          "clothes",
+          "cloth",
+          "substance",
+          "matter"
+        ],
+        "correctAnswer": [
+          "b"
+        ],
+        "explanation": "cloth 指‘布料’，最符合题义；clothes 是衣服，substance 和 matter 含义不当。"
+      },
+      {
+        "stem": "Young children often appreciate modern pictures. They____them.",
+        "options": [
+          "estimate",
+          "esteem",
+          "value",
+          "understand and enjoy"
+        ],
+        "correctAnswer": [
+          "d"
+        ],
+        "explanation": "appreciate 的近义词是 understand and enjoy，表示‘理解并欣赏’。其他词不合适。"
+      },
+      {
+        "stem": "They notice more. They____more.",
+        "options": [
+          "remark",
+          "observe",
+          "say",
+          "take care"
+        ],
+        "correctAnswer": [
+          "b"
+        ],
+        "explanation": "observe 与 notice 意义最接近，表示‘注意到’；其他选项意思不符。"
+      },
+      {
+        "stem": "It's upside down. It isn't___.",
+        "options": [
+          "up",
+          "down",
+          "the right way down",
+          "the right way up"
+        ],
+        "correctAnswer": [
+          "d"
+        ],
+        "explanation": "the right way up 是‘方向正确’的常用表达，与 upside down 相对。"
+      }
+    ]
   },
+
   {
     "id": "WhfyAe",
     "title": "A wet night",
