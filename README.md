@@ -16,8 +16,6 @@
 
 Github Pages: <https://typing-word.ttentau.top>(国内推荐访问这个)
 
-Netlify: <https://typing-words.netlify.app/>(需要翻墙)
-
 ## 🛠 功能列表
 
 ### 背单词
