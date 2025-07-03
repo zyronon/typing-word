@@ -15,7 +15,7 @@
 
 ## 📸 在线访问
 
-Github Pages: <https://typing-word.ttentau.top>(国内推荐访问这个)
+Github Pages: <https://2study.top>
 
 ## 🛠 功能列表
 
