@@ -10,7 +10,7 @@
   <a href="https://github.com/zyronon/type-word/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zyronon/type-word" alt="License"></a>
   <a><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"/></a>
   <a><img src="https://img.shields.io/badge/Powered%20by-Vue-blue"/></a>
-  <a href="https://hellogithub.com/repository/f22d2c9ea1eb4826839084332f7519bd" target="_blank"><img src="https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=f22d2c9ea1eb4826839084332f7519bd&claim_uid=k5e4ZAqRjJEGzCW&theme=small" alt="Featured｜HelloGitHub" /></a>
+  <a href="https://hellogithub.com/repository/eb70616d65604458908fc1736e7d41fc" target="_blank"><img src="https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=eb70616d65604458908fc1736e7d41fc&claim_uid=k5e4ZAqRjJEGzCW&theme=small" alt="Featured｜HelloGitHub" /></a>
 </p>
 
 ## 📸 在线访问
