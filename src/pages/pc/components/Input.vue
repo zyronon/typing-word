@@ -40,7 +40,7 @@ useDisableEventListener(() => focus)
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style";
+
 
 .base-input {
   border: 1px solid var(--color-second-bg);

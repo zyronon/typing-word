@@ -42,7 +42,7 @@ const gitLastCommitHash = ref(LATEST_COMMIT_HASH);
 </template>
 
 <style scoped lang="scss">
-@import "../../common";
+@use '../../common' as *;
 
 .setting {
   display: flex;

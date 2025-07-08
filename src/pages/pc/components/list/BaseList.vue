@@ -169,7 +169,7 @@ defineExpose({scrollToBottom, scrollToItem})
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/css/style";
+
 
 .scroller {
   flex: 1;

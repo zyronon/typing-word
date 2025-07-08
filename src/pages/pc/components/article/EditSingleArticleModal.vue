@@ -41,7 +41,6 @@ useDisableEventListener(() => props.modelValue)
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style";
 
 .wrapper {
   width: 100%;

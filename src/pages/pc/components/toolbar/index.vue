@@ -112,7 +112,7 @@ const {nav} = useNav()
 }
 </style>
 <style scoped lang="scss">
-@import "@/assets/css/style";
+
 
 header {
   width: var(--toolbar-width);

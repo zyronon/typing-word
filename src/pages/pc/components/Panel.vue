@@ -210,7 +210,7 @@ function changeCollect() {
   </Transition>
 </template>
 <style scoped lang="scss">
-@import "@/assets/css/variable";
+
 
 $header-height: 3rem;
 .slide-item {

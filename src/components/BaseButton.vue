@@ -48,7 +48,6 @@ defineEmits(['click'])
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style";
 
 .base-button {
   cursor: pointer;

@@ -82,7 +82,6 @@ watch(() => route.path, (to, from) => {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style";
 
 .main-page {
   position: relative;

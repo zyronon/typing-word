@@ -71,7 +71,7 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style";
+
 
 .setting {
   position: relative;

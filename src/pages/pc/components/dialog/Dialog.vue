@@ -186,7 +186,7 @@ async function cancel() {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/variable";
+
 
 $modal-mask-bg: rgba(#000, .45);
 $radius: .5rem;

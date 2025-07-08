@@ -1,6 +1,6 @@
 import {Article, Dict, Word} from "@/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
-import {cloneDeep, shuffle} from "lodash-es";
+import {cloneDeep,} from "lodash-es";
 import {isArticle} from "@/hooks/article.ts";
 
 

@@ -463,7 +463,7 @@ function importData(e) {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style";
+
 
 .setting {
   width: 40vw;

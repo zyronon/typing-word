@@ -27,7 +27,7 @@ function clickEvent(e) {
             <div class="absolute bottom-4 right-4">3篇</div>
           </div>
         </div>
-        <div class="grid flex-1 flex gap-5 mt-4">
+        <div class="grid flex-1 flex gap-5 mt-4" @click="router.push('edit-article')">
           <div class="p-4 flex-1 rounded-md bg-slate-200 relative">
             <span>添加</span>
             <div class="absolute bottom-4 right-4">3篇</div>

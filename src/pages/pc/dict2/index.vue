@@ -117,7 +117,7 @@ function formatLangType(val) {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style";
+
 
 .dict-list-panel {
   width: 100%;

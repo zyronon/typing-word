@@ -155,7 +155,6 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/variable";
 
 .footer {
   width: var(--article-width);

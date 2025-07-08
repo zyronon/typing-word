@@ -17,7 +17,7 @@ let disabledDialogEscKey = $ref(true)
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style";
+
 
 .setting-modal {
   width: 40vw;

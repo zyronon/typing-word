@@ -35,7 +35,7 @@ watch(() => props.modelValue, (n) => {
 </template>
 
 <style lang="scss">
-@import "@/assets/css/style";
+
 
 .mini-row-title {
   min-height: 2rem;

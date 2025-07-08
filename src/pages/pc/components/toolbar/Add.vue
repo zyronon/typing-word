@@ -26,7 +26,7 @@ function toggle() {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style";
+
 
 .wrapper {
   position: relative;

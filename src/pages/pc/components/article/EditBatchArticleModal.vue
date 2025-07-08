@@ -204,7 +204,7 @@ useWindowClick(() => showExport = false)
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style";
+
 
 .add-article {
   //position: fixed;

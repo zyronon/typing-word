@@ -325,7 +325,7 @@ const status = $computed(() => {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/variable";
+
 
 .practice-word {
   height: 100%;

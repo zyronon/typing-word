@@ -48,7 +48,7 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/css/style";
+
 
 .all-word {
   padding-bottom: var(--space);

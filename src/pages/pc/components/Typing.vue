@@ -200,7 +200,7 @@ defineExpose({del, showWord, hideWord, play})
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/variable";
+
 
 .typing-word {
   width: 100%;

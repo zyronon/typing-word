@@ -11,9 +11,7 @@ import {
   renewSectionTexts,
   renewSectionTranslates
 } from "@/hooks/translate.ts";
-
-import {MessageBox} from "@/utils/MessageBox.tsx";
-import {getSplitTranslateText, usePlaySentenceAudio} from "@/hooks/article.ts";
+import {genArticleSectionData, splitCNArticle2, splitEnArticle2, usePlaySentenceAudio} from "@/hooks/article.ts";
 import {cloneDeep, last} from "lodash-es";
 import {watch} from "vue";
 import Empty from "@/components/Empty.vue";
@@ -82,50 +80,43 @@ function renewSections() {
   }
 }
 
-function appendTranslate(str: string) {
-  let selectionStart = textareaRef.selectionStart;
-  let selectionEnd = textareaRef.selectionEnd;
-  editArticle.textTranslate = editArticle.textTranslate.slice(0, selectionStart) + str + editArticle.textTranslate.slice(selectionEnd)
-}
 
-function splitTranslateText() {
-  if (editArticle.textTranslate.trim()){
-    editArticle.textTranslate = getSplitTranslateText(editArticle.textTranslate.trim())
-    renewSections()
+function apply() {
+  if (editArticle.text.trim()) {
+    editArticle.sections = genArticleSectionData(editArticle.text)
+    let count = 0
+    if (editArticle.lrcPosition.length) {
+      editArticle.sections.map((v, i) => {
+        v.map((w, j) => {
+          w.audioPosition = editArticle.lrcPosition[count]
+          count++
+        })
+      })
+    }
+    failCount = renewSectionTranslates(editArticle, editArticle.textTranslate)
+  } else {
+    editArticle.sections = []
   }
 }
 
-function onPaste(event: ClipboardEvent) {
-  event.preventDefault()
-  // @ts-ignore
-  let paste = (event.clipboardData || window.clipboardData).getData("text");
-  return MessageBox.confirm(
-      '是否需要自动分句',
-      '提示',
-      () => {
-        let r = getSplitTranslateText(paste)
-        if (r) {
-          appendTranslate(r)
-          renewSections()
-        }
-      },
-      () => {
-        appendTranslate(paste)
-        renewSections()
-      }, null,
-      {
-        confirmButtonText: '需要',
-        cancelButtonText: '关闭',
-      }
-  )
+//分句原文
+function splitText() {
+  editArticle.text = splitEnArticle2(editArticle.text.trim())
+  return
+  let text = editArticle.text.trim();
+  if (text) {
+    editArticle.text = splitEnArticle2(text)
+  }
 }
 
-function onBlur() {
-  document.removeEventListener('paste', onPaste);
-}
-
-function onFocus() {
-  document.addEventListener('paste', onPaste);
+//分句翻译
+function splitTranslateText() {
+  editArticle.textTranslate = splitCNArticle2(editArticle.textTranslate.trim())
+  return
+  let text = editArticle.textTranslate.trim();
+  if (text) {
+    editArticle.textTranslate = splitCNArticle2(text)
+  }
 }
 
 //TODO
@@ -326,15 +317,28 @@ function setStartTime(val: Sentence, i: number, j: number) {
           placeholder="请复制原文"
       >
             </textarea>
-      <div class="justify-between items-center gap-2 flex">
-        <ol class="py-0 pl-5 my-0 text-base color-black/60">
-          <li>复制原文</li>
-          <li>点击 <span class="color-red font-bold">分句</span> 按钮进行自动分句</li>
-          <li><span class="color-red font-bold">或</span> 手动调整分句，一行一句，段落之间空一行</li>
-          <li>修改完成后点击 <span class="color-red font-bold">应用</span> 按钮同步到左侧结果栏
-          </li>
-        </ol>
-        <el-button type="primary" @click="renewSections">应用</el-button>
+      <div class="justify-end items-center flex">
+        <el-popover
+            class="box-item"
+            title="使用方法"
+            placement="top"
+            :width="400"
+        >
+          <ol class="py-0 pl-5 my-0 text-base color-black/60">
+            <li>复制原文，然后分句</li>
+            <li>点击 <span class="color-red font-bold">分句</span> 按钮进行自动分句<span
+                class="color-red font-bold"> 或</span> 手动编辑分句
+            </li>
+            <li>分句规则：一行一句，段落间空一行</li>
+            <li>修改完成后点击 <span class="color-red font-bold">应用</span> 按钮同步到左侧结果栏
+            </li>
+          </ol>
+          <template #reference>
+            <Icon icon="ri:question-line" class="mr-3" width="20"/>
+          </template>
+        </el-popover>
+        <el-button type="primary" @click="splitText">分句</el-button>
+        <el-button type="primary" @click="apply">应用</el-button>
       </div>
     </div>
     <div class="row flex flex-col gap-2">
@@ -355,48 +359,54 @@ function setStartTime(val: Sentence, i: number, j: number) {
       <textarea
           v-model="editArticle.textTranslate"
           :readonly="![100,0].includes(progress)"
-          @blur="onBlur"
-          @focus="onFocus"
           type="textarea"
           class="base-textarea"
           placeholder="请填写翻译"
           ref="textareaRef"
       >
             </textarea>
-      <div class="justify-between items-center gap-2 flex">
-        <ol class="py-0 pl-5 my-0 text-base color-black/60">
-          <li>复制译文，如果没有请点击 <span class="color-red font-bold">翻译</span> 按钮</li>
-          <li>点击 <span class="color-red font-bold">分句</span> 按钮进行自动分句</li>
-          <li><span class="color-red font-bold">或</span> 手动调整分句，一行一句，段落之间空一行</li>
-          <li>修改完成后点击 <span class="color-red font-bold">应用</span> 按钮同步到左侧结果栏
-          </li>
-        </ol>
-        <div class="flex flex-col gap-2 items-end">
-          <div class="translate-item">
-            {{ progress }}%
-            <el-select v-model="networkTranslateEngine"
-                       class="w-20"
-            >
-              <el-option
-                  v-for="item in TranslateEngineOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-              />
-            </el-select>
-
-          </div>
+      <div class="justify-between items-center flex">
+        <div class="flex gap-2 items-center ">
           <el-button
               type="primary"
               @click="startNetworkTranslate"
               :loading="progress!==0 && progress !== 100"
           >翻译
           </el-button>
-          <div>
-            <el-button type="primary" @click="splitTranslateText">分句</el-button>
-            <el-button type="primary" @click="renewSections">应用</el-button>
-          </div>
-
+          <el-select v-model="networkTranslateEngine"
+                     class="w-20"
+          >
+            <el-option
+                v-for="item in TranslateEngineOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+            />
+          </el-select>
+          {{ progress }}%
+        </div>
+        <div class="flex items-center">
+          <el-popover
+              class="box-item"
+              title="使用方法"
+              placement="top"
+              :width="400"
+          >
+            <ol class="py-0 pl-5 my-0 text-base color-black/60">
+              <li>复制译文，如果没有请点击 <span class="color-red font-bold">翻译</span> 按钮</li>
+              <li>点击 <span class="color-red font-bold">分句</span> 按钮进行自动分句<span class="color-red font-bold"> 或</span>
+                手动编辑分句
+              </li>
+              <li>分句规则：一行一句，段落间空一行</li>
+              <li>修改完成后点击 <span class="color-red font-bold">应用</span> 按钮同步到左侧结果栏
+              </li>
+            </ol>
+            <template #reference>
+              <Icon icon="ri:question-line" class="mr-3" width="20"/>
+            </template>
+          </el-popover>
+          <el-button type="primary" @click="splitTranslateText">分句</el-button>
+          <el-button type="primary" @click="apply">应用</el-button>
         </div>
       </div>
     </div>
@@ -565,7 +575,8 @@ function setStartTime(val: Sentence, i: number, j: number) {
 
 .content {
   color: var(--color-article);
-  flex: 1;
+  height: 100%;
+  box-sizing: border-box;
   display: flex;
   gap: var(--space);
   padding: var(--space);
@@ -588,14 +599,6 @@ function setStartTime(val: Sentence, i: number, j: number) {
     font-weight: bold;
     font-size: 1.4rem;
     text-align: center;
-  }
-
-  .translate-item {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: calc(var(--space) / 2);
   }
 
   .article-translate {

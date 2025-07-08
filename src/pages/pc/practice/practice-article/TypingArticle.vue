@@ -11,8 +11,6 @@ import jq from 'jquery'
 import {_nextTick} from "@/utils";
 import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
 import ContextMenu from '@imengyu/vue3-context-menu'
-import {useToast} from 'vue-toast-notification';
-import 'vue-toast-notification/dist/theme-sugar.css';
 import {getTranslateText} from "@/hooks/article.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import QuestionForm from "@/pages/pc/components/QuestionForm.vue";
@@ -69,7 +67,6 @@ const currentIndex = computed(() => {
   return `${sectionIndex}${sentenceIndex}${wordIndex}`
 })
 
-const $toast = useToast();
 const playBeep = usePlayBeep()
 const playCorrect = usePlayCorrect()
 const playKeyboardAudio = usePlayKeyboardAudio()
@@ -322,7 +319,10 @@ function onContextMenu(e: MouseEvent, sentence: Sentence, i, j) {
         label: "复制",
         onClick: () => {
           navigator.clipboard.writeText(sentence.text).then(r => {
-            $toast.success('已复制！', {position: 'top'});
+            ElMessage({
+              message: '已复制',
+              type: 'success',
+            })
           })
         }
       },
@@ -330,10 +330,11 @@ function onContextMenu(e: MouseEvent, sentence: Sentence, i, j) {
         label: "语法分析",
         onClick: () => {
           navigator.clipboard.writeText(sentence.text).then(r => {
-            $toast.success('已复制！随后将打开语法分析网站！', {
-              position: 'top',
-              duration: 3000,
-            });
+            ElMessage({
+              message: '已复制！随后将打开语法分析网站！',
+              type: 'success',
+              duration: 3000
+            })
             setTimeout(() => {
               window.open('https://enpuz.com/')
             }, 1000)
@@ -483,7 +484,6 @@ let showQuestions = $ref(false)
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style";
 
 .wrote {
   color: grey;

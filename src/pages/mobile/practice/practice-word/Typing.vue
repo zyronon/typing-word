@@ -235,7 +235,6 @@ watch(() => props.word, () => {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/variable";
 
 .typing-word {
   width: 95%;

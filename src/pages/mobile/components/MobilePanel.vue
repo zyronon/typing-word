@@ -54,7 +54,6 @@ useEvent(EventKey.changeDict, () => {
   </div>
 </template>
 <style scoped lang="scss">
-@import "@/assets/css/variable";
 
 $header-height: 50rem;
 .panel {

@@ -152,7 +152,7 @@ function toggle2() {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style";
+
 
 .wrapper {
   width: 100rem;

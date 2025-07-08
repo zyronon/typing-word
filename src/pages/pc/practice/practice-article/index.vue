@@ -471,7 +471,7 @@ const {playSentenceAudio} = usePlaySentenceAudio()
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/style";
+
 
 .practice-wrapper {
   font-size: 0.9rem;

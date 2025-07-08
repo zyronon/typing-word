@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import origin from './data.json'
+// import origin from './data.json'
 import BaseButton from "@/components/BaseButton.vue";
 import {checkAndUpgradeSaveDict, shakeCommonDict} from "@/utils";
 import localforage from "localforage";
@@ -36,7 +36,7 @@ async function look() {
 }
 
 function set() {
-  localforage.setItem(SAVE_DICT_KEY.key, JSON.stringify({val: shakeCommonDict(origin.val as any), version: 3}))
+  // localforage.setItem(SAVE_DICT_KEY.key, JSON.stringify({val: shakeCommonDict(origin.val as any), version: 3}))
 }
 
 async function check() {

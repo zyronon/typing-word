@@ -113,8 +113,7 @@ function $no() {
 </template>
 
 <style scoped lang="scss">
-@import "../common";
-
+@use '../common' as *;
 
 .my {
   font-size: 18rem;

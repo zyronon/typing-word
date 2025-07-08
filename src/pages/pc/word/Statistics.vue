@@ -125,7 +125,7 @@ const isEnd = $computed(() => {
   <Fireworks v-if="open"/>
 </template>
 <style scoped lang="scss">
-@import "@/assets/css/variable";
+
 
 $card-radius: .5rem;
 $dark-second-bg: rgb(60, 63, 65);

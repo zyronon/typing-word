@@ -24,11 +24,12 @@ import HomeIndex from "@/pages/pc/home/HomeIndex.vue";
 import LearnArticle from "@/pages/pc/article/LearnArticle.vue";
 import EditWordDict from "@/pages/pc/word/EditWordDict.vue";
 import StudyWord from "@/pages/pc/word/StudyWord.vue";
+import EditArticlePage from "@/pages/pc/article/EditArticlePage.vue";
 
 export const routes: RouteRecordRaw[] = [
   {
     path: '/', component: PC,
-    redirect: '/word',
+    redirect: '/edit-article',
     children: [
       {path: 'home', component: HomeIndex},
       {path: 'word', component: WordHome},
@@ -37,6 +38,7 @@ export const routes: RouteRecordRaw[] = [
       {path: 'dict', component: Dict2},
       {path: 'article', component: ArticleIndex},
       {path: 'article2', component: Article2Index},
+      {path: 'edit-article', component: EditArticlePage},
       {path: 'learn-article', component: LearnArticle},
     ]
   },
