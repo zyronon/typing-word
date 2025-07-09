@@ -3,6 +3,8 @@ import {cloneDeep} from "lodash-es";
 import nlp from "compromise/one";
 import {split} from "sentence-splitter";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
+import {translate} from "element-plus";
+import {getSentenceAllText, getSentenceAllTranslateText} from "@/hooks/translate.ts";
 
 interface KeyboardMap {
   Period: string,
@@ -295,15 +297,17 @@ export function splitCNArticle(text: string): Sentence[][] {
 }
 
 //生成文章段落数据
-export function genArticleSectionData(text: string): Sentence[][] {
+export function genArticleSectionData(article: Article): number {
+  let text = article.text.trim()
   if (!text) {
     // text = "Last week I went to the theatre. I had a very good seat. The play was very interesting. I did not enjoy it. A young man and a young woman were sitting behind me. They were talking loudly. I got very angry. I could not hear the actors. I turned round. I looked at the man and the woman angrily. They did not pay any attention. In the end, I could not bear it. I turned round again. 'I can't hear a word!' I said angrily.\n\n    'It's none of your business,' the young man said rudely. 'This is a private conversation!'"
     // text = `While it is yet to be seen what direction the second Trump administration will take globally in its China policy, VOA traveled to the main island of Mahe in Seychelles to look at how China and the U.S. have impacted the country, and how each is fairing in that competition for influence there.`
     // text = "It was Sunday. I never get up early on Sundays. I sometimes stay in bed until lunchtime. Last Sunday I got up very late. I looked out of the window. It was dark outside. 'What a day!' I thought. 'It's raining again.' Just then, the telephone rang. It was my aunt Lucy. 'I've just arrived by train,' she said. 'I'm coming to see you.'\n\n     'But I'm still having breakfast,' I said.\n\n     'What are you doing?' she asked.\n\n     'I'm having breakfast,' I repeated.\n\n     'Dear me,' she said. 'Do you always get up so late? It's one o'clock!'"
+    article.sections = []
+    ElMessage.error('请填写原文！')
+    return
   }
 
-  console.log(text)
-  // console.time()
   let keyboardMap = EnKeyboardMap
   let sections: Sentence[][] = []
   let sectionTextList = text.split('\n\n')
@@ -493,15 +497,59 @@ export function genArticleSectionData(text: string): Sentence[][] {
   })
 
   // console.log(sections)
+  article.sections = sections
 
-  return sections
+  let failCount = 0
+  let translateList = article.textTranslate.split('\n\n')
+  for (let i = 0; i < article.sections.length; i++) {
+    let v = article.sections[i]
+    let sList = []
+    try {
+      let s = translateList[i]
+      sList = s.split('\n')
+    } catch (e) {
+    }
+
+    for (let j = 0; j < v.length; j++) {
+      let sentence = v[j]
+      try {
+        let trans = sList[j]
+        if (trans.trim()) {
+          sentence.translate = trans
+        } else {
+          failCount++
+        }
+      } catch (e) {
+        failCount++
+        // console.log('没有对应的翻译', sentence.text)
+      }
+    }
+  }
+
+  text = getSentenceAllText(article)
+  let translate = getSentenceAllTranslateText(article)
+
+  article.text = text
+  article.textTranslate = translate
+
+  let count = 0
+  if (article.lrcPosition.length) {
+    article.sections.map((v, i) => {
+      v.map((w, j) => {
+        w.audioPosition = article.lrcPosition[count]
+        count++
+      })
+    })
+  }
+  return failCount
 }
 
 export function splitEnArticle2(text: string): string {
   if (!text) {
-    // text = "Last week I went to the theatre. I had a very good seat. The play was very interesting. I did not enjoy it. A young man and a young woman were sitting behind me. They were talking loudly. I got very angry. I could not hear the actors. I turned round. I looked at the man and the woman angrily. They did not pay any attention. In the end, I could not bear it. I turned round again. 'I can't hear a word!' I said angrily.\n\n    'It's none of your business,' the young man said rudely. 'This is a private conversation!'"
+    text = `Last week I went to the theatre. I had a very good seat. The play was very interesting. I did not enjoy it. A young man and a young woman were sitting behind me. They were talking loudly. I got very angry. I could not hear the actors. I turned round. I looked at the man and the woman angrily. They did not pay any attention. In the end, I could not bear it. I turned round again. I cant hear a word! I said angrily.
+Its none of your business, the young man said rudely. This is a private conversation!`
     // text = `While it is yet to be seen what direction the second Trump administration will take globally in its China policy, VOA traveled to the main island of Mahe in Seychelles to look at how China and the U.S. have impacted the country, and how each is fairing in that competition for influence there.`
-    text = "It was Sunday. I never get up early on Sundays. I sometimes stay in bed until lunchtime. Last Sunday I got up very late. I looked out of the window. It was dark outside. 'What a day!' I thought. 'It's raining again.' Just then, the telephone rang. It was my aunt Lucy. 'I've just arrived by train,' she said. 'I'm coming to see you.'\n\n     'But I'm still having breakfast,' I said.\n\n     'What are you doing?' she asked.\n\n     'I'm having breakfast,' I repeated.\n\n     'Dear me,' she said. 'Do you always get up so late? It's one o'clock!'"
+    // text = "It was Sunday. I never get up early on Sundays. I sometimes stay in bed until lunchtime. Last Sunday I got up very late. I looked out of the window. It was dark outside. 'What a day!' I thought. 'It's raining again.' Just then, the telephone rang. It was my aunt Lucy. 'I've just arrived by train,' she said. 'I'm coming to see you.'\n\n     'But I'm still having breakfast,' I said.\n\n     'What are you doing?' she asked.\n\n     'I'm having breakfast,' I repeated.\n\n     'Dear me,' she said. 'Do you always get up so late? It's one o'clock!'"
   }
   //将中文符号替换
   text = text.replaceAll('’', "'")
@@ -729,6 +777,8 @@ export function splitCNArticle2(text: string): string {
 “你在干什么？”她问道。
 “我正在吃早饭，”我又说了一遍。
 “天啊，”她说，“你总是起得这么晚吗？现在已经1点钟了！”`
+    text = `上星期我去看戏。我的座位很好，戏很有意思，但我却无法欣赏。一青年男子与一青年女子坐在我的身后，大声地说着话。我非常生气，因为我听不见演员在说什么。我回过头去怒视着那一男一女，他们却毫不理会。最后，我忍不住了，又一次回过头去，生气地说：“我一个字也听不见了！”
+“不关你的事，”那男的毫不客气地说，“这是私人间的谈话！”`
   }
   const segmenterJa = new Intl.Segmenter("zh-CN", {granularity: "sentence"});
 

@@ -1,7 +1,7 @@
-import {Article, Sentence, TranslateEngine, TranslateType} from "@/types.ts";
+import {Article, Sentence, TranslateEngine} from "@/types.ts";
 import Baidu from "@opentranslate/baidu";
 import {axiosInstance} from "@/utils/http.ts";
-import {getSplitTranslateText, splitEnArticle} from "@/hooks/article.ts";
+import {splitEnArticle} from "@/hooks/article.ts";
 import {Translator} from "@opentranslate/translator/src/translator.ts";
 
 export function renewSectionTranslates(article: Article, translate: string) {
@@ -33,27 +33,11 @@ export function renewSectionTranslates(article: Article, translate: string) {
 }
 
 export function getSentenceAllTranslateText(article: Article) {
-  let str = ''
-  article.sections.map((v: Sentence[]) => {
-    v.map((w: Sentence, j, arr) => {
-      if (w.translate) {
-        str += w.translate + '\n'
-      }
-    })
-    str += '\n'
-  })
-  return str.trim()
+  return article.sections.map(v => v.map(s => s.translate.trim()).filter(v=>v).join(' \n')).filter(v=>v).join(' \n\n');
 }
 
 export function getSentenceAllText(article: Article) {
-  let str = ''
-  article.sections.map((v: Sentence[]) => {
-    v.map((w: Sentence, j, arr) => {
-      str += w.text
-    })
-    str += '\n'
-  })
-  return str
+  return article.sections.map(v => v.map(s => s.text.trim()).filter(v=>v).join(' \n')).filter(v=>v).join(' \n\n');
 }
 
 /***

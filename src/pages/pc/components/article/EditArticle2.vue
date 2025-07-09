@@ -18,7 +18,6 @@ import Empty from "@/components/Empty.vue";
 import {UploadProps} from "element-plus";
 import {_nextTick, _parseLRC} from "@/utils";
 import * as Comparison from "string-comparison"
-import audio from '/public/sound/article/nce2-1/1.mp3'
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 
@@ -52,16 +51,7 @@ watch(() => props.article, val => {
   editArticle = cloneDeep(val)
   progress = 0
   failCount = 0
-  // let r = getSplitTranslateText(editArticle.textTranslate)
-  // if (r) {
-  //   editArticle.textTranslate = r
-  //   ElMessage({
-  //     message: '检测到本地翻译未格式化，已自动格式化',
-  //     type: 'success',
-  //     duration: 3000
-  //   })
-  // }
-  renewSections()
+  apply()
   console.log('ar', editArticle)
 }, {immediate: true})
 
@@ -71,32 +61,8 @@ watch(() => editArticle.text, (s) => {
   }
 })
 
-function renewSections() {
-  if (editArticle.text.trim()) {
-    renewSectionTexts(editArticle)
-    failCount = renewSectionTranslates(editArticle, editArticle.textTranslate)
-  } else {
-    editArticle.sections = []
-  }
-}
-
-
 function apply() {
-  if (editArticle.text.trim()) {
-    editArticle.sections = genArticleSectionData(editArticle.text)
-    let count = 0
-    if (editArticle.lrcPosition.length) {
-      editArticle.sections.map((v, i) => {
-        v.map((w, j) => {
-          w.audioPosition = editArticle.lrcPosition[count]
-          count++
-        })
-      })
-    }
-    failCount = renewSectionTranslates(editArticle, editArticle.textTranslate)
-  } else {
-    editArticle.sections = []
-  }
+  failCount = genArticleSectionData(editArticle)
 }
 
 //分句原文
@@ -127,7 +93,7 @@ async function startNetworkTranslate() {
   if (!editArticle.text.trim()) {
     return ElMessage.error('请填写正文！')
   }
-  renewSectionTexts(editArticle)
+  apply()
   //注意！！！
   //这里需要用异步，因为watch了article.networkTranslate，改变networkTranslate了之后，会重新设置article.sections
   //导致getNetworkTranslate里面拿到的article.sections是废弃的值
@@ -142,13 +108,13 @@ async function startNetworkTranslate() {
 function saveSentenceTranslate(sentence: Sentence, val: string) {
   sentence.translate = val
   editArticle.textTranslate = getSentenceAllTranslateText(editArticle)
-  renewSections()
+  apply()
 }
 
 function saveSentenceText(sentence: Sentence, val: string) {
   sentence.text = val
   editArticle.text = getSentenceAllText(editArticle)
-  renewSections()
+  apply()
 }
 
 function save(option: 'save' | 'saveAndNext') {
