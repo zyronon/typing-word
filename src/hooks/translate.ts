@@ -1,9 +1,9 @@
 import {Article, Sentence, TranslateEngine} from "@/types.ts";
 import Baidu from "@opentranslate/baidu";
 import {axiosInstance} from "@/utils/http.ts";
-import {splitEnArticle} from "@/hooks/article.ts";
 import {Translator} from "@opentranslate/translator/src/translator.ts";
 
+//todo feiqi
 export function renewSectionTranslates(article: Article, translate: string) {
   let failCount = 0
   let articleTranslate = translate.split('\n')
@@ -174,20 +174,5 @@ export async function getNetworkTranslate(
     } else {
       article.textTranslate = getSentenceAllTranslateText(article)
     }
-  }
-}
-
-export function renewSectionTexts(article: Article) {
-  let {newText, sections} = splitEnArticle(article.text)
-  article.text = newText
-  article.sections = sections
-  let count = 0
-  if (article.lrcPosition.length) {
-    article.sections.map((v, i) => {
-      v.map((w, j) => {
-        w.audioPosition = article.lrcPosition[count]
-        count++
-      })
-    })
   }
 }

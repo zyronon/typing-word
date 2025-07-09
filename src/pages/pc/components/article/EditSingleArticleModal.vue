@@ -3,8 +3,8 @@
 import {Article, DefaultArticle} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
-import EditArticle from "@/pages/pc/components/article/EditArticle.vue";
 import {useDisableEventListener} from "@/hooks/event.ts";
+import EditArticle2 from "@/pages/pc/components/article/EditArticle2.vue";
 
 interface IProps {
   article?: Article
@@ -32,7 +32,7 @@ useDisableEventListener(() => props.modelValue)
       :full-screen="true"
   >
     <div class="wrapper">
-      <EditArticle
+      <EditArticle2
           :article="article"
           @save="val => emit('save',val)"
       />

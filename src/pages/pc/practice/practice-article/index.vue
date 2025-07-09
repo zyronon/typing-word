@@ -1,21 +1,10 @@
 <script setup lang="ts">
 import TypingArticle from "./TypingArticle.vue";
-import {
-  Article,
-  ArticleItem,
-  ArticleWord,
-  DefaultArticle,
-  DisplayStatistics, Sentence,
-  ShortcutKey,
-  TranslateType,
-  Word
-} from "@/types.ts";
+import {Article, ArticleItem, ArticleWord, DefaultArticle, DisplayStatistics, ShortcutKey, Word} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import TypingWord from "@/pages/pc/components/TypingWord.vue";
 import Panel from "../../components/Panel.vue";
 import {onMounted, onUnmounted} from "vue";
-import {renewSectionTexts, renewSectionTranslates} from "@/hooks/translate.ts";
-import {MessageBox} from "@/utils/MessageBox.tsx";
 import {useBaseStore} from "@/stores/base.ts";
 import EditSingleArticleModal from "@/pages/pc/components/article/EditSingleArticleModal.vue";
 import {usePracticeStore} from "@/stores/practice.ts";
@@ -31,8 +20,7 @@ import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import VolumeSetting from "@/pages/pc/components/toolbar/VolumeSetting.vue";
 import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue";
-import {usePlayWordAudio} from "@/hooks/sound.ts";
-import {usePlaySentenceAudio} from "@/hooks/article.ts";
+import {genArticleSectionData, usePlaySentenceAudio} from "@/hooks/article.ts";
 
 const store = useBaseStore()
 const statisticsStore = usePracticeStore()
@@ -105,11 +93,8 @@ function getCurrentPractice() {
   if (tempArticle.sections.length) {
     setArticle(tempArticle)
   } else {
-    renewSectionTexts(tempArticle)
-    if (tempArticle.textTranslate.trim()) {
-      renewSectionTranslates(tempArticle, tempArticle.textTranslate)
-      setArticle(tempArticle)
-    }
+    genArticleSectionData(tempArticle)
+    setArticle(tempArticle)
   }
 }
 

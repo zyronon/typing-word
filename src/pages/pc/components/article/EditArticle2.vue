@@ -4,13 +4,7 @@ import {Article, DefaultArticle, Sentence, TranslateEngine} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import EditAbleText from "@/pages/pc/components/EditAbleText.vue";
 import {Icon} from "@iconify/vue";
-import {
-  getNetworkTranslate,
-  getSentenceAllText,
-  getSentenceAllTranslateText,
-  renewSectionTexts,
-  renewSectionTranslates
-} from "@/hooks/translate.ts";
+import {getNetworkTranslate, getSentenceAllText, getSentenceAllTranslateText} from "@/hooks/translate.ts";
 import {genArticleSectionData, splitCNArticle2, splitEnArticle2, usePlaySentenceAudio} from "@/hooks/article.ts";
 import {cloneDeep, last} from "lodash-es";
 import {watch} from "vue";
@@ -52,7 +46,6 @@ watch(() => props.article, val => {
   progress = 0
   failCount = 0
   apply()
-  console.log('ar', editArticle)
 }, {immediate: true})
 
 watch(() => editArticle.text, (s) => {
@@ -542,6 +535,7 @@ function setStartTime(val: Sentence, i: number, j: number) {
 .content {
   color: var(--color-article);
   height: 100%;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   gap: var(--space);

@@ -29,7 +29,7 @@ import EditArticlePage from "@/pages/pc/article/EditArticlePage.vue";
 export const routes: RouteRecordRaw[] = [
   {
     path: '/', component: PC,
-    redirect: '/edit-article',
+    redirect: '/home',
     children: [
       {path: 'home', component: HomeIndex},
       {path: 'word', component: WordHome},

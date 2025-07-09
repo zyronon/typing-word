@@ -7,7 +7,6 @@ import {useBaseStore} from "@/stores/base.ts";
 
 import List from "@/pages/pc/components/list/List.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
-import EditArticle from "@/pages/pc/components/article/EditArticle.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useDisableEventListener, useWindowClick} from "@/hooks/event.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
@@ -15,6 +14,7 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {nanoid} from "nanoid";
 import {syncMyDictList} from "@/hooks/dict.ts";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
+import EditArticle2 from "@/pages/pc/components/article/EditArticle2.vue";
 
 const emit = defineEmits<{
   importData: [val: Event]
@@ -193,7 +193,7 @@ useWindowClick(() => showExport = false)
           <BaseButton size="small" @click="add">新增</BaseButton>
         </div>
       </div>
-      <EditArticle
+      <EditArticle2
           ref="editArticleRef"
           type="batch"
           @save="saveArticle"
