@@ -5,9 +5,12 @@ import "vue-activity-calendar/style.css";
 import {useRouter} from "vue-router";
 import {enArticle} from "@/assets/dictionary.ts";
 import BasePage from "@/pages/pc/components/BasePage.vue";
+import {useNav} from "@/utils";
 
+const {nav} = useNav()
 const base = useBaseStore()
 const router = useRouter()
+const store = useBaseStore()
 
 function clickEvent(e) {
   console.log('e', e)
@@ -52,6 +55,23 @@ function clickEvent(e) {
         </div>
       </div>
     </div>
+
+    <div class="card  flex flex-col">
+      <div class="title">
+        我的词典
+      </div>
+      <div class="grid grid-cols-6 gap-4  mt-4">
+        <div class="my-dict" @click="nav('edit-word-dict',{type:0})">
+          <span>收藏</span>
+          <div class="absolute bottom-4 right-4">{{ store.collectWord.words.length }}个词</div>
+        </div>
+        <div class="my-dict" @click="nav('edit-word-dict',{type:1})">
+          <span>错词本</span>
+          <div class="absolute bottom-4 right-4">{{ store.wrong.words.length }}个词</div>
+        </div>
+      </div>
+    </div>
+
     <div class="mt-4">
       <div class="title">文章</div>
       <div class="mt-4 flex gap-4">
@@ -81,5 +101,8 @@ function clickEvent(e) {
 
 .title {
   @apply text-lg font-medium;
+}
+.my-dict {
+  @apply p-4 rounded-md bg-slate-200 relative cursor-pointer h-40;
 }
 </style>

@@ -38,6 +38,9 @@ importers:
       git-last-commit:
         specifier: ^1.0.1
         version: 1.0.1
+      gsap:
+        specifier: ^3.13.0
+        version: 3.13.0
       hover.css:
         specifier: ^2.3.2
         version: 2.3.2
@@ -2207,6 +2210,9 @@ packages:
   grad-school@0.0.5:
     resolution: {integrity: sha512-rXunEHF9M9EkMydTBux7+IryYXEZinRk6g8OBOGDBzo/qWJjhTxy86i5q7lQYpCLHN8Sqv1XX3OIOc7ka2gtvQ==}
     engines: {node: '>=8.0.0'}
+
+  gsap@3.13.0:
+    resolution: {integrity: sha512-QL7MJ2WMjm1PHWsoFrAQH/J8wUeqZvMtHO58qdekHpCfhvhSL4gSiz6vJf5EeMP0LOn3ZCprL2ki/gjED8ghVw==}
 
   gulp-cli@2.3.0:
     resolution: {integrity: sha512-zzGBl5fHo0EKSXsHzjspp3y5CONegCm8ErO5Qh0UzFzk2y4tMvzLWhoDokADbarfZRL2pGpRp7yt6gfJX4ph7A==}
@@ -6166,6 +6172,8 @@ snapshots:
   graceful-fs@4.2.11: {}
 
   grad-school@0.0.5: {}
+
+  gsap@3.13.0: {}
 
   gulp-cli@2.3.0:
     dependencies:

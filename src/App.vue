@@ -3,7 +3,6 @@ import {onMounted, watch} from "vue";
 import {BaseState, useBaseStore} from "@/stores/base.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
-import Backgorund from "@/pages/pc/components/Backgorund.vue";
 import useTheme from "@/hooks/theme.ts";
 import * as localforage from "localforage";
 import SettingDialog from "@/pages/pc/components/dialog/SettingDialog.vue";
@@ -69,7 +68,6 @@ watch(() => route.path, (to, from) => {
 </script>
 
 <template>
-  <Backgorund/>
   <router-view v-slot="{ Component }">
     <transition :name="transitionName">
       <keep-alive :exclude="runtimeStore.excludeRoutes">
@@ -83,14 +81,4 @@ watch(() => route.path, (to, from) => {
 
 <style scoped lang="scss">
 
-.main-page {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-size: 14rem;
-  display: flex;
-  justify-content: center;
-}
 </style>
