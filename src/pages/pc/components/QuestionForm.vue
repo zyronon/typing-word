@@ -31,7 +31,7 @@
       />
     </form>
 
-    <div class="flex-center items-center gap-2  mt-10">
+    <div class="center items-center gap-2  mt-10">
       <button
           class="bg-green-600 text-white px-6 py-2 rounded"
           @click="submitAll"

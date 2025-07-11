@@ -25,6 +25,8 @@ import LearnArticle from "@/pages/pc/article/LearnArticle.vue";
 import EditWordDict from "@/pages/pc/word/EditWordDict.vue";
 import StudyWord from "@/pages/pc/word/StudyWord.vue";
 import EditArticlePage from "@/pages/pc/article/EditArticlePage.vue";
+import BookDetail from "@/pages/pc/article/BookDetail.vue";
+import BatchEditArticlePage from "@/pages/pc/article/BatchEditArticlePage.vue";
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -39,7 +41,9 @@ export const routes: RouteRecordRaw[] = [
       {path: 'article', component: ArticleIndex},
       {path: 'article2', component: Article2Index},
       {path: 'edit-article', component: EditArticlePage},
+      {path: 'batch-edit-article', component: BatchEditArticlePage},
       {path: 'learn-article', component: LearnArticle},
+      {path: 'book-detail', component: BookDetail},
     ]
   },
 
@@ -61,7 +65,7 @@ export const routes: RouteRecordRaw[] = [
 ]
 
 const router = VueRouter.createRouter({
-  history: VueRouter.createWebHashHistory(),
+  history: VueRouter.createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
     // console.log('savedPosition', savedPosition)

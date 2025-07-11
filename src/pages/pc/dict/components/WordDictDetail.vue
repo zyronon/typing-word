@@ -488,7 +488,7 @@ defineExpose({getDictDetail, add: addWord, editDict})
             <el-form-item label="音标/发音②">
               <el-input v-model="wordForm.phonetic1"/>
             </el-form-item>
-            <div class="flex-center">
+            <div class="center">
               <el-button @click="closeWordForm">关闭</el-button>
               <el-button type="primary" @click="onSubmitWord">保存</el-button>
             </div>

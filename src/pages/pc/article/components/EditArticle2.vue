@@ -487,7 +487,7 @@ function setStartTime(val: Sentence, i: number, j: number) {
         <div class="flex flex-col gap-2">
           <div class="flex gap-2 items-center">
             <div>开始时间：</div>
-            <div class="flex space-between flex-1">
+            <div class="flex justify-between flex-1">
               <div class="flex items-center gap-2">
                 <el-input-number v-model="editSentence.audioPosition[0]" :precision="2" :step="0.1">
                   <template #suffix>
@@ -510,7 +510,7 @@ function setStartTime(val: Sentence, i: number, j: number) {
           </div>
           <div class="flex gap-2 items-center">
             <div>结束时间：</div>
-            <div class="flex space-between flex-1">
+            <div class="flex justify-between flex-1">
               <div class="flex items-center gap-2">
                 <el-input-number v-model="editSentence.audioPosition[1]" :precision="2" :step="0.1">
                   <template #suffix>

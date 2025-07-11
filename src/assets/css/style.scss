@@ -54,6 +54,9 @@
   --word-font-family: ui-monospace, sans-serif;
   --en-article-family: Georgia, sans-serif;
   --zh-article-family: "Songti SC", "SimSun", "Noto Serif CJK SC", serif;
+
+  --btn-primary: rgb(75, 85, 99);
+  --btn-info: #909399;
 }
 
 html.dark {
@@ -142,9 +145,11 @@ html.dark {
 .anim {
   transition: background var(--anim-time), color var(--anim-time), border var(--anim-time);
 }
+
 .en-article-family {
   font-family: var(--en-article-family);
 }
+
 .font-family {
   font-family: var(--font-family);
 }
@@ -262,35 +267,6 @@ footer {
   gap: var(--space);
 }
 
-.pointer {
-  cursor: pointer;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex1 {
-  flex: 1;
-}
-
-.gap10 {
-  gap: 10rem;
-}
-
-.space-between {
-  justify-content: space-between;
-}
-
-.align-center {
-  align-items: center;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .panel-page-item {
   display: flex;
@@ -337,10 +313,6 @@ footer {
   overflow: overlay;
   height: 100%;
   padding: 0 var(--space);
-}
-
-.space15 {
-  margin-bottom: 15rem;
 }
 
 .common-list1 {
@@ -484,4 +456,25 @@ footer {
 
 .center {
   @apply flex justify-center items-center;
+}
+
+.card {
+  @apply rounded-xl bg-white p-4 mb-5 box-border;
+}
+
+.center {
+  @apply flex justify-center items-center;
+}
+
+.title {
+  @apply text-lg font-medium;
+}
+
+.book {
+  @apply p-4 rounded-md bg-slate-200 relative cursor-pointer h-40 hover:bg-red;
+}
+
+.line {
+  width: 100%;
+  border-bottom: 1px solid var(--color-item-border);
 }

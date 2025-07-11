@@ -14,7 +14,7 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {nanoid} from "nanoid";
 import {syncMyDictList} from "@/hooks/dict.ts";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
-import EditArticle2 from "@/pages/pc/components/article/EditArticle2.vue";
+import EditArticle2 from "@/pages/pc/article/components/EditArticle2.vue";
 
 const emit = defineEmits<{
   importData: [val: Event]

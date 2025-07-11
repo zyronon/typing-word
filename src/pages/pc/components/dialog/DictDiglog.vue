@@ -48,7 +48,7 @@ const speedTime = $computed(() => {
     <div id="DictDialog">
       <div class="detail">
         <div class="desc">{{ store.sdict.description }}</div>
-        <div class="text flex align-center gap-2">
+        <div class="text flex items-center gap-2">
           <div>总词汇： {{ store.sdict.words.length }}词</div>
           <BaseIcon icon="circum:view-list"
                     @click='showAllWordModal'

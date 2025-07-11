@@ -6,7 +6,7 @@ import TypingWord from "@/pages/pc/components/TypingWord.vue";
 import Panel from "../../components/Panel.vue";
 import {onMounted, onUnmounted} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
-import EditSingleArticleModal from "@/pages/pc/components/article/EditSingleArticleModal.vue";
+import EditSingleArticleModal from "@/pages/pc/article/components/EditSingleArticleModal.vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts";
 import IconWrapper from "@/pages/pc/components/IconWrapper.vue";

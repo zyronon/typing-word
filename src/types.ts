@@ -233,7 +233,7 @@ export const languageCategoryOptions = [
   {id: 'my', name: '我的', flag: myFlag},
 ]
 
-export function getDefaultDict(val = {}): Dict {
+export function getDefaultDict(val: Partial<Dict> = {}): Dict {
   return {
     id: '',
     name: '',

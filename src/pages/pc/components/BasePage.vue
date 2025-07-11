@@ -3,8 +3,8 @@
 </script>
 
 <template>
-  <div class="flex justify-center h-full">
-    <div class="w-5/10 py-5">
+  <div class="flex justify-center">
+    <div class="w-[70vw] 2xl:w-[50vw] my-5">
       <slot></slot>
     </div>
   </div>

@@ -7,7 +7,7 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {cloneDeep} from "lodash-es";
 import {Article, DefaultArticle, Dict, DictResource, DictType, getDefaultDict, Sort, TranslateType} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import EditBatchArticleModal from "@/pages/pc/components/article/EditBatchArticleModal.vue";
+import EditBatchArticleModal from "@/pages/pc/article/components/EditBatchArticleModal.vue";
 import {Icon} from "@iconify/vue";
 import EditDict from "@/pages/pc/dict/components/EditDict.vue";
 import {nanoid} from "nanoid";

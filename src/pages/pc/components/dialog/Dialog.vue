@@ -158,7 +158,7 @@ async function cancel() {
         <Tooltip title="关闭">
           <Icon @click="close"
                 v-if="showClose"
-                class="close hvr-grow pointer"
+                class="close hvr-grow cursor-pointer"
                 width="24" color="#929596"
                 icon="ion:close-outline"/>
         </Tooltip>

@@ -3,10 +3,10 @@
 import {Icon} from "@iconify/vue";
 import Close from "@/components/icon/Close.vue";
 import {useDisableEventListener, useWindowClick} from "@/hooks/event.ts";
-import {watch} from "vue";
 
 defineProps<{
   modelValue: string
+  autofocus?: boolean
 }>()
 
 defineEmits(['update:modelValue'])
@@ -20,6 +20,14 @@ useWindowClick((e: PointerEvent) => {
 
 useDisableEventListener(() => focus)
 
+const vFocus = {
+  mounted: (el, bind) => {
+    if (bind.value) {
+      el.focus()
+      setTimeout(() => focus = true)
+    }
+  }
+}
 </script>
 
 <template>
@@ -31,6 +39,7 @@ useDisableEventListener(() => focus)
           width="20"/>
     <input type="text"
            :value="modelValue"
+           v-focus="autofocus"
            @input="e=>$emit('update:modelValue',e.target.value)"
     >
     <transition name="fade">

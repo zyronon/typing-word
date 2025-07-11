@@ -173,6 +173,7 @@ defineExpose({scrollToBottom, scrollToItem})
 
 .scroller {
   flex: 1;
-  padding: 0 var(--space);
+  //padding: 0 var(--space);
+  padding-right: var(--space);
 }
 </style>

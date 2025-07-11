@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import EditArticle2 from "@/pages/pc/components/article/EditArticle2.vue";
+import EditArticle2 from "@/pages/pc/article/components/EditArticle2.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 </script>
 

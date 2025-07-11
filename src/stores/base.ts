@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {Dict, DictType, getDefaultDict, Sort, Word} from "../types.ts"
+import {Article, Dict, DictType, getDefaultDict, Sort, Word} from "../types.ts"
 import {cloneDeep, merge, reverse, shuffle} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import * as localforage from "localforage";
@@ -27,6 +27,14 @@ export interface BaseState {
     article: {
       dictIndex: number,
     }
+  },
+  // word: {
+  //   studyIndex: number,
+  //   dictList: [],
+  // },
+  article: {
+    bookList: Dict[],
+    studyIndex: number,
   }
 }
 
@@ -132,7 +140,7 @@ export const DefaultBaseState = (): BaseState => ({
       type: DictType.article,
       resourceId: 'article_nce2',
       length: 96,
-      lastLearnIndex:1
+      lastLearnIndex: 1
     },
   ],
   wordDictList: [
@@ -230,7 +238,13 @@ export const DefaultBaseState = (): BaseState => ({
     'be', 'am', 'is', 'do', 'are', 'did', 'were', 'was', 'can', 'could', 'will', 'would',
     'the', 'that', 'this', 'to', 'of', 'for', 'and', 'at', 'not', 'no', 'yes',
   ],
-  load: false
+  load: false,
+  article: {
+    bookList: [
+      getDefaultDict({name: '收藏'})
+    ],
+    studyIndex: -1,
+  }
 })
 
 export const useBaseStore = defineStore('base', {
@@ -293,8 +307,11 @@ export const useBaseStore = defineStore('base', {
     otherWordDictList(): Dict[] {
       return this.wordDictList.filter(v => this.sdict.id !== v.id)
     },
+    currentArticleCollectDict(): Dict {
+      return this.article.bookList[0]
+    },
     currentArticleDict(): Dict {
-      return this.articleDictList[this.currentStudy.article.dictIndex] ?? {}
+      return this.article.bookList[this.article.studyIndex] ?? {}
     },
     chapter(state: BaseState): Word[] {
       return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []

@@ -8,7 +8,7 @@ interface IProps {
   disabled?: boolean
   loading?: boolean
   size?: 'small' | 'normal' | 'large',
-  type?: 'primary' | 'link'
+  type?: 'primary' | 'link' | 'info'
 }
 
 withDefaults(defineProps<IProps>(), {
@@ -87,6 +87,7 @@ defineEmits(['click'])
     height: 3rem;
     font-size: 1.1rem;
     padding: 0 1.4rem;
+
     & > span {
       font-size: 1.1rem;
     }
@@ -108,7 +109,7 @@ defineEmits(['click'])
 
 
   &.primary {
-    background: rgb(75, 85, 99);
+    background: var(--btn-primary);
   }
 
   &.link {
@@ -118,6 +119,10 @@ defineEmits(['click'])
     &:hover {
       border-bottom: 2px solid var(--color-font-1);
     }
+  }
+
+  &.info {
+    background: var(--btn-info);
   }
 
   &.active {

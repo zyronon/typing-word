@@ -469,7 +469,7 @@ let showQuestions = $ref(false)
       </template>
     </div>
 
-    <div class="flex-center">
+    <div class="center">
       <BaseButton @click="showQuestions =! showQuestions">显示题目</BaseButton>
     </div>
     <div class="toggle" v-if="showQuestions">

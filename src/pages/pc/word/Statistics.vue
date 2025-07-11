@@ -97,10 +97,10 @@ const isEnd = $computed(() => {
       </div>
       <div class="absolute right-5 top-20 flex flex-col gap-4">
         <Tooltip title="分享给朋友">
-          <Icon class="hvr-grow pointer" icon="ph:share-light" width="20" color="#929596"/>
+          <Icon class="hvr-grow cursor-pointer" icon="ph:share-light" width="20" color="#929596"/>
         </Tooltip>
         <Tooltip title="请我喝杯咖啡">
-          <Icon class="hvr-grow pointer" icon="twemoji:teacup-without-handle" width="20" color="#929596"/>
+          <Icon class="hvr-grow cursor-pointer" icon="twemoji:teacup-without-handle" width="20" color="#929596"/>
         </Tooltip>
       </div>
       <div class="footer">

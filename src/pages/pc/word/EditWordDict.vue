@@ -252,7 +252,7 @@ defineRender(() => {
                           modelValue={wordForm.phonetic1}
                           onUpdate:model-value={e => wordForm.phonetic1 = e}/>
                     </el-form-item>
-                    <div class="flex-center">
+                    <div class="center">
                       <el-button
                           onClick={closeWordForm}>关闭
                       </el-button>

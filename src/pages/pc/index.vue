@@ -22,7 +22,9 @@ const {toggleTheme} = useTheme()
 
 <template>
   <div class="layout">
-    <div class="aside" :class="{'expand':settingStore.sideExpand}">
+<!--    第一个aside 占位用-->
+    <div class="aside space" :class="{'expand':settingStore.sideExpand}"></div>
+    <div class="aside fixed" :class="{'expand':settingStore.sideExpand}">
       <div class="top">
         <Logo v-if="settingStore.sideExpand"/>
         <div class="row" @click="router.push('/home')">
