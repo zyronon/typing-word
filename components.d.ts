@@ -44,6 +44,7 @@ declare module 'vue' {
     Empty: typeof import('./src/components/Empty.vue')['default']
     FeedbackModal: typeof import('./src/components/toolbar/FeedbackModal.vue')['default']
     Fireworks: typeof import('./src/components/Fireworks.vue')['default']
+    HostNotice: typeof import('./src/components/HostNotice.vue')['default']
     IconWrapper: typeof import('./src/components/IconWrapper.vue')['default']
     Input: typeof import('./src/components/Input.vue')['default']
     List: typeof import('./src/components/list/List.vue')['default']

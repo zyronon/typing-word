@@ -15,6 +15,7 @@ import CollectNotice from "@/components/CollectNotice.vue";
 import {SAVE_SETTING_KEY, SAVE_DICT_KEY} from "@/utils/const.ts";
 import {shakeCommonDict} from "@/utils";
 import router from "@/router.ts";
+import HostNotice from "@/components/HostNotice.vue";
 
 const store = useBaseStore()
 const runtimeStore = useRuntimeStore()
@@ -83,6 +84,7 @@ onMounted(() => {
   <Backgorund/>
   <router-view/>
   <CollectNotice/>
+  <HostNotice/>
   <ArticleContentDialog/>
   <SettingDialog/>
 </template>
