@@ -23,7 +23,6 @@ export type Word = {
   memory?: string,
 }
 
-
 export function getDefaultWord(val?: any): Word {
   return {
     id: '',
@@ -68,9 +67,8 @@ export enum DictType {
   collect = 'collect',
   simple = 'simple',
   wrong = 'wrong',
-  master = 'master',
+  known = 'known',
   collectWord = 'collect-word',
-  collectArticle = 'collect-article',
   word = 'word',
   article = 'article',
 }
@@ -98,12 +96,6 @@ export interface Sentence {
   audioPosition: number[]
 }
 
-export enum TranslateType {
-  custom = 'custom',
-  network = 'network',
-  none = 'none'
-}
-
 export interface Article {
   id: string,
   title: string,
@@ -123,19 +115,21 @@ export interface Article {
   }[]
 }
 
-export const DefaultArticle: Article = {
-  // id: nanoid(6),
-  id: '',
-  title: '',
-  titleTranslate: '',
-  text: '',
-  textTranslate: '',
-  newWords: [],
-  textAllWords: [],
-  sections: [],
-  audioSrc: '',
-  lrcPosition: [],
-  questions: [],
+export function getDefaultArticle(val: Partial<Article> = {}): Article {
+  return {
+    id: '',
+    title: '',
+    titleTranslate: '',
+    text: '',
+    textTranslate: '',
+    newWords: [],
+    textAllWords: [],
+    sections: [],
+    audioSrc: '',
+    lrcPosition: [],
+    questions: [],
+    ...val
+  }
 }
 
 export interface Statistics {

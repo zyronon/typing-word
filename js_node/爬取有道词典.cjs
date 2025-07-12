@@ -3,7 +3,7 @@ const {JSDOM} = require("jsdom");
 const $ = require("jquery");
 
 const axios = require('axios')
-axios('https://dict.youdao.com/result?word=private&lang=en').then(r => {
+axios('https://dict.youdao.com/result?word=tow&lang=en').then(r => {
   // console.log('r', r.data)
   const {window} = new JSDOM(r.data);
   const $ = require("jquery")(window);
@@ -41,7 +41,7 @@ axios('https://dict.youdao.com/result?word=private&lang=en').then(r => {
   $('.blng_sents_part .trans-container ul li .col2').each(function () {
     let item = {}
     item.v = $($(this).children()[0]).find('.sen-eng').text()
-    item.trans = $($(this).children()[1]).find('.sen-ch').text()
+    item.tran = $($(this).children()[1]).find('.sen-ch').text()
     data.sentences.push(item)
   })
 
@@ -49,28 +49,7 @@ axios('https://dict.youdao.com/result?word=private&lang=en').then(r => {
   $('.phrs ul li .phrs-content').each(function () {
     let item = {}
     item.v = $(this).find('.point').text()
-    item.trans = $(this).find('.phr_trans').text()
+    item.tran = $(this).find('.phr_trans').text()
     data.phrases.push(item)
   })
-
-
-  let tabs = $('#catalogue_usage .dict-tabs .tab-item')
-  if (tabs.length && tabs.length > 1) {
-    $(tabs[1]).trigger('click')
-    $(tabs[1]).click()
-
-    setTimeout(() => {
-      //解析同近义词
-      $('.syno ul li .syno-content').each(function () {
-        let item = {}
-        item.v = $(this).find('.synptran').text()
-        item.trans = $(this).find('.clickable').text()
-        data.synos.push(item)
-      })
-      // console.log('data', data)
-
-      console.log($('.syno'))
-    }, 500)
-  }
-  // console.log('data', data)
 })

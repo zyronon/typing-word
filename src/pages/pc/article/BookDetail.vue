@@ -5,8 +5,7 @@ import BackIcon from "@/components/BackIcon.vue";
 import Empty from "@/components/Empty.vue";
 import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
 import {useBaseStore} from "@/stores/base.ts";
-import {Article, DefaultArticle} from "@/types.ts";
-import {cloneDeep} from "lodash-es";
+import {Article, getDefaultArticle} from "@/types.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {useRoute, useRouter} from "vue-router";
@@ -21,7 +20,7 @@ const route = useRoute()
 let isEdit = $ref(false)
 let isAdd = $ref(false)
 
-let article: Article = $ref(cloneDeep(DefaultArticle))
+let article: Article = $ref(getDefaultArticle())
 let chapterIndex = $ref(-1)
 
 function handleCheckedChange(val) {
@@ -89,7 +88,7 @@ function formClose() {
           </ArticleList>
           <Empty v-else/>
         </div>
-        <div class="right flex-[3] shrink-0 pl-4 overflow-auto">
+        <div class="right flex-[4] shrink-0 pl-4 overflow-auto">
           <div v-if="chapterIndex>-1">
             <div class="en-article-family title text-xl">
               <div class="text-center text-2xl">{{ article.title }}</div>

@@ -1,25 +1,11 @@
 import * as VueRouter from 'vue-router'
 import {RouteRecordRaw} from 'vue-router'
-import Mobile from '@/pages/mobile/index.vue'
-import MobilePractice from '@/pages/mobile/practice/index.vue'
 import Test from "@/pages/test/test.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import DictDetail from "@/pages/mobile/DictDetail.vue";
-import SetDictPlan from "@/pages/mobile/SetDictPlan.vue";
-import Setting from "@/pages/mobile/my/setting/Setting.vue";
-import DataManage from "@/pages/mobile/my/DataManage.vue";
-import CollectPage from "@/pages/mobile/my/CollectPage.vue";
-import WrongPage from "@/pages/mobile/my/WrongPage.vue";
-import SimplePage from "@/pages/mobile/my/SimplePage.vue";
-import About from "@/pages/mobile/my/About.vue";
-import Feedback from "@/pages/mobile/my/Feedback.vue";
-import MusicSetting from "@/pages/mobile/my/setting/MusicSetting.vue";
-import OtherSetting from "@/pages/mobile/my/setting/OtherSetting.vue";
 import WordHome from "@/pages/pc/word/WordHome.vue";
 import PC from "@/pages/pc/index.vue";
 import Dict2 from '@/pages/pc/dict2/index.vue'
 import ArticleIndex from "@/pages/pc/article/ArticleIndex.vue";
-import Article2Index from "@/pages/pc/article2/ArticleIndex.vue";
 import HomeIndex from "@/pages/pc/home/HomeIndex.vue";
 import LearnArticle from "@/pages/pc/article/LearnArticle.vue";
 import EditWordDict from "@/pages/pc/word/EditWordDict.vue";
@@ -39,7 +25,6 @@ export const routes: RouteRecordRaw[] = [
       {path: 'edit-word-dict', component: EditWordDict},
       {path: 'dict', component: Dict2},
       {path: 'article', component: ArticleIndex},
-      {path: 'article2', component: Article2Index},
       {path: 'edit-article', component: EditArticlePage},
       {path: 'batch-edit-article', component: BatchEditArticlePage},
       {path: 'learn-article', component: LearnArticle},

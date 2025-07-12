@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TypingArticle from "./TypingArticle.vue";
-import {Article, ArticleItem, ArticleWord, DefaultArticle, DisplayStatistics, ShortcutKey, Word} from "@/types.ts";
+import {Article, ArticleItem, ArticleWord, DisplayStatistics, getDefaultArticle, ShortcutKey, Word} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import TypingWord from "@/pages/pc/components/TypingWord.vue";
 import Panel from "../../components/Panel.vue";
@@ -33,7 +33,7 @@ let wordData = $ref({
 })
 let articleData = $ref({
   articles: [],
-  article: cloneDeep(DefaultArticle),
+  article: getDefaultArticle(),
   sectionIndex: 0,
   sentenceIndex: 0,
   wordIndex: 0,
@@ -41,22 +41,22 @@ let articleData = $ref({
 })
 let showEditArticle = $ref(false)
 let typingArticleRef = $ref<any>()
-let editArticle = $ref<Article>(cloneDeep(DefaultArticle))
+let editArticle = $ref<Article>(getDefaultArticle())
 let articleIsActive = $computed(() => tabIndex === 0)
 
 function next() {
   if (!articleIsActive) return
-  if (store.currentArticleDict.lastLearnIndex >= articleData.articles.length - 1) {
-    store.currentArticleDict.lastLearnIndex = 0
-  } else store.currentArticleDict.lastLearnIndex++
+  if (store.currentBook.lastLearnIndex >= articleData.articles.length - 1) {
+    store.currentBook.lastLearnIndex = 0
+  } else store.currentBook.lastLearnIndex++
 
   emitter.emit(EventKey.resetWord)
   getCurrentPractice()
 }
 
 function init() {
-  if (!store.currentArticleDict.articles.length) return
-  articleData.articles = cloneDeep(store.currentArticleDict.articles)
+  if (!store.currentBook.articles.length) return
+  articleData.articles = cloneDeep(store.currentBook.articles)
   getCurrentPractice()
   console.log('inin', articleData.article)
 
@@ -64,7 +64,7 @@ function init() {
 
 function setArticle(val: Article) {
   let tempVal = cloneDeep(val)
-  articleData.articles[store.currentArticleDict.lastLearnIndex] = tempVal
+  articleData.articles[store.currentBook.lastLearnIndex] = tempVal
   articleData.article = tempVal
   statisticsStore.inputWordNumber = 0
   statisticsStore.wrong = 0
@@ -82,13 +82,13 @@ function setArticle(val: Article) {
 }
 
 function getCurrentPractice() {
-  // console.log('store.currentArticleDict',store.currentArticleDict)
+  // console.log('store.currentBook',store.currentBook)
   // return
   tabIndex = 0
-  articleData.article = cloneDeep(DefaultArticle)
+  articleData.article = getDefaultArticle()
 
-  let currentArticle = articleData.articles[store.currentArticleDict.lastLearnIndex]
-  let tempArticle = {...DefaultArticle, ...currentArticle}
+  let currentArticle = articleData.articles[store.currentBook.lastLearnIndex]
+  let tempArticle = getDefaultArticle(currentArticle)
   // console.log('article', tempArticle)
   if (tempArticle.sections.length) {
     setArticle(tempArticle)
@@ -102,9 +102,9 @@ function saveArticle(val: Article) {
   console.log('saveArticle', val, JSON.stringify(val.lrcPosition))
   console.log('saveArticle', val.textTranslate)
   showEditArticle = false
-  let rIndex = store.currentArticleDict.articles.findIndex(v => v.id === val.id)
+  let rIndex = store.currentBook.articles.findIndex(v => v.id === val.id)
   if (rIndex > -1) {
-    store.currentArticleDict.articles[rIndex] = cloneDeep(val)
+    store.currentBook.articles[rIndex] = cloneDeep(val)
   }
   setArticle(val)
 }
@@ -163,7 +163,7 @@ function nextWord(word: ArticleWord) {
 function handleChangeChapterIndex(val: ArticleItem) {
   let rIndex = articleData.articles.findIndex(v => v.id === val.item.id)
   if (rIndex > -1) {
-    store.currentArticleDict.lastLearnIndex = rIndex
+    store.currentBook.lastLearnIndex = rIndex
     getCurrentPractice()
   }
 }
@@ -315,11 +315,11 @@ const {playSentenceAudio} = usePlaySentenceAudio()
                               @click="emitter.emit(EventKey.openDictModal,'list')"
                               icon="carbon:change-catalog"/>
                     <div class="title">
-                      {{ store.currentArticleDict.name }}
+                      {{ store.currentBook.name }}
                     </div>
                     <Tooltip
                         :title="`下一章(${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
-                        v-if="store.currentArticleDict.lastLearnIndex < articleData.articles.length - 1">
+                        v-if="store.currentBook.lastLearnIndex < articleData.articles.length - 1">
                       <IconWrapper>
                         <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
                       </IconWrapper>
@@ -434,9 +434,6 @@ const {playSentenceAudio} = usePlaySentenceAudio()
                   icon="tabler:edit"
                   @click="emitter.emit(ShortcutKey.EditArticle)"
               />
-
-
-
               <BaseIcon
                   @click="settingStore.showPanel = !settingStore.showPanel"
                   :title="`面板(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
@@ -456,7 +453,6 @@ const {playSentenceAudio} = usePlaySentenceAudio()
 </template>
 
 <style scoped lang="scss">
-
 
 .practice-wrapper {
   font-size: 0.9rem;

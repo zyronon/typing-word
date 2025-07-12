@@ -286,7 +286,8 @@ const chinaExam = [{
   translateLanguage: 'common',
   language: 'en',
   type: DictType.word,
-},]
+},
+]
 
 // 青少儿英语
 const childrenEnglish = [{
@@ -784,7 +785,8 @@ const childrenEnglish = [{
   translateLanguage: 'common',
   language: 'en',
   type: DictType.word,
-},]
+},
+]
 
 const json = [...chinaExam, ...internationalExam, ...childrenEnglish,]
 

@@ -35,6 +35,10 @@ async function getBookDetail(val: DictResource) {
 }
 
 async function getBookDetail2(val: Dict) {
+  if (!val.name) {
+    showSearchDialog = true
+    return
+  }
   runtimeStore.editDict = cloneDeep(val)
   nav('book-detail')
 }
@@ -51,6 +55,14 @@ function addBook() {
   runtimeStore.editDict = getDefaultDict()
   nav('book-detail', {isAdd: true})
 }
+
+function startStudy() {
+  if (!base.currentBook.name) {
+    showSearchDialog = true
+    return
+  }
+  router.push('/learn-article')
+}
 </script>
 
 <template>
@@ -58,16 +70,21 @@ function addBook() {
     <div class="card ">
       <div class="flex justify-between items-center">
         <div class="bg-slate-200 p-3 gap-4 rounded-md cursor-pointer flex items-center">
-          <span class="text-lg font-bold">{{ base.currentArticleDict.name }}</span>
-          <BaseIcon @click="showSearchDialog = true" icon="gg:arrows-exchange"/>
+          <span class="text-lg font-bold"
+                @click="getBookDetail2(base.currentBook)">{{
+              base.currentBook.name ?? '请选择书籍开始学习'
+            }}</span>
+          <BaseIcon @click="showSearchDialog = true"
+                    :icon="base.currentBook.name?'gg:arrows-exchange':'fluent:add-20-filled'"/>
         </div>
         <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
-             @click="router.push('/learn-article')">
+             :class="base.currentBook.name??'opacity-70 cursor-not-allowed'"
+             @click="startStudy">
           开始学习
         </div>
       </div>
-      <div class="mt-5 text-sm">已学习5555个单词的1%</div>
-      <el-progress class="mt-1" :percentage="80" :show-text="false"></el-progress>
+      <div class="mt-5 text-sm">已学习{{ base.currentBook.lastLearnIndex }}篇文章</div>
+      <el-progress class="mt-1" :percentage="base.currentBookProgress" :show-text="false"></el-progress>
     </div>
 
     <div class="card  flex flex-col">

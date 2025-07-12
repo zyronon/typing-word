@@ -162,21 +162,9 @@ function changePerDayStudyNumber() {
         我的词典
       </div>
       <div class="grid grid-cols-6 gap-4  mt-4">
-        <div class="book" @click="nav('edit-word-dict',{type:0})">
-          <span>收藏</span>
-          <div class="absolute bottom-4 right-4">{{ store.collectWord.words.length }}个词</div>
-        </div>
-        <div class="book" @click="nav('edit-word-dict',{type:1})">
-          <span>错词本</span>
-          <div class="absolute bottom-4 right-4">{{ store.wrong.words.length }}个词</div>
-        </div>
-        <div class="book" @click="nav('edit-word-dict',{type:2})">
-          <span>简单词</span>
-          <div class="absolute bottom-4 right-4">{{ store.simple.words.length }}个词</div>
-        </div>
-        <div class="book" @click="nav('edit-word-dict',{type:3})">
-          <span>已掌握</span>
-          <div class="absolute bottom-4 right-4">{{ store.master.words.length }}个词</div>
+        <div class="book" v-for="item in store.word.bookList" @click="nav('edit-word-dict',{type:item.type})">
+          <span>{{ item.name }}</span>
+          <div class="absolute bottom-4 right-4">{{ item.words.length }}个词</div>
         </div>
       </div>
     </div>
@@ -238,7 +226,7 @@ function changePerDayStudyNumber() {
 </template>
 
 <style scoped lang="scss">
- .target-modal {
+.target-modal {
   width: 30rem;
   padding: var(--space);
   padding-top: 0;

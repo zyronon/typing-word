@@ -1,5 +1,5 @@
 <h1 align="center">
-  Typing Word
+  Type Words
 </h1>
 
 <p align="center">

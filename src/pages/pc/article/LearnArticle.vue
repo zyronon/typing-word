@@ -9,7 +9,7 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
-import PracticeArticle from "@/pages/pc/practice/practice-article/index.vue";
+import PracticeArticle from "@/pages/pc/article/practice-article/index.vue";
 import {ShortcutKey} from "@/types.ts";
 import DictModal from "@/pages/pc/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";

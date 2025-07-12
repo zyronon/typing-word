@@ -120,9 +120,6 @@ export function shakeCommonDict(n: BaseState): BaseState {
   data.wordDictList.map((v: Dict) => {
     if (!v.isCustom) v.words = []
   })
-  data.articleDictList.map((v: Dict) => {
-    if (!v.isCustom) v.articles = []
-  })
   return data
 }
 
@@ -133,6 +130,7 @@ export function isMobile(): boolean {
 export function getDictFile(url: string) {
   return new Promise<any[]>(async resolve => {
     let r = await fetch(url).catch(r => {
+      console.log('getDictFile_error',r)
     })
     let v = await r.json()
     resolve(v)
@@ -177,10 +175,9 @@ export function _fetch(url: string) {
 export async function _checkDictWords(dict: Dict) {
   console.log('_checkDictWords', dict)
   if ([DictType.collect,
-    DictType.simple,
+    DictType.known,
     DictType.wrong].includes(dict.dictType)) {
   } else {
-
     //TODO　需要和其他需要下载的地方统一
     //如果不是自定义词典，并且有url地址才去下载
     if (!dict.isCustom && dict.fileName) {
@@ -201,7 +198,7 @@ export async function _checkDictWords(dict: Dict) {
       if (res && res.request.responseURL !== url) {
         r = res.data
       } else {
-        let dictLocalUrl = `./dicts/${dict.langTypeStr}/${dict.dictType}/${dict.tranTypeStr}/${dict.fileName}-v${dict.version}.json`;
+        let dictLocalUrl = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
         let r3 = await fetch(dictLocalUrl)
         try {
           r = await r3.json()

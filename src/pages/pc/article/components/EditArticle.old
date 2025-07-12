@@ -30,7 +30,7 @@ interface IProps {
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  article: () => cloneDeep(DefaultArticle),
+  article: () => getDefaultArticle(),
   type: 'single'
 })
 
@@ -48,7 +48,7 @@ const TranslateEngineOptions = [
   {value: 'youdao', label: '有道'},
 ]
 
-let editArticle = $ref<Article>(cloneDeep(DefaultArticle))
+let editArticle = $ref<Article>(getDefaultArticle())
 
 watch(() => props.article, val => {
   editArticle = cloneDeep(val)

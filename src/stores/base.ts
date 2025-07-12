@@ -16,22 +16,17 @@ export interface BaseState {
   simpleWords: string[],
   load: boolean
 
-  articleDictList?: Dict[]
-
   commonDictList: any[],
   wordDictList?: Dict[],
   currentStudy?: {
     word: {
       dictIndex: number,
     },
-    article: {
-      dictIndex: number,
-    }
   },
-  // word: {
-  //   studyIndex: number,
-  //   dictList: [],
-  // },
+  word: {
+    studyIndex: number,
+    bookList: Dict[],
+  },
   article: {
     bookList: Dict[],
     studyIndex: number,
@@ -39,194 +34,14 @@ export interface BaseState {
 }
 
 export const DefaultBaseState = (): BaseState => ({
-  commonDictList: [
-    getDefaultDict(),
-    {
-      ...getDefaultDict(),
-      index: 1,
-      name: '收藏', type: DictType.collectWord, words: [
-        {
-          "id": "pharmacy",
-          "word": "pharmacy",
-          "trans": [
-            {
-              "cn": "n.药房，配药学，药学，制药业，一批备用药品"
-            }
-          ],
-          "phonetic0": "ˈfɑ:məsi",
-          "phonetic1": "ˈfɑ:rməsi"
-        },
-        {
-          "id": "foregone",
-          "word": "foregone",
-          "trans": [
-            {
-              "cn": "过去的；先前的；预知的；预先决定的"
-            },
-            {
-              "cn": "发生在…之前（forego的过去分词）"
-            }
-          ],
-          "phonetic0": "fɔː'gɒn",
-          "phonetic1": "'fɔrɡɔn"
-        },
-
-        {
-          "id": "calculate",
-          "word": "calculate",
-          "trans": [
-            {
-              "cn": "vt.& vi.计算，估计，打算，计划，旨在"
-            },
-            {
-              "cn": "vt.预测，推测"
-            }
-          ],
-          "phonetic0": "ˈkælkjuleɪt",
-          "phonetic1": "ˈkælkjəˌlet"
-        },
-        {
-          "id": "compete",
-          "word": "compete",
-          "trans": [
-            {
-              "cn": "vi.竞赛，竞争，比得上，参加比赛（或竞赛）"
-            }
-          ],
-          "phonetic0": "kəmˈpi:t",
-          "phonetic1": "kəmˈpit"
-        },
-        {
-          "id": "furnish",
-          "word": "furnish",
-          "trans": [
-            {
-              "cn": "vt.陈设，布置，提供，供应，装修（房屋）"
-            }
-          ],
-          "phonetic0": "ˈfɜ:nɪʃ",
-          "phonetic1": "ˈfɜ:rnɪʃ"
-        },
-      ], statistics: []
-    },
-    {
-      ...getDefaultDict(),
-      index: 2, name: '收藏', type: DictType.collectArticle, articles: [], statistics: []
-    },
-    {
-      ...getDefaultDict(),
-      index: 3, name: '简单词', type: DictType.simple, words: [], statistics: []
-    },
-    {
-      ...getDefaultDict(),
-      index: 4, name: '错词', type: DictType.wrong, words: [], statistics: []
-    },
-    {
-      ...getDefaultDict(),
-      index: 5, name: '已掌握', type: DictType.master, words: [], statistics: []
-    },
-  ],
-  articleDictList: [
-    {
-      ...getDefaultDict(),
-      id: 'article_nce2',
-      name: "新概念英语2-课文",
-      description: '新概念英语2-课文',
-      category: '英语学习',
-      tags: ['新概念英语'],
-      url: 'NCE_2.json',
-      translateLanguage: 'common',
-      language: 'en',
-      type: DictType.article,
-      resourceId: 'article_nce2',
-      length: 96,
-      lastLearnIndex: 1
-    },
-  ],
-  wordDictList: [
-    {
-      ...getDefaultDict(),
-      "id": 137,
-      "name": "新概念英语(新版)-2",
-      "description": "新概念英语新版第二册",
-      "length": 862,
-      "version": 1,
-      "fileName": "nce-new-2",
-      "category": "青少年英语",
-      "langType": 0,
-      "tranType": 1,
-      "userId": null,
-      "tags": [
-        "新概念英语"
-      ],
-      "langTypeStr": "en",
-      "tranTypeStr": "zh",
-      "dictType": DictType.word,
-      statistics: []
-    },
-  ],
+  commonDictList: [],
+  wordDictList: [],
   currentStudy: {
     word: {
       dictIndex: 0,
     },
-    article: {
-      dictIndex: 0,
-    },
   },
-  myDictList: [
-    {
-      ...getDefaultDict(),
-      id: 'collect',
-      name: '收藏',
-      type: DictType.collect,
-      category: '自带字典',
-      tags: ['自带'],
-      isCustom: true,
-    },
-    {
-      ...getDefaultDict(),
-      id: 'skip',
-      name: '简单词',
-      type: DictType.simple,
-      category: '自带字典',
-      isCustom: true,
-    },
-    {
-      ...getDefaultDict(),
-      id: 'wrong',
-      name: '错词本',
-      type: DictType.wrong,
-      category: '自带字典',
-      isCustom: true,
-    },
-    {
-      ...getDefaultDict(),
-      id: 'cet4',
-      name: 'CET-4',
-      description: '大学英语四级词库',
-      category: '中国考试',
-      tags: ['大学英语'],
-      url: 'CET4_T.json',
-      length: 2607,
-      translateLanguage: 'common',
-      language: 'en',
-      type: DictType.word
-    },
-    {
-      ...getDefaultDict(),
-      id: 'article_nce2',
-      name: "新概念英语2-课文",
-      description: '新概念英语2-课文',
-      category: '英语学习',
-      tags: ['新概念英语'],
-      url: 'NCE_2.json',
-      translateLanguage: 'common',
-      language: 'en',
-      type: DictType.article,
-      resourceId: 'article_nce2',
-      length: 96
-    },
-  ],
+  myDictList: [],
   current: {
     index: 4,
     practiceType: DictType.article,
@@ -239,6 +54,96 @@ export const DefaultBaseState = (): BaseState => ({
     'the', 'that', 'this', 'to', 'of', 'for', 'and', 'at', 'not', 'no', 'yes',
   ],
   load: false,
+  word: {
+    bookList: [
+      getDefaultDict({
+        index: 1,
+        name: '收藏', type: DictType.collectWord, words: [
+          {
+            "id": "pharmacy",
+            "word": "pharmacy",
+            "trans": [
+              {
+                "cn": "n.药房，配药学，药学，制药业，一批备用药品"
+              }
+            ],
+            "phonetic0": "ˈfɑ:məsi",
+            "phonetic1": "ˈfɑ:rməsi"
+          },
+          {
+            "id": "foregone",
+            "word": "foregone",
+            "trans": [
+              {
+                "cn": "过去的；先前的；预知的；预先决定的"
+              },
+              {
+                "cn": "发生在…之前（forego的过去分词）"
+              }
+            ],
+            "phonetic0": "fɔː'gɒn",
+            "phonetic1": "'fɔrɡɔn"
+          },
+
+          {
+            "id": "calculate",
+            "word": "calculate",
+            "trans": [
+              {
+                "cn": "vt.& vi.计算，估计，打算，计划，旨在"
+              },
+              {
+                "cn": "vt.预测，推测"
+              }
+            ],
+            "phonetic0": "ˈkælkjuleɪt",
+            "phonetic1": "ˈkælkjəˌlet"
+          },
+          {
+            "id": "compete",
+            "word": "compete",
+            "trans": [
+              {
+                "cn": "vi.竞赛，竞争，比得上，参加比赛（或竞赛）"
+              }
+            ],
+            "phonetic0": "kəmˈpi:t",
+            "phonetic1": "kəmˈpit"
+          },
+          {
+            "id": "furnish",
+            "word": "furnish",
+            "trans": [
+              {
+                "cn": "vt.陈设，布置，提供，供应，装修（房屋）"
+              }
+            ],
+            "phonetic0": "ˈfɜ:nɪʃ",
+            "phonetic1": "ˈfɜ:rnɪʃ"
+          },
+        ], statistics: []
+      }),
+      getDefaultDict({
+        index: 2, name: '错词', type: DictType.wrong, words: [], statistics: []
+      }),
+      getDefaultDict({
+        index: 3, name: '已掌握', type: DictType.known, words: [], statistics: []
+      }),
+      getDefaultDict({
+        id: 'nce-new-2',
+        name: '新概念英语(新版)-2',
+        description: '新概念英语新版第二册',
+        category: '青少年英语',
+        tags: ['新概念英语'],
+        url: 'nce-new-2.json',
+        length: 862,
+        translateLanguage: 'common',
+        language: 'en',
+        type: DictType.word
+      }),
+    ],
+    studyIndex: 3,
+  },
   article: {
     bookList: [
       getDefaultDict({name: '收藏'})
@@ -253,22 +158,22 @@ export const useBaseStore = defineStore('base', {
   },
   getters: {
     collect(): Dict {
-      return this.myDictList[0]
+      return this.word.bookList[0]
     },
     collectWord(): Dict {
-      return this.commonDictList[1]
+      return this.word.bookList[1]
     },
     collectArticle(): Dict {
-      return this.commonDictList[2]
+      return this.word.bookList[2]
     },
     simple(): Dict {
-      return this.commonDictList[3]
+      return this.word.bookList[2]
     },
     wrong(): Dict {
-      return this.commonDictList[4]
+      return this.word.bookList[1]
     },
-    master(): Dict {
-      return this.commonDictList[5]
+    known(): Dict {
+      return this.word.bookList[2]
     },
     skipWordNames() {
       return this.simple.words.map(v => v.word.toLowerCase())
@@ -289,10 +194,10 @@ export const useBaseStore = defineStore('base', {
       return this.myDictList[this.current.index] ?? {}
     },
     currentStudyWordDict(): Dict {
-      if (this.sword.dictIndex >= 0) {
-        return this.wordDictList[this.currentStudy.word.dictIndex] ?? getDefaultDict()
+      if (this.word.bookList.studyIndex >= 0) {
+        return this.word.bookList[this.word.bookList.studyIndex] ?? getDefaultDict()
       }
-      return this.commonDictList[Math.abs(this.currentStudy.word.dictIndex) - 1] ?? getDefaultDict()
+      return getDefaultDict()
     },
     sdict(): Dict {
       return this.currentStudyWordDict
@@ -310,16 +215,20 @@ export const useBaseStore = defineStore('base', {
     currentArticleCollectDict(): Dict {
       return this.article.bookList[0]
     },
-    currentArticleDict(): Dict {
-      return this.article.bookList[this.article.studyIndex] ?? {}
-    },
     chapter(state: BaseState): Word[] {
       return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []
+    },
+
+    currentBook(): Dict {
+      return this.article.bookList[this.article.studyIndex] ?? {}
+    },
+    currentBookProgress(): number {
+      if (this.currentBook.name) return Number(Number(this.currentBook.lastLearnIndex / this.currentBook.length).toFixed(2))
+      return 0
     },
   },
   actions: {
     setState(obj: any) {
-      return
       //这样不会丢失watch的值的引用
       merge(this, obj)
     },
@@ -338,12 +247,16 @@ export const useBaseStore = defineStore('base', {
           console.error('读取本地dict数据失败', e)
         }
 
-        if (this.currentStudy.word.dictIndex >= 0) {
+        if (this.word.studyIndex >= 0) {
           // await _checkDictWords(this.currentStudyWordDict)
-          // console.log('this.wordDictList', this.wordDictList[0].words[0])
+          let current = this.word.bookList[this.word.studyIndex]
+          let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
+          current.words = await getDictFile(dictResourceUrl)
+
+          console.log('this.current', current)
         }
-        if (this.currentStudy.article.dictIndex >= 0) {
-          let current = this.articleDictList[this.currentStudy.article.dictIndex]
+        if (this.article.studyIndex >= 0) {
+          let current = this.article.bookList[this.article.studyIndex]
           let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
           if (!current.articles.length) {
             let s = await getDictFile(dictResourceUrl)
@@ -352,7 +265,7 @@ export const useBaseStore = defineStore('base', {
               return v
             }))
           }
-          console.log('this.currentArticleDict', this.currentArticleDict.articles[0])
+          // console.log('this.currentBook', this.currentBook.articles[0])
         }
         emitter.emit(EventKey.changeDict)
         resolve(true)
@@ -371,7 +284,7 @@ export const useBaseStore = defineStore('base', {
         this.wordDictList.push(getDefaultDict(dict))
         this.currentStudy.word.dictIndex = this.wordDictList.length - 1
       }
-      await _checkDictWords(this.currentStudyWordDict)
+      // await _checkDictWords(this.currentStudyWordDict)
 
       console.log(' store.currentStudyWordDict', this.currentStudyWordDict)
       emitter.emit(EventKey.changeDict)
@@ -444,6 +357,5 @@ export const useBaseStore = defineStore('base', {
         this.currentStudy.word.dictIndex = rIndex
       }
     },
-
   },
 })

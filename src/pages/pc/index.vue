@@ -40,14 +40,14 @@ const {toggleTheme} = useTheme()
           <Icon icon="ph:article-ny-times"/>
           <span v-if="settingStore.sideExpand">文章</span>
         </div>
-        <div class="row" @click="router.push('/article2')">
-          <Icon icon="healthicons:i-exam-multiple-choice-outline"/>
-          <span v-if="settingStore.sideExpand">试卷</span>
-        </div>
-        <div class="row">
-          <Icon icon="mdi-light:forum"/>
-          <span v-if="settingStore.sideExpand">社区</span>
-        </div>
+<!--        <div class="row" @click="router.push('/article2')">-->
+<!--          <Icon icon="healthicons:i-exam-multiple-choice-outline"/>-->
+<!--          <span v-if="settingStore.sideExpand">试卷</span>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--          <Icon icon="mdi-light:forum"/>-->
+<!--          <span v-if="settingStore.sideExpand">社区</span>-->
+<!--        </div>-->
       </div>
       <div class="bottom flex justify-evenly ">
         <BaseIcon

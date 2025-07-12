@@ -1,0 +1,136 @@
+[
+  {
+    "word": "expect",
+    "synos": [
+      {
+        "pos": "vt.",
+        "tran": "期望；指望；认为；预料",
+        "ws": [
+          "promise oneself",
+          "guess",
+          "find",
+          "feel",
+          "make"
+        ]
+      },
+      {
+        "pos": "vi.",
+        "tran": "期待；预期",
+        "ws": [
+          "look foward to",
+          "to look forward to"
+        ]
+      }
+    ]
+  },
+  {
+    "word": "run",
+    "synos": [
+      {
+        "pos": "vi.",
+        "tran": "经营；奔跑；运转",
+        "ws": [
+          "go",
+          "fare"
+        ]
+      },
+      {
+        "pos": "vt.",
+        "tran": "管理，经营；运行；参赛",
+        "ws": [
+          "conduct",
+          "direct",
+          "control",
+          "supervise",
+          "operate"
+        ]
+      },
+      {
+        "pos": "n.",
+        "tran": "奔跑；赛跑；趋向；奔跑的路程",
+        "ws": [
+          "footrace",
+          "tendency to sth"
+        ]
+      }
+    ]
+  },
+  {
+    "word": "happy",
+    "synos": [
+      {
+        "pos": "adj.",
+        "tran": "幸福的；高兴的；巧妙的",
+        "ws": [
+          "pleased",
+          "glad",
+          "blessed",
+          "smart"
+        ]
+      }
+    ]
+  },
+  {
+    "word": "blue",
+    "synos": [
+      {
+        "pos": "adj.",
+        "tran": "[光]蓝色的；忧郁的，沮丧的；下流的",
+        "ws": [
+          "dark",
+          "disappointed",
+          "dirty",
+          "depressed"
+        ]
+      },
+      {
+        "pos": "n.",
+        "tran": "[光]蓝色",
+        "ws": [
+          "azur",
+          "blau"
+        ]
+      }
+    ]
+  },
+  {
+    "word": "think",
+    "synos": [
+      {
+        "pos": "vt.",
+        "tran": "想；认为；想起；想像；打算",
+        "ws": [
+          "like",
+          "imagine",
+          "expect",
+          "count",
+          "guess"
+        ]
+      },
+      {
+        "pos": "vi.",
+        "tran": "想；认为",
+        "ws": [
+          "consider",
+          "ween"
+        ]
+      },
+      {
+        "pos": "n.",
+        "tran": "想；想法",
+        "ws": [
+          "idea",
+          "idee"
+        ]
+      },
+      {
+        "pos": "adj.",
+        "tran": "思想的",
+        "ws": [
+          "ideological",
+          "ideaistic"
+        ]
+      }
+    ]
+  }
+]

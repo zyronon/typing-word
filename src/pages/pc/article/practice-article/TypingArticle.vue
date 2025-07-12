@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import {computed, nextTick, onMounted, onUnmounted, watch} from "vue"
-import {Article, ArticleWord, DefaultArticle, Sentence, Word} from "@/types.ts";
+import {computed, onMounted, onUnmounted, watch} from "vue"
+import {Article, ArticleWord, getDefaultArticle, Sentence, Word} from "@/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
-import {cloneDeep} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import jq from 'jquery'
 import {_nextTick} from "@/utils";
@@ -25,7 +24,7 @@ interface IProps {
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  article: () => cloneDeep(DefaultArticle),
+  article: () => getDefaultArticle(),
   sectionIndex: 0,
   sentenceIndex: 0,
   wordIndex: 0,
@@ -455,7 +454,7 @@ let showQuestions = $ref(false)
 
     <div class="options flex justify-center" v-if="isEnd">
       <BaseButton
-          v-if="store.currentArticleDict.lastLearnIndex < store.currentArticleDict.articles.length - 1"
+          v-if="store.currentBook.lastLearnIndex < store.currentBook.articles.length - 1"
           @click="emitter.emit(EventKey.next)">下一章
       </BaseButton>
     </div>

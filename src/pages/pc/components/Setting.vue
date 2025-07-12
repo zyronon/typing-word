@@ -447,7 +447,7 @@ function importData(e) {
         </div>
       </div>
       <div v-if="tabIndex === 5" class="about">
-        <h1>Typing Word</h1>
+        <h1>Type Words</h1>
         <p>
           本项目完全开源！好用请大家多多点Star！
         </p>

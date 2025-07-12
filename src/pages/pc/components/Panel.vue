@@ -85,7 +85,7 @@ function changeCollect() {
           <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">收藏</div>
           <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.simple.name }}</div>
           <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.wrong.name }}</div>
-          <div class="tab" :class="tabIndex === 4 && 'active'" @click="tabIndex = 4">{{ store.master.name }}</div>
+          <div class="tab" :class="tabIndex === 4 && 'active'" @click="tabIndex = 4">{{ store.known.name }}</div>
         </div>
         <Tooltip
             :title="`关闭(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"

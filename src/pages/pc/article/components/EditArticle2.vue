@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {Article, DefaultArticle, Sentence, TranslateEngine} from "@/types.ts";
+import {Article, getDefaultArticle, Sentence, TranslateEngine} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import EditAbleText from "@/pages/pc/components/EditAbleText.vue";
 import {Icon} from "@iconify/vue";
@@ -21,7 +21,7 @@ interface IProps {
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  article: () => cloneDeep(DefaultArticle),
+  article: () => getDefaultArticle(),
   type: 'single'
 })
 
@@ -39,13 +39,13 @@ const TranslateEngineOptions = [
   {value: 'youdao', label: '有道'},
 ]
 
-let editArticle = $ref<Article>(cloneDeep(DefaultArticle))
+let editArticle = $ref<Article>(getDefaultArticle())
 
 watch(() => props.article, val => {
   editArticle = cloneDeep(val)
   progress = 0
   failCount = 0
-  apply()
+  apply(false)
 }, {immediate: true})
 
 watch(() => editArticle.text, (s) => {
@@ -54,7 +54,16 @@ watch(() => editArticle.text, (s) => {
   }
 })
 
-function apply() {
+function apply(isHandle: boolean = true) {
+  let text = editArticle.text.trim()
+  if (!text && isHandle) {
+    // text = "Last week I went to the theatre. I had a very good seat. The play was very interesting. I did not enjoy it. A young man and a young woman were sitting behind me. They were talking loudly. I got very angry. I could not hear the actors. I turned round. I looked at the man and the woman angrily. They did not pay any attention. In the end, I could not bear it. I turned round again. 'I can't hear a word!' I said angrily.\n\n    'It's none of your business,' the young man said rudely. 'This is a private conversation!'"
+    // text = `While it is yet to be seen what direction the second Trump administration will take globally in its China policy, VOA traveled to the main island of Mahe in Seychelles to look at how China and the U.S. have impacted the country, and how each is fairing in that competition for influence there.`
+    // text = "It was Sunday. I never get up early on Sundays. I sometimes stay in bed until lunchtime. Last Sunday I got up very late. I looked out of the window. It was dark outside. 'What a day!' I thought. 'It's raining again.' Just then, the telephone rang. It was my aunt Lucy. 'I've just arrived by train,' she said. 'I'm coming to see you.'\n\n     'But I'm still having breakfast,' I said.\n\n     'What are you doing?' she asked.\n\n     'I'm having breakfast,' I repeated.\n\n     'Dear me,' she said. 'Do you always get up so late? It's one o'clock!'"
+    editArticle.sections = []
+    ElMessage.error('请填写原文！')
+    return
+  }
   failCount = genArticleSectionData(editArticle)
 }
 
@@ -365,13 +374,13 @@ function setStartTime(val: Sentence, i: number, j: number) {
             </template>
           </el-popover>
           <el-button type="primary" @click="splitTranslateText">分句</el-button>
-          <el-button type="primary" @click="apply">应用</el-button>
+          <el-button type="primary" @click="apply(true)">应用</el-button>
         </div>
       </div>
     </div>
     <div class="row flex flex-col gap-2">
       <div class="title">结果</div>
-      <div class="center">正文、译文与结果均可编辑，修改一处，另外两处会自动同步变动</div>
+      <div class="center">正文、译文与结果均可编辑，编辑后点击应用按钮会自动同步</div>
       <div class="flex gap-2">
         <BaseButton>添加音频</BaseButton>
         <el-upload

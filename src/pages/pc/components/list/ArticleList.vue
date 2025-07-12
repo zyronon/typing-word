@@ -84,7 +84,7 @@ defineExpose({scrollToBottom, scrollToItem})
   .search {
     box-sizing: border-box;
     width: 100%;
-    padding: 0 var(--space);
+    padding-right:  var(--space);
   }
 
   .translate {

@@ -5,7 +5,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import Empty from "@/components/Empty.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {cloneDeep} from "lodash-es";
-import {Article, DefaultArticle, Dict, DictResource, DictType, getDefaultDict, Sort, TranslateType} from "@/types.ts";
+import {Article, Dict, DictResource, DictType, getDefaultArticle, getDefaultDict, Sort} from "@/types.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import EditBatchArticleModal from "@/pages/pc/article/components/EditBatchArticleModal.vue";
 import {Icon} from "@iconify/vue";
@@ -19,7 +19,6 @@ import {MessageBox} from "@/utils/MessageBox.tsx";
 import {syncMyDictList} from "@/hooks/dict.ts";
 import {useWindowClick} from "@/hooks/event.ts";
 import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
-import * as copy from "copy-to-clipboard";
 import {getTranslateText} from "@/hooks/article.ts";
 import {_copy} from "@/utils";
 
@@ -31,7 +30,7 @@ const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 let chapterIndex = $ref(-1)
-let article: Article = $ref(cloneDeep(DefaultArticle))
+let article: Article = $ref(getDefaultArticle())
 let isEditDict = $ref(false)
 let showExport = $ref(false)
 let loading = $ref(false)
@@ -104,7 +103,7 @@ function delArticle(index: number) {
       article = runtimeStore.editDict.articles[chapterIndex]
     }
   } else {
-    article = cloneDeep(DefaultArticle)
+    article = getDefaultArticle()
     chapterIndex = -1
   }
   syncMyDictList(runtimeStore.editDict)
@@ -117,7 +116,7 @@ async function resetDict() {
       '提示',
       async () => {
         chapterIndex = -1
-        article = cloneDeep(DefaultArticle)
+        article = getDefaultArticle()
         if (runtimeStore.editDict.url) {
           runtimeStore.editDict.sort = Sort.normal
           runtimeStore.editDict.chapterWordNumber = settingStore.chapterWordNumber
@@ -150,15 +149,14 @@ function importData(e: any) {
     if (res.length) {
       let articles = res.map(v => {
         if (v['原文标题'] && v['原文正文']) {
-          let article: Article = {
-            ...DefaultArticle,
+          let article: Article = getDefaultArticle({
             id: nanoid(6),
             checked: false,
             title: String(v['原文标题']),
             text: String(v['原文正文']),
             titleTranslate: String(v['译文标题']),
             textTranslate: String(v['译文正文']),
-          }
+          })
           return article
         }
       }).filter(v => v)
@@ -276,7 +274,7 @@ defineExpose({getDictDetail, add, editDict})
           </div>
           <template v-if="!isPinDict">
             <BaseIcon icon="tabler:edit" @click='editDict'/>
-<!--            <BaseIcon icon="ph:star" @click='no'/>-->
+            <!--            <BaseIcon icon="ph:star" @click='no'/>-->
             <BaseButton size="small" v-if="runtimeStore.editDict.isCustom" @click="resetDict">恢复默认</BaseButton>
           </template>
           <div class="import hvr-grow">

@@ -47,7 +47,7 @@ function toggle() {
     />
     <div class="options">
       <BaseButton @click="toggle">取消</BaseButton>
-      <BaseButton @click="save">保存</BaseButton>
+      <BaseButton @click="save">应用</BaseButton>
     </div>
   </div>
   <div

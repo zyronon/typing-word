@@ -1,7 +1,6 @@
 <script setup lang="ts">
 
-import {Article, DefaultArticle} from "@/types.ts";
-import {cloneDeep} from "lodash-es";
+import {Article, getDefaultArticle} from "@/types.ts";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {useDisableEventListener} from "@/hooks/event.ts";
 import EditArticle2 from "@/pages/pc/article/components/EditArticle2.vue";
@@ -12,7 +11,7 @@ interface IProps {
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  article: () => cloneDeep(DefaultArticle),
+  article: () => getDefaultArticle(),
   modelValue: false
 })
 const emit = defineEmits<{

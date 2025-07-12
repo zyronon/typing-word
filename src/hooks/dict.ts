@@ -130,7 +130,7 @@ export function getCurrentStudyWord() {
     //取上一次学习的单词用于复习
     let list = getList(s, e)
     list.map(item => {
-      if (!store.master.words.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
+      if (!store.known.words.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
         data.review.push(item)
       }
     })
@@ -148,7 +148,7 @@ export function getCurrentStudyWord() {
           if (d.length >= Math.floor(dict.perDayStudyNumber / 4)) break
         }
         let item = list[i]
-        if (!store.master.words.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
+        if (!store.known.words.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
           d.push(item)
         }
       }

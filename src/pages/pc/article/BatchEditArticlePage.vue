@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted} from "vue";
-import {Article, DefaultArticle} from "@/types.ts";
+import {Article, getDefaultArticle} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {cloneDeep} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
 
 import List from "@/pages/pc/components/list/List.vue";
-import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useDisableEventListener, useWindowClick} from "@/hooks/event.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
@@ -24,7 +23,7 @@ const emit = defineEmits<{
 const base = useBaseStore()
 const runtimeStore = useRuntimeStore()
 
-let article = $ref<Article>(cloneDeep(DefaultArticle))
+let article = $ref<Article>(getDefaultArticle())
 let show = $ref(false)
 let editArticleRef: any = $ref()
 let listEl: any = $ref()
@@ -98,7 +97,7 @@ function checkDataChange() {
 async function add() {
   let r = await checkDataChange()
   if (r) {
-    article = cloneDeep(DefaultArticle)
+    article = getDefaultArticle()
   }
 }
 
@@ -153,7 +152,7 @@ useWindowClick(() => showExport = false)
           ref="listEl"
           v-model:list="runtimeStore.editDict.articles"
           :select-item="article"
-          @del-select-item="article = cloneDeep(DefaultArticle)"
+          @del-select-item="article = getDefaultArticle()"
           @select-item="selectArticle"
       >
         <template v-slot="{item,index}">
