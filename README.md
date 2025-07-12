@@ -65,14 +65,6 @@ API 等词库。 尽可能满足大部分用户对背单词的需求，也非常
 - 王陆雅思王听力语料库 
 - 日语常见词、N1 ～ N5 
 
-## 📗 API 词库
-
-- JavaScript API、Node.js API、Java API、Linux Command、C#: List API
-
-词库均来源于(除文章以外)：[qwerty-learner](https://github.com/RealKai42/qwerty-learner/)
-
-如果您需要背诵其他词库，欢迎在 Issue 中提出
-
 ## 🎙 功能与建议
 
 目前项目处于开发初期，新功能正在持续添加中，如果你对软件有任何功能与建议，欢迎在 Issues 中提出
