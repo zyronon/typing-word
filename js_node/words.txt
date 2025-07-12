@@ -1,5 +1,0 @@
-expect
-run
-happy
-blue
-think

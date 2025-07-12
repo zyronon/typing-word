@@ -49,6 +49,41 @@ export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 export type TranslateLanguageType = 'en' | 'zh-CN' | 'ja' | 'de' | 'common' | ''
 export type LanguageType = 'en' | 'ja' | 'de' | 'code'
 
+
+interface Word2 {
+  word: string,
+  phonetic0: string,
+  phonetic1: string,
+  trans: {
+    pos: string,
+    cn: string,
+  }[],
+  sentences: {
+    c: string,//content
+    cn: string,
+  }[],
+  phrases: {
+    c: string,
+    cn: string,
+  }[],
+  synos: {
+    pos: string,
+    cn: string,
+    ws: string[]
+  }[],
+  relWords: {
+    root: string,
+    rels: {
+      word: string,
+      cn: string,
+    }[]
+  },
+  etymology: {
+    t: string,//title
+    d: string,//desc
+  }[],
+}
+
 export type DictResource = {
   id: string
   name: string

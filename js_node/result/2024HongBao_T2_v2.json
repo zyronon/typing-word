@@ -1,0 +1,121 @@
+[
+  {
+    "word": "private",
+    "phonetic0": "ˈpraɪvət",
+    "phonetic1": "ˈpraɪvət",
+    "trans": [
+      {
+        "pos": "adj.",
+        "cn": "私有的，自用的；（服务，行业）私营的，民营的；没有股票上市的；私下的，秘密的；（交易未涉及商业机构的）私下里的；（想法、感觉）私密的；未担任公职的，无官职的；与官职（或工作）无关的；安静的，不受打扰的；（人）内敛的，不喜欢谈论私事的；（尤指两人）单独的；私下辅导的；（教育，医疗）私立的；只有自己人明白的"
+      },
+      {
+        "pos": "n.",
+        "cn": "（美、英陆军或美国海军陆战队）二等兵；<非正式> 私处，阴部（privates）"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "He has a private income.",
+        "cn": "他有一笔私人收入。"
+      },
+      {
+        "c": "She now teaches only private pupils.",
+        "cn": "她现在只当私人教师。"
+      },
+      {
+        "c": "The door is marked \"Private.\"",
+        "cn": "门上写着“闲人免进”。"
+      }
+    ],
+    "phrases": [
+      {
+        "c": "in private",
+        "cn": "私下地；秘密地"
+      },
+      {
+        "c": "private enterprise",
+        "cn": "民营企业；私营企业"
+      },
+      {
+        "c": "private sector",
+        "cn": "私营部门；私营成分"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "adj.",
+        "cn": "私人的；私有的；私下的",
+        "ws": [
+          "chamber",
+          "cabinet"
+        ]
+      },
+      {
+        "pos": "n.",
+        "cn": "列兵；二等兵",
+        "ws": [
+          "seaman second class"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "private",
+      "rels": [
+        {
+          "words": [
+            {
+              "c": "privately",
+              "cn": "私下地；秘密地"
+            }
+          ],
+          "pos": "adv."
+        },
+        {
+          "words": [
+            {
+              "c": "privatization",
+              "cn": "私有化"
+            },
+            {
+              "c": "privateer",
+              "cn": "私掠船；武装民船；私掠船船长；私掠船船员"
+            },
+            {
+              "c": "privateness",
+              "cn": "私人性"
+            }
+          ],
+          "pos": "n."
+        },
+        {
+          "words": [
+            {
+              "c": "privateer",
+              "cn": "私掠巡航"
+            }
+          ],
+          "pos": "vi."
+        },
+        {
+          "words": [
+            {
+              "c": "privatize",
+              "cn": "使私有化；使归私有"
+            }
+          ],
+          "pos": "vt."
+        }
+      ]
+    },
+    "etymology": [
+      {
+        "t": "private:私人的，个人的；私下的，秘密的；私营的，民办的",
+        "d": "词根词缀： -priv-私人,私下 + -ate形容词词尾"
+      },
+      {
+        "t": "private:个人的，私有的",
+        "d": "来自拉丁语privare,使个人化，使分开，使剥离，来自privus,个人的，自己的，来自PIE*per,向前，穿过，词源同ford,first."
+      }
+    ]
+  }
+]
