@@ -13,6 +13,10 @@
   <a href="https://hellogithub.com/repository/eb70616d65604458908fc1736e7d41fc" target="_blank"><img src="https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=eb70616d65604458908fc1736e7d41fc&claim_uid=k5e4ZAqRjJEGzCW&theme=small" alt="Featured｜HelloGitHub" /></a>
 </p>
 
+<div align=center>
+<a href="https://trendshift.io/repositories/14139" target="_blank" class="trendshift-badge"><img src="https://trendshift.io/api/badge/repositories/14139" alt="TypeWords | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+</div>
+
 ## 📸 在线访问
 
 Github Pages: <https://2study.top>
