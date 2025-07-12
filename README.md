@@ -51,11 +51,6 @@ API 等词库。 尽可能满足大部分用户对背单词的需求，也非常
 4. 执行`npm start`来启动项目，项目默认地址为[`http://localhost:3000`](http://localhost:3000)
 5. 在浏览器中打开[`http://localhost:3000`](http://localhost:3000)  来访问项目。
 
-### 使用Docker
-创建镜像 docker build -t typing-word:001 .
-
-启动容器 docker run --name typing-word -p 3000:3000 -d typing-word:001
-
 ## 📕 词库列表
 
 - CET-4、CET-6、GMAT、GRE、IELTS、SAT、TOEFL、BEC
