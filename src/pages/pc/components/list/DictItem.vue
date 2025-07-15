@@ -19,7 +19,7 @@ const emit = defineEmits<{
 
 <template>
   <div
-      class="dict-item anim rounded-md p-4"
+      class="book anim"
       :class="active && 'active'"
   >
     <template v-if="dict.id">
@@ -42,98 +42,5 @@ const emit = defineEmits<{
 </template>
 
 <style scoped lang="scss">
-.dict-item {
-  cursor: pointer;
-  box-sizing: border-box;
-  //width: 9rem;
-  //height: 12rem;
-  position: relative;
-  //background: var(--color-third-bg);
-  background: white;
-  border: 1px solid var(--color-item-border);
-  color: var(--color-font-1);
-  font-size: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-
-  .name {
-    font-size: 1rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box; //作为弹性伸缩盒子模型显示。
-    -webkit-box-orient: vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
-    -webkit-line-clamp: 2; //显示的行
-  }
-
-  .desc {
-    color: var(--color-font-2);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box; //作为弹性伸缩盒子模型显示。
-    -webkit-box-orient: vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
-    -webkit-line-clamp: 2; //显示的行
-  }
-
-  .num {
-    margin-top: 2rem;
-    text-align: right;
-    color: var(--color-font-2);
-    //font-weight: bold;
-  }
-
-  .go {
-    position: absolute;
-    right: 1rem;
-    bottom: 1rem;
-  }
-
-  .del {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    opacity: 0;
-    transition: opacity .3s;
-  }
-
-  &.active {
-    background: var(--color-item-active);
-  }
-
-  &:hover {
-    background: var(--color-item-active);
-
-    .del {
-      opacity: 1;
-    }
-  }
-
-  .add {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-  }
-
-  .pin {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 4rem;
-    width: 4rem;
-    color: white;
-    //background-color: skyblue;
-    background-color: var(--color-main-active);
-    clip-path: polygon(0 10%, 0% 100%, 100% 100%);
-    font-size: 0.8rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    padding: 0.2rem;
-    box-sizing: border-box;
-  }
-}
 
 </style>

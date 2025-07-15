@@ -16,7 +16,6 @@ export interface BaseState {
   simpleWords: string[],
   load: boolean
 
-  commonDictList: any[],
   wordDictList?: Dict[],
   currentStudy?: {
     word: {
@@ -34,7 +33,6 @@ export interface BaseState {
 }
 
 export const DefaultBaseState = (): BaseState => ({
-  commonDictList: [],
   wordDictList: [],
   currentStudy: {
     word: {
@@ -210,7 +208,7 @@ export const useBaseStore = defineStore('base', {
       return _getStudyProgress(this.sdict.lastLearnIndex, this.sdict.words?.length)
     },
     otherWordDictList(): Dict[] {
-      return this.wordDictList.filter(v => this.sdict.id !== v.id)
+      return this.word.bookList.filter(v => this.sdict.id !== v.id)
     },
     currentArticleCollectDict(): Dict {
       return this.article.bookList[0]

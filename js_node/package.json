@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dayjs": "^1.11.13",
     "jquery": "^3.7.1",
     "jsdom": "^23.0.1",
+    "p-limit": "^6.2.0",
     "playwright": "^1.54.1"
   }
 }

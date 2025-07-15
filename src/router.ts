@@ -2,10 +2,10 @@ import * as VueRouter from 'vue-router'
 import {RouteRecordRaw} from 'vue-router'
 import Test from "@/pages/test/test.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import WordHome from "@/pages/pc/word/WordHome.vue";
+import WordHomePage from "@/pages/pc/word/WordHomePage.vue";
 import PC from "@/pages/pc/index.vue";
 import Dict2 from '@/pages/pc/dict2/index.vue'
-import ArticleIndex from "@/pages/pc/article/ArticleIndex.vue";
+import ArticleHomePage from "@/pages/pc/article/ArticleHomePage.vue";
 import HomeIndex from "@/pages/pc/home/HomeIndex.vue";
 import LearnArticle from "@/pages/pc/article/LearnArticle.vue";
 import EditWordDict from "@/pages/pc/word/EditWordDict.vue";
@@ -20,11 +20,11 @@ export const routes: RouteRecordRaw[] = [
     redirect: '/home',
     children: [
       {path: 'home', component: HomeIndex},
-      {path: 'word', component: WordHome},
+      {path: 'word', component: WordHomePage},
       {path: 'study-word', component: StudyWord},
       {path: 'edit-word-dict', component: EditWordDict},
       {path: 'dict', component: Dict2},
-      {path: 'article', component: ArticleIndex},
+      {path: 'article', component: ArticleHomePage},
       {path: 'edit-article', component: EditArticlePage},
       {path: 'batch-edit-article', component: BatchEditArticlePage},
       {path: 'learn-article', component: LearnArticle},

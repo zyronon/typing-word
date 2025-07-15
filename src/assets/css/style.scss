@@ -471,7 +471,7 @@ footer {
 }
 
 .book {
-  @apply p-4 rounded-md bg-slate-200 relative cursor-pointer h-40 hover:bg-red;
+  @apply p-4 rounded-md bg-slate-200 relative cursor-pointer h-40 hover:bg-red anim;
 }
 
 .line {

@@ -3,9 +3,19 @@ import {defineConfig, presetUno} from 'unocss'
 
 export default defineConfig({
   content: {
-    filesystem: [
-      '**/*.{html,js,ts,jsx,tsx,vue,svelte,astro}',
-    ],
+
+    pipeline: {
+      include: [
+        './src/**/*.{html,vue,ts,js}',
+        './index.html',
+      ],
+      exclude: [
+        './node_modules/**/*',
+        './dist/**/*',
+        './.pnpm/**/*',
+        './.output/**/*',
+      ],
+    },
   },
   presets: [
     presetUno(),
