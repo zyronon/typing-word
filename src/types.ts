@@ -50,7 +50,7 @@ export type TranslateLanguageType = 'en' | 'zh-CN' | 'ja' | 'de' | 'common' | ''
 export type LanguageType = 'en' | 'ja' | 'de' | 'code'
 
 
-interface Word2 {
+export interface Word2 {
   word: string,
   phonetic0: string,
   phonetic1: string,
@@ -74,14 +74,34 @@ interface Word2 {
   relWords: {
     root: string,
     rels: {
-      word: string,
-      cn: string,
+      pos: string,
+      words: {
+        c: string,
+        cn: string,
+      }[],
     }[]
   },
   etymology: {
     t: string,//title
     d: string,//desc
   }[],
+}
+
+export function getDefaultWord2(val?: any): Word2 {
+  return {
+    "word": "",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  }
 }
 
 export type DictResource = {

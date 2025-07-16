@@ -16,9 +16,9 @@ export function useWordOptions() {
     if (rIndex > -1) {
       store.collectWord.words.splice(rIndex, 1)
     } else {
-      let rIndex = store.simple.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+      let rIndex = store.known.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
       if (rIndex > -1) {
-        store.simple.words.splice(rIndex, 1)
+        store.known.words.splice(rIndex, 1)
       }
       store.collectWord.words.push(val)
     }
@@ -29,15 +29,15 @@ export function useWordOptions() {
   }
 
   function toggleWordSimple(val: Word) {
-    let rIndex = store.simple.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+    let rIndex = store.known.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
     if (rIndex > -1) {
-      store.simple.words.splice(rIndex, 1)
+      store.known.words.splice(rIndex, 1)
     } else {
       let rIndex = store.collectWord.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
       if (rIndex > -1) {
         store.collectWord.words.splice(rIndex, 1)
       }
-      store.simple.words.push(val)
+      store.known.words.push(val)
     }
   }
 
@@ -49,9 +49,9 @@ export function useWordOptions() {
   }
 
   function delSimpleWord(val: Word) {
-    let rIndex = store.simple.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+    let rIndex = store.known.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
     if (rIndex > -1) {
-      store.simple.words.splice(rIndex, 1)
+      store.known.words.splice(rIndex, 1)
     }
   }
 
@@ -115,7 +115,7 @@ export function getCurrentStudyWord() {
     for (let i = dict.lastLearnIndex; i < dict.words.length; i++) {
       if (data.new.length >= dict.perDayStudyNumber) break
       let item = dict.words[i]
-      if (!store.simple.words.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
+      if (!store.known.words.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
         data.new.push(item)
       }
     }

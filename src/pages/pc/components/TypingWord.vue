@@ -19,6 +19,7 @@ import WordList from "@/pages/pc/components/list/WordList.vue";
 import Empty from "@/components/Empty.vue";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import BaseButton from "@/components/BaseButton.vue";
+import Footer from "@/pages/pc/word/Footer.vue";
 
 interface IProps {
   data: {
@@ -224,126 +225,140 @@ const status = $computed(() => {
 </script>
 
 <template>
-  <div class="practice-word">
-    <div class="near-word" v-if="settingStore.showNearWord">
-      <div class="prev"
-           @click="prev"
-           v-if="prevWord">
-        <Icon class="arrow" icon="bi:arrow-left" width="22"/>
-        <Tooltip
-            :title="`上一个(${settingStore.shortcutKeyMap[ShortcutKey.Previous]})`"
-        >
-          <div class="word">{{ prevWord.word }}</div>
-        </Tooltip>
+  <div class="practice-wrapper">
+    <div class="practice-word">
+      <div class="near-word" v-if="settingStore.showNearWord">
+        <div class="prev"
+             @click="prev"
+             v-if="prevWord">
+          <Icon class="arrow" icon="bi:arrow-left" width="22"/>
+          <Tooltip
+              :title="`上一个(${settingStore.shortcutKeyMap[ShortcutKey.Previous]})`"
+          >
+            <div class="word">{{ prevWord.word }}</div>
+          </Tooltip>
+        </div>
+        <div class="next"
+             @click="next(false)"
+             v-if="nextWord">
+          <Tooltip
+              :title="`下一个(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
+          >
+            <div class="word" :class="settingStore.dictation && 'word-shadow'">{{ nextWord.word }}</div>
+          </Tooltip>
+          <Icon class="arrow" icon="bi:arrow-right" width="22"/>
+        </div>
       </div>
-      <div class="next"
-           @click="next(false)"
-           v-if="nextWord">
-        <Tooltip
-            :title="`下一个(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
-        >
-          <div class="word" :class="settingStore.dictation && 'word-shadow'">{{ nextWord.word }}</div>
-        </Tooltip>
-        <Icon class="arrow" icon="bi:arrow-right" width="22"/>
-      </div>
-    </div>
-    <Typing
-        v-loading="!store.load"
-        ref="typingRef"
-        :word="word"
-        @wrong="wordWrong"
-        @complete="next"
-    />
-    <div class="options-wrapper">
-      <Options
-          :is-simple="isWordSimple(word)"
-          @toggle-simple="toggleWordSimpleWrapper"
-          :is-collect="isWordCollect(word)"
-          @toggle-collect="toggleWordCollect(word)"
-          @skip="next(false)"
+      <Typing
+          v-loading="!store.load"
+          ref="typingRef"
+          :word="word"
+          @wrong="wordWrong"
+          @complete="next"
       />
+      <div class="options-wrapper" v-if="false">
+        <Options
+            :is-simple="isWordSimple(word)"
+            @toggle-simple="toggleWordSimpleWrapper"
+            :is-collect="isWordCollect(word)"
+            @toggle-collect="toggleWordCollect(word)"
+            @skip="next(false)"
+        />
+      </div>
     </div>
 
-    <Teleport to="body">
-      <div class="word-panel-wrapper">
-        <Panel>
-          <template v-slot="{active}">
-            <div class="panel-page-item"
-                 v-loading="!store.load"
-            >
-              <div class="list-header">
-                <div class="flex items-center gap-1">
-                  <Icon icon="material-symbols:hourglass-empty-rounded"/>
-                  <span class="text-sm"> {{ status }}</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span> {{ current.index }} / {{ current.words.length }}</span>
-                </div>
+    <Footer
+        :is-simple="isWordSimple(word)"
+        @toggle-simple="toggleWordSimpleWrapper"
+        :is-collect="isWordCollect(word)"
+        @toggle-collect="toggleWordCollect(word)"
+        @skip="next(false)"
+    />
+    <div class="word-panel-wrapper">
+      <Panel>
+        <template v-slot="{active}">
+          <div class="panel-page-item pl-4"
+               v-loading="!store.load"
+          >
+            <div class="list-header">
+              <div class="flex items-center gap-1">
+                <Icon icon="material-symbols:hourglass-empty-rounded"/>
+                <span class="text-sm"> {{ status }}</span>
               </div>
-              <WordList
-                  v-if="current.words.length"
-                  :is-active="active"
-                  :static="false"
-                  :show-word="!settingStore.dictation"
-                  :show-translate="settingStore.translate"
-                  :list="current.words"
-                  :activeIndex="current.index"
-                  @click="(val:any) => current.index = val.index"
-              >
-                <template v-slot:suffix="{item,index}">
-                  <BaseIcon
-                      v-if="!isWordCollect(item)"
-                      class="collect"
-                      @click="toggleWordCollect(item)"
-                      title="收藏" icon="ph:star"/>
-                  <BaseIcon
-                      v-else
-                      class="fill"
-                      @click="toggleWordCollect(item)"
-                      title="取消收藏" icon="ph:star-fill"/>
-                  <BaseIcon
-                      v-if="!isWordSimple(item)"
-                      class="easy"
-                      @click="toggleWordSimple(item)"
-                      title="标记为简单词"
-                      icon="material-symbols:check-circle-outline-rounded"/>
-                  <BaseIcon
-                      v-else
-                      class="fill"
-                      @click="toggleWordSimple(item)"
-                      title="取消标记简单词"
-                      icon="material-symbols:check-circle-rounded"/>
-                </template>
-              </WordList>
-              <Empty v-else/>
+              <div class="flex items-center gap-2">
+                <span> {{ current.index }} / {{ current.words.length }}</span>
+              </div>
             </div>
-          </template>
-        </Panel>
-      </div>
-    </Teleport>
+            <WordList
+                v-if="current.words.length"
+                :is-active="active"
+                :static="false"
+                :show-word="!settingStore.dictation"
+                :show-translate="settingStore.translate"
+                :list="current.words"
+                :activeIndex="current.index"
+                @click="(val:any) => current.index = val.index"
+            >
+              <template v-slot:suffix="{item,index}">
+                <BaseIcon
+                    v-if="!isWordCollect(item)"
+                    class="collect"
+                    @click="toggleWordCollect(item)"
+                    title="收藏" icon="ph:star"/>
+                <BaseIcon
+                    v-else
+                    class="fill"
+                    @click="toggleWordCollect(item)"
+                    title="取消收藏" icon="ph:star-fill"/>
+                <BaseIcon
+                    v-if="!isWordSimple(item)"
+                    class="easy"
+                    @click="toggleWordSimple(item)"
+                    title="标记为简单词"
+                    icon="material-symbols:check-circle-outline-rounded"/>
+                <BaseIcon
+                    v-else
+                    class="fill"
+                    @click="toggleWordSimple(item)"
+                    title="取消标记简单词"
+                    icon="material-symbols:check-circle-rounded"/>
+              </template>
+            </WordList>
+            <Empty v-else/>
+          </div>
+        </template>
+      </Panel>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 
+.practice-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
 
 .practice-word {
-  height: 100%;
+  overflow: auto;
   flex: 1;
   display: flex;
-  //display: none;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-size: 1rem;
-  color: gray;
   gap: .4rem;
   position: relative;
   width: var(--toolbar-width);
 
   .near-word {
     position: absolute;
-    top: 0;
+    top: 1rem;
     width: 100%;
     z-index: 1;
 
@@ -385,11 +400,10 @@ const status = $computed(() => {
 }
 
 .word-panel-wrapper {
-  position: fixed;
-  left: 0;
+  position: absolute;
+  left: var(--panel-margin-left);
   top: .8rem;
   z-index: 1;
-  margin-left: var(--panel-margin-left);
   height: calc(100% - 1.5rem);
 }
 

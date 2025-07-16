@@ -82,10 +82,9 @@ function changeCollect() {
       <header>
         <div class="tabs">
           <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前</div>
-          <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">收藏</div>
-          <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.simple.name }}</div>
+          <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.collect.name }}</div>
+          <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.known.name }}</div>
           <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.wrong.name }}</div>
-          <div class="tab" :class="tabIndex === 4 && 'active'" @click="tabIndex = 4">{{ store.known.name }}</div>
         </div>
         <Tooltip
             :title="`关闭(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
@@ -121,7 +120,7 @@ function changeCollect() {
             <template v-if="props.type === DictType.word">
               <WordList
                   v-if="store.collectWord.words.length"
-                  class="word-list"
+                  class="word-list pl-4"
                   :list="store.collectWord.words">
                 <template v-slot:suffix="{item,index}">
                   <BaseIcon
@@ -153,22 +152,22 @@ function changeCollect() {
           <div class="panel-page-item">
             <div class="list-header">
               <div class="left">
-                <div class="dict-name">总词数：{{ store.simple.words.length }}</div>
+                <div class="dict-name">总词数：{{ store.known.words.length }}</div>
                 <BaseIcon icon="fluent:add-12-regular" title="添加" @click="nav('edit-word-dict',{type:2})"/>
               </div>
-              <template v-if="store.simple.words.length">
+              <template v-if="store.known.words.length">
                 <PopConfirm
                     :title="`确认切换？`"
-                    @confirm="changeIndex( store.simple)"
+                    @confirm="changeIndex( store.known)"
                 >
                   <BaseButton size="small">切换</BaseButton>
                 </PopConfirm>
               </template>
             </div>
             <WordList
-                v-if="store.simple.words.length"
+                v-if="store.known.words.length"
                 class="word-list"
-                :list="store.simple.words">
+                :list="store.known.words">
               <template v-slot:suffix="{item,index}">
                 <BaseIcon
                     class="del"

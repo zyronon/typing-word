@@ -48,11 +48,23 @@ defineExpose({scrollToBottom, scrollToItem})
     <template v-slot="{ item, index }">
       <div class="item-title">
         <span class="word" :class="!showWord && 'word-shadow'">{{ item.word }}</span>
-        <span class="phonetic">{{ item.phonetic0 }}</span>
+        <span class="phonetic" :class="!showWord && 'word-shadow'">{{ item.phonetic0 }}</span>
         <VolumeIcon class="volume" @click="playWordAudio(item.word)"></VolumeIcon>
       </div>
-      <div class="item-sub-title" v-if="item.trans.length && showTranslate">
-        <div v-for="v in item.trans">{{ (v.pos ? v.pos + '.' : '') + (v.tran) }}</div>
+      <div class="item-sub-title flex flex-col gap-2" v-if="item.trans.length && showTranslate">
+        <div v-for="v in item.trans">
+          <el-popover
+              v-if="v.cn.length > 30"
+              width="300"
+              :content="v.pos + '  ' + v.cn"
+              placement="top"
+          >
+            <template #reference>
+              <span>{{ v.pos + '  ' + v.cn.slice(0, 30) + '...' }}</span>
+            </template>
+          </el-popover>
+          <span v-else>{{ v.pos + '  ' + v.cn }}</span>
+        </div>
       </div>
     </template>
     <template v-slot:suffix="{ item, index }">

@@ -32,14 +32,14 @@
 
   --practice-wrapper-translateX: 1px;
   --article-width: 50vw;
-  --toolbar-width: 45rem;
+  --toolbar-width: 50rem;
   --toolbar-height: 3.2rem;
   --panel-width: 24rem;
   --space: 1rem;
   --radius: .5rem;
   --shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-  --panel-margin-left: calc(50% - var(--practice-wrapper-translateX) / 2 + var(--toolbar-width) / 2 + 2rem);
-  --article-panel-margin-left: calc(50% - var(--practice-wrapper-translateX) / 2 + var(--article-width) / 2 + 2rem);
+  --panel-margin-left: calc(50% + var(--toolbar-width) / 2 + 1rem);
+  --article-panel-margin-left: calc(50% + var(--article-width) / 2 + 3.5rem);
   --anim-time: 0.5s;
 
   --color-input-bg: white;
@@ -57,6 +57,11 @@
 
   --btn-primary: rgb(75, 85, 99);
   --btn-info: #909399;
+
+}
+
+.side-expand {
+  //--panel-margin-left: 10px !important;
 }
 
 html.dark {
@@ -477,4 +482,9 @@ footer {
 .line {
   width: 100%;
   border-bottom: 1px solid var(--color-item-border);
+}
+
+.line-white {
+  width: 100%;
+  border-bottom: 1px dashed #ababab;
 }

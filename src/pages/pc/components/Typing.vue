@@ -1,18 +1,19 @@
 <script setup lang="ts">
-import {getDefaultWord, ShortcutKey, Word} from "@/types.ts";
+import {getDefaultWord2, ShortcutKey, Word2} from "@/types.ts";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio, useTTsPlayAudio} from "@/hooks/sound.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {onMounted, onUnmounted, watch} from "vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
+import SentenceHightLightWord from "@/pages/pc/word/components/SentenceHightLightWord.vue";
 
 interface IProps {
-  word: Word,
+  word: Word2,
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  word: () => getDefaultWord(),
+  word: () => getDefaultWord2(),
 })
 
 const emit = defineEmits<{
@@ -147,33 +148,29 @@ function play() {
 }
 
 defineExpose({del, showWord, hideWord, play})
+
+let tab = $ref(2)
 </script>
 
 <template>
   <div class="typing-word">
-    <div class="translate"
-         :style="{
-      fontSize: settingStore.fontSize.wordTranslateFontSize +'px',
-      opacity: settingStore.translate ? 1 : 0
-    }"
-    >
-      <div class="translate-item" v-for="(v,i) in word.trans">
-        <span>{{ (v.pos ? v.pos + '.' : '') + (v.tran ) }}</span>
-        <!--        <div class="volumeIcon">-->
-        <!--          <Tooltip-->
-        <!--              v-if="i === word.trans.length - 1"-->
-        <!--              :title="`发音(${settingStore.shortcutKeyMap[ShortcutKey.PlayTranslatePronunciation]})`"-->
-        <!--          >-->
-        <!--            <VolumeIcon-->
-        <!--                ref="volumeTranslateIconRef"-->
-        <!--                :simple="true"-->
-        <!--                :cb="()=>ttsPlayAudio(word.trans.join(';'))"/>-->
-        <!--          </Tooltip>-->
-        <!--        </div>-->
+    <div class="flex flex-col items-center">
+      <div class="flex gap-1 mt-26">
+        <div class="phonetic" v-if="settingStore.wordSoundType === 'us' && word.phonetic0">[{{
+            (settingStore.dictation && !showFullWord) ? '_'.repeat(word.phonetic0.length) : word.phonetic0
+          }}]</div>
+        <div class="phonetic" v-if="settingStore.wordSoundType === 'uk' && word.phonetic1">[{{
+            (settingStore.dictation && !showFullWord) ? '_'.repeat(word.phonetic1.length) : word.phonetic1
+          }}]</div>
+
+        <Tooltip
+            :title="`发音(${settingStore.shortcutKeyMap[ShortcutKey.PlayWordPronunciation]})`"
+        >
+          <VolumeIcon ref="volumeIconRef" :simple="true" :cb="() => playWordAudio(word.word)"/>
+        </Tooltip>
       </div>
-    </div>
-    <div class="word-wrapper">
-      <div class="word"
+
+      <div class="word my-1"
            :class="wrong && 'is-wrong'"
            :style="{fontSize: settingStore.fontSize.wordForeignFontSize +'px'}"
       >
@@ -188,89 +185,125 @@ defineExpose({del, showWord, hideWord, play})
         </template>
         <span class="letter" v-else>{{ displayWord }}</span>
       </div>
-      <Tooltip
-          :title="`发音(${settingStore.shortcutKeyMap[ShortcutKey.PlayWordPronunciation]})`"
+
+      <div class="translate"
+           :style="{
+      fontSize: settingStore.fontSize.wordTranslateFontSize +'px',
+      opacity: settingStore.translate ? 1 : 0
+    }"
       >
-        <VolumeIcon ref="volumeIconRef" :simple="true" :cb="() => playWordAudio(word.word)"/>
-      </Tooltip>
+        <div class="my-2 flex" v-for="(v,i) in word.trans">
+          <div class="shrink-0" :class="v.pos && 'w-12'">{{ v.pos }}</div>
+          <span>{{ v.cn }}</span>
+        </div>
+      </div>
     </div>
-    <div class="phonetic" v-if="settingStore.wordSoundType === 'us' && word.phonetic0">[{{ word.phonetic0 }}]</div>
-    <div class="phonetic" v-if="settingStore.wordSoundType === 'uk' && word.phonetic1">[{{ word.phonetic1 }}]</div>
+    <div class="other">
+      <div class="line-white my-4"></div>
+      <div class="sentences" v-if="word.sentences && word.sentences.length">
+        <div class="sentence my-2" v-for="item in word.sentences">
+          <SentenceHightLightWord class="text-lg" :text="item.c" :word="word.word"/>
+          <div class="text-md">{{ item.cn }}</div>
+        </div>
+      </div>
+      <div class="line-white my-4"></div>
+      <div class="tabs">
+        <div @click="tab = 0" class="tab" :class="tab === 0 && 'active'">短语</div>
+        <div @click="tab = 1" class="tab" :class="tab === 1 && 'active'">同近义词</div>
+        <div @click="tab = 2" class="tab" :class="tab === 2 && 'active'">同根词</div>
+        <div @click="tab = 3" class="tab" :class="tab === 3 && 'active'">词源</div>
+      </div>
+      <template v-if="tab === 0">
+        <div class="my-2" v-for="item in word.phrases">
+          <div class="text-lg">{{ item.c }}</div>
+          <div class="text-md">{{ item.cn }}</div>
+        </div>
+      </template>
+      <template v-if="tab === 1">
+        <div class="flex my-2" v-for="item in word.synos">
+          <div class="text-lg w-12">{{ item.pos }}</div>
+          <div>
+            <div class="text-md">{{ item.cn }}</div>
+            <span class="text-md" v-for="(i,j) in item.ws">{{ i }} {{ j !== item.ws.length - 1 ? ' / ' : '' }} </span>
+          </div>
+        </div>
+      </template>
+      <template v-if="tab === 2">
+        <div class="mt-2">
+          <div>
+            词根：{{ word.relWords.root }}
+          </div>
+          <div class="flex my-2" v-for="item in word.relWords.rels">
+            <div class="text-lg w-12">{{ item.pos }}</div>
+            <div>
+              <div class="flex gap-4" v-for="itemj in item.words">
+                <div class="text-md">{{ itemj.c }}</div>
+                <div class="text-md">{{ itemj.cn }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+      <template v-if="tab === 3">
+        <div class="my-2" v-for="item in word.etymology">
+          <div class="text-lg">{{ item.t }}</div>
+          <div class="text-md">{{ item.d }}</div>
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-
-
 .typing-word {
   width: 100%;
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   word-break: break-word;
   position: relative;
   color: var(--color-font-2);
 
   .phonetic, .translate {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     transition: all .3s;
   }
 
   .phonetic {
-    margin-top: .3rem;
+    color: var(--color-font-1);
     font-family: var(--word-font-family);
   }
 
-  .translate {
-    position: absolute;
-    transform: translateY(-50%);
-    margin-bottom: 7rem;
+  .word {
+    font-size: 3rem;
+    line-height: 1;
+    font-family: var(--en-article-family);
+    letter-spacing: .3rem;
 
-    &:hover {
-      .volumeIcon {
-        opacity: 1;
-      }
+    .input {
+      color: rgb(22, 163, 74);
     }
 
-    .translate-item {
-      display: flex;
-      align-items: center;
-      gap: .8rem;
+    .wrong {
+      color: rgba(red, 0.6);
     }
 
-    .volumeIcon {
-      transition: opacity .3s;
-      opacity: 0;
+    &.is-wrong {
+      animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
     }
   }
 
-  .word-wrapper {
-    margin-left: 2rem;
+  .tabs {
+    @apply: text-lg font-medium;
     display: flex;
-    align-items: center;
-    gap: .8rem;
-    color: var(--color-font-1);
+    gap: 2rem;
 
-    .word {
-      font-size: 3rem;
-      line-height: 1;
-      font-family: var(--word-font-family);
-      letter-spacing: .3rem;
+    .tab {
+      cursor: pointer;
 
-      .input {
-        color: rgb(22, 163, 74);
-      }
-
-      .wrong {
-        color: rgba(red, 0.6);
-      }
-
-      &.is-wrong {
-        animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      &.active {
+        border-bottom: 2px solid var(--color-font-1);
       }
     }
   }
+
 }
 </style>

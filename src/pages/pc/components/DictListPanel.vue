@@ -51,7 +51,7 @@ const groupedByCategoryAndTag = $computed(() => {
   <div class="w-full">
     <DictGroup
         v-for="item in groupedByCategoryAndTag"
-        :select-id="store.currentDict.id"
+        :select-id="store.currentStudyWordDict.id"
         @selectDict="e => emit('selectDict',e)"
         :groupByTag="item[1]"
         :category="item[0]"

@@ -17,7 +17,6 @@ import DictListPanel from "@/pages/pc/components/DictListPanel.vue";
 import DictGroup from "@/pages/pc/components/list/DictGroup.vue";
 
 const store = useBaseStore()
-const statStore = usePracticeStore()
 const router = useRouter()
 const {nav} = useNav()
 
@@ -30,7 +29,6 @@ const otherWordDictList = $computed(() => {
   if (showMore) return store.otherWordDictList
   else return store.otherWordDictList.slice(0, 4)
 })
-
 
 let currentStudy = $ref({
   new: [],
@@ -60,9 +58,8 @@ function changePerDayStudyNumber() {
   currentStudy = getCurrentStudyWord()
 }
 
-function selectDict(e){
+function selectDict(e) {
   console.log(e)
-
 }
 </script>
 
@@ -131,7 +128,6 @@ function selectDict(e){
           <span>开始学习</span>
           <Icon icon="icons8:right-round" class="text-2xl"/>
         </div>
-
       </div>
     </div>
 

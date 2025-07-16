@@ -1,13 +1,11 @@
 <script setup lang="ts">
 
-import Toolbar from "@/pages/pc/components/toolbar/index.vue"
 import {onMounted, watch} from "vue";
 import {usePracticeStore} from "@/stores/practice.ts";
-import Footer from "@/pages/pc/word/Footer.vue";
 import {useBaseStore} from "@/stores/base.ts";
 
 import Statistics from "@/pages/pc/word/Statistics.vue";
-import {emitter, EventKey, useEvent, useEvents} from "@/utils/eventBus.ts";
+import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {ShortcutKey} from "@/types.ts";
@@ -44,7 +42,7 @@ function repeat() {
   // console.log('repeat')
   settingStore.dictation = false
   emitter.emit(EventKey.resetWord)
-  data = cloneDeep(data)
+  studyData = cloneDeep(studyData)
 }
 
 
@@ -76,7 +74,7 @@ function togglePanel() {
 onMounted(() => {
   settingStore.dictation = false
   if (runtimeStore.routeData) {
-    data = runtimeStore.routeData
+    studyData = runtimeStore.routeData
   }
 })
 
@@ -96,7 +94,7 @@ useEvents([
 ])
 
 
-let data = $ref({
+let studyData = $ref({
   new: [],
   review: [],
   write: []
@@ -104,7 +102,7 @@ let data = $ref({
 
 function getCurrentPractice() {
   settingStore.dictation = false
-  data = getCurrentStudyWord()
+  studyData = getCurrentStudyWord()
 }
 
 function complete() {
@@ -115,32 +113,13 @@ useStartKeyboardEventListener()
 
 </script>
 <template>
-  <div class="practice-wrapper">
-    <Toolbar/>
-    <div class="flex flex-1">
-      <TypingWord
-          @complete="complete"
-          :data="data"/>
-    </div>
-    <Footer/>
-  </div>
+  <TypingWord
+      @complete="complete"
+      :data="studyData"/>
   <DictModal/>
   <Statistics/>
 </template>
 
 <style scoped lang="scss">
-.practice-wrapper {
-  font-size: 0.9rem;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  //padding-right: var(--practice-wrapper-padding-right);
-  //transform: translateX(var(--practice-wrapper-translateX));
-}
-
 
 </style>

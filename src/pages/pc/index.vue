@@ -22,14 +22,14 @@ const {toggleTheme} = useTheme()
 
 <template>
   <div class="layout">
-<!--    第一个aside 占位用-->
+    <!--    第一个aside 占位用-->
     <div class="aside space" :class="{'expand':settingStore.sideExpand}"></div>
     <div class="aside fixed" :class="{'expand':settingStore.sideExpand}">
       <div class="top">
         <Logo v-if="settingStore.sideExpand"/>
         <div class="row" @click="router.push('/home')">
           <Icon icon="iconoir:home"/>
-          <span  v-if="settingStore.sideExpand">主页</span>
+          <span v-if="settingStore.sideExpand">主页</span>
         </div>
         <div class="row" @click="router.push('/word')">
           <Icon icon="material-symbols-light:dictionary-outline-sharp"/>
@@ -40,14 +40,21 @@ const {toggleTheme} = useTheme()
           <Icon icon="ph:article-ny-times"/>
           <span v-if="settingStore.sideExpand">文章</span>
         </div>
-<!--        <div class="row" @click="router.push('/article2')">-->
-<!--          <Icon icon="healthicons:i-exam-multiple-choice-outline"/>-->
-<!--          <span v-if="settingStore.sideExpand">试卷</span>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <Icon icon="mdi-light:forum"/>-->
-<!--          <span v-if="settingStore.sideExpand">社区</span>-->
-<!--        </div>-->
+        <div class="row"
+             :title="`设置(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
+             @click="runtimeStore.showSettingModal = true"
+        >
+          <Icon icon="uil:setting"/>
+          <span v-if="settingStore.sideExpand">设置</span>
+        </div>
+        <!--        <div class="row" @click="router.push('/article2')">-->
+        <!--          <Icon icon="healthicons:i-exam-multiple-choice-outline"/>-->
+        <!--          <span v-if="settingStore.sideExpand">试卷</span>-->
+        <!--        </div>-->
+        <!--        <div class="row">-->
+        <!--          <Icon icon="mdi-light:forum"/>-->
+        <!--          <span v-if="settingStore.sideExpand">社区</span>-->
+        <!--        </div>-->
       </div>
       <div class="bottom flex justify-evenly ">
         <BaseIcon
@@ -64,11 +71,6 @@ const {toggleTheme} = useTheme()
             <Icon icon="tabler:sun" v-else @click="toggleTheme"/>
           </IconWrapper>
         </Tooltip>
-        <BaseIcon
-            v-if="settingStore.sideExpand"
-            :title="`设置(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
-            @click="runtimeStore.showSettingModal = true"
-            icon="uil:setting"/>
       </div>
     </div>
     <div class="flex-1 z-1">
@@ -107,13 +109,14 @@ const {toggleTheme} = useTheme()
       background: var(--color-primary);
       color: white;
     }
-    span{
+
+    span {
       flex-shrink: 0;
     }
 
     svg {
       flex-shrink: 0;
-      font-size: 1.5rem!important;
+      font-size: 1.5rem !important;
     }
   }
 

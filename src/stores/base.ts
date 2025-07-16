@@ -133,7 +133,7 @@ export const DefaultBaseState = (): BaseState => ({
         description: '新概念英语新版第二册',
         category: '青少年英语',
         tags: ['新概念英语'],
-        url: 'nce-new-2.json',
+        url: 'nce-new-2_v2.json',
         length: 862,
         translateLanguage: 'common',
         language: 'en',
@@ -192,8 +192,8 @@ export const useBaseStore = defineStore('base', {
       return this.myDictList[this.current.index] ?? {}
     },
     currentStudyWordDict(): Dict {
-      if (this.word.bookList.studyIndex >= 0) {
-        return this.word.bookList[this.word.bookList.studyIndex] ?? getDefaultDict()
+      if (this.word.studyIndex >= 0) {
+        return this.word.bookList[this.word.studyIndex] ?? getDefaultDict()
       }
       return getDefaultDict()
     },
@@ -248,7 +248,7 @@ export const useBaseStore = defineStore('base', {
         if (this.word.studyIndex >= 0) {
           // await _checkDictWords(this.currentStudyWordDict)
           let current = this.word.bookList[this.word.studyIndex]
-          let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
+          let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.url}`;
           current.words = await getDictFile(dictResourceUrl)
 
           console.log('this.current', current)
