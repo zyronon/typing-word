@@ -5,16 +5,18 @@ import App from './App.vue'
 import {createPinia} from "pinia"
 // import ElementPlus from 'element-plus'
 import ZH from "@/locales/zh-CN.ts";
+import JA from "@/locales/ja.ts";
 import {createI18n} from 'vue-i18n'
 import router from "@/router.ts";
 import VueVirtualScroller from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 const i18n = createI18n({
-  locale: 'zh-CN',
-  fallbackLocale: 'zh-CN',
+  locale: 'ja',
+  fallbackLocale: 'ja',
   messages: {
-    'zh-CN': ZH
+    'zh-CN': ZH,
+    'ja': JA
   },
 })
 
