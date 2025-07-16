@@ -67,7 +67,6 @@ watch(() => props.words, () => {
   data.wrongWords = []
 
   statisticsStore.startDate = Date.now()
-  statisticsStore.correctRate = -1
   statisticsStore.inputWordNumber = 0
   statisticsStore.wrong = 0
   stat = cloneDeep(DefaultDisplayStatistics)
@@ -320,7 +319,6 @@ onMounted(() => {
                   <div class="title">
                   </div>
                   <BaseIcon title="切换词典"
-                            @click="emitter.emit(EventKey.openDictModal,'list')"
                             icon="carbon:change-catalog"/>
                   <div style="position:relative;"
                        @click.stop="null">

@@ -3,11 +3,9 @@ import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import Ring from "@/pages/pc/components/Ring.vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
-import Fireworks from "@/pages/pc/components/Fireworks.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {ShortcutKey} from "@/types.ts";
 import {emitter, EventKey, useEvent, useEvents} from "@/utils/eventBus.ts";
-import {onMounted} from "vue";
 import {Icon} from '@iconify/vue';
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
@@ -19,8 +17,6 @@ const statStore = usePracticeStore()
 let open = $ref(false)
 
 useEvent(EventKey.openStatModal, () => {
-  console.log('on')
-
   let data = {
     speed: statStore.speed,
     startDate: statStore.startDate,
@@ -61,21 +57,31 @@ const isEnd = $computed(() => {
       :header="false"
       v-model="open">
     <div class="statistics relative flex flex-col gap-6">
-      <header>
-        <div class="text-2xl">{{ store.sdict.name }}</div>
-      </header>
-      <div class="flex justify-center gap-10">
-        <div class="text-xl text-center flex flex-col justify-around">
-          <div class="font-bold">非常棒!</div>
-          <div>坚持了 <span class="color-green font-bold text-2xl">{{ dayjs().diff(statStore.startDate, 'm') }}</span>
-            分钟
+      <div class="w-full flex flex-col justify-evenly">
+        <div class="center text-xl mb-2">已完成今日任务</div>
+        <div class="flex">
+          <div class="flex-1 flex flex-col items-center">
+            <div class="text-4xl font-bold">{{ statStore.newWordNumber }}</div>
+            <div class="text">新词数</div>
+          </div>
+          <div class="flex-1 flex flex-col items-center">
+            <div class="text-4xl font-bold">{{ statStore.newWordNumber }}</div>
+            <div class="text">复习数</div>
+          </div>
+          <div class="flex-1 flex flex-col items-center">
+            <div class="text-4xl font-bold">{{
+                statStore.newWordNumber
+              }}
+            </div>
+            <div class="text">默写数</div>
           </div>
         </div>
-        <Ring
-            :value="statStore.newWordNumber"
-            desc="New"
-            :percentage="40"
-        />
+      </div>
+
+      <div class="text-xl text-center flex flex-col justify-around">
+        <div>非常棒! 坚持了 <span class="color-green font-bold text-2xl">{{ dayjs().diff(statStore.startDate, 'm') }}</span>
+          分钟
+        </div>
       </div>
       <div class="flex justify-center gap-10">
         <div class="flex justify-center items-center py-3 px-10 rounded-md color-red-500 flex-col"
@@ -95,15 +101,7 @@ const isEnd = $computed(() => {
           </div>
         </div>
       </div>
-      <div class="absolute right-5 top-20 flex flex-col gap-4">
-        <Tooltip title="分享给朋友">
-          <Icon class="hvr-grow cursor-pointer" icon="ph:share-light" width="20" color="#929596"/>
-        </Tooltip>
-        <Tooltip title="请我喝杯咖啡">
-          <Icon class="hvr-grow cursor-pointer" icon="twemoji:teacup-without-handle" width="20" color="#929596"/>
-        </Tooltip>
-      </div>
-      <div class="footer">
+      <div class="flex justify-center gap-4 ">
         <BaseButton
             :keyboard="settingStore.shortcutKeyMap[ShortcutKey.RepeatChapter]"
             @click="options('repeat')">
@@ -114,59 +112,20 @@ const isEnd = $computed(() => {
             @click="options('next')">
           {{ isEnd ? '重新练习' : '再来一组' }}
         </BaseButton>
-        <BaseButton
-            type="primary"
-            @click="options('next')">
-          分享
-        </BaseButton>
       </div>
     </div>
   </Dialog>
-  <Fireworks v-if="open"/>
 </template>
 <style scoped lang="scss">
-
-
 $card-radius: .5rem;
 $dark-second-bg: rgb(60, 63, 65);
 $item-hover: rgb(75, 75, 75);
 
 .statistics {
   padding: var(--space);
+  width: 30rem;
   background: $dark-second-bg;
   border-radius: $card-radius;
-
-  $header-height: 2.5rem;
-  $footer-height: 4rem;
-
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: $header-height;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-  }
-
-  .content {
-    display: flex;
-    gap: var(--space);
-    margin-bottom: 1rem;
-
-    .shares {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space);
-    }
-  }
-
-  .footer {
-    height: $footer-height;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.2rem;
-  }
 }
 
 </style>

@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import {onMounted, onUnmounted, watch} from "vue"
+import {watch} from "vue"
 import {useBaseStore} from "@/stores/base.ts"
-import {DefaultDisplayStatistics, DictType, getDefaultWord, ShortcutKey, Sort, Word} from "@/types.ts";
+import {getDefaultWord, ShortcutKey, Word} from "@/types.ts";
 import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts"
-import {cloneDeep, reverse, shuffle} from "lodash-es"
+import {cloneDeep, shuffle} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
 import {useSettingStore} from "@/stores/setting.ts";
-import {useOnKeyboardEventListener, useWindowClick} from "@/hooks/event.ts";
+import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
-import Options from "@/pages/pc/word/Options.vue";
 import Typing from "@/pages/pc/components/Typing.vue";
 import Panel from "@/pages/pc/components/Panel.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
@@ -17,8 +16,6 @@ import {useWordOptions} from "@/hooks/dict.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import WordList from "@/pages/pc/components/list/WordList.vue";
 import Empty from "@/components/Empty.vue";
-import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
-import BaseButton from "@/components/BaseButton.vue";
 import Footer from "@/pages/pc/word/Footer.vue";
 
 interface IProps {
@@ -71,7 +68,6 @@ watch(() => props.data, () => {
 
   statStore.step = 0
   statStore.startDate = Date.now()
-  statStore.correctRate = -1
   statStore.inputWordNumber = 0
   statStore.wrong = 0
   statStore.total = props.data.review.concat(props.data.new).concat(props.data.write).length
@@ -214,10 +210,10 @@ const status = $computed(() => {
       str += `学习新单词`
       break
     case 1:
-      str += '复习上次学习'
+      str += '复习'
       break
     case 2:
-      str += '默写所有单词'
+      str += '默写'
       break
   }
   return str
@@ -256,15 +252,6 @@ const status = $computed(() => {
           @wrong="wordWrong"
           @complete="next"
       />
-      <div class="options-wrapper" v-if="false">
-        <Options
-            :is-simple="isWordSimple(word)"
-            @toggle-simple="toggleWordSimpleWrapper"
-            :is-collect="isWordCollect(word)"
-            @toggle-collect="toggleWordCollect(word)"
-            @skip="next(false)"
-        />
-      </div>
     </div>
 
     <Footer

@@ -228,6 +228,7 @@ const store = useBaseStore()
     border-bottom: 1px solid #c4c3c3;
   }
 }
+
 .el-option-row {
   width: 100%;
   display: flex;

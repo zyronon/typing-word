@@ -16,8 +16,6 @@ export interface SettingState {
   keyboardSound: boolean,
   keyboardSoundVolume: number,
   keyboardSoundFile: string,
-  translateSound: boolean,
-  translateSoundVolume: number,
   effectSound: boolean,
   effectSoundVolume: number,
   repeatCount: number,
@@ -59,8 +57,6 @@ export const DefaultSettingState = (): SettingState => ({
   keyboardSound: true,
   keyboardSoundVolume: 100,
   keyboardSoundFile: '机械键盘2',
-  translateSound: true,
-  translateSoundVolume: 100,
   effectSound: true,
   effectSoundVolume: 100,
   repeatCount: 1,
@@ -103,7 +99,10 @@ export const useSettingStore = defineStore('setting', {
         if (!configStr) configStr = localStorage.getItem(SAVE_SETTING_KEY.oldKey)
         let data = checkAndUpgradeSaveSetting(configStr)
         this.setState(data)
-        localStorage.setItem(SAVE_SETTING_KEY.key, JSON.stringify({val: this.$state, version: SAVE_SETTING_KEY.version}))
+        localStorage.setItem(SAVE_SETTING_KEY.key, JSON.stringify({
+          val: this.$state,
+          version: SAVE_SETTING_KEY.version
+        }))
         this.load = true
         resolve(true)
       })

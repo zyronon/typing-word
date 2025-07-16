@@ -9,28 +9,16 @@ import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {ShortcutKey} from "@/types.ts";
-import DictModal from "@/pages/pc/components/dialog/DictDiglog.vue";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
-import TypingWord from "@/pages/pc/components/TypingWord.vue";
+import TypingWord from "@/pages/pc/word/components/TypingWord.vue";
 import {getCurrentStudyWord} from "@/hooks/dict.ts";
 import {cloneDeep} from "lodash-es";
 
-const statStore = usePracticeStore()
-const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 const {toggleTheme} = useTheme()
 
-watch(statStore, () => {
-  if (statStore.inputWordNumber < 1) {
-    return statStore.correctRate = -1
-  }
-  if (statStore.wrong > statStore.inputWordNumber) {
-    return statStore.correctRate = 0
-  }
-  statStore.correctRate = 100 - Math.trunc(((statStore.wrong) / (statStore.inputWordNumber)) * 100)
-})
 
 function next() {
   emitter.emit(EventKey.resetWord)
@@ -58,10 +46,6 @@ function openSetting() {
   runtimeStore.showSettingModal = true
 }
 
-function openDictDetail() {
-  emitter.emit(EventKey.openDictModal, 'detail')
-}
-
 function toggleConciseMode() {
   settingStore.showToolbar = !settingStore.showToolbar
   settingStore.showPanel = settingStore.showToolbar
@@ -87,7 +71,6 @@ useEvents([
   [ShortcutKey.ToggleShowTranslate, toggleTranslate],
   [ShortcutKey.ToggleDictation, toggleDictation],
   [ShortcutKey.OpenSetting, openSetting],
-  [ShortcutKey.OpenDictDetail, openDictDetail],
   [ShortcutKey.ToggleTheme, toggleTheme],
   [ShortcutKey.ToggleConciseMode, toggleConciseMode],
   [ShortcutKey.TogglePanel, togglePanel],
@@ -116,7 +99,6 @@ useStartKeyboardEventListener()
   <TypingWord
       @complete="complete"
       :data="studyData"/>
-  <DictModal/>
   <Statistics/>
 </template>
 

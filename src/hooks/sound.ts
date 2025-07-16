@@ -89,7 +89,6 @@ export function usePlayCorrect() {
 
 export function usePlayWordAudio() {
   const settingStore = useSettingStore()
-  const store = useBaseStore()
   const audio = $ref(new Audio())
 
   function playAudio(word: string) {
@@ -98,12 +97,6 @@ export function usePlayWordAudio() {
       url = `${PronunciationApi}${word}&type=1`
     } else if (settingStore.wordSoundType === 'us') {
       url = `${PronunciationApi}${word}&type=2`
-    }
-    if (store.currentDict.language === 'ja') {
-      url += '&le=jap'
-    }
-    if (store.currentDict.language === 'de') {
-      url += '&le=de'
     }
     audio.src = url
     audio.volume = settingStore.wordSoundVolume / 100
@@ -160,7 +153,6 @@ export function useWatchAllSound() {
   watch([
     () => settingStore.wordSound,
     () => settingStore.keyboardSound,
-    () => settingStore.translateSound,
     () => settingStore.effectSound,
   ], (n) => {
     settingStore.allSound = n.some(v => v);
@@ -173,6 +165,5 @@ export function useChangeAllSound(e: boolean) {
   settingStore.allSound = e
   settingStore.wordSound = e
   settingStore.keyboardSound = e
-  settingStore.translateSound = e
   settingStore.effectSound = e
 }

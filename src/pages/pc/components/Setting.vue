@@ -242,26 +242,8 @@ function importData(e) {
           </div>
         </div>
         <div class="line"></div>
-        <!--          <div class="row">-->
-        <!--            <label class="item-title">释义发音</label>-->
-        <!--            <div class="wrapper">-->
-        <!--              <el-switch v-model="settingStore.translateSound"-->
-        <!--                         inline-prompt-->
-        <!--                         active-text="开"-->
-        <!--                         inactive-text="关"-->
-        <!--              />-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--          <div class="row">-->
-        <!--            <label class="sub-title">音量</label>-->
-        <!--            <div class="wrapper">-->
-        <!--              <el-slider v-model="settingStore.translateSoundVolume"/>-->
-        <!--              <span>{{ settingStore.translateSoundVolume }}%</span>-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <div class="line"></div>
         <div class="row">
-          <label class="item-title">效果音（章节结算页烟花音效）</label>
+          <label class="item-title">效果音（输入错误、完成时的音效）</label>
           <div class="wrapper">
             <el-switch v-model="settingStore.effectSound"
                        inline-prompt

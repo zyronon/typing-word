@@ -4,7 +4,6 @@ import Test from "@/pages/test/test.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import WordHomePage from "@/pages/pc/word/WordHomePage.vue";
 import PC from "@/pages/pc/index.vue";
-import Dict2 from '@/pages/pc/dict2/index.vue'
 import ArticleHomePage from "@/pages/pc/article/ArticleHomePage.vue";
 import HomeIndex from "@/pages/pc/home/HomeIndex.vue";
 import LearnArticle from "@/pages/pc/article/LearnArticle.vue";
@@ -23,7 +22,6 @@ export const routes: RouteRecordRaw[] = [
       {path: 'word', component: WordHomePage},
       {path: 'study-word', component: StudyWord},
       {path: 'edit-word-dict', component: EditWordDict},
-      {path: 'dict', component: Dict2},
       {path: 'article', component: ArticleHomePage},
       {path: 'edit-article', component: EditArticlePage},
       {path: 'batch-edit-article', component: BatchEditArticlePage},

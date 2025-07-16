@@ -2,7 +2,7 @@
 import TypingArticle from "./TypingArticle.vue";
 import {Article, ArticleItem, ArticleWord, DisplayStatistics, getDefaultArticle, ShortcutKey, Word} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
-import TypingWord from "@/pages/pc/components/TypingWord.vue";
+import TypingWord from "@/pages/pc/word/components/TypingWord.vue";
 import Panel from "../../components/Panel.vue";
 import {onMounted, onUnmounted} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
@@ -277,32 +277,16 @@ const {playSentenceAudio} = usePlaySentenceAudio()
 <template>
   <div class="practice-wrapper">
     <div class="practice-article">
-      <div class="swiper-wrapper">
-        <div class="swiper-list" :class="`step${tabIndex}`">
-          <div class="swiper-item">
-            <TypingArticle
-                ref="typingArticleRef"
-                :active="tabIndex === 0"
-                @edit="edit"
-                @wrong="wrong"
-                @over="skip"
-                @nextWord="nextWord"
-                @play="e => playSentenceAudio(e,audioRef,articleData.article)"
-                :article="articleData.article"
-            />
-          </div>
-          <div class="swiper-item">
-            <div class="typing-word-wrapper">
-              <TypingWord
-                  @sort="sort"
-                  :words="wordData.words"
-                  :index="wordData.index"
-                  v-if="tabIndex === 1"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <TypingArticle
+          ref="typingArticleRef"
+          :active="tabIndex === 0"
+          @edit="edit"
+          @wrong="wrong"
+          @over="skip"
+          @nextWord="nextWord"
+          @play="e => playSentenceAudio(e,audioRef,articleData.article)"
+          :article="articleData.article"
+      />
 
       <Teleport to="body">
         <div class="panel-wrapper">
@@ -312,7 +296,6 @@ const {playSentenceAudio} = usePlaySentenceAudio()
                 <div class="list-header">
                   <div class="left">
                     <BaseIcon title="切换词典"
-                              @click="emitter.emit(EventKey.openDictModal,'list')"
                               icon="carbon:change-catalog"/>
                     <div class="title">
                       {{ store.currentBook.name }}
@@ -391,11 +374,6 @@ const {playSentenceAudio} = usePlaySentenceAudio()
                 <div class="num">{{ format(statisticsStore.wrong, '', 0) }}</div>
                 <div class="line"></div>
                 <div class="name">错误数</div>
-              </div>
-              <div class="row">
-                <div class="num">{{ format(statisticsStore.correctRate, '%') }}</div>
-                <div class="line"></div>
-                <div class="name">正确率</div>
               </div>
             </div>
           </div>

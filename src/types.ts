@@ -239,6 +239,7 @@ export enum ShortcutKey {
   ToggleShowTranslate = 'ToggleShowTranslate',
   ToggleDictation = 'ToggleDictation',
   OpenSetting = 'OpenSetting',
+  //todo 废弃
   OpenDictDetail = 'OpenDictDetail',
   ToggleTheme = 'ToggleTheme',
   ToggleConciseMode = 'ToggleConciseMode',

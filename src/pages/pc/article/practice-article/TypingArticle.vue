@@ -12,7 +12,7 @@ import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
 import ContextMenu from '@imengyu/vue3-context-menu'
 import {getTranslateText} from "@/hooks/article.ts";
 import BaseButton from "@/components/BaseButton.vue";
-import QuestionForm from "@/pages/pc/components/QuestionForm.vue";
+import QuestionForm from "@/pages/pc/article/components/QuestionForm.vue";
 
 interface IProps {
   article: Article,

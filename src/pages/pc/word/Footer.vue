@@ -9,8 +9,8 @@ import {Icon} from "@iconify/vue";
 import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue";
-import VolumeSetting from "@/pages/pc/components/toolbar/VolumeSetting.vue";
 import RepeatSetting from "@/pages/pc/components/toolbar/RepeatSetting.vue";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 const statisticsStore = usePracticeStore()
 const settingStore = useSettingStore()
@@ -90,75 +90,64 @@ onUnmounted(() => {
             <div class="line"></div>
             <div class="name">错误数</div>
           </div>
-          <div class="row">
-            <div class="num">{{ format(statisticsStore.correctRate, '%') }}</div>
-            <div class="line"></div>
-            <div class="name">正确率</div>
-          </div>
         </div>
-        <div class="flex flex-col justify-center items-center">
-          <div class="flex">
-            <BaseIcon
-                v-if="!isSimple"
-                class="collect"
-                @click="$emit('toggleSimple')"
-                :title="`标记为简单词(${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
-                icon="material-symbols:check-circle-outline-rounded"/>
-            <BaseIcon
-                v-else
-                class="fill"
-                @click="$emit('toggleSimple')"
-                :title="`取消标记简单词(${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
-                icon="material-symbols:check-circle-rounded"/>
+        <div class="flex justify-center items-center">
+          <BaseIcon
+              v-if="!isSimple"
+              class="collect"
+              @click="$emit('toggleSimple')"
+              :title="`标记为简单词(${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
+              icon="material-symbols:check-circle-outline-rounded"/>
+          <BaseIcon
+              v-else
+              class="fill"
+              @click="$emit('toggleSimple')"
+              :title="`取消标记简单词(${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
+              icon="material-symbols:check-circle-rounded"/>
 
-            <BaseIcon
-                v-if="!isCollect"
-                class="collect"
-                @click="$emit('toggleCollect')"
-                :title="`收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
-                icon="ph:star"/>
-            <BaseIcon
-                v-else
-                class="fill"
-                @click="$emit('toggleCollect')"
-                :title="`取消收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
-                icon="ph:star-fill"/>
+          <BaseIcon
+              v-if="!isCollect"
+              class="collect"
+              @click="$emit('toggleCollect')"
+              :title="`收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
+              icon="ph:star"/>
+          <BaseIcon
+              v-else
+              class="fill"
+              @click="$emit('toggleCollect')"
+              :title="`取消收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
+              icon="ph:star-fill"/>
 
-            <Tooltip
-                :title="`跳过(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
-            >
-              <IconWrapper>
-                <Icon icon="icon-park-outline:go-ahead" class="menu"
-                      @click="emit('skip')"/>
-              </IconWrapper>
-            </Tooltip>
-          </div>
+          <Tooltip
+              :title="`跳过(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
+          >
+            <IconWrapper>
+              <Icon icon="icon-park-outline:go-ahead" class="menu"
+                    @click="emit('skip')"/>
+            </IconWrapper>
+          </Tooltip>
 
-          <div class="flex">
-            <Tooltip
-                :title="`开关默写模式(${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
-            >
-              <IconWrapper>
-                <Icon icon="majesticons:eye-off-line"
-                      v-if="settingStore.dictation"
-                      @click="settingStore.dictation = false"/>
-                <Icon icon="mdi:eye-outline"
-                      v-else
-                      @click="settingStore.dictation = true"/>
-              </IconWrapper>
-            </Tooltip>
+          <Tooltip
+              :title="`开关默写模式(${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
+          >
+            <IconWrapper>
+              <Icon icon="majesticons:eye-off-line"
+                    v-if="settingStore.dictation"
+                    @click="settingStore.dictation = false"/>
+              <Icon icon="mdi:eye-outline"
+                    v-else
+                    @click="settingStore.dictation = true"/>
+            </IconWrapper>
+          </Tooltip>
 
-            <TranslateSetting/>
+          <TranslateSetting/>
 
-            <VolumeSetting/>
+          <RepeatSetting/>
 
-            <RepeatSetting/>
-
-            <BaseIcon
-                @click="settingStore.showPanel = !settingStore.showPanel"
-                :title="`单词本(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
-                icon="tdesign:menu-unfold"/>
-          </div>
+          <BaseIcon
+              @click="emitter.emit(EventKey.openStatModal, {})"
+              :title="`单词本(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
+              icon="tdesign:menu-unfold"/>
         </div>
       </div>
     </div>
@@ -168,6 +157,8 @@ onUnmounted(() => {
                    :show-text="false"/>
     </div>
   </div>
+  <!--
+              @click="settingStore.showPanel = !settingStore.showPanel"-->
 </template>
 
 <style scoped lang="scss">
