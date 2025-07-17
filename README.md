@@ -13,6 +13,10 @@
   <a href="https://hellogithub.com/repository/eb70616d65604458908fc1736e7d41fc" target="_blank"><img src="https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=eb70616d65604458908fc1736e7d41fc&claim_uid=k5e4ZAqRjJEGzCW&theme=small" alt="Featured｜HelloGitHub" /></a>
 </p>
 
+<div align=center>
+<a href="https://trendshift.io/repositories/14139" target="_blank" class="trendshift-badge"><img src="https://trendshift.io/api/badge/repositories/14139" alt="TypeWords | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+</div>
+
 ## 📸 在线访问
 
 Github Pages: <https://2study.top>
@@ -47,11 +51,6 @@ API 等词库。 尽可能满足大部分用户对背单词的需求，也非常
 4. 执行`npm start`来启动项目，项目默认地址为[`http://localhost:3000`](http://localhost:3000)
 5. 在浏览器中打开[`http://localhost:3000`](http://localhost:3000)  来访问项目。
 
-### 使用Docker
-创建镜像 docker build -t typing-word:001 .
-
-启动容器 docker run --name typing-word -p 3000:3000 -d typing-word:001
-
 ## 📕 词库列表
 
 - CET-4、CET-6、GMAT、GRE、IELTS、SAT、TOEFL、BEC
@@ -60,14 +59,6 @@ API 等词库。 尽可能满足大部分用户对背单词的需求，也非常
 - 高考、中考、人教版英语 3-9 年级
 - 王陆雅思王听力语料库 
 - 日语常见词、N1 ～ N5 
-
-## 📗 API 词库
-
-- JavaScript API、Node.js API、Java API、Linux Command、C#: List API
-
-词库均来源于(除文章以外)：[qwerty-learner](https://github.com/RealKai42/qwerty-learner/)
-
-如果您需要背诵其他词库，欢迎在 Issue 中提出
 
 ## 🎙 功能与建议
 
