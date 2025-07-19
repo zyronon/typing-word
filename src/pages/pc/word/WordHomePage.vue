@@ -71,13 +71,7 @@ async function getBookDetail(val: DictResource) {
   nav('book-detail')
 }
 
-let showAddChooseDialog = $ref(false)
 let dictListRef = $ref<any>()
-
-function goChooseDict() {
-  showAddChooseDialog = false
-  dictListRef.startSearch()
-}
 
 function addDict() {
 
@@ -154,15 +148,16 @@ function addDict() {
     </div>
 
     <div class="card  flex flex-col">
-      <div class="title">
-        我的词典
+      <div class="flex justify-between">
+        <div class="title">我的词典</div>
+        <div class="color-blue cursor-pointer" @click="addDict">创建个人词典</div>
       </div>
       <div class="grid grid-cols-6 gap-4  mt-4">
         <div class="book" v-for="item in store.word.bookList" @click="goDictDetail2(item)">
           <span>{{ item.name }}</span>
           <div class="absolute bottom-4 right-4">{{ item.words.length }}个词</div>
         </div>
-        <div class="book" @click="showAddChooseDialog = true">
+        <div class="book" @click="dictListRef.startSearch()">
           <div class="center h-full">
             <Icon
                 width="40px"
@@ -228,15 +223,6 @@ function addDict() {
         <div>
           要达到最佳效果，就坚持每天学习。每天学20个单词是最理想的，但就算再忙的时候每天学10个也有助你养成良好的学习习惯。
         </div>
-      </div>
-    </Dialog>
-
-    <Dialog v-model="showAddChooseDialog" title="选项">
-      <div class="color-black px-6 w-100">
-        <div class="cursor-pointer  hover:bg-black/10 p-2 rounded"
-             @click="goChooseDict">选择一本词典
-        </div>
-        <p class="cursor-pointer  hover:bg-black/10 p-2 rounded" @click="addDict">创建自己的词典</p>
       </div>
     </Dialog>
 
