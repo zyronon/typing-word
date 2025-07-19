@@ -1,11 +1,11 @@
 <script setup lang="ts">
 
-import {Dict, DictType} from "@/types.ts";
+import {DictResource} from "@/types.ts";
 import {Icon} from "@iconify/vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 
 const props = defineProps<{
-  dict?: Dict,
+  dict?: DictResource,
   active?: boolean
   showDel?: boolean
 }>()
@@ -28,7 +28,7 @@ const emit = defineEmits<{
         <div class="desc" :style="{opacity:dict.name !== dict.description?1:0}">{{ dict.description }}</div>
       </div>
       <div class="bottom">
-        <div class="num">{{ dict.length + '词' }}</div>
+        <div class="num text-align-right">{{ dict.length + '词' }}</div>
       </div>
       <div class="del" v-if="dict.showDel && !active">
         <BaseIcon icon="solar:trash-bin-minimalistic-linear" @click="emit('del')"/>

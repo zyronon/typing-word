@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
-import {onMounted, onUnmounted} from "vue"
+import {inject, onMounted, onUnmounted, provide} from "vue"
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
-import {ShortcutKey} from "@/types.ts";
+import {ShortcutKey, StudyData} from "@/types.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {Icon} from "@iconify/vue";
 import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
@@ -32,12 +32,6 @@ function format(val: number, suffix: string = '', check: number = -1) {
   return val === check ? '-' : (val + suffix)
 }
 
-const progress = $computed(() => {
-  if (!statisticsStore.total) return 0
-  if (statisticsStore.index > statisticsStore.total) return 100
-  return ((statisticsStore.index / statisticsStore.total) * 100)
-})
-
 let speedMinute = $ref(0)
 let timer = $ref(0)
 onMounted(() => {
@@ -48,6 +42,30 @@ onMounted(() => {
 
 onUnmounted(() => {
   timer && clearInterval(timer)
+})
+
+const statStore = usePracticeStore()
+let studyData = inject<StudyData>('studyData')
+
+const status = $computed(() => {
+  let str = '正在'
+  switch (statStore.step) {
+    case 0:
+      str += `学习新词`
+      break
+    case 1:
+      str += `复习`
+      break
+    case 2:
+      str += '默写'
+      break
+  }
+  return str
+})
+
+const progress = $computed(() => {
+  if (!studyData.words.length) return 0
+  return ((studyData.index / studyData.words.length) * 100)
 })
 
 </script>
@@ -71,9 +89,9 @@ onUnmounted(() => {
       <div class="flex justify-between items-center">
         <div class="stat gap-6">
           <div class="row">
-            <div class="num">{{ speedMinute }}分钟</div>
+            <div class="num">{{ `${studyData.index}/${studyData.words.length}` }}</div>
             <div class="line"></div>
-            <div class="name">时间</div>
+            <div class="name">{{ status }}</div>
           </div>
           <div class="row">
             <div class="num">{{ statisticsStore.total }}</div>
@@ -96,13 +114,13 @@ onUnmounted(() => {
               v-if="!isSimple"
               class="collect"
               @click="$emit('toggleSimple')"
-              :title="`标记为简单词(${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
+              :title="`标记为已掌握(${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
               icon="material-symbols:check-circle-outline-rounded"/>
           <BaseIcon
               v-else
               class="fill"
               @click="$emit('toggleSimple')"
-              :title="`取消标记简单词(${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
+              :title="`取消标记已掌握(${settingStore.shortcutKeyMap[ShortcutKey.ToggleSimple]})`"
               icon="material-symbols:check-circle-rounded"/>
 
           <BaseIcon
@@ -202,7 +220,7 @@ onUnmounted(() => {
         flex-direction: column;
         align-items: center;
         gap: .3rem;
-        width: 5rem;
+        width: 6rem;
         color: gray;
 
         .line {

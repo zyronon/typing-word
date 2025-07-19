@@ -7,7 +7,7 @@ import SimpleList from "@/pages/mobile/components/SimpleList.vue";
 
 <template>
   <div class="mobile-page">
-    <NavBar title="简单词"/>
+    <NavBar title="已掌握"/>
     <SimpleList/>
   </div>
 </template>

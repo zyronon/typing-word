@@ -74,7 +74,7 @@ function $no() {
           </div>
           <div class="item" @click="router.push('/mobile/simple')">
             <img src="../../../assets/img/complete.png" alt="">
-            <span>简单词</span>
+            <span>已掌握</span>
           </div>
         </div>
         <div class="setting-list">

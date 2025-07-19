@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import {Dict} from "@/types.ts";
+import {Dict, DictResource} from "@/types.ts";
 import {Icon} from "@iconify/vue";
 import DictItem from "@/pages/pc/components/list/DictItem.vue";
 
 defineProps<{
-  list?: Dict[],
+  list?: DictResource[],
   selectId?: string
 }>()
 

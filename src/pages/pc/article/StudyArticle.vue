@@ -1,14 +1,12 @@
 <script setup lang="ts">
 
-import {onMounted, onUnmounted, watch} from "vue";
-import {usePracticeStore} from "@/stores/practice.ts";
+import {onMounted, onUnmounted} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
 
 import Statistics from "@/pages/pc/word/Statistics.vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {MessageBox} from "@/utils/MessageBox.tsx";
 import PracticeArticle from "@/pages/pc/article/practice-article/index.vue";
 import {ShortcutKey} from "@/types.ts";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";

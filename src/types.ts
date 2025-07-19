@@ -339,3 +339,9 @@ export const SlideType = {
   HORIZONTAL: 0,
   VERTICAL: 1,
 }
+
+export interface StudyData {
+  index: number,
+  words: any[],
+  wrongWords: any[],
+}

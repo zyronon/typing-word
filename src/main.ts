@@ -29,4 +29,8 @@ app.use(pinia)
 app.use(i18n)
 app.use(router)
 
+app.directive('opacity', (el, binding) => {
+  el.style.opacity = binding.value ? 1 : 0
+})
+
 app.mount('#app')

@@ -6,6 +6,7 @@ import {useDisableEventListener, useWindowClick} from "@/hooks/event.ts";
 
 defineProps<{
   modelValue: string
+  placeholder: string
   autofocus?: boolean
 }>()
 
@@ -40,6 +41,7 @@ const vFocus = {
     <input type="text"
            :value="modelValue"
            v-focus="autofocus"
+           :placeholder="placeholder"
            @input="e=>$emit('update:modelValue',e.target.value)"
     >
     <transition name="fade">
@@ -52,7 +54,7 @@ const vFocus = {
 
 
 .base-input {
-  border: 1px solid var(--color-second-bg);
+  border: 1px solid var(--color-input-border);
   border-radius: .4rem;
   overflow: hidden;
   padding: .2rem .3rem;

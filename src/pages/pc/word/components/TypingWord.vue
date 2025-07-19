@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {watch} from "vue"
+import {provide, watch} from "vue"
 import {useBaseStore} from "@/stores/base.ts"
-import {getDefaultWord, ShortcutKey, Word} from "@/types.ts";
+import {getDefaultWord, ShortcutKey, StudyData, Word} from "@/types.ts";
 import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts"
 import {cloneDeep, shuffle} from "lodash-es"
 import {usePracticeStore} from "@/stores/practice.ts"
@@ -11,7 +11,6 @@ import {Icon} from "@iconify/vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import Typing from "@/pages/pc/components/Typing.vue";
 import Panel from "@/pages/pc/components/Panel.vue";
-import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useWordOptions} from "@/hooks/dict.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import WordList from "@/pages/pc/components/list/WordList.vue";
@@ -42,7 +41,6 @@ const emit = defineEmits<{
 
 const typingRef: any = $ref()
 const store = useBaseStore()
-const runtimeStore = useRuntimeStore()
 const statStore = usePracticeStore()
 const settingStore = useSettingStore()
 
@@ -54,16 +52,19 @@ const {
 } = useWordOptions()
 
 let allWrongWords = []
-let current = $ref({
+
+let data = $ref<StudyData>({
   index: 0,
   words: [],
   wrongWords: [],
 })
 
+provide('studyData', data)
+
 watch(() => props.data, () => {
-  current.words = props.data.new
-  current.index = 0
-  current.wrongWords = []
+  data.words = props.data.new
+  data.index = 0
+  data.wrongWords = []
   allWrongWords = []
 
   statStore.step = 0
@@ -76,26 +77,26 @@ watch(() => props.data, () => {
 }, {immediate: true, deep: true})
 
 const word = $computed(() => {
-  return current.words[current.index] ?? getDefaultWord()
+  return data.words[data.index] ?? getDefaultWord()
 })
 
 const prevWord: Word = $computed(() => {
-  return current.words?.[current.index - 1] ?? undefined
+  return data.words?.[data.index - 1] ?? undefined
 })
 
 const nextWord: Word = $computed(() => {
-  return current.words?.[current.index + 1] ?? undefined
+  return data.words?.[data.index + 1] ?? undefined
 })
 
 function next(isTyping: boolean = true) {
-  if (current.index === current.words.length - 1) {
-    if (current.wrongWords.length) {
+  if (data.index === data.words.length - 1) {
+    if (data.wrongWords.length) {
       console.log('学完了，但还有错词')
-      current.words = shuffle(cloneDeep(current.wrongWords))
-      current.index = 0
-      current.wrongWords = []
+      data.words = shuffle(cloneDeep(data.wrongWords))
+      data.index = 0
+      data.wrongWords = []
     } else {
-      console.log('学完了，没错词', statStore.total, statStore.step, current.index)
+      console.log('学完了，没错词', statStore.total, statStore.step, data.index)
       isTyping && statStore.inputWordNumber++
       statStore.speed = Date.now() - statStore.startDate
 
@@ -107,24 +108,24 @@ function next(isTyping: boolean = true) {
 
       if (statStore.step === 1) {
         settingStore.dictation = true
-        current.words = shuffle(props.data.write.concat(props.data.new).concat(props.data.review))
+        data.words = shuffle(props.data.write.concat(props.data.new).concat(props.data.review))
         statStore.step++
-        current.index = 0
+        data.index = 0
       }
 
       if (statStore.step === 0) {
         statStore.step++
         if (props.data.review.length) {
-          current.words = shuffle(props.data.review)
+          data.words = shuffle(props.data.review)
           settingStore.dictation = false
-          current.index = 0
+          data.index = 0
         } else {
           next()
         }
       }
     }
   } else {
-    current.index++
+    data.index++
     isTyping && statStore.inputWordNumber++
     // console.log('这个词完了')
   }
@@ -134,8 +135,8 @@ function wordWrong() {
   if (!store.wrong.words.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
     store.wrong.words.push(word)
   }
-  if (!current.wrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
-    current.wrongWords.push(word)
+  if (!data.wrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
+    data.wrongWords.push(word)
   }
   if (!allWrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
     allWrongWords.push(word)
@@ -160,10 +161,10 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
 
 //TODO 略过忽略的单词上
 function prev() {
-  if (current.index === 0) {
+  if (data.index === 0) {
     ElMessage.warning('已经是第一个了~')
   } else {
-    current.index--
+    data.index--
   }
 }
 
@@ -203,28 +204,13 @@ useEvents([
   [ShortcutKey.PlayWordPronunciation, play],
 ])
 
-const status = $computed(() => {
-  let str = '正在'
-  switch (statStore.step) {
-    case 0:
-      str += `学习新单词`
-      break
-    case 1:
-      str += '复习'
-      break
-    case 2:
-      str += '默写'
-      break
-  }
-  return str
-})
 </script>
 
 <template>
   <div class="practice-wrapper">
     <div class="practice-word">
-      <div class="near-word" v-if="settingStore.showNearWord">
-        <div class="prev"
+      <div class="absolute z-1 top-4   w-full" v-if="settingStore.showNearWord">
+        <div class="center gap-2 cursor-pointer float-left"
              @click="prev"
              v-if="prevWord">
           <Icon class="arrow" icon="bi:arrow-left" width="22"/>
@@ -234,7 +220,7 @@ const status = $computed(() => {
             <div class="word">{{ prevWord.word }}</div>
           </Tooltip>
         </div>
-        <div class="next"
+        <div class="center gap-2 cursor-pointer float-right "
              @click="next(false)"
              v-if="nextWord">
           <Tooltip
@@ -267,24 +253,15 @@ const status = $computed(() => {
           <div class="panel-page-item pl-4"
                v-loading="!store.load"
           >
-            <div class="list-header">
-              <div class="flex items-center gap-1">
-                <Icon icon="material-symbols:hourglass-empty-rounded"/>
-                <span class="text-sm"> {{ status }}</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span> {{ current.index }} / {{ current.words.length }}</span>
-              </div>
-            </div>
             <WordList
-                v-if="current.words.length"
+                v-if="data.words.length"
                 :is-active="active"
                 :static="false"
                 :show-word="!settingStore.dictation"
                 :show-translate="settingStore.translate"
-                :list="current.words"
-                :activeIndex="current.index"
-                @click="(val:any) => current.index = val.index"
+                :list="data.words"
+                :activeIndex="data.index"
+                @click="(val:any) => data.index = val.index"
             >
               <template v-slot:suffix="{item,index}">
                 <BaseIcon
@@ -301,13 +278,13 @@ const status = $computed(() => {
                     v-if="!isWordSimple(item)"
                     class="easy"
                     @click="toggleWordSimple(item)"
-                    title="标记为简单词"
+                    title="标记为已掌握"
                     icon="material-symbols:check-circle-outline-rounded"/>
                 <BaseIcon
                     v-else
                     class="fill"
                     @click="toggleWordSimple(item)"
-                    title="取消标记简单词"
+                    title="取消标记已掌握"
                     icon="material-symbols:check-circle-rounded"/>
               </template>
             </WordList>
@@ -342,48 +319,6 @@ const status = $computed(() => {
   gap: .4rem;
   position: relative;
   width: var(--toolbar-width);
-
-  .near-word {
-    position: absolute;
-    top: 1rem;
-    width: 100%;
-    z-index: 1;
-
-    & > div {
-      width: 45%;
-      align-items: center;
-
-      .arrow {
-        font-size: .5rem;
-      }
-    }
-
-    .word {
-      font-size: 1.2rem;
-      margin-bottom: .2rem;
-      font-family: var(--word-font-family);
-    }
-
-    .prev {
-      cursor: pointer;
-      display: flex;
-      float: left;
-      gap: .8rem;
-    }
-
-    .next {
-      cursor: pointer;
-      display: flex;
-      justify-content: flex-end;
-      gap: .8rem;
-      float: right;
-    }
-  }
-
-  .options-wrapper {
-    position: absolute;
-    margin-top: 8rem;
-  }
 }
 
 .word-panel-wrapper {

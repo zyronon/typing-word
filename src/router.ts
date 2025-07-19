@@ -6,7 +6,7 @@ import WordHomePage from "@/pages/pc/word/WordHomePage.vue";
 import PC from "@/pages/pc/index.vue";
 import ArticleHomePage from "@/pages/pc/article/ArticleHomePage.vue";
 import HomeIndex from "@/pages/pc/home/HomeIndex.vue";
-import LearnArticle from "@/pages/pc/article/LearnArticle.vue";
+import StudyArticle from "@/pages/pc/article/StudyArticle.vue";
 import EditWordDict from "@/pages/pc/word/EditWordDict.vue";
 import StudyWord from "@/pages/pc/word/StudyWord.vue";
 import EditArticlePage from "@/pages/pc/article/EditArticlePage.vue";
@@ -23,9 +23,9 @@ export const routes: RouteRecordRaw[] = [
       {path: 'study-word', component: StudyWord},
       {path: 'edit-word-dict', component: EditWordDict},
       {path: 'article', component: ArticleHomePage},
+      {path: 'study-article', component: StudyArticle},
       {path: 'edit-article', component: EditArticlePage},
       {path: 'batch-edit-article', component: BatchEditArticlePage},
-      {path: 'learn-article', component: LearnArticle},
       {path: 'book-detail', component: BookDetail},
     ]
   },

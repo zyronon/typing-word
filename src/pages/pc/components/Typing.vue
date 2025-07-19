@@ -158,10 +158,12 @@ let tab = $ref(2)
       <div class="flex gap-1 mt-26">
         <div class="phonetic" v-if="settingStore.wordSoundType === 'us' && word.phonetic0">[{{
             (settingStore.dictation && !showFullWord) ? '_'.repeat(word.phonetic0.length) : word.phonetic0
-          }}]</div>
+          }}]
+        </div>
         <div class="phonetic" v-if="settingStore.wordSoundType === 'uk' && word.phonetic1">[{{
             (settingStore.dictation && !showFullWord) ? '_'.repeat(word.phonetic1.length) : word.phonetic1
-          }}]</div>
+          }}]
+        </div>
 
         <Tooltip
             :title="`发音(${settingStore.shortcutKeyMap[ShortcutKey.PlayWordPronunciation]})`"
@@ -186,10 +188,10 @@ let tab = $ref(2)
         <span class="letter" v-else>{{ displayWord }}</span>
       </div>
 
-      <div class="translate"
+      <div class="translate anim"
+           v-opacity="settingStore.translate"
            :style="{
       fontSize: settingStore.fontSize.wordTranslateFontSize +'px',
-      opacity: settingStore.translate ? 1 : 0
     }"
       >
         <div class="my-2 flex" v-for="(v,i) in word.trans">
@@ -199,13 +201,17 @@ let tab = $ref(2)
       </div>
     </div>
     <div class="other">
-      <div class="line-white my-4"></div>
-      <div class="sentences" v-if="word.sentences && word.sentences.length">
-        <div class="sentence my-2" v-for="item in word.sentences">
-          <SentenceHightLightWord class="text-lg" :text="item.c" :word="word.word" :dictation="settingStore.dictation"/>
-          <div class="text-md">{{ item.cn }}</div>
+      <template v-if="word.sentences && word.sentences.length">
+        <div class="line-white my-4"></div>
+        <div class="sentences">
+          <div class="sentence my-2" v-for="item in word.sentences">
+            <SentenceHightLightWord class="text-lg" :text="item.c" :word="word.word"
+                                    :dictation="settingStore.dictation"/>
+            <div class="text-md anim" v-opacity="settingStore.translate">{{ item.cn }}</div>
+          </div>
         </div>
-      </div>
+      </template>
+
       <div class="line-white my-4"></div>
       <div class="tabs">
         <div @click="tab = 0" class="tab" :class="tab === 0 && 'active'">短语</div>
@@ -215,8 +221,9 @@ let tab = $ref(2)
       </div>
       <template v-if="tab === 0">
         <div class="my-2" v-for="item in word.phrases">
-          <SentenceHightLightWord class="text-lg" :text="item.c" :word="word.word" :high-light="false" :dictation="settingStore.dictation"/>
-          <div class="text-md">{{ item.cn }}</div>
+          <SentenceHightLightWord class="text-lg" :text="item.c" :word="word.word" :high-light="false"
+                                  :dictation="settingStore.dictation"/>
+          <div class="text-md anim" v-opacity="settingStore.translate">{{ item.cn }}</div>
         </div>
       </template>
       <template v-if="tab === 1">
@@ -230,7 +237,7 @@ let tab = $ref(2)
       </template>
       <template v-if="tab === 2">
         <div class="mt-2">
-          <div>
+          <div v-if="word.relWords.root">
             词根：{{ word.relWords.root }}
           </div>
           <div class="flex my-2" v-for="item in word.relWords.rels">
@@ -264,7 +271,6 @@ let tab = $ref(2)
 
   .phonetic, .translate {
     font-size: 1.2rem;
-    transition: all .3s;
   }
 
   .phonetic {

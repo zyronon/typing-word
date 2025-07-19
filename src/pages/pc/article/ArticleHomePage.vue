@@ -61,7 +61,7 @@ function startStudy() {
     showSearchDialog = true
     return
   }
-  router.push('/learn-article')
+  router.push('/study-article')
 }
 </script>
 

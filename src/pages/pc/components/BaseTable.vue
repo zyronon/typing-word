@@ -35,7 +35,6 @@ const emit = defineEmits<{
   }],
 }>()
 
-const settingStore = useSettingStore()
 let listRef: any = $ref()
 
 function scrollToBottom() {
@@ -73,11 +72,11 @@ let selectAll = $computed(() => {
 })
 
 function toggleSelect(item) {
-  let rIndex = selectIds.findIndex(v => v === item.id)
+  let rIndex = selectIds.findIndex(v => v === item.word)
   if (rIndex > -1) {
     selectIds.splice(rIndex, 1)
   } else {
-    selectIds.push(item.id)
+    selectIds.push(item.word)
   }
 }
 
@@ -85,7 +84,7 @@ function toggleSelectAll() {
   if (selectAll) {
     selectIds = []
   } else {
-    selectIds = currentList.map(v => v.id)
+    selectIds = currentList.map(v => v.word)
   }
 }
 
@@ -119,7 +118,7 @@ const s = useSlots()
 defineRender(
     () => {
       const d = (item) => <el-checkbox
-          modelValue={selectIds.includes(item.id)}
+          modelValue={selectIds.includes(item.word)}
           onChange={() => toggleSelect(item)}
           size="large"/>
 
@@ -211,7 +210,7 @@ defineRender(
                           {currentList.map((item) => {
                             return (
                                 <div class="list-item-wrapper"
-                                     key={item.id}
+                                     key={item.word}
                                 >
                                   {s.default({checkbox: d, item})}
                                 </div>

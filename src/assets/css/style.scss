@@ -43,6 +43,7 @@
   --anim-time: 0.5s;
 
   --color-input-bg: white;
+  --color-input-border: #bfbfbf;
   --color-input-icon: #d3d4d7;
 
   --color-textarea-bg: white;
@@ -148,7 +149,7 @@ html.dark {
 }
 
 .anim {
-  transition: background var(--anim-time), color var(--anim-time), border var(--anim-time);
+  transition: background var(--anim-time), color var(--anim-time), border var(--anim-time), opacity var(--anim-time);
 }
 
 .en-article-family {
@@ -475,7 +476,7 @@ footer {
 }
 
 .book {
-  @apply p-4 rounded-md bg-slate-200 relative cursor-pointer h-40 hover:bg-red anim;
+  @apply p-4 rounded-md bg-slate-200 relative cursor-pointer h-40 hover:bg-red anim flex flex-col justify-between;
 }
 
 .line {

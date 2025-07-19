@@ -207,16 +207,12 @@ export const useBaseStore = defineStore('base', {
       if (!this.sdict.words?.length) return 0
       return _getStudyProgress(this.sdict.lastLearnIndex, this.sdict.words?.length)
     },
-    otherWordDictList(): Dict[] {
-      return this.word.bookList.filter(v => this.sdict.id !== v.id)
-    },
     currentArticleCollectDict(): Dict {
       return this.article.bookList[0]
     },
     chapter(state: BaseState): Word[] {
       return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []
     },
-
     currentBook(): Dict {
       return this.article.bookList[this.article.studyIndex] ?? {}
     },

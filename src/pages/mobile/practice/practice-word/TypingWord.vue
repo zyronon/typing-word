@@ -373,13 +373,13 @@ onMounted(() => {
                       v-if="!isWordSimple(item)"
                       class="easy"
                       @click="toggleWordSimple(item)"
-                      title="标记为简单词"
+                      title="标记为已掌握"
                       icon="material-symbols:check-circle-outline-rounded"/>
                   <BaseIcon
                       v-else
                       class="fill"
                       @click="toggleWordSimple(item)"
-                      title="取消标记简单词"
+                      title="取消标记已掌握"
                       icon="material-symbols:check-circle-rounded"/>
                 </template>
               </WordList>

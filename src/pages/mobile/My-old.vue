@@ -79,7 +79,7 @@
 <!--        <div class="tab" :class="index === 0 && 'active'" @click="index = 0">当前</div>-->
 <!--        <div class="tab" :class="index === 1 && 'active'" @click="index = 1">收藏</div>-->
 <!--        <div class="tab" :class="index === 2 && 'active'" @click="index = 2">错词本</div>-->
-<!--        <div class="tab" :class="index === 3 && 'active'" @click="index = 3">简单词</div>-->
+<!--        <div class="tab" :class="index === 3 && 'active'" @click="index = 3">已掌握</div>-->
 <!--      </div>-->
 <!--      <div class="indicator" :style="{left:index * 25 + '%'}"></div>-->
 <!--    </div>-->

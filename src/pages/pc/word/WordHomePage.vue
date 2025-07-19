@@ -8,27 +8,25 @@ import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {_getAccomplishDate, _getAccomplishDays, useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import {getDefaultDict} from "@/types.ts";
+import {Dict, DictResource, getDefaultDict} from "@/types.ts";
 import {onMounted} from "vue";
 import {getCurrentStudyWord} from "@/hooks/dict.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {EventKey, useEvent} from "@/utils/eventBus.ts";
 import DictListPanel from "@/pages/pc/components/DictListPanel.vue";
 import DictGroup from "@/pages/pc/components/list/DictGroup.vue";
+import {cloneDeep} from "lodash-es";
+import {useRuntimeStore} from "@/stores/runtime.ts";
+import {getArticleBookDataByUrl} from "@/utils/article.ts";
 
 const store = useBaseStore()
 const router = useRouter()
 const {nav} = useNav()
+const runtimeStore = useRuntimeStore()
 
 function clickEvent(e) {
   console.log('e', e)
 }
-
-let showMore = $ref(false)
-const otherWordDictList = $computed(() => {
-  if (showMore) return store.otherWordDictList
-  else return store.otherWordDictList.slice(0, 4)
-})
 
 let currentStudy = $ref({
   new: [],
@@ -61,6 +59,30 @@ function changePerDayStudyNumber() {
 function selectDict(e) {
   console.log(e)
 }
+
+async function goDictDetail2(val: Dict) {
+  runtimeStore.editDict = cloneDeep(val)
+  nav('edit-word-dict')
+}
+
+async function getBookDetail(val: DictResource) {
+  let r = await getArticleBookDataByUrl(val)
+  runtimeStore.editDict = cloneDeep(r)
+  nav('book-detail')
+}
+
+let showAddChooseDialog = $ref(false)
+let dictListRef = $ref<any>()
+
+function goChooseDict() {
+  showAddChooseDialog = false
+  dictListRef.startSearch()
+}
+
+function addDict() {
+
+}
+
 </script>
 
 <template>
@@ -131,55 +153,29 @@ function selectDict(e) {
       </div>
     </div>
 
-    <div class="card" v-if="otherWordDictList.length">
-      <div class="flex justify-between">
-        <div class="title">
-          其他学习词典
-        </div>
-        <BaseIcon icon="ic:round-add"
-                  title="切换词典"
-                  @click="router.push('/dict')"/>
-      </div>
-      <div class="grid grid-cols-2 gap-6 mt-5 ">
-        <div class=" p-4 rounded-md justify-between items-center bg-slate-200 " v-for="i in otherWordDictList">
-          <div class="flex justify-between w-full">
-            <span>{{ i.name }}</span>
-            <div class="text-2xl ml-2 flex gap-4">
-              <BaseIcon title="删除" icon="hugeicons:delete-02" @click="store.delWordDict(i)"/>
-              <BaseIcon title="学习" icon="nonicons:go-16" @click="store.changeWordDict(getDefaultDict(i))"/>
-              <BaseIcon title="修改" icon="nonicons:go-16" @click="nav('edit-word-dict',{type:-1},i)"/>
-            </div>
-          </div>
-          <div class="mt-5 text-sm">已学习5555个单词的1%</div>
-          <el-progress class="mt-1" :percentage="80" color="white" :show-text="false"></el-progress>
-        </div>
-      </div>
-      <div class="flex justify-center mt-2 text-2xl" v-if="store.otherWordDictList.length > 4">
-        <BaseIcon @click="showMore = !showMore" v-if="showMore" icon="mingcute:up-line"/>
-        <BaseIcon @click="showMore = !showMore" v-else icon="mingcute:down-line"/>
-      </div>
-    </div>
-
     <div class="card  flex flex-col">
       <div class="title">
         我的词典
       </div>
       <div class="grid grid-cols-6 gap-4  mt-4">
-        <div class="book" v-for="item in store.word.bookList" @click="nav('edit-word-dict',{type:item.type})">
+        <div class="book" v-for="item in store.word.bookList" @click="goDictDetail2(item)">
           <span>{{ item.name }}</span>
           <div class="absolute bottom-4 right-4">{{ item.words.length }}个词</div>
+        </div>
+        <div class="book" @click="showAddChooseDialog = true">
+          <div class="center h-full">
+            <Icon
+                width="40px"
+                icon="fluent:add-20-filled"/>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="card">
-      <div class="title">
-        所有词典
-      </div>
-      <DictListPanel
-          @selectDict="selectDict"
-      />
-    </div>
+    <DictListPanel
+        ref="dictListRef"
+        @selectDict="selectDict"
+    />
 
     <div class="card">
       <div class="title">
@@ -234,6 +230,16 @@ function selectDict(e) {
         </div>
       </div>
     </Dialog>
+
+    <Dialog v-model="showAddChooseDialog" title="选项">
+      <div class="color-black px-6 w-100">
+        <div class="cursor-pointer  hover:bg-black/10 p-2 rounded"
+             @click="goChooseDict">选择一本词典
+        </div>
+        <p class="cursor-pointer  hover:bg-black/10 p-2 rounded" @click="addDict">创建自己的词典</p>
+      </div>
+    </Dialog>
+
   </BasePage>
 </template>
 
