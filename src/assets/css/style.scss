@@ -386,14 +386,13 @@ footer {
     $c: #E6A23C;
 
     .phonetic, .item-sub-title {
-      color: var(--color-gray) !important;
+      //color: var(--color-gray) !important;
     }
 
     .volume, .collect, .easy, .fill {
       color: $c;
     }
   }
-
 
   .item-title {
     display: flex;

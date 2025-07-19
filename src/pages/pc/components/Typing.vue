@@ -202,7 +202,7 @@ let tab = $ref(2)
       <div class="line-white my-4"></div>
       <div class="sentences" v-if="word.sentences && word.sentences.length">
         <div class="sentence my-2" v-for="item in word.sentences">
-          <SentenceHightLightWord class="text-lg" :text="item.c" :word="word.word"/>
+          <SentenceHightLightWord class="text-lg" :text="item.c" :word="word.word" :dictation="settingStore.dictation"/>
           <div class="text-md">{{ item.cn }}</div>
         </div>
       </div>
@@ -215,7 +215,7 @@ let tab = $ref(2)
       </div>
       <template v-if="tab === 0">
         <div class="my-2" v-for="item in word.phrases">
-          <div class="text-lg">{{ item.c }}</div>
+          <SentenceHightLightWord class="text-lg" :text="item.c" :word="word.word" :high-light="false" :dictation="settingStore.dictation"/>
           <div class="text-md">{{ item.cn }}</div>
         </div>
       </template>

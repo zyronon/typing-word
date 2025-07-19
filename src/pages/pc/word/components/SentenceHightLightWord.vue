@@ -1,10 +1,19 @@
 <script setup lang="ts">
 import {computed} from 'vue'
 
-const props = defineProps<{
+interface IProps {
   text: string
+  dictation: boolean
+  highLight?: boolean
   word: string
-}>()
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  text: '',
+  dictation: false,
+  highLight: true,
+  word: ''
+})
 
 // 计算属性：将句子中的目标单词高亮显示
 const highlightedText = computed(() => {
@@ -17,7 +26,7 @@ const highlightedText = computed(() => {
 
   // 将匹配的单词用span标签包裹
   return props.text.replace(regex, (match) => {
-    return `<span class="highlight-word">${match}</span>`
+    return `<span class="${props.highLight && 'highlight-word'} ${props.dictation && 'word-shadow'}">${match}</span>`
   })
 })
 

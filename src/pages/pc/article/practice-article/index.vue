@@ -2,7 +2,6 @@
 import TypingArticle from "./TypingArticle.vue";
 import {Article, ArticleItem, ArticleWord, DisplayStatistics, getDefaultArticle, ShortcutKey, Word} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
-import TypingWord from "@/pages/pc/word/components/TypingWord.vue";
 import Panel from "../../components/Panel.vue";
 import {onMounted, onUnmounted} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
@@ -404,8 +403,6 @@ const {playSentenceAudio} = usePlaySentenceAudio()
               </Tooltip>
 
               <TranslateSetting/>
-
-              <VolumeSetting/>
 
               <BaseIcon
                   :title="`编辑(${settingStore.shortcutKeyMap[ShortcutKey.EditArticle]})`"
