@@ -36,7 +36,7 @@ const activeId = $computed(() => {
   return runtimeStore.editDict.articles?.[chapterIndex]?.id ?? ''
 })
 
-function addMyBookList() {
+function addMyStudyList() {
   let rIndex = base.article.bookList.findIndex(v => v.name === runtimeStore.editDict.name)
   if (rIndex > -1) {
     base.article.studyIndex = rIndex
@@ -76,7 +76,7 @@ function formClose() {
         <div class="flex gap-2">
           <BaseButton type="info" @click="isEdit = true">编辑</BaseButton>
           <BaseButton type="info" @click="router.push('batch-edit-article')">文章管理</BaseButton>
-          <BaseButton @click="addMyBookList">学习</BaseButton>
+          <BaseButton @click="addMyStudyList">学习</BaseButton>
         </div>
       </div>
       <div class="text-lg  ">介绍：{{ runtimeStore.editDict.description }}</div>

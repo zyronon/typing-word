@@ -44,7 +44,7 @@ export type Word = {
   }[],
 }
 
-export function getDefaultWord(val?: any): Word {
+export function getDefaultWord(val: Partial<Word> = {}): Word {
   return {
     "word": "",
     "phonetic0": "",
@@ -96,7 +96,7 @@ export interface ArticleWord extends Word {
   symbolPosition: 'start' | 'end' | '',
 }
 
-export function getDefaultArticleWord(val?: any): ArticleWord {
+export function getDefaultArticleWord(val: Partial<ArticleWord> = {}): ArticleWord {
   return getDefaultWord({
     nextSpace: true,
     isSymbol: false,
@@ -173,13 +173,6 @@ export enum Sort {
   normal = 0,
   random = 1,
   reverse = 2
-}
-
-export const ShortcutKeyMap = {
-  Show: 'Escape',
-  Ignore: 'Tab',
-  Remove: '`',
-  Collect: 'Enter',
 }
 
 export enum ShortcutKey {

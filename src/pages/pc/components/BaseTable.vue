@@ -5,7 +5,7 @@ import {Sort} from "@/types.ts";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import BaseButton from "@/components/BaseButton.vue";
-import {cloneDeep, reverse, shuffle} from "lodash-es";
+import {cloneDeep, debounce, reverse, shuffle} from "lodash-es";
 import Input from "@/pages/pc/components/Input.vue";
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
 import Empty from "@/components/Empty.vue";
@@ -132,7 +132,8 @@ defineRender(
                     >
                       <Input
                           modelValue={searchKey}
-                          onUpdate:model-value={e => searchKey = e}
+                          onUpdate:modelValue=
+                          {debounce(e => searchKey = e)}
                           class="flex-1"/>
                       <BaseButton onClick={() => (showSearchInput = false, searchKey = '')}>取消</BaseButton>
                     </div>

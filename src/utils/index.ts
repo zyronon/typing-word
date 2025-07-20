@@ -2,7 +2,7 @@ import {SAVE_DICT_KEY, SAVE_SETTING_KEY} from "@/utils/const.ts";
 import {BaseState, DefaultBaseState} from "@/stores/base.ts";
 import {DefaultSettingState, SettingState} from "@/stores/setting.ts";
 import {cloneDeep} from "lodash-es";
-import {Dict, DictType} from "@/types.ts";
+import {Dict, DictResource, DictType, getDefaultDict} from "@/types.ts";
 import {ArchiveReader, libarchiveWasm} from "libarchive-wasm";
 import {useRouter} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
@@ -130,7 +130,7 @@ export function isMobile(): boolean {
 export function getDictFile(url: string) {
   return new Promise<any[]>(async resolve => {
     let r = await fetch(url).catch(r => {
-      console.log('getDictFile_error',r)
+      console.log('getDictFile_error', r)
     })
     let v = await r.json()
     resolve(v)
@@ -283,4 +283,17 @@ export function _parseLRC(lrc: string): { start: number, end: number, text: stri
   }
 
   return parsed;
+}
+
+export async function _getDictDataByUrl(val: DictResource) {
+  let dictResourceUrl = `./dicts/${val.language}/word/${val.url}`.replace('.json', '_v2.json');
+  let s = await getDictFile(dictResourceUrl)
+  let words = cloneDeep(s.map(v => {
+    v.id = nanoid(6)
+    return v
+  }))
+  return getDefaultDict({
+    ...val,
+    words
+  })
 }

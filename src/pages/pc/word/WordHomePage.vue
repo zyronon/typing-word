@@ -6,7 +6,7 @@ import "vue-activity-calendar/style.css";
 import {useRouter} from "vue-router";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
-import {_getAccomplishDate, _getAccomplishDays, useNav} from "@/utils";
+import {_getAccomplishDate, _getAccomplishDays, _getDictDataByUrl, useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {Dict, DictResource, getDefaultDict} from "@/types.ts";
 import {onMounted} from "vue";
@@ -18,6 +18,7 @@ import DictGroup from "@/pages/pc/components/list/DictGroup.vue";
 import {cloneDeep} from "lodash-es";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {getArticleBookDataByUrl} from "@/utils/article.ts";
+import Typing from "@/pages/pc/word/components/Typing.vue";
 
 const store = useBaseStore()
 const router = useRouter()
@@ -57,18 +58,19 @@ function changePerDayStudyNumber() {
 }
 
 function selectDict(e) {
-  console.log(e)
+  console.log(e.dict)
+  getDictDetail(e.dict)
 }
 
 async function goDictDetail2(val: Dict) {
   runtimeStore.editDict = cloneDeep(val)
-  nav('edit-word-dict', {})
+  nav('dict-detail', {})
 }
 
-async function getBookDetail(val: DictResource) {
-  let r = await getArticleBookDataByUrl(val)
+async function getDictDetail(val: DictResource) {
+  let r = await _getDictDataByUrl(val)
   runtimeStore.editDict = cloneDeep(r)
-  nav('book-detail', {})
+  nav('dict-detail', {})
 }
 
 let dictListRef = $ref<any>()
@@ -81,7 +83,7 @@ function addDict() {
 
 <template>
   <BasePage>
-    <div class="card flex gap-10">
+    <div class="card flex gap-10"   v-loading="!store.load">
       <div class="flex-1 flex flex-col gap-2">
         <div class="flex">
           <div class="bg-slate-200 px-3 h-14 rounded-md flex items-center">

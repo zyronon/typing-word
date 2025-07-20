@@ -57,6 +57,11 @@ const DefaultFormWord = {
   phonetic0: '',
   phonetic1: '',
   trans: '',
+  sentences: '',
+  phrases: '',
+  synos: '',
+  relWords: '',
+  etymology: '',
 }
 let wordForm = $ref(cloneDeep(DefaultFormWord))
 const wordFormRef = $ref<FormInstance>()
@@ -114,13 +119,17 @@ function batchDel(ids: string[]) {
   ids.map(v => delWord(v))
 }
 
-function editWord(word: Word,) {
+function editWord(word: Word) {
   wordFormData.type = FormMode.Edit
   wordFormData.id = word.id
   wordForm.word = word.word
   wordForm.phonetic1 = word.phonetic1
   wordForm.phonetic0 = word.phonetic0
-  wordForm.trans = word.trans.map(v => JSON.stringify(v)).join('\n')
+  wordForm.trans = word.trans.map(v => (v.pos + v.cn).replaceAll('"', '')).join('\n')
+  wordForm.sentences = word.sentences.map(v => (v.c + "\n" + v.cn).replaceAll('"', '')).join('\n\n')
+  wordForm.phrases = word.phrases.map(v => (v.c + "\n" + v.cn).replaceAll('"', '')).join('\n\n')
+  wordForm.synos = word.synos.map(v => (v.pos + v.cn + "\n" + v.ws.join('/')).replaceAll('"', '')).join('\n\n')
+  wordForm.relWords = word.relWords.rels.map(v => (v.pos + "\n" + v.words.map(v => (v.c + "\n" + v.cn))).replaceAll('"', '')).join('\n\n')
 }
 
 function addWord() {
@@ -152,8 +161,15 @@ function formClose() {
   else router.back()
 }
 
-function addMyBookList() {
-
+function addMyStudyList() {
+  let rIndex = base.word.bookList.findIndex(v => v.name === runtimeStore.editDict.name)
+  if (rIndex > -1) {
+    base.word.studyIndex = rIndex
+  } else {
+    base.word.bookList.push(runtimeStore.editDict)
+    base.word.studyIndex = base.word.bookList.length - 1
+  }
+  router.back()
 }
 
 defineRender(() => {
@@ -166,7 +182,7 @@ defineRender(() => {
                   <div class="absolute text-2xl text-align-center w-full">{runtimeStore.editDict.name}</div>
                   <div class="flex gap-2">
                     <BaseButton type="info" onClick={() => isEdit = true}>编辑</BaseButton>
-                    <BaseButton onClick={addMyBookList}>学习</BaseButton>
+                    <BaseButton onClick={addMyStudyList}>学习</BaseButton>
                   </div>
                 </div>
                 <div class="text-lg  ">介绍：{runtimeStore.editDict.description}</div>
@@ -215,7 +231,7 @@ defineRender(() => {
                   </div>
                   {
                     wordFormData.type ? (
-                        <div class="flex-1 ml-4">
+                        <div class="flex-1 ml-4 overflow-auto">
                           <div class="common-title">
                             {wordFormData.type === FormMode.Add ? '添加' : '修改'}单词
                           </div>
@@ -228,27 +244,67 @@ defineRender(() => {
                             <el-form-item label="单词" prop="word">
                               <el-input
                                   modelValue={wordForm.word}
-                                  onUpdate:model-value={e => wordForm.word = e}
+                                  onUpdate:modelValue={e => wordForm.word = e}
                               />
-                            </el-form-item>
-                            <el-form-item label="翻译">
-                              <el-input
-                                  modelValue={wordForm.trans}
-                                  onUpdate:model-value={e => wordForm.trans = e}
-                                  placeholder="多个翻译请换行"
-                                  autosize={{minRows: 6, maxRows: 10}}
-                                  type="textarea"/>
                             </el-form-item>
                             <el-form-item label="音标/发音①">
                               <el-input
                                   modelValue={wordForm.phonetic0}
-                                  onUpdate:model-value={e => wordForm.phonetic0 = e}
+                                  onUpdate:modelValue={e => wordForm.phonetic0 = e}
                               />
                             </el-form-item>
                             <el-form-item label="音标/发音②">
                               <el-input
                                   modelValue={wordForm.phonetic1}
-                                  onUpdate:model-value={e => wordForm.phonetic1 = e}/>
+                                  onUpdate:modelValue={e => wordForm.phonetic1 = e}/>
+                            </el-form-item>
+                            <el-form-item label="翻译">
+                              <el-input
+                                  modelValue={wordForm.trans}
+                                  onUpdate:modelValue={e => wordForm.trans = e}
+                                  placeholder="一行一个翻译，前面词性，后面内容（n.取消）；多个翻译请换行"
+                                  autosize={{minRows: 6, maxRows: 10}}
+                                  type="textarea"/>
+                            </el-form-item>
+                            <el-form-item label="例句">
+                              <el-input
+                                  modelValue={wordForm.sentences}
+                                  onUpdate:modelValue={e => wordForm.sentences = e}
+                                  placeholder="一行原文，一行译文；多个请换两行"
+                                  autosize={{minRows: 6, maxRows: 10}}
+                                  type="textarea"/>
+                            </el-form-item>
+                            <el-form-item label="短语">
+                              <el-input
+                                  modelValue={wordForm.phrases}
+                                  onUpdate:modelValue={e => wordForm.phrases = e}
+                                  placeholder="一行原文，一行译文；多个请换两行"
+                                  autosize={{minRows: 6, maxRows: 10}}
+                                  type="textarea"/>
+                            </el-form-item>
+                            <el-form-item label="同义词">
+                              <el-input
+                                  modelValue={wordForm.synos}
+                                  onUpdate:modelValue={e => wordForm.synos = e}
+                                  placeholder="一行原文，一行译文；多个请换两行"
+                                  autosize={{minRows: 6, maxRows: 10}}
+                                  type="textarea"/>
+                            </el-form-item>
+                            <el-form-item label="同根词">
+                              <el-input
+                                  modelValue={wordForm.relWords}
+                                  onUpdate:modelValue={e => wordForm.relWords = e}
+                                  placeholder="一行原文，一行译文；多个请换两行"
+                                  autosize={{minRows: 6, maxRows: 10}}
+                                  type="textarea"/>
+                            </el-form-item>
+                            <el-form-item label="词源">
+                              <el-input
+                                  modelValue={wordForm.etymology}
+                                  onUpdate:modelValue={e => wordForm.etymology = e}
+                                  placeholder="一行原文，一行译文；多个请换两行"
+                                  autosize={{minRows: 6, maxRows: 10}}
+                                  type="textarea"/>
                             </el-form-item>
                             <div class="center">
                               <el-button

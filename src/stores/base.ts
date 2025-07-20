@@ -5,7 +5,7 @@ import {emitter, EventKey} from "@/utils/eventBus.ts"
 import * as localforage from "localforage";
 import {nanoid} from "nanoid";
 import {SAVE_DICT_KEY} from "@/utils/const.ts";
-import {_checkDictWords, _getStudyProgress, checkAndUpgradeSaveDict, getDictFile} from "@/utils";
+import {_checkDictWords, _getDictDataByUrl, _getStudyProgress, checkAndUpgradeSaveDict, getDictFile} from "@/utils";
 
 export interface BaseState {
   myDictList: Dict[],
@@ -55,87 +55,24 @@ export const DefaultBaseState = (): BaseState => ({
   word: {
     bookList: [
       getDefaultDict({
-        id: 'word-collect', name: '收藏', words: [
-          {
-            "id": "pharmacy",
-            "word": "pharmacy",
-            "trans": [
-              {
-                "cn": "n.药房，配药学，药学，制药业，一批备用药品"
-              }
-            ],
-            "phonetic0": "ˈfɑ:məsi",
-            "phonetic1": "ˈfɑ:rməsi"
-          },
-          {
-            "id": "foregone",
-            "word": "foregone",
-            "trans": [
-              {
-                "cn": "过去的；先前的；预知的；预先决定的"
-              },
-              {
-                "cn": "发生在…之前（forego的过去分词）"
-              }
-            ],
-            "phonetic0": "fɔː'gɒn",
-            "phonetic1": "'fɔrɡɔn"
-          },
-
-          {
-            "id": "calculate",
-            "word": "calculate",
-            "trans": [
-              {
-                "cn": "vt.& vi.计算，估计，打算，计划，旨在"
-              },
-              {
-                "cn": "vt.预测，推测"
-              }
-            ],
-            "phonetic0": "ˈkælkjuleɪt",
-            "phonetic1": "ˈkælkjəˌlet"
-          },
-          {
-            "id": "compete",
-            "word": "compete",
-            "trans": [
-              {
-                "cn": "vi.竞赛，竞争，比得上，参加比赛（或竞赛）"
-              }
-            ],
-            "phonetic0": "kəmˈpi:t",
-            "phonetic1": "kəmˈpit"
-          },
-          {
-            "id": "furnish",
-            "word": "furnish",
-            "trans": [
-              {
-                "cn": "vt.陈设，布置，提供，供应，装修（房屋）"
-              }
-            ],
-            "phonetic0": "ˈfɜ:nɪʃ",
-            "phonetic1": "ˈfɜ:rnɪʃ"
-          },
-        ]
+        id: 'word-collect', name: '收藏', words: []
       }),
       getDefaultDict({id: 'word-wrong', name: '错词'}),
       getDefaultDict({id: 'word-known', name: '已掌握'}),
-      getDefaultDict({
-        id: 'nce-new-2',
-        name: '新概念英语(新版)-2',
-        description: '新概念英语新版第二册',
-        category: '青少年英语',
-        tags: ['新概念英语'],
-        url: 'nce-new-2_v2.json',
-        length: 862,
-        translateLanguage: 'common',
-        language: 'en',
-        type: DictType.word
-      }),
+      // getDefaultDict({
+      //   id: 'nce-new-2',
+      //   name: '新概念英语(新版)-2',
+      //   description: '新概念英语新版第二册',
+      //   category: '青少年英语',
+      //   tags: ['新概念英语'],
+      //   url: 'nce-new-2_v2.json',
+      //   length: 862,
+      //   translateLanguage: 'common',
+      //   language: 'en',
+      //   type: DictType.word
+      // }),
     ],
-    studyIndex: 3,
+    studyIndex: -1,
   },
   article: {
     bookList: [
@@ -236,18 +173,13 @@ export const useBaseStore = defineStore('base', {
           console.error('读取本地dict数据失败', e)
         }
 
-        if (this.word.studyIndex >= 0) {
+        if (this.word.studyIndex >= 3) {
           // await _checkDictWords(this.currentStudyWordDict)
           let current = this.word.bookList[this.word.studyIndex]
-          let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.url}`;
-          let s = await getDictFile(dictResourceUrl)
-          current.words = cloneDeep(s.map(v => {
-            v.id = nanoid(6)
-            return v
-          }))
+          this.word.bookList[this.word.studyIndex] = await _getDictDataByUrl(current)
           console.log('this.current', current)
         }
-        if (this.article.studyIndex >= 0) {
+        if (this.article.studyIndex >= 1) {
           let current = this.article.bookList[this.article.studyIndex]
           let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
           if (!current.articles.length) {

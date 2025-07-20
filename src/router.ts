@@ -21,7 +21,7 @@ export const routes: RouteRecordRaw[] = [
       {path: 'home', component: HomeIndex},
       {path: 'word', component: WordHomePage},
       {path: 'study-word', component: StudyWord},
-      {path: 'edit-word-dict', component: EditWordDict},
+      {path: 'dict-detail', component: EditWordDict},
       {path: 'article', component: ArticleHomePage},
       {path: 'study-article', component: StudyArticle},
       {path: 'edit-article', component: EditArticlePage},
