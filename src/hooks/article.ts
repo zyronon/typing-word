@@ -1,4 +1,4 @@
-import {Article, ArticleWord, DefaultArticleWord, DictType, Sentence} from "@/types.ts";
+import {Article, ArticleWord, DictType, getDefaultArticleWord, Sentence} from "@/types.ts";
 import {cloneDeep} from "lodash-es";
 import nlp from "compromise/one";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
@@ -82,13 +82,12 @@ export function genArticleSectionData(article: Article): number {
           })
         }
 
-        let word3: ArticleWord = {
-          ...DefaultArticleWord,
+        let word3: ArticleWord = getDefaultArticleWord({
           word: pre,
           nextSpace: false,
           isSymbol: true,
           symbolPosition: ''
-        };
+        });
         // console.log('rrr', item)
         // console.log('nearSymbolPosition', nearSymbolPosition)
         if (nearSymbolPosition === 'end' || nearSymbolPosition === null) {
@@ -126,8 +125,7 @@ export function genArticleSectionData(article: Article): number {
           case keyboardMap.Slash:
           case keyboardMap.Exclamation:
             sentence.words[sentence.words.length - 1].nextSpace = false
-            let word2 = cloneDeep({
-              ...DefaultArticleWord,
+            let word2 = getDefaultArticleWord({
               word: post,
               isSymbol: true,
               nextSpace
@@ -155,8 +153,7 @@ export function genArticleSectionData(article: Article): number {
             //所以需要检测一下
             if (sentence.words.length) {
               sentence.words[sentence.words.length - 1].nextSpace = true
-              let word3 = cloneDeep({
-                ...DefaultArticleWord,
+              let word3 = getDefaultArticleWord({
                 word: 'placeholder',
                 isSymbol: true,
                 nextSpace: false,
@@ -173,8 +170,7 @@ export function genArticleSectionData(article: Article): number {
               })
             } else {
               sentence.words[sentence.words.length - 1].nextSpace = false
-              let word3 = cloneDeep({
-                ...DefaultArticleWord,
+              let word3 = getDefaultArticleWord({
                 word: post,
                 isSymbol: true,
                 nextSpace: false,
@@ -193,7 +189,7 @@ export function genArticleSectionData(article: Article): number {
             checkQuote(pre, index)
           }
 
-          let word = cloneDeep({...DefaultArticleWord, word: v.text, nextSpace: true});
+          let word = getDefaultArticleWord({word: v.text, nextSpace: true});
           sentence.words.push(word)
 
           let post: string = v.post
@@ -346,13 +342,12 @@ Its none of your business, the young man said rudely. This is a private conversa
           })
         }
 
-        let word3: ArticleWord = {
-          ...DefaultArticleWord,
+        let word3: ArticleWord = getDefaultArticleWord({
           word: pre,
           nextSpace: false,
           isSymbol: true,
           symbolPosition: ''
-        };
+        });
         // console.log('rrr', item)
         // console.log('nearSymbolPosition', nearSymbolPosition)
         if (nearSymbolPosition === 'end' || nearSymbolPosition === null) {
@@ -390,8 +385,7 @@ Its none of your business, the young man said rudely. This is a private conversa
           case keyboardMap.Slash:
           case keyboardMap.Exclamation:
             sentence.words[sentence.words.length - 1].nextSpace = false
-            let word2 = cloneDeep({
-              ...DefaultArticleWord,
+            let word2 = getDefaultArticleWord({
               word: post,
               isSymbol: true,
               nextSpace
@@ -419,8 +413,7 @@ Its none of your business, the young man said rudely. This is a private conversa
             //所以需要检测一下
             if (sentence.words.length) {
               sentence.words[sentence.words.length - 1].nextSpace = true
-              let word3 = cloneDeep({
-                ...DefaultArticleWord,
+              let word3 = getDefaultArticleWord({
                 word: 'placeholder',
                 isSymbol: true,
                 nextSpace: false,
@@ -437,8 +430,7 @@ Its none of your business, the young man said rudely. This is a private conversa
               })
             } else {
               sentence.words[sentence.words.length - 1].nextSpace = false
-              let word3 = cloneDeep({
-                ...DefaultArticleWord,
+              let word3 = getDefaultArticleWord({
                 word: post,
                 isSymbol: true,
                 nextSpace: false,
@@ -457,7 +449,7 @@ Its none of your business, the young man said rudely. This is a private conversa
             checkQuote(pre, index)
           }
 
-          let word = cloneDeep({...DefaultArticleWord, word: v.text, nextSpace: true});
+          let word = getDefaultArticleWord({word: v.text, nextSpace: true});
           sentence.words.push(word)
 
           let post: string = v.post

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {getDefaultWord2, ShortcutKey, Word2} from "@/types.ts";
+import {getDefaultWord, ShortcutKey, Word} from "@/types.ts";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio, useTTsPlayAudio} from "@/hooks/sound.ts";
@@ -9,11 +9,11 @@ import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import SentenceHightLightWord from "@/pages/pc/word/components/SentenceHightLightWord.vue";
 
 interface IProps {
-  word: Word2,
+  word: Word,
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  word: () => getDefaultWord2(),
+  word: () => getDefaultWord(),
 })
 
 const emit = defineEmits<{

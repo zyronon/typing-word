@@ -5,52 +5,9 @@ import deFlag from "@/assets/img/flags/de.png";
 import codeFlag from "@/assets/img/flags/code.png";
 import myFlag from "@/assets/img/flags/my.png";
 
-export type WordTrans = {
-  pos: string,
-  cn: string,
-  en: string
-}
 export type Word = {
-  id?: any,
-  "word": string,
-  "phonetic0": string,
-  "phonetic1": string,
-  "trans": WordTrans[]
-  sentences?: { v: string, tran: string }[],
-  relWords?: { w: string, tran: string }[],
-  phrases?: { v: string, tran: string } [],
-  synos?: { w: string, tran: string } [],
-  memory?: string,
-}
-
-export function getDefaultWord(val?: any): Word {
-  return {
-    id: '',
-    word: '',
-    phonetic0: '',
-    phonetic1: '',
-    trans: [],
-    sentences: [],
-    relWords: [],
-    phrases: [],
-    synos: [],
-    memory: '',
-    ...val
-  }
-}
-
-export type StudyWord = {
-  type: 'new' | 'repeat' | 'wrong'
-  word: Word
-}
-
-export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
-
-export type TranslateLanguageType = 'en' | 'zh-CN' | 'ja' | 'de' | 'common' | ''
-export type LanguageType = 'en' | 'ja' | 'de' | 'code'
-
-
-export interface Word2 {
+  id?: string,
+  custom?: boolean,
   word: string,
   phonetic0: string,
   phonetic1: string,
@@ -87,7 +44,7 @@ export interface Word2 {
   }[],
 }
 
-export function getDefaultWord2(val?: any): Word2 {
+export function getDefaultWord(val?: any): Word {
   return {
     "word": "",
     "phonetic0": "",
@@ -100,9 +57,15 @@ export function getDefaultWord2(val?: any): Word2 {
       "root": "",
       "rels": []
     },
-    "etymology": []
+    "etymology": [],
+    ...val
   }
 }
+
+export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
+
+export type TranslateLanguageType = 'en' | 'zh-CN' | 'ja' | 'de' | 'common' | ''
+export type LanguageType = 'en' | 'ja' | 'de' | 'code'
 
 export type DictResource = {
   id: string
@@ -117,7 +80,6 @@ export type DictResource = {
   language: LanguageType
 }
 
-
 export enum DictType {
   collect = 'collect',
   simple = 'simple',
@@ -128,20 +90,19 @@ export enum DictType {
   article = 'article',
 }
 
-export const DefaultArticleWord: ArticleWord = {
-  word: '',
-  phonetic0: '',
-  phonetic1: '',
-  trans: [],
-  nextSpace: true,
-  isSymbol: false,
-  symbolPosition: ''
-}
-
 export interface ArticleWord extends Word {
   nextSpace: boolean,
   isSymbol: boolean,
   symbolPosition: 'start' | 'end' | '',
+}
+
+export function getDefaultArticleWord(val?: any): ArticleWord {
+  return getDefaultWord({
+    nextSpace: true,
+    isSymbol: false,
+    symbolPosition: '',
+    ...val
+  }) as ArticleWord
 }
 
 export interface Sentence {

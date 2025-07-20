@@ -35,7 +35,7 @@ let list = $computed({
 
 onMounted(() => {
   if (!runtimeStore.editDict.id) {
-    router.push("/")
+    router.push("/word")
   }
 })
 

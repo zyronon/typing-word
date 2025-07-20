@@ -56,10 +56,9 @@ onMounted(() => {
     isAdd = true
   }else {
     if (!runtimeStore.editDict.id) {
-      router.push("/")
+      router.push("/article")
     }
   }
-
 })
 
 function formClose() {
