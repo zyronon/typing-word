@@ -117,8 +117,11 @@ export function checkAndUpgradeSaveSetting(val: any) {
 //筛选未自定义的词典，未自定义的词典不需要保存单词，用的时候再下载
 export function shakeCommonDict(n: BaseState): BaseState {
   let data: BaseState = cloneDeep(n)
-  data.wordDictList.map((v: Dict) => {
-    if (!v.isCustom) v.words = []
+  data.word.bookList.map((v: Dict) => {
+    if (!v.custom) v.words = []
+  })
+  data.article.bookList.map((v: Dict) => {
+    if (!v.custom) v.words = []
   })
   return data
 }
@@ -180,7 +183,7 @@ export async function _checkDictWords(dict: Dict) {
   } else {
     //TODO　需要和其他需要下载的地方统一
     //如果不是自定义词典，并且有url地址才去下载
-    if (!dict.isCustom && dict.fileName) {
+    if (!dict.custom && dict.fileName) {
       // let rrr = await axios('http://localhost/static/dict/en/zh/Top50Prepositions-v1.json')
       // console.log('r', rrr)
       // return
@@ -285,7 +288,7 @@ export function _parseLRC(lrc: string): { start: number, end: number, text: stri
   return parsed;
 }
 
-export async function _getDictDataByUrl(val: DictResource) {
+export async function _getDictDataByUrl(val: Dict) {
   let dictResourceUrl = `./dicts/${val.language}/word/${val.url}`.replace('.json', '_v2.json');
   let s = await getDictFile(dictResourceUrl)
   let words = cloneDeep(s.map(v => {

@@ -47,7 +47,7 @@ async function onSubmit() {
       })
       let source = [store.article, store.word][props.isBook ? 0 : 1]
       //任意修改，都将其变为自定义词典
-      data.isCustom = true
+      data.custom = true
 
       if (props.isAdd) {
         data.id = 'custom-dict-' + Date.now()

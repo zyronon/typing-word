@@ -175,8 +175,10 @@ export const useBaseStore = defineStore('base', {
 
         if (this.word.studyIndex >= 3) {
           // await _checkDictWords(this.currentStudyWordDict)
-          let current = this.word.bookList[this.word.studyIndex]
-          this.word.bookList[this.word.studyIndex] = await _getDictDataByUrl(current)
+          let current: Dict = this.word.bookList[this.word.studyIndex]
+          if (!current.custom) {
+            this.word.bookList[this.word.studyIndex] = await _getDictDataByUrl(current)
+          }
           console.log('this.current', current)
         }
         if (this.article.studyIndex >= 1) {
@@ -236,7 +238,7 @@ export const useBaseStore = defineStore('base', {
           }
         } else {
           //如果不是自定义词典，并且有url地址才去下载
-          if (!dict.isCustom && dict.url) {
+          if (!dict.custom && dict.url) {
             if (!dict.originWords.length) {
               let v = await getDictFile(url)
               v.map(s => {

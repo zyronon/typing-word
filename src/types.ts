@@ -68,18 +68,6 @@ export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 export type TranslateLanguageType = 'en' | 'zh-CN' | 'ja' | 'de' | 'common' | ''
 export type LanguageType = 'en' | 'ja' | 'de' | 'code'
 
-export type DictResource = {
-  id: string
-  name: string
-  description: string
-  url: string
-  length: number
-  category: string
-  tags: string[]
-  translateLanguage: TranslateLanguageType
-  type: DictType
-  language: LanguageType
-}
 
 export enum DictType {
   collect = 'collect',
@@ -237,51 +225,48 @@ export const languageCategoryOptions = [
   {id: 'my', name: '我的', flag: myFlag},
 ]
 
+export type DictResource = {
+  id: string
+  name: string
+  description: string
+  url: string
+  length: number
+  category: string
+  tags: string[]
+  translateLanguage: TranslateLanguageType
+  type: DictType
+  language: LanguageType
+}
+
 export function getDefaultDict(val: Partial<Dict> = {}): Dict {
   return {
     id: '',
     name: '',
+    description: '',
+    url: '',
+    length: 0,
+    category: '',
+    tags: [],
+    translateLanguage: '',
+    type: DictType.word,
+    language: 'en',
     lastLearnIndex: 0,
     perDayStudyNumber: 20,
-    description: '',
     words: [],
     articles: [],
     statistics: [],
-    isCustom: false,
-    length: 0,
-    /*资源属性*/
-    resourceId: '',
-    fileName: '',
-    category: '',
-    tags: [],
-    dictType: DictType.word,
-    langTypeStr: 'en',
-    tranTypeStr: 'zh',
-    version: 0,
+    custom: false,
     ...val
   }
 }
 
-export interface Dict {
-  id: any,
-  name: string,
+export interface Dict extends DictResource {
   lastLearnIndex: number,
   perDayStudyNumber: number,
-  description: string,
   words: Word[],
   articles: Article[],
   statistics: Statistics[],
-  isCustom: boolean,
-  length: number,
-  /*资源属性*/
-  resourceId: string,
-  category: string
-  tags: string[]
-  dictType: DictType
-  fileName: string,
-  langTypeStr: string,
-  tranTypeStr: string,
-  version: number,
+  custom: boolean,
 }
 
 export interface ArticleItem {

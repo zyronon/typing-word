@@ -5,7 +5,7 @@ import {getDefaultWord} from "@/types";
 import type {Word} from "@/types";
 
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import {computed, onMounted, reactive} from "vue";
+import {computed, nextTick, onMounted, reactive} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {assign, cloneDeep} from "lodash-es";
 import {nanoid} from "nanoid";
@@ -19,6 +19,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import {useRoute, useRouter} from "vue-router";
 import {useBaseStore} from "@/stores/base.ts";
 import EditBook from "@/pages/pc/article/components/EditBook.vue";
+import {_nextTick} from "@/utils";
 
 const runtimeStore = useRuntimeStore()
 const base = useBaseStore()
@@ -42,31 +43,23 @@ onMounted(() => {
   }
 })
 
-let wordFormData = $ref({
-  where: '',
-  type: '',
-  id: '',
-  index: 0
-})
 
-enum FormMode {
-  None = '',
-  Add = 'Add',
-  Edit = 'Edit',
+const getDefaultFormWord = () => {
+  return {
+    id: '',
+    word: '',
+    phonetic0: '',
+    phonetic1: '',
+    trans: '',
+    sentences: '',
+    phrases: '',
+    synos: '',
+    relWords: '',
+    etymology: '',
+  }
 }
-
-const DefaultFormWord = {
-  word: '',
-  phonetic0: '',
-  phonetic1: '',
-  trans: '',
-  sentences: '',
-  phrases: '',
-  synos: '',
-  relWords: '',
-  etymology: '',
-}
-let wordForm = $ref(cloneDeep(DefaultFormWord))
+let isOperate = $ref(false)
+let wordForm = $ref(getDefaultFormWord())
 let wordFormRef = $ref<FormInstance>()
 const wordRules = reactive<FormRules>({
   word: [
@@ -170,6 +163,7 @@ function convertToWord(raw) {
   });
 
   return getDefaultWord({
+    id: raw.id,
     word: safeString(raw.word),
     phonetic0: safeString(raw.phonetic0),
     phonetic1: safeString(raw.phonetic1),
@@ -183,52 +177,69 @@ function convertToWord(raw) {
   });
 }
 
+function syncDictInMyStudyList(study = false) {
+  _nextTick(() => {
+    let rIndex = base.word.bookList.findIndex(v => v.id === runtimeStore.editDict.id)
+    let temp = cloneDeep(runtimeStore.editDict);
+    temp.custom = true
+    if (rIndex > -1) {
+      base.word.bookList[base.word.studyIndex] = temp
+      if (study) base.word.studyIndex = rIndex
+    } else {
+      base.word.bookList.push(temp)
+      if (study) base.word.studyIndex = base.word.bookList.length - 1
+    }
+  }, 100)
+}
+
 //TODO trans结构变了，
 async function onSubmitWord() {
-  await wordFormRef.validate((valid, fields) => {
+  await wordFormRef.validate((valid) => {
     if (valid) {
       let data: any = convertToWord(wordForm)
-      if (wordFormData.type === FormMode.Add) {
-        data.id = nanoid(6)
-        data.checked = false
-        let r = list.find(v => v.word === wordForm.word)
-        if (r) return ElMessage.warning('已有相同名称单词！')
-        else list.push(data)
-        ElMessage.success('添加成功')
-        wordForm = cloneDeep(DefaultFormWord)
-        // setTimeout(wordListRef?.scrollToBottom, 100)
-      } else {
-        let r = list.find(v => v.id === wordFormData.id)
+      if (data.id) {
+        let r = list.find(v => v.id === data.id)
         if (r) {
           assign(r, data)
           ElMessage.success('修改成功')
-        }else {
+        } else {
           ElMessage.success('修改失败，未找到单词')
+          return
         }
+      } else {
+        data.id = nanoid(6)
+        data.checked = false
+        let r = list.find(v => v.word === wordForm.word)
+        if (r) {
+          ElMessage.warning('已有相同名称单词！')
+          return
+        } else list.push(data)
+        ElMessage.success('添加成功')
+        wordForm = getDefaultFormWord()
       }
+      syncDictInMyStudyList()
     } else {
       ElMessage.warning('请填写完整')
     }
   })
 }
 
-function delWord(id: string) {
+function delWord(id: string, isBatch = false) {
   let rIndex2 = list.findIndex(v => v.id === id)
   if (rIndex2 > -1) {
     list.splice(rIndex2, 1)
   }
-  // if (wordFormData.type === FormMode.Edit && wordForm.word === val.item.word) {
-  //   closeWordForm()
-  // }
+  if (!isBatch) syncDictInMyStudyList()
 }
 
 function batchDel(ids: string[]) {
-  ids.map(v => delWord(v))
+  ids.map(v => delWord(v, true))
+  syncDictInMyStudyList()
 }
 
 function editWord(word: Word) {
-  wordFormData.type = FormMode.Edit
-  wordFormData.id = word.id
+  isOperate = true
+  wordForm.id = word.id
   wordForm.word = word.word
   wordForm.phonetic1 = word.phonetic1
   wordForm.phonetic0 = word.phonetic0
@@ -243,13 +254,13 @@ function editWord(word: Word) {
 
 function addWord() {
   // setTimeout(wordListRef?.scrollToBottom, 100)
-  wordFormData.type = FormMode.Add
-  wordForm = cloneDeep(DefaultFormWord)
+  isOperate = true
+  wordForm = getDefaultFormWord()
 }
 
 function closeWordForm() {
-  wordFormData.type = FormMode.None
-  wordForm = cloneDeep(DefaultFormWord)
+  isOperate = false
+  wordForm = getDefaultFormWord()
 }
 
 let isEdit = $ref(false)
@@ -339,10 +350,10 @@ defineRender(() => {
                     </BaseTable>
                   </div>
                   {
-                    wordFormData.type ? (
+                    isOperate ? (
                         <div class="flex-1 flex flex-col ml-4">
                           <div class="common-title">
-                            {wordFormData.type === FormMode.Add ? '添加' : '修改'}单词
+                            {wordForm.id ? '修改' : '添加'}单词
                           </div>
                           <el-form
                               class="flex-1 overflow-auto pr-2"

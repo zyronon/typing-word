@@ -91,7 +91,7 @@ export function useArticleOptions() {
 export function syncMyDictList(dict: Dict, isCustom = true) {
   const store = useBaseStore()
   //任意修改，都将其变为自定义词典
-  dict.isCustom = isCustom
+  dict.custom = isCustom
   if (isArticle(dict.type)) {
     dict.length = dict.articles.length
   } else {

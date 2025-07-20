@@ -8,16 +8,14 @@ import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {_getAccomplishDate, _getAccomplishDays, _getDictDataByUrl, useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import {Dict, DictResource, getDefaultDict} from "@/types.ts";
+import {Dict, DictResource} from "@/types.ts";
 import {onMounted} from "vue";
 import {getCurrentStudyWord} from "@/hooks/dict.ts";
-import {usePracticeStore} from "@/stores/practice.ts";
 import {EventKey, useEvent} from "@/utils/eventBus.ts";
 import DictListPanel from "@/pages/pc/components/DictListPanel.vue";
-import DictGroup from "@/pages/pc/components/list/DictGroup.vue";
 import {cloneDeep} from "lodash-es";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {getArticleBookDataByUrl} from "@/utils/article.ts";
+import Book from "@/pages/pc/components/Book.vue";
 
 const store = useBaseStore()
 const router = useRouter()
@@ -157,20 +155,13 @@ function addDict() {
         <div class="color-blue cursor-pointer" @click="addDict">创建个人词典</div>
       </div>
       <div class="grid grid-cols-6 gap-4  mt-4">
-        <div class="book" v-for="item in store.word.bookList" @click="goDictDetail2(item)">
-          <div>
-            <div>{{ item.name }}</div>
-            <div>{{ item.description }}</div>
-          </div>
-          <div class="absolute bottom-4 right-4">{{ item.words.length }}个词</div>
-        </div>
-        <div class="book" @click="dictListRef.startSearch()">
-          <div class="center h-full">
-            <Icon
-                width="40px"
-                icon="fluent:add-20-filled"/>
-          </div>
-        </div>
+        <Book :is-add="false"
+              quantifier="个词"
+              :item="item"
+              v-for="item in store.word.bookList"
+              @click="goDictDetail2(item)"/>
+        <Book :is-add="true"
+              @click="dictListRef.startSearch()"/>
       </div>
     </div>
 
