@@ -55,8 +55,7 @@ export const DefaultBaseState = (): BaseState => ({
   word: {
     bookList: [
       getDefaultDict({
-        index: 1,
-        name: '收藏', type: DictType.collectWord, words: [
+        id: 'word-collect', name: '收藏', words: [
           {
             "id": "pharmacy",
             "word": "pharmacy",
@@ -119,14 +118,10 @@ export const DefaultBaseState = (): BaseState => ({
             "phonetic0": "ˈfɜ:nɪʃ",
             "phonetic1": "ˈfɜ:rnɪʃ"
           },
-        ], statistics: []
+        ]
       }),
-      getDefaultDict({
-        index: 2, name: '错词', type: DictType.wrong, words: [], statistics: []
-      }),
-      getDefaultDict({
-        index: 3, name: '已掌握', type: DictType.known, words: [], statistics: []
-      }),
+      getDefaultDict({id: 'word-wrong', name: '错词'}),
+      getDefaultDict({id: 'word-known', name: '已掌握'}),
       getDefaultDict({
         id: 'nce-new-2',
         name: '新概念英语(新版)-2',
@@ -144,7 +139,7 @@ export const DefaultBaseState = (): BaseState => ({
   },
   article: {
     bookList: [
-      getDefaultDict({name: '收藏'})
+      getDefaultDict({id: 'article-collect', name: '收藏'})
     ],
     studyIndex: -1,
   }
@@ -245,8 +240,11 @@ export const useBaseStore = defineStore('base', {
           // await _checkDictWords(this.currentStudyWordDict)
           let current = this.word.bookList[this.word.studyIndex]
           let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.url}`;
-          current.words = await getDictFile(dictResourceUrl)
-
+          let s = await getDictFile(dictResourceUrl)
+          current.words = cloneDeep(s.map(v => {
+            v.id = nanoid(6)
+            return v
+          }))
           console.log('this.current', current)
         }
         if (this.article.studyIndex >= 0) {

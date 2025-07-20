@@ -99,7 +99,7 @@ $bg-color: rgb(226, 226, 226);
   .text {
     color: var(--color-font-1);
     text-align: start;
-    font-size: .9rem;
+    font-size: 1rem;
     width: 9rem;
     min-width: 9rem;
   }
@@ -110,7 +110,7 @@ $bg-color: rgb(226, 226, 226);
     justify-content: flex-end;
     align-items: center;
     gap: .7rem;
-    font-size: .7rem;
+    font-size: .9rem;
 
     div {
       cursor: pointer;

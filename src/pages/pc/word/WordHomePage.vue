@@ -62,13 +62,13 @@ function selectDict(e) {
 
 async function goDictDetail2(val: Dict) {
   runtimeStore.editDict = cloneDeep(val)
-  nav('edit-word-dict')
+  nav('edit-word-dict', {})
 }
 
 async function getBookDetail(val: DictResource) {
   let r = await getArticleBookDataByUrl(val)
   runtimeStore.editDict = cloneDeep(r)
-  nav('book-detail')
+  nav('book-detail', {})
 }
 
 let dictListRef = $ref<any>()

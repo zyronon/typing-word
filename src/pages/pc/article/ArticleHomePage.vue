@@ -95,8 +95,10 @@ function startStudy() {
         <div class="book"
              v-for="dict in store.article.bookList"
              @click="getBookDetail2(dict)">
-          <div class="name">{{ dict.name }}</div>
-          <div class="desc">{{ dict.description }}</div>
+          <div>
+            <div class="name">{{ dict.name }}</div>
+            <div class="desc">{{ dict.description }}</div>
+          </div>
           <div class="absolute bottom-4 right-4">{{ dict.length }}篇</div>
         </div>
         <div class="book" @click="showAddChooseDialog = true">
@@ -118,8 +120,10 @@ function startStudy() {
         <div class="book"
              v-for="dict in enArticle"
              @click="getBookDetail(dict)">
-          <div class="name">{{ dict.name }}</div>
-          <div class="desc">{{ dict.description }}</div>
+          <div class="top">
+            <div class="name">{{ dict.name }}</div>
+            <div class="desc">{{ dict.description }}</div>
+          </div>
           <div class="absolute bottom-4 right-4">{{ dict.length }}篇</div>
         </div>
       </div>

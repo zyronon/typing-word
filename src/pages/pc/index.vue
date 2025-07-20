@@ -73,7 +73,7 @@ const {toggleTheme} = useTheme()
         </Tooltip>
       </div>
     </div>
-    <div class="flex-1 z-1">
+    <div class="flex-1 z-1 relative">
       <router-view></router-view>
     </div>
   </div>

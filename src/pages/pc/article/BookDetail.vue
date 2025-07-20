@@ -11,6 +11,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import {useRoute, useRouter} from "vue-router";
 import EditBook from "@/pages/pc/article/components/EditBook.vue";
 import {computed, onMounted} from "vue";
+import {cloneDeep} from "lodash-es";
 
 const runtimeStore = useRuntimeStore()
 const base = useBaseStore()
@@ -53,7 +54,12 @@ const showBookDetail = computed(() => {
 onMounted(() => {
   if (route.query?.isAdd) {
     isAdd = true
+  }else {
+    if (!runtimeStore.editDict.id) {
+      router.push("/")
+    }
   }
+
 })
 
 function formClose() {
@@ -69,7 +75,7 @@ function formClose() {
         <BackIcon class="z-2" @click="$router.back"/>
         <div class="absolute text-2xl text-align-center w-full">{{ runtimeStore.editDict.name }}</div>
         <div class="flex gap-2">
-          <BaseButton type="info" @click="isEdit = true">编辑信息</BaseButton>
+          <BaseButton type="info" @click="isEdit = true">编辑</BaseButton>
           <BaseButton type="info" @click="router.push('batch-edit-article')">文章管理</BaseButton>
           <BaseButton @click="addMyBookList">学习</BaseButton>
         </div>
@@ -109,11 +115,20 @@ function formClose() {
       </div>
     </div>
 
-    <div class="center" v-else>
-      <div class="w-1/2">
-        <EditBook :is-add="isAdd"
-                  @close="formClose"
-                  @submit="isEdit = isAdd = false"
+    <div class="card mb-0 h-[95vh]" v-else>
+      <div class="flex justify-between items-center relative">
+        <BackIcon class="z-2" @click="isAdd ? $router.back():(isEdit = false)"/>
+        <div class="absolute text-2xl text-align-center w-full">{{
+            runtimeStore.editDict.id ? '修改' : '添加'
+          }}书籍
+        </div>
+      </div>
+      <div class="center">
+        <EditBook
+            :is-add="isAdd"
+            :is-book="true"
+            @close="formClose"
+            @submit="isEdit = isAdd = false"
         />
       </div>
     </div>

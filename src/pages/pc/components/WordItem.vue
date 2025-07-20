@@ -8,10 +8,12 @@ const props = withDefaults(defineProps<{
   item: Word,
   showTranslate?: boolean
   showWord?: boolean
+  showTransPop?: boolean
   hiddenOptionIcon?: boolean
 }>(), {
   showTranslate: true,
   showWord: true,
+  showTransPop: true,
   hiddenOptionIcon: false,
 })
 
@@ -34,7 +36,7 @@ const playWordAudio = usePlayWordAudio()
         <div class="item-sub-title flex flex-col gap-2" v-if="item.trans.length && showTranslate">
           <div v-for="v in item.trans">
             <el-popover
-                v-if="v.cn.length > 30"
+                v-if="v.cn.length > 30 && showTransPop"
                 width="300"
                 :content="v.pos + '  ' + v.cn"
                 placement="top"

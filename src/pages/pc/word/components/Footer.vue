@@ -163,7 +163,7 @@ const progress = $computed(() => {
           <RepeatSetting/>
 
           <BaseIcon
-              @click="emitter.emit(EventKey.openStatModal, {})"
+              @click="settingStore.showPanel = !settingStore.showPanel"
               :title="`单词本(${settingStore.shortcutKeyMap[ShortcutKey.TogglePanel]})`"
               icon="tdesign:menu-unfold"/>
         </div>
@@ -176,6 +176,7 @@ const progress = $computed(() => {
     </div>
   </div>
   <!--
+   @click="emitter.emit(EventKey.openStatModal, {})"
               @click="settingStore.showPanel = !settingStore.showPanel"-->
 </template>
 

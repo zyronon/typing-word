@@ -10,7 +10,8 @@ import {useBaseStore} from "@/stores/base.ts";
 import {syncMyDictList} from "@/hooks/dict.ts";
 
 const props = defineProps<{
-  isAdd: boolean
+  isAdd: boolean,
+  isBook: boolean
 }>()
 const emit = defineEmits<{
   submit: []
@@ -44,28 +45,29 @@ async function onSubmit() {
         ...getDefaultDict(),
         ...dictForm,
       })
+      let source = [store.article, store.word][props.isBook ? 0 : 1]
       //任意修改，都将其变为自定义词典
       data.isCustom = true
 
       if (props.isAdd) {
         data.id = 'custom-dict-' + Date.now()
         //TODO 允许同名？
-        if (store.article.bookList.find(v => v.name === data.name)) {
+        if (source.bookList.find(v => v.name === data.name)) {
           return ElMessage.warning('已有相同名称书籍！')
         } else {
-          store.article.bookList.push(data)
+          source.bookList.push(data)
           runtimeStore.editDict = data
           emit('submit')
           ElMessage.success('添加成功')
         }
       } else {
-        let rIndex = store.article.bookList.findIndex(v => v.id === data.id)
+        let rIndex = source.bookList.findIndex(v => v.id === data.id)
         if (rIndex > -1) {
-          store.article.bookList[rIndex] = cloneDeep(data)
+          source.bookList[rIndex] = cloneDeep(data)
           runtimeStore.editDict = cloneDeep(data)
           emit('submit')
           ElMessage.success('修改成功')
-        }else {
+        } else {
           ElMessage.warning('修改失败')
         }
       }
@@ -85,61 +87,43 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="edit-dict">
-    <div class="wrapper">
-      <div class="common-title">{{ dictForm.id ? '修改' : '添加' }}书籍</div>
-      <el-form
-          ref="dictFormRef"
-          :rules="dictRules"
-          :model="dictForm"
-          label-width="8rem">
-        <el-form-item label="名称" prop="name">
-          <el-input v-model="dictForm.name"/>
-        </el-form-item>
-        <el-form-item label="描述">
-          <el-input v-model="dictForm.description" type="textarea"/>
-        </el-form-item>
-        <el-form-item label="原文语言">
-          <el-select v-model="dictForm.language" placeholder="请选择选项">
-            <el-option label="英语" value="en"/>
-            <el-option label="德语" value="de"/>
-            <el-option label="日语" value="ja"/>
-            <el-option label="代码" value="code"/>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="译文语言">
-          <el-select v-model="dictForm.translateLanguage" placeholder="请选择选项">
-            <!--                <el-option label="通用" value="common"/>-->
-            <el-option label="中文" value="zh-CN"/>
-            <el-option label="英语" value="en"/>
-            <el-option label="德语" value="de"/>
-            <el-option label="日语" value="ja"/>
-          </el-select>
-        </el-form-item>
-        <div class="center">
-          <el-button @click="emit('close')">关闭</el-button>
-          <el-button type="primary" @click="onSubmit">确定</el-button>
-        </div>
-      </el-form>
-    </div>
+  <div class="w-120 mt-4">
+    <el-form
+        ref="dictFormRef"
+        :rules="dictRules"
+        :model="dictForm"
+        label-width="8rem">
+      <el-form-item label="名称" prop="name">
+        <el-input v-model="dictForm.name"/>
+      </el-form-item>
+      <el-form-item label="描述">
+        <el-input v-model="dictForm.description" type="textarea"/>
+      </el-form-item>
+      <el-form-item label="原文语言">
+        <el-select v-model="dictForm.language" placeholder="请选择选项">
+          <el-option label="英语" value="en"/>
+          <el-option label="德语" value="de"/>
+          <el-option label="日语" value="ja"/>
+          <el-option label="代码" value="code"/>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="译文语言">
+        <el-select v-model="dictForm.translateLanguage" placeholder="请选择选项">
+          <el-option label="中文" value="zh-CN"/>
+          <el-option label="英语" value="en"/>
+          <el-option label="德语" value="de"/>
+          <el-option label="日语" value="ja"/>
+        </el-select>
+      </el-form-item>
+      <div class="center">
+        <el-button @click="emit('close')">关闭</el-button>
+        <el-button type="primary" @click="onSubmit">确定</el-button>
+      </div>
+    </el-form>
   </div>
 </template>
 
 <style scoped lang="scss">
-.edit-dict {
-  flex: 1;
-  width: 100%;
-  overflow: auto;
-  display: flex;
-  justify-content: center;
 
-  .wrapper {
-    width: 80rem;
-  }
-
-  .el-select {
-    width: 100%;
-  }
-}
 
 </style>

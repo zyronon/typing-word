@@ -1,19 +1,27 @@
 <script setup lang="tsx">
 
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import {onMounted, reactive} from "vue";
+import {computed, onMounted, reactive} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {assign, cloneDeep} from "lodash-es";
 import {nanoid} from "nanoid";
 import BaseIcon from "@/components/BaseIcon.vue";
-import {useNav} from "@/utils";
 import BaseTable from "@/pages/pc/components/BaseTable.vue";
 import WordItem from "@/pages/pc/components/WordItem.vue";
 import type {Word} from "@/types.ts";
 import type {FormInstance, FormRules} from "element-plus";
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
+import BackIcon from "@/components/BackIcon.vue";
+import BaseButton from "@/components/BaseButton.vue";
+import {useRoute, useRouter} from "vue-router";
+import {useBaseStore} from "@/stores/base.ts";
+import EditBook from "@/pages/pc/article/components/EditBook.vue";
 
 const runtimeStore = useRuntimeStore()
+const base = useBaseStore()
+const router = useRouter()
+const route = useRoute()
+
 let loading = $ref(false)
 
 let list = $computed({
@@ -25,17 +33,11 @@ let list = $computed({
   }
 })
 
-onMounted(async () => {
-  if (runtimeStore.routeData) {
-    loading = true
-    runtimeStore.editDict = cloneDeep(runtimeStore.routeData)
-    // await _checkDictWords(runtimeStore.editDict)
-    setTimeout(() => {
-      loading = false
-    }, 300)
+onMounted(() => {
+  if (!runtimeStore.editDict.id) {
+    router.push("/")
   }
 })
-const {back} = useNav()
 
 let wordFormData = $ref({
   where: '',
@@ -132,119 +134,153 @@ function closeWordForm() {
   wordForm = cloneDeep(DefaultFormWord)
 }
 
-function s(ss) {
-  console.log('s', ss)
+let isEdit = $ref(false)
+let isAdd = $ref(false)
+
+const showBookDetail = computed(() => {
+  return !(isAdd || isEdit);
+})
+
+onMounted(() => {
+  if (route.query?.isAdd) {
+    isAdd = true
+  }
+})
+
+function formClose() {
+  if (isEdit) isEdit = false
+  else router.back()
+}
+
+function addMyBookList() {
+
 }
 
 defineRender(() => {
   return (
       <BasePage>
-        <div className="card">
-          <header class="flex gap-4 mb-2 items-center">
-            <BaseIcon onClick={back} icon="octicon:arrow-left-24" width={20}/>
-            <div class="left">
-              <div class="top">
-                <div class="text-xl">
-                  {runtimeStore.editDict.name}
+        {
+          showBookDetail.value ? <div className="card mb-0 h-[95vh] flex flex-col">
+                <div class="flex justify-between items-center relative">
+                  <BackIcon class="z-2" onClick={() => router.back()}/>
+                  <div class="absolute text-2xl text-align-center w-full">{runtimeStore.editDict.name}</div>
+                  <div class="flex gap-2">
+                    <BaseButton type="info" onClick={() => isEdit = true}>编辑</BaseButton>
+                    <BaseButton onClick={addMyBookList}>学习</BaseButton>
+                  </div>
+                </div>
+                <div class="text-lg  ">介绍：{runtimeStore.editDict.description}</div>
+                <div class="line my-3"></div>
+
+                <div class="flex flex-1 overflow-hidden">
+                  <div class="w-4/10">
+                    <BaseTable
+                        class="h-full"
+                        list={list}
+                        loading={loading}
+                        onUpdate:list={e => list = e}
+                        del={delWord}
+                        batchDel={batchDel}
+                        add={addWord}
+                    >
+                      {
+                        (val) =>
+                            <WordItem
+                                showTransPop={false}
+                                item={val.item}>
+                              {{
+                                prefix: () => val.checkbox(val.item),
+                                suffix: () => (
+                                    <div class='flex flex-col'>
+                                      <BaseIcon
+                                          class="option-icon"
+                                          onClick={() => editWord(val.item)}
+                                          title="编辑"
+                                          icon="tabler:edit"/>
+                                      <PopConfirm title="确认删除？"
+                                                  onConfirm={() => delWord(val.item.id)}
+                                      >
+                                        <BaseIcon
+                                            class="option-icon"
+                                            title="删除"
+                                            icon="solar:trash-bin-minimalistic-linear"/>
+                                      </PopConfirm>
+
+                                    </div>
+                                )
+                              }}
+                            </WordItem>
+                      }
+                    </BaseTable>
+                  </div>
+                  {
+                    wordFormData.type ? (
+                        <div class="flex-1 ml-4">
+                          <div class="common-title">
+                            {wordFormData.type === FormMode.Add ? '添加' : '修改'}单词
+                          </div>
+                          <el-form
+                              className="form"
+                              ref="wordFormRef"
+                              rules={wordRules}
+                              model={wordForm}
+                              label-width="7rem">
+                            <el-form-item label="单词" prop="word">
+                              <el-input
+                                  modelValue={wordForm.word}
+                                  onUpdate:model-value={e => wordForm.word = e}
+                              />
+                            </el-form-item>
+                            <el-form-item label="翻译">
+                              <el-input
+                                  modelValue={wordForm.trans}
+                                  onUpdate:model-value={e => wordForm.trans = e}
+                                  placeholder="多个翻译请换行"
+                                  autosize={{minRows: 6, maxRows: 10}}
+                                  type="textarea"/>
+                            </el-form-item>
+                            <el-form-item label="音标/发音①">
+                              <el-input
+                                  modelValue={wordForm.phonetic0}
+                                  onUpdate:model-value={e => wordForm.phonetic0 = e}
+                              />
+                            </el-form-item>
+                            <el-form-item label="音标/发音②">
+                              <el-input
+                                  modelValue={wordForm.phonetic1}
+                                  onUpdate:model-value={e => wordForm.phonetic1 = e}/>
+                            </el-form-item>
+                            <div class="center">
+                              <el-button
+                                  onClick={closeWordForm}>关闭
+                              </el-button>
+                              <el-button type="primary"
+                                         onClick={onSubmitWord}>保存
+                              </el-button>
+                            </div>
+                          </el-form>
+                        </div>
+                    ) : null
+                  }
+                </div>
+              </div> :
+              <div class="card mb-0 h-[95vh]">
+                <div class="flex justify-between items-center relative">
+                  <BackIcon class="z-2" onClick={() => isAdd ? router.back() : (isEdit = false)}/>
+                  <div class="absolute text-2xl text-align-center w-full">
+                    {runtimeStore.editDict.id ? '修改' : '添加'}词典
+                  </div>
+                </div>
+                <div class="center">
+                  <EditBook
+                      isAdd={isAdd}
+                      isBook={false}
+                      onClose={formClose}
+                      onSubmit={() => isEdit = isAdd = false}
+                  />
                 </div>
               </div>
-              {
-                runtimeStore.editDict.description ?
-                    <div class="desc">{runtimeStore.editDict.description}</div> : null
-              }
-            </div>
-          </header>
-          <div class="flex" style="height:calc(100vh - 8rem)">
-            <div class="w-1/2">
-              <BaseTable
-                  class="h-full"
-                  list={list}
-                  loading={loading}
-                  onUpdate:list={e => list = e}
-                  del={delWord}
-                  batchDel={batchDel}
-                  add={addWord}
-              >
-                {
-                  (val) =>
-                      <WordItem
-                          item={val.item}>
-                        {{
-                          prefix: () => val.checkbox(val.item),
-                          suffix: () => (
-                              <div class='flex flex-col'>
-                                <BaseIcon
-                                    class="option-icon"
-                                    onClick={() => editWord(val.item)}
-                                    title="编辑"
-                                    icon="tabler:edit"/>
-                                <PopConfirm title="确认删除？"
-                                            onConfirm={() => delWord(val.item.id)}
-                                >
-                                  <BaseIcon
-                                      class="option-icon"
-                                      title="删除"
-                                      icon="solar:trash-bin-minimalistic-linear"/>
-                                </PopConfirm>
-
-                              </div>
-                          )
-                        }}
-                      </WordItem>
-                }
-              </BaseTable>
-            </div>
-            {
-              wordFormData.type ? (
-                  <div class="flex-1 ml-4">
-                    <div class="common-title">
-                      {wordFormData.type === FormMode.Add ? '添加' : '修改'}单词
-                    </div>
-                    <el-form
-                        className="form"
-                        ref="wordFormRef"
-                        rules={wordRules}
-                        model={wordForm}
-                        label-width="7rem">
-                      <el-form-item label="单词" prop="word">
-                        <el-input
-                            modelValue={wordForm.word}
-                            onUpdate:model-value={e => wordForm.word = e}
-                        />
-                      </el-form-item>
-                      <el-form-item label="翻译">
-                        <el-input
-                            modelValue={wordForm.trans}
-                            onUpdate:model-value={e => wordForm.trans = e}
-                            placeholder="多个翻译请换行"
-                            autosize={{minRows: 6, maxRows: 10}}
-                            type="textarea"/>
-                      </el-form-item>
-                      <el-form-item label="音标/发音①">
-                        <el-input
-                            modelValue={wordForm.phonetic0}
-                            onUpdate:model-value={e => wordForm.phonetic0 = e}
-                        />
-                      </el-form-item>
-                      <el-form-item label="音标/发音②">
-                        <el-input
-                            modelValue={wordForm.phonetic1}
-                            onUpdate:model-value={e => wordForm.phonetic1 = e}/>
-                      </el-form-item>
-                      <div class="center">
-                        <el-button
-                            onClick={closeWordForm}>关闭
-                        </el-button>
-                        <el-button type="primary"
-                                   onClick={onSubmitWord}>保存
-                        </el-button>
-                      </div>
-                    </el-form>
-                  </div>
-              ) : null
-            }
-          </div>
-        </div>
+        }
       </BasePage>
   )
 })

@@ -269,7 +269,6 @@ export const DefaultShortcutKeyMap = {
   [ShortcutKey.TogglePanel]: 'Ctrl+L',
 }
 
-
 export enum TranslateEngine {
   Baidu = 0,
 }

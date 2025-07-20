@@ -1,6 +1,5 @@
 <script setup lang="tsx">
 
-import {useSettingStore} from "@/stores/setting.ts";
 import {nextTick, useSlots} from "vue";
 import {Sort} from "@/types.ts";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
@@ -101,6 +100,7 @@ function sort(type: Sort) {
     ElMessage.success('已随机排序')
     list.value = shuffle(cloneDeep(list.value))
   }
+  showSortDialog = false
 }
 
 function handleBatchDel() {
@@ -178,7 +178,7 @@ defineRender(
                             icon="fluent:search-24-regular"/>
                         <MiniDialog
                             modelValue={showSortDialog}
-                            onUpdate:model-value={e => showSortDialog = e}
+                            onUpdate:modelValue={e => showSortDialog = e}
                             style="width: 8rem;"
                         >
                           <div class="mini-row-title">

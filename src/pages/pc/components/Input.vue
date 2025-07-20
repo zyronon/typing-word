@@ -6,7 +6,7 @@ import {useDisableEventListener, useWindowClick} from "@/hooks/event.ts";
 
 defineProps<{
   modelValue: string
-  placeholder: string
+  placeholder?: string
   autofocus?: boolean
 }>()
 

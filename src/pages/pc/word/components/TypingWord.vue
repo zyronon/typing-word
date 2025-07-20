@@ -9,13 +9,13 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
-import Typing from "@/pages/pc/components/Typing.vue";
+import Typing from "@/pages/pc/word/components/Typing.vue";
 import Panel from "@/pages/pc/components/Panel.vue";
 import {useWordOptions} from "@/hooks/dict.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import WordList from "@/pages/pc/components/list/WordList.vue";
 import Empty from "@/components/Empty.vue";
-import Footer from "@/pages/pc/word/Footer.vue";
+import Footer from "@/pages/pc/word/components/Footer.vue";
 
 interface IProps {
   data: {
@@ -238,15 +238,14 @@ useEvents([
           @wrong="wordWrong"
           @complete="next"
       />
+      <Footer
+          :is-simple="isWordSimple(word)"
+          @toggle-simple="toggleWordSimpleWrapper"
+          :is-collect="isWordCollect(word)"
+          @toggle-collect="toggleWordCollect(word)"
+          @skip="next(false)"
+      />
     </div>
-
-    <Footer
-        :is-simple="isWordSimple(word)"
-        @toggle-simple="toggleWordSimpleWrapper"
-        :is-collect="isWordCollect(word)"
-        @toggle-collect="toggleWordCollect(word)"
-        @skip="next(false)"
-    />
     <div class="word-panel-wrapper">
       <Panel>
         <template v-slot="{active}">
@@ -302,21 +301,16 @@ useEvents([
   width: 100%;
   height: 100vh;
   display: flex;
+  justify-content: center;
   overflow: hidden;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
 }
 
 .practice-word {
-  overflow: auto;
-  flex: 1;
+  height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  gap: .4rem;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
   width: var(--toolbar-width);
 }
@@ -324,6 +318,7 @@ useEvents([
 .word-panel-wrapper {
   position: absolute;
   left: var(--panel-margin-left);
+  //left: 0;
   top: .8rem;
   z-index: 1;
   height: calc(100% - 1.5rem);

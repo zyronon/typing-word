@@ -265,6 +265,7 @@ let tab = $ref(2)
 .typing-word {
   width: 100%;
   flex: 1;
+  overflow: auto;
   word-break: break-word;
   position: relative;
   color: var(--color-font-2);
