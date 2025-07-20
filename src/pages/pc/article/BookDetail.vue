@@ -118,7 +118,7 @@ function formClose() {
       <div class="flex justify-between items-center relative">
         <BackIcon class="z-2" @click="isAdd ? $router.back():(isEdit = false)"/>
         <div class="absolute text-2xl text-align-center w-full">{{
-            runtimeStore.editDict.id ? '修改' : '添加'
+            runtimeStore.editDict.id ? '修改' : '创建'
           }}书籍
         </div>
       </div>

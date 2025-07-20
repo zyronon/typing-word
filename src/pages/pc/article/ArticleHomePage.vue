@@ -14,6 +14,7 @@ import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import Input from "@/pages/pc/components/Input.vue";
 import {computed} from "vue";
+import Book from "@/pages/pc/components/Book.vue";
 
 const {nav} = useNav()
 const base = useBaseStore()
@@ -59,6 +60,7 @@ function addBook() {
 function startStudy() {
   if (!base.currentBook.name) {
     showSearchDialog = true
+    ElMessage.warning('请先选择一本书籍')
     return
   }
   router.push('/study-article')
@@ -92,22 +94,13 @@ function startStudy() {
         我的
       </div>
       <div class="grid grid-cols-6 gap-4  mt-4">
-        <div class="book"
-             v-for="dict in store.article.bookList"
-             @click="getBookDetail2(dict)">
-          <div>
-            <div class="name">{{ dict.name }}</div>
-            <div class="desc">{{ dict.description }}</div>
-          </div>
-          <div class="absolute bottom-4 right-4">{{ dict.length }}篇</div>
-        </div>
-        <div class="book" @click="showAddChooseDialog = true">
-          <div class="center h-full">
-            <Icon
-                width="40px"
-                icon="fluent:add-20-filled"/>
-          </div>
-        </div>
+        <Book :is-add="false"
+              quantifier="篇"
+              :item="item"
+              v-for="item in store.article.bookList"
+              @click="getBookDetail2(item)"/>
+        <Book :is-add="true"
+              @click="showAddChooseDialog = true"/>
       </div>
     </div>
 
@@ -117,15 +110,11 @@ function startStudy() {
         <BaseIcon @click="showSearchDialog = true" icon="fluent:search-24-regular"/>
       </div>
       <div class="grid grid-cols-6 gap-4  mt-4">
-        <div class="book"
-             v-for="dict in enArticle"
-             @click="getBookDetail(dict)">
-          <div class="top">
-            <div class="name">{{ dict.name }}</div>
-            <div class="desc">{{ dict.description }}</div>
-          </div>
-          <div class="absolute bottom-4 right-4">{{ dict.length }}篇</div>
-        </div>
+        <Book :is-add="false"
+              quantifier="篇"
+              :item="item as Dict"
+              v-for="item in enArticle"
+              @click="getBookDetail(item)"/>
       </div>
     </div>
 

@@ -45,6 +45,9 @@ useEvent(EventKey.changeDict, () => {
 function study() {
   if (store.sdict.name) {
     nav('study-word', {}, currentStudy)
+  } else {
+    ElMessage.warning('请先选择一本词典')
+    dictListRef.startSearch()
   }
 }
 
@@ -74,9 +77,6 @@ async function getDictDetail(val: DictResource) {
 
 let dictListRef = $ref<any>()
 
-function addDict() {
-
-}
 
 </script>
 
@@ -152,7 +152,10 @@ function addDict() {
     <div class="card  flex flex-col">
       <div class="flex justify-between">
         <div class="title">我的词典</div>
-        <div class="color-blue cursor-pointer" @click="addDict">创建个人词典</div>
+        <div class="flex gap-4">
+          <div class="color-blue cursor-pointer" v-if="store.word.bookList.length > 3">管理词典</div>
+          <div class="color-blue cursor-pointer" @click="nav('dict-detail', {isAdd: true})">创建个人词典</div>
+        </div>
       </div>
       <div class="grid grid-cols-6 gap-4  mt-4">
         <Book :is-add="false"

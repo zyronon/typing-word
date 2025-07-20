@@ -1,6 +1,4 @@
 <script setup lang="tsx">
-
-
 import {getDefaultWord} from "@/types";
 import type {Word} from "@/types";
 
@@ -36,13 +34,6 @@ let list = $computed({
     runtimeStore.editDict.words = v
   }
 })
-
-onMounted(() => {
-  if (!runtimeStore.editDict.id) {
-    router.push("/word")
-  }
-})
-
 
 const getDefaultFormWord = () => {
   return {
@@ -181,9 +172,11 @@ function syncDictInMyStudyList(study = false) {
   _nextTick(() => {
     let rIndex = base.word.bookList.findIndex(v => v.id === runtimeStore.editDict.id)
     let temp = cloneDeep(runtimeStore.editDict);
+    console.log(temp)
     temp.custom = true
+    temp.length = temp.words.length
     if (rIndex > -1) {
-      base.word.bookList[base.word.studyIndex] = temp
+      base.word.bookList[rIndex] = temp
       if (study) base.word.studyIndex = rIndex
     } else {
       base.word.bookList.push(temp)
@@ -197,6 +190,7 @@ async function onSubmitWord() {
   await wordFormRef.validate((valid) => {
     if (valid) {
       let data: any = convertToWord(wordForm)
+      //todo 可以检查的更准确些，比如json对比
       if (data.id) {
         let r = list.find(v => v.id === data.id)
         if (r) {
@@ -227,6 +221,9 @@ async function onSubmitWord() {
 function delWord(id: string, isBatch = false) {
   let rIndex2 = list.findIndex(v => v.id === id)
   if (rIndex2 > -1) {
+    if (id === wordForm.id) {
+      wordForm = getDefaultFormWord()
+    }
     list.splice(rIndex2, 1)
   }
   if (!isBatch) syncDictInMyStudyList()
@@ -273,6 +270,10 @@ const showBookDetail = computed(() => {
 onMounted(() => {
   if (route.query?.isAdd) {
     isAdd = true
+  } else {
+    if (!runtimeStore.editDict.id) {
+      router.push("/word")
+    }
   }
 })
 
@@ -444,7 +445,7 @@ defineRender(() => {
                 <div class="flex justify-between items-center relative">
                   <BackIcon class="z-2" onClick={() => isAdd ? router.back() : (isEdit = false)}/>
                   <div class="absolute text-2xl text-align-center w-full">
-                    {runtimeStore.editDict.id ? '修改' : '添加'}词典
+                    {runtimeStore.editDict.id ? '修改' : '创建'}词典
                   </div>
                 </div>
                 <div class="center">

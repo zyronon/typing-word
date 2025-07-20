@@ -41,34 +41,32 @@ const dictRules = reactive<FormRules>({
 async function onSubmit() {
   await dictFormRef.validate((valid) => {
     if (valid) {
-      let data: Dict = cloneDeep({
-        ...getDefaultDict(),
-        ...dictForm,
-      })
+      let data: Dict = getDefaultDict(dictForm)
       let source = [store.article, store.word][props.isBook ? 0 : 1]
       //任意修改，都将其变为自定义词典
+      //todo 可以检查的更准确些，比如json对比
       data.custom = true
-
       if (props.isAdd) {
         data.id = 'custom-dict-' + Date.now()
-        //TODO 允许同名？
         if (source.bookList.find(v => v.name === data.name)) {
-          return ElMessage.warning('已有相同名称书籍！')
+          ElMessage.warning('已有相同名称！')
+          return
         } else {
-          source.bookList.push(data)
+          source.bookList.push(cloneDeep(data))
           runtimeStore.editDict = data
           emit('submit')
           ElMessage.success('添加成功')
         }
       } else {
         let rIndex = source.bookList.findIndex(v => v.id === data.id)
+        runtimeStore.editDict = data
         if (rIndex > -1) {
           source.bookList[rIndex] = cloneDeep(data)
-          runtimeStore.editDict = cloneDeep(data)
           emit('submit')
           ElMessage.success('修改成功')
         } else {
-          ElMessage.warning('修改失败')
+          source.bookList.push(cloneDeep(data))
+          ElMessage.success('修改成功并加入我的词典')
         }
       }
       console.log('submit!', data)

@@ -17,7 +17,7 @@ defineProps<{
         <div>{{ item?.name }}</div>
         <div class="text-sm line-clamp-3" v-opacity="item.name !== item.description">{{ item?.description }}</div>
       </div>
-      <div class="absolute bottom-4 right-4">{{ item?.words?.length }}{{ quantifier }}</div>
+      <div class="absolute bottom-4 right-4">{{ item?.length }}{{ quantifier }}</div>
     </template>
     <div v-else class="center h-full">
       <Icon
