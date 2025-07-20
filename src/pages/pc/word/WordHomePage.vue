@@ -18,7 +18,6 @@ import DictGroup from "@/pages/pc/components/list/DictGroup.vue";
 import {cloneDeep} from "lodash-es";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {getArticleBookDataByUrl} from "@/utils/article.ts";
-import Typing from "@/pages/pc/word/components/Typing.vue";
 
 const store = useBaseStore()
 const router = useRouter()
@@ -46,7 +45,9 @@ useEvent(EventKey.changeDict, () => {
 })
 
 function study() {
-  nav('study-word', {}, currentStudy)
+  if (store.sdict.name) {
+    nav('study-word', {}, currentStudy)
+  }
 }
 
 let show = $ref(false)
@@ -83,16 +84,16 @@ function addDict() {
 
 <template>
   <BasePage>
-    <div class="card flex gap-10"   v-loading="!store.load">
+    <div class="card flex gap-10">
       <div class="flex-1 flex flex-col gap-2">
         <div class="flex">
           <div class="bg-slate-200 px-3 h-14 rounded-md flex items-center">
-            <span class="text-xl font-bold">{{ store.sdict.name }}</span>
+            <span class="text-xl font-bold">{{ store.sdict.name || '请选择书籍开始学习' }}</span>
             <BaseIcon
                 title="切换词典"
-                icon="gg:arrows-exchange"
+                :icon="store.sdict.name ? 'gg:arrows-exchange':'fluent:add-20-filled'"
                 class="ml-4"
-                @click="router.push('/dict')"/>
+                @click="dictListRef.startSearch()"/>
           </div>
         </div>
         <div class="">
@@ -142,6 +143,7 @@ function addDict() {
           个单词
         </div>
         <div class="rounded-xl bg-slate-800 flex items-center gap-2 py-3 px-5 text-white cursor-pointer"
+             :class="store.sdict.name || 'opacity-70 cursor-not-allowed'"
              @click="study">
           <span>开始学习</span>
           <Icon icon="icons8:right-round" class="text-2xl"/>
@@ -156,7 +158,10 @@ function addDict() {
       </div>
       <div class="grid grid-cols-6 gap-4  mt-4">
         <div class="book" v-for="item in store.word.bookList" @click="goDictDetail2(item)">
-          <span>{{ item.name }}</span>
+          <div>
+            <div>{{ item.name }}</div>
+            <div>{{ item.description }}</div>
+          </div>
           <div class="absolute bottom-4 right-4">{{ item.words.length }}个词</div>
         </div>
         <div class="book" @click="dictListRef.startSearch()">

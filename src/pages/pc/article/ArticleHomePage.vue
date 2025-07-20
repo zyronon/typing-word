@@ -72,13 +72,13 @@ function startStudy() {
         <div class="bg-slate-200 p-3 gap-4 rounded-md cursor-pointer flex items-center">
           <span class="text-lg font-bold"
                 @click="getBookDetail2(base.currentBook)">{{
-              base.currentBook.name ?? '请选择书籍开始学习'
+              base.currentBook.name || '请选择书籍开始学习'
             }}</span>
           <BaseIcon @click="showSearchDialog = true"
-                    :icon="base.currentBook.name?'gg:arrows-exchange':'fluent:add-20-filled'"/>
+                    :icon="base.currentBook.name ? 'gg:arrows-exchange':'fluent:add-20-filled'"/>
         </div>
         <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
-             :class="base.currentBook.name??'opacity-70 cursor-not-allowed'"
+             :class="base.currentBook.name || 'opacity-70 cursor-not-allowed'"
              @click="startStudy">
           开始学习
         </div>

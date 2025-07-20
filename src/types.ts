@@ -46,6 +46,7 @@ export type Word = {
 
 export function getDefaultWord(val: Partial<Word> = {}): Word {
   return {
+    custom: false,
     "word": "",
     "phonetic0": "",
     "phonetic1": "",

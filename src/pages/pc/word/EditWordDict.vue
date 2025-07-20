@@ -1,5 +1,9 @@
 <script setup lang="tsx">
 
+
+import {getDefaultWord} from "@/types";
+import type {Word} from "@/types";
+
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {computed, onMounted, reactive} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
@@ -8,7 +12,6 @@ import {nanoid} from "nanoid";
 import BaseIcon from "@/components/BaseIcon.vue";
 import BaseTable from "@/pages/pc/components/BaseTable.vue";
 import WordItem from "@/pages/pc/components/WordItem.vue";
-import type {Word} from "@/types.ts";
 import type {FormInstance, FormRules} from "element-plus";
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
 import BackIcon from "@/components/BackIcon.vue";
@@ -64,40 +67,144 @@ const DefaultFormWord = {
   etymology: '',
 }
 let wordForm = $ref(cloneDeep(DefaultFormWord))
-const wordFormRef = $ref<FormInstance>()
+let wordFormRef = $ref<FormInstance>()
 const wordRules = reactive<FormRules>({
-  name: [
+  word: [
     {required: true, message: '请输入单词', trigger: 'blur'},
     {max: 30, message: '名称不能超过30个字符', trigger: 'blur'},
   ],
 })
 
+//从字符串里面转换为Word格式
+function convertToWord(raw) {
+  const safeString = (str) => (typeof str === 'string' ? str.trim() : '');
+  const safeSplit = (str, sep) =>
+      safeString(str) ? safeString(str).split(sep).filter(Boolean) : [];
+
+  // 1. trans
+  const trans = safeSplit(raw.trans, '\n').map(line => {
+    const match = line.match(/^([^\s.]+\.?)\s*(.*)$/);
+    if (match) {
+      let pos = safeString(match[1]);
+      let cn = safeString(match[2]);
+
+      // 如果 pos 不是常规词性（不以字母开头），例如 "【名】"
+      if (!/^[a-zA-Z]+\.?$/.test(pos)) {
+        cn = safeString(line); // 整行放到 cn
+        pos = ''; // pos 置空
+      }
+
+      return {pos, cn};
+    }
+    return {pos: '', cn: safeString(line)};
+  });
+
+  // 2. sentences
+  const sentences = safeSplit(raw.sentences, '\n\n').map(block => {
+    const [c, cn] = block.split('\n');
+    return {c: safeString(c), cn: safeString(cn)};
+  });
+
+  // 3. phrases
+  const phrases = safeSplit(raw.phrases, '\n\n').map(block => {
+    const [c, cn] = block.split('\n');
+    return {c: safeString(c), cn: safeString(cn)};
+  });
+
+  // 4. synos
+  const synos = safeSplit(raw.synos, '\n\n').map(block => {
+    const lines = block.split('\n').map(safeString);
+    const [posCn, wsStr] = lines;
+    let pos = '';
+    let cn = '';
+
+    if (posCn) {
+      const posMatch = posCn.match(/^([a-zA-Z.]+)(.*)$/);
+      pos = posMatch ? safeString(posMatch[1]) : '';
+      cn = posMatch ? safeString(posMatch[2]) : safeString(posCn);
+    }
+    const ws = wsStr ? wsStr.split('/').map(safeString) : [];
+
+    return {pos, cn, ws};
+  });
+
+  // 5. relWords
+  const relWordsText = safeString(raw.relWords);
+  let root = '';
+  const rels = [];
+
+  if (relWordsText) {
+    const relLines = relWordsText.split('\n').filter(Boolean);
+    if (relLines.length > 0) {
+      root = safeString(relLines[0].replace(/^词根:/, ''));
+      let currentPos = '';
+      let currentWords = [];
+
+      for (let i = 1; i < relLines.length; i++) {
+        const line = relLines[i].trim();
+        if (!line) continue;
+
+        if (/^[a-z]+\./i.test(line)) {
+          if (currentPos && currentWords.length > 0) {
+            rels.push({pos: currentPos, words: currentWords});
+          }
+          currentPos = safeString(line.replace(':', ''));
+          currentWords = [];
+        } else if (line.includes(':')) {
+          const [c, cn] = line.split(':');
+          currentWords.push({c: safeString(c), cn: safeString(cn)});
+        }
+      }
+      if (currentPos && currentWords.length > 0) {
+        rels.push({pos: currentPos, words: currentWords});
+      }
+    }
+  }
+
+  // 6. etymology
+  const etymology = safeSplit(raw.etymology, '\n\n').map(block => {
+    const lines = block.split('\n').map(safeString);
+    const t = lines.shift() || '';
+    const d = lines.join('\n').trim();
+    return {t, d};
+  });
+
+  return getDefaultWord({
+    word: safeString(raw.word),
+    phonetic0: safeString(raw.phonetic0),
+    phonetic1: safeString(raw.phonetic1),
+    trans,
+    sentences,
+    phrases,
+    synos,
+    relWords: {root, rels},
+    etymology,
+    custom: true
+  });
+}
+
 //TODO trans结构变了，
 async function onSubmitWord() {
   await wordFormRef.validate((valid, fields) => {
     if (valid) {
-      let data: any = cloneDeep(wordForm)
-      if (data.trans) {
-        data.trans = data.trans.split('\n');
-      } else {
-        data.trans = []
-      }
+      let data: any = convertToWord(wordForm)
       if (wordFormData.type === FormMode.Add) {
         data.id = nanoid(6)
         data.checked = false
         let r = list.find(v => v.word === wordForm.word)
-        // if (r) return ElMessage.warning('已有相同名称单词！')
-        // else list.push(data)
-        list.push(data)
+        if (r) return ElMessage.warning('已有相同名称单词！')
+        else list.push(data)
         ElMessage.success('添加成功')
         wordForm = cloneDeep(DefaultFormWord)
         // setTimeout(wordListRef?.scrollToBottom, 100)
       } else {
         let r = list.find(v => v.id === wordFormData.id)
-        if (r) assign(r, data)
-        r = list.find(v => v.id === wordFormData.id)
-        if (r) assign(r, data)
-        ElMessage.success('修改成功')
+        if (r) {
+          assign(r, data)
+          ElMessage.success('修改成功')
+        }else {
+          ElMessage.success('修改失败，未找到单词')
+        }
       }
     } else {
       ElMessage.warning('请填写完整')
@@ -129,7 +236,9 @@ function editWord(word: Word) {
   wordForm.sentences = word.sentences.map(v => (v.c + "\n" + v.cn).replaceAll('"', '')).join('\n\n')
   wordForm.phrases = word.phrases.map(v => (v.c + "\n" + v.cn).replaceAll('"', '')).join('\n\n')
   wordForm.synos = word.synos.map(v => (v.pos + v.cn + "\n" + v.ws.join('/')).replaceAll('"', '')).join('\n\n')
-  wordForm.relWords = word.relWords.rels.map(v => (v.pos + "\n" + v.words.map(v => (v.c + "\n" + v.cn))).replaceAll('"', '')).join('\n\n')
+  wordForm.relWords = '词根:' + word.relWords.root + '\n\n' +
+      word.relWords.rels.map(v => (v.pos + "\n" + v.words.map(v => (v.c + ':' + v.cn)).join('\n')).replaceAll('"', '')).join('\n\n')
+  wordForm.etymology = word.etymology.map(v => (v.t + '\n' + v.d).replaceAll('"', '')).join('\n\n')
 }
 
 function addWord() {
@@ -231,13 +340,13 @@ defineRender(() => {
                   </div>
                   {
                     wordFormData.type ? (
-                        <div class="flex-1 ml-4 overflow-auto">
+                        <div class="flex-1 flex flex-col ml-4">
                           <div class="common-title">
                             {wordFormData.type === FormMode.Add ? '添加' : '修改'}单词
                           </div>
                           <el-form
-                              className="form"
-                              ref="wordFormRef"
+                              class="flex-1 overflow-auto pr-2"
+                              ref={e => wordFormRef = e}
                               rules={wordRules}
                               model={wordForm}
                               label-width="7rem">
@@ -247,13 +356,13 @@ defineRender(() => {
                                   onUpdate:modelValue={e => wordForm.word = e}
                               />
                             </el-form-item>
-                            <el-form-item label="音标/发音①">
+                            <el-form-item label="英音音标">
                               <el-input
                                   modelValue={wordForm.phonetic0}
                                   onUpdate:modelValue={e => wordForm.phonetic0 = e}
                               />
                             </el-form-item>
-                            <el-form-item label="音标/发音②">
+                            <el-form-item label="美音音标">
                               <el-input
                                   modelValue={wordForm.phonetic1}
                                   onUpdate:modelValue={e => wordForm.phonetic1 = e}/>
@@ -262,7 +371,7 @@ defineRender(() => {
                               <el-input
                                   modelValue={wordForm.trans}
                                   onUpdate:modelValue={e => wordForm.trans = e}
-                                  placeholder="一行一个翻译，前面词性，后面内容（n.取消）；多个翻译请换行"
+                                  placeholder="一行一个翻译，前面词性，后面内容（如n.取消）；多个翻译请换行"
                                   autosize={{minRows: 6, maxRows: 10}}
                                   type="textarea"/>
                             </el-form-item>
@@ -286,35 +395,35 @@ defineRender(() => {
                               <el-input
                                   modelValue={wordForm.synos}
                                   onUpdate:modelValue={e => wordForm.synos = e}
-                                  placeholder="一行原文，一行译文；多个请换两行"
-                                  autosize={{minRows: 6, maxRows: 10}}
+                                  placeholder="请参考已有单词格式"
+                                  autosize={{minRows: 6, maxRows: 20}}
                                   type="textarea"/>
                             </el-form-item>
                             <el-form-item label="同根词">
                               <el-input
                                   modelValue={wordForm.relWords}
                                   onUpdate:modelValue={e => wordForm.relWords = e}
-                                  placeholder="一行原文，一行译文；多个请换两行"
-                                  autosize={{minRows: 6, maxRows: 10}}
+                                  placeholder="请参考已有单词格式"
+                                  autosize={{minRows: 6, maxRows: 20}}
                                   type="textarea"/>
                             </el-form-item>
                             <el-form-item label="词源">
                               <el-input
                                   modelValue={wordForm.etymology}
                                   onUpdate:modelValue={e => wordForm.etymology = e}
-                                  placeholder="一行原文，一行译文；多个请换两行"
+                                  placeholder="请参考已有单词格式"
                                   autosize={{minRows: 6, maxRows: 10}}
                                   type="textarea"/>
                             </el-form-item>
-                            <div class="center">
-                              <el-button
-                                  onClick={closeWordForm}>关闭
-                              </el-button>
-                              <el-button type="primary"
-                                         onClick={onSubmitWord}>保存
-                              </el-button>
-                            </div>
                           </el-form>
+                          <div class="center">
+                            <el-button
+                                onClick={closeWordForm}>关闭
+                            </el-button>
+                            <el-button type="primary"
+                                       onClick={onSubmitWord}>保存
+                            </el-button>
+                          </div>
                         </div>
                     ) : null
                   }

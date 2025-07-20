@@ -1,8 +1,6 @@
 <script setup lang="ts">
 
-import {onMounted, watch} from "vue";
-import {usePracticeStore} from "@/stores/practice.ts";
-import {useBaseStore} from "@/stores/base.ts";
+import {onMounted} from "vue";
 
 import Statistics from "@/pages/pc/word/Statistics.vue";
 import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts";
@@ -14,11 +12,12 @@ import useTheme from "@/hooks/theme.ts";
 import TypingWord from "@/pages/pc/word/components/TypingWord.vue";
 import {getCurrentStudyWord} from "@/hooks/dict.ts";
 import {cloneDeep} from "lodash-es";
+import {useRouter} from "vue-router";
 
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 const {toggleTheme} = useTheme()
-
+const router = useRouter()
 
 function next() {
   emitter.emit(EventKey.resetWord)
@@ -59,6 +58,8 @@ onMounted(() => {
   settingStore.dictation = false
   if (runtimeStore.routeData) {
     studyData = runtimeStore.routeData
+  } else {
+    router.push('/word')
   }
 })
 
