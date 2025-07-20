@@ -43,8 +43,18 @@ useEvent(EventKey.changeDict, () => {
 })
 
 function study() {
-  if (store.sdict.name) {
+  if (store.sdict.id) {
     nav('study-word', {}, currentStudy)
+  } else {
+    ElMessage.warning('请先选择一本词典')
+    dictListRef.startSearch()
+  }
+}
+
+function setPerDayStudyNumber() {
+  if (store.sdict.id) {
+    show = true
+    tempPerDayStudyNumber = store.sdict.perDayStudyNumber
   } else {
     ElMessage.warning('请先选择一本词典')
     dictListRef.startSearch()
@@ -134,9 +144,9 @@ let dictListRef = $ref<any>()
           每日目标
           <div
               style="color:#ac6ed1;"
-              @click="show = true;tempPerDayStudyNumber = store.sdict.perDayStudyNumber"
+              @click="setPerDayStudyNumber"
               class="bg-slate-200 px-2 h-10 flex center text-2xl rounded cursor-pointer">
-            {{ store.sdict.perDayStudyNumber }}
+            {{ store.sdict.id ? store.sdict.perDayStudyNumber : 0 }}
           </div>
           个单词
         </div>
@@ -222,7 +232,7 @@ let dictListRef = $ref<any>()
             }}</span>天完成学习
         </div>
         <div>
-          要达到最佳效果，就坚持每天学习。每天学20个单词是最理想的，但就算再忙的时候每天学10个也有助你养成良好的学习习惯。
+          想要达到最佳效果，就要坚持每天学习。每天学20个单词是最理想的，但就算再忙的时候每天学10个也有助你养成良好的学习习惯
         </div>
       </div>
     </Dialog>

@@ -476,7 +476,8 @@ footer {
 }
 
 .book {
-  @apply p-4 rounded-md bg-slate-200 relative cursor-pointer h-40 hover:bg-red anim flex flex-col justify-between;
+  @extend .anim;
+  @apply p-4 rounded-md bg-slate-200 relative cursor-pointer h-40  hover:bg-orange-200  flex flex-col justify-between;
 }
 
 .line {

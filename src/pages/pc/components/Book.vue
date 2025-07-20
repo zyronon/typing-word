@@ -6,6 +6,7 @@ defineProps<{
   item?: Dict
   quantifier?: string
   isAdd: boolean
+  showCheckbox?: boolean
 }>()
 
 </script>
@@ -18,6 +19,7 @@ defineProps<{
         <div class="text-sm line-clamp-3" v-opacity="item.name !== item.description">{{ item?.description }}</div>
       </div>
       <div class="absolute bottom-4 right-4">{{ item?.length }}{{ quantifier }}</div>
+      <el-checkbox v-if="showCheckbox" class="absolute left-3 bottom-2"/>
     </template>
     <div v-else class="center h-full">
       <Icon
