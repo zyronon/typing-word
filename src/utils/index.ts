@@ -288,7 +288,7 @@ export function _parseLRC(lrc: string): { start: number, end: number, text: stri
   return parsed;
 }
 
-export async function _getDictDataByUrl(val: DictResource) {
+export async function _getDictDataByUrl(val: DictResource): Promise<Dict> {
   let dictResourceUrl = `./dicts/${val.language}/word/${val.url}`.replace('.json', '_v2.json');
   let s = await getDictFile(dictResourceUrl)
   let words = cloneDeep(s.map(v => {

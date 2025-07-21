@@ -8,7 +8,7 @@ import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {_getAccomplishDate, _getAccomplishDays, _getDictDataByUrl, useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import {Dict, DictResource} from "@/types.ts";
+import {Dict, DictResource, getDefaultDict} from "@/types.ts";
 import {onMounted} from "vue";
 import {getCurrentStudyWord} from "@/hooks/dict.ts";
 import {EventKey, useEvent} from "@/utils/eventBus.ts";
@@ -16,6 +16,7 @@ import DictListPanel from "@/pages/pc/components/DictListPanel.vue";
 import {cloneDeep} from "lodash-es";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import Book from "@/pages/pc/components/Book.vue";
+import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
 
 const store = useBaseStore()
 const router = useRouter()
@@ -74,19 +75,39 @@ function selectDict(e) {
   getDictDetail(e.dict)
 }
 
-async function goDictDetail2(val: Dict) {
-  runtimeStore.editDict = cloneDeep(val)
-  nav('dict-detail', {})
-}
-
 async function getDictDetail(val: DictResource) {
-  let r = await _getDictDataByUrl(val)
-  runtimeStore.editDict = cloneDeep(r)
+  runtimeStore.editDict = getDefaultDict(val)
   nav('dict-detail', {})
 }
 
 let dictListRef = $ref<any>()
+let isMultiple = $ref(false)
+let selectIds = $ref([])
 
+function handleBatchDel() {
+  selectIds.forEach(id => {
+    let r = store.word.bookList.findIndex(v => v.id === id)
+    if (r !== -1) {
+      if (store.word.studyIndex === r) {
+        store.word.studyIndex = -1
+      }
+      if (store.word.studyIndex > r) {
+        store.word.studyIndex--
+      }
+      store.word.bookList.splice(r, 1)
+    }
+  })
+  ElMessage.success("删除成功！")
+}
+
+function toggleSelect(item) {
+  let rIndex = selectIds.findIndex(v => v === item.id)
+  if (rIndex > -1) {
+    selectIds.splice(rIndex, 1)
+  } else {
+    selectIds.push(item.id)
+  }
+}
 
 </script>
 
@@ -162,8 +183,22 @@ let dictListRef = $ref<any>()
     <div class="card  flex flex-col">
       <div class="flex justify-between">
         <div class="title">我的词典</div>
-        <div class="flex gap-4">
-          <div class="color-blue cursor-pointer" v-if="store.word.bookList.length > 3">管理词典</div>
+        <div class="flex gap-4 items-center">
+          <PopConfirm title="确认删除所有选中词典？"
+                      @confirm="handleBatchDel"
+                      v-if="selectIds.length"
+
+          >
+            <BaseIcon
+                class="del"
+                title="删除"
+                icon="solar:trash-bin-minimalistic-linear"/>
+          </PopConfirm>
+
+          <div class="color-blue cursor-pointer" v-if="store.word.bookList.length > 3"
+               @click="isMultiple = !isMultiple;selectIds = []"
+          >{{ isMultiple ? '取消' : '管理词典' }}
+          </div>
           <div class="color-blue cursor-pointer" @click="nav('dict-detail', {isAdd: true})">创建个人词典</div>
         </div>
       </div>
@@ -171,8 +206,11 @@ let dictListRef = $ref<any>()
         <Book :is-add="false"
               quantifier="个词"
               :item="item"
-              v-for="item in store.word.bookList"
-              @click="goDictDetail2(item)"/>
+              :checked="selectIds.includes(item.id)"
+              @check="() => toggleSelect(item)"
+              :show-checkbox="isMultiple && j>=3"
+              v-for="(item,j) in store.word.bookList"
+              @click="getDictDetail(item)"/>
         <Book :is-add="true"
               @click="dictListRef.startSearch()"/>
       </div>

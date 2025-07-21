@@ -71,11 +71,11 @@ let selectAll = $computed(() => {
 })
 
 function toggleSelect(item) {
-  let rIndex = selectIds.findIndex(v => v === item.word)
+  let rIndex = selectIds.findIndex(v => v === item.id)
   if (rIndex > -1) {
     selectIds.splice(rIndex, 1)
   } else {
-    selectIds.push(item.word)
+    selectIds.push(item.id)
   }
 }
 
@@ -83,7 +83,7 @@ function toggleSelectAll() {
   if (selectAll) {
     selectIds = []
   } else {
-    selectIds = currentList.map(v => v.word)
+    selectIds = currentList.map(v => v.id)
   }
 }
 
@@ -118,7 +118,7 @@ const s = useSlots()
 defineRender(
     () => {
       const d = (item) => <el-checkbox
-          modelValue={selectIds.includes(item.word)}
+          modelValue={selectIds.includes(item.id)}
           onChange={() => toggleSelect(item)}
           size="large"/>
 

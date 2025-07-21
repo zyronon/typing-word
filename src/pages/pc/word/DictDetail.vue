@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-import {getDefaultWord} from "@/types";
+import {getDefaultDict, getDefaultWord} from "@/types";
 import type {Word} from "@/types";
 
 import BasePage from "@/pages/pc/components/BasePage.vue";
@@ -17,7 +17,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import {useRoute, useRouter} from "vue-router";
 import {useBaseStore} from "@/stores/base.ts";
 import EditBook from "@/pages/pc/article/components/EditBook.vue";
-import {_nextTick} from "@/utils";
+import {_getDictDataByUrl, _nextTick} from "@/utils";
 
 const runtimeStore = useRuntimeStore()
 const base = useBaseStore()
@@ -270,9 +270,18 @@ const showBookDetail = computed(() => {
 onMounted(() => {
   if (route.query?.isAdd) {
     isAdd = true
+    runtimeStore.editDict = getDefaultDict()
   } else {
     if (!runtimeStore.editDict.id) {
       router.push("/word")
+    } else {
+      if (!runtimeStore.editDict.words.length && !runtimeStore.editDict.custom) {
+        loading = true
+        _getDictDataByUrl(runtimeStore.editDict).then(r => {
+          loading = false
+          runtimeStore.editDict = r
+        })
+      }
     }
   }
 })
@@ -282,7 +291,12 @@ function formClose() {
   else router.back()
 }
 
-function addMyStudyList() {
+async function addMyStudyList() {
+  base.word.bookList.slice(3).map(v => {
+    if (!v.custom) {
+      v.words = []
+    }
+  })
   let rIndex = base.word.bookList.findIndex(v => v.name === runtimeStore.editDict.name)
   if (rIndex > -1) {
     base.word.studyIndex = rIndex
