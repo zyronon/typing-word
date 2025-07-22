@@ -9,7 +9,7 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {getDefaultWord, ShortcutKey, StudyData, Word} from "@/types.ts";
 import {useOnKeyboardEventListener, useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
-import {getCurrentStudyWord, useWordOptions} from "@/hooks/dict.ts";
+import {useWordOptions} from "@/hooks/dict.ts";
 import {cloneDeep, shuffle} from "lodash-es";
 import {useRouter} from "vue-router";
 import {Icon} from "@iconify/vue";
@@ -23,46 +23,11 @@ import Empty from "@/components/Empty.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 
-const settingStore = useSettingStore()
-const runtimeStore = useRuntimeStore()
-const {toggleTheme} = useTheme()
-const router = useRouter()
-
 interface IProps {
   new: Word[],
   review: Word[],
   write: Word[],
 }
-
-let studyData = $ref<IProps>({
-  new: [],
-  review: [],
-  write: []
-})
-
-//TODO 需要判断是否已忽略
-function repeat() {
-  // console.log('repeat')
-  settingStore.dictation = false
-  emitter.emit(EventKey.resetWord)
-  studyData = cloneDeep(studyData)
-}
-
-
-onMounted(() => {
-  if (runtimeStore.routeData) {
-    studyData = runtimeStore.routeData
-  } else {
-    router.push('/word')
-  }
-})
-
-
-useStartKeyboardEventListener()
-
-const typingRef: any = $ref()
-const store = useBaseStore()
-const statStore = usePracticeStore()
 
 const {
   isWordCollect,
@@ -70,8 +35,20 @@ const {
   isWordSimple,
   toggleWordSimple
 } = useWordOptions()
-
+const settingStore = useSettingStore()
+const runtimeStore = useRuntimeStore()
+const {toggleTheme} = useTheme()
+const router = useRouter()
+const store = useBaseStore()
+const statStore = usePracticeStore()
+const typingRef: any = $ref()
 let allWrongWords = new Set()
+
+let studyData = $ref<IProps>({
+  new: [],
+  review: [],
+  write: []
+})
 
 let data = $ref<StudyData>({
   index: 0,
@@ -80,6 +57,14 @@ let data = $ref<StudyData>({
 })
 
 provide('studyData', data)
+
+onMounted(() => {
+  if (runtimeStore.routeData) {
+    studyData = runtimeStore.routeData
+  } else {
+    router.push('/word')
+  }
+})
 
 watch(() => studyData, () => {
   data.words = studyData.new
@@ -175,11 +160,12 @@ function onTypeWrong() {
 }
 
 function onKeyUp(e: KeyboardEvent) {
+  // console.log('onKeyUp', e)
   typingRef.hideWord()
 }
 
 async function onKeyDown(e: KeyboardEvent) {
-  // console.log('e', e)
+  // console.log('onKeyDown', e)
   switch (e.key) {
     case 'Backspace':
       typingRef.del()
@@ -187,7 +173,17 @@ async function onKeyDown(e: KeyboardEvent) {
   }
 }
 
+useStartKeyboardEventListener()
+
 useOnKeyboardEventListener(onKeyDown, onKeyUp)
+
+//TODO 需要判断是否已忽略
+function repeat() {
+  // console.log('repeat')
+  settingStore.dictation = false
+  emitter.emit(EventKey.resetWord)
+  studyData = cloneDeep(studyData)
+}
 
 //TODO 略过忽略的单词上
 function prev() {

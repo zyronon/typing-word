@@ -1,4 +1,4 @@
-import {onMounted, onUnmounted, watch,onDeactivated} from "vue";
+import {onMounted, onUnmounted, watch, onDeactivated} from "vue";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -52,7 +52,6 @@ export function useStartKeyboardEventListener() {
   const settingStore = useSettingStore()
 
   useEventListener('keydown', (e: KeyboardEvent) => {
-    // console.log('e',e.keyCode,e.code)
     if (!runtimeStore.disableEventListener) {
       e.preventDefault()
       let shortcutKey = getShortcutKey(e)
