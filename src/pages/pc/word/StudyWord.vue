@@ -9,7 +9,7 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {getDefaultWord, ShortcutKey, StudyData, Word} from "@/types.ts";
 import {useOnKeyboardEventListener, useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
-import {useWordOptions} from "@/hooks/dict.ts";
+import {getCurrentStudyWord, useWordOptions} from "@/hooks/dict.ts";
 import {cloneDeep, shuffle} from "lodash-es";
 import {useRouter} from "vue-router";
 import {Icon} from "@iconify/vue";
@@ -245,6 +245,9 @@ function togglePanel() {
 useEvents([
   [EventKey.repeat, repeat],
   [EventKey.next, next],
+  [EventKey.changeDict, () => {
+    studyData = getCurrentStudyWord()
+  }],
 
   [ShortcutKey.ShowWord, show],
   [ShortcutKey.Previous, prev],
@@ -324,23 +327,23 @@ useEvents([
                 <BaseIcon
                     v-if="!isWordCollect(item)"
                     class="collect"
-                    @click="toggleWordCollect(item)"
+                    @click.stop="toggleWordCollect(item)"
                     title="收藏" icon="ph:star"/>
                 <BaseIcon
                     v-else
                     class="fill"
-                    @click="toggleWordCollect(item)"
+                    @click.stop="toggleWordCollect(item)"
                     title="取消收藏" icon="ph:star-fill"/>
                 <BaseIcon
                     v-if="!isWordSimple(item)"
                     class="easy"
-                    @click="toggleWordSimple(item)"
+                    @click.stop="toggleWordSimple(item)"
                     title="标记为已掌握"
                     icon="material-symbols:check-circle-outline-rounded"/>
                 <BaseIcon
                     v-else
                     class="fill"
-                    @click="toggleWordSimple(item)"
+                    @click.stop="toggleWordSimple(item)"
                     title="取消标记已掌握"
                     icon="material-symbols:check-circle-rounded"/>
               </template>

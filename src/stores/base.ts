@@ -183,7 +183,26 @@ export const useBaseStore = defineStore('base', {
         resolve(true)
       })
     },
-    async changeDict() {
+    //TODO
+    changeDict(val: Dict) {
+      //把其他的词典的单词数据都删掉，全保存在内存里太卡了
+      this.word.bookList.slice(3).map(v => {
+        if (!v.custom) {
+          v.words = []
+        }
+      })
+      let rIndex = this.word.bookList.findIndex(v => v.id === val.id)
+      if (val.words.length < val.perDayStudyNumber) {
+        val.perDayStudyNumber = val.words.length
+      }
+      if (rIndex > -1) {
+        this.word.studyIndex = rIndex
+        this.word.bookList[this.word.studyIndex].words = val.words
+        this.word.bookList[this.word.studyIndex].perDayStudyNumber = val.perDayStudyNumber
+      } else {
+        this.word.bookList.push(cloneDeep(val))
+        this.word.studyIndex = this.word.bookList.length - 1
+      }
     },
   },
 })

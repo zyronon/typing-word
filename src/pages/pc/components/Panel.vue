@@ -40,10 +40,9 @@ watch(() => settingStore.showPanel, n => {
   }
 })
 
-let practiceType = $ref(DictType.word)
-
 function changeIndex(dict: Dict) {
-  store.changeDict(dict, practiceType)
+  store.changeDict(dict)
+  emitter.emit(EventKey.changeDict)
 }
 
 useEvent(EventKey.changeDict, () => {
@@ -69,7 +68,7 @@ const showCollectToggleButton = $computed(() => {
 
 function changeCollect() {
   if (props.type === DictType.word) {
-    store.currentStudy.word.dictIndex = -store.collectWord.index
+    changeIndex(store.collectWord)
   } else {
 
   }
@@ -125,7 +124,7 @@ function changeCollect() {
                 <template v-slot:suffix="{item,index}">
                   <BaseIcon
                       class="del"
-                      @click="toggleWordCollect(item)"
+                      @click.stop="toggleWordCollect(item)"
                       title="移除"
                       icon="solar:trash-bin-minimalistic-linear"/>
                 </template>
@@ -139,7 +138,7 @@ function changeCollect() {
                 <template v-slot:suffix="{item,index}">
                   <BaseIcon
                       class="del"
-                      @click="toggleArticleCollect(item)"
+                      @click.stop="toggleArticleCollect(item)"
                       title="移除"
                       icon="solar:trash-bin-minimalistic-linear"/>
                 </template>
@@ -166,12 +165,12 @@ function changeCollect() {
             </div>
             <WordList
                 v-if="store.known.words.length"
-                class="word-list"
+                class="word-list pl-4"
                 :list="store.known.words">
               <template v-slot:suffix="{item,index}">
                 <BaseIcon
                     class="del"
-                    @click="delSimpleWord(item)"
+                    @click.stop="delSimpleWord(item)"
                     title="移除"
                     icon="solar:trash-bin-minimalistic-linear"/>
               </template>
@@ -191,12 +190,12 @@ function changeCollect() {
               </PopConfirm>
             </div>
             <WordList
-                class="word-list"
+                class="word-list pl-4"
                 :list="store.wrong.words">
               <template v-slot:suffix="{item,index}">
                 <BaseIcon
                     class="del"
-                    @click="delWrongWord(item)"
+                    @click.stop="delWrongWord(item)"
                     title="移除"
                     icon="solar:trash-bin-minimalistic-linear"/>
               </template>
