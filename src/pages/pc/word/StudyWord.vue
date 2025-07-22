@@ -18,7 +18,7 @@ import Panel from "@/pages/pc/components/Panel.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import WordList from "@/pages/pc/components/list/WordList.vue";
-import Typing from "@/pages/pc/word/components/Typing.vue";
+import Type from "@/pages/pc/word/components/Type.vue";
 import Empty from "@/components/Empty.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
@@ -289,7 +289,7 @@ useEvents([
           <Icon class="arrow" icon="bi:arrow-right" width="22"/>
         </div>
       </div>
-      <Typing
+      <Type
           v-loading="!store.load"
           ref="typingRef"
           :word="word"
