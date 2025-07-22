@@ -77,33 +77,30 @@ function repeat() {
 
 async function onTyping(e: KeyboardEvent) {
   if (inputLock) return
+  console.log('onTyping')
   inputLock = true
   let letter = e.key
   let isTypingRight = false
-  let isWordRight = false
   if (settingStore.ignoreCase) {
     isTypingRight = letter.toLowerCase() === props.word.word[input.length].toLowerCase()
-    isWordRight = (input + letter).toLowerCase() === props.word.word.toLowerCase()
   } else {
     isTypingRight = letter === props.word.word[input.length]
-    isWordRight = (input + letter) === props.word.word
   }
   if (isTypingRight) {
     input += letter
     wrong = ''
     playKeyboardAudio()
   } else {
-    emit('wrong')
     wrong = letter
-    playKeyboardAudio()
     playBeep()
     volumeIconRef?.play()
     setTimeout(() => {
       wrong = ''
     }, 500)
+    emit('wrong')
   }
 
-  if (isWordRight) {
+  if (input.toLowerCase() === props.word.word.toLowerCase()) {
     playCorrect()
     if (settingStore.repeatCount == 100) {
       if (settingStore.repeatCustomCount <= wordRepeatCount + 1) {
@@ -212,13 +209,15 @@ let tab = $ref(2)
         </div>
       </template>
 
-      <div class="line-white my-4"></div>
-      <div class="tabs">
-        <div @click="tab = 0" class="tab" :class="tab === 0 && 'active'">短语</div>
-        <div @click="tab = 1" class="tab" :class="tab === 1 && 'active'">同近义词</div>
-        <div @click="tab = 2" class="tab" :class="tab === 2 && 'active'">同根词</div>
-        <div @click="tab = 3" class="tab" :class="tab === 3 && 'active'">词源</div>
-      </div>
+      <template v-if="word.phrases.length || word.synos.length || word.relWords.root || word.etymology.length">
+        <div class="line-white my-4"></div>
+        <div class="tabs">
+          <div @click="tab = 0" class="tab" :class="tab === 0 && 'active'">短语</div>
+          <div @click="tab = 1" class="tab" :class="tab === 1 && 'active'">同近义词</div>
+          <div @click="tab = 2" class="tab" :class="tab === 2 && 'active'">同根词</div>
+          <div @click="tab = 3" class="tab" :class="tab === 3 && 'active'">词源</div>
+        </div>
+      </template>
       <template v-if="tab === 0">
         <div class="my-2" v-for="item in word.phrases">
           <SentenceHightLightWord class="text-lg" :text="item.c" :word="word.word" :high-light="false"

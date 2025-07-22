@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {inject, onMounted, onUnmounted, provide} from "vue"
+import {inject, onMounted, onUnmounted} from "vue"
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {ShortcutKey, StudyData} from "@/types.ts";
@@ -10,7 +10,6 @@ import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue";
 import RepeatSetting from "@/pages/pc/components/toolbar/RepeatSetting.vue";
-import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 const statisticsStore = usePracticeStore()
 const settingStore = useSettingStore()

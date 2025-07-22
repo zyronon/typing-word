@@ -51,7 +51,7 @@ const {
   toggleWordSimple
 } = useWordOptions()
 
-let allWrongWords = []
+let allWrongWords = new Set()
 
 let data = $ref<StudyData>({
   index: 0,
@@ -65,7 +65,7 @@ watch(() => props.data, () => {
   data.words = props.data.new
   data.index = 0
   data.wrongWords = []
-  allWrongWords = []
+  allWrongWords = new Set()
 
   statStore.step = 0
   statStore.startDate = Date.now()
@@ -127,21 +127,28 @@ function next(isTyping: boolean = true) {
   } else {
     data.index++
     isTyping && statStore.inputWordNumber++
-    // console.log('这个词完了')
+    console.log('这个词完了')
   }
 }
 
-function wordWrong() {
-  if (!store.wrong.words.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
-    store.wrong.words.push(word)
-  }
-  if (!data.wrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
-    data.wrongWords.push(word)
-  }
-  if (!allWrongWords.find((v: Word) => v.word.toLowerCase() === word.word.toLowerCase())) {
-    allWrongWords.push(word)
+function onTypeWrong() {
+  let temp = word.word.toLowerCase()
+  if (!allWrongWords.has(word.word.toLowerCase())) {
+    allWrongWords.add(word.word.toLowerCase())
     statStore.wrong++
   }
+  //todo 后续要测试有非常的多的错词时，这会还卡不卡
+  setTimeout(() => {
+    requestAnimationFrame(() => {
+      if (!store.wrong.words.find((v: Word) => v.word.toLowerCase() === temp)) {
+        store.wrong.words.push(word)
+        store.wrong.length = store.wrong.words.length
+      }
+      if (!data.wrongWords.find((v: Word) => v.word.toLowerCase() === temp)) {
+        data.wrongWords.push(word)
+      }
+    })
+  }, 500)
 }
 
 function onKeyUp(e: KeyboardEvent) {
@@ -235,7 +242,7 @@ useEvents([
           v-loading="!store.load"
           ref="typingRef"
           :word="word"
-          @wrong="wordWrong"
+          @wrong="onTypeWrong"
           @complete="next"
       />
       <Footer

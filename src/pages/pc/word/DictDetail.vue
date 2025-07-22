@@ -18,6 +18,7 @@ import {useRoute, useRouter} from "vue-router";
 import {useBaseStore} from "@/stores/base.ts";
 import EditBook from "@/pages/pc/article/components/EditBook.vue";
 import {_getDictDataByUrl, _nextTick} from "@/utils";
+import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 const runtimeStore = useRuntimeStore()
 const base = useBaseStore()
@@ -292,18 +293,26 @@ function formClose() {
 }
 
 async function addMyStudyList() {
+
+  //把其他的词典的单词数据都删掉，全保存在内存里太卡了
   base.word.bookList.slice(3).map(v => {
     if (!v.custom) {
       v.words = []
     }
   })
   let rIndex = base.word.bookList.findIndex(v => v.name === runtimeStore.editDict.name)
+  if (runtimeStore.editDict.words.length < runtimeStore.editDict.perDayStudyNumber) {
+    runtimeStore.editDict.perDayStudyNumber = runtimeStore.editDict.words.length
+  }
   if (rIndex > -1) {
     base.word.studyIndex = rIndex
+    base.word.bookList[base.word.studyIndex].words = runtimeStore.editDict.words
+    base.word.bookList[base.word.studyIndex].perDayStudyNumber = runtimeStore.editDict.perDayStudyNumber
   } else {
     base.word.bookList.push(runtimeStore.editDict)
     base.word.studyIndex = base.word.bookList.length - 1
   }
+
   router.back()
 }
 

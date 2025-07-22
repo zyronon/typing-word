@@ -25,7 +25,7 @@ export function useWordOptions() {
   }
 
   function isWordSimple(val: Word) {
-    return !!store.simple.words.find(v => v.word.toLowerCase() === val.word.toLowerCase())
+    return !!store.known.words.find(v => v.word.toLowerCase() === val.word.toLowerCase())
   }
 
   function toggleWordSimple(val: Word) {
@@ -110,7 +110,7 @@ export function getCurrentStudyWord() {
   // console.time()
   const store = useBaseStore()
   let data = {new: [], review: [], write: []}
-  let dict = store.currentStudyWordDict;
+  let dict = store.sdict;
   if (dict.words?.length) {
     for (let i = dict.lastLearnIndex; i < dict.words.length; i++) {
       if (data.new.length >= dict.perDayStudyNumber) break

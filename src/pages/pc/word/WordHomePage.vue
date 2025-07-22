@@ -8,12 +8,10 @@ import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {_getAccomplishDate, _getAccomplishDays, _getDictDataByUrl, useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import {Dict, DictResource, getDefaultDict} from "@/types.ts";
-import {onMounted} from "vue";
+import {DictResource, getDefaultDict} from "@/types.ts";
+import {onMounted, watch} from "vue";
 import {getCurrentStudyWord} from "@/hooks/dict.ts";
-import {EventKey, useEvent} from "@/utils/eventBus.ts";
 import DictListPanel from "@/pages/pc/components/DictListPanel.vue";
-import {cloneDeep} from "lodash-es";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import Book from "@/pages/pc/components/Book.vue";
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
@@ -34,17 +32,30 @@ let currentStudy = $ref({
 })
 
 onMounted(() => {
-  if (!currentStudy.new.length) {
-    currentStudy = getCurrentStudyWord()
-  }
+  init()
 })
 
-useEvent(EventKey.changeDict, () => {
-  currentStudy = getCurrentStudyWord()
+watch(() => store.load, () => {
+  init()
 })
+
+async function init() {
+  if (store.word.studyIndex >= 3) {
+    if (!store.sdict.custom && !store.sdict.words.length) {
+      store.word.bookList[store.word.studyIndex] = await _getDictDataByUrl(store.sdict)
+    }
+  }
+  console.log(store.sdict)
+  if (!currentStudy.new.length && store.sdict.words.length) {
+    currentStudy = getCurrentStudyWord()
+  }
+}
 
 function study() {
   if (store.sdict.id) {
+    if (!store.sdict.words.length) {
+      return ElMessage.warning('没有单词可学习！')
+    }
     nav('study-word', {}, currentStudy)
   } else {
     ElMessage.warning('请先选择一本词典')

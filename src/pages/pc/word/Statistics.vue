@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {useBaseStore} from "@/stores/base.ts";
-import Ring from "@/pages/pc/components/Ring.vue";
-import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {ShortcutKey} from "@/types.ts";
 import {emitter, EventKey, useEvent, useEvents} from "@/utils/eventBus.ts";
@@ -23,7 +21,7 @@ useEvent(EventKey.openStatModal, () => {
     total: statStore.total,
     wrong: statStore.wrong,
   }
-  store.sdict.lastLearnIndex = store.sdict.lastLearnIndex + store.sdict.perDayStudyNumber
+  store.sdict.lastLearnIndex = store.sdict.lastLearnIndex + statStore.newWordNumber
   store.sdict.statistics.push(data as any)
   store.sdict.statistics.sort((a, b) => a.startDate - b.startDate)
 
@@ -46,6 +44,7 @@ function options(emitType: 'write' | 'repeat' | 'next') {
   emitter.emit(EventKey[emitType])
 }
 
+//todo
 const isEnd = $computed(() => {
   return false
 })
@@ -79,7 +78,9 @@ const isEnd = $computed(() => {
       </div>
 
       <div class="text-xl text-center flex flex-col justify-around">
-        <div>非常棒! 坚持了 <span class="color-green font-bold text-2xl">{{ dayjs().diff(statStore.startDate, 'm') }}</span>
+        <div>非常棒! 坚持了 <span class="color-green font-bold text-2xl">{{
+            dayjs().diff(statStore.startDate, 'm')
+          }}</span>
           分钟
         </div>
       </div>

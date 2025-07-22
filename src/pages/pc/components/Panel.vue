@@ -82,7 +82,7 @@ function changeCollect() {
       <header>
         <div class="tabs">
           <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">当前</div>
-          <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.collect.name }}</div>
+          <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">{{ store.collectWord.name }}</div>
           <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">{{ store.known.name }}</div>
           <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">{{ store.wrong.name }}</div>
         </div>

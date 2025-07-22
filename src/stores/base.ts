@@ -91,10 +91,10 @@ export const useBaseStore = defineStore('base', {
       return this.word.bookList[0]
     },
     collectWord(): Dict {
-      return this.word.bookList[1]
+      return this.word.bookList[0]
     },
     collectArticle(): Dict {
-      return this.word.bookList[2]
+      return this.article.bookList[0]
     },
     simple(): Dict {
       return this.word.bookList[2]
@@ -132,18 +132,12 @@ export const useBaseStore = defineStore('base', {
     sdict(): Dict {
       return this.currentStudyWordDict
     },
-    sword() {
-      return this.currentStudy.word
-    },
     currentStudyProgress(): number {
       if (!this.sdict.words?.length) return 0
       return _getStudyProgress(this.sdict.lastLearnIndex, this.sdict.words?.length)
     },
     currentArticleCollectDict(): Dict {
       return this.article.bookList[0]
-    },
-    chapter(state: BaseState): Word[] {
-      return this.currentDict.chapterWords[this.currentDict.chapterIndex] ?? []
     },
     currentBook(): Dict {
       return this.article.bookList[this.article.studyIndex] ?? {}
@@ -173,14 +167,6 @@ export const useBaseStore = defineStore('base', {
           console.error('读取本地dict数据失败', e)
         }
 
-        if (this.word.studyIndex >= 3) {
-          // await _checkDictWords(this.currentStudyWordDict)
-          let current: Dict = this.word.bookList[this.word.studyIndex]
-          if (!current.custom) {
-            this.word.bookList[this.word.studyIndex] = await _getDictDataByUrl(current)
-          }
-          console.log('this.current', current)
-        }
         if (this.article.studyIndex >= 1) {
           let current = this.article.bookList[this.article.studyIndex]
           let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
@@ -197,91 +183,7 @@ export const useBaseStore = defineStore('base', {
         resolve(true)
       })
     },
-    async changeDict(dict: Dict, practiceType?: DictType, chapterIndex?: number, wordIndex?: number) {
-    },
-    async changeWordDict(dict: Dict) {
-      this.wordDictList.map((v) => v.words = [])
-      // await checkDictHasTranslate(newDict)
-      let rIndex = this.wordDictList.findIndex((v: Dict) => v.id === dict.id)
-      if (rIndex > -1) {
-        this.wordDictList[rIndex] = Object.assign(dict, this.wordDictList[rIndex])
-        this.currentStudy.word.dictIndex = rIndex
-      } else {
-        this.wordDictList.push(getDefaultDict(dict))
-        this.currentStudy.word.dictIndex = this.wordDictList.length - 1
-      }
-      // await _checkDictWords(this.currentStudyWordDict)
-
-      console.log(' store.currentStudyWordDict', this.currentStudyWordDict)
-      emitter.emit(EventKey.changeDict)
-    },
-    async changeArticleDict(dict: Dict) {
-      //TODO 保存统计
-      // this.saveStatistics()
-      console.log('changeDict', cloneDeep(dict),)
-      if ([DictType.collect,
-        DictType.simple,
-        DictType.wrong].includes(dict.type)) {
-      } else {
-        //TODO　需要和其他需要下载的地方统一
-        let url = `./dicts/${dict.language}/${dict.type}/${dict.translateLanguage}/${dict.url}`;
-        if (dict.type === DictType.article) {
-          if (!dict.articles.length) {
-            let r = await fetch(url)
-            let v = await r.json()
-            v.map(s => {
-              s.id = nanoid(6)
-            })
-            dict.articles = cloneDeep(v)
-          } else {
-            dict.length = dict.articles.length
-          }
-        } else {
-          //如果不是自定义词典，并且有url地址才去下载
-          if (!dict.custom && dict.url) {
-            if (!dict.originWords.length) {
-              let v = await getDictFile(url)
-              v.map(s => {
-                s.id = nanoid(6)
-              })
-              dict.originWords = cloneDeep(v)
-              if (dict.sort === Sort.normal) {
-                dict.words = cloneDeep(dict.originWords)
-              } else if (dict.sort === Sort.random) {
-                dict.words = shuffle(dict.originWords)
-              } else {
-                dict.words = reverse(dict.originWords)
-              }
-              dict.words.map(v => v.checked = false)
-              dict.length = dict.words.length
-            } else {
-              dict.length = dict.words.length
-            }
-          }
-        }
-      }
-      // await checkDictHasTranslate(dict)
-      let rIndex = this.myDictList.findIndex((v: Dict) => v.id === dict.id)
-      if (rIndex > -1) {
-        this.myDictList[rIndex] = dict
-        this.current.index = rIndex
-      } else {
-        this.myDictList.push(cloneDeep(dict))
-        this.current.index = this.myDictList.length - 1
-      }
-
-      emitter.emit(EventKey.changeDict)
-    },
-    delWordDict(dict: Dict) {
-      let oldId = this.currentStudyWordDict.id;
-      let rIndex = this.wordDictList.findIndex((v: Dict) => v.id === dict.id)
-      if (rIndex > -1) {
-        this.wordDictList.splice(rIndex, 1)
-      }
-      rIndex = this.wordDictList.findIndex((v: Dict) => v.id === oldId)
-      if (rIndex > -1) {
-        this.currentStudy.word.dictIndex = rIndex
-      }
+    async changeDict() {
     },
   },
 })

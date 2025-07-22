@@ -92,11 +92,9 @@ export function usePlayWordAudio() {
   const audio = $ref(new Audio())
 
   function playAudio(word: string) {
-    let url = ''
+    let url = `${PronunciationApi}${word}&type=2`
     if (settingStore.wordSoundType === 'uk') {
       url = `${PronunciationApi}${word}&type=1`
-    } else if (settingStore.wordSoundType === 'us') {
-      url = `${PronunciationApi}${word}&type=2`
     }
     audio.src = url
     audio.volume = settingStore.wordSoundVolume / 100
