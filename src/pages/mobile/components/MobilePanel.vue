@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {useBaseStore} from "@/stores/base.ts"
 
-import {computed, onMounted, onUnmounted, provide, watch} from "vue"
+import {computed, provide, watch} from "vue"
 import {useSettingStore} from "@/stores/setting.ts";
-import {emitter, EventKey, useEvent} from "@/utils/eventBus.ts";
+import {EventKey, useEvent} from "@/utils/eventBus.ts";
 import SlideHorizontal from "@/components/slide/SlideHorizontal.vue";
 import SlideItem from "@/components/slide/SlideItem.vue";
 import CollectList from "@/pages/mobile/components/CollectList.vue";

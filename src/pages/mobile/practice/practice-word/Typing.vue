@@ -2,7 +2,7 @@
 import {getDefaultWord, ShortcutKey, Word} from "@/types.ts";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {useSettingStore} from "@/stores/setting.ts";
-import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio, useTTsPlayAudio} from "@/hooks/sound.ts";
+import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {nextTick, onMounted, onUnmounted, watch} from "vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
@@ -32,9 +32,7 @@ const playBeep = usePlayBeep()
 const playCorrect = usePlayCorrect()
 const playKeyboardAudio = usePlayKeyboardAudio()
 const playWordAudio = usePlayWordAudio()
-const ttsPlayAudio = useTTsPlayAudio()
 const volumeIconRef: any = $ref()
-const volumeTranslateIconRef: any = $ref()
 
 let displayWord = $computed(() => {
   return props.word.word.slice(input.length + wrong.length)
@@ -115,6 +113,7 @@ async function onTyping(e: KeyboardEvent) {
 }
 
 function del() {
+  console.log('del')
   playKeyboardAudio()
 
   if (wrong) {
@@ -122,6 +121,7 @@ function del() {
   } else {
     input = input.slice(0, -1)
   }
+  console.log(input)
 }
 
 function showWord() {

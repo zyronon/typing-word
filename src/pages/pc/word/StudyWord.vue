@@ -1,28 +1,44 @@
 <script setup lang="ts">
 
-import {onMounted} from "vue";
+import {onMounted, provide, watch} from "vue";
 
 import Statistics from "@/pages/pc/word/Statistics.vue";
 import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {ShortcutKey} from "@/types.ts";
-import {useStartKeyboardEventListener} from "@/hooks/event.ts";
+import {getDefaultWord, ShortcutKey, StudyData, Word} from "@/types.ts";
+import {useOnKeyboardEventListener, useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
-import TypingWord from "@/pages/pc/word/components/TypingWord.vue";
-import {getCurrentStudyWord} from "@/hooks/dict.ts";
-import {cloneDeep} from "lodash-es";
+import {getCurrentStudyWord, useWordOptions} from "@/hooks/dict.ts";
+import {cloneDeep, shuffle} from "lodash-es";
 import {useRouter} from "vue-router";
+import {Icon} from "@iconify/vue";
+import Footer from "@/pages/pc/word/components/Footer.vue";
+import Panel from "@/pages/pc/components/Panel.vue";
+import BaseIcon from "@/components/BaseIcon.vue";
+import Tooltip from "@/pages/pc/components/Tooltip.vue";
+import WordList from "@/pages/pc/components/list/WordList.vue";
+import Typing from "@/pages/pc/word/components/Typing.vue";
+import Empty from "@/components/Empty.vue";
+import {useBaseStore} from "@/stores/base.ts";
+import {usePracticeStore} from "@/stores/practice.ts";
 
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 const {toggleTheme} = useTheme()
 const router = useRouter()
 
-function next() {
-  emitter.emit(EventKey.resetWord)
-  getCurrentPractice()
+interface IProps {
+  new: Word[],
+  review: Word[],
+  write: Word[],
 }
+
+let studyData = $ref<IProps>({
+  new: [],
+  review: [],
+  write: []
+})
 
 //TODO 需要判断是否已忽略
 function repeat() {
@@ -32,6 +48,182 @@ function repeat() {
   studyData = cloneDeep(studyData)
 }
 
+
+onMounted(() => {
+  if (runtimeStore.routeData) {
+    studyData = runtimeStore.routeData
+  } else {
+    router.push('/word')
+  }
+})
+
+
+useStartKeyboardEventListener()
+
+const typingRef: any = $ref()
+const store = useBaseStore()
+const statStore = usePracticeStore()
+
+const {
+  isWordCollect,
+  toggleWordCollect,
+  isWordSimple,
+  toggleWordSimple
+} = useWordOptions()
+
+let allWrongWords = new Set()
+
+let data = $ref<StudyData>({
+  index: 0,
+  words: [],
+  wrongWords: [],
+})
+
+provide('studyData', data)
+
+watch(() => studyData, () => {
+  data.words = studyData.new
+  data.index = 0
+  data.wrongWords = []
+  allWrongWords = new Set()
+
+  statStore.step = 0
+  statStore.startDate = Date.now()
+  statStore.inputWordNumber = 0
+  statStore.wrong = 0
+  statStore.total = studyData.review.concat(studyData.new).concat(studyData.write).length
+  statStore.newWordNumber = studyData.new.length
+  statStore.index = 0
+}, {immediate: true, deep: true})
+
+const word = $computed(() => {
+  return data.words[data.index] ?? getDefaultWord()
+})
+
+const prevWord: Word = $computed(() => {
+  return data.words?.[data.index - 1] ?? undefined
+})
+
+const nextWord: Word = $computed(() => {
+  return data.words?.[data.index + 1] ?? undefined
+})
+
+function next(isTyping: boolean = true) {
+  if (data.index === data.words.length - 1) {
+    if (data.wrongWords.length) {
+      console.log('学完了，但还有错词')
+      data.words = shuffle(cloneDeep(data.wrongWords))
+      data.index = 0
+      data.wrongWords = []
+    } else {
+      console.log('学完了，没错词', statStore.total, statStore.step, data.index)
+      isTyping && statStore.inputWordNumber++
+      statStore.speed = Date.now() - statStore.startDate
+
+      //学完了
+      if (statStore.step === 2) {
+        console.log('emit')
+        emitter.emit(EventKey.openStatModal, {})
+        // emit('complete', {})
+      }
+
+      //开始默认
+      if (statStore.step === 1) {
+        settingStore.dictation = true
+        data.words = shuffle(studyData.write.concat(studyData.new).concat(studyData.review))
+        statStore.step++
+        data.index = 0
+      }
+
+      //开始复习
+      if (statStore.step === 0) {
+        statStore.step++
+        if (studyData.review.length) {
+          data.words = shuffle(studyData.review)
+          settingStore.dictation = false
+          data.index = 0
+        } else {
+          next()
+        }
+      }
+    }
+  } else {
+    data.index++
+    isTyping && statStore.inputWordNumber++
+    console.log('这个词完了')
+  }
+}
+
+function onTypeWrong() {
+  let temp = word.word.toLowerCase()
+  if (!allWrongWords.has(word.word.toLowerCase())) {
+    allWrongWords.add(word.word.toLowerCase())
+    statStore.wrong++
+  }
+  //todo 后续要测试有非常的多的错词时，这会还卡不卡
+  setTimeout(() => {
+    requestAnimationFrame(() => {
+      if (!store.wrong.words.find((v: Word) => v.word.toLowerCase() === temp)) {
+        store.wrong.words.push(word)
+        store.wrong.length = store.wrong.words.length
+      }
+      if (!data.wrongWords.find((v: Word) => v.word.toLowerCase() === temp)) {
+        data.wrongWords.push(word)
+      }
+    })
+  }, 500)
+}
+
+function onKeyUp(e: KeyboardEvent) {
+  typingRef.hideWord()
+}
+
+async function onKeyDown(e: KeyboardEvent) {
+  // console.log('e', e)
+  switch (e.key) {
+    case 'Backspace':
+      typingRef.del()
+      break
+  }
+}
+
+useOnKeyboardEventListener(onKeyDown, onKeyUp)
+
+//TODO 略过忽略的单词上
+function prev() {
+  if (data.index === 0) {
+    ElMessage.warning('已经是第一个了~')
+  } else {
+    data.index--
+  }
+}
+
+function skip(e: KeyboardEvent) {
+  next(false)
+  // e.preventDefault()
+}
+
+function show(e: KeyboardEvent) {
+  typingRef.showWord()
+}
+
+function collect(e: KeyboardEvent) {
+  toggleWordCollect(word)
+}
+
+function play() {
+  typingRef.play()
+}
+
+function toggleWordSimpleWrapper() {
+  if (!isWordSimple(word)) {
+    toggleWordSimple(word)
+    //延迟一下，不知道为什么不延迟会导致当前条目不自动定位到列表中间
+    setTimeout(() => next(false))
+  } else {
+    toggleWordSimple(word)
+  }
+}
 
 function toggleTranslate() {
   settingStore.translate = !settingStore.translate
@@ -54,19 +246,16 @@ function togglePanel() {
   settingStore.showPanel = !settingStore.showPanel
 }
 
-onMounted(() => {
-  settingStore.dictation = false
-  if (runtimeStore.routeData) {
-    studyData = runtimeStore.routeData
-  } else {
-    router.push('/word')
-  }
-})
-
 useEvents([
-  [EventKey.changeDict, getCurrentPractice],
   [EventKey.repeat, repeat],
   [EventKey.next, next],
+
+  [ShortcutKey.ShowWord, show],
+  [ShortcutKey.Previous, prev],
+  [ShortcutKey.Next, skip],
+  [ShortcutKey.ToggleCollect, collect],
+  [ShortcutKey.ToggleSimple, toggleWordSimpleWrapper],
+  [ShortcutKey.PlayWordPronunciation, play],
 
   [ShortcutKey.RepeatChapter, repeat],
   [ShortcutKey.ToggleShowTranslate, toggleTranslate],
@@ -77,32 +266,124 @@ useEvents([
   [ShortcutKey.TogglePanel, togglePanel],
 ])
 
-
-let studyData = $ref({
-  new: [],
-  review: [],
-  write: []
-})
-
-function getCurrentPractice() {
-  settingStore.dictation = false
-  studyData = getCurrentStudyWord()
-}
-
-function complete() {
-  // store.currentStudyWordDict.statistics.push()
-}
-
-useStartKeyboardEventListener()
-
 </script>
+
 <template>
-  <TypingWord
-      @complete="complete"
-      :data="studyData"/>
+  <div class="practice-wrapper">
+    <div class="practice-word">
+      <div class="absolute z-1 top-4   w-full" v-if="settingStore.showNearWord">
+        <div class="center gap-2 cursor-pointer float-left"
+             @click="prev"
+             v-if="prevWord">
+          <Icon class="arrow" icon="bi:arrow-left" width="22"/>
+          <Tooltip
+              :title="`上一个(${settingStore.shortcutKeyMap[ShortcutKey.Previous]})`"
+          >
+            <div class="word">{{ prevWord.word }}</div>
+          </Tooltip>
+        </div>
+        <div class="center gap-2 cursor-pointer float-right "
+             @click="next(false)"
+             v-if="nextWord">
+          <Tooltip
+              :title="`下一个(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
+          >
+            <div class="word" :class="settingStore.dictation && 'word-shadow'">{{ nextWord.word }}</div>
+          </Tooltip>
+          <Icon class="arrow" icon="bi:arrow-right" width="22"/>
+        </div>
+      </div>
+      <Typing
+          v-loading="!store.load"
+          ref="typingRef"
+          :word="word"
+          @wrong="onTypeWrong"
+          @complete="next"
+      />
+      <Footer
+          :is-simple="isWordSimple(word)"
+          @toggle-simple="toggleWordSimpleWrapper"
+          :is-collect="isWordCollect(word)"
+          @toggle-collect="toggleWordCollect(word)"
+          @skip="next(false)"
+      />
+    </div>
+    <div class="word-panel-wrapper">
+      <Panel>
+        <template v-slot="{active}">
+          <div class="panel-page-item pl-4"
+               v-loading="!store.load"
+          >
+            <WordList
+                v-if="data.words.length"
+                :is-active="active"
+                :static="false"
+                :show-word="!settingStore.dictation"
+                :show-translate="settingStore.translate"
+                :list="data.words"
+                :activeIndex="data.index"
+                @click="(val:any) => data.index = val.index"
+            >
+              <template v-slot:suffix="{item,index}">
+                <BaseIcon
+                    v-if="!isWordCollect(item)"
+                    class="collect"
+                    @click="toggleWordCollect(item)"
+                    title="收藏" icon="ph:star"/>
+                <BaseIcon
+                    v-else
+                    class="fill"
+                    @click="toggleWordCollect(item)"
+                    title="取消收藏" icon="ph:star-fill"/>
+                <BaseIcon
+                    v-if="!isWordSimple(item)"
+                    class="easy"
+                    @click="toggleWordSimple(item)"
+                    title="标记为已掌握"
+                    icon="material-symbols:check-circle-outline-rounded"/>
+                <BaseIcon
+                    v-else
+                    class="fill"
+                    @click="toggleWordSimple(item)"
+                    title="取消标记已掌握"
+                    icon="material-symbols:check-circle-rounded"/>
+              </template>
+            </WordList>
+            <Empty v-else/>
+          </div>
+        </template>
+      </Panel>
+    </div>
+  </div>
   <Statistics/>
 </template>
 
 <style scoped lang="scss">
 
+.practice-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.practice-word {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: var(--toolbar-width);
+}
+
+.word-panel-wrapper {
+  position: absolute;
+  left: var(--panel-margin-left);
+  //left: 0;
+  top: .8rem;
+  z-index: 1;
+  height: calc(100% - 1.5rem);
+}
 </style>
