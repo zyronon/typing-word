@@ -38,7 +38,7 @@ onMounted(() => {
 
 useEvents([
   [EventKey.changeDict, getCurrentPractice],
-  [EventKey.next, next],
+  [EventKey.continueStudy, next],
   [ShortcutKey.NextChapter, next],
 ])
 

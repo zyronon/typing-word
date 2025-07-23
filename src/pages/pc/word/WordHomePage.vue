@@ -155,18 +155,16 @@ function toggleSelect(item) {
         <div class="flex">
           <div class="flex-1 flex flex-col items-center">
             <div class="text-4xl font-bold">{{ currentStudy.new.length }}</div>
-            <div class="text">新词数</div>
+            <div class="text">新词</div>
           </div>
           <div class="flex-1 flex flex-col items-center">
             <div class="text-4xl font-bold">{{ currentStudy.review.length }}</div>
-            <div class="text">复习数</div>
+            <div class="text">复习</div>
           </div>
           <div class="flex-1 flex flex-col items-center">
-            <div class="text-4xl font-bold">{{
-                currentStudy.new.length + currentStudy.review.length + currentStudy.write.length
-              }}
+            <div class="text-4xl font-bold">{{ currentStudy.write.length }}
             </div>
-            <div class="text">默写数</div>
+            <div class="text">默写</div>
           </div>
         </div>
       </div>

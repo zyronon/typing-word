@@ -3,35 +3,68 @@ import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {ShortcutKey} from "@/types.ts";
-import {emitter, EventKey, useEvent, useEvents} from "@/utils/eventBus.ts";
+import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts";
 import {Icon} from '@iconify/vue';
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
-import {dayjs} from "element-plus";
+import dayjs from "dayjs";
+import isBetween from "dayjs/plugin/isBetween";
+import {watch} from "vue";
+
+dayjs.extend(isBetween);
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const statStore = usePracticeStore()
-let open = $ref(false)
+const model = defineModel({default: false})
+let list = $ref([])
 
-useEvent(EventKey.openStatModal, () => {
-  let data = {
-    speed: statStore.speed,
-    startDate: statStore.startDate,
-    total: statStore.total,
-    wrong: statStore.wrong,
+
+function calcWeekList() {
+  // 获取本周的起止时间
+  const startOfWeek = dayjs().startOf('week').add(1, 'day'); // 周一
+  const endOfWeek = dayjs().endOf('week').add(1, 'day');     // 周日
+  // 初始化 7 天的数组，默认 false
+  const weekList = Array(7).fill(false);
+
+  store.sdict.statistics.forEach(item => {
+    const date = dayjs(item.startDate);
+    if (date.isBetween(startOfWeek, endOfWeek, null, '[]')) {
+      let idx = date.day();
+      // dayjs().day() 0=周日, 1=周一, ..., 6=周六
+      // 需要转换为 0=周一, ..., 6=周日
+      if (idx === 0) {
+        idx = 6; // 周日放到最后
+      } else {
+        idx = idx - 1; // 其余前移一位
+      }
+      weekList[idx] = true;
+    }
+  });
+  list = weekList;
+  console.log(list)
+}
+
+// 监听 model 弹窗打开时重新计算
+watch(model, (newVal) => {
+  if (newVal) {
+    let data = {
+      speed: statStore.speed,
+      startDate: statStore.startDate,
+      total: statStore.total,
+      wrong: statStore.wrong,
+    }
+    //这里不知为啥会卡，打开有延迟
+    requestIdleCallback(() => {
+      store.sdict.lastLearnIndex = store.sdict.lastLearnIndex + statStore.newWordNumber
+      store.sdict.statistics.push(data as any)
+      store.sdict.statistics.sort((a, b) => a.startDate - b.startDate)
+      calcWeekList(); // 新增：计算本周学习记录
+    })
   }
-  store.sdict.lastLearnIndex = store.sdict.lastLearnIndex + statStore.newWordNumber
-  store.sdict.statistics.push(data as any)
-  store.sdict.statistics.sort((a, b) => a.startDate - b.startDate)
-
-  console.log('staa', JSON.parse(JSON.stringify(store.sdict.statistics)))
-  open = true
 })
 
-const close = () => {
-  open = false
-}
+const close = () => model.value = false
 
 useEvents([
   [ShortcutKey.NextChapter, close],
@@ -39,8 +72,8 @@ useEvents([
   [ShortcutKey.DictationChapter, close],
 ])
 
-function options(emitType: 'write' | 'repeat' | 'next') {
-  open = false
+function options(emitType: string) {
+  model.value = false
   emitter.emit(EventKey[emitType])
 }
 
@@ -53,26 +86,29 @@ const isEnd = $computed(() => {
 
 <template>
   <Dialog
+      :close-on-click-bg="false"
       :header="false"
-      v-model="open">
-    <div class="statistics relative flex flex-col gap-6">
+      :keyboard="false"
+      :show-close="false"
+      v-model="model">
+    <div class="w-120 bg-white  color-black p-6 relative flex flex-col gap-6">
       <div class="w-full flex flex-col justify-evenly">
-        <div class="center text-xl mb-2">已完成今日任务</div>
+        <div class="center text-2xl mb-2">已完成今日任务</div>
         <div class="flex">
           <div class="flex-1 flex flex-col items-center">
+            <div class="text-sm color-gray">新词数</div>
             <div class="text-4xl font-bold">{{ statStore.newWordNumber }}</div>
-            <div class="text">新词数</div>
           </div>
           <div class="flex-1 flex flex-col items-center">
+            <div class="text-sm color-gray">复习数</div>
             <div class="text-4xl font-bold">{{ statStore.newWordNumber }}</div>
-            <div class="text">复习数</div>
           </div>
           <div class="flex-1 flex flex-col items-center">
+            <div class="text-sm color-gray">默写数</div>
             <div class="text-4xl font-bold">{{
                 statStore.newWordNumber
               }}
             </div>
-            <div class="text">默写数</div>
           </div>
         </div>
       </div>
@@ -102,31 +138,38 @@ const isEnd = $computed(() => {
           </div>
         </div>
       </div>
+
+      <div class="center flex-col">
+        <div class="title text-align-center mb-2">本周学习记录</div>
+        <div class="flex gap-4 color-gray">
+          <div
+              class="w-8 h-8 rounded-full center"
+              :class="item ? 'bg-green color-white' : 'bg-gray-200'"
+              v-for="(item, i) in list"
+              :key="i"
+          >{{ i + 1 }}
+          </div>
+        </div>
+      </div>
       <div class="flex justify-center gap-4 ">
         <BaseButton
             :keyboard="settingStore.shortcutKeyMap[ShortcutKey.RepeatChapter]"
-            @click="options('repeat')">
+            @click="options(EventKey.repeatStudy)">
           重学
         </BaseButton>
         <BaseButton
             :keyboard="settingStore.shortcutKeyMap[ShortcutKey.NextChapter]"
-            @click="options('next')">
+            @click="options(EventKey.continueStudy)">
           {{ isEnd ? '重新练习' : '再来一组' }}
+        </BaseButton>
+
+        <BaseButton>
+          分享
         </BaseButton>
       </div>
     </div>
   </Dialog>
 </template>
 <style scoped lang="scss">
-$card-radius: .5rem;
-$dark-second-bg: rgb(60, 63, 65);
-$item-hover: rgb(75, 75, 75);
-
-.statistics {
-  padding: var(--space);
-  width: 30rem;
-  background: $dark-second-bg;
-  border-radius: $card-radius;
-}
 
 </style>

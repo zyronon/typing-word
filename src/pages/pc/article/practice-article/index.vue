@@ -226,7 +226,7 @@ onMounted(() => {
 
 useEvents([
   [EventKey.changeDict, init],
-  [EventKey.next, next],
+  [EventKey.continueStudy, next],
 
   [ShortcutKey.NextChapter, next],
   [ShortcutKey.PlayWordPronunciation, play],
@@ -303,7 +303,7 @@ const {playSentenceAudio} = usePlaySentenceAudio()
                         :title="`下一章(${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
                         v-if="store.currentBook.lastLearnIndex < articleData.articles.length - 1">
                       <IconWrapper>
-                        <Icon @click="emitter.emit(EventKey.next)" icon="octicon:arrow-right-24"/>
+                        <Icon @click="emitter.emit(EventKey.continueStudy)" icon="octicon:arrow-right-24"/>
                       </IconWrapper>
                     </Tooltip>
                   </div>

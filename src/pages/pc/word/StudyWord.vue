@@ -43,7 +43,7 @@ const store = useBaseStore()
 const statStore = usePracticeStore()
 const typingRef: any = $ref()
 let allWrongWords = new Set()
-
+let showStatDialog = $ref(false)
 let studyData = $ref<IProps>({
   new: [],
   review: [],
@@ -94,29 +94,32 @@ const nextWord: Word = $computed(() => {
 })
 
 function next(isTyping: boolean = true) {
+  showStatDialog = true
+  return
   if (data.index === data.words.length - 1) {
     if (data.wrongWords.length) {
-      console.log('学完了，但还有错词')
+      console.log('当前学完了，但还有错词')
       data.words = shuffle(cloneDeep(data.wrongWords))
       data.index = 0
       data.wrongWords = []
     } else {
-      console.log('学完了，没错词', statStore.total, statStore.step, data.index)
+      console.log('当前学完了，没错词', statStore.total, statStore.step, data.index)
       isTyping && statStore.inputWordNumber++
-      statStore.speed = Date.now() - statStore.startDate
 
       //学完了
       if (statStore.step === 2) {
-        console.log('emit')
+        statStore.speed = Date.now() - statStore.startDate
+        console.log('全完学完了')
         emitter.emit(EventKey.openStatModal, {})
         // emit('complete', {})
       }
 
-      //开始默认
+      //开始默认所有单词
       if (statStore.step === 1) {
+        console.log('开始默认所有单词')
+        statStore.step++
         settingStore.dictation = true
         data.words = shuffle(studyData.write.concat(studyData.new).concat(studyData.review))
-        statStore.step++
         data.index = 0
       }
 
@@ -124,6 +127,7 @@ function next(isTyping: boolean = true) {
       if (statStore.step === 0) {
         statStore.step++
         if (studyData.review.length) {
+          console.log('开始复习')
           data.words = shuffle(studyData.review)
           settingStore.dictation = false
           data.index = 0
@@ -145,18 +149,16 @@ function onTypeWrong() {
     allWrongWords.add(word.word.toLowerCase())
     statStore.wrong++
   }
-  //todo 后续要测试有非常的多的错词时，这会还卡不卡
-  setTimeout(() => {
-    requestAnimationFrame(() => {
-      if (!store.wrong.words.find((v: Word) => v.word.toLowerCase() === temp)) {
-        store.wrong.words.push(word)
-        store.wrong.length = store.wrong.words.length
-      }
-      if (!data.wrongWords.find((v: Word) => v.word.toLowerCase() === temp)) {
-        data.wrongWords.push(word)
-      }
-    })
-  }, 500)
+  //测试时这里会卡一下，加上requestIdleCallback就好了
+  requestIdleCallback(() => {
+    if (!store.wrong.words.find((v: Word) => v.word.toLowerCase() === temp)) {
+      store.wrong.words.push(word)
+      store.wrong.length = store.wrong.words.length
+    }
+    if (!data.wrongWords.find((v: Word) => v.word.toLowerCase() === temp)) {
+      data.wrongWords.push(word)
+    }
+  })
 }
 
 function onKeyUp(e: KeyboardEvent) {
@@ -177,12 +179,16 @@ useStartKeyboardEventListener()
 
 useOnKeyboardEventListener(onKeyDown, onKeyUp)
 
-//TODO 需要判断是否已忽略
 function repeat() {
-  // console.log('repeat')
+  console.log('repeat')
   settingStore.dictation = false
   emitter.emit(EventKey.resetWord)
-  studyData = cloneDeep(studyData)
+  let temp = cloneDeep(studyData)
+  //排除已掌握单词
+  temp.new = temp.new.filter(v => !store.knownWords.includes(v.word))
+  temp.review = temp.review.filter(v => !store.knownWords.includes(v.word))
+  temp.write = temp.write.filter(v => !store.knownWords.includes(v.word))
+  studyData = temp
 }
 
 //TODO 略过忽略的单词上
@@ -243,8 +249,8 @@ function togglePanel() {
 }
 
 useEvents([
-  [EventKey.repeat, repeat],
-  [EventKey.next, next],
+  [EventKey.repeatStudy, repeat],
+  [EventKey.continueStudy, next],
   [EventKey.changeDict, () => {
     studyData = getCurrentStudyWord()
   }],
@@ -354,7 +360,9 @@ useEvents([
       </Panel>
     </div>
   </div>
-  <Statistics/>
+  <Statistics v-model="showStatDialog"
+
+  />
 </template>
 
 <style scoped lang="scss">

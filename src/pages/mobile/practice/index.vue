@@ -75,7 +75,7 @@ function jumpSpecifiedChapter(val: number) {
 
 onMounted(() => {
   emitter.on(EventKey.write, write)
-  emitter.on(EventKey.repeat, repeat)
+  emitter.on(EventKey.repeatStudy, repeat)
   emitter.on(EventKey.jumpSpecifiedChapter, jumpSpecifiedChapter)
 
   emitter.on(ShortcutKey.PreviousChapter, prev)
@@ -91,7 +91,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   emitter.off(EventKey.write, write)
-  emitter.off(EventKey.repeat, repeat)
+  emitter.off(EventKey.repeatStudy, repeat)
   emitter.off(EventKey.jumpSpecifiedChapter, jumpSpecifiedChapter)
 
   emitter.off(ShortcutKey.PreviousChapter, prev)

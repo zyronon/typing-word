@@ -455,7 +455,7 @@ let showQuestions = $ref(false)
     <div class="options flex justify-center" v-if="isEnd">
       <BaseButton
           v-if="store.currentBook.lastLearnIndex < store.currentBook.articles.length - 1"
-          @click="emitter.emit(EventKey.next)">下一章
+          @click="emitter.emit(EventKey.continueStudy)">下一章
       </BaseButton>
     </div>
 

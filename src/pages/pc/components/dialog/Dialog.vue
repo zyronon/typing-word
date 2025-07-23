@@ -19,6 +19,7 @@ export interface ModalProps {
   confirmButtonText?: string
   cancelButtonText?: string,
   keyboard?: boolean,
+  closeOnClickBg?: boolean,
   confirm?: any
   beforeClose?: any
 }
@@ -26,6 +27,7 @@ export interface ModalProps {
 const props = withDefaults(defineProps<ModalProps>(), {
   modelValue: undefined,
   showClose: true,
+  closeOnClickBg: true,
   fullScreen: false,
   footer: false,
   header: true,
@@ -148,7 +150,7 @@ async function cancel() {
       <div class="modal-mask"
            ref="maskRef"
            v-if="!fullScreen"
-           @click.stop="close"></div>
+           @click.stop="closeOnClickBg && close()"></div>
       <div class="modal"
            ref="modalRef"
            :class="[

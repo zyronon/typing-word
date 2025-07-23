@@ -105,6 +105,9 @@ export const useBaseStore = defineStore('base', {
     known(): Dict {
       return this.word.bookList[2]
     },
+    knownWords(): string[] {
+      return this.known.words.map(v => v.word)
+    },
     skipWordNames() {
       return this.simple.words.map(v => v.word.toLowerCase())
     },

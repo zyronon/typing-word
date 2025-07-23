@@ -112,51 +112,83 @@ export function getCurrentStudyWord() {
   let data = {new: [], review: [], write: []}
   let dict = store.sdict;
   if (dict.words?.length) {
-    for (let i = dict.lastLearnIndex; i < dict.words.length; i++) {
-      if (data.new.length >= dict.perDayStudyNumber) break
-      let item = dict.words[i]
-      if (!store.known.words.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
+    const perDay = store.sdict.perDayStudyNumber;
+    let start = dict.lastLearnIndex;
+    let end = start + dict.perDayStudyNumber
+    dict.words.slice(start, end).map(item => {
+      if (!store.knownWords.includes(item.word)) {
         data.new.push(item)
       }
-    }
+    })
 
-    const getList = (startIndex, endIndex) => {
-      if (startIndex < 0) return []
+    const getList = (startIndex: number, endIndex: number) => {
+      if (startIndex < 0) startIndex = 0
       return dict.words.slice(startIndex, endIndex)
     }
 
-    let s = dict.lastLearnIndex - dict.perDayStudyNumber
-    let e = dict.lastLearnIndex
+    end = start
+    start = start - dict.perDayStudyNumber
     //取上一次学习的单词用于复习
-    let list = getList(s, e)
+    let list = getList(start, end)
     list.map(item => {
-      if (!store.known.words.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
+      if (!store.knownWords.includes(item.word)) {
         data.review.push(item)
       }
     })
 
-    //取前天至再往前数3天的单词，用于默写，
-    Array.from({length: 4}).map((_, j) => {
-      e = s
-      s -= dict.perDayStudyNumber
-      list = getList(s, e)
-      let d = []
-      for (let i = 0; i < list.length; i++) {
-        if (j === 3) {
-          if (d.length >= dict.perDayStudyNumber - data.write.length) break
-        } else {
-          if (d.length >= Math.floor(dict.perDayStudyNumber / 4)) break
-        }
-        let item = list[i]
-        if (!store.known.words.map(v => v.word.toLowerCase()).includes(item.word.toLowerCase())) {
-          d.push(item)
-        }
-      }
-      data.write = data.write.concat(d)
-    })
+    // end = start
+    // start = start - dict.perDayStudyNumber * 3
+    // //在上次学习再往前取前3次学习的单词用于默写
+    // list = getList(start, end)
+    // list.map(item => {
+    //   if (!store.knownWords.includes(item.word)) {
+    //     data.write.push(item)
+    //   }
+    // })
+
+    //write数组放的是上上次之前的单词，总的数量为perDayStudyNumber * 3，取单词的规则为：从后往前取6个perDayStudyNumber的，越靠前的取的单词越多。
+    end = start
+    const totalNeed = perDay * 3;
+    const allWords = dict.words;
+
+    // 上上次更早的单词
+    const candidateWords = allWords.slice(0, end).filter(w => !store.knownWords.includes(w.word));
+
+    // 分6组，每组 perDay 个
+    const groupCount = 6;
+    const groupSize = perDay;
+    const groups: Word[][] = [];
+    for (let i = 0; i < groupCount; i++) {
+      const start = candidateWords.length - (i + 1) * groupSize;
+      const end = candidateWords.length - i * groupSize;
+      if (start < 0 && end <= 0) break;
+      groups.unshift(candidateWords.slice(Math.max(0, start), Math.max(0, end)));
+    }
+
+    // 分配数量，靠前组多，靠后组少
+    // 例如分配比例 [1,2,3,4,5,6]
+    const ratio = [1, 2, 3, 4, 5, 6];
+    const ratioSum = ratio.reduce((a, b) => a + b, 0);
+    const realRatio = ratio.map(r => Math.round(r * totalNeed / ratioSum));
+
+    // 按比例从每组取单词
+    let writeWords: Word[] = [];
+    for (let i = 0; i < groups.length; i++) {
+      writeWords = writeWords.concat(groups[i].slice(-realRatio[i]));
+    }
+    // 如果数量不够，补足
+    if (writeWords.length < totalNeed) {
+      const extra = candidateWords.filter(w => !writeWords.includes(w)).slice(-(totalNeed - writeWords.length));
+      writeWords = writeWords.concat(extra);
+    }
+    // 最终数量截断
+    writeWords = writeWords.slice(-totalNeed);
+
+    //这里需要反转一下，越靠近今天的单词，越先练习
+    data.write = writeWords.reverse();
   }
 
   // console.timeEnd()
-  // console.log('data', data)
+  console.log('data', data)
   return data
 }
