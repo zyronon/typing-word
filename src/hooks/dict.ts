@@ -103,12 +103,12 @@ export function getCurrentStudyWord() {
     })
 
     const getList = (startIndex: number, endIndex: number) => {
-      if (startIndex < 0) startIndex = 0
       return dict.words.slice(startIndex, endIndex)
     }
 
     end = start
     start = start - dict.perDayStudyNumber
+    if (start < 0) start = 0
     //取上一次学习的单词用于复习
     let list = getList(start, end)
     list.map(item => {
@@ -116,6 +116,8 @@ export function getCurrentStudyWord() {
         data.review.push(item)
       }
     })
+
+    console.log(start,end)
 
     // end = start
     // start = start - dict.perDayStudyNumber * 3
@@ -129,44 +131,46 @@ export function getCurrentStudyWord() {
 
     //write数组放的是上上次之前的单词，总的数量为perDayStudyNumber * 3，取单词的规则为：从后往前取6个perDayStudyNumber的，越靠前的取的单词越多。
     end = start
-    const totalNeed = perDay * 3;
-    const allWords = dict.words;
 
     // 上上次更早的单词
-    const candidateWords = allWords.slice(0, end).filter(w => !store.knownWords.includes(w.word));
+    if (end>0){
+      const totalNeed = perDay * 3;
+      const allWords = dict.words;
+      const candidateWords = allWords.slice(0, end).filter(w => !store.knownWords.includes(w.word));
 
-    // 分6组，每组 perDay 个
-    const groupCount = 6;
-    const groupSize = perDay;
-    const groups: Word[][] = [];
-    for (let i = 0; i < groupCount; i++) {
-      const start = candidateWords.length - (i + 1) * groupSize;
-      const end = candidateWords.length - i * groupSize;
-      if (start < 0 && end <= 0) break;
-      groups.unshift(candidateWords.slice(Math.max(0, start), Math.max(0, end)));
+      // 分6组，每组 perDay 个
+      const groupCount = 6;
+      const groupSize = perDay;
+      const groups: Word[][] = [];
+      for (let i = 0; i < groupCount; i++) {
+        const start = candidateWords.length - (i + 1) * groupSize;
+        const end = candidateWords.length - i * groupSize;
+        if (start < 0 && end <= 0) break;
+        groups.unshift(candidateWords.slice(Math.max(0, start), Math.max(0, end)));
+      }
+
+      // 分配数量，靠前组多，靠后组少
+      // 例如分配比例 [1,2,3,4,5,6]
+      const ratio = [1, 2, 3, 4, 5, 6];
+      const ratioSum = ratio.reduce((a, b) => a + b, 0);
+      const realRatio = ratio.map(r => Math.round(r * totalNeed / ratioSum));
+
+      // 按比例从每组取单词
+      let writeWords: Word[] = [];
+      for (let i = 0; i < groups.length; i++) {
+        writeWords = writeWords.concat(groups[i].slice(-realRatio[i]));
+      }
+      // 如果数量不够，补足
+      if (writeWords.length < totalNeed) {
+        const extra = candidateWords.filter(w => !writeWords.includes(w)).slice(-(totalNeed - writeWords.length));
+        writeWords = writeWords.concat(extra);
+      }
+      // 最终数量截断
+      writeWords = writeWords.slice(-totalNeed);
+
+      //这里需要反转一下，越靠近今天的单词，越先练习
+      data.write = writeWords.reverse();
     }
-
-    // 分配数量，靠前组多，靠后组少
-    // 例如分配比例 [1,2,3,4,5,6]
-    const ratio = [1, 2, 3, 4, 5, 6];
-    const ratioSum = ratio.reduce((a, b) => a + b, 0);
-    const realRatio = ratio.map(r => Math.round(r * totalNeed / ratioSum));
-
-    // 按比例从每组取单词
-    let writeWords: Word[] = [];
-    for (let i = 0; i < groups.length; i++) {
-      writeWords = writeWords.concat(groups[i].slice(-realRatio[i]));
-    }
-    // 如果数量不够，补足
-    if (writeWords.length < totalNeed) {
-      const extra = candidateWords.filter(w => !writeWords.includes(w)).slice(-(totalNeed - writeWords.length));
-      writeWords = writeWords.concat(extra);
-    }
-    // 最终数量截断
-    writeWords = writeWords.slice(-totalNeed);
-
-    //这里需要反转一下，越靠近今天的单词，越先练习
-    data.write = writeWords.reverse();
   }
 
   // console.timeEnd()

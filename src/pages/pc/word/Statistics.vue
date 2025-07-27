@@ -13,7 +13,6 @@ import {inject, watch} from "vue";
 
 dayjs.extend(isBetween);
 
-let dictIsEnd = inject<boolean>('dictIsEnd')
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -21,6 +20,9 @@ const statStore = usePracticeStore()
 const model = defineModel({default: false})
 let list = $ref([])
 
+defineProps<{
+  dictIsEnd: boolean;
+}>()
 
 function calcWeekList() {
   // 获取本周的起止时间
@@ -61,7 +63,6 @@ watch(model, (newVal) => {
     requestIdleCallback(() => {
       store.sdict.lastLearnIndex = store.sdict.lastLearnIndex + statStore.newWordNumber
       store.sdict.statistics.push(data as any)
-      store.sdict.statistics.sort((a, b) => a.startDate - b.startDate)
       calcWeekList(); // 新增：计算本周学习记录
     })
   }
@@ -89,7 +90,7 @@ function options(emitType: string) {
       :keyboard="false"
       :show-close="false"
       v-model="model">
-    <div class="w-120 bg-white  color-black p-6 relative flex flex-col gap-6">
+    <div class="w-140 bg-white  color-black p-6 relative flex flex-col gap-6">
       <div class="w-full flex flex-col justify-evenly">
         <div class="center text-2xl mb-2">已完成今日任务</div>
         <div class="flex">
@@ -159,6 +160,9 @@ function options(emitType: string) {
             :keyboard="settingStore.shortcutKeyMap[ShortcutKey.NextChapter]"
             @click="options(EventKey.continueStudy)">
           {{ dictIsEnd ? '重新练习' : '再来一组' }}
+        </BaseButton>
+        <BaseButton @click="$router.back">
+          返回主页
         </BaseButton>
         <BaseButton>
           分享

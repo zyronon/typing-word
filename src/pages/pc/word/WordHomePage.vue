@@ -50,6 +50,10 @@ async function init() {
 }
 
 function study() {
+  // getCurrentStudyWord()
+  // store.sdict.lastLearnIndex += 3
+  // return
+  // return  store.sdict.lastLearnIndex = store.sdict.length - 1
   if (store.sdict.id) {
     if (!store.sdict.words.length) {
       return ElMessage.warning('没有单词可学习！')
@@ -278,7 +282,7 @@ function clickActivityEvent(e) {
         <div class="center text-sm" :style="{ opacity: tempPerDayStudyNumber === 20 ? 1 : 0 }">
           推荐
         </div>
-        <el-slider :min="3" :step="10" show-stops :marks="{ 10: '10', 200: '200' }" size="small" class="my-6"
+        <el-slider :min="10" :step="10" show-stops :marks="{ 10: '10', 200: '200' }" size="small" class="my-6"
                    :max="200" v-model="tempPerDayStudyNumber"/>
         <div class="flex gap-2 mb-2 mt-10 items-center">
           <div>预计</div>

@@ -71,6 +71,7 @@ watch(() => studyData, () => {
   data.wrongWords = []
   allWrongWords = new Set()
 
+  settingStore.dictation = false
   statStore.step = 0
   statStore.startDate = Date.now()
   statStore.inputWordNumber = 0
@@ -86,7 +87,6 @@ const dictIsEnd = $computed(() => {
 })
 
 provide('studyData', data)
-provide('dictIsEnd', dictIsEnd)
 
 const word = $computed(() => {
   return data.words[data.index] ?? getDefaultWord()
@@ -287,7 +287,10 @@ function togglePanel() {
 
 function continueStudy() {
   if (dictIsEnd) {
-
+    //todo 不知这样处理是否不妥？
+    store.sdict.lastLearnIndex = 0
+    settingStore.dictation = false
+    studyData = getCurrentStudyWord()
   } else {
     settingStore.dictation = false
     studyData = getCurrentStudyWord()
@@ -406,7 +409,7 @@ useEvents([
       </Panel>
     </div>
   </div>
-  <Statistics v-model="showStatDialog"/>
+  <Statistics v-model="showStatDialog" :dictIsEnd="dictIsEnd"/>
 </template>
 
 <style scoped lang="scss">
