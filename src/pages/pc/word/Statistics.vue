@@ -2,16 +2,18 @@
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import BaseButton from "@/components/BaseButton.vue";
-import {ShortcutKey, Statistics} from "@/types.ts";
+import {ShortcutKey, Statistics, StudyData} from "@/types.ts";
 import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts";
 import {Icon} from '@iconify/vue';
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
-import {watch} from "vue";
+import {inject, watch} from "vue";
 
 dayjs.extend(isBetween);
+
+let dictIsEnd = inject<boolean>('dictIsEnd')
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -77,11 +79,6 @@ function options(emitType: string) {
   model.value = false
   emitter.emit(EventKey[emitType])
 }
-
-//todo
-const isEnd = $computed(() => {
-  return false
-})
 
 </script>
 
@@ -156,14 +153,13 @@ const isEnd = $computed(() => {
         <BaseButton
             :keyboard="settingStore.shortcutKeyMap[ShortcutKey.RepeatChapter]"
             @click="options(EventKey.repeatStudy)">
-          重学
+          重学一遍
         </BaseButton>
         <BaseButton
             :keyboard="settingStore.shortcutKeyMap[ShortcutKey.NextChapter]"
             @click="options(EventKey.continueStudy)">
-          {{ isEnd ? '重新练习' : '再来一组' }}
+          {{ dictIsEnd ? '重新练习' : '再来一组' }}
         </BaseButton>
-
         <BaseButton>
           分享
         </BaseButton>

@@ -43,20 +43,25 @@ onUnmounted(() => {
   timer && clearInterval(timer)
 })
 
-const statStore = usePracticeStore()
 let studyData = inject<StudyData>('studyData')
 
 const status = $computed(() => {
   let str = '正在'
-  switch (statStore.step) {
+  switch (statisticsStore.step) {
     case 0:
       str += `学习新词`
       break
     case 1:
-      str += `复习`
+      str += `默写新词`
       break
     case 2:
-      str += '默写'
+      str += `复习上次`
+      break
+    case 3:
+      str += `默写上次`
+      break
+    case 4:
+      str += '默写之前'
       break
   }
   return str
@@ -100,12 +105,12 @@ const progress = $computed(() => {
           <div class="row">
             <div class="num">{{ format(statisticsStore.inputWordNumber, '', 0) }}</div>
             <div class="line"></div>
-            <div class="name">输入数</div>
+            <div class="name">总输入数</div>
           </div>
           <div class="row">
             <div class="num">{{ format(statisticsStore.wrong, '', 0) }}</div>
             <div class="line"></div>
-            <div class="name">错误数</div>
+            <div class="name">总错误数</div>
           </div>
         </div>
         <div class="flex justify-center items-center">

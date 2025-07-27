@@ -4,9 +4,10 @@ import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio, useTTsPlayAudio} from "@/hooks/sound.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import {onMounted, onUnmounted, watch} from "vue";
+import {nextTick, onMounted, onUnmounted, watch} from "vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import SentenceHightLightWord from "@/pages/pc/word/components/SentenceHightLightWord.vue";
+import {usePracticeStore} from "@/stores/practice.ts";
 
 interface IProps {
   word: Word,
@@ -130,9 +131,19 @@ function del() {
   }
 }
 
+const statStore = usePracticeStore()
+
 function showWord() {
   if (settingStore.allowWordTip) {
     showFullWord = true
+  }
+  //系统设定的默认模式情况下，如果看了单词统计到错词里面去
+  switch (statStore.step) {
+    case 1:
+    case 3:
+    case 4:
+      emit('wrong')
+      break
   }
 }
 
@@ -147,6 +158,13 @@ function play() {
 defineExpose({del, showWord, hideWord, play})
 
 let tab = $ref(0)
+
+function mouseleave() {
+  setTimeout(() => {
+    showFullWord = false
+  }, 50)
+}
+
 </script>
 
 <template>
@@ -172,15 +190,14 @@ let tab = $ref(0)
       <div class="word my-1"
            :class="wrong && 'is-wrong'"
            :style="{fontSize: settingStore.fontSize.wordForeignFontSize +'px'}"
+           @mouseenter="showWord"
+           @mouseleave="mouseleave"
       >
         <span class="input" v-if="input">{{ input }}</span>
         <span class="wrong" v-if="wrong">{{ wrong }}</span>
         <template v-if="settingStore.dictation">
-          <span class="letter" v-if="!showFullWord"
-                @mouseenter="settingStore.allowWordTip && (showFullWord = true)">{{
-              displayWord.split('').map(() => '_').join('')
-            }}</span>
-          <span class="letter" v-else @mouseleave="showFullWord = false">{{ displayWord }}</span>
+          <span class="letter" v-if="!showFullWord">{{ displayWord.split('').map(() => '_').join('') }}</span>
+          <span class="letter" v-else>{{ displayWord }}</span>
         </template>
         <span class="letter" v-else>{{ displayWord }}</span>
       </div>

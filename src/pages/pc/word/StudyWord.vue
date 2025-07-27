@@ -56,7 +56,6 @@ let data = $ref<StudyData>({
   wrongWords: [],
 })
 
-provide('studyData', data)
 
 onMounted(() => {
   if (runtimeStore.routeData) {
@@ -81,10 +80,17 @@ watch(() => studyData, () => {
   statStore.index = 0
 }, {immediate: true, deep: true})
 
+
+const dictIsEnd = $computed(() => {
+  return store.sdict.lastLearnIndex === store.sdict.length
+})
+
+provide('studyData', data)
+provide('dictIsEnd', dictIsEnd)
+
 const word = $computed(() => {
   return data.words[data.index] ?? getDefaultWord()
 })
-
 const prevWord: Word = $computed(() => {
   return data.words?.[data.index - 1] ?? undefined
 })
@@ -94,8 +100,8 @@ const nextWord: Word = $computed(() => {
 })
 
 function next(isTyping: boolean = true) {
-  showStatDialog = true
-  return
+  // showStatDialog = true
+  // return
   if (data.index === data.words.length - 1) {
     if (data.wrongWords.length) {
       console.log('当前学完了，但还有错词')
@@ -104,36 +110,65 @@ function next(isTyping: boolean = true) {
       data.wrongWords = []
     } else {
       console.log('当前学完了，没错词', statStore.total, statStore.step, data.index)
-      isTyping && statStore.inputWordNumber++
+      if (isTyping) statStore.inputWordNumber++
 
       //学完了
-      if (statStore.step === 2) {
+      if (statStore.step === 4) {
         statStore.spend = Date.now() - statStore.startDate
         console.log('全完学完了')
-        emitter.emit(EventKey.openStatModal, {})
+        showStatDialog = true
         // emit('complete', {})
       }
 
       //开始默认所有单词
-      if (statStore.step === 1) {
-        console.log('开始默认所有单词')
+      if (statStore.step === 3) {
         statStore.step++
-        settingStore.dictation = true
-        data.words = shuffle(studyData.write.concat(studyData.new).concat(studyData.review))
-        data.index = 0
-      }
-
-      //开始复习
-      if (statStore.step === 0) {
-        statStore.step++
-        if (studyData.review.length) {
-          console.log('开始复习')
-          data.words = shuffle(studyData.review)
-          settingStore.dictation = false
+        if (studyData.write.length) {
+          console.log('开始默认所有单词')
+          settingStore.dictation = true
+          data.words = shuffle(studyData.write)
           data.index = 0
         } else {
+          console.log('开始默认所有单词-无单词路过')
           next()
         }
+      }
+
+      //开始默写昨日
+      if (statStore.step === 2) {
+        statStore.step++
+        if (studyData.review.length) {
+          console.log('开始默写昨日')
+          settingStore.dictation = true
+          data.words = shuffle(studyData.review)
+          data.index = 0
+        } else {
+          console.log('开始默写昨日-无单词路过')
+          next()
+        }
+      }
+
+      //开始复习昨日
+      if (statStore.step === 1) {
+        statStore.step++
+        if (studyData.review.length) {
+          console.log('开始复习昨日')
+          settingStore.dictation = false
+          data.words = shuffle(studyData.review)
+          data.index = 0
+        } else {
+          console.log('开始复习昨日-无单词路过')
+          next()
+        }
+      }
+
+      //开始默写新词
+      if (statStore.step === 0) {
+        statStore.step++
+        console.log('开始默写新词')
+        settingStore.dictation = true
+        data.words = shuffle(studyData.new)
+        data.index = 0
       }
     }
   } else {
@@ -180,8 +215,10 @@ useStartKeyboardEventListener()
 useOnKeyboardEventListener(onKeyDown, onKeyUp)
 
 function repeat() {
-  console.log('repeat')
+  console.log('重学一遍')
   settingStore.dictation = false
+  //将学习进度减回去
+  store.sdict.lastLearnIndex = store.sdict.lastLearnIndex - statStore.newWordNumber
   emitter.emit(EventKey.resetWord)
   let temp = cloneDeep(studyData)
   //排除已掌握单词
@@ -248,9 +285,18 @@ function togglePanel() {
   settingStore.showPanel = !settingStore.showPanel
 }
 
+function continueStudy() {
+  if (dictIsEnd) {
+
+  } else {
+    settingStore.dictation = false
+    studyData = getCurrentStudyWord()
+  }
+}
+
 useEvents([
   [EventKey.repeatStudy, repeat],
-  [EventKey.continueStudy, next],
+  [EventKey.continueStudy, continueStudy],
   [EventKey.changeDict, () => {
     studyData = getCurrentStudyWord()
   }],
@@ -360,9 +406,7 @@ useEvents([
       </Panel>
     </div>
   </div>
-  <Statistics v-model="showStatDialog"
-
-  />
+  <Statistics v-model="showStatDialog"/>
 </template>
 
 <style scoped lang="scss">

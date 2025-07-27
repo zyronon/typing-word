@@ -146,7 +146,6 @@ function over() {
       wrong: statisticsStore.wrong,
     }
     stat.correctRate = 100 - Math.trunc(((stat.wrong) / (stat.total)) * 100)
-    emitter.emit(EventKey.openStatModal, stat)
   } else {
     tabIndex = 1
     wordData.index = 0

@@ -177,6 +177,7 @@ export enum ShortcutKey {
   Previous = 'Previous',
   ToggleSimple = 'ToggleSimple',
   ToggleCollect = 'ToggleCollect',
+  //todo 这里还用老的Chapter，要改
   NextChapter = 'NextChapter',
   PreviousChapter = 'PreviousChapter',
   RepeatChapter = 'RepeatChapter',

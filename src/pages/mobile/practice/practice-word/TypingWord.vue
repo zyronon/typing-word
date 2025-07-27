@@ -117,8 +117,6 @@ function next(isTyping: boolean = true) {
       let now = Date.now()
       stat.endDate = now
       stat.spend = now - stat.startDate
-
-      emitter.emit(EventKey.openStatModal, stat)
     }
   } else {
     data.index++
