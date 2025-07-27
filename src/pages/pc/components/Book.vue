@@ -23,7 +23,9 @@ defineEmits<{
         <div>{{ item?.name }}</div>
         <div class="text-sm line-clamp-3" v-opacity="item.name !== item.description">{{ item?.description }}</div>
       </div>
-      <div class="absolute bottom-4 right-4">{{ item?.length }}{{ quantifier }}</div>
+      <div class="absolute bottom-4 right-4">
+        {{ item?.lastLearnIndex ? item?.lastLearnIndex + '/' : '' }}{{ item?.length }}{{ quantifier }}
+      </div>
       <el-checkbox v-if="showCheckbox"
                    :model-value="checked"
                    @click.stop="$emit('check')"

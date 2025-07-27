@@ -2,7 +2,7 @@
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import BaseButton from "@/components/BaseButton.vue";
-import {ShortcutKey} from "@/types.ts";
+import {ShortcutKey, Statistics} from "@/types.ts";
 import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts";
 import {Icon} from '@iconify/vue';
 import {useSettingStore} from "@/stores/setting.ts";
@@ -48,11 +48,12 @@ function calcWeekList() {
 // 监听 model 弹窗打开时重新计算
 watch(model, (newVal) => {
   if (newVal) {
-    let data = {
-      speed: statStore.speed,
+    let data: Statistics = {
+      spend: statStore.spend,
       startDate: statStore.startDate,
       total: statStore.total,
       wrong: statStore.wrong,
+      new: statStore.newWordNumber,
     }
     //这里不知为啥会卡，打开有延迟
     requestIdleCallback(() => {

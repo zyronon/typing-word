@@ -33,9 +33,9 @@ const playBeep = usePlayBeep()
 const playCorrect = usePlayCorrect()
 const playKeyboardAudio = usePlayKeyboardAudio()
 const playWordAudio = usePlayWordAudio()
-const ttsPlayAudio = useTTsPlayAudio()
+// const ttsPlayAudio = useTTsPlayAudio()
 const volumeIconRef: any = $ref()
-const volumeTranslateIconRef: any = $ref()
+// const volumeTranslateIconRef: any = $ref()
 
 let displayWord = $computed(() => {
   return props.word.word.slice(input.length + wrong.length)
@@ -146,7 +146,7 @@ function play() {
 
 defineExpose({del, showWord, hideWord, play})
 
-let tab = $ref(2)
+let tab = $ref(0)
 </script>
 
 <template>

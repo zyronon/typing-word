@@ -108,7 +108,7 @@ function next(isTyping: boolean = true) {
 
       //学完了
       if (statStore.step === 2) {
-        statStore.speed = Date.now() - statStore.startDate
+        statStore.spend = Date.now() - statStore.startDate
         console.log('全完学完了')
         emitter.emit(EventKey.openStatModal, {})
         // emit('complete', {})

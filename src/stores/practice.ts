@@ -3,7 +3,9 @@ import {defineStore} from "pinia"
 export interface PracticeState {
   step: number,
   startDate: number,
+  //todo 删除
   speed: number,
+  spend: number,
   total: number,
   index: number,//当前输入的第几个，用于和total计算进度
   newWordNumber: number,
@@ -18,6 +20,7 @@ export const usePracticeStore = defineStore('practice', {
     return {
       step: 0,
       speed: 0,
+      spend: 0,
       startDate: Date.now(),
       total: 0,
       index: 0,

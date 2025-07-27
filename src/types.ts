@@ -140,7 +140,10 @@ export function getDefaultArticle(val: Partial<Article> = {}): Article {
 export interface Statistics {
   startDate: number,//开始日期
   spend: number,//花费时间
+  //todo 这个写错了，上线记得删除掉
+  speed?: number,//花费时间
   total: number//单词数量
+  new: number//新学单词数量
   wrong: number//错误数
 }
 
@@ -152,7 +155,9 @@ export interface DisplayStatistics extends Statistics {
 export const DefaultDisplayStatistics: DisplayStatistics = {
   startDate: Date.now(),
   spend: -1,
+  speed: -1,
   total: -1,
+  new: 0,
   wrong: -1,
   inputWordNumber: -1,
   wrongWords: [],

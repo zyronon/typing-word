@@ -6,7 +6,7 @@ import "vue-activity-calendar/style.css";
 import {useRouter} from "vue-router";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
-import {_getAccomplishDate, _getAccomplishDays, _getDictDataByUrl, useNav} from "@/utils";
+import {_getAccomplishDate, _getAccomplishDays, _getDictDataByUrl, useNav, _dateFormat} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {DictResource, getDefaultDict} from "@/types.ts";
 import {onMounted, watch} from "vue";
@@ -15,15 +15,12 @@ import DictListPanel from "@/pages/pc/components/DictListPanel.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import Book from "@/pages/pc/components/Book.vue";
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
+import {ElMessage} from 'element-plus';
 
 const store = useBaseStore()
 const router = useRouter()
 const {nav} = useNav()
 const runtimeStore = useRuntimeStore()
-
-function clickEvent(e) {
-  console.log('e', e)
-}
 
 let currentStudy = $ref({
   new: [],
@@ -49,6 +46,7 @@ async function init() {
   if (!currentStudy.new.length && store.sdict.words.length) {
     currentStudy = getCurrentStudyWord()
   }
+
 }
 
 function study() {
@@ -120,6 +118,51 @@ function toggleSelect(item) {
   }
 }
 
+// 统计所有词典的学习日期
+const allStudyDays = $computed(() => {
+  const dateCountMap = new Map<string, { count: number, spend: number }>();
+  store.word.bookList.forEach(dict => {
+    if (Array.isArray(dict.statistics)) {
+      dict.statistics.forEach(stat => {
+        // 格式化为 'YYYY-MM-DD'
+        const date = _dateFormat(stat.startDate, 'YYYY-MM-DD');
+        if (!date) return;
+        // spend 直接累加原始毫秒数
+        const spend = Number(stat.spend || stat.speed) || 0;
+        if (!dateCountMap.has(date)) {
+          dateCountMap.set(date, {count: 1, spend});
+        } else {
+          const v = dateCountMap.get(date)!;
+          v.count += 1;
+          v.spend += spend;
+        }
+      });
+    }
+  });
+  // 转为 [{ date, count, spend }]
+  return Array.from(dateCountMap.entries()).map(([date, {count, spend}]) => ({date, count, spend}));
+});
+
+function clickActivityEvent(e) {
+  // e.date 是 'YYYY-MM-DD'
+  const day = allStudyDays.find(item => item.date === e.date);
+  if (day) {
+    // 这里将毫秒转为分钟和小时
+    const min = Math.round(day.spend / 1000 / 60);
+    let msg = '';
+    if (min < 60) {
+      msg = ` 学习了${min}分钟`;
+    } else {
+      const hour = (min / 60).toFixed(1);
+      msg = ` 学习了${min}分钟（约${hour}小时）`;
+    }
+    ElMessage.success(e.date + msg);
+  } else {
+    ElMessage.info('当天无学习记录');
+  }
+}
+
+
 </script>
 
 <template>
@@ -129,11 +172,9 @@ function toggleSelect(item) {
         <div class="flex">
           <div class="bg-slate-200 px-3 h-14 rounded-md flex items-center">
             <span class="text-xl font-bold">{{ store.sdict.name || '请选择书籍开始学习' }}</span>
-            <BaseIcon
-                title="切换词典"
-                :icon="store.sdict.name ? 'gg:arrows-exchange':'fluent:add-20-filled'"
-                class="ml-4"
-                @click="dictListRef.startSearch()"/>
+            <BaseIcon title="切换词典" :icon="store.sdict.name ? 'gg:arrows-exchange' : 'fluent:add-20-filled'"
+                      class="ml-4"
+                      @click="dictListRef.startSearch()"/>
           </div>
         </div>
         <div class="">
@@ -172,17 +213,14 @@ function toggleSelect(item) {
       <div class="flex flex-col items-end justify-around">
         <div class="flex gap-1 items-center">
           每日目标
-          <div
-              style="color:#ac6ed1;"
-              @click="setPerDayStudyNumber"
-              class="bg-slate-200 px-2 h-10 flex center text-2xl rounded cursor-pointer">
+          <div style="color:#ac6ed1;" @click="setPerDayStudyNumber"
+               class="bg-slate-200 px-2 h-10 flex center text-2xl rounded cursor-pointer">
             {{ store.sdict.id ? store.sdict.perDayStudyNumber : 0 }}
           </div>
           个单词
         </div>
         <div class="rounded-xl bg-slate-800 flex items-center gap-2 py-3 px-5 text-white cursor-pointer"
-             :class="store.sdict.name || 'opacity-70 cursor-not-allowed'"
-             @click="study">
+             :class="store.sdict.name || 'opacity-70 cursor-not-allowed'" @click="study">
           <span>开始学习</span>
           <Icon icon="icons8:right-round" class="text-2xl"/>
         </div>
@@ -193,88 +231,58 @@ function toggleSelect(item) {
       <div class="flex justify-between">
         <div class="title">我的词典</div>
         <div class="flex gap-4 items-center">
-          <PopConfirm title="确认删除所有选中词典？"
-                      @confirm="handleBatchDel"
-                      v-if="selectIds.length"
-
-          >
-            <BaseIcon
-                class="del"
-                title="删除"
-                icon="solar:trash-bin-minimalistic-linear"/>
+          <PopConfirm title="确认删除所有选中词典？" @confirm="handleBatchDel" v-if="selectIds.length">
+            <BaseIcon class="del" title="删除" icon="solar:trash-bin-minimalistic-linear"/>
           </PopConfirm>
 
           <div class="color-blue cursor-pointer" v-if="store.word.bookList.length > 3"
-               @click="isMultiple = !isMultiple;selectIds = []"
-          >{{ isMultiple ? '取消' : '管理词典' }}
+               @click="isMultiple = !isMultiple; selectIds = []">{{ isMultiple ? '取消' : '管理词典' }}
           </div>
-          <div class="color-blue cursor-pointer" @click="nav('dict-detail', {isAdd: true})">创建个人词典</div>
+          <div class="color-blue cursor-pointer" @click="nav('dict-detail', { isAdd: true })">创建个人词典</div>
         </div>
       </div>
       <div class="grid grid-cols-6 gap-4  mt-4">
-        <Book :is-add="false"
-              quantifier="个词"
-              :item="item"
-              :checked="selectIds.includes(item.id)"
-              @check="() => toggleSelect(item)"
-              :show-checkbox="isMultiple && j>=3"
-              v-for="(item,j) in store.word.bookList"
-              @click="getDictDetail(item)"/>
-        <Book :is-add="true"
-              @click="dictListRef.startSearch()"/>
+        <Book :is-add="false" quantifier="个词" :item="item" :checked="selectIds.includes(item.id)"
+              @check="() => toggleSelect(item)" :show-checkbox="isMultiple && j >= 3"
+              v-for="(item, j) in store.word.bookList" @click="getDictDetail(item)"/>
+        <Book :is-add="true" @click="dictListRef.startSearch()"/>
       </div>
     </div>
 
-    <DictListPanel
-        ref="dictListRef"
-        @selectDict="selectDict"
-    />
+    <DictListPanel ref="dictListRef" @selectDict="selectDict"/>
 
     <div class="card">
       <div class="title">
-        已学习 <span class="text-3xl">159</span> 天
+        已学习 <span class="text-3xl">{{ allStudyDays.length }}</span> 天
       </div>
       <div class="center">
-        <ActivityCalendar
-            :data="[{ date: '2023-05-22', count: 5 }]"
-            :width="40"
-            :height="7"
-            :cellLength="16"
-            :cellInterval="8"
-            :fontSize="12"
-            :showLevelFlag="false"
-            :showWeekDayFlag="false"
-            :clickEvent="clickEvent"
-        />
+        <ActivityCalendar :data="allStudyDays"
+                          :width="40"
+                          :height="7"
+                          :cellLength="16"
+                          :cellInterval="8"
+                          :fontSize="12"
+                          :showLevelFlag="true"
+                          :showWeekDayFlag="true"
+                          :clickEvent="clickActivityEvent"/>
       </div>
     </div>
 
-    <Dialog v-model="show"
-            title="每日目标"
-            :footer="true"
-            @ok="changePerDayStudyNumber"
-    >
+    <Dialog v-model="show" title="每日目标" :footer="true" @ok="changePerDayStudyNumber">
       <div class="target-modal">
         <div class="center text-2xl gap-2">
           <span class="text-3xl" style="color:rgb(176,116,211)">{{
               tempPerDayStudyNumber
             }}</span>个单词
         </div>
-        <div class="center text-sm" :style="{opacity:tempPerDayStudyNumber === 20?1:0}">
+        <div class="center text-sm" :style="{ opacity: tempPerDayStudyNumber === 20 ? 1 : 0 }">
           推荐
         </div>
-        <el-slider :min="10"
-                   :step="10"
-                   show-stops :marks="{10: '10',200: '200'}"
-                   size="small"
-                   class="my-6"
-                   :max="200"
-                   v-model="tempPerDayStudyNumber"
-        />
+        <el-slider :min="10" :step="10" show-stops :marks="{ 10: '10', 200: '200' }" size="small" class="my-6"
+                   :max="200" v-model="tempPerDayStudyNumber"/>
         <div class="flex gap-2 mb-2 mt-10 items-center">
           <div>预计</div>
-          <span class="text-2xl"
-                style="color:rgb(176,116,211)">{{
+          <span class="text-2xl" style="color:rgb(176,116,211)">{{
               _getAccomplishDays(store.sdict.words.length, tempPerDayStudyNumber)
             }}</span>天完成学习
         </div>
