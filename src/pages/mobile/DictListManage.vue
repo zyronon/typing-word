@@ -39,7 +39,7 @@ const groupByTranslateLanguage = $computed(() => {
     data = groupBy(articleList, 'translateLanguage')
   } else if (currentLanguage === 'my') {
     data = {
-      common: store.myDictList.concat([{id: '',} as any])
+      common: store.word.bookList.concat([{id: '',} as any])
     }
   } else {
     data = groupBy(groupByLanguage[currentLanguage], 'translateLanguage')
@@ -134,7 +134,7 @@ function selectDict(val: { dict: DictResource | Dict, index: number }) {
         </div>
         <DictGroup
             v-for="item in articleData.dictList"
-            :select-id="store.currentDict.id"
+            :select-id="store.sdict.id"
             :groupByTag="item[1]"
             :category="item[0]"
         />
@@ -153,7 +153,7 @@ function selectDict(val: { dict: DictResource | Dict, index: number }) {
           <DictGroup
               @select-dict="selectDict"
               v-for="item in wordData.dictList"
-              :select-id="store.currentDict.id"
+              :select-id="store.sdict.id"
               :groupByTag="item[1]"
               :category="item[0]"
           />

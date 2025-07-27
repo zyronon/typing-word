@@ -8,20 +8,8 @@ import {SAVE_DICT_KEY} from "@/utils/const.ts";
 import {_checkDictWords, _getDictDataByUrl, _getStudyProgress, checkAndUpgradeSaveDict, getDictFile} from "@/utils";
 
 export interface BaseState {
-  myDictList: Dict[],
-  current: {
-    index: number,
-    practiceType: DictType,//练习类型，目前仅词典为collect时判断是练单词还是文章使用
-  },
   simpleWords: string[],
   load: boolean
-
-  wordDictList?: Dict[],
-  currentStudy?: {
-    word: {
-      dictIndex: number,
-    },
-  },
   word: {
     studyIndex: number,
     bookList: Dict[],
@@ -33,23 +21,13 @@ export interface BaseState {
 }
 
 export const DefaultBaseState = (): BaseState => ({
-  wordDictList: [],
-  currentStudy: {
-    word: {
-      dictIndex: 0,
-    },
-  },
-  myDictList: [],
-  current: {
-    index: 4,
-    practiceType: DictType.article,
-  },
   simpleWords: [
     'a', 'an',
-    'i', 'my', 'you', 'your', 'me', 'it',
+    'i', 'my', 'me', 'you', 'your', 'he', 'his', 'she', 'her', 'it',
     'what', 'who', 'where', 'how', 'when', 'which',
-    'be', 'am', 'is', 'do', 'are', 'did', 'were', 'was', 'can', 'could', 'will', 'would',
-    'the', 'that', 'this', 'to', 'of', 'for', 'and', 'at', 'not', 'no', 'yes',
+    'be', 'am', 'is', 'was', 'are', 'were', 'do', 'did', 'can', 'could', 'will', 'would',
+    'the', 'that', 'this', 'and', 'not', 'no', 'yes',
+    'to', 'of', 'for', 'at', 'in'
   ],
   load: false,
   word: {
@@ -87,17 +65,11 @@ export const useBaseStore = defineStore('base', {
     return DefaultBaseState()
   },
   getters: {
-    collect(): Dict {
-      return this.word.bookList[0]
-    },
     collectWord(): Dict {
       return this.word.bookList[0]
     },
     collectArticle(): Dict {
       return this.article.bookList[0]
-    },
-    simple(): Dict {
-      return this.word.bookList[2]
     },
     wrong(): Dict {
       return this.word.bookList[1]
@@ -106,25 +78,10 @@ export const useBaseStore = defineStore('base', {
       return this.word.bookList[2]
     },
     knownWords(): string[] {
-      return this.known.words.map(v => v.word)
+      return this.known.words.map((v: Word) => v.word)
     },
-    skipWordNames() {
-      return this.simple.words.map(v => v.word.toLowerCase())
-    },
-    skipWordNamesWithSimpleWords() {
-      return this.simple.words.map(v => v.word.toLowerCase()).concat(this.simpleWords)
-    },
-    isArticle(state: BaseState): boolean {
-      //如果是收藏时，特殊判断
-      if (this.currentDict.type === DictType.collect) {
-        return state.current.practiceType === DictType.article
-      }
-      return [
-        DictType.article,
-      ].includes(this.currentDict.type)
-    },
-    currentDict(): Dict {
-      return this.myDictList[this.current.index] ?? {}
+    knownWordsWithSimpleWords() {
+      return this.known.words.map((v: Word) => v.word).concat(this.simpleWords)
     },
     currentStudyWordDict(): Dict {
       if (this.word.studyIndex >= 0) {
@@ -138,9 +95,6 @@ export const useBaseStore = defineStore('base', {
     currentStudyProgress(): number {
       if (!this.sdict.words?.length) return 0
       return _getStudyProgress(this.sdict.lastLearnIndex, this.sdict.words?.length)
-    },
-    currentArticleCollectDict(): Dict {
-      return this.article.bookList[0]
     },
     currentBook(): Dict {
       return this.article.bookList[this.article.studyIndex] ?? {}

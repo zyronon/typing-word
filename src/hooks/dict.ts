@@ -87,25 +87,6 @@ export function useArticleOptions() {
   }
 }
 
-//同步到我的词典列表
-export function syncMyDictList(dict: Dict, isCustom = true) {
-  const store = useBaseStore()
-  //任意修改，都将其变为自定义词典
-  dict.custom = isCustom
-  if (isArticle(dict.type)) {
-    dict.length = dict.articles.length
-  } else {
-    dict.length = dict.words.length
-  }
-
-  let rIndex = store.myDictList.findIndex(v => v.id === dict.id)
-  if (rIndex > -1) {
-    store.myDictList[rIndex] = cloneDeep(dict)
-  } else {
-    store.myDictList.push(cloneDeep(dict))
-  }
-}
-
 export function getCurrentStudyWord() {
   // console.time()
   const store = useBaseStore()

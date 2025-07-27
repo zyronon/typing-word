@@ -124,8 +124,8 @@ function next(isTyping: boolean = true) {
     data.index++
     isTyping && statisticsStore.inputWordNumber++
     console.log('这个词完了')
-    if ([DictType.word].includes(store.currentDict.type)
-        && store.skipWordNames.includes(word.word.toLowerCase())) {
+    if ([DictType.word].includes(store.sdict.type)
+        && store.knownWords.includes(word.word.toLowerCase())) {
       next()
     }
   }
@@ -342,7 +342,7 @@ onMounted(() => {
                   </div>
                   <BaseIcon icon="bi:arrow-right"
                             @click="next"
-                            v-if="store.currentDict.chapterIndex < store.currentDict.chapterWords.length - 1"/>
+                            v-if="store.sdict.chapterIndex < store.sdict.chapterWords.length - 1"/>
                 </div>
                 <div class="right">
                   {{ data.words.length }}个单词

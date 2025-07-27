@@ -3,7 +3,6 @@ import './assets/css/style.scss'
 import App from './App.vue'
 // import Mobile from './Mobile.vue'
 import {createPinia} from "pinia"
-// import ElementPlus from 'element-plus'
 import ZH from "@/locales/zh-CN.ts";
 import {createI18n} from 'vue-i18n'
 import router from "@/router.ts";

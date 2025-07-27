@@ -29,7 +29,7 @@ const {
       <div class="list-header">
         <div class="dict-name">总词数：{{ store.wrong.words.length }}</div>
         <template
-            v-if="store.currentDict.type !== DictType.wrong && store.wrong.words.length">
+            v-if="store.sdict.type !== DictType.wrong && store.wrong.words.length">
           <PopConfirm
               :title="`确认切换？`"
               @confirm="changeIndex( store.wrong)"

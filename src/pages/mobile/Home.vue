@@ -27,7 +27,7 @@ function goPractice() {
     <div class="current-dict">
       <div class="top">
         <div class="left" @click="router.push('/mobile/dict-detail')">
-          <div class="name">{{ store.currentDict.name }}</div>
+          <div class="name">{{ store.sdict.name }}</div>
           <Icon class="arrow" icon="mingcute:right-line" width="20"/>
         </div>
         <span>词表</span>

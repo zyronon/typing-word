@@ -22,7 +22,7 @@ let load = $ref(false)
 onMounted(() => {
   // console.log('route', route.query.id)
   let item = dictionaryResources.find(v => v.id === route.query.id)
-  let find: Dict = store.myDictList.find((v: Dict) => v.id === item.id)
+  let find: Dict = store.word.bookList.find((v: Dict) => v.id === item.id)
   if (find) {
     runtimeStore.editDict = cloneDeep(find)
   } else {
@@ -31,8 +31,6 @@ onMounted(() => {
       ...item,
     })
     runtimeStore.editDict.id = nanoid(6)
-    //设置默认章节单词数
-    runtimeStore.editDict.chapterWordNumber = settingStore.chapterWordNumber
   }
   load = true
 })

@@ -1,15 +1,10 @@
 <script setup lang="ts">
 
 import TypingWord from "@/pages/mobile/practice/practice-word/TypingWord.vue";
-
-import {cloneDeep} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
-import {onMounted, onUnmounted} from "vue";
-import {useRuntimeStore} from "@/stores/runtime.ts";
+import {onMounted} from "vue";
 import {ShortcutKey, Word} from "@/types.ts";
-import {emitter, EventKey, useEvent, useEvents} from "@/utils/eventBus.ts";
-import {useSettingStore} from "@/stores/setting.ts";
-import {syncMyDictList} from "@/hooks/dict.ts";
+import {EventKey, useEvents} from "@/utils/eventBus.ts";
 
 const store = useBaseStore()
 
@@ -24,7 +19,7 @@ function getCurrentPractice() {
 
 function sort(list: Word[]) {
   wordData.index = 0
-  syncMyDictList(store.currentDict)
+  // syncMyDictList(store.currentDict)
 }
 
 function next() {

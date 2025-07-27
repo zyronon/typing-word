@@ -12,9 +12,9 @@ import {useDisableEventListener, useWindowClick} from "@/hooks/event.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {nanoid} from "nanoid";
-import {syncMyDictList} from "@/hooks/dict.ts";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import EditArticle2 from "@/pages/pc/article/components/EditArticle2.vue";
+import {_nextTick} from "@/utils";
 
 const emit = defineEmits<{
   importData: [val: Event]
@@ -123,8 +123,26 @@ function saveArticle(val: Article): boolean {
   article = cloneDeep(val)
   //TODO 保存完成后滚动到对应位置
   ElMessage.success('保存成功！')
-  syncMyDictList(runtimeStore.editDict)
+  syncBookInMyStudyList()
   return true
+}
+
+//todo 考虑与syncDictInMyStudyList、changeDict方法合并
+function syncBookInMyStudyList(study = false) {
+  _nextTick(() => {
+    let rIndex = base.article.bookList.findIndex(v => v.id === runtimeStore.editDict.id)
+    let temp = cloneDeep(runtimeStore.editDict);
+    console.log(temp)
+    temp.custom = true
+    temp.length = temp.articles.length
+    if (rIndex > -1) {
+      base.article.bookList[rIndex] = temp
+      if (study) base.article.studyIndex = rIndex
+    } else {
+      base.article.bookList.push(temp)
+      if (study) base.article.studyIndex = base.article.bookList.length - 1
+    }
+  }, 100)
 }
 
 function saveAndNext(val: Article) {

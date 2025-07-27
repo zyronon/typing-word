@@ -4,6 +4,9 @@
 @use 'element-plus/theme-chalk/dark/css-vars' as *;
 
 :root {
+  //修改element-ui的进度条底色
+  --el-border-color-lighter: #d1d1d1 !important;
+
   --color-background: #E6E8EB;
   //--color-main-bg: #E6E8EB;
   --color-main-bg: rgb(238, 240, 244);

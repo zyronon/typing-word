@@ -34,10 +34,10 @@ function repeat() {
 
 function prev() {
   // console.log('next')
-  if (store.currentDict.chapterIndex === 0) {
+  if (store.currentBook.chapterIndex === 0) {
     ElMessage.warning('已经在第一章了~')
   } else {
-    store.currentDict.chapterIndex--
+    store.currentBook.chapterIndex--
     repeat()
   }
 }
@@ -64,7 +64,7 @@ function togglePanel() {
 }
 
 function jumpSpecifiedChapter(val: number) {
-  store.currentDict.chapterIndex = val
+  store.currentBook.chapterIndex = val
   repeat()
 }
 

@@ -72,7 +72,7 @@ function setArticle(val: Article) {
   articleData.article.sections.map((v, i) => {
     v.map((w, j) => {
       w.words.map(s => {
-        if (!store.skipWordNamesWithSimpleWords.includes(s.word.toLowerCase()) && !s.isSymbol) {
+        if (!store.knownWordsWithSimpleWords.includes(s.word.toLowerCase()) && !s.isSymbol) {
           statisticsStore.total++
         }
       })
@@ -128,7 +128,7 @@ function wrong(word: Word) {
   if (!store.wrong.originWords.find((v: Word) => v.word.toLowerCase() === lowerName)) {
     store.wrong.originWords.push(word)
   }
-  if (!store.skipWordNamesWithSimpleWords.includes(lowerName)) {
+  if (!store.knownWordsWithSimpleWords.includes(lowerName)) {
   }
 }
 
@@ -154,7 +154,7 @@ function over() {
 }
 
 function nextWord(word: ArticleWord) {
-  if (!store.skipWordNamesWithSimpleWords.includes(word.word.toLowerCase()) && !word.isSymbol) {
+  if (!store.knownWordsWithSimpleWords.includes(word.word.toLowerCase()) && !word.isSymbol) {
     statisticsStore.inputWordNumber++
   }
 }

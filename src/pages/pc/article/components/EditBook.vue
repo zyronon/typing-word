@@ -7,7 +7,6 @@ import {FormInstance, FormRules} from "element-plus";
 import {onMounted, reactive} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useBaseStore} from "@/stores/base.ts";
-import {syncMyDictList} from "@/hooks/dict.ts";
 
 const props = defineProps<{
   isAdd: boolean,

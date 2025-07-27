@@ -38,22 +38,22 @@ function addSimple() {
   <div class="panel-page-item">
     <div class="list-header">
       <div class="left">
-        <div class="dict-name">总词数：{{ store.simple.words.length }}</div>
+        <div class="dict-name">总词数：{{ store.known.words.length }}</div>
         <BaseIcon icon="fluent:add-12-regular" title="添加" @click="addSimple"/>
       </div>
-      <template v-if="store.currentDict.type !== DictType.simple && store.simple.words.length">
+      <template v-if="store.sdict.type !== DictType.known && store.known.words.length">
         <PopConfirm
             :title="`确认切换？`"
-            @confirm="changeIndex( store.simple)"
+            @confirm="changeIndex( store.known)"
         >
           <BaseButton size="small">切换</BaseButton>
         </PopConfirm>
       </template>
     </div>
     <WordList
-        v-if="store.simple.words.length"
+        v-if="store.known.words.length"
         class="word-list"
-        :list="store.simple.words">
+        :list="store.known.words">
       <template v-slot:suffix="{item,index}">
         <BaseIcon
             class="del"

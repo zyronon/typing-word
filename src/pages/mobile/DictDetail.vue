@@ -17,21 +17,16 @@ const store = useBaseStore()
 let index = $ref(0)
 const router = useRouter()
 
-
-const onChange = ({selectedValues}) => {
-  showToast(`当前值: ${selectedValues.join(',')}`);
-};
-
 onMounted(() => {
 })
 
 function handleDel(item: Dict, index: number) {
-  if (item.id === store.currentDict.id) {
+  if (item.id === store.sdict.id) {
     //TODO
   } else {
     showConfirmDialog({title: '确认删除？', message: '删除后无法撤销，确认删除吗？',})
         .then(() => {
-          store.myDictList.splice(index, 1)
+          store.word.bookList.splice(index, 1)
         })
   }
 }
@@ -53,10 +48,10 @@ function handleDel(item: Dict, index: number) {
       <SlideItem>
         <div class="my-dcits">
           <div class="list">
-            <div class="dict" v-for="(item,index) in store.myDictList">
+            <div class="dict" v-for="(item,index) in store.word.bookList">
               <div class="title">
                 <div class="name">{{ item.name }}</div>
-                <span v-if="item.id === store.currentDict.id">当前在学</span>
+                <span v-if="item.id === store.sdict.id">当前在学</span>
                 <template v-else>
                   <DeleteIcon
                       v-if="index>=3"
