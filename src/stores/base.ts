@@ -136,11 +136,10 @@ export const useBaseStore = defineStore('base', {
           }
           // console.log('this.currentBook', this.currentBook.articles[0])
         }
-        emitter.emit(EventKey.changeDict)
         resolve(true)
       })
     },
-    //TODO
+    //改变词典
     changeDict(val: Dict) {
       //把其他的词典的单词数据都删掉，全保存在内存里太卡了
       this.word.bookList.slice(3).map(v => {
@@ -148,7 +147,7 @@ export const useBaseStore = defineStore('base', {
           v.words = []
         }
       })
-      let rIndex = this.word.bookList.findIndex(v => v.id === val.id)
+      let rIndex = this.word.bookList.findIndex((v: Dict) => v.id === val.id)
       if (val.words.length < val.perDayStudyNumber) {
         val.perDayStudyNumber = val.words.length
       }

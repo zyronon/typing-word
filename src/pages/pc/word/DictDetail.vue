@@ -186,7 +186,6 @@ function syncDictInMyStudyList(study = false) {
   }, 100)
 }
 
-//TODO trans结构变了，
 async function onSubmitWord() {
   await wordFormRef.validate((valid) => {
     if (valid) {

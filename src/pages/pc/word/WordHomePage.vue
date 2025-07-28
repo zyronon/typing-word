@@ -42,7 +42,7 @@ async function init() {
       store.word.bookList[store.word.studyIndex] = await _getDictDataByUrl(store.sdict)
     }
   }
-  console.log(store.sdict)
+  // console.log(store.sdict)
   if (!currentStudy.new.length && store.sdict.words.length) {
     currentStudy = getCurrentStudyWord()
   }

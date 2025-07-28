@@ -11,7 +11,7 @@ import {useOnKeyboardEventListener, useStartKeyboardEventListener} from "@/hooks
 import useTheme from "@/hooks/theme.ts";
 import {getCurrentStudyWord, useWordOptions} from "@/hooks/dict.ts";
 import {cloneDeep, shuffle} from "lodash-es";
-import {useRouter} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import {Icon} from "@iconify/vue";
 import Footer from "@/pages/pc/word/components/Footer.vue";
 import Panel from "@/pages/pc/components/Panel.vue";
@@ -22,6 +22,8 @@ import Type from "@/pages/pc/word/components/Type.vue";
 import Empty from "@/components/Empty.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
+import {dictionaryResources} from "@/assets/dictionary.ts";
+import {_getDictDataByUrl} from "@/utils";
 
 interface IProps {
   new: Word[],
@@ -39,11 +41,13 @@ const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 const {toggleTheme} = useTheme()
 const router = useRouter()
+const route = useRoute()
 const store = useBaseStore()
 const statStore = usePracticeStore()
 const typingRef: any = $ref()
 let allWrongWords = new Set()
 let showStatDialog = $ref(false)
+let loading = $ref(false)
 let studyData = $ref<IProps>({
   new: [],
   review: [],
@@ -58,10 +62,28 @@ let data = $ref<StudyData>({
 
 
 onMounted(() => {
-  if (runtimeStore.routeData) {
-    studyData = runtimeStore.routeData
+  let dictId = route.query.q
+  //如果url里有词典id，那么直接请求词典数据，并加到bookList里面进行学习
+  if (dictId) {
+    let dictResource = dictionaryResources.find(v => v.id === dictId)
+    if (dictResource) {
+      loading = true
+      requestIdleCallback(() => {
+        _getDictDataByUrl(dictResource).then(r => {
+          store.changeDict(r)
+          studyData = getCurrentStudyWord()
+          loading = false
+        })
+      })
+    }else {
+      router.push('/word')
+    }
   } else {
-    router.push('/word')
+    if (runtimeStore.routeData) {
+      studyData = runtimeStore.routeData
+    } else {
+      router.push('/word')
+    }
   }
 })
 
@@ -81,20 +103,17 @@ watch(() => studyData, () => {
   statStore.index = 0
 }, {immediate: true, deep: true})
 
+provide('studyData', data)
 
 const dictIsEnd = $computed(() => {
   return store.sdict.lastLearnIndex === store.sdict.length
 })
-
-provide('studyData', data)
-
 const word = $computed(() => {
   return data.words[data.index] ?? getDefaultWord()
 })
 const prevWord: Word = $computed(() => {
   return data.words?.[data.index - 1] ?? undefined
 })
-
 const nextWord: Word = $computed(() => {
   return data.words?.[data.index + 1] ?? undefined
 })
@@ -228,7 +247,6 @@ function repeat() {
   studyData = temp
 }
 
-//TODO 略过忽略的单词上
 function prev() {
   if (data.index === 0) {
     ElMessage.warning('已经是第一个了~')
@@ -348,7 +366,7 @@ useEvents([
         </div>
       </div>
       <Type
-          v-loading="!store.load"
+          v-loading="loading"
           ref="typingRef"
           :word="word"
           @wrong="onTypeWrong"
@@ -366,7 +384,7 @@ useEvents([
       <Panel>
         <template v-slot="{active}">
           <div class="panel-page-item pl-4"
-               v-loading="!store.load"
+               v-loading="loading"
           >
             <WordList
                 v-if="data.words.length"

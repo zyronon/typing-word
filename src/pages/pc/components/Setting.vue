@@ -13,6 +13,7 @@ import {useBaseStore} from "@/stores/base.ts";
 import {saveAs} from "file-saver";
 import {checkAndUpgradeSaveDict, checkAndUpgradeSaveSetting, shakeCommonDict} from "@/utils";
 import {GITHUB} from "@/config/ENV.ts";
+import dayjs from "dayjs";
 
 
 const emit = defineEmits<{
@@ -87,9 +88,7 @@ function exportData() {
     }
   }
   let blob = new Blob([JSON.stringify(data)], {type: "text/plain;charset=utf-8"});
-  let date = new Date()
-  let dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`
-  saveAs(blob, `${APP_NAME}-User-Data-${dateStr}.json`);
+  saveAs(blob, `${APP_NAME}-User-Data-${dayjs().format('YYYY-MM-DD HH-mm-ss')}.json`);
   ElMessage.success('导出成功！')
 }
 
@@ -99,9 +98,20 @@ function importData(e) {
   // no()
   let reader = new FileReader();
   reader.onload = function (v) {
-    let str = v.target.result;
+    let str: any = v.target.result;
     if (str) {
-      let obj = JSON.parse(str)
+      let obj = {
+        version: -1,
+        val: {
+          setting: {},
+          dict: {},
+        }
+      }
+      try {
+        obj = JSON.parse(str)
+      } catch (err) {
+        ElMessage.error('导入失败！')
+      }
       if (obj.version === EXPORT_DATA_KEY.version) {
 
       } else {
@@ -496,7 +506,7 @@ function importData(e) {
     padding: 0 var(--space);
 
     .row {
-      height: 2.6rem;
+      min-height: 2.6rem;
       display: flex;
       justify-content: space-between;
       align-items: center;

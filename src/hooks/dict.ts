@@ -117,7 +117,7 @@ export function getCurrentStudyWord() {
       }
     })
 
-    console.log(start,end)
+    // console.log(start,end)
 
     // end = start
     // start = start - dict.perDayStudyNumber * 3
@@ -174,6 +174,6 @@ export function getCurrentStudyWord() {
   }
 
   // console.timeEnd()
-  console.log('data', data)
+  // console.log('data', data)
   return data
 }
