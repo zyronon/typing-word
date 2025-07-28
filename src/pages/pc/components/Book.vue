@@ -20,7 +20,7 @@ const progress = $computed(() => {
 </script>
 
 <template>
-  <div class="book relative">
+  <div class="book relative overflow-hidden">
     <template v-if="!isAdd">
       <div>
         <div>{{ item?.name }}</div>
@@ -38,6 +38,7 @@ const progress = $computed(() => {
                    :model-value="checked"
                    @click.stop="$emit('check')"
                    class="absolute left-3 bottom-2"/>
+      <div class="custom" v-if="item.custom">自定义</div>
     </template>
     <div v-else class="center h-full">
       <Icon
@@ -49,5 +50,13 @@ const progress = $computed(() => {
 </template>
 
 <style scoped lang="scss">
-
+.custom {
+  position: absolute;
+  top: 4px;
+  right: -22px;
+  padding: 1px 20px;
+  background: whitesmoke;
+  font-size: 11px;
+  transform: rotate(45deg);
+}
 </style>

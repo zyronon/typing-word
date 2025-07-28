@@ -174,7 +174,10 @@ function syncDictInMyStudyList(study = false) {
     let rIndex = base.word.bookList.findIndex(v => v.id === runtimeStore.editDict.id)
     let temp = cloneDeep(runtimeStore.editDict);
     console.log(temp)
-    temp.custom = true
+    if (!temp.custom) {
+      temp.custom = true
+      temp.id += '_custom'
+    }
     temp.length = temp.words.length
     if (rIndex > -1) {
       base.word.bookList[rIndex] = temp
