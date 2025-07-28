@@ -116,7 +116,7 @@ watch(() => studyData, () => {
   statStore.inputWordNumber = 0
   statStore.wrong = 0
   statStore.total = studyData.review.length + studyData.new.length + studyData.write.length
-  statStore.newWordNumber = studyData.new.length
+  statStore.newWordNumber = store.sdict.complete ? studyData.review.length : studyData.new.length
   statStore.index = 0
 })
 
@@ -327,15 +327,8 @@ function togglePanel() {
 }
 
 function continueStudy() {
-  if (dictIsEnd) {
-    //todo 不知这样处理是否不妥？
-    store.sdict.lastLearnIndex = 0
-    settingStore.dictation = false
-    studyData = getCurrentStudyWord()
-  } else {
-    settingStore.dictation = false
-    studyData = getCurrentStudyWord()
-  }
+  settingStore.dictation = false
+  studyData = getCurrentStudyWord()
 }
 
 useEvents([
@@ -450,7 +443,7 @@ useEvents([
       </Panel>
     </div>
   </div>
-  <Statistics v-model="showStatDialog" :dictIsEnd="dictIsEnd"/>
+  <Statistics v-model="showStatDialog"/>
 </template>
 
 <style scoped lang="scss">

@@ -49,10 +49,13 @@ async function init() {
 
 }
 
-function study() {
+function startStudy() {
   // getCurrentStudyWord()
-  // store.sdict.lastLearnIndex += 3
-  // return
+  // return store.sdict.lastLearnIndex = store.sdict.length - 1
+  // store.sdict.complete = true
+  // store.sdict.lastLearnIndex = 20
+  // currentStudy = getCurrentStudyWord()
+// return
   // return  store.sdict.lastLearnIndex = store.sdict.length - 1
   if (store.sdict.id) {
     if (!store.sdict.words.length) {
@@ -166,6 +169,15 @@ function clickActivityEvent(e) {
   }
 }
 
+const progressTextLeft = $computed(() => {
+  if (store.sdict.complete) return '已学完，进入总复习阶段'
+  return '已学习' + store.currentStudyProgress + '%'
+})
+const progressTextRight = $computed(() => {
+  // if (store.sdict.complete) return store.sdict?.length
+  return store.sdict?.lastLearnIndex
+})
+
 
 </script>
 
@@ -183,10 +195,8 @@ function clickActivityEvent(e) {
         </div>
         <div class="">
           <div class="text-sm flex justify-between">
-            已学习{{ store.currentStudyProgress }}%
-            <span>{{ store.sdict.lastLearnIndex }} / {{
-                store.sdict.words.length
-              }}</span>
+            <span>{{ progressTextLeft }}</span>
+            <span>{{ progressTextRight }} / {{ store.sdict.words.length }}</span>
           </div>
           <el-progress class="mt-1" :percentage="store.currentStudyProgress" :show-text="false"></el-progress>
         </div>
@@ -224,7 +234,7 @@ function clickActivityEvent(e) {
           个单词
         </div>
         <div class="rounded-xl bg-slate-800 flex items-center gap-2 py-3 px-5 text-white cursor-pointer"
-             :class="store.sdict.name || 'opacity-70 cursor-not-allowed'" @click="study">
+             :class="store.sdict.name || 'opacity-70 cursor-not-allowed'" @click="startStudy">
           <span>开始学习</span>
           <Icon icon="icons8:right-round" class="text-2xl"/>
         </div>

@@ -93,32 +93,48 @@ export function getCurrentStudyWord() {
   let data = {new: [], review: [], write: []}
   let dict = store.sdict;
   if (dict.words?.length) {
+    const getList = (startIndex: number, endIndex: number) => dict.words.slice(startIndex, endIndex)
+
     const perDay = store.sdict.perDayStudyNumber;
+    const totalNeed = perDay * 3;
     let start = dict.lastLearnIndex;
     let end = start + dict.perDayStudyNumber
-    dict.words.slice(start, end).map(item => {
-      if (!store.knownWords.includes(item.word)) {
-        data.new.push(item)
-      }
-    })
 
-    const getList = (startIndex: number, endIndex: number) => {
-      return dict.words.slice(startIndex, endIndex)
+    if (dict.complete) {
+      //如果是已完成，那么把应该学的新词放到复习词组里面
+      dict.words.slice(start, end).map(item => {
+        if (!store.knownWords.includes(item.word)) {
+          data.review.push(item)
+        }
+      })
+      //如果起点index 减去总默写不足的话，那就直接从最后面取
+      //todo 这里有空了，优化成往前滚动取值
+      if (start - totalNeed < 0) {
+        end = dict.length
+      } else {
+        end = start
+      }
+    } else {
+      dict.words.slice(start, end).map(item => {
+        if (!store.knownWords.includes(item.word)) {
+          data.new.push(item)
+        }
+      })
+      end = start
+      start = start - dict.perDayStudyNumber
+      if (start < 0) start = 0
+      //取上一次学习的单词用于复习
+      let list = getList(start, end)
+      list.map(item => {
+        if (!store.knownWords.includes(item.word)) {
+          data.review.push(item)
+        }
+      })
+
+      end = start
     }
 
-    end = start
-    start = start - dict.perDayStudyNumber
-    if (start < 0) start = 0
-    //取上一次学习的单词用于复习
-    let list = getList(start, end)
-    list.map(item => {
-      if (!store.knownWords.includes(item.word)) {
-        data.review.push(item)
-      }
-    })
-
     // console.log(start,end)
-
     // end = start
     // start = start - dict.perDayStudyNumber * 3
     // //在上次学习再往前取前3次学习的单词用于默写
@@ -130,11 +146,9 @@ export function getCurrentStudyWord() {
     // })
 
     //write数组放的是上上次之前的单词，总的数量为perDayStudyNumber * 3，取单词的规则为：从后往前取6个perDayStudyNumber的，越靠前的取的单词越多。
-    end = start
 
     // 上上次更早的单词
-    if (end>0){
-      const totalNeed = perDay * 3;
+    if (end > 0) {
       const allWords = dict.words;
       const candidateWords = allWords.slice(0, end).filter(w => !store.knownWords.includes(w.word));
 
@@ -172,7 +186,6 @@ export function getCurrentStudyWord() {
       data.write = writeWords.reverse();
     }
   }
-
   // console.timeEnd()
   // console.log('data', data)
   return data

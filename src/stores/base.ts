@@ -94,6 +94,7 @@ export const useBaseStore = defineStore('base', {
     },
     currentStudyProgress(): number {
       if (!this.sdict.words?.length) return 0
+      if (this.sdict.complete) return 100
       return _getStudyProgress(this.sdict.lastLearnIndex, this.sdict.words?.length)
     },
     currentBook(): Dict {

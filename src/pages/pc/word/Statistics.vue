@@ -2,17 +2,16 @@
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import BaseButton from "@/components/BaseButton.vue";
-import {ShortcutKey, Statistics, StudyData} from "@/types.ts";
+import {ShortcutKey, Statistics} from "@/types.ts";
 import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts";
 import {Icon} from '@iconify/vue';
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
-import {inject, watch} from "vue";
+import {watch} from "vue";
 
 dayjs.extend(isBetween);
-
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -49,6 +48,7 @@ function calcWeekList() {
 // 监听 model 弹窗打开时重新计算
 watch(model, (newVal) => {
   if (newVal) {
+    dictIsEnd = false;
     let data: Statistics = {
       spend: statStore.spend,
       startDate: statStore.startDate,
@@ -79,7 +79,7 @@ useEvents([
 ])
 
 function options(emitType: string) {
-  model.value = false
+  close()
   emitter.emit(EventKey[emitType])
 }
 
@@ -106,19 +106,14 @@ function options(emitType: string) {
           </div>
           <div class="flex-1 flex flex-col items-center">
             <div class="text-sm color-gray">默写数</div>
-            <div class="text-4xl font-bold">{{
-                statStore.newWordNumber
-              }}
-            </div>
+            <div class="text-4xl font-bold">{{ statStore.newWordNumber }}</div>
           </div>
         </div>
       </div>
 
       <div class="text-xl text-center flex flex-col justify-around">
-        <div>非常棒! 坚持了 <span class="color-green font-bold text-2xl">{{
-            dayjs().diff(statStore.startDate, 'm')
-          }}</span>
-          分钟
+        <div>非常棒! 坚持了 <span class="color-green font-bold text-2xl">
+          {{ dayjs().diff(statStore.startDate, 'm') }}</span>分钟
         </div>
       </div>
       <div class="flex justify-center gap-10">
