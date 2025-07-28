@@ -75,7 +75,7 @@ onMounted(() => {
           loading = false
         })
       })
-    }else {
+    } else {
       router.push('/word')
     }
   } else {
@@ -88,20 +88,37 @@ onMounted(() => {
 })
 
 watch(() => studyData, () => {
-  data.words = studyData.new
+  if (studyData.new.length === 0) {
+    if (studyData.review.length) {
+      settingStore.dictation = false
+      statStore.step = 2
+      data.words = studyData.review
+    } else {
+      if (studyData.write.length) {
+        settingStore.dictation = true
+        data.words = studyData.write
+        statStore.step = 4
+      } else {
+        ElMessage.warning('没有可学习的单词！')
+        router.push('/word')
+      }
+    }
+  } else {
+    settingStore.dictation = false
+    data.words = studyData.new
+    statStore.step = 0
+  }
   data.index = 0
   data.wrongWords = []
   allWrongWords = new Set()
 
-  settingStore.dictation = false
-  statStore.step = 0
   statStore.startDate = Date.now()
   statStore.inputWordNumber = 0
   statStore.wrong = 0
-  statStore.total = studyData.review.concat(studyData.new).concat(studyData.write).length
+  statStore.total = studyData.review.length + studyData.new.length + studyData.write.length
   statStore.newWordNumber = studyData.new.length
   statStore.index = 0
-}, {immediate: true, deep: true})
+})
 
 provide('studyData', data)
 
@@ -236,8 +253,14 @@ useOnKeyboardEventListener(onKeyDown, onKeyUp)
 function repeat() {
   console.log('重学一遍')
   settingStore.dictation = false
-  //将学习进度减回去
-  store.sdict.lastLearnIndex = store.sdict.lastLearnIndex - statStore.newWordNumber
+  if (store.sdict.lastLearnIndex === 0 && store.sdict.complete) {
+    //如果是刚刚完成，那么学习进度要从length减回去，因为lastLearnIndex为0了，同时改complete为false
+    store.sdict.lastLearnIndex = store.sdict.length - statStore.newWordNumber
+    store.sdict.complete = false
+  } else {
+    //将学习进度减回去
+    store.sdict.lastLearnIndex = store.sdict.lastLearnIndex - statStore.newWordNumber
+  }
   emitter.emit(EventKey.resetWord)
   let temp = cloneDeep(studyData)
   //排除已掌握单词

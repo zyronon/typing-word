@@ -272,7 +272,8 @@ export interface Dict extends DictResource {
   words: Word[],
   articles: Article[],
   statistics: Statistics[],
-  custom: boolean,
+  custom: boolean,//是否是自定义词典
+  complete: boolean,//是否学习完成，学完了设为true，然后lastLearnIndex重置
 }
 
 export interface ArticleItem {

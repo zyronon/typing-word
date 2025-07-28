@@ -19,10 +19,7 @@ const settingStore = useSettingStore()
 const statStore = usePracticeStore()
 const model = defineModel({default: false})
 let list = $ref([])
-
-defineProps<{
-  dictIsEnd: boolean;
-}>()
+let dictIsEnd = $ref(false)
 
 function calcWeekList() {
   // 获取本周的起止时间
@@ -62,6 +59,11 @@ watch(model, (newVal) => {
     //这里不知为啥会卡，打开有延迟
     requestIdleCallback(() => {
       store.sdict.lastLearnIndex = store.sdict.lastLearnIndex + statStore.newWordNumber
+      if (store.sdict.lastLearnIndex >= store.sdict.length) {
+        dictIsEnd = true;
+        store.sdict.complete = true
+        store.sdict.lastLearnIndex = 0
+      }
       store.sdict.statistics.push(data as any)
       calcWeekList(); // 新增：计算本周学习记录
     })

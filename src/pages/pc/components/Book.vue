@@ -15,7 +15,13 @@ defineEmits<{
 }>()
 
 const progress = $computed(() => {
+  if (props.item.complete) return 100
   return Number(((props.item?.lastLearnIndex / props.item?.length) * 100).toFixed())
+})
+
+const studyProgress = $computed(() => {
+  if (props.item.complete) return props.item?.length + '/'
+  return props.item?.lastLearnIndex ? props.item?.lastLearnIndex + '/' : ''
 })
 </script>
 
@@ -27,10 +33,10 @@ const progress = $computed(() => {
         <div class="text-sm line-clamp-3" v-opacity="item.name !== item.description">{{ item?.description }}</div>
       </div>
       <div class="absolute bottom-4 right-4">
-        <div>{{ item?.lastLearnIndex ? item?.lastLearnIndex + '/' : '' }}{{ item?.length }}{{ quantifier }}</div>
+        <div>{{ studyProgress }}{{ item?.length }}{{ quantifier }}</div>
       </div>
       <div class="absolute bottom-2 left-4 right-4">
-        <el-progress v-if="item?.lastLearnIndex" class="mt-1"
+        <el-progress v-if="item?.lastLearnIndex || item.complete" class="mt-1"
                      :percentage="progress"
                      :show-text="false"></el-progress>
       </div>
