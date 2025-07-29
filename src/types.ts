@@ -74,7 +74,6 @@ export enum DictType {
   simple = 'simple',
   wrong = 'wrong',
   known = 'known',
-  collectWord = 'collect-word',
   word = 'word',
   article = 'article',
 }
@@ -240,8 +239,19 @@ export type DictResource = {
   category: string
   tags: string[]
   translateLanguage: TranslateLanguageType
+  //todo 可以考虑删除了
   type: DictType
   language: LanguageType
+}
+
+export interface Dict extends DictResource {
+  lastLearnIndex: number,
+  perDayStudyNumber: number,
+  words: Word[],
+  articles: Article[],
+  statistics: Statistics[],
+  custom: boolean,//是否是自定义词典
+  complete: boolean,//是否学习完成，学完了设为true，然后lastLearnIndex重置
 }
 
 export function getDefaultDict(val: Partial<Dict> = {}): Dict {
@@ -262,18 +272,9 @@ export function getDefaultDict(val: Partial<Dict> = {}): Dict {
     articles: [],
     statistics: [],
     custom: false,
+    complete: false,
     ...val
   }
-}
-
-export interface Dict extends DictResource {
-  lastLearnIndex: number,
-  perDayStudyNumber: number,
-  words: Word[],
-  articles: Article[],
-  statistics: Statistics[],
-  custom: boolean,//是否是自定义词典
-  complete: boolean,//是否学习完成，学完了设为true，然后lastLearnIndex重置
 }
 
 export interface ArticleItem {
@@ -290,4 +291,11 @@ export interface StudyData {
   index: number,
   words: any[],
   wrongWords: any[],
+}
+
+export class DictId {
+  static wordCollect = 'wordCollect'
+  static wordWrong = 'wordWrong'
+  static wordKnown = 'wordKnown'
+  static articleCollect = 'articleCollect'
 }

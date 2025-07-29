@@ -42,7 +42,7 @@ const {toggleTheme} = useTheme()
         </div>
         <div class="row"
              :title="`设置(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
-             @click="runtimeStore.showSettingModal = true"
+             @click="router.push('/setting')"
         >
           <Icon icon="uil:setting"/>
           <span v-if="settingStore.sideExpand">设置</span>

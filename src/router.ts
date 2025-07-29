@@ -12,6 +12,8 @@ import StudyWord from "@/pages/pc/word/StudyWord.vue";
 import EditArticlePage from "@/pages/pc/article/EditArticlePage.vue";
 import BookDetail from "@/pages/pc/article/BookDetail.vue";
 import BatchEditArticlePage from "@/pages/pc/article/BatchEditArticlePage.vue";
+import DictList from "@/pages/pc/word/DictList.vue";
+import Setting from "@/pages/pc/Setting.vue";
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -20,6 +22,7 @@ export const routes: RouteRecordRaw[] = [
     children: [
       {path: 'home', component: HomeIndex},
       {path: 'word', component: WordHomePage},
+      {path: 'dict-list', component: DictList},
       {path: 'study-word', component: StudyWord},
       {path: 'dict-detail', component: DictDetail},
       {path: 'article', component: ArticleHomePage},
@@ -27,6 +30,7 @@ export const routes: RouteRecordRaw[] = [
       {path: 'edit-article', component: EditArticlePage},
       {path: 'batch-edit-article', component: BatchEditArticlePage},
       {path: 'book-detail', component: BookDetail},
+      {path: 'setting', component: Setting},
     ]
   },
 

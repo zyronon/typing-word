@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-import {getDefaultDict, getDefaultWord} from "@/types";
+import {DictId, getDefaultDict, getDefaultWord} from "@/types";
 import type {Word} from "@/types";
 
 import BasePage from "@/pages/pc/components/BasePage.vue";
@@ -12,7 +12,7 @@ import BaseTable from "@/pages/pc/components/BaseTable.vue";
 import WordItem from "@/pages/pc/components/WordItem.vue";
 import type {FormInstance, FormRules} from "element-plus";
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
-import BackIcon from "@/components/BackIcon.vue";
+import BackIcon from "@/pages/pc/components/BackIcon.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {useRoute, useRouter} from "vue-router";
 import {useBaseStore} from "@/stores/base.ts";
@@ -278,7 +278,10 @@ onMounted(() => {
     if (!runtimeStore.editDict.id) {
       router.push("/word")
     } else {
-      if (!runtimeStore.editDict.words.length && !runtimeStore.editDict.custom) {
+      if (!runtimeStore.editDict.words.length
+          && !runtimeStore.editDict.custom
+          && ![DictId.wordCollect, DictId.wordWrong, DictId.wordKnown].includes(runtimeStore.editDict.id)
+      ) {
         loading = true
         _getDictDataByUrl(runtimeStore.editDict).then(r => {
           loading = false
@@ -295,8 +298,13 @@ function formClose() {
 }
 
 async function addMyStudyList() {
-  base.changeDict(runtimeStore.editDict)
+  if (route.query?.from) {
+    router.back()
+  }
   router.back()
+  requestIdleCallback(()=>{
+    base.changeDict(runtimeStore.editDict)
+  })
 }
 
 defineRender(() => {
@@ -306,7 +314,7 @@ defineRender(() => {
           showBookDetail.value ? <div className="card mb-0 h-[95vh] flex flex-col">
                 <div class="flex justify-between items-center relative">
                   <BackIcon class="z-2" onClick={() => router.back()}/>
-                  <div class="absolute text-2xl text-align-center w-full">{runtimeStore.editDict.name}</div>
+                  <div class="absolute page-title text-align-center w-full">{runtimeStore.editDict.name}</div>
                   <div class="flex gap-2">
                     <BaseButton type="info" onClick={() => isEdit = true}>编辑</BaseButton>
                     <BaseButton onClick={addMyStudyList}>学习</BaseButton>
@@ -450,7 +458,7 @@ defineRender(() => {
               <div class="card mb-0 h-[95vh]">
                 <div class="flex justify-between items-center relative">
                   <BackIcon class="z-2" onClick={() => isAdd ? router.back() : (isEdit = false)}/>
-                  <div class="absolute text-2xl text-align-center w-full">
+                  <div class="absolute page-title text-align-center w-full">
                     {runtimeStore.editDict.id ? '修改' : '创建'}词典
                   </div>
                 </div>

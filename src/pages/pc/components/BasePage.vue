@@ -4,12 +4,15 @@
 
 <template>
   <div class="flex justify-center">
-    <div class="w-[70vw] 2xl:w-[50vw] my-5">
+    <div class="w-[70vw] 2xl:w-[50vw]  page">
       <slot></slot>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-
+.page{
+  min-height: calc(100vh - 1.2rem);
+  margin-top: 1.2rem;
+}
 </style>

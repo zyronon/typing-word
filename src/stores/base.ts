@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {Article, Dict, DictType, getDefaultDict, Sort, Word} from "../types.ts"
+import {Article, Dict, DictId, DictType, getDefaultDict, Sort, Word} from "../types.ts"
 import {cloneDeep, merge, reverse, shuffle} from "lodash-es";
 import {emitter, EventKey} from "@/utils/eventBus.ts"
 import * as localforage from "localforage";
@@ -32,11 +32,9 @@ export const DefaultBaseState = (): BaseState => ({
   load: false,
   word: {
     bookList: [
-      getDefaultDict({
-        id: 'word-collect', name: '收藏', words: []
-      }),
-      getDefaultDict({id: 'word-wrong', name: '错词'}),
-      getDefaultDict({id: 'word-known', name: '已掌握'}),
+      getDefaultDict({id: DictId.wordCollect, name: '收藏', words: []}),
+      getDefaultDict({id: DictId.wordWrong, name: '错词'}),
+      getDefaultDict({id: DictId.wordKnown, name: '已掌握'}),
       // getDefaultDict({
       //   id: 'nce-new-2',
       //   name: '新概念英语(新版)-2',
@@ -54,7 +52,7 @@ export const DefaultBaseState = (): BaseState => ({
   },
   article: {
     bookList: [
-      getDefaultDict({id: 'article-collect', name: '收藏'})
+      getDefaultDict({id: DictId.articleCollect, name: '收藏'})
     ],
     studyIndex: -1,
   }

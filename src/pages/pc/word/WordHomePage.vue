@@ -6,12 +6,11 @@ import "vue-activity-calendar/style.css";
 import {useRouter} from "vue-router";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
-import {_getAccomplishDate, _getAccomplishDays, _getDictDataByUrl, useNav, _dateFormat} from "@/utils";
+import {_dateFormat, _getAccomplishDate, _getAccomplishDays, _getDictDataByUrl, useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {DictResource, getDefaultDict} from "@/types.ts";
 import {onMounted, watch} from "vue";
 import {getCurrentStudyWord} from "@/hooks/dict.ts";
-import DictListPanel from "@/pages/pc/components/DictListPanel.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import Book from "@/pages/pc/components/Book.vue";
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
@@ -28,13 +27,8 @@ let currentStudy = $ref({
   write: []
 })
 
-onMounted(() => {
-  init()
-})
-
-watch(() => store.load, () => {
-  init()
-})
+onMounted(init)
+watch(() => store.load, init)
 
 async function init() {
   if (store.word.studyIndex >= 3) {
@@ -46,7 +40,6 @@ async function init() {
   if (!currentStudy.new.length && store.sdict.words.length) {
     currentStudy = getCurrentStudyWord()
   }
-
 }
 
 function startStudy() {
@@ -64,7 +57,6 @@ function startStudy() {
     nav('study-word', {}, currentStudy)
   } else {
     ElMessage.warning('请先选择一本词典')
-    dictListRef.startSearch()
   }
 }
 
@@ -74,7 +66,6 @@ function setPerDayStudyNumber() {
     tempPerDayStudyNumber = store.sdict.perDayStudyNumber
   } else {
     ElMessage.warning('请先选择一本词典')
-    dictListRef.startSearch()
   }
 }
 
@@ -86,17 +77,11 @@ function changePerDayStudyNumber() {
   currentStudy = getCurrentStudyWord()
 }
 
-function selectDict(e) {
-  console.log(e.dict)
-  getDictDetail(e.dict)
-}
-
-async function getDictDetail(val: DictResource) {
+async function goDictDetail(val: DictResource) {
   runtimeStore.editDict = getDefaultDict(val)
   nav('dict-detail', {})
 }
 
-let dictListRef = $ref<any>()
 let isMultiple = $ref(false)
 let selectIds = $ref([])
 
@@ -113,6 +98,7 @@ function handleBatchDel() {
       store.word.bookList.splice(r, 1)
     }
   })
+  selectIds = []
   ElMessage.success("删除成功！")
 }
 
@@ -190,7 +176,7 @@ const progressTextRight = $computed(() => {
             <span class="text-xl font-bold">{{ store.sdict.name || '请选择书籍开始学习' }}</span>
             <BaseIcon title="切换词典" :icon="store.sdict.name ? 'gg:arrows-exchange' : 'fluent:add-20-filled'"
                       class="ml-4"
-                      @click="dictListRef.startSearch()"/>
+                      @click="router.push('/dict-list')"/>
           </div>
         </div>
         <div class="">
@@ -224,14 +210,14 @@ const progressTextRight = $computed(() => {
         </div>
       </div>
 
-      <div class="flex flex-col items-end justify-around">
+      <div class="flex flex-col items-end justify-around ">
         <div class="flex gap-1 items-center">
           每日目标
           <div style="color:#ac6ed1;" @click="setPerDayStudyNumber"
                class="bg-slate-200 px-2 h-10 flex center text-2xl rounded cursor-pointer">
             {{ store.sdict.id ? store.sdict.perDayStudyNumber : 0 }}
           </div>
-          个单词
+          个单词 <span class="color-blue cursor-pointer" @click="setPerDayStudyNumber">更改</span>
         </div>
         <div class="rounded-xl bg-slate-800 flex items-center gap-2 py-3 px-5 text-white cursor-pointer"
              :class="store.sdict.name || 'opacity-70 cursor-not-allowed'" @click="startStudy">
@@ -258,12 +244,11 @@ const progressTextRight = $computed(() => {
       <div class="grid grid-cols-6 gap-4  mt-4">
         <Book :is-add="false" quantifier="个词" :item="item" :checked="selectIds.includes(item.id)"
               @check="() => toggleSelect(item)" :show-checkbox="isMultiple && j >= 3"
-              v-for="(item, j) in store.word.bookList" @click="getDictDetail(item)"/>
-        <Book :is-add="true" @click="dictListRef.startSearch()"/>
+              v-for="(item, j) in store.word.bookList" @click="goDictDetail(item)"/>
+        <Book :is-add="true" @click="router.push('/dict-list')"/>
       </div>
     </div>
 
-    <DictListPanel ref="dictListRef" @selectDict="selectDict"/>
 
     <div class="card">
       <div class="title">

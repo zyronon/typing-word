@@ -5,7 +5,6 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import useTheme from "@/hooks/theme.ts";
 import * as localforage from "localforage";
-import SettingDialog from "@/pages/pc/components/dialog/SettingDialog.vue";
 import CollectNotice from "@/pages/pc/components/CollectNotice.vue";
 import {SAVE_DICT_KEY, SAVE_SETTING_KEY} from "@/utils/const.ts";
 import {isMobile, shakeCommonDict} from "@/utils";
@@ -76,7 +75,6 @@ watch(() => route.path, (to, from) => {
     </transition>
   </router-view>
   <CollectNotice/>
-  <SettingDialog/>
 </template>
 
 <style scoped lang="scss">

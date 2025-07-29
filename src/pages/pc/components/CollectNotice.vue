@@ -54,7 +54,7 @@ watch(() => settingStore.load, (n) => {
           <div class="collect" v-if="showNotice">
             <div class="href-wrapper">
               <div class="round">
-                <div class="href">typing-word.ttentau.top</div>
+                <div class="href">2study.top</div>
                 <Icon
                     width="22"
                     icon="mdi:star-outline"/>
@@ -115,7 +115,7 @@ watch(() => settingStore.load, (n) => {
   box-shadow: var(--shadow);
   box-sizing: border-box;
 
-  &.mobile{
+  &.mobile {
     width: 95%;
     padding: 0.6rem;
   }

@@ -64,10 +64,6 @@
 
 }
 
-.side-expand {
-  //--panel-margin-left: 10px !important;
-}
-
 html.dark {
   --color-main-bg: rgba(14, 18, 23, 1);
   --color-second-bg: rgb(30, 31, 34);
@@ -467,7 +463,7 @@ footer {
 }
 
 .card {
-  @apply rounded-xl bg-white p-4 mb-5 box-border;
+  @apply rounded-xl bg-white p-4 mb-5 box-border relative;
 }
 
 .center {
@@ -491,4 +487,8 @@ footer {
 .line-white {
   width: 100%;
   border-bottom: 1px dashed #ababab;
+}
+
+.page-title {
+  @apply text-2xl;
 }

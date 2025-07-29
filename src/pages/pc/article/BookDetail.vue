@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import BackIcon from "@/components/BackIcon.vue";
+import BackIcon from "@/pages/pc/components/BackIcon.vue";
 import Empty from "@/components/Empty.vue";
 import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
 import {useBaseStore} from "@/stores/base.ts";

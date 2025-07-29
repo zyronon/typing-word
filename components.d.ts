@@ -7,7 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    BackIcon: typeof import('./src/components/BackIcon.vue')['default']
+    BackIcon: typeof import('./src/components/icon/BackIcon.vue')['default']
     BaseButton: typeof import('./src/components/BaseButton.vue')['default']
     BaseIcon: typeof import('./src/components/BaseIcon.vue')['default']
     Close: typeof import('./src/components/icon/Close.vue')['default']
