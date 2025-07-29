@@ -6,7 +6,6 @@ export interface RuntimeState {
   modalList: Array<{ id: string | number, close: Function }>
   editDict: Dict
   showDictModal: boolean
-  showSettingModal: boolean
   excludeRoutes: any[]
   routeData: any,
 }
@@ -19,7 +18,6 @@ export const useRuntimeStore = defineStore('runtime', {
       modalList: [],
       editDict: getDefaultDict(),
       showDictModal: false,
-      showSettingModal: false,
       excludeRoutes: [],
     }
   },

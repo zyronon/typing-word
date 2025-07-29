@@ -132,9 +132,8 @@ function importData(e) {
 
 <template>
   <BasePage>
-    <div class="page-title text-align-center">设置</div>
     <div class="setting">
-      <div class="left">
+      <div class="left mt-10">
         <div class="tabs">
           <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">
             <Icon icon="bx:headphone" width="20" color="#0C8CE9"/>
@@ -161,11 +160,9 @@ function importData(e) {
             <span>关于</span>
           </div>
         </div>
-        <div class="git-log">
-          Build {{ gitLastCommitHash }}
-        </div>
       </div>
       <div class="content">
+        <div class="page-title text-align-center">设置</div>
         <div v-if="tabIndex === 0">
           <div class="row">
             <label class="main-title">所有音效</label>
@@ -394,7 +391,7 @@ function importData(e) {
               。如果您需要在不同的设备、浏览器或者其他非官方部署上使用 {{ APP_NAME }}， 您需要手动进行数据同步和保存。
             </label>
           </div>
-          <div class="row">
+          <div class="row mt-2">
             <BaseButton @click="exportData">数据导出</BaseButton>
           </div>
           <div class="row">
@@ -453,6 +450,10 @@ function importData(e) {
             反馈：<a
               href="https://github.com/zyronon/typing-word/issues">https://github.com/zyronon/typing-word/issues</a>
           </p>
+          <div class="text-md color-gray">
+            Build {{ gitLastCommitHash }}
+          </div>
+
         </div>
       </div>
     </div>
@@ -465,7 +466,6 @@ function importData(e) {
   color: var(--color-font-1);
 
   .left {
-    height: 93vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -492,18 +492,12 @@ function importData(e) {
       }
     }
 
-    .git-log {
-      font-size: .6rem;
-      color: gray;
-      margin-bottom: .3rem;
-    }
   }
 
   .content {
     flex: 1;
     height: 100%;
     overflow: auto;
-    padding: var(--space);
     padding: 0 2.6rem;
 
     .row {

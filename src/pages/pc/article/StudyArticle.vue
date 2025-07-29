@@ -50,10 +50,6 @@ function toggleDictation() {
   settingStore.dictation = !settingStore.dictation
 }
 
-function openSetting() {
-  runtimeStore.showSettingModal = true
-}
-
 function toggleConciseMode() {
   settingStore.showToolbar = !settingStore.showToolbar
   settingStore.showPanel = settingStore.showToolbar
@@ -78,7 +74,6 @@ onMounted(() => {
   emitter.on(ShortcutKey.DictationChapter, write)
   emitter.on(ShortcutKey.ToggleShowTranslate, toggleShowTranslate)
   emitter.on(ShortcutKey.ToggleDictation, toggleDictation)
-  emitter.on(ShortcutKey.OpenSetting, openSetting)
   emitter.on(ShortcutKey.ToggleTheme, toggleTheme)
   emitter.on(ShortcutKey.ToggleConciseMode, toggleConciseMode)
   emitter.on(ShortcutKey.TogglePanel, togglePanel)
@@ -94,7 +89,6 @@ onUnmounted(() => {
   emitter.off(ShortcutKey.DictationChapter, write)
   emitter.off(ShortcutKey.ToggleShowTranslate, toggleShowTranslate)
   emitter.off(ShortcutKey.ToggleDictation, toggleDictation)
-  emitter.off(ShortcutKey.OpenSetting, openSetting)
   emitter.off(ShortcutKey.ToggleTheme, toggleTheme)
   emitter.off(ShortcutKey.ToggleConciseMode, toggleConciseMode)
   emitter.off(ShortcutKey.TogglePanel, togglePanel)

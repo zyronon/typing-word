@@ -313,10 +313,6 @@ function toggleDictation() {
   settingStore.dictation = !settingStore.dictation
 }
 
-function openSetting() {
-  runtimeStore.showSettingModal = true
-}
-
 function toggleConciseMode() {
   settingStore.showToolbar = !settingStore.showToolbar
   settingStore.showPanel = settingStore.showToolbar
@@ -348,7 +344,6 @@ useEvents([
   [ShortcutKey.RepeatChapter, repeat],
   [ShortcutKey.ToggleShowTranslate, toggleTranslate],
   [ShortcutKey.ToggleDictation, toggleDictation],
-  [ShortcutKey.OpenSetting, openSetting],
   [ShortcutKey.ToggleTheme, toggleTheme],
   [ShortcutKey.ToggleConciseMode, toggleConciseMode],
   [ShortcutKey.TogglePanel, togglePanel],

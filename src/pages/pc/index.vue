@@ -40,10 +40,7 @@ const {toggleTheme} = useTheme()
           <Icon icon="ph:article-ny-times"/>
           <span v-if="settingStore.sideExpand">文章</span>
         </div>
-        <div class="row"
-             :title="`设置(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
-             @click="router.push('/setting')"
-        >
+        <div class="row" @click="router.push('/setting')">
           <Icon icon="uil:setting"/>
           <span v-if="settingStore.sideExpand">设置</span>
         </div>
@@ -58,7 +55,6 @@ const {toggleTheme} = useTheme()
       </div>
       <div class="bottom flex justify-evenly ">
         <BaseIcon
-            :title="`收起(${settingStore.shortcutKeyMap[ShortcutKey.OpenSetting]})`"
             @click="settingStore.sideExpand = !settingStore.sideExpand"
             :icon="settingStore.sideExpand?'formkit:left':'formkit:right'"/>
         <Tooltip

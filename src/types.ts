@@ -186,9 +186,6 @@ export enum ShortcutKey {
   // PlayTranslatePronunciation = 'PlayTranslatePronunciation',
   ToggleShowTranslate = 'ToggleShowTranslate',
   ToggleDictation = 'ToggleDictation',
-  OpenSetting = 'OpenSetting',
-  //todo 废弃
-  OpenDictDetail = 'OpenDictDetail',
   ToggleTheme = 'ToggleTheme',
   ToggleConciseMode = 'ToggleConciseMode',
   TogglePanel = 'TogglePanel'
@@ -210,9 +207,7 @@ export const DefaultShortcutKeyMap = {
   // [ShortcutKey.PlayTranslatePronunciation]: 'Ctrl+O',
   [ShortcutKey.ToggleShowTranslate]: 'Ctrl+Z',
   [ShortcutKey.ToggleDictation]: 'Ctrl+I',
-  [ShortcutKey.OpenSetting]: 'Ctrl+S',
   [ShortcutKey.ToggleTheme]: 'Ctrl+Q',
-  [ShortcutKey.OpenDictDetail]: 'Ctrl+J',
   [ShortcutKey.ToggleConciseMode]: 'Ctrl+M',
   [ShortcutKey.TogglePanel]: 'Ctrl+L',
 }
