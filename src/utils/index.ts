@@ -2,7 +2,7 @@ import {SAVE_DICT_KEY, SAVE_SETTING_KEY} from "@/utils/const.ts";
 import {BaseState, DefaultBaseState} from "@/stores/base.ts";
 import {DefaultSettingState, SettingState} from "@/stores/setting.ts";
 import {cloneDeep} from "lodash-es";
-import {Dict, DictResource, DictType, getDefaultDict} from "@/types.ts";
+import {Dict, DictResource, DictType, getDefaultDict, getDefaultWord} from "@/types.ts";
 import {ArchiveReader, libarchiveWasm} from "libarchive-wasm";
 import {useRouter} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
@@ -11,6 +11,7 @@ import dayjs from 'dayjs'
 import axios from "axios";
 import {env} from "@/config/ENV.ts";
 import {nextTick} from "vue";
+import {dictionaryResources} from "@/assets/dictionary.ts";
 
 export function getRandom(a: number, b: number): number {
   return Math.random() * (b - a) + a;
@@ -20,19 +21,26 @@ export function no() {
   ElMessage.warning('未现实')
 }
 
+//防止多出意外的数据
+function assign(origin: object, target: object) {
+  for (const [key, value] of Object.entries(origin)) {
+    if (target[key] !== undefined) origin[key] = target[key]
+  }
+}
+
 export function checkAndUpgradeSaveDict(val: any) {
   // console.log(configStr)
   // console.log('s', new Blob([val]).size)
   // val = ''
   if (val) {
     try {
-      let data
+      let data: any
       if (typeof val === 'string') {
         data = JSON.parse(val)
       } else {
         data = val
       }
-      let state: BaseState = data.val
+      let state: any = data.val
       if (typeof state !== 'object') {
         return {}
       }
@@ -42,22 +50,97 @@ export function checkAndUpgradeSaveDict(val: any) {
       state.load = false
       let version = Number(data.version)
       // console.log('state', state)
-      let defaultBaseState = DefaultBaseState()
+      let defaultState = DefaultBaseState()
       if (version === SAVE_DICT_KEY.version) {
         //防止人为删除数据，导致数据不完整报错
-        for (const [key, value] of Object.entries(defaultBaseState)) {
-          if (state[key] !== undefined) defaultBaseState[key] = state[key]
+        for (const [key, value] of Object.entries(defaultState)) {
+          if (state[key] !== undefined) defaultState[key] = state[key]
         }
-        return defaultBaseState
+        return defaultState
       } else {
-        if (version <= 4) {
-          state = defaultBaseState
+        if (version === 3) {
+          let studyDictId = ''
+          if (state.current.index >= 0) {
+            let dict = state.myDictList[state.current.index]
+            if (dict) {
+              studyDictId = dict.id
+            }
+          }
+
+          function formatWord(dict) {
+            dict.words = dict.words.map(v => {
+              return getDefaultWord({
+                word: v.name,
+                phonetic0: v.usphone,
+                phonetic1: v.ukphone,
+                trans: v.trans.map(b => {
+                  return {
+                    pos: '',
+                    cn: b,
+                  }
+                }),
+              })
+            })
+          }
+
+          state.myDictList.map((v: any) => {
+            let currentDictId = v.id
+            if (['collect', 'simple', 'wrong'].includes(v.type)) {
+              formatWord(v)
+              delete v.id
+              delete v.name
+              delete v.type
+              if (v.type === 'collect') {
+                if (currentDictId === studyDictId) defaultState.word.studyIndex = 0
+                assign(defaultState.word.bookList[0], v)
+              }
+              if (v.type === 'simple') {
+                if (currentDictId === studyDictId) defaultState.word.studyIndex = 2
+                assign(defaultState.word.bookList[2], v)
+              }
+              if (v.type === 'wrong') {
+                if (currentDictId === studyDictId) defaultState.word.studyIndex = 1
+                assign(defaultState.word.bookList[1], v)
+              }
+            }
+            if (v.type === 'word') {
+              delete v.type
+              if (v.isCustom) {
+                formatWord(v)
+                let dict = getDefaultDict()
+                assign(dict, v)
+                defaultState.word.bookList.push(dict)
+                if (currentDictId === studyDictId) defaultState.word.studyIndex = defaultState.word.bookList.length - 1
+              } else {
+                let r = dictionaryResources.find(a => a.id === currentDictId)
+                if (r) {
+                  defaultState.word.bookList.push(getDefaultDict(r))
+                  if (currentDictId === studyDictId) defaultState.word.studyIndex = defaultState.word.bookList.length - 1
+                }
+              }
+            }
+            if (v.type === 'article') {
+              delete v.type
+              if (v.isCustom) {
+                let dict = getDefaultDict()
+                assign(dict, v)
+                defaultState.article.bookList.push(dict)
+                if (currentDictId === studyDictId) defaultState.article.studyIndex = defaultState.article.bookList.length - 1
+              } else {
+                let r = dictionaryResources.find(a => a.id === currentDictId)
+                if (r) {
+                  defaultState.article.bookList.push(getDefaultDict(r))
+                  if (currentDictId === studyDictId) defaultState.article.studyIndex = defaultState.article.bookList.length - 1
+                }
+              }
+            }
+          })
         }
         //防止人为删除数据，导致数据不完整报错
-        for (const [key, value] of Object.entries(defaultBaseState)) {
-          if (state[key] !== undefined) defaultBaseState[key] = state[key]
+        for (const [key, value] of Object.entries(defaultState)) {
+          if (state[key] !== undefined) defaultState[key] = state[key]
         }
-        return defaultBaseState
+        return defaultState
       }
     } catch (e) {
       return {}

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import {splitEnArticle2} from "@/hooks/article.ts";
+import test from '../../test/test.vue'
 
-function test() {
+function test1() {
   splitEnArticle2(
       `While it is yet to be seen what direction the second Trump administration will take globally in its China policy, VOA traveled to the main island of Mahe in Seychelles to look at how China and the U.S. have impacted the country, and how each is fairing in that competition for influence there.
       `)
@@ -18,7 +19,8 @@ function test2() {
 
 <template>
   <div class="word flex center h-screen ">
-    <El-Button @click="test">test</El-Button>
+    <El-Button @click="test1">test1</El-Button>
     <El-Button @click="test2">test2</El-Button>
+    <test/>
   </div>
 </template>
