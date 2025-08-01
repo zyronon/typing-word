@@ -27,6 +27,7 @@ let currentStudy = $ref({
   write: []
 })
 
+//todo 当选完词返回时，计算今日任务时，还是老的词典
 onMounted(init)
 watch(() => store.load, init)
 

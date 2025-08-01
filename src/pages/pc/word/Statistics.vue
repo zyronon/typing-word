@@ -55,6 +55,7 @@ watch(model, (newVal) => {
       total: statStore.total,
       wrong: statStore.wrong,
       new: statStore.newWordNumber,
+      review: statStore.reviewWordNumber + statStore.writeWordNumber
     }
     //这里不知为啥会卡，打开有延迟
     requestIdleCallback(() => {
@@ -102,11 +103,11 @@ function options(emitType: string) {
           </div>
           <div class="flex-1 flex flex-col items-center">
             <div class="text-sm color-gray">复习数</div>
-            <div class="text-4xl font-bold">{{ statStore.newWordNumber }}</div>
+            <div class="text-4xl font-bold">{{ statStore.reviewWordNumber }}</div>
           </div>
           <div class="flex-1 flex flex-col items-center">
             <div class="text-sm color-gray">默写数</div>
-            <div class="text-4xl font-bold">{{ statStore.newWordNumber }}</div>
+            <div class="text-4xl font-bold">{{ statStore.writeWordNumber }}</div>
           </div>
         </div>
       </div>

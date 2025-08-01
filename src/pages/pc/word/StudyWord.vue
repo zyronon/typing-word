@@ -116,7 +116,9 @@ watch(() => studyData, () => {
   statStore.inputWordNumber = 0
   statStore.wrong = 0
   statStore.total = studyData.review.length + studyData.new.length + studyData.write.length
-  statStore.newWordNumber = store.sdict.complete ? studyData.review.length : studyData.new.length
+  statStore.newWordNumber = studyData.new.length
+  statStore.reviewWordNumber = studyData.review.length
+  statStore.writeWordNumber = studyData.write.length
   statStore.index = 0
 })
 

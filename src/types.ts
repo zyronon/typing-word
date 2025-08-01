@@ -143,6 +143,7 @@ export interface Statistics {
   speed?: number,//花费时间
   total: number//单词数量
   new: number//新学单词数量
+  review: number//复习单词数量
   wrong: number//错误数
 }
 
