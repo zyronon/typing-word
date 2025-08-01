@@ -2,7 +2,7 @@ import {SAVE_DICT_KEY, SAVE_SETTING_KEY} from "@/utils/const.ts";
 import {BaseState, DefaultBaseState} from "@/stores/base.ts";
 import {DefaultSettingState, SettingState} from "@/stores/setting.ts";
 import {cloneDeep} from "lodash-es";
-import {Dict, DictResource, DictType, getDefaultDict, getDefaultWord} from "@/types.ts";
+import {Dict, DictResource, DictType, getDefaultArticle, getDefaultDict, getDefaultWord} from "@/types.ts";
 import {ArchiveReader, libarchiveWasm} from "libarchive-wasm";
 import {useRouter} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
@@ -11,7 +11,7 @@ import dayjs from 'dayjs'
 import axios from "axios";
 import {env} from "@/config/ENV.ts";
 import {nextTick} from "vue";
-import {dictionaryResources} from "@/assets/dictionary.ts";
+import {dictionaryResources, enArticle} from "@/assets/dictionary.ts";
 
 export function getRandom(a: number, b: number): number {
   return Math.random() * (b - a) + a;
@@ -67,72 +67,114 @@ export function checkAndUpgradeSaveDict(val: any) {
             }
           }
 
+          const safeString = (str) => (typeof str === 'string' ? str.trim() : '');
+
           function formatWord(dict) {
             dict.words = dict.words.map(v => {
               return getDefaultWord({
                 word: v.name,
                 phonetic0: v.usphone,
                 phonetic1: v.ukphone,
-                trans: v.trans.map(b => {
-                  return {
-                    pos: '',
-                    cn: b,
+                trans: v.trans.map(line => {
+                  const match = line.match(/^([^\s.]+\.?)\s*(.*)$/);
+                  if (match) {
+                    let pos = safeString(match[1]);
+                    let cn = safeString(match[2]);
+
+                    // 如果 pos 不是常规词性（不以字母开头），例如 "【名】"
+                    if (!/^[a-zA-Z]+\.?$/.test(pos)) {
+                      cn = safeString(line); // 整行放到 cn
+                      pos = ''; // pos 置空
+                    }
+
+                    return {pos, cn};
                   }
-                }),
+                  return {pos: '', cn: safeString(line)};
+                })
               })
+            })
+            dict.statistics = dict.statistics.map(v => {
+              return {
+                startDate: v.startDate,
+                spend: v.endDate - v.startDate,
+                total: v.total,
+                new: v.total,
+                wrong: v.wrongWordNumber
+              }
+            })
+            dict.articles = dict.articles.map(v => {
+              let r = getDefaultArticle({
+                textTranslate: v.textCustomTranslate
+              })
+              assign(r, v)
+              return r
             })
           }
 
           state.myDictList.map((v: any) => {
-            let currentDictId = v.id
-            if (['collect', 'simple', 'wrong'].includes(v.type)) {
-              formatWord(v)
-              delete v.id
-              delete v.name
+            try {
+              let currentDictId = v.id
+              let currentType = v.type
               delete v.type
-              if (v.type === 'collect') {
-                if (currentDictId === studyDictId) defaultState.word.studyIndex = 0
-                assign(defaultState.word.bookList[0], v)
-              }
-              if (v.type === 'simple') {
-                if (currentDictId === studyDictId) defaultState.word.studyIndex = 2
-                assign(defaultState.word.bookList[2], v)
-              }
-              if (v.type === 'wrong') {
-                if (currentDictId === studyDictId) defaultState.word.studyIndex = 1
-                assign(defaultState.word.bookList[1], v)
-              }
-            }
-            if (v.type === 'word') {
-              delete v.type
-              if (v.isCustom) {
+              if (['collect', 'simple', 'wrong'].includes(v.type)) {
                 formatWord(v)
-                let dict = getDefaultDict()
-                assign(dict, v)
-                defaultState.word.bookList.push(dict)
-                if (currentDictId === studyDictId) defaultState.word.studyIndex = defaultState.word.bookList.length - 1
-              } else {
-                let r = dictionaryResources.find(a => a.id === currentDictId)
-                if (r) {
-                  defaultState.word.bookList.push(getDefaultDict(r))
+                delete v.id
+                delete v.name
+                if (currentType === 'collect') {
+                  if (currentDictId === studyDictId) defaultState.word.studyIndex = 0
+                  assign(defaultState.word.bookList[0], v)
+                }
+                if (currentType === 'simple') {
+                  if (currentDictId === studyDictId) defaultState.word.studyIndex = 2
+                  assign(defaultState.word.bookList[2], v)
+                }
+                if (currentType === 'wrong') {
+                  if (currentDictId === studyDictId) defaultState.word.studyIndex = 1
+                  assign(defaultState.word.bookList[1], v)
+                }
+              }
+              if (currentType === 'word') {
+                if (v.isCustom) {
+                  formatWord(v)
+                  let dict = getDefaultDict({custom: true})
+                  assign(dict, v)
+                  defaultState.word.bookList.push(dict)
                   if (currentDictId === studyDictId) defaultState.word.studyIndex = defaultState.word.bookList.length - 1
+                } else {
+                  //当时把选中的词典的id设为随机了，导致通过id找不到
+                  let r = dictionaryResources.find(a => a.name === v.name)
+                  if (r) {
+                    formatWord(v)
+                    let dict = getDefaultDict(r)
+                    assign(dict, v)
+                    dict.id = r.id
+                    defaultState.word.bookList.push(dict)
+                    if (currentDictId === studyDictId) defaultState.word.studyIndex = defaultState.word.bookList.length - 1
+                  }
                 }
               }
-            }
-            if (v.type === 'article') {
-              delete v.type
-              if (v.isCustom) {
-                let dict = getDefaultDict()
-                assign(dict, v)
-                defaultState.article.bookList.push(dict)
-                if (currentDictId === studyDictId) defaultState.article.studyIndex = defaultState.article.bookList.length - 1
-              } else {
-                let r = dictionaryResources.find(a => a.id === currentDictId)
-                if (r) {
-                  defaultState.article.bookList.push(getDefaultDict(r))
+              if (currentType === 'article') {
+                if (v.isCustom) {
+                  formatWord(v)
+                  let dict = getDefaultDict({custom: true})
+                  assign(dict, v)
+                  defaultState.article.bookList.push(dict)
                   if (currentDictId === studyDictId) defaultState.article.studyIndex = defaultState.article.bookList.length - 1
+                } else {
+                  //当时把选中的词典的id设为随机了
+                  let r = enArticle.find(a => a.name === v.name)
+                  if (r) {
+                    formatWord(v)
+                    let dict = getDefaultDict(r)
+                    assign(dict, v)
+                    dict.id = r.id
+                    defaultState.article.bookList.push(dict)
+                    if (currentDictId === studyDictId) defaultState.article.studyIndex = defaultState.article.bookList.length - 1
+                  }
                 }
               }
+            } catch (e) {
+              console.log('升级数据失败！')
             }
           })
         }
@@ -382,4 +424,113 @@ export async function _getDictDataByUrl(val: DictResource): Promise<Dict> {
     ...val,
     words
   })
+}
+
+//从字符串里面转换为Word格式
+export function convertToWord(raw: any) {
+  const safeString = (str) => (typeof str === 'string' ? str.trim() : '');
+  const safeSplit = (str, sep) =>
+    safeString(str) ? safeString(str).split(sep).filter(Boolean) : [];
+
+  // 1. trans
+  const trans = safeSplit(raw.trans, '\n').map(line => {
+    const match = line.match(/^([^\s.]+\.?)\s*(.*)$/);
+    if (match) {
+      let pos = safeString(match[1]);
+      let cn = safeString(match[2]);
+
+      // 如果 pos 不是常规词性（不以字母开头），例如 "【名】"
+      if (!/^[a-zA-Z]+\.?$/.test(pos)) {
+        cn = safeString(line); // 整行放到 cn
+        pos = ''; // pos 置空
+      }
+
+      return {pos, cn};
+    }
+    return {pos: '', cn: safeString(line)};
+  });
+
+  // 2. sentences
+  const sentences = safeSplit(raw.sentences, '\n\n').map(block => {
+    const [c, cn] = block.split('\n');
+    return {c: safeString(c), cn: safeString(cn)};
+  });
+
+  // 3. phrases
+  const phrases = safeSplit(raw.phrases, '\n\n').map(block => {
+    const [c, cn] = block.split('\n');
+    return {c: safeString(c), cn: safeString(cn)};
+  });
+
+  // 4. synos
+  const synos = safeSplit(raw.synos, '\n\n').map(block => {
+    const lines = block.split('\n').map(safeString);
+    const [posCn, wsStr] = lines;
+    let pos = '';
+    let cn = '';
+
+    if (posCn) {
+      const posMatch = posCn.match(/^([a-zA-Z.]+)(.*)$/);
+      pos = posMatch ? safeString(posMatch[1]) : '';
+      cn = posMatch ? safeString(posMatch[2]) : safeString(posCn);
+    }
+    const ws = wsStr ? wsStr.split('/').map(safeString) : [];
+
+    return {pos, cn, ws};
+  });
+
+  // 5. relWords
+  const relWordsText = safeString(raw.relWords);
+  let root = '';
+  const rels = [];
+
+  if (relWordsText) {
+    const relLines = relWordsText.split('\n').filter(Boolean);
+    if (relLines.length > 0) {
+      root = safeString(relLines[0].replace(/^词根:/, ''));
+      let currentPos = '';
+      let currentWords = [];
+
+      for (let i = 1; i < relLines.length; i++) {
+        const line = relLines[i].trim();
+        if (!line) continue;
+
+        if (/^[a-z]+\./i.test(line)) {
+          if (currentPos && currentWords.length > 0) {
+            rels.push({pos: currentPos, words: currentWords});
+          }
+          currentPos = safeString(line.replace(':', ''));
+          currentWords = [];
+        } else if (line.includes(':')) {
+          const [c, cn] = line.split(':');
+          currentWords.push({c: safeString(c), cn: safeString(cn)});
+        }
+      }
+      if (currentPos && currentWords.length > 0) {
+        rels.push({pos: currentPos, words: currentWords});
+      }
+    }
+  }
+
+  // 6. etymology
+  const etymology = safeSplit(raw.etymology, '\n\n').map(block => {
+    const lines = block.split('\n').map(safeString);
+    const t = lines.shift() || '';
+    const d = lines.join('\n').trim();
+    return {t, d};
+  });
+
+  return getDefaultWord({
+    id: raw.id,
+    word: safeString(raw.word),
+    phonetic0: safeString(raw.phonetic0),
+    phonetic1: safeString(raw.phonetic1),
+    trans,
+    sentences,
+    phrases,
+    synos,
+    relWords: {root, rels},
+    etymology,
+    custom: true
+  });
 }

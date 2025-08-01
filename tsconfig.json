@@ -48,7 +48,8 @@
     "src/**/*.d.ts",
     "src/**/*.vue",
     "auto-imports.d.ts",
-    "src/vite-env.d.ts"
+    "src/vite-env.d.ts",
+    "src/global.d.ts"
   ],
   "references": [
     {

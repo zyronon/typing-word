@@ -17,7 +17,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import {useRoute, useRouter} from "vue-router";
 import {useBaseStore} from "@/stores/base.ts";
 import EditBook from "@/pages/pc/article/components/EditBook.vue";
-import {_getDictDataByUrl, _nextTick} from "@/utils";
+import {_getDictDataByUrl, _nextTick, convertToWord} from "@/utils";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 const runtimeStore = useRuntimeStore()
@@ -60,114 +60,6 @@ const wordRules = reactive<FormRules>({
   ],
 })
 
-//从字符串里面转换为Word格式
-function convertToWord(raw) {
-  const safeString = (str) => (typeof str === 'string' ? str.trim() : '');
-  const safeSplit = (str, sep) =>
-      safeString(str) ? safeString(str).split(sep).filter(Boolean) : [];
-
-  // 1. trans
-  const trans = safeSplit(raw.trans, '\n').map(line => {
-    const match = line.match(/^([^\s.]+\.?)\s*(.*)$/);
-    if (match) {
-      let pos = safeString(match[1]);
-      let cn = safeString(match[2]);
-
-      // 如果 pos 不是常规词性（不以字母开头），例如 "【名】"
-      if (!/^[a-zA-Z]+\.?$/.test(pos)) {
-        cn = safeString(line); // 整行放到 cn
-        pos = ''; // pos 置空
-      }
-
-      return {pos, cn};
-    }
-    return {pos: '', cn: safeString(line)};
-  });
-
-  // 2. sentences
-  const sentences = safeSplit(raw.sentences, '\n\n').map(block => {
-    const [c, cn] = block.split('\n');
-    return {c: safeString(c), cn: safeString(cn)};
-  });
-
-  // 3. phrases
-  const phrases = safeSplit(raw.phrases, '\n\n').map(block => {
-    const [c, cn] = block.split('\n');
-    return {c: safeString(c), cn: safeString(cn)};
-  });
-
-  // 4. synos
-  const synos = safeSplit(raw.synos, '\n\n').map(block => {
-    const lines = block.split('\n').map(safeString);
-    const [posCn, wsStr] = lines;
-    let pos = '';
-    let cn = '';
-
-    if (posCn) {
-      const posMatch = posCn.match(/^([a-zA-Z.]+)(.*)$/);
-      pos = posMatch ? safeString(posMatch[1]) : '';
-      cn = posMatch ? safeString(posMatch[2]) : safeString(posCn);
-    }
-    const ws = wsStr ? wsStr.split('/').map(safeString) : [];
-
-    return {pos, cn, ws};
-  });
-
-  // 5. relWords
-  const relWordsText = safeString(raw.relWords);
-  let root = '';
-  const rels = [];
-
-  if (relWordsText) {
-    const relLines = relWordsText.split('\n').filter(Boolean);
-    if (relLines.length > 0) {
-      root = safeString(relLines[0].replace(/^词根:/, ''));
-      let currentPos = '';
-      let currentWords = [];
-
-      for (let i = 1; i < relLines.length; i++) {
-        const line = relLines[i].trim();
-        if (!line) continue;
-
-        if (/^[a-z]+\./i.test(line)) {
-          if (currentPos && currentWords.length > 0) {
-            rels.push({pos: currentPos, words: currentWords});
-          }
-          currentPos = safeString(line.replace(':', ''));
-          currentWords = [];
-        } else if (line.includes(':')) {
-          const [c, cn] = line.split(':');
-          currentWords.push({c: safeString(c), cn: safeString(cn)});
-        }
-      }
-      if (currentPos && currentWords.length > 0) {
-        rels.push({pos: currentPos, words: currentWords});
-      }
-    }
-  }
-
-  // 6. etymology
-  const etymology = safeSplit(raw.etymology, '\n\n').map(block => {
-    const lines = block.split('\n').map(safeString);
-    const t = lines.shift() || '';
-    const d = lines.join('\n').trim();
-    return {t, d};
-  });
-
-  return getDefaultWord({
-    id: raw.id,
-    word: safeString(raw.word),
-    phonetic0: safeString(raw.phonetic0),
-    phonetic1: safeString(raw.phonetic1),
-    trans,
-    sentences,
-    phrases,
-    synos,
-    relWords: {root, rels},
-    etymology,
-    custom: true
-  });
-}
 
 function syncDictInMyStudyList(study = false) {
   _nextTick(() => {

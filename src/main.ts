@@ -9,6 +9,7 @@ import router from "@/router.ts";
 import VueVirtualScroller from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import 'virtual:uno.css';
+import './global.d.ts'
 
 const i18n = createI18n({
   locale: 'zh-CN',
