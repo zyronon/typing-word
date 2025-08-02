@@ -7,8 +7,6 @@ export const EventKey = {
   changeDict: 'changeDict',
   openStatModal: 'openStatModal',
   openWordListModal: 'openWordListModal',
-  //todo feiqi
-  openDictModal: 'openDictModal',
   openArticleListModal: 'openArticleListModal',
   closeOther: 'closeOther',
   keydown: 'keydown',

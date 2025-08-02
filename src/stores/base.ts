@@ -1,11 +1,10 @@
 import {defineStore} from 'pinia'
-import {Article, Dict, DictId, DictType, getDefaultDict, Sort, Word} from "../types.ts"
-import {cloneDeep, merge, reverse, shuffle} from "lodash-es";
-import {emitter, EventKey} from "@/utils/eventBus.ts"
+import {Dict, DictId, getDefaultDict, Word} from "../types.ts"
+import {cloneDeep, merge} from "lodash-es";
 import * as localforage from "localforage";
 import {nanoid} from "nanoid";
 import {SAVE_DICT_KEY} from "@/utils/const.ts";
-import {_checkDictWords, _getDictDataByUrl, _getStudyProgress, checkAndUpgradeSaveDict, getDictFile} from "@/utils";
+import {_getStudyProgress, checkAndUpgradeSaveDict, getDictFile} from "@/utils";
 
 export interface BaseState {
   simpleWords: string[],

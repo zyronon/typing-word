@@ -301,7 +301,6 @@ export function _fetch(url: string) {
 }
 
 export async function _checkDictWords(dict: Dict) {
-  console.log('_checkDictWords', dict)
   if ([DictType.collect,
     DictType.known,
     DictType.wrong].includes(dict.dictType)) {
