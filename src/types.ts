@@ -4,6 +4,7 @@ import jaFlag from "@/assets/img/flags/ja.png";
 import deFlag from "@/assets/img/flags/de.png";
 import codeFlag from "@/assets/img/flags/code.png";
 import myFlag from "@/assets/img/flags/my.png";
+import {markRaw} from "vue";
 
 export type Word = {
   id?: string,
@@ -262,12 +263,12 @@ export function getDefaultDict(val: Partial<Dict> = {}): Dict {
     language: 'en',
     lastLearnIndex: 0,
     perDayStudyNumber: 20,
-    words: [],
-    articles: [],
-    statistics: [],
     custom: false,
     complete: false,
-    ...val
+    ...val,
+    words: markRaw(val.words ?? []),
+    articles: markRaw(val.articles ?? []),
+    statistics: markRaw(val.statistics ?? [])
   }
 }
 

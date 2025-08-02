@@ -369,6 +369,7 @@ export function _getAccomplishDays(total: number, dayNumber: number) {
 
 //获取完成日期
 export function _getAccomplishDate(total: number, dayNumber: number) {
+  if (dayNumber <= 0) return '-'
   let d = _getAccomplishDays(total, dayNumber)
   return dayjs().add(d, 'day').format('YYYY-MM-DD')
 }

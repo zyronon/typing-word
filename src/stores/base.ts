@@ -5,6 +5,7 @@ import * as localforage from "localforage";
 import {nanoid} from "nanoid";
 import {SAVE_DICT_KEY} from "@/utils/const.ts";
 import {_getStudyProgress, checkAndUpgradeSaveDict, getDictFile} from "@/utils";
+import {markRaw} from "vue";
 
 export interface BaseState {
   simpleWords: string[],
@@ -31,7 +32,7 @@ export const DefaultBaseState = (): BaseState => ({
   load: false,
   word: {
     bookList: [
-      getDefaultDict({id: DictId.wordCollect, name: '收藏', words: []}),
+      getDefaultDict({id: DictId.wordCollect, name: '收藏'}),
       getDefaultDict({id: DictId.wordWrong, name: '错词'}),
       getDefaultDict({id: DictId.wordKnown, name: '已掌握'}),
       // getDefaultDict({
@@ -103,9 +104,18 @@ export const useBaseStore = defineStore('base', {
     },
   },
   actions: {
-    setState(obj: any) {
-      //这样不会丢失watch的值的引用
-      merge(this, obj)
+    setState(obj: BaseState) {
+      obj.word.bookList.map(book => {
+        book.words = markRaw(book.words)
+        book.articles = markRaw(book.articles)
+        book.statistics = markRaw(book.statistics)
+      })
+      obj.article.bookList.map(book => {
+        book.words = markRaw(book.words)
+        book.articles = markRaw(book.articles)
+        book.statistics = markRaw(book.statistics)
+      })
+      this.$patch(obj)
     },
     async init(outData?: any) {
       return new Promise(async resolve => {
@@ -142,7 +152,7 @@ export const useBaseStore = defineStore('base', {
       //把其他的词典的单词数据都删掉，全保存在内存里太卡了
       this.word.bookList.slice(3).map(v => {
         if (!v.custom) {
-          v.words = []
+          v.words = markRaw([])
         }
       })
       let rIndex = this.word.bookList.findIndex((v: Dict) => v.id === val.id)
@@ -151,10 +161,11 @@ export const useBaseStore = defineStore('base', {
       }
       if (rIndex > -1) {
         this.word.studyIndex = rIndex
-        this.word.bookList[this.word.studyIndex].words = val.words
+        this.word.bookList[this.word.studyIndex].words = markRaw(val.words)
         this.word.bookList[this.word.studyIndex].perDayStudyNumber = val.perDayStudyNumber
       } else {
-        this.word.bookList.push(cloneDeep(val))
+        console.log(1)
+        this.word.bookList.push(getDefaultDict(val))
         this.word.studyIndex = this.word.bookList.length - 1
       }
     },

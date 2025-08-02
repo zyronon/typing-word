@@ -1,9 +1,9 @@
 <script setup lang="tsx">
-import {DictId, getDefaultDict, getDefaultWord} from "@/types";
 import type {Word} from "@/types";
+import {DictId, getDefaultDict} from "@/types";
 
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import {computed, nextTick, onMounted, reactive} from "vue";
+import {computed, onMounted, reactive} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {assign, cloneDeep} from "lodash-es";
 import {nanoid} from "nanoid";
@@ -18,7 +18,6 @@ import {useRoute, useRouter} from "vue-router";
 import {useBaseStore} from "@/stores/base.ts";
 import EditBook from "@/pages/pc/article/components/EditBook.vue";
 import {_getDictDataByUrl, _nextTick, convertToWord} from "@/utils";
-import {emitter, EventKey} from "@/utils/eventBus.ts";
 
 const runtimeStore = useRuntimeStore()
 const base = useBaseStore()
@@ -59,7 +58,7 @@ const wordRules = reactive<FormRules>({
     {max: 30, message: '名称不能超过30个字符', trigger: 'blur'},
   ],
 })
-
+let studyLoading = $ref(false)
 
 function syncDictInMyStudyList(study = false) {
   _nextTick(() => {
@@ -190,13 +189,13 @@ function formClose() {
 }
 
 async function addMyStudyList() {
+  studyLoading = true
+  await base.changeDict(runtimeStore.editDict)
+  studyLoading = false
   if (route.query?.from) {
     router.back()
   }
   router.back()
-  requestIdleCallback(()=>{
-    base.changeDict(runtimeStore.editDict)
-  })
 }
 
 defineRender(() => {
@@ -209,7 +208,7 @@ defineRender(() => {
                   <div class="absolute page-title text-align-center w-full">{runtimeStore.editDict.name}</div>
                   <div class="flex gap-2">
                     <BaseButton type="info" onClick={() => isEdit = true}>编辑</BaseButton>
-                    <BaseButton onClick={addMyStudyList}>学习</BaseButton>
+                    <BaseButton loading={studyLoading} onClick={addMyStudyList}>学习</BaseButton>
                   </div>
                 </div>
                 <div class="text-lg  ">介绍：{runtimeStore.editDict.description}</div>

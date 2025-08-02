@@ -110,20 +110,15 @@ function importData(e) {
       }
       try {
         obj = JSON.parse(str)
+        let data = obj.val
+        let settingState = checkAndUpgradeSaveSetting(data.setting)
+        settingStore.setState(settingState)
+        let baseState = checkAndUpgradeSaveDict(data.dict)
+        store.setState(baseState)
+        ElMessage.success('导入成功！')
       } catch (err) {
-        ElMessage.error('导入失败！')
+        return ElMessage.error('导入失败！')
       }
-      if (obj.version === EXPORT_DATA_KEY.version) {
-
-      } else {
-        //TODO
-      }
-      let data = obj.val
-      let settingState = checkAndUpgradeSaveSetting(data.setting)
-      settingStore.setState(settingState)
-      let dictState = checkAndUpgradeSaveDict(data.dict)
-      store.init(dictState)
-      ElMessage.success('导入成功！')
     }
   }
   reader.readAsText(file);

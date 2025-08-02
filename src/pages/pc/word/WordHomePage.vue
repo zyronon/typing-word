@@ -44,7 +44,6 @@ async function init() {
 }
 
 function startStudy() {
-  // getCurrentStudyWord()
   // return store.sdict.lastLearnIndex = store.sdict.length - 1
   // store.sdict.complete = true
   // store.sdict.lastLearnIndex = 20
