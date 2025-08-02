@@ -127,31 +127,31 @@ function importData(e) {
 
 <template>
   <BasePage>
-    <div class="setting">
+    <div class="setting text-md">
       <div class="left mt-10">
         <div class="tabs">
           <div class="tab" :class="tabIndex === 0 && 'active'" @click="tabIndex = 0">
-            <Icon icon="bx:headphone" width="20" color="#0C8CE9"/>
+            <Icon icon="bx:headphone" width="20"/>
             <span>音效设置</span>
           </div>
+          <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">
+            <Icon icon="icon-park-outline:setting-config" width="20"/>
+            <span>练习设置</span>
+          </div>
           <div class="tab" :class="tabIndex === 2 && 'active'" @click="tabIndex = 2">
-            <Icon icon="material-symbols:keyboard-outline" width="20" color="#0C8CE9"/>
+            <Icon icon="material-symbols:keyboard-outline" width="20"/>
             <span>快捷键设置</span>
           </div>
-          <div class="tab" :class="tabIndex === 1 && 'active'" @click="tabIndex = 1">
-            <Icon icon="icon-park-outline:setting-config" width="20" color="#0C8CE9"/>
-            <span>其他设置</span>
-          </div>
           <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">
-            <Icon icon="mdi:database-cog-outline" width="20" color="#0C8CE9"/>
+            <Icon icon="mdi:database-cog-outline" width="20"/>
             <span>数据管理</span>
           </div>
           <div class="tab" :class="tabIndex === 4 && 'active'" @click="tabIndex = 4">
-            <Icon icon="mingcute:service-fill" width="20" color="#0C8CE9"/>
+            <Icon icon="mingcute:service-fill" width="20"/>
             <span>反馈</span>
           </div>
           <div class="tab" :class="tabIndex === 5 && 'active'" @click="tabIndex = 5">
-            <Icon icon="mdi:about-circle-outline" width="20" color="#0C8CE9"/>
+            <Icon icon="mdi:about-circle-outline" width="20"/>
             <span>关于</span>
           </div>
         </div>
@@ -266,6 +266,26 @@ function importData(e) {
           </div>
         </div>
         <div v-if="tabIndex === 1">
+          <div class="row">
+            <label class="item-title">单词循环设置</label>
+            <div class="wrapper">
+              <el-radio-group v-model="settingStore.repeatCount">
+                <el-radio :value="1" size="default">1</el-radio>
+                <el-radio :value="2" size="default">2</el-radio>
+                <el-radio :value="3" size="default">3</el-radio>
+                <el-radio :value="5" size="default">5</el-radio>
+                <el-radio :value="100" size="default">自定义</el-radio>
+              </el-radio-group>
+              <div class="mini-row" v-if="settingStore.repeatCount === 100">
+                <label class="item-title">循环次数</label>
+                <el-input-number v-model="settingStore.repeatCustomCount"
+                                 :min="6"
+                                 :max="15"
+                                 type="number"
+                />
+              </div>
+            </div>
+          </div>
           <div class="row">
             <label class="item-title">显示上一个/下一个单词</label>
             <div class="wrapper">
@@ -472,6 +492,7 @@ function importData(e) {
       display: flex;
       flex-direction: column;
       gap: .6rem;
+      //color: #0C8CE9;
 
       .tab {
         cursor: pointer;
@@ -482,7 +503,8 @@ function importData(e) {
         gap: .6rem;
 
         &.active {
-          background: var(--color-item-bg);
+          background: var(--color-main-active);
+          color: var(--color-input-bg);
         }
       }
     }
@@ -533,8 +555,6 @@ function importData(e) {
             color: var(--color-font-1);
           }
         }
-
-
       }
 
       .main-title {

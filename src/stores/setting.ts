@@ -50,7 +50,7 @@ export const getDefaultSettingState = (): SettingState => ({
   showToolbar: true,
   show: false,
   showPanel: true,
-  sideExpand: true,
+  sideExpand: false,
 
   allSound: true,
   wordSound: true,

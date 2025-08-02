@@ -9,7 +9,6 @@ import {Icon} from "@iconify/vue";
 import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue";
-import RepeatSetting from "@/pages/pc/components/toolbar/RepeatSetting.vue";
 
 const statisticsStore = usePracticeStore()
 const settingStore = useSettingStore()
@@ -163,8 +162,6 @@ const progress = $computed(() => {
           </Tooltip>
 
           <TranslateSetting/>
-
-          <RepeatSetting/>
 
           <BaseIcon
               @click="settingStore.showPanel = !settingStore.showPanel"

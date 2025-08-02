@@ -4,7 +4,6 @@ import {ShortcutKey} from "@/types.ts";
 import Logo from "@/pages/pc/components/Logo.vue";
 import {Icon} from "@iconify/vue";
 import {useSettingStore} from "@/stores/setting.ts";
-import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useRouter} from "vue-router";
 import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
@@ -13,7 +12,6 @@ import BaseIcon from "@/components/BaseIcon.vue";
 
 
 const settingStore = useSettingStore()
-const runtimeStore = useRuntimeStore()
 const router = useRouter()
 const {toggleTheme} = useTheme()
 
