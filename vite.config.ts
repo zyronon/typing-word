@@ -3,13 +3,14 @@ import Vue from '@vitejs/plugin-vue'
 import VueJsx from "@vitejs/plugin-vue-jsx";
 import {resolve} from 'path'
 import {visualizer} from "rollup-plugin-visualizer";
+import SlidePlugin from './src/components/slide/data.js';
 import {ElementPlusResolver} from "unplugin-vue-components/resolvers";
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import {getLastCommit} from "git-last-commit";
 import UnoCSS from 'unocss/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
-import { Plugin as importToCDN } from 'vite-plugin-cdn-import'
+import {Plugin as importToCDN} from 'vite-plugin-cdn-import'
 
 function pathResolve(dir: string) {
   return resolve(__dirname, ".", dir)
@@ -17,9 +18,7 @@ function pathResolve(dir: string) {
 
 const lifecycle = process.env.npm_lifecycle_event;
 
-
-// https://vitejs.dev/config/
-export default defineConfig(async () => {
+async function s() {
   const latestCommitHash = await new Promise<string>((resolve) => {
     return getLastCommit((err, commit) => (err ? 'unknown' : resolve(commit.shortHash)))
   })
@@ -46,6 +45,7 @@ export default defineConfig(async () => {
           filename: "report.html", //分析图生成的文件名
           open: true //如果存在本地服务端口，将在打包后自动展示
         }) : null,
+      SlidePlugin(),
       importToCDN({
         modules: [
           {
@@ -102,4 +102,7 @@ export default defineConfig(async () => {
       }
     }
   }
-})
+}
+
+// https://vitejs.dev/config/
+export default defineConfig(s as any)

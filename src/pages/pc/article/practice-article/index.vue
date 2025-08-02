@@ -17,7 +17,6 @@ import BaseIcon from "@/components/BaseIcon.vue";
 import {useArticleOptions} from "@/hooks/dict.ts";
 import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
-import VolumeSetting from "@/pages/pc/components/toolbar/VolumeSetting.vue";
 import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue";
 import {genArticleSectionData, usePlaySentenceAudio} from "@/hooks/article.ts";
 

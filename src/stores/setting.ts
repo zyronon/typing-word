@@ -40,10 +40,13 @@ export interface SettingState {
   chapterWordNumber: number,
   shortcutKeyMap: Record<string, string>,
   first: boolean
+  firstTime: number
   load: boolean
 }
 
-export const DefaultSettingState = (): SettingState => ({
+export const DefaultChapterWordNumber = 30
+
+export const getDefaultSettingState = (): SettingState => ({
   showToolbar: true,
   show: false,
   showPanel: true,
@@ -75,34 +78,28 @@ export const DefaultSettingState = (): SettingState => ({
     wordTranslateFontSize: 20,
   },
   waitTimeForChangeWord: 300,
-
   theme: 'auto',
   collapse: false,
   chapterWordNumber: DefaultChapterWordNumber,
   shortcutKeyMap: cloneDeep(DefaultShortcutKeyMap),
   first: true,
+  firstTime: Date.now(),
   load: false
 })
-export const DefaultChapterWordNumber = 30
+
 export const useSettingStore = defineStore('setting', {
   state: (): SettingState => {
-    return DefaultSettingState()
+    return getDefaultSettingState()
   },
   actions: {
     setState(obj: any) {
-      //这样不会丢失watch的值的引用
-      merge(this, obj)
+      this.$patch(obj)
     },
     init() {
       return new Promise(resolve => {
         let configStr = localStorage.getItem(SAVE_SETTING_KEY.key)
-        if (!configStr) configStr = localStorage.getItem(SAVE_SETTING_KEY.oldKey)
         let data = checkAndUpgradeSaveSetting(configStr)
         this.setState(data)
-        localStorage.setItem(SAVE_SETTING_KEY.key, JSON.stringify({
-          val: this.$state,
-          version: SAVE_SETTING_KEY.version
-        }))
         this.load = true
         resolve(true)
       })

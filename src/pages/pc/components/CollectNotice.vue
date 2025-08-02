@@ -36,7 +36,6 @@ watch(() => settingStore.load, (n) => {
   }
 })
 
-
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 import {SAVE_DICT_KEY, SAVE_SETTING_KEY} from "@/utils/const.ts";
 import {BaseState, DefaultBaseState} from "@/stores/base.ts";
-import {DefaultSettingState, SettingState} from "@/stores/setting.ts";
+import {getDefaultSettingState, SettingState} from "@/stores/setting.ts";
 import {cloneDeep} from "lodash-es";
 import {Dict, DictResource, DictType, getDefaultArticle, getDefaultDict, getDefaultWord} from "@/types.ts";
 import {ArchiveReader, libarchiveWasm} from "libarchive-wasm";
@@ -13,16 +13,12 @@ import {env} from "@/config/ENV.ts";
 import {nextTick} from "vue";
 import {dictionaryResources, enArticle} from "@/assets/dictionary.ts";
 
-export function getRandom(a: number, b: number): number {
-  return Math.random() * (b - a) + a;
-}
-
 export function no() {
   ElMessage.warning('未现实')
 }
 
-//防止多出意外的数据
-function assign(origin: object, target: object) {
+//检测多余字段，防止人为删除数据，导致数据不完整报错
+function checkRiskKey(origin: object, target: object) {
   for (const [key, value] of Object.entries(origin)) {
     if (target[key] !== undefined) origin[key] = target[key]
   }
@@ -32,6 +28,7 @@ export function checkAndUpgradeSaveDict(val: any) {
   // console.log(configStr)
   // console.log('s', new Blob([val]).size)
   // val = ''
+  let defaultState = DefaultBaseState()
   if (val) {
     try {
       let data: any
@@ -40,17 +37,12 @@ export function checkAndUpgradeSaveDict(val: any) {
       } else {
         data = val
       }
+      if (!data.version) return defaultState
       let state: any = data.val
-      if (typeof state !== 'object') {
-        return {}
-      }
-      if (!data.version) {
-        return {}
-      }
+      if (typeof state !== 'object') return defaultState
       state.load = false
       let version = Number(data.version)
       // console.log('state', state)
-      let defaultState = DefaultBaseState()
       if (version === SAVE_DICT_KEY.version) {
         //防止人为删除数据，导致数据不完整报错
         for (const [key, value] of Object.entries(defaultState)) {
@@ -106,7 +98,7 @@ export function checkAndUpgradeSaveDict(val: any) {
               let r = getDefaultArticle({
                 textTranslate: v.textCustomTranslate
               })
-              assign(r, v)
+              checkRiskKey(r, v)
               return r
             })
           }
@@ -122,22 +114,22 @@ export function checkAndUpgradeSaveDict(val: any) {
                 delete v.name
                 if (currentType === 'collect') {
                   if (currentDictId === studyDictId) defaultState.word.studyIndex = 0
-                  assign(defaultState.word.bookList[0], v)
+                  checkRiskKey(defaultState.word.bookList[0], v)
                 }
                 if (currentType === 'simple') {
                   if (currentDictId === studyDictId) defaultState.word.studyIndex = 2
-                  assign(defaultState.word.bookList[2], v)
+                  checkRiskKey(defaultState.word.bookList[2], v)
                 }
                 if (currentType === 'wrong') {
                   if (currentDictId === studyDictId) defaultState.word.studyIndex = 1
-                  assign(defaultState.word.bookList[1], v)
+                  checkRiskKey(defaultState.word.bookList[1], v)
                 }
               }
               if (currentType === 'word') {
                 if (v.isCustom) {
                   formatWord(v)
                   let dict = getDefaultDict({custom: true})
-                  assign(dict, v)
+                  checkRiskKey(dict, v)
                   defaultState.word.bookList.push(dict)
                   if (currentDictId === studyDictId) defaultState.word.studyIndex = defaultState.word.bookList.length - 1
                 } else {
@@ -146,7 +138,7 @@ export function checkAndUpgradeSaveDict(val: any) {
                   if (r) {
                     formatWord(v)
                     let dict = getDefaultDict(r)
-                    assign(dict, v)
+                    checkRiskKey(dict, v)
                     dict.id = r.id
                     defaultState.word.bookList.push(dict)
                     if (currentDictId === studyDictId) defaultState.word.studyIndex = defaultState.word.bookList.length - 1
@@ -157,7 +149,7 @@ export function checkAndUpgradeSaveDict(val: any) {
                 if (v.isCustom) {
                   formatWord(v)
                   let dict = getDefaultDict({custom: true})
-                  assign(dict, v)
+                  checkRiskKey(dict, v)
                   defaultState.article.bookList.push(dict)
                   if (currentDictId === studyDictId) defaultState.article.studyIndex = defaultState.article.bookList.length - 1
                 } else {
@@ -166,7 +158,7 @@ export function checkAndUpgradeSaveDict(val: any) {
                   if (r) {
                     formatWord(v)
                     let dict = getDefaultDict(r)
-                    assign(dict, v)
+                    checkRiskKey(dict, v)
                     dict.id = r.id
                     defaultState.article.bookList.push(dict)
                     if (currentDictId === studyDictId) defaultState.article.studyIndex = defaultState.article.bookList.length - 1
@@ -185,16 +177,17 @@ export function checkAndUpgradeSaveDict(val: any) {
         return defaultState
       }
     } catch (e) {
-      return {}
+      return defaultState
     }
   }
-  return {}
+  return defaultState
 }
 
 export function checkAndUpgradeSaveSetting(val: any) {
   // console.log(configStr)
   // console.log('s', new Blob([val]).size)
   // val = ''
+  let defaultState = getDefaultSettingState()
   if (val) {
     try {
       let data
@@ -203,40 +196,27 @@ export function checkAndUpgradeSaveSetting(val: any) {
       } else {
         data = val
       }
-      let state: SettingState = data.val
-      if (typeof state !== 'object') {
-        return {}
-      }
-      if (!data.version) {
-        return {}
-      }
+      if (!data.version) return defaultState
+      let state: any = data.val
+      if (typeof state !== 'object') return defaultState
       state.load = false
       let version = Number(data.version)
-      let defaultSettingState = DefaultSettingState()
       if (version === SAVE_SETTING_KEY.version) {
-        //防止人为删除数据，导致数据不完整报错
-        for (const [key, value] of Object.entries(defaultSettingState)) {
-          if (state[key] !== undefined) defaultSettingState[key] = state[key]
-        }
-        return defaultSettingState
+        checkRiskKey(defaultState, state)
+        return defaultState
       } else {
         //为了保持永远是最新的快捷键选项列表，但保留住用户的自定义设置，去掉无效的快捷键选项
         //例: 2版本，可能有快捷键A。3版本没有了
-        for (const [key, value] of Object.entries(defaultSettingState.shortcutKeyMap)) {
-          if (state.shortcutKeyMap[key] !== undefined) defaultSettingState.shortcutKeyMap[key] = state.shortcutKeyMap[key]
-        }
+        checkRiskKey(defaultState.shortcutKeyMap, state.shortcutKeyMap)
         delete state.shortcutKeyMap
-
-        for (const [key, value] of Object.entries(defaultSettingState)) {
-          if (state[key] !== undefined) defaultSettingState[key] = state[key]
-        }
-        return defaultSettingState
+        checkRiskKey(defaultState, state)
+        return defaultState
       }
     } catch (e) {
-      return {}
+      return defaultState
     }
   }
-  return {}
+  return defaultState
 }
 
 //筛选未自定义的词典，未自定义的词典不需要保存单词，用的时候再下载
