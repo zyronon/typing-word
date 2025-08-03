@@ -1,5 +1,6 @@
 import {Article, Word} from "@/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
+import {markRaw} from "vue";
 
 
 export function useWordOptions() {
@@ -14,11 +15,8 @@ export function useWordOptions() {
     if (rIndex > -1) {
       store.collectWord.words.splice(rIndex, 1)
     } else {
-      let rIndex = store.known.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
-      if (rIndex > -1) {
-        store.known.words.splice(rIndex, 1)
-      }
       store.collectWord.words.push(val)
+      // store.collectWord.words = markRaw(store.collectWord.words.concat([val]))
     }
   }
 
