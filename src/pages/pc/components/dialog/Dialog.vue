@@ -279,7 +279,7 @@ $header-height: 4rem;
 
   .modal {
     position: relative;
-    background: var(--color-second-bg);
+    background: var(--color-second);
     overflow: hidden;
     display: flex;
     flex-direction: column;

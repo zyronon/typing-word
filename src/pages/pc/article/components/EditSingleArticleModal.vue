@@ -45,6 +45,6 @@ useDisableEventListener(() => props.modelValue)
   width: 100%;
   height: 100%;
   display: flex;
-  background: var(--color-main-bg);
+  background: var(--color-primary);
 }
 </style>

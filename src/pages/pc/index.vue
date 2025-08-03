@@ -19,10 +19,10 @@ const {toggleTheme} = useTheme()
 </script>
 
 <template>
-  <div class="layout">
+  <div class="layout anim">
     <!--    第一个aside 占位用-->
     <div class="aside space" :class="{'expand':settingStore.sideExpand}"></div>
-    <div class="aside fixed" :class="{'expand':settingStore.sideExpand}">
+    <div class="aside anim fixed" :class="{'expand':settingStore.sideExpand}">
       <div class="top">
         <Logo v-if="settingStore.sideExpand"/>
         <div class="row" @click="router.push('/home')">
@@ -78,11 +78,11 @@ const {toggleTheme} = useTheme()
   width: 100%;
   height: 100%;
   display: flex;
-  background: var(--color-background);
+  background: var(--color-primary);
 }
 
 .aside {
-  background: var(--color-second-bg);
+  background: var(--color-second);
   height: 100vh;
   padding: 1rem 1rem;
   box-sizing: border-box;
@@ -91,7 +91,6 @@ const {toggleTheme} = useTheme()
   justify-content: space-between;
   box-shadow: rgb(0 0 0 / 3%) 0px 0px 12px 0px;
   width: 4.5rem;
-  transition: all 0.3s;
   z-index: 2;
 
   .row {

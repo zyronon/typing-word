@@ -1,14 +1,13 @@
 import {createApp} from 'vue'
 import './assets/css/style.scss'
+import 'virtual:uno.css';
 import App from './App.vue'
-// import Mobile from './Mobile.vue'
 import {createPinia} from "pinia"
 import ZH from "@/locales/zh-CN.ts";
 import {createI18n} from 'vue-i18n'
 import router from "@/router.ts";
 import VueVirtualScroller from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import 'virtual:uno.css';
 import './global.d.ts'
 
 const i18n = createI18n({
@@ -20,7 +19,6 @@ const i18n = createI18n({
 })
 
 const pinia = createPinia()
-// const app = createApp(Mobile)
 const app = createApp(App)
 
 app.use(VueVirtualScroller)

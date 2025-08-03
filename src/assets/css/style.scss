@@ -1,5 +1,4 @@
 //@import '/node_modules/element-plus/dist/index.css';
-//@use "/node_modules/hover.css" as *;
 @use "anim" as *;
 @use 'element-plus/theme-chalk/dark/css-vars' as *;
 
@@ -7,30 +6,18 @@
   //修改element-ui的进度条底色
   --el-border-color-lighter: #d1d1d1 !important;
 
-  --color-background: #E6E8EB;
-  //--color-main-bg: #E6E8EB;
-  --color-main-bg: rgb(238, 240, 244);
-  --color-second-bg: rgb(247, 247, 247);
-  --color-third-bg: rgb(213, 215, 217);
-
   --color-item-bg: rgb(228, 230, 232);
   --color-item-hover: white;
   //--color-item-active: rgb(75, 110, 175);
   --color-item-active: rgb(253, 246, 236);
   --color-item-border: rgb(226, 226, 226);
 
-  --color-header-bg: white;
   --color-tooltip-bg: white;
   --color-tooltip-shadow: #d9d9d9;
-  --color-font-1: rgb(91, 91, 91);
   --color-font-2: rgb(46, 46, 46);
   --color-font-3: rgb(75, 85, 99);
   --color-font-active-1: white;
-  --color-font-active-2: whitesmoke;
-  --color-main-active: rgb(12, 140, 233);
-  --color-primary: rgb(12, 140, 233);
   --color-scrollbar: rgb(147, 173, 227);
-  --color-gray: gray;
   --color-sub-gray: #c0bfbf;
 
   --practice-wrapper-translateX: 1px;
@@ -39,11 +26,10 @@
   --toolbar-height: 3.2rem;
   --panel-width: 24rem;
   --space: 1rem;
-  --radius: .5rem;
   --shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
   --panel-margin-left: calc(50% + var(--toolbar-width) / 2 + 1rem);
   --article-panel-margin-left: calc(50% + var(--article-width) / 2 + 3.5rem);
-  --anim-time: 0.5s;
+  --anim-time: 0.3s;
 
   --color-input-bg: white;
   --color-input-border: #bfbfbf;
@@ -62,29 +48,47 @@
   --btn-primary: rgb(75, 85, 99);
   --btn-info: #909399;
 
+  --color-primary: #E6E8EB;
+  --color-second: rgb(247, 247, 247);
+  --color-third: rgb(226 232 240 / 1);
+
+  --color-card-active: #FED7AA;
+  --color-list-item-active: rgb(253, 246, 236);
+  --color-icon-hightlight: #E6A23C;
+  //--color-icon-hightlight: rgb(12, 140, 233);
+  --color-sub-text: gray;
+  --color-main-text: rgb(91, 91, 91);
+  --color-select-bg: rgb(12, 140, 233);
+  --color-select-text: white;
+
+  --color-notice-bg: rgb(247, 247, 247);
 }
 
 html.dark {
-  --color-main-bg: rgba(14, 18, 23, 1);
-  --color-second-bg: rgb(30, 31, 34);
-  --color-third-bg: rgb(43, 45, 48);
+  --color-primary: #0E1217;
+  --color-second: rgb(30, 31, 34);
+  --color-third: rgb(43, 45, 48);
+  --color-card-active: rgb(84, 84, 84);
+  --color-list-item-active: rgb(84, 84, 84);
+  --color-icon-hightlight: #E6A23C;
+  --color-sub-text: #b8b8b8;
+  --color-main-text: rgba(249, 250, 251, 0.8);
+  --color-select-bg: rgb(147, 173, 227);
+  --color-select-text: black;
+  --color-notice-bg: rgb(43, 45, 48);
 
   --color-item-bg: rgb(43, 45, 48);
   --color-item-hover: rgb(67, 69, 74);
   --color-item-active: rgb(84, 84, 84);
   --color-item-border: rgb(41, 41, 41);
 
-  --color-header-bg: rgb(51, 51, 51);
   --color-tooltip-bg: #252525;
   --color-tooltip-shadow: #3b3b3b;
-  --color-font-1: rgba(249, 250, 251, 0.8);
   --color-font-2: rgba(255, 255, 255, 0.5);
   --color-font-3: rgba(255, 255, 255, 0.3);
 
-  --color-gray: #bebebe;
   --color-sub-gray: #383737;
 
-  --color-main-active: rgb(147, 173, 227);
   --color-scrollbar: rgb(92, 93, 94);
 
   --color-input-bg: rgba(14, 18, 23, 1);
@@ -164,7 +168,7 @@ html, body {
   padding: 0;
   margin: 0;
   overflow-x: hidden;
-  color: var(--color-font-1);
+  color: var(--color-main-text);
   font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -226,7 +230,7 @@ a {
   background: var(--color-textarea-bg);
 
   &:focus {
-    border: 1px solid var(--color-main-active);
+    border: 1px solid var(--color-select-bg);
   }
 
   &[readonly] {
@@ -340,7 +344,7 @@ footer {
   width: 100%;
   box-sizing: border-box;
   background: var(--color-item-bg);
-  color: var(--color-font-1);
+  color: var(--color-main-text);
   font-size: 1.1rem;
   border-radius: .5rem;
   display: flex;
@@ -373,32 +377,32 @@ footer {
     opacity: 0;
   }
 
+  &.active {
+    background: var(--color-list-item-active);
+
+    .item-sub-title {
+      color: var(--color-sub-text);
+    }
+
+    .volume, .collect, .easy, .fill {
+      color: var(--color-icon-hightlight);
+    }
+  }
+
   &:hover {
-    background: var(--color-item-hover);
+    @extend .active;
 
     .volume, .collect, .easy {
       opacity: 1;
     }
   }
 
-  &.active {
-    background: var(--color-item-active);
-    $c: #E6A23C;
-
-    .phonetic, .item-sub-title {
-      //color: var(--color-gray) !important;
-    }
-
-    .volume, .collect, .easy, .fill {
-      color: $c;
-    }
-  }
 
   .item-title {
     display: flex;
     align-items: center;
     gap: .5rem;
-    color: var(--color-font-1);
+    color: var(--color-main-text);
 
     .word {
       font-size: 1.2rem;
@@ -415,7 +419,6 @@ footer {
     font-size: 1rem;
     color: gray;
   }
-
 }
 
 .word-shadow {
@@ -427,7 +430,7 @@ footer {
 .common-title {
   min-height: 2.8rem;
   font-size: 1.1rem;
-  color: var(--color-font-1);
+  color: var(--color-main-text);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -463,7 +466,8 @@ footer {
 }
 
 .card {
-  @apply rounded-xl bg-white p-4 mb-5 box-border relative;
+  @apply rounded-xl p-4 mb-5 box-border relative;
+  background: var(--color-second);
 }
 
 .center {
@@ -476,7 +480,7 @@ footer {
 
 .book {
   @extend .anim;
-  @apply p-4 rounded-md bg-slate-200 relative cursor-pointer h-40  hover:bg-orange-200  flex flex-col justify-between;
+  @apply p-4 rounded-md relative cursor-pointer h-40 bg-third hover:bg-card-active flex flex-col justify-between;
 }
 
 .line {

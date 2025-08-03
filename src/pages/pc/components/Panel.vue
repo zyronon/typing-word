@@ -219,7 +219,7 @@ $header-height: 3rem;
 .panel {
   border-radius: .5rem;
   width: var(--panel-width);
-  background: var(--color-second-bg);
+  background: var(--color-second);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -257,7 +257,7 @@ $header-height: 3rem;
         color: gray;
 
         &.active {
-          color: var(--color-main-active);
+          color: var(--color-select-bg);
           font-weight: bold;
         }
       }

@@ -453,17 +453,17 @@ function importData(e) {
             </div>
           </div>
         </div>
-        <div v-if="tabIndex === 5" class="about">
+        <div v-if="tabIndex === 5" class="center flex-col">
           <h1>Type Words</h1>
-          <p>
-            本项目完全开源！好用请大家多多点Star！
+          <p class="w-100 text-xl">
+            感谢使用本项目！本项目是开源项目，如果觉得有帮助，请在 GitHub 点个 Star，您的支持是我持续改进的动力。
           </p>
           <p>
-            GitHub地址：<a href="https://github.com/zyronon/typing-word">https://github.com/zyronon/typing-word</a>
+            GitHub地址：<a href="https://github.com/zyronon/TypeWords" target="_blank">https://github.com/zyronon/TypeWords</a>
           </p>
           <p>
             反馈：<a
-              href="https://github.com/zyronon/typing-word/issues">https://github.com/zyronon/typing-word/issues</a>
+              href="https://github.com/zyronon/TypeWords/issues" target="_blank">https://github.com/zyronon/TypeWords/issues</a>
           </p>
           <div class="text-md color-gray">
             Build {{ gitLastCommitHash }}
@@ -503,8 +503,8 @@ function importData(e) {
         gap: .6rem;
 
         &.active {
-          background: var(--color-main-active);
-          color: var(--color-input-bg);
+          background: var(--color-select-bg);
+          color: var(--color-select-text);
         }
       }
     }
@@ -551,7 +551,7 @@ function importData(e) {
             border: 1px solid gray;
             border-radius: .2rem;
             padding: 0 .3rem;
-            background: var(--color-second-bg);
+            background: var(--color-second);
             color: var(--color-font-1);
           }
         }

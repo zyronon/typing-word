@@ -59,7 +59,7 @@ watch(() => props.modelValue, (n) => {
   position: absolute;
   z-index: 9;
   width: 12rem;
-  background: var(--color-second-bg);
+  background: var(--color-second);
   border-radius: .5rem;
   box-shadow: 0 0 8px 2px var(--color-item-border);
   padding: .6rem var(--space);

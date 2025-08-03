@@ -58,11 +58,6 @@ async function getConfig() {
             var: 'VueRouter',
             path: `https://cdn.jsdelivr.net/npm/vue-router@4.5.1/dist/vue-router.global.prod.min.js`
           },
-          {
-            name: 'jquery',
-            var: 'jQuery',
-            path: 'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js'
-          },
           // {
           //   name: 'axios',
           //   var: 'axios',
@@ -92,7 +87,7 @@ async function getConfig() {
     },
     server: {
       port: 3000,
-      open: true,
+      open: false,
       host: '0.0.0.0',
       fs: {
         strict: false,

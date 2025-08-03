@@ -53,6 +53,7 @@ function next() {
 }
 
 function init() {
+  //todo 这个页面，直接访问白屏
   if (!store.currentBook.articles.length) return
   articleData.articles = cloneDeep(store.currentBook.articles)
   getCurrentPractice()
@@ -436,8 +437,6 @@ const {playSentenceAudio} = usePlaySentenceAudio()
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  //padding-right: var(--practice-wrapper-padding-right);
-  transform: translateX(var(--practice-wrapper-translateX));
 }
 
 .swiper-wrapper {
@@ -501,7 +500,7 @@ const {playSentenceAudio} = usePlaySentenceAudio()
     width: 100%;
     box-sizing: border-box;
     border-radius: .6rem;
-    background: var(--color-second-bg);
+    background: var(--color-second);
     padding: .2rem var(--space) .4rem var(--space);
     z-index: 2;
     border: 1px solid var(--color-item-border);

@@ -41,7 +41,6 @@ $w: 1.4rem;
   border-radius: .3rem;
   background: transparent;
   transition: all .3s;
-  //color: var(--color-main-active);
 
   &:hover:not(.disabled) {
     background: var(--color-primary);

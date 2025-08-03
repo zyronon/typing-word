@@ -6,7 +6,6 @@ import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio} from "@/hooks/sound.ts";
 import {emitter, EventKey} from "@/utils/eventBus.ts";
-import jq from 'jquery'
 import {_nextTick} from "@/utils";
 import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
 import ContextMenu from '@imengyu/vue3-context-menu'
@@ -75,7 +74,6 @@ const store = useBaseStore()
 const statisticsStore = usePracticeStore()
 const settingStore = useSettingStore()
 
-window.$ = jq
 watch([() => sectionIndex, () => sentenceIndex, () => wordIndex, () => stringIndex], ([a, b, c,]) => {
   checkCursorPosition(a, b, c)
 })
@@ -97,18 +95,20 @@ watch(() => settingStore.translate, () => {
 function checkCursorPosition(a = sectionIndex, b = sentenceIndex, c = wordIndex) {
   // console.log('checkCursorPosition')
   _nextTick(() => {
-    let currentWord = jq(`.section:nth(${a}) .sentence:nth(${b}) .word:nth(${c})`)
-    // console.log(a, b, c, currentWord)
-    if (currentWord.length) {
-      let end = currentWord.find('.word-end')
-      // console.log(end)
-      if (end.length) {
-        let articleRect = articleWrapperRef.getBoundingClientRect()
+    // 选中目标元素
+    const currentWord = document.querySelector(`.section:nth-of-type(${a + 1}) .sentence:nth-of-type(${b + 1}) .word:nth-of-type(${c + 1})`);
+    if (currentWord) {
+      // 在 currentWord 内找 .word-end
+      const end = currentWord.querySelector('.word-end');
+      if (end) {
+        // 获取 articleWrapper 的位置
+        const articleRect = articleWrapperRef.getBoundingClientRect();
+        const endRect = end.getBoundingClientRect();
+        // 计算相对位置
         cursor = {
-          top: end.offset().top - articleRect.top,
-          left: end.offset().left - articleRect.left,
-        }
-        // console.log(cursor)
+          top: endRect.top - articleRect.top,
+          left: endRect.left - articleRect.left,
+        };
       }
     }
   },)
@@ -548,7 +548,7 @@ let showQuestions = $ref(false)
     }
 
     .hover-show {
-      background: var(--color-main-active);
+      background: var(--color-select-bg);
       color: white !important;
 
       .wrote {
@@ -654,7 +654,7 @@ let showQuestions = $ref(false)
   }
 
   .word-start {
-    color: var(--color-main-active);
+    color: var(--color-select-bg);
   }
 
   .wrong {

@@ -172,7 +172,7 @@ const progressTextRight = $computed(() => {
     <div class="card flex gap-10">
       <div class="flex-1 flex flex-col gap-2">
         <div class="flex">
-          <div class="bg-slate-200 px-3 h-14 rounded-md flex items-center">
+          <div class="bg-third px-3 h-14 rounded-md flex items-center">
             <span class="text-xl font-bold">{{ store.sdict.name || '请选择书籍开始学习' }}</span>
             <BaseIcon title="切换词典" :icon="store.sdict.name ? 'gg:arrows-exchange' : 'fluent:add-20-filled'"
                       class="ml-4"
@@ -214,11 +214,12 @@ const progressTextRight = $computed(() => {
         <div class="flex gap-1 items-center">
           每日目标
           <div style="color:#ac6ed1;" @click="setPerDayStudyNumber"
-               class="bg-slate-200 px-2 h-10 flex center text-2xl rounded cursor-pointer">
+               class="bg-third px-2 h-10 flex center text-2xl rounded cursor-pointer">
             {{ store.sdict.id ? store.sdict.perDayStudyNumber : 0 }}
           </div>
           个单词 <span class="color-blue cursor-pointer" @click="setPerDayStudyNumber">更改</span>
         </div>
+        <div class="btn">开始学习</div>
         <div class="rounded-xl bg-slate-800 flex items-center gap-2 py-3 px-5 text-white cursor-pointer"
              :class="store.sdict.name || 'opacity-70 cursor-not-allowed'" @click="startStudy">
           <span>开始学习</span>

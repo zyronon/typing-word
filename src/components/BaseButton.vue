@@ -59,7 +59,7 @@ defineEmits(['click'])
   transition: all .3s;
   //background: #999;
   //background: rgb(60, 63, 65);
-  //background: var(--color-second-bg);
+  //background: var(--color-second);
   height: 2.5rem;
   line-height: 1;
   position: relative;

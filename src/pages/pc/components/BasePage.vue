@@ -4,7 +4,7 @@
 
 <template>
   <div class="flex justify-center">
-    <div class="w-[70vw] 2xl:w-[50vw]  page">
+    <div class="page w-[70vw] 2xl:w-[50vw]">
       <slot></slot>
     </div>
   </div>

@@ -119,7 +119,7 @@ function startStudy() {
     </div>
 
     <Dialog v-model="showAddChooseDialog" title="选项">
-      <div class="color-black px-6 w-100">
+      <div class="color-main px-6 w-100">
         <div class="cursor-pointer  hover:bg-black/10 p-2 rounded"
              @click="showAddChooseDialog = false,showSearchDialog = true">选择一本书籍
         </div>
@@ -131,7 +131,7 @@ function startStudy() {
             :show-close="false"
             @close="searchKey = ''"
             :header="false">
-      <div class="color-black  w-140">
+      <div class="color-main  w-140">
         <div class="p-4">
           <Input v-if="showSearchDialog" :autofocus="true" v-model="searchKey"/>
         </div>
@@ -146,7 +146,7 @@ function startStudy() {
             </div>
           </div>
         </div>
-        <div v-else class="h-40 center flex-col text-xl color-black/60">
+        <div v-else class="h-40 center flex-col text-xl color-main">
           <div> 请输入书籍名称搜索</div>
           <div>或直接在书籍列表选中</div>
         </div>

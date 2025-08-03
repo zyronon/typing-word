@@ -1,23 +1,15 @@
 // uno.config.ts
-import {defineConfig, presetUno} from 'unocss'
+import {defineConfig, presetWind3} from 'unocss'
 
 export default defineConfig({
-  content: {
-
-    pipeline: {
-      include: [
-        './src/**/*.{html,vue,ts,js}',
-        './index.html',
-      ],
-      exclude: [
-        './node_modules/**/*',
-        './dist/**/*',
-        './.pnpm/**/*',
-        './.output/**/*',
-      ],
-    },
+  shortcuts: {
+    'bg-primary': 'bg-[var(--color-primary)]',
+    'bg-second': 'bg-[var(--color-second)]',
+    'bg-third': 'bg-[var(--color-third)]',
+    'bg-card-active': 'bg-[var(--color-card-active)]',
+    'color-main': 'color-[var(--color-main-text)]',
   },
   presets: [
-    presetUno(),
+    presetWind3(),
   ],
 })

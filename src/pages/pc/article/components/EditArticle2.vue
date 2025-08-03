@@ -306,7 +306,7 @@ function setStartTime(val: Sentence, i: number, j: number) {
           </template>
         </el-popover>
         <el-button type="primary" @click="splitText">分句</el-button>
-        <el-button type="primary" @click="apply">应用</el-button>
+        <el-button type="primary" @click="() => apply()">应用</el-button>
       </div>
     </div>
     <div class="row flex flex-col gap-2">
@@ -474,7 +474,7 @@ function setStartTime(val: Sentence, i: number, j: number) {
             @close="showEditAudioDialog = false"
             @ok="saveLrcPosition"
     >
-      <div class="p-4 pt-0 color-black w-150 flex flex-col gap-2">
+      <div class="p-4 pt-0 color-main w-150 flex flex-col gap-2">
         <div class="">
           教程：点击音频播放按钮，当播放到句子开始时，点击开始时间的 <span class="color-red">记录</span>
           按钮；当播放到句子结束时，点击结束时间的 <span class="color-red">记录</span> 按钮，最后再试听是否正确
@@ -539,8 +539,6 @@ function setStartTime(val: Sentence, i: number, j: number) {
 </template>
 
 <style scoped lang="scss">
-
-
 .content {
   color: var(--color-article);
   height: 100%;

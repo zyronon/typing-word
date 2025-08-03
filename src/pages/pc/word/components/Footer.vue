@@ -206,7 +206,7 @@ const progress = $computed(() => {
     width: 100%;
     box-sizing: border-box;
     border-radius: .6rem;
-    background: var(--color-second-bg);
+    background: var(--color-second);
     padding: .2rem var(--space) .4rem var(--space);
     z-index: 2;
     border: 1px solid var(--color-item-border);

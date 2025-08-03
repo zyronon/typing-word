@@ -499,7 +499,6 @@ function importData(e) {
   }
 
   .content {
-    background: var(--color-header-bg);
     flex: 1;
     height: 100%;
     overflow: auto;
@@ -539,7 +538,7 @@ function importData(e) {
             border: 1px solid gray;
             border-radius: .2rem;
             padding: 0 .3rem;
-            background: var(--color-second-bg);
+            background: var(--color-second);
             color: var(--color-font-1);
           }
         }

@@ -103,7 +103,7 @@ watch(() => settingStore.load, (n) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--color-second-bg);
+  background: var(--color-notice-bg);
   padding: 1.8rem;
   border-radius: 0.7rem;
   width: 30rem;
@@ -124,7 +124,7 @@ watch(() => settingStore.load, (n) => {
   }
 
   .active {
-    color: var(--color-main-active);
+    color: var(--color-select-bg);
   }
 
   .wrapper {
@@ -148,7 +148,7 @@ watch(() => settingStore.load, (n) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          background: var(--color-main-bg);
+          background: var(--color-primary);
 
           .href {
             font-size: 0.9rem;
@@ -156,7 +156,7 @@ watch(() => settingStore.load, (n) => {
         }
 
         .star {
-          color: var(--color-main-active);
+          color: var(--color-select-bg);
         }
 
         .right {

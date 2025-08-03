@@ -70,7 +70,7 @@ const vFocus = {
   }
 
   &.focus {
-    border: 1px solid var(--color-main-active);
+    border: 1px solid var(--color-select-bg);
 
     :deep(svg) {
       color: gray;

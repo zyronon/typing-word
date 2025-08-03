@@ -234,7 +234,7 @@ useWindowClick(() => showExport = false)
   height: 100%;
   box-sizing: border-box;
   color: var(--color-font-1);
-  background: var(--color-second-bg);
+  background: var(--color-second);
   display: flex;
 
   .close {
