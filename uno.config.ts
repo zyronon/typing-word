@@ -9,6 +9,9 @@ export default defineConfig({
     'bg-card-active': 'bg-[var(--color-card-active)]',
     'color-main': 'color-[var(--color-main-text)]',
     'gap-space': 'gap-[var(--space)]',
+    'p-space': 'p-[var(--space)]',
+    'px-space': 'px-[var(--space)]',
+    'py-space': 'py-[var(--space)]',
   },
   presets: [
     presetWind3(),

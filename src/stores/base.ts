@@ -5,7 +5,7 @@ import * as localforage from "localforage";
 import {nanoid} from "nanoid";
 import {SAVE_DICT_KEY} from "@/utils/const.ts";
 import {_getStudyProgress, checkAndUpgradeSaveDict, getDictFile} from "@/utils";
-import {markRaw} from "vue";
+import {markRaw, shallowReactive} from "vue";
 
 export interface BaseState {
   simpleWords: string[],
@@ -106,14 +106,14 @@ export const useBaseStore = defineStore('base', {
   actions: {
     setState(obj: BaseState) {
       obj.word.bookList.map(book => {
-        book.words = markRaw(book.words)
-        book.articles = markRaw(book.articles)
-        book.statistics = markRaw(book.statistics)
+        book.words = shallowReactive(book.words)
+        book.articles = shallowReactive(book.articles)
+        book.statistics = shallowReactive(book.statistics)
       })
       obj.article.bookList.map(book => {
-        book.words = markRaw(book.words)
-        book.articles = markRaw(book.articles)
-        book.statistics = markRaw(book.statistics)
+        book.words = shallowReactive(book.words)
+        book.articles = shallowReactive(book.articles)
+        book.statistics = shallowReactive(book.statistics)
       })
       this.$patch(obj)
     },
@@ -152,7 +152,7 @@ export const useBaseStore = defineStore('base', {
       //把其他的词典的单词数据都删掉，全保存在内存里太卡了
       this.word.bookList.slice(3).map(v => {
         if (!v.custom) {
-          v.words = markRaw([])
+          v.words = shallowReactive([])
         }
       })
       let rIndex = this.word.bookList.findIndex((v: Dict) => v.id === val.id)
@@ -161,10 +161,9 @@ export const useBaseStore = defineStore('base', {
       }
       if (rIndex > -1) {
         this.word.studyIndex = rIndex
-        this.word.bookList[this.word.studyIndex].words = markRaw(val.words)
+        this.word.bookList[this.word.studyIndex].words = shallowReactive(val.words)
         this.word.bookList[this.word.studyIndex].perDayStudyNumber = val.perDayStudyNumber
       } else {
-        console.log(1)
         this.word.bookList.push(getDefaultDict(val))
         this.word.studyIndex = this.word.bookList.length - 1
       }

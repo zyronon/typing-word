@@ -245,7 +245,6 @@ const progressTextRight = $computed(() => {
       </div>
     </div>
 
-
     <div class="card">
       <div class="title">
         已学习 <span class="text-3xl">{{ allStudyDays.length }}</span> 天
@@ -264,7 +263,7 @@ const progressTextRight = $computed(() => {
     </div>
 
     <Dialog v-model="show" title="每日目标" :footer="true" @ok="changePerDayStudyNumber">
-      <div class="target-modal">
+      <div class="target-modal color-main">
         <div class="center text-2xl gap-2">
           <span class="text-3xl" style="color:rgb(176,116,211)">{{
               tempPerDayStudyNumber
@@ -295,7 +294,5 @@ const progressTextRight = $computed(() => {
   width: 30rem;
   padding: var(--space);
   padding-top: 0;
-  color: var(--color-font-1);
-
 }
 </style>

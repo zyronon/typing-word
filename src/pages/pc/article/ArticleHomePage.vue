@@ -15,7 +15,9 @@ import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import Input from "@/pages/pc/components/Input.vue";
 import {computed} from "vue";
 import Book from "@/pages/pc/components/Book.vue";
-import {ElProgress} from 'element-plus';
+import {ElMessage, ElProgress} from 'element-plus';
+import BaseButton from "@/components/BaseButton.vue";
+import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
 
 const {nav} = useNav()
 const base = useBaseStore()
@@ -26,9 +28,6 @@ let showAddChooseDialog = $ref(false)
 let showSearchDialog = $ref(false)
 let searchKey = $ref('')
 
-function clickEvent(e) {
-  console.log('e', e)
-}
 
 async function getBookDetail(val: DictResource) {
   let r = await getArticleBookDataByUrl(val)
@@ -66,6 +65,41 @@ function startStudy() {
   }
   router.push('/study-article')
 }
+
+
+let isMultiple = $ref(false)
+let selectIds = $ref([])
+
+function handleBatchDel() {
+  selectIds.forEach(id => {
+    let r = store.word.bookList.findIndex(v => v.id === id)
+    if (r !== -1) {
+      if (store.word.studyIndex === r) {
+        store.word.studyIndex = -1
+      }
+      if (store.word.studyIndex > r) {
+        store.word.studyIndex--
+      }
+      store.word.bookList.splice(r, 1)
+    }
+  })
+  selectIds = []
+  ElMessage.success("删除成功！")
+}
+
+function toggleSelect(item) {
+  let rIndex = selectIds.findIndex(v => v === item.id)
+  if (rIndex > -1) {
+    selectIds.splice(rIndex, 1)
+  } else {
+    selectIds.push(item.id)
+  }
+}
+
+async function goDictDetail(val: DictResource) {
+  runtimeStore.editDict = getDefaultDict(val)
+  nav('book-detail', {})
+}
 </script>
 
 <template>
@@ -80,79 +114,44 @@ function startStudy() {
           <BaseIcon @click="showSearchDialog = true"
                     :icon="base.currentBook.name ? 'gg:arrows-exchange':'fluent:add-20-filled'"/>
         </div>
-        <div class="rounded-xl bg-slate-800 flex items-center py-3 px-5 text-white cursor-pointer"
-             :class="base.currentBook.name || 'opacity-70 cursor-not-allowed'"
-             @click="startStudy">
-          开始学习
-        </div>
+        <BaseButton
+            size="large"
+            @click="startStudy"
+            :disabled="!base.currentBook.name"
+        >
+          <div class="flex items-center gap-2">
+            <span>开始学习</span>
+            <Icon icon="icons8:right-round" class="text-2xl"/>
+          </div>
+        </BaseButton>
       </div>
       <div class="mt-5 text-sm">已学习{{ base.currentBook.lastLearnIndex }}篇文章</div>
       <ElProgress class="mt-1" :percentage="base.currentBookProgress" :show-text="false"></ElProgress>
     </div>
 
     <div class="card  flex flex-col">
-      <div class="title">
-        我的
-      </div>
-      <div class="grid grid-cols-6 gap-4  mt-4">
-        <Book :is-add="false"
-              quantifier="篇"
-              :item="item"
-              v-for="item in store.article.bookList"
-              @click="getBookDetail2(item)"/>
-        <Book :is-add="true"
-              @click="showAddChooseDialog = true"/>
-      </div>
-    </div>
+      <div class="flex justify-between">
+        <div class="title">我的书籍</div>
+        <div class="flex gap-4 items-center">
+          <PopConfirm title="确认删除所有选中书籍？" @confirm="handleBatchDel" v-if="selectIds.length">
+            <BaseIcon class="del" title="删除" icon="solar:trash-bin-minimalistic-linear"/>
+          </PopConfirm>
 
-    <div class="card">
-      <div class="title flex justify-between">
-        <span>书籍列表</span>
-        <BaseIcon @click="showSearchDialog = true" icon="fluent:search-24-regular"/>
-      </div>
-      <div class="grid grid-cols-6 gap-4  mt-4">
-        <Book :is-add="false"
-              quantifier="篇"
-              :item="item as Dict"
-              v-for="item in enArticle"
-              @click="getBookDetail(item)"/>
-      </div>
-    </div>
-
-    <Dialog v-model="showAddChooseDialog" title="选项">
-      <div class="color-main px-6 w-100">
-        <div class="cursor-pointer  hover:bg-black/10 p-2 rounded"
-             @click="showAddChooseDialog = false,showSearchDialog = true">选择一本书籍
-        </div>
-        <p class="cursor-pointer  hover:bg-black/10 p-2 rounded" @click="addBook">创建自己的书籍</p>
-      </div>
-    </Dialog>
-
-    <Dialog v-model="showSearchDialog"
-            :show-close="false"
-            @close="searchKey = ''"
-            :header="false">
-      <div class="color-main  w-140">
-        <div class="p-4">
-          <Input v-if="showSearchDialog" :autofocus="true" v-model="searchKey"/>
-        </div>
-        <div class="line"></div>
-        <div v-if="searchList.length">
-          <div class="p-4 min-h-40 max-h-140 overflow-auto">
-            <div class="flex justify-between my-2 hover:bg-black/10 p-2 rounded"
-                 v-for="dict in searchList"
-                 @click="getBookDetail(dict)">
-              <div class="name">{{ dict.name }}</div>
-              <div class="">{{ dict.length }}篇</div>
-            </div>
+          <div class="color-blue cursor-pointer" v-if="store.article.bookList.length > 1"
+               @click="isMultiple = !isMultiple; selectIds = []">{{ isMultiple ? '取消' : '管理书籍' }}
           </div>
-        </div>
-        <div v-else class="h-40 center flex-col text-xl color-main">
-          <div> 请输入书籍名称搜索</div>
-          <div>或直接在书籍列表选中</div>
+          <div class="color-blue cursor-pointer" @click="nav('dict-detail', { isAdd: true })">创建个人书籍</div>
         </div>
       </div>
-    </Dialog>
+      <div class="grid grid-cols-6 gap-4  mt-4">
+        <Book :is-add="false" quantifier="篇" :item="item" :checked="selectIds.includes(item.id)"
+              @check="() => toggleSelect(item)"
+              :show-checkbox="isMultiple && j >= 1"
+              v-for="(item, j) in store.article.bookList"
+              @click="goDictDetail(item)"/>
+        <Book :is-add="true" @click="router.push('/dict-list')"/>
+      </div>
+    </div>
   </BasePage>
 </template>
 

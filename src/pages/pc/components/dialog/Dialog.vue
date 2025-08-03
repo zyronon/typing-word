@@ -172,10 +172,8 @@ async function cancel() {
           <div v-if="content" class="content">{{ content }}</div>
         </div>
         <div class="modal-footer" v-if="footer">
-          <div class="left">
-          </div>
           <div class="right">
-            <BaseButton type="link" @click="cancel">{{ cancelButtonText }}</BaseButton>
+            <BaseButton type="info" @click="cancel">{{ cancelButtonText }}</BaseButton>
             <BaseButton
                 :loading="confirmButtonLoading"
                 @click="ok">{{ confirmButtonText }}
@@ -331,39 +329,8 @@ $header-height: 4rem;
 
     .modal-footer {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: .5rem 1.6rem;
-      color: #fff;
-      font-size: 1.1rem;
-      background: rgba(0, 0, 0, .2);
-
-      .left {
-        display: flex;
-        align-items: center;
-        height: 100%;
-
-        .text {
-          color: white;
-          font-size: 1rem;
-          cursor: pointer;
-        }
-
-        &.active {
-          .text {
-            color: white;
-          }
-        }
-      }
-
-      .right {
-        display: flex;
-        flex: 1;
-        align-items: center;
-        justify-content: flex-end;
-        height: 100%;
-        gap: var(--space);
-      }
+      justify-content: flex-end;
+      padding: var(--space);
     }
   }
 }

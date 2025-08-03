@@ -60,7 +60,6 @@ let data = $ref<StudyData>({
   wrongWords: [],
 })
 
-
 onMounted(() => {
   let dictId = route.query.q
   //如果url里有词典id，那么直接请求词典数据，并加到bookList里面进行学习
@@ -394,47 +393,47 @@ useEvents([
     </div>
     <div class="word-panel-wrapper">
       <Panel>
-        <template v-slot="{active}">
-          <div class="panel-page-item pl-4"
-          >
-            <WordList
-                v-if="data.words.length"
-                :is-active="active"
-                :static="false"
-                :show-word="!settingStore.dictation"
-                :show-translate="settingStore.translate"
-                :list="data.words"
-                :activeIndex="data.index"
-                @click="(val:any) => data.index = val.index"
-            >
-              <template v-slot:suffix="{item,index}">
-                <BaseIcon
-                    v-if="!isWordCollect(item)"
-                    class="collect"
-                    @click.stop="toggleWordCollect(item)"
-                    title="收藏" icon="ph:star"/>
-                <BaseIcon
-                    v-else
-                    class="fill"
-                    @click.stop="toggleWordCollect(item)"
-                    title="取消收藏" icon="ph:star-fill"/>
-                <BaseIcon
-                    v-if="!isWordSimple(item)"
-                    class="easy"
-                    @click.stop="toggleWordSimple(item)"
-                    title="标记为已掌握"
-                    icon="material-symbols:check-circle-outline-rounded"/>
-                <BaseIcon
-                    v-else
-                    class="fill"
-                    @click.stop="toggleWordSimple(item)"
-                    title="取消标记已掌握"
-                    icon="material-symbols:check-circle-rounded"/>
-              </template>
-            </WordList>
-            <Empty v-else/>
-          </div>
+        <template v-slot:title>
+          <span>{{ store.sdict.name }} ({{ data.index + 1 }} / {{ data.words.length }})</span>
         </template>
+        <div class="panel-page-item pl-4">
+          <WordList
+              v-if="data.words.length"
+              :is-active="true"
+              :static="false"
+              :show-word="!settingStore.dictation"
+              :show-translate="settingStore.translate"
+              :list="data.words"
+              :activeIndex="data.index"
+              @click="(val:any) => data.index = val.index"
+          >
+            <template v-slot:suffix="{item,index}">
+              <BaseIcon
+                  v-if="!isWordCollect(item)"
+                  class="collect"
+                  @click.stop="toggleWordCollect(item)"
+                  title="收藏" icon="ph:star"/>
+              <BaseIcon
+                  v-else
+                  class="fill"
+                  @click.stop="toggleWordCollect(item)"
+                  title="取消收藏" icon="ph:star-fill"/>
+              <BaseIcon
+                  v-if="!isWordSimple(item)"
+                  class="easy"
+                  @click.stop="toggleWordSimple(item)"
+                  title="标记为已掌握"
+                  icon="material-symbols:check-circle-outline-rounded"/>
+              <BaseIcon
+                  v-else
+                  class="fill"
+                  @click.stop="toggleWordSimple(item)"
+                  title="取消标记已掌握"
+                  icon="material-symbols:check-circle-rounded"/>
+            </template>
+          </WordList>
+          <Empty v-else/>
+        </div>
       </Panel>
     </div>
   </div>

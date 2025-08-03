@@ -8,9 +8,6 @@ import {useBaseStore} from "@/stores/base.ts";
 import EditSingleArticleModal from "@/pages/pc/article/components/EditSingleArticleModal.vue";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts";
-import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
-import {Icon} from "@iconify/vue";
-import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
@@ -19,6 +16,7 @@ import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {genArticleSectionData, usePlaySentenceAudio} from "@/hooks/article.ts";
 import {ElProgress} from 'element-plus';
+import router from "@/router.ts";
 
 const store = useBaseStore()
 const statisticsStore = usePracticeStore()
@@ -53,12 +51,13 @@ function next() {
 }
 
 function init() {
-  //todo 这个页面，直接访问白屏
-  if (!store.currentBook.articles.length) return
+  if (!store.currentBook?.articles?.length) {
+    router.push('/article')
+    return
+  }
   articleData.articles = cloneDeep(store.currentBook.articles)
   getCurrentPractice()
   console.log('inin', articleData.article)
-
 }
 
 function setArticle(val: Article) {
@@ -125,8 +124,8 @@ function edit(val: Article = articleData.article) {
 
 function wrong(word: Word) {
   let lowerName = word.word.toLowerCase();
-  if (!store.wrong.originWords.find((v: Word) => v.word.toLowerCase() === lowerName)) {
-    store.wrong.originWords.push(word)
+  if (!store.wrong.words.find((v: Word) => v.word.toLowerCase() === lowerName)) {
+    store.wrong.words.push(word)
   }
   if (!store.knownWordsWithSimpleWords.includes(lowerName)) {
   }
@@ -288,46 +287,33 @@ const {playSentenceAudio} = usePlaySentenceAudio()
 
       <div class="panel-wrapper">
         <Panel>
-          <template v-slot="{active}">
-            <div class="panel-page-item pl-4">
-              <div class="list-header">
-                <div class="left">
-                  <div class="title">
-                    {{ store.currentBook.name }}
-                  </div>
-                  <BaseIcon
-                      :title="`下一篇(${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
-                      v-if="store.currentBook.lastLearnIndex < articleData.articles.length - 1"
-                      @click="emitter.emit(EventKey.continueStudy)"
-                      icon="octicon:arrow-right-24"/>
-                </div>
-                <div class="right">
-                  {{ articleData.articles.length }}篇文章
-                </div>
-              </div>
-
-              <ArticleList
-                  :isActive="active"
-                  :static="false"
-                  :show-translate="settingStore.translate"
-                  @click="handleChangeChapterIndex"
-                  :active-id="articleData.article.id"
-                  :list="articleData.articles ">
-                <template v-slot:suffix="{item,index}">
-                  <BaseIcon
-                      v-if="!isArticleCollect(item)"
-                      class="collect"
-                      @click="toggleArticleCollect(item)"
-                      title="收藏" icon="ph:star"/>
-                  <BaseIcon
-                      v-else
-                      class="fill"
-                      @click="toggleArticleCollect(item)"
-                      title="取消收藏" icon="ph:star-fill"/>
-                </template>
-              </ArticleList>
-            </div>
+          <template v-slot:title>
+            <span>{{
+                store.currentBook.name
+              }} ({{ store.currentBook.lastLearnIndex + 1 }} / {{ articleData.articles.length }})</span>
           </template>
+          <div class="panel-page-item pl-4">
+            <ArticleList
+                :isActive="true"
+                :static="false"
+                :show-translate="settingStore.translate"
+                @click="handleChangeChapterIndex"
+                :active-id="articleData.article.id"
+                :list="articleData.articles ">
+              <template v-slot:suffix="{item,index}">
+                <BaseIcon
+                    v-if="!isArticleCollect(item)"
+                    class="collect"
+                    @click="toggleArticleCollect(item)"
+                    title="收藏" icon="ph:star"/>
+                <BaseIcon
+                    v-else
+                    class="fill"
+                    @click="toggleArticleCollect(item)"
+                    title="取消收藏" icon="ph:star-fill"/>
+              </template>
+            </ArticleList>
+          </div>
         </Panel>
       </div>
 

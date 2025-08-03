@@ -388,7 +388,7 @@ function importData(e) {
               </div>
             </div>
           </div>
-          <div class="row footer">
+          <div class="row">
             <label class="item-title"></label>
             <div class="wrapper">
               <BaseButton @click="resetShortcutKeyMap">恢复默认</BaseButton>
@@ -582,10 +582,6 @@ function importData(e) {
       flex: 1;
       padding-right: .6rem;
       overflow: auto;
-    }
-
-    .footer {
-      margin-bottom: 1.3rem;
     }
 
     .desc {

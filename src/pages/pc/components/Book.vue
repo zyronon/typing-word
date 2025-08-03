@@ -44,7 +44,7 @@ const studyProgress = $computed(() => {
       <ElCheckbox v-if="showCheckbox"
                   :model-value="checked"
                   @click.stop="$emit('check')"
-                  class="absolute left-3 bottom-2"/>
+                  class="absolute left-0 bottom-0 h-5!"/>
       <div class="custom" v-if="item.custom">自定义</div>
     </template>
     <div v-else class="center h-full">

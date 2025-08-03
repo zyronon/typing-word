@@ -54,6 +54,7 @@ const {toggleTheme} = useTheme()
             @click="settingStore.sideExpand = !settingStore.sideExpand"
             :icon="settingStore.sideExpand?'formkit:left':'formkit:right'"/>
         <BaseIcon
+            v-if="settingStore.sideExpand"
             :title="`切换主题(${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
             @click="toggleTheme"
             :icon="settingStore.theme === 'light' ? 'ep:moon' : 'tabler:sun'"/>

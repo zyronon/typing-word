@@ -1,6 +1,5 @@
 import {Article, Word} from "@/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
-import {markRaw} from "vue";
 
 
 export function useWordOptions() {
@@ -16,25 +15,22 @@ export function useWordOptions() {
       store.collectWord.words.splice(rIndex, 1)
     } else {
       store.collectWord.words.push(val)
-      // store.collectWord.words = markRaw(store.collectWord.words.concat([val]))
     }
+    store.collectWord.length = store.collectWord.words.length
   }
 
   function isWordSimple(val: Word) {
-    return !!store.known.words.find(v => v.word.toLowerCase() === val.word.toLowerCase())
+    return !!store.knownWords.includes(val.word.toLowerCase())
   }
 
   function toggleWordSimple(val: Word) {
-    let rIndex = store.known.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
+    let rIndex = store.knownWords.findIndex(v => v === val.word.toLowerCase())
     if (rIndex > -1) {
       store.known.words.splice(rIndex, 1)
     } else {
-      let rIndex = store.collectWord.words.findIndex(v => v.word.toLowerCase() === val.word.toLowerCase())
-      if (rIndex > -1) {
-        store.collectWord.words.splice(rIndex, 1)
-      }
       store.known.words.push(val)
     }
+    store.known.length = store.known.words.length
   }
 
   function delWrongWord(val: Word) {
@@ -42,6 +38,7 @@ export function useWordOptions() {
     if (rIndex > -1) {
       store.wrong.words.splice(rIndex, 1)
     }
+    store.wrong.length = store.wrong.words.length
   }
 
   function delSimpleWord(val: Word) {
@@ -49,6 +46,7 @@ export function useWordOptions() {
     if (rIndex > -1) {
       store.known.words.splice(rIndex, 1)
     }
+    store.known.length = store.known.words.length
   }
 
   return {
@@ -75,6 +73,7 @@ export function useArticleOptions() {
     } else {
       store.collectArticle.articles.push(val)
     }
+    store.collectArticle.length = store.collectArticle.articles.length
   }
 
   return {

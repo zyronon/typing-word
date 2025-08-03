@@ -183,7 +183,7 @@ useWindowClick(() => showExport = false)
       </div>
       <div class="footer">
         <div class="import">
-          <BaseButton size="small">导入</BaseButton>
+          <BaseButton>导入</BaseButton>
           <input type="file"
                  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                  @change="e => emit('importData',e)">
@@ -191,7 +191,7 @@ useWindowClick(() => showExport = false)
         <div class="export"
              style="position: relative"
              @click.stop="null">
-          <BaseButton size="small" @click="showExport = true">导出</BaseButton>
+          <BaseButton @click="showExport = true">导出</BaseButton>
           <MiniDialog
               v-model="showExport"
               style="width: 80rem;bottom: calc(100% + 10rem);top:unset;"
@@ -200,14 +200,14 @@ useWindowClick(() => showExport = false)
               导出选项
             </div>
             <div class="mini-row">
-              <BaseButton size="small" @click="emit('exportData',{type:'all',data:[]})">全部文章</BaseButton>
+              <BaseButton @click="emit('exportData',{type:'all',data:[]})">全部文章</BaseButton>
             </div>
             <div class="mini-row">
-              <BaseButton size="small" @click="emit('exportData',{type:'chapter',data:article})">当前章节</BaseButton>
+              <BaseButton @click="emit('exportData',{type:'chapter',data:article})">当前章节</BaseButton>
             </div>
           </MiniDialog>
         </div>
-        <BaseButton size="small" @click="add">新增</BaseButton>
+        <BaseButton @click="add">新增</BaseButton>
       </div>
     </div>
     <EditArticle2

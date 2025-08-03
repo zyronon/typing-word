@@ -459,26 +459,26 @@ let showQuestions = $ref(false)
       </BaseButton>
     </div>
 
-    <div class="translate-bottom mb-10" v-if="settingStore.translate">
-      <header class="mb-4">
-        <div class="text-2xl center">{{ props.article.titleTranslate }}</div>
-      </header>
-      <template v-if="getTranslateText(article).length">
-        <div class="text-xl mb-4 indent-8" v-for="t in getTranslateText(article)">{{ t }}</div>
-      </template>
-    </div>
-
-    <div class="center">
-      <BaseButton @click="showQuestions =! showQuestions">显示题目</BaseButton>
-    </div>
-    <div class="toggle" v-if="showQuestions">
-      <QuestionForm :questions="article.questions"
-                    :duration="300"
-                    :immediateFeedback="false"
-                    :randomize="true"
-      />
-    </div>
-
+    <template v-if="false">
+      <div class="translate-bottom mb-10" v-if="settingStore.translate">
+        <header class="mb-4">
+          <div class="text-2xl center">{{ props.article.titleTranslate }}</div>
+        </header>
+        <template v-if="getTranslateText(article).length">
+          <div class="text-xl mb-4 indent-8" v-for="t in getTranslateText(article)">{{ t }}</div>
+        </template>
+      </div>
+      <div class="center">
+        <BaseButton @click="showQuestions =! showQuestions">显示题目</BaseButton>
+      </div>
+      <div class="toggle" v-if="showQuestions">
+        <QuestionForm :questions="article.questions"
+                      :duration="300"
+                      :immediateFeedback="false"
+                      :randomize="true"
+        />
+      </div>
+    </template>
   </div>
 </template>
 
@@ -510,6 +510,7 @@ let showQuestions = $ref(false)
     .titleTranslate {
       @extend .title;
       font-size: 1.2rem;
+      margin-top: 0.5rem;
       font-family: var(--zh-article-family);
       font-weight: bold;
     }

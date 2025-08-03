@@ -60,7 +60,7 @@
 
 
   //修改element-ui的进度条底色
-  --el-border-color-lighter: #e2e5ed !important;
+  --el-border-color-lighter: #d1d5df !important;
 }
 
 .footer {
@@ -70,7 +70,6 @@
 }
 
 html.dark {
-
   --color-primary: #0E1217;
   --color-second: rgb(30, 31, 34);
   --color-third: rgb(43, 45, 48);
@@ -104,7 +103,7 @@ html.dark {
   --color-textarea-bg: rgb(43, 45, 48);
   --color-article: white;
 
-  --el-border-color-lighter: var(--color-third) !important;
+  --el-border-color-lighter: rgb(73, 77, 82) !important;
 
   .footer {
     &.hide {
@@ -251,57 +250,12 @@ a {
   }
 }
 
-//@supports (scrollbar-width: thin) {
-//  * {
-//    scrollbar-color: var(--color-scrollbar) #f3f4f9;
-//    scrollbar-width: thin;
-//  }
-//}
-
-footer {
-  $footer-height: 60rem;
-  box-sizing: content-box;
-  height: $footer-height;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  gap: var(--space);
-}
-
-
 .panel-page-item {
   display: flex;
   flex-direction: column;
   height: 100%;
   padding-bottom: var(--space);
   box-sizing: border-box;
-
-  .list-header {
-    min-height: 3rem;
-    padding: .6rem var(--space);
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1rem;
-    color: var(--color-font-3);
-
-    .left {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-    }
-
-    .title {
-      max-width: 70%;
-    }
-
-    .right {
-      word-break: keep-all;
-    }
-  }
-
 }
 
 .scroll {
@@ -313,17 +267,6 @@ footer {
 .virtual-list {
   overflow: overlay;
   height: 100%;
-  padding: 0 var(--space);
-}
-
-.common-list1 {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  flex: 1;
-  overflow: auto;
-  box-sizing: border-box;
-  gap: 10rem;
   padding: 0 var(--space);
 }
 
@@ -367,7 +310,6 @@ footer {
 
   svg {
     opacity: 0;
-    color: var(--color-icon-hightlight);
   }
 
   &.active {
@@ -375,10 +317,6 @@ footer {
 
     .item-sub-title {
       color: var(--color-sub-text);
-    }
-
-    svg {
-      color: var(--color-icon-hightlight);
     }
   }
 
