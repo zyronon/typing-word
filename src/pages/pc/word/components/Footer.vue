@@ -6,9 +6,7 @@ import {useSettingStore} from "@/stores/setting.ts";
 import {ShortcutKey, StudyData} from "@/types.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {Icon} from "@iconify/vue";
-import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
-import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue";
 import {ElProgress} from 'element-plus';
 
 const statisticsStore = usePracticeStore()
@@ -113,7 +111,7 @@ const progress = $computed(() => {
             <div class="name">总错误数</div>
           </div>
         </div>
-        <div class="flex justify-center items-center">
+        <div class="flex  gap-2  justify-center items-center">
           <BaseIcon
               v-if="!isSimple"
               class="collect"
@@ -135,34 +133,23 @@ const progress = $computed(() => {
               icon="ph:star"/>
           <BaseIcon
               v-else
-              class="fill"
               @click="$emit('toggleCollect')"
               :title="`取消收藏(${settingStore.shortcutKeyMap[ShortcutKey.ToggleCollect]})`"
               icon="ph:star-fill"/>
 
-          <Tooltip
+          <BaseIcon
+              @click="emit('skip')"
               :title="`跳过(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
-          >
-            <IconWrapper>
-              <Icon icon="icon-park-outline:go-ahead" class="menu"
-                    @click="emit('skip')"/>
-            </IconWrapper>
-          </Tooltip>
+              icon="icon-park-outline:go-ahead"/>
 
-          <Tooltip
+          <BaseIcon
+              @click="settingStore.dictation = !settingStore.dictation"
               :title="`开关默写模式(${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
-          >
-            <IconWrapper>
-              <Icon icon="majesticons:eye-off-line"
-                    v-if="settingStore.dictation"
-                    @click="settingStore.dictation = false"/>
-              <Icon icon="mdi:eye-outline"
-                    v-else
-                    @click="settingStore.dictation = true"/>
-            </IconWrapper>
-          </Tooltip>
+              :icon="['majesticons:eye-off-line','mdi:eye-outline'][settingStore.dictation?0:1]"/>
 
-          <TranslateSetting/>
+          <BaseIcon :icon="['mdi:translate','mdi:translate-off'][settingStore.translate?0:1]"
+                    :title="`开关释义显示(${settingStore.shortcutKeyMap[ShortcutKey.ToggleShowTranslate]})`"
+                    @click="settingStore.translate = !settingStore.translate"/>
 
           <BaseIcon
               @click="settingStore.showPanel = !settingStore.showPanel"
@@ -173,8 +160,8 @@ const progress = $computed(() => {
     </div>
     <div class="progress">
       <ElProgress :percentage="progress"
-                   :stroke-width="8"
-                   :show-text="false"/>
+                  :stroke-width="8"
+                  :show-text="false"/>
     </div>
   </div>
   <!--

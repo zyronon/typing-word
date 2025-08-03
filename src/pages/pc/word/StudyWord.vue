@@ -23,6 +23,7 @@ import Empty from "@/components/Empty.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {dictionaryResources} from "@/assets/dictionary.ts";
+import {ElMessage} from "element-plus";
 
 interface IProps {
   new: Word[],
@@ -378,7 +379,6 @@ useEvents([
         </div>
       </div>
       <Type
-          v-loading="loading"
           ref="typingRef"
           :word="word"
           @wrong="onTypeWrong"
@@ -396,7 +396,6 @@ useEvents([
       <Panel>
         <template v-slot="{active}">
           <div class="panel-page-item pl-4"
-               v-loading="loading"
           >
             <WordList
                 v-if="data.words.length"

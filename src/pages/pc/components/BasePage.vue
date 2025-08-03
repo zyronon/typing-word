@@ -11,7 +11,7 @@
 </template>
 
 <style scoped lang="scss">
-.page{
+.page {
   min-height: calc(100vh - 1.2rem);
   margin-top: 1.2rem;
 }

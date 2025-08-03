@@ -45,12 +45,6 @@ async function init() {
 }
 
 function startStudy() {
-  // return store.sdict.lastLearnIndex = store.sdict.length - 1
-  // store.sdict.complete = true
-  // store.sdict.lastLearnIndex = 20
-  // currentStudy = getCurrentStudyWord()
-// return
-  // return  store.sdict.lastLearnIndex = store.sdict.length - 1
   if (store.sdict.id) {
     if (!store.sdict.words.length) {
       return ElMessage.warning('没有单词可学习！')
@@ -220,7 +214,7 @@ const progressTextRight = $computed(() => {
           </div>
           个单词 <span class="color-blue cursor-pointer" @click="setPerDayStudyNumber">更改</span>
         </div>
-        <BaseButton :disabled="!store.sdict.name" @click="startStudy">
+        <BaseButton size="large" :disabled="!store.sdict.name" @click="startStudy">
           <div class="flex items-center gap-2">
             <span>开始学习</span>
             <Icon icon="icons8:right-round" class="text-2xl"/>

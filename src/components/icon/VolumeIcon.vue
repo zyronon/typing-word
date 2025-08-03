@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {Icon} from "@iconify/vue";
-
-import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
-import Tooltip from "@/pages/pc/components/Tooltip.vue";
-import {ShortcutKey} from "@/types.ts";
-import {useSettingStore} from "@/stores/setting.ts";
+import BaseIcon from "@/components/BaseIcon.vue";
 
 const props = withDefaults(defineProps<{
   time?: number,
@@ -15,7 +10,6 @@ const props = withDefaults(defineProps<{
   simple: false
 })
 const emit = defineEmits(['click'])
-const settingStore = useSettingStore()
 
 let step = $ref(2)
 let count = $ref(0)
@@ -49,37 +43,18 @@ function click() {
   play()
 }
 
+let iconList = ['bx:volume', 'bx:volume-low', 'bx:volume-full']
 defineExpose({play})
+
 </script>
 
 <template>
-  <div class="center"
-       v-if="props.simple"
-       @click.stop="click">
-    <Icon v-if="step === 0" icon="bx:volume"/>
-    <Icon v-if="step === 1" icon="bx:volume-low"/>
-    <Icon v-if="step === 2" icon="bx:volume-full"/>
-  </div>
-  <IconWrapper @click.stop="click" v-else>
-    <div class="center">
-      <Icon v-if="step === 0" icon="bx:volume"/>
-      <Icon v-if="step === 1" icon="bx:volume-low"/>
-      <Icon v-if="step === 2" icon="bx:volume-full"/>
-    </div>
-  </IconWrapper>
+  <BaseIcon @click.stop="click"
+            v-if="props.simple"
+            no-bg
+            :icon="iconList[step]"/>
+  <BaseIcon @click.stop="click" v-else :icon="iconList[step]"/>
 </template>
 
 <style scoped lang="scss">
-.center {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  $w: 1.6rem;
-
-  :deep(svg) {
-    width: $w;
-    height: $w;
-  }
-}
 </style>

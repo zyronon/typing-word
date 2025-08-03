@@ -3,7 +3,8 @@ import {useSettingStore} from "@/stores/setting.ts";
 import router from "@/router.ts";
 
 const settingStore = useSettingStore()
-function goHome(){
+
+function goHome() {
   router.push('/')
 }
 </script>

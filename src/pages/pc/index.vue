@@ -5,8 +5,6 @@ import Logo from "@/pages/pc/components/Logo.vue";
 import {Icon} from "@iconify/vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRouter} from "vue-router";
-import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
-import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import useTheme from "@/hooks/theme.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 
@@ -55,16 +53,10 @@ const {toggleTheme} = useTheme()
         <BaseIcon
             @click="settingStore.sideExpand = !settingStore.sideExpand"
             :icon="settingStore.sideExpand?'formkit:left':'formkit:right'"/>
-        <Tooltip
+        <BaseIcon
             :title="`切换主题(${settingStore.shortcutKeyMap[ShortcutKey.ToggleTheme]})`"
-            v-if="settingStore.sideExpand"
-        >
-          <IconWrapper>
-            <Icon icon="ep:moon" v-if="settingStore.theme === 'dark'"
-                  @click="toggleTheme"/>
-            <Icon icon="tabler:sun" v-else @click="toggleTheme"/>
-          </IconWrapper>
-        </Tooltip>
+            @click="toggleTheme"
+            :icon="settingStore.theme === 'light' ? 'ep:moon' : 'tabler:sun'"/>
       </div>
     </div>
     <div class="flex-1 z-1 relative">

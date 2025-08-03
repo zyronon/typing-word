@@ -17,7 +17,6 @@ import BaseIcon from "@/components/BaseIcon.vue";
 import {useArticleOptions} from "@/hooks/dict.ts";
 import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
-import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue";
 import {genArticleSectionData, usePlaySentenceAudio} from "@/hooks/article.ts";
 import {ElProgress} from 'element-plus';
 
@@ -296,13 +295,11 @@ const {playSentenceAudio} = usePlaySentenceAudio()
                   <div class="title">
                     {{ store.currentBook.name }}
                   </div>
-                  <Tooltip
+                  <BaseIcon
                       :title="`下一篇(${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
-                      v-if="store.currentBook.lastLearnIndex < articleData.articles.length - 1">
-                    <IconWrapper>
-                      <Icon @click="emitter.emit(EventKey.continueStudy)" icon="octicon:arrow-right-24"/>
-                    </IconWrapper>
-                  </Tooltip>
+                      v-if="store.currentBook.lastLearnIndex < articleData.articles.length - 1"
+                      @click="emitter.emit(EventKey.continueStudy)"
+                      icon="octicon:arrow-right-24"/>
                 </div>
                 <div class="right">
                   {{ articleData.articles.length }}篇文章
@@ -373,7 +370,7 @@ const {playSentenceAudio} = usePlaySentenceAudio()
           <div class="flex flex-col items-center justify-center gap-1">
             <audio ref="audioRef" v-if="articleData.article.audioSrc" :src="articleData.article.audioSrc"
                    controls></audio>
-            <div class="flex gap-3 center">
+            <div class="flex gap-2 center">
               <BaseIcon
                   :title="`下一句(${settingStore.shortcutKeyMap[ShortcutKey.Next]})`"
                   icon="icon-park-outline:go-ahead"
@@ -383,20 +380,14 @@ const {playSentenceAudio} = usePlaySentenceAudio()
                   icon="fluent:replay-16-filled"
                   @click="play"/>
 
-              <Tooltip
+              <BaseIcon
+                  @click="settingStore.dictation = !settingStore.dictation"
                   :title="`开关默写模式(${settingStore.shortcutKeyMap[ShortcutKey.ToggleDictation]})`"
-              >
-                <IconWrapper>
-                  <Icon icon="majesticons:eye-off-line"
-                        v-if="settingStore.dictation"
-                        @click="settingStore.dictation = false"/>
-                  <Icon icon="mdi:eye-outline"
-                        v-else
-                        @click="settingStore.dictation = true"/>
-                </IconWrapper>
-              </Tooltip>
+                  :icon="['majesticons:eye-off-line','mdi:eye-outline'][settingStore.dictation?0:1]"/>
 
-              <TranslateSetting/>
+              <BaseIcon :icon="['mdi:translate','mdi:translate-off'][settingStore.translate?0:1]"
+                        :title="`开关释义显示(${settingStore.shortcutKeyMap[ShortcutKey.ToggleShowTranslate]})`"
+                        @click="settingStore.translate = !settingStore.translate"/>
 
               <BaseIcon
                   :title="`编辑(${settingStore.shortcutKeyMap[ShortcutKey.EditArticle]})`"
@@ -413,8 +404,8 @@ const {playSentenceAudio} = usePlaySentenceAudio()
       </div>
       <div class="progress">
         <ElProgress :percentage="progress"
-                     :stroke-width="8"
-                     :show-text="false"/>
+                    :stroke-width="8"
+                    :show-text="false"/>
       </div>
     </div>
   </div>

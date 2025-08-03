@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {Dict} from "@/types.ts";
 import {Icon} from "@iconify/vue";
-import {ElProgress,ElCheckbox} from 'element-plus';
+import {ElProgress, ElCheckbox} from 'element-plus';
 
 const props = defineProps<{
   item?: Dict
@@ -38,13 +38,13 @@ const studyProgress = $computed(() => {
       </div>
       <div class="absolute bottom-2 left-4 right-4">
         <ElProgress v-if="item?.lastLearnIndex || item.complete" class="mt-1"
-                     :percentage="progress"
-                     :show-text="false"></ElProgress>
+                    :percentage="progress"
+                    :show-text="false"></ElProgress>
       </div>
       <ElCheckbox v-if="showCheckbox"
-                   :model-value="checked"
-                   @click.stop="$emit('check')"
-                   class="absolute left-3 bottom-2"/>
+                  :model-value="checked"
+                  @click.stop="$emit('check')"
+                  class="absolute left-3 bottom-2"/>
       <div class="custom" v-if="item.custom">自定义</div>
     </template>
     <div v-else class="center h-full">

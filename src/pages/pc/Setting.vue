@@ -375,7 +375,7 @@ function importData(e) {
           </div>
           <div class="scroll">
             <div class="row" v-for="item of Object.entries(settingStore.shortcutKeyMap)">
-              <label class="item-title">{{ $t(item[0]) }}</label>
+              <label class="item-title">{{ item[0] }}</label>
               <div class="wrapper" @click="editShortcutKey = item[0]">
                 <div class="set-key" v-if="editShortcutKey === item[0]">
                   <input :value="item[1]?item[1]:'未设置快捷键'" readonly type="text" @blur="editShortcutKey = ''">

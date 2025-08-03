@@ -8,6 +8,7 @@ defineProps<{
   title?: string,
   icon: string,
   disabled?: boolean,
+  noBg?: boolean,
 }>()
 
 const emit = defineEmits(['click'])
@@ -20,7 +21,7 @@ const emit = defineEmits(['click'])
         v-bind="$attrs"
         @click="e => (!disabled) && emit('click',e)"
         class="icon-wrapper"
-        :class="{disabled}"
+        :class="{disabled,noBg}"
     >
       <Icon :icon="icon"/>
     </div>
@@ -42,9 +43,12 @@ $w: 1.4rem;
   background: transparent;
   transition: all .3s;
 
-  &:hover:not(.disabled) {
+  &:hover:not(.disabled,.noBg) {
     background: var(--color-icon-hightlight);
-    color: white;
+
+    svg {
+      color: white;
+    }
   }
 
   &.disabled {

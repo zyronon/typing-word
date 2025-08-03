@@ -365,8 +365,9 @@ footer {
     transition: all .3s;
   }
 
-  .volume, .collect, .easy {
+  svg {
     opacity: 0;
+    color: var(--color-icon-hightlight);
   }
 
   &.active {
@@ -376,15 +377,21 @@ footer {
       color: var(--color-sub-text);
     }
 
-    .volume, .collect, .easy, .fill {
+    svg {
       color: var(--color-icon-hightlight);
+    }
+  }
+
+  .fill {
+    svg {
+      opacity: 1 !important;
     }
   }
 
   &:hover {
     @extend .active;
 
-    .volume, .collect, .easy {
+    svg {
       opacity: 1;
     }
   }
