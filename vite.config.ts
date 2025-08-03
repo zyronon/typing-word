@@ -18,7 +18,7 @@ function pathResolve(dir: string) {
 
 const lifecycle = process.env.npm_lifecycle_event;
 
-async function s() {
+async function getConfig() {
   const latestCommitHash = await new Promise<string>((resolve) => {
     return getLastCommit((err, commit) => (err ? 'unknown' : resolve(commit.shortHash)))
   })
@@ -92,7 +92,7 @@ async function s() {
     },
     server: {
       port: 3000,
-      open: false,
+      open: true,
       host: '0.0.0.0',
       fs: {
         strict: false,
@@ -105,4 +105,4 @@ async function s() {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig(s as any)
+export default defineConfig(getConfig as any)
