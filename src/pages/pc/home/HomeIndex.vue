@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {splitEnArticle2} from "@/hooks/article.ts";
 import test from '../../test/test.vue'
+import BaseButton from "@/components/BaseButton.vue";
 
 function test1() {
   splitEnArticle2(
@@ -19,8 +20,8 @@ function test2() {
 
 <template>
   <div class="word flex center h-screen ">
-    <El-Button @click="test1">test1</El-Button>
-    <El-Button @click="test2">test2</El-Button>
+    <base-button @click="test1">test1</base-button>
+    <base-button @click="test2">test2</base-button>
     <test/>
   </div>
 </template>

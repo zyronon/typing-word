@@ -99,7 +99,7 @@ const {toggleTheme} = useTheme()
     flex-shrink: 0;
 
     &:hover {
-      background: var(--color-primary);
+      background: var(--color-select-bg);
       color: white;
     }
 

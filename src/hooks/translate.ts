@@ -1,6 +1,5 @@
 import {Article, Sentence, TranslateEngine} from "@/types.ts";
 import Baidu from "@opentranslate/baidu";
-import {axiosInstance} from "@/utils/http.ts";
 import {Translator} from "@opentranslate/translator/src/translator.ts";
 
 export function getSentenceAllTranslateText(article: Article) {
@@ -27,7 +26,6 @@ export async function getNetworkTranslate(
   let translator: Translator
   if (translateEngine === TranslateEngine.Baidu) {
     translator = new Baidu({
-      axios: axiosInstance as any,
       config: {
         appid: "20230910001811857",
         key: "Xxe_yftQR3K3Ue43NQMC"

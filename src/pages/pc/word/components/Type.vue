@@ -323,7 +323,7 @@ function mouseleave() {
       cursor: pointer;
 
       &.active {
-        border-bottom: 2px solid var(--color-font-1);
+        border-bottom: 2px solid var(--color-font-2);
       }
     }
   }

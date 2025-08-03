@@ -43,7 +43,7 @@ $w: 1.4rem;
   transition: all .3s;
 
   &:hover:not(.disabled) {
-    background: var(--color-primary);
+    background: var(--color-icon-hightlight);
     color: white;
   }
 

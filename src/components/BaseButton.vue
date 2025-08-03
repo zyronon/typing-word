@@ -30,7 +30,6 @@ defineEmits(['click'])
              size,
              type,
              (disabled||loading) && 'disabled',
-             !disabled && 'hvr-grow'
          ]">
       <span :style="{opacity:loading?0:1}"><slot></slot></span>
       <Icon v-if="loading"
@@ -51,19 +50,25 @@ defineEmits(['click'])
 
 .base-button {
   cursor: pointer;
-  border-radius: .4rem;
-  padding: 0 1rem;
-  display: flex;
+  box-sizing: border-box;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all .3s;
-  //background: #999;
-  //background: rgb(60, 63, 65);
-  //background: var(--color-second);
-  height: 2.5rem;
-  line-height: 1;
-  position: relative;
-  word-break: keep-all;
+  outline: none;
+  text-align: center;
+  transition: .1s;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  border-radius: .3rem;
+  padding: 0 0.9rem;
+  font-size: .9rem;
+  height: 2rem;
+  color: white;
+
+  & + .base-button {
+    margin-left: var(--space);
+  }
 
   .loading {
     position: absolute;
@@ -76,27 +81,21 @@ defineEmits(['click'])
   }
 
   &.small {
-    height: 2.4rem;
-
-    & > span {
-      font-size: .8rem;
-    }
+    border-radius: 0.2rem;
+    padding: 0 0.8rem;
+    height: 1.6rem;
+    font-size: .8rem;
   }
 
   &.large {
-    height: 3rem;
-    font-size: 1.1rem;
-    padding: 0 1.4rem;
-
-    & > span {
-      font-size: 1.1rem;
-    }
+    padding: 0 1.3rem;
+    height: 2.4rem;
+    font-size: 0.9rem;
   }
 
-
   & > span {
-    font-size: 1rem;
-    color: white;
+    line-height: 1;
+    transform: translateY(-5%);
 
     :deep(a) {
       color: white;
@@ -104,9 +103,8 @@ defineEmits(['click'])
   }
 
   &:hover {
-    opacity: .7;
+    opacity: .8;
   }
-
 
   &.primary {
     background: var(--btn-primary);
@@ -117,12 +115,14 @@ defineEmits(['click'])
     border-bottom: 2px solid transparent;
 
     &:hover {
-      border-bottom: 2px solid var(--color-font-1);
+      border-bottom: 2px solid var(--color-font-2);
     }
   }
 
   &.info {
     background: var(--btn-info);
+    border: 1px solid  var(--color-main-text);
+    color: var(--color-main-text);
   }
 
   &.active {

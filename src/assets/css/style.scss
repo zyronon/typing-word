@@ -1,11 +1,6 @@
-//@import '/node_modules/element-plus/dist/index.css';
 @use "anim" as *;
-@use 'element-plus/theme-chalk/dark/css-vars' as *;
 
 :root {
-  //修改element-ui的进度条底色
-  --el-border-color-lighter: #d1d1d1 !important;
-
   --color-item-bg: rgb(228, 230, 232);
   --color-item-hover: white;
   //--color-item-active: rgb(75, 110, 175);
@@ -23,12 +18,12 @@
   --practice-wrapper-translateX: 1px;
   --article-width: 50vw;
   --toolbar-width: 50rem;
-  --toolbar-height: 3.2rem;
   --panel-width: 24rem;
   --space: 1rem;
+  --stat-gap: 2rem;
   --shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
   --panel-margin-left: calc(50% + var(--toolbar-width) / 2 + 1rem);
-  --article-panel-margin-left: calc(50% + var(--article-width) / 2 + 3.5rem);
+  --article-panel-margin-left: calc(50% + var(--article-width) / 2 + 1rem);
   --anim-time: 0.3s;
 
   --color-input-bg: white;
@@ -46,7 +41,7 @@
   --zh-article-family: "Songti SC", "SimSun", "Noto Serif CJK SC", serif;
 
   --btn-primary: rgb(75, 85, 99);
-  --btn-info: #909399;
+  --btn-info: white;
 
   --color-primary: #E6E8EB;
   --color-second: rgb(247, 247, 247);
@@ -54,7 +49,7 @@
 
   --color-card-active: #FED7AA;
   --color-list-item-active: rgb(253, 246, 236);
-  --color-icon-hightlight: #E6A23C;
+  --color-icon-hightlight: rgb(12, 140, 233);
   //--color-icon-hightlight: rgb(12, 140, 233);
   --color-sub-text: gray;
   --color-main-text: rgb(91, 91, 91);
@@ -62,15 +57,26 @@
   --color-select-text: white;
 
   --color-notice-bg: rgb(247, 247, 247);
+
+
+  //修改element-ui的进度条底色
+  --el-border-color-lighter: #e2e5ed !important;
+}
+
+.footer {
+  &.hide {
+    --el-border-color-lighter: #dbdbdb !important;
+  }
 }
 
 html.dark {
+
   --color-primary: #0E1217;
   --color-second: rgb(30, 31, 34);
   --color-third: rgb(43, 45, 48);
   --color-card-active: rgb(84, 84, 84);
   --color-list-item-active: rgb(84, 84, 84);
-  --color-icon-hightlight: #E6A23C;
+  --color-icon-hightlight: rgb(147, 173, 227);
   --color-sub-text: #b8b8b8;
   --color-main-text: rgba(249, 250, 251, 0.8);
   --color-select-bg: rgb(147, 173, 227);
@@ -88,8 +94,9 @@ html.dark {
   --color-font-3: rgba(255, 255, 255, 0.3);
 
   --color-sub-gray: #383737;
-
   --color-scrollbar: rgb(92, 93, 94);
+
+  --btn-info: transparent;
 
   --color-input-bg: rgba(14, 18, 23, 1);
   --color-input-icon: #383737;
@@ -97,56 +104,41 @@ html.dark {
   --color-textarea-bg: rgb(43, 45, 48);
   --color-article: white;
 
+  --el-border-color-lighter: var(--color-third) !important;
+
+  .footer {
+    &.hide {
+      --el-border-color-lighter: var(--color-third) !important;
+    }
+  }
 }
 
 @media (max-width: 1680px) {
   :root {
-    --practice-wrapper-translateX: -12vw;
-    --toolbar-width: 40vw;
-    --article-width: 60vw;
-    --panel-width: 38rem;
-    --toolbar-height: 4.8rem;
-    --panel-margin-left: calc(50vw + var(--practice-wrapper-translateX) + var(--toolbar-width) / 2 + 5vw);
-    --article-panel-margin-left: calc(50% + var(--practice-wrapper-translateX) + var(--article-width) / 2 + 48rem);
+    --toolbar-width: 50vw;
+    --article-width: 50vw;
+    --panel-width: 20vw;
+    --space: 0.5rem;
   }
   .footer {
     .bottom {
-      padding: 1.5rem 1rem 1rem 1rem !important;
-    }
-
-    .stat {
-      margin-top: 0.4rem !important;
-
-      .row {
-        gap: 0.5rem !important;
-      }
+      padding: .5rem !important;
     }
   }
 }
 
 @media (max-width: 1366px) {
   :root {
-    --space: 1rem;
-    --practice-wrapper-translateX: -22vw;
-    --article-width: 53vw;
-    --panel-width: 30vw;
+    --panel-width: 20vw;
+    --article-width: 50vw;
     --toolbar-width: 50vw;
-    --toolbar-height: 40rem;
-    --panel-margin-left: calc(50vw + var(--practice-wrapper-translateX) + var(--toolbar-width) / 2 + 14vw);
-    --article-panel-margin-left: calc(50% + var(--practice-wrapper-translateX) + var(--article-width) / 2 + 12vw);
+    --stat-gap: 0.5rem;
+    --space: 0.3rem;
   }
 
   .footer {
     .bottom {
-      padding: 1.5rem 0.5rem 0.5rem 0.5rem !important;
-    }
-
-    .stat {
-      margin-top: 0.4rem !important;
-
-      .row {
-        gap: 0.5rem !important;
-      }
+      padding: .5rem !important;
     }
   }
 }
@@ -396,7 +388,6 @@ footer {
       opacity: 1;
     }
   }
-
 
   .item-title {
     display: flex;

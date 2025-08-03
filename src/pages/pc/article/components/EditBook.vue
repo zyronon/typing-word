@@ -1,12 +1,13 @@
 <script setup lang="ts">
 
 import {Dict, DictType, getDefaultDict} from "@/types.ts";
-import {cloneDeep} from "lodash-es";
+import {cloneDeep} from "@/utils";
 
-import {FormInstance, FormRules} from "element-plus";
+import {ElForm,ElFormItem,ElInput,ElSelect,ElOption, FormInstance, FormRules} from "element-plus";
 import {onMounted, reactive} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useBaseStore} from "@/stores/base.ts";
+import BaseButton from "@/components/BaseButton.vue";
 
 const props = defineProps<{
   isAdd: boolean,
@@ -85,38 +86,38 @@ onMounted(() => {
 
 <template>
   <div class="w-120 mt-4">
-    <el-form
+    <ElForm
         ref="dictFormRef"
         :rules="dictRules"
         :model="dictForm"
         label-width="8rem">
-      <el-form-item label="名称" prop="name">
-        <el-input v-model="dictForm.name"/>
-      </el-form-item>
-      <el-form-item label="描述">
-        <el-input v-model="dictForm.description" type="textarea"/>
-      </el-form-item>
-      <el-form-item label="原文语言">
-        <el-select v-model="dictForm.language" placeholder="请选择选项">
-          <el-option label="英语" value="en"/>
-          <el-option label="德语" value="de"/>
-          <el-option label="日语" value="ja"/>
-          <el-option label="代码" value="code"/>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="译文语言">
-        <el-select v-model="dictForm.translateLanguage" placeholder="请选择选项">
-          <el-option label="中文" value="zh-CN"/>
-          <el-option label="英语" value="en"/>
-          <el-option label="德语" value="de"/>
-          <el-option label="日语" value="ja"/>
-        </el-select>
-      </el-form-item>
+      <ElFormItem label="名称" prop="name">
+        <ElInput v-model="dictForm.name"/>
+      </ElFormItem>
+      <ElFormItem label="描述">
+        <ElInput v-model="dictForm.description" type="textarea"/>
+      </ElFormItem>
+      <ElFormItem label="原文语言">
+        <ElSelect v-model="dictForm.language" placeholder="请选择选项">
+          <ElOption label="英语" value="en"/>
+          <ElOption label="德语" value="de"/>
+          <ElOption label="日语" value="ja"/>
+          <ElOption label="代码" value="code"/>
+        </ElSelect>
+      </ElFormItem>
+      <ElFormItem label="译文语言">
+        <ElSelect v-model="dictForm.translateLanguage" placeholder="请选择选项">
+          <ElOption label="中文" value="zh-CN"/>
+          <ElOption label="英语" value="en"/>
+          <ElOption label="德语" value="de"/>
+          <ElOption label="日语" value="ja"/>
+        </ElSelect>
+      </ElFormItem>
       <div class="center">
-        <el-button @click="emit('close')">关闭</el-button>
-        <el-button type="primary" @click="onSubmit">确定</el-button>
+        <base-button type="info" @click="emit('close')">关闭</base-button>
+        <base-button type="primary" @click="onSubmit">确定</base-button>
       </div>
-    </el-form>
+    </ElForm>
   </div>
 </template>
 

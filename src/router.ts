@@ -52,7 +52,8 @@ export const routes: RouteRecordRaw[] = [
 ]
 
 const router = VueRouter.createRouter({
-  history: VueRouter.createWebHistory(),
+  // history: VueRouter.createWebHistory(),
+  history: VueRouter.createWebHashHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
     // console.log('savedPosition', savedPosition)

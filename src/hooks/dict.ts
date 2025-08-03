@@ -1,7 +1,5 @@
-import {Article, Dict, Word} from "@/types.ts";
+import {Article, Word} from "@/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
-import {cloneDeep,} from "lodash-es";
-import {isArticle} from "@/hooks/article.ts";
 
 
 export function useWordOptions() {

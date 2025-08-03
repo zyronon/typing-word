@@ -1,5 +1,5 @@
 import {Article, ArticleWord, DictType, getDefaultArticleWord, Sentence} from "@/types.ts";
-import {cloneDeep} from "lodash-es";
+import {cloneDeep} from "@/utils";
 import nlp from "compromise/one";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
 import {getSentenceAllText, getSentenceAllTranslateText} from "@/hooks/translate.ts";

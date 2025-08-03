@@ -13,7 +13,7 @@ import BackIcon from "@/pages/pc/components/BackIcon.vue";
 import DictGroup from "@/pages/pc/components/list/DictGroup.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {useRouter} from "vue-router";
-import {groupBy} from "lodash-es";
+import {groupBy} from "@/utils";
 import {dictionaryResources} from "@/assets/dictionary.ts";
 import {computed} from "vue";
 

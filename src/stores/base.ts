@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
 import {Dict, DictId, getDefaultDict, Word} from "../types.ts"
-import {cloneDeep, merge} from "lodash-es";
+import {cloneDeep} from "@/utils";
 import * as localforage from "localforage";
 import {nanoid} from "nanoid";
 import {SAVE_DICT_KEY} from "@/utils/const.ts";

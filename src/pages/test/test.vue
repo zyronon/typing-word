@@ -1,10 +1,11 @@
 <script setup lang="ts">
 // import origin from './data.json'
 import BaseButton from "@/components/BaseButton.vue";
-import {checkAndUpgradeSaveDict, shakeCommonDict} from "@/utils";
+import {checkAndUpgradeSaveDict} from "@/utils";
 import localforage from "localforage";
 import {SAVE_DICT_KEY} from "@/utils/const.ts";
 import str from './data.json'
+import {ElTableV2} from 'element-plus'
 
 let data = {}
 let origin = {}
@@ -73,7 +74,7 @@ const data1 = generateData(columns, 1000)
       <BaseButton @click="set">设置data.json的数据到localforage</BaseButton>
       <BaseButton @click="check">检测升级逻辑</BaseButton>
     </div>
-    <el-table-v2
+    <ElTableV2
         :columns="columns"
         :data="data1"
         :width="700"

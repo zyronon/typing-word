@@ -5,7 +5,7 @@ import {DictId, getDefaultDict} from "@/types";
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {computed, onMounted, reactive} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {assign, cloneDeep} from "lodash-es";
+import {assign, cloneDeep} from "@/utils";
 import {nanoid} from "nanoid";
 import BaseIcon from "@/components/BaseIcon.vue";
 import BaseTable from "@/pages/pc/components/BaseTable.vue";
@@ -18,6 +18,7 @@ import {useRoute, useRouter} from "vue-router";
 import {useBaseStore} from "@/stores/base.ts";
 import EditBook from "@/pages/pc/article/components/EditBook.vue";
 import {_getDictDataByUrl, _nextTick, convertToWord} from "@/utils";
+import {ElForm, ElFormItem, ElInput, ElMessage} from "element-plus";
 
 const runtimeStore = useRuntimeStore()
 const base = useBaseStore()
@@ -261,85 +262,86 @@ defineRender(() => {
                           <div class="common-title">
                             {wordForm.id ? '修改' : '添加'}单词
                           </div>
-                          <el-form
+                          <ElForm
                               class="flex-1 overflow-auto pr-2"
                               ref={e => wordFormRef = e}
                               rules={wordRules}
                               model={wordForm}
                               label-width="7rem">
-                            <el-form-item label="单词" prop="word">
-                              <el-input
+                            <ElFormItem label="单词" prop="word">
+                              <ElInput
                                   modelValue={wordForm.word}
                                   onUpdate:modelValue={e => wordForm.word = e}
                               />
-                            </el-form-item>
-                            <el-form-item label="英音音标">
-                              <el-input
+                            </ElFormItem>
+                            <ElFormItem label="英音音标">
+                              <ElInput
                                   modelValue={wordForm.phonetic0}
                                   onUpdate:modelValue={e => wordForm.phonetic0 = e}
                               />
-                            </el-form-item>
-                            <el-form-item label="美音音标">
-                              <el-input
+                            </ElFormItem>
+                            <ElFormItem label="美音音标">
+                              <ElInput
                                   modelValue={wordForm.phonetic1}
                                   onUpdate:modelValue={e => wordForm.phonetic1 = e}/>
-                            </el-form-item>
-                            <el-form-item label="翻译">
-                              <el-input
+                            </ElFormItem>
+                            <ElFormItem label="翻译">
+                              <ElInput
                                   modelValue={wordForm.trans}
                                   onUpdate:modelValue={e => wordForm.trans = e}
                                   placeholder="一行一个翻译，前面词性，后面内容（如n.取消）；多个翻译请换行"
                                   autosize={{minRows: 6, maxRows: 10}}
                                   type="textarea"/>
-                            </el-form-item>
-                            <el-form-item label="例句">
-                              <el-input
+                            </ElFormItem>
+                            <ElFormItem label="例句">
+                              <ElInput
                                   modelValue={wordForm.sentences}
                                   onUpdate:modelValue={e => wordForm.sentences = e}
                                   placeholder="一行原文，一行译文；多个请换两行"
                                   autosize={{minRows: 6, maxRows: 10}}
                                   type="textarea"/>
-                            </el-form-item>
-                            <el-form-item label="短语">
-                              <el-input
+                            </ElFormItem>
+                            <ElFormItem label="短语">
+                              <ElInput
                                   modelValue={wordForm.phrases}
                                   onUpdate:modelValue={e => wordForm.phrases = e}
                                   placeholder="一行原文，一行译文；多个请换两行"
                                   autosize={{minRows: 6, maxRows: 10}}
                                   type="textarea"/>
-                            </el-form-item>
-                            <el-form-item label="同义词">
-                              <el-input
+                            </ElFormItem>
+                            <ElFormItem label="同义词">
+                              <ElInput
                                   modelValue={wordForm.synos}
                                   onUpdate:modelValue={e => wordForm.synos = e}
                                   placeholder="请参考已有单词格式"
                                   autosize={{minRows: 6, maxRows: 20}}
                                   type="textarea"/>
-                            </el-form-item>
-                            <el-form-item label="同根词">
-                              <el-input
+                            </ElFormItem>
+                            <ElFormItem label="同根词">
+                              <ElInput
                                   modelValue={wordForm.relWords}
                                   onUpdate:modelValue={e => wordForm.relWords = e}
                                   placeholder="请参考已有单词格式"
                                   autosize={{minRows: 6, maxRows: 20}}
                                   type="textarea"/>
-                            </el-form-item>
-                            <el-form-item label="词源">
-                              <el-input
+                            </ElFormItem>
+                            <ElFormItem label="词源">
+                              <ElInput
                                   modelValue={wordForm.etymology}
                                   onUpdate:modelValue={e => wordForm.etymology = e}
                                   placeholder="请参考已有单词格式"
                                   autosize={{minRows: 6, maxRows: 10}}
                                   type="textarea"/>
-                            </el-form-item>
-                          </el-form>
+                            </ElFormItem>
+                          </ElForm>
                           <div class="center">
-                            <el-button
+                            <base-button
+                                type="info"
                                 onClick={closeWordForm}>关闭
-                            </el-button>
-                            <el-button type="primary"
-                                       onClick={onSubmitWord}>保存
-                            </el-button>
+                            </base-button>
+                            <base-button type="primary"
+                                         onClick={onSubmitWord}>保存
+                            </base-button>
                           </div>
                         </div>
                     ) : null

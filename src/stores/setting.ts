@@ -1,8 +1,7 @@
 import {defineStore} from "pinia"
-import {cloneDeep, merge} from "lodash-es";
+import {checkAndUpgradeSaveSetting, cloneDeep} from "@/utils";
 import {DefaultShortcutKeyMap} from "@/types.ts";
 import {SAVE_SETTING_KEY} from "@/utils/const.ts";
-import {checkAndUpgradeSaveDict, checkAndUpgradeSaveSetting} from "@/utils";
 
 export interface SettingState {
   showToolbar: boolean,

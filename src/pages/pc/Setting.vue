@@ -4,7 +4,7 @@ import {ref, watch} from "vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {getAudioFileUrl, useChangeAllSound, usePlayAudio, useWatchAllSound} from "@/hooks/sound.ts";
 import {getShortcutKey, useDisableEventListener, useEventListener} from "@/hooks/event.ts";
-import {cloneDeep} from "lodash-es";
+import {cloneDeep} from "@/utils";
 import {DefaultShortcutKeyMap, ShortcutKey} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {APP_NAME, EXPORT_DATA_KEY, SAVE_DICT_KEY, SAVE_SETTING_KEY, SoundFileOptions} from "@/utils/const.ts";
@@ -15,7 +15,7 @@ import {checkAndUpgradeSaveDict, checkAndUpgradeSaveSetting, shakeCommonDict} fr
 import {GITHUB} from "@/config/ENV.ts";
 import dayjs from "dayjs";
 import BasePage from "@/pages/pc/components/BasePage.vue";
-
+import {ElSwitch, ElSelect, ElOption, ElSlider, ElRadioGroup, ElRadio, ElInputNumber} from 'element-plus'
 
 const emit = defineEmits<{
   toggleDisabledDialogEscKey: [val: boolean]
@@ -162,11 +162,11 @@ function importData(e) {
           <div class="row">
             <label class="main-title">所有音效</label>
             <div class="wrapper">
-              <el-switch v-model="settingStore.allSound"
-                         @change="useChangeAllSound"
-                         inline-prompt
-                         active-text="开"
-                         inactive-text="关"
+              <ElSwitch v-model="settingStore.allSound"
+                        @change="useChangeAllSound"
+                        inline-prompt
+                        active-text="开"
+                        inactive-text="关"
               />
             </div>
           </div>
@@ -174,35 +174,35 @@ function importData(e) {
           <div class="row">
             <label class="item-title">单词/句子自动发音</label>
             <div class="wrapper">
-              <el-switch v-model="settingStore.wordSound"
-                         inline-prompt
-                         active-text="开"
-                         inactive-text="关"
+              <ElSwitch v-model="settingStore.wordSound"
+                        inline-prompt
+                        active-text="开"
+                        inactive-text="关"
               />
             </div>
           </div>
           <div class="row">
             <label class="sub-title">单词/句子发音口音</label>
             <div class="wrapper">
-              <el-select v-model="settingStore.wordSoundType"
-                         placeholder="请选择"
+              <ElSelect v-model="settingStore.wordSoundType"
+                        placeholder="请选择"
               >
-                <el-option label="美音" value="us"/>
-                <el-option label="英音" value="uk"/>
-              </el-select>
+                <ElOption label="美音" value="us"/>
+                <ElOption label="英音" value="uk"/>
+              </ElSelect>
             </div>
           </div>
           <div class="row">
             <label class="sub-title">音量</label>
             <div class="wrapper">
-              <el-slider v-model="settingStore.wordSoundVolume"/>
+              <ElSlider v-model="settingStore.wordSoundVolume"/>
               <span>{{ settingStore.wordSoundVolume }}%</span>
             </div>
           </div>
           <div class="row">
             <label class="sub-title">倍速</label>
             <div class="wrapper">
-              <el-slider v-model="settingStore.wordSoundSpeed" :step="0.1" :min="0.5" :max="3"/>
+              <ElSlider v-model="settingStore.wordSoundSpeed" :step="0.1" :min="0.5" :max="3"/>
               <span>{{ settingStore.wordSoundSpeed }}</span>
             </div>
           </div>
@@ -210,20 +210,20 @@ function importData(e) {
           <div class="row">
             <label class="item-title">按键音</label>
             <div class="wrapper">
-              <el-switch v-model="settingStore.keyboardSound"
-                         inline-prompt
-                         active-text="开"
-                         inactive-text="关"
+              <ElSwitch v-model="settingStore.keyboardSound"
+                        inline-prompt
+                        active-text="开"
+                        inactive-text="关"
               />
             </div>
           </div>
           <div class="row">
             <label class="item-title">按键音效</label>
             <div class="wrapper">
-              <el-select v-model="settingStore.keyboardSoundFile"
-                         placeholder="请选择"
+              <ElSelect v-model="settingStore.keyboardSoundFile"
+                        placeholder="请选择"
               >
-                <el-option
+                <ElOption
                     v-for="item in SoundFileOptions"
                     :key="item.value"
                     :label="item.label"
@@ -235,14 +235,14 @@ function importData(e) {
                         :time="100"
                         @click="usePlayAudio(getAudioFileUrl(item.value)[0])"/>
                   </div>
-                </el-option>
-              </el-select>
+                </ElOption>
+              </ElSelect>
             </div>
           </div>
           <div class="row">
             <label class="sub-title">音量</label>
             <div class="wrapper">
-              <el-slider v-model="settingStore.keyboardSoundVolume"/>
+              <ElSlider v-model="settingStore.keyboardSoundVolume"/>
               <span>{{ settingStore.keyboardSoundVolume }}%</span>
             </div>
           </div>
@@ -250,17 +250,17 @@ function importData(e) {
           <div class="row">
             <label class="item-title">效果音（输入错误、完成时的音效）</label>
             <div class="wrapper">
-              <el-switch v-model="settingStore.effectSound"
-                         inline-prompt
-                         active-text="开"
-                         inactive-text="关"
+              <ElSwitch v-model="settingStore.effectSound"
+                        inline-prompt
+                        active-text="开"
+                        inactive-text="关"
               />
             </div>
           </div>
           <div class="row">
             <label class="sub-title">音量</label>
             <div class="wrapper">
-              <el-slider v-model="settingStore.effectSoundVolume"/>
+              <ElSlider v-model="settingStore.effectSoundVolume"/>
               <span>{{ settingStore.effectSoundVolume }}%</span>
             </div>
           </div>
@@ -269,19 +269,19 @@ function importData(e) {
           <div class="row">
             <label class="item-title">单词循环设置</label>
             <div class="wrapper">
-              <el-radio-group v-model="settingStore.repeatCount">
-                <el-radio :value="1" size="default">1</el-radio>
-                <el-radio :value="2" size="default">2</el-radio>
-                <el-radio :value="3" size="default">3</el-radio>
-                <el-radio :value="5" size="default">5</el-radio>
-                <el-radio :value="100" size="default">自定义</el-radio>
-              </el-radio-group>
+              <ElRadioGroup v-model="settingStore.repeatCount">
+                <ElRadio :value="1" size="default">1</ElRadio>
+                <ElRadio :value="2" size="default">2</ElRadio>
+                <ElRadio :value="3" size="default">3</ElRadio>
+                <ElRadio :value="5" size="default">5</ElRadio>
+                <ElRadio :value="100" size="default">自定义</ElRadio>
+              </ElRadioGroup>
               <div class="mini-row" v-if="settingStore.repeatCount === 100">
                 <label class="item-title">循环次数</label>
-                <el-input-number v-model="settingStore.repeatCustomCount"
-                                 :min="6"
-                                 :max="15"
-                                 type="number"
+                <ElInputNumber v-model="settingStore.repeatCustomCount"
+                               :min="6"
+                               :max="15"
+                               type="number"
                 />
               </div>
             </div>
@@ -289,10 +289,10 @@ function importData(e) {
           <div class="row">
             <label class="item-title">显示上一个/下一个单词</label>
             <div class="wrapper">
-              <el-switch v-model="settingStore.showNearWord"
-                         inline-prompt
-                         active-text="开"
-                         inactive-text="关"
+              <ElSwitch v-model="settingStore.showNearWord"
+                        inline-prompt
+                        active-text="开"
+                        inactive-text="关"
               />
             </div>
           </div>
@@ -303,10 +303,10 @@ function importData(e) {
           <div class="row">
             <label class="item-title">忽略大小写</label>
             <div class="wrapper">
-              <el-switch v-model="settingStore.ignoreCase"
-                         inline-prompt
-                         active-text="开"
-                         inactive-text="关"
+              <ElSwitch v-model="settingStore.ignoreCase"
+                        inline-prompt
+                        active-text="开"
+                        inactive-text="关"
               />
             </div>
           </div>
@@ -317,10 +317,10 @@ function importData(e) {
           <div class="row">
             <label class="item-title">允许默写模式下显示提示</label>
             <div class="wrapper">
-              <el-switch v-model="settingStore.allowWordTip"
-                         inline-prompt
-                         active-text="开"
-                         inactive-text="关"
+              <ElSwitch v-model="settingStore.allowWordTip"
+                        inline-prompt
+                        active-text="开"
+                        inactive-text="关"
               />
             </div>
           </div>
@@ -334,7 +334,7 @@ function importData(e) {
           <div class="row">
             <label class="sub-title">外语字体</label>
             <div class="wrapper">
-              <el-slider
+              <ElSlider
                   :min="10"
                   :max="100"
                   v-model="settingStore.fontSize.wordForeignFontSize"/>
@@ -344,7 +344,7 @@ function importData(e) {
           <div class="row">
             <label class="sub-title">中文字体</label>
             <div class="wrapper">
-              <el-slider
+              <ElSlider
                   :min="10"
                   :max="100"
                   v-model="settingStore.fontSize.wordTranslateFontSize"/>
@@ -359,10 +359,10 @@ function importData(e) {
           <div class="row">
             <label class="sub-title">切换下一个单词时间</label>
             <div class="wrapper">
-              <el-input-number v-model="settingStore.waitTimeForChangeWord"
-                               :min="6"
-                               :max="100"
-                               type="number"
+              <ElInputNumber v-model="settingStore.waitTimeForChangeWord"
+                             :min="6"
+                             :max="100"
+                             type="number"
               />
               <span>毫秒</span>
             </div>

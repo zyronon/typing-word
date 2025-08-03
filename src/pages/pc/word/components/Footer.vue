@@ -9,6 +9,7 @@ import {Icon} from "@iconify/vue";
 import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue";
+import {ElProgress} from 'element-plus';
 
 const statisticsStore = usePracticeStore()
 const settingStore = useSettingStore()
@@ -85,7 +86,7 @@ const progress = $computed(() => {
     </Tooltip>
 
     <div class="bottom">
-      <el-progress
+      <ElProgress
           :percentage="progress"
           :stroke-width="8"
           :show-text="false"/>
@@ -171,7 +172,7 @@ const progress = $computed(() => {
       </div>
     </div>
     <div class="progress">
-      <el-progress :percentage="progress"
+      <ElProgress :percentage="progress"
                    :stroke-width="8"
                    :show-text="false"/>
     </div>

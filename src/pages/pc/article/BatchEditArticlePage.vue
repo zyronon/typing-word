@@ -2,7 +2,7 @@
 import {onMounted, onUnmounted} from "vue";
 import {Article, getDefaultArticle} from "@/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
-import {cloneDeep} from "lodash-es";
+import {cloneDeep} from "@/utils";
 import {useBaseStore} from "@/stores/base.ts";
 
 import List from "@/pages/pc/components/list/List.vue";

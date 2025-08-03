@@ -2,7 +2,7 @@
 
 import BaseIcon from "@/components/BaseIcon.vue";
 import Input from "@/pages/pc/components/Input.vue";
-import {cloneDeep, throttle} from "lodash-es";
+import {cloneDeep, throttle} from "@/utils";
 import {Article} from "@/types.ts";
 
 interface IProps {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TypingArticle from "./TypingArticle.vue";
 import {Article, ArticleItem, ArticleWord, DisplayStatistics, getDefaultArticle, ShortcutKey, Word} from "@/types.ts";
-import {cloneDeep} from "lodash-es";
+import {cloneDeep} from "@/utils";
 import Panel from "../../components/Panel.vue";
 import {onMounted, onUnmounted} from "vue";
 import {useBaseStore} from "@/stores/base.ts";
@@ -19,6 +19,7 @@ import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
 import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import TranslateSetting from "@/pages/pc/components/toolbar/TranslateSetting.vue";
 import {genArticleSectionData, usePlaySentenceAudio} from "@/hooks/article.ts";
+import {ElProgress} from 'element-plus';
 
 const store = useBaseStore()
 const statisticsStore = usePracticeStore()
@@ -286,56 +287,52 @@ const {playSentenceAudio} = usePlaySentenceAudio()
           :article="articleData.article"
       />
 
-      <Teleport to="body">
-        <div class="panel-wrapper">
-          <Panel v-if="tabIndex === 0">
-            <template v-slot="{active}">
-              <div class="panel-page-item">
-                <div class="list-header">
-                  <div class="left">
-                    <BaseIcon title="切换词典"
-                              icon="carbon:change-catalog"/>
-                    <div class="title">
-                      {{ store.currentBook.name }}
-                    </div>
-                    <Tooltip
-                        :title="`下一章(${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
-                        v-if="store.currentBook.lastLearnIndex < articleData.articles.length - 1">
-                      <IconWrapper>
-                        <Icon @click="emitter.emit(EventKey.continueStudy)" icon="octicon:arrow-right-24"/>
-                      </IconWrapper>
-                    </Tooltip>
+      <div class="panel-wrapper">
+        <Panel>
+          <template v-slot="{active}">
+            <div class="panel-page-item pl-4">
+              <div class="list-header">
+                <div class="left">
+                  <div class="title">
+                    {{ store.currentBook.name }}
                   </div>
-                  <div class="right">
-                    {{ articleData.articles.length }}篇文章
-                  </div>
+                  <Tooltip
+                      :title="`下一篇(${settingStore.shortcutKeyMap[ShortcutKey.NextChapter]})`"
+                      v-if="store.currentBook.lastLearnIndex < articleData.articles.length - 1">
+                    <IconWrapper>
+                      <Icon @click="emitter.emit(EventKey.continueStudy)" icon="octicon:arrow-right-24"/>
+                    </IconWrapper>
+                  </Tooltip>
                 </div>
-
-                <ArticleList
-                    :isActive="active"
-                    :static="false"
-                    :show-translate="settingStore.translate"
-                    @click="handleChangeChapterIndex"
-                    :active-id="articleData.article.id"
-                    :list="articleData.articles ">
-                  <template v-slot:suffix="{item,index}">
-                    <BaseIcon
-                        v-if="!isArticleCollect(item)"
-                        class="collect"
-                        @click="toggleArticleCollect(item)"
-                        title="收藏" icon="ph:star"/>
-                    <BaseIcon
-                        v-else
-                        class="fill"
-                        @click="toggleArticleCollect(item)"
-                        title="取消收藏" icon="ph:star-fill"/>
-                  </template>
-                </ArticleList>
+                <div class="right">
+                  {{ articleData.articles.length }}篇文章
+                </div>
               </div>
-            </template>
-          </Panel>
-        </div>
-      </Teleport>
+
+              <ArticleList
+                  :isActive="active"
+                  :static="false"
+                  :show-translate="settingStore.translate"
+                  @click="handleChangeChapterIndex"
+                  :active-id="articleData.article.id"
+                  :list="articleData.articles ">
+                <template v-slot:suffix="{item,index}">
+                  <BaseIcon
+                      v-if="!isArticleCollect(item)"
+                      class="collect"
+                      @click="toggleArticleCollect(item)"
+                      title="收藏" icon="ph:star"/>
+                  <BaseIcon
+                      v-else
+                      class="fill"
+                      @click="toggleArticleCollect(item)"
+                      title="取消收藏" icon="ph:star-fill"/>
+                </template>
+              </ArticleList>
+            </div>
+          </template>
+        </Panel>
+      </div>
 
       <EditSingleArticleModal
           v-model="showEditArticle"
@@ -345,34 +342,32 @@ const {playSentenceAudio} = usePlaySentenceAudio()
     </div>
     <div class="footer " :class="!settingStore.showToolbar && 'hide'">
       <div class="bottom">
-        <div class="flex justify-between">
-          <div>
-            <el-progress
-                class="flex-1"
-                :percentage="progress"
-                :stroke-width="8"
-                :show-text="false"/>
-            <div class="stat">
-              <div class="row">
-                <div class="num">{{ speedMinute }}分钟</div>
-                <div class="line"></div>
-                <div class="name">时间</div>
-              </div>
-              <div class="row">
-                <div class="num">{{ statisticsStore.total }}</div>
-                <div class="line"></div>
-                <div class="name">单词总数</div>
-              </div>
-              <div class="row">
-                <div class="num">{{ format(statisticsStore.inputWordNumber, '', 0) }}</div>
-                <div class="line"></div>
-                <div class="name">输入数</div>
-              </div>
-              <div class="row">
-                <div class="num">{{ format(statisticsStore.wrong, '', 0) }}</div>
-                <div class="line"></div>
-                <div class="name">错误数</div>
-              </div>
+        <ElProgress
+            class="flex-1"
+            :percentage="progress"
+            :stroke-width="8"
+            :show-text="false"/>
+        <div class="flex justify-between items-center">
+          <div class="stat">
+            <div class="row">
+              <div class="num">{{ speedMinute }}分钟</div>
+              <div class="line"></div>
+              <div class="name">时间</div>
+            </div>
+            <div class="row">
+              <div class="num">{{ statisticsStore.total }}</div>
+              <div class="line"></div>
+              <div class="name">单词总数</div>
+            </div>
+            <div class="row">
+              <div class="num">{{ format(statisticsStore.inputWordNumber, '', 0) }}</div>
+              <div class="line"></div>
+              <div class="name">输入数</div>
+            </div>
+            <div class="row">
+              <div class="num">{{ format(statisticsStore.wrong, '', 0) }}</div>
+              <div class="line"></div>
+              <div class="name">错误数</div>
             </div>
           </div>
           <div class="flex flex-col items-center justify-center gap-1">
@@ -417,7 +412,7 @@ const {playSentenceAudio} = usePlaySentenceAudio()
         </div>
       </div>
       <div class="progress">
-        <el-progress :percentage="progress"
+        <ElProgress :percentage="progress"
                      :stroke-width="8"
                      :show-text="false"/>
       </div>
@@ -471,12 +466,12 @@ const {playSentenceAudio} = usePlaySentenceAudio()
 }
 
 .panel-wrapper {
-  position: fixed;
-  left: 0;
-  top: .6rem;
+  position: absolute;
+  left: var(--article-panel-margin-left);
+  //left: 0;
+  top: .8rem;
   z-index: 1;
-  margin-left: var(--article-panel-margin-left);
-  height: calc(100% - 1.2rem);
+  height: calc(100% - 1.5rem);
 }
 
 .footer {
@@ -501,7 +496,7 @@ const {playSentenceAudio} = usePlaySentenceAudio()
     box-sizing: border-box;
     border-radius: .6rem;
     background: var(--color-second);
-    padding: .2rem var(--space) .4rem var(--space);
+    padding: .5rem var(--space);
     z-index: 2;
     border: 1px solid var(--color-item-border);
     box-shadow: var(--shadow);
@@ -510,7 +505,7 @@ const {playSentenceAudio} = usePlaySentenceAudio()
       margin-top: .5rem;
       display: flex;
       justify-content: space-around;
-      gap: 2rem;
+      gap: var(--stat-gap);
 
       .row {
         display: flex;
@@ -538,7 +533,7 @@ const {playSentenceAudio} = usePlaySentenceAudio()
     bottom: 0;
   }
 
-  :deep(.el-progress-bar__inner) {
+  :deep(.ElProgress-bar__inner) {
     background: var(--color-scrollbar);
   }
 

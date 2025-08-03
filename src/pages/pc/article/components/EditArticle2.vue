@@ -6,11 +6,10 @@ import EditAbleText from "@/pages/pc/components/EditAbleText.vue";
 import {Icon} from "@iconify/vue";
 import {getNetworkTranslate, getSentenceAllText, getSentenceAllTranslateText} from "@/hooks/translate.ts";
 import {genArticleSectionData, splitCNArticle2, splitEnArticle2, usePlaySentenceAudio} from "@/hooks/article.ts";
-import {cloneDeep, last} from "lodash-es";
+import {_nextTick, _parseLRC, cloneDeep, last} from "@/utils";
 import {watch} from "vue";
 import Empty from "@/components/Empty.vue";
-import {UploadProps} from "element-plus";
-import {_nextTick, _parseLRC} from "@/utils";
+import {ElInputNumber, ElOption, ElPopover, ElSelect, ElUpload, UploadProps} from "element-plus";
 import * as Comparison from "string-comparison"
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
@@ -286,13 +285,13 @@ function setStartTime(val: Sentence, i: number, j: number) {
       >
             </textarea>
       <div class="justify-end items-center flex">
-        <el-popover
+        <ElPopover
             class="box-item"
             title="使用方法"
             placement="top"
             :width="400"
         >
-          <ol class="py-0 pl-5 my-0 text-base color-black/60">
+          <ol class="py-0 pl-5 my-0 text-base color-main">
             <li>复制原文，然后分句</li>
             <li>点击 <span class="color-red font-bold">分句</span> 按钮进行自动分句<span
                 class="color-red font-bold"> 或</span> 手动编辑分句
@@ -304,9 +303,9 @@ function setStartTime(val: Sentence, i: number, j: number) {
           <template #reference>
             <Icon icon="ri:question-line" class="mr-3" width="20"/>
           </template>
-        </el-popover>
-        <el-button type="primary" @click="splitText">分句</el-button>
-        <el-button type="primary" @click="() => apply()">应用</el-button>
+        </ElPopover>
+        <BaseButton @click="splitText">分句</BaseButton>
+        <BaseButton @click="apply()">应用</BaseButton>
       </div>
     </div>
     <div class="row flex flex-col gap-2">
@@ -334,27 +333,23 @@ function setStartTime(val: Sentence, i: number, j: number) {
       >
             </textarea>
       <div class="justify-between items-center flex">
-        <div class="flex gap-2 items-center ">
-          <el-button
-              type="primary"
-              @click="startNetworkTranslate"
-              :loading="progress!==0 && progress !== 100"
-          >翻译
-          </el-button>
-          <el-select v-model="networkTranslateEngine"
-                     class="w-20"
+        <div class="flex gap-space items-center w-50 ">
+          <BaseButton @click="startNetworkTranslate"
+                      :loading="progress!==0 && progress !== 100">翻译
+          </BaseButton>
+          <ElSelect v-model="networkTranslateEngine"
           >
-            <el-option
+            <ElOption
                 v-for="item in TranslateEngineOptions"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
             />
-          </el-select>
+          </ElSelect>
           {{ progress }}%
         </div>
         <div class="flex items-center">
-          <el-popover
+          <ElPopover
               class="box-item"
               title="使用方法"
               placement="top"
@@ -372,9 +367,9 @@ function setStartTime(val: Sentence, i: number, j: number) {
             <template #reference>
               <Icon icon="ri:question-line" class="mr-3" width="20"/>
             </template>
-          </el-popover>
-          <el-button type="primary" @click="splitTranslateText">分句</el-button>
-          <el-button type="primary" @click="apply(true)">应用</el-button>
+          </ElPopover>
+          <BaseButton @click="splitTranslateText">分句</BaseButton>
+          <BaseButton @click="apply(true)">应用</BaseButton>
         </div>
       </div>
     </div>
@@ -383,14 +378,14 @@ function setStartTime(val: Sentence, i: number, j: number) {
       <div class="center">正文、译文与结果均可编辑，编辑后点击应用按钮会自动同步</div>
       <div class="flex gap-2">
         <BaseButton>添加音频</BaseButton>
-        <el-upload
+        <ElUpload
             class="upload-demo"
             :limit="1"
             :on-change="handleChange"
             :auto-upload="false"
         >
-          <el-button type="primary">添加音频LRC文件</el-button>
-        </el-upload>
+          <BaseButton>添加音频LRC文件</BaseButton>
+        </ElUpload>
         <audio ref="audioRef" :src="editArticle.audioSrc" controls></audio>
       </div>
       <template v-if="editArticle.sections.length">
@@ -498,11 +493,11 @@ function setStartTime(val: Sentence, i: number, j: number) {
             <div>开始时间：</div>
             <div class="flex justify-between flex-1">
               <div class="flex items-center gap-2">
-                <el-input-number v-model="editSentence.audioPosition[0]" :precision="2" :step="0.1">
+                <ElInputNumber v-model="editSentence.audioPosition[0]" :precision="2" :step="0.1">
                   <template #suffix>
                     <span>s</span>
                   </template>
-                </el-input-number>
+                </ElInputNumber>
                 <BaseIcon
                     @click="jumpAudio(editSentence.audioPosition[0])"
                     title="跳转"
@@ -521,11 +516,11 @@ function setStartTime(val: Sentence, i: number, j: number) {
             <div>结束时间：</div>
             <div class="flex justify-between flex-1">
               <div class="flex items-center gap-2">
-                <el-input-number v-model="editSentence.audioPosition[1]" :precision="2" :step="0.1">
+                <ElInputNumber v-model="editSentence.audioPosition[1]" :precision="2" :step="0.1">
                   <template #suffix>
                     <span>s</span>
                   </template>
-                </el-input-number>
+                </ElInputNumber>
                 <span>或</span>
                 <BaseButton size="small" @click="editSentence.audioPosition[1] = -1">结束</BaseButton>
               </div>

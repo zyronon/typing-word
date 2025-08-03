@@ -1,16 +1,14 @@
-import {defineConfig} from 'vite'
+import {defineConfig, UserConfig} from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from "@vitejs/plugin-vue-jsx";
 import {resolve} from 'path'
 import {visualizer} from "rollup-plugin-visualizer";
 import SlidePlugin from './src/components/slide/data.js';
-import {ElementPlusResolver} from "unplugin-vue-components/resolvers";
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
 import {getLastCommit} from "git-last-commit";
 import UnoCSS from 'unocss/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
 import {Plugin as importToCDN} from 'vite-plugin-cdn-import'
+import ElementPlus from 'unplugin-element-plus/vite'
 
 function pathResolve(dir: string) {
   return resolve(__dirname, ".", dir)
@@ -18,7 +16,7 @@ function pathResolve(dir: string) {
 
 const lifecycle = process.env.npm_lifecycle_event;
 
-async function getConfig() {
+async function getConfig(): Promise<Partial<UserConfig>> {
   const latestCommitHash = await new Promise<string>((resolve) => {
     return getLastCommit((err, commit) => (err ? 'unknown' : resolve(commit.shortHash)))
   })
@@ -31,12 +29,7 @@ async function getConfig() {
         },
       }),
       UnoCSS(),
-      AutoImport({
-        resolvers: [ElementPlusResolver()],
-      }),
-      Components({
-        resolvers: [ElementPlusResolver()],
-      }),
+      ElementPlus(),
       lifecycle === 'report' ?
         visualizer({
           gzipSize: true,
@@ -58,11 +51,11 @@ async function getConfig() {
             var: 'VueRouter',
             path: `https://cdn.jsdelivr.net/npm/vue-router@4.5.1/dist/vue-router.global.prod.min.js`
           },
-          // {
-          //   name: 'axios',
-          //   var: 'axios',
-          //   path: 'https://cdn.jsdelivr.net/npm/axios@1.9.0/dist/axios.min.js'
-          // },
+          {
+            name: 'axios',
+            var: 'axios',
+            path: 'https://cdn.jsdelivr.net/npm/axios@1.9.0/dist/axios.min.js'
+          },
         ]
       })
     ],
@@ -77,6 +70,11 @@ async function getConfig() {
       },
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
     },
+    // build: {
+    //   rollupOptions: {
+    //     external: ['axios'],// 使用全局的 axios。因为百度翻译库内部用了0.19版本的axios，会被打包到代码里面
+    //   }
+    // },
     css: {
       preprocessorOptions: {
         scss: {

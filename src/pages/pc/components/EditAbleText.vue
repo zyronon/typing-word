@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import BaseButton from "@/components/BaseButton.vue";
+import {ElInput} from "element-plus";
 
 import {watchEffect} from "vue";
 
@@ -37,7 +38,7 @@ function toggle() {
   <div
       v-if="edit"
       class="edit-text">
-    <el-input
+    <ElInput
         v-model="editVal"
         ref="inputRef"
         autosize

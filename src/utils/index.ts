@@ -1,9 +1,7 @@
 import {SAVE_DICT_KEY, SAVE_SETTING_KEY} from "@/utils/const.ts";
 import {BaseState, DefaultBaseState} from "@/stores/base.ts";
-import {getDefaultSettingState, SettingState} from "@/stores/setting.ts";
-import {cloneDeep} from "lodash-es";
+import {getDefaultSettingState} from "@/stores/setting.ts";
 import {Dict, DictResource, DictType, getDefaultArticle, getDefaultDict, getDefaultWord} from "@/types.ts";
-import {ArchiveReader, libarchiveWasm} from "libarchive-wasm";
 import {useRouter} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {nanoid} from "nanoid";
@@ -513,4 +511,58 @@ export function convertToWord(raw: any) {
     etymology,
     custom: true
   });
+}
+
+export function cloneDeep<T>(val: T) {
+  return JSON.parse(JSON.stringify(val))
+}
+
+export function shuffle<T>(array: T[]): T[] {
+  const result = array.slice(); // 复制数组，避免修改原数组
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1)); // 生成 0 ~ i 的随机索引
+    [result[i], result[j]] = [result[j], result[i]]; // 交换元素
+  }
+  return result;
+}
+
+export function last<T>(array: T[]): T | undefined {
+  return array.length > 0 ? array[array.length - 1] : undefined;
+}
+
+export function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, wait);
+  };
+}
+
+export function throttle<T extends (...args: any[]) => void>(func: T, wait: number) {
+  let lastTime = 0;
+  return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
+    const now = Date.now();
+    if (now - lastTime >= wait) {
+      func.apply(this, args);
+      lastTime = now;
+    }
+  };
+}
+
+export function reverse<T>(array: T[]): T[] {
+  return array.slice().reverse();
+}
+
+export function assign<T extends object, U extends object>(target: T, ...sources: U[]): T & U {
+  return Object.assign(target, ...sources);
+}
+
+export function groupBy<T extends Record<string, any>>(array: T[], key: string) {
+  return array.reduce<Record<string, T[]>>((result, item) => {
+    const groupKey = String(item[key]);
+    (result[groupKey] ||= []).push(item);
+    return result;
+  }, {});
 }

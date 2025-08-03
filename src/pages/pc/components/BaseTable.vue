@@ -5,11 +5,12 @@ import {Sort} from "@/types.ts";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import BaseButton from "@/components/BaseButton.vue";
-import {cloneDeep, debounce, reverse, shuffle} from "lodash-es";
+import {cloneDeep, debounce, reverse, shuffle} from "@/utils";
 import Input from "@/pages/pc/components/Input.vue";
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
 import Empty from "@/components/Empty.vue";
 import {Icon} from "@iconify/vue";
+import {ElCheckbox, ElPagination} from 'element-plus'
 
 let list = defineModel('list')
 
@@ -117,7 +118,7 @@ const s = useSlots()
 
 defineRender(
     () => {
-      const d = (item) => <el-checkbox
+      const d = (item) => <ElCheckbox
           modelValue={selectIds.includes(item.id)}
           onChange={() => toggleSelect(item)}
           size="large"/>
@@ -133,14 +134,14 @@ defineRender(
                       <Input
                           modelValue={searchKey}
                           onUpdate:modelValue=
-                          {debounce(e => searchKey = e)}
+                              {debounce(e => searchKey = e)}
                           class="flex-1"/>
                       <BaseButton onClick={() => (showSearchInput = false, searchKey = '')}>取消</BaseButton>
                     </div>
                 ) : (
                     <div class="flex justify-between " v-else>
                       <div class="flex gap-2 items-center">
-                        <el-checkbox
+                        <ElCheckbox
                             disabled={!currentList.length}
                             onClick={() => toggleSelectAll()}
                             modelValue={selectAll}
@@ -219,14 +220,14 @@ defineRender(
                           })}
                         </div>
                         <div class="flex justify-end">
-                          <el-pagination background
-                                         currentPage={pageNo}
-                                         onUpdate:current-page={handlePageNo}
-                                         pageSize={pageSize}
-                                         onUpdate:page-size={(e) => pageSize = e}
-                                         pageSizes={[20, 50, 100, 200]}
-                                         layout="prev, pager, next"
-                                         total={list.value.length}/>
+                          <ElPagination background
+                                        currentPage={pageNo}
+                                        onUpdate:current-page={handlePageNo}
+                                        pageSize={pageSize}
+                                        onUpdate:page-size={(e) => pageSize = e}
+                                        pageSizes={[20, 50, 100, 200]}
+                                        layout="prev, pager, next"
+                                        total={list.value.length}/>
                         </div>
                       </>
                   ) : <Empty/>

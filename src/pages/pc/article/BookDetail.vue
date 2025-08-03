@@ -11,7 +11,6 @@ import BaseButton from "@/components/BaseButton.vue";
 import {useRoute, useRouter} from "vue-router";
 import EditBook from "@/pages/pc/article/components/EditBook.vue";
 import {computed, onMounted} from "vue";
-import {cloneDeep} from "lodash-es";
 
 const runtimeStore = useRuntimeStore()
 const base = useBaseStore()
@@ -73,7 +72,7 @@ function formClose() {
       <div class="flex justify-between items-center relative">
         <BackIcon class="z-2" @click="$router.back"/>
         <div class="absolute text-2xl text-align-center w-full">{{ runtimeStore.editDict.name }}</div>
-        <div class="flex gap-2">
+        <div class="flex">
           <BaseButton type="info" @click="isEdit = true">编辑</BaseButton>
           <BaseButton type="info" @click="router.push('batch-edit-article')">文章管理</BaseButton>
           <BaseButton @click="addMyStudyList">学习</BaseButton>

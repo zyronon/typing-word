@@ -14,7 +14,8 @@ import {getCurrentStudyWord} from "@/hooks/dict.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import Book from "@/pages/pc/components/Book.vue";
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
-import {ElMessage} from 'element-plus';
+import {ElMessage, ElProgress, ElSlider} from 'element-plus';
+import BaseButton from "@/components/BaseButton.vue";
 
 const store = useBaseStore()
 const router = useRouter()
@@ -184,7 +185,7 @@ const progressTextRight = $computed(() => {
             <span>{{ progressTextLeft }}</span>
             <span>{{ progressTextRight }} / {{ store.sdict.words.length }}</span>
           </div>
-          <el-progress class="mt-1" :percentage="store.currentStudyProgress" :show-text="false"></el-progress>
+          <ElProgress class="mt-1" :percentage="store.currentStudyProgress" :show-text="false"></ElProgress>
         </div>
         <div class="text-sm text-align-end">
           预计完成日期：{{ _getAccomplishDate(store.sdict.words.length, store.sdict.perDayStudyNumber) }}
@@ -219,12 +220,12 @@ const progressTextRight = $computed(() => {
           </div>
           个单词 <span class="color-blue cursor-pointer" @click="setPerDayStudyNumber">更改</span>
         </div>
-        <div class="btn">开始学习</div>
-        <div class="rounded-xl bg-slate-800 flex items-center gap-2 py-3 px-5 text-white cursor-pointer"
-             :class="store.sdict.name || 'opacity-70 cursor-not-allowed'" @click="startStudy">
-          <span>开始学习</span>
-          <Icon icon="icons8:right-round" class="text-2xl"/>
-        </div>
+        <BaseButton :disabled="!store.sdict.name" @click="startStudy">
+          <div class="flex items-center gap-2">
+            <span>开始学习</span>
+            <Icon icon="icons8:right-round" class="text-2xl"/>
+          </div>
+        </BaseButton>
       </div>
     </div>
 
@@ -278,8 +279,8 @@ const progressTextRight = $computed(() => {
         <div class="center text-sm" :style="{ opacity: tempPerDayStudyNumber === 20 ? 1 : 0 }">
           推荐
         </div>
-        <el-slider :min="10" :step="10" show-stops :marks="{ 10: '10', 200: '200' }" size="small" class="my-6"
-                   :max="200" v-model="tempPerDayStudyNumber"/>
+        <ElSlider :min="10" :step="10" show-stops :marks="{ 10: '10', 200: '200' }" size="small" class="my-6"
+                  :max="200" v-model="tempPerDayStudyNumber"/>
         <div class="flex gap-2 mb-2 mt-10 items-center">
           <div>预计</div>
           <span class="text-2xl" style="color:rgb(176,116,211)">{{

@@ -7,7 +7,7 @@ import {enArticle} from "@/assets/dictionary.ts";
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {useNav} from "@/utils";
 import {Dict, DictResource, getDefaultDict} from "@/types.ts";
-import {cloneDeep} from "lodash-es";
+import {cloneDeep} from "@/utils";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {getArticleBookDataByUrl} from "@/utils/article.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
@@ -15,6 +15,7 @@ import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import Input from "@/pages/pc/components/Input.vue";
 import {computed} from "vue";
 import Book from "@/pages/pc/components/Book.vue";
+import {ElProgress} from 'element-plus';
 
 const {nav} = useNav()
 const base = useBaseStore()
@@ -71,7 +72,7 @@ function startStudy() {
   <BasePage>
     <div class="card ">
       <div class="flex justify-between items-center">
-        <div class="bg-slate-200 p-3 gap-4 rounded-md cursor-pointer flex items-center">
+        <div class="bg-third p-3 gap-4 rounded-md cursor-pointer flex items-center">
           <span class="text-lg font-bold"
                 @click="getBookDetail2(base.currentBook)">{{
               base.currentBook.name || '请选择书籍开始学习'
@@ -86,7 +87,7 @@ function startStudy() {
         </div>
       </div>
       <div class="mt-5 text-sm">已学习{{ base.currentBook.lastLearnIndex }}篇文章</div>
-      <el-progress class="mt-1" :percentage="base.currentBookProgress" :show-text="false"></el-progress>
+      <ElProgress class="mt-1" :percentage="base.currentBookProgress" :show-text="false"></ElProgress>
     </div>
 
     <div class="card  flex flex-col">

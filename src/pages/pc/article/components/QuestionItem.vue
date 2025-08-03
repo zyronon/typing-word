@@ -33,8 +33,8 @@
 </template>
 
 <script setup>
-import {ref, computed, watch, onMounted, nextTick} from 'vue'
-import {shuffle} from "lodash-es";
+import {computed, nextTick, onMounted, ref, watch} from 'vue'
+import {shuffle} from "@/utils";
 
 const props = defineProps({
   stem: String,

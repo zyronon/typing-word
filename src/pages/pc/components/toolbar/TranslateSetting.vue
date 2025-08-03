@@ -6,11 +6,10 @@ import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {useWindowClick} from "@/hooks/event.ts";
-import {emitter, EventKey} from "@/utils/eventBus.ts";
 import BaseButton from "@/components/BaseButton.vue";
-import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {ShortcutKey} from "@/types.ts";
+import {ElSwitch, ElRadioGroup,ElRadioButton,ElSelect,ElOption} from 'element-plus'
 
 const store = useBaseStore()
 const settingStore = useSettingStore()
@@ -59,19 +58,19 @@ function save() {
       <div class="mini-row">
         <label class="item-title">显示翻译</label>
         <div class="wrapper">
-          <el-switch v-model="settingStore.translate"
-                     inline-prompt
-                     active-text="开"
-                     inactive-text="关"
+          <ElSwitch v-model="settingStore.translate"
+                    inline-prompt
+                    active-text="开"
+                    inactive-text="关"
           />
         </div>
       </div>
       <div class="mini-row">
         <label class="item-title">翻译类型</label>
-        <el-radio-group v-model="translateType" size="small">
-          <el-radio-button :value="1">本地翻译</el-radio-button>
-          <el-radio-button :value="0">网络翻译</el-radio-button>
-        </el-radio-group>
+        <ElRadioGroup v-model="translateType" size="small">
+          <ElRadioButton :value="1">本地翻译</ElRadioButton>
+          <ElRadioButton :value="0">网络翻译</ElRadioButton>
+        </ElRadioGroup>
       </div>
       <div class="mini-row" v-if="translateType">
         <label class="item-title">本地翻译</label>
@@ -88,14 +87,14 @@ function save() {
       <div class="mini-row" v-else>
         <label class="item-title">网络翻译</label>
         <div class="wrapper">
-          <el-select v-model="networkTranslateEngine" class="m-2" placeholder="Select" size="small">
-            <el-option
+          <ElSelect v-model="networkTranslateEngine" class="m-2" placeholder="Select" size="small">
+            <ElOption
                 v-for="item in TranslateEngine"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
       </div>
       <div class="footer">

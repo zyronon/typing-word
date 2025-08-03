@@ -8,6 +8,7 @@ export default defineConfig({
     'bg-third': 'bg-[var(--color-third)]',
     'bg-card-active': 'bg-[var(--color-card-active)]',
     'color-main': 'color-[var(--color-main-text)]',
+    'gap-space': 'gap-[var(--space)]',
   },
   presets: [
     presetWind3(),

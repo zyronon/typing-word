@@ -10,7 +10,7 @@ import {getDefaultWord, ShortcutKey, StudyData, Word} from "@/types.ts";
 import {useOnKeyboardEventListener, useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
 import {getCurrentStudyWord, useWordOptions} from "@/hooks/dict.ts";
-import {cloneDeep, shuffle} from "lodash-es";
+import {_getDictDataByUrl, cloneDeep, shuffle} from "@/utils";
 import {useRoute, useRouter} from "vue-router";
 import {Icon} from "@iconify/vue";
 import Footer from "@/pages/pc/word/components/Footer.vue";
@@ -23,7 +23,6 @@ import Empty from "@/components/Empty.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {dictionaryResources} from "@/assets/dictionary.ts";
-import {_getDictDataByUrl} from "@/utils";
 
 interface IProps {
   new: Word[],
