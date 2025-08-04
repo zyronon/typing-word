@@ -322,7 +322,7 @@ $header-height: 4rem;
 
       .content {
         width: 25rem;
-        color: var(--color-font-1);
+        color: var(--color-main-text);
         padding: .2rem 1.6rem 1.6rem;
       }
     }

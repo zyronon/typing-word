@@ -3,22 +3,21 @@ import type {Word} from "@/types";
 import {DictId, getDefaultDict} from "@/types";
 
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import {computed, onMounted, reactive} from "vue";
+import {computed, onMounted, reactive, shallowReactive} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {assign, cloneDeep} from "@/utils";
+import {_getDictDataByUrl, _nextTick, cloneDeep, convertToWord} from "@/utils";
 import {nanoid} from "nanoid";
 import BaseIcon from "@/components/BaseIcon.vue";
 import BaseTable from "@/pages/pc/components/BaseTable.vue";
 import WordItem from "@/pages/pc/components/WordItem.vue";
 import type {FormInstance, FormRules} from "element-plus";
+import {ElForm, ElFormItem, ElInput, ElMessage} from "element-plus";
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
 import BackIcon from "@/pages/pc/components/BackIcon.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {useRoute, useRouter} from "vue-router";
 import {useBaseStore} from "@/stores/base.ts";
 import EditBook from "@/pages/pc/article/components/EditBook.vue";
-import {_getDictDataByUrl, _nextTick, convertToWord} from "@/utils";
-import {ElForm, ElFormItem, ElInput, ElMessage} from "element-plus";
 
 const runtimeStore = useRuntimeStore()
 const base = useBaseStore()
@@ -32,7 +31,7 @@ let list = $computed({
     return runtimeStore.editDict.words
   },
   set(v) {
-    runtimeStore.editDict.words = v
+    runtimeStore.editDict.words = shallowReactive(v)
   }
 })
 
@@ -89,7 +88,7 @@ async function onSubmitWord() {
       if (data.id) {
         let r = list.find(v => v.id === data.id)
         if (r) {
-          assign(r, data)
+          Object.assign(r, data)
           ElMessage.success('修改成功')
         } else {
           ElMessage.success('修改失败，未找到单词')
@@ -335,13 +334,13 @@ defineRender(() => {
                             </ElFormItem>
                           </ElForm>
                           <div class="center">
-                            <base-button
+                            <BaseButton
                                 type="info"
                                 onClick={closeWordForm}>关闭
-                            </base-button>
-                            <base-button type="primary"
-                                         onClick={onSubmitWord}>保存
-                            </base-button>
+                            </BaseButton>
+                            <BaseButton type="primary"
+                                        onClick={onSubmitWord}>保存
+                            </BaseButton>
                           </div>
                         </div>
                     ) : null

@@ -10,6 +10,7 @@ import axios from "axios";
 import {env} from "@/config/ENV.ts";
 import {nextTick} from "vue";
 import {dictionaryResources, enArticle} from "@/assets/dictionary.ts";
+import {ElMessage} from "element-plus";
 
 export function no() {
   ElMessage.warning('未现实')
@@ -224,7 +225,7 @@ export function shakeCommonDict(n: BaseState): BaseState {
     if (!v.custom) v.words = []
   })
   data.article.bookList.map((v: Dict) => {
-    if (!v.custom) v.words = []
+    if (!v.custom) v.articles = []
   })
   return data
 }
@@ -233,14 +234,14 @@ export function isMobile(): boolean {
   return /Mobi|Android|iPhone/i.test(navigator.userAgent)
 }
 
-export function getDictFile(url: string) {
-  return new Promise<any[]>(async resolve => {
-    let r = await fetch(url).catch(r => {
-      console.log('getDictFile_error', r)
-    })
-    let v = await r.json()
-    resolve(v)
-  })
+export async function getDictFile(url: string) {
+  try {
+    const r = await fetch(url);
+    return await r.json();
+  } catch (err) {
+    console.log('getDictFile_error', err);
+    return null;
+  }
 }
 
 export function useNav() {
@@ -391,17 +392,29 @@ export function _parseLRC(lrc: string): { start: number, end: number, text: stri
   return parsed;
 }
 
-export async function _getDictDataByUrl(val: DictResource): Promise<Dict> {
+export async function _getDictDataByUrl(val: DictResource, type: DictType = DictType.word): Promise<Dict> {
   let dictResourceUrl = `./dicts/${val.language}/word/${val.url}`.replace('.json', '_v2.json');
+  if (type === DictType.article) {
+    dictResourceUrl = `./dicts/${val.language}/${val.type}/${val.url}`;
+  }
   let s = await getDictFile(dictResourceUrl)
-  let words = cloneDeep(s.map(v => {
-    v.id = nanoid(6)
-    return v
-  }))
-  return getDefaultDict({
-    ...val,
-    words
-  })
+  if (s) {
+    if (type === DictType.word) {
+      let words = cloneDeep(s.map(v => {
+        v.id = nanoid(6)
+        return v
+      }))
+      return getDefaultDict({...val, words})
+    } else {
+      let articles = cloneDeep(s.map(v => {
+        v.id = nanoid(6)
+        return v
+      }))
+      console.log('articles',articles)
+      return getDefaultDict({...val, articles})
+    }
+  }
+  return getDefaultDict()
 }
 
 //从字符串里面转换为Word格式
@@ -553,10 +566,6 @@ export function throttle<T extends (...args: any[]) => void>(func: T, wait: numb
 
 export function reverse<T>(array: T[]): T[] {
   return array.slice().reverse();
-}
-
-export function assign<T extends object, U extends object>(target: T, ...sources: U[]): T & U {
-  return Object.assign(target, ...sources);
 }
 
 export function groupBy<T extends Record<string, any>>(array: T[], key: string) {

@@ -14,6 +14,7 @@ import BookDetail from "@/pages/pc/article/BookDetail.vue";
 import BatchEditArticlePage from "@/pages/pc/article/BatchEditArticlePage.vue";
 import DictList from "@/pages/pc/word/DictList.vue";
 import Setting from "@/pages/pc/Setting.vue";
+import BookList from "@/pages/pc/article/BookList.vue";
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -25,28 +26,16 @@ export const routes: RouteRecordRaw[] = [
       {path: 'dict-list', component: DictList},
       {path: 'study-word', component: StudyWord},
       {path: 'dict-detail', component: DictDetail},
+
       {path: 'article', component: ArticleHomePage},
       {path: 'study-article', component: StudyArticle},
       {path: 'edit-article', component: EditArticlePage},
       {path: 'batch-edit-article', component: BatchEditArticlePage},
       {path: 'book-detail', component: BookDetail},
+      {path: 'book-list', component: BookList},
       {path: 'setting', component: Setting},
     ]
   },
-
-  // {path: '/mobile', component: Mobile,},
-  // {path: '/mobile/practice', component: MobilePractice},
-  // {path: '/mobile/dict-detail', component: DictDetail},
-  // {path: '/mobile/set-dict-plan', name: 'set-dict-plan', component: SetDictPlan},
-  // {path: '/mobile/setting', component: Setting},
-  // {path: '/mobile/music-setting', component: MusicSetting},
-  // {path: '/mobile/other-setting', component: OtherSetting},
-  // {path: '/mobile/data-manage', component: DataManage},
-  // {path: '/mobile/collect', component: CollectPage},
-  // {path: '/mobile/wrong', component: WrongPage},
-  // {path: '/mobile/simple', component: SimplePage},
-  // {path: '/mobile/about', component: About},
-  // {path: '/mobile/feedback', component: Feedback},
   {path: '/test', component: Test},
   // {path: '/', redirect: '/pc/practice'},
 ]

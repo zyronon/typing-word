@@ -88,7 +88,10 @@ export const useBaseStore = defineStore('base', {
       return getDefaultDict()
     },
     sdict(): Dict {
-      return this.currentStudyWordDict
+      if (this.word.studyIndex >= 0) {
+        return this.word.bookList[this.word.studyIndex] ?? getDefaultDict()
+      }
+      return getDefaultDict()
     },
     currentStudyProgress(): number {
       if (!this.sdict.words?.length) return 0
@@ -96,6 +99,9 @@ export const useBaseStore = defineStore('base', {
       return _getStudyProgress(this.sdict.lastLearnIndex, this.sdict.words?.length)
     },
     currentBook(): Dict {
+      return this.article.bookList[this.article.studyIndex] ?? {}
+    },
+    sbook(): Dict {
       return this.article.bookList[this.article.studyIndex] ?? {}
     },
     currentBookProgress(): number {
@@ -131,19 +137,6 @@ export const useBaseStore = defineStore('base', {
         } catch (e) {
           console.error('读取本地dict数据失败', e)
         }
-
-        if (this.article.studyIndex >= 1) {
-          let current = this.article.bookList[this.article.studyIndex]
-          let dictResourceUrl = `./dicts/${current.language}/${current.type}/${current.translateLanguage}/${current.url}`;
-          if (!current.articles.length) {
-            let s = await getDictFile(dictResourceUrl)
-            current.articles = cloneDeep(s.map(v => {
-              v.id = nanoid(6)
-              return v
-            }))
-          }
-          // console.log('this.currentBook', this.currentBook.articles[0])
-        }
         resolve(true)
       })
     },
@@ -166,6 +159,23 @@ export const useBaseStore = defineStore('base', {
       } else {
         this.word.bookList.push(getDefaultDict(val))
         this.word.studyIndex = this.word.bookList.length - 1
+      }
+    },
+    //改变书籍
+    changeBook(val: Dict) {
+      //把其他的书籍里面的文章数据都删掉，全保存在内存里太卡了
+      this.article.bookList.slice(1).map(v => {
+        if (!v.custom) {
+          v.articles = shallowReactive([])
+        }
+      })
+      let rIndex = this.article.bookList.findIndex((v: Dict) => v.id === val.id)
+      if (rIndex > -1) {
+        this.article.studyIndex = rIndex
+        this.article.bookList[this.article.studyIndex].articles = shallowReactive(val.articles)
+      } else {
+        this.article.bookList.push(getDefaultDict(val))
+        this.article.studyIndex = this.article.bookList.length - 1
       }
     },
   },

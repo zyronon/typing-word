@@ -3,7 +3,7 @@ import {Dict} from "@/types.ts";
 import Book from "@/pages/pc/components/Book.vue";
 
 defineProps<{
-  list?: Dict[],
+  list?: Partial<Dict>[],
   selectId?: string
 }>()
 

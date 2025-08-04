@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import {Dict} from "@/types.ts";
+import {Dict, DictResource} from "@/types.ts";
 import {Icon} from "@iconify/vue";
 import {ElProgress, ElCheckbox} from 'element-plus';
 
 const props = defineProps<{
-  item?: Dict
+  item?: Partial<Dict>;
   quantifier?: string
   isAdd: boolean
   showCheckbox?: boolean
@@ -16,7 +16,7 @@ defineEmits<{
 }>()
 
 const progress = $computed(() => {
-  if (props.item.complete) return 100
+  if (props.item?.complete) return 100
   return Number(((props.item?.lastLearnIndex / props.item?.length) * 100).toFixed())
 })
 

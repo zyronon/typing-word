@@ -3,84 +3,59 @@ import {useBaseStore} from "@/stores/base.ts";
 import {Icon} from '@iconify/vue'
 import "vue-activity-calendar/style.css";
 import {useRouter} from "vue-router";
-import {enArticle} from "@/assets/dictionary.ts";
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import {useNav} from "@/utils";
-import {Dict, DictResource, getDefaultDict} from "@/types.ts";
-import {cloneDeep} from "@/utils";
+import {_getDictDataByUrl, useNav} from "@/utils";
+import {DictResource, DictType, getDefaultDict} from "@/types.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {getArticleBookDataByUrl} from "@/utils/article.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
-import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
-import Input from "@/pages/pc/components/Input.vue";
-import {computed} from "vue";
 import Book from "@/pages/pc/components/Book.vue";
 import {ElMessage, ElProgress} from 'element-plus';
 import BaseButton from "@/components/BaseButton.vue";
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
+import {onMounted, watch} from "vue";
 
 const {nav} = useNav()
 const base = useBaseStore()
-const router = useRouter()
 const store = useBaseStore()
+const router = useRouter()
 const runtimeStore = useRuntimeStore()
-let showAddChooseDialog = $ref(false)
-let showSearchDialog = $ref(false)
-let searchKey = $ref('')
 
+onMounted(init)
+watch(() => store.load, init)
 
-async function getBookDetail(val: DictResource) {
-  let r = await getArticleBookDataByUrl(val)
-  runtimeStore.editDict = cloneDeep(r)
-  nav('book-detail')
-}
-
-async function getBookDetail2(val: Dict) {
-  if (!val.name) {
-    showSearchDialog = true
-    return
+async function init() {
+  if (store.article.studyIndex >= 1) {
+    if (!store.sbook.custom && !store.sbook.articles.length) {
+      store.article.bookList[store.article.studyIndex] = await _getDictDataByUrl(store.sbook, DictType.article)
+    }
   }
-  runtimeStore.editDict = cloneDeep(val)
-  nav('book-detail')
-}
-
-const searchList = computed(() => {
-  if (searchKey) {
-    return enArticle.filter(v => v.name.toLocaleLowerCase().includes(searchKey.toLocaleLowerCase()))
-  }
-  return []
-})
-
-function addBook() {
-  showAddChooseDialog = false
-  runtimeStore.editDict = getDefaultDict()
-  nav('book-detail', {isAdd: true})
 }
 
 function startStudy() {
-  if (!base.currentBook.name) {
-    showSearchDialog = true
+  if (base.sbook.id) {
+    if (!base.sbook.articles.length) {
+      return ElMessage.warning('没有文章可学习！')
+    }
+    nav('/study-article')
+  } else {
     ElMessage.warning('请先选择一本书籍')
-    return
   }
-  router.push('/study-article')
 }
-
 
 let isMultiple = $ref(false)
 let selectIds = $ref([])
 
 function handleBatchDel() {
   selectIds.forEach(id => {
-    let r = store.word.bookList.findIndex(v => v.id === id)
+    let r = base.article.bookList.findIndex(v => v.id === id)
     if (r !== -1) {
-      if (store.word.studyIndex === r) {
-        store.word.studyIndex = -1
+      if (base.article.studyIndex === r) {
+        base.article.studyIndex = -1
       }
-      if (store.word.studyIndex > r) {
-        store.word.studyIndex--
+      if (base.article.studyIndex > r) {
+        base.article.studyIndex--
       }
-      store.word.bookList.splice(r, 1)
+      base.article.bookList.splice(r, 1)
     }
   })
   selectIds = []
@@ -96,10 +71,11 @@ function toggleSelect(item) {
   }
 }
 
-async function goDictDetail(val: DictResource) {
+async function goBookDetail(val: DictResource) {
   runtimeStore.editDict = getDefaultDict(val)
-  nav('book-detail', {})
+  nav('book-detail')
 }
+
 </script>
 
 <template>
@@ -108,10 +84,10 @@ async function goDictDetail(val: DictResource) {
       <div class="flex justify-between items-center">
         <div class="bg-third p-3 gap-4 rounded-md cursor-pointer flex items-center">
           <span class="text-lg font-bold"
-                @click="getBookDetail2(base.currentBook)">{{
+                @click="goBookDetail(base.currentBook)">{{
               base.currentBook.name || '请选择书籍开始学习'
             }}</span>
-          <BaseIcon @click="showSearchDialog = true"
+          <BaseIcon @click="router.push('/book-list')"
                     :icon="base.currentBook.name ? 'gg:arrows-exchange':'fluent:add-20-filled'"/>
         </div>
         <BaseButton
@@ -137,7 +113,7 @@ async function goDictDetail(val: DictResource) {
             <BaseIcon class="del" title="删除" icon="solar:trash-bin-minimalistic-linear"/>
           </PopConfirm>
 
-          <div class="color-blue cursor-pointer" v-if="store.article.bookList.length > 1"
+          <div class="color-blue cursor-pointer" v-if="base.article.bookList.length > 1"
                @click="isMultiple = !isMultiple; selectIds = []">{{ isMultiple ? '取消' : '管理书籍' }}
           </div>
           <div class="color-blue cursor-pointer" @click="nav('dict-detail', { isAdd: true })">创建个人书籍</div>
@@ -147,9 +123,9 @@ async function goDictDetail(val: DictResource) {
         <Book :is-add="false" quantifier="篇" :item="item" :checked="selectIds.includes(item.id)"
               @check="() => toggleSelect(item)"
               :show-checkbox="isMultiple && j >= 1"
-              v-for="(item, j) in store.article.bookList"
-              @click="goDictDetail(item)"/>
-        <Book :is-add="true" @click="router.push('/dict-list')"/>
+              v-for="(item, j) in base.article.bookList"
+              @click="goBookDetail(item)"/>
+        <Book :is-add="true" @click="router.push('/book-list')"/>
       </div>
     </div>
   </BasePage>

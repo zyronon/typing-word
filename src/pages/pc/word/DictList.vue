@@ -62,7 +62,8 @@ const searchList = computed<any[]>(() => {
   if (searchKey) {
     let s = searchKey.toLowerCase()
     return dictionaryResources.filter((item) => {
-      return item.name.toLowerCase().includes(s)
+      return item.id.toLowerCase().includes(s)
+          || item.name.toLowerCase().includes(s)
           || item.category.toLowerCase().includes(s)
           || item.tags.join('').replace('所有', '').toLowerCase().includes(s)
           || item?.url?.toLowerCase?.().includes?.(s)

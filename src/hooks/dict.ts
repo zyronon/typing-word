@@ -1,5 +1,6 @@
-import {Article, Word} from "@/types.ts";
+import {Article, getDefaultArticle, Word} from "@/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
+import {nanoid} from "nanoid";
 
 
 export function useWordOptions() {
@@ -63,11 +64,12 @@ export function useArticleOptions() {
   const store = useBaseStore()
 
   function isArticleCollect(val: Article) {
-    return !!store.collectArticle.articles.find(v => v.title.toLowerCase() === val.title.toLowerCase())
+    return !!store.collectArticle.articles.find(v => v.id === val.id)
   }
 
+  //todo 这里先收藏，再修改。收藏里面的未同步。单词也是一样的
   function toggleArticleCollect(val: Article) {
-    let rIndex = store.collectArticle.articles.findIndex(v => v.title.toLowerCase() === val.title.toLowerCase())
+    let rIndex = store.collectArticle.articles.findIndex(v => v.id === val.id)
     if (rIndex > -1) {
       store.collectArticle.articles.splice(rIndex, 1)
     } else {

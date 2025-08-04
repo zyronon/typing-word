@@ -3,7 +3,7 @@
 import {Dict, DictType, getDefaultDict} from "@/types.ts";
 import {cloneDeep} from "@/utils";
 
-import {ElForm,ElFormItem,ElInput,ElSelect,ElOption, FormInstance, FormRules} from "element-plus";
+import {ElForm, ElFormItem, ElInput, ElSelect, ElOption, FormInstance, FormRules, ElMessage} from "element-plus";
 import {onMounted, reactive} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useBaseStore} from "@/stores/base.ts";

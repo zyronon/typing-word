@@ -1,4 +1,4 @@
-import {Article, ArticleWord, DictType, getDefaultArticleWord, Sentence} from "@/types.ts";
+import {Article, ArticleWord, getDefaultArticleWord, Sentence} from "@/types.ts";
 import {cloneDeep} from "@/utils";
 import nlp from "compromise/one";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
@@ -524,12 +524,6 @@ export function splitCNArticle2(text: string): string {
     return ss
   }).join('\n').trim()
   return s
-}
-
-export function isArticle(type: DictType): boolean {
-  return [
-    DictType.article,
-  ].includes(type)
 }
 
 export function getTranslateText(article: Article) {

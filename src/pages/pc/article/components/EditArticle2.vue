@@ -9,7 +9,7 @@ import {genArticleSectionData, splitCNArticle2, splitEnArticle2, usePlaySentence
 import {_nextTick, _parseLRC, cloneDeep, last} from "@/utils";
 import {watch} from "vue";
 import Empty from "@/components/Empty.vue";
-import {ElInputNumber, ElOption, ElPopover, ElSelect, ElUpload, UploadProps} from "element-plus";
+import {ElInputNumber, ElMessage, ElOption, ElPopover, ElSelect, ElUpload, UploadProps} from "element-plus";
 import * as Comparison from "string-comparison"
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
