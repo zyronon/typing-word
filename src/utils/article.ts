@@ -1,7 +1,8 @@
-import {Dict, DictResource, getDefaultDict} from "@/types/types.ts";
+import {Dict, DictResource} from "@/types/types.ts";
 import {getDictFile} from "@/utils/index.ts";
 import {cloneDeep} from "@/utils";
 import {nanoid} from "nanoid";
+import {getDefaultDict} from "@/types/func.ts";
 
 export async function getArticleBookDataByUrl(val: DictResource) {
   let dictResourceUrl = `./dicts/${val.language}/${val.type}/${val.translateLanguage}/${val.url}`;

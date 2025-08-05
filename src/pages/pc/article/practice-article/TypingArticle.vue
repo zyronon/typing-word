@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, onMounted, onUnmounted, watch} from "vue"
-import {Article, ArticleWord, getDefaultArticle, Sentence, Word} from "@/types/types.ts";
+import {Article, ArticleWord, Sentence, Word} from "@/types/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
@@ -12,6 +12,7 @@ import ContextMenu from '@imengyu/vue3-context-menu'
 import {getTranslateText} from "@/hooks/article.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import QuestionForm from "@/pages/pc/article/components/QuestionForm.vue";
+import {getDefaultArticle} from "@/types/func.ts";
 
 interface IProps {
   article: Article,

@@ -5,7 +5,7 @@ import BackIcon from "@/pages/pc/components/BackIcon.vue";
 import Empty from "@/components/Empty.vue";
 import ArticleList from "@/pages/pc/components/list/ArticleList.vue";
 import {useBaseStore} from "@/stores/base.ts";
-import {Article, DictId, DictType, getDefaultArticle, getDefaultDict} from "@/types/types.ts";
+import {Article, DictId, DictType} from "@/types/types.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {useRoute, useRouter} from "vue-router";
@@ -14,6 +14,7 @@ import {computed, onMounted} from "vue";
 import {_getDictDataByUrl} from "@/utils";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {useArticleOptions} from "@/hooks/dict.ts";
+import {getDefaultArticle, getDefaultDict} from "@/types/func.ts";
 
 const runtimeStore = useRuntimeStore()
 const base = useBaseStore()

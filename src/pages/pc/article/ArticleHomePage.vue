@@ -5,7 +5,7 @@ import "vue-activity-calendar/style.css";
 import {useRouter} from "vue-router";
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {_getDictDataByUrl, useNav} from "@/utils";
-import {DictResource, DictType, getDefaultDict} from "@/types/types.ts";
+import {DictResource, DictType} from "@/types/types.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Book from "@/pages/pc/components/Book.vue";
@@ -13,6 +13,7 @@ import {ElMessage, ElProgress} from 'element-plus';
 import BaseButton from "@/components/BaseButton.vue";
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
 import {onMounted, watch} from "vue";
+import {getDefaultDict} from "@/types/func.ts";
 
 const {nav} = useNav()
 const base = useBaseStore()

@@ -1,6 +1,7 @@
-import {Article, getDefaultArticle, Word} from "@/types/types.ts";
+import {Article, Word} from "@/types/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {nanoid} from "nanoid";
+import {getDefaultArticle} from "@/types/func.ts";
 
 
 export function useWordOptions() {

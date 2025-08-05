@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-import {DictId, getDefaultDict, Word} from "@/types/types.ts";
+import {DictId, Word} from "@/types/types.ts";
 
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {computed, onMounted, reactive, shallowReactive} from "vue";
@@ -17,6 +17,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import {useRoute, useRouter} from "vue-router";
 import {useBaseStore} from "@/stores/base.ts";
 import EditBook from "@/pages/pc/article/components/EditBook.vue";
+import {getDefaultDict} from "@/types/func.ts";
 
 const runtimeStore = useRuntimeStore()
 const base = useBaseStore()

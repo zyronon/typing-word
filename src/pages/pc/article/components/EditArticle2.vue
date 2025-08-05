@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {Article, getDefaultArticle, Sentence, TranslateEngine} from "@/types/types.ts";
+import {Article, Sentence, TranslateEngine} from "@/types/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import EditAbleText from "@/pages/pc/components/EditAbleText.vue";
 import {Icon} from "@iconify/vue";
@@ -13,6 +13,7 @@ import {ElInputNumber, ElMessage, ElOption, ElPopover, ElSelect, ElUpload, Uploa
 import * as Comparison from "string-comparison"
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
+import {getDefaultArticle} from "@/types/func.ts";
 
 interface IProps {
   article?: Article,

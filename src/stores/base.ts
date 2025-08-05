@@ -1,11 +1,12 @@
 import {defineStore} from 'pinia'
-import {Dict, DictId, getDefaultDict, Word} from "../types/types.ts"
+import {Dict, DictId, Word} from "../types/types.ts"
 import {cloneDeep} from "@/utils";
 import * as localforage from "localforage";
 import {nanoid} from "nanoid";
 import {SAVE_DICT_KEY} from "@/utils/const.ts";
 import {_getStudyProgress, checkAndUpgradeSaveDict, getDictFile} from "@/utils";
 import {markRaw, shallowReactive} from "vue";
+import {getDefaultDict} from "@/types/func.ts";
 
 export interface BaseState {
   simpleWords: string[],

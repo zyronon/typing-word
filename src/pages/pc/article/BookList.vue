@@ -2,7 +2,7 @@
 import "vue-activity-calendar/style.css";
 import {useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import {DictResource, getDefaultDict} from "@/types/types.ts";
+import {DictResource} from "@/types/types.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Empty from "@/components/Empty.vue";
@@ -13,6 +13,7 @@ import BackIcon from "@/pages/pc/components/BackIcon.vue";
 import {useRouter} from "vue-router";
 import {enArticle} from "@/assets/dictionary.ts";
 import {computed} from "vue";
+import {getDefaultDict} from "@/types/func.ts";
 
 const {nav} = useNav()
 const runtimeStore = useRuntimeStore()

@@ -1,8 +1,9 @@
-import {Article, ArticleWord, getDefaultArticleWord, Sentence} from "@/types/types.ts";
+import {Article, ArticleWord, Sentence} from "@/types/types.ts";
 import {cloneDeep} from "@/utils";
 import nlp from "compromise/one";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
 import {getSentenceAllText, getSentenceAllTranslateText} from "@/hooks/translate.ts";
+import {getDefaultArticleWord} from "@/types/func.ts";
 
 interface KeyboardMap {
   Period: string,

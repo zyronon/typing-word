@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted} from "vue";
-import {Article, getDefaultArticle} from "@/types/types.ts";
+import {Article} from "@/types/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {cloneDeep} from "@/utils";
 import {useBaseStore} from "@/stores/base.ts";
@@ -16,6 +16,7 @@ import EditArticle2 from "@/pages/pc/article/components/EditArticle2.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {_nextTick} from "@/utils";
 import {ElMessage} from "element-plus";
+import {getDefaultArticle} from "@/types/func.ts";
 
 const emit = defineEmits<{
   importData: [val: Event]

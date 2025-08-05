@@ -4,7 +4,6 @@ import jaFlag from "@/assets/img/flags/ja.png";
 import deFlag from "@/assets/img/flags/de.png";
 import codeFlag from "@/assets/img/flags/code.png";
 import myFlag from "@/assets/img/flags/my.png";
-import {shallowReactive} from "vue";
 
 export type Word = {
   id?: string,
@@ -45,30 +44,10 @@ export type Word = {
   }[],
 }
 
-export function getDefaultWord(val: Partial<Word> = {}): Word {
-  return {
-    custom: false,
-    "word": "",
-    "phonetic0": "",
-    "phonetic1": "",
-    "trans": [],
-    "sentences": [],
-    "phrases": [],
-    "synos": [],
-    "relWords": {
-      "root": "",
-      "rels": []
-    },
-    "etymology": [],
-    ...val
-  }
-}
-
 export const PronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 
 export type TranslateLanguageType = 'en' | 'zh-CN' | 'ja' | 'de' | 'common' | ''
 export type LanguageType = 'en' | 'ja' | 'de' | 'code'
-
 
 export enum DictType {
   collect = 'collect',
@@ -83,15 +62,6 @@ export interface ArticleWord extends Word {
   nextSpace: boolean,
   isSymbol: boolean,
   symbolPosition: 'start' | 'end' | '',
-}
-
-export function getDefaultArticleWord(val: Partial<ArticleWord> = {}): ArticleWord {
-  return getDefaultWord({
-    nextSpace: true,
-    isSymbol: false,
-    symbolPosition: '',
-    ...val
-  }) as ArticleWord
 }
 
 export interface Sentence {
@@ -120,23 +90,6 @@ export interface Article {
   }[]
 }
 
-export function getDefaultArticle(val: Partial<Article> = {}): Article {
-  return {
-    id: '',
-    title: '',
-    titleTranslate: '',
-    text: '',
-    textTranslate: '',
-    newWords: [],
-    textAllWords: [],
-    sections: [],
-    audioSrc: '',
-    lrcPosition: [],
-    questions: [],
-    ...val
-  }
-}
-
 export interface Statistics {
   startDate: number,//开始日期
   spend: number,//花费时间
@@ -149,17 +102,6 @@ export interface Statistics {
 export interface DisplayStatistics extends Statistics {
   wrongWords: Word[]
   inputWordNumber: number//输入数
-}
-
-export const DefaultDisplayStatistics: DisplayStatistics = {
-  startDate: Date.now(),
-  spend: -1,
-  total: -1,
-  new: 0,
-  wrong: -1,
-  review: -1,
-  inputWordNumber: -1,
-  wrongWords: [],
 }
 
 export enum Sort {
@@ -247,29 +189,6 @@ export interface Dict extends DictResource {
   statistics: Statistics[],
   custom: boolean,//是否是自定义词典
   complete: boolean,//是否学习完成，学完了设为true，然后lastLearnIndex重置
-}
-
-export function getDefaultDict(val: Partial<Dict> = {}): Dict {
-  return {
-    id: '',
-    name: '',
-    description: '',
-    url: '',
-    length: 0,
-    category: '',
-    tags: [],
-    translateLanguage: '',
-    type: DictType.word,
-    language: 'en',
-    lastLearnIndex: 0,
-    perDayStudyNumber: 20,
-    custom: false,
-    complete: false,
-    ...val,
-    words: shallowReactive(val.words ?? []),
-    articles: shallowReactive(val.articles ?? []),
-    statistics: shallowReactive(val.statistics ?? [])
-  }
 }
 
 export interface ArticleItem {

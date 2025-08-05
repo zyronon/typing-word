@@ -8,7 +8,7 @@ import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {_dateFormat, _getAccomplishDate, _getAccomplishDays, _getDictDataByUrl, useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import {DictResource, getDefaultDict} from "@/types/types.ts";
+import {DictResource} from "@/types/types.ts";
 import {onMounted, watch} from "vue";
 import {getCurrentStudyWord} from "@/hooks/dict.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
@@ -16,6 +16,7 @@ import Book from "@/pages/pc/components/Book.vue";
 import PopConfirm from "@/pages/pc/components/PopConfirm.vue";
 import {ElMessage, ElProgress, ElSlider} from 'element-plus';
 import BaseButton from "@/components/BaseButton.vue";
+import {getDefaultDict} from "@/types/func.ts";
 
 const store = useBaseStore()
 const router = useRouter()

@@ -63688,5 +63688,5198 @@
       "rels": []
     },
     "etymology": []
+  },
+  {
+    "word": "law department",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "法律系"
+      },
+      {
+        "pos": "",
+        "cn": "法律系"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "He entered Leningrad State University's law department in 1970.",
+        "cn": "1970年，普京进入列宁格勒州立大学法律系。"
+      },
+      {
+        "c": "How can the law department add the most value to the company's business operations?",
+        "cn": "中国跨国企业法务部如何为中国跨国企业的业务经营创造最大价值？"
+      },
+      {
+        "c": "In 1970, Vladimir Putin became a student of law department at Leningrad State University, earning his degree in 1975.",
+        "cn": "1970年普京进入列宁格勒大学攻读法律系，并于1975年获得学位。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "legal action",
+    "phonetic0": "ˈliːɡ(ə)l ækʃ(ə)n",
+    "phonetic1": "ˈliːɡl ækʃn",
+    "trans": [
+      {
+        "pos": "n.",
+        "cn": "法律诉讼"
+      },
+      {
+        "pos": "",
+        "cn": "法律行动：通过法律程序解决争端的过程。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "He vowed to take legal action.",
+        "cn": "他发誓要诉诸法律行动。"
+      },
+      {
+        "c": "Your only recourse is legal action.",
+        "cn": "你的唯一依靠就是诉诸法律。"
+      },
+      {
+        "c": "They decided against taking legal action.",
+        "cn": "他们决定不提起诉讼。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "[法]法律诉讼",
+        "ws": [
+          "legal proceedings"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "live music",
+    "phonetic0": "laɪv ˈmjuːzɪk",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "现场音乐"
+      },
+      {
+        "pos": "",
+        "cn": "现场音乐：指在现场演出或表演中实时演奏或演唱的音乐。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The club has live music most nights.",
+        "cn": "该俱乐部大多数晚上有现场演奏的音乐。"
+      },
+      {
+        "c": "The Rainbow has not hosted live music since the end of 1981.",
+        "cn": "彩虹乐队自1981年底以来还没有举办过现场音乐会。"
+      },
+      {
+        "c": "The festival will feature pyrotechnics, live music, and sculptures.",
+        "cn": "该节日将有烟火、现场音乐及雕塑表演。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "loud noises",
+    "phonetic0": "laʊd ˈnɔɪzɪz",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "很大的噪声 ( 吞 )"
+      },
+      {
+        "pos": "",
+        "cn": "大声噪音：指高音量或强烈的声音，通常会引起人们的注意或不适。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The dog kept making loud noises.",
+        "cn": "那条狗不停地发出很大的噪音。"
+      },
+      {
+        "c": "Exposure to loud noises can definitely produce a partial or complete loss of hearing, depending on the intensity, duration, and frequency composition of the noise.",
+        "cn": "暴露在巨大的噪音中肯定会造成部分或完全的听力丧失，这取决于噪音的强度、持续时间和频率组成。"
+      },
+      {
+        "c": "I was annoyed by the loud noises in the morning.",
+        "cn": "早上的噪音把我烦死了。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "mailing list",
+    "phonetic0": "ˈmeɪlɪŋ lɪst",
+    "phonetic1": "ˈmeɪlɪŋ lɪst",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "邮寄清单"
+      },
+      {
+        "pos": "",
+        "cn": "邮寄名单：一个包含姓名和地址的列表，用于发送邮件，也可以是一个包含姓名和电子邮件地址的列表，用于发送电子邮件。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "I am already on your mailing list.",
+        "cn": "我已经列在你的邮寄名单上了。"
+      },
+      {
+        "c": "Join the mailing list.",
+        "cn": "请加入邮件列表。"
+      },
+      {
+        "c": "You can send an E-mail to the mailing list.",
+        "cn": "你可以给我们的邮件列表发邮件。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "marine plants",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "海洋植物"
+      },
+      {
+        "pos": "",
+        "cn": "海洋植物：生长在海洋中的植物，包括海藻、海草等，对于海洋生态系统具有重要意义。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "They found fossils of microscopic marine plants which suggest that the region was once open ocean, not solid ice.",
+        "cn": "他们发现了微型海洋植物的化石，表明该地区曾经是开放的海洋，而不是坚固的冰层。"
+      },
+      {
+        "c": "The reason for this increased cloud cover, it turns out, is the exceptionally large amount of microscopic marine plants.",
+        "cn": "事实证明，云量增加是大量的微型海洋植物导致的。"
+      },
+      {
+        "c": "Within samples collected from the solid substances lying beneath the ice they found fossils of microscopic marine plants which suggest that the region was once open ocean not solid ice.",
+        "cn": "在从冰下的固体物质中收集的样本中，他们发现微型海洋植物的化石，这表明这个区域曾经是开阔的海洋而不是坚硬的冰。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "mission statement",
+    "phonetic0": "ˈmɪʃən steɪtmənt",
+    "phonetic1": "ˈmɪʃn steɪtmənt",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "使命宣言"
+      },
+      {
+        "pos": "",
+        "cn": "使命宣言：陈述企业或组织目的或目标的内容。通常用于描述企业或组织的宗旨和价值观，以及其在市场中的定位和目标。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Our mission statement is to be the best design firm in the world.",
+        "cn": "我们的宗旨是成为世界上最好的设计公司。"
+      },
+      {
+        "c": "\"If we're successful,\" their mission statement reads, \"we believe this will be one of the most important and widely beneficial scientific advances ever made.\"",
+        "cn": "“如果我们成功了，”他们的任务声明写道，“我们相信这将是有史以来最重要、最有益的科学进步之一。”"
+      },
+      {
+        "c": "Compose a Mission Statement.",
+        "cn": "撰写一篇任务报告。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": [
+      {
+        "t": "mission statement:宗旨说明",
+        "d": "mission,使命，宗旨，statement,陈述，表达。引申词义宗旨说明。"
+      }
+    ]
+  },
+  {
+    "word": "muscle pain",
+    "phonetic0": "ˈmʌsl peɪn",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "肌肉疼痛"
+      },
+      {
+        "pos": "",
+        "cn": "肌肉疼痛：肌肉因过度使用、受伤或疾病而引起的疼痛。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Other symptoms include muscle pain, headache, nausea, fatigue, and rash.",
+        "cn": "其他症状包括肌肉疼痛、头痛、恶心、疲劳和皮疹。"
+      },
+      {
+        "c": "Coffee reduces muscle pain.",
+        "cn": "咖啡可减轻肌肉疼痛。"
+      },
+      {
+        "c": "I have severe muscle pain.",
+        "cn": "我的肌肉痛得厉害。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "negotiation skills",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "谈判技巧；谈判技能；谈判能力"
+      },
+      {
+        "pos": "",
+        "cn": "谈判技巧：在商业、政治或日常生活中与他人沟通、讨论以达成共识或解决争议的能力和技巧。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "For instance, one student took the lead in dealing with a difficult landlord and so demonstrated negotiation skills.",
+        "cn": "例如，一名学生带头与一个难相处的房东交涉，这样就展示了他的谈判技巧。"
+      },
+      {
+        "c": "Strong communication and negotiation skills.",
+        "cn": "较强的沟通和谈判技巧。"
+      },
+      {
+        "c": "This is where your negotiation skills come into play.",
+        "cn": "这就要看您的谈判技巧如何了。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "offer advice",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "无"
+      },
+      {
+        "pos": "",
+        "cn": "提供建议：向他人提供自己的意见或建议，帮助他们解决问题或做出决策。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Don't judge or offer advice before you know more about others and the topic.",
+        "cn": "在你对别人和话题了解得更多之前，不要妄下结论或提出建议。"
+      },
+      {
+        "c": "The commission will merely offer advice.",
+        "cn": "委员会仅仅是提供建议。"
+      },
+      {
+        "c": "After I graduated, he continued to offer advice.",
+        "cn": "他后来一直给我提出建议。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "olive oil",
+    "phonetic0": "ˌɒlɪv ˈɔɪl",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "橄榄油"
+      },
+      {
+        "pos": "",
+        "cn": "橄榄油：一种从橄榄中提取的浅黄色至黄绿色的非干性油，富含单不饱和脂肪，主要用作沙拉油和烹饪油。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Olive oil and garlic feature prominently in his recipes.",
+        "cn": "橄榄油和大蒜在他的食谱中显得很重要。"
+      },
+      {
+        "c": "Only extra-virgin olive oil will do on recherché dinner tables.",
+        "cn": "只有特纯橄榄油才能上讲究的餐桌。"
+      },
+      {
+        "c": "Its fruit can be made into olive oil.",
+        "cn": "它的果实可以制成橄榄油。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "[食品]橄榄油",
+        "ws": [
+          "sweet oil"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "peak season",
+    "phonetic0": "piːk ˈsiːzn",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "旺季 ( 吞 )"
+      },
+      {
+        "pos": "",
+        "cn": "旅游旺季：游客最多的时间。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Autumn is the tourist peak season in Yunnan Province for it enjoys beautiful scenery at that time.",
+        "cn": "秋季是云南省的旅游旺季，因为那个时候云南省风景很美。"
+      },
+      {
+        "c": "The Vatican draws more than five million people each year, and queues can reach four hours during peak season.",
+        "cn": "梵蒂冈每年游客量超五百万人，在旺季，游客排队所花的时间可达到四个小时。"
+      },
+      {
+        "c": "We need extra help during the peak season.",
+        "cn": "我们在最繁忙的季节需要额外人手。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "[贸易]旺季",
+        "ws": [
+          "busy season",
+          "rush season"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "peer group",
+    "phonetic0": "ˈpɪə ɡruːp",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "同龄人团体"
+      },
+      {
+        "pos": "",
+        "cn": "同龄人群：一群大致年龄和地位相同的人，尤其是如果他们有相同的兴趣爱好。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "They worry that the adolescent peer group has the power to push its members into behavior that is foolish and even dangerous.",
+        "cn": "他们担心青少年同龄群体有能力迫使其成员做出愚蠢甚至危险的行为。"
+      },
+      {
+        "c": "The passive attitude we have to climate change as individuals can be altered by counting us in—and measuring us against—our peer group.",
+        "cn": "作为个体，我们对气候变化的消极态度可以通过把我们自己包括在内并把我们与同龄人进行对比来改变。"
+      },
+      {
+        "c": "She gets on well with her peer group.",
+        "cn": "她和同龄人相处融洽。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "pine forests",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "松树林"
+      },
+      {
+        "pos": "",
+        "cn": "松林：由松树组成的森林，通常具有浓密的树冠和松针覆盖的地面。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The reason for constructing the buildings from wood is probably that ideally proportioned straight and slender timber was available in large quantities in Scandinavia's vast pine forests.",
+        "cn": "用木材建造建筑的原因可能是，比例理想、笔直、纤细的木材在斯堪的纳维亚广阔的松林中大量存在。"
+      },
+      {
+        "c": "They tend to come from pine forests.",
+        "cn": "它们往往来自松树林。"
+      },
+      {
+        "c": "He leads the way out to a terrace with a view of the deep, bowl-shaped valley carpeted with thick pine forests.",
+        "cn": "他把我带到一处阳台，从那里可以俯瞰铺满稠密松林的碗型深谷。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "planet science",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "行星科学"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Fortunately for the planet, social science and behavioural economics may be able to do that for us.",
+        "cn": "对地球来说幸运的是，社会科学和行为经济学或许可以为我们做到这一点。"
+      },
+      {
+        "c": "In the relatively new science of planet hunting, no find is more prized than finding a planet like ours, one that could support life.",
+        "cn": "在行星搜寻这门新兴的科学中，如果能找到像我们地球一样能孕育生命的行星，那将是最大的发现。"
+      },
+      {
+        "c": "And the Mars Science Laboratory, a car-sized rover that will explore the red planet.",
+        "cn": "还有火星的科学研究室，一个普通车大小的采集车将探索那个红色星球。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "preparing food",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "动 —准备食物"
+      },
+      {
+        "pos": "",
+        "cn": "准备食物：为食物的制作做准备，包括购买食材、清洗、切割、烹饪等步骤。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Food price protests were these women's way of organizing at their own workplace, as workers whose occupation was shopping and preparing food for their families.",
+        "cn": "对食品价格的抗议是这些妇女在自己的工作场所组织起来的方式，她们的职业是为家人采购和准备食物。"
+      },
+      {
+        "c": "They can help with everyday activities from preparing food to reminding the patients of taking their medicine.",
+        "cn": "他们可以参与协助日常活动，为病人准备食物，提醒病人服药等。"
+      },
+      {
+        "c": "She is preparing food.",
+        "cn": "她正在准备食物。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "professional learning",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "专业学习"
+      },
+      {
+        "pos": "",
+        "cn": "专业学习：指为提升职业技能或专业知识而进行的学习活动。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "I quite wonder at the old expert's wide range of knowledge, and his professional learning has been of great use to us.",
+        "cn": "我对那位老专家广博的学识感到很惊讶，他的专业知识对我们帮助很大。"
+      },
+      {
+        "c": "Course is given priority to with professional study and Russian: professional learning every week 3-4, Russian 2-8 hours (45 minutes per period).",
+        "cn": "课程以专业学习和俄语为主：专业学习每周3 - 4时，俄语2 - 8课时(每课时45分钟)。"
+      },
+      {
+        "c": "We believe that the University of professional learning is a tool we enter the community, not only after we enter the community can engage in industry.",
+        "cn": "我们认为，大学的专业学习是我们进入社会的一个工具，并不是我们进入社会之后所唯一能从事的行业。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "regular exercises",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "定期的锻炼"
+      },
+      {
+        "pos": "",
+        "cn": "定期锻炼：指经常进行的身体活动，以保持身体健康和增强体质。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "I wanna take regular exercises this year.",
+        "cn": "今年我想定期锻炼。"
+      },
+      {
+        "c": "I have no time to engage in regular exercises.",
+        "cn": "我没有时间经常参加锻炼。"
+      },
+      {
+        "c": "The underweight child has begun to fill out after regular exercises.",
+        "cn": "这个偏瘦的孩子在进行了一段有规律的锻炼后开始长壮了。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "remote communities",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "无"
+      },
+      {
+        "pos": "",
+        "cn": "偏远社区：指远离城市或主要交通干线的社区，通常交通不便，基础设施和公共服务不完善。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "All our projects aim to promote the development of poor and remote communities.",
+        "cn": "我们所有的项目都旨在促进贫困和偏远社区的发展。"
+      },
+      {
+        "c": "But can remote communities handle those numbers?",
+        "cn": "但是，偏僻遥远的地区能容纳那么多人吗？"
+      },
+      {
+        "c": "It will take many years for these remote communities to rebuild.",
+        "cn": "这些边远北部的鱼业社区要完成重建，需要几年的时间。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "rest area",
+    "phonetic0": "ˈrest eəriə",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "休息区域 ( 连 )"
+      },
+      {
+        "pos": "",
+        "cn": "休息区：紧邻高速公路的一个区域，通常提供洗手间和饮食服务。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Our car having developed engine trouble, we stopped for the night at a roadside rest area.",
+        "cn": "我们的汽车发动机出了故障，因此我们在路边休息了一夜。"
+      },
+      {
+        "c": "There's a rest area partway up the mountain; we could make a pit stop there.",
+        "cn": "半山腰上有一个休息区，我们可以在那里歇歇脚。"
+      },
+      {
+        "c": "One night, she drove to a rest area on I-95 to meet a truck driver from West Virginia.",
+        "cn": "一天晚上，她开车去I - 95的休息区去见一个从西弗吉尼亚州来的卡车司机。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "return tickets",
+    "phonetic0": "rɪˌtɜːn ˈtɪkɪt",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "回程票"
+      },
+      {
+        "pos": "",
+        "cn": "返程车票：一张允许一个人前往某个地方并返回原来离开的地方的车票。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "I want two return tickets to Paris, please.",
+        "cn": "请给我两张去巴黎的往返票。"
+      },
+      {
+        "c": "Two return tickets please!",
+        "cn": "两张来回票，谢谢！"
+      },
+      {
+        "c": "Why can't I get return tickets for the train?",
+        "cn": "我为什么不能买这趟列车的回程车票？"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "repaired cost",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "无"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Some repaired the responsible person of the company to say, repaired cost to inflate potential have been already settled, but the rise needs counsel.",
+        "cn": "某装修公司负责人表示，装修价格涨势已定，但涨幅尚待商议。"
+      },
+      {
+        "c": "It cost me one hundred yuan to have my watch repaired.",
+        "cn": "维修手表花了我一百元人民币。"
+      },
+      {
+        "c": "The defective goods can be destroyed, or shipped back, or repaired by AA or its customers, at BB's option and cost.",
+        "cn": "瑕疵货物根据BB的选择并由BB承担费用，可以由AA或他的客户就地销毁，或运回，或修理。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "rescue diver",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "救援潜水员"
+      },
+      {
+        "pos": "",
+        "cn": "救援潜水员：专门从事水下救援工作的潜水员，通常需要接受专业的训练和认证。"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "ring a bell",
+    "phonetic0": "rɪŋ ə bel",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "na.",
+        "cn": "引起反应[共鸣]；使人想起某事"
+      },
+      {
+        "pos": "",
+        "cn": "听起来熟悉：似乎至少有点熟悉。"
+      },
+      {
+        "pos": "",
+        "cn": "唤起记忆：激发先前被遗忘的记忆。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The rats had been conditioned to ring a bell when they wanted food.",
+        "cn": "这些老鼠已经过训练，想吃食物时就会按铃。"
+      },
+      {
+        "c": "This often proves difficult and can take a long time so I will ring a bell so that everyone knows it's time to eat! Hopefully this will speed things up a bit.",
+        "cn": "事实证明这很困难并可能需要很长时间，所以我会提醒每个人，是时候吃东西了！希望能加快速度。"
+      },
+      {
+        "c": "That might ring a bell.",
+        "cn": "那也许敲响了警钟。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "使某人想起某事，使人回忆起",
+        "ws": [
+          "remind sb. of sth."
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "roll over",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "动词短语 (车祸中汽车) 侧翻"
+      },
+      {
+        "pos": "",
+        "cn": "延期支付（债务）：将债务的支付日期推迟。"
+      },
+      {
+        "pos": "",
+        "cn": "重新协商（金融协议）：重新商定金融协议的条款。"
+      },
+      {
+        "pos": "",
+        "cn": "转投（同类投资）：将已投资的资金转移到同类投资中。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The clouds roll over Sydney.",
+        "cn": "云朵在悉尼上空滚动。"
+      },
+      {
+        "c": "Hey, let's do some special tricks like roll over, okay?",
+        "cn": "嗨，让我们做一些特殊的技巧，比如翻滚，好吗？"
+      },
+      {
+        "c": "The bank refused to roll over the debt.",
+        "cn": "银行拒不允许延期偿还借款。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "翻滚；转存；延缓付款",
+        "ws": [
+          "writhe",
+          "welter"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "room service",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "客户服务"
+      },
+      {
+        "pos": "",
+        "cn": "客房服务：酒店向客人提供客房内的服务，包括餐饮、清洁等。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The hotel did not normally provide room service.",
+        "cn": "那家宾馆通常不提供客房服务。"
+      },
+      {
+        "c": "He ordered coffee from room service.",
+        "cn": "他让服务员送杯咖啡到他房里。"
+      },
+      {
+        "c": "Room service ,May I come in ?",
+        "cn": "送餐服务,我可以进来吗?"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "safari park",
+    "phonetic0": "səˈfɑːri pɑːk",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "野生动物园"
+      },
+      {
+        "pos": "",
+        "cn": "野生动物公园：动物在其中自由活动，游客可以在车辆中观看。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Last summer holiday, Aunt Emily took us to a safari park, not far from Liverpool.",
+        "cn": "去年暑假，艾米莉阿姨带我们去了一家离利物浦不远的野生动物园。"
+      },
+      {
+        "c": "I was very happy to go as I had never been to a safari park before.",
+        "cn": "我非常高兴可以去，因为之前我从未去过野生动物园。"
+      },
+      {
+        "c": "A little giraffe has come to Shenzhen Safari Park.",
+        "cn": "一只小长颈鹿来到了深圳野生动物园。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "野生动物园",
+        "ws": [
+          "wildlife park"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "search habits",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "无"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "But that will mean getting consumers to kick their existing search habits.",
+        "cn": "但是用这种搜索引擎意味着用户需要抛弃现有的搜索习惯。"
+      },
+      {
+        "c": "Google Inc., faced with a mountain of data on its users' Web search habits, is taking steps to bolster consumer privacy protections in coming months, the company said late on Wednesday.",
+        "cn": "谷歌周三晚称，面对全球数百万名用户网络搜索习惯，他们正采取措施，以在未来数月内加强对消费者隐私的保护。"
+      },
+      {
+        "c": "Start typing in a URL or search term and it auto-suggests web pages based on your past Web surfing habits.",
+        "cn": "开始键入一个URL地址或者搜索条目，它将基于你之前的网页浏览习惯自动提示web页面。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "send newsletters",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "无"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "You can send newsletters to community members.",
+        "cn": "您可以向社区成员发送新闻稿。"
+      },
+      {
+        "c": "Send Aroma Promotion newsletters to the foreigners at universities and other popular places.",
+        "cn": "到“吉大”、“清华”外语等学校和外国人经常光顾的场所分发香韵阁促销宣传单。"
+      },
+      {
+        "c": "We send out several free email newsletters each week, and they're guaranteed to inform and inspire you.",
+        "cn": "我们每周都会寄出免费的电子报刊，为你们提供信息，加油鼓劲。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "sensible exercise",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "合适的运动"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "After the time of exercise lesson, please do not go to the sensible bicycle room.",
+        "cn": "课程以外时间段，请勿进入动感单车室。"
+      },
+      {
+        "c": "When used in combination with a sensible diet and exercise, it can help you prime your body for diet success.",
+        "cn": "当结合使用合理的饮食和运动，它可以帮助你减肥成功盛世你的身体。"
+      },
+      {
+        "c": "It's all about sensible calorie restriction and exercise.",
+        "cn": "最有用就是理性控制卡路里摄入、多做运动。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "sick pay",
+    "phonetic0": "ˈsɪk peɪ",
+    "phonetic1": "ˈsɪk peɪ",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "病假工资"
+      },
+      {
+        "pos": "",
+        "cn": "病假工资：员工在病假期间获得的工资或薪水。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "They are not eligible for sick pay.",
+        "cn": "他们没有资格领病假工资。"
+      },
+      {
+        "c": "Sick pay inures from the first day of illness.",
+        "cn": "工资从生病第一天起实行。"
+      },
+      {
+        "c": "Anyone who has worked here for over three years is eligible for sick pay.",
+        "cn": "凡在这儿工作了三年以上的人都有资格获得病假工资。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "病假工资",
+        "ws": [
+          "sick leave"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "smaller areas",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "更小的区域 ( 连 )"
+      },
+      {
+        "pos": "",
+        "cn": "较小的区域：指相对于更大的区域而言的较小的地方或区域。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "By cutting down trees for firewood and using the space to build houses, humans leave chimpanzees with smaller areas to live in.",
+        "cn": "人们砍伐树木用作柴火，并利用这些空间建造房屋，给黑猩猩留下了的生活区域更小了。"
+      },
+      {
+        "c": "Concentrate your efforts on smaller and smaller areas.",
+        "cn": "将你的努力集中于越来越小的领域。"
+      },
+      {
+        "c": "So focus on smaller areas, and your efforts will be felt more fully.",
+        "cn": "因此集中在越小的领域，你就越能充分地感觉到你的每一份努力。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "smoke alarms",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "烟雾警报"
+      },
+      {
+        "pos": "",
+        "cn": "烟雾报警器的复数形式：用于检测烟雾并发出警报的设备，通常用于家庭、办公室或其他建筑物中，以提醒人们有烟雾或火灾的存在。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The rooms were all fitted with smoke alarms.",
+        "cn": "所有的房间都安装了烟雾报警器。"
+      },
+      {
+        "c": "We have fully functional smoke alarms on all staircases.",
+        "cn": "我们在所有楼梯上都装有运转完全正常的烟雾报警器。"
+      },
+      {
+        "c": "Double check your smoke alarms.",
+        "cn": "检查两遍你家里的烟雾报警器。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "snow boarding",
+    "phonetic0": "ˈsnəʊbɔːdɪŋ",
+    "phonetic1": "ˈsnoʊbɔːrdɪŋ",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "滑雪板"
+      },
+      {
+        "pos": "n.",
+        "cn": "滑板滑雪（运动）；单板滑雪（运动）"
+      },
+      {
+        "pos": "v.",
+        "cn": "参加滑雪（snowboard的ing形式）"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "We wanna go snow boarding and I saw several different Tours.",
+        "cn": "我们想去滑雪，我看到你们有几个滑雪的团。"
+      },
+      {
+        "c": "We might try a new sport like snow boarding and end up falling down a lot.",
+        "cn": "我们可以尝试一种新的运动，比如滑雪板，而以多次摔倒告终。饳。"
+      },
+      {
+        "c": "Listing 1: What the WSDL description of snow boarding endorsement search would have looked like in valid RDF syntax.",
+        "cn": "清单1：测雪板认可搜索的WSDL描述在用有效的rdf语法表示时的形式。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "stair lift",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "n.",
+        "cn": "楼梯升降机"
+      },
+      {
+        "pos": "",
+        "cn": "楼梯升降机"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "However in this case, we cannot afford to put his life in danger but to agree to the stair lift.",
+        "cn": "但是，在这种情况下，我们不能让他出现任何闪失，便同意安装楼梯升降机。"
+      },
+      {
+        "c": "The transmission system and its principle of the domestic and overseas stair lift with straight and curve rails are analyzed in this paper.",
+        "cn": "本文将对国内外直轨和弯轨形式爬楼梯装置的传动系统及其原理进行分析和研究。"
+      },
+      {
+        "c": "Lift and electronic stair in the school.",
+        "cn": "提升和电子在学校楼梯。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "state park",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "国家公园；＜美＞州立公园 ( 吞 )"
+      },
+      {
+        "pos": "",
+        "cn": "州立公园：指因其自然美景或历史重要性而被美国某个州拥有和保护的一片土地。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Hiking along De-Ga-Ya-So creek, Letchworth State Park, in Perry, New York.",
+        "cn": "沿着位于纽约佩里的莱奇沃思州立公园的 De-Ga-Ya-So 小溪徒步旅行。"
+      },
+      {
+        "c": "We find one at Salt Springs State Park, near the New York-Pennsylvania border.",
+        "cn": "我们在纽约和宾州交界处附近的盐泉州立公园中找到了这样一处。"
+      },
+      {
+        "c": "Yosemite became the first state park. It was the first real park in the world.",
+        "cn": "约塞米蒂成为第一个州公园，它是世界上第一个真正意义上的公园。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "statement position",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "无"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The letter was a bald statement of our legal position.",
+        "cn": "那封信是对我们的法律立场的直截了当的声明。"
+      },
+      {
+        "c": "This leaves Mr Osborne in an uncomfortable position as he prepares his autumn statement.",
+        "cn": "这种情况给了要准备秋季声明的奥斯本先生一个尴尬的位置。"
+      },
+      {
+        "c": "If you move the position update statement to a different package it is necessary to perform a configure.",
+        "cn": "如果将位置更新语句移动到不同的包，则需要进行相应的配置。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "storage space",
+    "phonetic0": "ˈstɔːrɪdʒ speɪs",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "存储空间"
+      },
+      {
+        "pos": "",
+        "cn": "储存空间：指用于存储物品、文件或数据的空间或区域。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Bitmapped maps require huge storage space.",
+        "cn": "位元映射地图需要巨大的存储空间。"
+      },
+      {
+        "c": "There's a lot of storage space in the loft.",
+        "cn": "阁楼上有很大的存贮空间。"
+      },
+      {
+        "c": "There is built-in storage space in all bedrooms.",
+        "cn": "所有卧室里都有内置储藏空间。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "[建]贮存面积，存储空间；贮藏室",
+        "ws": [
+          "repository",
+          "memory space"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "stop watch",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "秒表"
+      },
+      {
+        "pos": "",
+        "cn": "秒表：一种计时器，通常用于测量运动员完成任务所需的时间。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "When the bottle is empty, you can set the stop watch.",
+        "cn": "当瓶子空时，你可以设置一下秒表。"
+      },
+      {
+        "c": "A simple stop watch mechanism for succinct timing statements.",
+        "cn": "简洁的stop watch计时机制。"
+      },
+      {
+        "c": "The advice starts a stop watch, and then it lets the original request proceed.",
+        "cn": "建议启动一个秒表，然后让原始请求继续进行。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "停表；秒表",
+        "ws": [
+          "second chronograph"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "spare keys",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "无"
+      },
+      {
+        "pos": "",
+        "cn": "备用钥匙：一把备用的钥匙，通常用于丢失或损坏原有钥匙时的替代。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Now, none of us want to be in the situation where we can't get into our own home, but do take time to think where the best and safest place is to leave your spare keys.",
+        "cn": "现在，我们谁也不想陷入进不了自己家门的境地，但请务必花点时间想一想，把备用钥匙放在哪里才是最好、最安全的地方。"
+      },
+      {
+        "c": "My spare keys are 45 minutes away in my dorm room.",
+        "cn": "我的备用钥匙在离这要45分钟的宿舍里面。"
+      },
+      {
+        "c": "I locked my keys in the car, and I have to go to the airport to pick up my aunt. I have spare keys at home.",
+        "cn": "我把钥匙锁车里了，我得去机场接我姨，家里有备用钥匙。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "spare room",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "n.",
+        "cn": "空房"
+      },
+      {
+        "pos": "",
+        "cn": "备用房间：通常指为客人准备的房间。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "I let the spare room.",
+        "cn": "我把那间空房出租了。"
+      },
+      {
+        "c": "We made up the bed in the spare room.",
+        "cn": "我们在空着没用的屋里搭了张床。"
+      },
+      {
+        "c": "B: Yes, I have a spare room.",
+        "cn": "是的，我有一间空房。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "空房，客房",
+        "ws": [
+          "guest room"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "spring water",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "天然泉水"
+      },
+      {
+        "pos": "",
+        "cn": "泉水：从泉水中取出的水。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Have you ever tasted fresh berries, melon or spring water?",
+        "cn": "你曾尝过新鲜的浆果、甜瓜或泉水吗？"
+      },
+      {
+        "c": "Even the nice fresh pure spring water, birds and fish poop in it.",
+        "cn": "即使是新鲜纯净的好泉水，鸟和鱼也在里面排便。"
+      },
+      {
+        "c": "It is a kind of hot spring water, which contains the mineral base, to restore and transform it into weak alkaline water.",
+        "cn": "它是一种温泉水，含有矿物基质，来使它还原转化为弱碱性水。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "support services",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "支援服务，支持服务 ( 吞 )"
+      },
+      {
+        "pos": "",
+        "cn": "支持服务：提供给个人或组织的各种支持和帮助的服务，包括技术支持、咨询服务、客户服务等。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "This imbalance puts extra strain on local support services and the elder is no longer provided with familial support.",
+        "cn": "这种不平衡给当地的支持服务带来了额外的压力，老年人不再享有家庭的支持。"
+      },
+      {
+        "c": "This includes offering business centres that supply support services, conference rooms and other space for special events.",
+        "cn": "这包括提供供给支持服务的商业中心、会议室以及举办特殊活动的其他场所。"
+      },
+      {
+        "c": "In contrast, a spouse usually the wife, is much less likely to use support services or to put the dependent person in a nursing home.",
+        "cn": "相比之下，配偶，通常是其妻子，更不可能使用看护服务或是把其依赖的人送进养老院。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "switched off",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "关掉，关上(电灯等) (动词短语switch off的过去式)  ( 连 )"
+      },
+      {
+        "pos": "",
+        "cn": "关闭（某物），不再关注，不再注意：指将某物关闭或停止使用；不再关注或注意某事物。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "She switched off the coffee-machine.",
+        "cn": "她关掉了咖啡机。"
+      },
+      {
+        "c": "Please ensure (that) all lights are switched off.",
+        "cn": "请务必将所有灯都关掉。"
+      },
+      {
+        "c": "The device automatically disconnects the ignition when the engine is switched off.",
+        "cn": "该设备在引擎被关闭时会自动断开点火装置。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "television program",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "n.",
+        "cn": "电视节目"
+      },
+      {
+        "pos": "",
+        "cn": "电视节目：电视广播的内容。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Internet providers allow instant viewing of almost any movie or television program ever created.",
+        "cn": "互联网提供商允许即时观看几乎所有的电影或电视节目。"
+      },
+      {
+        "c": "I was inspired while watching a television program showing how sleds might have helped with pyramid construction.",
+        "cn": "我是在看一个电视节目时受到启发的，这个节目展示了雪橇可能会有助于金字塔的建造。"
+      },
+      {
+        "c": "Bonior appeared on the Fox News Sunday television program.",
+        "cn": "博尼·奥尔是星期天在福克斯新闻的电视节目上说这番话的。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "电视节目",
+        "ws": [
+          "television show",
+          "TV show"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "television drama",
+    "phonetic0": "ˈtelɪvɪʒn ˈdrɑːmə",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "电视戏剧"
+      },
+      {
+        "pos": "",
+        "cn": "电视剧：一种在电视上播放的戏剧性节目，通常包括连续的剧集或单集，以故事情节和角色发展为主要内容。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Sex and violence seem to be the staple diet of television drama.",
+        "cn": "性和暴力好像是电视剧离不开的内容。"
+      },
+      {
+        "c": "Nancy: a television drama is usually an hour long, and is about law, police work, hospitals or families.",
+        "cn": "她只看电视剧。Television drama通常指一小时长的电视剧，内容涉及法律、警察、医院等严肃话题。"
+      },
+      {
+        "c": "When the protagonist of “Boys from the Blackstuff”, a television drama set in 1980s Liverpool, shouts “Gissa job!",
+        "cn": "20世纪80年代，利物浦出了一部叫“来自黑暗地带的男孩”的电视剧，电视剧主角大肆叫嚣着“找工作”。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "temple walls",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "庙宇的墙壁"
+      },
+      {
+        "pos": "",
+        "cn": "寺庙墙壁：指寺庙内部或外部的墙壁，通常用于装饰或保护寺庙。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Many adornments were carved on the temple walls.",
+        "cn": "寺院的墙壁上刻着很多装饰物。"
+      },
+      {
+        "c": "Many adornments were carved on the temple walls.",
+        "cn": "寺院的墙壁上刻著很多装饰物。"
+      },
+      {
+        "c": "We forged them from shining metals and painted them on temple walls.",
+        "cn": "我们用金属锻造出神明，把他们漆在寺庙的墙上。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "think quickly",
+    "phonetic0": "θɪŋk ˈkwɪkli",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "动词短语—思维敏捷,脑子转得快   ( 吞 )"
+      },
+      {
+        "pos": "",
+        "cn": "迅速思考：在短时间内做出决策或解决问题的能力。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "I had to think quickly.",
+        "cn": "我要赶快想办法。"
+      },
+      {
+        "c": "Try not to labor over decisions, think quickly, and act fast.",
+        "cn": "别再仔细分析你的决定，快速思考，快速行动。"
+      },
+      {
+        "c": "Timed board games, cell phone, computer and video games help you think quickly, flexibly and pay attention, which boosts memory.",
+        "cn": "计时的桌面游戏，手机，电脑，视频游戏能帮助你快速灵活地思考，集中注意力，增强记忆。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "tracking protection",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "无"
+      },
+      {
+        "pos": "",
+        "cn": "磁道保护"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The tracking protection will be an opt-in feature for users to identify and block certain forms of website tracking.",
+        "cn": "跟踪保护功能将会以可选特性的形式帮助用户识别并拦截某些形式的网站跟踪。"
+      },
+      {
+        "c": "Tracking Protection aims to bring transparency to the data some sites and advertisers use to track you as you journey across the web.",
+        "cn": "跟踪保护的目标是让某些网站和广告商使用的数据有透明度，这些数据在你漫游网络的时候被他们用来跟踪你。"
+      },
+      {
+        "c": "Once enabled, the tracking protection would exist for all Web pages the user visits and would take effect each time they start a new browsing session.",
+        "cn": "一旦这个功能启用，追逐保护将存在于用户浏览的所有网页中，而且每次打开一个新浏览器会话都会起效。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "visual aids",
+    "phonetic0": "ˈvɪʒuəl eɪdz",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "视觉辅助教具"
+      },
+      {
+        "pos": "",
+        "cn": "视觉辅助工具：指用于增强沟通的任何视觉材料或工具，如图表、图示、照片、视频或幻灯片。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "He also prepared visual aids, diagramming photo line, so his classmates wouldn't get confused.",
+        "cn": "他还准备了视觉教具，绘制了照片线，这样他的同学就不会被弄糊涂了。"
+      },
+      {
+        "c": "Then they try to teach the students something with a specific presentation style, like using visual AIDS, and do a follow up test to see how much they learned.",
+        "cn": "然后他们试着用一种特定的演讲风格教学生一些东西，比如使用视觉辅助，和做一个后续测试，看看他们学到了多少。"
+      },
+      {
+        "c": "Use visual AIDS.",
+        "cn": "运用视觉教具。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "volcanic ash",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "火山灰"
+      },
+      {
+        "pos": "",
+        "cn": "火山灰：火山喷发时喷出的细小颗粒物质，通常由岩石碎片、矿物质和玻璃碎片组成。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Volcanic ash showered down on the town after the eruption.",
+        "cn": "火山喷发后，小城落了一层火山灰。"
+      },
+      {
+        "c": "A cloud of volcanic ash is spreading across wide areas of the Philippines.",
+        "cn": "一大片火山灰正在向菲律宾的大块区域扩散。"
+      },
+      {
+        "c": "The Romans observed that, when volcanic ash mixes with water and then cools, it gets extremely hard and almost impossible to break up.",
+        "cn": "罗马人观察到，当火山灰与水混合然后冷却，火山灰变得非常坚硬，几乎不可能分解。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "[地质]火山灰",
+        "ws": [
+          "pozzolana",
+          "tephra"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "walking boots",
+    "phonetic0": "ˈwɔːkɪŋ buːts",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "登山靴"
+      },
+      {
+        "pos": "",
+        "cn": "徒步靴：一种专门用于徒步旅行或远足的靴子，通常具有防水、防滑和脚踝支撑功能。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "People are being asked to stockpile goods, don walking boots or cycle helmets, or stay at home.",
+        "cn": "人们被要求囤积货物，穿上暴走鞋，带上自行车安全帽，或者，呆在家。"
+      },
+      {
+        "c": "The collection includes for example the artists original walking boots from his legendary performance together with Marina Abramovich in 1988, \"the Lovers: the Great Wall walk\".",
+        "cn": "整个收藏品包括了例如：艺术家1988年与玛丽娜·阿布拉莫维奇合作的传奇行为表演《恋人：长城之旅》中艺术家们原来的登山鞋。"
+      },
+      {
+        "c": "Walking along planks, studying these friezes of desolation, I found myself wondering whose boots lay ahead, poking round a corner.",
+        "cn": "走在木板上，我仔细地一个一个研究这些浮雕，突然发现前面有一双靴子，从拐角处探出来。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "（in）ability to",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "（没）有…的能力"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Shaffer's great gift lies in his ability to animate ideas theatrically.",
+        "cn": "谢弗的天赋在于他能把想法在戏剧上表现出来。"
+      },
+      {
+        "c": "Not every judge, however, has the ability to explain the law in simple terms.",
+        "cn": "然而，并非每个法官都能用浅易的话来解释法律。"
+      },
+      {
+        "c": "The public never had faith in his ability to handle the job.",
+        "cn": "公众从来都不相信他有处理这个工作的能力。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "（in）capacity to",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "（没）有…的能力"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "They also have a greater capacity than land animals to store oxygen in their blood.",
+        "cn": "它们在血液中储存氧气的能力也比陆栖动物强。"
+      },
+      {
+        "c": "A boost in the storage capacity of batteries is making their ability to keep power flowing around the clock more likely.",
+        "cn": "电池存储容量的大幅提升使其更有可能保持全天候供电。"
+      },
+      {
+        "c": "The EU agreed to continue to assist China's efforts in capacity building.",
+        "cn": "欧盟同意继续帮助中国在能力建设方面的努力。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "a great deal",
+    "phonetic0": "ə ɡreɪt diːl",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "很多"
+      },
+      {
+        "pos": "",
+        "cn": "很多：表示数量很大或程度很高。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "They spent a great deal of money.",
+        "cn": "他们花了大量的钱。"
+      },
+      {
+        "c": "Emma, I trust your opinion a great deal.",
+        "cn": "埃玛，我非常相信你的观点。"
+      },
+      {
+        "c": "The relationship caused her a great deal of heartache.",
+        "cn": "这段恋情使她非常伤心。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "a great many",
+    "phonetic0": "ə ɡreɪt ˈmeni",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "很多"
+      },
+      {
+        "pos": "",
+        "cn": "相当多的：表示数量很大。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "He made a great many mistakes.",
+        "cn": "他犯了许多的错误。"
+      },
+      {
+        "c": "They carry a great many diseases.",
+        "cn": "它们会传播许多疾病。"
+      },
+      {
+        "c": "They sent a great many reporters.",
+        "cn": "他们派遣了很多记者。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "ability to do",
+    "phonetic0": "əˈbɪləti tu duː",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "做…的能力"
+      },
+      {
+        "pos": "",
+        "cn": "做某事的能力：指一个人或物体完成某项任务或活动的能力。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "I have serious reservations about his ability to do the job.",
+        "cn": "我非常怀疑他有没有能力胜任这项工作。"
+      },
+      {
+        "c": "The chameleon lizard has the most striking ability to do this.",
+        "cn": "变色龙在这方面有着最惊人的能力。"
+      },
+      {
+        "c": "Even as we humans count on forests to soak up a good share of the carbon dioxide we produce, we are threatening their ability to do so.",
+        "cn": "即使我们指望森林吸收很大一部分人类生产的二氧化碳，但森林的吸收能力正在遭受人类的威胁。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "act as",
+    "phonetic0": "ækt æz",
+    "phonetic1": "ækt æz",
+    "trans": [
+      {
+        "pos": "na.",
+        "cn": "做(向导)"
+      },
+      {
+        "pos": "",
+        "cn": "扮演某种角色或担任某种职责，尤其是你通常不会扮演或担任的角色或职责：指在某种情况下充当某种角色或担任某种职责，尤其是你通常不会扮演或担任的角色或职责。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Can you act as interpreter?",
+        "cn": "你能担任口译吗？"
+      },
+      {
+        "c": "They will act as my legal advisers if need be.",
+        "cn": "需要的话，他们会作我的法律顾问。"
+      },
+      {
+        "c": "Stress may act as a trigger for these illnesses.",
+        "cn": "压力也许是引发这些疾病的一个原因。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "担当",
+        "ws": [
+          "serve on"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "act on",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "采取行动"
+      },
+      {
+        "pos": "",
+        "cn": "根据收到或推断出的信息果断采取行动，或根据（通常是潜意识的）欲望或冲动采取行动，或对某事采取行动，或影响某事物"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "We need to act on a Europe-wide scale.",
+        "cn": "我们得在全欧洲范围内采取行动。"
+      },
+      {
+        "c": "They don't understand why successive governments have failed to act on this.",
+        "cn": "他们不明白为什么历届政府都未能对此采取行动。"
+      },
+      {
+        "c": "He tends to act on impulse.",
+        "cn": "他往往凭一时冲动行事。"
+      }
+    ],
+    "phrases": [
+      {
+        "c": "lord acton",
+        "cn": "艾克顿公爵（英国历史学家）"
+      }
+    ],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "对…起作用；按照…行事",
+        "ws": [
+          "work on",
+          "act upon"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "act out",
+    "phonetic0": "ækt aʊt",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "表演"
+      },
+      {
+        "pos": "",
+        "cn": "表演出来：指通过行动来表达或演示（所读的内容）。"
+      },
+      {
+        "pos": "",
+        "cn": "付诸行动：指将想法或信念转化为实际行动。"
+      },
+      {
+        "pos": "",
+        "cn": "直接行为表达：指直接将冲动或幻想通过明显的行为表达出来，而不加以修改以符合社会规范。"
+      },
+      {
+        "pos": "",
+        "cn": "行为失控：指以一种不被社会接受、常常自我毁灭的方式，表现出不良或不符合社会规范的行为，尤其是为了宣泄痛苦的情绪（如恐惧或挫折）。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "They are able to act out the text.",
+        "cn": "他们能把课文表演出来。"
+      },
+      {
+        "c": "The children started to act out the whole incident.",
+        "cn": "孩子们开始表演整个事件。"
+      },
+      {
+        "c": "Through play, children act out in miniature the dramas of adult life.",
+        "cn": "通过游戏，孩子们演出了成年人生活的缩影。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "add up to",
+    "phonetic0": "æd ʌp tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "加起来"
+      },
+      {
+        "pos": "",
+        "cn": "加起来等于：通过加法将数字相加：如果你把5、10和17相加，结果是32。如果你把6加上8，得到14。"
+      },
+      {
+        "pos": "",
+        "cn": "导致，结果是：导致某种结果或情况：这个政策的实施将导致更多的失业。"
+      },
+      {
+        "pos": "",
+        "cn": "合计，总计：计算总数或总和：这些数字的总和是50。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The numbers add up to exactly 100.",
+        "cn": "这些数字的总数恰好是100。"
+      },
+      {
+        "c": "For a hit show, profits can add up to millions of dollars.",
+        "cn": "对于一个热门节目，利润可达上百万美元。"
+      },
+      {
+        "c": "It's the tiny, gradual improvements that add up to world-beating results.",
+        "cn": "这些微小的、渐进的改进累积起来就产生了一流的成果。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "after all",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "毕竟，终究"
+      },
+      {
+        "pos": "",
+        "cn": "毕竟：尽管有相反的考虑或期望。"
+      },
+      {
+        "pos": "",
+        "cn": "考虑到一切：考虑到所有情况。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "So you made it after all!",
+        "cn": "你毕竟成功了！"
+      },
+      {
+        "c": "After all, The Masters is an invitational tournament.",
+        "cn": "毕竟，这项大师赛是一场邀请赛。"
+      },
+      {
+        "c": "It was actually quite fun after all.",
+        "cn": "这居然还很有趣。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "毕竟；终究",
+        "ws": [
+          "in the long run"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "aim for",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "目标"
+      },
+      {
+        "pos": "",
+        "cn": "瞄准，以……为目标：指将目标对准某个目标，努力追求达到目标。"
+      },
+      {
+        "pos": "",
+        "cn": "追求，力争达到：指努力追求或力争达到某个目标或结果。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "He said he would aim for the 100 metre world record at the world championships in August.",
+        "cn": "他说他将以在8月举行的世界锦标赛上打破100米世界纪录为目标。"
+      },
+      {
+        "c": "Dieters aim for 1,000 to 1,500 calories a day.",
+        "cn": "节食者的目标是每天摄入1000到1500卡路里。"
+      },
+      {
+        "c": "It's not just because it's something that all people want to aim for.",
+        "cn": "这不仅仅是因为它是所有人都想要追求的目标。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "瞄准；以…为目标",
+        "ws": [
+          "take aim at",
+          "take sight"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "Albert Einstein",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "阿尔伯特·爱因斯坦"
+      },
+      {
+        "pos": "",
+        "cn": "阿尔伯特·爱因斯坦（著名物理学家，相对论的提出者）"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "This is a portrait of Albert Einstein.",
+        "cn": "这是阿尔伯特·爱因斯坦的肖像。"
+      },
+      {
+        "c": "My hero is the scientist Albert Einstein because he never brushed his hair or wore socks.",
+        "cn": "我的英雄是科学家阿尔伯特·爱因斯坦，因为他从不梳头，也不穿袜子。"
+      },
+      {
+        "c": "Albert Einstein added another wrinkle when he theorized that time varies depending on where you measure it.",
+        "cn": "阿尔伯特·爱因斯坦提出了另一个问题，根据他的理论，时间会因测量地点的不同而改变。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "Alex la Guma",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "亚力克斯·拉顾玛（南非作家）"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "Alfrde Hutchinson",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "阿尔弗雷德·哈奇逊（南非作家）"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "Alfred Whitehead",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "阿尔福雷德·怀特里德"
+      },
+      {
+        "pos": "n.",
+        "cn": "阿尔福雷德·怀特里德"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "As Alfred North Whitehead said, philosophy is a series of footnotes to Plato.",
+        "cn": "正如怀特海说，哲学是柏拉图的一系列注脚。"
+      },
+      {
+        "c": "The tragedy of the world is that those who are imaginative have but slight experience, and those who are experienced have feeble imagination. -Alfred North Whitehead.",
+        "cn": "这个世界的悲哀在于，充满想象力的人缺乏经验，而拥有经验的人却缺乏想象力。——阿尔弗雷德。诺斯。怀特海德。"
+      },
+      {
+        "c": "The process philosophy created by Alfred North Whitehead, an American philosopher, had an important effect on modern western philosophy with its arguing against traditional essentialism.",
+        "cn": "由美国哲学家怀特海所创立的过程哲学，以反对传统的实在论而对现代西方哲学产生了重要的影响。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "all the same",
+    "phonetic0": "ɔːl ðə seɪm",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "都一样"
+      },
+      {
+        "pos": "",
+        "cn": "尽管有所不同或有所变化，但总体上仍然相同或相似"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "If it's all the same to you, I'd rather work at home.",
+        "cn": "如果对你来说都一样，我宁愿在家工作。"
+      },
+      {
+        "c": "There are several brands and they're not all the same.",
+        "cn": "有好几个品牌，不一样的。"
+      },
+      {
+        "c": "Whether I've got a moustache or not it's all the same to me.",
+        "cn": "我留不留胡子对自己来说都一样。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "仍然",
+        "ws": [
+          "no less",
+          "none the worse"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "Alvin Bronstein",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "阿尔文·布朗斯坦（人名）"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "amount to",
+    "phonetic0": "əˈmaʊnt tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "金额"
+      },
+      {
+        "pos": "",
+        "cn": "等同于：将多个部分或数量加在一起得到一个总数，或指某种行为或情况与另一种行为或情况在意义或效果上相同。"
+      },
+      {
+        "pos": "",
+        "cn": "达到：指某个数量或程度达到某个值或标准。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The spokesman stressed that the measures did not amount to an overall ban.",
+        "cn": "发言人强调说，这些措施并不等于全面禁止。"
+      },
+      {
+        "c": "We will always confirm the revised amount to you in writing before debiting your account.",
+        "cn": "在记入你的借方账户前，我们每次都会以书面形式向你确认修改过的数额。"
+      },
+      {
+        "c": "Their actions amount to a breach of contract.",
+        "cn": "他们的行为已属违反合同。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "and so on",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "等等"
+      },
+      {
+        "pos": "",
+        "cn": "等等，诸如此类：用于表示列举事物时，后面还有其他类似的事物，但没有一一列举出来。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "We discussed everything—when to go, what to see and so on.",
+        "cn": "我们什么都商量过了—什么时候走、看什么等等。"
+      },
+      {
+        "c": "They sell a wide range of domestic appliances —washing machines, dishwashers and so on.",
+        "cn": "他们出售各种家用电器—洗衣机、洗碗机等等。"
+      },
+      {
+        "c": "Don't forget about texts, emails, and so on.",
+        "cn": "不要忘记短信、邮件等等。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "and the like",
+    "phonetic0": "ənd ðə laɪk",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "等等"
+      },
+      {
+        "pos": "",
+        "cn": "等等，诸如此类"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Raising the money is done in the usual time-honoured ways – college events, garage sales, and the like.",
+        "cn": "集资是通过寻常且由来已久的方式来完成的，如校园活动、宅前出售等。"
+      },
+      {
+        "c": "He examined how many times people were first authors on influential studies, and the like.",
+        "cn": "他调查了在有影响力的研究中人们作为第一作者出现的次数等等。"
+      },
+      {
+        "c": "We talked about music, painting, literature and the like.",
+        "cn": "音乐、绘画、文学什么的，我们都谈到了。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "Andre Brink",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "安德烈·布林克（南非作家）"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "Anne Peters",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "Anne",
+        "cn": "Peters"
+      },
+      {
+        "pos": "",
+        "cn": "安妮·彼得斯（人名）"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "One afternoon while she was preparing dinner in her kitchen, Anne Peters, a 32-year-old American housewife, suddenly had severe pains in her chest accompanied by shortness of breath.",
+        "cn": "一天下午，安妮•彼得斯，一位32岁的美国家庭主妇，正在厨房准备晚饭的时候，突然胸口一阵剧烈的疼痛，伴着呼吸急促。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "apply oneself",
+    "phonetic0": "əˈplaɪ wʌnˈself",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "专心致志"
+      },
+      {
+        "pos": "",
+        "cn": "努力工作以成功完成某事"
+      },
+      {
+        "pos": "",
+        "cn": "专心致志地做某事"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "One must apply oneself to the present and keep one's eyes firmly fixed on one's future goals.",
+        "cn": "人们必须让自己立足于现在，把眼光坚定地锁定未来目标。"
+      },
+      {
+        "c": "It is difficult to apply oneself to a boring task.",
+        "cn": "致力于厌烦的工作是非常困难的。"
+      },
+      {
+        "c": "I see some are factitious it is easy to go abroad, apply for a few special skill with oneself, interest to be without the major of the relation.",
+        "cn": "我见到有些人为了出国轻易，申请一些和自己的专长、爱好毫无关系的专业。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "减少对…之消耗量；努力，致力于…",
+        "ws": [
+          "struggle",
+          "aim of"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "approach to",
+    "phonetic0": "əˈproʊtʃ tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "方法"
+      },
+      {
+        "pos": "",
+        "cn": "接近：指向某人/某物靠近或接触的行动或方式。"
+      },
+      {
+        "pos": "",
+        "cn": "对待：指处理或对待某个问题、情况或人的方式或态度。"
+      },
+      {
+        "pos": "",
+        "cn": "处理：指解决问题或处理事务的方式、方法或策略。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "I have an analytical approach to every survey.",
+        "cn": "我对每项调查都采用一种分析的方法。"
+      },
+      {
+        "c": "He took a very scientific approach to management.",
+        "cn": "他采取了一种非常科学的管理方法。"
+      },
+      {
+        "c": "Their approach to life is refreshingly naive.",
+        "cn": "他们对待生活的态度天真率直，令人耳目一新。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "接近；约等于；通往…的方法",
+        "ws": [
+          "go on for",
+          "come close to"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "approximate to",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "近似于"
+      },
+      {
+        "pos": "",
+        "cn": "接近：不完全准确但接近的意思。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "In the animation you can discover another I, approximate to crazy me.",
+        "cn": "在动漫中你能发现另一个我，一个近似于疯狂的我。"
+      },
+      {
+        "c": "But as a rule the terseness and point of the maxim approximate to the modern epigram.",
+        "cn": "但总的来说格言的简洁凝炼是与现代格言警句相类似的。"
+      },
+      {
+        "c": "Presently, there is not much left of the city but a number of buildings that approximate to 980 sited on an area of 7.8 million square foot.",
+        "cn": "而现如今，紫禁城已然成为了一座空城，只留下了大约980座楼宇散布在了780万平方英尺的土地上。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "Arctic Circle",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "北极圈"
+      },
+      {
+        "pos": "",
+        "cn": "北极圈"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "We welcome you to the Arctic Circle.",
+        "cn": "我们欢迎您来到北极圈。"
+      },
+      {
+        "c": "If you live near the Arctic Circle, hug the closest polar bear.",
+        "cn": "如果你生活在北极圈附近，请拥抱离你最近的北极熊。"
+      },
+      {
+        "c": "Some 10,000 pairs of the birds, called fulmars, a kind of Arctic seabird, make their nests on Devon Island, north of the Arctic Circle.",
+        "cn": "在北极圈以北的德文岛上大约有一万对鸟在那里筑巢，它们被称为管鼻鹱，是一种北极海鸟。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "as a result of",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "由于"
+      },
+      {
+        "pos": "",
+        "cn": "由于，因为：用来表示某个事件或行动的结果或原因。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "She died as a result of her injuries.",
+        "cn": "她由于受伤而死亡。"
+      },
+      {
+        "c": "Their bodies had suffered contortion as a result of malnutrition.",
+        "cn": "由于营养不良他们的躯体都变了形。"
+      },
+      {
+        "c": "Millions will face starvation next year as a result of the drought.",
+        "cn": "由于发生旱灾，明年将有数百万人面临饥饿的威胁。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "adv.",
+        "cn": "因此，由于；作为…的结果",
+        "ws": [
+          "therefore",
+          "hence",
+          "accordingly",
+          "consequently",
+          "because of",
+          "thus"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "as a rule",
+    "phonetic0": "æz əruːl",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "通常"
+      },
+      {
+        "pos": "",
+        "cn": "通常，一般来说"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "As a rule, however, such attacks have been aimed at causing damage rather than taking life.",
+        "cn": "然而，通常此类攻击意在造成破坏而非要人性命。"
+      },
+      {
+        "c": "As a rule they are either fools or swindlers!",
+        "cn": "通常他们不是傻瓜就是骗子！"
+      },
+      {
+        "c": "As a rule, our academic year begins early in September.",
+        "cn": "我们的学年通常在九月初开始。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "通常，一般说来",
+        "ws": [
+          "in general",
+          "in the ordinary course of events"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "as fresh as paint",
+    "phonetic0": "æz freʃ æz peɪnt",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "像油漆一样新鲜"
+      },
+      {
+        "pos": "",
+        "cn": "状态良好，看起来新鲜：形容事物状态良好，看起来崭新、焕然一新。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The White house working personnel were as fresh as paint while the locals in this case were jet- lagged.",
+        "cn": "白宫工作人员个个精神焕发，而在这种情况下，当地人却受时差反应之苦。"
+      },
+      {
+        "c": "The White House working personnel were as fresh as paint, while the locals, in this case, were jet-lagged.",
+        "cn": "白宫工作人员个个精神焕发，而在这种情况下，当地人却受时差反应之苦。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "as the saying goes",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "俗话说"
+      },
+      {
+        "pos": "",
+        "cn": "俗话说：用于引用一句常见的谚语或格言，表示某个观点或智慧的总结。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "'Accidents will happen', as the saying goes.",
+        "cn": "常言道：“意外事，总难免。”"
+      },
+      {
+        "c": "As the saying goes — it's no use crying over spilt milk.",
+        "cn": "常言道：覆水难收，后悔也于事无补。"
+      },
+      {
+        "c": "When would they be hired again? Perhaps, as the saying goes, when pigs fly.",
+        "cn": "他们什么时候会被重新雇用？也许正像俗话说的，等到猴年马月吧。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "as to",
+    "phonetic0": "æz tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "关于，至于"
+      },
+      {
+        "pos": "",
+        "cn": "关于，就……而言；根据，按照"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "I'm not so stupid as to believe that.",
+        "cn": "我还不至于傻得连那样的话都相信。"
+      },
+      {
+        "c": "I hadn't a clue as to the meaning of \"activism.\"",
+        "cn": "我对的意思一无所知。"
+      },
+      {
+        "c": "As to tax, that will be deducted from your salary.",
+        "cn": "至于税款，将从你薪水中扣除。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "至于，关于；就……而论",
+        "ws": [
+          "concerning",
+          "about",
+          "in the case of"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "as yet",
+    "phonetic0": "æz jet",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "到目前为止"
+      },
+      {
+        "pos": "",
+        "cn": "到目前为止或指定的时间为止：表示某事尚未发生或完成。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The plan, as yet, only exists in embryonic form.",
+        "cn": "这个计划迄今为止还只是在酝酿之中。"
+      },
+      {
+        "c": "Universal has agreed to pay $5 million for Grisham's next, as yet unwritten, novel.",
+        "cn": "环球公司已同意给格里森姆的下一部还未完稿的小说支付500万美元。"
+      },
+      {
+        "c": "As yet, they have no solid evidence.",
+        "cn": "他们至今没有任何可靠的证据。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "ask for",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "请求（给予）"
+      },
+      {
+        "pos": "",
+        "cn": "请求见或与（某人）交谈：请求与某人见面或交谈。"
+      },
+      {
+        "pos": "",
+        "cn": "有人找你：有人打电话找你。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "I'm going to ask for a rise.",
+        "cn": "我打算要求加薪。"
+      },
+      {
+        "c": "Mr. Spero was reluctant to ask for help.",
+        "cn": "斯珀洛先生不愿意请求帮助。"
+      },
+      {
+        "c": "I would never ask for any favours from her.",
+        "cn": "我再也不会请她帮任何忙了。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "请求，要求；寻找",
+        "ws": [
+          "require",
+          "demand of"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "Aswan Dam",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "阿斯旺大坝"
+      },
+      {
+        "pos": "",
+        "cn": "阿斯旺水坝（建在埃及东南部城市阿斯旺附近的尼罗河河段上）"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The old Aswan dam was a barrage.",
+        "cn": "老的阿斯旺坝是一个拦河闸。"
+      },
+      {
+        "c": "It goes to the bottom of the lake by the Aswan Dam.",
+        "cn": "它们被阿斯旺高坝沉在了湖底。"
+      },
+      {
+        "c": "The Aswan Dam helps to control the River Nile in Egypt.",
+        "cn": "阿斯旺水坝有助于控制埃及的尼罗河。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "阿斯旺水坝（建在埃及东南部城市阿斯旺附近的尼罗河河段上）",
+        "ws": [
+          "Aswan High Dam"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "at a disadvantage",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "处于不利地位"
+      },
+      {
+        "pos": "",
+        "cn": "处于不利地位：处于一个比他人更不容易成功的情况中。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "I felt at a disadvantage.",
+        "cn": "我觉得处于不利地位。"
+      },
+      {
+        "c": "I was at a disadvantage compared to the younger members of the team.",
+        "cn": "与队里较年轻的队员相比，我处于不利地位。"
+      },
+      {
+        "c": "One of the concerns for students in this course, particularly those we dub less comfortable is that you're already starting off at a disadvantage.",
+        "cn": "对于这门课的学生，尤其是那些被我们称为不太舒服的学生来说，首先要考虑的是你们已经处于劣势了。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "at a guess",
+    "phonetic0": "æt ə ɡes",
+    "phonetic1": "æt ə ɡes",
+    "trans": [
+      {
+        "pos": "na.",
+        "cn": "照估计"
+      },
+      {
+        "pos": "",
+        "cn": "根据粗略的观察或猜测：表示根据个人判断或估计得出的结论。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "At a guess he's been dead for two days.",
+        "cn": "据猜测，他已经死了两天了。"
+      },
+      {
+        "c": "At a guess , there were forty people at the party.",
+        "cn": "估计有四十人参加了聚会。"
+      },
+      {
+        "c": "Around 278,000 whites once lived in Zimbabwe; now, at a guess, there are around 12,000.",
+        "cn": "以前大概有27800位白人生活在津巴布韦，现在估计也就在12000左右。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "凭猜测；推测",
+        "ws": [
+          "by guess"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "at a stretch",
+    "phonetic0": "æt ə stretʃ",
+    "phonetic1": "æt ə stretʃ",
+    "trans": [
+      {
+        "pos": "na.",
+        "cn": "一口气"
+      },
+      {
+        "pos": "",
+        "cn": "一次性不停地进行某项活动"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "He would stay for hours at a stretch in the laboratory.",
+        "cn": "他能一连几个小时呆在实验室里。"
+      },
+      {
+        "c": "Whereas purposeful men could make their way across a narrow bridge, the slow diffusion of plant and animals would require an avenue as a continent and available for ages at a stretch.",
+        "cn": "有目的的人可以通过一座狭窄的桥，而植物和动物的缓慢扩散则需要一条像大陆一样的道路，而且需要很长时间才能使用。"
+      },
+      {
+        "c": "Today I really swam to my heart's content. I did 3,000 metres at a stretch.",
+        "cn": "今天我一口气游了三千米，真过瘾。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "一口气地，不休息地",
+        "ws": [
+          "at a sitting",
+          "at one sitting"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "at best",
+    "phonetic0": "æt best",
+    "phonetic1": "æt best",
+    "trans": [
+      {
+        "pos": "na.",
+        "cn": "充其量也不过"
+      },
+      {
+        "pos": "",
+        "cn": "在最好的情况下：表示某事物或情况的最优状态或最高水平。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Most drugs offer either no real improvement or, at best, only moderate improvements.",
+        "cn": "大多数药或者没有真正疗效，或者最多也就是稍有疗效。"
+      },
+      {
+        "c": "By comparison, the terrestrial planets have meager atmospheres at best.",
+        "cn": "相比之下，类地行星最多只有稀薄的大气层。"
+      },
+      {
+        "c": "The script was workmanlike at best.",
+        "cn": "这部剧本充其量不过是匠人之作。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "最多",
+        "ws": [
+          "at the outside"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "at ease",
+    "phonetic0": "æt iːz",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "放心"
+      },
+      {
+        "pos": "",
+        "cn": "放松、安逸或无担忧的状态。在军事上，这个短语用于命令士兵放松姿势，但在日常用语中，它通常用来形容人们感到舒适、自在或放松的状态"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "It is essential to feel at ease with your therapist.",
+        "cn": "与治疗师在一起时，关键是放松心情。"
+      },
+      {
+        "c": "The rooms are small but making you feel at ease.",
+        "cn": "房间很小，但能让你感到舒适自在。"
+      },
+      {
+        "c": "I never feel completely at ease with him.",
+        "cn": "我跟他在一起总感到不是很自在。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "at large",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "整个，全部"
+      },
+      {
+        "pos": "",
+        "cn": "未被限制的；自由的；在逃的"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "I think the chances of getting reforms accepted by the community at large remain extremely remote.",
+        "cn": "我认为，让该团体的大部分人都接受改革的希望仍然极其渺茫。"
+      },
+      {
+        "c": "Her killer is still at large.",
+        "cn": "杀害她的凶手仍然逍遥法外。"
+      },
+      {
+        "c": "The man who tried to have her killed is still at large.",
+        "cn": "企图谋杀她的那个男人仍然逍遥法外。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "详尽的；未被捕的，整个的",
+        "ws": [
+          "in mass"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "at sea",
+    "phonetic0": "æt siː",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "在海上"
+      },
+      {
+        "pos": "",
+        "cn": "困惑或迷茫的状态"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "They fought both at sea and on land.",
+        "cn": "他们在海上和陆上都打过仗。"
+      },
+      {
+        "c": "He was drowned at sea.",
+        "cn": "他淹死在海里。"
+      },
+      {
+        "c": "They were lost at sea.",
+        "cn": "他们在海上迷失了方向。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "在海上；茫然；感觉困惑",
+        "ws": [
+          "on the sea"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "at the rate of",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "以"
+      },
+      {
+        "pos": "",
+        "cn": "以……的速度；按照……的比率"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "She grinds out romantic novels at the rate of five a year.",
+        "cn": "她以一年五部的速度胡乱拼凑低劣的爱情小说。"
+      },
+      {
+        "c": "His sales force is signing up schools at the rate of 25 a day.",
+        "cn": "他的销售人员正以每天25个的速度和多所学校签约。"
+      },
+      {
+        "c": "Now, we look at the rate of change in the volume of Hell.",
+        "cn": "现在，我们计算下地狱里的交换率。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "attach importance to",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "重视"
+      },
+      {
+        "pos": "",
+        "cn": "重视，看重，给予重要性：指对某事物或某人给予高度重视和重要性。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "We should attach importance to children's mental health.",
+        "cn": "我们应该重视儿童心理健康。"
+      },
+      {
+        "c": "Young people tend to attach importance to pre-marital finance.",
+        "cn": "年轻人往往很重视婚前财务问题。"
+      },
+      {
+        "c": "We will also attach importance to pre-school education and care about special education.",
+        "cn": "重视学前教育，关心特殊教育。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "重视；着重于…；对…给予重视",
+        "ws": [
+          "take seriously",
+          "make account of"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "attend to",
+    "phonetic0": "əˈtend tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "注意"
+      },
+      {
+        "pos": "",
+        "cn": "照料，处理：照料、关注或处理某事物或某人。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Attend to the lecture, or you will learn nothing.",
+        "cn": "注意听讲，否则你什么也学不到。"
+      },
+      {
+        "c": "I have some urgent business to attend to.",
+        "cn": "我有一些急事要处理。"
+      },
+      {
+        "c": "I'm afraid I have some pressing business to attend to.",
+        "cn": "很抱歉，我有些急事需要处理。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "注意；照料；致力于",
+        "ws": [
+          "watching",
+          "take care of",
+          "nurse"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "attitude toward",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "对…的态度"
+      },
+      {
+        "pos": "",
+        "cn": "对待态度：一个人或组织对某个人、事物或事件的看法、态度或反应。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Be sure to call your child's teacher if you notice a change in your child's attitude toward school.",
+        "cn": "如果你注意到孩子对学校的态度发生了变化，一定要给孩子的老师打电话。"
+      },
+      {
+        "c": "You have a positive attitude toward it.",
+        "cn": "你对它持积极的态度。"
+      },
+      {
+        "c": "His casual attitude toward everything has really put us off.",
+        "cn": "他对任何事情都漫不经心的态度使我们很反感。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "对...的态度；意见",
+        "ws": [
+          "opinion",
+          "view",
+          "comment",
+          "mind",
+          "judgement"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "attitude toward（s）",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "对…的态度；意见"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Indeed, none touched on the fate of Mr. Hu, on [gm99nd] Inc. 's decisions in China, on import-substitution policies or on surveys that have shown a bleak attitude toward doing business in China.",
+        "cn": "的确，提问者均未涉及诸如胡士泰的命运、[gm 66nd]在中国的去留决定、进口取代政策及显示对在中国经营前景暗淡的调查结果这些问题。"
+      },
+      {
+        "c": "Relationship between parents, mood control, accompany delivery, gender of baby, husband′s attitude toward baby, complications of delivery, family support system, were associated with the mental state.",
+        "cn": "产妇的心理状况与父母关系、情绪控制、陪同分娩、产后出血、新生儿哭闹、丈夫对婴儿态度、产后亲友支持因素存在相关性。"
+      },
+      {
+        "c": "He continued to maintain a neutral attitude toward (s) both sides.",
+        "cn": "他对双方继续保持不偏不倚的态度。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "back down",
+    "phonetic0": "bæk daʊn",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "承认错误，认输"
+      },
+      {
+        "pos": "",
+        "cn": "退缩，让步：指从承诺或立场中撤退。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Disconsolately, he walked back down the course.",
+        "cn": "他郁郁不乐地沿原路走回去了。"
+      },
+      {
+        "c": "She refused to back down on a point of principle.",
+        "cn": "她在一个原则问题上拒绝让步。"
+      },
+      {
+        "c": "It's too late to back down now.",
+        "cn": "现在打退堂鼓为时已晚。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "放弃；让步",
+        "ws": [
+          "desert",
+          "quit"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "Basil D'Oliviera",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "贝兹尔·戴里维尔拉（南非板球运动员）"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be affected with",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "受到影响"
+      },
+      {
+        "pos": "",
+        "cn": "受到影响：被某种疾病、情感或事件所影响。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "However, if you download a program and run it, your computer might be affected with virus.",
+        "cn": "但是如果你下载了一个程序并运行它，则有可能染上病毒。"
+      },
+      {
+        "c": "Pressure is needed to make the contact within the screen's layers, can be affected with fingers (even with gloves on), fingernails, stylus, etc.",
+        "cn": "需用压力使屏幕各层发生接触，可以使用手指(哪怕带上手套)，指甲，触笔等进行操作。"
+      },
+      {
+        "c": "It won't happen if you just look over some information. However, if you download a program and run it, your computer might be affected with virus.",
+        "cn": "如果只查看信息，就不会染上病毒。但是如果你下载了一个程序并运行它，则有可能染上病毒。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be alert to",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "警惕"
+      },
+      {
+        "pos": "",
+        "cn": "对……保持警觉：意识到某种可能性或危险，并保持警觉以应对。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "We must be alert to the possibility of danger.",
+        "cn": "我们必须认识到危险的可能性。"
+      },
+      {
+        "c": "We must be alert to these signals and respond with the compassion and care that are hallmark traits of what it means to be a woman, anywhere, everywhere.",
+        "cn": "我们必须警惕这些信号，以同情和关爱来回应，这些信号是标志性特征，说明在任何地方、在所有地方做女人意味着什么。"
+      },
+      {
+        "c": "Be alert to this.",
+        "cn": "对此要保持高度的警觉。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be beneficial to",
+    "phonetic0": "bi ˌbenɪˈfɪʃl tu; bi ˌbenəˈfɪʃəl tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "有益于"
+      },
+      {
+        "pos": "",
+        "cn": "对……有益处：对某人或某事物有积极的影响或好处。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "It can be beneficial to share your feelings with someone you trust.",
+        "cn": "与你信任的人分享你的情感会是有益的。"
+      },
+      {
+        "c": "It may prove to be beneficial to developing creativity.",
+        "cn": "这可能证明了其对培养创造力是有益的。"
+      },
+      {
+        "c": "It may be beneficial to add a test that covers this code explicitly.",
+        "cn": "添加确实包括该代码的测试也许是有益的。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "v.",
+        "cn": "有益于",
+        "ws": [
+          "be good for",
+          "do some good"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be busy doing",
+    "phonetic0": "bi ˈbɪzi ˈduːɪŋ",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "忙着做"
+      },
+      {
+        "pos": "",
+        "cn": "忙于做某事：表示某人正在忙于做某件事情。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Be busy doing sth.",
+        "cn": "的意思都是“忙于做某事”。"
+      },
+      {
+        "c": "Her mother is busy cooking in the kitchen. be busy doing sth.",
+        "cn": "忙着做某事（她的母亲正在厨房忙着做饭。）"
+      },
+      {
+        "c": "The conviction of the parent was that I should be busy doing more important things rather than finding fault with an adolescent's vocabulary.",
+        "cn": "这名家长唯一确定的事情就是：我应该忙着做一些更重要的事情，而不是找一个未成年人用语方面的岔。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be central to",
+    "phonetic0": "bi ˈsentrəl tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "成为"
+      },
+      {
+        "pos": "",
+        "cn": "是……的核心/关键：指某事物是某个过程、事件或情况的核心或关键所在。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "This ability to appreciate specific aromas turns out to be central to the pleasure we get from food, much as our ability to recognise individuals is central to the pleasures of social life.",
+        "cn": "我们从食物中获得快乐的核心是对特定香味的鉴赏能力，就像我们辨别个体的能力是社交生活乐趣的核心一样。"
+      },
+      {
+        "c": "Maintaining this balancing act will prove to be central to a winning strategy.",
+        "cn": "保持这一种均衡的活动是取胜战略的中心环节。"
+      },
+      {
+        "c": "And last January, and again in November, two scientists who were believed to be central to the nuclear program were killed in Tehran.",
+        "cn": "去年1月，11月两名对伊朗核计划极为重要的科学家相继在德黑兰被害。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be characteristic of",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "具有…的特征"
+      },
+      {
+        "pos": "",
+        "cn": "是……的特点，具有……的特征：指某事物具有某种特点或特征。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "One would be characteristic of agriculturalists: it would be an offering of the very first barley that would be harvested in the spring by them.",
+        "cn": "一种是具有务农者特色的：他们将献上春天里收获的第一颗大麦粒。"
+      },
+      {
+        "c": "This attitude will be characteristic of man's thinking after stasis.",
+        "cn": "这种态度会是停滞期后人类的思考特征。"
+      },
+      {
+        "c": "The nonreading of books, you will object, should be characteristic of collectors?",
+        "cn": "不读书也应算作收藏者的特色？"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "为…所特有；具有…的特性",
+        "ws": [
+          "be characterized by"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be concerned about",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "关心"
+      },
+      {
+        "pos": "",
+        "cn": "关心，担忧，忧虑：对某事物感到担心或忧虑。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "There should be forces in society who should be concerned about the budget, but they shouldn't be functioning simultaneously as doctors.",
+        "cn": "社会上应该有关注预算的影响力大的人，但他们不应该同时扮演医生的角色。"
+      },
+      {
+        "c": "You should tell your parents that you're fine, otherwise, they would be concerned about you.",
+        "cn": "你应该告诉你的父母说你很好，不然他们会很担忧你的。"
+      },
+      {
+        "c": "Don't be concerned about what others think!",
+        "cn": "别太在意他人的看法！"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "关心；挂念",
+        "ws": [
+          "think of",
+          "care for",
+          "be paid attention to"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be confronted with",
+    "phonetic0": "bi kənˈfrʌntɪd wɪð",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "面临"
+      },
+      {
+        "pos": "",
+        "cn": "面临，遭遇：遇到或面对困难、问题、挑战等，需要应对和解决。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Sometimes parents would be confronted with a wall of silence when they communicate with their teenagers.",
+        "cn": "当父母与青少年交流时，有时候会遇到青少年默不作声的情况。"
+      },
+      {
+        "c": "The other party may be confronted with claims against its business model or property.",
+        "cn": "而另一方则很可能面临着索赔要求：牺牲其业务模式或者部分资产。"
+      },
+      {
+        "c": "It also means that they will be confronted with a wave of retirements as the baby-boomers leave work in droves.",
+        "cn": "老龄化还意味着那些老龄化国家的公司要面对一波退休浪潮，因为生育高峰期出生的人群到了退休年龄了。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "面临，面对；对照",
+        "ws": [
+          "compare",
+          "be faced with"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be conscious of",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "意识到"
+      },
+      {
+        "pos": "",
+        "cn": "意识到……；知道"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "\"By all means, reach out to your social network, but as you cast a wide net looking for job prospects, be conscious of every email you send,\" Fay suggests.",
+        "cn": "Fay 建议：“用一切方法接触你的社交网络，但是，在你广撒网找工作机会的时候，也要注意你发出的每封邮件。”"
+      },
+      {
+        "c": "Make time for exercise and be conscious of your diet.",
+        "cn": "腾出时间锻炼身体并注意你的饮食。"
+      },
+      {
+        "c": "Portfolio integration helps developers to be conscious of sensitive data.",
+        "cn": "集成产品组合有助于开发人员识别敏感的数据。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "意识到…；知道",
+        "ws": [
+          "know of",
+          "wot"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be contrary to",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "与"
+      },
+      {
+        "pos": "",
+        "cn": "与……相反，违反，违背：指与某事物相反或违背某个原则、规定等。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Businesses of course can't actually invest in the lottery -that would be contrary to the terms of their loan -but they can do similar things.",
+        "cn": "当然了，企业是不能拿贷款去买彩票的，这会有悖于贷款的合同条款，但他们可能会去做类似的事。"
+      },
+      {
+        "c": "It's no trouble at all; on the contrary, it will be a great pleasure to help you.",
+        "cn": "这根本不麻烦。相反，我很乐意帮助你。"
+      },
+      {
+        "c": "Unemployment seems to be rising, despite repeated assurances to the contrary.",
+        "cn": "尽管反复担保减少失业，失业率看来却在上升。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "违反；与…相反",
+        "ws": [
+          "violate",
+          "vary"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be crazy about",
+    "phonetic0": "bi ˈkreɪzi əˈbaʊt",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "为…疯狂"
+      },
+      {
+        "pos": "",
+        "cn": "着迷于；狂热爱好……"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "We had better not be crazy about blind boxes, or we can't stop buying them.",
+        "cn": "我们最好不要对盲盒着迷，否则我们会不停地买。"
+      },
+      {
+        "c": "Let's be crazy about English!",
+        "cn": "让我们为英语而疯狂！"
+      },
+      {
+        "c": "Don't be crazy about amassing material things.",
+        "cn": "不要疯狂的积累物质的东西。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be deserving of",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "值得"
+      },
+      {
+        "pos": "",
+        "cn": "值得得到某物：指某人或某事物应该得到某种待遇、奖励或赞扬。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Such people will never be deserving of trust.",
+        "cn": "这样的人永远了信赖不得。"
+      },
+      {
+        "c": "And in the unlikely case that you too should blunder in the future, you'll be deserving of the same mercy.",
+        "cn": "万一将来你也犯了错，你会得到同样的宽恕。"
+      },
+      {
+        "c": "So here's a proposal: Maybe we can formulate a new kind of failing-states policy, one to help the deserving states, those that can be helped, and minimize the harm from the others.",
+        "cn": "所有这里有个提议：也许我们应当形成一个新的针对失败国家的政策，只能帮助那些需要帮助的国家，那些值得帮助，而且能将别人的伤害最小化的国家。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "值得；应得",
+        "ws": [
+          "deserve to",
+          "to be worth"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be due to",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "由于"
+      },
+      {
+        "pos": "",
+        "cn": "由于，因为：表示某事物的发生或存在是由于某种原因或原因的结果。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "This may be due to some disadvantages for people living in the countryside, including lower levels of income and education, higher costs of healthy foods, and fewer sports facilities.",
+        "cn": "这可能是由于生活在农村的人有一些不利条件，包括较低的收入和教育水平，较高的健康食品成本，以及较少的体育设施。"
+      },
+      {
+        "c": "According to some estimates, the majority of all extinctions of species may be due to such impacts.",
+        "cn": "据估计，大多数物种的灭绝可能是由于这些影响造成的。"
+      },
+      {
+        "c": "Any differences between them—one twin having younger looking skin, for example—must be due to environmental factors such as less time spent in the sun.",
+        "cn": "他们之间的任何差异（例如，双胞胎中有一个的皮肤看起来更年轻）一定是由于环境因素导致的，如在阳光下呆的时间更少。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "由于；起因于",
+        "ws": [
+          "out of",
+          "result from"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be eager to",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "渴望"
+      },
+      {
+        "pos": "",
+        "cn": "盼望，渴望要做……"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Detectives hunting the bombers will be eager to interview him.",
+        "cn": "追踪引爆炸弹者的警探们将急于审问他。"
+      },
+      {
+        "c": "A girl's closest friend, however, might be eager to tell her about something that has happened in her life.",
+        "cn": "然而，一个女孩最亲近的朋友可能会热切地把生活中发生的一些事情告诉她。"
+      },
+      {
+        "c": "Secret enemies will be eager to spread rumors about you.",
+        "cn": "一些暗地里的对手会迫切的散播你的谣言。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "盼望，渴望要做…",
+        "ws": [
+          "live for",
+          "wish for"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be faced with",
+    "phonetic0": "bi feɪst wɪð",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "面临"
+      },
+      {
+        "pos": "",
+        "cn": "面临；面对"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "If our findings persist, we may be faced with a financial crisis among elderly people who can't pay off their credit cards.",
+        "cn": "如果我们发现的这些情况一直持续下去，我们会看到老年人陷入财务危机，无法还清信用卡债务。"
+      },
+      {
+        "c": "At some point we may be faced with the rationing of air miles;",
+        "cn": "在某个时间节点上，我们也许将面临航空里程的定量供应；"
+      },
+      {
+        "c": "If you take the time to store your foods properly, you will not be faced with bad or moldy foods.",
+        "cn": "如果你花费一些时间去妥善地储存食物，就不会再有变质发霉的食品。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "面临；面对",
+        "ws": [
+          "be confronted with",
+          "be confronted by"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be fed up with",
+    "phonetic0": "bi fed ʌp wɪð",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "受够了"
+      },
+      {
+        "pos": "",
+        "cn": "对……感到厌烦"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Actually a lot of things me very be fed up with present oneself!",
+        "cn": "其实很多事情我都很讨厌现在的自己！"
+      },
+      {
+        "c": "When they are sleepy for a nap, they will be fed up with the noises made by their kids.",
+        "cn": "父母想午睡了越发觉得孩子弄出的噪音讨厌。"
+      },
+      {
+        "c": "You know, if you are always in the constant state without any ripple, you will be fed up with it.",
+        "cn": "你知道，如果你老是处于一种没有涟漪的永恒状态，就会感觉厌倦的。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "对…感到厌烦",
+        "ws": [
+          "be bored with",
+          "turn away from"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be incapable of",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "不能"
+      },
+      {
+        "pos": "",
+        "cn": "无法做某事：缺乏能力或技能，无法完成某项任务或行动。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "There is the danger that the high-speed connectivity of the Internet will reduce our attention span—that we will be incapable of reading anything of length or which requires deep concentration.",
+        "cn": "风险在于，互联网的高速连接会减少我们的注意力持续时间，从而导致我们不能阅读长篇论著，或是需要高度集中注意力的书籍。"
+      },
+      {
+        "c": "Those saying no to books will be incapable of adapting to the information era.",
+        "cn": "那些不读书的人将不能适应信息时代。"
+      },
+      {
+        "c": "Most advanced statistics, chemical or physical methods may be incapable of measuring the enormous carbon emission.",
+        "cn": "最先进的统计学、化学、物理学方法未必对每天大量排放的碳的计量行之有效。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "不能",
+        "ws": [
+          "couldn't",
+          "can not"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be irrelevant to",
+    "phonetic0": "bi ɪˈreləvənt tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "与…无关"
+      },
+      {
+        "pos": "",
+        "cn": "与……无关：指某事物与另一事物没有关联或联系。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Your comment seems to be irrelevant to our discussion.",
+        "cn": "你的评论似乎与咱们的会商完全地无关。"
+      },
+      {
+        "c": "All this wealth would be irrelevant to their survival if the island had few resources such as food, clean air, and water.",
+        "cn": "假如这座岛屿的资源如食物、干净的空气与水近乎于零，那么所有这些财富对他们的生存而言将是毫无相干的。"
+      },
+      {
+        "c": "The Blues are guaranteed a place in the last 32 of the competition, meaning a defeat in Turin would be irrelevant to their progression.",
+        "cn": "蓝军已经确保了32强的地位，这意味着在都灵的胜利对于他们的前进没有很大意义。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be likely to",
+    "phonetic0": "bi ˈlaɪkli tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "有可能"
+      },
+      {
+        "pos": "",
+        "cn": "很可能，有可能：表示某事情有很大的可能性发生。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The person who finds the coin will be likely to have good luck.",
+        "cn": "找到硬币的人很可能会有好运。"
+      },
+      {
+        "c": "He'll be likely to find out the size of his own quarter.",
+        "cn": "他很可能会弄清楚他自己那一瓣的大小。"
+      },
+      {
+        "c": "Other archaeologists have criticized those conclusions on the grounds that passenger pigeon bones would not be likely to be preserved.",
+        "cn": "其他考古学家批评了这些结论，因为旅鸽的骨头不太可能被保存下来。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "倾向于，很有可能",
+        "ws": [
+          "tend to be",
+          "squint towards"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be native to",
+    "phonetic0": "bi ˈneɪtɪv tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "原生于"
+      },
+      {
+        "pos": "",
+        "cn": "原产于……；源于……的"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Most of the trees will be native to Sri Lanka, therefore boosting wildlife.",
+        "cn": "这些树木中大多为本土植被，能同时促进野生动植物的繁衍。"
+      },
+      {
+        "c": "Their study could support evidence that water persists in shadowed craters on the moon's surface - and that the water could be native to the moon and not carried there by comets.",
+        "cn": "这项研究有可能证明在遮蔽在阴影中的月球坑中还有水存在，即“月球上可能原本就有水存在”，否定了月球水来自彗星的说法。"
+      },
+      {
+        "c": "Because they are composed of native English speakers deliberately placed together with recent immigrants, they tend to be more ethnically and economically balanced.",
+        "cn": "因为这些人中既有英语母语者，也有新移民，他们被特意安排在一起，因此在种族和经济问题上更加平衡。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be on guard",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "警惕，提防；警戒；站岗，值班"
+      },
+      {
+        "pos": "",
+        "cn": "小心谨慎：避免被欺骗或陷入危险的情况。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "At the outset, it seemed necessary to be on guard against the other two.",
+        "cn": "一开始，似乎有必要提防另外两个。"
+      },
+      {
+        "c": "Two soldiers must be on guard all night.",
+        "cn": "两名战士必须通宵警戒。"
+      },
+      {
+        "c": "Thus, you should be on guard against this confused mapping.",
+        "cn": "因此，您应该谨防这种有混淆的映射。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be relevant to",
+    "phonetic0": "bi ˈreləvənt tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "与…有关"
+      },
+      {
+        "pos": "",
+        "cn": "与……有关，与……相关：指与某事物或某人有直接或间接的联系或关系。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "When you are reading, I want you to think about that and why that kind of thought would be relevant to the readers of his time.",
+        "cn": "当你们阅读的时候，我希望你们思考一下为什么这种想法与他那个时代的读者有关。"
+      },
+      {
+        "c": "But according to the maxim, my response should be relevant to your statement.",
+        "cn": "但是根据这一准则，我的回答应该与你的陈述相关。"
+      },
+      {
+        "c": "Ekman's observation may be relevant to the British expression \"keep a stiff upper lip\" as a recommendation for handling stress.",
+        "cn": "埃克曼的观察结果可能与英国人的表达“保持冷静”有关，这是一种应对压力的建议。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be reluctant to",
+    "phonetic0": "bi rɪˈlʌktənt tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "不愿意"
+      },
+      {
+        "pos": "",
+        "cn": "不情愿做某事：表示不愿意或不愿意做某事。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Don't be reluctant to try powered toothbrushes.",
+        "cn": "不要勉强自己使用电动牙刷。"
+      },
+      {
+        "c": "Many activists may be reluctant to give Mr Bush credit.",
+        "cn": "许多活动家可能不太愿意嘉许布什的功劳。"
+      },
+      {
+        "c": "If it pays fair value or less, Banks might be reluctant to participate.",
+        "cn": "如果支付公允价值或者更少，那么银行可能不愿参与。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "不愿意，不情愿",
+        "ws": [
+          "be unwilling to"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be subversive of",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "颠覆"
+      },
+      {
+        "pos": "",
+        "cn": "破坏……的"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The equation of gangsterism with business in general in Coppola's film was intended to be subversive.",
+        "cn": "柯波拉电影中黑帮文化与普通事务的等同旨在具有颠覆性。"
+      },
+      {
+        "c": "These books strive valiantly to expand children’s consciousness of what a viable human family can be, but when it comes to what really matters there is nothing subversive about them.",
+        "cn": "这些书尽其所能，向孩子们解释了一个人类家庭可能存在的模式，但在至关重要的地方，却都只能闭口不提。"
+      },
+      {
+        "c": "By this maneuver he seems to deny that he has any subversive intent and claims to be questioning the basis of Athenian society, indeed of all societies - but doing so in the spirit of that very basis.",
+        "cn": "通过这种策略，他好像否认他有任何颠覆性的意图，并且声称要质疑雅典社会、甚至所有社会的的基础——但这样做是本着该基础的精神的。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be tolerant of",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "宽容"
+      },
+      {
+        "pos": "",
+        "cn": "容忍，宽容，忍受：指对持有不同信仰的人保持容忍和宽容的态度。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "I have to be tolerant of customers because they pay my salary, and that's something I can't afford to forget.",
+        "cn": "我必须对顾客有耐心，因为他们支付我的工资，这是我不能忘记的。"
+      },
+      {
+        "c": "They need to be tolerant of different points of view.",
+        "cn": "他们需要容忍不同的观点。"
+      },
+      {
+        "c": "Possibly believing me to be tolerant of her impatience, she rolled her eyes and said, \"Yeah.\"",
+        "cn": "她可能认为我能容忍她的不耐烦，于是转了转眼珠，说：“是的。”"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be true of",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "对…适用"
+      },
+      {
+        "pos": "v.",
+        "cn": "符合于；对……适用"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "The same will surely be true of 5G.",
+        "cn": "5G 肯定也是如此。"
+      },
+      {
+        "c": "This would not be true of red and brown algae.",
+        "cn": "红藻和褐藻就不是这样了。"
+      },
+      {
+        "c": "What she said proves to be true of my blended family.",
+        "cn": "她说的话在我的重组家庭里得到了证实。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "v.",
+        "cn": "符合于；对…适用",
+        "ws": [
+          "hold good for"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be true with",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "对"
+      },
+      {
+        "pos": "",
+        "cn": "对待真实：以真实和诚实的态度对待某人或某事。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "This is also held to be true with the common people.",
+        "cn": "凡夫之人，亦复如是。"
+      },
+      {
+        "c": "This might not actually be true with continuous integration, as the builds are carried out many times a day.",
+        "cn": "由于一天要执行多次构建，对持续集成这实际上不可能是真的。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be unable to",
+    "phonetic0": "bi ʌnˈeɪbl tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "不能"
+      },
+      {
+        "pos": "",
+        "cn": "无法：表示某人在某种情况下不能做某事，因为能力、条件或其他限制。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Speakers may be unable to sustain speech to complete the task and may rely heavily on repetition of the prompt.",
+        "cn": "发言者可能无法持续讲话来完成任务，并严重依赖反复提示。"
+      },
+      {
+        "c": "She seemed to be unable to rouse herself to do anything.",
+        "cn": "她似乎打不起精神做任何事情。"
+      },
+      {
+        "c": "She will be unable to attend because of a prior engagement.",
+        "cn": "因事先有别的安排，她将不能出席。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "不能做某事",
+        "ws": [
+          "be incapable of doing sth"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be unaware of",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "不知道"
+      },
+      {
+        "pos": "",
+        "cn": "不知道：指对某事物没有意识或认识。"
+      },
+      {
+        "pos": "",
+        "cn": "未意识到：指没有意识到某事物的存在或发生。"
+      },
+      {
+        "pos": "",
+        "cn": "不知晓：指对某事物的情况或信息一无所知。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "He may be unaware of his irritability and surprised when someone calls attention to it.",
+        "cn": "他可能没有意识到自己的易怒，当有人提醒他注意时，他会感到惊讶。"
+      },
+      {
+        "c": "He seemed to be unaware of the trouble he was causing.",
+        "cn": "他似乎还没有警觉到到自己惹起的麻烦。"
+      },
+      {
+        "c": "They were supposed to be unaware of everything that was working.",
+        "cn": "他们应该不去注意那些正在运作中的一切事物。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "不知道；没有察觉到",
+        "ws": [
+          "have no idea",
+          "wonder if"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be willing to",
+    "phonetic0": "bi ˈwɪlɪŋ tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "愿意"
+      },
+      {
+        "pos": "",
+        "cn": "愿意做某事：表示对某事情持有积极态度，愿意主动去做。"
+      },
+      {
+        "pos": "",
+        "cn": "乐意去做某事：表示对某事情持有乐于助人的态度，愿意主动去做。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Few firms will be willing to gamble on new products.",
+        "cn": "很少有公司愿意在新产品上冒险。"
+      },
+      {
+        "c": "There are, of course, questions which she will not be willing to answer.",
+        "cn": "当然，有些问题她不乐意回答。"
+      },
+      {
+        "c": "You have to be willing to get to know yourself and your partner intimately.",
+        "cn": "你必须乐意在私密方面逐渐了解自己和伴侣。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "乐意，愿意",
+        "ws": [
+          "prefer",
+          "would like to"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "be worth doing",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "值得做"
+      },
+      {
+        "pos": "",
+        "cn": "值得做……"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "For many of them, the question wasn't could he do it but why would it be worth doing?",
+        "cn": "对他们中的许多人来说，问题不是他能不能做到，而是这件事为什么值得做？"
+      },
+      {
+        "c": "But they can be worth doing.",
+        "cn": "但他们值得去做。"
+      },
+      {
+        "c": "Fracking might still be worth doing given those costs.",
+        "cn": "尽管需要消纳这些成本，水力压裂仍然是划得来做的。"
+      }
+    ],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "because of",
+    "phonetic0": "",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "因为；由于"
+      },
+      {
+        "pos": "",
+        "cn": "因为：表示某事发生的原因或原因所在。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "They are here because of us.",
+        "cn": "他们是因为我们来这里的。"
+      },
+      {
+        "c": "She resigned because of ill health.",
+        "cn": "她因健康状况不佳而辞职。"
+      },
+      {
+        "c": "The road is closed because of the snow.",
+        "cn": "这条路因下雪而封闭。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "adv.",
+        "cn": "因为；由于",
+        "ws": [
+          "as a result of",
+          "by reason that"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "become used to",
+    "phonetic0": "bɪˈkʌm juːzd tu",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "变得习惯"
+      },
+      {
+        "pos": "",
+        "cn": "逐渐习惯于：逐渐适应某种新的环境、情况或行为方式，使之成为习惯。"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "Di Martino said that jaguars born at breeding centers have to learn how to hunt and must not become used to humans.",
+        "cn": "迪·马蒂诺说，在繁育中心出生的美洲虎必须学会捕猎，而且不能习惯人类。"
+      },
+      {
+        "c": "Once you become used to eating less, you will actually enjoy what you are eating even more.",
+        "cn": "一旦你这样习惯了，你就会享受到更多饮食中的乐趣。"
+      },
+      {
+        "c": "People become used to foods and drinks tasting a certain way, and they won’t or can’t adapt to a new flavor.",
+        "cn": "人们习惯了食品和饮料的某种味道，而他们不想或者不能适应一种新的味道。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "习惯于…；适应于…",
+        "ws": [
+          "get used to",
+          "to be used to"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
   }
 ]

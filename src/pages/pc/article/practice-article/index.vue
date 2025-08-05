@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TypingArticle from "./TypingArticle.vue";
-import {Article, ArticleItem, ArticleWord, DisplayStatistics, getDefaultArticle, ShortcutKey, Word} from "@/types/types.ts";
+import {Article, ArticleItem, ArticleWord, DisplayStatistics, ShortcutKey, Word} from "@/types/types.ts";
 import {cloneDeep} from "@/utils";
 import Panel from "../../components/Panel.vue";
 import {onMounted, onUnmounted} from "vue";
@@ -17,6 +17,7 @@ import {useOnKeyboardEventListener} from "@/hooks/event.ts";
 import {genArticleSectionData, usePlaySentenceAudio} from "@/hooks/article.ts";
 import {ElProgress} from 'element-plus';
 import router from "@/router.ts";
+import {getDefaultArticle} from "@/types/func.ts";
 
 const store = useBaseStore()
 const statisticsStore = usePracticeStore()

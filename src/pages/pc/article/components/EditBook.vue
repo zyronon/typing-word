@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {Dict, DictType, getDefaultDict} from "@/types/types.ts";
+import {Dict, DictType} from "@/types/types.ts";
 import {cloneDeep} from "@/utils";
 
 import {ElForm, ElFormItem, ElInput, ElSelect, ElOption, FormInstance, FormRules, ElMessage} from "element-plus";
@@ -8,6 +8,7 @@ import {onMounted, reactive} from "vue";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import BaseButton from "@/components/BaseButton.vue";
+import {getDefaultDict} from "@/types/func.ts";
 
 const props = defineProps<{
   isAdd: boolean,

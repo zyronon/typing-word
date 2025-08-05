@@ -1,7 +1,7 @@
 import {SAVE_DICT_KEY, SAVE_SETTING_KEY} from "@/utils/const.ts";
 import {BaseState, DefaultBaseState} from "@/stores/base.ts";
 import {getDefaultSettingState} from "@/stores/setting.ts";
-import {Dict, DictResource, DictType, getDefaultArticle, getDefaultDict, getDefaultWord} from "@/types/types.ts";
+import {Dict, DictResource, DictType} from "@/types/types.ts";
 import {useRouter} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {nanoid} from "nanoid";
@@ -11,6 +11,7 @@ import {env} from "@/config/ENV.ts";
 import {nextTick} from "vue";
 import {dictionaryResources, enArticle} from "@/assets/dictionary.ts";
 import {ElMessage} from "element-plus";
+import {getDefaultArticle, getDefaultDict, getDefaultWord} from "@/types/func.ts";
 
 export function no() {
   ElMessage.warning('未现实')
