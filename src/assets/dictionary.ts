@@ -1,4 +1,4 @@
-import {DictResource, DictType} from "@/types.ts"
+import {DictResource, DictType} from "@/types/types.ts"
 
 // 中国考试
 const chinaExam = [

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {Dict, DictResource} from "@/types.ts";
+import {Dict, DictResource} from "@/types/types.ts";
 import {Icon} from "@iconify/vue";
 import {ElProgress, ElCheckbox} from 'element-plus';
 

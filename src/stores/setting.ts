@@ -1,6 +1,6 @@
 import {defineStore} from "pinia"
 import {checkAndUpgradeSaveSetting, cloneDeep} from "@/utils";
-import {DefaultShortcutKeyMap} from "@/types.ts";
+import {DefaultShortcutKeyMap} from "@/types/types.ts";
 import {SAVE_SETTING_KEY} from "@/utils/const.ts";
 
 export interface SettingState {

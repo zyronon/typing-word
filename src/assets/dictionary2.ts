@@ -1,4 +1,4 @@
-import {DictResource, DictType} from "@/types.ts"
+import {DictResource, DictType} from "@/types/types.ts"
 
 // 国际考试
 const internationalExam: DictResource[] = [

@@ -6,7 +6,7 @@ import Statistics from "@/pages/pc/word/Statistics.vue";
 import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
-import {getDefaultWord, ShortcutKey, StudyData, Word} from "@/types.ts";
+import {getDefaultWord, ShortcutKey, StudyData, Word} from "@/types/types.ts";
 import {useOnKeyboardEventListener, useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
 import {getCurrentStudyWord, useWordOptions} from "@/hooks/dict.ts";

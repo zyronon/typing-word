@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, onMounted, onUnmounted, watch} from "vue"
-import {Article, ArticleWord, getDefaultArticle, Sentence, Word} from "@/types.ts";
+import {Article, ArticleWord, getDefaultArticle, Sentence, Word} from "@/types/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";

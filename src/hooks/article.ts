@@ -1,4 +1,4 @@
-import {Article, ArticleWord, getDefaultArticleWord, Sentence} from "@/types.ts";
+import {Article, ArticleWord, getDefaultArticleWord, Sentence} from "@/types/types.ts";
 import {cloneDeep} from "@/utils";
 import nlp from "compromise/one";
 import {usePlayWordAudio} from "@/hooks/sound.ts";

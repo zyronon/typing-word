@@ -3,7 +3,7 @@
 import BaseIcon from "@/components/BaseIcon.vue";
 import Input from "@/pages/pc/components/Input.vue";
 import {cloneDeep, throttle} from "@/utils";
-import {Article} from "@/types.ts";
+import {Article} from "@/types/types.ts";
 
 interface IProps {
   list: T[]

@@ -3,7 +3,7 @@
 import {inject, onMounted, onUnmounted} from "vue"
 import {usePracticeStore} from "@/stores/practice.ts";
 import {useSettingStore} from "@/stores/setting.ts";
-import {ShortcutKey, StudyData} from "@/types.ts";
+import {ShortcutKey, StudyData} from "@/types/types.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {Icon} from "@iconify/vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";

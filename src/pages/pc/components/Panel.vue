@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, provide} from "vue"
-import {ShortcutKey} from "@/types.ts"
+import {ShortcutKey} from "@/types/types.ts"
 import {useSettingStore} from "@/stores/setting.ts";
 import Close from "@/components/icon/Close.vue";
 import Tooltip from "@/pages/pc/components/Tooltip.vue";

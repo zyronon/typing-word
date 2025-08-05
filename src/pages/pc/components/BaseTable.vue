@@ -1,7 +1,7 @@
 <script setup lang="tsx">
 
 import {nextTick, useSlots} from "vue";
-import {Sort} from "@/types.ts";
+import {Sort} from "@/types/types.ts";
 import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import BaseButton from "@/components/BaseButton.vue";

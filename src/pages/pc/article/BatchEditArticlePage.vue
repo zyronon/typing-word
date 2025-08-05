@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted} from "vue";
-import {Article, getDefaultArticle} from "@/types.ts";
+import {Article, getDefaultArticle} from "@/types/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {cloneDeep} from "@/utils";
 import {useBaseStore} from "@/stores/base.ts";

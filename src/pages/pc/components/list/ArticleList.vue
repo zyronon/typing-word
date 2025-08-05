@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import Input from "@/pages/pc/components/Input.vue";
-import {Article} from "@/types.ts";
+import {Article} from "@/types/types.ts";
 import BaseList from "@/pages/pc/components/list/BaseList.vue";
 
 const props = withDefaults(defineProps<{

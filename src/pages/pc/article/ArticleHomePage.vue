@@ -5,7 +5,7 @@ import "vue-activity-calendar/style.css";
 import {useRouter} from "vue-router";
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {_getDictDataByUrl, useNav} from "@/utils";
-import {DictResource, DictType, getDefaultDict} from "@/types.ts";
+import {DictResource, DictType, getDefaultDict} from "@/types/types.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Book from "@/pages/pc/components/Book.vue";

@@ -28,8 +28,8 @@ async function crawlWord(val, page,) {
   try {
     await page.goto(url, {waitUntil: 'networkidle', timeout: 15000});
 
-    const titleEl = await page.locator('.title').first();
-    data.word = await titleEl.evaluate(el => el.firstChild?.nodeValue || '');
+    // const titleEl = await page.locator('.title').first();
+    // data.word = await titleEl.evaluate(el => el.firstChild?.nodeValue || '');
 
     const phones = await page.$$('.per-phone .phonetic');
     if (phones[0]) data.phonetic0 = (await phones[0].textContent())?.trim() || '';
@@ -142,15 +142,20 @@ async function crawlWord(val, page,) {
     let removeList = raw.slice()
     const resultMap = new Map();
     let newFileName = file.replaceAll('.json', '-fetch.json')
-    const newRaw = JSON.parse(fs.readFileSync(newFileName, 'utf-8'));
-    newRaw.map(word => {
-      resultMap.set(word.word, word);
-    })
+    try {
+      const newRaw = JSON.parse(fs.readFileSync(newFileName, 'utf-8'));
+      console.log('已保存：', newRaw.length);
+      newRaw.map(word => {
+        resultMap.set(word.word, word);
+      })
+    } catch (e) {
+
+    }
 
 
     for (let i = 0; i < raw.length; i++) {
       let word = raw[i];
-      console.log(`爬取：${file}，${word.word}，进度：${resultMap.size} / ${raw.length}；时间：${dayjs().format('YYYY-MM-DD HH:mm:ss')}`)
+      console.log(`爬取：${file}，${word.word}，进度：${i} / ${raw.length}；时间：${dayjs().format('YYYY-MM-DD HH:mm:ss')}`)
       const result = await crawlWord(word, page);
       if (result) {
         resultMap.set(word.word, result);

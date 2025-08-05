@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {Article, getDefaultArticle, Sentence, TranslateEngine} from "@/types.ts";
+import {Article, getDefaultArticle, Sentence, TranslateEngine} from "@/types/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import EditAbleText from "@/pages/pc/components/EditAbleText.vue";
 import {Icon} from "@iconify/vue";

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {Dict, DictType, getDefaultDict} from "@/types.ts";
+import {Dict, DictType, getDefaultDict} from "@/types/types.ts";
 import {cloneDeep} from "@/utils";
 
 import {ElForm, ElFormItem, ElInput, ElSelect, ElOption, FormInstance, FormRules, ElMessage} from "element-plus";

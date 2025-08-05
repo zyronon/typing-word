@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {Word} from "@/types.ts";
+import {Word} from "@/types/types.ts";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {usePlayWordAudio} from "@/hooks/sound.ts";
 import {ElPopover} from 'element-plus'

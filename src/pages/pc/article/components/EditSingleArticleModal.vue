@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {Article, getDefaultArticle} from "@/types.ts";
+import {Article, getDefaultArticle} from "@/types/types.ts";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {useDisableEventListener} from "@/hooks/event.ts";
 import EditArticle2 from "@/pages/pc/article/components/EditArticle2.vue";

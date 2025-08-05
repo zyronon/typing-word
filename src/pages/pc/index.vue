@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {ShortcutKey} from "@/types.ts";
+import {ShortcutKey} from "@/types/types.ts";
 import Logo from "@/pages/pc/components/Logo.vue";
 import {Icon} from "@iconify/vue";
 import {useSettingStore} from "@/stores/setting.ts";

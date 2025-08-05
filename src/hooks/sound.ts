@@ -1,6 +1,6 @@
 import {onMounted, watch, watchEffect} from "vue"
 import {useSettingStore} from "@/stores/setting.ts";
-import {PronunciationApi} from "@/types.ts";
+import {PronunciationApi} from "@/types/types.ts";
 import beep from "@/assets/sound/beep.wav";
 import correct from "@/assets/sound/correct.wav";
 

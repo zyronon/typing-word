@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TypingArticle from "./TypingArticle.vue";
-import {Article, ArticleItem, ArticleWord, DisplayStatistics, getDefaultArticle, ShortcutKey, Word} from "@/types.ts";
+import {Article, ArticleItem, ArticleWord, DisplayStatistics, getDefaultArticle, ShortcutKey, Word} from "@/types/types.ts";
 import {cloneDeep} from "@/utils";
 import Panel from "../../components/Panel.vue";
 import {onMounted, onUnmounted} from "vue";

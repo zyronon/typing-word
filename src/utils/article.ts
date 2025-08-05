@@ -1,4 +1,4 @@
-import {Dict, DictResource, getDefaultDict} from "@/types.ts";
+import {Dict, DictResource, getDefaultDict} from "@/types/types.ts";
 import {getDictFile} from "@/utils/index.ts";
 import {cloneDeep} from "@/utils";
 import {nanoid} from "nanoid";

@@ -1,4 +1,4 @@
-import {Article, Sentence, TranslateEngine} from "@/types.ts";
+import {Article, Sentence, TranslateEngine} from "@/types/types.ts";
 import Baidu from "@opentranslate/baidu";
 import {Translator} from "@opentranslate/translator/src/translator.ts";
 

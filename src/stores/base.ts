@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {Dict, DictId, getDefaultDict, Word} from "../types.ts"
+import {Dict, DictId, getDefaultDict, Word} from "../types/types.ts"
 import {cloneDeep} from "@/utils";
 import * as localforage from "localforage";
 import {nanoid} from "nanoid";

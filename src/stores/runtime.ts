@@ -1,5 +1,5 @@
 import {defineStore} from "pinia"
-import {Dict, getDefaultDict} from "@/types.ts";
+import {Dict, getDefaultDict} from "@/types/types.ts";
 
 export interface RuntimeState {
   disableEventListener: boolean,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {getDefaultWord, ShortcutKey, Word} from "@/types.ts";
+import {getDefaultWord, ShortcutKey, Word} from "@/types/types.ts";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import {useSettingStore} from "@/stores/setting.ts";
 import {usePlayBeep, usePlayCorrect, usePlayKeyboardAudio, usePlayWordAudio, useTTsPlayAudio} from "@/hooks/sound.ts";

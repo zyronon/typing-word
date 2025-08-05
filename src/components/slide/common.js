@@ -1,6 +1,6 @@
 import {emitter as bus} from "@/utils/eventBus.ts";
 import Utils from '@/utils/gm.js'
-import {SlideType} from "@/types.ts";
+import {SlideType} from "@/types/types.ts";
 import GM from "@/utils/gm.js";
 
 export function slideInit(el, state, type) {

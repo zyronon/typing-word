@@ -1,6 +1,5 @@
 <script setup lang="tsx">
-import type {Word} from "@/types";
-import {DictId, getDefaultDict} from "@/types";
+import {DictId, getDefaultDict, Word} from "@/types/types.ts";
 
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {computed, onMounted, reactive, shallowReactive} from "vue";
@@ -64,8 +63,7 @@ function syncDictInMyStudyList(study = false) {
   _nextTick(() => {
     let rIndex = base.word.bookList.findIndex(v => v.id === runtimeStore.editDict.id)
     let temp = cloneDeep(runtimeStore.editDict);
-    console.log(temp)
-    if (!temp.custom) {
+    if (!temp.custom && ![DictId.wordKnown, DictId.wordWrong, DictId.wordCollect].includes(temp.id)) {
       temp.custom = true
       temp.id += '_custom'
     }
@@ -206,7 +204,7 @@ defineRender(() => {
                 <div class="flex justify-between items-center relative">
                   <BackIcon class="z-2" onClick={() => router.back()}/>
                   <div class="absolute page-title text-align-center w-full">{runtimeStore.editDict.name}</div>
-                  <div class="flex gap-2">
+                  <div class="flex">
                     <BaseButton type="info" onClick={() => isEdit = true}>编辑</BaseButton>
                     <BaseButton loading={studyLoading} onClick={addMyStudyList}>学习</BaseButton>
                   </div>

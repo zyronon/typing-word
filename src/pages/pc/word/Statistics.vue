@@ -2,7 +2,7 @@
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {useBaseStore} from "@/stores/base.ts";
 import BaseButton from "@/components/BaseButton.vue";
-import {ShortcutKey, Statistics} from "@/types.ts";
+import {ShortcutKey, Statistics} from "@/types/types.ts";
 import {emitter, EventKey, useEvents} from "@/utils/eventBus.ts";
 import {Icon} from '@iconify/vue';
 import {useSettingStore} from "@/stores/setting.ts";

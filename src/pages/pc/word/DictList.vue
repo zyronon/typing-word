@@ -2,7 +2,7 @@
 import "vue-activity-calendar/style.css";
 import {useNav} from "@/utils";
 import BasePage from "@/pages/pc/components/BasePage.vue";
-import {DictResource, getDefaultDict} from "@/types.ts";
+import {DictResource, getDefaultDict} from "@/types/types.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Empty from "@/components/Empty.vue";

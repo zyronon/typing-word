@@ -1,4 +1,4 @@
-import {Article, getDefaultArticle, Word} from "@/types.ts";
+import {Article, getDefaultArticle, Word} from "@/types/types.ts";
 import {useBaseStore} from "@/stores/base.ts";
 import {nanoid} from "nanoid";
 

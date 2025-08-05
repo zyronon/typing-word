@@ -8,7 +8,7 @@ import {emitter, EventKey} from "@/utils/eventBus.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import PracticeArticle from "@/pages/pc/article/practice-article/index.vue";
-import {ShortcutKey} from "@/types.ts";
+import {ShortcutKey} from "@/types/types.ts";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
 
