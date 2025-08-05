@@ -68881,5 +68881,50 @@
       "rels": []
     },
     "etymology": []
+  },
+  {
+    "word": "begin with",
+    "phonetic0": "bɪˈɡɪn wɪð",
+    "phonetic1": "",
+    "trans": [
+      {
+        "pos": "",
+        "cn": "以…开始"
+      },
+      {
+        "pos": "",
+        "cn": "以……开始；开始于……"
+      }
+    ],
+    "sentences": [
+      {
+        "c": "To begin with he was Prince Charming.",
+        "cn": "刚开始他就像是白马王子。"
+      },
+      {
+        "c": "He spoke well to begin with, but then started rambling and repeating himself.",
+        "cn": "开始他说得很好，但是后来开始闲扯，一句话翻来覆去地讲。"
+      },
+      {
+        "c": "We'll go slowly to begin with.",
+        "cn": "我们开始时会慢慢来的。"
+      }
+    ],
+    "phrases": [],
+    "synos": [
+      {
+        "pos": "",
+        "cn": "以…开始；开始于…",
+        "ws": [
+          "start at",
+          "open with"
+        ]
+      }
+    ],
+    "relWords": {
+      "root": "",
+      "rels": []
+    },
+    "etymology": []
   }
 ]

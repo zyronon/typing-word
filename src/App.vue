@@ -18,6 +18,7 @@ const settingStore = useSettingStore()
 const {setTheme} = useTheme()
 
 watch(store.$state, (n: BaseState) => {
+  console.log('watch(store.$state,')
   localforage.setItem(SAVE_DICT_KEY.key, JSON.stringify({val: shakeCommonDict(n), version: SAVE_DICT_KEY.version}))
 })
 

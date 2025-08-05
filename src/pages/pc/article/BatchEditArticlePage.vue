@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {onMounted, onUnmounted} from "vue";
-import {Article} from "@/types/types.ts";
+import {isReactive, onMounted, onUnmounted, watchEffect} from "vue";
+import {Article, DictId} from "@/types/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import {cloneDeep} from "@/utils";
 import {useBaseStore} from "@/stores/base.ts";
@@ -103,6 +103,7 @@ async function add() {
   }
 }
 
+
 function saveArticle(val: Article): boolean {
   console.log('saveArticle', val)
   if (val.id) {
@@ -135,7 +136,9 @@ function syncBookInMyStudyList(study = false) {
     let rIndex = base.article.bookList.findIndex(v => v.id === runtimeStore.editDict.id)
     let temp = cloneDeep(runtimeStore.editDict);
     console.log(temp)
-    temp.custom = true
+    if (!temp.custom && temp.id !== DictId.articleCollect) {
+      temp.custom = true
+    }
     temp.length = temp.articles.length
     if (rIndex > -1) {
       base.article.bookList[rIndex] = temp
@@ -184,31 +187,31 @@ useWindowClick(() => showExport = false)
         正在添加新文章...
       </div>
       <div class="footer">
-        <div class="import">
-          <BaseButton>导入</BaseButton>
-          <input type="file"
-                 accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-                 @change="e => emit('importData',e)">
-        </div>
-        <div class="export"
-             style="position: relative"
-             @click.stop="null">
-          <BaseButton @click="showExport = true">导出</BaseButton>
-          <MiniDialog
-              v-model="showExport"
-              style="width: 80rem;bottom: calc(100% + 10rem);top:unset;"
-          >
-            <div class="mini-row-title">
-              导出选项
-            </div>
-            <div class="mini-row">
-              <BaseButton @click="emit('exportData',{type:'all',data:[]})">全部文章</BaseButton>
-            </div>
-            <div class="mini-row">
-              <BaseButton @click="emit('exportData',{type:'chapter',data:article})">当前章节</BaseButton>
-            </div>
-          </MiniDialog>
-        </div>
+        <!--        <div class="import">-->
+        <!--          <BaseButton>导入</BaseButton>-->
+        <!--          <input type="file"-->
+        <!--                 accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"-->
+        <!--                 @change="e => emit('importData',e)">-->
+        <!--        </div>-->
+        <!--        <div class="export"-->
+        <!--             style="position: relative"-->
+        <!--             @click.stop="null">-->
+        <!--          <BaseButton @click="showExport = true">导出</BaseButton>-->
+        <!--          <MiniDialog-->
+        <!--              v-model="showExport"-->
+        <!--              style="width: 80rem;bottom: calc(100% + 10rem);top:unset;"-->
+        <!--          >-->
+        <!--            <div class="mini-row-title">-->
+        <!--              导出选项-->
+        <!--            </div>-->
+        <!--            <div class="mini-row">-->
+        <!--              <BaseButton @click="emit('exportData',{type:'all',data:[]})">全部文章</BaseButton>-->
+        <!--            </div>-->
+        <!--            <div class="mini-row">-->
+        <!--              <BaseButton @click="emit('exportData',{type:'chapter',data:article})">当前章节</BaseButton>-->
+        <!--            </div>-->
+        <!--          </MiniDialog>-->
+        <!--        </div>-->
         <BaseButton @click="add">新增</BaseButton>
       </div>
     </div>

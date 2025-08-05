@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {Dict, DictType} from "@/types/types.ts";
+import {Dict, DictId, DictType} from "@/types/types.ts";
 import {cloneDeep} from "@/utils";
 
 import {ElForm, ElFormItem, ElInput, ElSelect, ElOption, FormInstance, FormRules, ElMessage} from "element-plus";
@@ -45,8 +45,12 @@ async function onSubmit() {
       let data: Dict = getDefaultDict(dictForm)
       let source = [store.article, store.word][props.isBook ? 0 : 1]
       //任意修改，都将其变为自定义词典
+      if (!data.custom && ![DictId.wordKnown, DictId.wordWrong, DictId.wordCollect, DictId.articleCollect].includes(data.id)) {
+        data.custom = true
+        data.id += '_custom'
+      }
+
       //todo 可以检查的更准确些，比如json对比
-      data.custom = true
       if (props.isAdd) {
         data.id = 'custom-dict-' + Date.now()
         if (source.bookList.find(v => v.name === data.name)) {

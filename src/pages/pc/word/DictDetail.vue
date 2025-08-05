@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-import {DictId, Word} from "@/types/types.ts";
+import {DictId} from "@/types/types.ts";
 
 import BasePage from "@/pages/pc/components/BasePage.vue";
 import {computed, onMounted, reactive, shallowReactive} from "vue";
@@ -127,7 +127,7 @@ function batchDel(ids: string[]) {
   syncDictInMyStudyList()
 }
 
-function editWord(word: Word) {
+function editWord(word) {
   isOperate = true
   wordForm.id = word.id
   wordForm.word = word.word

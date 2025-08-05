@@ -213,3 +213,10 @@ export class DictId {
   static wordKnown = 'wordKnown'
   static articleCollect = 'articleCollect'
 }
+
+export enum DictId2 {
+  wordCollect = 'wordCollect',
+  wordWrong = 'wordWrong',
+  wordKnown = 'wordKnown',
+  articleCollect = 'articleCollect'
+}

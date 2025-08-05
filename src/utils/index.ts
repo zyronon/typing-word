@@ -1,7 +1,7 @@
 import {SAVE_DICT_KEY, SAVE_SETTING_KEY} from "@/utils/const.ts";
 import {BaseState, DefaultBaseState} from "@/stores/base.ts";
 import {getDefaultSettingState} from "@/stores/setting.ts";
-import {Dict, DictResource, DictType} from "@/types/types.ts";
+import {Dict, DictId, DictResource, DictType} from "@/types/types.ts";
 import {useRouter} from "vue-router";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {nanoid} from "nanoid";
@@ -223,10 +223,10 @@ export function checkAndUpgradeSaveSetting(val: any) {
 export function shakeCommonDict(n: BaseState): BaseState {
   let data: BaseState = cloneDeep(n)
   data.word.bookList.map((v: Dict) => {
-    if (!v.custom) v.words = []
+    if (!v.custom && ![DictId.wordKnown, DictId.wordWrong, DictId.wordCollect].includes(v.id)) v.words = []
   })
   data.article.bookList.map((v: Dict) => {
-    if (!v.custom) v.articles = []
+    if (!v.custom && ![DictId.articleCollect].includes(v.id)) v.articles = []
   })
   return data
 }
@@ -411,7 +411,7 @@ export async function _getDictDataByUrl(val: DictResource, type: DictType = Dict
         v.id = nanoid(6)
         return v
       }))
-      console.log('articles',articles)
+      console.log('articles', articles)
       return getDefaultDict({...val, articles})
     }
   }
