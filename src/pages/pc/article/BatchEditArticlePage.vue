@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {isReactive, onMounted, onUnmounted, watchEffect} from "vue";
+import {onMounted, onUnmounted} from "vue";
 import {Article, DictId} from "@/types/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
-import {cloneDeep} from "@/utils";
+import {_nextTick, cloneDeep} from "@/utils";
 import {useBaseStore} from "@/stores/base.ts";
 
 import List from "@/pages/pc/components/list/List.vue";
@@ -11,10 +11,8 @@ import {useDisableEventListener, useWindowClick} from "@/hooks/event.ts";
 import {MessageBox} from "@/utils/MessageBox.tsx";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import {nanoid} from "nanoid";
-import MiniDialog from "@/pages/pc/components/dialog/MiniDialog.vue";
-import EditArticle2 from "@/pages/pc/article/components/EditArticle2.vue";
+import EditArticle from "@/pages/pc/article/components/EditArticle.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
-import {_nextTick} from "@/utils";
 import {ElMessage} from "element-plus";
 import {getDefaultArticle} from "@/types/func.ts";
 
@@ -105,7 +103,6 @@ async function add() {
 
 
 function saveArticle(val: Article): boolean {
-  console.log('saveArticle', val)
   if (val.id) {
     let rIndex = runtimeStore.editDict.articles.findIndex(v => v.id === val.id)
     if (rIndex > -1) {
@@ -135,7 +132,6 @@ function syncBookInMyStudyList(study = false) {
   _nextTick(() => {
     let rIndex = base.article.bookList.findIndex(v => v.id === runtimeStore.editDict.id)
     let temp = cloneDeep(runtimeStore.editDict);
-    console.log(temp)
     if (!temp.custom && temp.id !== DictId.articleCollect) {
       temp.custom = true
     }
@@ -215,7 +211,7 @@ useWindowClick(() => showExport = false)
         <BaseButton @click="add">新增</BaseButton>
       </div>
     </div>
-    <EditArticle2
+    <EditArticle
         ref="editArticleRef"
         type="batch"
         @save="saveArticle"

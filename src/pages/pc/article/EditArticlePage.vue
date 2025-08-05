@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import EditArticle2 from "@/pages/pc/article/components/EditArticle2.vue";
+import EditArticle from "@/pages/pc/article/components/EditArticle.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 </script>
 
@@ -10,7 +10,7 @@ import BaseIcon from "@/components/BaseIcon.vue";
         title="返回"
         @click="$router.back"
         icon="formkit:left"/>
-    <EditArticle2 class="vue"></EditArticle2>
+    <EditArticle class="vue"></EditArticle>
   </div>
 
 </template>

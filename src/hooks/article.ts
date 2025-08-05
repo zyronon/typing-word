@@ -546,8 +546,11 @@ export function usePlaySentenceAudio() {
       ref.currentTime = start
       ref.play()
       let end = sentence.audioPosition?.[1]
+      console.log(sentence.audioPosition,(end - start) * 1000)
+
       if (end && end !== -1) {
         timer = setTimeout(() => {
+          console.log('停')
           ref.pause()
         }, (end - start) * 1000)
       }

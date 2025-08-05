@@ -14,6 +14,7 @@ import * as Comparison from "string-comparison"
 import BaseIcon from "@/components/BaseIcon.vue";
 import Dialog from "@/pages/pc/components/dialog/Dialog.vue";
 import {getDefaultArticle} from "@/types/func.ts";
+import copy from "copy-to-clipboard";
 
 interface IProps {
   article?: Article,
@@ -45,7 +46,7 @@ watch(() => props.article, val => {
   editArticle = cloneDeep(val)
   progress = 0
   failCount = 0
-  apply(false)
+  // apply(false)
 }, {immediate: true})
 
 watch(() => editArticle.text, (s) => {
@@ -139,6 +140,9 @@ function save(option: 'save' | 'saveAndNext') {
       return resolve(false)
     }
 
+    let d = cloneDeep(editArticle)
+    delete d.sections
+    copy(console.json(d, 2))
     const saveTemp = () => {
       emit(option as any, editArticle)
       return resolve(true)
@@ -389,7 +393,7 @@ function setStartTime(val: Sentence, i: number, j: number) {
         </ElUpload>
         <audio ref="audioRef" :src="editArticle.audioSrc" controls></audio>
       </div>
-      <template v-if="editArticle.sections.length">
+      <template v-if="editArticle?.sections?.length">
         <div class="flex-1 overflow-auto flex flex-col">
           <div class="flex justify-between bg-black/10 py-2">
             <div class="center flex-[7]">内容</div>
