@@ -10,30 +10,22 @@ const __dirname = path.dirname(__filename);
 
 // 路径设置
 const SOURCE_DIR = path.join(__dirname, 'source');
+const RESULT_DIR = path.join(__dirname, 'result');
 const SAVE_DIR = path.join(__dirname, 'save');
-const TOTAL_RESULT_FILE = path.join(__dirname, 'save', 'all.json');
-
+const TOTAL_RESULT_FILE = path.join(__dirname, 'save', 'all-all2.json');
 
 const existingMap = new Map();
 // 加载已爬数据（增量去重）
 if (fs.existsSync(TOTAL_RESULT_FILE)) {
-  const lines = fs.readFileSync(TOTAL_RESULT_FILE, 'utf-8').split('\n').filter(Boolean);
-  console.log(lines.length)
-  for (const line of lines) {
-    try {
-      const obj = JSON.parse(line);
-      if (obj?.word) {
-        existingMap.set(obj.word, obj);
-      }
-    } catch {
-    }
+  let linesStr = fs.readFileSync(TOTAL_RESULT_FILE, 'utf-8')
+  if (linesStr) {
+    let lines = JSON.parse(linesStr)
+    lines.map(v => {
+      existingMap.set(v.word, {id: existingMap.size, ...v})
+    })
+    console.log(`📦 已加载 ${lines.length} 个已爬词`);
   }
-  console.log(`📦 已加载 ${existingMap.size} 个已爬词`);
 }
-
-
-let normalList = new Map();
-let unnormalList = new Map();
 
 
 const safeString = (str) => (typeof str === 'string' ? str.trim() : '');
@@ -66,13 +58,14 @@ function getTrans(trans) {
   for (const file of files) {
     const filePath = path.join(SOURCE_DIR, file);
     const raw = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    let result = []
     raw.filter(v => v && v.name && String(v.name).trim()).map(v => {
       let word = String(v.name)
       word = word.trim()
       if (word.endsWith('.')) {
         word = word.substring(0, word.length - 1);
       }
-      let r = existingMap.get(word)
+      let r = existingMap.get(word.toLowerCase())
       if (!r) {
         r = {
           "word": String(word),
@@ -90,15 +83,12 @@ function getTrans(trans) {
         } else {
           r.trans = v.trans ? getTrans(v.trans) : [];
         }
-        if (word.includes('/') || word.includes(' ') || word.includes('(') || word.includes(')') || word.includes('（') || word.includes('）')) {
-          unnormalList.set(word, r)
-        } else {
-          normalList.set(word, r)
-        }
+        result.push(r)
+      } else {
+        result.push(r)
       }
     })
+    fs.writeFileSync(path.join(RESULT_DIR, file), JSON.stringify(result, null, 2), 'utf-8');
   }
-  console.log(normalList.size, unnormalList.size)
-  fs.writeFileSync(path.join(SAVE_DIR, 'normalList.json'), JSON.stringify(Array.from(normalList.values()), null, 2), 'utf-8');
-  fs.writeFileSync(path.join(SAVE_DIR, 'unnormalList.json'), JSON.stringify(Array.from(unnormalList.values()), null, 2), 'utf-8');
+  // fs.writeFileSync(path.join(SAVE_DIR, 'fail.json'), JSON.stringify(failList, null, 2), 'utf-8')
 })();
