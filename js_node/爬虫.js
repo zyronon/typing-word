@@ -169,7 +169,8 @@ async function crawlWord(val, page,) {
 
   await start(unnormalList_FILE)
   await start(normalList_FILE)
-  console.log(r)
+
+
   await browser.close();
 
   console.log('\n🎉 所有任务完成！');
