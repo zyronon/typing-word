@@ -6,11 +6,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // 路径设置
-const SOURCE_DIR = path.join(__dirname, 'source');
-const RESULT_DIR = path.join(__dirname, 'result');
-const TOTAL_RESULT_FILE = path.join(__dirname, 'save', 'all.json');
-const TOTAL_RESULT_FILE2 = path.join(__dirname, 'save', 'all2.json');
-const FAILED_FILE = path.join(__dirname, 'save', 'failed.json');
+const TOTAL_RESULT_FILE = path.join(__dirname, 'save', 'normalList-fetch.json');
+const TOTAL_RESULT_FILE2 = path.join(__dirname, 'save', 'unnormalList-fetch.json');
 
 
 let existingMap = new Map();
@@ -29,8 +26,4 @@ if (fs.existsSync(TOTAL_RESULT_FILE)) {
     console.log(`📦 已加载 ${existingMap.size} 个已爬词`);
   }
 
-}
-
-// 追加写入总文件
-function appendToAll(result) {
 }
