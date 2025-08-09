@@ -5,23 +5,21 @@ import {useRuntimeStore} from "@/stores/runtime.ts";
 import WordHomePage from "@/pages/pc/word/WordHomePage.vue";
 import PC from "@/pages/pc/index.vue";
 import ArticleHomePage from "@/pages/pc/article/ArticleHomePage.vue";
-import HomeIndex from "@/pages/pc/home/HomeIndex.vue";
 import StudyArticle from "@/pages/pc/article/StudyArticle.vue";
 import DictDetail from "@/pages/pc/word/DictDetail.vue";
 import StudyWord from "@/pages/pc/word/StudyWord.vue";
-import EditArticlePage from "@/pages/pc/article/EditArticlePage.vue";
 import BookDetail from "@/pages/pc/article/BookDetail.vue";
-import BatchEditArticlePage from "@/pages/pc/article/BatchEditArticlePage.vue";
 import DictList from "@/pages/pc/word/DictList.vue";
 import Setting from "@/pages/pc/Setting.vue";
 import BookList from "@/pages/pc/article/BookList.vue";
 
 export const routes: RouteRecordRaw[] = [
   {
-    path: '/', component: PC,
-    redirect: '/home',
+    path: '/',
+    component: PC,
+    redirect: '/word',
     children: [
-      {path: 'home', component: HomeIndex},
+      // {path: 'home', component: HomeIndex},
       {path: 'word', component: WordHomePage},
       {path: 'dict-list', component: DictList},
       {path: 'study-word', component: StudyWord},
@@ -29,15 +27,16 @@ export const routes: RouteRecordRaw[] = [
 
       {path: 'article', component: ArticleHomePage},
       {path: 'study-article', component: StudyArticle},
-      {path: 'edit-article', component: EditArticlePage},
-      {path: 'batch-edit-article', component: BatchEditArticlePage},
+      {path: 'edit-article', component: () => import("@/pages/pc/article/EditArticlePage.vue")},
+      {path: 'batch-edit-article', component: () => import("@/pages/pc/article/BatchEditArticlePage.vue")},
       {path: 'book-detail', component: BookDetail},
       {path: 'book-list', component: BookList},
+
       {path: 'setting', component: Setting},
     ]
   },
   {path: '/test', component: Test},
-  // {path: '/', redirect: '/pc/practice'},
+  {path: '/:pathMatch(.*)*', redirect: '/word'},
 ]
 
 const router = VueRouter.createRouter({

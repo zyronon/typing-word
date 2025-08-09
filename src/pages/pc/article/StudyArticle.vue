@@ -11,6 +11,7 @@ import PracticeArticle from "@/pages/pc/article/practice-article/index.vue";
 import {ShortcutKey} from "@/types/types.ts";
 import {useStartKeyboardEventListener} from "@/hooks/event.ts";
 import useTheme from "@/hooks/theme.ts";
+import {ElMessage} from "element-plus";
 
 const store = useBaseStore()
 const settingStore = useSettingStore()

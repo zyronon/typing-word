@@ -3,7 +3,6 @@ import {useBaseStore} from "@/stores/base.ts";
 import {nanoid} from "nanoid";
 import {getDefaultArticle} from "@/types/func.ts";
 
-
 export function useWordOptions() {
   const store = useBaseStore()
 

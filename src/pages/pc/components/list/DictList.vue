@@ -5,6 +5,7 @@ import Book from "@/pages/pc/components/Book.vue";
 defineProps<{
   list?: Partial<Dict>[],
   selectId?: string
+  quantifier?: string
 }>()
 
 const emit = defineEmits<{
@@ -21,7 +22,7 @@ const emit = defineEmits<{
     <Book v-for="(dict,index) in list"
           :is-add="false"
           @click="emit('selectDict',{dict,index})"
-          quantifier="个词"
+          :quantifier="quantifier"
           :item="dict"/>
   </div>
 </template>

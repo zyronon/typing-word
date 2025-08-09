@@ -13,6 +13,7 @@ import {getTranslateText} from "@/hooks/article.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import QuestionForm from "@/pages/pc/article/components/QuestionForm.vue";
 import {getDefaultArticle} from "@/types/func.ts";
+import {ElMessage} from "element-plus";
 
 interface IProps {
   article: Article,
@@ -80,6 +81,7 @@ watch([() => sectionIndex, () => sentenceIndex, () => wordIndex, () => stringInd
 })
 
 watch(() => props.article, () => {
+  isEnd = false
   sectionIndex = props.sectionIndex
   sentenceIndex = props.sentenceIndex
   wordIndex = props.wordIndex

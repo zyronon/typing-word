@@ -394,25 +394,16 @@ export function _parseLRC(lrc: string): { start: number, end: number, text: stri
 }
 
 export async function _getDictDataByUrl(val: DictResource, type: DictType = DictType.word): Promise<Dict> {
-  let dictResourceUrl = `./dicts/${val.language}/word/${val.url}`.replace('.json', '_v2.json');
+  let dictResourceUrl = `./dicts/${val.language}/word/${val.url}`
   if (type === DictType.article) {
     dictResourceUrl = `./dicts/${val.language}/${val.type}/${val.url}`;
   }
   let s = await getDictFile(dictResourceUrl)
   if (s) {
     if (type === DictType.word) {
-      let words = cloneDeep(s.map(v => {
-        v.id = nanoid(6)
-        return v
-      }))
-      return getDefaultDict({...val, words})
+      return getDefaultDict({...val, words: s})
     } else {
-      let articles = cloneDeep(s.map(v => {
-        v.id = nanoid(6)
-        return v
-      }))
-      console.log('articles', articles)
-      return getDefaultDict({...val, articles})
+      return getDefaultDict({...val, articles: s})
     }
   }
   return getDefaultDict()

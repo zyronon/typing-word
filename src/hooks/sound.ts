@@ -26,6 +26,7 @@ export function useSound(audioSrcList?: string[], audioFileLength?: number) {
   }
 
   function play(volume: number = 100) {
+    console.log('play')
     index++
     if (audioList.length > 1 && audioList.length !== audioLength) {
       audioList[index % audioList.length].volume = volume / 100

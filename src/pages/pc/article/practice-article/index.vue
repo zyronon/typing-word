@@ -324,7 +324,7 @@ const {playSentenceAudio} = usePlaySentenceAudio()
           @save="saveArticle"
       />
     </div>
-    <div class="footer " :class="!settingStore.showToolbar && 'hide'">
+    <div class="footer" :class="!settingStore.showToolbar && 'hide'">
       <div class="bottom">
         <ElProgress
             class="flex-1"

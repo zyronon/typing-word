@@ -23,10 +23,10 @@ const {toggleTheme} = useTheme()
     <div class="aside anim fixed" :class="{'expand':settingStore.sideExpand}">
       <div class="top">
         <Logo v-if="settingStore.sideExpand"/>
-        <div class="row" @click="router.push('/home')">
-          <Icon icon="iconoir:home"/>
-          <span v-if="settingStore.sideExpand">主页</span>
-        </div>
+<!--        <div class="row" @click="router.push('/home')">-->
+<!--          <Icon icon="iconoir:home"/>-->
+<!--          <span v-if="settingStore.sideExpand">主页</span>-->
+<!--        </div>-->
         <div class="row" @click="router.push('/word')">
           <Icon icon="material-symbols-light:dictionary-outline-sharp"/>
           <!--          <Icon icon="streamline:dictionary-language-book"/>-->

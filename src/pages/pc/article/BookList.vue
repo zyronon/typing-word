@@ -69,6 +69,7 @@ const searchList = computed<any[]>(() => {
             v-if="searchList.length "
             @selectDict="selectDict"
             :list="searchList"
+            quantifier="篇"
             :select-id="'-1'"/>
         <Empty v-else text="没有相关书籍"/>
       </div>
@@ -77,6 +78,7 @@ const searchList = computed<any[]>(() => {
             v-if="enArticle.length "
             @selectDict="selectDict"
             :list="enArticle"
+            quantifier="篇"
             :select-id="'-1'"/>
       </div>
     </div>

@@ -96,6 +96,7 @@ const searchList = computed<any[]>(() => {
             v-if="searchList.length "
             @selectDict="selectDict"
             :list="searchList"
+            quantifier="个词"
             :select-id="'-1'"/>
         <Empty v-else text="没有相关词典"/>
       </div>
@@ -104,6 +105,7 @@ const searchList = computed<any[]>(() => {
             v-for="item in groupedByCategoryAndTag"
             :select-id="store.currentStudyWordDict.id"
             @selectDict="selectDict"
+            quantifier="个词"
             :groupByTag="item[1]"
             :category="item[0]"
         />
