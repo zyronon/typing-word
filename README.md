@@ -10,13 +10,16 @@
   <a href="https://github.com/zyronon/type-word/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zyronon/type-word" alt="License"></a>
   <a><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"/></a>
   <a><img src="https://img.shields.io/badge/Powered%20by-Vue-blue"/></a>
+  <a href="https://hellogithub.com/repository/eb70616d65604458908fc1736e7d41fc" target="_blank"><img src="https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=eb70616d65604458908fc1736e7d41fc&claim_uid=k5e4ZAqRjJEGzCW&theme=small" alt="Featured｜HelloGitHub" /></a>
 </p>
+
+<div align=center>
+<a href="https://trendshift.io/repositories/14139" target="_blank" class="trendshift-badge"><img src="https://trendshift.io/api/badge/repositories/14139" alt="TypeWords | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+</div>
 
 ## 📸 在线访问
 
-Github Pages: <https://typing-word.ttentau.top>(国内推荐访问这个)
-
-Netlify: <https://typing-words.netlify.app/>(需要翻墙)
+Github Pages: <https://2study.top>
 
 ## 🛠 功能列表
 
@@ -57,22 +60,9 @@ API 等词库。 尽可能满足大部分用户对背单词的需求，也非常
 - 王陆雅思王听力语料库 
 - 日语常见词、N1 ～ N5 
 
-## 📗 API 词库
-
-- JavaScript API、Node.js API、Java API、Linux Command、C#: List API
-
-词库均来源于(除文章以外)：[qwerty-learner](https://github.com/RealKai42/qwerty-learner/)
-
-如果您需要背诵其他词库，欢迎在 Issue 中提出
-
 ## 🎙 功能与建议
 
 目前项目处于开发初期，新功能正在持续添加中，如果你对软件有任何功能与建议，欢迎在 Issues 中提出
 如果你也喜欢本软件的设计思想，欢迎提交 pr，非常感谢你对我们的支持！
-
-### 灵感来源
-
-[qwerty-learner](https://github.com/RealKai42/qwerty-learner/) 很喜欢作者的这个项目，但是它没有背单词所必备的 **生词本、错词本、已掌握** 的功能，可能是作者反复强调和提醒这个项目是“**为键盘工作者设计的单词记忆与英语肌肉记忆锻炼软件**”而不是一个“**背单词**”的软件吧，尽管绝大多数用户都是用它来背单词😂😂😂。
-
-本项目参考其思路使用 Vue 重写了，并添加了 **生词本、错词本、已掌握** 、 **文章练习** 等功能 
+ 
  
