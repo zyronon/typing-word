@@ -168,11 +168,13 @@ const progressTextRight = $computed(() => {
     <div class="card flex gap-10">
       <div class="flex-1 flex flex-col gap-2">
         <div class="flex">
-          <div class="bg-third px-3 h-14 rounded-md flex items-center">
-            <span class="text-xl font-bold">{{ store.sdict.name || '请选择书籍开始学习' }}</span>
-            <BaseIcon title="切换词典" :icon="store.sdict.name ? 'gg:arrows-exchange' : 'fluent:add-20-filled'"
+          <div class="bg-third px-3 h-14 rounded-md flex items-center " >
+            <span @click="goDictDetail(store.sdict)" class="text-xl font-bold cursor-pointer">{{ store.sdict.name || '请选择词典开始学习' }}</span>
+            <BaseIcon title="切换词典"
+                      :icon="store.sdict.name ? 'gg:arrows-exchange' : 'fluent:add-20-filled'"
                       class="ml-4"
-                      @click="router.push('/dict-list')"/>
+                      @click="router.push('/dict-list')"
+            />
           </div>
         </div>
         <div class="">
