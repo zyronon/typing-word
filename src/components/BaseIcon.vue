@@ -1,7 +1,6 @@
 <script setup lang="ts">
 
 import Tooltip from "@/pages/pc/components/Tooltip.vue";
-import IconWrapper from "@/pages/pc/components/IconWrapper.vue";
 import {Icon} from "@iconify/vue";
 
 defineProps<{
