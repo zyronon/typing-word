@@ -1,8 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SOURCE_DIR = path.join(__dirname, 'dicts');
-const RESULT_DIR = path.join(__dirname, 'source');
+const SOURCE_DIR = path.join(__dirname, 'result2');
 
 // 中国考试
 const chinaExam = [
@@ -432,7 +431,7 @@ const chinaExam = [
     category: '中国考试',
     tags: ['其他'],
     url: '/dicts/zhuan-cha-ben.json',
-    length: 3217,
+    length: 3216,
     language: 'en',
     languageCategory: 'en',
   },
@@ -476,7 +475,7 @@ const chinaExam = [
     category: '中国考试',
     tags: ['其他'],
     url: '/dicts/tingshuokaoshi.json',
-    length: 557,
+    length: 556,
     language: 'en',
     languageCategory: 'en',
   },
@@ -1198,7 +1197,7 @@ const internationalExam = [
     category: '国际考试',
     tags: ['IELTS'],
     url: '/dicts/IELTS-listening-18days-day8.json',
-    length: 76,
+    length: 75,
     language: 'en',
     languageCategory: 'en',
   },
@@ -1907,7 +1906,7 @@ const childrenEnglish = [
     category: '青少年英语',
     tags: ['人教版'],
     url: '/dicts/PEP_SL_XiaoXue4_1_t.json',
-    length: 116,
+    length: 115,
     language: 'en',
     languageCategory: 'en',
   },
@@ -2172,7 +2171,7 @@ const childrenEnglish = [
     category: '青少年英语',
     tags: ['外研版'],
     url: '/dicts/Newwaiyan7-2.json',
-    length: 306,
+    length: 305,
     language: 'en',
     languageCategory: 'en',
   },
@@ -2818,26 +2817,25 @@ const childrenEnglish = [
   },
 ]
 
-let list = chinaExam.concat(internationalExam).concat(childrenEnglish)
 
-list.map(v => {
-  let s = v.url.replace('./dicts/', '')
-  s = s.replace('/dicts/', '')
-
-  const sourcePath = path.join(SOURCE_DIR, s);
-  const targetPath = path.join(RESULT_DIR, s);
-
-  // 检查文件是否存在
-  if (fs.existsSync(sourcePath)) {
-    // 搬动文件
-    fs.rename(sourcePath, targetPath, (err) => {
-      if (err) {
-        console.error(`移动文件失败: ${s}`, err);
-      } else {
-        console.log(`已移动: ${s}`);
+function start(list, name) {
+  list.map(v => {
+    let s = v.url.replace('./dicts/', '')
+    s = s.replace('/dicts/', '')
+    const sourcePath = path.join(SOURCE_DIR, s);
+    // 检查文件是否存在
+    if (fs.existsSync(sourcePath)) {
+      const raw = JSON.parse(fs.readFileSync(sourcePath, 'utf-8'));
+      if (v.length !== raw.length) {
+        console.log(v.name, v.length, raw.length)
       }
-    });
-  } else {
-    console.warn(`找不到文件: ${s}`);
-  }
-})
+    } else {
+      console.warn(`找不到文件: ${s}`);
+    }
+  })
+
+}
+
+start(chinaExam, 'chinaExam')
+start(internationalExam, 'internationalExam')
+start(childrenEnglish, 'childrenEnglish')

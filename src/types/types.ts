@@ -177,7 +177,7 @@ export type DictResource = {
   tags: string[]
   translateLanguage: TranslateLanguageType
   //todo 可以考虑删除了
-  type: DictType
+  type?: DictType
   language: LanguageType
 }
 
