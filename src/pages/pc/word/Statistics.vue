@@ -162,9 +162,9 @@ function options(emitType: string) {
         <BaseButton @click="$router.back">
           返回主页
         </BaseButton>
-        <BaseButton>
-          分享
-        </BaseButton>
+<!--        <BaseButton>-->
+<!--          分享-->
+<!--        </BaseButton>-->
       </div>
     </div>
   </Dialog>
