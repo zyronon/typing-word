@@ -183,6 +183,16 @@ useSeoMeta({
             class="font-medium text-[var(--hw-text-2)] no-underline hover:text-[var(--hw-text)] transition-colors duration-150"
             >{{ $t('nav_articles') }}</NuxtLink
           >
+          <NuxtLink
+            to="/doc"
+            class="font-medium text-[var(--hw-text-2)] no-underline hover:text-[var(--hw-text)] transition-colors duration-150"
+            >{{ $t('nav_resources') }}</NuxtLink
+          >
+          <NuxtLink
+            to="/help"
+            class="font-medium text-[var(--hw-text-2)] no-underline hover:text-[var(--hw-text)] transition-colors duration-150"
+            >{{ $t('nav_help') }}</NuxtLink
+          >
         </nav>
         <!-- Actions -->
         <div class="ml-auto flex items-center gap-2 text-[var(--hw-text-2)]">
