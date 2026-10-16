@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { BaseButton, BaseIcon, Close, VolumeIcon } from '@/base'
-import { computed, nextTick, onMounted, onUnmounted, watch } from 'vue'
+import { BaseIcon, Close, VolumeIcon } from '@/base'
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useSettingStore } from '@/core/stores/setting.ts'
 import { usePlayWordAudio } from '@/core/hooks/sound.ts'
@@ -8,15 +8,28 @@ import { closeWordLookup, wordLookupState } from '@/core/hooks/useWordLookup.ts'
 import { openWordCollectPicker } from '@/core/hooks/useWordCollectPicker.ts'
 import { getDefaultWord } from '@/core/types/func.ts'
 import TranslationList from './TranslationList.vue'
-import { goYoudao } from '@/core/utils'
 
 const { t: $t } = useI18n()
 const settingStore = useSettingStore()
 const playWordAudio = usePlayWordAudio()
+const popover = ref<HTMLElement | null>(null)
+const dictionaryTabs = [
+  { value: 'youdao', label: '有道词典' },
+  { value: 'iciba', label: '金山词霸' },
+] as const
+const activeDictionary = ref<(typeof dictionaryTabs)[number]['value']>('youdao')
+const dictionaryLabel = computed(() => dictionaryTabs.find(tab => tab.value === activeDictionary.value)!.label)
+const dictionaryUrl = computed(() => {
+  const word = encodeURIComponent(wordLookupState.queryWord)
+  return activeDictionary.value === 'iciba'
+    ? `https://www.iciba.com/word?w=${word}`
+    : `https://dict.youdao.com/result?word=${word}&lang=en`
+})
 
+const isExternalLookup = computed(() => !wordLookupState.loading && wordLookupState.notFound)
 const style = computed(() => ({
-  left: `${wordLookupState.x}px`,
-  top: `${wordLookupState.y}px`,
+  left: isExternalLookup.value ? '50%' : `${wordLookupState.x}px`,
+  top: isExternalLookup.value ? '50%' : `${wordLookupState.y}px`,
 }))
 
 const collectTarget = computed(() => {
@@ -44,37 +57,76 @@ function onKeydown(e: KeyboardEvent) {
   }
 }
 
+function onDictionaryTabKeydown(e: KeyboardEvent) {
+  const index = dictionaryTabs.findIndex(tab => tab.value === activeDictionary.value)
+  let nextIndex: number
+  switch (e.key) {
+    case 'ArrowRight':
+      nextIndex = (index + 1) % dictionaryTabs.length
+      break
+    case 'ArrowLeft':
+      nextIndex = (index - 1 + dictionaryTabs.length) % dictionaryTabs.length
+      break
+    case 'Home':
+      nextIndex = 0
+      break
+    case 'End':
+      nextIndex = dictionaryTabs.length - 1
+      break
+    default:
+      return
+  }
+  e.preventDefault()
+  activeDictionary.value = dictionaryTabs[nextIndex].value
+  const tabList = (e.currentTarget as HTMLElement).parentElement
+  nextTick(() => tabList?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[nextIndex]?.focus())
+}
+
+function updatePopoverPosition() {
+  if (!wordLookupState.visible || !popover.value || isExternalLookup.value) return
+  const el = popover.value
+  const rect = el.getBoundingClientRect()
+  const padding = 8
+  const left = Math.max(padding, Math.min(wordLookupState.x - rect.width / 2, window.innerWidth - rect.width - padding))
+  let top = wordLookupState.y
+  if (top + rect.height > window.innerHeight - padding) {
+    top = wordLookupState.y - rect.height - 16
+  }
+  top = Math.max(padding, Math.min(top, window.innerHeight - rect.height - padding))
+  el.style.left = `${left}px`
+  el.style.top = `${top}px`
+}
+
 onMounted(() => {
   document.addEventListener('click', onDocumentClick)
   document.addEventListener('keydown', onKeydown)
+  window.addEventListener('resize', updatePopoverPosition)
 })
 
 onUnmounted(() => {
   document.removeEventListener('click', onDocumentClick)
   document.removeEventListener('keydown', onKeydown)
+  window.removeEventListener('resize', updatePopoverPosition)
 })
 
 watch(
-  () => [wordLookupState.visible, wordLookupState.x, wordLookupState.y],
+  () => [wordLookupState.visible, wordLookupState.loading, wordLookupState.queryWord],
+  () => {
+    activeDictionary.value = 'youdao'
+  }
+)
+
+watch(
+  () => [
+    wordLookupState.visible,
+    wordLookupState.x,
+    wordLookupState.y,
+    wordLookupState.loading,
+    wordLookupState.notFound,
+  ],
   () => {
     if (!wordLookupState.visible) return
-    nextTick(() => {
-      const el = document.querySelector('.word-lookup-popover') as HTMLElement | null
-      if (!el) return
-      const rect = el.getBoundingClientRect()
-      let left = wordLookupState.x - rect.width / 2
-      let top = wordLookupState.y
-      const padding = 8
-      if (left < padding) left = padding
-      if (left + rect.width > window.innerWidth - padding) {
-        left = window.innerWidth - rect.width - padding
-      }
-      if (top + rect.height > window.innerHeight - padding) {
-        top = wordLookupState.y - rect.height - 16
-      }
-      el.style.left = `${left}px`
-      el.style.top = `${top}px`
-    })
+    nextTick(updatePopoverPosition)
   }
 )
 </script>
@@ -82,7 +134,14 @@ watch(
 <template>
   <Teleport to="body">
     <Transition name="fade">
-      <div v-if="wordLookupState.visible" class="word-lookup-popover" :style="style" @click.stop>
+      <div
+        v-if="wordLookupState.visible"
+        ref="popover"
+        class="word-lookup-popover"
+        :class="{ 'word-lookup-popover--external': isExternalLookup }"
+        :style="style"
+        @click.stop
+      >
         <Close class="close-btn" :title="$t('close')" @click="closeWordLookup" />
 
         <template v-if="wordLookupState.loading">
@@ -96,14 +155,40 @@ watch(
               <IconFluentStarAdd16Regular />
             </BaseIcon>
           </div>
-          <div class="color-gray mt-1 flex items-center gap-2">
-            <span>暂未收录该单词</span>
-            <BaseButton @click="goYoudao(wordLookupState.queryWord)">
-              <div class="flex items-center gap-2">
-                <IconFluentSearch20Regular />
-                <span>有道词典</span>
-              </div>
-            </BaseButton>
+          <div class="mt-1 mb-3 flex items-center gap-3 flex-wrap text-sm">
+            <span class="color-gray">暂未收录</span>
+            <div role="tablist" aria-label="查词词典" class="dictionary-tabs ml-auto">
+              <button
+                v-for="tab in dictionaryTabs"
+                :id="`word-lookup-tab-${tab.value}`"
+                :key="tab.value"
+                type="button"
+                role="tab"
+                :aria-selected="activeDictionary === tab.value"
+                aria-controls="word-lookup-dictionary-panel"
+                :tabindex="activeDictionary === tab.value ? 0 : -1"
+                class="dictionary-tab"
+                @click="activeDictionary = tab.value"
+                @keydown="onDictionaryTabKeydown"
+              >
+                {{ tab.label }}
+              </button>
+            </div>
+            <a :href="dictionaryUrl" target="_blank" rel="noopener noreferrer" class="text-link">在新窗口打开</a>
+          </div>
+          <div
+            id="word-lookup-dictionary-panel"
+            role="tabpanel"
+            :aria-labelledby="`word-lookup-tab-${activeDictionary}`"
+          >
+            <iframe
+              :key="dictionaryUrl"
+              :src="dictionaryUrl"
+              :title="`${dictionaryLabel}：${wordLookupState.queryWord}`"
+              class="dictionary-frame"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+              referrerpolicy="no-referrer"
+            />
           </div>
         </template>
         <template v-else-if="wordLookupState.data">
@@ -137,15 +222,60 @@ watch(
 .word-lookup-popover {
   position: fixed;
   z-index: 10000;
-  max-width: 22rem;
-  min-width: 15rem;
-  transform: translateX(-50%);
+  box-sizing: border-box;
+  width: max-content;
+  max-width: min(22rem, calc(100vw - 16px));
+  min-width: min(15rem, calc(100vw - 16px));
+  max-height: calc(100dvh - 16px);
+  overflow: auto;
   background: var(--color-tooltip-bg);
   border: 1px solid var(--color-item-border);
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   pointer-events: auto;
+}
+
+.word-lookup-popover--external {
+  transform: translate(-50%, -50%);
+  width: min(64rem, calc(100vw - 16px));
+  max-width: min(64rem, calc(100vw - 16px));
+}
+
+.dictionary-tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border: 1px solid var(--color-item-border);
+  border-radius: 0.5rem;
+}
+
+.dictionary-tab {
+  padding: 0.25rem 0.75rem;
+  border: 0;
+  border-radius: 0.25rem;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+
+  &[aria-selected='true'] {
+    background: var(--color-item-border);
+    color: var(--color-main-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+.dictionary-frame {
+  display: block;
+  width: 100%;
+  height: min(32rem, calc(100dvh - 10rem));
+  border: 0;
+  border-radius: 0.25rem;
+  background: #fff;
 }
 
 .close-btn {
