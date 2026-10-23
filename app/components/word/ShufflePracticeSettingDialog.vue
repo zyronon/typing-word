@@ -136,6 +136,38 @@ function applyRecentRange(size: number) {
   setRange(Math.max(1, progressNo - size + 1), progressNo)
 }
 
+/** 打开对话框时优先恢复上次保存的乱序设置（按词典记忆，解决每次打开都回到默认值的问题），无效时回退默认 */
+function restoreSavedOrDefault() {
+  const saved = settingStore.shufflePracticeSetting
+  if (
+    saved &&
+    saved.dictId === store.sdict.id &&
+    wordCount > 0 &&
+    Number.isFinite(Number(saved.start)) &&
+    Number.isFinite(Number(saved.end)) &&
+    Number(saved.start) >= 1
+  ) {
+    // setRange 会自动做越界裁剪并保证最小区间间隔
+    setRange(Math.floor(Number(saved.start)), Math.floor(Number(saved.end)))
+    const total = Math.floor(Number(saved.total))
+    num = Number.isFinite(total) && total >= 1 ? Math.min(total, Math.max(rangeWordCount, 1)) : getDefaultTotal(rangeWordCount)
+    syncTotalWithRange()
+    return
+  }
+  setDefaultRange()
+}
+
+/** 确认乱序设置后记住本次选择，下次打开自动回填（保存的是经 clamp 后的真实范围） */
+function rememberSetting(total: number) {
+  if (!wordCount || displayRange.end <= 0 || !store.sdict.id) return
+  settingStore.shufflePracticeSetting = {
+    dictId: store.sdict.id,
+    start: displayRange.start,
+    end: displayRange.end,
+    total: Math.max(1, Math.floor(Number(total) || num)),
+  }
+}
+
 function getSetting(total = num): ShufflePracticeSetting {
   return {
     total: Math.max(0, Math.floor(Number(total) || 0)),
@@ -179,10 +211,12 @@ async function confirm() {
     return false
   }
 
+  rememberSetting(result.total)
   return props.onConfirm?.(getSetting(result.total))
 }
 
 async function continueWithAvailable() {
+  rememberSetting(availableCount)
   return submit(getSetting(availableCount))
 }
 
@@ -192,7 +226,7 @@ watch(
     if (n) {
       showRangeInput = false
       showInsufficientDialog = false
-      setDefaultRange()
+      restoreSavedOrDefault()
     }
   }
 )

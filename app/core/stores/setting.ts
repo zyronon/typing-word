@@ -65,6 +65,7 @@ export interface SettingState {
   ignoreSymbol: boolean // 过滤符号
   practiceSentence: boolean // 练习例句
   autoPlayFirstSentence: boolean // 单词发音结束后自动播放首条例句
+  shufflePracticeSetting: { dictId: string; start: number; end: number; total: number } | null // 上次乱序练习的范围与数量（按词典记忆，打开乱序设置时回填同词典的记录）
 
   fsrsEasyLimit: number // 小于等于fsrsEasyLimit的卡片会评估为Easy
   fsrsGoodLimit: number // 小于等于fsrsEasyLimit且小于等于fsrsHardLimit的卡片会评估为Good
@@ -139,6 +140,7 @@ export const getDefaultSettingState = (): SettingState => ({
   ignoreSymbol: true,
   practiceSentence: false,
   autoPlayFirstSentence: true,
+  shufflePracticeSetting: null,
   fsrsEasyLimit: 0,
   fsrsGoodLimit: 3,
   fsrsHardLimit: 6,
